@@ -9,6 +9,7 @@
  * Contributors:
  *   Vincent Lorenzo (CEA-LIST) - vincent.lorenzo@cea.fr - Initial API and implementation
  *   Vincent Lorenzo (CEA-LIST) - bug 520566
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 520602
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
@@ -73,6 +74,11 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 	private List<EObject> listenEObjects = new ArrayList<EObject>();
 
 	/**
+	 * The list of column source EObjects to be listened when model element changes occur.
+	 */
+	private List<EObject> listenColumnSourceEObjects = new ArrayList<EObject>();
+
+	/**
 	 * This map takes the {@link TreeFillingConfiguration} as key and its helper as value
 	 */
 	private Map<TreeFillingConfiguration, TreeFillingConfigurationHelper> map;
@@ -116,7 +122,34 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 		};
 	};
 
+	/**
+	 * The listener to be notified when the column source objects are changed (i.e. an element is deleted from a column source object, which requires a table update).
+	 */
+	private Adapter columnSourceObjectChangesListener = new AdapterImpl() {
 
+		public void notifyChanged(final Notification msg) {
+			if (msg.isTouch()) {
+				return;
+			}
+
+			final int eventType = msg.getEventType();
+
+			// The table axis must be updated when elements are deleted (added) from (to) the column source objects
+			if (((Notification.REMOVE == eventType) || (Notification.ADD == eventType)) && tableAxisShouldBeUpdated()) {
+				updateAxisAfterColumnSourceObjectChanges();
+				cleanAndReinitListenColumnSourceObjects();
+			}
+
+			// As an element is reordered inside its container (a column source object), a REMOVE_MANY is followed by an ADD_MANY,
+			// so we capture the later one in order to refresh the table axis.
+			// Without doing this, user will see the incoherent when closing and reopening the relationship matrix table 
+			else if (Notification.ADD_MANY == eventType && tableAxisShouldBeUpdated()) {
+				// Just update the axis, there is no need to do others actions as listener objects and tree filling configuration are unchanged
+				updateAxisAfterColumnSourceObjectChanges();
+				cleanAndReinitListenColumnSourceObjects();
+			}
+		};
+	};
 
 	/**
 	 * 
@@ -142,37 +175,44 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 
 		// 2. we init the listener to be notified when the current table configuration changes, to be able to update the columns list
 		cleanAndReinitListenObjects();
+		cleanAndReinitListenColumnSourceObjects();
 
 		// 3. we init the list of feature to listen for the columns sources elements
 		cleanAndFillTreeFillingConfigurationMap();
 
 	}
 
-
 	/**
-	 * This method add the {@link #tableConfigurationChangesListener} on this object
+	 * This method adds the {@link Adapter} on an {@link EObject}.
+	 * The list of listen EObjects is also updated.
 	 * 
 	 * @param eobject
-	 *            a table configuration obhect
+	 *            the eobject to add
+	 * @param adapter
+	 *            the adapter to be added
+	 * @param listenEObjectsList
+	 *            the list of listen EObjects
 	 */
-	private void addListenerOnTableConfigurationObjects(final EObject eobject) {
+	private void addListenerOnEObjects(final EObject eobject, final Adapter adapter, final List<EObject> listenEObjectsList) {
 		if (null != eobject) {
-			if (!eobject.eAdapters().contains(this.tableConfigurationChangesListener)) {// to avoid infinite loop in some case ?
-				eobject.eAdapters().add(this.tableConfigurationChangesListener);
-				this.listenEObjects.add(eobject);
+			if (!eobject.eAdapters().contains(adapter)) {// to avoid infinite loop in some case ?
+				eobject.eAdapters().add(adapter);
+				listenEObjectsList.add(eobject);
 			}
 		}
 	}
 
 	/**
-	 * This method remove the {@link #tableConfigurationChangesListener} on this object
+	 * This method removes the {@link org.eclipse.emf.common.notify.Adapter} on the list of listen EObjects.
 	 * 
-	 * @param eobject
-	 *            a table configuration obhect
+	 * @param listenEObjectsList
+	 *            The list of listen EObjects
+	 * @param adapter
+	 *            The adapter to be removed
 	 */
-	private void removeListenersOnTableConfigurationObjects() {
-		for (final EObject current : this.listenEObjects) {
-			current.eAdapters().remove(this.tableConfigurationChangesListener);
+	private void removeListenersOnEObjects(final List<EObject> listenEObjectsList, final Adapter adapter) {
+		for (final EObject current : listenEObjectsList) {
+			current.eAdapters().remove(adapter);
 		}
 	}
 
@@ -182,54 +222,73 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 	 * 
 	 */
 	private void cleanAndReinitListenObjects() {
-		removeListenersOnTableConfigurationObjects();
+		removeListenersOnEObjects(this.listenEObjects, this.tableConfigurationChangesListener);
 
 		final Table table = getTableManager().getTable();
 		if (null == table) {
 			return;
 		}
+		addListenerOnEObjects(table, this.tableConfigurationChangesListener, this.listenEObjects);
 
-		addListenerOnTableConfigurationObjects(table);
 		final LocalTableHeaderAxisConfiguration columnHeaderAxisConfiguration = table.getLocalColumnHeaderAxisConfiguration();
 
 		// COLUMNS MANAGEMENT
 		// we add a listener on the columnHeaderAxisConfiguration
 		if (columnHeaderAxisConfiguration instanceof LocalTableHeaderAxisConfiguration) {
-			addListenerOnTableConfigurationObjects(columnHeaderAxisConfiguration);
+			addListenerOnEObjects(columnHeaderAxisConfiguration, this.tableConfigurationChangesListener, this.listenEObjects);
 
 			// the best way will be to listen the TreeFillingConfiguration of the AxisManagerConfigruation, but it is useless, because the referenced TreeFillingConfiguration are also accessible
 			// from the owned axis configuration
 			for (final IAxisConfiguration current : columnHeaderAxisConfiguration.getOwnedAxisConfigurations()) {
 				if (current instanceof TreeFillingConfiguration && ((TreeFillingConfiguration) current).getDepth() == 1) {
 					final TreeFillingConfiguration treeFillingConfiguration = (TreeFillingConfiguration) current;
-					addListenerOnTableConfigurationObjects(treeFillingConfiguration);
+					addListenerOnEObjects(treeFillingConfiguration, this.tableConfigurationChangesListener, this.listenEObjects);
 
 					IAxis provider = treeFillingConfiguration.getAxisUsedAsAxisProvider();
-					addListenerOnTableConfigurationObjects(provider);
+					addListenerOnEObjects(provider, this.tableConfigurationChangesListener, this.listenEObjects);
 					final IBooleanEObjectExpression filterRule = treeFillingConfiguration.getFilterRule();
-					addListenerOnTableConfigurationObjects(filterRule);
+					addListenerOnEObjects(filterRule, this.tableConfigurationChangesListener, this.listenEObjects);
 				}
 			}
 		}
 
 		final ICellEditorConfiguration cellEditorConfiguration = table.getOwnedCellEditorConfigurations();
 		if (null != cellEditorConfiguration) {
-			addListenerOnTableConfigurationObjects(cellEditorConfiguration);
+			addListenerOnEObjects(cellEditorConfiguration, this.tableConfigurationChangesListener, this.listenEObjects);
 			if (cellEditorConfiguration instanceof GenericRelationshipMatrixCellEditorConfiguration) {
 				final GenericRelationshipMatrixCellEditorConfiguration tmp = (GenericRelationshipMatrixCellEditorConfiguration) cellEditorConfiguration;
 				final IBooleanEObjectExpression filter = tmp.getCellContentsFilter();
-				addListenerOnTableConfigurationObjects(filter);
+				addListenerOnEObjects(filter, this.tableConfigurationChangesListener, this.listenEObjects);
 			}
 		}
 
 		final AbstractAxisProvider axisProvider = table.getCurrentColumnAxisProvider();
 		if (axisProvider instanceof IMasterAxisProvider) {
-			addListenerOnTableConfigurationObjects(axisProvider);
+			addListenerOnEObjects(axisProvider, this.tableConfigurationChangesListener, this.listenEObjects);
 		}
 
 		final AbstractAxisProvider rowAxisProvider = table.getCurrentRowAxisProvider();
 		if (rowAxisProvider instanceof IMasterAxisProvider) {
-			addListenerOnTableConfigurationObjects(rowAxisProvider);
+			addListenerOnEObjects(rowAxisProvider, this.tableConfigurationChangesListener, this.listenEObjects);
+		}
+	}
+	
+	/**
+	 * This method removes the registered listener {@link #columnSourceObjectChangesListener} on all objects referenced by {@link #listenColumnSourceEObjects},
+	 * Then the listener {@link #columnSourceObjectChangesListener} is applied on all interesting objects of the tableS
+	 */
+	private void cleanAndReinitListenColumnSourceObjects() {
+		// Table axis should be refreshed according to the following cases:
+		// - Sub-elements of column source object are deleted, added or moved 
+		// - The column source object is deleted from the model explorer
+		// - Undo/redo operation
+		List<EObject> columnSources = getColumnSources();
+		if (!columnSources.isEmpty()) {
+			removeListenersOnEObjects(listenColumnSourceEObjects, columnSourceObjectChangesListener);;
+			for (EObject columnContainer : columnSources) {
+				// To survey changes in column source objects, i.e. delete or add a child element
+				addListenerOnEObjects(columnContainer, columnSourceObjectChangesListener, listenColumnSourceEObjects);
+			}
 		}
 	}
 
@@ -498,7 +557,6 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 		return context;
 	}
 
-
 	/**
 	 * This method allows to update the displayed column after changes in the table configuration
 	 */
@@ -509,7 +567,9 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 
 		List<Object> allAxisToDisplay = new ArrayList<Object>();
 		for (final IWrapper current : ((IMasterAxisProvider) getTableManager().getTable().getCurrentColumnAxisProvider()).getSources()) {
-			allAxisToDisplay.addAll(getListenFeatureValueFor((EObject) current.getElement()));
+			if (current.getElement() instanceof EObject) {
+				allAxisToDisplay.addAll(getListenFeatureValueFor((EObject) current.getElement()));
+			}
 		}
 		List<Object> toAdd = new ArrayList<Object>(allAxisToDisplay);
 		toAdd.removeAll(this.managedObject);
@@ -521,7 +581,46 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 		updateManagedList(toAdd, toRemove);
 	}
 
+	/**
+	 * This method allows to update the displayed column axis when changes related to the column source objects occur.
+	 * @since 4.0
+	 */
+	protected void updateAxisAfterColumnSourceObjectChanges() {
+		List<Object> allAxisToDisplay = getAllTableAxisToDisplay();
 
+		this.managedObject.clear();
+		this.managedObject.addAll(allAxisToDisplay);
+
+		getTableManager().updateAxisContents(getRepresentedContentProvider());
+	}
+
+	/**
+	 * Check if the table axis should be updated or not.
+	 *
+	 * @return <code>true</code> if the old axis objects is not equal the new one, <code>false</code> otherwise
+	 * @since 4.0
+	 */
+	protected boolean tableAxisShouldBeUpdated() {
+		return (!this.managedObject.equals(getAllTableAxisToDisplay()));
+	}
+
+	/**
+	 * @return the list of all table axis to be displayed
+	 * @since 4.0
+	 */
+	protected List<Object> getAllTableAxisToDisplay() {
+		if (null == getTableManager() || null == getTableManager().getTable() || null == getTableManager().getTable().getCurrentColumnAxisProvider()) {
+			return null;
+		}
+
+		List<Object> allAxisToDisplay = new ArrayList<Object>();
+		for (final IWrapper current : ((IMasterAxisProvider) getTableManager().getTable().getCurrentColumnAxisProvider()).getSources()) {
+			if (current.getElement() instanceof EObject) {
+				allAxisToDisplay.addAll(getListenFeatureValueFor((EObject) current.getElement()));
+			}
+		}
+		return allAxisToDisplay;
+	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#dispose()
@@ -529,7 +628,8 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 	 */
 	@Override
 	public void dispose() {
-		removeListenersOnTableConfigurationObjects();
+		removeListenersOnEObjects(this.listenEObjects, this.tableConfigurationChangesListener);
+		removeListenersOnEObjects(this.listenColumnSourceEObjects, this.columnSourceObjectChangesListener);
 		getTableManager().getTable().eAdapters().remove(this.tableConfigurationChangesListener);
 		this.tableFeatureToListen.clear();
 		this.featureVSConfiguration.clear();
@@ -590,5 +690,4 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 			return (EStructuralFeature) (getFeatureToListen() instanceof EStructuralFeature ? getFeatureToListen() : null);
 		}
 	}
-
 }
