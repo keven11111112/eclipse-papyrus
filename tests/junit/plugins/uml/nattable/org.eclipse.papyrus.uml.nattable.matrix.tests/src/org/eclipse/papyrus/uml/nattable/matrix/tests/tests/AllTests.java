@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Initial API and implementation
- *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 525245, 525367 
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 525245, 525367, 520602 
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.matrix.tests.tests;
@@ -24,7 +24,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		UpdateTableAfterEditingRowSourceTest.class,
 		UpdateTableAfterEditingColumnSourceTest.class,
 		UpdateTableContentsAfterExpressionChangeWithLocalHeaderPreconfiguredTests.class,
-		DeleteObjectWrapperForSourceElementsTest.class
+		DeleteObjectWrapperForSourceElementsTest.class,
+		// Bug 520602 - Columns are not deleted when the semantic element is destroyed from the ModelExplorer
+		UpdateMatrixAxisColumnTest.class
 })
 public class AllTests {
 	// JUnit 4 test suite
