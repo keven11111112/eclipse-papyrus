@@ -261,7 +261,7 @@ public class MessageFoundAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
-		return DiagramEditPartsUtil.getIcon(getParserElement(), getViewer());
+		return null;
 	}
 
 	/**

@@ -127,24 +127,26 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	protected Command getMoveMessageCommand(BendpointRequest request) {
 		if (getHost() instanceof MessageLostEditPart || getHost() instanceof MessageFoundEditPart) {
 			PointList points = getConnection().getPoints().getCopy();
-			CompoundCommand command = new CompoundCommand("Move");
-			AbstractMessageEditPart MessageSyncEditPart = (AbstractMessageEditPart) getHost();
+			CompoundCommand command = new CompoundCommand("Move");//$NON-NLS-1$
+			AbstractMessageEditPart messageSyncEditPart = (AbstractMessageEditPart) getHost();
 			// move source
 			ReconnectRequest sourceReq = new ReconnectRequest(REQ_RECONNECT_SOURCE);
-			sourceReq.setConnectionEditPart(MessageSyncEditPart);
+			sourceReq.setConnectionEditPart(messageSyncEditPart);
 			Point sourceLocation = points.getFirstPoint().getCopy();
 			getConnection().translateToAbsolute(sourceLocation);
-			EditPart source = MessageSyncEditPart.getSource();
+			sourceLocation = SequenceUtil.getSnappedLocation(getHost(), sourceLocation);
+			EditPart source = messageSyncEditPart.getSource();
 			sourceReq.setLocation(sourceLocation);
 			sourceReq.setTargetEditPart(source);
 			Command moveSourceCommand = source.getCommand(sourceReq);
 			command.add(moveSourceCommand);
 			// move target
-			EditPart target = MessageSyncEditPart.getTarget();
+			EditPart target = messageSyncEditPart.getTarget();
 			ReconnectRequest targetReq = new ReconnectRequest(REQ_RECONNECT_TARGET);
-			targetReq.setConnectionEditPart(MessageSyncEditPart);
+			targetReq.setConnectionEditPart(messageSyncEditPart);
 			Point targetLocation = points.getLastPoint().getCopy();
 			getConnection().translateToAbsolute(targetLocation);
+			targetLocation = SequenceUtil.getSnappedLocation(getHost(), targetLocation);
 			targetReq.setLocation(targetLocation);
 			targetReq.setTargetEditPart(target);
 			Command moveTargetCommand = target.getCommand(targetReq);
@@ -213,7 +215,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 								compoudCmd.add(tgtCmd);
 								compoudCmd.add(srcCmd);
 								compoudCmd.add(new ICommandProxy(moveLifelineCmd));
-								compoudCmd.add(new ICommandProxy(setSizeCommand));
 							} else {
 								compoudCmd.add(new ICommandProxy(moveLifelineCmd));
 								compoudCmd.add(new ICommandProxy(setSizeCommand));
@@ -266,7 +267,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						}
 						return compoudCmd;
 					} else {
-						// TODO_MIA to test
 						int y = request.getLocation().y;
 						Command srcCmd = createMoveMessageEndCommand((Message) message, srcPart, send, y, srcLifelinePart, request);
 						Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y, targetLifelinePart, request);
@@ -288,6 +288,10 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 							return compoudCmd;
 						}
 					}
+				} else
+				// Found message case && Lost message case
+				if ((srcLifelinePart == null) && (targetLifelinePart != null) || (srcLifelinePart != null && targetLifelinePart == null)) {
+					return getMoveMessageCommand((BendpointRequest) request);
 				}
 			}
 		}
@@ -308,6 +312,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			ConnectionNodeEditPart connection = (ConnectionNodeEditPart) getHost();
 			if (isSource) {
 				ReconnectRequest req = new ReconnectRequest(REQ_RECONNECT_SOURCE);
+				req.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 				req.setConnectionEditPart(connection);
 				req.setTargetEditPart(endEditPart);
 				Point location = SequenceUtil.getAbsoluteEdgeExtremity(connection, true);
@@ -317,6 +322,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				return command;
 			} else {
 				ReconnectRequest req = new ReconnectRequest(REQ_RECONNECT_TARGET);
+				req.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 				req.setConnectionEditPart(connection);
 				req.setTargetEditPart(endEditPart);
 				Point location = SequenceUtil.getAbsoluteEdgeExtremity(connection, false);
@@ -349,39 +355,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			compoudCmd.add(tgtCmd);
 		}
 		return compoudCmd.unwrap();
-		// CompoundCommand compoudCmd = new CompoundCommand(Messages.MoveMessageCommand_Label);
-		// PointList points = getConnection().getPoints();
-		// Point sourceRefPoint = points.getFirstPoint();;
-		// Point targetRefPoint = points.getLastPoint();;
-		// getConnection().translateToAbsolute(sourceRefPoint);
-		// getConnection().translateToAbsolute(targetRefPoint);
-		//
-		// Point oldSourcePoint = SequenceUtil.findLocationOfEvent(srcLifelinePart, (OccurrenceSpecification)send);
-		// int dy = sourceRefPoint.y - oldSourcePoint.y;
-		// int dx = request.getLocation().x > sourceRefPoint.x ? 3 : -3;
-		//
-		// // check bounds
-		// NodeFigure fig = srcLifelinePart.getPrimaryShape().getFigureLifelineDotLineFigure().getDashLineRectangle();
-		// Rectangle bounds = fig.getBounds().getCopy();
-		// fig.translateToAbsolute(bounds);
-		//
-		// bounds.expand(6, 0);
-		// if(!bounds.contains(sourceRefPoint) || !bounds.contains(targetRefPoint)){
-		// return UnexecutableCommand.INSTANCE; // cannot move outside lifeline part
-		// }
-		// sourceRefPoint = sourceRefPoint.translate(dx, 0);
-		// targetRefPoint = targetRefPoint.translate(dx, 0);
-		// Command srcCmd = getReconnectCommand(connectionPart, srcLifelinePart, sourceRefPoint, RequestConstants.REQ_RECONNECT_SOURCE);
-		// Command tgtCmd = getReconnectCommand(connectionPart, srcLifelinePart, targetRefPoint, RequestConstants.REQ_RECONNECT_TARGET);
-		//
-		// if(dy < 0){ // move up
-		// compoudCmd.add(srcCmd);
-		// compoudCmd.add(tgtCmd);
-		// }else{ // move down
-		// compoudCmd.add(tgtCmd);
-		// compoudCmd.add(srcCmd);
-		// }
-		// return compoudCmd;
 	}
 
 	protected Command getReconnectCommand(ConnectionNodeEditPart connectionPart, EditPart targetPart, Point location, String requestType) {
@@ -404,7 +377,9 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	public void showSourceFeedback(Request request) {
 		if (request instanceof BendpointRequest) {
 			RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-			if (kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate) {
+			if (getHost() instanceof MessageFoundEditPart || getHost() instanceof MessageLostEditPart) {
+				showMoveLineSegFeedback((BendpointRequest) request);
+			} else if (kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate) {
 				if (getLineSegMode() != LineMode.OBLIQUE && REQ_MOVE_BENDPOINT.equals(request.getType())) {
 					// Fixed bug about show feedback for moving bendpoints, make sure at least 3 points.
 					List constraint = (List) getConnection().getRoutingConstraint();
@@ -417,10 +392,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				if (getLineSegMode() != LineMode.OBLIQUE && REQ_MOVE_BENDPOINT.equals(request.getType())) {
 					showMoveLineSegFeedback((BendpointRequest) request);
 				}
-			}
-			// Add impossible to move MessageLost and MessageFound by dragging the line.
-			else if (getHost() instanceof MessageFoundEditPart || getHost() instanceof MessageLostEditPart) {
-				showMoveLineSegFeedback((BendpointRequest) request);
 			}
 		}
 	}
@@ -492,12 +463,13 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			}
 			PointList linkPoints = getConnection().getPoints().getCopy();
 			Point ptLoc = new Point(request.getLocation());
+			ptLoc = SequenceUtil.getSnappedLocation(getHost(), ptLoc);
 			getConnection().translateToRelative(ptLoc);
+
 			int dy = ptLoc.y - linkPoints.getFirstPoint().y;
 			int size = linkPoints.size();
 			for (int i = 0; i < size; i++) {
 				Point p = linkPoints.getPoint(i).translate(0, dy);
-				p.y = SequenceUtil.getSnappedLocation(getHost(), p).y;
 				linkPoints.setPoint(p, i);
 			}
 			if (checkBounds(linkPoints)) {

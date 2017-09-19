@@ -31,6 +31,7 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.IKeyPressState;
 import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.KeyboardListener;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.PlatformUI;
 
@@ -90,7 +91,7 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		reconnectRequest.setConnectionEditPart(connectionEditPart);
 		SenderRequestUtils.addRequestSenders(reconnectRequest, senderList);
 		SenderRequestUtils.addRequestSender(reconnectRequest, hostEditpart);
-		reconnectRequest.setLocation(new Point(100, location.y));
+		reconnectRequest.setLocation(location.getLocation().getCopy());
 		reconnectRequest.setType(reconnectType);
 		if (RequestConstants.REQ_RECONNECT_TARGET.equals(reconnectType)) {
 			reconnectRequest.setTargetEditPart(connectionEditPart.getTarget());
@@ -148,6 +149,7 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		Point positiononScreen = polyline.getTargetAnchor().getReferencePoint();
 		newAnchorPositionOnScreen = new Rectangle(positiononScreen.x, positiononScreen.y + moveDelta.y, 0, 0);
 		ReconnectRequest reconnectTargetRequest = createReconnectRequest(hostEditPart, connectionEditPart, newAnchorPositionOnScreen, senderList, RequestConstants.REQ_RECONNECT_TARGET);
+		reconnectTargetRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 		compoundCommand.add(connectionEditPart.getTarget().getCommand(reconnectTargetRequest));
 	}
 
@@ -156,6 +158,7 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		Point anchorPositionOnScreen = polyline.getSourceAnchor().getReferencePoint();
 		Rectangle newAnchorPositionOnScreen = new Rectangle(anchorPositionOnScreen.x, anchorPositionOnScreen.y + moveDelta.y, 0, 0);
 		ReconnectRequest reconnectSourceRequest = createReconnectRequest(hostEditPart, connectionEditPart, newAnchorPositionOnScreen, senderList, RequestConstants.REQ_RECONNECT_SOURCE);
+		reconnectSourceRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 		compoundCommand.add(connectionEditPart.getSource().getCommand(reconnectSourceRequest));
 	}
 

@@ -152,6 +152,11 @@ public class SequenceUtil {
 	public static final String OBSERVATION_LINK_REQUEST_RECONNECT_TARGET = "observation reconnect target"; //$NON-NLS-1$
 
 	/**
+	 * Request parameters for not checking the horizontality during reconnect request.
+	 */
+	public static final String DO_NOT_CHECK_HORIZONTALITY = "do not check horizontality"; //$NON-NLS-1$
+
+	/**
 	 * Default vertical offset of lifeline
 	 */
 	public static final int LIFELINE_VERTICAL_OFFSET = 10;
@@ -445,7 +450,10 @@ public class SequenceUtil {
 		return getAbsoluteEdgeExtremity(connection, isStart, false);
 	}
 
-	static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart, boolean relyOnMessageFigure) {
+	/**
+	 * @since 4.1
+	 */
+	public static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart, boolean relyOnMessageFigure) {
 		Connection msgFigure = connection.getConnectionFigure();
 		if (connection.getNotationView() instanceof Edge && !relyOnMessageFigure) {
 			// rather take up to date model information
@@ -511,7 +519,10 @@ public class SequenceUtil {
 		return findLocationOfMessageOccurrence(nodeEditPart, event, false);
 	}
 
-	static Point findLocationOfMessageOccurrence(GraphicalEditPart nodeEditPart, MessageOccurrenceSpecification event, boolean relyOnMessageFigure) {
+	/**
+	 * @since 4.1
+	 */
+	public static Point findLocationOfMessageOccurrence(GraphicalEditPart nodeEditPart, MessageOccurrenceSpecification event, boolean relyOnMessageFigure) {
 		// messages to the node
 		List<?> targetConnections = nodeEditPart.getTargetConnections();
 		for (Object conn : targetConnections) {
@@ -801,6 +812,7 @@ public class SequenceUtil {
 	 * @param nodeEditPart
 	 *            the contained edit part or itself
 	 * @return lifeline edit part or null
+	 * @since 4.1
 	 */
 	public static LifelineEditPart getParentLifelinePart(EditPart nodeEditPart) {
 		EditPart parent = nodeEditPart;

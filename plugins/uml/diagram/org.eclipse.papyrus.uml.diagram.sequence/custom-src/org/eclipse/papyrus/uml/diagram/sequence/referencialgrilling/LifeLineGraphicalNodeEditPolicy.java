@@ -28,6 +28,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -38,6 +39,7 @@ import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
@@ -425,22 +427,23 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * @param request
 	 *            The request of Message creation
 	 */
-	protected void forceHorizontalRequest(CreateConnectionViewAndElementRequest request) {
-		Map<String, Object> extendedData = request.getExtendedData();
-		Object sourceLocation = extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
-
-		// only message with a target lower than the source is allowed.
-		if (sourceLocation instanceof Point) {
-			Point sourceLocationPoint = (Point) sourceLocation;
-			Point targetLocation = request.getLocation();
-			// Check if the Connection can be considered as Horizontal
-			if (sourceLocationPoint.y() != targetLocation.y()) {
-				if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint())
-						|| isHorizontalConnection(sourceLocationPoint, targetLocation)) {
-					Point forceHorizontalPoint = new Point(targetLocation);
-					forceHorizontalPoint.setY(sourceLocationPoint.y());
-					// Update the request accordingly
-					request.setLocation(forceHorizontalPoint);
+	protected void forceHorizontalRequest(Request request) {
+		if (request instanceof CreateConnectionViewAndElementRequest) {
+			Map<String, Object> extendedData = request.getExtendedData();
+			Object sourceLocation = extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
+			// only message with a target lower than the source is allowed.
+			if (sourceLocation instanceof Point) {
+				Point sourceLocationPoint = (Point) sourceLocation;
+				Point targetLocation = ((CreateRequest) request).getLocation();
+				// Check if the Connection can be considered as Horizontal
+				if (sourceLocationPoint.y() != targetLocation.y()) {
+					if (((CreateConnectionViewAndElementRequest) request).getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint())
+							|| isHorizontalConnection(sourceLocationPoint, targetLocation)) {
+						Point forceHorizontalPoint = new Point(targetLocation);
+						forceHorizontalPoint.setY(sourceLocationPoint.y());
+						// Update the request accordingly
+						((CreateRequest) request).setLocation(forceHorizontalPoint);
+					}
 				}
 			}
 		}
@@ -625,12 +628,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * @return true if target location point is lower than source location point
 	 */
 	private Boolean isTargetLowerThanSource(Point sourceLocation, Point targetLocation) {
-		Boolean targetLowerThanSource = true;
 		// only message with a target lower than the source is allowed.
-		Point sourceLocationPoint = (Point) sourceLocation;
-		targetLowerThanSource = sourceLocationPoint.y() <= targetLocation.y() + SequenceDiagramConstants.HORIZONTAL_MESSAGE_MAX_Y_DELTA;
-		return targetLowerThanSource;
-
+		return sourceLocation.y() <= targetLocation.y();
 	}
 
 	protected GraphicalNodeEditPolicy getBasicGraphicalNodeEditPolicy() {
@@ -648,8 +647,15 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getReconnectSourceCommand(final ReconnectRequest request) {
-		// Snap to grid the request location
 		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
+		// Check if the target is lower than the source
+		Point targetLocation = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) request.getConnectionEditPart(), false, true);
+		if (!isTargetLowerThanSource(request.getLocation().getCopy(), targetLocation)) {
+			Object object = request.getExtendedData().get(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY);
+			if (!(object instanceof Boolean) || ((object instanceof Boolean) && !((Boolean) object))) {// If not HorizontalMove parameter true
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
 		return getBasicGraphicalNodeEditPolicy().getCommand(request);
 	}
 
@@ -663,6 +669,16 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		Command command = null;
 		// Snap to grid the request location
 		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
+
+		// Check if the target is lower than the source
+		Point sourceLocation = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) request.getConnectionEditPart(), true);
+		if (!isTargetLowerThanSource(sourceLocation, request.getLocation().getCopy())) {
+			Object object = request.getExtendedData().get(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY);
+			if (!(object instanceof Boolean) || ((object instanceof Boolean) && !((Boolean) object))) {// If not HorizontalMove parameter true
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+
 		Command reconnectTargetCommand = getBasicGraphicalNodeEditPolicy().getCommand(request);
 		NodeEditPart nodeEP = (NodeEditPart) request.getTarget();
 

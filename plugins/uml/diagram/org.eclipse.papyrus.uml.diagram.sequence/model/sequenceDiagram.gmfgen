@@ -2045,8 +2045,7 @@
             editPartClassName="MessageFoundAppliedStereotypeEditPart"
             itemSemanticEditPolicyClassName="MessageFoundAppliedStereotypeItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageLabelViewFactory"
-            readOnly="true"
-            elementIcon="true">
+            readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
