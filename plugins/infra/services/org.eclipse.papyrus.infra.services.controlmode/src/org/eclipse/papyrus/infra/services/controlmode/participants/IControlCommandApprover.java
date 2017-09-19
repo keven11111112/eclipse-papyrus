@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.services.controlmode.participants;
 
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 

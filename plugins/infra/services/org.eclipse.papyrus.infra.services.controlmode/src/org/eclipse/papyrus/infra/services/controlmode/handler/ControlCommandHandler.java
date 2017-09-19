@@ -92,7 +92,7 @@ public class ControlCommandHandler extends AbstractHandler {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 
 		if (selection instanceof IStructuredSelection) {
-			if (selection == null || selection.isEmpty() || ((IStructuredSelection) selection).size() > 1) {
+			if (selection.isEmpty() || ((IStructuredSelection) selection).size() > 1) {
 				NotificationBuilder.createInfoPopup(EMPTY_SELECTION_MESSAGE).run();
 				return null;
 			}

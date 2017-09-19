@@ -1,6 +1,6 @@
 /*******************************************************************************
- * Copyright (c) 2006, 2016 Anyware Technologies. All rights reserved. This program, Christian W. Damus, and others
- * and the accompanying materials are made available under the terms of the
+ * Copyright (c) 2006, 2016-2017 Anyware Technologies and others. All rights reserved. 
+ * This program and the accompanying materials are made available under the terms of the
  * Eclipse Public License v1.0 which accompanies this distribution, and is
  * available at http://www.eclipse.org/legal/epl-v10.html
  *
@@ -8,21 +8,29 @@
  *    Jacques Lescot (Anyware Technologies) - Initial API and implementation
  *    Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436947
  *    Christian W. Damus - bug 497865
+ *    Benoit Maggi (CEA LIST) - bug 518307
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.ui;
+
+import java.util.Collections;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.fieldassist.ControlDecoration;
+import org.eclipse.jface.fieldassist.FieldDecoration;
+import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeManager;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
@@ -38,9 +46,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
 /**
- * Dialog that will ask the user the target URI for th new resource holding the new controlled element
- *
- * @author adaussy
+ * Dialog that will ask the user the target URI for the new resource holding the new controlled element
  *
  */
 public class CreateModelFragmentDialog extends ResourceDialog {
@@ -60,6 +66,7 @@ public class CreateModelFragmentDialog extends ResourceDialog {
 
 	private Button shardButton;
 	private boolean createShard;
+	private ControlDecoration controlDecoration;
 
 	/**
 	 * The constructor
@@ -79,8 +86,7 @@ public class CreateModelFragmentDialog extends ResourceDialog {
 	 * @since 1.3
 	 */
 	public CreateModelFragmentDialog(Shell parent, EObject objectToControl, String defaultName) {
-		this(parent, objectToControl.eResource(), defaultName); // $NON-NLS-1$
-
+		this(parent, objectToControl.eResource(), defaultName);
 		this.objectToControl = objectToControl;
 	}
 
@@ -93,7 +99,7 @@ public class CreateModelFragmentDialog extends ResourceDialog {
 				IFile file = null;
 				String path = URI.createURI(computeDefaultURI()).lastSegment();
 				file = WorkspaceResourceDialog.openNewFile(getShell(), null, null, path != null ? new Path(path) : null, null);
-				if (file != null) {
+				if (file != null) {	
 					uriField.setText(URI.createPlatformResourceURI(file.getFullPath().toString(), true).toString());
 				}
 			}
@@ -112,12 +118,11 @@ public class CreateModelFragmentDialog extends ResourceDialog {
 	protected Control createContents(Composite parent) {
 		Control result = super.createContents(parent);
 		this.uriField.setText(computeDefaultURI());
-
 		// And the rest of the dialog initialization
 		loadDialogState();
 
 		// Is the sub-model unit option available?
-		if ((objectToControl != null) && !ControlModeManager.getInstance().canCreateSubmodel(objectToControl)) {
+		if (objectToControl != null && !ControlModeManager.getInstance().canCreateSubmodel(objectToControl)) {
 			// We can only create a shard resource
 			shardButton.setSelection(false);
 			shardButton.setEnabled(false);
@@ -126,7 +131,6 @@ public class CreateModelFragmentDialog extends ResourceDialog {
 
 		// Initial validation
 		validateDialog();
-
 		return result;
 	}
 
@@ -154,16 +158,15 @@ public class CreateModelFragmentDialog extends ResourceDialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				createShard = !shardButton.getSelection();
-
 				validateDialog();
 			}
 		});
-
+		
 		uriField.addModifyListener(__ -> validateDialog());
-
+		controlDecoration = new ControlDecoration(uriField, SWT.TOP | SWT.LEFT);
 		// This is guaranteed by contract with subclasses to be the first child
 		Control buttonComposite = superContents[0];
-		result.setTabList(new Control[] { uriField, buttonComposite, shardButton });
+		result.setTabList(new Control[] {uriField, buttonComposite, shardButton });
 
 		return result;
 	}
@@ -178,11 +181,8 @@ public class CreateModelFragmentDialog extends ResourceDialog {
 	 */
 	@Override
 	protected boolean processResources() {
-		URI uri = URI.createURI(getURIText());
-		this.uri = uri;
-
+		this.uri = URI.createURI(getURIText());
 		saveDialogState();
-
 		return true;
 	}
 
@@ -249,22 +249,54 @@ public class CreateModelFragmentDialog extends ResourceDialog {
 	 * @since 1.3
 	 */
 	protected boolean validateDialog() {
+		Diagnostic diagnostic = diagnosticDialog();
+		switch (diagnostic.getSeverity()) {
+		case Diagnostic.ERROR:
+			FieldDecoration error = FieldDecorationRegistry.getDefault()
+					.getFieldDecoration(FieldDecorationRegistry.DEC_ERROR);
+			controlDecoration.setImage(error.getImage());
+			controlDecoration.showHoverText(diagnostic.getMessage());
+			controlDecoration.setDescriptionText(diagnostic.getMessage());
+			controlDecoration.show();
+			getButton(IDialogConstants.OK_ID).setEnabled(false);
+			break;		
+		case Diagnostic.WARNING:
+			FieldDecoration warning = FieldDecorationRegistry.getDefault()
+					.getFieldDecoration(FieldDecorationRegistry.DEC_WARNING);
+			controlDecoration.setImage(warning.getImage());
+			controlDecoration.showHoverText(diagnostic.getMessage());
+			controlDecoration.setDescriptionText(diagnostic.getMessage());
+			controlDecoration.show();
+			getButton(IDialogConstants.OK_ID).setEnabled(true);
+			break;
+		case Diagnostic.OK:
+		default:
+			controlDecoration.hide();
+			getButton(IDialogConstants.OK_ID).setEnabled(true);
+			break;
+		}
+		
+		return diagnostic.getSeverity() != Diagnostic.ERROR ;
+	}
+	
+	/**
+	 * @return diagnostic of the dialog
+	 */
+	protected Diagnostic diagnosticDialog() {
 		URI uri = getURIs().stream().findAny().orElse(null);
-		boolean result = uri != null;
-
+		Diagnostic diagnostic = Diagnostic.OK_INSTANCE;
 		// Can only create requests for validation if we have an object and a URI
-		if ((objectToControl != null) && (uri != null)) {
+		if (uri != null && objectToControl != null) {
 			ControlModeRequest request = ControlModeRequest.createUIControlModelRequest(
 					TransactionUtil.getEditingDomain(objectToControl),
 					objectToControl,
 					uri);
-
-			Diagnostic diagnostic = ControlModeManager.getInstance().approveRequest(request);
-			result = diagnostic.getSeverity() < Diagnostic.ERROR;
+			diagnostic = ControlModeManager.getInstance().approveRequest(request);
 		}
-
-		getButton(IDialogConstants.OK_ID).setEnabled(result);
-
-		return result;
+		if (Diagnostic.OK == diagnostic.getSeverity() && new ResourceSetImpl().getURIConverter().exists(uri, Collections.emptyMap())) {
+		    diagnostic = new BasicDiagnostic(Diagnostic.WARNING, ControlModePlugin.PLUGIN_ID, 0, Messages.getString("CreateModelFragmentDialog.dialog.warning.alreadyexist"), null); //$NON-NLS-1$
+		}
+		return diagnostic;
 	}
+	
 }

@@ -10,9 +10,6 @@
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.participants;
 
-import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
-
-
 /**
  * Represent a element which participate to creation of a control/Uncontrol command
  *

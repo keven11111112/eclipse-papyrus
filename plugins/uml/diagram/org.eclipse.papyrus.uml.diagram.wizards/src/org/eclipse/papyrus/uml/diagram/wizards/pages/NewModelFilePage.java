@@ -272,7 +272,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage implements INewP
 		String existingModelName = "";
 
 		for (String existingName : getExistingNames()) {
-			if (existingName.toLowerCase().equals(getFileName().toLowerCase())) {
+			if (existingName.equalsIgnoreCase(getFileName())) {
 				canFlip = false;
 				existingModelName = existingName;
 				break;
@@ -299,7 +299,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage implements INewP
 	 * 		The list of the names
 	 */
 	public Collection<String> getExistingNames() {
-		Collection<String> result = new LinkedList<String>();
+		Collection<String> result = new LinkedList<>();
 
 		try {
 			IResource rootResource = ResourcesPlugin.getWorkspace().getRoot().findMember(getContainerFullPath());
@@ -326,7 +326,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage implements INewP
 	 * @return
 	 */
 	public Collection<String> getMembersNames(IResource[] membersArray) {
-		Collection<String> membersList = new LinkedList<String>();
+		Collection<String> membersList = new LinkedList<>();
 		for (Iterator<IResource> arrayIter = Arrays.asList(membersArray).iterator(); arrayIter.hasNext();) {
 			IResource iResource = arrayIter.next();
 			membersList.add(iResource.getName());
