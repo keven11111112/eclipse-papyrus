@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 import org.eclipse.swt.widgets.Shell;
 

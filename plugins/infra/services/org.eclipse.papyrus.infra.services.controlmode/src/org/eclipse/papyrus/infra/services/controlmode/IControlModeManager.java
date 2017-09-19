@@ -23,7 +23,6 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.resource.ShardResourceHelper;
-import org.eclipse.papyrus.infra.services.controlmode.participants.IControlCommandApprover;
 
 /**
  * A control manger is able to compute a command in order to control or uncontrol an element from a {@link ControlModeRequest}.

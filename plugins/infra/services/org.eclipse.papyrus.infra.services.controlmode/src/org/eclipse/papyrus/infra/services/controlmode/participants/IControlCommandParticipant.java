@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.services.controlmode.participants;
 
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 
 
