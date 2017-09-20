@@ -83,7 +83,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.13/" {
+location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.14milestones/" {
 	org.eclipse.emf.sdk.feature.group
 }
 

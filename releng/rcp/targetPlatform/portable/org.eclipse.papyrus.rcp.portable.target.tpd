@@ -38,7 +38,7 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/mi
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.13/" {
+location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.14milestones/" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
