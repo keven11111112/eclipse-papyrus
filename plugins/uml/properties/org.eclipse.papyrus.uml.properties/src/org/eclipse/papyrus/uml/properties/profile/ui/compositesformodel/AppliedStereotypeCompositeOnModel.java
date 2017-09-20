@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014 CEA LIST and others.
+ * Copyright (c) 2008, 2014, 2017 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,18 +12,18 @@
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Christian W. Damus (CEA) - bug 323802
  *  Christian W. Damus (CEA) - bug 448139
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 522564
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EventObject;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.NotificationImpl;
+import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -84,6 +84,12 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 
 	/** The label. */
 	protected CLabel label;
+
+	/**
+	 * This listener is used to refresh the Tree showing the applied stereotype and these properties values.
+	 * It is easier to listen the stack than listen the edited property values recusrsively (a DataType owning a DataType owning another one, ...)
+	 */
+	private CommandStackListener commandStackListener;
 
 	/**
 	 * The default constructor.
@@ -666,19 +672,63 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 */
 	protected Command getUnapplyStereotypeCommand(final Element elt, final Stereotype st, final TransactionalEditingDomain domain) {
 		return new UnapplyStereotypeCommand(elt, st, domain);
-//		return new RecordingCommand(domain) {
-//
-//			/**
-//			 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
-//			 */
-//			@Override
-//			protected void doExecute() {
-//				elt.unapplyStereotype(st);
-//				elt.eNotify(new NotificationImpl(Notification.SET, true, true, true));
-//				refresh();
-//			}
-//		};
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel.DecoratedTreeComposite#setElement(org.eclipse.uml2.uml.Element)
+	 *
+	 * @param element
+	 */
+	@Override
+	public void setElement(Element element) {
+		// if the new element is null, we remove the command stack listener
+		if (null == element && null != getElement()) {
+			getEditingDomain(getElement()).getCommandStack().removeCommandStackListener(this.commandStackListener);
+		}
+		if (null != element && null == this.commandStackListener) {
+			// if the command stack listener has not yet been created, we create it
+			getEditingDomain(element).getCommandStack().addCommandStackListener(this.commandStackListener = new LocalCommandStackListener());
+		}
+		super.setElement(element);
+	}
+
+	/**
+	 * @see org.eclipse.swt.widgets.Widget#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		if (null != this.commandStackListener && null != getElement()) {
+			getEditingDomain(getElement()).getCommandStack().removeCommandStackListener(this.commandStackListener);
+			this.commandStackListener = null;
+		}
+		super.dispose();
+	}
+
+	/**
+	 * CommandStackListener used to refresh the TreeView when a stereotype property changed
+	 *
+	 */
+	private class LocalCommandStackListener implements CommandStackListener {
+
+		/**
+		 * @see org.eclipse.emf.common.command.CommandStackListener#commandStackChanged(java.util.EventObject)
+		 *
+		 * @param event
+		 */
+		@Override
+		public void commandStackChanged(EventObject event) {
+			if (!AppliedStereotypeCompositeOnModel.this.treeViewer.getTree().isDisposed()) {
+				final ISelection selection = treeViewer.getSelection();
+				if (selection instanceof IStructuredSelection) {
+					final Object first = ((IStructuredSelection) selection).getFirstElement();
+					if (first instanceof AppliedStereotypePropertyTreeObject) {
+						//we refresh the whole tree viewer and not only the leaf to be OK in case of derived properties
+						AppliedStereotypeCompositeOnModel.this.refreshTreeViewer();
+					}
+				}
+			}
+		}
+	}
 
 }
