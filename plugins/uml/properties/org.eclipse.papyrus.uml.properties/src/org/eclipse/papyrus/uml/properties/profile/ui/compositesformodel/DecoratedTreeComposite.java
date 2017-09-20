@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014 CEA LIST and others.
+ * Copyright (c) 2008, 2014, 2017 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Christian W. Damus (CEA) - bug 323802
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 522564
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 
@@ -24,6 +24,8 @@ import org.eclipse.papyrus.uml.profile.tree.ProfileElementTreeViewer;
 import org.eclipse.papyrus.uml.profile.tree.PropertyValueTreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.layout.FormAttachment;
@@ -111,6 +113,11 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 * Listener for the down button.
 	 */
 	protected MouseListener downButtonlistener;
+	
+	/**
+	 * DisposeListener registered for the composite parent
+	 */
+	protected DisposeListener parentDisposeListener;
 
 	/**
 	 *
@@ -162,6 +169,11 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 */
 	public DecoratedTreeComposite(Composite parent, int style, String name, boolean isStereotypeTree) {
 		super(parent, style);
+		
+		//we register a dispose listener on the parent because the dispose method is never called during the dispose
+		//see https://stackoverflow.com/questions/25717036/why-swt-ctabitem-doesnt-dispose-child-widget-recursively 
+		parent.addDisposeListener(this.parentDisposeListener = new LocalDisposeListener());
+		
 		this.name = name;
 		this.setLayout(new FormLayout());
 
@@ -541,6 +553,9 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 	 * Dipose listeners.
 	 */
 	public void disposeListeners() {
+		if(!getParent().isDisposed()){
+			getParent().removeDisposeListener(this.parentDisposeListener);
+		}
 		if (addButton != null && !addButton.isDisposed()) {
 			addButton.removeMouseListener(addButtonlistener);
 		}
@@ -556,5 +571,32 @@ public abstract class DecoratedTreeComposite extends Composite implements ISecti
 		if (tree != null && !tree.isDisposed()) {
 			tree.removeListener(SWT.MouseDoubleClick, treeListener);
 		}
+	}
+	
+	/**
+	 * DisposeListener used to listen the parent composite
+	 */
+	private class LocalDisposeListener implements DisposeListener{
+
+		/**
+		 * @see org.eclipse.swt.events.DisposeListener#widgetDisposed(org.eclipse.swt.events.DisposeEvent)
+		 *
+		 * @param e
+		 */
+		@Override
+		public void widgetDisposed(DisposeEvent e) {
+			dispose();
+		}
+		
+	}
+	
+	/**
+	 * @see org.eclipse.swt.widgets.Widget#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		disposeListeners();
+		super.dispose();
 	}
 }

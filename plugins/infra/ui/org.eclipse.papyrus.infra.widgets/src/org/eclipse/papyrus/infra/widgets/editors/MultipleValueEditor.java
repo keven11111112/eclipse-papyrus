@@ -11,7 +11,7 @@
  *  Christian W. Damus (CEA) - bug 402525
  *  Christian W. Damus - bugs 399859, 516526
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - manage buttons visibility and enable. 
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 515808
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 515808, 522564
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -200,7 +200,7 @@ public class MultipleValueEditor<T extends IElementSelector> extends AbstractMul
 
 	@Override
 	public void dispose() {
-		if (null != tree) {
+		if (null != tree && !this.tree.isDisposed()) {
 			this.tree.removeSelectionListener(this);
 		}
 		super.dispose();

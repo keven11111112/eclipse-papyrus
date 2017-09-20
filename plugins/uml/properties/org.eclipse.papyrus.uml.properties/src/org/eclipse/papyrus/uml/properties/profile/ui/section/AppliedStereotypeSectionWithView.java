@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 522564
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.section;
 
@@ -102,8 +102,7 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 					appliedStereotypeComposite.setElement(UMLElement);
 					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement));
 				}
-			}
-			else {
+			} else {
 				EObject eobject = resolveSemanticObject(input);
 
 				if (eobject instanceof Element) {
@@ -137,22 +136,16 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 	}
 
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see com.cea.papyrus.core.ui.properties.tabbed.PropertyViewSection#dispose()
-	 */
 	/**
-	 * Dispose.
+	 * @Override
+	 * @see org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#dispose()
+	 *
 	 */
 	@Override
 	public void dispose() {
 		super.dispose();
-		if (appliedStereotypeComposite != null)
-		{
-			appliedStereotypeComposite.disposeListeners();
-			// if(propertyComposite != null)
-			// propertyComposite.disposeListeners();
+		if (appliedStereotypeComposite != null) {
+			appliedStereotypeComposite.dispose();
 		}
 	}
 }
