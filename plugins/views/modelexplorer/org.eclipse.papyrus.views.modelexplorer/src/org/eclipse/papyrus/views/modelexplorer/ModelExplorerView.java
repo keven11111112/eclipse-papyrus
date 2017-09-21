@@ -581,12 +581,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (navigationMenu != null) {
-					if (e.keyCode == SWT.ALT) {
-						navigationMenu.altReleased();
-						navigationMenu.exitItem();
-					}
-				}
 			}
 
 			@Override

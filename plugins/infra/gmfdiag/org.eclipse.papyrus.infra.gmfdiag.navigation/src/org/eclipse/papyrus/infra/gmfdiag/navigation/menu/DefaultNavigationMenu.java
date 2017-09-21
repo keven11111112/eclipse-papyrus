@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener.NavigationMenuKeyListener;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener.SelectionMenuMouseTrackListener;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener.SelectionMenuSelectionChangedListener;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.provider.SelectionMenuLabelProvider;
 import org.eclipse.papyrus.infra.services.navigation.service.ExtendedNavigableElement;
@@ -43,7 +43,10 @@ import org.eclipse.papyrus.infra.services.viewersearch.impl.ViewerSearchService;
 import org.eclipse.papyrus.infra.widgets.editors.SelectionMenu;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -71,8 +74,6 @@ public class DefaultNavigationMenu implements NavigationMenu {
 
 	private WrappingLabel lastWrappingLabel;
 
-	private boolean altReleasedPostNavigation = true;
-
 	private View selectedView;
 
 	public class NavigationMenuInitializationException extends Exception {
@@ -86,17 +87,17 @@ public class DefaultNavigationMenu implements NavigationMenu {
 
 		@Override
 		public String getMessage() {
-			String error = "";
+			String error = ""; //$NON-NLS-1$
 
 			if (source instanceof ServicesRegistry) {
-				error = "services registry is not set";
+				error = "services registry is not set"; //$NON-NLS-1$
 			} else if (source instanceof Shell) {
-				error = "parent shell is not set";
+				error = "parent shell is not set"; //$NON-NLS-1$
 			} else if (source instanceof NavigationService) {
-				error = "navigation service could not be initialized";
+				error = "navigation service could not be initialized"; //$NON-NLS-1$
 			}
 
-			return "Navigation menu initialization error: " + error;
+			return "Navigation menu initialization error: " + error; //$NON-NLS-1$
 		}
 	}
 
@@ -105,6 +106,14 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		this.prependObjects = new LinkedList<Object>();
 	}
 
+	/**
+	 * handle requests from graphical editor
+	 * 
+	 * @param request
+	 *            a selection request
+	 * @param targetEditPart
+	 *            the selected edit part
+	 */
 	public void handleRequest(SelectionRequest request, EditPart targetEditPart) {
 		if (targetEditPart != null) {
 			EObject model = EMFHelper.getEObject(targetEditPart);
@@ -119,11 +128,19 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		}
 	}
 
+	/**
+	 * handle request from model explorer
+	 * 
+	 * @param e
+	 *            a mouse event
+	 * @param treeItem
+	 *            the tree item within the model explorer
+	 */
 	public void handleRequest(MouseEvent e, TreeItem treeItem) {
 		if (treeItem != null) {
 			EObject model = EMFHelper.getEObject(treeItem.getData());
 
-			if (isExitState(e, model)) {
+			if (isExitState(model)) {
 				exitItem();
 			}
 
@@ -133,21 +150,8 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		}
 	}
 
+	@Deprecated
 	protected boolean isExitState(SelectionRequest request, EObject model) {
-		if (!request.isAltKeyPressed()) {
-			altReleasedPostNavigation = true;
-			return true;
-		}
-
-		return isExitState(model);
-	}
-
-	private boolean isExitState(MouseEvent e, EObject model) {
-		if ((e.stateMask & SWT.ALT) == 0) {
-			altReleasedPostNavigation = true;
-			return true;
-		}
-
 		return isExitState(model);
 	}
 
@@ -168,7 +172,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	}
 
 	protected boolean isEnterState(SelectionRequest request, EObject model) {
-		if (!request.isAltKeyPressed() || !altReleasedPostNavigation) {
+		if (!request.isAltKeyPressed()) {
 			return false;
 		}
 
@@ -176,7 +180,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	}
 
 	protected boolean isEnterState(MouseEvent e, EObject model) {
-		if ((e.stateMask & SWT.ALT) == 0 || !altReleasedPostNavigation) {
+		if ((e.stateMask & SWT.ALT) == 0) {
 			return false;
 		}
 
@@ -198,10 +202,6 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	}
 
 	public boolean willEnter(SelectionRequest request, EditPart targetEditPart) {
-		if (!request.isAltKeyPressed()) {
-			return false;
-		}
-
 		EObject model = null;
 		if (targetEditPart != null) {
 			model = EMFHelper.getEObject(targetEditPart);
@@ -294,6 +294,9 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		selectionMenu.setContentProvider(CollectionContentProvider.instance);
 		selectionMenu.setInput(navigationMenuElements);
 		selectionMenu.open();
+		// assure that element is not selected. Otherwise, we would get a selection change
+		// event on GTK systems immediately, and the menu would not be shown
+		selectionMenu.getTableViewer().setSelection(null);
 
 		wasUnderlined = false;
 		if (source instanceof IGraphicalEditPart) {
@@ -310,7 +313,33 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		}
 
 		selectionMenu.addSelectionChangedListener(new SelectionMenuSelectionChangedListener(DefaultNavigationMenu.this, selectionMenu, navigationMenuElements, umlElement, subMenus));
-		selectionMenu.addKeyListener(new NavigationMenuKeyListener(this));
+		selectionMenu.getTableViewer().getTable().addFocusListener(new FocusListener() {
+
+			int focusGainedAt = 0;
+
+			public void focusLost(FocusEvent e) {
+				// The columnViewer of the model explorer has a tooltip that can be shown during the first 100ms
+				// after a selection. It will cause a focus lost on the menu. In this case, make sure to set
+				// focus to the menu again.
+				if (e.time - focusGainedAt < 100) {
+					Display.getDefault().asyncExec(new Runnable() {
+
+						public void run() {
+							// set focus again to get a new focus lost event
+							selectionMenu.getTableViewer().getTable().setFocus();
+						}
+					});
+				}
+				else {
+					exitItem();
+				}
+			}
+
+			public void focusGained(FocusEvent e) {
+				focusGainedAt = e.time;
+			}
+		});
+
 		// selectionMenu.addMouseTrackListener(new SelectionMenuMouseTrackListener(DefaultNavigationMenu.this, selectionMenu, subMenus, umlElement));
 	}
 
@@ -360,13 +389,12 @@ public class DefaultNavigationMenu implements NavigationMenu {
 
 		if (semanticElement != null) {
 			try {
-				getNavigationService().navigate(semanticElement, "org.eclipse.papyrus.views.modelexplorer.navigation.target");
+				getNavigationService().navigate(semanticElement, "org.eclipse.papyrus.views.modelexplorer.navigation.target"); //$NON-NLS-1$
 			} catch (NavigationMenuInitializationException e) {
 				Activator.log.error(e);
 			}
 		}
 
-		altReleasedPostNavigation = false;
 		exitItem();
 	}
 
@@ -389,7 +417,6 @@ public class DefaultNavigationMenu implements NavigationMenu {
 			Activator.log.error(e);
 		}
 
-		altReleasedPostNavigation = false;
 		exitItem();
 	}
 
@@ -441,10 +468,6 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	/* These are not used but they are necessary for the getCommand method of the NavigationEditPolicy */
 
 	public Command navigate(final SelectionRequest request, final EditPart host) {
-		if (!request.isAltKeyPressed()) {
-			return null;
-		}
-
 		EditPart targetEditPart = host.getViewer().findObjectAt(request.getLocation());
 
 		final NavigableElement element = getElementToNavigate(targetEditPart);
@@ -578,7 +601,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		this.parentShell = parentShell;
 	}
 
+	@Deprecated
 	public void altReleased() {
-		altReleasedPostNavigation = true;
 	}
 }

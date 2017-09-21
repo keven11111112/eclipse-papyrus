@@ -264,6 +264,7 @@ public class SelectionMenu {
 
 		if (shell != null) {
 			shell.dispose();
+			shell = null;
 		}
 	}
 
