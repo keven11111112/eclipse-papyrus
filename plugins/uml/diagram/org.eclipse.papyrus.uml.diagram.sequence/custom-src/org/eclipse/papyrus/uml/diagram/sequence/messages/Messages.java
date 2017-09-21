@@ -18,7 +18,7 @@ import org.eclipse.osgi.util.NLS;
 /**
  * @since 3.0
  */
-public class Messages {
+public class Messages extends NLS {
 
 	static {
 		NLS.initializeMessages("org.eclipse.papyrus.uml.diagram.sequence.messages.messages", Messages.class); //$NON-NLS-1$
@@ -28,19 +28,19 @@ public class Messages {
 	}
 
 	/*************************************************************************
-	 *   Preference messages    
+	 * Preference messages
 	 ************************************************************************/
-	
+
 	/**
 	 * label for the part of the preference page involved with automatic creations of elements when creating a message
 	 */
 	public static String DiagramsPreferencePage_notificationGroup_label;
-	
+
 	/**
 	 * label to ask which behavior should be triggered when creating a synchronous message
 	 */
 	public static String DiagramsPreferencePage_executionSpecificationWithSyncMsg_label;
-	
+
 	/**
 	 * label to ask which behavior should be triggered when creating an asynchronous message
 	 */
@@ -60,24 +60,34 @@ public class Messages {
 	 * label specifying that an action execution specification and a message reply should be created
 	 */
 	public static String DiagramsPreferencePage_createActionExecutionSpecificationAndReply;
-	
+
 	/**
 	 * label specifying that an action execution specification should be created at message target
 	 */
 	public static String DiagramsPreferencePage_createActionExecutionSpecification;
-	
+
 	/**
 	 * label specifying that only the message should be created
 	 */
 	public static String DiagramsPreferencePage_createNoExecutionSpecification;
-	
+
 	/*************************************************************************
-	 *   Command labels    
+	 * Command labels
 	 ************************************************************************/
-	
+
 	public static String Commands_CreateExecutionSpecification_Label;
-	
+
 	public static String Commands_DropDestructionOccurenceSpecification_Label;
-	
+
+	/**
+	 * @since 5.0
+	 */
+	public static String CustomDiagramGeneralPreferencePage_MoveMessageAboveDescription;
+
+	/**
+	 * @since 5.0
+	 */
+	public static String CustomDiagramGeneralPreferencePage_othersGroupLabel;
+
 }
 

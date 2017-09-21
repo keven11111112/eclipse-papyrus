@@ -29,8 +29,12 @@ import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.IKeyPressState;
 import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.KeyboardListener;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.PlatformUI;
@@ -48,6 +52,16 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 	protected boolean mustMove = true;
 
 	/**
+	 * The instance of listener of move message preference property change.
+	 */
+	private final MoveMessagePropertyChangeListener moveMessageListener = new MoveMessagePropertyChangeListener();
+
+	/**
+	 * The must move preference boolean. Set to true if messages above the current message must move down at the same time.
+	 */
+	private boolean mustMovePreference;
+
+	/**
 	 * Constructor.
 	 *
 	 */
@@ -61,12 +75,15 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		// activate listeners
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, SHIFTDown);
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, SHIFTUp);
+		mustMove = mustMovePreference = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramGeneralPreferencePage.PREF_MOVE_ABOVE_MESSAGE);
+		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().addPropertyChangeListener(moveMessageListener);
 	}
 
 	@Override
 	public void deactivate() {
 		PlatformUI.getWorkbench().getDisplay().removeFilter(SWT.KeyDown, SHIFTDown);
 		PlatformUI.getWorkbench().getDisplay().removeFilter(SWT.KeyUp, SHIFTUp);
+		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().removePropertyChangeListener(moveMessageListener);
 		super.deactivate();
 	}
 
@@ -101,10 +118,14 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		return reconnectRequest;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.IKeyPressState#setKeyPressState(java.lang.Boolean)
+	 */
 	@Override
 	public void setKeyPressState(Boolean isPressed) {
-		mustMove = !isPressed;
-
+		mustMove = mustMovePreference && !isPressed;
 	}
 
 	/**
@@ -160,6 +181,25 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		ReconnectRequest reconnectSourceRequest = createReconnectRequest(hostEditPart, connectionEditPart, newAnchorPositionOnScreen, senderList, RequestConstants.REQ_RECONNECT_SOURCE);
 		reconnectSourceRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 		compoundCommand.add(connectionEditPart.getSource().getCommand(reconnectSourceRequest));
+	}
+
+	/**
+	 * Listener of move message preference property change.
+	 * 
+	 * @author Mickael ADAM
+	 */
+	private final class MoveMessagePropertyChangeListener implements IPropertyChangeListener {
+		/**
+		 * @see org.eclipse.jface.util.IPropertyChangeListener#propertyChange(org.eclipse.jface.util.PropertyChangeEvent)
+		 */
+		@Override
+		public void propertyChange(PropertyChangeEvent event) {
+			if (CustomDiagramGeneralPreferencePage.PREF_MOVE_ABOVE_MESSAGE.equals(event.getProperty())) {
+				if (mustMovePreference != (boolean) event.getNewValue()) {
+					mustMove = mustMovePreference = (boolean) event.getNewValue();
+				}
+			}
+		}
 	}
 
 }
