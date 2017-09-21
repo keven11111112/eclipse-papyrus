@@ -178,7 +178,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 */
 	@Override
 	public String getEditString(IAdaptable adapter, int flags) {
-		EObject element = adapter.getAdapter(EObject.class);
+		EObject element = (EObject) adapter.getAdapter(EObject.class);
 		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
@@ -214,7 +214,7 @@ public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser
 	 */
 	@Override
 	public String getPrintString(IAdaptable adapter, int flags) {
-		EObject element = adapter.getAdapter(EObject.class);
+		EObject element = (EObject) adapter.getAdapter(EObject.class);
 		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
