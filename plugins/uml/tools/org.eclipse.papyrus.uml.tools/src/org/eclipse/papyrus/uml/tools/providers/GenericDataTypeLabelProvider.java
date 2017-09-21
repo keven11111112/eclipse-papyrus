@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
- *  Vincent Lorenzo (vincent.lorenzo@cea.fr) - bug 405442
+ *  Vincent Lorenzo (vincent.lorenzo@cea.fr) - bug 405442, bug 521861
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
 
@@ -165,9 +165,11 @@ public class GenericDataTypeLabelProvider extends EMFLabelProvider implements IF
 			}
 			builder.append(COLLECTION_END);
 		} else {
-			final String label = service.getLabelProvider(object).getText(object);
-			if (label != null) {
-				builder.append(label);
+			if (null != service) {
+				final String label = service.getLabelProvider(object).getText(object);
+				if (label != null) {
+					builder.append(label);
+				}
 			}
 		}
 		return builder.toString();
@@ -186,7 +188,13 @@ public class GenericDataTypeLabelProvider extends EMFLabelProvider implements IF
 		ServicesRegistry registry = null;
 		LabelProviderService service = null;
 		try {
-			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(dataTypeInstance);
+			final EClass dataTypeDefinition = dataTypeInstance.eClass();
+			if (null == dataTypeInstance.eResource() && null!=dataTypeDefinition.eResource()) {
+				// the datatype is not always in a resource (when it just comes to be created, nevertheless, its EClass is always in a resource loaded in the ResourceSet
+				registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(dataTypeDefinition);
+			} else {
+				registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(dataTypeInstance);
+			}
 			service = registry.getService(LabelProviderService.class);
 		} catch (ServiceException e) {
 			Activator.log.error(e);

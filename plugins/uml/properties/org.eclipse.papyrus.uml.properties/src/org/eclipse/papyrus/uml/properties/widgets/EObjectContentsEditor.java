@@ -10,7 +10,7 @@
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
  *  Pierre GAUTIER (CEA LIST) - bug 521865
- *
+ *  Vincent LORENZO (CEA LIST) - bug 521861
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
@@ -192,7 +194,13 @@ public class EObjectContentsEditor extends Composite {
 
 			ILabelProvider labelProvider;
 			try {
-				labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, dataTypeInstance).getLabelProvider();
+				if (null == dataTypeInstance.eResource() && null != dataTypeDefinition.eResource()) {
+					// the datatype is not always in a resource (when it just comes to be created, nevertheless, its EClass is always in a resource loaded in the ResourceSet
+					labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, dataTypeDefinition).getLabelProvider();
+				} else {
+					// I continue to use this branch for all other cases, to get exception and example to reproduce them
+					labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, dataTypeInstance).getLabelProvider();
+				}
 			} catch (Exception ex) {
 				Activator.log.error(ex);
 				labelProvider = new UMLLabelProvider();
@@ -201,7 +209,12 @@ public class EObjectContentsEditor extends Composite {
 			for (EStructuralFeature feature : dataTypeDefinition.getEAllStructuralFeatures()) {
 				EStructuralFeatureEditor propertyEditor = new EStructuralFeatureEditor(contents, SWT.NONE);
 
-				propertyEditor.setProviders(new UMLContentProvider(dataTypeInstance, feature), labelProvider);
+				if (null == dataTypeInstance.eResource() && null != dataTypeDefinition.eResource()) {
+					propertyEditor.setProviders(new UMLContentProvider(dataTypeInstance, feature, null, dataTypeDefinition.eResource().getResourceSet()), labelProvider);
+				} else {
+					propertyEditor.setProviders(new UMLContentProvider(dataTypeInstance, feature), labelProvider);
+				}
+				
 				if (feature instanceof EReference) {
 					propertyEditor.setValueFactory(getUMLPropertyEditorFactory(dataTypeInstance, (EReference) feature));
 				}
@@ -259,7 +272,7 @@ public class EObjectContentsEditor extends Composite {
 	protected void createAddButton() {
 		addButton = new Button(buttonsBar, SWT.PUSH);
 		addButton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("icons/Add_12x12.gif")); //$NON-NLS-1$
-		addButton.setToolTipText(Messages.EObjectContentsEditor_CreateElement); 
+		addButton.setToolTipText(Messages.EObjectContentsEditor_CreateElement);
 
 		addButton.addSelectionListener(new SelectionListener() {
 
@@ -291,7 +304,7 @@ public class EObjectContentsEditor extends Composite {
 	protected void createDeleteButton() {
 		deleteButton = new Button(buttonsBar, SWT.PUSH);
 		deleteButton.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("icons/Delete_12x12.gif")); //$NON-NLS-1$
-		deleteButton.setToolTipText(Messages.EObjectContentsEditor_UnsetValue); 
+		deleteButton.setToolTipText(Messages.EObjectContentsEditor_UnsetValue);
 
 		deleteButton.addSelectionListener(new SelectionListener() {
 
@@ -320,9 +333,22 @@ public class EObjectContentsEditor extends Composite {
 		factory.setContainerLabelProvider(new UMLFilteredLabelProvider());
 		factory.setReferenceLabelProvider(new EMFLabelProvider());
 
-		ITreeContentProvider contentProvider = new UMLContainerContentProvider(dataTypeInstance, reference);
-
-		EMFGraphicalContentProvider provider = ProviderHelper.encapsulateProvider(contentProvider, dataTypeInstance.eResource().getResourceSet(), HistoryUtil.getHistoryID(dataTypeInstance, reference, "container")); //$NON-NLS-1$
+		final Resource res = null != dataTypeInstance.eResource() ? dataTypeInstance.eResource() : null;
+		ResourceSet resourceSet = null != res ? res.getResourceSet() : null;
+		
+		// the datatype is not always in a resource (when it just comes to be created, nevertheless, its EClass is always in a resource loaded in the ResourceSet
+		if (null == resourceSet && null!=dataTypeInstance.eClass().eResource()) {
+			resourceSet = dataTypeInstance.eClass().eResource().getResourceSet();
+		}
+		
+		final ITreeContentProvider contentProvider;
+		if (null != dataTypeInstance.eResource()) {
+			contentProvider = new UMLContainerContentProvider(dataTypeInstance, reference);
+		} else {
+			contentProvider = new UMLContainerContentProvider(dataTypeInstance, reference, resourceSet);
+		}
+		
+		EMFGraphicalContentProvider provider = ProviderHelper.encapsulateProvider(contentProvider, resourceSet, HistoryUtil.getHistoryID(dataTypeInstance, reference, "container")); //$NON-NLS-1$
 
 		factory.setContainerContentProvider(provider);
 		factory.setReferenceContentProvider(new FeatureContentProvider(type));
