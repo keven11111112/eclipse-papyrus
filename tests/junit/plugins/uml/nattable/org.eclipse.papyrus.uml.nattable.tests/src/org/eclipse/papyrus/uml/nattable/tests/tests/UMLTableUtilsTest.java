@@ -13,7 +13,15 @@
 
 package org.eclipse.papyrus.uml.nattable.tests.tests;
 
+import java.io.IOException;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
+import org.eclipse.papyrus.uml.nattable.tests.Activator;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
@@ -25,6 +33,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -57,7 +66,17 @@ public class UMLTableUtilsTest extends AbstractPapyrusTest {
 	 */
 	protected final static String SECOND_PROPERTY_NAME = "MyProperty2"; //$NON-NLS-1$
 
-
+	/**
+	 * The house keeper.
+	 */
+	@Rule
+	public final HouseKeeper houseKeeper = new HouseKeeper();
+	
+	/**
+	 * The resource set containing the needed resources for the test.
+	 */
+	private ResourceSet resourceSet;
+	
 	/**
 	 * Reference to the created class in the root element.
 	 */
@@ -82,12 +101,20 @@ public class UMLTableUtilsTest extends AbstractPapyrusTest {
 
 	/**
 	 * This allows to create the models needed for the JUnit tests.
+	 * 
+	 * @throws IOException 
 	 */
 	@Before
-	public void initModel() {
+	public void initModel() throws IOException {
+		
+		resourceSet = houseKeeper.createResourceSet();
+		EMFHelper.loadEMFModel(resourceSet, URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/resources/UMLTableUtils/model.profile.di", true)); //$NON-NLS-1$
+		final Resource umlProfileModel = resourceSet.getResource(URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/resources/UMLTableUtils/model.profile.uml", true), true); //$NON-NLS-1$
+
+		//we inits the field of this class
+		final Profile profileRootElement = (Profile) umlProfileModel.getContents().get(0);
+		
 		// Create the profile model
-		final Profile profileRootElement = UMLFactory.eINSTANCE.createProfile();
-		profileRootElement.setName(PROFILE_ROOT_ELEMENT_NAME);
 		final Package packageInProfile = UMLFactory.eINSTANCE.createPackage();
 		packageInProfile.setName(PACKAGE_IN_PROFILE_NAME);
 		profileRootElement.getPackagedElements().add(packageInProfile);
@@ -101,9 +128,11 @@ public class UMLTableUtilsTest extends AbstractPapyrusTest {
 		stereotypeInPackage.getOwnedAttributes().add(firstPropertyInStereotype);
 		stereotypeInPackage.getOwnedAttributes().add(secondPropertyInStereotype);
 
+		EMFHelper.loadEMFModel(resourceSet, URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/resources/UMLTableUtils/model.di", true)); //$NON-NLS-1$
+		final Resource umlModel = resourceSet.getResource(URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/resources/UMLTableUtils/model.uml", true), true); //$NON-NLS-1$
+		
 		// Create another model
-		final Model rootElement = UMLFactory.eINSTANCE.createModel();
-		rootElement.setName("RootElement"); //$NON-NLS-1$
+		final Model rootElement = (Model) umlModel.getContents().get(0);
 		ProfileApplication createdProfileApplication = UMLFactory.eINSTANCE.createProfileApplication();
 		createdProfileApplication.setAppliedProfile(profileRootElement);
 		rootElement.getProfileApplications().add(createdProfileApplication);
