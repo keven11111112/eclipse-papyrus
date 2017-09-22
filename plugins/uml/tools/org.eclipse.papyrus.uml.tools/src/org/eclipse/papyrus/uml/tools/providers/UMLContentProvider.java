@@ -61,6 +61,12 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		// Bug 522650: only update if there is an actual change, to avoid overriding the existing delegate
+		if (newInput == oldInput) { 
+			super.inputChanged(viewer, oldInput, newInput);
+			return;
+		}
+
 		IStructuredContentProvider semanticProvider = null;
 
 		if (newInput instanceof EObject) {
