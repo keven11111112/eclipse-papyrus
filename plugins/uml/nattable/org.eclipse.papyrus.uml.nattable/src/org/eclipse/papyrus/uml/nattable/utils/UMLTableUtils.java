@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 435417
+ *  Sebastien REVOL (CEA LIST) sebastien.revol@cea.fr - Bug 522631
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.utils;
@@ -42,6 +43,8 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  *
@@ -194,26 +197,14 @@ public class UMLTableUtils {
 			}
 			
 			if (null != nearestPackage) {
-				// Bug 435417 : Search the properties by their qualified name instead of search by its stereotypes first
-				// This allows to manage the inherit properties and the stereotypes in packages
-				final Iterator<Profile> appliedProfilesIterator = nearestPackage.getAllAppliedProfiles().iterator();
-				while(appliedProfilesIterator.hasNext() && null == result){
-					final Profile appliedProfile = appliedProfilesIterator.next();
 
-					// Bug 488082 : Loop on all stereotypes (check in sub packages)
-					final Iterator<Stereotype> stereotypesIterator = StereotypeUtil.getAllStereotypes(appliedProfile).iterator();
-					while(stereotypesIterator.hasNext() && null == result){
-						final Stereotype ownedStereotype = stereotypesIterator.next();
-						final Iterator<Property> propertiesIterator = ownedStereotype.getAllAttributes().iterator();
-						while(propertiesIterator.hasNext() && null == result){
-							final Property property = propertiesIterator.next();
-							if(property.getQualifiedName().equals(propertyQN)){
-								result = property;
-							}
-						}
-					}
-				}
+				result = UMLUtil.<Property>findNamedElements(nearestPackage.eResource().getResourceSet(),propertyQN , false, UMLPackage.eINSTANCE.getProperty())
+						.stream()
+						.findFirst()
+						.orElse(null) ;
+					
 				
+				//TODO should we still keep that? FindNamedElement browse all the resourceSet.
 				// 2. if not, the profile could be applied on a sub-package of the nearest package
 				/* the table can show element which are not children of its context, so the profile could not be available in its context */
 				if(null == result){
