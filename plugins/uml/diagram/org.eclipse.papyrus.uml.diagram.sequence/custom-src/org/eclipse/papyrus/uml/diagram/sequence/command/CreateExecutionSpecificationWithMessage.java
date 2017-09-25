@@ -13,18 +13,29 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.command;
 
+import java.util.NoSuchElementException;
+import java.util.Spliterator;
+import java.util.Spliterators;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SemanticCreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
@@ -38,9 +49,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * this class is used to automatically create execution specifications at target
@@ -113,24 +126,27 @@ public class CreateExecutionSpecificationWithMessage extends AbstractTransaction
 
 		// case where a reply message must also be created
 		if (createReply) {
-			Point replysourcepoint = point.getCopy();
-			replysourcepoint.setY(replysourcepoint.y + CustomActionExecutionSpecificationEditPart.DEFAULT_HEIGHT);
-			// source of the reply message is the end of the execution specification
-			createReplyMessage(lifelineEditPart, replysourcepoint);
+			// Gets the created execution specification
+			ExecutionSpecification executionSpecification = getCreatedElement(command, ExecutionSpecification.class);
+			if (null != executionSpecification) {
+				Point replysourcepoint = point.getCopy();
+				replysourcepoint.setY(replysourcepoint.y + CustomActionExecutionSpecificationEditPart.DEFAULT_HEIGHT);
+				// source of the reply message is the end of the execution specification
+				createReplyMessage(lifelineEditPart, executionSpecification, replysourcepoint);
+			}
 		}
 	}
 
 	/**
-	 * creates a reply message originating from lifelineEditPart at replysourcepoint
+	 * creates a reply message originating from lifelineEditPart at replysourcepoint.
 	 */
-	private void createReplyMessage(LifelineEditPart lifelineEditPart, Point replysourcepoint) {
+	private void createReplyMessage(LifelineEditPart lifelineEditPart, ExecutionSpecification executionSpecification, Point replysourcepoint) {
 		CreateConnectionViewRequest requestreplycreation = CreateViewRequestFactory.getCreateConnectionRequest(UMLDIElementTypes.MESSAGE_REPLY_EDGE, lifelineEditPart.getDiagramPreferencesHint());
 		requestreplycreation.setLocation(replysourcepoint);
 		requestreplycreation.setSourceEditPart(null);
 		requestreplycreation.setTargetEditPart(lifelineEditPart);
 		requestreplycreation.setType(RequestConstants.REQ_CONNECTION_START);
 		Command replycommand = lifelineEditPart.getCommand(requestreplycreation);
-
 		// setup the request in preparation to get the connection end command
 		requestreplycreation.setSourceEditPart(lifelineEditPart);
 		LifelineEditPart target = (LifelineEditPart) request.getSourceEditPart();
@@ -147,8 +163,15 @@ public class CreateExecutionSpecificationWithMessage extends AbstractTransaction
 		requestreplycreation.setLocation(replytargetpoint);
 		replycommand = target.getCommand(requestreplycreation);
 		replycommand.execute();
-	}
 
+		// replace execution Specification finish event by the message reply send event.
+		Message messageReply = getCreatedElement(replycommand, Message.class);
+		if (null != messageReply) {
+			MessageEnd sendEvent = messageReply.getSendEvent();
+			SetCommand setSendEventCommand = new SetCommand(getEditingDomain(), executionSpecification, UMLPackage.eINSTANCE.getExecutionSpecification_Finish(), sendEvent);
+			setSendEventCommand.execute();
+		}
+	}
 
 	/**
 	 * @return the message from the given request, can return null
@@ -192,4 +215,61 @@ public class CreateExecutionSpecificationWithMessage extends AbstractTransaction
 	}
 
 
+	/**
+	 * Get the list of all commands contained into {@link CompoundCommand}, {@link CompositeCommand} or {@link ICommandProxy}.
+	 * 
+	 * @param parent
+	 *            the command to looking for
+	 * @return the list of all commands
+	 */
+	@SuppressWarnings("unchecked")
+	private Stream<Object> getAllCommands(final Object parent) {
+		Object command = null;
+		if (parent instanceof ICommandProxy) {
+			// get the inner command in case of proxy
+			command = ((ICommandProxy) parent).getICommand();
+		} else {
+			command = parent;
+		}
+
+		if (command instanceof CompoundCommand) {
+			return (Stream<Object>) ((CompoundCommand) command).getCommands().stream()
+					.flatMap(childNode -> getAllCommands(childNode));
+		} else if (command instanceof CompositeCommand) {
+			return (Stream<Object>) StreamSupport.stream(Spliterators.spliteratorUnknownSize(((CompositeCommand) command).iterator(), Spliterator.ORDERED), false)
+					.flatMap(childNode -> getAllCommands(childNode));
+		} else {
+			return Stream.of(command);
+		}
+	}
+
+	/**
+	 * Get the created semantic element.
+	 * 
+	 * @param <T>
+	 *            the type of expected element
+	 * @param command
+	 *            the command to looking for the element
+	 * @return the created semantic element
+	 */
+	@SuppressWarnings("unchecked")
+	private <T> T getCreatedElement(final Command command, final Class<T> type) {
+		T element = null;
+		try {
+			// extract the semantic create command from compound command
+			SemanticCreateCommand semanticCreateCommand = getAllCommands(command)
+					.filter(SemanticCreateCommand.class::isInstance)
+					.map(SemanticCreateCommand.class::cast).findFirst().get();
+			// get the return value of the command
+			CommandResult commandResult = semanticCreateCommand.getCommandResult();
+			if (null != commandResult && commandResult.getReturnValue() instanceof CreateElementRequestAdapter) {
+				// Get the created element
+				element = (T) ((CreateElementRequestAdapter) commandResult.getReturnValue()).getAdapter(type);
+			}
+		} catch (NoSuchElementException e) {
+			// Do nothing null is return
+		}
+
+		return element;
+	}
 }
