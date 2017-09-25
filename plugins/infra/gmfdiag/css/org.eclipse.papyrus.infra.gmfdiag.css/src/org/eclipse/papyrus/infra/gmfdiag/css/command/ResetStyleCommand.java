@@ -193,6 +193,13 @@ public class ResetStyleCommand extends RecordingCommand {
 		}
 
 		for (EStructuralFeature feature : style.eClass().getEAllStructuralFeatures()) {
+			if (feature == NotationPackage.Literals.DESCRIPTION_STYLE__DESCRIPTION) {
+				//Bug 522730: Description is typically used for Notes or Plain-text shapes, 
+				//stored in the notation model. They shouldn't be considered as a real style 
+				//property
+				continue;
+			}
+			
 			// Only edit Style features
 			if (NotationPackage.eINSTANCE.getStyle().isSuperTypeOf(feature.getEContainingClass())) {
 				// Reset the value to default
