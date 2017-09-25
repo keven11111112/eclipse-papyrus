@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014,2017 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,17 +9,18 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *
+ *  Benoit Maggi (CEA LIST) - Bug 521475
  *****************************************************************************/
 package org.eclipse.papyrus.example.core.lifecycleevents;
 
-import org.eclipse.papyrus.infra.ui.lifecycleevents.DoSaveEvent;
-import org.eclipse.papyrus.infra.ui.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveEventListener;
-import org.eclipse.papyrus.infra.ui.lifecycleevents.LifeCycleEventsProvider;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.DoSaveEvent;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.ILifeCycleEventsProvider;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveEventListener;
 
 
 /**
@@ -45,11 +46,11 @@ public class LifeCycleEventsMonitorService implements IService {
 	protected ISaveEventListener aboutToSaveListener = new ISaveEventListener() {
 		
 		public void doSaveAs(DoSaveEvent event) {
-			System.out.println("event received: aboutToSaveAs");
+			Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "event received: aboutToSaveAs"));
 		}
 		
 		public void doSave(DoSaveEvent event) {
-			System.out.println("event received: aboutToSave");
+			Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "event received: aboutToSave"));
 		}
 	};
 	
@@ -59,11 +60,11 @@ public class LifeCycleEventsMonitorService implements IService {
 	protected ISaveEventListener saveListener= new ISaveEventListener() {
 		
 		public void doSaveAs(DoSaveEvent event) {
-			System.out.println("event received: doSaveAs");
+			Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "event received: doSaveAs"));
 		}
 		
 		public void doSave(DoSaveEvent event) {
-			System.out.println("event received: doSave");
+			Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "event received: doSave"));
 		}
 	};
 	
@@ -73,11 +74,11 @@ public class LifeCycleEventsMonitorService implements IService {
 	protected ISaveEventListener postSaveListener= new ISaveEventListener() {
 		
 		public void doSaveAs(DoSaveEvent event) {
-			System.out.println("event received: postSaveAs");
+			Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "event received: postSaveAs"));
 		}
 		
 		public void doSave(DoSaveEvent event) {
-			System.out.println("event received: postSave");
+			Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "event received: postSave"));
 		}
 	};
 	
@@ -89,7 +90,7 @@ public class LifeCycleEventsMonitorService implements IService {
 	 * @param servicesRegistry
 	 */
 	public LifeCycleEventsMonitorService() {
-		System.out.println("LifeCycleEventsMonitorService created");
+		Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "LifeCycleEventsMonitorService created"));
 	}
 
 	/**
@@ -98,7 +99,7 @@ public class LifeCycleEventsMonitorService implements IService {
 	 */
 	public void disposeService() {
 		deactivate();
-		System.out.println("LifeCycleEventsMonitorService disposed");
+		Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "LifeCycleEventsMonitorService disposed"));
 		
 	}
 
@@ -117,7 +118,7 @@ public class LifeCycleEventsMonitorService implements IService {
 	 *
 	 */
 	public void startService() {
-		System.out.println("LifeCycleEventsMonitorService started");
+		Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "LifeCycleEventsMonitorService started"));
 		activate();
 	}
 	
@@ -131,8 +132,7 @@ public class LifeCycleEventsMonitorService implements IService {
 			eventProvider.addDoSaveListener(saveListener);
 			eventProvider.addPostDoSaveListener(postSaveListener);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage()));
 		}
 
 		

@@ -35,7 +35,6 @@ public class MergeTableHandler extends AbstractTableHandler {
 		// TODO rewrite/fix the spanning behavior when applied to both columns and rows (cells hidden under others)
 
 		// if(mergeOption.equals("Merge Table")) {
-		// System.out.println(mergeOption);
 		// resetSpan();
 		// bodyLayerStack.getBodyLayerSpanProvider().setAutoColumnSpan(true);
 		// bodyLayerStack.getBodyLayerSpanProvider().setAutoRowSpan(true);
