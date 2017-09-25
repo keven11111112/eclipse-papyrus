@@ -235,10 +235,6 @@ public class ContentOutlineRegistry {
 		 * @throws BackboneException
 		 */
 		protected IPapyrusContentOutlinePage createContentOutlinePage() throws BackboneException {
-			if (false) {
-				System.out.println("Not yet"); // FIXME : no syso
-				return null;
-			}
 			try {
 				IPapyrusContentOutlinePage outline = loadClass().newInstance();
 				outline.init(multiEditor);

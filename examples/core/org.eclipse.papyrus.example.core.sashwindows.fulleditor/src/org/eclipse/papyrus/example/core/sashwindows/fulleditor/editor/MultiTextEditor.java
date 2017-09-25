@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
+ * Copyright (c) 2009,2017 CEA LIST & LIFL 
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,13 +9,16 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *
+ *  Benoit maggi (CEA LIST) - Bug 521475 
  *****************************************************************************/
 package org.eclipse.papyrus.example.core.sashwindows.fulleditor.editor;
 
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.papyrus.example.core.sashwindows.fulleditor.Activator;
 import org.eclipse.papyrus.example.core.sashwindows.fulleditor.texteditor.TextEditorPartModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
@@ -48,7 +51,7 @@ public class MultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSashE
 		 * Called when the content is changed. RefreshTabs.
 		 */
 		public void contentChanged(ContentEvent event) {
-			System.out.println("contentChanged()");
+			Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "contentChanged()"));
 			refreshTabs();
 		}
 	};
@@ -74,7 +77,6 @@ public class MultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSashE
 	 */
 	public MultiTextEditor() {
 		super();
-		//		ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
 		// Listen on dirty event.
 		addPropertyListener(dirtyPropertyListener);
 	}
@@ -105,7 +107,6 @@ public class MultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSashE
 	 * Subclasses may extend.
 	 */
 	public void dispose() {
-		//		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
 		getContentProvider().removeListener(contentChangedListener);
 		super.dispose();
 	}
@@ -132,7 +133,6 @@ public class MultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSashE
 		IEditorPart editor = getActiveEditor();
 		if(editor != null) {
 			editor.doSaveAs();
-			//			setPageText(0, editor.getTitle());
 			setInput(editor.getEditorInput());
 
 			// Reset dirty flag.
@@ -145,7 +145,6 @@ public class MultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSashE
 	 * Method declared on IEditorPart
 	 */
 	public void gotoMarker(IMarker marker) {
-		//		setActivePage(0);
 		IDE.gotoMarker(getActiveEditor(), marker);
 	}
 

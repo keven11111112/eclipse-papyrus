@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL 
+ * Copyright (c) 2009,2017 CEA LIST & LIFL 
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *
+ *  Benoit maggi (CEA LIST) - Bug 521475 
  *****************************************************************************/
 package org.eclipse.papyrus.example.core.sashwindows.fulleditor.editor;
 
@@ -20,11 +20,14 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.papyrus.example.core.sashwindows.fulleditor.Activator;
 import org.eclipse.papyrus.example.core.sashwindows.fulleditor.texteditor.TextEditorPartModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
@@ -66,7 +69,7 @@ public class DiMultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSas
 		 * Called when the content is changed. RefreshTabs.
 		 */
 		public void contentChanged(ContentEvent event) {
-			System.out.println("contentChanged()");
+			Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, "contentChanged()"));
 			markDirty();
 			refreshTabs();
 		}
@@ -93,7 +96,6 @@ public class DiMultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSas
 	 */
 	public DiMultiTextEditor() {
 		super();
-		//		ResourcesPlugin.getWorkspace().addResourceChangeListener(this);
 		// Listen on dirty event.
 		addPropertyListener(dirtyPropertyListener);
 	}
@@ -112,7 +114,6 @@ public class DiMultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSas
 	protected ISashWindowsContentProvider createPageProvider() {
 		IPageModelFactory pageFactory = new SimplePageModelFactory();
 
-		//		sashModelMngr = new DiSashModelMngr(pageFactory, resourceMngr.getDiResource() );
 		sashModelMngr = new DiSashModelMngr(pageFactory);
 
 		ISashWindowsContentProvider pageProvider = sashModelMngr.getISashWindowsContentProvider();
@@ -130,7 +131,6 @@ public class DiMultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSas
 	 * Subclasses may extend.
 	 */
 	public void dispose() {
-		//		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
 		sashModelMngr.getSashModelContentChangedProvider().removeListener(contentChangedListener);
 		super.dispose();
 	}
@@ -147,11 +147,6 @@ public class DiMultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSas
 			isDirty = false;
 		}
 
-		//		try {
-		//			resourceMngr.saveResource(monitor);
-		//		} catch (IOException e) {
-		//			e.printStackTrace();
-		//		}
 	}
 
 	/**
@@ -163,7 +158,6 @@ public class DiMultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSas
 		IEditorPart editor = getActiveEditor();
 		if(editor != null) {
 			editor.doSaveAs();
-			//			setPageText(0, editor.getTitle());
 			setInput(editor.getEditorInput());
 
 			// Reset dirty flag.
@@ -176,7 +170,6 @@ public class DiMultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSas
 	 * Method declared on IEditorPart
 	 */
 	public void gotoMarker(IMarker marker) {
-		//		setActivePage(0);
 		IDE.gotoMarker(getActiveEditor(), marker);
 	}
 
@@ -190,10 +183,6 @@ public class DiMultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSas
 			throw new PartInitException("Invalid Input: Must be IFileEditorInput");
 		super.init(site, editorInput);
 
-		// Load model
-		//		IFile file = ((IFileEditorInput) editorInput).getFile();
-		//		resourceMngr = new ResourceMngr();
-		//		resourceMngr.loadResource(file);
 	}
 
 	/*
@@ -286,8 +275,7 @@ public class DiMultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSas
 			try {
 				diResource = resourceSet.getResource(uri, true);
 			} catch (Exception e) {
-				//				diResource = resourceSet.createResource(uri);
-				e.printStackTrace();
+				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage()));
 			}
 
 		}

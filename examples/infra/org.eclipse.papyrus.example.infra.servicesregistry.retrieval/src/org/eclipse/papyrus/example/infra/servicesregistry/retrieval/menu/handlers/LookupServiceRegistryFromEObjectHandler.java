@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 Cedric Dumoulin.
+ * Copyright (c) 2012,2017 Cedric Dumoulin & Others
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *
+ *  Benoit maggi (CEA LIST) - Bug 521475 
  *****************************************************************************/
 package org.eclipse.papyrus.example.infra.servicesregistry.retrieval.menu.handlers;
 
@@ -22,12 +22,15 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.papyrus.example.infra.servicesregistry.retrieval.Activator;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
@@ -68,26 +71,22 @@ public class LookupServiceRegistryFromEObjectHandler extends AbstractHandler imp
 		
 		
 		// Get the ServiceRegistry for each of the selected object
-		List<ServicesRegistry> res = new ArrayList<ServicesRegistry>();
+		List<ServicesRegistry> res = new ArrayList<>();
 		for( EObject selected : selectedProperties) {
 			
 			// Get the servicesRegistry
 			try {
 				ServicesRegistry registry = ServiceUtilsForResource.getInstance().getServiceRegistry(selected.eResource());
 				res.add(registry);
-				System.out.println(" - " + selected + " [" + registry + "]");
+				Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, " - " + selected + " [" + registry + "]"));
 			} catch (ServiceException e) {
 				// Not found
 				res.add(null);
-				System.out.println(" - " + selected + " [Can't get ServicesRegistry !!!]");
+				Activator.getDefault().getLog().log(new Status(IStatus.INFO, Activator.PLUGIN_ID, " - " + selected + " [Can't get ServicesRegistry !!!]"));
 			}
-            // 
-		
 		}
 
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-		
-
 		showResults( window.getShell(), selectedProperties, res);
 		
 		return null;
@@ -243,7 +242,5 @@ public class LookupServiceRegistryFromEObjectHandler extends AbstractHandler imp
 	public String getCommandName() {
 		return "Show ServiceRegistry";
 	}
-
-
 
 }

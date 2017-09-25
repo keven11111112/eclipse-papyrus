@@ -536,13 +536,6 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 					manifestFile.create(getInputStream(input), true, null);
 					manifestFile = getProject().getFile(MANIFEST_PATH);
 
-					// final int i;
-					// InputStream is = this.manifestFile.getContents();
-					// while((i = is.read()) > 0) {
-					// System.out.println(i);
-					// }
-					// this.manifest = new Manifest(this.manifestFile.getContents());
-
 				} catch (final CoreException ex) {
 					Activator.log.error(ex);
 				}
