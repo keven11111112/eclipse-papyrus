@@ -8,14 +8,29 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *  Vincent Lorenzo (CEA LIST) - Bug 517742
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.EObjectWrapper;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.IWrapper;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.NattablewrapperFactory;
 import org.eclipse.papyrus.infra.nattable.selection.ISelectionExtractor;
 
 /**
@@ -178,6 +193,161 @@ public class MatrixTableWidgetModelManager extends TreeNattableModelManager impl
 	@Override
 	public boolean canCreateDestroyColumnsAxis() {
 		return false;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager#addRowSources(java.util.Collection)
+	 *
+	 * @param objectToAdd
+	 */
+	@Override
+	public void addRowSources(final Collection<Object> objectToAdd) {
+		final Command cmd = getAddRowSourcesCommand(objectToAdd);
+		if (null != cmd && cmd.canExecute()) {
+			getTableEditingDomain().getCommandStack().execute(cmd);
+		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager#removeRowSources(java.util.Collection)
+	 *
+	 * @param objectToRemove
+	 */
+	@Override
+	public void removeRowSources(final Collection<Object> objectToRemove) {
+		final Command cmd = getRemoveRowSourcesCommand(objectToRemove);
+		if (null != cmd && cmd.canExecute()) {
+			getTableEditingDomain().getCommandStack().execute(cmd);
+		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager#addColumnSources(java.util.Collection)
+	 *
+	 * @param objectToAdd
+	 */
+	@Override
+	public void addColumnSources(final Collection<Object> objectToAdd) {
+		final Command cmd = getAddColumnSourcesCommand(objectToAdd);
+		if (null != cmd && cmd.canExecute()) {
+			getTableEditingDomain().getCommandStack().execute(cmd);
+		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager#removeColumnSources(java.util.Collection)
+	 *
+	 * @param objectToRemove
+	 */
+	@Override
+	public void removeColumnSources(final Collection<Object> objectToRemove) {
+		final Command cmd = getRemoveColumnSourcesCommand(objectToRemove);
+		if (null != cmd && cmd.canExecute()) {
+			getTableEditingDomain().getCommandStack().execute(cmd);
+		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager2#getAddRowSourceCommand(java.util.Collection)
+	 *
+	 * @param objectsToAdd
+	 * @return
+	 */
+	@Override
+	public Command getAddRowSourcesCommand(final Collection<Object> objectsToAdd) {
+		// the list of rows to add to the matrix
+		final List<Object> toAdd = new ArrayList<Object>();
+		// the list of wrapper to add as matrix sources
+		final List<IWrapper> wrappersToAdd = new ArrayList<IWrapper>();
+		for (final Object current : objectsToAdd) {
+			if (current instanceof IWrapper) {
+				final Object wrappedElement = ((IWrapper) current).getElement();
+				if (null != wrappedElement) {
+					toAdd.add(wrappedElement);
+				}
+				wrappersToAdd.add((IWrapper) current);
+			} else {
+				if (current instanceof EObject) {
+					toAdd.add(current);
+					final EObjectWrapper wrapper = NattablewrapperFactory.eINSTANCE.createEObjectWrapper();
+					wrapper.setElement((EObject) current);
+					wrappersToAdd.add(wrapper);
+				}
+			}
+		}
+		final CompoundCommand cc = new CompoundCommand("Add Matrix Row Sources Command"); //$NON-NLS-1$
+		cc.append(getAddRowElementCommand(toAdd));
+		cc.append(AddCommand.create(getTableEditingDomain(), getTable().getCurrentRowAxisProvider(), NattableaxisproviderPackage.eINSTANCE.getIMasterAxisProvider_Sources(), wrappersToAdd));
+		return cc.canExecute() ? cc : null;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager2#getRemoveRowSources(java.util.Collection)
+	 *
+	 * @param objectsToRemove
+	 * @return
+	 */
+	@Override
+	public Command getRemoveRowSourcesCommand(final Collection<Object> objectsToRemove) {
+		final CompoundCommand cc = new CompoundCommand("Remove Matrix rows sources command");//$NON-NLS-1$
+		final MasterObjectAxisProvider provider = (MasterObjectAxisProvider) getTable().getCurrentRowAxisProvider();// this cast is always true, we are in a matrix
+		final Collection<Object> axisToRemove = new ArrayList<Object>();
+		for (final Object current : objectsToRemove) {
+			// 1. remove the source
+			IWrapper wrapperToRemove = null;
+			if (current instanceof IWrapper) {
+				wrapperToRemove = (IWrapper) current;
+			} else {
+				// it is the wrapped Object
+				for (final IWrapper wrapper : provider.getSources()) {
+					if (wrapper.getElement() == current) {
+						wrapperToRemove = wrapper;
+						break;
+					}
+				}
+			}
+			if (null != wrapperToRemove) {
+				cc.append(RemoveCommand.create(getTableEditingDomain(), provider, NattableaxisproviderPackage.eINSTANCE.getIMasterAxisProvider_Sources(), wrapperToRemove));
+			}
+
+			// 2. remove the IAxis
+			if (null != wrapperToRemove) {
+				final Object wrappedObject = wrapperToRemove.getElement();
+
+				for (final IAxis iaxis : getRowAxisManager().getRepresentedContentProvider().getAxis()) {
+					if (iaxis.getElement() == wrappedObject) {// we assume the element is represented only one time as root
+						axisToRemove.add(iaxis);
+						break;
+					}
+				}
+			}
+		}
+		if (axisToRemove.size() > 0) {
+			cc.append(getRowAxisManager().getDestroyAxisCommand((TransactionalEditingDomain) getTableEditingDomain(), axisToRemove));
+		}
+		return cc.canExecute() ? cc : null;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager2#getAddColumnSources(java.util.Collection)
+	 *
+	 * @param objectsToAdd
+	 * @return
+	 */
+	@Override
+	public Command getAddColumnSourcesCommand(final Collection<Object> objectsToAdd) {
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager2#getRemoveColumnSources(java.util.Collection)
+	 *
+	 * @param objectsToRemove
+	 * @return
+	 */
+	@Override
+	public Command getRemoveColumnSourcesCommand(Collection<Object> objectsToRemove) {
+		return UnexecutableCommand.INSTANCE;
 	}
 
 }

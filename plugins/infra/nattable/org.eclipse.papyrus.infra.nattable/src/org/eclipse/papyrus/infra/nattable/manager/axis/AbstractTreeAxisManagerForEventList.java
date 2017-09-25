@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2016 CEA LIST, Esterel Technologies SAS and others.
+ * Copyright (c) 2014, 2016, 2017 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Sebastien Bordes (Esterel Technologies SAS) - Bug 497756
- *
+ *   Vincent Lorenzo (CEA LIST) - Bug 517742
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.manager.axis;
@@ -26,12 +26,16 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.hideshow.RowHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiRowHideCommand;
@@ -39,6 +43,9 @@ import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiRowShowCommand;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.sort.ISortModel;
 import org.eclipse.nebula.widgets.nattable.tree.TreeLayer;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.util.CommandUtils;
 import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
@@ -59,6 +66,8 @@ import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.EventListHelper;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 /**
  * @author VL222926
@@ -110,6 +119,40 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 
 	/**
 	 *
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getDestroyAxisCommand(TransactionalEditingDomain, java.util.Collection)
+	 *
+	 * @param domain
+	 * @param objectToDestroy
+	 * @return
+	 */
+	@Override
+	public final Command getDestroyAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToDestroy) {
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
+		final Collection<Object> objectsToRemove = new ArrayList<Object>(objectToDestroy.size());
+		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command"); //$NON-NLS-1$
+		for (final IAxis current : getRepresentedContentProvider().getAxis()) {
+			if (current.getManager() == this.representedAxisManager) {
+				if (objectToDestroy.contains(current) || objectToDestroy.contains(current.getElement())) {
+					final DestroyElementRequest request = new DestroyElementRequest(domain, current, false);
+					compositeCommand.add(provider.getEditCommand(request));
+					compositeCommand.add(new EMFtoGMFCommandWrapper(getRemoveAxisCommand((ITreeItemAxis) current)));
+					if (current instanceof IAxis) {
+						objectsToRemove.add(current.getElement());
+					} else {
+						objectsToRemove.add(current);
+					}
+				}
+			}
+		}
+		RemoveCommandWrapper returnedCommand = null;
+		if (!compositeCommand.isEmpty()) {
+			returnedCommand = new RemoveCommandWrapper(new GMFtoEMFCommandWrapper(compositeCommand), objectsToRemove);
+		}
+		return returnedCommand;
+	}
+
+	/**
+	 *
 	 * @param parentAxis
 	 *            the parent axis
 	 * @param objectToAdd
@@ -125,7 +168,6 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 				// if the representation of the notifier has already been expanded, we need to add the new value to the list, if not it will be done during the expand of the notifier
 				// we must to expand tree filling configuration when its is hidden and its parent is expanded
 				if (StyleUtils.isHiddenDepth(getTableManager(), conf.getDepth())) {
-
 
 					try {
 						if (null != getTableEditingDomain()) {
@@ -153,7 +195,6 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 
 		return newAxis;
 	}
-
 
 	/**
 	 * TODO : find a better way to get the tree layer
@@ -206,7 +247,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	@Override
 	public boolean canDestroyAxis(Integer axisPosition) {
 		IAxis axis = (IAxis) getTableManager().getRowElementsList().get(axisPosition.intValue());// we need to have the tree list here and not the basic event list!
-		if (axis instanceof ITreeItemAxis && !(((ITreeItemAxis)axis).getElement() instanceof TreeFillingConfiguration)) {
+		if (axis instanceof ITreeItemAxis && !(((ITreeItemAxis) axis).getElement() instanceof TreeFillingConfiguration)) {
 			return ((ITreeItemAxis) axis).getParent() == null;
 		}
 		return false;
@@ -503,32 +544,103 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param axis
+	 *            an axis to remove
+	 */
 	protected final void removeObject(final ITreeItemAxis axis) {
 		if (axis != null) {
-			Collection<ITreeItemAxis> children = new ArrayList<ITreeItemAxis>(axis.getChildren());
-			for (ITreeItemAxis current : children) {
-				removeObject(current);
-				// EventListHelper.removeFromEventList(eventList, current);
-				// ITreeItemAxisHelper.unlinkITreeItemAxisToSemanticElement(this.managedElements, current);
-				// ITreeItemAxisHelper.destroyITreeItemAxis(getTableEditingDomain(), current);
-			}
-			final ITreeItemAxis parentAxis = axis.getParent();
-	
-			EventListHelper.removeFromEventList(eventList, axis);
-			this.alreadyExpanded.remove(axis);
-			ITreeItemAxisHelper.unlinkITreeItemAxisToSemanticElement(this.managedElements, axis);
-			final TransactionalEditingDomain tableEditingDomain = getTableEditingDomain();
-			if(null != tableEditingDomain){
-				ITreeItemAxisHelper.destroyITreeItemAxis(tableEditingDomain, axis);
-			}
-			if (parentAxis != null) {
-				final Object representedElement = parentAxis.getElement();
-				if (representedElement instanceof TreeFillingConfiguration && parentAxis.getChildren().size() == 0) {
-					removeObject(parentAxis);
+			final Command cmd = getRemoveAxisCommand(axis);
+			if (null != cmd && cmd.canExecute()) {
+				try {
+					GMFUnsafe.write(getTableEditingDomain(), cmd);
+				} catch (InterruptedException e) {
+					Activator.log.error(e);
+				} catch (RollbackException e) {
+					Activator.log.error(e);
 				}
 			}
 		}
 	}
+
+	/**
+	 * This method allows to remove an ITreeItemAxis
+	 */
+	private final Command getRemoveAxisCommand(final ITreeItemAxis axis) {
+		final CompoundCommand cc = new CompoundCommand();
+		if (axis != null) {
+			Collection<ITreeItemAxis> children = new ArrayList<ITreeItemAxis>(axis.getChildren());
+			for (ITreeItemAxis current : children) {
+				cc.append(getRemoveAxisCommand(current));
+			}
+			final ITreeItemAxis parentAxis = axis.getParent();
+			final Command ac = new AbstractCommand() {
+				/**
+				 * @see org.eclipse.emf.common.command.Command#redo()
+				 *
+				 */
+				@Override
+				public void redo() {
+					execute();
+				}
+
+				@Override
+				public void undo() {
+					// we need to redo the same stuff, but with the invert order
+					final TransactionalEditingDomain tableEditingDomain = getTableEditingDomain();
+					if (null != tableEditingDomain) {
+						try {
+							GMFUnsafe.write(tableEditingDomain, new Runnable() {
+
+								@Override
+								public void run() {
+									axis.setParent(parentAxis);
+								}
+							});
+						} catch (InterruptedException e) {
+							Activator.log.error(e);
+						} catch (RollbackException e) {
+							Activator.log.error(e);
+						}
+
+					}
+
+					ITreeItemAxisHelper.linkITreeItemAxisToSemanticElement(managedElements, axis);
+					if (axis.isExpanded()) {
+						alreadyExpanded.add(axis);
+					}
+					EventListHelper.addToEventList(eventList, axis);
+				}
+
+				@Override
+				public void execute() {
+					EventListHelper.removeFromEventList(eventList, axis);
+					alreadyExpanded.remove(axis);
+					ITreeItemAxisHelper.unlinkITreeItemAxisToSemanticElement(managedElements, axis);
+					final TransactionalEditingDomain tableEditingDomain = getTableEditingDomain();
+					if (null != tableEditingDomain) {
+						ITreeItemAxisHelper.destroyITreeItemAxis(tableEditingDomain, axis);
+					}
+				}
+
+				/**
+				 * @see org.eclipse.emf.common.command.AbstractCommand#prepare()
+				 *
+				 * @return
+				 */
+				@Override
+				protected boolean prepare() {
+					return true;
+				}
+			};
+			if (ac.canExecute()) {
+				cc.append(ac);
+			}
+		}
+		return cc;
+	}
+
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.ITreeItemAxisManagerForEventList#setExpanded(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis, java.util.List, boolean)
@@ -565,7 +677,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @param notification
 	 *            a notification
 	 * @return
-	 *         <code>true</code> if the notification must be ignored
+	 * 		<code>true</code> if the notification must be ignored
 	 */
 	@Override
 	protected boolean ignoreEvent(final Notification notification) {
@@ -633,7 +745,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @param semanticParent
 	 *            the context to use to get values
 	 * @return
-	 *         <code>true</code> if the value can be displayed as a child of the {@link TreeFillingConfiguration}
+	 * 		<code>true</code> if the value can be displayed as a child of the {@link TreeFillingConfiguration}
 	 */
 	protected boolean isProvidedByTreeFillingConfiguration(final Object toTest, final TreeFillingConfiguration conf, final Object semanticParent) {
 		Collection<?> values = getFilteredValueAsCollection(conf, semanticParent, conf.getDepth());
@@ -861,11 +973,12 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	protected void manageRemoveSemanticElement(Object object) {
 		Assert.isTrue(false == (object instanceof ITreeItemAxis));
 		Assert.isTrue(false == (object instanceof TreeFillingConfiguration));
+		final CompoundCommand cc = new CompoundCommand();
 		if (this.managedElements.containsKey(object)) {
 			Collection<ITreeItemAxis> itemAxisRepresentations = new ArrayList<ITreeItemAxis>(this.managedElements.get(object));
 			for (final ITreeItemAxis current : itemAxisRepresentations) {
 				ITreeItemAxis parent = current.getParent();
-				if(null != parent){
+				if (null != parent) {
 					// must always be a TreeFillingConfiguration
 					TreeFillingConfiguration conf = (TreeFillingConfiguration) parent.getElement();
 					Object context;
@@ -877,10 +990,17 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 					}
 					Collection<?> values = getCellValueAsCollection(conf.getAxisUsedAsAxisProvider(), context);
 					if (!values.contains(object)) {
-						removeObject(current);
+						cc.append(getRemoveAxisCommand(current));
 					}
 				}
 			}
+		}
+		try {
+			GMFUnsafe.write(getTableEditingDomain(), cc);
+		} catch (InterruptedException e) {
+			Activator.log.error(e);
+		} catch (RollbackException e) {
+			Activator.log.error(e);
 		}
 	}
 
