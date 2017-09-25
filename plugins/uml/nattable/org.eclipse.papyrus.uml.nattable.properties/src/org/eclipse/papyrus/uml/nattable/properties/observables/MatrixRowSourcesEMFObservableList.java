@@ -8,29 +8,23 @@
  *
  * Contributors:
  *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) - Bug 517742
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.properties.observables;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.EObjectWrapper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.IWrapper;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.NattablewrapperFactory;
 
 /**
  * Observable for Matrix row sources feature
@@ -85,20 +79,8 @@ public class MatrixRowSourcesEMFObservableList extends AbstractMatrixSourcesEMFO
 	 * @param c
 	 * @return
 	 */
-	public boolean addAll(Collection c) {
-		// 1. we build EOBjectWrapper to wrap the element selected by the user and be able to store them in the Table as row context
-		final Collection<IWrapper> toAdd = new ArrayList<IWrapper>();
-		for (final Object current : c) {
-			if (current instanceof IWrapper) {
-				toAdd.add((IWrapper) current);
-			} else if (current instanceof EObject) {
-				final EObjectWrapper wrapper = NattablewrapperFactory.eINSTANCE.createEObjectWrapper();
-				wrapper.setElement((EObject) current);
-				toAdd.add(wrapper);
-			}
-		}
-		Assert.isTrue(c.size() == toAdd.size());
-		return super.addAll(toAdd);
+	public boolean addAll(@SuppressWarnings("rawtypes") Collection c) {
+		return super.addAll(c);
 	}
 
 	/**
@@ -109,20 +91,7 @@ public class MatrixRowSourcesEMFObservableList extends AbstractMatrixSourcesEMFO
 	 */
 	@Override
 	public Command getRemoveCommand(Object value) {
-		// 1. we remove the row context
-		Command cmd = super.getRemoveCommand(value);
-
-		// 2. we remove the ITreeItemAxis representing this row context
-		if (value instanceof IWrapper) {// always true in the current implementation
-			// TransactionalEditingDomain domain;
-			Collection<Object> coll = Collections.singletonList(((IWrapper) value).getElement());
-			final Command tmp = this.manager.getRowAxisManager().getDestroyAxisCommand((TransactionalEditingDomain) editingDomain, coll);
-			if (null != tmp && tmp.canExecute()) {
-				cmd = cmd.chain(tmp);
-			}
-		}
-
-		return cmd;
+		return this.manager.getRemoveRowSourcesCommand(Collections.singletonList(value));
 	}
 
 	/**
@@ -131,23 +100,12 @@ public class MatrixRowSourcesEMFObservableList extends AbstractMatrixSourcesEMFO
 	 * @param values
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Command getAddAllCommand(final Collection<?> values) {
-		// if(true) return IdentityCommand.INSTANCE;
-		Command cmd = super.getAddAllCommand(values);
-		final List<Object> toAdd = new ArrayList<Object>();
-		for (Object current : values) {
-			if (current instanceof EObjectWrapper) {// always true in the current implementation
-				toAdd.add(((EObjectWrapper) current).getElement());
-			}
-		}
-		Assert.isTrue(values.size() == toAdd.size());
-		final Command tmp = this.manager.getAddRowElementCommand(toAdd);
-		if (null != tmp && tmp.canExecute()) {
-			cmd = cmd.chain(tmp);
-		}
-		return cmd;
+		return new AddAllCommandClass(this.manager, (Collection<Object>) values);
 	}
+
 
 	/**
 	 * 
@@ -220,27 +178,10 @@ public class MatrixRowSourcesEMFObservableList extends AbstractMatrixSourcesEMFO
 	 * @param values
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Command getRemoveAllCommand(Collection<?> values) {
-		// 1. we edit the field row context
-//		Command cmd = super.getRemoveAllCommand(values);
-		Command cmd =  RemoveCommand.create(this.editingDomain, this.source, this.feature, values); // bug 520566
-		
-		// 2. we are looking for the element represented by the deleted row contexts
-		final List<Object> toRemove = new ArrayList<Object>();
-		for (Object current : values) {
-			if (current instanceof EObjectWrapper) {// always true in the current implementation
-				toRemove.add(((EObjectWrapper) current).getElement());
-			}
-		}
-
-		Assert.isTrue(values.size() == toRemove.size());
-		// 3. we chain the command to delete the ITreeItemAxis of the table representing the deleted row contexts
-		final Command tmp = this.manager.getRowAxisManager().getDestroyAxisCommand((TransactionalEditingDomain) this.editingDomain, toRemove);
-		if (null != tmp && tmp.canExecute()) {
-			cmd = cmd.chain(tmp);
-		}
-		return cmd;
+		return this.manager.getRemoveRowSourcesCommand((Collection<Object>) values);
 	}
 
 
@@ -304,7 +245,7 @@ public class MatrixRowSourcesEMFObservableList extends AbstractMatrixSourcesEMFO
 	 * @return
 	 */
 	@Override
-	public boolean addAll(int index, Collection c) {
+	public boolean addAll(int index, @SuppressWarnings("rawtypes") Collection c) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -316,7 +257,7 @@ public class MatrixRowSourcesEMFObservableList extends AbstractMatrixSourcesEMFO
 	 * @return
 	 */
 	@Override
-	public boolean removeAll(Collection c) {
+	public boolean removeAll(@SuppressWarnings("rawtypes") Collection c) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -328,7 +269,7 @@ public class MatrixRowSourcesEMFObservableList extends AbstractMatrixSourcesEMFO
 	 * @return
 	 */
 	@Override
-	public boolean retainAll(Collection c) {
+	public boolean retainAll(@SuppressWarnings("rawtypes") Collection c) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -378,8 +319,93 @@ public class MatrixRowSourcesEMFObservableList extends AbstractMatrixSourcesEMFO
 	 * @return
 	 */
 	@Override
-	public boolean containsAll(Collection c) {
+	public boolean containsAll(@SuppressWarnings("rawtypes") Collection c) {
 		throw new UnsupportedOperationException();
 	}
 
+
+
+	/**
+	 * we need to calculate the AddAllCommand during the execution of the AbstractCommand, because for a Add action, the properties view
+	 * does a remove all, then an add all, so the field managedEObject of the AxisManager is not yet updated, so during the add command creation,
+	 * managedEObject it continues to contain the object removed by the remove all, then the final result is not the good one
+	 */
+	private class AddAllCommandClass extends AbstractCommand {
+
+		/**
+		 * the current matrix manager
+		 */
+		private final IMatrixTableWidgetManager manager;
+
+		/**
+		 * the values to add
+		 */
+		private final Collection<Object> values;
+
+		/**
+		 * the wrapped add all command
+		 */
+		private Command wrappedCommand = null;
+
+		/**
+		 * 
+		 * Constructor.
+		 *
+		 * @param manager
+		 *            the matrix manager used to get the add Command
+		 */
+		public AddAllCommandClass(final IMatrixTableWidgetManager manager, final Collection<Object> values) {
+			super("Add All Command"); //$NON-NLS-1$
+			this.manager = manager;
+			this.values = values;
+		}
+
+
+		/**
+		 * 
+		 * @see org.eclipse.emf.common.command.Command#redo()
+		 *
+		 */
+		@Override
+		public void redo() {
+			if (null != this.wrappedCommand) {
+				execute();
+                        }
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.emf.common.command.Command#execute()
+		 *
+		 */
+		@Override
+		public void execute() {
+			if (null == this.wrappedCommand) {
+				this.wrappedCommand = this.manager.getAddRowSourcesCommand(((Collection<Object>) values));
+			}
+			if (null != this.wrappedCommand) {
+				this.wrappedCommand.execute();
+			}
+		}
+
+		/**
+		 * @see org.eclipse.emf.common.command.AbstractCommand#undo()
+		 *
+		 */
+		@Override
+		public void undo() {
+			if (null != this.wrappedCommand) {
+				this.wrappedCommand.undo();
+                        }
+		}
+		/**
+		 * @see org.eclipse.emf.common.command.AbstractCommand#prepare()
+		 *
+		 * @return
+		 */
+		@Override
+		protected boolean prepare() {
+			return true;
+		}
+	}
 }
