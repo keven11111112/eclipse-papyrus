@@ -14,6 +14,7 @@
  *  Nicolas FAUVERGUE(ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077, 497571
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 502560: add drag to diagram support
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 417095
+ *  Vincent Lorenzo (CEA LIST) - bug 525221
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -433,7 +434,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
 		this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
 		// This allows to define the table context as selection on the table opening
-		this.selectionProvider.setSelection(new TableStructuredSelection(getTable().getContext(), new TableSelectionWrapper(Collections.<PositionCoordinate> emptyList())));
+		this.selectionProvider.setSelection(new TableStructuredSelection(getTable().getContext(), new TableSelectionWrapper(this, Collections.<PositionCoordinate> emptyList())));
 
 		// Add a selection listener on the CTabFolder to select the table context
 		final CTabFolder tabFolder = getParentCTabFolder();
@@ -520,10 +521,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						if (!hasSelection && null != natTable && null != selectionProvider && null != getTable().getContext()) {
 							if (selectionInTable.getFirstElement().equals(getTable().getContext())) {
 								// Set the table as selection to force the properties view to refresh it
-								selectionProvider.setSelection(new TableStructuredSelection(getTable(), new TableSelectionWrapper(Collections.<PositionCoordinate> emptyList())));
+								selectionProvider.setSelection(new TableStructuredSelection(getTable(), new TableSelectionWrapper(AbstractNattableWidgetManager.this, Collections.<PositionCoordinate> emptyList())));
 							}
 							// This allows to define the table context as selection on the table opening
-							selectionProvider.setSelection(new TableStructuredSelection(getTable().getContext(), new TableSelectionWrapper(Collections.<PositionCoordinate> emptyList())));
+							selectionProvider.setSelection(new TableStructuredSelection(getTable().getContext(), new TableSelectionWrapper(AbstractNattableWidgetManager.this, Collections.<PositionCoordinate> emptyList())));
 						}
 					}
 				}

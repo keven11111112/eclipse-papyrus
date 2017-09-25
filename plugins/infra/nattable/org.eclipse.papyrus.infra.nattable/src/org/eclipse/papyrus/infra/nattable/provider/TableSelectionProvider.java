@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
- *
+ *  Vincent Lorenzo (CEA LIST) - bug 525221
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.provider;
@@ -156,7 +156,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 		Collection<Object> selection = new HashSet<Object>();
 		final ISelection newSelection;
 		if (event instanceof ISelectionEvent) {
-			TableSelectionWrapper wrapper = new TableSelectionWrapper(ListHelper.asList(this.selectionLayer.getSelectedCellPositions()), new HashMap<Integer, Object>(0), new HashMap<Integer, Object>(0));
+			TableSelectionWrapper wrapper = new TableSelectionWrapper(this.manager, ListHelper.asList(this.selectionLayer.getSelectedCellPositions()), new HashMap<Integer, Object>(0), new HashMap<Integer, Object>(0));
 
 			// Get the type selection event if it is a specific selection event
 			TypeSelectionEnum typeSelectionEvent = TypeSelectionEnum.NONE;
