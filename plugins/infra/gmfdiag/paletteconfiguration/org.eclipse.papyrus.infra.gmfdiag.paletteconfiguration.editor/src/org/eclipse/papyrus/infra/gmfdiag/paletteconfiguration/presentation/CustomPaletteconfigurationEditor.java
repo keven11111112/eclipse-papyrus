@@ -12,6 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.presentation;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EventObject;
@@ -38,9 +39,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
@@ -54,7 +55,6 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionalCommandStackImpl;
@@ -499,12 +499,15 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 				}
 
 				Iterator<?> it = selection.iterator();
+				Collection<Configuration> toDelete = new ArrayList<>();
 				while (it.hasNext()) {
 					Object object = it.next();
 					if (object instanceof Configuration) {
-						EcoreUtil.delete((EObject) object);
+						toDelete.add((Configuration)object);
 					}
 				}
+				Command command = new DeleteCommand(editingDomain, toDelete);
+				editingDomain.getCommandStack().execute(command);
 				selectionViewer.refresh();
 			}
 		};
@@ -532,7 +535,8 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 					drawer.setLabel(DRAWER_LABEL);
 					// Set the drawer on the palette configuration
 					EList<DrawerConfiguration> drawerConfigurations = ((PaletteConfiguration) palette).getDrawerConfigurations();
-					drawerConfigurations.add(drawer);
+					Command command = new AddCommand(editingDomain, drawerConfigurations, drawer);
+					editingDomain.getCommandStack().execute(command);
 					selectionViewer.refresh();
 				}
 			}
@@ -560,17 +564,22 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 				separator.setLabel(SEPARATOR_LABEL);
 				separator.setId(CreatePaletteItemUtil.generateID(SEPARATOR_LABEL));
 
+				final Command command;
 				if (object instanceof DrawerConfiguration) {
 					// Add separator at the end of drawer own configuration
-					((DrawerConfiguration) object).getOwnedConfigurations().add(separator);
+					command = new AddCommand(editingDomain, ((DrawerConfiguration) object).getOwnedConfigurations(), separator);
 				} else if (object instanceof ChildConfiguration) {
 					// retrieve parent
 					EList<ChildConfiguration> ownedConfigurations = ((DrawerConfiguration) ((ChildConfiguration) object).eContainer()).getOwnedConfigurations();
 					int index = ownedConfigurations.indexOf(object);
 
 					// adds the separator
-					ownedConfigurations.add(index, separator);
+					command = new AddCommand(editingDomain, ownedConfigurations, separator, index);
+				} else {
+					return;
 				}
+				
+				editingDomain.getCommandStack().execute(command);
 				selectionViewer.expandToLevel(object, 1);
 				selectionViewer.refresh();
 			}
@@ -598,17 +607,21 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 				stack.setLabel(STACK_LABEL);
 				stack.setId(CreatePaletteItemUtil.generateID(STACK_LABEL));
 
+				final Command command;
 				if (object instanceof DrawerConfiguration) {
 					// Add separator at the end of drawer own configuration
-					((DrawerConfiguration) object).getOwnedConfigurations().add(stack);
+					command = new AddCommand(editingDomain, ((DrawerConfiguration) object).getOwnedConfigurations(), stack);
 				} else if (object instanceof ChildConfiguration) {
 					// retrieve parent
 					EList<ChildConfiguration> ownedConfigurations = ((DrawerConfiguration) ((ChildConfiguration) object).eContainer()).getOwnedConfigurations();
 					int index = ownedConfigurations.indexOf(object);
 
 					// adds the stack
-					ownedConfigurations.add(index, stack);
+					command = new AddCommand(editingDomain, ownedConfigurations, stack, index);
+				} else {
+					return;
 				}
+				editingDomain.getCommandStack().execute(command);
 				selectionViewer.expandToLevel(object, 1);
 				selectionViewer.refresh();
 			}
@@ -635,12 +648,15 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 				// Set label & Id
 				tool.setLabel(NEW_TOOL_LABEL);
 
+				final Command command;
 				if (object instanceof DrawerConfiguration || object instanceof StackConfiguration) {
-					// Add separator at the end of drawer own configuration
+					// Add tool at the end of drawer own configuration
 					if (object instanceof DrawerConfiguration) {
-						((DrawerConfiguration) object).getOwnedConfigurations().add(tool);
+						command = new AddCommand(editingDomain, ((DrawerConfiguration) object).getOwnedConfigurations(), tool);
 					} else if (object instanceof StackConfiguration) {
-						((StackConfiguration) object).getOwnedConfigurations().add(tool);
+						command = new AddCommand(editingDomain, ((StackConfiguration) object).getOwnedConfigurations(), tool);
+					} else {
+						return;
 					}
 				} else if (object instanceof ChildConfiguration) {
 					// retrieve parent
@@ -649,13 +665,19 @@ public class CustomPaletteconfigurationEditor extends PaletteconfigurationEditor
 					if (eContainer instanceof DrawerConfiguration) {
 						EList<ChildConfiguration> ownedConfigurations = ((DrawerConfiguration) eContainer).getOwnedConfigurations();
 						int index = ownedConfigurations.indexOf(object);
-						ownedConfigurations.add(index, tool);
+						command = new AddCommand(editingDomain, ownedConfigurations, tool, index);
 					} else if (eContainer instanceof StackConfiguration) {
 						EList<LeafConfiguration> ownedConfigurations = ((StackConfiguration) eContainer).getOwnedConfigurations();
 						int index = ownedConfigurations.indexOf(object);
-						ownedConfigurations.add(index, tool);
+						command = new AddCommand(editingDomain, ownedConfigurations, tool, index);
+					} else {
+						return;
 					}
+				} else {
+					return;
 				}
+				
+				editingDomain.getCommandStack().execute(command);
 				selectionViewer.expandToLevel(object, 1);
 				selectionViewer.refresh();
 			}
