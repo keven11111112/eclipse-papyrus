@@ -30,7 +30,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.commands.CheckedOperationHistory;
+import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
 import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
 import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrustextinstanceFactory;
 import org.eclipse.papyrus.example.uml.comment.editor.newresource.Activator;

@@ -15,7 +15,6 @@ package org.eclipse.papyrus.example.uml.comment.editor.newresource.modelresource
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.example.text.instance.papyrustextinstance.PapyrusTextInstance;
 import org.eclipse.papyrus.infra.core.resource.AbstractDynamicModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
@@ -103,13 +102,10 @@ public class TextEditorModelCommentResource extends AbstractDynamicModel<Papyrus
 	}
 
 	public boolean canPersist(EObject object) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public void persist(EObject object) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
