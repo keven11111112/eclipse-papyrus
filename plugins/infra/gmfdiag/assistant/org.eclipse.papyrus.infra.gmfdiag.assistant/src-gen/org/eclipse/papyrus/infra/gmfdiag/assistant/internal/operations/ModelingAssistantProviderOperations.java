@@ -416,7 +416,11 @@ public class ModelingAssistantProviderOperations {
 	}
 
 	protected static boolean hasVisualID(IElementType type) {
-		return ((type instanceof IHintedType) && ModelingAssistantUtil.isVisualID(((IHintedType) type).getSemanticHint()));
+		if (false == type instanceof IHintedType) {
+			return false;
+		}
+		String hint = ((IHintedType)type).getSemanticHint();
+		return hint != null && !hint.isEmpty();
 	}
 
 	protected static void resolveAndAppendHintedTypes(IElementType typeToResolve, ModelingAssistantProvider provider, IAdaptable context, ImmutableEListBuilder<? super IElementType> resolvedTypes) {
