@@ -29,6 +29,12 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.uml.m2m.qvto.tests.tools.feature"
          version="0.0.0"/>
 
+   <requires>
+      <import feature="org.eclipse.gmf.tooling" version="0.0.0"/>
+      <import feature="org.eclipse.gmf.tooling.runtime" version="0.0.0"/>
+      <import feature="org.eclipse.gmf.tooling.codegen.xtend2" version="0.0.0"/>
+   </requires>
+
    <plugin
          id="org.eclipse.papyrus.codegen"
          download-size="0"

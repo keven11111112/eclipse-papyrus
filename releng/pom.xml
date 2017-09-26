@@ -58,7 +58,12 @@
 			<!-- url>https://repo.eclipse.org/content/repositories/mylyn-releases/</url -->
 			<url>https://repo.eclipse.org/content/repositories/mylyn/</url>
 		</pluginRepository>
+		<pluginRepository>
+			<id>org.jboss.tools.tycho-plugins</id>
+			<url>https://repository.jboss.org/</url>
+		</pluginRepository>
 	</pluginRepositories>
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -137,10 +142,16 @@
 						</target>
 					</configuration>
 				</plugin>
+
+				<plugin>
+					<groupId>org.jboss.tools.tycho-plugins</groupId>
+					<artifactId>repository-utils</artifactId>
+					<version>0.26.0</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>eclipsehippIntegration</id>
