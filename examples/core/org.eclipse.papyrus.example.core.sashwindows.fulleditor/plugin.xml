@@ -35,7 +35,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="menu:org.eclipse.ui.main.menu?after=navigate">
+            locationURI="popup:org.eclipse.papyrus.dev.ui.menu">
          <menu
                id="org.eclipse.example.multitext.ui.menu"
                label="Sash Windows Full Editor">
