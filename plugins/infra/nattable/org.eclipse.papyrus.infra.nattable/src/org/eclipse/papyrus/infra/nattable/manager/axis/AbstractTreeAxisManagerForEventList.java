@@ -576,6 +576,12 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 			}
 			final ITreeItemAxis parentAxis = axis.getParent();
 			final Command ac = new AbstractCommand() {
+
+				/**
+				 * the command used to remove the parent (a TreeFillingConfiguration) when there is no more child for it
+				 */
+				private Command removeParentCommand = null;
+
 				/**
 				 * @see org.eclipse.emf.common.command.Command#redo()
 				 *
@@ -586,7 +592,10 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 				}
 
 				@Override
-				public void undo() {
+				public void undo() {			
+					if (null != this.removeParentCommand) {
+						this.removeParentCommand.undo();//seem work without this line, strange...
+					}
 					// we need to redo the same stuff, but with the invert order
 					final TransactionalEditingDomain tableEditingDomain = getTableEditingDomain();
 					if (null != tableEditingDomain) {
@@ -621,6 +630,16 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 					final TransactionalEditingDomain tableEditingDomain = getTableEditingDomain();
 					if (null != tableEditingDomain) {
 						ITreeItemAxisHelper.destroyITreeItemAxis(tableEditingDomain, axis);
+					}
+
+					if (parentAxis != null) {
+						final Object representedElement = parentAxis.getElement();
+						if (representedElement instanceof TreeFillingConfiguration && parentAxis.getChildren().size() == 0) {
+							this.removeParentCommand = getRemoveAxisCommand(parentAxis);
+							if (null != this.removeParentCommand && this.removeParentCommand.canExecute()) {
+								this.removeParentCommand.execute();
+							}
+						}
 					}
 				}
 
