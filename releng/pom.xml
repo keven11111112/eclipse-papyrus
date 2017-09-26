@@ -30,7 +30,8 @@
 		<!-- Papyrus repositories. Used when we're building individual components 
 			(vs building the parent pom including everything) -->
 		<papyrus.eclipse.target>photon</papyrus.eclipse.target>
-		<eclipse.download>http://download.eclipse.org</eclipse.download> <!-- Deprecated; kept for Legacy. Can be set to file:/home/data/httpd/download.eclipse.org when building on HIPP -->
+		<eclipse.download>http://download.eclipse.org</eclipse.download> <!-- Deprecated; kept for Legacy. Can be set to file:/home/data/httpd/download.eclipse.org 
+			when building on HIPP -->
 		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}</papyrus.repo.main>
 		<papyrus.repo.dev>https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/repository/</papyrus.repo.dev>
 	</properties>
@@ -58,9 +59,14 @@
 			<!-- url>https://repo.eclipse.org/content/repositories/mylyn-releases/</url -->
 			<url>https://repo.eclipse.org/content/repositories/mylyn/</url>
 		</pluginRepository>
+		<pluginRepository>
+			<id>org.jboss.tools.tycho-plugins</id>
+			<url>https://repository.jboss.org/</url>
+		</pluginRepository>
 	</pluginRepositories>
+
 	<build>
-		<outputDirectory>bin</outputDirectory> 
+		<outputDirectory>bin</outputDirectory>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -138,10 +144,16 @@
 						</target>
 					</configuration>
 				</plugin>
+
+				<plugin>
+					<groupId>org.jboss.tools.tycho-plugins</groupId>
+					<artifactId>repository-utils</artifactId>
+					<version>0.26.0</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>eclipsehippIntegration</id>
