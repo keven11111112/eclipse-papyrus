@@ -9,7 +9,8 @@
  * Contributors:
  *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Initial API and implementation
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515491
- *   Sebastien Gabel (Esterel Technologies SAS) - Bug 519143 (Fix NPE) 
+ *   Sebastien Gabel (Esterel Technologies SAS) - Bug 519143 (Fix NPE)
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521908
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.ui.emf.databinding;
@@ -32,13 +33,16 @@ import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.infra.ui.emf.utils.Constants;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.BooleanSelector;
 import org.eclipse.papyrus.infra.widgets.selectors.IntegerSelector;
+import org.eclipse.papyrus.infra.widgets.selectors.RealSelector;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
+import org.eclipse.papyrus.infra.widgets.selectors.UnlimitedNaturalSelector;
 import org.eclipse.swt.SWT;
 
 /**
@@ -139,6 +143,12 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 			case "String": //$NON-NLS-1$
 				multiEditor.setSelector(new StringSelector());
 				break;
+			case "Real": //$NON-NLS-1$
+				multiEditor.setSelector(new RealSelector());
+				break;
+			case "UnlimitedNatural": //$NON-NLS-1$
+				multiEditor.setSelector(new UnlimitedNaturalSelector());
+				break;
 			default:
 				break;
 			}
@@ -151,7 +161,6 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 	 */
 	@Override
 	protected Object getValue(final Object element) {
-
 		if (element instanceof EObjectObservableValue) {
 			EObjectObservableValue observableValue = (EObjectObservableValue) element;
 			EStructuralFeature feature = (EStructuralFeature) observableValue.getValueType();
@@ -162,6 +171,11 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 			Object object = observableValue.getValue();
 
 			if (feature.isMany()) {
+				String eTypeName = eType.getName();
+				if (eTypeName.equals("UnlimitedNatural")) { //$NON-NLS-1$
+					return getMultiUnlimitedNaturalValue(object);
+				}
+
 				return object;
 			} else {
 				if (eType instanceof EEnum) {
@@ -171,7 +185,6 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 					if (eTypeName.equals("Boolean")) { //$NON-NLS-1$
 						return getBooleanValue(object);
 					}
-
 					return object;
 				}
 			}
@@ -195,6 +208,34 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 		} else {
 			return literals.indexOf(object);
 		}
+	}
+
+	/**
+	 * Return Multi value when the feature is UnlimitedNatural. Replace '-1' by '*'.
+	 * 
+	 * @param object
+	 *            The old value.
+	 * @return The value to return.
+	 * @since 2.0
+	 */
+	protected Object getMultiUnlimitedNaturalValue(final Object objects) {
+		if (objects instanceof List<?>) {
+			List<Object> objectToReturn = new ArrayList<Object>();
+			if (objects instanceof List<?>) {
+				for (int i = 0; i < ((List<?>) objects).size(); i++) {
+					Object object = ((List<?>) objects).get(i);
+					String string = object.toString();
+					if (string.equals(Constants.INFINITE_MINUS_ONE)) {
+						objectToReturn.add(new String(Constants.INFINITY_STAR));
+					} else {
+						objectToReturn.add(object);
+					}
+				}
+			}
+			return objectToReturn;
+		}
+
+		return objects;
 	}
 
 	/**

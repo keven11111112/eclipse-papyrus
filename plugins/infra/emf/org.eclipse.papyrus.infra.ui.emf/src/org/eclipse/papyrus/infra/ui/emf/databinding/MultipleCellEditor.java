@@ -21,14 +21,19 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.DialogCellEditor;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.ui.emf.utils.Constants;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectionDialog;
+import org.eclipse.papyrus.infra.widgets.selectors.UnlimitedNaturalSelector;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 /**
  * A CellEditor uses to set multiple values of an object.
+ * 
  * @since 2.0
  */
 public class MultipleCellEditor extends DialogCellEditor {
@@ -92,11 +97,46 @@ public class MultipleCellEditor extends DialogCellEditor {
 			}
 		}
 
+		// Add a LabelProvider for the UnlimitedNatural values.
+		if (selector instanceof UnlimitedNaturalSelector) {
+			multipleValueSelectionDialog.setLabelProvider(new UnlimitedNaturalLabelProvider());
+		}
+
 		if (Window.OK == multipleValueSelectionDialog.open()) {
 			result = Arrays.asList(multipleValueSelectionDialog.getResult());
 		}
 
 		return result;
+	}
+
+	/**
+	 * 
+	 * LabelProvider used to change the display of an UnlimitedNatural.
+	 * 
+	 * @since 2.0
+	 */
+	private class UnlimitedNaturalLabelProvider extends LabelProvider {
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getText(Object element) {
+			String text = element.toString();
+			if (Constants.INFINITE_MINUS_ONE.equals(text)) {
+				text = Constants.INFINITY_STAR;
+			}
+
+			return text;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Image getImage(Object element) {
+			return null;
+		}
 	}
 
 }

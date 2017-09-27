@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Initial API and implementation
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Initial API and implementation, Bug 521908
  *
  *****************************************************************************/
 
@@ -15,12 +15,15 @@ package org.eclipse.papyrus.infra.ui.emf.providers;
 
 import org.eclipse.emf.databinding.EObjectObservableValue;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.provider.DelegatingStyledCellLabelProvider;
+import org.eclipse.papyrus.infra.ui.emf.utils.Constants;
 
 /**
  * LabelProvider used to show feature name and EObject of an EObjectObservaleValue.
+ * 
  * @since 2.0
  *
  */
@@ -48,13 +51,11 @@ public class EObjectObservableValueLabelProvider extends DelegatingStyledCellLab
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.emf.edit.ui.provider.DelegatingStyledCellLabelProvider#getColumnText(java.lang.Object, int)
 	 */
 	@Override
 	public String getColumnText(final Object element, final int columnIndex) {
 		if (element instanceof EObjectObservableValue) {
-			String columnText = ""; //$NON-NLS-1$
+			String columnText = Constants.EMPTY_STRING;
 			EObjectObservableValue elementObservableValue = (EObjectObservableValue) element;
 			Object valueType = elementObservableValue.getValueType();
 			if (valueType instanceof EAttribute) {
@@ -65,8 +66,12 @@ public class EObjectObservableValueLabelProvider extends DelegatingStyledCellLab
 					}
 					break;
 				case EOBJECT:
-					if (null != elementObservableValue.getValue()) {
-						columnText = elementObservableValue.getValue().toString();
+					Object value = elementObservableValue.getValue();
+					if (null != value) {
+						columnText = value.toString();
+						if (isUnlimitedNatural((EAttribute) valueType)) {
+							columnText = columnText.replace(Constants.INFINITE_MINUS_ONE, Constants.INFINITY_STAR);
+						}
 					}
 					break;
 				default:
@@ -84,5 +89,24 @@ public class EObjectObservableValueLabelProvider extends DelegatingStyledCellLab
 			return columnText;
 		}
 		return super.getColumnText(element, columnIndex);
+	}
+
+	/**
+	 * Check if the EAttribute is a UnlimitedNatural.
+	 * 
+	 * @param valueType
+	 *            The EAttribute.
+	 * @return The boolean result.
+	 */
+	private boolean isUnlimitedNatural(final EAttribute valueType) {
+		boolean isUnlimitedNatural = false;
+		EClassifier eType = ((EAttribute) valueType).getEType();
+		if (null != eType) {
+			String name = eType.getName();
+			if (Constants.UNLIMITED_NATURAL.equals(name)) {
+				isUnlimitedNatural = true;
+			}
+		}
+		return isUnlimitedNatural;
 	}
 }
