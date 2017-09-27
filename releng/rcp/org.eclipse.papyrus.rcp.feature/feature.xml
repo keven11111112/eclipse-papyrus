@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.rcp.feature"
       label="Papyrus RCP Feature"
-      version="3.0.0.qualifier"
+      version="3.2.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
    <description url="http://www.eclipse.org/papyrus">
@@ -28,7 +28,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <url>
       <discovery label="Oxygen" url="http://download.eclipse.org/releases/oxygen/"/>
-      <discovery label="Eclipse Platform 4.6" url="http://download.eclipse.org/eclipse/updates/4.6"/>
+      <discovery label="Eclipse Platform 4.7" url="http://download.eclipse.org/eclipse/updates/4.7"/>
    </url>
 
    <requires>
