@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAn (ALL4TEC) thanhliem.phan@all4tec.net - Bug 525245
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.helper.advice;
 
@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.ICellAxisWrapper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.NattablecellPackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.NattablewrapperPackage;
 
 /**
  *
@@ -70,6 +71,8 @@ public class TableContentsAdviceHelper extends AbstractEditHelperAdvice {
 		if (adapter != null) {
 			Set<EObject> elementsToDestroy = adapter.getInverseReferencers(eobject, NattableaxisPackage.eINSTANCE.getEObjectAxis_Element(), NattableaxisPackage.eINSTANCE.getEObjectAxis());
 			elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablecellPackage.eINSTANCE.getEObjectAxisWrapper_Element(), NattablecellPackage.eINSTANCE.getEObjectAxisWrapper()));
+			// Bug 525245: EObjectWrapper, which wraps destroyed element such as row source or column source, need to be also deleted
+			elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablewrapperPackage.eINSTANCE.getEObjectWrapper_Element(), NattablewrapperPackage.eINSTANCE.getEObjectWrapper()));
 
 			if (eobject instanceof ICellAxisWrapper) {
 				elementsToDestroy.addAll(adapter.getInverseReferencers(eobject, NattablecellPackage.eINSTANCE.getCell_RowWrapper(), NattablecellPackage.eINSTANCE.getCell()));
