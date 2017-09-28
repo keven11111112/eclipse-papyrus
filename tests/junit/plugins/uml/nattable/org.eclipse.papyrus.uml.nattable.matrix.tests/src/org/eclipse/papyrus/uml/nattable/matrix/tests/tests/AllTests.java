@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 525245 
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.matrix.tests.tests;
@@ -22,7 +22,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		OpenDependencyMatrixTest.class,
 		CreateMatrixTableTests.class, 
 		UpdateTableAfterEditingRowSourceTest.class,
-		UpdateTableContentsAfterExpressionChangeWithLocalHeaderPreconfiguredTests.class
+		UpdateTableContentsAfterExpressionChangeWithLocalHeaderPreconfiguredTests.class,
+		DeleteObjectWrapperForSourceElementsTest.class
 })
 public class AllTests {
 	// JUnit 4 test suite
