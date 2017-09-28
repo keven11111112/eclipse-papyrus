@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 517190
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.editor;
@@ -27,7 +28,7 @@ import org.eclipse.papyrus.infra.widgets.selectors.BooleanSelector;
  * @author Vincent Lorenzo
  *
  */
-public class MultiBooleanCellEditor extends AbstractUMLMultiValueCellEditor {
+public class MultiBooleanCellEditor extends AbstractMultiValuePrimitiveTypeCellEditor {
 
 	/**
 	 *

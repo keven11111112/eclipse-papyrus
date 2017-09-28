@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2014, 2018 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 517190
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.editor;
@@ -50,7 +51,10 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public abstract class AbstractUMLMultiValueCellEditor extends AbstractDialogCellEditor {
 
-	private Collection<Object> returnedValue;
+	/**
+	 * @since 5.1
+	 */
+	protected Collection<Object> returnedValue;
 
 	/**
 	 * the table axis element provider

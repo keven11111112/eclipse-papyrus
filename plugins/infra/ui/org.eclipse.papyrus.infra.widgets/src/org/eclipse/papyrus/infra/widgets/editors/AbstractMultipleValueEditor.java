@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,7 +13,8 @@
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - manage buttons visibility and enable. 
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 515808
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902, Bug 526304
- *
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 517190
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -250,8 +251,32 @@ public abstract class AbstractMultipleValueEditor<T extends IElementSelector> ex
 	 * @param label
 	 *            The editor's label.
 	 * @return The new dialog for this editor
+	 * 
+	 * @deprecated since 3.3 Use/override the {@link #createMultipleValueDialog(Composite, IElementSelector, boolean, boolean, String)} instead.
+	 * 
 	 */
+	@Deprecated
 	protected MultipleValueSelectionDialog createMultipleValueSelectionDialog(Composite parent, IElementSelector selector, boolean ordered, boolean unique, String label) {
+		return new MultipleValueSelectionDialog(parent.getShell(), selector, label, unique, ordered);
+	}
+
+	/**
+	 * Creates the dialog for this editor
+	 *
+	 * @param parent
+	 *            The Composite in which the dialog should be displayed
+	 * @param selector
+	 *            The element selector for this dialog
+	 * @param ordered
+	 *            Specify if the observed collection is ordered. If true, Up and Down controls are displayed.
+	 * @param unique
+	 *            Specify if the observed collection values are unique.
+	 * @param label
+	 *            The editor's label.
+	 * @return The new dialog for this editor
+	 * @since 3.3
+	 */
+	protected MultipleValueDialog createMultipleValueDialog(Composite parent, IElementSelector selector, boolean ordered, boolean unique, String label) {
 		return new MultipleValueSelectionDialog(parent.getShell(), selector, label, unique, ordered);
 	}
 
@@ -868,5 +893,6 @@ public abstract class AbstractMultipleValueEditor<T extends IElementSelector> ex
 	public void changeColorField() {
 		// nothing to do here
 	}
+
 
 }

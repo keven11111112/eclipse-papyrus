@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2017 CEA LIST.
+ * Copyright (c) 2010, 2017, 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902, Bug 526304
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 517190
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -236,6 +237,16 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 	public MultipleStringEditor(Composite parent, int style, String label) {
 		super(parent, style, new StringSelector(), label);
 		init();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractMultipleValueEditor#createMultipleValueDialog(org.eclipse.swt.widgets.Composite, org.eclipse.papyrus.infra.widgets.editors.IElementSelector, boolean, boolean, java.lang.String)
+	 */
+	@Override
+	protected MultipleValueDialog createMultipleValueDialog(Composite parent, IElementSelector selector, boolean ordered, boolean unique, String label) {
+		return new MultipleValueDialog(parent.getShell(), selector, label, unique, ordered);
 	}
 
 	private void init() {
