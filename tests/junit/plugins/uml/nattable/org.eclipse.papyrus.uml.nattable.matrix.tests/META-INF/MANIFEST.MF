@@ -16,3 +16,4 @@ Require-Bundle: org.junit;bundle-version="[4.12.0,5.0.0)",
  org.eclipse.papyrus.infra.emf.gmf;bundle-version="[1.2.100,2.0.0)",
  org.eclipse.papyrus.uml.service.types;bundle-version="[3.1.0,4.0.0)"
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.matrix.tests.Activator
+Export-Package: org.eclipse.papyrus.uml.nattable.matrix.tests.tests
