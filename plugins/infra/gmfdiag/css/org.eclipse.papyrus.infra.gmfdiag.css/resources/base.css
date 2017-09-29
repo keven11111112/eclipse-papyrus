@@ -50,6 +50,7 @@ Label{
 
 Label[kind="FloatingLabel"]{
 	maskLabel:"name";
+	textAlignment:"left";
 }
 
 Port{
