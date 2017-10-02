@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 525369
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
@@ -152,7 +153,23 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 			ArrayList<InteractionFragment> existedFragments = new ArrayList<InteractionFragment>();
 			ArrayList<InteractionFragment> sorted = sortSemanticFromRows(elementForInteraction, rows);
 			existedFragments.addAll(sorted);
-			existedFragments.addAll(interaction.getFragments());
+			// Add not sorted element existing into fragment
+			for (InteractionFragment interactionFragment : interaction.getFragments()) {
+				if (!existedFragments.contains(interactionFragment)) {
+					if (interactionFragment instanceof ExecutionSpecification) {
+						// if its an execution specification place it after the start
+						int indexOfStartOS = existedFragments.indexOf(((ExecutionSpecification) interactionFragment).getStart());
+						if (0 <= indexOfStartOS) {
+							existedFragments.add(indexOfStartOS + 1, interactionFragment);
+						} else {
+							existedFragments.add(interactionFragment);
+						}
+					} else {
+						// else add it to the end of the list
+						existedFragments.add(interactionFragment);
+					}
+				}
+			}
 			grid.execute(new SetCommand(domain, interaction, UMLPackage.eINSTANCE.getInteraction_Fragment(), existedFragments));
 		}
 	}
