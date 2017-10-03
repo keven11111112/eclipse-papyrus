@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +8,13 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
+import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.ICellEditorValidator;
+import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.papyrus.infra.widgets.selectors.IntegerSelector;
 import org.eclipse.swt.widgets.Composite;
 
@@ -72,4 +76,70 @@ public class MultipleIntegerEditor extends MultipleStringEditor<IntegerSelector>
 		super(parent, style, new IntegerSelector(), ordered, unique, label);
 	}
 
+	/**
+	 * Constructs an Editor for multiple Integer values.
+	 * The widget is a List, with controls to move values up/down, add values and remove values.
+	 *
+	 * @param parent
+	 *            The Composite in which this editor is created
+	 * @param directCreation
+	 *            Indicates if the creation and modification are directed.
+	 * @param style
+	 *            The List's style
+	 * 
+	 * @since 3.1
+	 */
+	public MultipleIntegerEditor(Composite parent, boolean directCreation, int style) {
+		super(parent, style, new IntegerSelector(), directCreation);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected CellEditor createCellEditor(Object element) {
+		return new IntegerCellEditor(tree);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Object getDefaultValue() {
+		return new Integer(0);
+	}
+
+	/**
+	 * This cell editor ensures that only Integer values are supported
+	 */
+	private static class IntegerCellEditor extends TextCellEditor {
+		public IntegerCellEditor(Composite composite) {
+			super(composite);
+			setValidator(new ICellEditorValidator() {
+				public String isValid(Object object) {
+					if (object instanceof Integer) {
+						return null;
+					} else {
+						String string = (String) object;
+						try {
+							Integer.parseInt(string);
+							return null;
+						} catch (NumberFormatException exception) {
+							return exception.getMessage();
+						}
+					}
+				}
+			});
+		}
+
+		@Override
+		public Object doGetValue() {
+			return Integer.parseInt((String) super.doGetValue());
+		}
+
+		@Override
+		public void doSetValue(Object value) {
+			super.doSetValue(value.toString());
+		}
+	}
 }

@@ -8,10 +8,11 @@
  *
  * Contributors:
  *  Pierre GAUTIER (CEA LIST) - Initial API and implementation
- *
+ *	Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
+import org.eclipse.papyrus.infra.widgets.selectors.BooleanSelector;
 import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
 import org.eclipse.swt.widgets.Composite;
 
@@ -33,6 +34,23 @@ public class TypedMultipleStringEditor extends MultipleStringEditor<StringSelect
 	 */
 	public TypedMultipleStringEditor(final Composite parent, final int style) {
 		super(parent, style, true);
+	}
+
+	/**
+	 * Constructs an Editor for multiple strings values.
+	 * The widget is a List, with controls to move values up/down, add values and remove values.
+	 *
+	 * @param parent
+	 *            The Composite in which this editor is created
+	 * @param directCreation
+	 *            Indicates if the creation and modification are directed.
+	 * @param style
+	 *            The List's style
+	 * 
+	 * @since 3.1
+	 */
+	public TypedMultipleStringEditor(Composite parent, boolean directCreation, int style) {
+		super(parent, style, new BooleanSelector(), directCreation);
 	}
 
 }

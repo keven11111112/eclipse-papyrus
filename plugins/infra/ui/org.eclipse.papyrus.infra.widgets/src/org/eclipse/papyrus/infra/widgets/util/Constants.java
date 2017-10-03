@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Initial API and implementation
- *   
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.widgets.util;
@@ -28,4 +28,7 @@ public class Constants {
 
 	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
 
+	public static final String DEFAULT_STRING_VALUE = "New String"; //$NON-NLS-1$
+
+	public static final String COLUMN_NAME_VALUE = "Value"; //$NON-NLS-1$
 }
