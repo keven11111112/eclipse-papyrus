@@ -12,6 +12,7 @@
  *  Christian W. Damus - bugs 399859, 516526
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - manage buttons visibility and enable. 
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 515808
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -416,21 +417,7 @@ public abstract class AbstractMultipleValueEditor<T extends IElementSelector> ex
 		final Object context = getContextElement();
 
 		if (directCreation) {
-			if (referenceFactory != null && referenceFactory.canCreateObject()) {
-				getOperationExecutor(context).execute(new Callable<Object>() {
-
-					@Override
-					public Object call() {
-						Object result = referenceFactory.createObject(AbstractMultipleValueEditor.this, context);
-						if (result != null) {
-							modelProperty.add(result);
-							commit();
-						}
-						return result;
-					}
-				}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
-			}
-
+			directCreateObject(context);
 			return;
 		}
 
@@ -731,6 +718,17 @@ public abstract class AbstractMultipleValueEditor<T extends IElementSelector> ex
 	}
 
 	/**
+	 * Returns the boolean for the direct creation.
+	 * 
+	 * @return the directCreation value.
+	 * 
+	 * @since 3.1
+	 */
+	public boolean isDirectCreation() {
+		return directCreation;
+	}
+
+	/**
 	 * Adds a ISelectionChangedListener to this widget
 	 *
 	 * @param listener
@@ -809,6 +807,32 @@ public abstract class AbstractMultipleValueEditor<T extends IElementSelector> ex
 
 	private Object getFirstSelection() {
 		return getSelection().getFirstElement();
+	}
+
+	/**
+	 * Create an object with the direct creation.
+	 * 
+	 * @param context
+	 *            The context element.
+	 * 
+	 * @since 3.1
+	 * 
+	 */
+	protected void directCreateObject(final Object context) {
+		if (referenceFactory != null && referenceFactory.canCreateObject()) {
+			getOperationExecutor(context).execute(new Callable<Object>() {
+
+				@Override
+				public Object call() {
+					Object result = referenceFactory.createObject(AbstractMultipleValueEditor.this, context);
+					if (result != null) {
+						modelProperty.add(result);
+						commit();
+					}
+					return result;
+				}
+			}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
+		}
 	}
 
 	@Override

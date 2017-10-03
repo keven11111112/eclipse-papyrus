@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,14 +8,33 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
+import java.util.List;
+import java.util.concurrent.Callable;
+
+import org.eclipse.jface.layout.TreeColumnLayout;
+import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.ColumnWeightData;
+import org.eclipse.jface.viewers.EditingSupport;
+import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.TreeViewerColumn;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
+import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.providers.TreeCollectionContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.StandardSelector;
 import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
+import org.eclipse.papyrus.infra.widgets.util.Constants;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeColumn;
 
 
 /**
@@ -42,8 +61,28 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 		init();
 	}
 
+	/**
+	 * Constructs an Editor for multiple String values
+	 * The widget is a List, with controls to move values up/down, add values
+	 * and remove values.
+	 *
+	 * @param parent
+	 *            The Composite in which this editor is created
+	 * @param directCreation
+	 *            Indicates if the creation and modification are directed.
+	 * @param style
+	 *            The List's style
+	 * 
+	 * @since 3.1
+	 */
+	public MultipleStringEditor(Composite parent, boolean directCreation, int style) {
+		super(parent, style, new StringSelector());
+		setDirectCreation(directCreation);
+		init();
+	}
+
 	public MultipleStringEditor(Composite parent, int style, boolean multiline) {
-		super(parent, style, new StringSelector(multiline));
+		super(parent, style, new StringSelector(multiline), true, false, null);
 		init();
 	}
 
@@ -130,6 +169,27 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 	}
 
 	/**
+	 * Constructs an Editor for multiple Integer values
+	 * The widget is a List, with controls to move values up/down, add values
+	 * and remove values.
+	 *
+	 * @param parent
+	 *            The Composite in which this editor is created
+	 * @param style
+	 *            The List's style
+	 * @param selector
+	 *            The Element selector for the dialog's left-pane. Used to select values or enter new ones.
+	 * @param directCreation
+	 *            Indicates if the creation and modification are directed.
+	 * @since 3.1
+	 */
+	public MultipleStringEditor(Composite parent, int style, T selector, boolean directCreation) {
+		super(parent, style, selector);
+		setDirectCreation(directCreation);
+		init();
+	}
+
+	/**
 	 * Constructs an Editor for multiple String values
 	 * The widget is a List, with controls to move values up/down, add values
 	 * and remove values.
@@ -182,4 +242,164 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 		setSelector(selector);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 */
+	@Override
+	public void updateButtons() {
+		super.updateButtons();
+		edit.setVisible(!isDirectCreation());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @since 3.1
+	 */
+	@Override
+	protected void directCreateObject(Object context) {
+		if (referenceFactory != null && referenceFactory.canCreateObject()) {
+			getOperationExecutor(context).execute(new Callable<Object>() {
+
+				@Override
+				public Object call() {
+					Object result = getDefaultValue();
+					if (result != null) {
+						modelProperty.add(result);
+						commit();
+					}
+					return result;
+				}
+			}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
+
+			editNewElement();
+		}
+	}
+
+	/**
+	 * Edit the latest element of the TreeViewer.
+	 * 
+	 * @since 3.1
+	 */
+	protected void editNewElement() {
+		Object data = tree.getData();
+		if (data instanceof List<?>) {
+			int size = ((List) data).size();
+			if (0 != size) {
+				Object object = ((List) data).get(size - 1);
+				if (null != object) {
+					treeViewer.editElement(object, 0);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Returns the default value for each new String value.
+	 * 
+	 * @since 3.1
+	 */
+	protected Object getDefaultValue() {
+		return Constants.DEFAULT_STRING_VALUE;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Control createContents(Composite parent) {
+		Composite compositeTree = factory.createComposite(parent);
+		final TreeColumnLayout treeColumnLayout = new TreeColumnLayout();
+		compositeTree.setLayout(treeColumnLayout);
+
+		tree = new Tree(compositeTree, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER | SWT.FULL_SELECTION);
+		tree.setLinesVisible(true);
+
+		tree.addSelectionListener(this);
+
+		treeViewer = new TreeViewer(tree);
+		treeViewer.setContentProvider(TreeCollectionContentProvider.instance);
+
+		TreeViewerColumn viewerColumn = createTreeViewerColumn(treeViewer, Constants.COLUMN_NAME_VALUE);
+		treeColumnLayout.setColumnData(viewerColumn.getColumn(), new ColumnWeightData(100));
+		viewerColumn.setEditingSupport(new EditingSupport(treeViewer) {
+
+			@Override
+			protected void setValue(Object element, Object value) {
+				Object newValue = getValueToSet(element, value);
+
+				final int index = modelProperty.indexOf(element);
+
+				if ((element != newValue) && (newValue != null)) {
+					modelProperty.set(index, newValue);
+				}
+
+				commit();
+			}
+
+			@Override
+			protected Object getValue(Object element) {
+				return getEditingValue(element);
+			}
+
+			@Override
+			protected CellEditor getCellEditor(Object element) {
+				return createCellEditor(element);
+			}
+
+			@Override
+			protected boolean canEdit(Object element) {
+				return isDirectCreation();
+			}
+		});
+
+		return compositeTree;
+	}
+
+	/**
+	 * This allows to create a tree viewer column in the tree viewer.
+	 * 
+	 * @param viewer
+	 *            the tree viewer.
+	 * @param title
+	 *            The title of the column.
+	 * @return The created tree viewer column.
+	 * @since 3.1
+	 */
+	protected TreeViewerColumn createTreeViewerColumn(final TreeViewer viewer, final String title) {
+		final TreeViewerColumn viewerColumn = new TreeViewerColumn(viewer, SWT.BORDER);
+		final TreeColumn column = viewerColumn.getColumn();
+		column.setText(title);
+		column.setResizable(true);
+		column.setMoveable(false);
+		return viewerColumn;
+	}
+
+	/**
+	 * Returns the CellEditor for the editing support.
+	 * 
+	 * @since 3.1
+	 */
+	protected CellEditor createCellEditor(final Object element) {
+		return new TextCellEditor(tree);
+	}
+
+	/**
+	 * Returns the value editing on the editing support.
+	 * 
+	 * @since 3.1
+	 */
+	protected Object getEditingValue(final Object element) {
+		return element.toString();
+	}
+
+	/**
+	 * Returns the value to set on the editing support.
+	 * 
+	 * @since 3.1
+	 */
+	protected Object getValueToSet(final Object element, final Object value) {
+		return value;
+	}
 }

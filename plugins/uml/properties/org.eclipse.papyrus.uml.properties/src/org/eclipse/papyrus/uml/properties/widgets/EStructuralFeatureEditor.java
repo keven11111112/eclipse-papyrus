@@ -11,7 +11,7 @@
  *  Christian W. Damus (CEA) - bug 323802
  *  Christian W. Damus (CEA) - bug 448139
  *  Pierre GAUTIER (CEA LIST) - bug 521857
- *
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
@@ -82,7 +82,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener<Object>, I
 	protected ReferenceValueFactory valueFactory;
 
 	protected IChangeListener changeListener;
-	
+
 	private static final Map<String, Class<?>> TYPE_ALIASES = new HashMap<>();
 
 	static {
@@ -206,7 +206,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener<Object>, I
 				final String aliasedInstanceClassName = ((EDataType) featureType).getInstanceClassName();
 				final Class<?> clazz = EStructuralFeatureEditor.TYPE_ALIASES.get(aliasedInstanceClassName);
 				if (clazz == null) {
-					throw new IllegalArgumentException("No clazz has been found for aliasedInstanceClassName '" + aliasedInstanceClassName + "'");  //$NON-NLS-1$ //$NON-NLS-2$
+					throw new IllegalArgumentException("No clazz has been found for aliasedInstanceClassName '" + aliasedInstanceClassName + "'"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				if (feature.isMany()) {
 					createMultipleEditor(clazz, element, title, feature);
@@ -220,7 +220,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener<Object>, I
 		}
 		pageBook.showPage(currentPage);
 	}
-	
+
 	protected void setValueEditorProperties(final AbstractValueEditor editor, final EObject stereotypeApplication, final String title, final EStructuralFeature feature) {
 		final PapyrusObservableValue observable = new PapyrusObservableValue(stereotypeApplication, feature, EMFHelper.resolveEditingDomain(stereotypeApplication));
 		observable.addValueChangeListener(this);
@@ -228,7 +228,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener<Object>, I
 		editor.setReadOnly(!isEditable(stereotypeApplication, feature));
 		editor.setModelObservable(observable);
 	}
-	
+
 	protected void setMultipleValueEditorProperties(final MultipleValueEditor<?> editor, final List<?> initialList, final EObject stereotypeApplication, final String title, final EStructuralFeature feature) {
 		final PapyrusObservableList observable = new PapyrusObservableList(initialList, EMFHelper.resolveEditingDomain(stereotypeApplication), stereotypeApplication, feature);
 		observable.addListChangeListener(this);
@@ -236,11 +236,11 @@ public class EStructuralFeatureEditor implements IValueChangeListener<Object>, I
 		editor.setUnique(feature.isUnique());
 		editor.setOrdered(feature.isOrdered());
 		editor.setUpperBound(feature.getUpperBound());
+		editor.setModelObservable(observable);
 		editor.setReadOnly(!isEditable(stereotypeApplication, feature));
 		if (feature instanceof EReference) {
 			editor.setDirectCreation(((EReference) feature).isContainment());
 		}
-		editor.setModelObservable(observable);
 		editor.addCommitListener(observable);
 	}
 
@@ -250,8 +250,8 @@ public class EStructuralFeatureEditor implements IValueChangeListener<Object>, I
 			throw new IllegalArgumentException("No multiple editor has been found for class '" + typeClass + "'"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		try {
-			final Constructor<? extends MultipleStringEditor<?>> constructor = editorClazz.getConstructor(Composite.class, int.class);
-			final MultipleStringEditor<?> editor = constructor.newInstance(pageBook, style);
+			final Constructor<? extends MultipleStringEditor<?>> constructor = editorClazz.getConstructor(Composite.class, boolean.class, int.class);
+			final MultipleStringEditor<?> editor = constructor.newInstance(pageBook, true, style);
 			setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, title, feature);
 			currentPage = editor;
 		} catch (final Exception e) {
@@ -281,7 +281,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener<Object>, I
 	public void setLayoutData(final GridData data) {
 		pageBook.setLayoutData(data);
 	}
-	
+
 	@Override
 	public void handleValueChange(final ValueChangeEvent<?> event) {
 		if (changeListener != null) {
