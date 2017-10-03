@@ -328,7 +328,7 @@
         <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
         <repository url="http://download.eclipse.org/nattable/releases/1.5.0/repository/"/>
         <repository url="http://download.eclipse.org/nebula/releases/1.2.0/"/>
-        <repository url="http://download.eclipse.orgtools/orbit/downloads/drops/R20170516192513/repository"/>
+        <repository url="http://download.eclipse.org/tools/orbit/downloads/drops/R20170516192513/repository"/>
       </repositoryList>
       <repositoryList name="Neon">
         <repository url="http://download.eclipse.org/eclipse/updates/4.6/R-4.6.1-201609071200/">
