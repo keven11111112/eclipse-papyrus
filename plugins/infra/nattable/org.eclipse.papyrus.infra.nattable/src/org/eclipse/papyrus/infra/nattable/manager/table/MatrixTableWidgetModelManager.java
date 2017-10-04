@@ -9,6 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA LIST) - Bug 517742
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 525367
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -336,7 +337,21 @@ public class MatrixTableWidgetModelManager extends TreeNattableModelManager impl
 	 */
 	@Override
 	public Command getAddColumnSourcesCommand(final Collection<Object> objectsToAdd) {
-		return UnexecutableCommand.INSTANCE;
+		// The list of wrapper to add as matrix column sources
+		final List<IWrapper> wrappersToAdd = new ArrayList<IWrapper>();
+		for (final Object current : objectsToAdd) {
+			if (current instanceof IWrapper) {
+				wrappersToAdd.add((IWrapper) current);
+			} else if (current instanceof EObject) {
+				final EObjectWrapper wrapper = NattablewrapperFactory.eINSTANCE.createEObjectWrapper();
+				wrapper.setElement((EObject) current);
+				wrappersToAdd.add(wrapper);
+			}
+		}
+
+		final CompoundCommand cc = new CompoundCommand("Add Matrix Column Sources Command"); //$NON-NLS-1$
+		cc.append(AddCommand.create(getTableEditingDomain(), getTable().getCurrentColumnAxisProvider(), NattableaxisproviderPackage.eINSTANCE.getIMasterAxisProvider_Sources(), wrappersToAdd));
+		return cc.canExecute() ? cc : null;
 	}
 
 	/**
@@ -347,7 +362,31 @@ public class MatrixTableWidgetModelManager extends TreeNattableModelManager impl
 	 */
 	@Override
 	public Command getRemoveColumnSourcesCommand(Collection<Object> objectsToRemove) {
-		return UnexecutableCommand.INSTANCE;
-	}
+		final MasterObjectAxisProvider columnAxisProvider = (MasterObjectAxisProvider) getTable().getCurrentColumnAxisProvider(); // this cast is always true as we are in a matrix
 
+		// The list of column source wrappers to remove
+		final List<IWrapper> wrappersToRemove = new ArrayList<IWrapper>();
+		for (final Object current : objectsToRemove) {
+			IWrapper wrapperObj = null;
+			// If current object to be removed is a wrapper, just remember it
+			if (current instanceof IWrapper) {
+				wrapperObj = (IWrapper) current;
+			} else {
+				// Otherwise, it is the wrapped Object, find the relevant wrapper in the column sources
+				for (final IWrapper wrapper : columnAxisProvider.getSources()) {
+					if (wrapper.getElement() == current) {
+						wrapperObj = wrapper;
+						break;
+					}
+				}
+			}
+			if (null != wrapperObj) {
+				wrappersToRemove.add(wrapperObj);
+			}
+		}
+
+		final CompoundCommand cc = new CompoundCommand("Remove Matrix Column Sources Command");//$NON-NLS-1$
+		cc.append(RemoveCommand.create(getTableEditingDomain(), columnAxisProvider, NattableaxisproviderPackage.eINSTANCE.getIMasterAxisProvider_Sources(), wrappersToRemove));
+		return cc.canExecute() ? cc : null;
+	}
 }

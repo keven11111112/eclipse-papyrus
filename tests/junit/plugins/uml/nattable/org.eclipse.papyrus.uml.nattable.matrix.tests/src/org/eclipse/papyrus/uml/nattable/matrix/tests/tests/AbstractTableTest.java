@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 525367
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.matrix.tests.tests;
@@ -41,6 +41,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.menu.MenuUtils;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.style.configattribute.PapyrusExportConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
@@ -49,6 +50,7 @@ import org.eclipse.papyrus.infra.tools.util.FileUtils;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.uml.nattable.matrix.tests.Activator;
+import org.eclipse.uml2.uml.NamedElement;
 import org.junit.Assert;
 import org.junit.Rule;
 
@@ -218,5 +220,33 @@ public abstract class AbstractTableTest extends AbstractPapyrusTest {
 	 */
 	protected abstract String getSourcePath();
 
+	/**
+	 * @param elementList The list of elements axis
+	 *
+	 * @return A string contains all axis names of the input elements list, name separated by a comma.
+	 */
+	protected String getAllAxisNameString(final List<Object> elementList) {
+		String result = "";
+		int index = 0;
+		int noColumn = elementList.size();
+
+		for (Object columnObject : elementList) {
+			String objName = "";
+			if (columnObject instanceof NamedElement) {
+				objName = ((NamedElement) columnObject).getName();
+			} else if (columnObject instanceof IAxis && ((IAxis) columnObject).getElement() instanceof NamedElement) {
+				objName = ((NamedElement) ((IAxis) columnObject).getElement()).getName();
+			}
+			result += objName;
+
+			// Add the comma after a name, except the last one
+			if (index < noColumn - 1) {
+				result += ", ";
+			}
+			index++;
+		}
+
+		return result;
+	}
 }
 
