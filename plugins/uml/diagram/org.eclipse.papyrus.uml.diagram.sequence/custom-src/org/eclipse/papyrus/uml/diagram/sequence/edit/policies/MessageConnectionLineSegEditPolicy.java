@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519408
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519408, 525372
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
@@ -161,6 +161,8 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	 */
 	@Override
 	protected Command getBendpointsChangedCommand(BendpointRequest request) {
+		//snap to grid the location request
+		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		if ((getHost().getViewer() instanceof ScrollingGraphicalViewer) && (getHost().getViewer().getControl() instanceof FigureCanvas)) {
 			SelectInDiagramHelper.exposeLocation((FigureCanvas) getHost().getViewer().getControl(), request.getLocation().getCopy());
 		}
