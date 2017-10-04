@@ -9,25 +9,22 @@
  * Contributors:
  *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *   Vincent LORENZO (CEA-LIST) bug 520566
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 525367
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.properties.observables;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.NattableaxisproviderPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.EObjectWrapper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.IWrapper;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.NattablewrapperFactory;
 
 /**
  * Observable for Matrix column sources feature
@@ -83,33 +80,7 @@ public class MatrixColumnSourcesEMFObservableList extends AbstractMatrixSourcesE
 	 */
 	@Override
 	public boolean addAll(@SuppressWarnings("rawtypes") Collection c) {
-		// 1. we build EOBjectWrapper to wrap the element selected by the user and be able to store them in the Table as column context
-		final Collection<IWrapper> toAdd = new ArrayList<IWrapper>();
-		for (final Object current : c) {
-			if (current instanceof IWrapper) {
-				// we recreate a wrapper, because the previous one will be destroyed in few time by the remove all command previously executed
-				// not sure we enter in this if...
-				final EObjectWrapper wrapper = NattablewrapperFactory.eINSTANCE.createEObjectWrapper();
-				wrapper.setElement((EObject) ((IWrapper) current).getElement());
-				toAdd.add(wrapper);
-			} else if (current instanceof EObject) {
-				EObjectWrapper wrapper = null;
-				// 1. we check if the current EObject is already wrapped (it allow to avoid Undo/Redo bug
-				for (final Object current1 : this.concreteList.toArray()) {
-					if (current1 instanceof IWrapper && ((IWrapper) current1).getElement() == current) {
-						wrapper = (EObjectWrapper) current1;
-						break;
-					}
-				}
-				if (null == wrapper) {
-					wrapper = NattablewrapperFactory.eINSTANCE.createEObjectWrapper();
-					wrapper.setElement((EObject) current);
-				}
-				toAdd.add(wrapper);
-			}
-		}
-		Assert.isTrue(c.size() == toAdd.size());
-		return super.addAll(toAdd);
+		return super.addAll(c);
 	}
 
 	/**
@@ -120,7 +91,7 @@ public class MatrixColumnSourcesEMFObservableList extends AbstractMatrixSourcesE
 	 */
 	@Override
 	public Command getRemoveCommand(Object value) {
-		return super.getRemoveCommand(value);
+		return this.manager.getRemoveColumnSourcesCommand(Collections.singletonList(value));
 	}
 
 	/**
@@ -129,9 +100,10 @@ public class MatrixColumnSourcesEMFObservableList extends AbstractMatrixSourcesE
 	 * @param values
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Command getAddAllCommand(final Collection<?> values) {
-		return super.getAddAllCommand(values);
+		return this.manager.getAddColumnSourcesCommand(((Collection<Object>) values));
 	}
 
 	/**
@@ -207,12 +179,10 @@ public class MatrixColumnSourcesEMFObservableList extends AbstractMatrixSourcesE
 	 * @param values
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Command getRemoveAllCommand(Collection<?> values) {
-		return RemoveCommand.create(this.editingDomain, this.source, this.feature, values); // bug 520566
-		// Command cmd = super.getRemoveAllCommand(values);
-		// return cmd;
-
+		return this.manager.getRemoveColumnSourcesCommand((Collection<Object>) values);
 	}
 
 
