@@ -774,7 +774,7 @@ public abstract class AbstractMultipleValueEditor<T extends IElementSelector> ex
 
 	public void updateButtons() {
 		/* Disable the button 'add' if the upperBound is reached */
-		if (this.upperBound != MANY) {
+		if (modelProperty!=null && this.upperBound != MANY) {
 			if (modelProperty.size() >= this.upperBound) {
 				add.setEnabled(false);
 			} else {
