@@ -520,8 +520,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 */
 	@Override
 	public boolean getReadOnly() {
-		boolean result = readOnly || !isEditable || getInputObservable() == null;
-		return result;
+		return readOnly || !isEditable || getInputObservable() == null;
 	}
 
 	/**
@@ -566,7 +565,6 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		if (input == null || propertyPath == null) {
 			return null;
 		}
-
 		if (listEditor != null) {
 			return getInputObservableList();
 		}
@@ -757,15 +755,16 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		return listeningPropertyPaths;
 	}
 
-	/**
-	 * Return the HashSet of listening property paths.
-	 *
-	 * @return the listeningPropertyPathsSet The HashSet of listening property paths.
-	 * @since 3.1
-	 */
-	public Set<String> getListeningPropertyPathsSet() {
-		return listeningPropertyPathsSet;
-	}
+//	/** FIXME: this getter introduce a regression 
+//	See Bug 522124 and https://dev.eclipse.org/mhonarc/lists/mdt-papyrus.dev/msg04151.html
+//	 * Return the HashSet of listening property paths.
+//	 *
+//	 * @return the listeningPropertyPathsSet The HashSet of listening property paths.
+//	 * @since 3.1
+//	 */
+//	public Set<String> getListeningPropertyPathsSet() {
+//		return listeningPropertyPathsSet;
+//	}
 
 	/**
 	 * Return the listener classes.
@@ -777,15 +776,16 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		return listenerClasses;
 	}
 
-	/**
-	 * Return the HashSet of listener classes.
-	 *
-	 * @return the listenerClassesSet HashSet of listener classes.
-	 * @since 3.1
-	 */
-	public Set<IPropertiesListener> getListenerClassesSet() {
-		return listenerClassesSet;
-	}
+//	/**FIXME: this getter introduce a regression 
+//	See Bug 522124 and https://dev.eclipse.org/mhonarc/lists/mdt-papyrus.dev/msg04151.html
+//	 * Return the HashSet of listener classes.
+//	 *
+//	 * @return the listenerClassesSet HashSet of listener classes.
+//	 * @since 3.1
+//	 */
+//	public Set<IPropertiesListener> getListenerClassesSet() {
+//		return listenerClassesSet;
+//	}
 
 	/**
 	 * Set the HashSet of listening property paths.
@@ -855,9 +855,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 					} catch (ClassNotFoundException e) {
 						Activator.log.error("The listener classes defined in listenerClasses are not correct.", e); //$NON-NLS-1$
-					} catch (InstantiationException e) {
-						Activator.log.error(e);
-					} catch (IllegalAccessException e) {
+					} catch (InstantiationException  |IllegalAccessException e) {
 						Activator.log.error(e);
 					}
 				}
@@ -876,8 +874,8 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		final String property = getProperty();
 		final DataSource input = getInput();
 		if (null != property && !property.isEmpty() && null != input) {
-			Set<String> propertyPathsSet = getListeningPropertyPathsSet();
-			Set<IPropertiesListener> classesSet = getListenerClassesSet();
+			Set<String> propertyPathsSet = listeningPropertyPathsSet;
+			Set<IPropertiesListener> classesSet = listenerClassesSet;
 
 			if (null != propertyPathsSet && !propertyPathsSet.isEmpty() && null != classesSet && !classesSet.isEmpty()) {
 				for (String listeningPropertyPath : propertyPathsSet) {
