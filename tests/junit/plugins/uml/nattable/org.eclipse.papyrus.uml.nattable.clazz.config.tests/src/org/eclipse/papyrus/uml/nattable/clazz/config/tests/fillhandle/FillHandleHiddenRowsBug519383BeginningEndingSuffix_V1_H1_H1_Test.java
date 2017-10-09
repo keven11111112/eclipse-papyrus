@@ -27,13 +27,13 @@ import org.junit.Test;
  * As showed in the bug 519383, the fill action can not handle correctly when some rows are hiding in the table,
  * as a result of Hide All Categories, Show Level-x Categories or using row filter in the column header.
  */
-@PluginResource("resources/fillhandle/FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test.di")
-public class FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test extends AbstractFillHandleTest {
+@PluginResource("resources/fillhandle/FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_H1_H1_Test.di")
+public class FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_H1_H1_Test extends AbstractFillHandleTest {
 
 	/**
 	 * Constructor.
 	 */
-	public FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test() {
+	public FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_H1_H1_Test() {
 		super();
 	}
 
@@ -44,7 +44,7 @@ public class FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test ex
 	 * </pre>
 	 */
 	@Test
-	@ActiveTable("RequirementTreeTable")
+	@ActiveTable("GenericTreeTable")
 	@Override
 	public void testCopy() throws Exception {
 		super.testCopy();
@@ -57,7 +57,7 @@ public class FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test ex
 	 * </pre>
 	 */
 	@Test
-	@ActiveTable("RequirementTreeTable")
+	@ActiveTable("GenericTreeTable")
 	@Override
 	public void testIncrementUp() throws Exception {
 		super.testIncrementUp();
@@ -70,7 +70,7 @@ public class FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test ex
 	 * </pre>
 	 */
 	@Test
-	@ActiveTable("RequirementTreeTable")
+	@ActiveTable("GenericTreeTable")
 	@Override
 	public void testIncrementDown() throws Exception {
 		super.testIncrementDown();
@@ -83,7 +83,7 @@ public class FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test ex
 	 * </pre>
 	 */
 	@Test
-	@ActiveTable("RequirementTreeTable")
+	@ActiveTable("GenericTreeTable")
 	@Override
 	public void testDecrementUp() throws Exception {
 		super.testDecrementUp();
@@ -96,7 +96,7 @@ public class FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test ex
 	 * </pre>
 	 */
 	@Test
-	@ActiveTable("RequirementTreeTable")
+	@ActiveTable("GenericTreeTable")
 	@Override
 	public void testDecrementDown() throws Exception {
 		super.testDecrementDown();
@@ -110,7 +110,7 @@ public class FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test ex
 	 */
 	@Override
 	@Test
-	@ActiveTable("RequirementTreeTable")
+	@ActiveTable("GenericTreeTable")
 	public void checkTestConsistency() {
 		super.checkTestConsistency();
 	}

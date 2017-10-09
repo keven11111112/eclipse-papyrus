@@ -41,8 +41,8 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.Crea
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_H3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_H1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_V1_Test;
-import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleHiddenRowsBug519383BeginningEndingPrefix_V1_V1_V1_Test;
-import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleHiddenRowsBug519383BeginningEndingPrefix_V1_H1_H1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_H1_H1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleInteger_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug499466BeginningEndingPrefix_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug499466BeginningEndingSuffix_V1_V3_V1_Test;
@@ -443,8 +443,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	UnsupportedColumnCellTextTest.class,
 
 	// Bug 519383 - Increment action in table throws a NPE in some cases
-	FillHandleHiddenRowsBug519383BeginningEndingPrefix_V1_V1_V1_Test.class,
-	FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_V1_V1_Test.class
+	FillHandleHiddenRowsBug519383BeginningEndingPrefix_V1_H1_H1_Test.class,
+	FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_H1_H1_Test.class
 })
 public class AllTests {
 	// JUnit 4 test suite
