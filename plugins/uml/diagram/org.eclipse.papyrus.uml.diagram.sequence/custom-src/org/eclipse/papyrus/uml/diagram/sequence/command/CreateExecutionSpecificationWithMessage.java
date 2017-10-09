@@ -43,7 +43,10 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.messages.Messages;
@@ -53,6 +56,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -168,8 +172,15 @@ public class CreateExecutionSpecificationWithMessage extends AbstractTransaction
 		Message messageReply = getCreatedElement(replycommand, Message.class);
 		if (null != messageReply) {
 			MessageEnd sendEvent = messageReply.getSendEvent();
+			OccurrenceSpecification finish = executionSpecification.getFinish();
 			SetCommand setSendEventCommand = new SetCommand(getEditingDomain(), executionSpecification, UMLPackage.eINSTANCE.getExecutionSpecification_Finish(), sendEvent);
 			setSendEventCommand.execute();
+
+			// delete the old finish os.
+			DestroyElementPapyrusCommand destroyElementPapyrusCommand = new DestroyElementPapyrusCommand(new DestroyElementRequest(finish, false));
+			if (destroyElementPapyrusCommand != null && destroyElementPapyrusCommand.canExecute()) {
+				getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyElementPapyrusCommand));
+			}
 		}
 	}
 
