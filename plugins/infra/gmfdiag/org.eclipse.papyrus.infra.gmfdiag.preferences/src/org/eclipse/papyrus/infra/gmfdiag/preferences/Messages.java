@@ -83,6 +83,16 @@ public class Messages extends NLS {
 
 	public static String DimensionGroupName;
 
+	public static String ExternalReferenceGroup_ComboTitle;
+
+	public static String ExternalReferenceGroup_DifferentContainer;
+
+	public static String ExternalReferenceGroup_DifferentOwner;
+
+	public static String ExternalReferenceGroup_NoReferences;
+
+	public static String ExternalReferenceGroup_Title;
+
 	public static String NodeCompartmentGroup_Compartiments;
 
 	public static String RestoreElementGroup_RestoreElementLink;
