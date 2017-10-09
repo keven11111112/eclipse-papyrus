@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 522721
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.matrix.tests.tests;
@@ -16,9 +16,11 @@ package org.eclipse.papyrus.uml.nattable.matrix.tests.tests;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
-import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.utils.rules.ActiveTable;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.NamedElement;
@@ -28,6 +30,7 @@ import org.junit.Test;
 /**
  * This class tests the update of an existing table after editing the row sources
  */
+@SuppressWarnings("nls")
 @PluginResource("resources/updateTableContentsAfterRowsSourceChangeTests/updateTableContentsAfterRowsSourceChange.di")
 public class UpdateTableAfterEditingRowSourceTest extends AbstractTableTest {
 
@@ -41,9 +44,9 @@ public class UpdateTableAfterEditingRowSourceTest extends AbstractTableTest {
 
 	private NamedElement package2_Rows_Sources;
 
-	private static final String PACKAGE1_ROWS_SOURCES_NAME = "Package1_RowsSource"; //$NON-NLS-1$
+	private static final String PACKAGE1_ROWS_SOURCES_NAME = "Package1_RowsSource";
 
-	private static final String PACKAGE2_ROWS_SOURCES_NAME = "Package2_RowsSource"; //$NON-NLS-1$
+	private static final String PACKAGE2_ROWS_SOURCES_NAME = "Package2_RowsSource";
 
 	/**
 	 * @see org.eclipse.papyrus.uml.nattable.matrix.tests.tests.AbstractTableTest#getSourcePath()
@@ -52,7 +55,7 @@ public class UpdateTableAfterEditingRowSourceTest extends AbstractTableTest {
 	 */
 	@Override
 	protected String getSourcePath() {
-		return "updateTableContentsAfterRowsSourceChangeTests"; //$NON-NLS-1$
+		return "resources/updateTableContentsAfterRowsSourceChangeTests/";
 	}
 
 	/**
@@ -64,8 +67,8 @@ public class UpdateTableAfterEditingRowSourceTest extends AbstractTableTest {
 		initTest();
 		final List<Object> rowElementsList = this.manager.getRowElementsList();
 		final List<Object> columnElementsList = this.manager.getColumnElementsList();
-		Assert.assertEquals("The number of rows is not the expected one.", NB_CLASSES_IN_PACKAGE1_ROWS_SOURCES + 1 + 1, rowElementsList.size()); //$NON-NLS-1$ //+1 for tree filling + for the root package
-		Assert.assertEquals("The number of columns is not the expected one.", NB_COLUMNS, columnElementsList.size()); //$NON-NLS-1$
+		Assert.assertEquals("The number of rows is not the expected one.", NB_CLASSES_IN_PACKAGE1_ROWS_SOURCES + 1 + 1, rowElementsList.size()); //+1 for tree filling + for the root package
+		Assert.assertEquals("The number of columns is not the expected one.", NB_COLUMNS, columnElementsList.size());
 	}
 
 	/**
@@ -84,57 +87,123 @@ public class UpdateTableAfterEditingRowSourceTest extends AbstractTableTest {
 
 
 	/**
-	 * This JUnit tests check the opening of an existing matrix
+	 * This JUnit tests check the content of an existing matrix.
 	 * 
 	 * @throws Exception
 	 */
 	@Test
 	@ActiveTable("Relationship Generic Matrix")
-	@InvalidTest // file not found
 	public void testMatrixContents() throws Exception {
 		initTest();
 
-		// file is not found... I don't know why
-		checkTableContent(manager, "_Package1AsSource"); //$NON-NLS-1$
+		checkTableContent(manager, "_Package1AsSource");
 	}
 
 	/**
-	 * This JUnit tests check the opening of an existing matrix
+	 * This JUnitTest checks removing all row sources.
 	 * 
 	 * @throws Exception
 	 */
 	@Test
 	@ActiveTable("Relationship Generic Matrix")
-	@InvalidTest // not finish to write
 	public void testMatrixRemovingAllRowSources() throws Exception {
 		initTest();
-		IMatrixTableWidgetManager matrixManager = (IMatrixTableWidgetManager) manager;
-		matrixManager.removeRowSources(Collections.singleton(this.package1_Rows_Sources));
-		// TODO : check there are no source wrapper
-		// TODO : check there are no ITreeItemAxis stored for the rows
 
-		// + UNDO/Redo and check
+		// Remove the existing row source
+		Command command = new RecordingCommand(this.fixture.getEditingDomain()) {
+			@Override
+			protected void doExecute() {
+				final IMatrixTableWidgetManager matrixManager = (IMatrixTableWidgetManager) UpdateTableAfterEditingRowSourceTest.this.manager;
+				matrixManager.removeRowSources(Collections.singleton(UpdateTableAfterEditingRowSourceTest.this.package1_Rows_Sources));
+			}
+		};
+		this.fixture.execute(command);
+
+		// Check there are no source wrappers
+		final MasterObjectAxisProvider rowAxisProvider = (MasterObjectAxisProvider) this.manager.getTable().getCurrentRowAxisProvider();
+		Assert.assertEquals(0, rowAxisProvider.getSources().size());
+
+		// Check there are no ITreeItemAxis stored for the rows
+		Assert.assertEquals(0, rowAxisProvider.getAxis().size());
+		Assert.assertEquals("The number of rows is not the expected one.", 0, this.manager.getRowElementsList().size());
+
+		// Check undo
+		this.fixture.undo();
+		// Strange problem: must do a collapse all and then expand all, otherwise the number of rows and or the table content is not correctly captured
+		this.manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.COLLAPSE_ALL, null);
+		this.manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
+		Assert.assertEquals(1, rowAxisProvider.getSources().size());
+		Assert.assertEquals(this.package1_Rows_Sources, rowAxisProvider.getSources().get(0).getElement());
+		Assert.assertEquals(1, rowAxisProvider.getAxis().size());
+		Assert.assertEquals("The number of rows is not the expected one.", NB_CLASSES_IN_PACKAGE1_ROWS_SOURCES + 1 + 1, this.manager.getRowElementsList().size());
+		checkTableContent(this.manager, "_Package1AsSource");
+
+		// Check redo
+		this.fixture.redo();
+		Assert.assertEquals(0, rowAxisProvider.getSources().size());
+		Assert.assertEquals(0, rowAxisProvider.getAxis().size());
+		Assert.assertEquals("The number of rows is not the expected one.", 0, this.manager.getRowElementsList().size());
 	}
 
 	/**
-	 * This JUnit tests check the opening of an existing matrix
+	 * This JUnitTest checks the addition of the Package2 as source row.
 	 * 
 	 * @throws Exception
 	 */
 	@Test
 	@ActiveTable("Relationship Generic Matrix")
-	@InvalidTest //// not finish to write
-	public void testMatrixAddPackage2AsSourceRowSources() throws Exception {
+	public void testMatrixAddPackage2AsRowSources() throws Exception {
 		initTest();
-		IMatrixTableWidgetManager matrixManager = (IMatrixTableWidgetManager) manager;
-		matrixManager.removeRowSources(Collections.singleton(this.package2_Rows_Sources));
-		// TODO : check source wrapper contains P1 and P2
-		// TODO : check ITreeItemAxis contains P1 and P2
+		
+		Command command = new RecordingCommand(this.fixture.getEditingDomain()) {
+			@Override
+			protected void doExecute() {
+				final IMatrixTableWidgetManager matrixManager = (IMatrixTableWidgetManager) UpdateTableAfterEditingRowSourceTest.this.manager;
+				matrixManager.addRowSources(Collections.singleton(UpdateTableAfterEditingRowSourceTest.this.package2_Rows_Sources));
+			}
+		};
+		this.fixture.execute(command);
 
-		manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
-		checkTableContent(manager, "_Package1AndPackage2ASource"); //$NON-NLS-1$
+		this.manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 
-		// + UNDO/Redo and check
+		// Check source wrapper contains Package1 and Package2
+		final MasterObjectAxisProvider rowAxisProvider = (MasterObjectAxisProvider) this.manager.getTable().getCurrentRowAxisProvider();
+		Assert.assertEquals(2, rowAxisProvider.getSources().size());
+		Assert.assertEquals(this.package1_Rows_Sources, rowAxisProvider.getSources().get(0).getElement());
+		Assert.assertEquals(this.package2_Rows_Sources, rowAxisProvider.getSources().get(1).getElement());
+
+		// Check ITreeItemAxis contains Package1 and Package2
+		Assert.assertEquals(2, rowAxisProvider.getAxis().size());
+		Assert.assertEquals(this.package1_Rows_Sources, rowAxisProvider.getAxis().get(0).getElement());
+		Assert.assertEquals(this.package2_Rows_Sources, rowAxisProvider.getAxis().get(1).getElement());
+
+		// Check number of rows
+		Assert.assertEquals("The number of rows is not the expected one.", NB_CLASSES_IN_PACKAGE1_ROWS_SOURCES + NB_CLASSES_IN_PACKAGE2_ROWS_SOURCES + 4, this.manager.getRowElementsList().size());
+		checkTableContent(manager, "_Package1AndPackage2ASource");
+
+		// Check undo
+		this.fixture.undo();
+		Assert.assertEquals(1, rowAxisProvider.getSources().size());
+		Assert.assertEquals(this.package1_Rows_Sources, rowAxisProvider.getSources().get(0).getElement());
+		Assert.assertEquals(1, rowAxisProvider.getAxis().size());
+		Assert.assertEquals(this.package1_Rows_Sources, rowAxisProvider.getAxis().get(0).getElement());
+		Assert.assertEquals("The number of rows is not the expected one.", NB_CLASSES_IN_PACKAGE1_ROWS_SOURCES + 2, this.manager.getRowElementsList().size());
+		checkTableContent(this.manager, "_Package1AsSource");
+
+		// Check redo
+		this.fixture.redo();
+		// Strange problem: must do a collapse all and then expand all, otherwise the table contents are not correctly updated
+		// This is not happened when doing the test in application
+		this.manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.COLLAPSE_ALL, null);
+		this.manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
+		Assert.assertEquals(2, rowAxisProvider.getSources().size());
+		Assert.assertEquals(this.package1_Rows_Sources, rowAxisProvider.getSources().get(0).getElement());
+		Assert.assertEquals(this.package2_Rows_Sources, rowAxisProvider.getSources().get(1).getElement());
+		Assert.assertEquals(2, rowAxisProvider.getAxis().size());
+		Assert.assertEquals(this.package1_Rows_Sources, rowAxisProvider.getAxis().get(0).getElement());
+		Assert.assertEquals(this.package2_Rows_Sources, rowAxisProvider.getAxis().get(1).getElement());
+		Assert.assertEquals("The number of rows is not the expected one.", NB_CLASSES_IN_PACKAGE1_ROWS_SOURCES + NB_CLASSES_IN_PACKAGE2_ROWS_SOURCES + 4, this.manager.getRowElementsList().size());
+		checkTableContent(manager, "_Package1AndPackage2ASource");
 	}
 
 }

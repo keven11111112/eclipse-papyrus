@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 522721
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.matrix.tests.tests;
@@ -22,7 +22,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
-import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.utils.rules.ActiveTable;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.HasAppliedStereotypesExpression;
@@ -249,13 +248,12 @@ public class UpdateTableContentsAfterExpressionChangeWithLocalHeaderPreconfigure
 
 
 	/**
-	 * This tests apply a filter expression on column, then replace the filter rule rule and play undo/redo
+	 * This test applies an applied stereotype expression on column, then applies stereotypes on semantic element and play undo/redo.
 	 * 
 	 * @throws Exception
 	 */
 	@Test
 	@ActiveTable("MatrixOfRelationships")
-	@InvalidTest
 	public void settingAColumnExpressionRequiringToListenAllChangesTest() throws Exception {
 		initTest();
 		RecordingCommand rc = new RecordingCommand(this.fixture.getEditingDomain()) {
@@ -270,19 +268,17 @@ public class UpdateTableContentsAfterExpressionChangeWithLocalHeaderPreconfigure
 			}
 		};
 
-		// we filter on UML::Class
+		// Filter on stereotype elements
 		this.fixture.execute(rc);
 		final List<Object> columnElementsList = this.manager.getColumnElementsList();
+
+		// We have no columns as there is no stereotype element in the column sources
 		Assert.assertEquals("The number of columns is not the expected one.", 0, columnElementsList.size()); //$NON-NLS-1$
 
-
+		// Apply stereotype for Class1
 		NamedElement class1 = this.fixture.getModel().getMember("Class1");
-
 		Stereotype applicableStereotype = class1.getApplicableStereotype(STEREOTYPE_QUALIFIED_NAME);
 		Assert.assertNotNull("The stereotype required for the test is not found", applicableStereotype);
-
-
-		// all columns must be removed
 		rc = new RecordingCommand(this.fixture.getEditingDomain()) {
 
 			@Override
@@ -291,18 +287,17 @@ public class UpdateTableContentsAfterExpressionChangeWithLocalHeaderPreconfigure
 			}
 		};
 		this.fixture.execute(rc);
-
 		Assert.assertNotNull("The stereotype required for the JUnit has not been applied", class1.getAppliedStereotype(STEREOTYPE_QUALIFIED_NAME));
 
+		// Now we have only one column of stereotype Class1 element
 		Assert.assertEquals("The number of columns is not the expected one.", 1, columnElementsList.size()); //$NON-NLS-1$
 
-
-		this.fixture.undo();// we filter on UML::Class
+		// Check UNDO: all columns must be removed
+		this.fixture.undo();
 		Assert.assertEquals("The number of columns is not the expected one.", 0, columnElementsList.size()); //$NON-NLS-1$
 
-
-
-		this.fixture.redo();// // all columns must be removed
+		// Check REDO: only one column must be displayed
+		this.fixture.redo();
 		Assert.assertEquals("The number of columns is not the expected one.", 1, columnElementsList.size()); //$NON-NLS-1$
 	}
 }

@@ -9,7 +9,7 @@
  * Contributors:
  *   Vincent Lorenzo (CEA-LIST) - vincent.lorenzo@cea.fr - Initial API and implementation
  *   Vincent Lorenzo (CEA-LIST) - bug 520566
- *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 520602
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 520602, 522721
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
@@ -58,10 +58,17 @@ import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
  * @since 3.0
  *
  *
- *        TODO : update contents on stereotype application/unapplication (in case of stereotype expression)
  *        TODO : update contents when a property of a displayed object changes (in case of custom expression used to filter contents)
  */
 public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStructuralFeatureAxisManager {
+
+	// The next 2 event types are duplicated from oep.uml.tools.listeners.StereotypeElementListener.StereotypeExtensionNotification
+	// to avoid the plug-in dependency from oep.infra.emf.nattable to oep.uml.tools.
+	/** Event type notification for stereotype application action. */
+	private static final int STEREOTYPE_APPLIED_TO_ELEMENT = Notification.EVENT_TYPE_COUNT + 21;
+
+	/** Event type notification for stereotype unapplication action. */
+	private static final int STEREOTYPE_UNAPPLIED_FROM_ELEMENT = Notification.EVENT_TYPE_COUNT + 22;
 
 	/**
 	 * the expression returned when there is no expression registered in the TreeFillingConfiguration
@@ -134,17 +141,21 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 
 			final int eventType = msg.getEventType();
 
-			// The table axis must be updated when elements are deleted (added) from (to) the column source objects
-			if (((Notification.REMOVE == eventType) || (Notification.ADD == eventType)) && tableAxisShouldBeUpdated()) {
-				updateAxisAfterColumnSourceObjectChanges();
-				cleanAndReinitListenColumnSourceObjects();
-			}
+			// The table axis must be updated in the following cases: 
+			// (1) elements are deleted (added) from (to) the column source objects
+			if ((Notification.REMOVE == eventType || Notification.ADD == eventType
 
-			// As an element is reordered inside its container (a column source object), a REMOVE_MANY is followed by an ADD_MANY,
-			// so we capture the later one in order to refresh the table axis.
-			// Without doing this, user will see the incoherent when closing and reopening the relationship matrix table 
-			else if (Notification.ADD_MANY == eventType && tableAxisShouldBeUpdated()) {
-				// Just update the axis, there is no need to do others actions as listener objects and tree filling configuration are unchanged
+					// (2) or elements are reordered inside its container (a column source object), a REMOVE_MANY is followed by an ADD_MANY,
+					// so we capture the later one in order to refresh the table axis.
+					// Without doing this, user will see the incoherent when closing and reopening the relationship matrix table 
+					|| Notification.ADD_MANY == eventType
+
+					// (3) or elements are applied/unapplied stereotypes and the column filter expression is "Has Applied Stereotypes Expression"
+					|| STEREOTYPE_APPLIED_TO_ELEMENT == eventType || STEREOTYPE_UNAPPLIED_FROM_ELEMENT == eventType)
+
+					// (4) and the table axis are really changed
+					&& tableAxisShouldBeUpdated()) {
+
 				updateAxisAfterColumnSourceObjectChanges();
 				cleanAndReinitListenColumnSourceObjects();
 			}
@@ -280,6 +291,7 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 	private void cleanAndReinitListenColumnSourceObjects() {
 		// Table axis should be refreshed according to the following cases:
 		// - Sub-elements of column source object are deleted, added or moved 
+		// - Stereotypes are applied/unapplied for sub-elements when column filter expression is "Has Apply Stereotypes Expression"
 		// - The column source object is deleted from the model explorer
 		// - Undo/redo operation
 		List<EObject> columnSources = getColumnSources();
@@ -288,6 +300,11 @@ public class EObjectColumnMatrixAxisManager extends AbstractSynchronizedOnEStruc
 			for (EObject columnContainer : columnSources) {
 				// To survey changes in column source objects, i.e. delete or add a child element
 				addListenerOnEObjects(columnContainer, columnSourceObjectChangesListener, listenColumnSourceEObjects);
+
+				// Survey the apply/unapply stereotypes of the child elements
+				for (EObject childObj : columnContainer.eContents()) {
+					addListenerOnEObjects(childObj, columnSourceObjectChangesListener, listenColumnSourceEObjects);
+				}
 			}
 		}
 	}
