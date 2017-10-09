@@ -75,8 +75,6 @@ public class ColorFieldEditor extends FieldEditor {
 
 	@Override
 	protected void adjustForNumColumns(int numColumns) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014,2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Benoit Maggi (CEA LIST) - Bug 518313
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -15,6 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ExternalReferenceEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.SemanticElementHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.ExternalReferenceGroup;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
@@ -84,11 +87,18 @@ public class ImportedElementEditPolicy extends ExternalReferenceEditPolicy {
 		Element semanticUMLElement = (Element) semanticElement;
 		Element parentUMLElement = (Element) parentSemanticElement;
 
-		if (parentUMLElement instanceof Package) {
-			return semanticUMLElement.getNearestPackage() != parentUMLElement;
+		String papyrusEditorConstant = PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.EXTERNAL_REFERENCE_STRATEGY);
+		String externalReferencePreference = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore().getString(papyrusEditorConstant);
+		switch (externalReferencePreference) {
+			case ExternalReferenceGroup.EXTERNAL_REFERENCE_NONE: return false;	
+			case ExternalReferenceGroup.EXTERNAL_REFERENCE_OWNER: return semanticUMLElement.getOwner() != parentUMLElement;	
+			case ExternalReferenceGroup.EXTERNAL_REFERENCE_CONTAINER:	
+			default:
+				if (parentUMLElement instanceof Package) {
+					return semanticUMLElement.getNearestPackage() != parentUMLElement;
+				}
+				return semanticUMLElement.getNearestPackage() != parentUMLElement.getNearestPackage();
 		}
-
-		return semanticUMLElement.getNearestPackage() != parentUMLElement.getNearestPackage();
 	}
 
 	// Display a decorator on inherited properties, when they are displayed in a Classifier

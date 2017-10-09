@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.BackgroundColor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.ConnectionGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DecorationGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.DimensionGroup;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.ExternalReferenceGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.FontGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.NodeColorGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.RestoreElementGroup;
@@ -79,9 +80,12 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 
 		RulersAndGridGroup viewGroupComposite = new EditorRulersAndGridGroup(parent, getTitle(), this);
 		addPreferenceGroup(viewGroupComposite);
-
-		final RestoreElementGroup restoreElementGroup = new RestoreElementGroup(parent, getTitle(), this);
+		
+		final RestoreElementGroup restoreElementGroup = new RestoreElementGroup(contentGroup, getTitle(), this);
 		addPreferenceGroup(restoreElementGroup);
+		
+		final ExternalReferenceGroup externalReferenceGroup = new ExternalReferenceGroup(contentGroup, getTitle(), this);
+		addPreferenceGroup(externalReferenceGroup);
 	}
 
 
@@ -91,7 +95,7 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 	}
 
 	/**
-	 * use to init default preferences at the papyrus level
+	 * use to init default preferences at the Papyrus level
 	 *
 	 * @param store
 	 *            the preference store
@@ -133,6 +137,8 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 
 				// Restore Element Group
 				RestoreElementGroup.initDefaults(store);
+				
+				ExternalReferenceGroup.initDefaults(store);
 			}
 		});
 

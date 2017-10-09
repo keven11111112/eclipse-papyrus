@@ -80,8 +80,6 @@ public class FontFieldEditor extends FieldEditor {
 	 */
 	@Override
 	protected void adjustForNumColumns(int numColumns) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -89,8 +87,6 @@ public class FontFieldEditor extends FieldEditor {
 	 */
 	@Override
 	protected void doFillIntoGrid(Composite parent, int numColumns) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
