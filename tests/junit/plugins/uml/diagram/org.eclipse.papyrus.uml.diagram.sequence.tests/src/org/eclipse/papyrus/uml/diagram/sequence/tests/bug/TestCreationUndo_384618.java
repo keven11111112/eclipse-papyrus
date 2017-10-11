@@ -32,7 +32,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.junit.framework.classification.FailingTest;
-import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
@@ -40,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestLink;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -82,7 +82,7 @@ public class TestCreationUndo_384618 extends TestLink {
 	@Test
 	public void testActionExecution() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
 		createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline1, new Point(131, 200), new Dimension(20, 40));
@@ -101,7 +101,7 @@ public class TestCreationUndo_384618 extends TestLink {
 	@Test
 	public void testBehaviorExecution() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
 		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline1, new Point(131, 200), new Dimension(20, 40));
@@ -121,8 +121,8 @@ public class TestCreationUndo_384618 extends TestLink {
 	public void testMessageAsync() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
-		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline2 = (LifelineEditPart) getRootEditPart().getChildren().get(1);
 		waitForComplete();
 
 		createLink(UMLElementTypes.Message_AsynchEdge, lifeline1, lifeline2, getAbsoluteCenter(lifeline1), getAbsoluteCenter(lifeline2).translate(0, 10));
@@ -142,8 +142,8 @@ public class TestCreationUndo_384618 extends TestLink {
 	public void testMessageDelete() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
-		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline2 = (LifelineEditPart) getRootEditPart().getChildren().get(1);
 		waitForComplete();
 
 		createLink(UMLElementTypes.Message_DeleteEdge, lifeline1, lifeline2, getAbsoluteCenter(lifeline1), getAbsoluteCenter(lifeline2).translate(0, 10));
@@ -164,8 +164,8 @@ public class TestCreationUndo_384618 extends TestLink {
 	public void testMessageCreate() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(150, 150), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
-		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline2 = (LifelineEditPart) getRootEditPart().getChildren().get(1);
 		waitForComplete();
 
 		createLink(UMLElementTypes.Message_CreateEdge, lifeline1, lifeline2, getAbsoluteCenter(lifeline1), getAbsoluteCenter(lifeline2));
@@ -181,24 +181,24 @@ public class TestCreationUndo_384618 extends TestLink {
 		assertTrue(CREATION + TEST_THE_REDO, lifeline1.getSourceConnections().size() == 1);
 	}
 
-	@FailingTest ("To be erased or rewritten to take new architecture into account")
+	@FailingTest("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testMessageSync() {
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		store.setValue(CustomDiagramGeneralPreferencePage.PREF_EXECUTION_SPECIFICATION_SYNC_MSG, "CHOICE_NONE");
-		
+
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
-		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline2 = (LifelineEditPart) getRootEditPart().getChildren().get(1);
 		waitForComplete();
 
 		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline1, new Point(131, 140), new Dimension(20, 60));
 		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline2, new Point(331, 200), new Dimension(20, 60));
 		waitForComplete();
 
-		IGraphicalEditPart source = (IGraphicalEditPart)lifeline1.getChildren().get(1);
-		IGraphicalEditPart target = (IGraphicalEditPart)lifeline2.getChildren().get(1);
+		IGraphicalEditPart source = (IGraphicalEditPart) lifeline1.getChildren().get(1);
+		IGraphicalEditPart target = (IGraphicalEditPart) lifeline2.getChildren().get(1);
 
 		createLink(UMLElementTypes.Message_SynchEdge, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, -28));
 		waitForComplete();
@@ -215,19 +215,20 @@ public class TestCreationUndo_384618 extends TestLink {
 	}
 
 	@Test
+	@Ignore
 	public void testMessageReply() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
-		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline2 = (LifelineEditPart) getRootEditPart().getChildren().get(1);
 		waitForComplete();
 
 		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline1, new Point(131, 140), new Dimension(20, 60));
 		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline2, new Point(331, 200), new Dimension(20, 60));
 		waitForComplete();
 
-		IGraphicalEditPart source = (IGraphicalEditPart)lifeline1;
-		IGraphicalEditPart target = (IGraphicalEditPart)lifeline2;
+		IGraphicalEditPart source = (IGraphicalEditPart) lifeline1;
+		IGraphicalEditPart target = (IGraphicalEditPart) lifeline2;
 
 		createLink(UMLElementTypes.Message_ReplyEdge, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, -28));
 		waitForComplete();
@@ -253,7 +254,7 @@ public class TestCreationUndo_384618 extends TestLink {
 	}
 
 	CreateConnectionViewRequest createConnectionViewRequest(IElementType type, EditPart source, EditPart target, Point sourcePoint, Point targetPoint) {
-		CreateConnectionViewRequest connectionRequest = CreateViewRequestFactory.getCreateConnectionRequest(type, ((IGraphicalEditPart)getDiagramEditPart()).getDiagramPreferencesHint());
+		CreateConnectionViewRequest connectionRequest = CreateViewRequestFactory.getCreateConnectionRequest(type, ((IGraphicalEditPart) getDiagramEditPart()).getDiagramPreferencesHint());
 		connectionRequest.setLocation(sourcePoint);
 
 		connectionRequest.setSourceEditPart(null);
@@ -276,7 +277,7 @@ public class TestCreationUndo_384618 extends TestLink {
 	}
 
 	public void createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {
-		//CREATION
+		// CREATION
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(location);
 		requestcreation.setSize(size);
