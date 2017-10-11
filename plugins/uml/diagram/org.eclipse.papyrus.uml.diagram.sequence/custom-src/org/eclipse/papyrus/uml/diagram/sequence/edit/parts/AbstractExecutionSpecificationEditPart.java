@@ -9,7 +9,6 @@ import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.Request;
@@ -26,7 +25,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnecti
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Anchor;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
@@ -46,7 +44,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectExecu
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectYCoordinateToGrillingEditPolicy;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.uml2.uml.ExecutionSpecification;
 
 /**
  * Add implementing IPapyrusEditPart to displaying Stereotypes.
@@ -63,32 +60,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 
 	public AbstractExecutionSpecificationEditPart(View view) {
 		super(view);
-	}
-
-	@Override
-	public List getChildren() {
-		// if (executionSpecificationEndParts == null) {
-		// initExecutionSpecificationEndEditPart();
-		// }
-		return super.getChildren();
-	}
-
-	protected void initExecutionSpecificationEndEditPart() {
-		EObject element = this.resolveSemanticElement();
-		if (!(element instanceof ExecutionSpecification)) {
-			return;
-		}
-		// executionSpecificationEndParts = new ArrayList<ExecutionSpecificationEndEditPart>();
-		ExecutionSpecification execution = (ExecutionSpecification) element;
-		// final ExecutionSpecificationEndEditPart startPart = new ExecutionSpecificationEndEditPart(execution.getStart(), this, new RelativeLocator(getFigure(), PositionConstants.NORTH));
-		// executionSpecificationEndParts.add(startPart);
-		// final ExecutionSpecificationEndEditPart finishPart = new ExecutionSpecificationEndEditPart(execution.getFinish(), this, new RelativeLocator(getFigure(), PositionConstants.SOUTH));
-		// executionSpecificationEndParts.add(finishPart);
-		Diagram diagram = ((View) this.getModel()).getDiagram();
-		// startPart.rebuildLinks(diagram);
-		// finishPart.rebuildLinks(diagram);
-		// addChild(startPart, -1);
-		// addChild(finishPart, -1);
 	}
 
 	static class FillParentLocator implements Locator {

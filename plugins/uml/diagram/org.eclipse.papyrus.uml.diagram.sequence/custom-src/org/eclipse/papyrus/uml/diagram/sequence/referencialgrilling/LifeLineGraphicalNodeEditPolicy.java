@@ -8,8 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519756
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -58,7 +57,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateExecutionSpecificationWithMessage;
 import org.eclipse.papyrus.uml.diagram.sequence.command.DropDestructionOccurenceSpecification;
-import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
@@ -75,6 +73,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -116,7 +115,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		MessageOccurrenceSpecification mos = displayEvent.getMessageEvent(getHostFigure(), ((CreateRequest) request).getLocation());
 		if (mos != null) {
 			Point location = request.getLocation();
-
 			if (location != displayEvent.getRealEventLocation(location)) {
 				request.setLocation(displayEvent.getRealEventLocation(location));
 			}
@@ -124,7 +122,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 		OccurrenceSpecification os = displayEvent.getActionExecutionSpecificationEvent(getHostFigure(), ((CreateRequest) request).getLocation());
 		// add a param if we must replace an event of the execution specification
-		if (os != null) {
+		if (os instanceof ExecutionOccurrenceSpecification) {
 			Map<String, Object> extendedData = request.getExtendedData();
 			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.MESSAGE_SENTEVENT_REPLACE_EXECUTIONEVENT, os);
 			request.setExtendedData(extendedData);
@@ -484,20 +482,17 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * @return Compound cmd with the Delete Occurrence Specification command
 	 */
 	protected Command getSyncAsyncEdgeCommand(CreateConnectionViewAndElementRequest request, Command cmd) {
-
 		// in the case of messages of sort: synchCall, asynchCall or asynchSignal
 		// an execution specification may be created at target
-		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
-		GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-		CreateExecutionSpecificationWithMessage createExecutionSpecificationwithMsg = new CreateExecutionSpecificationWithMessage(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart) request.getTargetEditPart());
-		CompoundCommand compoundCommand = new CompoundCommand();
-		SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, false);
-		compoundCommand.add(setMoveAllLineAtSamePositionCommand);
-		compoundCommand.add(cmd);
-		compoundCommand.add(new GMFtoGEFCommandWrapper(createExecutionSpecificationwithMsg));
-		setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, true);
-		compoundCommand.add(setMoveAllLineAtSamePositionCommand);
+		OccurrenceSpecification messageEvent = displayEvent.getActionExecutionSpecificationEvent(getHostFigure(), ((CreateConnectionViewAndElementRequest) request).getLocation());
 
+		CompoundCommand compoundCommand = new CompoundCommand();
+		compoundCommand.add(cmd);
+		// If we are not into an existing event we create Execution specification in the same time
+		if (null == messageEvent) {
+			CreateExecutionSpecificationWithMessage createExecutionSpecificationwithMsg = new CreateExecutionSpecificationWithMessage(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart) request.getTargetEditPart());
+			compoundCommand.add(new GMFtoGEFCommandWrapper(createExecutionSpecificationwithMsg));
+		}
 		return compoundCommand;
 	}
 
@@ -611,7 +606,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			Map<String, Object> extendedData = request.getExtendedData();
 			Object sourceLocation = extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
 			if (sourceLocation instanceof Point) {
-				allowed &= isTargetLowerThanSource((Point) sourceLocation, targetLocation);
+				allowed &= isTargetLowerThanSource(SequenceUtil.getSnappedLocation(getHost(), (Point) sourceLocation), targetLocation);
 			}
 		}
 		return allowed;

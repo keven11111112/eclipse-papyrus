@@ -86,10 +86,11 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	@Override
 	public void activate() {
 		super.activate();
-		updateStrongAndWeakReferences();
 		// add a listener to update weak and string references
 		redirectionOperationListener = new RedirectionOperationListener(this);
 		OperationHistoryFactory.getOperationHistory().addOperationHistoryListener(redirectionOperationListener);
+		
+		updateStrongAndWeakReferences();
 	}
 
 	/**

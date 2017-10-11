@@ -47,6 +47,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.messages.Messages;
@@ -153,11 +155,16 @@ public class CreateExecutionSpecificationWithMessage extends AbstractTransaction
 		Command replycommand = lifelineEditPart.getCommand(requestreplycreation);
 		// setup the request in preparation to get the connection end command
 		requestreplycreation.setSourceEditPart(lifelineEditPart);
-		LifelineEditPart target = (LifelineEditPart) request.getSourceEditPart();
+		NodeEditPart target = (NodeEditPart) request.getSourceEditPart();
+
+		while (target instanceof AbstractExecutionSpecificationEditPart) {
+			target = (NodeEditPart) target.getParent();
+		}
+
 		requestreplycreation.setTargetEditPart(target);
 		requestreplycreation.setType(RequestConstants.REQ_CONNECTION_END);
 
-		IFigure f = ((LifelineEditPart) target).getPrimaryShape();
+		IFigure f = target.getPrimaryShape();
 		Rectangle b = f.getBounds().getCopy();
 		f.translateToAbsolute(b);
 		Point c = b.getCenter().getCopy();
