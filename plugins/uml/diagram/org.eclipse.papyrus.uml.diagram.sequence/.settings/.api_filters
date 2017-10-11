@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.uml.diagram.sequence" version="2">
+    <resource path="custom-src/org/eclipse/papyrus/uml/diagram/sequence/util/SequenceUtil.java" type="org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil">
+        <filter comment="Don't check API for adding a constant" id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil"/>
+                <message_argument value="DO_NOT_CHECK_HORIZONTALITY"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

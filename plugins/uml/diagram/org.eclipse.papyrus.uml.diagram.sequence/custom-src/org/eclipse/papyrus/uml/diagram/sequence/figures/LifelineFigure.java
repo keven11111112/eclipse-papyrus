@@ -108,19 +108,20 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	 * {@inheritDoc}
 	 */
 	public void paint(Graphics graphics) {
-		super.paint(graphics);
 		Rectangle rect = this.getBounds();
 		graphics.pushState();
 		graphics.setForegroundColor(getForegroundColor());
 		// do not forget to set line width to 1, if not the color will
 		// change because of the anti-aliasing
 		graphics.setLineWidth(1);
-
-		// graphics.setLineStyle(Graphics.LINE_DASH);
 		graphics.drawRectangle(rect.x, rect.y, rect.width - 1, ((LifeLineLayoutManager) this.getLifeLineLayoutManager()).getBottomHeader() - rect.y);
+		// Draw dash line first to be under child
 		graphics.setLineDash(new int[] { 5, 5 });
 		graphics.drawLine(new Point(rect.x + rect.width / 2, ((LifeLineLayoutManager) this.getLifeLineLayoutManager()).getBottomHeader()), new Point(rect.x + rect.width / 2, rect.y + rect.height - 1));
 		graphics.popState();
+
+		// Then finish to draw figure.
+		super.paint(graphics);
 	}
 
 	/**
@@ -135,35 +136,6 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 
 	public LayoutManager getLifeLineLayoutManager() {
 		return super.getLayoutManager();
-	}
-	// public int getNameContainerPreferredHeight(int wHint) {
-	// return fFigureLifelineNameContainerFigure.getPreferredSize(wHint, -1).height;
-	// }
-
-	// /**
-	// * Get the rectangle which contains all labels
-	// *
-	// * @see org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure#getDefaultLabelsContainer()
-	// * @return lifeline labels rectangle
-	// */
-	// @Override
-	// protected IFigure getDefaultLabelsContainer() {
-	// return getFigureLifelineNameContainerFigure();
-	// }
-
-	/**
-	 * Create the composite structure.
-	 *
-	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure#createCompositeFigureStructure()
-	 */
-	@Override
-	protected void createCompositeFigureStructure() {
-		super.createCompositeFigureStructure();
-		// BorderLayout layoutThis = new BorderLayout();
-		// this.setLayoutManager(layoutThis);
-		// this.setOpaque(false);
-		// this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(200)));
-		// createContents();
 	}
 
 	/**
@@ -207,29 +179,6 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	}
 
 	/**
-	 * Get layout to display content of properties compartment.
-	 *
-	 * @return the layout
-	 */
-	@Override
-	protected LayoutManager getPropertiesCompartmentLayout() {
-		// ToolbarLayout layout = new ToolbarLayout(false);
-		// layout.setStretchMinorAxis(true);
-		// return layout;
-		return super.getPropertiesCompartmentLayout();
-	}
-
-	// /**
-	// * Create the name label with width wrap
-	// *
-	// * @see org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure#createNameLabel()
-	// */
-	// @Override
-	// protected void createNameLabel() {
-	// super.createNameLabel();
-	// }
-
-	/**
 	 * remove label creation, change layout
 	 */
 	private void createContents() {
@@ -262,14 +211,4 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	public LifelineDotLineCustomFigure getFigureLifelineDotLineFigure() {
 		return fFigureLifelineDotLineFigure;
 	}
-
-	@Override
-	public void setLineWidth(int w) {
-		if (w < 0) {
-			return;
-		}
-		super.setLineWidth(w);
-	}
-
-
 }

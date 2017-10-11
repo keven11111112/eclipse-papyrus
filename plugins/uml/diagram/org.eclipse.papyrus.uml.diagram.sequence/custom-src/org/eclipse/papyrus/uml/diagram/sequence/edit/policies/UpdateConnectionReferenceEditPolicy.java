@@ -31,6 +31,7 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
  * this editpolicy is to manage the movement of Execution specification and update move of messages
@@ -81,9 +82,10 @@ public class UpdateConnectionReferenceEditPolicy extends GraphicalEditPolicy {
 								ConnectionEditPart connectionEditPart = (ConnectionEditPart) editPart;
 								ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
 								// create the request
-
 								ReconnectRequest reconnectSourceRequest = createReconnectRequest(connectionEditPart, locationAndSize, senderList, RequestConstants.REQ_RECONNECT_SOURCE, references);
+								reconnectSourceRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 								ReconnectRequest reconnectTargetRequest = createReconnectRequest(connectionEditPart, locationAndSize, senderList, RequestConstants.REQ_RECONNECT_TARGET, references);
+								reconnectTargetRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 								compoundCommand.add(connectionEditPart.getTarget().getCommand(reconnectTargetRequest));
 								compoundCommand.add(connectionEditPart.getSource().getCommand(reconnectSourceRequest));
 							}

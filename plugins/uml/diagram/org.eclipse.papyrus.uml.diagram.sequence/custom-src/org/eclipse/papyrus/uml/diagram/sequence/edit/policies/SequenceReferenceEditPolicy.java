@@ -89,7 +89,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 		// add a listener to update weak and string references
 		redirectionOperationListener = new RedirectionOperationListener(this);
 		OperationHistoryFactory.getOperationHistory().addOperationHistoryListener(redirectionOperationListener);
-
+		
 		updateStrongAndWeakReferences();
 	}
 

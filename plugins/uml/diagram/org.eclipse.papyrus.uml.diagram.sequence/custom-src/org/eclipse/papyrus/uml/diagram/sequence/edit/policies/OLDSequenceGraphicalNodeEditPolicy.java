@@ -49,13 +49,11 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpoi
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest.ConnectionViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionFragmentEditPart;
@@ -413,9 +411,9 @@ public class OLDSequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 	 */
 	@Override
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
-		if (isUphillMessage(request) && !isLostFoundMessage(request)) {
-			return UnexecutableCommand.INSTANCE;
-		}
+		// if (isUphillMessage(request) && !isLostFoundMessage(request)) {
+		// return UnexecutableCommand.INSTANCE;
+		// }
 		// prevent duplicate link
 		if (request.getConnectionEditPart() instanceof MessageCreateEditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)) {
 			return UnexecutableCommand.INSTANCE;
@@ -648,12 +646,12 @@ public class OLDSequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 	}
 
 	protected boolean isCreateConnectionRequest(Request request, IElementType type) {
-//		if (request instanceof CreateAspectUnspecifiedTypeConnectionRequest) {
-//			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
-//			if (types.contains(type)) {
-//				return true;
-//			}
-//		}
+		// if (request instanceof CreateAspectUnspecifiedTypeConnectionRequest) {
+		// List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
+		// if (types.contains(type)) {
+		// return true;
+		// }
+		// }
 		if (request instanceof CreateConnectionViewRequest) {
 			String requestHint = ((CreateConnectionViewRequest) request).getConnectionViewDescriptor().getSemanticHint();
 			if (((IHintedType) type).getSemanticHint().equals(requestHint)) {

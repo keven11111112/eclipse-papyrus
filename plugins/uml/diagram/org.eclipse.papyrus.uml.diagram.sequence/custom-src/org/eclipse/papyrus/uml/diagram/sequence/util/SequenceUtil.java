@@ -152,6 +152,11 @@ public class SequenceUtil {
 	public static final String OBSERVATION_LINK_REQUEST_RECONNECT_TARGET = "observation reconnect target"; //$NON-NLS-1$
 
 	/**
+	 * Request parameters for not checking the horizontality during reconnect request.
+	 */
+	public static final String DO_NOT_CHECK_HORIZONTALITY = "do not check horizontality"; //$NON-NLS-1$
+
+	/**
 	 * Default vertical offset of lifeline
 	 */
 	public static final int LIFELINE_VERTICAL_OFFSET = 10;

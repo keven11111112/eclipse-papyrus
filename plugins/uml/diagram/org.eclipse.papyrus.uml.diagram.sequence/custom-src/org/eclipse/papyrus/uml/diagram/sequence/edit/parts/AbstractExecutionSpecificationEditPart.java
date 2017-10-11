@@ -86,30 +86,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		super(view);
 	}
 
-	@Override
-	public List getChildren() {
-		// if (executionSpecificationEndParts == null) {
-		// initExecutionSpecificationEndEditPart();
-		// }
-		return super.getChildren();
-	}
-
 	protected void initExecutionSpecificationEndEditPart() {
-		EObject element = this.resolveSemanticElement();
-		if (!(element instanceof ExecutionSpecification)) {
-			return;
-		}
-		// executionSpecificationEndParts = new ArrayList<ExecutionSpecificationEndEditPart>();
-		ExecutionSpecification execution = (ExecutionSpecification) element;
-		// final ExecutionSpecificationEndEditPart startPart = new ExecutionSpecificationEndEditPart(execution.getStart(), this, new RelativeLocator(getFigure(), PositionConstants.NORTH));
-		// executionSpecificationEndParts.add(startPart);
-		// final ExecutionSpecificationEndEditPart finishPart = new ExecutionSpecificationEndEditPart(execution.getFinish(), this, new RelativeLocator(getFigure(), PositionConstants.SOUTH));
-		// executionSpecificationEndParts.add(finishPart);
-		Diagram diagram = ((View) this.getModel()).getDiagram();
-		// startPart.rebuildLinks(diagram);
-		// finishPart.rebuildLinks(diagram);
-		// addChild(startPart, -1);
-		// addChild(finishPart, -1);
 	}
 
 	static class FillParentLocator implements Locator {
