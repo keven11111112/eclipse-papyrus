@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *  
+ *  Vincent Lorenzo (CEA LIST) - bug 525876
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.project;
 
@@ -21,6 +21,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IJavaProjectEditor;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor;
@@ -356,6 +359,27 @@ public class PluginEditor extends PluginProjectEditor implements IPluginEditor {
 	public void addSourceFolderToClasspath(String srcPath, String binPath) {
 		java.addSourceFolderToClasspath(srcPath, binPath);
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IJavaProjectEditor#addPackage(String, java.lang.String)
+	 */
+	@Override
+	public IPackageFragment addPackage(String sourceFolderName, final String packageName) {
+		return java.addPackage(sourceFolderName, packageName);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IJavaProjectEditor#addClass(String, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public ICompilationUnit addClass(String sourceFolderName, final String packageName, final String className, final String classContent) {
+		return java.addClass(sourceFolderName, packageName, className, classContent);
+	}
+	
 
 	@Override
 	public boolean isSourceFolderRegistered(String folderPath) {
@@ -366,4 +390,45 @@ public class PluginEditor extends PluginProjectEditor implements IPluginEditor {
 	public String[] getBinFolders() {
 		return java.getBinFolders();
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IJavaProjectEditor#getJavaProject()
+	 */
+	@Override
+	public IJavaProject getJavaProject() {
+		return java.getJavaProject();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setFragmentHost(java.lang.String)
+	 */
+	@Override
+	public void setFragmentHost(final String fragmentHost) {
+		manifest.setFragmentHost(fragmentHost);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setFragmentHost(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void setFragmentHost(final String fragmentHost, final String version) {
+		manifest.setFragmentHost(fragmentHost, version);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#getFragmentHost()
+	 */
+	@Override
+	public String getFragmentHost() {
+		return manifest.getFragmentHost();
+	}
+	
 }

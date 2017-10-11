@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bugs 485220, 489075
- *  
+ *  Vincent Lorenzo (CEA LIST) - bug 525876
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.file;
 
@@ -71,10 +71,12 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 
 	private static final String BUNDLE_SYMBOLIC_NAME = "Bundle-SymbolicName"; //$NON-NLS-1$
 
-	private static final String IMPORT_PACKAGE = "Import-Package";
+	private static final String IMPORT_PACKAGE = "Import-Package"; //$NON-NLS-1$
 
-	private static final String EXPORT_PACKAGE = "Export-Package";
+	private static final String EXPORT_PACKAGE = "Export-Package"; //$NON-NLS-1$
 
+	private static final String FRAGMENT_HOST = "Fragment-Host"; //$NON-NLS-1$
+	
 	private static final String SINGLETON = "singleton:="; //$NON-NLS-1$
 
 	private static final String VISIBILITY = "visibility"; //$NON-NLS-1$
@@ -187,7 +189,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 	public void setDependenciesVersion(final String dependencyPattern, final String newVersion) {
 		updateDependencies(
 				name -> name.contains(dependencyPattern), // Update dependencies like this
-				Collections.singletonMap("bundle-version", newVersion), // To have this version attribute
+				Collections.singletonMap("bundle-version", newVersion), // To have this version attribute //$NON-NLS-1$
 				null); // And don't change directives such as optionality
 	}
 
@@ -204,7 +206,7 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		// 1 - the attribute/directive name
 		// 2 - the equality/assignment operator
 		// 3 - the quotation delimiter, if any
-		Pattern attributeOrDirective = Pattern.compile("([^:]+)(:?=)([\"']?).*\\3");
+		Pattern attributeOrDirective = Pattern.compile("([^:]+)(:?=)([\"']?).*\\3"); //$NON-NLS-1$
 
 		transformHeader(headerName, predicate, (dependency, attrs) -> {
 			StringBuilder result = new StringBuilder();
@@ -967,5 +969,44 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		public Iterable<String> getAttributeNames() {
 			return attributeNames;
 		}
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setFragmentHost(java.lang.String)
+	 */
+	@Override
+	public void setFragmentHost(final String fragmentHost) {
+		setFragmentHost(fragmentHost, null);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#setFragmentHost(java.lang.String, java.lang.String)
+	 */
+	@Override
+	public void setFragmentHost(final String fragmentHost, final String version) {
+		String fragmentHostStringValue = (version == null)
+				? fragmentHost
+				: String.format("%s;version=\"%s\"", fragmentHost, version); //$NON-NLS-1$
+
+		setMainAttribute(FRAGMENT_HOST, fragmentHostStringValue);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#getFragmentHost()
+	 */
+	@Override
+	public String getFragmentHost() {
+		// Without the <String> hint, javac balks but JDT does not
+		return getMainAttribute(FRAGMENT_HOST)
+				.<String> map(name -> {
+					int semiColon = name.indexOf(SEMICOLON);
+					return semiColon >= 0 ? name.substring(0, semiColon) : name;
+				}).orElse(null);
 	}
 }

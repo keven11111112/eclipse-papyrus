@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,7 +10,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *  Christian W. Damus - bug 485220
- *
+ *  Vincent Lorenzo (CEA LIST) - bug 525876
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.interfaces;
 
@@ -319,4 +319,33 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	 */
 	public void removeImportedPackage(String packageName);
 
+	/**
+	 * Set the fragment host of the bundle.
+	 * 
+	 * @param name
+	 *            The fragment host for the bundle
+	 * @since 2.1
+	 */
+	public void setFragmentHost(final String fragmentHost);
+
+	/**
+	 * Set the fragment host of the bundle.
+	 * 
+	 * @param name
+	 *            The fragment host for the bundle
+	 * @param version
+	 *            The fragment version
+	 * @since 2.1
+	 */
+	public void setFragmentHost(final String fragmentHost, final String version);
+
+
+	/**
+	 * Get the fragment host for the bundle.
+	 * 
+	 * @return
+	 * 		The fragment host of the bundle.
+	 * @since 2.1
+	 */
+	public String getFragmentHost();
 }

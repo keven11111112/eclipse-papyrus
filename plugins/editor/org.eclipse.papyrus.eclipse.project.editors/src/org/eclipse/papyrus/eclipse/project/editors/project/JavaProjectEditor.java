@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,16 +9,19 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *
+ *  Vincent Lorenzo (CEA LIST) - bug 525876
  *****************************************************************************/
 package org.eclipse.papyrus.eclipse.project.editors.project;
 
 import java.util.Set;
 
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.papyrus.eclipse.project.editors.Activator;
@@ -38,8 +41,6 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 
 	/** the java project */
 	private final IJavaProject javaProject;
-
-
 
 	/**
 	 * Gets the classpath editor.
@@ -174,16 +175,71 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IJavaProjectEditor#addPackage(String, java.lang.String)
+	 */
+	@Override
+	public IPackageFragment addPackage(final String sourceFolderName, final String packageName) {
+		IPackageFragment createdPackage = null;
+		if (exists()) {
+			touch();
+
+			IFolder sourceFolder = null;
+			if (null != sourceFolderName && !sourceFolderName.isEmpty() && this.classpathEditor.isSourceFolderRegistered(sourceFolderName)) {
+				sourceFolder = javaProject.getProject().getFolder(sourceFolderName);
+			} else {
+				final String[] sourceFolders = this.classpathEditor.getSourceFolders();
+				if (sourceFolders.length > 0) {
+					sourceFolder = javaProject.getProject().getFolder(sourceFolders[0]);
+				}
+			}
+			if (null != sourceFolder) {
+				createdPackage = javaProject.getPackageFragmentRoot(sourceFolder).getPackageFragment(packageName);
+				if (null == createdPackage || !createdPackage.exists()) {
+					try {
+						createdPackage = javaProject.getPackageFragmentRoot(sourceFolder).createPackageFragment(packageName, false, null);
+					} catch (final JavaModelException e) {
+						Activator.log.error(e);
+					}
+				}
+			}
+		}
+
+		return createdPackage;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IJavaProjectEditor#addClass(String, java.lang.String, java.lang.String, java.lang.String)
+	 */
+	@Override
+	public ICompilationUnit addClass(String sourceFolderName, final String packageName, final String className, final String content) {
+		ICompilationUnit createdClass = null;
+		if (exists()) {
+			touch();
+
+			final IPackageFragment packageFragment = addPackage(sourceFolderName, packageName);
+			try {
+				createdClass = packageFragment.createCompilationUnit(className + CLASS_FILE_EXTENSION, content, false, null);
+			} catch (final JavaModelException e) {
+				Activator.log.error(e);
+			}
+		}
+
+		return createdClass;
+	}
+
 	@Override
 	public void registerSourceFolder(final String string) {
 		this.buildEditor.registerSourceFolder(string);
-
 	}
 
 	@Override
 	public void addToBuild(final String path) {
 		this.buildEditor.addToBuild(path);
-
 	}
 
 	@Override
@@ -255,5 +311,15 @@ public class JavaProjectEditor extends ProjectEditor implements IJavaProjectEdit
 	@Override
 	public String[] getBinFolders() {
 		return classpathEditor.getBinFolders();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IJavaProjectEditor#getJavaProject()
+	 */
+	@Override
+	public IJavaProject getJavaProject() {
+		return javaProject;
 	}
 }
