@@ -7,9 +7,8 @@ location egit "http://download.eclipse.org/egit/updates-4.8" {
 	org.eclipse.egit.feature.group
 }
 
-//updateFrom("Eclipse",0)
-
-location platform "http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.1RC4-201709061700/" {
+//manualUpdate until it has been fixed in the simrel
+location platform "http://download.eclipse.org/eclipse/updates/4.7/R-4.7.1a-201710090410/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
