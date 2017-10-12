@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Ansgar Radermacher (CEA LIST) - Bug 516459: Navigation mechanism with Alt+hover does not work on Linux
  *
  *****************************************************************************/
 
@@ -39,8 +40,7 @@ public class NavigationMenuKeyListener implements KeyListener {
 	}
 
 	public void keyReleased(KeyEvent e) {
-		if (e.keyCode == SWT.ALT) {
-			navigationMenu.altReleased();
+		if (e.keyCode == SWT.CONTROL || e.keyCode == SWT.SHIFT) {
 			navigationMenu.exitItem();
 		}
 	}

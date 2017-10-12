@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +13,7 @@
  *  Christian W. Damus - bugs 450235, 451683, 485220
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289, 455241
  *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500290: implement new filter and ignore case Check button
+ *  Ansgar Radermacher (CEA LIST) - Bug 516459: Navigation mechanism with Alt+hover does not work on Linux
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -104,7 +105,7 @@ import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -116,7 +117,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
@@ -550,6 +550,36 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		viewer.setLabelProvider(labelProvider); // add for decorator and tooltip support
 	}
 
+	/**
+	 * Listener handling the activation of the navigation menu as well as exit if user clicks outside
+	 */
+	public class MenuListener extends MouseAdapter implements MouseMoveListener {
+
+		// @Override
+		public void mouseMove(MouseEvent mouseEvent) {
+			if (navigationMenu != null) {
+				if (navigationMenu.willEnter(mouseEvent, null)) {
+					TreeItem treeItem = getTreeItem(mouseEvent);
+					if (treeItem != null) {
+						navigationMenu.handleRequest(mouseEvent, treeItem.getData());
+					}
+				}
+				else {
+					navigationMenu.exitItem();
+				}
+			}
+		}
+
+		/**
+		 * exit navigation menu on click (avoids that menu remains open, if user clicks outside
+		 */
+		public void mouseDown(MouseEvent mouseEvent) {
+			if (navigationMenu != null) {
+				navigationMenu.exitItem();
+			}
+		}
+	}
+
 	@Override
 	public void createPartControl(Composite aParent) {
 		super.createPartControl(aParent);
@@ -577,47 +607,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		Tree tree = getCommonViewer().getTree();
 
-		tree.addKeyListener(new KeyListener() {
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.keyCode != SWT.ALT) {
-					return;
-				}
-
-				if (navigationMenu != null) {
-					Tree tree = getCommonViewer().getTree();
-
-					// Generate a basic mouse event
-					Event event = new Event();
-					event.widget = tree;
-					event.stateMask = SWT.ALT;
-
-					Point absoluteTreeLocation = tree.toDisplay(new Point(0, 0));
-
-					event.x = tree.getDisplay().getCursorLocation().x - absoluteTreeLocation.x;
-					event.y = tree.getDisplay().getCursorLocation().y - absoluteTreeLocation.y;
-
-					MouseEvent mouseEvent = new MouseEvent(event);
-					navigationMenu.handleRequest(mouseEvent, getTreeItem(mouseEvent));
-				}
-			}
-		});
-
-		tree.addMouseMoveListener(new MouseMoveListener() {
-
-			@Override
-			public void mouseMove(MouseEvent e) {
-				if (navigationMenu != null) {
-					navigationMenu.handleRequest(e, getTreeItem(e));
-				}
-			}
-
-		});
+		MenuListener menuListener = new MenuListener();
+		tree.addMouseMoveListener(menuListener);
+		tree.addMouseListener(menuListener);
 
 		installEMFFacetTreePainter(tree);
 		try {
@@ -682,7 +674,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		filterText.setValidateOnDelay(getValidationDelay());
 		filterText.setValidateOnDelay(isFilterValidateOnDelay());
 
-		// Key listener to focus in the treeviewer when presser arrow up key
+		// Key listener to focus the tree viewer when arrow-up key is pressed
 		filterText.getText().addKeyListener(new KeyAdapter() {
 
 			/**

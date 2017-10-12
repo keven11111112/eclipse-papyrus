@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,8 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Shuai Li (CEA LIST) shuai.li@cea.fr - Selection menu modifications
+ *  Ansgar Radermacher (CEA LIST) - Bug 516459: Navigation mechanism with Alt+hover does not work on Linux
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.navigation.editpolicy;
 
@@ -26,6 +28,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.Activator;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationMenu;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Shell;
 
 /**
@@ -60,6 +64,13 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 				if (navigationMenu != null) {
 					navigationMenu.setServicesRegistry(registry);
 					navigationMenu.setParentShell(parentShell);
+					// quit menu, if click outside
+					viewer.getControl().addMouseListener(new MouseAdapter() {
+					
+						public void mouseDown(MouseEvent e) {
+							navigationMenu.exitItem();
+						}	
+					});
 				}
 			} catch (ServiceException e) {
 				Activator.log.error(e);
@@ -87,14 +98,15 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 
 		if (request instanceof SelectionRequest) {
 			SelectionRequest selectionRequest = (SelectionRequest) request;
-			EditPart targetEditPart = getHost().getViewer().findObjectAt(selectionRequest.getLocation());
-
-			if (navigationMenu.willEnter(selectionRequest, targetEditPart)) {
+			if (navigationMenu.willEnter(selectionRequest, null)) {
+				EditPart targetEditPart = getHost().getViewer().findObjectAt(selectionRequest.getLocation());
 				prependNavigationMenuItem();
 				appendNavigationMenuItem();
+				navigationMenu.handleRequest(selectionRequest,  targetEditPart);
 			}
-
-			navigationMenu.handleRequest(selectionRequest, targetEditPart);
+			else {
+				navigationMenu.exitItem();
+			}
 		}
 	}
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+* Copyright (c) 2015, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Ansgar Radermacher (CEA LIST) - Bug 516459: Navigation mechanism with Alt+hover does not work on Linux
  *
  *****************************************************************************/
 
@@ -30,7 +31,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener.SelectionMenuMouseTrackListener;
+import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener.NavigationMenuKeyListener;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener.SelectionMenuSelectionChangedListener;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.provider.SelectionMenuLabelProvider;
 import org.eclipse.papyrus.infra.services.navigation.service.ExtendedNavigableElement;
@@ -43,10 +44,7 @@ import org.eclipse.papyrus.infra.services.viewersearch.impl.ViewerSearchService;
 import org.eclipse.papyrus.infra.widgets.editors.SelectionMenu;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -108,12 +106,14 @@ public class DefaultNavigationMenu implements NavigationMenu {
 
 	/**
 	 * handle requests from graphical editor
+	 * @Deprecated since 2.1.0, since handling is now uniform for graphical editor and model explorer
 	 * 
 	 * @param request
 	 *            a selection request
 	 * @param targetEditPart
 	 *            the selected edit part
 	 */
+	@Deprecated
 	public void handleRequest(SelectionRequest request, EditPart targetEditPart) {
 		if (targetEditPart != null) {
 			EObject model = EMFHelper.getEObject(targetEditPart);
@@ -130,12 +130,15 @@ public class DefaultNavigationMenu implements NavigationMenu {
 
 	/**
 	 * handle request from model explorer
+	 * @Deprecated since 2.1.0, since handling is now uniform for graphical editor and model explorer
 	 * 
 	 * @param e
 	 *            a mouse event
 	 * @param treeItem
 	 *            the tree item within the model explorer
+	 *            
 	 */
+	@Deprecated
 	public void handleRequest(MouseEvent e, TreeItem treeItem) {
 		if (treeItem != null) {
 			EObject model = EMFHelper.getEObject(treeItem.getData());
@@ -150,27 +153,22 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		}
 	}
 
+	/**
+	 * @deprecated since 2.1.0, since exit state only depends on model
+	 */
 	@Deprecated
 	protected boolean isExitState(SelectionRequest request, EObject model) {
 		return isExitState(model);
 	}
 
 	protected boolean isExitState(EObject model) {
-		if (currentModel == null) {
-			return false;
-		}
-
-		if (model == null) {
-			return true;
-		}
-
-		if (model != currentModel) {
-			return true;
-		}
-
-		return false;
+		return currentModel != model || model == null;
 	}
 
+	/**
+	 * @deprecated since 2.1.0, since enter state only depends on model
+	 */
+	@Deprecated
 	protected boolean isEnterState(SelectionRequest request, EObject model) {
 		if (!request.isAltKeyPressed()) {
 			return false;
@@ -179,6 +177,10 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		return isEnterState(model);
 	}
 
+	/**
+	 * @deprecated since 2.1.0, since enter state only depends on model
+	 */
+	@Deprecated
 	protected boolean isEnterState(MouseEvent e, EObject model) {
 		if ((e.stateMask & SWT.ALT) == 0) {
 			return false;
@@ -188,7 +190,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	}
 
 	protected boolean isEnterState(EObject model) {
-		if (model == currentModel) {
+		if (currentModel != null) {
 			return false;
 		}
 
@@ -201,6 +203,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		return true;
 	}
 
+	@Deprecated
 	public boolean willEnter(SelectionRequest request, EditPart targetEditPart) {
 		EObject model = null;
 		if (targetEditPart != null) {
@@ -212,14 +215,6 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	}
 
 	public boolean willEnter(EObject model) {
-		if (model == currentModel) {
-			return false;
-		}
-
-		if (model == null) {
-			return false;
-		}
-
 		return true;
 	}
 
@@ -313,33 +308,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 		}
 
 		selectionMenu.addSelectionChangedListener(new SelectionMenuSelectionChangedListener(DefaultNavigationMenu.this, selectionMenu, navigationMenuElements, umlElement, subMenus));
-		selectionMenu.getTableViewer().getTable().addFocusListener(new FocusListener() {
-
-			int focusGainedAt = 0;
-
-			public void focusLost(FocusEvent e) {
-				// The columnViewer of the model explorer has a tooltip that can be shown during the first 100ms
-				// after a selection. It will cause a focus lost on the menu. In this case, make sure to set
-				// focus to the menu again.
-				if (e.time - focusGainedAt < 100) {
-					Display.getDefault().asyncExec(new Runnable() {
-
-						public void run() {
-							// set focus again to get a new focus lost event
-							selectionMenu.getTableViewer().getTable().setFocus();
-						}
-					});
-				}
-				else {
-					exitItem();
-				}
-			}
-
-			public void focusGained(FocusEvent e) {
-				focusGainedAt = e.time;
-			}
-		});
-
+		selectionMenu.addKeyListener(new NavigationMenuKeyListener(this));
 		// selectionMenu.addMouseTrackListener(new SelectionMenuMouseTrackListener(DefaultNavigationMenu.this, selectionMenu, subMenus, umlElement));
 	}
 
@@ -517,12 +486,14 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	 * @param target
 	 */
 	public void handleRequest(Object request, Object target) {
-		if (request instanceof SelectionRequest && target instanceof EditPart) {
-			handleRequest((SelectionRequest) request, (EditPart) target);
+		EObject model = EMFHelper.getEObject(target);
+
+		if (isExitState(model)) {
+			exitItem();
 		}
 
-		if (request instanceof MouseEvent && target instanceof TreeItem) {
-			handleRequest((MouseEvent) request, (TreeItem) target);
+		if (isEnterState(model)) {
+			enterItem(target);
 		}
 	}
 
@@ -534,11 +505,14 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	 * @return
 	 */
 	public boolean willEnter(Object request, Object target) {
-		if (request instanceof SelectionRequest && target instanceof EditPart) {
-			return willEnter((SelectionRequest) request, (EditPart) target);
+		int modifierKeys = SWT.NONE;
+		if (request instanceof SelectionRequest) {
+			modifierKeys = ((SelectionRequest) request).getModifiers();
 		}
-
-		return false;
+		else if (request instanceof MouseEvent) {
+			modifierKeys = ((MouseEvent) request).stateMask;
+		}
+		return (modifierKeys == SWT.CONTROL + SWT.SHIFT);
 	}
 
 	/**
@@ -599,6 +573,7 @@ public class DefaultNavigationMenu implements NavigationMenu {
 	 */
 	public void setParentShell(Shell parentShell) {
 		this.parentShell = parentShell;
+		
 	}
 
 	@Deprecated
