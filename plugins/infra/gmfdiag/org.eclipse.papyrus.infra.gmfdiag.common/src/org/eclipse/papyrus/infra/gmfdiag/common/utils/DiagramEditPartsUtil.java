@@ -19,7 +19,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.AbstractTreeIterator;
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
@@ -61,11 +64,13 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
-import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
@@ -1008,9 +1013,17 @@ public class DiagramEditPartsUtil {
 	}
 
 	/**
-	 * @since 3.0
+	 * @since 3.2.0
+	 * @deprecated has been replaced by labelProviderMap
 	 */
-	protected static ILabelProvider labelProvider;
+	@Deprecated ILabelProvider labelProvider;
+
+	/**
+	 * @since 3.2.0
+	 * Use hash map to cache label provider references. The "weak" assures that resources no longer
+	 * in use are freed
+	 */
+	protected static Map<Resource, ILabelProvider> labelProviderMap = new WeakHashMap<Resource, ILabelProvider>();
 
 	/**
 	 * Return the icon of a label, taking element type definitions into account
@@ -1021,16 +1034,24 @@ public class DiagramEditPartsUtil {
 	 * @since 3.0
 	 */
 	public static Image getIcon(EObject parserElement, EditPartViewer viewer) {
-		// EObject parserElement = getParserElement();
 		if (parserElement == null) {
 			return null;
 		}
 		List<View> views = DiagramEditPartsUtil.findViews(parserElement, viewer);
 		for (View view : views) {
 			if (AppearanceHelper.showElementIcon(view)) {
+				Resource rs = parserElement.eResource();
+				ILabelProvider labelProvider = labelProviderMap.get(rs); 
 				if (labelProvider == null) {
-					labelProvider = new EMFLabelProvider();
+					try {
+						LabelProviderService provider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, parserElement);
+						labelProvider = provider.getLabelProvider();
+						labelProviderMap.put(rs, labelProvider);
+					} catch (ServiceException ex) {
+						Activator.log.error(ex);
+					}
 				}
+
 				return labelProvider.getImage(parserElement);
 			}
 		}
