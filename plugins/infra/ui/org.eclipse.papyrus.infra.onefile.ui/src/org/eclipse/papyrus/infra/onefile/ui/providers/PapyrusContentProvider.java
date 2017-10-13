@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin Integration - CEA LIST.
+ * Copyright (c) 2011, 2017 Atos Origin Integration - CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Tristan Faure (Atos Origin Integration) tristan.faure@atosorigin.com - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
+ *  Benoit Maggi (CEA LSIT) - bug 525981
  *****************************************************************************/
 package org.eclipse.papyrus.infra.onefile.ui.providers;
 
@@ -263,8 +264,8 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 						Set<Object> toRemove = new HashSet<Object>();
 
 						for (Object r : removedObjects) {
-							if (r instanceof IResource) {
-								IResource current = (IResource) r;
+							if (r instanceof IFile) {
+								IFile current = (IFile) r;
 								if (OneFileUtils.isDi(current)) {
 									toRemove.add(PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile((IFile) current));
 									toRefresh.add(current.getParent());
@@ -272,7 +273,7 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 									IPapyrusFile oneFile = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(OneFileUtils.getDi(current.getName(), current.getParent()));
 									toRefresh.add(oneFile);
 									toRemove.add(PapyrusModelHelper.getPapyrusModelFactory().createISubResourceFile(oneFile, (IFile) current));
-								}
+								}									
 							}
 						}
 
@@ -287,28 +288,4 @@ public class PapyrusContentProvider extends WorkbenchContentProvider {
 		};
 		runnables.add(addAndRemove);
 	}
-
-	// @Override
-	// protected ITreeContentProvider getDelegateContentProvider() {
-	// if(provider == null) {
-	// provider = new WorkbenchContentProvider();
-	// }
-	// return provider;
-	// }
-	//
-	// @Override
-	// protected String getModelProviderId() {
-	// return OneFileModelProvider.MODEL_PROVIDER_ID;
-	// }
-	//
-	// @Override
-	// protected Object getModelRoot() {
-	// return null;
-	// }
-
-	// @Override
-	// protected ResourceTraversal[] getTraversals(ISynchronizationContext context, Object object) {
-	// return null;
-	// }
-
 }
