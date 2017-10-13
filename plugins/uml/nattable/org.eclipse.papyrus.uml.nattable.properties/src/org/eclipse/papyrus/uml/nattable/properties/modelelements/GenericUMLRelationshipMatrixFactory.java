@@ -71,9 +71,11 @@ public class GenericUMLRelationshipMatrixFactory extends EMFModelElementFactory 
 		}
 		// this manager is the manager of the current table editor. It already has been checked by the constraint {@link IsGenericUMLRelationshipMatrix}
 		final IMatrixTableWidgetManager manager = MatrixHelper.getMatrixTableWidgetModelManagerFromCurrentEditor();
-		final TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(manager.getTable());
-		if (null != manager && null != domain) {
-			return new GenericUMLRelationshipMatrixModelElement(manager, domain);
+		if (null != manager) {
+			final TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(manager.getTable());
+			if (null != domain) {
+				return new GenericUMLRelationshipMatrixModelElement(manager, domain);
+			}
 		}
 
 		return super.doCreateFromSource(sourceElement, context);
