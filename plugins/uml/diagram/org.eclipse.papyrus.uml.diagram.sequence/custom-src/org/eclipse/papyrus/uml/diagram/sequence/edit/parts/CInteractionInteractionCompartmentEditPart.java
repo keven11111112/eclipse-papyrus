@@ -13,9 +13,13 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import java.util.List;
+
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
@@ -47,18 +51,27 @@ public class CInteractionInteractionCompartmentEditPart extends InteractionInter
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if ( request instanceof CreateViewAndElementRequest && request.getType().equals(REQ_CREATE)) {
+		if (request instanceof CreateViewAndElementRequest && request.getType().equals(REQ_CREATE)) {
 			CreateViewAndElementRequest createrequest = (CreateViewAndElementRequest) request;
 			ViewAndElementDescriptor descriptor = createrequest.getViewAndElementDescriptor();
 			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
 			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.DURATION_CONSTRAINT_SHAPE)) {
 				return null;
 			}
+		}
 
-
+		// ExecutionSpecification can't be drop into Interaction
+		if (request instanceof ChangeBoundsRequest) {
+			List<?> editParts = ((ChangeBoundsRequest) request).getEditParts();
+			for (Object part : editParts) {
+				if (part instanceof AbstractExecutionSpecificationEditPart) {
+					return UnexecutableCommand.INSTANCE;
+				}
+			}
 		}
 		return super.getCommand(request);
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart#getTargetEditPart(org.eclipse.gef.Request)
 	 *
@@ -67,7 +80,7 @@ public class CInteractionInteractionCompartmentEditPart extends InteractionInter
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		if( request instanceof ReconnectRequest) {
+		if (request instanceof ReconnectRequest) {
 			return this.getParent();
 		}
 		return super.getTargetEditPart(request);

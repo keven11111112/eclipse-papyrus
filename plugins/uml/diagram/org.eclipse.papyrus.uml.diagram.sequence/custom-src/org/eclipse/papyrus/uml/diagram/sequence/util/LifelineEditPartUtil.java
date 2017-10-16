@@ -9,8 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519756
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756, 526079
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
@@ -40,8 +39,7 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
@@ -74,9 +72,7 @@ public class LifelineEditPartUtil {
 		}
 		List<ShapeNodeEditPart> executionSpecificationList = new ArrayList<ShapeNodeEditPart>();
 		for (Object obj : lifeline.getChildren()) {
-			if (obj instanceof BehaviorExecutionSpecificationEditPart) {
-				executionSpecificationList.add((ShapeNodeEditPart) obj);
-			} else if (obj instanceof CCombinedCompartmentEditPart) {
+			if (obj instanceof AbstractExecutionSpecificationEditPart) {
 				executionSpecificationList.add((ShapeNodeEditPart) obj);
 			}
 		}

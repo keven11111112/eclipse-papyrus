@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Patrick Tessier (CEA LIST) - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521312
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521312, 526079
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -89,7 +89,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 		// add a listener to update weak and string references
 		redirectionOperationListener = new RedirectionOperationListener(this);
 		OperationHistoryFactory.getOperationHistory().addOperationHistoryListener(redirectionOperationListener);
-		
+
 		updateStrongAndWeakReferences();
 	}
 
@@ -99,7 +99,9 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	 */
 	@Override
 	public void deactivate() {
-		OperationHistoryFactory.getOperationHistory().removeOperationHistoryListener(redirectionOperationListener);
+		if (null != redirectionOperationListener) {
+			OperationHistoryFactory.getOperationHistory().removeOperationHistoryListener(redirectionOperationListener);
+		}
 		super.deactivate();
 	}
 
