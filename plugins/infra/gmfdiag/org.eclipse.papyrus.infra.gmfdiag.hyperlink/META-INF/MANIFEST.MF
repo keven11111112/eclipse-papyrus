@@ -8,14 +8,19 @@ Require-Bundle: org.eclipse.papyrus.infra.hyperlink;bundle-version="[3.0.0,4.0.0
  org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.papyrus.infra.nattable.representation;bundle-version="[1.0.0,2.0.0)"
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.hyperlink,
+ org.eclipse.papyrus.infra.gmfdiag.hyperlink.dnd,
  org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies,
+ org.eclipse.papyrus.infra.gmfdiag.hyperlink.handler,
  org.eclipse.papyrus.infra.gmfdiag.hyperlink.helper,
+ org.eclipse.papyrus.infra.gmfdiag.hyperlink.messages,
  org.eclipse.papyrus.infra.gmfdiag.hyperlink.object,
+ org.eclipse.papyrus.infra.gmfdiag.hyperlink.providers,
  org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 3.0.1.qualifier
-Bundle-Name: GMF Diagram Hyperlink
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.hyperlink;singleton:=true

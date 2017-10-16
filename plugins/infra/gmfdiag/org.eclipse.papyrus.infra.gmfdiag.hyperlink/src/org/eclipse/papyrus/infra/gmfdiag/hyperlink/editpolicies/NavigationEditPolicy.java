@@ -35,7 +35,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
@@ -68,7 +67,7 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class NavigationEditPolicy extends OpenEditPolicy {
 
-	public static final String NAVIGATION_POLICY = "NavigationEditPolicy";
+	public static final String NAVIGATION_POLICY = "NavigationEditPolicy"; //$NON-NLS-1$
 
 	public NavigationEditPolicy() {
 	}
@@ -120,9 +119,9 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		if (semanticElement == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		// initialition of code to extract hyperlinks, in the future to do with
+		// initialization of code to extract hyperlinks, in the future to do with
 		// extension points
-		ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers = new ArrayList<AbstractHyperLinkHelper>();
+		ArrayList<AbstractHyperLinkHelper> hyperLinkHelpers = new ArrayList<>();
 		// hyperLinkHelpers.add(new DiagramHyperLinkHelper());
 		// hyperLinkHelpers.add(new DocumentHyperLinkHelper());
 		// hyperLinkHelpers.add(new WebHyperLinkHelper());
@@ -183,11 +182,9 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 								TransactionalEditingDomain editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(getHost());
 								openLinkCommand = new OpenCommand(editingDomain, hyperlinkObject);
 								openLinkCommand.execute(new NullProgressMonitor(), null);
-							} catch (ServiceException ex) {
+							} catch (ServiceException | ExecutionException ex) {
 								Activator.log.error(ex);
-							} catch (ExecutionException ex) {
-								Activator.log.error(ex);
-							}
+							} 
 						} else {
 							hyperlinkObject.openLink();
 						}
@@ -264,9 +261,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 							}
 
 							openLinksCommand.execute(new NullProgressMonitor(), null);
-						} catch (ServiceException ex) {
-							Activator.log.error(ex);
-						} catch (ExecutionException ex) {
+						} catch (ServiceException | ExecutionException ex) {
 							Activator.log.error(ex);
 						}
 					}
@@ -431,7 +426,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 				}
 				return CommandResult.newOKCommandResult();
 			} catch (Exception e) {
-				throw new ExecutionException("Can't open diagram", e);
+				throw new ExecutionException("Can't open diagram", e); //$NON-NLS-1$
 			}
 		}
 	}

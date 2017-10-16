@@ -207,7 +207,7 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 
 		// add all subdiagrams
 		try {
-			hyperLinkObjectList = new LinkedList<HyperLinkObject>();
+			hyperLinkObjectList = new LinkedList<>();
 			ArrayList<HyperLinkObject> unfilteredHyperlinkObjects = (ArrayList<HyperLinkObject>) hyperlinkHelperFactory.getAllreferenced(((IGraphicalEditPart) getHost()).getNotationView());
 
 			for (AbstractHyperLinkHelper hyperlinkHelper : hyperlinkHelperFactory.getHyperLinkHelpers()) {
@@ -230,7 +230,7 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 		addHyperlinkedViewCreations();
 
 		// Add the New Hyperlink tool
-		addNavigationMenuHyperlinkDescriptor(Activator.getDefault().getIcon(Activator.IMG_PLUS), new AddHyperlinkAction(), Messages.HyperlinkNavigationMenuEditPolicy_EditHyperLinkTooltip, Messages.HyperlinkNavigationMenuEditPolicy_EditHyperLinkTooltipLabel);
+		addNavigationMenuHyperlinkDescriptor(Activator.getDefault().getIcon(Activator.IMG_HYPERLINK), new AddHyperlinkAction(), Messages.HyperlinkNavigationMenuEditPolicy_EditHyperLinkTooltip, Messages.HyperlinkNavigationMenuEditPolicy_EditHyperLinkTooltipLabel);
 	}
 
 	/**
@@ -247,8 +247,8 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 		if (null != selection) {
 
 			// Gets View Prototype for Table and for Diagram
-			List<ViewPrototype> diagramPrototypes = new ArrayList<ViewPrototype>();
-			List<ViewPrototype> tablePrototypes = new ArrayList<ViewPrototype>();
+			List<ViewPrototype> diagramPrototypes = new ArrayList<>();
+			List<ViewPrototype> tablePrototypes = new ArrayList<>();
 
 			for (final ViewPrototype proto : PolicyChecker.getFor(selection).getPrototypesFor(selection)) {
 				if (proto.getRepresentationKind() instanceof PapyrusDiagram) {
@@ -351,7 +351,7 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 							// Set it to default to be open by double click
 							hyperLink.setIsDefault(true);
 
-							List<HyperLinkObject> hyperLinkList = new ArrayList<HyperLinkObject>();
+							List<HyperLinkObject> hyperLinkList = new ArrayList<>();
 							hyperLinkList.add(hyperLink);
 
 							TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(eObject);
@@ -430,7 +430,6 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 	// Nested types
 	//
 
-	// protected abstract class AbstractHyperlinkTool extends AbstractTool implements DragTracker {
 	protected abstract class AbstractHyperlinkAction extends Action {
 
 	}

@@ -82,7 +82,7 @@ public class ManageHyperLinksHandler extends AbstractHandler {
 		IPageIconsRegistry iconsregistry = ServiceUtilsForEditPart.getInstance().getService(IPageIconsRegistry.class, navigationEditPolicy.getHost());
 		
 		
-		List<AbstractHyperLinkHelper> hyperLinkHelpers = new ArrayList<AbstractHyperLinkHelper>();
+		List<AbstractHyperLinkHelper> hyperLinkHelpers = new ArrayList<>();
 		hyperLinkHelpers.addAll(HyperLinkHelpersRegistrationUtil.INSTANCE.getAllRegisteredHyperLinkHelper());
 		final HyperLinkHelperFactory hyperlinkHelperFactory = new HyperLinkHelperFactory(hyperLinkHelpers);
 		
@@ -105,6 +105,7 @@ public class ManageHyperLinksHandler extends AbstractHandler {
 	/**
 	 * @return a given EditPolicy from its name
 	 */
+	// FIXME : there must be some API to provide directly that	
 	public EditPolicy getEditPolicy(String editPolicyName) {
 		EditPolicy lookupEditPolicy = null;
 		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
