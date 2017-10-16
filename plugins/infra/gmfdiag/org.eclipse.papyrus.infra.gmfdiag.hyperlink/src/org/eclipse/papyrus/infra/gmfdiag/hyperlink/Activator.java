@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *  
+ *  Benoit Maggi (CEA LIST) - bug 525485 
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink;
 
@@ -27,8 +27,11 @@ public class Activator extends AbstractUIPlugin {
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.gmfdiag.hyperlink"; //$NON-NLS-1$
 
+	@Deprecated // use IMG_HYPERLINK (when removing, also remove Plus.gif)
 	public static final String IMG_PLUS = "plus"; //$NON-NLS-1$
 
+	public static final String IMG_HYPERLINK = "hyperlink"; //$NON-NLS-1$	
+	
 	// The shared instance
 	private static Activator plugin;
 
@@ -65,8 +68,8 @@ public class Activator extends AbstractUIPlugin {
 	@Override
 	protected void initializeImageRegistry(ImageRegistry reg) {
 		super.initializeImageRegistry(reg);
-
 		reg.put(IMG_PLUS, imageDescriptorFromPlugin(PLUGIN_ID, "icons/obj16/Plus.gif")); //$NON-NLS-1$
+		reg.put(IMG_HYPERLINK, imageDescriptorFromPlugin(PLUGIN_ID, "icons/obj16/hyperlink_icon.gif")); //$NON-NLS-1$
 	}
 
 	public Image getIcon(String key) {

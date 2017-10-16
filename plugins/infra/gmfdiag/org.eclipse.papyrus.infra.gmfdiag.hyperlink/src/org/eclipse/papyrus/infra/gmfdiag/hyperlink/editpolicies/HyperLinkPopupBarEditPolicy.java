@@ -85,7 +85,7 @@ public class HyperLinkPopupBarEditPolicy extends PapyrusPopupBarEditPolicy {
 		}
 
 		// Add the New Hyperlink tool
-		addPopupBarDescriptor(Activator.getDefault().getIcon(Activator.IMG_PLUS), new AddHyperlinkTool(), "Add hyperlink");
+		addPopupBarDescriptor(Activator.getDefault().getIcon(Activator.IMG_HYPERLINK), new AddHyperlinkTool(), "Add hyperlink");
 	}
 
 	//
