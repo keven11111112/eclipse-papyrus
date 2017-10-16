@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2017 CEA LIST and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 526079
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.List;
@@ -9,20 +21,27 @@ import org.eclipse.draw2d.Locator;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Anchor;
@@ -37,6 +56,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceReferenceEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateConnectionReferenceEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceForExecSpecEditPolicy;
@@ -44,6 +64,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.ExecutionSpecificationNo
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectExecutionToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectYCoordinateToGrillingEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -107,6 +128,50 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		installEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE, new SequenceReferenceEditPolicy());
 		installEditPolicy(UpdateConnectionReferenceEditPolicy.UDPATE_CONNECTION_REFERENCE, new UpdateConnectionReferenceEditPolicy());
 		installEditPolicy(UpdateWeakReferenceForExecSpecEditPolicy.UDPATE_WEAK_REFERENCE_FOR_EXECSPEC, new UpdateWeakReferenceForExecSpecEditPolicy());
+
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableShapeEditPolicy() {
+
+			@Override
+			protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
+				request.getMoveDelta().x = 0; // reset offset
+				IFigure feedback = getDragSourceFeedbackFigure();
+				PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
+				getHostFigure().translateToAbsolute(rect);
+				IFigure f = getHostFigure();
+				Dimension min = f.getMinimumSize().getCopy();
+				Dimension max = f.getMaximumSize().getCopy();
+				IMapMode mmode = MapModeUtil.getMapMode(f);
+				min.height = mmode.LPtoDP(min.height);
+				min.width = mmode.LPtoDP(min.width);
+				max.height = mmode.LPtoDP(max.height);
+				max.width = mmode.LPtoDP(max.width);
+				Rectangle originalBounds = rect.getCopy();
+				rect.translate(request.getMoveDelta());
+				rect.resize(request.getSizeDelta());
+				if (min.width > rect.width) {
+					rect.width = min.width;
+				} else if (max.width < rect.width) {
+					rect.width = max.width;
+				}
+				if (min.height > rect.height) {
+					rect.height = min.height;
+				} else if (max.height < rect.height) {
+					rect.height = max.height;
+				}
+				if (rect.height == min.height && request.getSizeDelta().height < 0 && request.getMoveDelta().y > 0) { // shrink at north
+					Point loc = rect.getLocation();
+					loc.y = originalBounds.getBottom().y - min.height;
+					rect.setLocation(loc);
+					request.getSizeDelta().height = min.height - originalBounds.height;
+					request.getMoveDelta().y = loc.y - originalBounds.y;
+				}
+				if (request.getSizeDelta().height == 0) { // moving
+					moveExecutionSpecificationFeedback(request, AbstractExecutionSpecificationEditPart.this, rect);
+				}
+				feedback.translateToRelative(rect);
+				feedback.setBounds(rect);
+			}
+		});
 
 	}
 
@@ -188,44 +253,46 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	public abstract ExecutionSpecificationRectangleFigure getPrimaryShape();
 
 	// see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=385604
-	// protected ShapeNodeEditPart moveExecutionSpecificationFeedback(ChangeBoundsRequest request, AbstractExecutionSpecificationEditPart movedPart, PrecisionRectangle rect) {
-	// OLDLifelineEditPart lifelineEP = (OLDLifelineEditPart) movedPart.getParent();
-	// Rectangle copy = rect.getCopy();
-	// lifelineEP.getPrimaryShape().translateToRelative(copy);
-	// List<ShapeNodeEditPart> executionSpecificationList = LifelineEditPartUtil.getChildShapeNodeEditPart(lifelineEP);
-	// List<ShapeNodeEditPart> movedChildrenParts = OLDLifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(AbstractExecutionSpecificationEditPart.this);
-	// executionSpecificationList.remove(movedPart); // ignore current action and its children
-	// executionSpecificationList.removeAll(movedChildrenParts);
-	// ShapeNodeEditPart parentBar = OLDLifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
-	// Rectangle dotLineBounds = lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure().getBounds();
-	// int dotLineBarLocationX = dotLineBounds.x + dotLineBounds.width / 2 - OLDLifelineXYLayoutEditPolicy.EXECUTION_INIT_WIDTH / 2;
-	// if (parentBar == null) {
-	// if (dotLineBarLocationX < copy.x) { // there is no parent bar, move to the center dotline position
-	// int dx = dotLineBarLocationX - copy.x;
-	// request.getMoveDelta().x += dx;
-	// rect.x += dx;
-	// }
-	// } else {
-	// while (!executionSpecificationList.isEmpty()) {
-	// Rectangle parentBounds = parentBar.getFigure().getBounds();
-	// int width = parentBounds.width > 0 ? parentBounds.width : OLDLifelineXYLayoutEditPolicy.EXECUTION_INIT_WIDTH;
-	// int x = parentBounds.x + width / 2 + 1; // affixed to the parent bar
-	// int dx = x - copy.x;
-	// rect.x += dx;
-	// request.getMoveDelta().x += dx;
-	// copy.x = x;
-	// // check again to see if the new bar location overlaps with existing bars
-	// ShapeNodeEditPart part = OLDLifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
-	// if (part == parentBar) {
-	// break;
-	// } else {
-	// // if overlaps, go on moving the bar to next x position
-	// parentBar = part;
-	// }
-	// }
-	// }
-	// return parentBar;
-	// }
+	protected ShapeNodeEditPart moveExecutionSpecificationFeedback(ChangeBoundsRequest request, AbstractExecutionSpecificationEditPart movedPart, PrecisionRectangle rect) {
+		LifelineEditPart lifelineEP = (LifelineEditPart) movedPart.getParent();
+		Rectangle copy = rect.getCopy();
+		lifelineEP.getPrimaryShape().translateToRelative(copy);
+		List<ShapeNodeEditPart> executionSpecificationList = LifelineEditPartUtil.getChildShapeNodeEditPart(lifelineEP);
+		List<ShapeNodeEditPart> movedChildrenParts = OLDLifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(AbstractExecutionSpecificationEditPart.this);
+		executionSpecificationList.remove(movedPart); // ignore current action and its children
+		executionSpecificationList.removeAll(movedChildrenParts);
+		ShapeNodeEditPart parentBar = OLDLifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
+		Rectangle dotLineBounds = lifelineEP.getPrimaryShape().getBounds().getCopy().translate(0, 10);// TODO header eight
+		int dotLineBarLocationX = dotLineBounds.x + dotLineBounds.width / 2 - DEFAUT_WIDTH / 2;
+
+
+		if (parentBar == null) {
+			if (dotLineBarLocationX < copy.x) { // there is no parent bar, move to the center dotline position
+				int dx = dotLineBarLocationX - copy.x;
+				request.getMoveDelta().x += dx;
+				rect.x += dx;
+			}
+		} else {
+			while (!executionSpecificationList.isEmpty()) {
+				Rectangle parentBounds = parentBar.getFigure().getBounds();
+				int width = parentBounds.width > 0 ? parentBounds.width : DEFAUT_WIDTH;
+				int x = parentBounds.x + width / 2 + 1; // affixed to the parent bar
+				int dx = x - copy.x;
+				rect.x += dx;
+				request.getMoveDelta().x += dx;
+				copy.x = x;
+				// check again to see if the new bar location overlaps with existing bars
+				ShapeNodeEditPart part = OLDLifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
+				if (part == parentBar) {
+					break;
+				} else {
+					// if overlaps, go on moving the bar to next x position
+					parentBar = part;
+				}
+			}
+		}
+		return parentBar;
+	}
 
 	// /**
 	// * Override for add elements on ExecutionSpecification

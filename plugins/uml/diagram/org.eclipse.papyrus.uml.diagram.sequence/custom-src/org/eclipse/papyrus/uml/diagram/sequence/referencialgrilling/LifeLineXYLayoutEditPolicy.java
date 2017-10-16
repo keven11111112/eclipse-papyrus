@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 526079
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -160,14 +160,12 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#showLayoutTargetFeedback(org.eclipse.gef.Request)
-	 *
-	 * @param request
 	 */
 	@Override
 	protected void showLayoutTargetFeedback(Request request) {
-
-
 		// feed back during the creation from the palette
 		RootEditPart drep = getHost().getRoot();
 		Rectangle parentBound = getHostFigure().getBounds().getCopy();
@@ -183,15 +181,9 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 					int modulo = AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT / (int) spacing;
 					((CreateRequest) request).setSize(new Dimension(AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH, modulo * (int) spacing));
 
-
 					displayEvent.addFigureEvent(getHostFigure().getParent().getParent(), ((CreateRequest) request).getLocation());
 				}
 
-			}
-
-			if (request instanceof ChangeBoundsRequest) {
-				// test
-				((ChangeBoundsRequest) request).setMoveDelta(new Point(0, ((ChangeBoundsRequest) request).getMoveDelta().y));
 			}
 		}
 
