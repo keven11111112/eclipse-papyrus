@@ -68,6 +68,24 @@ public interface UMLExpressionsFactory extends EFactory {
 	IsKindOfExpression createIsKindOfExpression();
 
 	/**
+	 * Returns a new object of class '<em>Is Kind Of Stereotype Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Is Kind Of Stereotype Expression</em>'.
+	 * @generated
+	 */
+	IsKindOfStereotypeExpression createIsKindOfStereotypeExpression();
+
+	/**
+	 * Returns a new object of class '<em>Is Type Of Stereotype Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Is Type Of Stereotype Expression</em>'.
+	 * @generated
+	 */
+	IsTypeOfStereotypeExpression createIsTypeOfStereotypeExpression();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

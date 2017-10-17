@@ -97,6 +97,14 @@ public class UMLExpressionsAdapterFactory extends AdapterFactoryImpl {
 				return createIsKindOfExpressionAdapter();
 			}
 			@Override
+			public Adapter caseIsKindOfStereotypeExpression(IsKindOfStereotypeExpression object) {
+				return createIsKindOfStereotypeExpressionAdapter();
+			}
+			@Override
+			public Adapter caseIsTypeOfStereotypeExpression(IsTypeOfStereotypeExpression object) {
+				return createIsTypeOfStereotypeExpressionAdapter();
+			}
+			@Override
 			public Adapter caseIBasicExpressionElement(IBasicExpressionElement object) {
 				return createIBasicExpressionElementAdapter();
 			}
@@ -185,6 +193,34 @@ public class UMLExpressionsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIsKindOfExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfStereotypeExpression <em>Is Kind Of Stereotype Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfStereotypeExpression
+	 * @generated
+	 */
+	public Adapter createIsKindOfStereotypeExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfStereotypeExpression <em>Is Type Of Stereotype Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfStereotypeExpression
+	 * @generated
+	 */
+	public Adapter createIsTypeOfStereotypeExpressionAdapter() {
 		return null;
 	}
 

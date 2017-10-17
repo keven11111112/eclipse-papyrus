@@ -14,8 +14,10 @@ package org.eclipse.papyrus.uml.expressions.umlexpressions.custom;
 
 import org.eclipse.papyrus.uml.expressions.umlexpressions.HasAppliedStereotypesExpression;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfExpression;
+import org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfStereotypeExpression;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.IsStereotypedWithExpression;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfExpression;
+import org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfStereotypeExpression;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsFactoryImpl;
 
 /**
@@ -65,5 +67,29 @@ public class CustomUMLExpressionsFactory extends UMLExpressionsFactoryImpl {
 	@Override
 	public IsTypeOfExpression createIsTypeOfExpression() {
 		return new CustomIsTypeOfExpression();
+	}
+	
+	/***
+	 * 
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsFactoryImpl#createIsKindOfStereotypeExpression()
+	 *
+	 * @return
+	 */
+	@Override
+	public IsKindOfStereotypeExpression createIsKindOfStereotypeExpression() {
+		
+		return new CustomIsKindOfStereotypeExpression();
+	}
+
+	/***
+	 * 
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsFactoryImpl#createIsTypeOfStereotypeExpression()
+	 *
+	 * @return
+	 */
+	@Override
+	public IsTypeOfStereotypeExpression createIsTypeOfStereotypeExpression() {
+		
+		return new CustomIsTypeOfStereotypeExpression();
 	}
 }

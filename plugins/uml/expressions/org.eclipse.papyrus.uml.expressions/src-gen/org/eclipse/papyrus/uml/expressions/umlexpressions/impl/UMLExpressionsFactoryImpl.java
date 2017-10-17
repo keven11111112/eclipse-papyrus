@@ -70,6 +70,8 @@ public class UMLExpressionsFactoryImpl extends EFactoryImpl implements UMLExpres
 			case UMLExpressionsPackage.HAS_APPLIED_STEREOTYPES_EXPRESSION: return createHasAppliedStereotypesExpression();
 			case UMLExpressionsPackage.IS_TYPE_OF_EXPRESSION: return createIsTypeOfExpression();
 			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION: return createIsKindOfExpression();
+			case UMLExpressionsPackage.IS_KIND_OF_STEREOTYPE_EXPRESSION: return createIsKindOfStereotypeExpression();
+			case UMLExpressionsPackage.IS_TYPE_OF_STEREOTYPE_EXPRESSION: return createIsTypeOfStereotypeExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -113,6 +115,26 @@ public class UMLExpressionsFactoryImpl extends EFactoryImpl implements UMLExpres
 	public IsKindOfExpression createIsKindOfExpression() {
 		IsKindOfExpressionImpl isKindOfExpression = new IsKindOfExpressionImpl();
 		return isKindOfExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IsKindOfStereotypeExpression createIsKindOfStereotypeExpression() {
+		IsKindOfStereotypeExpressionImpl isKindOfStereotypeExpression = new IsKindOfStereotypeExpressionImpl();
+		return isKindOfStereotypeExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IsTypeOfStereotypeExpression createIsTypeOfStereotypeExpression() {
+		IsTypeOfStereotypeExpressionImpl isTypeOfStereotypeExpression = new IsTypeOfStereotypeExpressionImpl();
+		return isTypeOfStereotypeExpression;
 	}
 
 	/**

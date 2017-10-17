@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.papyrus.infra.properties;bundle-version="[3.0.0,4.0.
  org.eclipse.ui;bundle-version="[3.107.0,4.0.0)",
  org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.infra.properties.ui;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.uml.expressions;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.uml.expressions;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.tools;bundle-version="[3.0.0,4.0.0)"
 Bundle-Activator: org.eclipse.papyrus.uml.expressions.properties.Activator
 Bundle-Description: This plugin provides properties views for the UML Expressions.

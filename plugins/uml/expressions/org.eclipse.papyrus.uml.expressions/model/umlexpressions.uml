@@ -25,6 +25,16 @@ The evaluate method returns FALSE when the argument is not an instance of UML::E
 &lt;p>If the metaclass is not defined, the evaluate method returns False.&lt;/p>
 </body>
     </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_138WwK80EeemetdP4I8Ciw" annotatedElement="_f3yHsK8zEeemetdP4I8Ciw">
+      <body>This expression is used to ckech if a UML object is stereotyped with the expected stereotype.&#xD;
+The evaluate method returns TRUE when the object is stereotyped by the stereotype identified by its qualified name&#xD;
+</body>
+    </ownedComment>
+    <ownedComment xmi:type="uml:Comment" xmi:id="_VcHvMK81EeemetdP4I8Ciw" annotatedElement="_To5I8K8zEeemetdP4I8Ciw">
+      <body>This expression is used to ckech if a UML object is stereotyped with the expected stereotype or with a stereotype instance of the expected stereotype.&#xD;
+The evaluate method returns TRUE when the object is stereotyped by the stereotype identified by its qualified name or by a stereotype instanceof the identified stereotype&#xD;
+</body>
+    </ownedComment>
     <packageImport xmi:type="uml:PackageImport" xmi:id="_xqIOQCTWEeehXLEpOVl1Ig">
       <importedPackage xmi:type="uml:Model" href="pathmap://EXPRESSIONS//expressions.uml#_s7iicBUjEee_D4EhwjboOQ"/>
     </packageImport>
@@ -75,6 +85,38 @@ The URI can be null or empty. In this case, we don't check the URI of the profil
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HrIz0izZEeeKOdJYr-htag" value="1"/>
       </ownedAttribute>
       <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_fi8WcCzZEeeKOdJYr-htag" client="_89wEECzYEeeKOdJYr-htag">
+        <supplier xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+        <contract xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+      </interfaceRealization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_To5I8K8zEeemetdP4I8Ciw" name="IsTypeOfStereotypeExpression">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ucH64K8zEeemetdP4I8Ciw" name="stereotypeQualifiedName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_5UpjoK8zEeemetdP4I8Ciw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5UytkK8zEeemetdP4I8Ciw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ETqgAK9iEeexsdIvvO0f9g" name="profileURI">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I-6HIK9iEeexsdIvvO0f9g"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I-6HIa9iEeexsdIvvO0f9g" value="1"/>
+      </ownedAttribute>
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_QTxyAK9ZEeexsdIvvO0f9g" client="_To5I8K8zEeemetdP4I8Ciw">
+        <supplier xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+        <contract xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
+      </interfaceRealization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_f3yHsK8zEeemetdP4I8Ciw" name="IsKindOfStereotypeExpression">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_8u2ZoK8zEeemetdP4I8Ciw" name="stereotypeQualifiedName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__VUsoK8zEeemetdP4I8Ciw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__Vd2kK8zEeemetdP4I8Ciw" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_KAjxYK9iEeexsdIvvO0f9g" name="profileURI">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LraJoK9iEeexsdIvvO0f9g"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LraJoa9iEeexsdIvvO0f9g" value="1"/>
+      </ownedAttribute>
+      <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_RvOcUK9ZEeexsdIvvO0f9g" client="_f3yHsK8zEeemetdP4I8Ciw">
         <supplier xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
         <contract xmi:type="uml:Interface" href="pathmap://EXPRESSIONS//expressions.uml#_P-MkYBVaEee_D4EhwjboOQ"/>
       </interfaceRealization>

@@ -25,6 +25,18 @@
     <sections xmi:id="_xcG1xCzsEeeKOdJYr-htag" name="Multiple IsKindOfExpression" sectionFile="ui/MultipleIsKindOfExpression.xwt">
       <widget href="ui/MultipleIsKindOfExpression.xwt#/"/>
     </sections>
+    <sections xmi:id="_4_Dq4q_zEeeaV7Cy9TCK-g" name="Single IsKindOfStereotypeExpression" sectionFile="ui/SingleIsKindOfStereotypeExpression.xwt">
+      <widget href="ui/SingleIsKindOfStereotypeExpression.xwt#/"/>
+    </sections>
+    <sections xmi:id="_4_Dq46_zEeeaV7Cy9TCK-g" name="Single IsTypeOfStereotypeExpression" sectionFile="ui/SingleIsTypeOfStereotypeExpression.xwt">
+      <widget href="ui/SingleIsTypeOfStereotypeExpression.xwt#/"/>
+    </sections>
+    <sections xmi:id="_4_Dq6K_zEeeaV7Cy9TCK-g" name="Multiple IsKindOfStereotypeExpression" sectionFile="ui/MultipleIsKindOfStereotypeExpression.xwt">
+      <widget href="ui/MultipleIsKindOfStereotypeExpression.xwt#/"/>
+    </sections>
+    <sections xmi:id="_4_Dq6a_zEeeaV7Cy9TCK-g" name="Multiple IsTypeOfStereotypeExpression" sectionFile="ui/MultipleIsTypeOfStereotypeExpression.xwt">
+      <widget href="ui/MultipleIsTypeOfStereotypeExpression.xwt#/"/>
+    </sections>
   </tabs>
   <views xmi:id="_wsjoISzsEeeKOdJYr-htag" name="Single IsStereotypedWithExpression" sections="_xcGOsSzsEeeKOdJYr-htag" automaticContext="true" datacontexts="_wsjoQizsEeeKOdJYr-htag">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_wsjoIizsEeeKOdJYr-htag" name="isSingleIsStereotypedWithExpression">
@@ -52,6 +64,20 @@
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_wsjoLyzsEeeKOdJYr-htag" name="nsUri" value="http://www.eclipse.org/papyrus/umlexpressions"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_wsjoMCzsEeeKOdJYr-htag" name="className" value="IsKindOfExpression"/>
+    </constraints>
+  </views>
+  <views xmi:id="_xy4_Ma_zEeeaV7Cy9TCK-g" name="Single IsKindOfStereotypeExpression" sections="_4_Dq4q_zEeeaV7Cy9TCK-g" automaticContext="true" datacontexts="_xy4_Wq_zEeeaV7Cy9TCK-g">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_xy4_Mq_zEeeaV7Cy9TCK-g" name="isSingleIsKindOfStereotypeExpression">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_xy4_M6_zEeeaV7Cy9TCK-g" name="nsUri" value="http://www.eclipse.org/papyrus/umlexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_xy4_NK_zEeeaV7Cy9TCK-g" name="className" value="IsKindOfStereotypeExpression"/>
+    </constraints>
+  </views>
+  <views xmi:id="_xy4_Na_zEeeaV7Cy9TCK-g" name="Single IsTypeOfStereotypeExpression" sections="_4_Dq46_zEeeaV7Cy9TCK-g" automaticContext="true" datacontexts="_xy4_Xa_zEeeaV7Cy9TCK-g">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_xy4_Nq_zEeeaV7Cy9TCK-g" name="isSingleIsTypeOfStereotypeExpression">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_xy4_N6_zEeeaV7Cy9TCK-g" name="nsUri" value="http://www.eclipse.org/papyrus/umlexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_xy4_OK_zEeeaV7Cy9TCK-g" name="className" value="IsTypeOfStereotypeExpression"/>
     </constraints>
   </views>
   <views xmi:id="_wsjoMSzsEeeKOdJYr-htag" elementMultiplicity="-1" name="Multiple IsStereotypedWithExpression" sections="_xcG1wSzsEeeKOdJYr-htag" automaticContext="true" datacontexts="_wsjoQizsEeeKOdJYr-htag">
@@ -82,6 +108,20 @@
       <properties xsi:type="constraints:ValueProperty" xmi:id="_wsjoQCzsEeeKOdJYr-htag" name="nsUri" value="http://www.eclipse.org/papyrus/umlexpressions"/>
     </constraints>
   </views>
+  <views xmi:id="_xy4_Sa_zEeeaV7Cy9TCK-g" elementMultiplicity="-1" name="Multiple IsKindOfStereotypeExpression" sections="_4_Dq6K_zEeeaV7Cy9TCK-g" automaticContext="true" datacontexts="_xy4_Wq_zEeeaV7Cy9TCK-g">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_xy4_Sq_zEeeaV7Cy9TCK-g" name="isMultipleIsKindOfStereotypeExpression">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_xy4_S6_zEeeaV7Cy9TCK-g" name="className" value="IsKindOfStereotypeExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_xy4_TK_zEeeaV7Cy9TCK-g" name="nsUri" value="http://www.eclipse.org/papyrus/umlexpressions"/>
+    </constraints>
+  </views>
+  <views xmi:id="_xy4_Ta_zEeeaV7Cy9TCK-g" elementMultiplicity="-1" name="Multiple IsTypeOfStereotypeExpression" sections="_4_Dq6a_zEeeaV7Cy9TCK-g" automaticContext="true" datacontexts="_xy4_Xa_zEeeaV7Cy9TCK-g">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_xy4_Tq_zEeeaV7Cy9TCK-g" name="isMultipleIsTypeOfStereotypeExpression">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_xy4_T6_zEeeaV7Cy9TCK-g" name="className" value="IsTypeOfStereotypeExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_xy4_UK_zEeeaV7Cy9TCK-g" name="nsUri" value="http://www.eclipse.org/papyrus/umlexpressions"/>
+    </constraints>
+  </views>
   <dataContexts xmi:id="_wsjoQSzsEeeKOdJYr-htag" name="umlexpressions" label="umlexpressions">
     <supertypes href="platform:/plugin/org.eclipse.papyrus.infra.emf.expressions.properties/properties/expressions.ctx#_TD6UmSq7EeeggtQf9kdCWQ"/>
     <elements xmi:id="_wsjoQizsEeeKOdJYr-htag" name="IsStereotypedWithExpression">
@@ -98,6 +138,16 @@
     </elements>
     <elements xmi:id="_wsjoSCzsEeeKOdJYr-htag" name="IsKindOfExpression">
       <properties xmi:id="_wsjoSSzsEeeKOdJYr-htag" name="umlEClass" type="Reference"/>
+      <supertypes href="platform:/plugin/org.eclipse.papyrus.infra.emf.expressions.properties/properties/expressions.ctx#_TD6Upiq7EeeggtQf9kdCWQ"/>
+    </elements>
+    <elements xmi:id="_xy4_Wq_zEeeaV7Cy9TCK-g" name="IsKindOfStereotypeExpression">
+      <properties xmi:id="_xy4_W6_zEeeaV7Cy9TCK-g" name="stereotypeQualifiedName"/>
+      <properties xmi:id="_xy4_XK_zEeeaV7Cy9TCK-g" name="profileURI"/>
+      <supertypes href="platform:/plugin/org.eclipse.papyrus.infra.emf.expressions.properties/properties/expressions.ctx#_TD6Upiq7EeeggtQf9kdCWQ"/>
+    </elements>
+    <elements xmi:id="_xy4_Xa_zEeeaV7Cy9TCK-g" name="IsTypeOfStereotypeExpression">
+      <properties xmi:id="_xy4_Xq_zEeeaV7Cy9TCK-g" name="stereotypeQualifiedName"/>
+      <properties xmi:id="_xy4_X6_zEeeaV7Cy9TCK-g" name="profileURI"/>
       <supertypes href="platform:/plugin/org.eclipse.papyrus.infra.emf.expressions.properties/properties/expressions.ctx#_TD6Upiq7EeeggtQf9kdCWQ"/>
     </elements>
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@modelElementFactories.0"/>

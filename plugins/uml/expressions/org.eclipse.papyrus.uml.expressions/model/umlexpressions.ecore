@@ -41,4 +41,22 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="umlEClass" ordered="false"
         eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsKindOfStereotypeExpression" eSuperTypes="../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.ecore#//booleanexpressions/IBooleanEObjectExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This expression is used to ckech if a UML object is stereotyped with the expected stereotype.&#xD;&#xA;The evaluate method returns TRUE when the object is stereotyped by the stereotype identified by its qualified name&#xD;&#xA;"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotypeQualifiedName"
+        ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="profileURI" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IsTypeOfStereotypeExpression" eSuperTypes="../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.ecore#//booleanexpressions/IBooleanEObjectExpression">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This expression is used to ckech if a UML object is stereotyped with the expected stereotype or with a stereotype instance of the expected stereotype.&#xD;&#xA;The evaluate method returns TRUE when the object is stereotyped by the stereotype identified by its qualified name or by a stereotype instanceof the identified stereotype&#xD;&#xA;"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotypeQualifiedName"
+        ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="profileURI" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>
