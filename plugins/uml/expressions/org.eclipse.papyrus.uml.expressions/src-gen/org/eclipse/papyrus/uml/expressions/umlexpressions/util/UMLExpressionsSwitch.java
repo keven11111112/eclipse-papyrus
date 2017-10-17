@@ -119,6 +119,26 @@ public class UMLExpressionsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case UMLExpressionsPackage.IS_KIND_OF_STEREOTYPE_EXPRESSION: {
+				IsKindOfStereotypeExpression isKindOfStereotypeExpression = (IsKindOfStereotypeExpression)theEObject;
+				T result = caseIsKindOfStereotypeExpression(isKindOfStereotypeExpression);
+				if (result == null) result = caseIBooleanEObjectExpression(isKindOfStereotypeExpression);
+				if (result == null) result = caseIBooleanExpression(isKindOfStereotypeExpression);
+				if (result == null) result = caseIExpression(isKindOfStereotypeExpression);
+				if (result == null) result = caseIBasicExpressionElement(isKindOfStereotypeExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UMLExpressionsPackage.IS_TYPE_OF_STEREOTYPE_EXPRESSION: {
+				IsTypeOfStereotypeExpression isTypeOfStereotypeExpression = (IsTypeOfStereotypeExpression)theEObject;
+				T result = caseIsTypeOfStereotypeExpression(isTypeOfStereotypeExpression);
+				if (result == null) result = caseIBooleanEObjectExpression(isTypeOfStereotypeExpression);
+				if (result == null) result = caseIBooleanExpression(isTypeOfStereotypeExpression);
+				if (result == null) result = caseIExpression(isTypeOfStereotypeExpression);
+				if (result == null) result = caseIBasicExpressionElement(isTypeOfStereotypeExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -180,6 +200,36 @@ public class UMLExpressionsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIsKindOfExpression(IsKindOfExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Is Kind Of Stereotype Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Is Kind Of Stereotype Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIsKindOfStereotypeExpression(IsKindOfStereotypeExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Is Type Of Stereotype Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Is Type Of Stereotype Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIsTypeOfStereotypeExpression(IsTypeOfStereotypeExpression object) {
 		return null;
 	}
 

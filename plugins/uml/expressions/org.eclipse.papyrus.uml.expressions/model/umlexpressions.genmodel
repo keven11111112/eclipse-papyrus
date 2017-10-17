@@ -50,5 +50,13 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference umlexpressions.ecore#//IsKindOfExpression/umlEClass"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsKindOfStereotypeExpression">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//IsKindOfStereotypeExpression/stereotypeQualifiedName"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//IsKindOfStereotypeExpression/profileURI"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsTypeOfStereotypeExpression">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//IsTypeOfStereotypeExpression/stereotypeQualifiedName"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//IsTypeOfStereotypeExpression/profileURI"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

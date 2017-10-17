@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_ozrgMCgyEeeoAJG6t_MwCA" name="RootElement" metaclassReference="_tOxygCgyEeeoAJG6t_MwCA _1_y8MCgyEeeoAJG6t_MwCA">
   <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_41FuUCgyEeeoAJG6t_MwCA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_dHQ5QLAiEee43bo6S9i5Mw" name="RootElement" nsURI="http:///schemas/RootElement/_dHIWYLAiEee43bo6S9i5Mw/5" nsPrefix="RootElement">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dHT8kLAiEee43bo6S9i5Mw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dHT8kbAiEee43bo6S9i5Mw" key="Version" value="0.0.6"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dHT8krAiEee43bo6S9i5Mw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dHT8k7AiEee43bo6S9i5Mw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dHT8lLAiEee43bo6S9i5Mw" key="Date" value="2017-10-13"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dHT8lbAiEee43bo6S9i5Mw" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_dHQ5QbAiEee43bo6S9i5Mw" name="ANiceStereotypeForElement">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dHQ5QrAiEee43bo6S9i5Mw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_t8ksoCgyEeeoAJG6t_MwCA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_dHQ5Q7AiEee43bo6S9i5Mw" name="base_Element" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_dHQ5RbAiEee43bo6S9i5Mw" name="ANiceStereotypeForProperty">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dHQ5RrAiEee43bo6S9i5Mw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_yokhsCgyEeeoAJG6t_MwCA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_dHQ5R7AiEee43bo6S9i5Mw" name="base_Property" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_dHQ5SbAiEee43bo6S9i5Mw" name="AChildNiceStereotypeForElement" eSuperTypes="_dHQ5QbAiEee43bo6S9i5Mw">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dHQ5SrAiEee43bo6S9i5Mw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WW0gMLAiEee43bo6S9i5Mw"/>
+      </eClassifiers>
+    </contents>
     <contents xmi:type="ecore:EPackage" xmi:id="_AgGB4C8oEeexfKc2E3OwJQ" name="RootElement" nsURI="http:///schemas/RootElement/_AgCXgC8oEeexfKc2E3OwJQ/4" nsPrefix="RootElement">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_AgH3Ei8oEeexfKc2E3OwJQ" source="PapyrusVersion">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_AgIeIC8oEeexfKc2E3OwJQ" key="Version" value="0.0.5"/>
@@ -128,5 +152,8 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Extension" xmi:id="_4GMA8CgyEeeoAJG6t_MwCA" name="E_ANiceStereotypeForProperty_Property1" memberEnd="_4GMoACgyEeeoAJG6t_MwCA _4GNPECgyEeeoAJG6t_MwCA">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_4GMoACgyEeeoAJG6t_MwCA" name="extension_ANiceStereotypeForProperty" type="_yokhsCgyEeeoAJG6t_MwCA" aggregation="composite" association="_4GMA8CgyEeeoAJG6t_MwCA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_WW0gMLAiEee43bo6S9i5Mw" name="AChildNiceStereotypeForElement">
+    <generalization xmi:type="uml:Generalization" xmi:id="_XeTssLAiEee43bo6S9i5Mw" general="_t8ksoCgyEeeoAJG6t_MwCA"/>
   </packagedElement>
 </uml:Profile>

@@ -76,3 +76,19 @@ After defining these main objects required to write boolean expression, we provi
 ***''UML Metaclass'': the expected UML metaclass.
 **semantic: returns <code>true</code> when the evaluated element is an instance of the excepted metaclass. So for subtypes, of the expected metaclass, we return <code>true</code> too.
 **default value: we return <code>false</code> when the ''UML Metaclass'' is not defined.
+
+*'''IsTypeOfStereotypeExpression'''
+**parameters:
+***''stereotype identifier'': the qualified name of the stereotype,
+***''profile URI'': the URI of the top profile owning the stereotype, not mandatory.
+**semantic: this expression returns <code>true</code> when the stereotype is applied on the element. If the ''profile URI'' is defined, we check that the stereotype comes from the expected profile.
+**default value:
+*** we return <code>false</code>, if the stereotype identifier is not defined.
+
+*'''IsKindOfStereotypeExpression'''
+**parameters:
+***''stereotype identifier'': the qualified name of the stereotype,
+***''profile URI'': the URI of the top profile owning the stereotype, not mandatory.
+**semantic: this expression returns <code>true</code> when the stereotype applied on the context element is a Kind of the identified stereotype. So for element stereotyped by a stereotype that generalize the expected stereotype, we return <code>true</code>. If the ''profile URI'' is defined, we check that the stereotype comes from the expected profile.
+**default value:
+*** we return <code>false</code>, if the stereotype identifier is not defined.

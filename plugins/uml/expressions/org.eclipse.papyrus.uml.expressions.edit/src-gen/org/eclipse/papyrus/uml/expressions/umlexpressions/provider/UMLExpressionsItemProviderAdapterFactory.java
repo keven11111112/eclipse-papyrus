@@ -37,7 +37,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionCatalog;
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AndExpression;
@@ -199,6 +198,52 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfStereotypeExpression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IsKindOfStereotypeExpressionItemProvider isKindOfStereotypeExpressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfStereotypeExpression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIsKindOfStereotypeExpressionAdapter() {
+		if (isKindOfStereotypeExpressionItemProvider == null) {
+			isKindOfStereotypeExpressionItemProvider = new IsKindOfStereotypeExpressionItemProvider(this);
+		}
+
+		return isKindOfStereotypeExpressionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfStereotypeExpression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IsTypeOfStereotypeExpressionItemProvider isTypeOfStereotypeExpressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfStereotypeExpression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIsTypeOfStereotypeExpressionAdapter() {
+		if (isTypeOfStereotypeExpressionItemProvider == null) {
+			isTypeOfStereotypeExpressionItemProvider = new IsTypeOfStereotypeExpressionItemProvider(this);
+		}
+
+		return isTypeOfStereotypeExpressionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -328,6 +373,8 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 		if (hasAppliedStereotypesExpressionItemProvider != null) hasAppliedStereotypesExpressionItemProvider.dispose();
 		if (isTypeOfExpressionItemProvider != null) isTypeOfExpressionItemProvider.dispose();
 		if (isKindOfExpressionItemProvider != null) isKindOfExpressionItemProvider.dispose();
+		if (isKindOfStereotypeExpressionItemProvider != null) isKindOfStereotypeExpressionItemProvider.dispose();
+		if (isTypeOfStereotypeExpressionItemProvider != null) isTypeOfStereotypeExpressionItemProvider.dispose();
 	}
 
 	/**
@@ -396,6 +443,16 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 					(createChildParameter
 						(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
 						 UMLExpressionsFactory.eINSTANCE.createIsKindOfExpression()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
+						 UMLExpressionsFactory.eINSTANCE.createIsKindOfStereotypeExpression()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
+						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfStereotypeExpression()));
 
 				return null;
 			}
@@ -499,8 +556,19 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 						(BooleanExpressionsPackage.Literals.OR_EXPRESSION__OWNED_EXPRESSIONS,
 						 UMLExpressionsFactory.eINSTANCE.createIsKindOfExpression()));
 
+				newChildDescriptors.add
+					(createChildParameter
+						(BooleanExpressionsPackage.Literals.OR_EXPRESSION__OWNED_EXPRESSIONS,
+						 UMLExpressionsFactory.eINSTANCE.createIsKindOfStereotypeExpression()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(BooleanExpressionsPackage.Literals.OR_EXPRESSION__OWNED_EXPRESSIONS,
+						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfStereotypeExpression()));
+
 				return null;
 			}
+ 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -528,8 +596,19 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 						(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
 						 UMLExpressionsFactory.eINSTANCE.createIsKindOfExpression()));
 
+				newChildDescriptors.add
+					(createChildParameter
+						(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+						 UMLExpressionsFactory.eINSTANCE.createIsKindOfStereotypeExpression()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfStereotypeExpression()));
+
 				return null;
 			}
+ 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -557,8 +636,19 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 						(BooleanExpressionsPackage.Literals.NOT_EXPRESSION__OWNED_EXPRESSION,
 						 UMLExpressionsFactory.eINSTANCE.createIsKindOfExpression()));
 
+				newChildDescriptors.add
+					(createChildParameter
+						(BooleanExpressionsPackage.Literals.NOT_EXPRESSION__OWNED_EXPRESSION,
+						 UMLExpressionsFactory.eINSTANCE.createIsKindOfStereotypeExpression()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(BooleanExpressionsPackage.Literals.NOT_EXPRESSION__OWNED_EXPRESSION,
+						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfStereotypeExpression()));
+
 				return null;
 			}
+ 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

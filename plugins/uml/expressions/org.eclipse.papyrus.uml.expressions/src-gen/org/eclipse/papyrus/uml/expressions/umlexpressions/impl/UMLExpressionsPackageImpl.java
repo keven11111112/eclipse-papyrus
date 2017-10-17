@@ -22,8 +22,10 @@ import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.HasAppliedStereotypesExpression;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfExpression;
+import org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfStereotypeExpression;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.IsStereotypedWithExpression;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfExpression;
+import org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfStereotypeExpression;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsFactory;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsPackage;
 
@@ -61,6 +63,20 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * @generated
 	 */
 	private EClass isKindOfExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass isKindOfStereotypeExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass isTypeOfStereotypeExpressionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -204,6 +220,60 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getIsKindOfStereotypeExpression() {
+		return isKindOfStereotypeExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIsKindOfStereotypeExpression_StereotypeQualifiedName() {
+		return (EAttribute)isKindOfStereotypeExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIsKindOfStereotypeExpression_ProfileURI() {
+		return (EAttribute)isKindOfStereotypeExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIsTypeOfStereotypeExpression() {
+		return isTypeOfStereotypeExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIsTypeOfStereotypeExpression_StereotypeQualifiedName() {
+		return (EAttribute)isTypeOfStereotypeExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIsTypeOfStereotypeExpression_ProfileURI() {
+		return (EAttribute)isTypeOfStereotypeExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public UMLExpressionsFactory getUMLExpressionsFactory() {
 		return (UMLExpressionsFactory)getEFactoryInstance();
 	}
@@ -238,6 +308,14 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 
 		isKindOfExpressionEClass = createEClass(IS_KIND_OF_EXPRESSION);
 		createEReference(isKindOfExpressionEClass, IS_KIND_OF_EXPRESSION__UML_ECLASS);
+
+		isKindOfStereotypeExpressionEClass = createEClass(IS_KIND_OF_STEREOTYPE_EXPRESSION);
+		createEAttribute(isKindOfStereotypeExpressionEClass, IS_KIND_OF_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME);
+		createEAttribute(isKindOfStereotypeExpressionEClass, IS_KIND_OF_STEREOTYPE_EXPRESSION__PROFILE_URI);
+
+		isTypeOfStereotypeExpressionEClass = createEClass(IS_TYPE_OF_STEREOTYPE_EXPRESSION);
+		createEAttribute(isTypeOfStereotypeExpressionEClass, IS_TYPE_OF_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME);
+		createEAttribute(isTypeOfStereotypeExpressionEClass, IS_TYPE_OF_STEREOTYPE_EXPRESSION__PROFILE_URI);
 	}
 
 	/**
@@ -276,6 +354,8 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 		hasAppliedStereotypesExpressionEClass.getESuperTypes().add(theBooleanExpressionsPackage.getIBooleanEObjectExpression());
 		isTypeOfExpressionEClass.getESuperTypes().add(theBooleanExpressionsPackage.getIBooleanEObjectExpression());
 		isKindOfExpressionEClass.getESuperTypes().add(theBooleanExpressionsPackage.getIBooleanEObjectExpression());
+		isKindOfStereotypeExpressionEClass.getESuperTypes().add(theBooleanExpressionsPackage.getIBooleanEObjectExpression());
+		isTypeOfStereotypeExpressionEClass.getESuperTypes().add(theBooleanExpressionsPackage.getIBooleanEObjectExpression());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(isStereotypedWithExpressionEClass, IsStereotypedWithExpression.class, "IsStereotypedWithExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -289,6 +369,14 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 
 		initEClass(isKindOfExpressionEClass, IsKindOfExpression.class, "IsKindOfExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getIsKindOfExpression_UmlEClass(), theEcorePackage.getEClass(), null, "umlEClass", null, 0, 1, IsKindOfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(isKindOfStereotypeExpressionEClass, IsKindOfStereotypeExpression.class, "IsKindOfStereotypeExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getIsKindOfStereotypeExpression_StereotypeQualifiedName(), ecorePackage.getEString(), "stereotypeQualifiedName", null, 0, 1, IsKindOfStereotypeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getIsKindOfStereotypeExpression_ProfileURI(), ecorePackage.getEString(), "profileURI", null, 0, 1, IsKindOfStereotypeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(isTypeOfStereotypeExpressionEClass, IsTypeOfStereotypeExpression.class, "IsTypeOfStereotypeExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getIsTypeOfStereotypeExpression_StereotypeQualifiedName(), ecorePackage.getEString(), "stereotypeQualifiedName", null, 0, 1, IsTypeOfStereotypeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getIsTypeOfStereotypeExpression_ProfileURI(), ecorePackage.getEString(), "profileURI", null, 0, 1, IsTypeOfStereotypeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
