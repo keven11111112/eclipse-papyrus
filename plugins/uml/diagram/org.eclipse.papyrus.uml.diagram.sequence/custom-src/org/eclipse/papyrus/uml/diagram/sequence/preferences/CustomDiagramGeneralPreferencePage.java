@@ -11,6 +11,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
+import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
@@ -47,6 +48,20 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 	public static String PREF_EXECUTION_SPECIFICATION_SYNC_MSG = "PREF_EXECUTION_SPECIFICATION_SYNC_MSG"; //$NON-NLS-1$
 
 	/**
+	 * preference key to move up messages in the same time that message up.
+	 * 
+	 * @since 4.1
+	 */
+	public static final String PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP = "PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP"; //$NON-NLS-1$
+
+	/**
+	 * preference key to move down messages in the same time that message down.
+	 * 
+	 * @since 4.1
+	 */
+	public static final String PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN = "PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN"; //$NON-NLS-1$
+
+	/**
 	 * possible preference values
 	 */
 	public static final String CHOICE_BEHAVIOR_AND_REPLY = "CHOICE_BEHAVIOR_AND_REPLY"; //$NON-NLS-1$
@@ -81,6 +96,16 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 		createFieldEditors(composite);
 		addField(executionSpecificationWithSyncMsg);
 		addField(executionSpecificationWithAsyncMsg);
+
+		Group otherGroup = new Group(parent, SWT.NONE);
+		otherGroup.setLayout(new GridLayout(2, false));
+		GridData otherGroupGridData = new GridData(GridData.FILL_HORIZONTAL);
+		otherGroupGridData.grabExcessHorizontalSpace = true;
+		otherGroupGridData.horizontalSpan = 2;
+		otherGroup.setLayoutData(otherGroupGridData);
+		otherGroup.setText(Messages.CustomDiagramGeneralPreferencePage_othersGroupLabel);
+		addField(new BooleanFieldEditor(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN, Messages.CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageDownDescription, otherGroup));
+		addField(new BooleanFieldEditor(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP, Messages.CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageUpDescription, otherGroup));
 	}
 
 	/**
@@ -93,8 +118,8 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 		executionSpecificationWithSyncMsg = new RadioGroupFieldEditor(PREF_EXECUTION_SPECIFICATION_SYNC_MSG,
 				Messages.DiagramsPreferencePage_executionSpecificationWithSyncMsg_label, 1,
 				new String[][] {
-						// { Messages.DiagramsPreferencePage_createBehaviorExecutionSpecificationAndReply, CHOICE_BEHAVIOR_AND_REPLY },
-						// { Messages.DiagramsPreferencePage_createActionExecutionSpecificationAndReply, CHOICE_ACTION_AND_REPLY },
+						{ Messages.DiagramsPreferencePage_createBehaviorExecutionSpecificationAndReply, CHOICE_BEHAVIOR_AND_REPLY },
+						{ Messages.DiagramsPreferencePage_createActionExecutionSpecificationAndReply, CHOICE_ACTION_AND_REPLY },
 						{ Messages.DiagramsPreferencePage_createBehaviorExecutionSpecification, CHOICE_BEHAVIOR },
 						{ Messages.DiagramsPreferencePage_createActionExecutionSpecification, CHOICE_ACTION },
 						{ Messages.DiagramsPreferencePage_createNoExecutionSpecification, CHOICE_NONE }
@@ -118,11 +143,11 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 *            preferenceStore
 	 */
 	public static void initSpecificDefaults(IPreferenceStore preferenceStore) {
-		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_SYNC_MSG,
-				// CHOICE_BEHAVIOR_AND_REPLY);
-				CHOICE_BEHAVIOR);
-		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_ASYNC_MSG,
-				CHOICE_NONE);
+		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_SYNC_MSG, CHOICE_BEHAVIOR_AND_REPLY);
+		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_ASYNC_MSG, CHOICE_NONE);
+
+		preferenceStore.setDefault(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN, true);
+		preferenceStore.setDefault(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP, true);
 
 	}
 }

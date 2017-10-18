@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 526191
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -25,12 +25,19 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.IKeyPressState;
 import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.KeyboardListener;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.ui.PlatformUI;
 
@@ -47,6 +54,24 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 	protected boolean mustMove = true;
 
 	/**
+	 * The instance of listener of move message preference property change.
+	 */
+	private final MoveMessagePropertyChangeListener moveMessageListener = new MoveMessagePropertyChangeListener();
+
+	/**
+	 * The must move preference boolean. Set to true if messages below the current message must move up at the same time.
+	 * 
+	 * @since 4.1
+	 */
+	protected boolean mustMoveBelowAtMovingUp;
+	/**
+	 * The must move preference boolean. Set to true if messages below the current message must move down at the same time.
+	 * 
+	 * @since 4.1
+	 */
+	protected boolean mustMoveBelowAtMovingDown;
+
+	/**
 	 * Constructor.
 	 *
 	 */
@@ -60,12 +85,16 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		// activate listeners
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, SHIFTDown);
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, SHIFTUp);
+		mustMoveBelowAtMovingUp = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP);
+		mustMoveBelowAtMovingDown = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN);
+		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().addPropertyChangeListener(moveMessageListener);
 	}
 
 	@Override
 	public void deactivate() {
 		PlatformUI.getWorkbench().getDisplay().removeFilter(SWT.KeyDown, SHIFTDown);
 		PlatformUI.getWorkbench().getDisplay().removeFilter(SWT.KeyUp, SHIFTUp);
+		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().removePropertyChangeListener(moveMessageListener);
 		super.deactivate();
 	}
 
@@ -90,7 +119,7 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		reconnectRequest.setConnectionEditPart(connectionEditPart);
 		SenderRequestUtils.addRequestSenders(reconnectRequest, senderList);
 		SenderRequestUtils.addRequestSender(reconnectRequest, hostEditpart);
-		reconnectRequest.setLocation(new Point(100, location.y));
+		reconnectRequest.setLocation(location.getLocation().getCopy());
 		reconnectRequest.setType(reconnectType);
 		if (RequestConstants.REQ_RECONNECT_TARGET.equals(reconnectType)) {
 			reconnectRequest.setTargetEditPart(connectionEditPart.getTarget());
@@ -100,10 +129,14 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		return reconnectRequest;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.IKeyPressState#setKeyPressState(java.lang.Boolean)
+	 */
 	@Override
 	public void setKeyPressState(Boolean isPressed) {
 		mustMove = !isPressed;
-
 	}
 
 	/**
@@ -121,11 +154,21 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		SenderRequestUtils.addRequestSenders(changeBoundsRequest, senderList);
 		SenderRequestUtils.addRequestSender(changeBoundsRequest, hostEditPart);
 		GraphicalEditPart gEditPart = (GraphicalEditPart) editPartToMove;
-		changeBoundsRequest.setLocation(new Point(gEditPart.getFigure().getBounds().getTopLeft().x, gEditPart.getFigure().getBounds().getTopLeft().x + moveDelta.y()));
-		changeBoundsRequest.setEditParts(editPartToMove);
-		changeBoundsRequest.setMoveDelta(moveDelta);
-		changeBoundsRequest.setSizeDelta(new Dimension(0, 0));
-		compoundCommand.add(editPartToMove.getCommand(changeBoundsRequest));
+		Point newLocation = new Point(gEditPart.getFigure().getBounds().getTopLeft().x, gEditPart.getFigure().getBounds().getTopLeft().y + moveDelta.y());
+
+		if (editPartToMove.getParent() instanceof CLifeLineEditPart) {
+			// Translate to relative
+			int stickerHeight = ((CLifeLineEditPart) editPartToMove.getParent()).getStickerHeight();
+			if (newLocation.y >= stickerHeight) {
+				changeBoundsRequest.setLocation(newLocation);
+				changeBoundsRequest.setEditParts(editPartToMove);
+				changeBoundsRequest.setMoveDelta(moveDelta);
+				changeBoundsRequest.setSizeDelta(new Dimension(0, 0));
+				compoundCommand.add(editPartToMove.getCommand(changeBoundsRequest));
+			} else {
+				compoundCommand.add(UnexecutableCommand.INSTANCE);
+			}
+		}
 	}
 
 	/**
@@ -148,6 +191,7 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		Point positiononScreen = polyline.getTargetAnchor().getReferencePoint();
 		newAnchorPositionOnScreen = new Rectangle(positiononScreen.x, positiononScreen.y + moveDelta.y, 0, 0);
 		ReconnectRequest reconnectTargetRequest = createReconnectRequest(hostEditPart, connectionEditPart, newAnchorPositionOnScreen, senderList, RequestConstants.REQ_RECONNECT_TARGET);
+		reconnectTargetRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 		compoundCommand.add(connectionEditPart.getTarget().getCommand(reconnectTargetRequest));
 	}
 
@@ -156,7 +200,35 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		Point anchorPositionOnScreen = polyline.getSourceAnchor().getReferencePoint();
 		Rectangle newAnchorPositionOnScreen = new Rectangle(anchorPositionOnScreen.x, anchorPositionOnScreen.y + moveDelta.y, 0, 0);
 		ReconnectRequest reconnectSourceRequest = createReconnectRequest(hostEditPart, connectionEditPart, newAnchorPositionOnScreen, senderList, RequestConstants.REQ_RECONNECT_SOURCE);
+		reconnectSourceRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 		compoundCommand.add(connectionEditPart.getSource().getCommand(reconnectSourceRequest));
+	}
+
+	/**
+	 * Listener of move message preference property change.
+	 * 
+	 * @author Mickael ADAM
+	 */
+	private final class MoveMessagePropertyChangeListener implements IPropertyChangeListener {
+		/**
+		 * @see org.eclipse.jface.util.IPropertyChangeListener#propertyChange(org.eclipse.jface.util.PropertyChangeEvent)
+		 */
+		@Override
+		public void propertyChange(PropertyChangeEvent event) {
+			String property = event.getProperty();
+			switch (property) {
+			case CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP:
+				if (mustMoveBelowAtMovingUp != (boolean) event.getNewValue()) {
+					mustMoveBelowAtMovingUp = (boolean) event.getNewValue();
+				}
+				break;
+			case CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN:
+				if (mustMoveBelowAtMovingDown != (boolean) event.getNewValue()) {
+					mustMoveBelowAtMovingDown = (boolean) event.getNewValue();
+				}
+				break;
+			}
+		}
 	}
 
 }

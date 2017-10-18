@@ -8,12 +8,13 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 526191
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import org.eclipse.draw2d.geometry.Point;
@@ -76,12 +77,19 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 				Point anchorPositionOnScreen = polyline.getSourceAnchor().getReferencePoint();
 				moveDelta.y = reconnectRequest.getLocation().y - anchorPositionOnScreen.y;
 			}
-			if (moveDelta.y > 0 && mustMove) {
+			if (moveDelta.y != 0 && mustMove) {
 				if (hostConnectionEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
 					SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) hostConnectionEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
 					if (!SenderRequestUtils.isASender(request, getHost())) {
 						CompoundCommand compoundCommand = new CompoundCommand();
-						for (Iterator<EditPart> iterator = references.getWeakReferences().keySet().iterator(); iterator.hasNext();) {
+
+						// Gets weak references
+						HashMap<EditPart, String> weakReferences = new HashMap<EditPart, String>();
+						if ((moveDelta.y > 0 && mustMoveBelowAtMovingDown) || (moveDelta.y < 0 && mustMoveBelowAtMovingUp)) {
+							weakReferences.putAll(references.getWeakReferences());
+						}
+
+						for (Iterator<EditPart> iterator = weakReferences.keySet().iterator(); iterator.hasNext();) {
 							EditPart editPart = (EditPart) iterator.next();
 							if (!SenderRequestUtils.isASender(request, editPart)) {
 								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart);//$NON-NLS-1$

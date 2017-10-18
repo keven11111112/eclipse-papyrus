@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.RotatableDecoration;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 
 public class MessageAsync extends MessageFigure {
 
@@ -21,6 +22,15 @@ public class MessageAsync extends MessageFigure {
 	 */
 	public MessageAsync() {
 		super();
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param mapMode
+	 */
+	public MessageAsync(IMapMode mapMode) {
+		super(mapMode);
 	}
 
 	/**

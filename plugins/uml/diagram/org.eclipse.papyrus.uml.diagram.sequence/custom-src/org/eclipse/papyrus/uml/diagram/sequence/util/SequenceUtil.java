@@ -450,7 +450,10 @@ public class SequenceUtil {
 		return getAbsoluteEdgeExtremity(connection, isStart, false);
 	}
 
-	static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart, boolean relyOnMessageFigure) {
+	/**
+	 * @since 4.1
+	 */
+	public static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart, boolean relyOnMessageFigure) {
 		Connection msgFigure = connection.getConnectionFigure();
 		if (connection.getNotationView() instanceof Edge && !relyOnMessageFigure) {
 			// rather take up to date model information

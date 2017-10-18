@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756, 526191
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -27,6 +27,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -37,7 +38,7 @@ import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
@@ -423,22 +424,23 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * @param request
 	 *            The request of Message creation
 	 */
-	protected void forceHorizontalRequest(CreateConnectionViewAndElementRequest request) {
-		Map<String, Object> extendedData = request.getExtendedData();
-		Object sourceLocation = extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
-
-		// only message with a target lower than the source is allowed.
-		if (sourceLocation instanceof Point) {
-			Point sourceLocationPoint = (Point) sourceLocation;
-			Point targetLocation = request.getLocation();
-			// Check if the Connection can be considered as Horizontal
-			if (sourceLocationPoint.y() != targetLocation.y()) {
-				if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint())
-						|| isHorizontalConnection(sourceLocationPoint, targetLocation)) {
-					Point forceHorizontalPoint = new Point(targetLocation);
-					forceHorizontalPoint.setY(sourceLocationPoint.y());
-					// Update the request accordingly
-					request.setLocation(forceHorizontalPoint);
+	protected void forceHorizontalRequest(Request request) {
+		if (request instanceof CreateConnectionViewAndElementRequest) {
+			Map<String, Object> extendedData = request.getExtendedData();
+			Object sourceLocation = extendedData.get(RequestParameterConstants.EDGE_SOURCE_POINT);
+			// only message with a target lower than the source is allowed.
+			if (sourceLocation instanceof Point) {
+				Point sourceLocationPoint = (Point) sourceLocation;
+				Point targetLocation = ((CreateRequest) request).getLocation();
+				// Check if the Connection can be considered as Horizontal
+				if (sourceLocationPoint.y() != targetLocation.y()) {
+					if (((CreateConnectionViewAndElementRequest) request).getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint())
+							|| isHorizontalConnection(sourceLocationPoint, targetLocation)) {
+						Point forceHorizontalPoint = new Point(targetLocation);
+						forceHorizontalPoint.setY(sourceLocationPoint.y());
+						// Update the request accordingly
+						((CreateRequest) request).setLocation(forceHorizontalPoint);
+					}
 				}
 			}
 		}
@@ -645,6 +647,27 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	protected Command getReconnectSourceCommand(final ReconnectRequest request) {
 		// Snap to grid the request location
 		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
+		// Check if the target is lower than the source
+		Point targetLocation = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) request.getConnectionEditPart(), false, true);
+		if (!isTargetLowerThanSource(request.getLocation().getCopy(), targetLocation)) {
+			Object object = request.getExtendedData().get(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY);
+			if (!(object instanceof Boolean) || ((object instanceof Boolean) && !((Boolean) object))) {// If not HorizontalMove parameter true
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+
+		// check that the location is not at the header
+		NodeEditPart nodeEP = (NodeEditPart) request.getTarget();
+		if (nodeEP instanceof CLifeLineEditPart) {
+			Point location = request.getLocation().getCopy();
+			// Translate to relative
+			getHostFigure().getParent().translateToRelative(location);
+			int stickerHeight = ((CLifeLineEditPart) nodeEP).getStickerHeight();
+			if (location.y <= stickerHeight) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+
 		return getBasicGraphicalNodeEditPolicy().getCommand(request);
 	}
 
@@ -658,8 +681,29 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		Command command = null;
 		// Snap to grid the request location
 		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
-		Command reconnectTargetCommand = getBasicGraphicalNodeEditPolicy().getCommand(request);
+
+		// Check if the target is lower than the source
+		Point sourceLocation = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) request.getConnectionEditPart(), true);
+		if (!isTargetLowerThanSource(sourceLocation, request.getLocation().getCopy())) {
+			Object object = request.getExtendedData().get(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY);
+			if (!(object instanceof Boolean) || ((object instanceof Boolean) && !((Boolean) object))) {// If not HorizontalMove parameter true
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
 		NodeEditPart nodeEP = (NodeEditPart) request.getTarget();
+
+		// check that the location is not at the header
+		if (nodeEP instanceof CLifeLineEditPart) {
+			Point location = request.getLocation().getCopy();
+			// Translate to relative
+			getHostFigure().getParent().translateToRelative(location);
+			int stickerHeight = ((CLifeLineEditPart) nodeEP).getStickerHeight();
+			if (location.y <= stickerHeight) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+
+		Command reconnectTargetCommand = getBasicGraphicalNodeEditPolicy().getCommand(request);
 
 		// in case of reconnect target for message create it is need to move up the old target and move down the new target
 		if (nodeEP instanceof CLifeLineEditPart) {

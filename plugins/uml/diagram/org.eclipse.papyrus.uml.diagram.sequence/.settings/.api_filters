@@ -1,7 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.papyrus.uml.diagram.sequence" version="2">
+    <resource path="custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/UpdateWeakReferenceEditPolicy.java" type="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceEditPolicy">
+        <filter comment="Do no check API issue for adding a constant" id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceEditPolicy"/>
+                <message_argument value="mustMoveBelowAtMovingDown"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Do no check API issue for adding a constant" id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceEditPolicy"/>
+                <message_argument value="mustMoveBelowAtMovingUp"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="custom-src/org/eclipse/papyrus/uml/diagram/sequence/messages/Messages.java" type="org.eclipse.papyrus.uml.diagram.sequence.messages.Messages">
+        <filter comment="Do no check API issue for adding a constant" id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.messages.Messages"/>
+                <message_argument value="CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageDownDescription"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Do no check API issue for adding a constant" id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.messages.Messages"/>
+                <message_argument value="CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageUpDescription"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Do no check API issue for adding a constant" id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.messages.Messages"/>
+                <message_argument value="CustomDiagramGeneralPreferencePage_othersGroupLabel"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="custom-src/org/eclipse/papyrus/uml/diagram/sequence/preferences/CustomDiagramGeneralPreferencePage.java" type="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage">
+        <filter id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage"/>
+                <message_argument value="PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN"/>
+            </message_arguments>
+        </filter>
+        <filter id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage"/>
+                <message_argument value="PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="custom-src/org/eclipse/papyrus/uml/diagram/sequence/util/SequenceUtil.java" type="org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil">
-        <filter comment="Don't check API for adding a constant" id="336658481">
+        <filter comment="Do not check error for adding a constante" id="336658481">
             <message_arguments>
                 <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil"/>
                 <message_argument value="DO_NOT_CHECK_HORIZONTALITY"/>

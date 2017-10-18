@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.RotatableDecoration;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -24,6 +25,15 @@ public class MessageDelete extends MessageFigure {
 	 *
 	 */
 	public MessageDelete() {
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param mapMode
+	 */
+	public MessageDelete(IMapMode mapMode) {
+		super(mapMode);
 	}
 
 	/**
