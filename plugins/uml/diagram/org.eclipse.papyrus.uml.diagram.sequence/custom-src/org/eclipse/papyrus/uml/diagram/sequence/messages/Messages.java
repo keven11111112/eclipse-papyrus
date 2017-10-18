@@ -82,7 +82,12 @@ public class Messages extends NLS {
 	/**
 	 * @since 5.0
 	 */
-	public static String CustomDiagramGeneralPreferencePage_MoveMessageAboveDescription;
+	public static String CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageUpDescription;
+
+	/**
+	 * @since 5.0
+	 */
+	public static String CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageDownDescription;
 
 	/**
 	 * @since 5.0

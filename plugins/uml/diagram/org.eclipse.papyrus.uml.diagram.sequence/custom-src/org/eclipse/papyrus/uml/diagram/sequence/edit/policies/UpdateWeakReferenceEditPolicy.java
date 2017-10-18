@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 526191
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -25,12 +25,14 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.IKeyPressState;
 import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.KeyboardListener;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -57,9 +59,13 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 	private final MoveMessagePropertyChangeListener moveMessageListener = new MoveMessagePropertyChangeListener();
 
 	/**
-	 * The must move preference boolean. Set to true if messages above the current message must move down at the same time.
+	 * The must move preference boolean. Set to true if messages below the current message must move up at the same time.
 	 */
-	private boolean mustMovePreference;
+	protected boolean mustMoveBelowAtMovingUp;
+	/**
+	 * The must move preference boolean. Set to true if messages below the current message must move down at the same time.
+	 */
+	protected boolean mustMoveBelowAtMovingDown;
 
 	/**
 	 * Constructor.
@@ -75,7 +81,8 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		// activate listeners
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, SHIFTDown);
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, SHIFTUp);
-		mustMove = mustMovePreference = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramGeneralPreferencePage.PREF_MOVE_ABOVE_MESSAGE);
+		mustMoveBelowAtMovingUp = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP);
+		mustMoveBelowAtMovingDown = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN);
 		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().addPropertyChangeListener(moveMessageListener);
 	}
 
@@ -125,7 +132,7 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 	 */
 	@Override
 	public void setKeyPressState(Boolean isPressed) {
-		mustMove = mustMovePreference && !isPressed;
+		mustMove = !isPressed;
 	}
 
 	/**
@@ -143,11 +150,21 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		SenderRequestUtils.addRequestSenders(changeBoundsRequest, senderList);
 		SenderRequestUtils.addRequestSender(changeBoundsRequest, hostEditPart);
 		GraphicalEditPart gEditPart = (GraphicalEditPart) editPartToMove;
-		changeBoundsRequest.setLocation(new Point(gEditPart.getFigure().getBounds().getTopLeft().x, gEditPart.getFigure().getBounds().getTopLeft().x + moveDelta.y()));
-		changeBoundsRequest.setEditParts(editPartToMove);
-		changeBoundsRequest.setMoveDelta(moveDelta);
-		changeBoundsRequest.setSizeDelta(new Dimension(0, 0));
-		compoundCommand.add(editPartToMove.getCommand(changeBoundsRequest));
+		Point newLocation = new Point(gEditPart.getFigure().getBounds().getTopLeft().x, gEditPart.getFigure().getBounds().getTopLeft().y + moveDelta.y());
+
+		if (editPartToMove.getParent() instanceof CLifeLineEditPart) {
+			// Translate to relative
+			int stickerHeight = ((CLifeLineEditPart) editPartToMove.getParent()).getStickerHeight();
+			if (newLocation.y >= stickerHeight) {
+				changeBoundsRequest.setLocation(newLocation);
+				changeBoundsRequest.setEditParts(editPartToMove);
+				changeBoundsRequest.setMoveDelta(moveDelta);
+				changeBoundsRequest.setSizeDelta(new Dimension(0, 0));
+				compoundCommand.add(editPartToMove.getCommand(changeBoundsRequest));
+			} else {
+				compoundCommand.add(UnexecutableCommand.INSTANCE);
+			}
+		}
 	}
 
 	/**
@@ -194,10 +211,18 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		 */
 		@Override
 		public void propertyChange(PropertyChangeEvent event) {
-			if (CustomDiagramGeneralPreferencePage.PREF_MOVE_ABOVE_MESSAGE.equals(event.getProperty())) {
-				if (mustMovePreference != (boolean) event.getNewValue()) {
-					mustMove = mustMovePreference = (boolean) event.getNewValue();
+			String property = event.getProperty();
+			switch (property) {
+			case CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP:
+				if (mustMoveBelowAtMovingUp != (boolean) event.getNewValue()) {
+					mustMoveBelowAtMovingUp = (boolean) event.getNewValue();
 				}
+				break;
+			case CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN:
+				if (mustMoveBelowAtMovingDown != (boolean) event.getNewValue()) {
+					mustMoveBelowAtMovingDown = (boolean) event.getNewValue();
+				}
+				break;
 			}
 		}
 	}

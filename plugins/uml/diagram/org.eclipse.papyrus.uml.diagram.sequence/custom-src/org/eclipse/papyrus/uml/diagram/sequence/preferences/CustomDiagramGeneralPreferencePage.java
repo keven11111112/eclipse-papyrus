@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521829
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521829, 526191
  */
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
@@ -49,11 +49,18 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 	public static String PREF_EXECUTION_SPECIFICATION_SYNC_MSG = "PREF_EXECUTION_SPECIFICATION_SYNC_MSG"; //$NON-NLS-1$
 
 	/**
-	 * preference key to move messages in the same time.
+	 * preference key to move up messages in the same time that message up.
 	 * 
 	 * @since 5.0
 	 */
-	public static final String PREF_MOVE_ABOVE_MESSAGE = "PREF_MOVE_ABOVE_MESSAGE"; //$NON-NLS-1$
+	public static final String PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP = "PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP"; //$NON-NLS-1$
+
+	/**
+	 * preference key to move down messages in the same time that message down.
+	 * 
+	 * @since 5.0
+	 */
+	public static final String PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN = "PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN"; //$NON-NLS-1$
 
 	/**
 	 * possible preference values
@@ -98,10 +105,8 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 		otherGroupGridData.horizontalSpan = 2;
 		otherGroup.setLayoutData(otherGroupGridData);
 		otherGroup.setText(Messages.CustomDiagramGeneralPreferencePage_othersGroupLabel);
-
-		BooleanFieldEditor booleanFieldEditor = new BooleanFieldEditor(PREF_MOVE_ABOVE_MESSAGE, Messages.CustomDiagramGeneralPreferencePage_MoveMessageAboveDescription, otherGroup);
-		addField(booleanFieldEditor);
-
+		addField(new BooleanFieldEditor(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN, Messages.CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageDownDescription, otherGroup));
+		addField(new BooleanFieldEditor(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP, Messages.CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageUpDescription, otherGroup));
 	}
 
 	/**
@@ -139,12 +144,11 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 *            preferenceStore
 	 */
 	public static void initSpecificDefaults(IPreferenceStore preferenceStore) {
-		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_SYNC_MSG,
-				CHOICE_BEHAVIOR_AND_REPLY);
-		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_ASYNC_MSG,
-				CHOICE_NONE);
-		preferenceStore.setDefault(PREF_MOVE_ABOVE_MESSAGE,
-				true);
+		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_SYNC_MSG, CHOICE_BEHAVIOR_AND_REPLY);
+		preferenceStore.setDefault(PREF_EXECUTION_SPECIFICATION_ASYNC_MSG, CHOICE_NONE);
+
+		preferenceStore.setDefault(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN, true);
+		preferenceStore.setDefault(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP, false);
 
 	}
 }

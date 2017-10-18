@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Patrick Tessier (CEA LIST) - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521312, 526079
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521312, 526079, 526191
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -277,9 +277,9 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 		if (messageEnd.getMessage() != null) {
 			IGraphicalEditPart resultedEditPart = getEditPartFromSemantic(messageEnd.getMessage());
 			if (resultedEditPart != null) {
-				if (referenceList.equals(strongReferences)) {
+				if (referenceList == strongReferences) {
 					referenceList.put(resultedEditPart, role);
-				} else if (referenceList.equals(weakReferences) && !(strongReferences.containsKey(resultedEditPart))) {
+				} else if (referenceList == weakReferences && !(strongReferences.containsKey(resultedEditPart))) {
 					referenceList.put(resultedEditPart, role);
 				}
 			}
@@ -322,7 +322,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 		ExecutionSpecification executionSpec = getExecutionSpecificationAssociatedToEvent(sourceEvent);
 		if (executionSpec != null) {
 			IGraphicalEditPart resultedEditPart = getEditPartFromSemantic(executionSpec);
-			if (referenceList.equals(strongReferences)) {
+			if (referenceList == strongReferences) {
 				if (resultedEditPart != null) {
 					if (executionSpec.getStart().equals(sourceEvent)) {
 						referenceList.put(resultedEditPart, ROLE_START);
@@ -330,7 +330,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 						referenceList.put(resultedEditPart, ROLE_FINISH);
 					}
 				}
-			} else if (referenceList.equals(weakReferences) && !(strongReferences.containsKey(resultedEditPart))) {
+			} else if (referenceList == weakReferences && !(strongReferences.containsKey(resultedEditPart))) {
 				if (resultedEditPart != null) {
 					if (executionSpec.getStart().equals(sourceEvent)) {
 						referenceList.put(resultedEditPart, ROLE_START);

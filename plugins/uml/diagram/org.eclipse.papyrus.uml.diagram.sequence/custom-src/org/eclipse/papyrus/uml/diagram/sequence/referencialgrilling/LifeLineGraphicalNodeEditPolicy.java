@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756, 526191
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -39,7 +39,6 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
@@ -651,6 +650,19 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
+
+		// check that the location is not at the header
+		NodeEditPart nodeEP = (NodeEditPart) request.getTarget();
+		if (nodeEP instanceof CLifeLineEditPart) {
+			Point location = request.getLocation().getCopy();
+			// Translate to relative
+			getHostFigure().getParent().translateToRelative(location);
+			int stickerHeight = ((CLifeLineEditPart) nodeEP).getStickerHeight();
+			if (location.y <= stickerHeight) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+
 		return getBasicGraphicalNodeEditPolicy().getCommand(request);
 	}
 
@@ -673,9 +685,20 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
+		NodeEditPart nodeEP = (NodeEditPart) request.getTarget();
+
+		// check that the location is not at the header
+		if (nodeEP instanceof CLifeLineEditPart) {
+			Point location = request.getLocation().getCopy();
+			// Translate to relative
+			getHostFigure().getParent().translateToRelative(location);
+			int stickerHeight = ((CLifeLineEditPart) nodeEP).getStickerHeight();
+			if (location.y <= stickerHeight) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
 
 		Command reconnectTargetCommand = getBasicGraphicalNodeEditPolicy().getCommand(request);
-		NodeEditPart nodeEP = (NodeEditPart) request.getTarget();
 
 		// in case of reconnect target for message create it is need to move up the old target and move down the new target
 		if (nodeEP instanceof CLifeLineEditPart) {
