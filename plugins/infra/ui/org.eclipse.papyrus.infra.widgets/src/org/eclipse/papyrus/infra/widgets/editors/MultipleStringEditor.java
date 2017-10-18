@@ -17,11 +17,17 @@ import java.util.concurrent.Callable;
 
 import org.eclipse.jface.layout.TreeColumnLayout;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.ColumnViewerEditor;
+import org.eclipse.jface.viewers.ColumnViewerEditorActivationEvent;
+import org.eclipse.jface.viewers.ColumnViewerEditorActivationStrategy;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.EditingSupport;
+import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
+import org.eclipse.jface.viewers.TreeViewerEditor;
+import org.eclipse.jface.viewers.TreeViewerFocusCellManager;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
@@ -72,7 +78,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 	 *            Indicates if the creation and modification are directed.
 	 * @param style
 	 *            The List's style
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	public MultipleStringEditor(Composite parent, boolean directCreation, int style) {
@@ -254,7 +260,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	@Override
@@ -279,7 +285,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 
 	/**
 	 * Edit the latest element of the TreeViewer.
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	protected void editNewElement() {
@@ -297,7 +303,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 
 	/**
 	 * Returns the default value for each new String value.
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	protected Object getDefaultValue() {
@@ -323,6 +329,28 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 
 		TreeViewerColumn viewerColumn = createTreeViewerColumn(treeViewer, Constants.COLUMN_NAME_VALUE);
 		treeColumnLayout.setColumnData(viewerColumn.getColumn(), new ColumnWeightData(100));
+
+
+		TreeViewerFocusCellManager focusCellManager = new TreeViewerFocusCellManager(
+				treeViewer, new FocusCellOwnerDrawHighlighter(treeViewer));
+		ColumnViewerEditorActivationStrategy actSupport = new ColumnViewerEditorActivationStrategy(treeViewer) {
+			@Override
+			protected boolean isEditorActivationEvent(
+					ColumnViewerEditorActivationEvent event) {
+				return event.eventType == ColumnViewerEditorActivationEvent.TRAVERSAL
+						|| event.eventType == ColumnViewerEditorActivationEvent.MOUSE_DOUBLE_CLICK_SELECTION
+						|| (event.eventType == ColumnViewerEditorActivationEvent.KEY_PRESSED && event.keyCode == SWT.F2)
+						|| event.eventType == ColumnViewerEditorActivationEvent.PROGRAMMATIC;
+			}
+		};
+
+		int feature = ColumnViewerEditor.TABBING_HORIZONTAL
+				| ColumnViewerEditor.TABBING_MOVE_TO_ROW_NEIGHBOR
+				| ColumnViewerEditor.TABBING_VERTICAL
+				| ColumnViewerEditor.KEYBOARD_ACTIVATION;
+
+		TreeViewerEditor.create(treeViewer, focusCellManager, actSupport, feature);
+
 		viewerColumn.setEditingSupport(new EditingSupport(treeViewer) {
 
 			@Override
@@ -359,7 +387,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 
 	/**
 	 * This allows to create a tree viewer column in the tree viewer.
-	 * 
+	 *
 	 * @param viewer
 	 *            the tree viewer.
 	 * @param title
@@ -378,7 +406,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 
 	/**
 	 * Returns the CellEditor for the editing support.
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	protected CellEditor createCellEditor(final Object element) {
@@ -387,7 +415,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 
 	/**
 	 * Returns the value editing on the editing support.
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	protected Object getEditingValue(final Object element) {
@@ -396,7 +424,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 
 	/**
 	 * Returns the value to set on the editing support.
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	protected Object getValueToSet(final Object element, final Object value) {
