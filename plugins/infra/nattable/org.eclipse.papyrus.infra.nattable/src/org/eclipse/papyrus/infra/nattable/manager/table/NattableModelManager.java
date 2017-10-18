@@ -11,7 +11,7 @@
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 476618, 504077, 496905, 508175
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
- *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 526146
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -762,8 +762,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		final EventList<Object> newHorizontalBasicList = this.basicVerticalList;
 		final EventList<Object> newVerticalBasicList = this.basicHorizontalList;
 
-		final SortedList<Object> newHorizontalSortedList = this.rowSortedList;
-		final SortedList<Object> newVerticalSortedList = this.columnSortedList;
+		final SortedList<Object> newHorizontalSortedList = this.columnSortedList;
+		final SortedList<Object> newVerticalSortedList = this.rowSortedList;
 
 		final FilterList<Object> newVerticalFilterLilst = this.horizontalFilterList;
 		final FilterList<Object> newHorizontalFilterList = this.verticalFilterList;
@@ -773,6 +773,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 		this.horizontalFilterList = newHorizontalFilterList;
 		this.verticalFilterList = newVerticalFilterLilst;
+		
+		this.rowSortedList = newHorizontalSortedList;
+		this.columnSortedList = newVerticalSortedList;
 
 		NattableModelManager.this.columnManager = newColumnManager;
 		this.rowManager.setAxisComparator(null);
