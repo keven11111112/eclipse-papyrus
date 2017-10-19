@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2017 CEA LIST.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -18,9 +18,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -32,7 +30,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.IconEntry;
 
@@ -58,6 +55,18 @@ public class IconEntryItemProvider
 	 */
 	public IconEntryItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
+	}
+
+	/**
+	 * Disable translation, see bug 526158 [ElementTypes] Element types editor freezes 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	@Override
+	protected boolean shouldTranslate()
+	{
+		return false;
 	}
 
 	/**
