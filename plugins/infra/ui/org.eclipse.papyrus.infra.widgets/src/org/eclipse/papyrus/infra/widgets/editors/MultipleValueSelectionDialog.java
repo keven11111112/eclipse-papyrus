@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2017 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Adapted code from MultipleValueSelectorDialog
+ *  Sebastien Gabel (Esterel Technologies SAS) - Bug 526302
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -95,9 +96,11 @@ public class MultipleValueSelectionDialog extends SelectionDialog {
 	 *            The title of this dialog
 	 * @param unique
 	 *            True if the values returned by this dialog should be unique
+	 * @param ordered
+	 *            <code>true</code> if the edited feature is ordered
 	 */
 	public MultipleValueSelectionDialog(Shell parentShell, IElementSelector selector, String title, boolean unique, boolean ordered) {
-		this(parentShell, selector, title, unique, false, ValueUtils.MANY);
+		this(parentShell, selector, title, unique, ordered, ValueUtils.MANY);
 	}
 
 	/**
@@ -112,6 +115,8 @@ public class MultipleValueSelectionDialog extends SelectionDialog {
 	 *            The title of this dialog
 	 * @param unique
 	 *            True if the values returned by this dialog should be unique
+	 * @param ordered
+	 *            <code>true</code> if the edited feature is ordered
 	 * @param upperBound
 	 *            The maximum number of values selected.
 	 */
