@@ -21,7 +21,7 @@
     </matcherConfiguration>
     <specializedTypes xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Dependency"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.example.j2ee.Web" identifier="org.eclipse.papyrus.example.j2ee.Web" name="Web" hint="UML::Association">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.example.j2ee.Web" identifier="org.eclipse.papyrus.example.j2ee.Web" name="Web">
     <iconEntry xmi:id="_JHkF-5g0EeSrbqbUdG1DAA" iconPath="/icons/full/obj16/Association.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <matcherConfiguration xsi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration" xmi:id="_JHkF_Jg0EeSrbqbUdG1DAA">
       <stereotypesQualifiedNames>j2ee::Web</stereotypesQualifiedNames>
