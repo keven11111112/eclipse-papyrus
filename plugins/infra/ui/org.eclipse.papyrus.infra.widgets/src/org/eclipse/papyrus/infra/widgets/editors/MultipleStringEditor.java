@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902, Bug 526304
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -76,14 +76,17 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 	 *            The Composite in which this editor is created
 	 * @param directCreation
 	 *            Indicates if the creation and modification are directed.
+	 * @param directCreationWithTreeViewer
+	 *            Indicates if the creation and modification are directed on the TreeViewer.
 	 * @param style
 	 *            The List's style
 	 *
 	 * @since 3.1
 	 */
-	public MultipleStringEditor(Composite parent, boolean directCreation, int style) {
+	public MultipleStringEditor(Composite parent, boolean directCreation, boolean directCreatiuonWithTreeViewer, int style) {
 		super(parent, style, new StringSelector());
 		setDirectCreation(directCreation);
+		setDirectCreationWithTreeViewer(directCreatiuonWithTreeViewer);
 		init();
 	}
 
@@ -187,11 +190,14 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 	 *            The Element selector for the dialog's left-pane. Used to select values or enter new ones.
 	 * @param directCreation
 	 *            Indicates if the creation and modification are directed.
+	 * @param directCreationWithTreeViewer
+	 *            Indicates if the creation and modification are directed on the TreeViewer.
 	 * @since 3.1
 	 */
-	public MultipleStringEditor(Composite parent, int style, T selector, boolean directCreation) {
+	public MultipleStringEditor(Composite parent, int style, T selector, boolean directCreation, boolean directCreationWithTreeViewer) {
 		super(parent, style, selector);
 		setDirectCreation(directCreation);
+		setDirectCreationWithTreeViewer(directCreationWithTreeViewer);
 		init();
 	}
 
@@ -255,7 +261,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 	@Override
 	public void updateButtons() {
 		super.updateButtons();
-		edit.setVisible(!isDirectCreation());
+		edit.setVisible(!isDirectCreationWithTreeViewer());
 	}
 
 	/**
@@ -265,21 +271,25 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 	 */
 	@Override
 	protected void directCreateObject(Object context) {
-		if (referenceFactory != null && referenceFactory.canCreateObject()) {
-			getOperationExecutor(context).execute(new Callable<Object>() {
+		if (isDirectCreationWithTreeViewer()) {
+			if (referenceFactory != null && referenceFactory.canCreateObject()) {
+				getOperationExecutor(context).execute(new Callable<Object>() {
 
-				@Override
-				public Object call() {
-					Object result = getDefaultValue();
-					if (result != null) {
-						modelProperty.add(result);
-						commit();
+					@Override
+					public Object call() {
+						Object result = getDefaultValue();
+						if (result != null) {
+							modelProperty.add(result);
+							commit();
+						}
+						return result;
 					}
-					return result;
-				}
-			}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
+				}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
 
-			editNewElement();
+				editNewElement();
+			}
+		} else {
+			super.directCreateObject(context);
 		}
 	}
 
@@ -320,7 +330,6 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 		compositeTree.setLayout(treeColumnLayout);
 
 		tree = new Tree(compositeTree, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER | SWT.FULL_SELECTION);
-		tree.setLinesVisible(true);
 
 		tree.addSelectionListener(this);
 
@@ -378,7 +387,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 
 			@Override
 			protected boolean canEdit(Object element) {
-				return isDirectCreation();
+				return isDirectCreationWithTreeViewer();
 			}
 		});
 

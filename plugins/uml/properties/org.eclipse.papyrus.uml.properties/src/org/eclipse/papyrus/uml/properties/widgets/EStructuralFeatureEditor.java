@@ -11,7 +11,7 @@
  *  Christian W. Damus (CEA) - bug 323802
  *  Christian W. Damus (CEA) - bug 448139
  *  Pierre GAUTIER (CEA LIST) - bug 521857
- *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902, Bug 526304
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
@@ -250,8 +250,8 @@ public class EStructuralFeatureEditor implements IValueChangeListener<Object>, I
 			throw new IllegalArgumentException("No multiple editor has been found for class '" + typeClass + "'"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		try {
-			final Constructor<? extends MultipleStringEditor<?>> constructor = editorClazz.getConstructor(Composite.class, boolean.class, int.class);
-			final MultipleStringEditor<?> editor = constructor.newInstance(pageBook, true, style);
+			final Constructor<? extends MultipleStringEditor<?>> constructor = editorClazz.getConstructor(Composite.class, boolean.class, boolean.class, int.class);
+			final MultipleStringEditor<?> editor = constructor.newInstance(pageBook, true, true, style);
 			setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, title, feature);
 			currentPage = editor;
 		} catch (final Exception e) {

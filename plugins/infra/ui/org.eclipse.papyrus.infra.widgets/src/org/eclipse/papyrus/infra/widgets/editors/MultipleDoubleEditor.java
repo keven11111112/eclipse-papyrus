@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 	Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
+ * 	Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902, Bug 526304
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -76,13 +76,15 @@ public class MultipleDoubleEditor extends MultipleStringEditor<RealSelector> {
 	 *            The Composite in which this editor is created
 	 * @param directCreation
 	 *            Indicates if the creation and modification are directed.
+	 * @param directCreationWithTreeViewer
+	 *            Indicates if the creation and modification are directed on the TreeViewer.
 	 * @param style
 	 *            The List's style
 	 * 
 	 * @since 3.1
 	 */
-	public MultipleDoubleEditor(Composite parent, boolean directCreation, int style) {
-		super(parent, style, new RealSelector(), directCreation);
+	public MultipleDoubleEditor(Composite parent, boolean directCreation, boolean directCreationWithTreeViewer, int style) {
+		super(parent, style, new RealSelector(), directCreation, directCreationWithTreeViewer);
 	}
 
 	/**

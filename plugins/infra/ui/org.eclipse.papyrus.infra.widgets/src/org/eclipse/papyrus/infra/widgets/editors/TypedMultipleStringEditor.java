@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Pierre GAUTIER (CEA LIST) - Initial API and implementation
- *	Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
+ *	Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902, Bug 526304
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -44,13 +44,15 @@ public class TypedMultipleStringEditor extends MultipleStringEditor<StringSelect
 	 *            The Composite in which this editor is created
 	 * @param directCreation
 	 *            Indicates if the creation and modification are directed.
+	 * @param directCreationWithTreeViewer
+	 *            Indicates if the creation and modification are directed on the TreeViewer.
 	 * @param style
 	 *            The List's style
 	 * 
 	 * @since 3.1
 	 */
-	public TypedMultipleStringEditor(Composite parent, boolean directCreation, int style) {
-		super(parent, style, new BooleanSelector(), directCreation);
+	public TypedMultipleStringEditor(Composite parent, boolean directCreation, boolean directCreationWithTreeViewer, int style) {
+		super(parent, style, new BooleanSelector(), directCreation, directCreationWithTreeViewer);
 	}
 
 }
