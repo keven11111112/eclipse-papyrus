@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902, Bug 526304
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -84,13 +84,15 @@ public class MultipleIntegerEditor extends MultipleStringEditor<IntegerSelector>
 	 *            The Composite in which this editor is created
 	 * @param directCreation
 	 *            Indicates if the creation and modification are directed.
+	 * @param directCreationWithTreeViewer
+	 *            Indicates if the creation and modification are directed on the TreeViewer.
 	 * @param style
 	 *            The List's style
 	 * 
 	 * @since 3.1
 	 */
-	public MultipleIntegerEditor(Composite parent, boolean directCreation, int style) {
-		super(parent, style, new IntegerSelector(), directCreation);
+	public MultipleIntegerEditor(Composite parent, boolean directCreation, boolean directCreationWithTreeViewer, int style) {
+		super(parent, style, new IntegerSelector(), directCreation, directCreationWithTreeViewer);
 	}
 
 	/**

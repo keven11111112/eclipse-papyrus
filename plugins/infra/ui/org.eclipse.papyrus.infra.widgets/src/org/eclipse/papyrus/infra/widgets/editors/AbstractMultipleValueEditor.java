@@ -12,7 +12,7 @@
  *  Christian W. Damus - bugs 399859, 516526
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - manage buttons visibility and enable. 
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 515808
- *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902, Bug 526304
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -135,6 +135,8 @@ public abstract class AbstractMultipleValueEditor<T extends IElementSelector> ex
 
 	private boolean directCreation;
 
+	private boolean directCreationWithTreeViewer;
+
 	/**
 	 * Indicates the maximum number of values selected.
 	 */
@@ -189,6 +191,7 @@ public abstract class AbstractMultipleValueEditor<T extends IElementSelector> ex
 		this.selector = selector;
 		this.ordered = ordered;
 		this.unique = unique;
+		this.directCreationWithTreeViewer = false;
 
 		setUpperBound(upperBound);
 	}
@@ -718,6 +721,21 @@ public abstract class AbstractMultipleValueEditor<T extends IElementSelector> ex
 	}
 
 	/**
+	 * Set the direct creation on the TreeViewer.
+	 * 
+	 * @param directCreationWithTreeViewer
+	 * 
+	 * @since 3.1
+	 */
+	public void setDirectCreationWithTreeViewer(boolean directCreationWithTreeViewer) {
+		this.directCreationWithTreeViewer = directCreationWithTreeViewer;
+
+		if (controlsSection != null) {
+			updateControls();
+		}
+	}
+
+	/**
 	 * Returns the boolean for the direct creation.
 	 * 
 	 * @return the directCreation value.
@@ -726,6 +744,17 @@ public abstract class AbstractMultipleValueEditor<T extends IElementSelector> ex
 	 */
 	public boolean isDirectCreation() {
 		return directCreation;
+	}
+
+	/**
+	 * Returns the boolean for the direct creation.
+	 * 
+	 * @return the directCreation value.
+	 * 
+	 * @since 3.1
+	 */
+	public boolean isDirectCreationWithTreeViewer() {
+		return directCreationWithTreeViewer;
 	}
 
 	/**
@@ -774,7 +803,7 @@ public abstract class AbstractMultipleValueEditor<T extends IElementSelector> ex
 
 	public void updateButtons() {
 		/* Disable the button 'add' if the upperBound is reached */
-		if (modelProperty!=null && this.upperBound != MANY) {
+		if (modelProperty != null && this.upperBound != MANY) {
 			if (modelProperty.size() >= this.upperBound) {
 				add.setEnabled(false);
 			} else {
