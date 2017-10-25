@@ -104,8 +104,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 
 		displayEvent.addFigureEvent(getHostFigure(), request.getLocation());
-		MessageEnd end = getPreviousEventFromPosition(request.getLocation());
-		if (end != null) {
+		OccurrenceSpecification end = getPreviousEventFromPosition(request.getLocation());
+		if (end instanceof MessageEnd) {
 			Map<String, Object> extendedData = request.getExtendedData();
 			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.PREVIOUS_EVENT, end);
 			request.setExtendedData(extendedData);
@@ -326,7 +326,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		// Update request with the real Location of the Event if location next to an Event
 		Point realEventLocation = displayEvent.getRealEventLocation(request.getLocation());
-		if (request.getLocation() != realEventLocation) {
+		if (!request.getLocation().equals(realEventLocation)) {
 			request.setLocation(realEventLocation);
 		}
 
@@ -376,8 +376,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 *            initial Request to be updated
 	 */
 	private void updateExtendedData(CreateConnectionViewAndElementRequest request) {
-		MessageEnd end = getPreviousEventFromPosition(request.getLocation());
-		if (end != null) {
+		OccurrenceSpecification end = getPreviousEventFromPosition(request.getLocation());
+		if (end instanceof MessageEnd) {
 			Map<String, Object> extendedData = request.getExtendedData();
 			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.SECOND_PREVIOUS_EVENT, end);
 			request.setExtendedData(extendedData);
@@ -765,8 +765,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * @param point
 	 *            the position on the lifeline
 	 */
-	public MessageEnd getPreviousEventFromPosition(final Point point) {
-		List<MessageEnd> previousEventsFromPosition = LifelineEditPartUtil.getPreviousEventsFromPosition(point, (LifelineEditPart) getHost());
+	public OccurrenceSpecification getPreviousEventFromPosition(final Point point) {
+		List<OccurrenceSpecification> previousEventsFromPosition = LifelineEditPartUtil.getPreviousEventsFromPosition(point, (LifelineEditPart) getHost());
 		return previousEventsFromPosition.isEmpty() ? null : previousEventsFromPosition.get(0);
 	}
 

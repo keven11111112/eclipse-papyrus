@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 526191
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 526191, 526462
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -16,8 +16,11 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
@@ -26,11 +29,23 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CoordinateReferentialUtils;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * this editpolicy is to manage the movement of Execution specification and update move of messages
@@ -48,7 +63,6 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 	 * @param request
 	 * @return
 	 * 
-	 * 
 	 * 		<img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
 	 *         <UL>
 	 *         <LI>when move E --> move B on the coordinate Y of E and move A on the coordinate Y of E
@@ -65,18 +79,20 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ MOVE ANCHORS of " + hostConnectionEditPart.getClass().getName());//$NON-NLS-1$
 			Point locationOnDiagram = CoordinateReferentialUtils.transformPointFromScreenToDiagramReferential(reconnectRequest.getLocation(), (GraphicalViewer) getHost().getViewer());
 			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+-- LocationOnDiagram " + locationOnDiagram);// $NON-NLS-2$ //$NON-NLS-1$
+
 			// compute Delta
 			Point moveDelta = new Point(0, 0);
 
 			PolylineConnectionEx polyline = (PolylineConnectionEx) hostConnectionEditPart.getFigure();
 
 			if (RequestConstants.REQ_RECONNECT_TARGET.equals(reconnectRequest.getType())) {
-				Point anchorPositionOnScreen = polyline.getSourceAnchor().getReferencePoint();
+				Point anchorPositionOnScreen = polyline.getTargetAnchor().getReferencePoint();
 				moveDelta.y = reconnectRequest.getLocation().y - anchorPositionOnScreen.y;
 			} else {
 				Point anchorPositionOnScreen = polyline.getSourceAnchor().getReferencePoint();
 				moveDelta.y = reconnectRequest.getLocation().y - anchorPositionOnScreen.y;
 			}
+
 			if (moveDelta.y != 0 && mustMove) {
 				if (hostConnectionEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
 					SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) hostConnectionEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
@@ -97,8 +113,15 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 								if (editPart instanceof ConnectionEditPart) {
 									ConnectionEditPart connectionEditPart = (ConnectionEditPart) editPart;
 									// create the request
-									moveSourceConnectionEditPart(hostConnectionEditPart, moveDelta, compoundCommand, connectionEditPart, senderList);
-									moveTargetConnectionEditPart(hostConnectionEditPart, moveDelta, compoundCommand, connectionEditPart, senderList);
+									if (moveDelta.y > 0) {
+										// move down, target must be moved before
+										moveTargetConnectionEditPart(hostConnectionEditPart, moveDelta, compoundCommand, connectionEditPart, senderList);
+										moveSourceConnectionEditPart(hostConnectionEditPart, moveDelta, compoundCommand, connectionEditPart, senderList);
+									} else {
+										// move up, source must be moved before
+										moveSourceConnectionEditPart(hostConnectionEditPart, moveDelta, compoundCommand, connectionEditPart, senderList);
+										moveTargetConnectionEditPart(hostConnectionEditPart, moveDelta, compoundCommand, connectionEditPart, senderList);
+									}
 								}
 								if (editPart instanceof RoundedCompartmentEditPart) {
 									moveRoundedEditPart(hostConnectionEditPart, moveDelta, compoundCommand, editPart, senderList);
@@ -109,11 +132,113 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 							// to avoid pb of non-executable command
 							return super.getCommand(request);
 						}
-
 						return compoundCommand;
 					}
 				}
 			}
+		} else if (request instanceof CreateConnectionViewAndElementRequest && !(SenderRequestUtils.isASender(request, getHost()))) {
+			CreateConnectionViewAndElementRequest createRequest = (CreateConnectionViewAndElementRequest) request;
+			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "Message creation request at:" + ((View) ((IAdaptable) getHost()).getAdapter(View.class)).getElement());
+			// Snap to grid Location
+			createRequest.setLocation(SequenceUtil.getSnappedLocation(getHost(), createRequest.getLocation()));
+
+			// Get the location on screen
+			Point reqlocationOnScreen = createRequest.getLocation().getCopy();
+			getHostFigure().getParent().translateToRelative(reqlocationOnScreen);
+
+			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "=> Request Location on screen: " + reqlocationOnScreen);
+			List<OccurrenceSpecification> nextEventsFromPosition = new ArrayList<OccurrenceSpecification>();
+			List<OccurrenceSpecification> previousEventsFromPosition = new ArrayList<OccurrenceSpecification>();
+
+			// Get next and previous event from the lifeline source
+			EditPart sourceEditPart = createRequest.getSourceEditPart();
+			if (sourceEditPart instanceof LifelineEditPart) {
+				nextEventsFromPosition.addAll(LifelineEditPartUtil.getNextEventsFromPosition(reqlocationOnScreen, (LifelineEditPart) sourceEditPart));
+				previousEventsFromPosition.addAll(LifelineEditPartUtil.getPreviousEventsFromPosition(new Point(reqlocationOnScreen.x, reqlocationOnScreen.y + CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE),
+						(LifelineEditPart) sourceEditPart));
+			}
+
+			// Get next and previous event from the lifeline target
+			EditPart targetEditPart = createRequest.getTargetEditPart();
+			if (sourceEditPart instanceof LifelineEditPart) {
+				nextEventsFromPosition.addAll(LifelineEditPartUtil.getNextEventsFromPosition(reqlocationOnScreen, (LifelineEditPart) targetEditPart));
+				previousEventsFromPosition.addAll(LifelineEditPartUtil.getPreviousEventsFromPosition(new Point(reqlocationOnScreen.x, reqlocationOnScreen.y + CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE),
+						(LifelineEditPart) targetEditPart));
+			}
+
+			if (!nextEventsFromPosition.isEmpty()) {
+				CompoundCommand compoundCommand = new CompoundCommand();
+				// get the list of element just below new created message
+				nextEventsFromPosition.retainAll(previousEventsFromPosition);
+				// For each next event below
+				for (OccurrenceSpecification nextEvent : nextEventsFromPosition) {
+					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\tNext Event: " + nextEvent);
+
+					GraphicalEditPart sourceLifeLineEP = (GraphicalEditPart) createRequest.getSourceEditPart();
+					GraphicalEditPart targetLifeLineEP = (GraphicalEditPart) createRequest.getTargetEditPart();
+					ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
+
+					List<?> connectionsAndChildren = new ArrayList<>();
+					connectionsAndChildren.addAll(sourceLifeLineEP.getSourceConnections());
+					connectionsAndChildren.addAll(sourceLifeLineEP.getTargetConnections());
+					connectionsAndChildren.addAll(sourceLifeLineEP.getChildren());
+					connectionsAndChildren.addAll(targetLifeLineEP.getSourceConnections());
+					connectionsAndChildren.addAll(targetLifeLineEP.getTargetConnections());
+					connectionsAndChildren.addAll(targetLifeLineEP.getChildren());
+
+					for (Object editPart : connectionsAndChildren) {
+						if (editPart instanceof ConnectionEditPart) {
+							EObject element = ((View) ((AbstractMessageEditPart) editPart).getAdapter(View.class)).getElement();
+							if (element instanceof Message && null != ((Message) element).getSendEvent() && ((Message) element).getSendEvent().equals(nextEvent)
+									|| element instanceof Message && null != ((Message) element).getReceiveEvent() && ((Message) element).getReceiveEvent().equals(nextEvent)) {
+
+								// compute Delta
+								Point moveDelta = new Point(0, 0);
+								PolylineConnectionEx polyline = (PolylineConnectionEx) ((ConnectionEditPart) editPart).getFigure();
+								Point anchorPositionOnScreen;
+								if (((Message) element).getSendEvent().equals(nextEvent)) {
+									anchorPositionOnScreen = polyline.getTargetAnchor().getReferencePoint();
+								} else {
+									anchorPositionOnScreen = polyline.getSourceAnchor().getReferencePoint();
+								}
+								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tanchorPositionOnScreen:\t" + anchorPositionOnScreen);
+
+								Point newLocation = new Point(0, createRequest.getLocation().y + CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE);
+								newLocation = SequenceUtil.getSnappedLocation(getHost(), newLocation);
+								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tNew location to be set:\t" + newLocation);
+								moveDelta.y = newLocation.y - anchorPositionOnScreen.y;
+
+								// add move source and target request
+								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tMoveDela:\t\t" + moveDelta.y);
+								moveTargetConnectionEditPart(null, moveDelta, compoundCommand, (ConnectionEditPart) editPart, senderList);
+								moveSourceConnectionEditPart(null, moveDelta, compoundCommand, (ConnectionEditPart) editPart, senderList);
+							}
+						} else if (editPart instanceof AbstractExecutionSpecificationEditPart) {
+							EObject element = ((View) ((AbstractExecutionSpecificationEditPart) editPart).getAdapter(View.class)).getElement();
+
+							if (element instanceof ExecutionSpecification && null != ((ExecutionSpecification) element).getStart() && ((ExecutionSpecification) element).getStart().equals(nextEvent)) {
+								// compute Delta
+								Point moveDelta = new Point(0, 0);
+								Point figureLocation = ((AbstractExecutionSpecificationEditPart) editPart).getFigure().getBounds().getLocation();
+								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tlocationOfFigure:\t" + figureLocation);
+
+								Point newLocation = new Point(0, reqlocationOnScreen.y + CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE);
+								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tNew location to be set:\t" + newLocation);
+								moveDelta.y = newLocation.y - figureLocation.y;
+
+								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tMoveDela:\t\t" + moveDelta.y);
+								moveRoundedEditPart(null, moveDelta, compoundCommand, (EditPart) editPart, senderList);
+							}
+						}
+					}
+				}
+				if (compoundCommand.isEmpty()) {
+					// to avoid pb of non-executable command
+					return super.getCommand(request);
+				}
+				return compoundCommand;
+			}
+
 		}
 		return super.getCommand(request);
 	}

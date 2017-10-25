@@ -82,6 +82,11 @@ public class Messages extends NLS {
 	/**
 	 * @since 4.1
 	 */
+	public static String CustomDiagramGeneralPreferencePage_MinimumSpaceBelowMessageAtCreation;
+
+	/**
+	 * @since 4.1
+	 */
 	public static String CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageUpDescription;
 
 	/**

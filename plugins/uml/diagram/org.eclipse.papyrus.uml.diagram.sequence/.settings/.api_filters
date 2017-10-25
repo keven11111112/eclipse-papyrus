@@ -15,6 +15,12 @@
         </filter>
     </resource>
     <resource path="custom-src/org/eclipse/papyrus/uml/diagram/sequence/messages/Messages.java" type="org.eclipse.papyrus.uml.diagram.sequence.messages.Messages">
+        <filter comment="Do not check API for adding a constant" id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.messages.Messages"/>
+                <message_argument value="CustomDiagramGeneralPreferencePage_MinimumSpaceBelowMessageAtCreation"/>
+            </message_arguments>
+        </filter>
         <filter comment="Do no check API issue for adding a constant" id="336658481">
             <message_arguments>
                 <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.messages.Messages"/>
@@ -35,6 +41,18 @@
         </filter>
     </resource>
     <resource path="custom-src/org/eclipse/papyrus/uml/diagram/sequence/preferences/CustomDiagramGeneralPreferencePage.java" type="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage">
+        <filter comment="Not API check for adding a cosntant" id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage"/>
+                <message_argument value="PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Not API check for adding a constant" id="336658481">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage"/>
+                <message_argument value="PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE"/>
+            </message_arguments>
+        </filter>
         <filter id="336658481">
             <message_arguments>
                 <message_argument value="org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage"/>

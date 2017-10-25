@@ -151,7 +151,6 @@ public class DisplayEvent {
 	 * @return the location if no event found around, or the event precise location if existing
 	 */
 	public Point getRealEventLocation(final Point location) {
-		Point snappedLocation = SequenceUtil.getSnappedLocation(editpart, location).getCopy();
 		Point realLocationEvent = getRealEventLocationFromExecutionSpecification(location.getCopy());
 		if (location.equals(realLocationEvent)) {
 			realLocationEvent = getRealEventLocationFromMessage(location.getCopy());

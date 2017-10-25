@@ -7,12 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
-  *  CEA LIST - Initial API and implementation
+ *  CEA LIST - Initial API and implementation
+ *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521829, 526191, 526462
  */
 package org.eclipse.papyrus.uml.diagram.sequence.preferences;
 
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.preference.IntegerFieldEditor;
 import org.eclipse.jface.preference.RadioGroupFieldEditor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
@@ -62,6 +64,20 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 	public static final String PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN = "PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN"; //$NON-NLS-1$
 
 	/**
+	 * preference key to move down messages in the same time that message is created.
+	 * 
+	 * @since 4.1
+	 */
+	public static final String PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION = "PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION"; //$NON-NLS-1$
+
+	/**
+	 * Value to move down messages in the same time that message down.
+	 * 
+	 * @since 4.1
+	 */
+	public static final int PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE = 40;
+
+	/**
 	 * possible preference values
 	 */
 	public static final String CHOICE_BEHAVIOR_AND_REPLY = "CHOICE_BEHAVIOR_AND_REPLY"; //$NON-NLS-1$
@@ -106,6 +122,7 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 		otherGroup.setText(Messages.CustomDiagramGeneralPreferencePage_othersGroupLabel);
 		addField(new BooleanFieldEditor(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN, Messages.CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageDownDescription, otherGroup));
 		addField(new BooleanFieldEditor(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP, Messages.CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageUpDescription, otherGroup));
+		addField(new IntegerFieldEditor(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION, Messages.CustomDiagramGeneralPreferencePage_MinimumSpaceBelowMessageAtCreation, otherGroup));
 	}
 
 	/**
@@ -148,6 +165,7 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 		preferenceStore.setDefault(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN, true);
 		preferenceStore.setDefault(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP, true);
+		preferenceStore.setDefault(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION, PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE);
 
 	}
 }

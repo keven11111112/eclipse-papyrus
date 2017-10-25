@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756, 526079
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756, 526079, 526462
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
@@ -47,7 +47,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
 import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -175,15 +175,15 @@ public class LifelineEditPartUtil {
 	}
 
 	/**
-	 * Get the list of previous {@link MessageEnd} on the {@link LifelineEditPart} according to the position.
+	 * Get the list of previous {@link OccurrenceSpecification} on the {@link LifelineEditPart} according to the position.
 	 * 
 	 * @param position
 	 *            The reference position.
 	 * @param lifelineEditPart
 	 *            The lifeline edit part
 	 */
-	public static List<MessageEnd> getPreviousEventsFromPosition(final Point position, final LifelineEditPart lifelineEditPart) {
-		List<MessageEnd> previous = new ArrayList<MessageEnd>();
+	public static List<OccurrenceSpecification> getPreviousEventsFromPosition(final Point position, final LifelineEditPart lifelineEditPart) {
+		List<OccurrenceSpecification> previous = new ArrayList<OccurrenceSpecification>();
 		DiagramEditPart diagramEditPart = getDiagramEditPart(lifelineEditPart);
 		Lifeline lifeline = (Lifeline) lifelineEditPart.resolveSemanticElement();
 		try {
@@ -194,9 +194,9 @@ public class LifelineEditPartUtil {
 					if (currentPoint.y < position.y) {
 						if (row.getElement() != null) {
 							EObject referedElement = row.getElement();
-							if (referedElement instanceof MessageEnd) {
+							if (referedElement instanceof OccurrenceSpecification) {
 								if (lifeline.getCoveredBys().contains(referedElement)) {
-									previous.add((MessageEnd) referedElement);
+									previous.add((OccurrenceSpecification) referedElement);
 								}
 							}
 						}
@@ -225,7 +225,7 @@ public class LifelineEditPartUtil {
 	}
 
 	/**
-	 * Get the list of previous {@link MessageEnd} on the {@link LifelineEditPart} according to the position.
+	 * Get the list of previous {@link OccurrenceSpecification} on the {@link LifelineEditPart} according to the position.
 	 * 
 	 * @param position
 	 *            The reference position.
@@ -233,8 +233,8 @@ public class LifelineEditPartUtil {
 	 *            The lifeline edit part
 	 * @since 3.1
 	 */
-	public static List<MessageEnd> getNextEventsFromPosition(final Point position, final LifelineEditPart lifelineEditPart) {
-		List<MessageEnd> previous = new ArrayList<MessageEnd>();
+	public static List<OccurrenceSpecification> getNextEventsFromPosition(final Point position, final LifelineEditPart lifelineEditPart) {
+		List<OccurrenceSpecification> previous = new ArrayList<OccurrenceSpecification>();
 		DiagramEditPart diagramEditPart = getDiagramEditPart(lifelineEditPart);
 		Lifeline lifeline = (Lifeline) lifelineEditPart.resolveSemanticElement();
 		try {
@@ -245,9 +245,9 @@ public class LifelineEditPartUtil {
 					if (currentPoint.y > position.y) {
 						if (row.getElement() != null) {
 							EObject referedElement = row.getElement();
-							if (referedElement instanceof MessageEnd) {
+							if (referedElement instanceof OccurrenceSpecification) {
 								if (lifeline.getCoveredBys().contains(referedElement)) {
-									previous.add((MessageEnd) referedElement);
+									previous.add((OccurrenceSpecification) referedElement);
 								}
 							}
 						}

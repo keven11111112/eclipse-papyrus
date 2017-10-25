@@ -196,7 +196,9 @@ public class TooltipUtil {
 		@Override
 		public void deactivate() {
 			super.deactivate();
-			getHostFigure().removeMouseMotionListener(updateListener);
+			if (null != updateListener) {
+				getHostFigure().removeMouseMotionListener(updateListener);
+			}
 			if (getHost() instanceof LifelineEditPart) {
 				((LifelineEditPart) getHost()).getPrimaryView().eAdapters().remove(modelListener);
 			}
