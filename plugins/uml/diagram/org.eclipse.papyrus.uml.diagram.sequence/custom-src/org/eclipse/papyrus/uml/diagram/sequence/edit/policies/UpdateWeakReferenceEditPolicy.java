@@ -114,7 +114,9 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		ReconnectRequest reconnectRequest = new ReconnectRequest();
 		reconnectRequest.setConnectionEditPart(connectionEditPart);
 		SenderRequestUtils.addRequestSenders(reconnectRequest, senderList);
-		SenderRequestUtils.addRequestSender(reconnectRequest, hostEditpart);
+		if (null != hostEditpart) {
+			SenderRequestUtils.addRequestSender(reconnectRequest, hostEditpart);
+		}
 		reconnectRequest.setLocation(location.getLocation().getCopy());
 		reconnectRequest.setType(reconnectType);
 		if (RequestConstants.REQ_RECONNECT_TARGET.equals(reconnectType)) {
@@ -148,7 +150,9 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 	protected static void moveRoundedEditPart(EditPart hostEditPart, Point moveDelta, CompoundCommand compoundCommand, EditPart editPartToMove, ArrayList<EditPart> senderList) {
 		ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_MOVE);
 		SenderRequestUtils.addRequestSenders(changeBoundsRequest, senderList);
-		SenderRequestUtils.addRequestSender(changeBoundsRequest, hostEditPart);
+		if (null != hostEditPart) {
+			SenderRequestUtils.addRequestSender(changeBoundsRequest, hostEditPart);
+		}
 		GraphicalEditPart gEditPart = (GraphicalEditPart) editPartToMove;
 		Point newLocation = new Point(gEditPart.getFigure().getBounds().getTopLeft().x, gEditPart.getFigure().getBounds().getTopLeft().y + moveDelta.y());
 

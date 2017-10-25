@@ -78,6 +78,11 @@ public class Messages extends NLS {
 	public static String Commands_CreateExecutionSpecification_Label;
 
 	public static String Commands_DropDestructionOccurenceSpecification_Label;
+	
+	/**
+	 * @since 5.0
+	 */
+	public static String CustomDiagramGeneralPreferencePage_MinimumSpaceBelowMessageAtCreation;
 
 	/**
 	 * @since 5.0
