@@ -9,11 +9,14 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519408, 525372
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519408, 525372, 526628
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.draw2d.AbstractRouter;
@@ -41,13 +44,17 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConnectionBendpointEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.diagram.ui.util.SelectInDiagramHelper;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.LineMode;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.command.DropDestructionOccurenceSpecification;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter.RouterKind;
@@ -62,6 +69,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageCreate;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -110,6 +119,20 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 	@Override
 	public Command getCommand(Request request) {
+		// get the command in case of deletion of a message
+		if (request instanceof EditCommandRequestWrapper
+				&& (getHost() instanceof AbstractMessageEditPart)
+				&& !(getHost() instanceof MessageDeleteEditPart)
+				&& !(getHost() instanceof MessageCreateEditPart)) {
+
+			// Check that this is a delete command, in this case, we have to recalculate the other execution specification positions
+			final IEditCommandRequest editCommandRequest = ((EditCommandRequestWrapper) request).getEditCommandRequest();
+			if (editCommandRequest instanceof DestroyElementRequest
+					&& ((DestroyElementRequest) editCommandRequest).getElementToDestroy() instanceof Message) {
+				return getUpdateWeakRefForMessageDelete((EditCommandRequestWrapper) request);
+			}
+		}
+
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
 		if (kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate) {
 			return super.getCommand(request);
@@ -117,6 +140,58 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			return getMoveMessageCommand((BendpointRequest) request);
 		}
 		return null;
+	}
+
+	/**
+	 * Get the command to update weak references of the message for a deletion.
+	 * 
+	 * @param request
+	 *            the delete command wrapped into a {@link EditCommandRequestWrapper}.
+	 * @return the command
+	 */
+	@SuppressWarnings("unchecked")
+	private Command getUpdateWeakRefForMessageDelete(final EditCommandRequestWrapper request) {
+		CompoundCommand command = null;
+		ConnectionEditPart hostConnectionEditPart = (ConnectionEditPart) getHost();
+
+		// compute Delta
+		Point moveDelta = new Point(0, -UpdateWeakReferenceEditPolicy.deltaMoveAtCreationAndDeletion);
+
+		if (moveDelta.y < 0) {
+			// get the edit policy of references
+			if (hostConnectionEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
+				SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) hostConnectionEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
+				if (!SenderRequestUtils.isASender(request, getHost())) {
+					CompoundCommand compoundCommand = new CompoundCommand();
+
+					// Gets weak references
+					HashMap<EditPart, String> weakReferences = new HashMap<EditPart, String>();
+					weakReferences.putAll(references.getWeakReferences());
+
+					// for each weak reference move it
+					for (Iterator<EditPart> iterator = weakReferences.keySet().iterator(); iterator.hasNext();) {
+						EditPart editPart = (EditPart) iterator.next();
+						if (!SenderRequestUtils.isASender(request, editPart)) {// avoid loop
+							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart);//$NON-NLS-1$
+							ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
+							if (editPart instanceof ConnectionEditPart) {
+								ConnectionEditPart connectionEditPart = (ConnectionEditPart) editPart;
+								// move up, source must be moved before
+								UpdateWeakReferenceEditPolicy.moveSourceConnectionEditPart(hostConnectionEditPart, moveDelta, compoundCommand, connectionEditPart, senderList);
+								UpdateWeakReferenceEditPolicy.moveTargetConnectionEditPart(hostConnectionEditPart, moveDelta, compoundCommand, connectionEditPart, senderList);
+							}
+							if (editPart instanceof RoundedCompartmentEditPart) {
+								UpdateWeakReferenceEditPolicy.moveRoundedEditPart(hostConnectionEditPart, moveDelta, compoundCommand, editPart, senderList);
+							}
+						}
+						if (!compoundCommand.isEmpty()) {
+							command = compoundCommand;
+						}
+					}
+				}
+			}
+		}
+		return command;
 	}
 
 	/**
@@ -161,7 +236,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	 */
 	@Override
 	protected Command getBendpointsChangedCommand(BendpointRequest request) {
-		//snap to grid the location request
+		// snap to grid the location request
 		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		if ((getHost().getViewer() instanceof ScrollingGraphicalViewer) && (getHost().getViewer().getControl() instanceof FigureCanvas)) {
 			SelectInDiagramHelper.exposeLocation((FigureCanvas) getHost().getViewer().getControl(), request.getLocation().getCopy());
