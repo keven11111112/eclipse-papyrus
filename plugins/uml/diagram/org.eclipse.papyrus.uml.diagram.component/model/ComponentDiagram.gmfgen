@@ -123,7 +123,7 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel">
-          <attributes
+            <attributes
                 xsi:type="gmfgen:LabelOffsetAttributes"
                 x="25"
                 y="3"/>
@@ -3420,7 +3420,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="add superclass for floating Label"
-        genView="/0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@topLevelNodes.0/@labels.1 /0/@diagram/@topLevelNodes.1/@labels.1 /0/@diagram/@topLevelNodes.4/@labels.1 /0/@diagram/@topLevelNodes.8/@labels.1"
+        genView="/0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@topLevelNodes.0/@labels.1 /0/@diagram/@topLevelNodes.1/@labels.1 /0/@diagram/@topLevelNodes.4/@labels.1 /0/@diagram/@topLevelNodes.8/@labels.1 /0/@diagram/@childNodes.0/@labels.0"
         name="FloatingLabelEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart"/>
     <extensionNodes

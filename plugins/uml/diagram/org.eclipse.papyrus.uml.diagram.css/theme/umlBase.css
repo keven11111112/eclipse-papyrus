@@ -466,6 +466,13 @@ CompositeStructureDiagram Port{
 	isPortResizable:true;
 }
 
+/*---------- Component Diagram ----------*/
+
+ComponentDiagram Port > Label{
+    visible:true;
+    textAlignment:"left";
+}
+
 /*---------- Interaction Overview Diagram ----------*/
 
 InteractionOverviewDiagram MergeNode, 

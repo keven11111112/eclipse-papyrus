@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2017 CEA LIST.
   *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
   *
   * Contributors:
   *  CEA LIST - Initial API and implementation
+  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 525463
  */
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
@@ -58,7 +59,6 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
@@ -66,6 +66,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.LabelAlignmentEditP
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IndirectPortLabelEditPolicy;
@@ -86,7 +87,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class PortNameEditPart extends PapyrusLabelEditPart
+public class PortNameEditPart extends FloatingLabelEditPart
 		implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 
 	/**
