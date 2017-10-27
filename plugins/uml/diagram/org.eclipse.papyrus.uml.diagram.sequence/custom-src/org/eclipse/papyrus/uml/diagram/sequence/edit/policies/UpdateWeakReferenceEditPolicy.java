@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 526191
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 526191, 526628
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -64,12 +64,18 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 	 * @since 4.1
 	 */
 	protected boolean mustMoveBelowAtMovingUp;
+
 	/**
 	 * The must move preference boolean. Set to true if messages below the current message must move down at the same time.
 	 * 
 	 * @since 4.1
 	 */
 	protected boolean mustMoveBelowAtMovingDown;
+
+	/**
+	 * Minimum space that must be below a message at creation.
+	 */
+	protected static int deltaMoveAtCreationAndDeletion = CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE;
 
 	/**
 	 * Constructor.
@@ -87,6 +93,7 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, SHIFTUp);
 		mustMoveBelowAtMovingUp = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP);
 		mustMoveBelowAtMovingDown = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN);
+		deltaMoveAtCreationAndDeletion = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getInt(CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION);
 		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().addPropertyChangeListener(moveMessageListener);
 	}
 
@@ -210,8 +217,6 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 
 	/**
 	 * Listener of move message preference property change.
-	 * 
-	 * @author Mickael ADAM
 	 */
 	private final class MoveMessagePropertyChangeListener implements IPropertyChangeListener {
 		/**
@@ -229,6 +234,11 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 			case CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN:
 				if (mustMoveBelowAtMovingDown != (boolean) event.getNewValue()) {
 					mustMoveBelowAtMovingDown = (boolean) event.getNewValue();
+				}
+				break;
+			case CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION:
+				if (deltaMoveAtCreationAndDeletion != (int) event.getNewValue()) {
+					deltaMoveAtCreationAndDeletion = (int) event.getNewValue();
 				}
 				break;
 			}

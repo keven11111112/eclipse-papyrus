@@ -107,8 +107,7 @@ public class LifeLineRestorePositionEditPolicy extends SemanticEditPolicy implem
 			if (null != restoreLifelinePositionCommand && restoreLifelinePositionCommand.canExecute()) {
 				executeCommand(restoreLifelinePositionCommand);
 			}
-		}
-		if (connection instanceof MessageDeleteEditPart) {
+		} else if (connection instanceof MessageDeleteEditPart) {
 			Command restoreLifelinePositionCommand = LifelineEditPartUtil.getRestoreLifelinePositionOnMessageDeleteRemovedCommand(connection);
 			if (null != restoreLifelinePositionCommand && restoreLifelinePositionCommand.canExecute()) {
 				executeCommand(restoreLifelinePositionCommand);
