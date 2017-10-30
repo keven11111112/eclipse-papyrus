@@ -318,7 +318,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/xwt/release-1.3.0">
+        <repository url="http://download.eclipse.org/xwt/updates">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>XWT</value>
@@ -708,6 +708,9 @@
     </targlet>
     <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Test Dependencies">
       <requirement name="org.apache.commons.lang3" versionRange="[3.1.0,3.1.1)"/>
+      <requirement name="org.eclipse.emf.compare" versionRange="[3.3.0,4.0.0)"/>
+      <requirement name="org.eclipse.gmf.tooling.feature.group"/>
+      <requirement name="org.eclipse.m2m.qvt.oml.feature.group" versionRange="[3.6.0, 4.0.0)"/>
       <repositoryList name="Photon">
         <repository url="http://download.eclipse.org/technology/swtbot/snapshots"/>
       </repositoryList>
@@ -1435,6 +1438,7 @@
         <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus ALF Test Dependencies">
           <requirement name="org.eclipse.ocl.all.feature.group"/>
           <requirement name="org.eclipse.m2m.qvt.oml.runtime.feature.group"/>
+	  <requirement name="org.eclipse.xtext.junit4"/>
         </targlet>
       </setupTask>
       <stream label="master (Photon/4.x)" name="master">
@@ -1884,6 +1888,7 @@
       <targlet name="Papyrus Developer Tools Dependencies">
         <requirement name="org.eclipse.gmf.tooling.codegen.xtend2.feature.group"/>
         <requirement name="org.eclipse.acceleo.feature.group"/>
+	<requirement name="org.eclipse.gmf.tooling.feature.group"/>
       </targlet>
     </setupTask>
     <setupTask xsi:type="setup.p2:P2Task">
