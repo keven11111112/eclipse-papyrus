@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
-	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
 	xmlns:xtexteditor="clr-namespace:org.eclipse.papyrus.uml.properties.xtext.widget.property"
 	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt">
 	<Composite.layout>
@@ -29,9 +29,9 @@
 			property="UML:MultiplicityElement:isUnique"></ppe:BooleanRadio>
 		<ppe:EnumCombo input="{Binding}" property="UML:NamedElement:visibility"></ppe:EnumCombo>
 		<ppe:ReferenceDialog input="{Binding}" property="UML:TypedElement:type" 
-			customLabel="defaultEditor"></ppe:ReferenceDialog>
+			customLabel="Classic Type"></ppe:ReferenceDialog>
 		<ppe:CompletionStyledTextReferenceDialog
-			input="{Binding}" property="UML:TypedElement:type" customLabel="newType"></ppe:CompletionStyledTextReferenceDialog>
+			input="{Binding}" property="UML:TypedElement:type" customLabel="Auto-fill Type"></ppe:CompletionStyledTextReferenceDialog>
 		<xtexteditor:MultiplicityXTextDialog
 			property="Multiplicity:multiplicity" input="{Binding}"></xtexteditor:MultiplicityXTextDialog>
 		<ppe:ReferenceDialog input="{Binding}"
