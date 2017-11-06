@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - bug 448139
  *  Pierre GAUTIER (CEA LIST) - bug 521857
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 521902, Bug 526304
+ *  Vincent LORENZO (CEA LIST) - bug 526900
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
@@ -157,8 +158,8 @@ public class EStructuralFeatureEditor implements IValueChangeListener<Object>, I
 	}
 
 	public void setFeatureToEdit(final String title, final EStructuralFeature feature, final EObject element) {
+		Composite previousPage = this.currentPage;
 		if (currentPage != null) {
-			currentPage.dispose();
 			currentPage = null;
 		}
 
@@ -219,6 +220,9 @@ public class EStructuralFeatureEditor implements IValueChangeListener<Object>, I
 			currentPage = createEmptyPage();
 		}
 		pageBook.showPage(currentPage);
+		// we dispose it after the showPage because until the previous line, we continue to display it, so we can't call the dispose!
+		previousPage.dispose();
+		previousPage = null;
 	}
 
 	protected void setValueEditorProperties(final AbstractValueEditor editor, final EObject stereotypeApplication, final String title, final EStructuralFeature feature) {
