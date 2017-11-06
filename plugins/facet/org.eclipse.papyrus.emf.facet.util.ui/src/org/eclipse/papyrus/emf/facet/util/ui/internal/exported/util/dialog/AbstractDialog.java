@@ -59,19 +59,7 @@ public abstract class AbstractDialog<CB extends Object, W extends ICommandWidget
 	 * Constructor.
 	 */
 	protected AbstractDialog() {
-		super(createDisplayedShell());
-	}
-
-	private static Shell createDisplayedShell() {
-		final Display display = Display.getDefault();
-		final Shell shell = new Shell(display);
-		final Monitor primary = display.getPrimaryMonitor();
-		final Rectangle bounds = primary.getBounds();
-		final Rectangle rect = shell.getBounds();
-		final int xLocation = bounds.x + ((bounds.width - rect.width) / 2);
-		final int yLocation = bounds.y + ((bounds.height - rect.height) / 2);
-		shell.setLocation(xLocation, yLocation);
-		return shell;
+		super(Display.getCurrent().getActiveShell());
 	}
 
 	/**
