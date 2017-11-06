@@ -20,6 +20,7 @@ package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensibleFactory;
@@ -96,16 +97,23 @@ public class ExtensiblePackageImpl extends EPackageImpl implements ExtensiblePac
 		}
 
 		// Obtain or create and register package
-		ExtensiblePackageImpl theExtensiblePackage = (ExtensiblePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ExtensiblePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ExtensiblePackageImpl());
+		Object registeredExtensiblePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ExtensiblePackageImpl theExtensiblePackage = registeredExtensiblePackage instanceof ExtensiblePackageImpl ? (ExtensiblePackageImpl) registeredExtensiblePackage : new ExtensiblePackageImpl();
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
-		EFacetPackageImpl theEFacetPackage = (EFacetPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) instanceof EFacetPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) : EFacetPackage.eINSTANCE);
-		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) instanceof SerializationPackageImpl
-				? EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) : SerializationPackage.eINSTANCE);
-		QueryPackageImpl theQueryPackage = (QueryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
-		RuntimePackageImpl theRuntimePackage = (RuntimePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI) instanceof RuntimePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI) : RuntimePackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI);
+		EFacetPackageImpl theEFacetPackage = (EFacetPackageImpl) (registeredPackage instanceof EFacetPackageImpl ? registeredPackage : EFacetPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI);
+		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (registeredPackage instanceof SerializationPackageImpl ? registeredPackage : SerializationPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI);
+		QueryPackageImpl theQueryPackage = (QueryPackageImpl) (registeredPackage instanceof QueryPackageImpl ? registeredPackage : QueryPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI);
+		RuntimePackageImpl theRuntimePackage = (RuntimePackageImpl) (registeredPackage instanceof RuntimePackageImpl ? registeredPackage : RuntimePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theExtensiblePackage.createPackageContents();
@@ -123,7 +131,6 @@ public class ExtensiblePackageImpl extends EPackageImpl implements ExtensiblePac
 
 		// Mark meta-data to indicate it can't be changed
 		theExtensiblePackage.freeze();
-
 
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ExtensiblePackage.eNS_URI, theExtensiblePackage);
@@ -225,6 +232,9 @@ public class ExtensiblePackageImpl extends EPackageImpl implements ExtensiblePac
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -233,8 +243,8 @@ public class ExtensiblePackageImpl extends EPackageImpl implements ExtensiblePac
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(queryEClass, Query.class, "Query", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getQuery_CanHaveSideEffects(), ecorePackage.getEBoolean(), "canHaveSideEffects", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getQuery_CanBeCached(), ecorePackage.getEBoolean(), "canBeCached", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getQuery_CanHaveSideEffects(), theEcorePackage.getEBoolean(), "canHaveSideEffects", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getQuery_CanBeCached(), theEcorePackage.getEBoolean(), "canBeCached", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 	}
 
 } // ExtensiblePackageImpl

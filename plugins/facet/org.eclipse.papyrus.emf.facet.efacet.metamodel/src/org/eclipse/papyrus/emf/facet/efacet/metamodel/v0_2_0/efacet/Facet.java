@@ -49,7 +49,7 @@ import org.eclipse.emf.ecore.ETypedElement;
  * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='( self.query.scope = self.facet.extendedMetaClass ) and ( self.query.name = self.name )'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='self.conformanceQuery.scope = self.extendedMetaClass'"
- *        annotation="org.eclipse.ocl.ecore.OCL body='not(self.container().oclCastAs(FacetSet).facets->exists(f|f.extendedMetaClass.container() <> self.extendedMetaClass.container() ))'"
+ *        annotation="org.eclipse.ocl.ecore.OCL body='not(self.container().oclCastAs(FacetSet).facets-&gt;exists(f|f.extendedMetaClass.container() &lt;&gt; self.extendedMetaClass.container() ))'"
  * @generated
  * @noimplement This interface is not intended to be implemented by clients.
  */
@@ -170,7 +170,7 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 *
 	 * @return the value of the '<em>All Typed Elements</em>' reference list.
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_AllTypedElements()
-	 * @model changeable="false" derived="true"
+	 * @model transient="true" changeable="false" derived="true"
 	 * @generated
 	 * @since 1.2
 	 */
@@ -188,7 +188,7 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 *
 	 * @return the value of the '<em>All Facet Operations</em>' reference list.
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_AllFacetOperations()
-	 * @model changeable="false" derived="true"
+	 * @model transient="true" changeable="false" derived="true"
 	 * @generated
 	 * @since 1.2
 	 */
@@ -206,7 +206,7 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 *
 	 * @return the value of the '<em>All Facet Elements</em>' reference list.
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_AllFacetElements()
-	 * @model changeable="false" derived="true"
+	 * @model transient="true" changeable="false" derived="true"
 	 * @generated
 	 * @since 1.2
 	 */
