@@ -51,7 +51,7 @@ public class SelectETypeWizardImpl<T extends EClassifier> extends Wizard
 	public SelectETypeWizardImpl(final Class<? extends T> eTypeOption,
 			final EPackage ePackage) {
 		super();
-		this.dialog = new WizardDialog(new Shell(Display.getDefault()),
+		this.dialog = new WizardDialog(Display.getDefault().getActiveShell(),
 				this);
 		this.ePackageWP = new SelectEPackageWizardPage();
 		this.eClassifierWP = new SelectEClassifierWizardPage<T>(eTypeOption,
