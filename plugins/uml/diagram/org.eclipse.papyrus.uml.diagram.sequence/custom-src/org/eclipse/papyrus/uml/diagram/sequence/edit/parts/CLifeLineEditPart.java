@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 526803
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -25,6 +25,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.LifelineNodePlate;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifeLineRestorePositionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateNodeReferenceEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceForExecSpecEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceForMessageSpecEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ILifelineInternalFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifeLineLayoutManager;
@@ -86,6 +87,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 		installEditPolicy(LifeLineRestorePositionEditPolicy.KEY, new LifeLineRestorePositionEditPolicy());
 		installEditPolicy(UpdateNodeReferenceEditPolicy.UDPATE_NODE_REFERENCE, new UpdateNodeReferenceEditPolicy());
 		installEditPolicy(UpdateWeakReferenceForMessageSpecEditPolicy.UDPATE_WEAK_REFERENCE_FOR_MESSAGE, new UpdateWeakReferenceForMessageSpecEditPolicy());
+		installEditPolicy(UpdateWeakReferenceForExecSpecEditPolicy.UDPATE_WEAK_REFERENCE_FOR_EXECSPEC, new UpdateWeakReferenceForExecSpecEditPolicy());
 	}
 
 	/**
