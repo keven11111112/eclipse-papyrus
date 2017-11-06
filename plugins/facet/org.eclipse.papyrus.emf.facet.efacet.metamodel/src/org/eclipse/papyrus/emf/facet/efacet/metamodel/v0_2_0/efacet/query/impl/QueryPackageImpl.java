@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
@@ -178,17 +179,23 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		}
 
 		// Obtain or create and register package
-		QueryPackageImpl theQueryPackage = (QueryPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new QueryPackageImpl());
+		Object registeredQueryPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		QueryPackageImpl theQueryPackage = registeredQueryPackage instanceof QueryPackageImpl ? (QueryPackageImpl) registeredQueryPackage : new QueryPackageImpl();
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
-		EFacetPackageImpl theEFacetPackage = (EFacetPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) instanceof EFacetPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) : EFacetPackage.eINSTANCE);
-		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) instanceof SerializationPackageImpl
-				? EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) : SerializationPackage.eINSTANCE);
-		ExtensiblePackageImpl theExtensiblePackage = (ExtensiblePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI) instanceof ExtensiblePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI)
-				: ExtensiblePackage.eINSTANCE);
-		RuntimePackageImpl theRuntimePackage = (RuntimePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI) instanceof RuntimePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI) : RuntimePackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI);
+		EFacetPackageImpl theEFacetPackage = (EFacetPackageImpl) (registeredPackage instanceof EFacetPackageImpl ? registeredPackage : EFacetPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI);
+		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (registeredPackage instanceof SerializationPackageImpl ? registeredPackage : SerializationPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI);
+		ExtensiblePackageImpl theExtensiblePackage = (ExtensiblePackageImpl) (registeredPackage instanceof ExtensiblePackageImpl ? registeredPackage : ExtensiblePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI);
+		RuntimePackageImpl theRuntimePackage = (RuntimePackageImpl) (registeredPackage instanceof RuntimePackageImpl ? registeredPackage : RuntimePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theQueryPackage.createPackageContents();
@@ -206,7 +213,6 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 
 		// Mark meta-data to indicate it can't be changed
 		theQueryPackage.freeze();
-
 
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(QueryPackage.eNS_URI, theQueryPackage);
@@ -495,6 +501,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 
 		// Obtain other dependent packages
 		ExtensiblePackage theExtensiblePackage = (ExtensiblePackage) EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -514,16 +521,16 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(navigationQueryEClass, NavigationQuery.class, "NavigationQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNavigationQuery_Path(), ecorePackage.getETypedElement(), null, "path", null, 1, -1, NavigationQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+		initEReference(getNavigationQuery_Path(), theEcorePackage.getETypedElement(), null, "path", null, 1, -1, NavigationQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
 				IS_ORDERED);
-		initEAttribute(getNavigationQuery_FailOnError(), ecorePackage.getEBoolean(), "failOnError", "true", 0, 1, NavigationQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getNavigationQuery_FailOnError(), theEcorePackage.getEBoolean(), "failOnError", "true", 0, 1, NavigationQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(isOneOfQueryEClass, IsOneOfQuery.class, "IsOneOfQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getIsOneOfQuery_ExpectedEObjects(), ecorePackage.getEObject(), null, "expectedEObjects", null, 0, -1, IsOneOfQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+		initEReference(getIsOneOfQuery_ExpectedEObjects(), theEcorePackage.getEObject(), null, "expectedEObjects", null, 0, -1, IsOneOfQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
 				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(stringLiteralQueryEClass, StringLiteralQuery.class, "StringLiteralQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getStringLiteralQuery_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getStringLiteralQuery_Value(), theEcorePackage.getEString(), "value", null, 0, 1, StringLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(trueLiteralQueryEClass, TrueLiteralQuery.class, "TrueLiteralQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -532,17 +539,17 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		initEClass(nullLiteralQueryEClass, NullLiteralQuery.class, "NullLiteralQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(integerLiteralQueryEClass, IntegerLiteralQuery.class, "IntegerLiteralQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getIntegerLiteralQuery_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntegerLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getIntegerLiteralQuery_Value(), theEcorePackage.getEInt(), "value", null, 0, 1, IntegerLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(floatLiteralQueryEClass, FloatLiteralQuery.class, "FloatLiteralQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getFloatLiteralQuery_Value(), ecorePackage.getEFloat(), "value", null, 0, 1, FloatLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getFloatLiteralQuery_Value(), theEcorePackage.getEFloat(), "value", null, 0, 1, FloatLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(eObjectLiteralQueryEClass, EObjectLiteralQuery.class, "EObjectLiteralQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getEObjectLiteralQuery_Element(), ecorePackage.getEObject(), null, "element", null, 0, 1, EObjectLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
-				IS_ORDERED);
+		initEReference(getEObjectLiteralQuery_Element(), theEcorePackage.getEObject(), null, "element", null, 0, 1, EObjectLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(operationCallQueryEClass, OperationCallQuery.class, "OperationCallQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getOperationCallQuery_Operation(), ecorePackage.getEOperation(), null, "operation", null, 0, 1, OperationCallQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+		initEReference(getOperationCallQuery_Operation(), theEcorePackage.getEOperation(), null, "operation", null, 0, 1, OperationCallQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getOperationCallQuery_Arguments(), theExtensiblePackage.getQuery(), null, "arguments", null, 0, -1, OperationCallQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
 				!IS_DERIVED, IS_ORDERED);

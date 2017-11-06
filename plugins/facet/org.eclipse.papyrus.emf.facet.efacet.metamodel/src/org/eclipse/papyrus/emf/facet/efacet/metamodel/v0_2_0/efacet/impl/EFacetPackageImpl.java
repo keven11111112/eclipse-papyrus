@@ -18,13 +18,12 @@
  */
 package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl;
 
-import static org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage.RESOURCE;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Category;
@@ -191,17 +190,23 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 		}
 
 		// Obtain or create and register package
-		EFacetPackageImpl theEFacetPackage = (EFacetPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof EFacetPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new EFacetPackageImpl());
+		Object registeredEFacetPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		EFacetPackageImpl theEFacetPackage = registeredEFacetPackage instanceof EFacetPackageImpl ? (EFacetPackageImpl) registeredEFacetPackage : new EFacetPackageImpl();
 
 		isInited = true;
 
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+
 		// Obtain or create and register interdependencies
-		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) instanceof SerializationPackageImpl
-				? EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) : SerializationPackage.eINSTANCE);
-		ExtensiblePackageImpl theExtensiblePackage = (ExtensiblePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI) instanceof ExtensiblePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI)
-				: ExtensiblePackage.eINSTANCE);
-		QueryPackageImpl theQueryPackage = (QueryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
-		RuntimePackageImpl theRuntimePackage = (RuntimePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI) instanceof RuntimePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI) : RuntimePackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI);
+		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (registeredPackage instanceof SerializationPackageImpl ? registeredPackage : SerializationPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI);
+		ExtensiblePackageImpl theExtensiblePackage = (ExtensiblePackageImpl) (registeredPackage instanceof ExtensiblePackageImpl ? registeredPackage : ExtensiblePackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI);
+		QueryPackageImpl theQueryPackage = (QueryPackageImpl) (registeredPackage instanceof QueryPackageImpl ? registeredPackage : QueryPackage.eINSTANCE);
+		registeredPackage = EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI);
+		RuntimePackageImpl theRuntimePackage = (RuntimePackageImpl) (registeredPackage instanceof RuntimePackageImpl ? registeredPackage : RuntimePackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theEFacetPackage.createPackageContents();
@@ -219,7 +224,6 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 
 		// Mark meta-data to indicate it can't be changed
 		theEFacetPackage.freeze();
-
 
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(EFacetPackage.eNS_URI, theEFacetPackage);
@@ -593,6 +597,7 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 		ExtensiblePackage theExtensiblePackage = (ExtensiblePackage) EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI);
 		QueryPackage theQueryPackage = (QueryPackage) EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI);
 		RuntimePackage theRuntimePackage = (RuntimePackage) EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theSerializationPackage);
@@ -605,19 +610,19 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		facetAttributeEClass.getESuperTypes().add(ecorePackage.getEAttribute());
+		facetAttributeEClass.getESuperTypes().add(theEcorePackage.getEAttribute());
 		facetAttributeEClass.getESuperTypes().add(this.getDerivedTypedElement());
-		facetReferenceEClass.getESuperTypes().add(ecorePackage.getEReference());
+		facetReferenceEClass.getESuperTypes().add(theEcorePackage.getEReference());
 		facetReferenceEClass.getESuperTypes().add(this.getDerivedTypedElement());
-		facetOperationEClass.getESuperTypes().add(ecorePackage.getEOperation());
+		facetOperationEClass.getESuperTypes().add(theEcorePackage.getEOperation());
 		facetOperationEClass.getESuperTypes().add(this.getDerivedTypedElement());
-		facetSetEClass.getESuperTypes().add(ecorePackage.getEPackage());
+		facetSetEClass.getESuperTypes().add(theEcorePackage.getEPackage());
 		facetSetEClass.getESuperTypes().add(this.getDocumentedElement());
-		facetEClass.getESuperTypes().add(ecorePackage.getEClassifier());
+		facetEClass.getESuperTypes().add(theEcorePackage.getEClassifier());
 		facetEClass.getESuperTypes().add(this.getDocumentedElement());
-		categoryEClass.getESuperTypes().add(ecorePackage.getENamedElement());
+		categoryEClass.getESuperTypes().add(theEcorePackage.getENamedElement());
 		categoryEClass.getESuperTypes().add(this.getDocumentedElement());
-		facetElementEClass.getESuperTypes().add(ecorePackage.getETypedElement());
+		facetElementEClass.getESuperTypes().add(theEcorePackage.getETypedElement());
 		facetElementEClass.getESuperTypes().add(this.getDocumentedElement());
 		derivedTypedElementEClass.getESuperTypes().add(this.getFacetElement());
 
@@ -634,20 +639,20 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 		addEOperation(facetSetEClass, this.getFacetSet(), "getFacetSets", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(facetEClass, Facet.class, "Facet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getFacet_ExtendedMetaclass(), ecorePackage.getEClass(), null, "extendedMetaclass", null, 0, 1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+		initEReference(getFacet_ExtendedMetaclass(), theEcorePackage.getEClass(), null, "extendedMetaclass", null, 0, 1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
 				IS_ORDERED);
-		initEReference(getFacet_FacetElements(), ecorePackage.getEStructuralFeature(), null, "facetElements", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+		initEReference(getFacet_FacetElements(), theEcorePackage.getEStructuralFeature(), null, "facetElements", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
 				IS_ORDERED);
 		initEReference(getFacet_FacetOperations(), this.getFacetOperation(), null, "facetOperations", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getFacet_ConformanceTypedElement(), ecorePackage.getETypedElement(), null, "conformanceTypedElement", null, 0, 1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+		initEReference(getFacet_ConformanceTypedElement(), theEcorePackage.getETypedElement(), null, "conformanceTypedElement", null, 0, 1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getFacet_ExtendedFacets(), this.getFacet(), null, "extendedFacets", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getFacet_AllTypedElements(), ecorePackage.getETypedElement(), null, "allTypedElements", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, //$NON-NLS-1$
+		initEReference(getFacet_AllTypedElements(), theEcorePackage.getETypedElement(), null, "allTypedElements", null, 0, -1, Facet.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, //$NON-NLS-1$
 				IS_ORDERED);
-		initEReference(getFacet_AllFacetOperations(), this.getFacetOperation(), null, "allFacetOperations", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, //$NON-NLS-1$
+		initEReference(getFacet_AllFacetOperations(), this.getFacetOperation(), null, "allFacetOperations", null, 0, -1, Facet.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, //$NON-NLS-1$
 				IS_ORDERED);
-		initEReference(getFacet_AllFacetElements(), ecorePackage.getEStructuralFeature(), null, "allFacetElements", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, //$NON-NLS-1$
-				IS_ORDERED);
+		initEReference(getFacet_AllFacetElements(), theEcorePackage.getEStructuralFeature(), null, "allFacetElements", null, 0, -1, Facet.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				IS_DERIVED, IS_ORDERED);
 
 		initEClass(categoryEClass, Category.class, "Category", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -661,12 +666,12 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(parameterValueEClass, ParameterValue.class, "ParameterValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getParameterValue_Parameter(), ecorePackage.getEParameter(), null, "parameter", null, 1, 1, ParameterValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+		initEReference(getParameterValue_Parameter(), theEcorePackage.getEParameter(), null, "parameter", null, 1, 1, ParameterValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
 				IS_ORDERED);
-		initEAttribute(getParameterValue_Value(), ecorePackage.getEJavaObject(), "value", null, 0, 1, ParameterValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getParameterValue_Value(), theEcorePackage.getEJavaObject(), "value", null, 0, 1, ParameterValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(documentedElementEClass, DocumentedElement.class, "DocumentedElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getDocumentedElement_Documentation(), ecorePackage.getEString(), "documentation", null, 0, 1, DocumentedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDocumentedElement_Documentation(), theEcorePackage.getEString(), "documentation", null, 0, 1, DocumentedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize data types
 		initEDataType(resourceEDataType, Resource.class, "Resource", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
