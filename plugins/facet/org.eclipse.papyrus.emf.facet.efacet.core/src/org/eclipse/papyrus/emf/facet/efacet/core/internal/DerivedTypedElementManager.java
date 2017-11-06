@@ -865,6 +865,10 @@ public class DerivedTypedElementManager implements IDerivedTypedElementManager {
 			// casting a List to a List<Object>
 			final List<Object> tmpList = (List<Object>) element;
 			newList = tmpList;
+		} else if (element instanceof Collection) {
+			//Bug 526899
+			Collection<?> result = (Collection<?>)element;
+			newList.addAll(result);
 		} else {
 			newList.add(element);
 		}
