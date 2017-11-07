@@ -18,4 +18,11 @@
 		</Composite.layout>
 		<ppe:EnumCombo input="{Binding}" property="UML:ElementImport:visibility"></ppe:EnumCombo>
 	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="UML:ElementImport:importedElement" readOnly="true"></ppe:ReferenceDialog>
+	</Composite>
 </Composite>
