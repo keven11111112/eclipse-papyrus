@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 525463
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -33,7 +34,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.IFloatingLabelEditPart;
 
 /**
  * @author Patrick Tessier
@@ -66,7 +67,7 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 	 */
 	@Override
 	protected EditPolicy createChildEditPolicy(EditPart child) {
-		if ((child instanceof IBorderItemEditPart) && !(child instanceof FloatingLabelEditPart)) {
+		if ((child instanceof IBorderItemEditPart) && !(child instanceof IFloatingLabelEditPart)) {
 			// return new BorderItemSelectionEditPolicy();
 			return new BorderItemResizableEditPolicy();
 		}
@@ -97,7 +98,7 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 	 */
 	@Override
 	protected Object getConstraintFor(ChangeBoundsRequest request, GraphicalEditPart child) {
-		
+
 		return super.getConstraintFor(request, child);
 	}
 
@@ -107,7 +108,7 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 	 */
 	@Override
 	protected Object getConstraintFor(Point point) {
-		
+
 		return null;
 	}
 
@@ -126,7 +127,7 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 	 */
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
-		
+
 		return null;
 	}
 

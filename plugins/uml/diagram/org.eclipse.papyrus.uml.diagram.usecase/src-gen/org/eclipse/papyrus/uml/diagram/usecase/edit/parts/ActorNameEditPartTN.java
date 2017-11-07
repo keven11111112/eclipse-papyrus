@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2017 CEA LIST.
   * 
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
   * 
   * Contributors:
   *  CEA LIST - Initial API and implementation
+  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 525463
  */
 package org.eclipse.papyrus.uml.diagram.usecase.edit.parts;
 
@@ -58,18 +59,16 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ExternalLabelPrimaryDragRoleEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.usecase.providers.UMLElementTypes;
@@ -86,7 +85,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class ActorNameEditPartTN extends PapyrusLabelEditPart
+public class ActorNameEditPartTN extends FloatingLabelEditPart
 		implements ITextAwareEditPart, IBorderItemEditPart, ILabelRoleProvider {
 
 	/**
@@ -116,12 +115,14 @@ public class ActorNameEditPartTN extends PapyrusLabelEditPart
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -708,6 +709,7 @@ public class ActorNameEditPartTN extends PapyrusLabelEditPart
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -723,6 +725,7 @@ public class ActorNameEditPartTN extends PapyrusLabelEditPart
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -736,10 +739,12 @@ public class ActorNameEditPartTN extends PapyrusLabelEditPart
 	}
 
 	/**
-	* Performs the direct edit usually used by GMF editors.
-	* @param theRequest the direct edit request that starts the direct edit system
-	* @generated
-	*/
+	 * Performs the direct edit usually used by GMF editors.
+	 * 
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 * @generated
+	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {

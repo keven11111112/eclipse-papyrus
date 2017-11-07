@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 472932
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 525463
  */
 package org.eclipse.papyrus.uml.diagram.component.custom.edit.part;
 
@@ -15,20 +16,23 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editparts.IFloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLTextSelectionEditPolicy;
 
 /**
  * The custom edit policy for the port applied stereotype.
+ * 
  * @since 3.0
  */
-public class CustomPortAppliedStereotypeEditPart extends PortAppliedStereotypeEditPart {
+public class CustomPortAppliedStereotypeEditPart extends PortAppliedStereotypeEditPart implements IFloatingLabelEditPart {
 
 	/**
 	 * Constructor.
 	 *
-	 * @param view The view
+	 * @param view
+	 *            The view
 	 */
 	public CustomPortAppliedStereotypeEditPart(final View view) {
 		super(view);
@@ -54,8 +58,7 @@ public class CustomPortAppliedStereotypeEditPart extends PortAppliedStereotypeEd
 			if (view.isVisible()) {
 				setLabelTextHelper(getFigure(), getLabelText());
 				setLabelIconHelper(getFigure(), getLabelIcon());
-			}
-			else {
+			} else {
 				setLabelTextHelper(getFigure(), ""); //$NON-NLS-1$
 				setLabelIconHelper(getFigure(), null);
 			}
