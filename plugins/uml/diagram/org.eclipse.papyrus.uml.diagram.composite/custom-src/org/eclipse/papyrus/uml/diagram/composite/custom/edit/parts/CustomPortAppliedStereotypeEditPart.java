@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 472932
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 525463
  */
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts;
 
@@ -15,6 +16,7 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editparts.IFloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.policies.UMLTextSelectionEditPolicy;
@@ -22,7 +24,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.policies.UMLTextSelectionE
 /**
  * The custom edit policy for the port applied stereotype.
  */
-public class CustomPortAppliedStereotypeEditPart extends PortAppliedStereotypeEditPart {
+public class CustomPortAppliedStereotypeEditPart extends PortAppliedStereotypeEditPart implements IFloatingLabelEditPart {
 
 	/**
 	 * Constructor.

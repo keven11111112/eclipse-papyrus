@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2014, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 525463
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
@@ -27,7 +28,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.MaskManagedFloatingLa
 /**
  * The Class FloatingNameEditPart.
  */
-public class FloatingLabelEditPart extends PapyrusLabelEditPart implements NamedStyleProperties {
+public class FloatingLabelEditPart extends PapyrusLabelEditPart implements NamedStyleProperties, IFloatingLabelEditPart {
 
 
 	/** The Constant DEFAULT_LABEL_DISPLAYED. */
