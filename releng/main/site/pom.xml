@@ -22,6 +22,29 @@
 					<includePackedArtifacts>true</includePackedArtifacts>
 				</configuration>
 			</plugin>
+			
+			<!-- workaround https://bugs.eclipse.org/bugs/show_bug.cgi?id=453708 -->
+			<!-- This particular fix should be removed as soon as the next XWT release is published
+					as the fix for the properties view performance issues requires the 1.3.1 or above -->
+			<plugin>
+				<groupId>org.jboss.tools.tycho-plugins</groupId>
+				<artifactId>repository-utils</artifactId>
+				<executions>
+					<execution>
+					<phase>package</phase>
+						<goals>
+							<goal>generate-repository-facade</goal>
+						</goals>
+						<configuration>
+						
+						<!-- p2 update site transitive dependencies repositories -->
+							<associateSites>
+								<site>http://download.eclipse.org/xwt/updates</site>
+							</associateSites>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>
