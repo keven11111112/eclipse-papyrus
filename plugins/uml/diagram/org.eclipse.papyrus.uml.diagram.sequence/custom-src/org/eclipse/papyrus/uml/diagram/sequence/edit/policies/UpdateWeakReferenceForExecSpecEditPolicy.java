@@ -32,7 +32,10 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
@@ -54,15 +57,13 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  *
  */
 public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenceEditPolicy {
+
 	public static final String UDPATE_WEAK_REFERENCE_FOR_EXECSPEC = "UpdateWeakReferenceForExecSpecEditPolicy"; //$NON-NLS-1$
 
 	/**
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#getCommand(org.eclipse.gef.Request)
-	 *
 	 * @param request
 	 * @return
-	 * 
-	 * 
 	 * 		<img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
 	 *         <UL>
 	 *         <LI>when move E --> move B on the coordinate Y of E and move A on the coordinate Y of E
@@ -75,12 +76,23 @@ public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenc
 	public Command getCommand(Request request) {
 		Command command = null;
 		if (!(SenderRequestUtils.isASender(request, getHost()))) {
-			if (request instanceof ChangeBoundsRequest && !org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_AUTOSIZE.equals(request.getType())) {
+			if (request instanceof ChangeBoundsRequest
+					&& !org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_AUTOSIZE.equals(request.getType())
+					&& getHost() instanceof AbstractExecutionSpecificationEditPart) {
 				// For change bounds request
 				command = getUpdateWeakRefForExecSpecResize((ChangeBoundsRequest) request);
 			} else if (request instanceof CreateViewAndElementRequest) {
 				// for creation request
 				command = getUpdateWeakRefForExecSpecCreate((CreateViewAndElementRequest) request);
+			} else if (request instanceof EditCommandRequestWrapper
+					&& (getHost() instanceof AbstractExecutionSpecificationEditPart)) {
+
+				// Check that this is a delete command, in this case, we have to recalculate the other execution specification positions
+				final IEditCommandRequest editCommandRequest = ((EditCommandRequestWrapper) request).getEditCommandRequest();
+				if (editCommandRequest instanceof DestroyElementRequest
+						&& ((DestroyElementRequest) editCommandRequest).getElementToDestroy() instanceof ExecutionSpecification) {
+					return getUpdateWeakRefForExecSpecDelete((EditCommandRequestWrapper) request);
+				}
 			}
 		}
 		return null == command ? super.getCommand(request) : command;
@@ -95,8 +107,8 @@ public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenc
 	 */
 	private Command getUpdateWeakRefForExecSpecCreate(final CreateViewAndElementRequest request) {
 		Command command = null;
-		CreateViewAndElementRequest createRequest = (CreateViewAndElementRequest) request;
-		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "Execution Specification creation request at:" + ((View) ((IAdaptable) getHost()).getAdapter(View.class)).getElement());
+		CreateViewAndElementRequest createRequest = request;
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "Execution Specification creation request at:" + ((IAdaptable) getHost()).getAdapter(View.class).getElement());
 		// Snap to grid Location
 		createRequest.setLocation(SequenceUtil.getSnappedLocation(getHost(), createRequest.getLocation()));
 
@@ -105,8 +117,8 @@ public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenc
 		getHostFigure().translateToRelative(reqlocationOnScreen);
 
 		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "=> Request Location on screen: " + reqlocationOnScreen);
-		List<OccurrenceSpecification> nextEventsFromPosition = new ArrayList<OccurrenceSpecification>();
-		List<OccurrenceSpecification> previousEventsFromPosition = new ArrayList<OccurrenceSpecification>();
+		List<OccurrenceSpecification> nextEventsFromPosition = new ArrayList<>();
+		List<OccurrenceSpecification> previousEventsFromPosition = new ArrayList<>();
 
 		// Get next and previous event from the lifeline source
 		EditPart host = getHost();
@@ -161,24 +173,24 @@ public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenc
 							moveSourceConnectionEditPart(null, moveDelta, compoundCommand, (ConnectionEditPart) editPart, senderList);
 						}
 					} else
-					// move execution specification
-					if (editPart instanceof AbstractExecutionSpecificationEditPart) {
-						EObject element = ((View) ((AbstractExecutionSpecificationEditPart) editPart).getAdapter(View.class)).getElement();
+						// move execution specification
+						if (editPart instanceof AbstractExecutionSpecificationEditPart) {
+							EObject element = ((View) ((AbstractExecutionSpecificationEditPart) editPart).getAdapter(View.class)).getElement();
 
-						if (element instanceof ExecutionSpecification && null != ((ExecutionSpecification) element).getStart() && ((ExecutionSpecification) element).getStart().equals(nextEvent)) {
-							// compute Delta
-							Point moveDelta = new Point(0, 0);
-							Point figureLocation = ((AbstractExecutionSpecificationEditPart) editPart).getFigure().getBounds().getLocation();
-							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tlocationOfFigure:\t" + figureLocation);
+							if (element instanceof ExecutionSpecification && null != ((ExecutionSpecification) element).getStart() && ((ExecutionSpecification) element).getStart().equals(nextEvent)) {
+								// compute Delta
+								Point moveDelta = new Point(0, 0);
+								Point figureLocation = ((AbstractExecutionSpecificationEditPart) editPart).getFigure().getBounds().getLocation();
+								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tlocationOfFigure:\t" + figureLocation);
 
-							Point newLocation = new Point(0, reqlocationOnScreen.y + AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT + deltaMoveAtCreationAndDeletion);
-							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tNew location to be set:\t" + newLocation);
-							moveDelta.y = newLocation.y - figureLocation.y;
+								Point newLocation = new Point(0, reqlocationOnScreen.y + AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT + deltaMoveAtCreationAndDeletion);
+								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tNew location to be set:\t" + newLocation);
+								moveDelta.y = newLocation.y - figureLocation.y;
 
-							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tMoveDela:\t\t" + moveDelta.y);
-							moveRoundedEditPart(null, moveDelta, compoundCommand, (EditPart) editPart, senderList);
+								UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "\t\tMoveDela:\t\t" + moveDelta.y);
+								moveRoundedEditPart(null, moveDelta, compoundCommand, (EditPart) editPart, senderList);
+							}
 						}
-					}
 				}
 			}
 			if (!compoundCommand.isEmpty()) {
@@ -197,32 +209,32 @@ public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenc
 	 */
 	private Command getUpdateWeakRefForExecSpecResize(final ChangeBoundsRequest request) {
 		CompoundCommand compoundCommand = new CompoundCommand();
-		Point nextLocation = ((ChangeBoundsRequest) request).getLocation();
+		Point nextLocation = request.getLocation();
 		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ MOVE at " + nextLocation + " of " + getHost());//$NON-NLS-1$ //$NON-NLS-2$
 		Rectangle locationAndSize = new PrecisionRectangle(getHostFigure().getBounds());
 		Point moveDelta = new Point(0, 0);
 		if (RequestConstants.REQ_MOVE.equals(request.getType())) {
-			moveDelta = ((ChangeBoundsRequest) request).getMoveDelta();
+			moveDelta = request.getMoveDelta();
 		} else if (RequestConstants.REQ_RESIZE.equals(request.getType())) {
-			moveDelta = new Point(0, ((ChangeBoundsRequest) request).getSizeDelta().height + ((ChangeBoundsRequest) request).getMoveDelta().y);
+			moveDelta = new Point(0, request.getSizeDelta().height + request.getMoveDelta().y);
 		}
 		if (moveDelta.y != 0 && mustMove) {
 			if (getHost() instanceof AbstractExecutionSpecificationEditPart) {
 				getHostFigure().translateToAbsolute(locationAndSize);
-				locationAndSize = ((ChangeBoundsRequest) request).getTransformedRectangle(locationAndSize);
+				locationAndSize = request.getTransformedRectangle(locationAndSize);
 			}
 			if (getHost().getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
 				SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) getHost().getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
 				if (!SenderRequestUtils.isASender(request, getHost())) {
 
 					// Gets weak references
-					HashMap<EditPart, String> weakReferences = new HashMap<EditPart, String>();
+					HashMap<EditPart, String> weakReferences = new HashMap<>();
 					if ((moveDelta.y > 0 && mustMoveBelowAtMovingDown) || (moveDelta.y < 0 && mustMoveBelowAtMovingUp)) {
 						weakReferences.putAll(references.getWeakReferences());
 					}
 
 					for (Iterator<EditPart> iterator = weakReferences.keySet().iterator(); iterator.hasNext();) {
-						EditPart editPart = (EditPart) iterator.next();
+						EditPart editPart = iterator.next();
 						if (!SenderRequestUtils.isASender(request, editPart)) {
 							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move of " + moveDelta.y + " " + editPart);//$NON-NLS-1$
 							ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
@@ -244,4 +256,59 @@ public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenc
 		}
 		return compoundCommand.isEmpty() ? null : compoundCommand;
 	}
+
+	/**
+	 * Get the command to update weak references of the execution specification for a deletion.
+	 * 
+	 * @param request
+	 *            the delete command wrapped into a {@link EditCommandRequestWrapper}.
+	 * @return the command
+	 */
+	@SuppressWarnings("unchecked")
+	private Command getUpdateWeakRefForExecSpecDelete(final EditCommandRequestWrapper request) {
+		CompoundCommand command = null;
+		AbstractExecutionSpecificationEditPart hostConnectionEditPart = (AbstractExecutionSpecificationEditPart) getHost();
+
+		// compute Delta
+		Point moveDelta = new Point(0, -hostConnectionEditPart.getPrimaryShape().getBounds().height);
+
+		if (moveDelta.y < 0) {
+
+			// get the edit policy of references
+			if (hostConnectionEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
+				SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) hostConnectionEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
+				if (!SenderRequestUtils.isASender(request, getHost())) {
+					CompoundCommand compoundCommand = new CompoundCommand();
+
+					// Gets weak references
+					HashMap<EditPart, String> weakReferences = new HashMap<>();
+					weakReferences.putAll(references.getWeakReferences());
+
+					// for each weak reference move it
+					for (Iterator<EditPart> iterator = weakReferences.keySet().iterator(); iterator.hasNext();) {
+						EditPart editPart = iterator.next();
+						if (!SenderRequestUtils.isASender(request, editPart)) {// avoid loop
+							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart);//$NON-NLS-1$
+							ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
+							if (editPart instanceof ConnectionEditPart) {
+								ConnectionEditPart connectionEditPart = (ConnectionEditPart) editPart;
+								// move up, source must be moved before
+								UpdateWeakReferenceEditPolicy.moveSourceConnectionEditPart(hostConnectionEditPart, moveDelta, compoundCommand, connectionEditPart, senderList);
+								UpdateWeakReferenceEditPolicy.moveTargetConnectionEditPart(hostConnectionEditPart, moveDelta, compoundCommand, connectionEditPart, senderList);
+							}
+							if (editPart instanceof RoundedCompartmentEditPart) {
+								UpdateWeakReferenceEditPolicy.moveRoundedEditPart(hostConnectionEditPart, moveDelta, compoundCommand, editPart, senderList);
+							}
+						}
+						if (!compoundCommand.isEmpty()) {
+							command = compoundCommand;
+						}
+					}
+				}
+			}
+		}
+		return command;
+	}
 }
+
+
