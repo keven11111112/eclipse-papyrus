@@ -11,8 +11,9 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from Class Diagram
  *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 493430
- *
+ *  Asma Smaoui (CEA LIST) asma.smaoui@cea.fr - Bug 527000
  *****************************************************************************/
+
 package org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -194,7 +195,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * @return The source member end.
 	 */
 	protected Property getSourceProperty(final Association association) {
-		return AssociationUtil.getInitialTargetFirstEnd(association);
+		return AssociationUtil.getInitialSourceSecondEnd(association);
 	}
 
 	/**
@@ -205,7 +206,7 @@ public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditP
 	 * @return The target member end.
 	 */
 	protected Property getTargetProperty(final Association association) {
-		return AssociationUtil.getInitialSourceSecondEnd(association);
+		return AssociationUtil.getInitialTargetFirstEnd(association);
 	}
 
 	/**
