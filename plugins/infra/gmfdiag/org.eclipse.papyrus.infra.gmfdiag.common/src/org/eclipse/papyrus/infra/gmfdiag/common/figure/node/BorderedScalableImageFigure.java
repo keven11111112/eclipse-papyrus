@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
  *		CEA LIST - Initial API and implementation
  *      Mickael ADAM (ALL4TEC) - mickael.adam@all4tec.net - implementation of layout BorderedLayoutManager to provide maintain ratio and color set
  *      Fanch BONNABESSE (ALL4TEC) - fanch.bonnabesse@all4tec.net - Bug 502531
- *
+ *      Mickael ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 527062
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
 
@@ -25,6 +25,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
 import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
+import org.eclipse.swt.graphics.Color;
 
 /**
  * Scalable Image figure that will be aligned in the middle/center and keep its own ratio.
@@ -64,23 +65,45 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 			// Get the parent bounds
 			Rectangle parentBounds = getParent().getBounds().getCopy();
 
-			// Get the main figure where are color informations.
-			IRoundedRectangleFigure roundedCompartmentFigure = getMainFigure();
-
-			// Set the color from the color of the parent
-			if (roundedCompartmentFigure != null) {
-				setBackgroundColor(roundedCompartmentFigure.getBackgroundColor());
-				setForegroundColor(roundedCompartmentFigure.getForegroundColor());
-			} else {
-				// Set the color from the color of the parent
-				setBackgroundColor(getParent().getBackgroundColor());
-				setForegroundColor(getParent().getForegroundColor());
-			}
-
 			// set the clip of the graphics to the parent clip
 			graphics.setClip(parentBounds);
 			super.paintFigure(graphics);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.Figure#getBackgroundColor()
+	 */
+	@Override
+	public Color getBackgroundColor() {
+		// Get the main figure where are color informations.
+		IRoundedRectangleFigure roundedCompartmentFigure = getMainFigure();
+
+		// Get the color from the color of the parent
+		if (roundedCompartmentFigure != null) {
+			return roundedCompartmentFigure.getBackgroundColor();
+		}
+
+		return super.getBackgroundColor();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.draw2d.Figure#getForegroundColor()
+	 */
+	@Override
+	public Color getForegroundColor() {
+		// Get the main figure where are color informations.
+		IRoundedRectangleFigure roundedCompartmentFigure = getMainFigure();
+
+		// Get the color from the color of the parent
+		if (roundedCompartmentFigure != null) {
+			return roundedCompartmentFigure.getForegroundColor();
+		}
+		return super.getForegroundColor();
 	}
 
 	/**
