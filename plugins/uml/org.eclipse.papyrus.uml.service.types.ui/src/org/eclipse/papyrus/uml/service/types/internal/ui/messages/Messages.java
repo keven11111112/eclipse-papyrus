@@ -67,6 +67,10 @@ public class Messages extends NLS {
 
 	public static String InformationItemValidator_2;
 
+	public static String UMLElementTypePreferencePage_KeepStereotypeApplicationText;
+
+	public static String UMLElementTypePreferencePage_PageDescription;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

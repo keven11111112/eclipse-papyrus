@@ -1,7 +1,0 @@
-bug 492522: [All Diagrams] Delete from model on comment links does not work (does a delete from diagram)
-https://bugs.eclipse.org/bugs/show_bug.cgi?id=492522
-
-1. Delete from model for a link representing a feature (like the comment link mapped on Comment#annotatedElement, the contraint link mapped on Contraints#contrainedElements and others)
-must remove the referenced element of the feature
-2. To do that we need to map the type of the link (visual id) to a feature and we need to use the same id for all diagrams
-3. if these conditions are respected, the uml service type is able to remove all representations of a given link doing Delete From Model for a link 
