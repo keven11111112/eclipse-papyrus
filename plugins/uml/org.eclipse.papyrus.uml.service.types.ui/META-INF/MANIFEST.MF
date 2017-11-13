@@ -14,6 +14,8 @@ Export-Package: org.eclipse.papyrus.uml.service.types.internal.ui;x-internal:=tr
  org.eclipse.papyrus.uml.service.types.internal.ui.advice;x-internal:=true,
  org.eclipse.papyrus.uml.service.types.internal.ui.commands;x-internal:=true,
  org.eclipse.papyrus.uml.service.types.internal.ui.dialogs;x-internal:=true,
+ org.eclipse.papyrus.uml.service.types.internal.ui.messages,
+ org.eclipse.papyrus.uml.service.types.internal.ui.preferences,
  org.eclipse.papyrus.uml.service.types.ui.handlers,
  org.eclipse.papyrus.uml.service.types.ui.menu,
  org.eclipse.papyrus.uml.service.types.ui.util

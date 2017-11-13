@@ -1591,5 +1591,17 @@
 			</image>
  </extension>
 
+
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+      		id="org.eclipse.papyrus.uml.service.types.internal.ui.preferences"
+      		category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            class="org.eclipse.papyrus.uml.service.types.internal.ui.preferences.UMLElementTypePreferencePage"       
+            name="UML ElementType">
+      </page>
+   </extension>   
+
+
 </plugin>
 

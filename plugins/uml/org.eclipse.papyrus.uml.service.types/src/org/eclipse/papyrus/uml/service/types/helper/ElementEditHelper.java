@@ -12,23 +12,23 @@
  * 		Christian W. Damus - bug 467016
  * 		Christian W. Damus - bug 459701
  * 		Sebastien Bordes (Esterel Technologies SAS) - bug 497800
- *		Benoit Maggi (CEA LIST) - bug 516513
+ *		Benoit Maggi (CEA LIST) - bug 516513, 518406
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
@@ -42,6 +42,9 @@ import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
+import org.eclipse.papyrus.uml.service.types.Activator;
+import org.eclipse.papyrus.uml.service.types.command.StereotypeApplicationMoveCommand;
+import org.eclipse.papyrus.uml.service.types.preferences.UMLElementTypePreferenceInitializer;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.papyrus.uml.types.core.edithelper.DefaultUMLEditHelper;
 import org.eclipse.uml2.uml.Element;
@@ -149,9 +152,17 @@ public class ElementEditHelper extends DefaultUMLEditHelper {
 			if (elementsToMove != null) {
 				for (Object object : elementsToMove.keySet()) {
 					if (object instanceof Element) {
-						ICommand deleteContainmentLinks = getDeleteContainmentLinkCommand(req.getEditingDomain(), (Element) object, (Element) targetContainer);
+						Element element = (Element) object;
+						ICommand deleteContainmentLinks = getDeleteContainmentLinkCommand(req.getEditingDomain(), element, (Element) targetContainer);
 						if (deleteContainmentLinks.canExecute()) {
 							moveCommand = CompositeCommand.compose(moveCommand, deleteContainmentLinks);
+						}
+						boolean alsoMoveStereotypeApplication = Activator.getDefault().getPreferenceStore().getBoolean(UMLElementTypePreferenceInitializer.MOVE_STEREOTYPEAPPLICATION_ELEMENT_IN_SAME_RESOURCE);
+						if (alsoMoveStereotypeApplication) {
+							ICommand moveStereotypeCommand = getMoveStereotypeCommand(req, element, element.eResource(),  targetContainer.eResource());
+							if (moveStereotypeCommand.canExecute()) {
+								moveCommand = CompositeCommand.compose(moveCommand, moveStereotypeCommand);
+							}							
 						}
 					}
 				}
@@ -215,4 +226,20 @@ public class ElementEditHelper extends DefaultUMLEditHelper {
 		}
 		return cc;
 	}
+	
+	/**
+	 *  Construct a command to move stereotype application if required
+	 * @param request
+	 * @param element
+	 * @param source
+	 * @param target
+	 * @return
+	 */
+	private ICommand getMoveStereotypeCommand(MoveRequest request, Element element, Resource source, Resource target) {	
+		if (target != null && !target.equals(source)) {
+			return new StereotypeApplicationMoveCommand(request.getEditingDomain(), element, source, target);
+		}
+		return UnexecutableCommand.INSTANCE;
+	}	
+	
 }
