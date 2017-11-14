@@ -86,11 +86,20 @@
             id="org.eclipse.papyrus.uml.properties.multiplicityEditorProperties"
             name="Multiplicity Editor">
       </page>
+      <page
+            category="org.eclipse.papyrus.views.properties.propertyview"
+            class="org.eclipse.papyrus.internal.uml.properties.profile.preferences.ProfileTabPreferencePage"
+            id="org.eclipse.papyrus.uml.properties.profile.tab"
+            name="Profile Tab Preferences">
+      </page>
    </extension>
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
             class="org.eclipse.papyrus.uml.properties.preferences.MultiplicityEditorPreferenceInitializer">
+      </initializer>
+      <initializer
+            class="org.eclipse.papyrus.internal.uml.properties.profile.preferences.ProfileTabPreferencesInitializer">
       </initializer>
    </extension>
 </plugin>

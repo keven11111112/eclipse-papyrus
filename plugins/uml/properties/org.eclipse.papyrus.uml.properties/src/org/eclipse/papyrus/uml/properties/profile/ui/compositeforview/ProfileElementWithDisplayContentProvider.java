@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 522652
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositeforview;
@@ -19,10 +20,10 @@ import org.eclipse.papyrus.uml.profile.tree.ProfileElementContentProvider;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypeTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.TreeObject;
+import org.eclipse.papyrus.uml.profile.tree.objects.ValueTreeObject;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProfileElementWithDisplayContentProvider.
  */
@@ -42,7 +43,6 @@ public class ProfileElementWithDisplayContentProvider extends ProfileElementCont
 	public ProfileElementWithDisplayContentProvider(EModelElement _diagramElement) {
 		super();
 		diagramElement = _diagramElement;
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -55,7 +55,6 @@ public class ProfileElementWithDisplayContentProvider extends ProfileElementCont
 	 */
 	@Override
 	public TreeObject[] getChildren(Object parent) {
-		// TODO Auto-generated method stub
 		TreeObject[] objects = super.getChildren(parent);
 		updateIsDisplay(objects);
 
@@ -89,7 +88,17 @@ public class ProfileElementWithDisplayContentProvider extends ProfileElementCont
 					currentPropertyTO.setDisplay(false);
 				}
 
-			} // else nothing to do
+			}else if( objects[i] instanceof ValueTreeObject) {
+				ValueTreeObject currentValue = (ValueTreeObject) objects[i];
+				AppliedStereotypePropertyTreeObject currentPropertyTO = (AppliedStereotypePropertyTreeObject) currentValue.getParent();
+				AppliedStereotypeTreeObject currentStereotypeTO = (AppliedStereotypeTreeObject) currentPropertyTO.getParent();
+				if (isInStereoPropertyDisplay(currentPropertyTO.getProperty(), currentStereotypeTO.getStereotype())) {
+					currentPropertyTO.setDisplay(true);
+				} else {
+					currentPropertyTO.setDisplay(false);
+				}
+			}
+			// else nothing to do
 		}
 		//
 		//
@@ -158,7 +167,7 @@ public class ProfileElementWithDisplayContentProvider extends ProfileElementCont
 	}
 
 	/**
-	 * Checks wether the stereotype is in the display list or not.
+	 * Checks whether the stereotype is in the display list or not.
 	 *
 	 * @param st
 	 *            to check out

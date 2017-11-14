@@ -54,7 +54,6 @@ public class Messages extends NLS {
 	public static String ProfileExplorerDialog_Message;
 
 	public static String ProfileExplorerDialog_Title;
-
 	/** The multiplicity Editor string text label. */
 	public static String MultiplicityPreference_MultiplicityEditor;
 	
@@ -80,6 +79,12 @@ public class Messages extends NLS {
 	public static String StereotypeQualifyNameValueEditor_browseStereotypeButtonLabel;
 
 	public static String StereotypeQualifyNameValueEditor_ReturnErrorMessage;
+	
+	public static String ProfileTabPreferencePage_NumberOfCharToKeep;
+
+	public static String ProfileTabPreferencePage_ShowTheValueOfTheStereotypeProperties;
+
+	public static String ProfileTabPreferencePage_TruncateLabel;
 
 	static {
 		// initialize resource bundle

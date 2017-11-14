@@ -18,7 +18,6 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProfileElementTreeViewer.
  */

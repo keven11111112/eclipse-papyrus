@@ -116,6 +116,25 @@ When you make a copy of a property view, it is not automatically activated. Thus
 
 When making a copy of an existing configuration, you should uncheck the default one, and check the new one.
 
+
+====Profile Tab Preference====
+In some case, the labels displayed in the''' Applied Stereotypes''' Widget are too long, as it is illustrated on the next figure.
+
+[[File:images/ProfileTabIllustrationWithoutPreferences.png|Profile Tab by default]]
+
+That's why we propose tree preferences for it:
+[[File:images/ProfileTabPreferences.png|Profile Tab Preferences]]
+*'''Truncate Label''': when activated, all the labels displayed in the Applied Stereotype Viewer will be truncated after the number of chars defined by the next field. To illustrate the truncation in the viewer, we add '''...''' to indicate to the user than the label is truncated.
+*'''Number of char to keep before truncating''': all is already explained!
+*'''Show the values of the stereotypes properties as children''': When this preference is activated, we will stop to the display the properties values in the label of the properties itself (excepted for the '''null''' value). We will display the values as property's children.
+
+
+Truncated Label illustration:
+[[File:images/ProfileTabIllustrationWithTruncatedLabel.png|Profile Tab with truncated labels]]
+
+Property's values as children:
+[[File:images/ProfileTabIllustrationWithChildren.png|Profile Tab with values as children]]
+
 ===Advanced Customization===
 
 The customization tool only allows basic operations, such as adding, removing or reordering properties.
