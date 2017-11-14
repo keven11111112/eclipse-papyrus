@@ -33,6 +33,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -205,7 +206,18 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 		// Tree viewer shows applied stereotypes
 		treeViewer.setContentProvider(new ProfileElementContentProvider());
 		treeViewer.setLabelProvider(new ProfileElementLabelProvider());
-		treeViewer.addFilter(new ProfileElementTreeViewerFilter());
+		// 1. we need to replace the filter defined by default
+		final List<ViewerFilter> filterToRemove = new ArrayList<>();
+		for (ViewerFilter currentFilter : treeViewer.getFilters()) {
+			if (currentFilter instanceof ProfileElementTreeViewerFilter) {
+				filterToRemove.add(currentFilter);
+			}
+		}
+		for (final ViewerFilter filter : filterToRemove) {
+			treeViewer.removeFilter(filter);
+		}
+		// 2. we add your own filter extending the previous one
+		treeViewer.addFilter(new ProfileElementTreeViewerFilterWithPreference());
 		treeViewer.addSelectionChangedListener(this);
 	}
 
@@ -723,7 +735,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 				if (selection instanceof IStructuredSelection) {
 					final Object first = ((IStructuredSelection) selection).getFirstElement();
 					if (first instanceof AppliedStereotypePropertyTreeObject) {
-						//we refresh the whole tree viewer and not only the leaf to be OK in case of derived properties
+						// we refresh the whole tree viewer and not only the leaf to be OK in case of derived properties
 						AppliedStereotypeCompositeOnModel.this.refreshTreeViewer();
 					}
 				}

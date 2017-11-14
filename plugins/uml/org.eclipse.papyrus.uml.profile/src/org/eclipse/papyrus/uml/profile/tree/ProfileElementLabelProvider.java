@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 527195
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.tree;
 
@@ -21,10 +21,12 @@ import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
+import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ImageManager;
@@ -67,8 +69,26 @@ public class ProfileElementLabelProvider extends LabelProvider {
 
 	/** The Constant TAB. */
 	// public static final String TAB = String.valueOf("\u0009");
-	public static final String TAB = "    ";
+	public static final String TAB = "    "; //$NON-NLS-1$
 
+	/**
+	 * The constant used for <Undefined> value
+	 */
+	private static final String UNDEFINED = IPapyrusConverter.UNDEFINED_VALUE; // now, it will be written <Undefined> instead of "undefine";
+
+	/**
+	 * the null string
+	 */
+	private static final String NULL = "null";//$NON-NLS-1$
+
+	/**
+	 * the empty string
+	 */
+	private static final String EMPTY_STRING = "";//$NON-NLS-1$
+
+	/**
+	 * the label provider service use to calculate labels
+	 */
 	private LabelProviderService labelProviderService;
 
 
@@ -102,10 +122,8 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	public Image getImage(Object object) {
 		if (object instanceof AppliedStereotypeTreeObject) {
 			return ImageManager.IMG_STEREOTYPE;
-
 		} else if (object instanceof AppliedStereotypePropertyTreeObject) {
 			return ImageManager.IMG_PROPERTY;
-
 		} else if (object instanceof BooleanValueTreeObject) {
 			return ImageManager.IMG_LITERALBOOLEAN;
 		} else if (object instanceof StringValueTreeObject) {
@@ -142,7 +160,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	public String getText(Object object) {
 
 		if (object == null) {
-			return "null";
+			return NULL;
 		}
 
 		if (object instanceof AppliedStereotypeTreeObject) {
@@ -156,10 +174,10 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			String profileName = null;
 			if (LabelInternationalizationPreferencesUtils.getInternationalizationPreference(st.getProfile())) {
 				profileName = UMLLabelInternationalization.getInstance().getQualifiedLabel(st.getProfile());
-			}else {
+			} else {
 				profileName = st.getProfile().getQualifiedName();
 			}
-			String label = stName + TAB + "(from " + profileName + ")";
+			String label = stName + TAB + "(from " + profileName + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 
 			if (ProfileUtil.isDirty(nearestPackage, st.getProfile())) {
 				label += TAG_PROFILE_CHANGED;
@@ -182,7 +200,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 		}
 	}
 
-	public final static String TAG_PROFILE_CHANGED = TAB + "(has changed, consider re-applying profile)";
+	public final static String TAG_PROFILE_CHANGED = TAB + "(has changed, consider re-applying profile)"; //$NON-NLS-1$
 
 	/**
 	 * Returns the label to show for a property.
@@ -195,16 +213,40 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	 *            current property value
 	 *
 	 * @return the String label
+	 * @since3.1
 	 */
-	private String getPropLabel(Property currentProp, Type currentPropType, Object currentPropValue) {
+	protected String getPropLabel(Property currentProp, Type currentPropType, Object currentPropValue) {
 
-		String label = getPropertyShortLabel(currentProp);
+		// 1. get the label for the current property
+		final String propertyShortLabel = getPropertyShortLabel(currentProp);
 
-		if (currentPropValue == null) {
-			label = label + " = null";
-			return label;
-		}
 
+		// 2. get the label for the value of the property
+		final String propertyValueLabel = getPropertyValueLabel(currentProp, currentPropType, currentPropValue);
+
+		// 3. propertyShortLabel and propertyValueLabel
+		final StringBuilder builder = new StringBuilder(propertyShortLabel);
+		builder.append(" = "); //$NON-NLS-1$
+		builder.append(propertyValueLabel);
+		return builder.toString();
+	}
+
+	/**
+	 * 
+	 * @param currentProp
+	 *            the current managed property
+	 * @param currentPropType
+	 *            the type of the current property
+	 * @param currentPropValue
+	 *            the value of the current property
+	 * @return the label of the property's value
+	 * @since 3.1
+	 */
+	protected final String getPropertyValueLabel(Property currentProp, Type currentPropType, Object currentPropValue) {
+		String label = EMPTY_STRING;
+		if (null == currentPropValue) {
+			label = NULL;
+		} else
 		// Test property type
 		// Various cases possible for property type
 		// property is an enumeration
@@ -238,20 +280,20 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	 * @return the String label
 	 */
 	private String getPropEnumerationLabel(Property currentProp, Type currentPropType, Object currentPropValue) {
-		String label = getPropertyShortLabel(currentProp);
+		String label = EMPTY_STRING;
 
 		if (currentProp.getUpper() == 1) { // Multiplicity = 1
 			if (currentPropValue != null) {
 				// Retrieve literal
 				if (currentPropValue instanceof EnumerationLiteral) {
-					label = label + " = " + ((EnumerationLiteral) currentPropValue).getLabel();
+					label = ((EnumerationLiteral) currentPropValue).getLabel(); // $NON-NLS-1$
 				} else {
-					label = label + " = " + currentPropValue;
+					label = currentPropValue.toString(); // $NON-NLS-1$
 				}
 			}
 
 		} else { // Multiplicity > 1
-			label = label + " = " + currentPropValue;
+			label = currentPropValue.toString(); // $NON-NLS-1$
 		}
 
 		return label;
@@ -270,21 +312,21 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	 * @return the String label
 	 */
 	private String getPropStereotypeLabel(Property currentProp, Type currentPropType, Object currentPropValue) {
-		String label = getPropertyShortLabel(currentProp);
+		String label = EMPTY_STRING;
 
 		if (currentProp.getUpper() == 1) { // Multiplicity = 1
 
 			// retrieve the base element from the stereotype application
 			Element baseElement = UMLUtil.getBaseElement((EObject) currentPropValue);
 			// display the base element's qualified name
-			label = label + " = " + Util.getLabel(baseElement, true);
+			label = Util.getLabel(baseElement, true); // $NON-NLS-1$
 
 		} else { // Multiplicity > 1
 
 			// retrieve the base element from the stereotype application
 			@SuppressWarnings("unchecked")
 			List<Object> values = (List<Object>) currentPropValue;
-			ArrayList<String> baseElements = new ArrayList<String>();
+			List<String> baseElements = new ArrayList<String>();
 			for (Object value : values) {
 				// display the base element's qualified name
 				Element baseElement = UMLUtil.getBaseElement((EObject) value);
@@ -294,7 +336,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 				}
 			}
 
-			label = label + " = " + baseElements;
+			label = baseElements.toString(); // $NON-NLS-1$
 		}
 
 		return label;
@@ -313,11 +355,11 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	 * @return the String label
 	 */
 	private String getPropClassLabel(Property currentProp, Type currentPropType, Object currentPropValue) {
-		String label = getPropertyShortLabel(currentProp);
+		String label = EMPTY_STRING;
 
 		if (Util.isMetaclass(currentPropType)) {
 			if (currentProp.getUpper() == 1) { // Multiplicity = 1
-				label = label + " = " + Util.getLabel(currentPropValue, true);
+				label = Util.getLabel(currentPropValue, true); // $NON-NLS-1$
 
 			} else { // Multiplicity > 1
 
@@ -330,7 +372,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 					}
 				}
 
-				label = label + " = " + elementNames;
+				label = elementNames.toString(); // $NON-NLS-1$
 			}
 		}
 
@@ -348,10 +390,10 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	 * @return the String label
 	 */
 	private String getPropDefaultLabel(Property currentProp, Object currentPropValue) {
-		String label = getPropertyShortLabel(currentProp);
+		String label = EMPTY_STRING;
 
 		if (currentPropValue != null) {
-			label = label + " = " + labelProviderService.getLabelProvider().getText(currentPropValue);
+			label = labelProviderService.getLabelProvider().getText(currentPropValue); // $NON-NLS-1$
 		}
 
 		return label;
@@ -364,16 +406,17 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	 *            the property
 	 *
 	 * @return the property short label
+	 * @since 3.1
 	 */
-	private String getPropertyShortLabel(Property property) {
-		String derived = "";
+	protected final String getPropertyShortLabel(Property property) {
+		String derived = EMPTY_STRING;
 		if (property.isDerived()) {
-			derived = "/";
+			derived = "/"; //$NON-NLS-1$
 		}
 		Type type = property.getType();
 		String typeName = type == null ? TypeUtil.UNDEFINED_TYPE_NAME : UMLLabelInternationalization.getInstance().getLabel(type);
 		String name = UMLLabelInternationalization.getInstance().getLabel(property);
-		return derived + name + ": " + typeName + " " + MultiplicityElementUtil.formatMultiplicity(property);
+		return derived + name + ": " + typeName + " " + MultiplicityElementUtil.formatMultiplicity(property); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -415,7 +458,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			return value.toString();
 		}
 
-		return "undefined";
+		return UNDEFINED;
 	}
 
 	/**
@@ -427,13 +470,11 @@ public class ProfileElementLabelProvider extends LabelProvider {
 	 * @return the label
 	 */
 	private String getLabel(DataTypeValueTreeObject object) {
-
-		Object value = object.getValue();
+		final Object value = object.getValue();
 		if (value != null) {
-			return value.toString();
+			return labelProviderService.getLabelProvider().getText(object.getValue());
 		}
-
-		return "undefined";
+		return UNDEFINED;
 	}
 
 	/**
@@ -470,14 +511,14 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			eLiteral = ((EnumerationLiteral) tmp);
 
 		} else { // Error
-			String err = "Value " + value.toString() + " of Property " + property.getName() + " is not an EnumerationLiteral.";
+			final String err = NLS.bind("Value {0} of Property {1} is not an EnumerationLiteral.", (value != null ? value.toString() : NULL), property.getName()); //$NON-NLS-1$
 			Message.error(err);
 		}
 
 		if (eLiteral != null) {
 			return UMLLabelInternationalization.getInstance().getLabel(eLiteral);
 		} else {
-			return "undefined";
+			return UNDEFINED;
 		}
 	}
 
@@ -501,7 +542,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			baseElement = UMLUtil.getBaseElement((EObject) value);
 
 		} else { // Error
-			String err = "Type " + (value != null ? value.toString() : "null") + " of Property " + property.getName() + " is not an EObject.";
+			final String err = NLS.bind("Value {0} of Property {1} is not an EObject.", (value != null ? value.toString() : NULL), property.getName()); //$NON-NLS-1$
 			Message.error(err);
 		}
 
@@ -520,7 +561,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			return label;
 		}
 
-		return "undefined";
+		return UNDEFINED;
 	}
 
 	/**
@@ -542,6 +583,6 @@ public class ProfileElementLabelProvider extends LabelProvider {
 			return Util.getLabel(value, false);
 		}
 
-		return "undefined";
+		return UNDEFINED;
 	}
 }

@@ -20,7 +20,6 @@ import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTre
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypeTreeObject;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProfileElementTreeViewerFilter.
  */
@@ -40,7 +39,6 @@ public class ProfileElementTreeViewerFilter extends ViewerFilter {
 	 */
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
-		// TODO Auto-generated method stub
 		if ((element instanceof AppliedStereotypeTreeObject)
 				|| (element instanceof AppliedStereotypePropertyTreeObject)) {
 			return true;
