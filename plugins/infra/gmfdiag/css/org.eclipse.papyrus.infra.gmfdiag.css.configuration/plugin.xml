@@ -26,6 +26,14 @@
                   checkEnabled="true">
             </visibleWhen>
          </command>
+         <command
+               commandId="org.eclipse.papyrus.infra.gmfdiag.css.applyStyle"
+               icon="icons/sourceEditor.gif"
+               style="push">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -41,9 +49,19 @@
             id="org.eclipse.papyrus.infra.gmfdiag.css.editStyle"
             name="Edit an existing style">
       </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Apply a style on the selected item"
+            id="org.eclipse.papyrus.infra.gmfdiag.css.applyStyle"
+            name="Apply a style">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler.ApplyStyleHandler"
+            commandId="org.eclipse.papyrus.infra.gmfdiag.css.applyStyle">
+      </handler>
       <handler
             class="org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler.CreateStyleHandler"
             commandId="org.eclipse.papyrus.infra.gmfdiag.css.createStyle">
