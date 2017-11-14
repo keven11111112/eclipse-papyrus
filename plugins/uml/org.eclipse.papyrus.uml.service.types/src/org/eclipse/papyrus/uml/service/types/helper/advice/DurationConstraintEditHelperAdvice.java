@@ -8,20 +8,22 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - bug 527259
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
-import org.eclipse.emf.common.command.Command;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.DurationConstraint;
@@ -78,10 +80,10 @@ public class DurationConstraintEditHelperAdvice extends AbstractEditHelperAdvice
 		}
 
 		// Create the command to initialize Duration Interval in case of Duration Constraint
-		Command command = new RecordingCommand(request.getEditingDomain()) {
+		final ICommand command = new AbstractTransactionalCommand(request.getEditingDomain(), "Init DurationConstraint", null) {// $NON-NLS-0$
 
 			@Override
-			protected void doExecute() {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				if (request instanceof ConfigureRequest) {
 					ConfigureRequest configRequest = (ConfigureRequest) request;
 					EObject element = configRequest.getElementToConfigure();
@@ -92,12 +94,14 @@ public class DurationConstraintEditHelperAdvice extends AbstractEditHelperAdvice
 						}
 					}
 				}
+				return CommandResult.newOKCommandResult();
+
 			}
 		};
 
 
 		if (command.canExecute()) {
-			composite.compose(EMFtoGMFCommandWrapper.wrap(command));
+			composite.compose(command);
 		}
 		return composite;
 	}
