@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Ansgar Radermacher, ansgar.radermacher@cea.fr, Bug 527291 - avoid unwanted region creation
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
@@ -88,9 +89,12 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 				// used by popup-bar assistant
 				CreateViewRequest createViewRequest = (CreateViewRequest) request;
 				for (ViewDescriptor vd : createViewRequest.getViewDescriptors()) {
-					Command cmd = getCustomCreateCommand(request, null, vd.getElementAdapter().getAdapter(IElementType.class), vd.getSemanticHint());
-					if (cmd != null) {
-						return cmd;
+					IElementType elementType = vd.getElementAdapter().getAdapter(IElementType.class);
+					if (elementType != null) {
+						Command cmd = getCustomCreateCommand(request, null, elementType, vd.getSemanticHint());
+						if (cmd != null) {
+							return cmd;
+						}
 					}
 				}
 			}
@@ -98,12 +102,13 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 				// used by palette
 				CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest) request;
 				for (Object elementTypeObj : unspecReq.getElementTypes()) {
-					IElementType elementType = (IElementType) elementTypeObj;
-
-					CreateRequest createRequest = unspecReq.getRequestForType(elementType);
-					Command cmd = getCustomCreateCommand(request, createRequest, elementType, ((IHintedType) elementType).getSemanticHint());
-					if (cmd != null) {
-						return cmd;
+					if (elementTypeObj instanceof IHintedType) {
+						IHintedType hintedType = (IHintedType) elementTypeObj;
+						CreateRequest createRequest = unspecReq.getRequestForType(hintedType);
+						Command cmd = getCustomCreateCommand(request, createRequest, hintedType, hintedType.getSemanticHint());
+						if (cmd != null) {
+							return cmd;
+						}
 					}
 				}
 			}
