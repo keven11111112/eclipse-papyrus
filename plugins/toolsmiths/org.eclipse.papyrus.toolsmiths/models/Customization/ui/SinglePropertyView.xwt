@@ -7,5 +7,16 @@
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
 	<ppe:StringFileSelector input="{Binding}"
-		property="customization:FileBasedCustomizableElement:file"></ppe:StringFileSelector>
+		property="customization:FileBasedCustomizableElement:file">
+		<ppe:StringFileSelector.filterNames>
+			<x:Array Type="j:String">
+				<j:String>Property view configuration file</j:String>
+			</x:Array>
+		</ppe:StringFileSelector.filterNames>
+		<ppe:StringFileSelector.filterExtensions>
+			<x:Array Type="j:String">
+				<j:String>*.ctx</j:String>
+			</x:Array>
+		</ppe:StringFileSelector.filterExtensions>
+	</ppe:StringFileSelector>
 </Composite>
