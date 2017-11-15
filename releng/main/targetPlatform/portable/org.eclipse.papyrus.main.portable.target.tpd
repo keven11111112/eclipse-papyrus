@@ -41,7 +41,7 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7/R-4.7.1-201709061700/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.2RC1-201711081700/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -52,7 +52,7 @@ location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.3.
 	org.eclipse.ocl.examples.feature.group
 }
 
-//updateFrom("XWT",0)
+//manualUpdate, until the 1.3.1 is part of the release train again
 location xwt "http://download.eclipse.org/xwt/updates" {
 	org.eclipse.xwt.feature.feature.group [1.3.1,2.0.0)
 }
@@ -86,7 +86,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.1/R-3.9.1-20170912000144/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/I-3.10.0-20171004000115/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
 
