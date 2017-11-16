@@ -131,6 +131,9 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			if (location != displayEvent.getRealEventLocation(location)) {
 				request.setLocation(displayEvent.getRealEventLocation(location));
 			}
+		} else if (os instanceof MessageEnd) {
+			// Event of Exec Spec have been already replaced. Only one message can be related to start or finish.
+			return UnexecutableCommand.INSTANCE;
 		}
 
 		return super.getConnectionCreateCommand(request);
@@ -383,8 +386,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			request.setExtendedData(extendedData);
 		}
 		// add a param if we must replace an event of the execution specification
-		OccurrenceSpecification os = displayEvent.getActionExecutionSpecificationEvent(getHostFigure().getParent().getParent(), ((CreateRequest) request).getLocation());
-		if (os != null) {
+		OccurrenceSpecification os = displayEvent.getActionExecutionSpecificationEvent(null, ((CreateRequest) request).getLocation());
+		if (os instanceof ExecutionOccurrenceSpecification) {
 			Map<String, Object> extendedData = request.getExtendedData();
 			extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.MESSAGE_RECEIVEEVENT_REPLACE_EXECUTIONEVENT, os);
 			request.setExtendedData(extendedData);
@@ -600,6 +603,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	private boolean isAllowedMessageEnd(CreateConnectionViewAndElementRequest request) {
 		Boolean allowed = true;
+		// check if target is lower than source
 		if (!precisionMode) {
 			Point targetLocation = request.getLocation();
 			Map<String, Object> extendedData = request.getExtendedData();
@@ -608,6 +612,11 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 				allowed &= isTargetLowerThanSource(SequenceUtil.getSnappedLocation(getHost(), (Point) sourceLocation), targetLocation);
 			}
 		}
+
+		// Check if we are in a execution event, and if the event have been already be replaced, we can't allow it.
+		OccurrenceSpecification os = displayEvent.getActionExecutionSpecificationEvent(null, ((CreateRequest) request).getLocation());
+		allowed &= !(null != os && !(os instanceof ExecutionOccurrenceSpecification));
+
 		return allowed;
 	}
 

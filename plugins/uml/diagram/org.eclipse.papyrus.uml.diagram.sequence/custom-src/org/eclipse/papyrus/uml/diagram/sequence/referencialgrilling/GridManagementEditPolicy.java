@@ -70,7 +70,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	public static String COLUMN = "COLUMN_"; //$NON-NLS-1$
 	public static String ROW = "ROW_"; //$NON-NLS-1$
 
-	public int threshold = 5;
+	public static int threshold = 5;
 
 	/**
 	 * @return the threshold
