@@ -94,7 +94,6 @@ public class ConfigureMessageEventCommand extends ConfigureElementCommand {
 			lifeline.getCoveredBys().add(lifeline.getCoveredBys().indexOf(previous) + 1, messageOccurrenceSpecification);
 		}
 		messageOccurrenceSpecification.setMessage(message);
-		messageOccurrenceSpecification.setMessage(message);
 		((Interaction) message.getOwner()).getFragments().add(messageOccurrenceSpecification);
 		return messageOccurrenceSpecification;
 	}
@@ -213,9 +212,9 @@ public class ConfigureMessageEventCommand extends ConfigureElementCommand {
 					toReplacebyMessageSent.getExecution().setFinish((OccurrenceSpecification) message.getSendEvent());
 				}
 			}
-			if (toReplacebyMessageReceive != null) {
+			if (toReplacebyMessageSent != null) {
 				// the occurennce spec must disapear!
-				if (toReplacebyMessageReceive.getOwner() != null) {
+				if (toReplacebyMessageSent.getOwner() != null) {
 					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(toReplacebyMessageSent);
 					if (provider != null) {
 						DestroyElementRequest destroyRequest = new DestroyElementRequest(toReplacebyMessageSent, false);
@@ -224,25 +223,26 @@ public class ConfigureMessageEventCommand extends ConfigureElementCommand {
 					}
 				}
 
-
-				// replace by the receive message
-				if (toReplacebyMessageReceive.getExecution() != null) {
-					// this is the start?
-					if (toReplacebyMessageReceive.getExecution().getStart().equals(toReplacebyMessageReceive)) {
-						toReplacebyMessageReceive.getExecution().setStart((OccurrenceSpecification) message.getReceiveEvent());
-					} else {
-						// this is the finish
-						toReplacebyMessageReceive.getExecution().setFinish((OccurrenceSpecification) message.getReceiveEvent());
-					}
+			}
+		}
+		if (toReplacebyMessageReceive != null) {
+			// replace by the receive message
+			if (toReplacebyMessageReceive.getExecution() != null) {
+				// this is the start?
+				if (toReplacebyMessageReceive.getExecution().getStart().equals(toReplacebyMessageReceive)) {
+					toReplacebyMessageReceive.getExecution().setStart((OccurrenceSpecification) message.getReceiveEvent());
+				} else {
+					// this is the finish
+					toReplacebyMessageReceive.getExecution().setFinish((OccurrenceSpecification) message.getReceiveEvent());
 				}
-				// the occurence spec must be deleted
-				if (toReplacebyMessageReceive.getOwner() != null) {
-					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(toReplacebyMessageReceive);
-					if (provider != null) {
-						DestroyElementRequest destroyRequest = new DestroyElementRequest(toReplacebyMessageReceive, false);
-						ICommand destroyCommand = provider.getEditCommand(destroyRequest);
-						destroyCommand.execute(new NullProgressMonitor(), null);
-					}
+			}
+			// the occurence spec must be deleted
+			if (toReplacebyMessageReceive.getOwner() != null) {
+				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(toReplacebyMessageReceive);
+				if (provider != null) {
+					DestroyElementRequest destroyRequest = new DestroyElementRequest(toReplacebyMessageReceive, false);
+					ICommand destroyCommand = provider.getEditCommand(destroyRequest);
+					destroyCommand.execute(new NullProgressMonitor(), null);
 				}
 			}
 		}
@@ -270,8 +270,6 @@ public class ConfigureMessageEventCommand extends ConfigureElementCommand {
 	private void createSendEvent(final Message message, final Element source, final MessageEnd previous) {
 		if (source instanceof Gate) {
 			message.setSendEvent((Gate) source);
-
-
 		} else if (source instanceof ExecutionSpecification) {
 			if (((ExecutionSpecification) source).getCovereds().size() > 0) {
 				Lifeline lifeline = ((ExecutionSpecification) source).getCovereds().get(0);

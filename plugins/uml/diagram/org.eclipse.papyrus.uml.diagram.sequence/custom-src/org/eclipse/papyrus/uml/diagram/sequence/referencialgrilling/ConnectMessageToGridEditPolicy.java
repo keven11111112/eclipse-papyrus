@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
@@ -130,7 +131,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 						getDiagramEventBroker().addNotificationListener(rowSource, this);
 					}
 					// target
-					if (targetAnchor.getId() != null && !(targetAnchor.getId().equals(""))) {
+					if (null != targetEditPart && targetAnchor.getId() != null && !(targetAnchor.getId().equals(""))) {
 						Message m = (Message) connectionEditPart.resolveSemanticElement();
 						double absoluteY = computeAnchorPositionNotation(targetAnchor, targetEditPart);
 
@@ -197,35 +198,37 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				if (sourceAnchor.getId() != null && !(sourceAnchor.getId().equals(""))) {
 					ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
 					Message m = (Message) connectionEditPart.resolveSemanticElement();
-					GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
-					int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, sourceEditpart);
+					if (connectionEditPart.getSource() instanceof GraphicalEditPart) {
+						GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
+						int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, sourceEditpart);
 
-					// Ensure that the target is always below the source
-					Edge edge = (Edge) connectionEditPart.getNotationView();
-					IdentityAnchor targetAnchor = (IdentityAnchor) edge.getTargetAnchor();
-					GraphicalEditPart targetEditpart = (GraphicalEditPart) connectionEditPart.getTarget();
-					if (null != targetEditpart && null != targetAnchor) {
-						int targetAnchorY = computeAnchorPositionNotation(targetAnchor, targetEditpart);
-						if (targetAnchorY <= sourceAnchorY) {
-							sourceAnchorY = targetAnchorY - 1;
-						}
-					}
-
-					try {
-						GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-						if (grilling != null) {
-							if (rowSource == null) {
-								if (m.getSendEvent() == null) {
-									rowSource = grilling.createRowTolisten(sourceAnchorY, m);
-								} else {
-									rowSource = grilling.createRowTolisten(sourceAnchorY, m.getSendEvent());
-								}
+						// Ensure that the target is always below the source
+						Edge edge = (Edge) connectionEditPart.getNotationView();
+						IdentityAnchor targetAnchor = (IdentityAnchor) edge.getTargetAnchor();
+						EditPart targetEditpart = connectionEditPart.getTarget();
+						if (targetEditpart instanceof GraphicalEditPart && null != targetAnchor) {
+							int targetAnchorY = computeAnchorPositionNotation(targetAnchor, (GraphicalEditPart) targetEditpart);
+							if (targetAnchorY <= sourceAnchorY) {
+								sourceAnchorY = targetAnchorY - 1;
 							}
-							getDiagramEventBroker().addNotificationListener(rowSource, this);
-
 						}
-					} catch (NoGrillElementFound e) {
-						UMLDiagramEditorPlugin.log.error(e);
+
+						try {
+							GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
+							if (grilling != null) {
+								if (rowSource == null) {
+									if (m.getSendEvent() == null) {
+										rowSource = grilling.createRowTolisten(sourceAnchorY, m);
+									} else {
+										rowSource = grilling.createRowTolisten(sourceAnchorY, m.getSendEvent());
+									}
+								}
+								getDiagramEventBroker().addNotificationListener(rowSource, this);
+
+							}
+						} catch (NoGrillElementFound e) {
+							UMLDiagramEditorPlugin.log.error(e);
+						}
 					}
 				}
 			}
@@ -236,36 +239,38 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				IdentityAnchor targetAnchor = (IdentityAnchor) notification.getNewValue();
 				if (targetAnchor.getId() != null && !(targetAnchor.getId().equals(""))) {
 					ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
-					GraphicalEditPart targetEditpart = (GraphicalEditPart) connectionEditPart.getTarget();
-					Message m = (Message) connectionEditPart.resolveSemanticElement();
-					int targetAnchorY = computeAnchorPositionNotation(targetAnchor, targetEditpart);
+					if (connectionEditPart.getTarget() instanceof GraphicalEditPart) {
+						GraphicalEditPart targetEditpart = (GraphicalEditPart) connectionEditPart.getTarget();
+						Message m = (Message) connectionEditPart.resolveSemanticElement();
+						int targetAnchorY = computeAnchorPositionNotation(targetAnchor, targetEditpart);
 
-					// Ensure that the target is always below the source
-					Edge edge = (Edge) connectionEditPart.getNotationView();
-					IdentityAnchor sourceAnchor = (IdentityAnchor) edge.getSourceAnchor();
-					GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
-					if (null != sourceEditpart && null != sourceAnchor) {
-						int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, sourceEditpart);
-						if (targetAnchorY <= sourceAnchorY) {
-							targetAnchorY = sourceAnchorY + 1;
-						}
-					}
-
-
-					try {
-						GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-						if (grilling != null) {
-							if (rowTarget == null) {
-								if (m.getReceiveEvent() == null) {
-									rowTarget = grilling.createRowTolisten(targetAnchorY, m);
-								} else {
-									rowTarget = grilling.createRowTolisten(targetAnchorY, m.getReceiveEvent());
-								}
+						// Ensure that the target is always below the source
+						Edge edge = (Edge) connectionEditPart.getNotationView();
+						IdentityAnchor sourceAnchor = (IdentityAnchor) edge.getSourceAnchor();
+						EditPart sourceEditpart = connectionEditPart.getSource();
+						if (sourceEditpart instanceof GraphicalEditPart && null != sourceAnchor) {
+							int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, (GraphicalEditPart) sourceEditpart);
+							if (targetAnchorY <= sourceAnchorY) {
+								targetAnchorY = sourceAnchorY + 1;
 							}
-							getDiagramEventBroker().addNotificationListener(rowTarget, this);
 						}
-					} catch (NoGrillElementFound e) {
-						UMLDiagramEditorPlugin.log.error(e);
+
+
+						try {
+							GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
+							if (grilling != null) {
+								if (rowTarget == null) {
+									if (m.getReceiveEvent() == null) {
+										rowTarget = grilling.createRowTolisten(targetAnchorY, m);
+									} else {
+										rowTarget = grilling.createRowTolisten(targetAnchorY, m.getReceiveEvent());
+									}
+								}
+								getDiagramEventBroker().addNotificationListener(rowTarget, this);
+							}
+						} catch (NoGrillElementFound e) {
+							UMLDiagramEditorPlugin.log.error(e);
+						}
 					}
 				}
 			}
@@ -275,23 +280,24 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				Edge edge = (Edge) connectionEditPart.getNotationView();
 				if (edge.getSourceAnchor() != null && rowSource != null) {
 					IdentityAnchor sourceAnchor = (IdentityAnchor) edge.getSourceAnchor();
-					GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
-					int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, sourceEditpart);
+					if (connectionEditPart.getSource() instanceof GraphicalEditPart) {
+						GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
+						int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, sourceEditpart);
 
-					// Ensure that the target is always below the source
-					IdentityAnchor targetAnchor = (IdentityAnchor) edge.getTargetAnchor();
-					GraphicalEditPart targetEditpart = (GraphicalEditPart) connectionEditPart.getTarget();
-					if (null != targetEditpart && null != targetAnchor) {
-						int targetAnchorY = computeAnchorPositionNotation(targetAnchor, targetEditpart);
-						if (targetAnchorY <= sourceAnchorY) {
-							sourceAnchorY = targetAnchorY - 1;
+						// Ensure that the target is always below the source
+						IdentityAnchor targetAnchor = (IdentityAnchor) edge.getTargetAnchor();
+						EditPart targetEditpart = connectionEditPart.getTarget();
+						if (targetEditpart instanceof GraphicalEditPart && null != targetAnchor) {
+							int targetAnchorY = computeAnchorPositionNotation(targetAnchor, (GraphicalEditPart) targetEditpart);
+							if (targetAnchorY <= sourceAnchorY) {
+								sourceAnchorY = targetAnchorY - 1;
+							}
 						}
+
+						UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + sourceAnchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						updatePositionGridAxis((DecorationNode) rowSource, 0, sourceAnchorY);
 					}
-
-					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + sourceAnchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-					updatePositionGridAxis((DecorationNode) rowSource, 0, sourceAnchorY);
 				}
-
 			}
 
 			if (notification.getEventType() == Notification.SET && notification.getFeature().equals(NotationPackage.eINSTANCE.getEdge_Target())) {
@@ -300,21 +306,23 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				Edge edge = (Edge) connectionEditPart.getNotationView();
 				if (edge.getTargetAnchor() != null && rowTarget != null) {
 					IdentityAnchor targetAnchor = (IdentityAnchor) edge.getTargetAnchor();
-					GraphicalEditPart targetEditpart = (GraphicalEditPart) connectionEditPart.getTarget();
-					int targetAnchorY = computeAnchorPositionNotation(targetAnchor, targetEditpart);
+					if (connectionEditPart.getTarget() instanceof GraphicalEditPart) {
+						GraphicalEditPart targetEditpart = (GraphicalEditPart) connectionEditPart.getTarget();
+						int targetAnchorY = computeAnchorPositionNotation(targetAnchor, targetEditpart);
 
-					// Ensure that the target is always below the source
-					IdentityAnchor sourceAnchor = (IdentityAnchor) edge.getSourceAnchor();
-					GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
-					if (null != sourceEditpart && null != sourceAnchor) {
-						int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, sourceEditpart);
-						if (targetAnchorY <= sourceAnchorY) {
-							targetAnchorY = sourceAnchorY + 1;
+						// Ensure that the target is always below the source
+						IdentityAnchor sourceAnchor = (IdentityAnchor) edge.getSourceAnchor();
+						EditPart sourceEditpart = connectionEditPart.getSource();
+						if (sourceEditpart instanceof GraphicalEditPart && null != sourceAnchor) {
+							int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, (GraphicalEditPart) sourceEditpart);
+							if (targetAnchorY <= sourceAnchorY) {
+								targetAnchorY = sourceAnchorY + 1;
+							}
 						}
-					}
 
-					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + targetAnchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-					updatePositionGridAxis((DecorationNode) rowTarget, 0, targetAnchorY);
+						UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + targetAnchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						updatePositionGridAxis((DecorationNode) rowTarget, 0, targetAnchorY);
+					}
 				}
 
 			}
@@ -326,39 +334,43 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 				Edge edge = (Edge) connectionEditPart.getNotationView();
 				if (notification.getNotifier().equals(edge.getSourceAnchor()) && rowSource != null) {
 					IdentityAnchor sourceAnchor = (IdentityAnchor) edge.getSourceAnchor();
-					GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
-					int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, sourceEditpart);
+					if (connectionEditPart.getSource() instanceof GraphicalEditPart) {
+						GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
+						int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, sourceEditpart);
 
-					// Ensure that the target is always below the source
-					IdentityAnchor targetAnchor = (IdentityAnchor) edge.getTargetAnchor();
-					GraphicalEditPart targetEditpart = (GraphicalEditPart) connectionEditPart.getTarget();
-					if (null != targetEditpart && null != targetAnchor) {
-						int targetAnchorY = computeAnchorPositionNotation(targetAnchor, targetEditpart);
-						if (targetAnchorY <= sourceAnchorY) {
-							sourceAnchorY = targetAnchorY - 1;
+						// Ensure that the target is always below the source
+						IdentityAnchor targetAnchor = (IdentityAnchor) edge.getTargetAnchor();
+						EditPart targetEditpart = connectionEditPart.getTarget();
+						if (targetEditpart instanceof GraphicalEditPart && null != targetAnchor) {
+							int targetAnchorY = computeAnchorPositionNotation(targetAnchor, (GraphicalEditPart) targetEditpart);
+							if (targetAnchorY <= sourceAnchorY) {
+								sourceAnchorY = targetAnchorY - 1;
+							}
 						}
-					}
 
-					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + sourceAnchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-					updatePositionGridAxis((DecorationNode) rowSource, 0, sourceAnchorY);
+						UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+--> SOURCE change for " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + sourceAnchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						updatePositionGridAxis((DecorationNode) rowSource, 0, sourceAnchorY);
+					}
 				}
 				if (notification.getNotifier().equals(edge.getTargetAnchor()) && rowTarget != null) {
-					GraphicalEditPart targetEditpart = (GraphicalEditPart) connectionEditPart.getTarget();
-					IdentityAnchor targetAnchor = (IdentityAnchor) edge.getTargetAnchor();
-					int targetAnchorY = computeAnchorPositionNotation(targetAnchor, targetEditpart);
+					if (connectionEditPart.getTarget() instanceof GraphicalEditPart) {
+						GraphicalEditPart targetEditpart = (GraphicalEditPart) connectionEditPart.getTarget();
+						IdentityAnchor targetAnchor = (IdentityAnchor) edge.getTargetAnchor();
+						int targetAnchorY = computeAnchorPositionNotation(targetAnchor, targetEditpart);
 
-					// Ensure that the target is always below the source
-					IdentityAnchor sourceAnchor = (IdentityAnchor) edge.getSourceAnchor();
-					GraphicalEditPart sourceEditpart = (GraphicalEditPart) connectionEditPart.getSource();
-					if (null != sourceEditpart && null != sourceAnchor) {
-						int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, sourceEditpart);
-						if (targetAnchorY <= sourceAnchorY) {
-							targetAnchorY = sourceAnchorY + 1;
+						// Ensure that the target is always below the source
+						IdentityAnchor sourceAnchor = (IdentityAnchor) edge.getSourceAnchor();
+						EditPart sourceEditpart = connectionEditPart.getSource();
+						if (sourceEditpart instanceof GraphicalEditPart && null != sourceAnchor) {
+							int sourceAnchorY = computeAnchorPositionNotation(sourceAnchor, (GraphicalEditPart) sourceEditpart);
+							if (targetAnchorY <= sourceAnchorY) {
+								targetAnchorY = sourceAnchorY + 1;
+							}
 						}
-					}
 
-					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+-->TARGET change " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + targetAnchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-					updatePositionGridAxis((DecorationNode) rowTarget, 0, targetAnchorY);
+						UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+-->TARGET change " + ((NamedElement) connectionEditPart.resolveSemanticElement()).getName() + " to " + targetAnchorY + " ");//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						updatePositionGridAxis((DecorationNode) rowTarget, 0, targetAnchorY);
+					}
 				}
 
 			}
