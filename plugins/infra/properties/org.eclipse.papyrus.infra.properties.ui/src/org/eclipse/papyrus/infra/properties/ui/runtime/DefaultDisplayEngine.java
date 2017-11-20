@@ -300,6 +300,17 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		}
 	}
 
+	/**
+	 * Boolean option to enable or disable the user controls. By default, they are enabled
+	 * 
+	 * duplicated from XWT, to avoid an hard dependency on the version 1.3.1 which is not yet available for the build.
+	 * 
+	 * So, if we have the 1.3.1 in the Eclipse Installation, all will work fine and better
+	 * If not, this value will be ignored by the system and all will work fine too, but with lower performance
+	 */
+	private static final String DISABLE_USER_CONTROLS = "XWT.DISABLE_USER_CONTROLS";
+
+
 	@Override
 	public Control createSection(Composite parent, Section section, URI sectionFile, DataSource source) {
 		if (sectionFile == null) {
@@ -325,7 +336,8 @@ public class DefaultDisplayEngine implements DisplayEngine {
 			options.put(IXWTLoader.CONTAINER_PROPERTY, parent);
 			options.put(IXWTLoader.DATACONTEXT_PROPERTY, source);
 			options.put(IXWTLoader.XML_CACHE_PROPERTY, (xmlCache != null) ? xmlCache : Boolean.TRUE);
-			options.put(IXWTLoader.DISABLE_USER_CONTROLS, Boolean.TRUE);
+			// options.put(IXWTLoader.DISABLE_USER_CONTROLS, Boolean.TRUE);
+			options.put(DISABLE_USER_CONTROLS, Boolean.TRUE);
 
 			XWTLoaderManager.setActive(xwtLoader, true);
 
