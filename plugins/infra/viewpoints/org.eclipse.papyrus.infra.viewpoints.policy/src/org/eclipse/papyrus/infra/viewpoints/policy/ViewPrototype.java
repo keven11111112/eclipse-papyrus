@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  Christian W. Damus - bugs 474467, 493375
+ *  Christian W. Damus - bugs 474467, 493375, 527580
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
@@ -16,16 +16,18 @@ package org.eclipse.papyrus.infra.viewpoints.policy;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
@@ -67,22 +69,30 @@ public abstract class ViewPrototype {
 	 */
 	private static Collection<IViewTypeHelper> getCommandHelpers() {
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
-		IExtensionPoint point = registry.getExtensionPoint(EXTENSION_ID);
-		IExtension[] extensions = point.getExtensions();
+		List<IConfigurationElement> elements = new ArrayList<>(Arrays.asList(registry.getConfigurationElementsFor(EXTENSION_ID)));
 
-		Collection<IViewTypeHelper> result = new ArrayList<IViewTypeHelper>();
-		for (int i = 0; i != extensions.length; i++) {
-			IConfigurationElement[] elements = extensions[i].getConfigurationElements();
-			for (int j = 0; j != elements.length; j++) {
-				try {
-					IViewTypeHelper instance = (IViewTypeHelper) elements[j].createExecutableExtension("class");
-					if (instance != null) {
-						result.add(instance);
-					}
-				} catch (CoreException e) {
-				}
+		// Only the view helper elements
+		for (Iterator<IConfigurationElement> iter = elements.iterator(); iter.hasNext();) {
+			if (!"helper".equals(iter.next().getName())) {
+				iter.remove();
 			}
 		}
+
+		// Sort by priority
+		Collections.sort(elements, helperConfigComparator());
+
+		Collection<IViewTypeHelper> result = new ArrayList<IViewTypeHelper>();
+		for (IConfigurationElement element : elements) {
+			try {
+				IViewTypeHelper instance = (IViewTypeHelper) element.createExecutableExtension("class");
+				if (instance != null) {
+					result.add(instance);
+				}
+			} catch (CoreException e) {
+				Activator.log.log(e.getStatus());
+			}
+		}
+
 		return result;
 	}
 
@@ -445,5 +455,42 @@ public abstract class ViewPrototype {
 			}
 		}
 		return count;
+	}
+
+	/**
+	 * Comparator to order view-type helper configurations from highest to
+	 * lowest priority.
+	 * 
+	 * @return the descending priority comparator
+	 */
+	private static Comparator<IConfigurationElement> helperConfigComparator() {
+		return new Comparator<IConfigurationElement>() {
+			private Map<IConfigurationElement, Integer> priorities = new IdentityHashMap<>();
+
+			@Override
+			public int compare(IConfigurationElement o1, IConfigurationElement o2) {
+				// Sort from highest priority to lowest
+				return getPriority(o2) - getPriority(o1);
+			}
+
+			int getPriority(IConfigurationElement element) {
+				Integer result = priorities.get(element);
+
+				if (result == null) {
+					result = 0;
+					String priorityString = element.getAttribute("priority");
+					if (priorityString != null) {
+						try {
+							result = Integer.parseInt(priorityString);
+						} catch (Exception e) {
+							result = 0;
+						}
+					}
+					priorities.put(element, result);
+				}
+
+				return result;
+			}
+		};
 	}
 }

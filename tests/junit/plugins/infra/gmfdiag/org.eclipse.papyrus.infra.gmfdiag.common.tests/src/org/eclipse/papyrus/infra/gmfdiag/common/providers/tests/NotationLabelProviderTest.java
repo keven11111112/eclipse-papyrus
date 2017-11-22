@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
+ * Copyright (c) 2016, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -58,7 +58,7 @@ public class NotationLabelProviderTest {
 		diagram.setName(null);
 		assumeThat(fixture.getText(diagram), is("(Class Diagram of <Package> foo)"));
 		package_.setName("bar");
-		assumeThat(fixture.getText(diagram), is("(Class Diagram of <Package> bar)"));
+		assertThat(fixture.getText(diagram), is("(Class Diagram of <Package> bar)"));
 	}
 
 	@Test

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +8,8 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *
+ *  Christian W. Damus - bug 527580
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
 import org.eclipse.papyrus.infra.viewpoints.policy.IViewTypeHelper;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
@@ -94,7 +95,21 @@ public class GMFDiagramViewTypeHelper implements IViewTypeHelper {
 		if (!isSupported(view)) {
 			return null;
 		}
-		return DiagramUtils.getPrototype((Diagram) view);
+		PolicyChecker checker = getPolicyChecker(view);
+		return DiagramUtils.getPrototype((Diagram) view, checker);
+	}
+
+	/**
+	 * Obtains the most appropriate policy-checker for a {@code view}.
+	 * 
+	 * @param view
+	 *            a view object
+	 * @return its policy-checker
+	 * 
+	 * @since 3.2
+	 */
+	protected PolicyChecker getPolicyChecker(EObject view) {
+		return PolicyChecker.getFor(view);
 	}
 
 }
