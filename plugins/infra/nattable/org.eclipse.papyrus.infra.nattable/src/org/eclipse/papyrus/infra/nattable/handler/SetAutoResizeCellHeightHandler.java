@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 527496
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
@@ -41,12 +41,17 @@ public class SetAutoResizeCellHeightHandler extends AbstractTableHandler {
 
 			// If the auto resize value exists
 			if (null != autoResizeValue) {
-				// Inverse the auto resize cell boolean value and save it to the table
-				StyleUtils.setBooleanNamedStyle(editingDomain, table, NamedStyleConstants.AUTO_RESIZE_CELL_HEIGHT, !autoResizeValue.isBooleanValue());
-
+				// If auto resize is currently enabled
+				if (autoResizeValue.isBooleanValue()) {
+					// Delete the auto resize cell boolean named style to disable it
+					StyleUtils.deleteBooleanNamedStyle(editingDomain, table, NamedStyleConstants.AUTO_RESIZE_CELL_HEIGHT);
+				} else {
+					// Otherwise, enable it 
+					StyleUtils.setBooleanNamedStyle(editingDomain, table, NamedStyleConstants.AUTO_RESIZE_CELL_HEIGHT, NamedStyleConstants.ENABLE_AUTO_RESIZE_CELL_HEIGHT);
+				 }
 			} else {
-				// Otherwise, initialise the auto resize cell height named value in the disable mode by default
-				StyleUtils.initBooleanNamedStyle(editingDomain, table, NamedStyleConstants.AUTO_RESIZE_CELL_HEIGHT, false);
+				// Otherwise, initialise the auto resize cell height named value to true to enable it
+				StyleUtils.initBooleanNamedStyle(editingDomain, table, NamedStyleConstants.AUTO_RESIZE_CELL_HEIGHT, NamedStyleConstants.ENABLE_AUTO_RESIZE_CELL_HEIGHT);
 			}
 		}
 

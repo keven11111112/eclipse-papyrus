@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 527496
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
@@ -43,16 +43,14 @@ public class SetWrapTextHandler extends AbstractTableHandler {
 
 			// If the wrap text value exists
 			if (null != wrapTextValue) {
-				boolean oldWrapTextValue = wrapTextValue.isBooleanValue();
+				// If wrap text is currently enabled 
+				if (wrapTextValue.isBooleanValue()) {
 
-				// Inverse the wrap text boolean value and save it to the table
-				StyleUtils.setBooleanNamedStyle(editingDomain, table, NamedStyleConstants.WRAP_TEXT, !oldWrapTextValue);
-
-				// If wrap text value is changing from enable to disable and if the set auto resize cell height is currently enabled,
-				// the row's height must be reset to the default value
-				if (oldWrapTextValue) {
 					// Get the auto resize cell height named style from the table
 					BooleanValueStyle autoResizeValue = (BooleanValueStyle) table.getNamedStyle(NattablestylePackage.eINSTANCE.getBooleanValueStyle(), NamedStyleConstants.AUTO_RESIZE_CELL_HEIGHT);
+
+					// As wrap text value is changing from enable to disable, if the set auto resize cell height is currently enabled,
+					// the row's height must be reset to the default value
 
 					// NB: Rows resizing must be done in NattableModelManager after the cell editors are reconfigured
 					// So, an auto resize rows config attribute flag is used here, which allows the rows resizing to be done later
@@ -64,10 +62,16 @@ public class SetWrapTextHandler extends AbstractTableHandler {
 							natTable.getConfigRegistry().registerConfigAttribute(NattableConfigAttributes.REINITIALISE_ROW_HEIGHT, true);
 						}
 					}
+
+					// Now, delete the wraptext named style to disable it
+					StyleUtils.deleteBooleanNamedStyle(editingDomain, table, NamedStyleConstants.WRAP_TEXT);
+				} else {
+					// Otherwise, enable it 
+					StyleUtils.setBooleanNamedStyle(editingDomain, table, NamedStyleConstants.WRAP_TEXT, NamedStyleConstants.ENABLE_WRAP_TEXT);
 				}
 			} else {
-				// Otherwise, initialise the wrap text named value in the disable mode by default
-				StyleUtils.initBooleanNamedStyle(editingDomain, table, NamedStyleConstants.WRAP_TEXT, false);
+				// Otherwise, initialise the wrap text named value to true to enable it
+				StyleUtils.initBooleanNamedStyle(editingDomain, table, NamedStyleConstants.WRAP_TEXT, NamedStyleConstants.ENABLE_WRAP_TEXT);
 			}
 		}
 

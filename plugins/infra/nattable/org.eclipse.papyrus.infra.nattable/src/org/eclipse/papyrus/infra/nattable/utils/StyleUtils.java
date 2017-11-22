@@ -8,17 +8,17 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 515737
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 515737, 527496
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -29,7 +29,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListVa
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -253,12 +252,8 @@ public class StyleUtils {
 				namedStyle.setName(namedStyleString);
 				namedStyle.setBooleanValue(defaultValue);
 
-				// Add the new boolean style
-				List<Style> styleList = new ArrayList<Style>(styledElement.getStyles());
-				styleList.add(namedStyle);
-
 				IElementEditService editService = ElementEditServiceUtils.getCommandProvider(styledElement);
-				SetRequest request = new SetRequest(editingDomain, styledElement, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), styleList);
+				SetRequest request = new SetRequest(editingDomain, styledElement, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), namedStyle);
 				if (editService.canEdit(request)) {
 					Command command = GMFtoEMFCommandWrapper.wrap(editService.getEditCommand(request));
 					editingDomain.getCommandStack().execute(command);
@@ -287,12 +282,8 @@ public class StyleUtils {
 			// If it does exist, remove it, otherwise do nothing
 			if (null != namedStyle) {
 
-				// Delete the boolean style
-				List<Style> styleList = new ArrayList<Style>(styledElement.getStyles());
-				styleList.remove(namedStyle);
-
 				IElementEditService editService = ElementEditServiceUtils.getCommandProvider(styledElement);
-				SetRequest request = new SetRequest(editingDomain, styledElement, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), styleList);
+				DestroyElementRequest request = new DestroyElementRequest(editingDomain, namedStyle, false);
 				if (editService.canEdit(request)) {
 					Command command = GMFtoEMFCommandWrapper.wrap(editService.getEditCommand(request));
 					editingDomain.getCommandStack().execute(command);
