@@ -147,11 +147,25 @@ public class NamedStyleConstants {
 	public static final String WRAP_TEXT = "wrapText"; //$NON-NLS-1$
 
 	/**
+	 * A default value used to enable the wraptext function in the NatTable.
+	 * It is enabled by default.
+	 * @since 5.0
+	 */
+	public static final boolean ENABLE_WRAP_TEXT = true;
+
+	/**
 	 * A {@link BooleanValueStyle} used to enable auto-resize cell height in the NatTable.
 	 *
 	 * @since 3.0
 	 */
 	public static final String AUTO_RESIZE_CELL_HEIGHT = "autoResizeCellHeight"; //$NON-NLS-1$
+
+	/**
+	 * A default value used to enable the auto resize cell height function in the NatTable.
+	 * It is enabled by default.
+	 * @since 5.0
+	 */
+	public static final boolean ENABLE_AUTO_RESIZE_CELL_HEIGHT = true;
 
 	/**
 	 * A {@link BooleanValueStyle} used to display list on separated rows in the NatTable.
