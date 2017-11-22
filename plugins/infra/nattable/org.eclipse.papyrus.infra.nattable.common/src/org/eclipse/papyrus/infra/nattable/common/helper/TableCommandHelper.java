@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017 CEA LIST.
- *
+ * Copyright (c) 2013, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,20 +9,17 @@
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 516882
+ *  Christian W. Damus - bug 527580
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.helper;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
-import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage;
-import org.eclipse.papyrus.infra.viewpoints.policy.IViewTypeHelper;
+import org.eclipse.papyrus.infra.viewpoints.policy.AbstractViewTypeHelper;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
@@ -33,27 +29,10 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
  * @author Laurent Wouters
  * @since 3.0
  */
-public class TableCommandHelper implements IViewTypeHelper {
+public class TableCommandHelper extends AbstractViewTypeHelper<PapyrusTable> {
 
-	/**
-	 * The cache of prototypes
-	 */
-	private Map<PapyrusRepresentationKind, TableViewPrototype> cache;
-
-	@Override
-	public ViewPrototype getPrototypeFor(PapyrusRepresentationKind configuration) {
-		if (!(configuration instanceof PapyrusTable)) {
-			return null;
-		}
-		if (cache == null) {
-			cache = new HashMap<PapyrusRepresentationKind, TableViewPrototype>();
-		}
-		if (cache.containsKey(configuration)) {
-			return cache.get(configuration);
-		}
-		TableViewPrototype proto = new TableViewPrototype((PapyrusTable) configuration);
-		cache.put(configuration, proto);
-		return proto;
+	public TableCommandHelper() {
+		super(PapyrusTable.class);
 	}
 
 	@Override
@@ -74,12 +53,24 @@ public class TableCommandHelper implements IViewTypeHelper {
 		return (table.getTableKindId() != null || table.getTableConfiguration() != null);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @since 4.1
+	 */
 	@Override
-	public ViewPrototype getPrototypeOf(EObject view) {
-		if (!isSupported(view)) {
-			return null;
-		}
-		PolicyChecker checker = PolicyChecker.getFor(view);
+	protected ViewPrototype doGetPrototypeFor(PapyrusTable papyrusTable) {
+		return new TableViewPrototype(papyrusTable);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @since 4.1
+	 */
+	@Override
+	protected ViewPrototype doGetPrototypeOf(EObject view) {
+		PolicyChecker checker = getPolicyChecker(view);
 		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
 		PapyrusTable repKind = (PapyrusTable) manager.getRepresentationKindById(((Table) view).getTableKindId());
 		if (null != repKind && checker.isInViewpoint(repKind)) // null when we are destroying the table (undo after a creation for example), bug 516882

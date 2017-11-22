@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
+ * Copyright (c) 2016, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -72,7 +72,7 @@ public class TableLabelProviderTest {
 		table.setName(null);
 		assumeThat(fixture.getText(table), is("(Test Table of <Package> foo)"));
 		package_.setName("bar");
-		assumeThat(fixture.getText(table), is("(Test Table of <Package> bar)"));
+		assertThat(fixture.getText(table), is("(Test Table of <Package> bar)"));
 	}
 
 	@Test
@@ -122,26 +122,26 @@ public class TableLabelProviderTest {
 
 		ArchitectureDomain domain = ArchitectureFactory.eINSTANCE.createArchitectureDomain();
 		domain.setName("Testing");
-		
+
 		ArchitectureDescriptionLanguage language = ArchitectureFactory.eINSTANCE.createArchitectureDescriptionLanguage();
 		language.setId("Testing.TestTable");
 		domain.getContexts().add(language);
-		
+
 		proto = RepresentationFactory.eINSTANCE.createPapyrusTable();
 		proto.setName("Test Table");
 		proto.setId("org.eclipse.papyrus.infra.nattable.tests.table.test");
 		proto.setImplementationID("org.eclipse.papyrus.infra.nattable.tests.TestTable");
-		//proto.setConfiguration("TestTable");
+		// proto.setConfiguration("TestTable");
 		language.getRepresentationKinds().add(proto);
-		
+
 		ArchitectureViewpoint viewpoint = ArchitectureFactory.eINSTANCE.createArchitectureViewpoint();
 		viewpoint.setId("tesing.TestTable.Testing");
 		viewpoint.getRepresentationKinds().add(proto);
 		language.getViewpoints().add(viewpoint);
-		
+
 		ArchitectureDomainManager.getInstance().getMerger().setDynamicDomains(Collections.singleton(domain));
 		ArchitectureDomainManager.getInstance().getPreferences().setDefaultContextId("Testing.TestTable");
-		
+
 		package_ = UMLFactory.eINSTANCE.createPackage();
 		package_.setName("foo");
 

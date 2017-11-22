@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013,2017 CEA LIST.
- *
+ * Copyright (c) 2013, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +10,7 @@
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Benoit Maggi    (Cea)        benoit.maggi@cea.fr - Add utility to get the containing diagram
+ *  Christian W. Damus - bug 527580
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
@@ -171,21 +171,35 @@ public class DiagramUtils {
 	 */
 	public static ViewPrototype getPrototype(Diagram diagram) {
 		PolicyChecker checker = PolicyChecker.getFor(diagram);
+		return getPrototype(diagram, checker);
+	}
+
+	/**
+	 * Gets the prototype of a {@code diagram} according to a given policy {@code checker}.
+	 * 
+	 * @param diagram
+	 *            a diagram
+	 * @param checker
+	 *            a policy checker
+	 * @return the policy {@code checker}'s prototype for the {@code diagram}
+	 * 
+	 * @since 3.2
+	 */
+	public static ViewPrototype getPrototype(Diagram diagram, PolicyChecker checker) {
 		PapyrusDiagramStyle pvs = getPapyrusDiagramStyle(diagram);
-		if (pvs != null) {	
+		if (pvs != null) {
 			ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
 			PapyrusDiagram repKind = null;
 			String diagramKindId = pvs.getDiagramKindId();
 			if (manager.getRepresentationKindById(diagramKindId) instanceof PapyrusDiagram) {
 				repKind = (PapyrusDiagram) manager.getRepresentationKindById(diagramKindId);
-			}
-			else {
-				Activator.log.info("Unexpected diagram kind: "+diagramKindId+" Your notation file might be broken or created with a previous version of the architecture framework."); //$NON-NLS-1$ //$NON-NLS-2$
+			} else {
+				Activator.log.info("Unexpected diagram kind: " + diagramKindId + " Your notation file might be broken or created with a previous version of the architecture framework."); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
 			// Check if the selected viewpoint contains the diagram model kind
 			if (repKind != null) {
-				
+
 				if (checker.isInViewpoint(repKind)) {
 					return ViewPrototype.get(repKind);
 				}
@@ -206,11 +220,11 @@ public class DiagramUtils {
 						for (RepresentationKind representationKind : viewpoint.getRepresentationKinds()) {
 							if (representationKind instanceof PapyrusRepresentationKind) {
 								PapyrusRepresentationKind papyrusRepresentationKind = (PapyrusRepresentationKind) representationKind;
-	
+
 								if (diagramConfigName.equals(papyrusRepresentationKind.getName())) {
 									ViewPrototype.get(papyrusRepresentationKind);
 								}
-	
+
 								PapyrusRepresentationKind parentPapyrusRepresentationKind = papyrusRepresentationKind.getParent();
 								while (parentPapyrusRepresentationKind != null && !diagramConfigName.equals(parentPapyrusRepresentationKind.getName())) {
 									parentPapyrusRepresentationKind = parentPapyrusRepresentationKind.getParent();
@@ -228,7 +242,7 @@ public class DiagramUtils {
 		}
 		return ViewPrototype.get(checker, diagram.getType(), diagram.getElement(), diagram.getElement());
 	}
-	
+
 	/**
 	 * Sets the prototype of a diagram
 	 *

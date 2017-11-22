@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2017 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,24 +8,19 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *
+ *  Christian W. Damus - bug 527580
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
-import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
-import org.eclipse.papyrus.infra.viewpoints.policy.IViewTypeHelper;
+import org.eclipse.papyrus.infra.viewpoints.policy.AbstractViewTypeHelper;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
@@ -34,44 +28,27 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
  *
  * @author Laurent Wouters
  */
-public class GMFDiagramViewTypeHelper implements IViewTypeHelper {
+public class GMFDiagramViewTypeHelper extends AbstractViewTypeHelper<PapyrusDiagram> {
 
 	/**
-	 * The cache of prototypes
+	 * Initializes me.
 	 */
-	private Map<PapyrusDiagram, DiagramPrototype> cache;
-
-	/**
-	 * @see org.eclipse.papyrus.infra.viewpoints.policy.IViewTypeHelper#isSupported(org.eclipse.emf.ecore.EClass)
-	 */
-	@Override
-	public boolean isSupported(EClass type) {
-		return EcoreUtil.equals(type, RepresentationPackage.eINSTANCE.getPapyrusDiagram());
+	public GMFDiagramViewTypeHelper() {
+		super(PapyrusDiagram.class);
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.infra.viewpoints.policy.IViewTypeHelper#isSupported(org.eclipse.emf.ecore.EObject)
-	 */
 	@Override
 	public boolean isSupported(EObject view) {
 		return (view instanceof Diagram);
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.viewpoints.policy.IViewTypeHelper#getPrototypeFor(org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusRepresentationKind)
+	 * {@inheritDoc}
+	 * 
+	 * @since 3.2
 	 */
 	@Override
-	public ViewPrototype getPrototypeFor(PapyrusRepresentationKind kind) {
-		if (!(kind instanceof PapyrusDiagram)) {
-			return null;
-		}
-		PapyrusDiagram diagramKind = (PapyrusDiagram) kind;
-		if (cache == null) {
-			cache = new HashMap<PapyrusDiagram, DiagramPrototype>();
-		}
-		if (cache.containsKey(diagramKind)) {
-			return cache.get(diagramKind);
-		}
+	protected ViewPrototype doGetPrototypeFor(PapyrusDiagram diagramKind) {
 		String language = diagramKind.getLanguage().getId();
 		AbstractPapyrusGmfCreateDiagramCommandHandler command;
 		try {
@@ -81,20 +58,19 @@ public class GMFDiagramViewTypeHelper implements IViewTypeHelper {
 			Activator.log.error(e);
 			return null;
 		}
-		DiagramPrototype proto = new DiagramPrototype(diagramKind, language, command);
-		cache.put(diagramKind, proto);
-		return proto;
+		return new DiagramPrototype(diagramKind, language, command);
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.viewpoints.policy.IViewTypeHelper#getPrototypeOf(org.eclipse.emf.ecore.EObject)
+	 * {@inheritDoc}
+	 * 
+	 * @since 3.2
 	 */
 	@Override
-	public ViewPrototype getPrototypeOf(EObject view) {
-		if (!isSupported(view)) {
-			return null;
-		}
-		return DiagramUtils.getPrototype((Diagram) view);
-	}
+	protected ViewPrototype doGetPrototypeOf(EObject view) {
+		Diagram diagram = (Diagram) view;
 
+		PolicyChecker checker = getPolicyChecker(diagram);
+		return DiagramUtils.getPrototype(diagram, checker);
+	}
 }
