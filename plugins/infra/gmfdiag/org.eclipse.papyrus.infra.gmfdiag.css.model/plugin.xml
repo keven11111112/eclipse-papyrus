@@ -8,6 +8,22 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package class="org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage" genModel="Model/StyleSheets.genmodel" uri="http://www.eclipse.org/papyrus/infra/gmfdiag/css"/>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://STYLESHEETS/"
+            target="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.css.model/Model/">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
+      <library
+            description="The Papyrus Stylesheet CSS model"
+            name="Papyrus StyleSheet Library (Papyrus Internal)"
+            path="pathmap://STYLESHEETS/StyleSheets.uml"
+            provider="Eclipse Modeling Framework">
+      </library>
+   </extension>
 	<!-- TODO: EMF-FACET update queries
    <extension point="org.eclipse.emf.facet.infra.facet.registration">
       <facetset file="Model/StyleSheets.facetSet"/>

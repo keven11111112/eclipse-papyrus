@@ -1,4 +1,15 @@
 /**
+ * Copyright (c) 2012, 2017 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * 	Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ * 	Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr (umlification of the ecore model)
  */
 package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets;
 
@@ -10,10 +21,10 @@ package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference#getPath <em>Path</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference#getPath <em>Path</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getStyleSheetReference()
  * @model
@@ -24,14 +35,14 @@ public interface StyleSheetReference extends StyleSheet {
 	 * Returns the value of the '<em><b>Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Path</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Path</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Path</em>' attribute.
 	 * @see #setPath(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getStyleSheetReference_Path()
-	 * @model required="true"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	String getPath();
@@ -40,9 +51,7 @@ public interface StyleSheetReference extends StyleSheet {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference#getPath <em>Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Path</em>' attribute.
+	 * @param value the new value of the '<em>Path</em>' attribute.
 	 * @see #getPath()
 	 * @generated
 	 */

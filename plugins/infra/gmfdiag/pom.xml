@@ -18,6 +18,7 @@
 		<module>org.eclipse.papyrus.infra.gmfdiag.common</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.controlmode</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.css.model</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.css.model.edit</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.dnd</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.export</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.gef</module>

@@ -1,8 +1,20 @@
 /**
+ * Copyright (c) 2012, 2017 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * 	Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ * 	Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr (umlification of the ecore model)
  */
 package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -15,11 +27,11 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl#getLabel <em>Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl#getContent <em>Content</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl#getContent <em>Content</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -28,7 +40,6 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -39,7 +50,6 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getLabel()
 	 * @generated
 	 * @ordered
@@ -50,7 +60,6 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	 * The default value of the '{@link #getContent() <em>Content</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getContent()
 	 * @generated
 	 * @ordered
@@ -61,7 +70,6 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	 * The cached value of the '{@link #getContent() <em>Content</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getContent()
 	 * @generated
 	 * @ordered
@@ -71,7 +79,6 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected EmbeddedStyleSheetImpl() {
@@ -81,7 +88,6 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -92,7 +98,6 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String getLabel() {
@@ -102,21 +107,18 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setLabel(String newLabel) {
 		String oldLabel = label;
 		label = newLabel;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StylesheetsPackage.EMBEDDED_STYLE_SHEET__LABEL, oldLabel, label));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String getContent() {
@@ -126,30 +128,27 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setContent(String newContent) {
 		String oldContent = content;
 		content = newContent;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, StylesheetsPackage.EMBEDDED_STYLE_SHEET__CONTENT, oldContent, content));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case StylesheetsPackage.EMBEDDED_STYLE_SHEET__LABEL:
-			return getLabel();
-		case StylesheetsPackage.EMBEDDED_STYLE_SHEET__CONTENT:
-			return getContent();
+			case StylesheetsPackage.EMBEDDED_STYLE_SHEET__LABEL:
+				return getLabel();
+			case StylesheetsPackage.EMBEDDED_STYLE_SHEET__CONTENT:
+				return getContent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -157,18 +156,17 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case StylesheetsPackage.EMBEDDED_STYLE_SHEET__LABEL:
-			setLabel((String) newValue);
-			return;
-		case StylesheetsPackage.EMBEDDED_STYLE_SHEET__CONTENT:
-			setContent((String) newValue);
-			return;
+			case StylesheetsPackage.EMBEDDED_STYLE_SHEET__LABEL:
+				setLabel((String)newValue);
+				return;
+			case StylesheetsPackage.EMBEDDED_STYLE_SHEET__CONTENT:
+				setContent((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -176,18 +174,17 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case StylesheetsPackage.EMBEDDED_STYLE_SHEET__LABEL:
-			setLabel(LABEL_EDEFAULT);
-			return;
-		case StylesheetsPackage.EMBEDDED_STYLE_SHEET__CONTENT:
-			setContent(CONTENT_EDEFAULT);
-			return;
+			case StylesheetsPackage.EMBEDDED_STYLE_SHEET__LABEL:
+				setLabel(LABEL_EDEFAULT);
+				return;
+			case StylesheetsPackage.EMBEDDED_STYLE_SHEET__CONTENT:
+				setContent(CONTENT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -195,16 +192,15 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case StylesheetsPackage.EMBEDDED_STYLE_SHEET__LABEL:
-			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-		case StylesheetsPackage.EMBEDDED_STYLE_SHEET__CONTENT:
-			return CONTENT_EDEFAULT == null ? content != null : !CONTENT_EDEFAULT.equals(content);
+			case StylesheetsPackage.EMBEDDED_STYLE_SHEET__LABEL:
+				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+			case StylesheetsPackage.EMBEDDED_STYLE_SHEET__CONTENT:
+				return CONTENT_EDEFAULT == null ? content != null : !CONTENT_EDEFAULT.equals(content);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -212,22 +208,19 @@ public class EmbeddedStyleSheetImpl extends EObjectImpl implements EmbeddedStyle
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (label: ");
+		result.append(" (label: "); //$NON-NLS-1$
 		result.append(label);
-		result.append(", content: ");
+		result.append(", content: "); //$NON-NLS-1$
 		result.append(content);
 		result.append(')');
 		return result.toString();
 	}
 
-} // EmbeddedStyleSheetImpl
+} //EmbeddedStyleSheetImpl

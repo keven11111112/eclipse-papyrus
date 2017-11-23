@@ -1,8 +1,20 @@
 /**
+ * Copyright (c) 2012, 2017 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * 	Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ * 	Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr (umlification of the ecore model)
  */
 package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -12,13 +24,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getId <em>Id</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getLabel <em>Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getIcon <em>Icon</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getStylesheets <em>Stylesheets</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getId <em>Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getIcon <em>Icon</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getStylesheets <em>Stylesheets</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getTheme()
  * @model
@@ -27,17 +39,16 @@ import org.eclipse.emf.ecore.EObject;
 public interface Theme extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Id</b></em>' attribute.
-	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Id</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getTheme_Id()
-	 * @model default="" id="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	String getId();
@@ -46,9 +57,7 @@ public interface Theme extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getId <em>Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Id</em>' attribute.
+	 * @param value the new value of the '<em>Id</em>' attribute.
 	 * @see #getId()
 	 * @generated
 	 */
@@ -58,14 +67,14 @@ public interface Theme extends EObject {
 	 * Returns the value of the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getTheme_Label()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	String getLabel();
@@ -74,9 +83,7 @@ public interface Theme extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getLabel <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Label</em>' attribute.
+	 * @param value the new value of the '<em>Label</em>' attribute.
 	 * @see #getLabel()
 	 * @generated
 	 */
@@ -86,14 +93,14 @@ public interface Theme extends EObject {
 	 * Returns the value of the '<em><b>Icon</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Icon</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Icon</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Icon</em>' attribute.
 	 * @see #setIcon(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getTheme_Icon()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	String getIcon();
@@ -102,9 +109,7 @@ public interface Theme extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getIcon <em>Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Icon</em>' attribute.
+	 * @param value the new value of the '<em>Icon</em>' attribute.
 	 * @see #getIcon()
 	 * @generated
 	 */
@@ -115,13 +120,13 @@ public interface Theme extends EObject {
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Stylesheets</em>' reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Stylesheets</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Stylesheets</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getTheme_Stylesheets()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<StyleSheet> getStylesheets();
