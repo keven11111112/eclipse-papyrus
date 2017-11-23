@@ -1,4 +1,15 @@
 /**
+ * Copyright (c) 2012, 2017 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * 	Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ * 	Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr (umlification of the ecore model)
  */
 package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets;
 
@@ -13,15 +24,16 @@ import org.eclipse.emf.ecore.EcorePackage;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- * <li>each class,</li>
- * <li>each feature of each class,</li>
- * <li>each enum,</li>
- * <li>and each data type</li>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each operation of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='StyleSheets'"
  * @generated
  */
 public interface StylesheetsPackage extends EPackage {
@@ -29,34 +41,30 @@ public interface StylesheetsPackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	String eNAME = "stylesheets";
+	String eNAME = "stylesheets"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/infra/gmfdiag/css";
+	String eNS_URI = "http://www.eclipse.org/papyrus/infra/gmfdiag/css"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	String eNS_PREFIX = "css";
+	String eNS_PREFIX = "css"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	StylesheetsPackage eINSTANCE = org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl.init();
@@ -65,7 +73,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ModelStyleSheetsImpl <em>Model Style Sheets</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ModelStyleSheetsImpl
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getModelStyleSheets()
 	 * @generated
@@ -76,7 +83,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -86,7 +92,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * The feature id for the '<em><b>Stylesheets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -96,17 +101,33 @@ public interface StylesheetsPackage extends EPackage {
 	 * The number of structural features of the '<em>Model Style Sheets</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int MODEL_STYLE_SHEETS_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_STYLE_SHEETS___GET_EANNOTATION__STRING = EcorePackage.EMODEL_ELEMENT___GET_EANNOTATION__STRING;
+
+	/**
+	 * The number of operations of the '<em>Model Style Sheets</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_STYLE_SHEETS_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet <em>Style Sheet</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getStyleSheet()
 	 * @generated
@@ -117,17 +138,24 @@ public interface StylesheetsPackage extends EPackage {
 	 * The number of structural features of the '<em>Style Sheet</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int STYLE_SHEET_FEATURE_COUNT = 0;
 
 	/**
+	 * The number of operations of the '<em>Style Sheet</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STYLE_SHEET_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StyleSheetReferenceImpl <em>Style Sheet Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StyleSheetReferenceImpl
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getStyleSheetReference()
 	 * @generated
@@ -138,7 +166,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * The feature id for the '<em><b>Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -148,70 +175,34 @@ public interface StylesheetsPackage extends EPackage {
 	 * The number of structural features of the '<em>Style Sheet Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int STYLE_SHEET_REFERENCE_FEATURE_COUNT = STYLE_SHEET_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl <em>Embedded Style Sheet</em>}' class.
+	 * The number of operations of the '<em>Style Sheet Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl
-	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getEmbeddedStyleSheet()
-	 * @generated
-	 */
-	int EMBEDDED_STYLE_SHEET = 3;
-
-	/**
-	 * The feature id for the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
-	int EMBEDDED_STYLE_SHEET__LABEL = STYLE_SHEET_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Content</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int EMBEDDED_STYLE_SHEET__CONTENT = STYLE_SHEET_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Embedded Style Sheet</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 * @ordered
-	 */
-	int EMBEDDED_STYLE_SHEET_FEATURE_COUNT = STYLE_SHEET_FEATURE_COUNT + 2;
-
+	int STYLE_SHEET_REFERENCE_OPERATION_COUNT = STYLE_SHEET_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.WorkspaceThemesImpl <em>Workspace Themes</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.WorkspaceThemesImpl
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getWorkspaceThemes()
 	 * @generated
 	 */
-	int WORKSPACE_THEMES = 4;
+	int WORKSPACE_THEMES = 3;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -221,7 +212,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * The feature id for the '<em><b>Themes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -231,28 +221,43 @@ public interface StylesheetsPackage extends EPackage {
 	 * The number of structural features of the '<em>Workspace Themes</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int WORKSPACE_THEMES_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE_THEMES___GET_EANNOTATION__STRING = EcorePackage.EMODEL_ELEMENT___GET_EANNOTATION__STRING;
+
+	/**
+	 * The number of operations of the '<em>Workspace Themes</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE_THEMES_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ThemeImpl <em>Theme</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ThemeImpl
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getTheme()
 	 * @generated
 	 */
-	int THEME = 5;
+	int THEME = 4;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -262,7 +267,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -272,7 +276,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -282,7 +285,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * The feature id for the '<em><b>Stylesheets</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -292,18 +294,71 @@ public interface StylesheetsPackage extends EPackage {
 	 * The number of structural features of the '<em>Theme</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int THEME_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Theme</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THEME_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl <em>Embedded Style Sheet</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getEmbeddedStyleSheet()
+	 * @generated
+	 */
+	int EMBEDDED_STYLE_SHEET = 5;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_STYLE_SHEET__LABEL = STYLE_SHEET_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Content</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_STYLE_SHEET__CONTENT = STYLE_SHEET_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Embedded Style Sheet</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_STYLE_SHEET_FEATURE_COUNT = STYLE_SHEET_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Embedded Style Sheet</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_STYLE_SHEET_OPERATION_COUNT = STYLE_SHEET_OPERATION_COUNT + 0;
 
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets <em>Model Style Sheets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Model Style Sheets</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets
 	 * @generated
@@ -314,7 +369,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets#getStylesheets <em>Stylesheets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference list '<em>Stylesheets</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets#getStylesheets()
 	 * @see #getModelStyleSheets()
@@ -326,7 +380,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet <em>Style Sheet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Style Sheet</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet
 	 * @generated
@@ -337,7 +390,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference <em>Style Sheet Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Style Sheet Reference</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference
 	 * @generated
@@ -348,7 +400,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference#getPath <em>Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Path</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference#getPath()
 	 * @see #getStyleSheetReference()
@@ -357,45 +408,9 @@ public interface StylesheetsPackage extends EPackage {
 	EAttribute getStyleSheetReference_Path();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet <em>Embedded Style Sheet</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the meta object for class '<em>Embedded Style Sheet</em>'.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet
-	 * @generated
-	 */
-	EClass getEmbeddedStyleSheet();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getLabel <em>Label</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the meta object for the attribute '<em>Label</em>'.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getLabel()
-	 * @see #getEmbeddedStyleSheet()
-	 * @generated
-	 */
-	EAttribute getEmbeddedStyleSheet_Label();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getContent <em>Content</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return the meta object for the attribute '<em>Content</em>'.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getContent()
-	 * @see #getEmbeddedStyleSheet()
-	 * @generated
-	 */
-	EAttribute getEmbeddedStyleSheet_Content();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes <em>Workspace Themes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Workspace Themes</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes
 	 * @generated
@@ -406,7 +421,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes#getThemes <em>Themes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference list '<em>Themes</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes#getThemes()
 	 * @see #getWorkspaceThemes()
@@ -418,7 +432,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme <em>Theme</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Theme</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme
 	 * @generated
@@ -429,7 +442,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getId <em>Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Id</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getId()
 	 * @see #getTheme()
@@ -441,7 +453,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getLabel <em>Label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Label</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getLabel()
 	 * @see #getTheme()
@@ -453,7 +464,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getIcon <em>Icon</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Icon</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getIcon()
 	 * @see #getTheme()
@@ -465,7 +475,6 @@ public interface StylesheetsPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getStylesheets <em>Stylesheets</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference list '<em>Stylesheets</em>'.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme#getStylesheets()
 	 * @see #getTheme()
@@ -474,10 +483,41 @@ public interface StylesheetsPackage extends EPackage {
 	EReference getTheme_Stylesheets();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet <em>Embedded Style Sheet</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Embedded Style Sheet</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet
+	 * @generated
+	 */
+	EClass getEmbeddedStyleSheet();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getLabel()
+	 * @see #getEmbeddedStyleSheet()
+	 * @generated
+	 */
+	EAttribute getEmbeddedStyleSheet_Label();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getContent <em>Content</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Content</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getContent()
+	 * @see #getEmbeddedStyleSheet()
+	 * @generated
+	 */
+	EAttribute getEmbeddedStyleSheet_Content();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -487,13 +527,13 @@ public interface StylesheetsPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 * <li>each class,</li>
-	 * <li>each feature of each class,</li>
-	 * <li>each enum,</li>
-	 * <li>and each data type</li>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each operation of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	interface Literals {
@@ -501,7 +541,6 @@ public interface StylesheetsPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ModelStyleSheetsImpl <em>Model Style Sheets</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ModelStyleSheetsImpl
 		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getModelStyleSheets()
 		 * @generated
@@ -512,7 +551,6 @@ public interface StylesheetsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Stylesheets</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference MODEL_STYLE_SHEETS__STYLESHEETS = eINSTANCE.getModelStyleSheets_Stylesheets();
@@ -521,7 +559,6 @@ public interface StylesheetsPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet <em>Style Sheet</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet
 		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getStyleSheet()
 		 * @generated
@@ -532,7 +569,6 @@ public interface StylesheetsPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StyleSheetReferenceImpl <em>Style Sheet Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StyleSheetReferenceImpl
 		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getStyleSheetReference()
 		 * @generated
@@ -543,45 +579,14 @@ public interface StylesheetsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute STYLE_SHEET_REFERENCE__PATH = eINSTANCE.getStyleSheetReference_Path();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl <em>Embedded Style Sheet</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 *
-		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl
-		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getEmbeddedStyleSheet()
-		 * @generated
-		 */
-		EClass EMBEDDED_STYLE_SHEET = eINSTANCE.getEmbeddedStyleSheet();
-
-		/**
-		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 *
-		 * @generated
-		 */
-		EAttribute EMBEDDED_STYLE_SHEET__LABEL = eINSTANCE.getEmbeddedStyleSheet_Label();
-
-		/**
-		 * The meta object literal for the '<em><b>Content</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 *
-		 * @generated
-		 */
-		EAttribute EMBEDDED_STYLE_SHEET__CONTENT = eINSTANCE.getEmbeddedStyleSheet_Content();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.WorkspaceThemesImpl <em>Workspace Themes</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.WorkspaceThemesImpl
 		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getWorkspaceThemes()
 		 * @generated
@@ -592,7 +597,6 @@ public interface StylesheetsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Themes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference WORKSPACE_THEMES__THEMES = eINSTANCE.getWorkspaceThemes_Themes();
@@ -601,7 +605,6 @@ public interface StylesheetsPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ThemeImpl <em>Theme</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.ThemeImpl
 		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getTheme()
 		 * @generated
@@ -612,7 +615,6 @@ public interface StylesheetsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute THEME__ID = eINSTANCE.getTheme_Id();
@@ -621,7 +623,6 @@ public interface StylesheetsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute THEME__LABEL = eINSTANCE.getTheme_Label();
@@ -630,7 +631,6 @@ public interface StylesheetsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Icon</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute THEME__ICON = eINSTANCE.getTheme_Icon();
@@ -639,11 +639,36 @@ public interface StylesheetsPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Stylesheets</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference THEME__STYLESHEETS = eINSTANCE.getTheme_Stylesheets();
 
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl <em>Embedded Style Sheet</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.EmbeddedStyleSheetImpl
+		 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.impl.StylesheetsPackageImpl#getEmbeddedStyleSheet()
+		 * @generated
+		 */
+		EClass EMBEDDED_STYLE_SHEET = eINSTANCE.getEmbeddedStyleSheet();
+
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EMBEDDED_STYLE_SHEET__LABEL = eINSTANCE.getEmbeddedStyleSheet_Label();
+
+		/**
+		 * The meta object literal for the '<em><b>Content</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EMBEDDED_STYLE_SHEET__CONTENT = eINSTANCE.getEmbeddedStyleSheet_Content();
+
 	}
 
-} // StylesheetsPackage
+} //StylesheetsPackage

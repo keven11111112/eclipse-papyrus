@@ -1,4 +1,15 @@
 /**
+ * Copyright (c) 2012, 2017 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * 	Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ * 	Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr (umlification of the ecore model)
  */
 package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets;
 
@@ -10,11 +21,11 @@ package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getLabel <em>Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getContent <em>Content</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getContent <em>Content</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getEmbeddedStyleSheet()
  * @model
@@ -25,14 +36,14 @@ public interface EmbeddedStyleSheet extends StyleSheet {
 	 * Returns the value of the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Label</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Label</em>' attribute.
 	 * @see #setLabel(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getEmbeddedStyleSheet_Label()
-	 * @model
+	 * @model ordered="false"
 	 * @generated
 	 */
 	String getLabel();
@@ -41,9 +52,7 @@ public interface EmbeddedStyleSheet extends StyleSheet {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getLabel <em>Label</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Label</em>' attribute.
+	 * @param value the new value of the '<em>Label</em>' attribute.
 	 * @see #getLabel()
 	 * @generated
 	 */
@@ -53,14 +62,14 @@ public interface EmbeddedStyleSheet extends StyleSheet {
 	 * Returns the value of the '<em><b>Content</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Content</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Content</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Content</em>' attribute.
 	 * @see #setContent(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getEmbeddedStyleSheet_Content()
-	 * @model required="true"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	String getContent();
@@ -69,9 +78,7 @@ public interface EmbeddedStyleSheet extends StyleSheet {
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet#getContent <em>Content</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Content</em>' attribute.
+	 * @param value the new value of the '<em>Content</em>' attribute.
 	 * @see #getContent()
 	 * @generated
 	 */

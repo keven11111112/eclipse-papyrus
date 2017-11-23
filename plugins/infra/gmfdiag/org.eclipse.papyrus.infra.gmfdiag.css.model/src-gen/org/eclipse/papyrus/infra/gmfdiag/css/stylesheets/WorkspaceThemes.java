@@ -1,8 +1,20 @@
 /**
+ * Copyright (c) 2012, 2017 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * 	Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ * 	Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr (umlification of the ecore model)
  */
 package org.eclipse.papyrus.infra.gmfdiag.css.stylesheets;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EModelElement;
 
 /**
@@ -12,10 +24,10 @@ import org.eclipse.emf.ecore.EModelElement;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes#getThemes <em>Themes</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes#getThemes <em>Themes</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getWorkspaceThemes()
  * @model
@@ -27,13 +39,13 @@ public interface WorkspaceThemes extends EModelElement {
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Themes</em>' reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Themes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Themes</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage#getWorkspaceThemes_Themes()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<Theme> getThemes();
