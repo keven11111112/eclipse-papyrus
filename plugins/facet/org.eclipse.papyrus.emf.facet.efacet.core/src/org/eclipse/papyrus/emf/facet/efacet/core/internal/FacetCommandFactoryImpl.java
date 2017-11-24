@@ -392,7 +392,7 @@ public class FacetCommandFactoryImpl implements IFacetCommandFactory {
 		if (typedElement.getUpperBound() != upperBound) {
 			final Command command = new SetCommand(this.editingDomain,
 					typedElement,
-					EcorePackage.eINSTANCE.getETypedElement_LowerBound(),
+					EcorePackage.eINSTANCE.getETypedElement_UpperBound(),
 					Integer.valueOf(upperBound));
 			commands.add(command);
 		}
@@ -406,7 +406,7 @@ public class FacetCommandFactoryImpl implements IFacetCommandFactory {
 		if (typedElement.isUnique() != unique) {
 			final Command command = new SetCommand(this.editingDomain,
 					typedElement,
-					EcorePackage.eINSTANCE.getETypedElement_Ordered(),
+					EcorePackage.eINSTANCE.getETypedElement_Unique(),
 					Boolean.valueOf(unique));
 			commands.add(command);
 		}
