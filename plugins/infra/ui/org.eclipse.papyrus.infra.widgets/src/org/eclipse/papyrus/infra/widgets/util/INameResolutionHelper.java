@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2017 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,13 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Benoit Maggi (CEA LIST) - Bug 518317 Autocompletion for type of properties
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.widgets.util;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Common interface to use to find elements from a given string
@@ -30,6 +31,17 @@ public interface INameResolutionHelper {
 	 */
 	public List<?> getMatchingElements(final String aString);
 
+	
+	/**
+	 * Use a {@link java.util.function.Predicate} to get matching elements.
+	 * 
+	 * @param predicate to match the elements 
+	 * @return all elements whose match the predicate
+	 */
+	public default List<?> getMatchingElements(final Predicate<?> predicate){
+		return getElementsByName(""); //$NON-NLS-1$ TODO: remove default when bumping plugin to 4.0.0
+	}
+	
 	/**
 	 * 
 	 * @param aString
@@ -65,4 +77,6 @@ public interface INameResolutionHelper {
 	 */
 	public List<String> getShortestQualifiedNames(final Object element, final boolean manageDuplicate);
 
+	
+	
 }

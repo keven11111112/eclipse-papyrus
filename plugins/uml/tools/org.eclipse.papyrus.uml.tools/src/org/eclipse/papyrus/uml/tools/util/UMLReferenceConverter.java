@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -59,7 +60,7 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	 * @param helper
 	 *            the name resolution helper to use
 	 * @param isMultiValued
-	 *            <code>true</code> if the edited property is multi valued
+	 *            <code>true</code> if the edited property is multi-valued
 	 */
 	public UMLReferenceConverter(INameResolutionHelper nameResolutionHelper, boolean isMultiValued) {
 		this.sharedResolutionHelper = nameResolutionHelper;
@@ -78,7 +79,7 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	}
 
 
-/**
+	/**
 	 * This method takes a string as parameter. This string can contains the name (qualified name) of several elements, separated by {@link IPapyrusConverter#STRING_SEPARATOR}. if the name of an element contains {@link IPapyrusParser#STRING_SEPARATOR, the name will be delimited by IPapyrusParser#STRING_DELIMITER
 	 * 
 	 * This method return a map with the name of the subelement as keys. The values are the start and the end position of the key in the string parameter.
@@ -90,10 +91,10 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	public final Map<List<Integer>, String> getSubStringsWithTheirPositions(String listOfValueAsString) {
 		final Pattern pattern = Pattern.compile(FIND_PART_NAME_REGEX);
 		final Matcher matcher = pattern.matcher(listOfValueAsString);
-		final TreeMap<List<Integer>, String> path = new TreeMap<List<Integer>, String>(new TwoIntegerListTupleComparator());
+		final TreeMap<List<Integer>, String> path = new TreeMap<>(new TwoIntegerListTupleComparator());
 		while (matcher.find()) {
 			String current = matcher.group();
-			List<Integer> indexes = new ArrayList<Integer>();
+			List<Integer> indexes = new ArrayList<>();
 			int start = matcher.start();
 			int end = matcher.end();
 			if (current.startsWith(STRING_DELIMITER) && current.endsWith(STRING_DELIMITER)) {
@@ -144,19 +145,7 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	 */
 	public List<String> splitFullStringToSubElementString(String multiValueAsString) {
 		TreeMap<List<Integer>, String> res = (TreeMap<List<Integer>, String>) getSubStringsWithTheirPositions(multiValueAsString);
-		List<String> values = new ArrayList<String>(res.values());
-		return values;
-		// final Pattern pattern = Pattern.compile(FIND_PART_NAME_REGEX);
-		// final Matcher matcher = pattern.matcher(multiValueAsString);
-		// final List<String> subString = new ArrayList<String>();
-		// while (matcher.find()) {
-		// String current = matcher.group();
-		// if (current.startsWith(STRING_DELIMITER) && current.endsWith(STRING_DELIMITER)) {
-		// current = current.substring(1, current.length() - 1);
-		// }
-		// subString.add(current);
-		// }
-		// return subString;
+		return new ArrayList<>(res.values());
 	}
 
 
@@ -226,6 +215,19 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	}
 
 	/**
+	 * Transfer the call to the wrapped shared helper
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getMatchingElements(java.util.function.Predicate)
+	 *
+	 * @param p
+	 * @return
+	 */
+	@Override
+	public List<?> getMatchingElements(Predicate p) {
+		return this.sharedResolutionHelper.getMatchingElements(p);
+	}	
+	
+	/**
 	 * 
 	 * @param aString
 	 *            a string
@@ -270,7 +272,6 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 		}
 
 		if (object instanceof Collection<?>) {
-			// if (canonicalValue instanceof Collection<?>) {
 			if (((Collection<?>) object).isEmpty()) {
 				return EMPTY_STRING;
 			}
@@ -331,12 +332,10 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	 */
 	public String canonicalToEditValue(Object object, int flag) {
 		if (object == null || EMPTY_STRING.equals(object)) {
-//			return NULL_VALUE;
 			return EMPTY_STRING;
 		}
 
 		if (object instanceof Collection<?>) {
-			// if (canonicalValue instanceof Collection<?>) {
 			if (((Collection<?>) object).isEmpty()) {
 				return EMPTY_STRING;
 			}
@@ -440,7 +439,6 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	 *         This class allows to sort the map containing the start and end index of the substrings. We need it to be able to provide completion for the correct sub string
 	 */
 	private static final class TwoIntegerListTupleComparator implements Comparator<List<Integer>> {
-
 
 		/**
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
