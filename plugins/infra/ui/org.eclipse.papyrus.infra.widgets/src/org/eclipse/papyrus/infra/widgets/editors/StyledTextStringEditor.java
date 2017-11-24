@@ -206,8 +206,6 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 		controlDecoration.hide();
 
 		// we ignore the indentation
-		// data.horizontalIndent = FieldDecorationRegistry.getDefault().getMaximumDecorationWidth();
-
 		// we remove the margin
 		GridLayout layout = (GridLayout) this.getLayout();
 		layout.marginHeight = 0;

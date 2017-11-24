@@ -11,6 +11,7 @@
  *  Arnaud Cuccuru (CEA LIST) - Initial API and implementation
  *  Vincent Lorenzo   (CEA LIST)
  *  Benoit Maggi (CEA LIST) - Bug 431629 Patch to avoid loop on imported packages
+ *  Benoit Maggi (CEA LIST) - Bug 518317 Autocompletion for type of properties 
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.tools.utils;
@@ -25,6 +26,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EClass;
@@ -87,7 +90,6 @@ public class NameResolutionHelper implements INameResolutionHelper {
 		init(space, filter);
 	}
 
-
 	/**
 	 * 
 	 * Constructor.
@@ -101,6 +103,19 @@ public class NameResolutionHelper implements INameResolutionHelper {
 		init(scope, filter);
 	}
 
+	/**
+	 * A cached getter to all names structure
+	 * @return all the names
+	 */
+	public Map<String, List<NamedElement>> getAllNames() {
+		if (allNames == null) {
+			allNames = new HashMap<>();
+			computeAllNames();
+		} 
+		return allNames;
+	}
+	
+	
 	/**
 	 * 
 	 * @param scope
@@ -126,7 +141,7 @@ public class NameResolutionHelper implements INameResolutionHelper {
 	 */
 	@Deprecated
 	public List<NamedElement> getNamedElements(String name) {
-		List<NamedElement> returnedValues = new ArrayList<NamedElement>();
+		List<NamedElement> returnedValues = new ArrayList<>();
 		List<Object> obj = getElementsByName(name);
 		for (Object current : obj) {
 			if (current instanceof NamedElement) {
@@ -137,7 +152,7 @@ public class NameResolutionHelper implements INameResolutionHelper {
 	}
 
 	/**
-	 * TODO
+	 * Compute all name with all authorized namespace computation in UML
 	 */
 	protected void computeAllNames() {
 
@@ -148,7 +163,6 @@ public class NameResolutionHelper implements INameResolutionHelper {
 		Namespace enclosingNamespace = scope.getNamespace();
 		String prefix = EMPTY_STRING;
 		while (enclosingNamespace != null) {
-			// prefix += enclosingNamespace.getName() + NamedElementUtil.QUALIFIED_NAME_SEPARATOR;
 			prefix = EMPTY_STRING;
 			computeNames(prefix, enclosingNamespace, false);
 			enclosingNamespace = enclosingNamespace.getNamespace();
@@ -163,7 +177,7 @@ public class NameResolutionHelper implements INameResolutionHelper {
 		if (filter.isSuperTypeOf(model.eClass())) {
 			List<NamedElement> l = this.allNames.get(model.getName());
 			if (l == null) { // i.e. no names have already been resolved in enclosed namespaces
-				l = new ArrayList<NamedElement>();
+				l = new ArrayList<>();
 				l.add(model);
 				this.allNames.put(model.getName(), l);
 			}
@@ -173,7 +187,7 @@ public class NameResolutionHelper implements INameResolutionHelper {
 		computeNames(builder.toString(), model, false);
 
 		// Build names corresponding to other available UML resources in the workspace
-		List<Resource> resources = new ArrayList<Resource>(scope.eResource().getResourceSet().getResources());// we duplicate the resource to avoid concurrent modification
+		List<Resource> resources = new ArrayList<>(scope.eResource().getResourceSet().getResources());// we duplicate the resource to avoid concurrent modification
 		for (Resource resource : resources) {
 			if (resource != scope.eResource() && resource instanceof UMLResource) {
 				UMLResource umlResource = (UMLResource) resource;
@@ -189,7 +203,7 @@ public class NameResolutionHelper implements INameResolutionHelper {
 					if (filter.isSuperTypeOf(root.eClass())) {
 						List<NamedElement> l = this.allNames.get(root.getName());
 						if (l == null) { // i.e. no names have already been resolved in enclosed namespaces
-							l = new ArrayList<NamedElement>();
+							l = new ArrayList<>();
 							l.add(root);
 							this.allNames.put(root.getName(), l);
 						}
@@ -202,9 +216,6 @@ public class NameResolutionHelper implements INameResolutionHelper {
 		}
 	}
 
-	/**
-	 * TODO
-	 */
 	protected void computeNames(String prefix, Namespace scope, boolean ignoreAlreadyFoundNames) {
 		computeNames(prefix, scope, ignoreAlreadyFoundNames, new HashSet<Namespace>());
 	}
@@ -221,7 +232,7 @@ public class NameResolutionHelper implements INameResolutionHelper {
 		alreadyComputedNamespace.add(scope);
 		Set<String> preExistingKeys;
 		if (ignoreAlreadyFoundNames) {
-			preExistingKeys = new HashSet<String>();
+			preExistingKeys = new HashSet<>();
 		} else {
 			preExistingKeys = this.allNames.keySet();
 		}
@@ -292,11 +303,11 @@ public class NameResolutionHelper implements INameResolutionHelper {
 	 */
 	public List<Object> getMatchingElements(String aString) {
 		if (this.allNames == null) {
-			this.allNames = new HashMap<String, List<NamedElement>>();
+			this.allNames = new HashMap<>();
 			this.computeAllNames();
 		}
 
-		Collection<Object> elements = new HashSet<Object>();
+		Collection<Object> elements = new HashSet<>();
 
 		for (Entry<String, List<NamedElement>> current : this.allNames.entrySet()) {
 			if (aString == null || aString.isEmpty() || current.getKey().startsWith(aString)) {
@@ -304,11 +315,30 @@ public class NameResolutionHelper implements INameResolutionHelper {
 			}
 		}
 		// to avoid to found the same element several time
-		return new ArrayList<Object>(elements);
+		return new ArrayList<>(elements);
 	}
 
-
 	/**
+	 * Apply the predicate to get matching elements from all Name Elements
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getMatchingElements(java.util.function.Predicate)
+	 *
+	 * @param p
+	 * @return
+	 */
+	@Override
+	public List<?> getMatchingElements(Predicate predicate) {
+		// Since Predicate isn't generic we need to handle the exception in filter
+		Set<?> collect = (Set<?>) this.getAllNames().values().stream().flatMap(List::stream)
+				.filter(namedElement -> {try {return predicate.test(namedElement);} catch (Exception e){return false;}}).collect(Collectors.toSet());
+		return new ArrayList<>(collect);
+	}	
+	
+	
+	/**
+	 * This method will return all named element that can be found in the given qualified name
+	 * (should be named getNamedElementByQualifiedName()
+	 * 
 	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getElementsByName(java.lang.String)
 	 *
 	 * @param aString
@@ -316,17 +346,18 @@ public class NameResolutionHelper implements INameResolutionHelper {
 	 */
 	public List<Object> getElementsByName(String aString) {
 		if (this.allNames == null) {
-			this.allNames = new HashMap<String, List<NamedElement>>();
+			this.allNames = new HashMap<>();
 			this.computeAllNames();
 		}
 		List<NamedElement> namedElements = this.allNames.get(aString);
 		List<Object> returnedValues = null;
 		if (namedElements != null && namedElements.size() > 0) {
-
-			returnedValues = new ArrayList<Object>(namedElements);
+			returnedValues = new ArrayList<>(namedElements);
 		}
 		return returnedValues != null ? returnedValues : Collections.emptyList();
 	}
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -334,6 +365,7 @@ public class NameResolutionHelper implements INameResolutionHelper {
 	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getShortestQualifiedNames(java.lang.Object)
 	 * @deprecated since 1.2.0
 	 */
+	@Deprecated
 	public List<String> getShortestQualifiedNames(final Object element) {
 		return getShortestQualifiedNames(element, true);
 	}
@@ -349,4 +381,7 @@ public class NameResolutionHelper implements INameResolutionHelper {
 		}
 		return null;
 	}
+
+
+
 }
