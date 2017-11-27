@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.Display;
 /**
  * Util class to manage the clipboard
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TableClipboardUtils {

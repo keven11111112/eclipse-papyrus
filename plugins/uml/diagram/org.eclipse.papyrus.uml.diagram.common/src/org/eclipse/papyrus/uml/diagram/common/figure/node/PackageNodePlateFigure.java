@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
  * this figure is used to display at the good positionn acnhor on the
  * packageable element
  *
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 

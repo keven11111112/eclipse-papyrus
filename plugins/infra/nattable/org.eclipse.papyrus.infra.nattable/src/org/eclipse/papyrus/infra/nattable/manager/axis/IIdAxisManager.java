@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public interface IIdAxisManager {

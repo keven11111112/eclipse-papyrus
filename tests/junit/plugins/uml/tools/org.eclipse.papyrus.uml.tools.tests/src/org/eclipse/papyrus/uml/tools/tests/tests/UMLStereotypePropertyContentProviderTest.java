@@ -43,7 +43,7 @@ import org.junit.Test;
  * <li>verifies that the returned children don't contains the inherited properties</li>
  * </ul>
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class UMLStereotypePropertyContentProviderTest extends AbstractPapyrusTest {

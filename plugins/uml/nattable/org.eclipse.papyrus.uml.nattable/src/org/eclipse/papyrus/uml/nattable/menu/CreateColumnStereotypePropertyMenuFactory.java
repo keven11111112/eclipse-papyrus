@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * Menu factory to add/remove easily stereotype property columns
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CreateColumnStereotypePropertyMenuFactory extends AbstractCreateStereotypePropertyMenuFactory {

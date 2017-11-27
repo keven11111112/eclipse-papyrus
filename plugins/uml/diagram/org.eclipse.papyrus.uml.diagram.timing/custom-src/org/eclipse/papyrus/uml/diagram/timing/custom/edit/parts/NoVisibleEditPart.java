@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  * @since 3.0
  *
  */

@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import ca.odell.glazedlists.gui.TableFormat;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class PapyrusSortingState extends SortingState {

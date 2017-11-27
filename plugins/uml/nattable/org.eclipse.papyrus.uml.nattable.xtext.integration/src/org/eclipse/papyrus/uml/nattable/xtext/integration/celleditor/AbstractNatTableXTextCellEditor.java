@@ -36,7 +36,7 @@ import org.eclipse.swt.widgets.Control;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractNatTableXTextCellEditor extends AbstractPapyrusStyledTextCellEditor {

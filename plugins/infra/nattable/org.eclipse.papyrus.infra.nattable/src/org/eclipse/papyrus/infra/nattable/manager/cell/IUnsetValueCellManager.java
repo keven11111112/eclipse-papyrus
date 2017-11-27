@@ -18,7 +18,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This interface provides methods to unset cell values, that is to say to reset values to the default value
  */
 public interface IUnsetValueCellManager extends ICellManager {

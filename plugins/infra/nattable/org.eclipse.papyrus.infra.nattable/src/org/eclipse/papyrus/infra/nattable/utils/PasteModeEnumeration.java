@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.nattable.utils;
 /**
  * Literals used to describe the paste mode
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public enum PasteModeEnumeration {

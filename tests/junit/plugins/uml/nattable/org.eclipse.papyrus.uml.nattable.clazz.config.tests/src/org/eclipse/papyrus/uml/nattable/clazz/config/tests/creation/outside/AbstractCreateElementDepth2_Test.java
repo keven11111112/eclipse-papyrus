@@ -24,7 +24,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class AbstractCreateElementDepth2_Test extends AbstractCreateElementTableTest {

@@ -20,7 +20,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 // TODO : move me?

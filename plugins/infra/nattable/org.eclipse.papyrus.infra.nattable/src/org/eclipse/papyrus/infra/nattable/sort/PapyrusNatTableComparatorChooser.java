@@ -19,7 +19,7 @@ import ca.odell.glazedlists.SortedList;
 import ca.odell.glazedlists.gui.TableFormat;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class PapyrusNatTableComparatorChooser extends NatTableComparatorChooser<Object> {

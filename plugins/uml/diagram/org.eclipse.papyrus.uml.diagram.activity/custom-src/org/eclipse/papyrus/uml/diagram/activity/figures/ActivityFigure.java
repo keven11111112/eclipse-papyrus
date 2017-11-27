@@ -32,7 +32,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigu
 /**
  * Activity figure for the activity diagram
  *
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class ActivityFigure extends RoundedCompartmentFigure {

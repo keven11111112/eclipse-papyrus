@@ -17,7 +17,7 @@ import org.eclipse.nebula.widgets.nattable.ui.menu.MenuItemProviders;
 import org.eclipse.ui.IWorkbenchActionConstants;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This class groups the constant used for table menu
  */
 public class MenuConstants {

@@ -38,7 +38,7 @@ import org.junit.Assert;
 import com.google.common.collect.Iterables;
 
 /**
- * @author jc236769
+ * @author Juan Cadavid
  *
  */
 public abstract class AbstractCreateChildLabelNodeFromPaletteTest extends AbstractPapyrusTestCase {

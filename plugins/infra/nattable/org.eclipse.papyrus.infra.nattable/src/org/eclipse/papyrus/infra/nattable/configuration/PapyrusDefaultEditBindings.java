@@ -30,7 +30,7 @@ import org.eclipse.swt.SWT;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *         Copy of {@link DefaultEditBindings} excepted for edition on double click replacing edition on single click
  */
 public class PapyrusDefaultEditBindings extends AbstractUiBindingConfiguration {

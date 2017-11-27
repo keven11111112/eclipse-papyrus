@@ -49,7 +49,7 @@ import ca.odell.glazedlists.event.ListEvent;
 import ca.odell.glazedlists.event.ListEventListener;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class PapyrusTreeLayer extends TreeLayer {

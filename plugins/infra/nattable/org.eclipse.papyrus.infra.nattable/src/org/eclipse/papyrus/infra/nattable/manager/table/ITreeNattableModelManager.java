@@ -27,7 +27,7 @@ import ca.odell.glazedlists.TreeList;
 /**
  * This interface provides methods for Tree Table table manager
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public interface ITreeNattableModelManager extends INattableModelManager {

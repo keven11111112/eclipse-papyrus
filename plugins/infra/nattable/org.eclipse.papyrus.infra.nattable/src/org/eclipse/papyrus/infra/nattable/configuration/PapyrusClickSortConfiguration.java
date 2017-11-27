@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.nattable.painter.PapyrusSortIconPainter;
 /**
  * The abstract configuration used for the sort the sort
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class PapyrusClickSortConfiguration extends DefaultSortConfiguration {

@@ -25,7 +25,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import ca.odell.glazedlists.TreeList;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class DatumTreeFormat implements TreeList.Format<ITreeItemAxis> {

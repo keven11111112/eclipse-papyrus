@@ -37,7 +37,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 /**
  * The handler used for the merge of all the cells inside each column
  *
- * @author QL238289
+ * @author Quentin Le Menez
  *
  */
 public class MergeColumnsHandler extends AbstractMergeHandler {

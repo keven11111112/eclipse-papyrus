@@ -54,7 +54,7 @@ import org.eclipse.ui.handlers.IHandlerService;
 /**
  * PopupAction for Papyrus -> The contents of the popup is builded for each right click and not builded only one time as in NatTable
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  * @deprecated since Papyrus 1.2 (Eclipse Neon)
  */

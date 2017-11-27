@@ -44,7 +44,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class AbstractTableTest extends AbstractPapyrusTest {

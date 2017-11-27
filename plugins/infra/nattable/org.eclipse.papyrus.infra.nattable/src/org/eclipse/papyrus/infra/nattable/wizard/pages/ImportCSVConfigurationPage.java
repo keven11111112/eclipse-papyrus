@@ -34,7 +34,7 @@ import org.eclipse.swt.widgets.Text;
 /**
  * The page to configure the separator used in the CSV file
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ImportCSVConfigurationPage extends WizardPage {

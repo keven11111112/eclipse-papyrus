@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.nattable.wizard.ConfigureTableCategoriesWizard;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ConfigureCategoriesHandler extends AbstractTableHandler {

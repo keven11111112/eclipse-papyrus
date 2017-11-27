@@ -18,7 +18,7 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 /**
  * This interface
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public interface IInheritedElementContentProvider extends IStructuredContentProvider {

@@ -23,7 +23,7 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 /**
  * The handler used to destroy the elements represented by the selected columns
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ColumnDestroyAxisElementHandler extends AbstractTableHandler {

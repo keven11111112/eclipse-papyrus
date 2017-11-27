@@ -25,7 +25,7 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class EEnumComboBoxDataProvider implements IComboBoxDataProvider {

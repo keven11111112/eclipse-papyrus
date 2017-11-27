@@ -29,7 +29,7 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 /**
  * This class allows to override the save options
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class CustomNattablelabelproviderEditor extends NattablelabelproviderEditor {

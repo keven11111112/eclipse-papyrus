@@ -18,7 +18,7 @@ import org.eclipse.nebula.widgets.nattable.sort.ISortModel;
 /**
  * Common interface to use for sort model
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public interface IPapyrusSortModel extends ISortModel {

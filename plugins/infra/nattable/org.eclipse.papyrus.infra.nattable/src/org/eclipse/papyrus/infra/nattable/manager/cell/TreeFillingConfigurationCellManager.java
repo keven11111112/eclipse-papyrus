@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 /**
  * This cell manager allows to display empty string in body cells when the row element is {@link TreeFillingConfiguration}
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TreeFillingConfigurationCellManager extends AbstractCellManager implements ICellManager {

@@ -36,7 +36,7 @@ import org.junit.Test;
 import org.osgi.framework.Bundle;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ContentsAndExpandWithCategories_0_1_2_Tests extends AbstractOpenTableTest {

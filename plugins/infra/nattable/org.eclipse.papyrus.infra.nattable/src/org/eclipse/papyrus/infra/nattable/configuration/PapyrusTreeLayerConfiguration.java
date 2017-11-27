@@ -25,7 +25,7 @@ import org.eclipse.nebula.widgets.nattable.ui.matcher.MouseEventMatcher;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class PapyrusTreeLayerConfiguration extends DefaultTreeLayerConfiguration {

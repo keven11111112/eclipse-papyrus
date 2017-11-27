@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.Nattableax
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 // TODO : refactore me to use IAxisFactory ?

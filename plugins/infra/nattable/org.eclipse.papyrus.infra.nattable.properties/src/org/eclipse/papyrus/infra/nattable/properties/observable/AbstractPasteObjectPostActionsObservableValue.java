@@ -40,7 +40,7 @@ import org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList;
 /**
  * Observable value for the element type id
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFObservableList {

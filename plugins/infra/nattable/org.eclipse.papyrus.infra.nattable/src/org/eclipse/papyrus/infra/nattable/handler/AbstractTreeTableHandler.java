@@ -17,7 +17,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManage
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractTreeTableHandler extends AbstractTableHandler {

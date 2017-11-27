@@ -18,7 +18,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdTreeItem
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  *         This class is not in the API
  */

@@ -52,7 +52,7 @@ import org.eclipse.swt.widgets.TableColumn;
 /**
  * This dialog is used to ask to the user if he wants create a new instance of a link, or show an existing link on the diagram
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CreateOrShowExistingLinkDialog extends MessageDialog {

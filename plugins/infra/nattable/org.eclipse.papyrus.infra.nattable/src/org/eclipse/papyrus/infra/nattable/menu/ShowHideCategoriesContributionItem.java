@@ -46,7 +46,7 @@ import org.eclipse.ui.commands.ICommandService;
 
 /**
  * 
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *         This contribution creates a MenuItem for each depth of the tree table, in order to be able to show/hide it easily.
  * @since 2.0

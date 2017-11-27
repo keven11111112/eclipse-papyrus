@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EReference;
 /**
  * This code is used to ensure the same way to calculate hashcode
  *
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class HashCodeCalculus {

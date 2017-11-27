@@ -32,7 +32,7 @@ import ca.odell.glazedlists.gui.AdvancedTableFormat;
 
 /**
  * 
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  * @param <R>
  */

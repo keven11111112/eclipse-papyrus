@@ -23,7 +23,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ClearSelectionUIBindingConfiguration extends AbstractUiBindingConfiguration {

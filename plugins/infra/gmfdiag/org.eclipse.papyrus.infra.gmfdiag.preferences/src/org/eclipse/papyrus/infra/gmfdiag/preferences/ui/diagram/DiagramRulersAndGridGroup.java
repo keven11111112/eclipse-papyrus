@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Composite;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class DiagramRulersAndGridGroup extends RulersAndGridGroup {

@@ -60,7 +60,7 @@ import org.eclipse.uml2.uml.Stereotype;
 /**
  * The cell manager used for Property of stereotypes
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class StereotypePropertyCellManager extends UMLFeatureCellManager {

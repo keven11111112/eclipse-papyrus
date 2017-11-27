@@ -23,7 +23,7 @@ import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrap
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TreeFillingStereotypePropertyLabelProvider extends StereotypePropertyHeaderLabelProvider {

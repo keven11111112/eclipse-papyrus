@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class HierarchicalRowLabelHeaderDataProvider extends RowLabelHeaderDataProvider {

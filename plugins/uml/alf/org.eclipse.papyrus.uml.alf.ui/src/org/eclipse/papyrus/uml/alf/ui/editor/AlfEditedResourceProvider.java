@@ -26,7 +26,7 @@ import com.google.inject.Injector;
 import com.google.inject.Provider;
 
 /**
- * @author ac221913 - Initial contribution and API
+ * @author Arnaud Cuccuru - Initial contribution and API
  */
 @SuppressWarnings("restriction")
 public class AlfEditedResourceProvider implements IEditedResourceProvider {

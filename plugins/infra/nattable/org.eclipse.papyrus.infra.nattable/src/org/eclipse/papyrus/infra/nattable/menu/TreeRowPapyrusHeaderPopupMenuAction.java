@@ -18,7 +18,7 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         Header Popup Menu action for Tree Table
  * @since 2.0
  */

@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.nattable.filter.FilterPreferences;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class DoubleFilterComparator implements Comparator<Object> {

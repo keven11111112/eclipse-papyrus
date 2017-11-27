@@ -27,7 +27,7 @@ import org.junit.Test;
 
 /**
  * 
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This class tests the API defined for tables (creation, deletion and find)
  */
 @PluginResource("resources/api/model.di")

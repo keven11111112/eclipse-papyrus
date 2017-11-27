@@ -43,7 +43,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 /**
  * This class provides some useful commands used to edit the table properties
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class TableCommands {

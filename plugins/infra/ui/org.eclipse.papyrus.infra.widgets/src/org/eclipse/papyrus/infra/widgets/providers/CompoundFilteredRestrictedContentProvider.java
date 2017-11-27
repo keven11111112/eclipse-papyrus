@@ -21,7 +21,7 @@ import java.util.List;
  * This class allows to use several content provider for the same widget
  * + restriction behavior see {@link IRestrictedContentProvider} documentation
  *
- * @author JC236769
+ * @author Juan Cadavid
  *
  */
 public class CompoundFilteredRestrictedContentProvider extends AbstractFilteredContentProvider implements IRestrictedContentProvider {

@@ -17,7 +17,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *         This class allows to fill the popup menu of the table, according to the contribution described in the plugin.xml
  *

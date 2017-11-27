@@ -23,7 +23,7 @@ import org.eclipse.nebula.widgets.nattable.util.GCFactory;
 /**
  * Handler used to resize rows
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class RowAutoResizeHandler extends AbstractTableHandler {

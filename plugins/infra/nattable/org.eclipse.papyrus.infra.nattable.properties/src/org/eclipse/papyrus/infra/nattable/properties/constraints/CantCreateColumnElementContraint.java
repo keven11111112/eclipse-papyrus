@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.nattable.properties.constraints;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CantCreateColumnElementContraint extends CanCreateColumnElementContraint {

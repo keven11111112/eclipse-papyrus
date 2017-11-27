@@ -23,7 +23,7 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 /**
  * The handler used to destroy the element represented by the selected rows
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class RowDestroyAxisHandler extends AbstractTableHandler {

@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 /**
  * The Class CompositeColumnHeaderDataProvider.
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  */
 public class CompositeColumnHeaderDataProvider extends AbstractCompositeDataProvider {
 

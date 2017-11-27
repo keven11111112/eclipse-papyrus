@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * This dialog adds a specific action on the okPressed() (opening a dialog)
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class DisplayedAxisSelectorDialog extends MultipleValueSelectionWithCheckBoxDialog {

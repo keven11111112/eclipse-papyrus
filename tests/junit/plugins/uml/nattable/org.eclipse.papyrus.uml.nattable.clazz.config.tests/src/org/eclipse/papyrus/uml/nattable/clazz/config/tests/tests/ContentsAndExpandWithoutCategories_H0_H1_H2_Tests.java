@@ -33,7 +33,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 @PluginResource("resources/contents_and_expand_tests_resources/ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.di") //$NON-NLS-1$

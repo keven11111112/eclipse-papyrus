@@ -43,7 +43,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  *         This listener is used to notify {@link CompositeAxisManagerForEventList} when an event comes
  *

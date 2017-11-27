@@ -23,7 +23,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class AddToResource implements IValueSetter {

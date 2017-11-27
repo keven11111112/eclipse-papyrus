@@ -58,7 +58,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import ca.odell.glazedlists.EventList;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEventList implements IAxisManagerForEventList, ICompositeAxisManager {

@@ -30,7 +30,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class RichTextCellEditorWithUMLReferences extends RichTextCellEditor {

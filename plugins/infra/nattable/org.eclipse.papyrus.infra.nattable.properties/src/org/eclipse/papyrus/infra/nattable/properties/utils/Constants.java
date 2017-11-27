@@ -17,7 +17,7 @@ package org.eclipse.papyrus.infra.nattable.properties.utils;
 /**
  * This class defines the contants use for the table property view
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class Constants {

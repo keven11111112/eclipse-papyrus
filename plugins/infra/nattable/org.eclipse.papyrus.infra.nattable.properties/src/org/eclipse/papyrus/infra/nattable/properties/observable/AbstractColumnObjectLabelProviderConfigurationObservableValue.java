@@ -27,7 +27,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 /**
  * The Class AbstractColumnObjectLabelProviderConfigurationObservableValue.
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  */
 public abstract class AbstractColumnObjectLabelProviderConfigurationObservableValue extends AbstractConfigurationElementObservableValue {
 

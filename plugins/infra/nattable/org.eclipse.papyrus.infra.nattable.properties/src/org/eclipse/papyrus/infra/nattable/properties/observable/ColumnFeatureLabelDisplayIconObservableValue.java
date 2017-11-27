@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.N
 /**
  * The Class ColumnFeatureLabelDisplayIconObservableValue.
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  */
 public class ColumnFeatureLabelDisplayIconObservableValue extends AbstractColumnFeatureLabelProviderConfigurationObservableValue {
 

@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Rectangle;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class PapyrusBeveledBorderDecorator extends BeveledBorderDecorator {

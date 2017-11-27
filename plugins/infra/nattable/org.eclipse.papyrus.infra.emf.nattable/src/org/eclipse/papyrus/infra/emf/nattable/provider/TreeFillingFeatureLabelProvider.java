@@ -23,7 +23,7 @@ import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElement
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TreeFillingFeatureLabelProvider extends EMFFeatureHeaderLabelProvider {

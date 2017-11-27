@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *         An eobject class used to represent a link with no semantic element
  */
 public class EdgeWithNoSemanticElementRepresentationImpl extends EObjectImpl {

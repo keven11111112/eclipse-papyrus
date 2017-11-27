@@ -22,7 +22,7 @@ import org.eclipse.papyrus.infra.ui.messages.Messages;
 /**
  * Abstract class for String value Container
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  * @since 1.2
  *
  */

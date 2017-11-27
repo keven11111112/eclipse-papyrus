@@ -55,7 +55,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * this command allows to import metaclasses in a profile
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CustomSemanticCreateCommand extends AbstractTransactionalCommand {

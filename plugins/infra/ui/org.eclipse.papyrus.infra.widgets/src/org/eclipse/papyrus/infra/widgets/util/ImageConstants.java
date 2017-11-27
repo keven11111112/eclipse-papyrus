@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.infra.widgets.util;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ImageConstants {

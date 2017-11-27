@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * The developper can define the location of this input dialog
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class InputDialogWithLocation extends InputDialog {

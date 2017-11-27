@@ -17,7 +17,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public interface IBorderItemWithLocator {

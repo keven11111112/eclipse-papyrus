@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 /**
  * Observable value for the element type id
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class RowPasteObjectPostActionsObservableValue extends AbstractPasteObjectPostActionsObservableValue {

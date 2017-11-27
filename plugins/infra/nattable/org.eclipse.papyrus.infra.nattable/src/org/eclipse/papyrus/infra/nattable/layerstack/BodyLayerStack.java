@@ -42,7 +42,7 @@ import org.eclipse.swt.SWT;
 /**
  * The BodyLayer stack used in Papyrus TableF
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class BodyLayerStack extends AbstractLayerTransform {

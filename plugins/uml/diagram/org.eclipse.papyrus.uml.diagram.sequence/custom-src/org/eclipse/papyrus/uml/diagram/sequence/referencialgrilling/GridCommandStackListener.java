@@ -21,7 +21,7 @@ import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.papyrus.uml.diagram.common.helper.NotificationHelper;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class GridCommandStackListener implements CommandStackListener {

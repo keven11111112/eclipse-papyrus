@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TableEditorDeleteHelper {

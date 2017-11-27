@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.nattable.command;
 /**
  * This class references the ids of the commands declared for tables.
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class CommandIds {

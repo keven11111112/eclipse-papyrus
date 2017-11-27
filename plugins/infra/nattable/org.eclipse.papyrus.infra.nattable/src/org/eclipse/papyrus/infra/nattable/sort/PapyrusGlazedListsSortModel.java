@@ -31,7 +31,7 @@ import ca.odell.glazedlists.SortedList;
 
 /**
  * 
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This class provides the sort model for an axis
  */
 public class PapyrusGlazedListsSortModel extends AbstractGlazedListSortModel {

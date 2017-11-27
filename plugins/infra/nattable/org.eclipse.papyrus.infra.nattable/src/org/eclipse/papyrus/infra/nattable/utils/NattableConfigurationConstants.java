@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.utils;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class NattableConfigurationConstants {

@@ -20,7 +20,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Event;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TestedPapyrusNatTableToolTipProvider extends PapyrusNatTableToolTipProvider {

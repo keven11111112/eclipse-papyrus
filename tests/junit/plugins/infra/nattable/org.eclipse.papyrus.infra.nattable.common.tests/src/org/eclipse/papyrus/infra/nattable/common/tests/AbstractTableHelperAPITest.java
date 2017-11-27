@@ -36,7 +36,7 @@ import org.junit.Assert;
 import org.junit.Rule;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractTableHelperAPITest extends AbstractPapyrusTest {

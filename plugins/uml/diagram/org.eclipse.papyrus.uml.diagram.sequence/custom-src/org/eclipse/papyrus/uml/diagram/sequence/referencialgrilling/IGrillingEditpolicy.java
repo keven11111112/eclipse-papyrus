@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.render.editparts.RenderedDiagramRootEditPart;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public interface IGrillingEditpolicy {

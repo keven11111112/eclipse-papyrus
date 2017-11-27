@@ -22,7 +22,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * @since 1.2
  *
  */

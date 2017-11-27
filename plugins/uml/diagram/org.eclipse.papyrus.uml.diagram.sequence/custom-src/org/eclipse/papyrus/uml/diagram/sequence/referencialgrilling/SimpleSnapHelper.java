@@ -18,7 +18,7 @@ import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class SimpleSnapHelper {

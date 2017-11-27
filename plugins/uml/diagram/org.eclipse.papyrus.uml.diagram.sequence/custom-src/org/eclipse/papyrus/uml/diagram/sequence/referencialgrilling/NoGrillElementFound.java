@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class NoGrillElementFound extends Exception {

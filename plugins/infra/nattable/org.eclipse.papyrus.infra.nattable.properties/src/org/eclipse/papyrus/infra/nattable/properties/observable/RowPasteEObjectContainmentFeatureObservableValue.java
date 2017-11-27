@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 /**
  * Observable value for the containment feature for the EObject Paste on Row.
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class RowPasteEObjectContainmentFeatureObservableValue extends AbstractRowPasteEObjectConfigurationObservableValue {

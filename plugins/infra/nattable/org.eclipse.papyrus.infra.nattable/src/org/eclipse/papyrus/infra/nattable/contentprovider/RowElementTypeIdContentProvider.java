@@ -17,7 +17,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class RowElementTypeIdContentProvider extends AbstractElementTypeIdContentProvider {

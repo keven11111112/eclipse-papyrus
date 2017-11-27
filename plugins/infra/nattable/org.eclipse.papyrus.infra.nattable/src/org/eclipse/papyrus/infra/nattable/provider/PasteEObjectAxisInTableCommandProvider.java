@@ -69,7 +69,7 @@ import org.eclipse.ui.progress.UIJob;
 /**
  * Paste command manager for the paste in the table
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 @Deprecated

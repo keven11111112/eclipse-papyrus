@@ -54,7 +54,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.services.IDisposable;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         Class extracted from MultipleValueSelectorDialog
  *
  */

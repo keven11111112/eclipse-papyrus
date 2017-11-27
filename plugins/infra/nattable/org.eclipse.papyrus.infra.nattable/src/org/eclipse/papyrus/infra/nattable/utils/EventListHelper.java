@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemA
 import ca.odell.glazedlists.EventList;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This class provides methods to manipulate properly EventList calling appropriate lock and unlock methods
  */
 public class EventListHelper {

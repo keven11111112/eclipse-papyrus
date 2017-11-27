@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.Label;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ImportTableErrorPage extends WizardPage {

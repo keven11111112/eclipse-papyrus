@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.util.UMLDerivedUnionAdapter;
  *      *
  *      </ul>
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  * @see PapyrusUMLDerivedSubsetAdapter
  */
 public class StructuredClassifierDerivedSubsetAdapter extends UMLDerivedUnionAdapter {

@@ -37,7 +37,7 @@ import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
 /**
  * The cell manager factory
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public final class CellManagerFactory {

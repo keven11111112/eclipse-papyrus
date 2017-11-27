@@ -31,7 +31,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.LifeLineLayoutManager;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.MessageCreateLifelineAnchor;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  * @since 3.0
  *
  */

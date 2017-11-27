@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class SquareFigure extends RoundedCompartmentFigure {

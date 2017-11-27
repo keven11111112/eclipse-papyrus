@@ -22,7 +22,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 /**
  * The row observable value for {@link AbstractHeaderAxisConfiguration#displayIndex}
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class RowDisplayIndexHeaderObservableValue extends AbstractRowHeaderAxisConfigurationObservableValue {

@@ -19,7 +19,7 @@ package org.eclipse.papyrus.infra.widgets.providers;
  * <li>display all possible values according to current edited object (restricted==true)</li>
  * </ul>
  *
- * @author JC236769
+ * @author Juan Cadavid
  *
  */
 public interface IRestrictedContentProvider extends IHierarchicContentProvider, IStaticContentProvider, IInheritedElementContentProvider {

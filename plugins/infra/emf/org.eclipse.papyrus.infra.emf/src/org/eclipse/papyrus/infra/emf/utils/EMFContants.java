@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.emf.utils;
 /**
  * Thyis class defines some useful constants for EMF
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class EMFContants {

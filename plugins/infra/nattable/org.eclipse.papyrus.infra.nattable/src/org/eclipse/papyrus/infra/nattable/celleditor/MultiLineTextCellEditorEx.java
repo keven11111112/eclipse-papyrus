@@ -24,7 +24,7 @@ import org.eclipse.ui.keys.IBindingService;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This multi line cell editor has the same behavior than spreadsheet (ALT+ENTER (Excel)for new line and ENTER to commit).
  *         To get this behavior, we desactivate the filtering done by org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher. This class
  *         set event.doit==false if the keypressed are binding for eclipse command (ALT-ENTER is registered to show property view)

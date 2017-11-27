@@ -34,7 +34,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * @since 2.0
  * 
  *        Nattable Editor to use for tree table

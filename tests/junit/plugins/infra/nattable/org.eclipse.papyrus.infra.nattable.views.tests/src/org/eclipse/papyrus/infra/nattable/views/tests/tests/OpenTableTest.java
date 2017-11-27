@@ -35,7 +35,7 @@ import org.osgi.framework.Bundle;
 /**
  * Test the opening of an existing table
  * 
- * @author vl222926
+ * @author Vincent Lorenzo
  * 
  */
 public class OpenTableTest extends AbstractEditorIntegrationTest {

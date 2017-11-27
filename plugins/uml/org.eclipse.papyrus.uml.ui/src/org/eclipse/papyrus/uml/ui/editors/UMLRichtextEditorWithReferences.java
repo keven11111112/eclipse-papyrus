@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * 
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *         This editor provides an additional button to be able to link UML references in the html text
  *

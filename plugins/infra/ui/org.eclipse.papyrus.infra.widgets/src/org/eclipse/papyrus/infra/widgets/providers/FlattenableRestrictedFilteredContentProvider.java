@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.ToolItem;
 
 /**
  *
- * @author JC236769
+ * @author Juan Cadavid
  *
  */
 public class FlattenableRestrictedFilteredContentProvider extends AbstractFilteredContentProvider implements IStaticContentProvider, IRestrictedContentProvider, IFlattenableContentProvider {

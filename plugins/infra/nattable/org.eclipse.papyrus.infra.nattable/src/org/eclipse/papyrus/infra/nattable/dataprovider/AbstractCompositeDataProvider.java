@@ -23,7 +23,7 @@ import org.eclipse.ui.services.IDisposable;
 /**
  * The Class AbstractCompositeDataProvider.
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  */
 public abstract class AbstractCompositeDataProvider implements IDataProvider, IDisposable {
 

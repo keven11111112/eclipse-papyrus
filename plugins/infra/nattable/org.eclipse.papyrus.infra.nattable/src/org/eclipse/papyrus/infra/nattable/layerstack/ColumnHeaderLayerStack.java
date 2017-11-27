@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.nattable.utils.DefaultSizeUtils;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class ColumnHeaderLayerStack extends AbstractLayerTransform {

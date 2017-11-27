@@ -50,7 +50,7 @@ import org.osgi.framework.Bundle;
 
 /**
  * 
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *         This class tests the selection provider of the table
  * 

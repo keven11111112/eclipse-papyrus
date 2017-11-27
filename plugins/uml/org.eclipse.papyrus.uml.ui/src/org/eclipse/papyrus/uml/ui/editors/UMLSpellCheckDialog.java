@@ -18,7 +18,7 @@ import org.eclipse.papyrus.infra.widgets.editors.richtext.CheckSpellDialog;
 import org.eclipse.swt.widgets.Shell;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This dialog removes the UML references before checking the text
  */
 public class UMLSpellCheckDialog extends CheckSpellDialog {

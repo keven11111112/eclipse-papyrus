@@ -25,7 +25,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  *         Abstract class used to display label header
  *

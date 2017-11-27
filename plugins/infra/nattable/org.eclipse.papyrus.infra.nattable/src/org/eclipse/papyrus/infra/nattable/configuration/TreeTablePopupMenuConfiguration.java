@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.nattable.menu.TreeRowPapyrusHeaderPopupMenuActi
 import org.eclipse.swt.SWT;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         The configuration to use to popup menu in Tree Table
  */
 public class TreeTablePopupMenuConfiguration extends TablePopupMenuConfiguration {

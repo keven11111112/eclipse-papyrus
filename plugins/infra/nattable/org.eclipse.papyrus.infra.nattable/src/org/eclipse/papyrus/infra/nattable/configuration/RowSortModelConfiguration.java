@@ -19,7 +19,7 @@ import org.eclipse.nebula.widgets.nattable.sort.ISortModel;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This class allows to register the sort model used by nattable
  */
 public class RowSortModelConfiguration extends AbstractRegistryConfiguration {

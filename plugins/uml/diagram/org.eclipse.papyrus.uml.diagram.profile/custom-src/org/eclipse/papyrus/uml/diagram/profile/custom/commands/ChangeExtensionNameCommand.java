@@ -29,7 +29,7 @@ import org.eclipse.uml2.uml.Stereotype;
 /**
  * This class allows to change the extensionName if the stereotype's name is changed
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ChangeExtensionNameCommand extends AbstractTransactionalCommand {

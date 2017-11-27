@@ -32,7 +32,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class SelectCategoriesWizardPage extends MultipleValueEditAndSelectionWizardPage {
@@ -119,7 +119,7 @@ public class SelectCategoriesWizardPage extends MultipleValueEditAndSelectionWiz
 
 	/**
 	 * 
-	 * @author VL222926
+	 * @author Vincent Lorenzo
 	 * 
 	 *         this class allows to refresh properly the next button after a double click on the left part of the widget
 	 *

@@ -21,7 +21,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileDiagramEditPart
 /**
  * The profile's diagram editor factory
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ProfileDiagramEditorFactory extends GmfEditorFactory {

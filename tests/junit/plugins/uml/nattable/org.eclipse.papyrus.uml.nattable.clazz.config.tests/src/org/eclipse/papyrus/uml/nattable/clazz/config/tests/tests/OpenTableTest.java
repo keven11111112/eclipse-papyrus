@@ -21,7 +21,7 @@ import org.junit.Test;
 import org.osgi.framework.Bundle;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class OpenTableTest extends AbstractOpenTableTest {

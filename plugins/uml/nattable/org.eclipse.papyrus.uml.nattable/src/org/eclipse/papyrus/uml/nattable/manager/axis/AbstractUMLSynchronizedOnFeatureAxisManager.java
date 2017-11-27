@@ -22,7 +22,7 @@ import org.eclipse.papyrus.uml.tools.adapters.PapyrusUMLDerivedSubsetAdapter;
 /**
  * *
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractUMLSynchronizedOnFeatureAxisManager extends AbstractSynchronizedOnEStructuralFeatureAxisManager {

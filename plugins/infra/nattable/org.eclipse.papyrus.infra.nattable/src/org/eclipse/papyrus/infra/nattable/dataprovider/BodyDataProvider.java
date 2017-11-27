@@ -18,7 +18,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class BodyDataProvider extends AbstractDataProvider {

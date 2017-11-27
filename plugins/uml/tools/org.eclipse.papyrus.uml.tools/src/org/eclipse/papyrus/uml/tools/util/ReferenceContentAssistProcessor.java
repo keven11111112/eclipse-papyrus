@@ -32,7 +32,7 @@ import org.eclipse.papyrus.infra.widgets.util.DoNothingCompletionProposal;
 import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ReferenceContentAssistProcessor implements IContentAssistProcessor {

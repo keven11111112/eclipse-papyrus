@@ -59,7 +59,7 @@ import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 /**
  * This command is used to define a profile
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class DefineProfileCommand extends AbstractTransactionalCommand {

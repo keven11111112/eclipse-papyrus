@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TreeRowHideShowCategoryHandler extends AbstractTreeRowHideShowCategoryHandler {

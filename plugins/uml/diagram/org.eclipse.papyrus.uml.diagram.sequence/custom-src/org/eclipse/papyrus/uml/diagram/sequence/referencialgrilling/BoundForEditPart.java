@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEdi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class BoundForEditPart {

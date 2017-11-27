@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.nattable.richtext.celleditor.config.messages;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class Messages extends NLS {

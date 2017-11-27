@@ -21,7 +21,7 @@ import org.eclipse.uml2.uml.Property;
 
 /**
  * 
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class UMLClassTreeAxisManagerForEventList extends UMLElementTreeAxisManagerForEventList {

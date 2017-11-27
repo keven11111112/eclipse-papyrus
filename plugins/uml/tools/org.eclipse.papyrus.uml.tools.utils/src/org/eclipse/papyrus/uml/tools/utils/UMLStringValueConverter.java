@@ -47,7 +47,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * ULM String converter
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class UMLStringValueConverter extends EMFStringValueConverter {

@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.nattable.preferences;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TablePreferencesConstantsHelper {

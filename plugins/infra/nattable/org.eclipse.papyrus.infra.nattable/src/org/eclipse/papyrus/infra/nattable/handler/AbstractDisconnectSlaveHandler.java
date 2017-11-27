@@ -30,7 +30,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 /**
  * Abstract handler used to change the value of the property IMasterAxisProvider#disconnectSlave
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractDisconnectSlaveHandler extends AbstractTableHandler {

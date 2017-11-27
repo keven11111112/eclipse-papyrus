@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class RowMasterDisconnectColumnSlaveHandler extends AbstractDisconnectSlaveHandler {

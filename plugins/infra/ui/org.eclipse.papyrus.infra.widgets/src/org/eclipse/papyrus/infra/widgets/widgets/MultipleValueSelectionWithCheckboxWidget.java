@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Composite;
 
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *
  */

@@ -16,7 +16,7 @@ import org.eclipse.jface.viewers.Viewer;
 /**
  * Abstract Implementation for {@link IRestrictedContentProvider}
  *
- * @author JC236769
+ * @author Juan Cadavid
  *
  */
 public abstract class AbstractRestrictedContentProvider implements IRestrictedContentProvider {

@@ -43,7 +43,7 @@ import org.eclipse.uml2.uml.Profile;
 /**
  * Helper for Metaclasses
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class MetaclassHelper extends ElementHelper {

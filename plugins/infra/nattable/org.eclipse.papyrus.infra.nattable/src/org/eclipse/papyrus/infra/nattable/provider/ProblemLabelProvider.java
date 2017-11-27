@@ -27,7 +27,7 @@ import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 /**
  * Label Provider for problem
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ProblemLabelProvider extends EMFLabelProvider implements IFilteredLabelProvider {

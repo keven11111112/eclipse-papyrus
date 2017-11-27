@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.nattable.utils.CreatableEObjectAxisUtils;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CanCreateColumnElementContraint implements JavaQuery {

@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 /**
  * Common interface for paste post actions
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 

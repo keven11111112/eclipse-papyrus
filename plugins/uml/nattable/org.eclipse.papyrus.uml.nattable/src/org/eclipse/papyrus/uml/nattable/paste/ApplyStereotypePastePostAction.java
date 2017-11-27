@@ -40,7 +40,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *         This post action allows to apply stereotypes on the pasted element
  */
 public class ApplyStereotypePastePostAction implements IPastePostAction {

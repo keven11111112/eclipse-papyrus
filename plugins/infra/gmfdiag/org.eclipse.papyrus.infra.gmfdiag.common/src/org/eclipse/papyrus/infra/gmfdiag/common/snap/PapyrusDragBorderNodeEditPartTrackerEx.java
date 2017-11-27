@@ -17,7 +17,7 @@ import org.eclipse.gef.EditPart;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class PapyrusDragBorderNodeEditPartTrackerEx extends PapyrusDragEditPartsTrackerEx {

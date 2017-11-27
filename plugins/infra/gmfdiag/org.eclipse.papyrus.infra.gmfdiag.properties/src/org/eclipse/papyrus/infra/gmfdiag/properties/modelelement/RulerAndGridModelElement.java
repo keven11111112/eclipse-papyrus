@@ -37,7 +37,7 @@ import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *         This class provides the ModelElement for the property view
  */
 @SuppressWarnings("restriction")

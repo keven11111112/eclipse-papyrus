@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CollapseAndExpandTreeHandler extends AbstractParametricTreeTableHandler {

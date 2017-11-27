@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *
  */

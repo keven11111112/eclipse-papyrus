@@ -47,7 +47,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *         Class used to managed hierarchical axis
  */
 public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerForEventList implements IAxisManagerForEventList, ITreeItemAxisManagerForEventList {

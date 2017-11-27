@@ -21,7 +21,7 @@ import org.eclipse.uml2.uml.Stereotype;
 /**
  * A structure used to store useful informations about stereotype, property, stereotype application, ...
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public final class StereotypeApplicationStructure {

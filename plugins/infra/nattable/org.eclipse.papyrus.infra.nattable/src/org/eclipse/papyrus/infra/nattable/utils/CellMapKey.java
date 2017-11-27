@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.ICellAxisW
 /**
  * This class is used as key to find easily the cell for a row and a column in the table metamodel
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class CellMapKey {

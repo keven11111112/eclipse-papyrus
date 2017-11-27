@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class MultipleValueEditAndSelectionWizardPage extends WizardPage {

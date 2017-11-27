@@ -18,7 +18,7 @@ import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.widgets.MultipleValueSelectionWidget;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ConfigurePasteForCategoriesWizardPage extends SelectCategoriesWizardPage {

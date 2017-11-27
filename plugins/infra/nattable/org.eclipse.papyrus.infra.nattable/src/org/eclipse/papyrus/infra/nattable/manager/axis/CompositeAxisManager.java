@@ -52,7 +52,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
  * This axis manager allows to encapsulated others axis manager. It allows to manage the contents of the table.
  * When this contents is stored in the table metamodel, It is able to manage the Add/Remove and Move elements in the list of the displayed elements
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CompositeAxisManager extends AbstractAxisManager implements ICompositeAxisManager {

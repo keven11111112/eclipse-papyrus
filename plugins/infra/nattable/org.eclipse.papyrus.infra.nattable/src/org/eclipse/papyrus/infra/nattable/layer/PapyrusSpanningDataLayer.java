@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
  *
- * @author QL238289
+ * @author Quentin Le Menez
  * @see org.eclipse.nebula.widgets.nattable.layer.SpanningDataLayer
  *
  *

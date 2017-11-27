@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CompletionStyledTextReferenceDialog extends AbstractPropertyEditor {

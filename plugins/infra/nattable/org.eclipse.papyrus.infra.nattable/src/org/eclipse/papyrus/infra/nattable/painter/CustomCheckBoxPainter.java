@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.Rectangle;
 /**
  * This checkbox painter allows to display text into the cell
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CustomCheckBoxPainter extends CheckBoxPainter {

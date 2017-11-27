@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemA
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public interface ITreeItemAxisManagerForEventList extends IAxisManagerForEventList {

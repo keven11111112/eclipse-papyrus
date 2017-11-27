@@ -19,7 +19,7 @@ import org.eclipse.core.commands.ExecutionException;
 /**
  * The handler for the invert axis action
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class InvertAxisHandler extends AbstractTableHandler {

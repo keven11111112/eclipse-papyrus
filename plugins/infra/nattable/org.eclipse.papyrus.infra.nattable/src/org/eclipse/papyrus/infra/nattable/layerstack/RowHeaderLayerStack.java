@@ -35,7 +35,7 @@ import org.eclipse.swt.SWT;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *         Layer stack used for row header
  */
 public class RowHeaderLayerStack extends AbstractLayerTransform {
@@ -272,7 +272,7 @@ public class RowHeaderLayerStack extends AbstractLayerTransform {
 
 	/**
 	 *
-	 * @author VL222926
+	 * @author Vincent Lorenzo
 	 *         Configuration providing the selection binding
 	 */
 	public static class CustomConfig extends DefaultSelectionBindings {

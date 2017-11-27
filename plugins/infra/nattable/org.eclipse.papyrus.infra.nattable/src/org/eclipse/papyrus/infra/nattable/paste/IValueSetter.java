@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  *
  *
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public interface IValueSetter {

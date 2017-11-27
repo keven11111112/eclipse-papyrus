@@ -22,7 +22,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * 
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This handler allows to the user to recreate the table in the editor. It is useful in case of broken table after a user action
  */
 public class ReloadNattableWidgetInEditorHandler extends AbstractHandler {

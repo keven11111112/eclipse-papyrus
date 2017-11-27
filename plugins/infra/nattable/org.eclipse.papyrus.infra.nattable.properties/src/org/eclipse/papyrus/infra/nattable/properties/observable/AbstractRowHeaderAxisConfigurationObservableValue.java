@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 /**
  * Abstract class for the rowHeaderAxisConfiguration
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractRowHeaderAxisConfigurationObservableValue extends AbstractConfigurationElementObservableValue {

@@ -19,7 +19,7 @@ import org.eclipse.emf.common.notify.Notification;
 import ca.odell.glazedlists.EventList;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public interface IAxisManagerForEventList extends IAxisManager {

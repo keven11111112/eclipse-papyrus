@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.nattable.manager.axis;
 import java.util.List;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public interface ICompositeAxisManagerForEventList extends ICompositeAxisManager, IAxisManagerForEventList {

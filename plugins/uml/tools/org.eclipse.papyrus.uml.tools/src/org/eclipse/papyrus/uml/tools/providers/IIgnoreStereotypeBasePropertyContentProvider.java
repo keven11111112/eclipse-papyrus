@@ -19,7 +19,7 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
  * This interface adds 2 methods to allow to the content provider to ignore or not the properties base_ExtendedMetaclass
  * in the stereotype properties
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public interface IIgnoreStereotypeBasePropertyContentProvider extends IStructuredContentProvider {

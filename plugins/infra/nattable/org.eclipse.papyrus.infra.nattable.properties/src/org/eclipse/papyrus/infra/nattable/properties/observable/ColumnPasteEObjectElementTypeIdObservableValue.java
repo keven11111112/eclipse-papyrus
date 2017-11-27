@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 /**
  * Observable value for ElementType Id for the Paste EObject on column
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ColumnPasteEObjectElementTypeIdObservableValue extends AbstractColumnPasteEObjectConfigurationObservableValue {

@@ -52,7 +52,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  *
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CreateOrShowExistingElementHelper {

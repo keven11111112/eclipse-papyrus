@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 @PluginResource("resources/creation/outside/CreateElementDepth2_V1_H3_V1_Test.di")

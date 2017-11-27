@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 /**
  * Utils class for paste actions
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class PasteConfigurationUtils {

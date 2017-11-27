@@ -23,7 +23,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class PasteTreeUtils_Tests {

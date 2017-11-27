@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtil
 /**
  * Constraint to know if the table has an object column label configuration
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class HasColumnObjectLabelConfigurationConstraint implements JavaQuery {

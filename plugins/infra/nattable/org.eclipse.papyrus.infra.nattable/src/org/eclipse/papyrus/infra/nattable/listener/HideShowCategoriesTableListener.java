@@ -45,7 +45,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 /**
  * This class listen the changes in the table model which require nattable update
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class HideShowCategoriesTableListener implements ResourceSetListener {

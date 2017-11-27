@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Namespace;
 import org.junit.Assert;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractCreateElementTableTest extends AbstractTableTest {

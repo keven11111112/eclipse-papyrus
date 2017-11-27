@@ -40,7 +40,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 /**
  * Axis Manager used when the contents of the table is synchronized on a feature AND that these elements must be stereotyped
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractStereotypedElementUMLSynchronizedOnFeatureAxisManager<T_StereotypeApplication extends EObject> extends AbstractUMLSynchronizedOnFeatureAxisManager {

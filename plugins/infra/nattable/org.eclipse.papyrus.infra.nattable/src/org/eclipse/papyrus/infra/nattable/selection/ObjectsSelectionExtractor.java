@@ -21,7 +21,7 @@ import java.util.List;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This class has been created to avoid dependencies on EMF manipulating eobject referenced by the table
  */
 public class ObjectsSelectionExtractor implements ISelectionExtractor {

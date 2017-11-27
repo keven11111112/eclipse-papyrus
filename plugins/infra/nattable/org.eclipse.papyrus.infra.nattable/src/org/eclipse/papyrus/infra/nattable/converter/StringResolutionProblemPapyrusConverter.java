@@ -25,7 +25,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringR
 import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *         This class wraps a papyrus converter to manage the string resolution problem
  *

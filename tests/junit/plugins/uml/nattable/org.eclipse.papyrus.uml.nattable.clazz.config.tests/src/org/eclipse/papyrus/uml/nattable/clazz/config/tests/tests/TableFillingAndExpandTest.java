@@ -36,7 +36,7 @@ import org.osgi.framework.Bundle;
 import ca.odell.glazedlists.TreeList;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TableFillingAndExpandTest extends AbstractEditorTest {

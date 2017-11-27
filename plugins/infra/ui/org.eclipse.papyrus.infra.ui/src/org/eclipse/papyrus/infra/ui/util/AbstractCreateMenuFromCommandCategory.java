@@ -42,7 +42,7 @@ import org.eclipse.ui.services.IServiceLocator;
 /**
  * Abstract Class to create menu from an Eclipse Command category
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  * @since 1.2
  *
  */

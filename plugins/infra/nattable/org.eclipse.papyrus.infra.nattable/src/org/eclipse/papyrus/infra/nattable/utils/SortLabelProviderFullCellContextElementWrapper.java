@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.utils;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *  
  * This class allows us to wrap cell value, with sort information.
  */

@@ -32,7 +32,7 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  *         The comparator used to sort the rows selecting column header in case of a TreeTable
  *

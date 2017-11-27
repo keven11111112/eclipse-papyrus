@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 /**
  * The Paste Post Action registry
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public final class PastePostActionRegistry {

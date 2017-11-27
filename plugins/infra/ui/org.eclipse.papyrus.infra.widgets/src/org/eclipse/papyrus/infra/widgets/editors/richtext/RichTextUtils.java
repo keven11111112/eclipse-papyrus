@@ -17,7 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * @since 2.0
  * 
  *        This class provides strings known by the ckeditor

@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class ComboBoxWithButtonCellEditor extends ComboBoxCellEditor {

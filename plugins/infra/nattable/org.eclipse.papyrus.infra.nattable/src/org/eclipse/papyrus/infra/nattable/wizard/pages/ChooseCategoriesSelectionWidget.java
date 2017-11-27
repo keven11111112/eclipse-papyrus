@@ -40,7 +40,7 @@ import org.eclipse.papyrus.infra.widgets.widgets.MultipleValueEditAndSelectionWi
 import org.eclipse.swt.widgets.Control;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  *         This widget allows to choose the categories to listen in the table
  *         In the left part, we display multivalued features
@@ -434,7 +434,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 
 	/**
 	 * 
-	 * @author VL222926
+	 * @author Vincent Lorenzo
 	 * 
 	 *         This comparator allows to sort comparator
 	 *
@@ -652,7 +652,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 
 	/**
 	 * 
-	 * @author VL222926
+	 * @author Vincent Lorenzo
 	 *         This class is the factory used to create new ITreeItemAxis in the viewer of selected element
 	 *         It creates only {@link ITreeItemAxis} to represents depth to configure and its allows to edit only alias of categories
 	 */

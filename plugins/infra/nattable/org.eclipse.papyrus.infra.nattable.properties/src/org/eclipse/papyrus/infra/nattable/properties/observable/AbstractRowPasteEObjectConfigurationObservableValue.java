@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractRowPasteEObjectConfigurationObservableValue extends AbstractConfigurationElementObservableValue {

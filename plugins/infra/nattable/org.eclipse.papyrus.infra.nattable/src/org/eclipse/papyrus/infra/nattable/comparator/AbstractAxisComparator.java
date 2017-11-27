@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 /**
  * Abstract class for axis comparator
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractAxisComparator implements Comparator<Object> {

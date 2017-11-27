@@ -31,7 +31,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * This class tests the UMLReferenceConverter
  */
 @PluginResource("/resources/uml/UMLReferenceConverterTest.di")

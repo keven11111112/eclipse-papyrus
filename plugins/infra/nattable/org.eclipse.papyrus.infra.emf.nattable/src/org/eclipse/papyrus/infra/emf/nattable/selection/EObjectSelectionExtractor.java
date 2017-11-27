@@ -17,7 +17,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.selection.ObjectsSelectionExtractor;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class EObjectSelectionExtractor extends ObjectsSelectionExtractor {

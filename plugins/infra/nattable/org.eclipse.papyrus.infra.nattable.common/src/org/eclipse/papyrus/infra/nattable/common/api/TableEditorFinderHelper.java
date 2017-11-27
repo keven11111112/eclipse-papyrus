@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableMo
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TableEditorFinderHelper {

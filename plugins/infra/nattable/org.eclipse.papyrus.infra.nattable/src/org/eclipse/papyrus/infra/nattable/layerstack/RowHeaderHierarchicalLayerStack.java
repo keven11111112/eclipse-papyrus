@@ -38,7 +38,7 @@ import ca.odell.glazedlists.TreeList;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *         Layer stack used for row header
  */
 public class RowHeaderHierarchicalLayerStack extends RowHeaderLayerStack {

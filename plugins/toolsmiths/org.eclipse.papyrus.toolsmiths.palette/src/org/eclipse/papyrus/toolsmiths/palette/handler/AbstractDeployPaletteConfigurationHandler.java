@@ -56,7 +56,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
- * @author RS211865
+ * @author Remi Schnekenburger
  */
 public abstract class AbstractDeployPaletteConfigurationHandler extends AbstractHandler {
 

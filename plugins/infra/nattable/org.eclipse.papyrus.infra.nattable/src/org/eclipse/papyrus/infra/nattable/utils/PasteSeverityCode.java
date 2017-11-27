@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.utils;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *         This class provides code which can be provided by Paste Action in the table
  */

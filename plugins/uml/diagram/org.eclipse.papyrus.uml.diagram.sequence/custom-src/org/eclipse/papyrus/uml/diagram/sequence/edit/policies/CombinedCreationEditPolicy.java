@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  * @since 3.0
  * This class is used to set location and dimension for the InteractionOperand
  *

@@ -30,7 +30,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.RadioState;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ChangeHierarchicalTableStyle extends AbstractTreeTableHandler {

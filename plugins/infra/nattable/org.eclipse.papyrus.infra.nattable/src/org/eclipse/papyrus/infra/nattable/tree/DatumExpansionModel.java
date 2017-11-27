@@ -22,7 +22,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemA
 import ca.odell.glazedlists.TreeList;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class DatumExpansionModel implements TreeList.ExpansionModel<ITreeItemAxis> {

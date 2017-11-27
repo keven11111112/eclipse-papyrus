@@ -36,7 +36,7 @@ import org.eclipse.uml2.uml.util.UMLDerivedUnionAdapter;
  * .
  * Unfortunately, the main part of the derived features, referenced in the bug 394623 are not managed by this class
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  *         This class has not been generated
  */

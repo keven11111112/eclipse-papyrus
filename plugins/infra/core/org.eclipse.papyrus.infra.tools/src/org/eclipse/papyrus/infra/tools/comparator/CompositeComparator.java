@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * This class allows to compare elements on several levels
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  * @param <T>
  *
  */

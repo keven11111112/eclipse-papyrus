@@ -19,7 +19,7 @@ import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.swt.graphics.Rectangle;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *         This wrapper allows to store cell value, with its column object and its row object
  *

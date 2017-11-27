@@ -23,7 +23,7 @@ import org.eclipse.nebula.widgets.nattable.util.GCFactory;
 /**
  * Handler to resize columns
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ColumnAutoResizeHandler extends AbstractTableHandler {

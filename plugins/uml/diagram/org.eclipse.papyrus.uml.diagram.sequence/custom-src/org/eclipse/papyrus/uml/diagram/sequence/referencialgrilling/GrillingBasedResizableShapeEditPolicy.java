@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusResizableSha
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class GrillingBasedResizableShapeEditPolicy extends PapyrusResizableShapeEditPolicy implements IGrillingEditpolicy{

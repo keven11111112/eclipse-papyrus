@@ -18,7 +18,7 @@ import org.eclipse.osgi.util.NLS;
 /**
  * custom messages
  *
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class CustomMessages extends NLS {

@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * 
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class InsertReferenceToolbarButton extends AbstractToolbarButton {

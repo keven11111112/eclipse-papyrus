@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class CommandExecutionNotification extends NotificationImpl {

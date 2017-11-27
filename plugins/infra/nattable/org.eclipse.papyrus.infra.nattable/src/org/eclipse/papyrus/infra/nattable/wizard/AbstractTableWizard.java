@@ -24,7 +24,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractTableWizard extends Wizard {

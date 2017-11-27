@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TypeUtils {

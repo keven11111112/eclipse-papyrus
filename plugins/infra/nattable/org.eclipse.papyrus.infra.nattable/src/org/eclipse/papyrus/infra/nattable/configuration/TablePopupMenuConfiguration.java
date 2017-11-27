@@ -25,7 +25,7 @@ import org.eclipse.papyrus.infra.nattable.menu.PapyrusHeaderPopupMenuAction;
 import org.eclipse.swt.SWT;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This configuration allows to register popup menu for row header, column header and body of the table
  * @since 2.0
  */

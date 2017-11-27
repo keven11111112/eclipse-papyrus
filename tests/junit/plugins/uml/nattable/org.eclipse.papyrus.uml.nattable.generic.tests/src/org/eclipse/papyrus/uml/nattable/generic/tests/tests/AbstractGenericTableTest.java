@@ -42,7 +42,7 @@ import org.junit.Assert;
 import org.osgi.framework.Bundle;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractGenericTableTest extends AbstractEditorIntegrationTest {

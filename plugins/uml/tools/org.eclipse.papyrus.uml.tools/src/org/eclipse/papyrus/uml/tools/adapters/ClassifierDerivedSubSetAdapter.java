@@ -29,7 +29,7 @@ import org.eclipse.uml2.uml.util.UMLDerivedUnionAdapter;
  *      <li>UMLPackage.Literals.CLASSIFIER__GENERALIZATION</li>
  *      </ul>
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class ClassifierDerivedSubSetAdapter extends UMLDerivedUnionAdapter {

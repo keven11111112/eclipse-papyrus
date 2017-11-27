@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
 /**
  * This interface is used to get the elements on the axis
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public interface ITableAxisElementProvider {

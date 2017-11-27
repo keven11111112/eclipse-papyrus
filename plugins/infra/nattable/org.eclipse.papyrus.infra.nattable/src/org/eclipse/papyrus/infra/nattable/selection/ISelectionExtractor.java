@@ -18,7 +18,7 @@ import java.util.Collection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This interface is used to obtain real object provided by a structured selection.
  *         It allows to remove emf dependencies during the manipulation of the contents of the table
  */

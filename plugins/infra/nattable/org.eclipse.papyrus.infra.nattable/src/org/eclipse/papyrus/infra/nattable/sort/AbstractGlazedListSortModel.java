@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.ui.services.IDisposable;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractGlazedListSortModel implements ISortModel, ILayerListener, IDisposable {

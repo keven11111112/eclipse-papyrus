@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * @author ac221913
+ * @author Arnaud Cuccuru
  *
  */
 public class InvalidStringUtil {

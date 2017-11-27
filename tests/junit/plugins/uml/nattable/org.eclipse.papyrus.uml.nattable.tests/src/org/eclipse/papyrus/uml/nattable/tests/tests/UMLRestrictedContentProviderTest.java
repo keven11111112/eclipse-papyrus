@@ -63,7 +63,7 @@ import org.junit.Test;
  * </li>
  * </ul>
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class UMLRestrictedContentProviderTest extends AbstractPapyrusTest {

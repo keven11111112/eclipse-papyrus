@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *         This class provides method to convert Object to a string to edit or a string to display and vice-versa from a string to edit or to display to the real object
  *

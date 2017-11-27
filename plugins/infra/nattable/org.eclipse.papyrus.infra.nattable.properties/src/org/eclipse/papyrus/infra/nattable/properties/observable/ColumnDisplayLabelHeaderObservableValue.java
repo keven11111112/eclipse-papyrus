@@ -23,7 +23,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  *
  * The column observable value for {@link AbstractHeaderAxisConfiguration#displayLabel}
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public final class ColumnDisplayLabelHeaderObservableValue extends AbstractColumnHeaderAxisConfigurationObservableValue {

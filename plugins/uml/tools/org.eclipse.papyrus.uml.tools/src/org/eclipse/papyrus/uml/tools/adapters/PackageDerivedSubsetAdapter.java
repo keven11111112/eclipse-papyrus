@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.util.UMLDerivedUnionAdapter;
  *      <li>UMLPackage.Literals.PACKAGE__OWNED_TYPE</li>
  *      </ul>
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class PackageDerivedSubsetAdapter extends UMLDerivedUnionAdapter {

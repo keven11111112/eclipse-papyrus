@@ -23,7 +23,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.papyrus.infra.tools.Activator;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class FileUtils {

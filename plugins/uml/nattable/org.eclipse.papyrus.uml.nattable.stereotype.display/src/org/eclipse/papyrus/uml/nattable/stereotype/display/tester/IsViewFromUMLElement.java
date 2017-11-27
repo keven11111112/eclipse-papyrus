@@ -21,7 +21,7 @@ import org.eclipse.papyrus.uml.nattable.Activator;
 import org.eclipse.papyrus.uml.nattable.tester.IsUMLElementTester;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class IsViewFromUMLElement extends IsUMLElementTester {

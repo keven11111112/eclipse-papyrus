@@ -37,7 +37,7 @@ import org.eclipse.papyrus.infra.ui.Activator;
  *
  * WARNING : incomplete implementations
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  * @since 1.2
  *
  */

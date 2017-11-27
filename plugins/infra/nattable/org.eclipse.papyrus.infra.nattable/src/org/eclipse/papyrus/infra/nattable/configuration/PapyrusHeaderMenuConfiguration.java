@@ -24,7 +24,7 @@ import org.eclipse.swt.SWT;
  *
  * Adapted code from AbstractHeaderMenuConfiguration
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  * 
  * @deprecated since Papyrus 1.2 (Eclipse Neon), Use TablePopupMenuConfiguration instead or a subclass)
  */

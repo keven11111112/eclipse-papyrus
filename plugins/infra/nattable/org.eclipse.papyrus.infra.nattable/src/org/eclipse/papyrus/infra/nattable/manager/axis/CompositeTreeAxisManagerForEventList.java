@@ -40,7 +40,7 @@ import ca.odell.glazedlists.EventList;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *         Composite Axis manager for hierarchic table
  */
 public class CompositeTreeAxisManagerForEventList extends CompositeAxisManagerForEventList implements ITreeItemAxisManagerForEventList {

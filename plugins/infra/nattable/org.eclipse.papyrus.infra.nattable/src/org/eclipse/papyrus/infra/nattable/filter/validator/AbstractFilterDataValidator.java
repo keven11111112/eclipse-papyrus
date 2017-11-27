@@ -17,7 +17,7 @@ import org.eclipse.nebula.widgets.nattable.data.validate.DataValidator;
 import org.eclipse.nebula.widgets.nattable.filterrow.TextMatchingMode;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractFilterDataValidator extends DataValidator {

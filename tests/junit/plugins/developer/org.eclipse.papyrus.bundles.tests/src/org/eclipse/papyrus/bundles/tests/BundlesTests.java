@@ -39,7 +39,7 @@ import org.osgi.framework.Bundle;
 /**
  * Suppress restriction for org.eclipse.pde.internal.core.feature.Feature.
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  * @noreference This class is not intended to be referenced by clients.
  */

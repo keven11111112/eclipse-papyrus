@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Label;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ImportInvertedTableErrorPage extends WizardPage {

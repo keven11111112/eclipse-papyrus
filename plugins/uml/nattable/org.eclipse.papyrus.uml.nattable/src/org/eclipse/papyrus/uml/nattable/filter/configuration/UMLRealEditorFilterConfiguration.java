@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class UMLRealEditorFilterConfiguration extends AbstractDoubleEditorFilterConfiguration {

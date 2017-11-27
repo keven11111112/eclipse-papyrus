@@ -36,7 +36,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 /**
  * Abtract content provider for containement feature for the paste
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractContainmentFeatureContentProvider implements IStaticContentProvider {

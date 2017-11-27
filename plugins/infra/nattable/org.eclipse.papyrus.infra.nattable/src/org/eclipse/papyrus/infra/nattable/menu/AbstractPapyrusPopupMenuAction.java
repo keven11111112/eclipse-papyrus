@@ -27,7 +27,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.menus.IMenuService;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         Abstract popup menu used in papyrus table
  * @since 2.0
  */

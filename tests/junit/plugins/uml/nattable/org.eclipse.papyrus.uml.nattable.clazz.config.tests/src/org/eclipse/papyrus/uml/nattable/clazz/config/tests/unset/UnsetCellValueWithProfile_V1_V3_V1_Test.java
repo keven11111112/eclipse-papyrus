@@ -38,7 +38,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 @PluginResource("resources/unset/UnsetCellValueWithProfile_V1_V3_V1_Test.di") // NON-NLS-1

@@ -47,7 +47,7 @@ import org.osgi.framework.Bundle;
  * If some tests of this class doesn't work, the problem comes probably from the plugin.xml of the plugin oep.infra.nattable.model.editor.
  * We replace the initial contributions to org.eclipse.ui.editor by our with our Custom Editor which override the save options
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class EditorsTests extends AbstractPapyrusTest {

@@ -436,7 +436,7 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 
 	/**
 	 * 
-	 * @author VL222926
+	 * @author Vincent Lorenzo
 	 *         This class allows to sort the map containing the start and end index of the substrings. We need it to be able to provide completion for the correct sub string
 	 */
 	private static final class TwoIntegerListTupleComparator implements Comparator<List<Integer>> {

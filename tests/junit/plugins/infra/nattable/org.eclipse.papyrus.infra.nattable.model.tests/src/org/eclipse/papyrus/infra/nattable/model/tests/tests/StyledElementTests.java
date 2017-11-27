@@ -28,7 +28,7 @@ import org.junit.Test;
 /**
  * This class provides some test to verify that NOT generated code has not been destroyed
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class StyledElementTests extends AbstractPapyrusTest {

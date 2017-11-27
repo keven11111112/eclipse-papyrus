@@ -40,7 +40,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         Abstract handler for Migration action
  */
 public abstract class AbstractMigrationHandler extends AbstractHandler {

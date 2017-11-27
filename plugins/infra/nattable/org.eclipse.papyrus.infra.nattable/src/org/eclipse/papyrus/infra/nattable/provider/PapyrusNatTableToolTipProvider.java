@@ -38,7 +38,7 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This class provides the tooltip to display in the table
  * 
  *         This class allows to display as tooltip :

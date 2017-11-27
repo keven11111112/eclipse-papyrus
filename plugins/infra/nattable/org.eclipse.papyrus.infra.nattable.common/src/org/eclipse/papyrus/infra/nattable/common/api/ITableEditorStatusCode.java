@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableMo
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         This interface provides code which can be used for returned IStatus
  */
 public interface ITableEditorStatusCode {

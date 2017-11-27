@@ -21,7 +21,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class DoNothingCompletionProposal implements ICompletionProposal {

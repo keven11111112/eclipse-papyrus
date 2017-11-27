@@ -17,7 +17,7 @@ package org.eclipse.papyrus.infra.tools.util;
  *
  * This class provides some constants used to identify java types
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class TypesConstants {

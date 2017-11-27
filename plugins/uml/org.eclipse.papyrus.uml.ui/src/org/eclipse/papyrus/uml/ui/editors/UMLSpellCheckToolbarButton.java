@@ -18,7 +18,7 @@ import org.eclipse.papyrus.infra.widgets.editors.richtext.SpellCheckToolbarButto
 import org.eclipse.swt.widgets.Display;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *         This button provides a customized dialog to remove UML references before checking the text
  */

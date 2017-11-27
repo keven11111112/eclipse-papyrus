@@ -17,7 +17,7 @@ import org.eclipse.papyrus.infra.widgets.editors.richtext.GenericToolbarConfigur
 import org.eclipse.papyrus.infra.widgets.editors.richtext.SpellCheckToolbarButton;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  * 
  *         This configuration adds a button to insert UML references in the comment
  */

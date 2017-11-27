@@ -18,7 +18,7 @@ import org.eclipse.papyrus.infra.widgets.editors.CompletionStyledTextReferenceDi
 import org.eclipse.swt.custom.StyledText;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class CompletionStyledTextReferenceDialogObservableValue extends CompletionStyledTextObservableValue {

@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.Stereotype;
 /**
  * Restricted Content Provider for the properties of Stereotypes
  *
- * @author JC236769
+ * @author Juan Cadavid
  *
  */
 // TODO we maybe should use the AbstractRestrictedContentProvider

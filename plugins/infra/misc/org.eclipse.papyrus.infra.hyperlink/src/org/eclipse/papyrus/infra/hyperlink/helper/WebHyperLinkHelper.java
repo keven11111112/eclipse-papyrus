@@ -34,7 +34,7 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * this is an helper to manager hyperlink web
  *
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class WebHyperLinkHelper extends AbstractHyperLinkHelper {

@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 /**
  * Abstract class for Paste EObject on column configuration
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public abstract class AbstractColumnPasteEObjectConfigurationObservableValue extends AbstractConfigurationElementObservableValue {

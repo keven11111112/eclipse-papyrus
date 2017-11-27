@@ -18,7 +18,7 @@ import org.eclipse.ui.services.IDisposable;
 /**
  * Common interface for string converter
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  * @since 1.2
  *
  */

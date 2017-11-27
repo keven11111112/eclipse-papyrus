@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.tools.comparator.CompositeComparator;
 
 /**
  * @Deprecated since Eclipse Mars
- *  @author VL222926
+ *  @author Vincent Lorenzo
  *
  */
 @Deprecated

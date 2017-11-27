@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 /**
  * A structure which is used to store values to set for a given feature and a given object
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class ReferenceValueSetter implements IValueSetter {

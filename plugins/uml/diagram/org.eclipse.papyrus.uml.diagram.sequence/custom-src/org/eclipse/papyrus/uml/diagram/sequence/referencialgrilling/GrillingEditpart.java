@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ReferencialGrid;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  * @since 3.0
  *
  */

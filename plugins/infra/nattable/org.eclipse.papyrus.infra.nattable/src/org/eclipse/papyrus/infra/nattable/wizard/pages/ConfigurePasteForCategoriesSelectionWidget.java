@@ -17,7 +17,7 @@ import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class ConfigurePasteForCategoriesSelectionWidget extends ChooseCategoriesSelectionWidget {

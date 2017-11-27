@@ -31,7 +31,7 @@ import com.google.common.collect.ImmutableList;
 /**
  * Provides methods for stereotypes application outside of a resource
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class CustomUMLUtil extends UMLUtil {

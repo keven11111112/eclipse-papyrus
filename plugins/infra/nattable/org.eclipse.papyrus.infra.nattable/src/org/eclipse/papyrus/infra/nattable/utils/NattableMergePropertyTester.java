@@ -31,7 +31,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * The property tester used to enable or disable the merge options in the merge menu of the table
  *
- * @author QL238289
+ * @author Quentin Le Menez
  *
  */
 public class NattableMergePropertyTester extends PropertyTester {

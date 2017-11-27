@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 /**
  * The Abstract handler used for the merge actions
  *
- * @author QL238289
+ * @author Quentin Le Menez
  *
  */
 public abstract class AbstractMergeHandler extends AbstractTableHandler {

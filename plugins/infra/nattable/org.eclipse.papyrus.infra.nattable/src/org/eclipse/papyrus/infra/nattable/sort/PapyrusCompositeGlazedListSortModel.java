@@ -26,7 +26,7 @@ import org.eclipse.ui.services.IDisposable;
 import ca.odell.glazedlists.SortedList;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class PapyrusCompositeGlazedListSortModel extends AbstractGlazedListSortModel implements IPapyrusSortModel, IDisposable {

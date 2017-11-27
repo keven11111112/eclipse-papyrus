@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedContentProvider {

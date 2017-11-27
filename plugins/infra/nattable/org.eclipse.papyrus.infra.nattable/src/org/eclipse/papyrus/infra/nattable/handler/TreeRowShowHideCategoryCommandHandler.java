@@ -17,7 +17,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *
  */
 public class TreeRowShowHideCategoryCommandHandler extends AbstractTreeRowHideShowCategoryHandler {

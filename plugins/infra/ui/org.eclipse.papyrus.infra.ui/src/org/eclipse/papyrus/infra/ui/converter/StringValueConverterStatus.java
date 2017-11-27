@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.Status;
 /**
  * This status is used y the String Value solvers
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  * @since 1.2
  *
  */

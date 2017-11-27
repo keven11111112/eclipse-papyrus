@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests.AbstractTableTe
 import org.junit.Assert;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         Abstract class used to test the unset cell value The unset feature reset the selected cell to its default.
  *         This feature is binded on org.eclipse.ui.edit.delete command
  */

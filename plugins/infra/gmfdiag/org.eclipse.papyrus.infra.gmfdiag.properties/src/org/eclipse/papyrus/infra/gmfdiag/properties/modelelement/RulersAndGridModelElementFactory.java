@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement
 
 /**
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *         The factory used to edit Rulers and Grid properties
  */
 public class RulersAndGridModelElementFactory extends AbstractModelElementFactory<RulerAndGridModelElement> {

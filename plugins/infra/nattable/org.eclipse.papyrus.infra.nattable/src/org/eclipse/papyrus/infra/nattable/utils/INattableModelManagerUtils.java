@@ -19,7 +19,7 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * Utilities for INattableModelManager
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class INattableModelManagerUtils {

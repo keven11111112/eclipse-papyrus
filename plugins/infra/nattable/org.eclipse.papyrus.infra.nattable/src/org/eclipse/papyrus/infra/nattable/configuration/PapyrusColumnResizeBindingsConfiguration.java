@@ -27,7 +27,7 @@ import org.eclipse.swt.SWT;
 /**
  * Adapted code from DefaultRowResizeBindings. Allow to resize the columns on all regions of the table (corner, body, row header, column header)
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class PapyrusColumnResizeBindingsConfiguration extends AbstractUiBindingConfiguration {

@@ -18,7 +18,7 @@ import org.eclipse.swt.SWT;
 /**
  * this is the link that is a template binding it contains a label that can be edited in multiline
  *
- * @author PT202707
+ * @author Patrick Tessier
  *
  */
 public class TemplateBindingFigure extends DashedEdgeFigure {

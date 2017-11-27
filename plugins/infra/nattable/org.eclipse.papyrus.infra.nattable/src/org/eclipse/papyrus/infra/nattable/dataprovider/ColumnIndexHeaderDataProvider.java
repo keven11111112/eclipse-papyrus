@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagemen
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *         DataProvider for row index header
  */
 public class ColumnIndexHeaderDataProvider extends AbstractIndexHeaderDataProvider {

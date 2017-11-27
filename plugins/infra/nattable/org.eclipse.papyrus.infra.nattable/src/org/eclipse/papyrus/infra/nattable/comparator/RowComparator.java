@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementW
 /**
  * Axis Comparator used to sort the rows according to the selected column
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class RowComparator extends AbstractAxisComparator {

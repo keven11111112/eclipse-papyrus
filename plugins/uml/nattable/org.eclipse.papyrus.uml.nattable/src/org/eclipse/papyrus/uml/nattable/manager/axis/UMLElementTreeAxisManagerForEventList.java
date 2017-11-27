@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *         UML manager for Element in a Tree Table
  */
 public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManagerForEventList {

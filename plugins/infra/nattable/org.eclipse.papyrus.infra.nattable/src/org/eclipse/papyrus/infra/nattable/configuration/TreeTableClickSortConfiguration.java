@@ -18,7 +18,7 @@ import org.eclipse.nebula.widgets.nattable.sort.SortConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.comparator.TreeTableCellLabelProviderComparator;
 
 /**
- * @author VL222926
+ * @author Vincent Lorenzo
  *         Configuration used for the sort for a tree table
  */
 public class TreeTableClickSortConfiguration extends PapyrusClickSortConfiguration {

@@ -18,7 +18,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
  *
- * @author VL222926
+ * @author Vincent Lorenzo
  *         a composite header data provider
  *
  */
