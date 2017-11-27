@@ -179,9 +179,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	/** Flag to avoid reentrant call to refresh. */
 	private AtomicBoolean isRefreshing = new AtomicBoolean(false);
 
-	/** Currently selected tree item */
-	private TreeItem currentItem;
-
 	/** Navigation menu for selected tree item */
 	private NavigationMenu navigationMenu;
 
@@ -1019,8 +1016,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		saveAndDirtyService = null;
 		undoContext = null;
 		editingDomain = null;
-		editingDomain = null;
 		lastTrans = null;
+		viewerFilter.clearCache();
+		viewerFilter = null;
 	}
 
 	/**

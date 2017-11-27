@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.constraints;
 
+import java.lang.ref.WeakReference;
+
 import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
 import org.eclipse.papyrus.infra.constraints.constraints.AbstractConstraint;
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
@@ -34,16 +36,24 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 	/**
 	 * The UML element on which the stereotype may be applied
 	 */
-	protected Element umlElement;
+	//FIXME: Constraints shouldn't retain any element from the model, as they are registered in a global scope that is never disposed
+	//Unfortunately, the #overrides method has no contextual information and can't properly check stereotype inheritance tree
+	//Using a resource set local to this constraint would either leak profiles, or require multiple loading/unloading iterations
+	//Moreover, this constraint only relies on a Stereotype Name, without a Profile URI, so it wouldn't be able to find
+	//the correct profile without a context element.
+	//For now, the WeakReference is an acceptable compromise.
+	private WeakReference<Element> umlElement;
 
 	@Override
 	public boolean match(Object selection) {
-		umlElement = UMLUtil.resolveUMLElement(selection);
-		if (umlElement == null) {
+		Element element = UMLUtil.resolveUMLElement(selection);
+		if (element == null) {
 			return false;
 		}
 
-		Stereotype stereotype = UMLUtil.getAppliedStereotype(umlElement, stereotypeName, false);
+		umlElement = new WeakReference<Element>(element);
+
+		Stereotype stereotype = UMLUtil.getAppliedStereotype(element, stereotypeName, false);
 		return stereotype != null;
 	}
 
@@ -59,14 +69,17 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 		if (constraint instanceof HasStereotypeConstraint) {
 			HasStereotypeConstraint stereotypeConstraint = (HasStereotypeConstraint) constraint;
 			if (!stereotypeName.equals(stereotypeConstraint.stereotypeName)) {
-				Stereotype thisStereotype = umlElement.getApplicableStereotype(stereotypeName);
+				Element element = umlElement.get();
+				if (element != null) {
+					Stereotype thisStereotype = element.getApplicableStereotype(stereotypeName);
 
-				// The otherStereotype can match the constraint without being applicable (e.g. abstract stereotype...)
-				// We can't rely on "getApplicableStereotype"
-				Stereotype otherStereotype = UMLUtil.findStereotype(umlElement, stereotypeConstraint.stereotypeName);
-				// Stereotype otherStereotype = umlElement.getApplicableStereotype(stereotypeConstraint.stereotypeName);
-				if (UMLUtil.getAllSuperStereotypes(thisStereotype).contains(otherStereotype)) {
-					overrides = true;
+					// The otherStereotype can match the constraint without being applicable (e.g. abstract stereotype...)
+					// We can't rely on "getApplicableStereotype"
+					Stereotype otherStereotype = UMLUtil.findStereotype(element, stereotypeConstraint.stereotypeName);
+					// Stereotype otherStereotype = umlElement.getApplicableStereotype(stereotypeConstraint.stereotypeName);
+					if (UMLUtil.getAllSuperStereotypes(thisStereotype).contains(otherStereotype)) {
+						overrides = true;
+					}
 				}
 			}
 		}

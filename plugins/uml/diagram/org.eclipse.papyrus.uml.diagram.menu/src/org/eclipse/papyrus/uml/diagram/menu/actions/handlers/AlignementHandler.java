@@ -30,9 +30,6 @@ import org.eclipse.papyrus.uml.diagram.menu.actions.CustomAlignAction;
  */
 public class AlignementHandler extends ParametricAndListeningHandler {
 
-	/** the action executed by this handler */
-	protected CustomAlignAction action = null;
-
 	/**
 	 *
 	 * Constructor.
@@ -52,7 +49,7 @@ public class AlignementHandler extends ParametricAndListeningHandler {
 	@Override
 	protected Command getCommand() {
 		super.getCommand();
-		this.action = new CustomAlignAction(getAlignment(this.parameter), this.getSelectedElements());
+		CustomAlignAction action = new CustomAlignAction(getAlignment(this.parameter), this.getSelectedElements());
 		Command cmd = action.getCommand();
 		return (cmd == null) ? UnexecutableCommand.INSTANCE : cmd;
 		
