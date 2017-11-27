@@ -30,9 +30,6 @@ import org.eclipse.papyrus.uml.diagram.menu.actions.CustomAlignAction;
  */
 public class AlignementHandler extends ParametricAndListeningHandler {
 
-	/** the action executed by this handler */
-	protected CustomAlignAction action = null;
-
 	/**
 	 *
 	 * Constructor.
@@ -52,10 +49,10 @@ public class AlignementHandler extends ParametricAndListeningHandler {
 	@Override
 	protected Command getCommand() {
 		super.getCommand();
-		this.action = new CustomAlignAction(getAlignment(this.parameter), this.getSelectedElements());
+		CustomAlignAction action = new CustomAlignAction(getAlignment(this.parameter), this.getSelectedElements());
 		Command cmd = action.getCommand();
 		return (cmd == null) ? UnexecutableCommand.INSTANCE : cmd;
-		
+
 	}
 
 	/**
@@ -63,15 +60,15 @@ public class AlignementHandler extends ParametricAndListeningHandler {
 	 * @param param
 	 *            the parameter for the alignment action
 	 * @return
-	 *         the value represented by this parameter, this valu can be :
+	 * 		the value represented by this parameter, this valu can be :
 	 *         <ul>
-	 *         <li> {@link PositionConstants#NONE}</li>
-	 *         <li> {@link PositionConstants#TOP}</li>
-	 *         <li> {@link PositionConstants#BOTTOM}</li>
-	 *         <li> {@link PositionConstants#MIDDLE}</li>
-	 *         <li> {@link PositionConstants#LEFT}</li>
-	 *         <li> {@link PositionConstants#RIGHT}</li>
-	 *         <li> {@link PositionConstants#CENTER}</li>
+	 *         <li>{@link PositionConstants#NONE}</li>
+	 *         <li>{@link PositionConstants#TOP}</li>
+	 *         <li>{@link PositionConstants#BOTTOM}</li>
+	 *         <li>{@link PositionConstants#MIDDLE}</li>
+	 *         <li>{@link PositionConstants#LEFT}</li>
+	 *         <li>{@link PositionConstants#RIGHT}</li>
+	 *         <li>{@link PositionConstants#CENTER}</li>
 	 *         </ul>
 	 */
 	public int getAlignment(String param) {
@@ -90,5 +87,5 @@ public class AlignementHandler extends ParametricAndListeningHandler {
 		}
 		return PositionConstants.NONE;
 	}
-	
+
 }
