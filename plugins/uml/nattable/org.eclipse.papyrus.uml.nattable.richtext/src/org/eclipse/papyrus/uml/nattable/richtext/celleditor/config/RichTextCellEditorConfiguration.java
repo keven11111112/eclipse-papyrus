@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr 
+ *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 527733
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.richtext.celleditor.config;
@@ -19,18 +20,22 @@ import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
-import org.eclipse.nebula.widgets.nattable.extension.nebula.richtext.RichTextCellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.BackgroundPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.decorator.PaddingDecorator;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleStringCellEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
+import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
+import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.ui.Activator;
 import org.eclipse.papyrus.infra.ui.preferences.RichtextPreferencePage;
 import org.eclipse.papyrus.uml.nattable.richtext.celleditor.RichTextCellEditorWithUMLReferences;
 import org.eclipse.papyrus.uml.nattable.richtext.celleditor.config.messages.Messages;
+import org.eclipse.papyrus.uml.nattable.richtext.cellpainter.PapyrusRichTextCellPainter;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -113,7 +118,21 @@ public class RichTextCellEditorConfiguration extends SingleStringCellEditorConfi
 	protected ICellPainter getCellPainter(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
 		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		if (store.getBoolean(RichtextPreferencePage.USE_HTML_RENDERER)) {
-			return new BackgroundPainter(new PaddingDecorator(new RichTextCellPainter(), 2, 5, 2, 5));
+			final INattableModelManager nattableManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+			// If nattable model could be retrieved
+			if (null != nattableManager && null != nattableManager.getTable()) {
+				final Table table = nattableManager.getTable();
+
+				// Get wraptext and auto resize cell height boolean value from the table
+				final boolean wrapTextFlag = StyleUtils.getBooleanNamedStyleValue(table, NamedStyleConstants.WRAP_TEXT);
+				final boolean autoResizeCellHeightFlag = StyleUtils.getBooleanNamedStyleValue(table, NamedStyleConstants.AUTO_RESIZE_CELL_HEIGHT);
+
+				// Then create the richtext cell painter with these values as parameters
+				return new BackgroundPainter(new PaddingDecorator(new PapyrusRichTextCellPainter(wrapTextFlag, false, autoResizeCellHeightFlag), 2, 5, 2, 5));
+			} else {
+				// Otherwise, create the richtext cell painter without parameters
+				return new BackgroundPainter(new PaddingDecorator(new PapyrusRichTextCellPainter(), 2, 5, 2, 5)); 
+			}
 		}
 		return super.getCellPainter(configRegistry, axis, configLabel);
 	}
