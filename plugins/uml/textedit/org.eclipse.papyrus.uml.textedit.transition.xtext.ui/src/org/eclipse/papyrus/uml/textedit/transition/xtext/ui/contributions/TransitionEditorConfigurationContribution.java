@@ -73,6 +73,8 @@ public class TransitionEditorConfigurationContribution extends DefaultXtextDirec
 
 	private static final String EMPTY = ""; //$NON-NLS-1$
 
+	public static final String LANGUAGE = "Advanced transition textual editor"; //$NON-NLS-1$
+
 	/**
 	 * Override to change style to {@link SWT}.MULTI
 	 */

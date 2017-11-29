@@ -30,4 +30,10 @@
             order="20">
       </configuration>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.properties.contexts">
+      <context
+            contextModel="properties/xtext.ctx">
+      </context>
+   </extension>
 </plugin>
