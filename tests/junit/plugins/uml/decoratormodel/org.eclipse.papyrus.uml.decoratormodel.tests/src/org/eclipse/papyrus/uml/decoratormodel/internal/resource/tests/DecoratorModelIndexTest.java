@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -206,6 +206,9 @@ public class DecoratorModelIndexTest extends AbstractProfileExternalizationTest 
 
 	@Test
 	public void listener() throws Exception {
+		// Wait for a stable point in the index
+		DecoratorModelIndex.getInstance().getDecoratorModels();
+
 		final TestListener listener = new TestListener();
 
 		DecoratorModelIndex.getInstance().addIndexListener(houseKeeper.cleanUpLater(listener));

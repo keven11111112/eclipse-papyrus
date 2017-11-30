@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2016 Christian W. Damus and others.
+ * Copyright (c) 2014, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -122,7 +122,14 @@ public class DecoratorModelIndex {
 		modelToDecorators.clear();
 	}
 
+	@SuppressWarnings("restriction")
 	public static DecoratorModelIndex getInstance() {
+		org.eclipse.papyrus.infra.emf.internal.resource.index.IndexManager manager = org.eclipse.papyrus.infra.emf.internal.resource.index.IndexManager.getInstance();
+		if (!manager.isStarted()) {
+			// Start the index manager, now that somebody wants to use the index
+			manager.startManager();
+		}
+
 		return INSTANCE;
 	}
 
