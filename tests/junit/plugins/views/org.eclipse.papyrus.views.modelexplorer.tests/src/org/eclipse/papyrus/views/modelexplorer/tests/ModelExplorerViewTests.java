@@ -75,7 +75,7 @@ public class ModelExplorerViewTests extends AbstractHandlerTest {
 
 		Assert.assertTrue("The active part is not the ModelExplorer", activePart instanceof ModelExplorerPageBookView); //$NON-NLS-1$
 		final IStructuredSelection currentSelection = getCurrentSelection();
-		Assert.assertEquals("Only one element should be selected", currentSelection.size(), 1); //$NON-NLS-1$
+		Assert.assertEquals("Only one element should be selected", 1, currentSelection.size()); //$NON-NLS-1$
 		Object obj = currentSelection.getFirstElement();
 		obj = EMFHelper.getEObject(obj);
 		Assert.assertSame("The function revealSemanticElement seems doesn't work on the root of the model", obj, getRootOfTheModel()); //$NON-NLS-1$

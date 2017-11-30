@@ -17,7 +17,7 @@ package org.eclipse.papyrus.infra.ui.emf.utils;
  * 
  * The constants for the org.eclipse.papyrus.plugin infra.ui.emf.
  * 
- * @since 2.0
+ * @since 2.1
  *
  */
 public class Constants {

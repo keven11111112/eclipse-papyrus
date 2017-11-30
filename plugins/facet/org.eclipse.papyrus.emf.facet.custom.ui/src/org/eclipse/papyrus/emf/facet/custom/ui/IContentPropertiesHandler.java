@@ -51,4 +51,11 @@ public interface IContentPropertiesHandler {
 	 * @return
 	 */
 	public FacetOperation getVisibleReferences();
+
+	/**
+	 * Return the getParent customization operation
+	 * 
+	 * @return
+	 */
+	FacetOperation getParent();
 }

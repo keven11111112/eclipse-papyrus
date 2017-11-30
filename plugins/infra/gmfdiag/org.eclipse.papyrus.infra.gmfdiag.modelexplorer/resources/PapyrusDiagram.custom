@@ -54,7 +54,7 @@
           implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.GetDiagramIcon"/>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/image"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/image"/>
     </facetOperations>
     <facetOperations
         name="GetVisibleReferences"
@@ -68,7 +68,25 @@
           implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.EmptyListQuery"/>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
+    </facetOperations>
+    <facetOperations
+        name="GetParent">
+      <eType
+          xsi:type="ecore:EClass"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters
+          name="eStructuralFeature">
+        <eType
+            xsi:type="ecore:EClass"
+            href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query
+          xsi:type="javaQuery:JavaQuery"
+          implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.GetDiagramContainer"/>
+      <override
+          xsi:type="efacet:FacetOperation"
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/parent"/>
     </facetOperations>
   </eClassifiers>
   <eClassifiers
@@ -118,8 +136,8 @@
           implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.GetContainedDiagrams"/>
     </facetOperations>
     <extendedFacets
-        href="../../../plugin/org.eclipse.papyrus.infra.gmfdiag.modelexplorer/resources/PapyrusDiagram.custom#//DiagramContainer"/>
+        href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.modelexplorer/resources/PapyrusDiagram.custom#//DiagramContainer"/>
     <customizedFacet
-        href="../../../plugin/org.eclipse.papyrus.infra.gmfdiag.modelexplorer/resources/PapyrusDiagram.custom#//DiagramContainer"/>
+        href="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.modelexplorer/resources/PapyrusDiagram.custom#//DiagramContainer"/>
   </eClassifiers>
 </custom:Customization>

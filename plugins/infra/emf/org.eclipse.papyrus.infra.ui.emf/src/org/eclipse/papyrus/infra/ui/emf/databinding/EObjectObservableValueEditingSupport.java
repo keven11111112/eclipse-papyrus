@@ -216,7 +216,7 @@ public class EObjectObservableValueEditingSupport extends EditingSupport {
 	 * @param object
 	 *            The old value.
 	 * @return The value to return.
-	 * @since 2.0
+	 * @since 2.1
 	 */
 	protected Object getMultiUnlimitedNaturalValue(final Object objects) {
 		if (objects instanceof List<?>) {

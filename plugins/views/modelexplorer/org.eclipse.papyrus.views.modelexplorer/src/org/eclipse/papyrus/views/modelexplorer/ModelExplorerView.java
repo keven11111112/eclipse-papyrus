@@ -38,8 +38,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
@@ -50,6 +48,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.util.Policy;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -63,9 +62,7 @@ import org.eclipse.jface.window.ToolTip;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyListener;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyEvent;
-import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageLifeCycleEventsListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
@@ -87,6 +84,7 @@ import org.eclipse.papyrus.infra.ui.editor.reload.EditorReloadAdapter;
 import org.eclipse.papyrus.infra.ui.editor.reload.EditorReloadEvent;
 import org.eclipse.papyrus.infra.ui.editor.reload.TreeViewerContext;
 import org.eclipse.papyrus.infra.ui.emf.providers.SemanticFromModelExplorer;
+import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.IEditorInputChangedListener;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.infra.widgets.editors.StringWithClearEditor;
@@ -94,10 +92,7 @@ import org.eclipse.papyrus.infra.widgets.providers.PatternViewerFilter;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.views.modelexplorer.SharedModelExplorerState.StateChangedEvent;
 import org.eclipse.papyrus.views.modelexplorer.listener.DoubleClickListener;
-import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
-import org.eclipse.papyrus.views.modelexplorer.matching.LinkItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
-import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.preferences.IFilterPreferenceConstants;
 import org.eclipse.papyrus.views.modelexplorer.preferences.INavigatorPreferenceConstants;
 import org.eclipse.swt.SWT;
@@ -142,7 +137,6 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributo
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
 import com.google.common.base.Supplier;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 /**
@@ -1167,94 +1161,17 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 *            The CommonViewer they are to be revealed in
 	 */
 	public static void reveal(Iterable<?> elementList, final CommonViewer commonViewer) {
-		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<>();
-		// filter out non EMF objects
-		Iterable<EObject> list = Iterables.filter(elementList, EObject.class);
-
-		for (EObject currentEObject : list) {
-			matchingItemsToSelect.add(new ModelElementItemMatchingItem(currentEObject));
-
-			// the content provider exist?
-			if (commonViewer.getContentProvider() != null) {
-				// retrieve the ancestors to reveal them
-				// and allow the selection of the object
-				ArrayList<EObject> parents = new ArrayList<>();
-				EObject tmp = currentEObject.eContainer();
-				while (tmp != null) {
-					parents.add(tmp);
-					tmp = tmp.eContainer();
-				}
-
-				Iterable<EObject> reverseParents = Lists.reverse(parents);
-
-				// reveal the resource if necessary
-				Resource r = null;
-				if (!parents.isEmpty()) {
-					r = parents.get(parents.size() - 1).eResource();
-				} else {
-					r = currentEObject.eResource();
-				}
-
-				if (r != null) {
-					final ResourceSet rs = r.getResourceSet();
-					final Resource resource = r;
-					if (rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet) rs, r.getURI())) {
-						commonViewer.getControl().getDisplay().syncExec(new Runnable() {
-
-							@Override
-							public void run() {
-								commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
-								commonViewer.expandToLevel(new ReferencableMatchingItem(resource), 1);
-							}
-						});
-
-					}
-				}
-
-				/*
-				 * reveal the ancestors tree using expandToLevel on each of them
-				 * in the good order. This is a lot faster than going through the whole tree
-				 * using getChildren of the ContentProvider since our Viewer uses a Hashtable
-				 * to keep track of the revealed elements.
-				 *
-				 * However we need to use a dedicated MatchingItem to do the matching,
-				 * and a specific comparer in our viewer so than the equals of MatchingItem is
-				 * used in priority.
-				 *
-				 * Please refer to MatchingItem for more infos.
-				 */
-				EObject previousParent = null;
-				for (EObject parent : reverseParents) {
-					if (parent.eContainingFeature() != null && previousParent != null) {
-						commonViewer.expandToLevel(new LinkItemMatchingItem(previousParent, parent.eContainmentFeature()), 1);
-					}
-
-					final IMatchingItem itemToExpand = new ModelElementItemMatchingItem(parent);
-
-					commonViewer.getControl().getDisplay().syncExec(new Runnable() {
-
-						@Override
-						public void run() {
-							commonViewer.expandToLevel(itemToExpand, 1);
-						}
-					});
-
-					previousParent = parent;
-				}
-
-				final IMatchingItem itemToExpand = new LinkItemMatchingItem(currentEObject.eContainer(), currentEObject.eContainmentFeature());
-
-				commonViewer.getControl().getDisplay().syncExec(new Runnable() {
-
-					@Override
-					public void run() {
-						commonViewer.expandToLevel(itemToExpand, 1);
-					}
-				});
+		List<EObject> selectionList = new ArrayList<>();
+		for (Object element : elementList) {
+			if (element instanceof EObject) {
+				selectionList.add((EObject) element);
 			}
 		}
-
-		selectReveal(new StructuredSelection(matchingItemsToSelect), commonViewer);
+		if (selectionList.isEmpty()) {
+			return;
+		}
+		
+		Display.getDefault().syncExec(() -> ProviderHelper.selectReveal(selectionList, commonViewer));
 	}
 
 	/**
