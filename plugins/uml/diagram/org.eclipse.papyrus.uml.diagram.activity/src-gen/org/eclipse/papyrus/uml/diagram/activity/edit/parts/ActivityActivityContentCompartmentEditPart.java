@@ -21,7 +21,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.part.BaseActivityContentCom
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityParameterNodeInCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 
@@ -72,7 +71,6 @@ public class ActivityActivityContentCompartmentEditPart extends BaseActivityCont
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityParameterNodeInCompartmentCreationEditPolicy());
-		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CompartmentXYLayoutEditPolicy());
 	}
 

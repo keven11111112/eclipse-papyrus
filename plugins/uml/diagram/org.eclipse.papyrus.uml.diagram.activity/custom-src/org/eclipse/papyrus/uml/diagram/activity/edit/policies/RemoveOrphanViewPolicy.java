@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2017 CEA LIST and Others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 528264
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
@@ -35,6 +36,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.OrphanViewPolicy;
  * remove orphan connection is more complex. It is dependent of the diagram. see
  * remove OrphanConnectionView policy
  *
+ * @deprecated since 3.1. Useless. Helper Advices remove views.
  */
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 

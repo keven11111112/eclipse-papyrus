@@ -18,7 +18,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEdit
 import org.eclipse.papyrus.uml.diagram.activity.activitygroup.editpolicy.ExpansionRegionCompartmentDnDEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.ShapeCompartmentWithoutScrollbarsEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCompartmentCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 
@@ -65,7 +64,6 @@ public class ExpansionRegionStructuredActivityNodeContentCompartmentEditPart
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ExpansionRegionStructuredActivityNodeContentCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ExpansionRegionCompartmentDnDEditPolicy());
-		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityCompartmentCreationEditPolicy());
 	}
 
