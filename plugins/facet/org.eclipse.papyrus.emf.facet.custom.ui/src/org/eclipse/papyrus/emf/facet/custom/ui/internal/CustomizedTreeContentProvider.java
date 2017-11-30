@@ -19,11 +19,13 @@
 package org.eclipse.papyrus.emf.facet.custom.ui.internal;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -376,18 +378,174 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 	public Object getParent(final Object element) {
 		Object result = null;
 		if (element instanceof TreeElement) {
+			// It's a TreeElement, which means we've already displayed it.
+			// Finding its parent will be easy
 			final TreeElement treeElement = (TreeElement) element;
 			result = treeElement.getParent();
+		} else if (element instanceof EObject) {
+			// It's an EObject, meaning we don't know whether it's already
+			// been displayed. Delegate to the #parent custom query
+			EObject modelElement = (EObject) element;
+			result = customGetParent(modelElement);
 		}
 		return result;
+	}
+
+	/**
+	 * Computes the parent TreeElement for a raw model element
+	 * 
+	 * @param modelElement
+	 * @return
+	 */
+	private TreeElement customGetParent(final EObject modelElement) {
+		// The custom EObject/Facet parent path, without references
+		List<EObject> customParentPath = getModelElementPath(modelElement);
+
+		// The custom EObject/Facet parent path, including references
+		List<TreeElement> fullElementPath = getFullElementPath(customParentPath);
+
+		// Build the full TreeElement path and return the leaf element
+		return getParentTreeElementForPath(fullElementPath);
+	}
+
+	/**
+	 * Returns the (customized) hierarchy of model elements until
+	 * the given element (Included).
+	 * 
+	 * This may be different from the semantic container path
+	 * if the tree structure has been customized (e.g. via custom
+	 * facet references)
+	 * 
+	 * This path is the "natural path", i.e. it is unique (Even when the
+	 * content provider actually represents a cyclic graph). It is however
+	 * not necessarily the shortest path.
+	 */
+	private List<EObject> getModelElementPath(final EObject modelElement) {
+
+		// Ordered from child to parent
+		Collection<EObject> customParentPath = new LinkedHashSet<>();
+		customParentPath.add(modelElement);
+
+		EObject currentModelElement = modelElement;
+		try {
+			while (currentModelElement != null) {
+				EObject parent = customManager.getCustomValueOf(currentModelElement, contentHandler.getParent(), EObject.class);
+				if (parent != null) {
+					if (customParentPath.contains(parent)) {
+						String message = "Cyclic path detected when computing the hierarchy for " + modelElement;
+						message += "\nPath: "+customParentPath;
+						message += "This may indicate an inconsistency in the facet/custom implementation(s) of the #parent query";
+						Logger.logError(message, Activator.getDefault());
+						break;
+					}
+					customParentPath.add(parent);
+				}
+				currentModelElement = parent;
+			}
+		} catch (CustomizationException ex) {
+			Logger.logError(ex, Activator.getDefault());
+		}
+
+		List<EObject> parentPath = new ArrayList<>(customParentPath);
+
+		// Order from parent to child
+		Collections.reverse(parentPath);
+		return parentPath;
+	}
+
+	/**
+	 * Builds and returns the complete list of TreeElements corresponding
+	 * to the given model element path. The resulting path will include the
+	 * necessary EReferences (Which may include FacetReferences).
+	 */
+	private List<TreeElement> getFullElementPath(Collection<EObject> customParentPath) {
+		List<TreeElement> treePath = new ArrayList<>(); // Contains EObjects and EReferences
+		TreeElement currentPathElement = null;
+		EObject currentSemanticParent = null;
+		
+		for (EObject semanticElement : customParentPath) {
+
+			if (currentPathElement == null) {
+				// Root element
+				EObjectCacheElement cacheElement = new EObjectCacheElement(semanticElement, null);
+				currentPathElement = cache.get(cacheElement);
+				if (currentPathElement == null) {
+					currentPathElement = Arrays.stream(getElements(null)) //
+							.filter(EObjectTreeElement.class::isInstance) //
+							.map(EObjectTreeElement.class::cast) //
+							.filter(tree -> tree.getEObject() == semanticElement) //
+							.findAny().orElse(null);
+				}
+			} else {
+
+				TreeElement nextElement = Arrays.stream(getChildren(currentPathElement)) //
+						.filter(EObjectTreeElement.class::isInstance)//
+						.map(EObjectTreeElement.class::cast) //
+						.filter(tree -> tree.getEObject() == semanticElement) //
+						.findAny() //
+						.orElse(null);
+				if (nextElement == null) {
+					// Try references that may contain this element
+					List<EReference> references = getVisibleReferences(currentSemanticParent);
+					for (EReference reference : references) {
+						if (reference.getEType().isInstance(semanticElement)) {
+							// Potential match
+
+							EObjectCacheElement cacheElement = new EObjectCacheElement(reference, currentPathElement);
+							TreeElement cachedElement = cache.get(cacheElement);
+							if (cachedElement == null || false == cachedElement instanceof EReferenceTreeElement) {
+								// Since we called getChildren() earlier, this shouldn't happen
+								System.err.println("Reference is visible but wasn't found");
+								continue;
+							}
+
+							EReferenceTreeElement cachedRef = (EReferenceTreeElement) cachedElement;
+
+							List<EObjectTreeElement> children;
+							if (reference.getUpperBound() == 1) {
+								children = Collections.singletonList(getSingleValuedReferenceChild(reference, currentSemanticParent, cachedElement));
+							} else {
+								children = getMultiValuedReferenceChildren(reference, currentSemanticParent, cachedRef);
+							}
+
+							nextElement = children.stream() //
+									.filter(tree -> tree.getEObject() == semanticElement) //
+									.findAny() //
+									.orElse(null);
+
+							if (nextElement != null) {
+								treePath.add(cachedRef);
+								break;
+							}
+						}
+					}
+				}
+
+				currentPathElement = nextElement;
+			}
+
+			currentSemanticParent = semanticElement;
+			if (currentPathElement != null) {
+				treePath.add(currentPathElement);
+			} else {
+				System.err.println("Invalid root element: " + currentPathElement);
+			}
+		}
+
+		return treePath;
+	}
+
+	private TreeElement getParentTreeElementForPath(List<TreeElement> fullElementPath) {
+		if (fullElementPath.size() < 2) {
+			return null;
+		}
+		return fullElementPath.get(fullElementPath.size() - 2);
 	}
 
 	@Override
 	public boolean hasChildren(final Object element) {
 		return getChildren(element).length > 0;
 	}
-
-
 
 	@Override
 	public void inputChanged(final Viewer viewer, final Object oldInput, final Object newInput) {

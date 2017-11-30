@@ -14,18 +14,18 @@ package org.eclipse.papyrus.infra.ui.emf.providers.strategy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
 import org.eclipse.papyrus.infra.widgets.strategy.ProviderBasedBrowseStrategy;
 import org.eclipse.swt.widgets.TreeItem;
@@ -63,109 +63,11 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy<TreeV
 
 		// Only browse Containment references and Facet references
 		if (semanticElement instanceof EReference) {
-			// if(semanticElement instanceof FacetReference) {
-			// return true;
-			// }
-
 			return ((EReference) semanticElement).isContainment() && !((EReference) semanticElement).isDerived();
 		}
 
 		return true;
 	}
-
-	//
-	// Elements search
-	//
-
-	// /**
-	// * {@inheritDoc}
-	// */
-	// @Override
-	// public TreePath findPath(Object semanticElement, Object[] rootElements) {
-	// List<Object> semanticPath = new LinkedList<Object>();
-	// findSemanticPath(semanticElement, semanticPath);
-	// return searchPath(semanticPath, rootElements);
-	// }
-
-	// /**
-	// * Fills the semantic path to the given element
-	// *
-	// * @param element
-	// * The element to retrieve
-	// * @param currentPath
-	// * The path to fill (in-out)
-	// */
-	// protected void findSemanticPath(Object element, List<Object> currentPath) {
-	// if(element != null && element instanceof EObject) {
-	// findSemanticPath(getSemanticParent(element), currentPath);
-	// currentPath.add(element);
-	// }
-	// }
-	//
-	// protected Object getSemanticParent(Object element) {
-	// if(element instanceof EObject) {
-	// return ((EObject)element).eContainer();
-	// }
-	// return null;
-	// }
-	//
-	// /**
-	// * Retrieve the graphical TreePath from the given semantic path
-	// *
-	// * @param semanticPath
-	// * @return
-	// */
-	// protected TreePath searchPath(List<Object> semanticPath, Object input) {
-	// List<Object> graphicalPath = new LinkedList<Object>();
-	// Object[] graphicalRootObjects = (Object[])input;
-	// if(!searchPath(semanticPath, graphicalPath, graphicalRootObjects)) {
-	// //Object not found
-	// graphicalPath.clear();
-	// }
-	//
-	// return new TreePath(graphicalPath.toArray());
-	// }
-	//
-	// protected boolean searchPath(List<Object> semanticPath, List<Object> graphicalPath, Object[] graphicalRootObjects) {
-	// if(semanticPath.isEmpty()) {
-	// return true;
-	// }
-	//
-	// if(graphicalRootObjects == null) {
-	// return false;
-	// }
-	//
-	// Object currentElement = semanticPath.get(0);
-	// for(Object graphicalElement : graphicalRootObjects) {
-	// Object semanticValue = adaptableProvider.getAdaptedValue(graphicalElement);
-	//
-	// //Specific case for containment EReference
-	// if(semanticValue instanceof EReference) {
-	// EReference referenceToBrowse = (EReference)semanticValue;
-	// if(referenceToBrowse.isContainment()) {
-	// graphicalPath.add(graphicalElement);
-	//
-	// if(searchPath(semanticPath, graphicalPath, provider.getChildren(graphicalElement))) {
-	// //The element has been found
-	// return true;
-	// }
-	//
-	// //The element has not been found ; we revert the modifications
-	// graphicalPath.remove(graphicalElement);
-	// }
-	// }
-	//
-	// if(semanticValue == currentElement) {
-	// semanticPath.remove(0);
-	// graphicalPath.add(graphicalElement);
-	// if(searchPath(semanticPath, graphicalPath, provider.getChildren(graphicalElement))) {
-	// return true;
-	// }
-	// }
-	// }
-	//
-	// return false;
-	// }
 
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
@@ -180,32 +82,8 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy<TreeV
 	 */
 	@Override
 	public void revealSemanticElement(List<?> elementList) {
-		// for each element we reveal it
-		Iterator<?> elementListIterator = elementList.iterator();
-		ArrayList<Object> treeElementToSelect = new ArrayList<Object>();
-		while (elementListIterator.hasNext()) {
-			Object currentElement = elementListIterator.next();
-			// test if the type is an EObject
-			if (currentElement instanceof EObject) {
-				EObject currentEObject = (EObject) currentElement;
-				if (currentEObject.eIsProxy()) {
-					continue; // Cannot be revealed
-				}
-				// the content provider exist?
-				if (provider != null) {
-					// need the root in order to find all element in the tree
-					Object root = provider.getElements(null)[0];
-					// look for the path in order to access to this element
-					List<Object> path = searchPath(currentEObject, Arrays.asList(provider.getElements(root)));
-					if (path.size() > 0) {
-						// expand in the common viewer the path
-						expandItems(path, viewer.getTree().getItems());
-						treeElementToSelect.add(path.get(path.size() - 1));
-					}
-				}
-			}
-			selectReveal(new StructuredSelection(treeElementToSelect));
-		}
+		List<EObject> eobjects = elementList.stream().filter(EObject.class::isInstance).map(EObject.class::cast).collect(Collectors.toList());
+		ProviderHelper.selectReveal(eobjects, viewer);
 	}
 
 	public void expandItems(List<Object> treeElementList, TreeItem[] list) {
@@ -228,6 +106,14 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy<TreeV
 		viewer.getTree().setRedraw(true);
 	}
 
+	/**
+	 * 
+	 * @param selection
+	 * 
+	 * @deprecated since 2.1
+	 * Use {@link ProviderHelper#selectReveal(java.util.Collection, org.eclipse.jface.viewers.StructuredViewer)} instead
+	 */
+	@Deprecated
 	public void selectReveal(ISelection selection) {
 		if (viewer != null) {
 			viewer.setSelection(selection, true);
@@ -240,7 +126,10 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy<TreeV
 	 * @param eobject
 	 * @param objects
 	 * @return
+	 * 
+	 * @deprecated Since 2.1
 	 */
+	@Deprecated
 	protected List<Object> searchDirectContainmentPath(EObject eobject, List<Object> wrappedElements) {
 		List<Object> path = new ArrayList<Object>();
 
@@ -269,6 +158,15 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy<TreeV
 		return path;
 	}
 
+	/**
+	 * 
+	 * @param emfPath
+	 * @param element
+	 * @return
+	 * 
+	 * @deprecated Since 2.1
+	 */
+	@Deprecated 
 	protected boolean browseElementForDirectContainment(List<EObject> emfPath, EObject element) {
 		if (emfPath.contains(element)) {
 			return true;
@@ -292,7 +190,10 @@ public class ContainmentBrowseStrategy extends ProviderBasedBrowseStrategy<TreeV
 	 * @param objects
 	 *            a list of elements where eobject can be wrapped.
 	 * @return the list of modelElementItem (from the root to the element that wrap the eobject)
+	 * 
+	 * @deprecated Since 2.1 See {@link ProviderHelper#findObjectsToReveal(java.util.Collection, org.eclipse.jface.viewers.StructuredViewer)}
 	 */
+	@Deprecated
 	protected List<Object> searchPath(EObject eobject, List<Object> objects) {
 		// Simple/quick search (Based on containment)
 		List<Object> path = searchDirectContainmentPath(eobject, objects);

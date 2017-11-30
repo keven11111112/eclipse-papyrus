@@ -54,6 +54,7 @@ public class PropertiesHandler implements IContentPropertiesHandler,
 	private static final String IS_VISIBLE = "isVisible"; //$NON-NLS-1$
 	private static final String VISIBLE_REFERENCES = "visibleReferences"; //$NON-NLS-1$
 	private static final String VISIBLE_ATTRIBUTES = "visibleAttributes"; //$NON-NLS-1$
+	private static final String PARENT = "parent"; //$NON-NLS-1$
 	private static final String IS_UNDERLINED = "isUnderlined"; //$NON-NLS-1$
 	private static final String IS_STRUCKTHROUGH = "isStruckthrough"; //$NON-NLS-1$
 	private static final String TOP_L_OVERLAY = "topLeftOverlay"; //$NON-NLS-1$
@@ -341,5 +342,15 @@ public class PropertiesHandler implements IContentPropertiesHandler,
 	public FacetOperation getVisibleReferences() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.VISIBLE_REFERENCES);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.emf.facet.custom.ui.IContentPropertiesHandler#getParent()
+	 *
+	 * @return
+	 */
+	@Override
+	public FacetOperation getParent() {
+		return getPropertyByName(PropertiesHandler.CUSTOM, PropertiesHandler.PARENT);
 	}
 }

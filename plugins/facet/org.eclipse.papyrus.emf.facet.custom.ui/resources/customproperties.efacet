@@ -327,6 +327,21 @@
           xsi:type="javaQuery:JavaQuery"
           implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.DefaultVisibleAttributesQuery"/>
     </facetOperations>
+    <facetOperations
+        name="parent">
+      <eType
+          xsi:type="ecore:EClass"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters
+          name="eStructuralFeature">
+        <eType
+            xsi:type="ecore:EClass"
+            href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query
+          xsi:type="javaQuery:JavaQuery"
+          implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.DefaultGetParentQuery"/>
+    </facetOperations>
   </eClassifiers>
   <eClassifiers
       xsi:type="efacet:Facet"
