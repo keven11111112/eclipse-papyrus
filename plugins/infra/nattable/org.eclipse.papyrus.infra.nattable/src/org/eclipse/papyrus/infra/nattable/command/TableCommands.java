@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 527734
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.command;
 
@@ -205,7 +205,7 @@ public class TableCommands {
 		final AbstractHeaderAxisConfiguration abstractHeaderAxisUsedInTable = HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisConfigurationUsedInTable(table);
 
 		EStructuralFeature axisConfigurationFeature = NattablePackage.eINSTANCE.getTable_LocalColumnHeaderAxisConfiguration();
-		if (!table.isInvertAxis()) {
+		if (table.isInvertAxis()) {
 			axisConfigurationFeature = NattablePackage.eINSTANCE.getTable_LocalRowHeaderAxisConfiguration();
 		}
 
@@ -228,9 +228,9 @@ public class TableCommands {
 	private static final ICommand getRegisterLocalRowLabelConfigurationCommand(final Table table, final ILabelProviderConfiguration tableLabelConfiguration, final ILabelProviderConfiguration localTableLabelConfiguration) {
 		AbstractHeaderAxisConfiguration abstractHeaderAxisUsedInTable = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisUsedInTable(table);
 
-		EStructuralFeature axisConfigurationFeature = NattablePackage.eINSTANCE.getTable_LocalColumnHeaderAxisConfiguration();
+		EStructuralFeature axisConfigurationFeature = NattablePackage.eINSTANCE.getTable_LocalRowHeaderAxisConfiguration();
 		if (table.isInvertAxis()) {
-			axisConfigurationFeature = NattablePackage.eINSTANCE.getTable_LocalRowHeaderAxisConfiguration();
+			axisConfigurationFeature = NattablePackage.eINSTANCE.getTable_LocalColumnHeaderAxisConfiguration();
 		}
 
 		final TableHeaderAxisConfiguration headerAxisConfig = (TableHeaderAxisConfiguration) HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTableConfiguration(table);
@@ -268,14 +268,14 @@ public class TableCommands {
 		} else if (headerAxisConfigurationUsedInTable instanceof TableHeaderAxisConfiguration) {
 			// we can't edit it, because it's comes from the initial configuration
 			localConfig = HeaderAxisConfigurationManagementUtils.transformToLocalHeaderConfiguration((TableHeaderAxisConfiguration) headerAxisConfigurationUsedInTable);
-			final IEditCommandRequest request = new SetRequest(domain, table, axisConfigurationFeature, headerAxisConfigurationUsedInTable);
+			final IEditCommandRequest request = new SetRequest(domain, table, axisConfigurationFeature, localConfig);
 			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(table);
 			cmd.add(provider.getEditCommand(request));
 		}
 
 		// 2. this one must store the new label configuration
-		final IEditCommandRequest request = new SetRequest(domain, headerAxisConfigurationUsedInTable, NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_OwnedLabelConfigurations(), localTableLabelConfiguration);
-		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(headerAxisConfigurationUsedInTable);
+		final IEditCommandRequest request = new SetRequest(domain, localConfig, NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_OwnedLabelConfigurations(), localTableLabelConfiguration);
+		final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(localConfig);
 		cmd.add(provider.getEditCommand(request));
 
 		// 3. we must get or create the AxisManagerConfiguration(s)
