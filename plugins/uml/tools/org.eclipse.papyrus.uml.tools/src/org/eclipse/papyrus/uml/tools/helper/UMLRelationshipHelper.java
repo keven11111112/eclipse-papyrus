@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) - bug 528097
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.tools.helper;
@@ -189,7 +189,10 @@ public class UMLRelationshipHelper {
 			if (source instanceof Package || null == source.getOwner()) {
 				return source;
 			}
-			return source.getOwner();
+			if (null != source.getNearestPackage()) {
+				return source.getNearestPackage();
+			}
+			return source.getOwner();//not sure it is currently use...
 		}
 		return null;
 	}
