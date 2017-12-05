@@ -11,6 +11,7 @@
  *  CEA LIST - Initial API and implementation
  *  Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565
  *  Christian W. Damus - bug 485220
+ *  Asma Smaoui  asma.smaoui@cea.fr - bug 528156
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.infra.newchild;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
@@ -59,7 +61,9 @@ import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.semantic.service.SemanticService;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
+import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.infra.ui.providers.DelegatingPapyrusContentProvider;
 import org.eclipse.papyrus.infra.ui.providers.ISemanticContentProviderFactory;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
@@ -549,9 +553,10 @@ public class CreationMenuFactory {
 				.filter(Objects::nonNull)
 				.reduce(ISemanticContentProviderFactory::compose);
 
+		ResourceSet rs= eobject.eResource().getResourceSet();
 		ITreeContentProvider delegate = factory.orElse(SemanticEMFContentProvider::new)
-				.createSemanticContentProvider(eobject.eResource().getResourceSet());
-
+				.createSemanticContentProvider(rs);
+		
 		ITreeContentProvider contentProvider = new DelegatingPapyrusContentProvider(delegate) {
 			@Override
 			public boolean isValidValue(Object element) {
@@ -577,8 +582,11 @@ public class CreationMenuFactory {
 			}
 		};
 
+		
+		EMFGraphicalContentProvider graphicalContentProvider  = ProviderHelper.encapsulateProvider(contentProvider, rs, "target");
+
 		TreeSelectorDialog dialog = new TreeSelectorDialog(Display.getDefault().getActiveShell());
-		dialog.setContentProvider(contentProvider);
+		dialog.setContentProvider(graphicalContentProvider);
 		dialog.setLabelProvider(labelProvider);
 		dialog.setMessage("Choose the target element");
 		dialog.setTitle("Target Element Selection");
