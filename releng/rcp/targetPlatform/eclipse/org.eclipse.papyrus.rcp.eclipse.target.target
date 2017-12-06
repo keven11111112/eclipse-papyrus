@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus RCP" sequenceNumber="1511792846">
+<target name="Papyrus RCP" sequenceNumber="1512547643">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20170604-1316"/>
@@ -61,7 +61,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.9.1.v201707252002"/>
-      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.9.2/S-3.9.2RC1-20171115043134/repository/"/>
+      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.9.2/R-3.9.2-20171201000141/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.team.svn.feature.group" version="0.0.0"/>
@@ -91,15 +91,15 @@
       <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/S-builds/S20170804160030/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.egit.feature.group" version="4.8.0.201706111038-r"/>
-      <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-4.8"/>
+      <unit id="org.eclipse.egit.feature.group" version="4.9.1.201712030800-r"/>
+      <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-4.9.1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.7.0.v20170515-1617"/>
-      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.1.2.v20171123-0800"/>
+      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.1.2.v20171130-0510"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.7.2.v20171108-1834"/>
-      <unit id="org.eclipse.sdk.feature.group" version="4.7.2.v20171123-1049"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.2RC3-201711230800/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.7.2.v20171130-0906"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.2RC4-201711300510/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="3.23.0.v20170411-2108"/>
