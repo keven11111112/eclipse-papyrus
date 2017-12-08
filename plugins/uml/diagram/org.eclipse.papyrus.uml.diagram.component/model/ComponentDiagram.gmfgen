@@ -38,10 +38,6 @@
           figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
-          key="&quot;REMOVE_ORPHAN_VIEW&quot;"
-          editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.RemoveOrphanViewPolicy"/>
-      <behaviour
-          xsi:type="gmfgen:CustomBehaviour"
           key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
           editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
       <domainDiagramElement
@@ -696,10 +692,6 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomGraphicalNodeEditPolicy"/>
         <behaviour
@@ -763,10 +755,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
@@ -997,10 +985,6 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes.LollipopInterfaceFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;REMOVE_ORPHAN_VIEW&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
