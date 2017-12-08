@@ -30,10 +30,10 @@ import org.eclipse.uml2.uml.ValueSpecification;
 public class OCLDirectEditorConstraint implements IDirectEditorConstraint {
 
 	/** The Constant OCL_LANGAGE_CONSTRAINT. */
-	private static final String OCL_LANGAGE_CONSTRAINT = "OCL Langage Constraint";
+	private static final String OCL_LANGUAGE_CONSTRAINT = "OCL Language Constraint"; //$NON-NLS-1$
 
 	/** The Constant OCL_LANGAGE_BODY. */
-	private static final String OCL_LANGAGE_BODY = "OCL";
+	private static final String OCL_LANGUAGE_BODY = "OCL"; //$NON-NLS-1$
 
 	/**
 	 * Constructor.
@@ -48,7 +48,7 @@ public class OCLDirectEditorConstraint implements IDirectEditorConstraint {
 	 * @return
 	 */
 	public String getLabel() {
-		return OCL_LANGAGE_CONSTRAINT;
+		return OCL_LANGUAGE_CONSTRAINT;
 	}
 
 	/**
@@ -59,18 +59,28 @@ public class OCLDirectEditorConstraint implements IDirectEditorConstraint {
 	 */
 	public boolean appliesTo(Object selection) {
 		boolean appliedConstraint = false;
-		EObject resolveEobject = EMFHelper.getEObject(selection);
-		if (resolveEobject instanceof Constraint) {
-			Constraint selectedConstraint = (Constraint) resolveEobject;
-			ValueSpecification constraintSpecification = selectedConstraint.getSpecification();
-			if (constraintSpecification instanceof OpaqueExpression) {
-				appliedConstraint = ((OpaqueExpression) constraintSpecification).getBodies().isEmpty() || ((OpaqueExpression) constraintSpecification).getLanguages().contains(OCL_LANGAGE_BODY);
-			} else {
-				appliedConstraint = constraintSpecification instanceof LiteralString;
-			}
-
+		EObject resolvedEObject = EMFHelper.getEObject(selection);
+		if (resolvedEObject instanceof Constraint) {
+			Constraint selectedConstraint = (Constraint) resolvedEObject;
+			appliedConstraint = checkValueSpecification(selectedConstraint.getSpecification());
 		}
-
+		else if (resolvedEObject instanceof ValueSpecification) {
+			appliedConstraint = checkValueSpecification((ValueSpecification) resolvedEObject);
+		}
 		return appliedConstraint;
+	}
+	
+	/**
+	 * check whether a value specification complies with OCL editor
+	 * @param specification
+	 * @return true, if either opaque-expression (empty or OCL as language) or a literal string
+	 */
+	public boolean checkValueSpecification(ValueSpecification specification) {
+		if (specification instanceof OpaqueExpression) {
+			return ((OpaqueExpression) specification).getBodies().isEmpty() || ((OpaqueExpression) specification).getLanguages().contains(OCL_LANGUAGE_BODY);
+		}
+		else {
+			return specification instanceof LiteralString;
+		}
 	}
 }
