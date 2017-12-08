@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,14 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Christian W. Damus - bug 528343
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.internationalization.common.utils;
 
 import java.util.Locale;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -34,6 +36,8 @@ import org.eclipse.papyrus.infra.internationalization.common.Activator;
  * change the internationalization preference value.
  */
 public class InternationalizationPreferencesUtils {
+	
+	private static final CopyOnWriteArrayList<InternationalizationPreferenceListener> listeners = new CopyOnWriteArrayList<>();
 	
 	/**
 	 * This allows to get the load of internationalization preference value.
@@ -183,6 +187,10 @@ public class InternationalizationPreferencesUtils {
 		if (null != preferenceStore) {
 			preferenceStore.setValue(InternationalizationPreferencesConstants.USE_INTERNATIONALIZATION_PREFERENCE,
 					value);
+
+			if (hasListeners()) {
+				fire(new InternationalizationPreferenceChangeEvent(preferenceStore, resourceURI, value));
+			}
 		}
 	}
 
@@ -344,6 +352,50 @@ public class InternationalizationPreferencesUtils {
 
 		if (null != preferenceStore) {
 			preferenceStore.setValue(InternationalizationPreferencesConstants.LANGUAGE_PREFERENCE, language);
+
+			if (hasListeners()) {
+				Locale locale = (language == null) ? Locale.getDefault()
+						: LocaleNameResolver.getLocaleFromString(language);
+				fire(new InternationalizationPreferenceChangeEvent(preferenceStore, resourceURI, locale));
+			}
 		}
+	}
+	
+	private static boolean hasListeners() {
+		return !listeners.isEmpty();
+	}
+	
+	private static void fire(InternationalizationPreferenceChangeEvent event) {
+		for (InternationalizationPreferenceListener next : listeners) {
+			try {
+				next.internationalizationChanged(event);
+			} catch (Exception e) {
+				Activator.log.error("Uncaught exception in listener call-back.", e); //$NON-NLS-1$
+			}
+		}
+	}
+	
+	/**
+	 * Adds a {@code listener} for changes in the internationalization preferences of resources.
+	 * Has no effect if the {@code listener} is already attached.
+	 * 
+	 * @param listener a listener to add
+	 * 
+	 * @since 1.1
+	 */
+	public static void addPreferenceListener(InternationalizationPreferenceListener listener) {
+		listeners.addIfAbsent(listener);
+	}
+	
+	/**
+	 * Removes a {@code listener} for changes in the internationalization preferences of resources.
+	 * Has no effect if the {@code listener} is not currently attached.
+	 * 
+	 * @param listener a listener to remove
+	 * 
+	 * @since 1.1
+	 */
+	public static void removePreferenceListener(InternationalizationPreferenceListener listener) {
+		listeners.remove(listener);
 	}
 }

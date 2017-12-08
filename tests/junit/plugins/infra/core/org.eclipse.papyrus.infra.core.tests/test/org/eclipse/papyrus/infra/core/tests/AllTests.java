@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,7 +10,7 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - add test for AdapterUtils
  *  Christian W. Damus (CEA) - bugs 402525, 422257, 399859
- *  Christian W. Damus - bugs 456934, 468030, 482949, 485220, 488558, 498140
+ *  Christian W. Damus - bugs 456934, 468030, 482949, 485220, 488558, 498140, 528343
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.tests;
@@ -19,6 +19,7 @@ import org.eclipse.papyrus.infra.core.language.LanguageServiceTest;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResourceTest;
 import org.eclipse.papyrus.infra.core.resource.ModelSetTest;
 import org.eclipse.papyrus.infra.core.resource.NestingTransactionalCommandStackTest;
+import org.eclipse.papyrus.infra.core.resource.PapyrusProjectScopeTest;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapterTest;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapterTransactionalTest;
 import org.eclipse.papyrus.infra.core.services.ComposedServiceTest;
@@ -41,6 +42,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		// {oep.resource}
 		ModelSetTest.class, AbstractModelWithSharedResourceTest.class, NestingTransactionalCommandStackTest.class,
 		ResourceAdapterTest.class, ResourceAdapterTransactionalTest.class,
+		PapyrusProjectScopeTest.class,
 		// {oep}.core.language
 		LanguageServiceTest.class,
 		// {oep}.core.services

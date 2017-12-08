@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,14 +8,15 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 528343
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.internationalization.tests.tests;
 
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
-import org.eclipse.papyrus.views.modelexplorer.DecoratingLabelProviderWTooltips;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.Interface;
@@ -32,7 +33,7 @@ import org.junit.Rule;
  * This allows to define the abstract class for the UML internationalization
  * tests.
  */
-@SuppressWarnings({ "nls", "restriction" })
+@SuppressWarnings("nls")
 public abstract class AbstractUMLInternationalizationTest extends AbstractPapyrusTest {
 
 	/** The papyrus fixture for the project. */
@@ -85,7 +86,7 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractPapyru
 	protected Enumeration modelEnumeration;
 
 	/** The label provider. */
-	protected DecoratingLabelProviderWTooltips labelProvider;
+	protected ILabelProvider labelProvider;
 
 	/**
 	 * Constructor.
@@ -108,8 +109,7 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractPapyru
 		model = (Model) fixture.getModel();
 		Assert.assertNotNull("The model cannot be null", model);
 
-		labelProvider = (DecoratingLabelProviderWTooltips) fixture.getModelExplorerView().getCommonViewer()
-				.getLabelProvider();
+		labelProvider = initLabelProvider();
 
 		modelClass = (Class) model.getOwnedMember(CLASS_NAME);
 		Assert.assertNotNull("The class cannot be null", modelClass);
@@ -138,6 +138,15 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractPapyru
 		modelEnumeration = (Enumeration) modelInterface.getOwnedMember(ENUMERATION_NAME);
 		Assert.assertNotNull("The enumeration cannot be null", modelEnumeration);
 		Assert.assertEquals("Enumeration is not the one Expected", ENUMERATION_NAME, modelEnumeration.getName());
+	}
+	
+	/**
+	 * Obtain or create the label provider for tests to verify labels.
+	 * 
+	 * @return the label provider fixture
+	 */
+	protected ILabelProvider initLabelProvider() {
+		return (ILabelProvider) fixture.getModelExplorerView().getCommonViewer().getLabelProvider();
 	}
 
 	/**
@@ -237,5 +246,4 @@ public abstract class AbstractUMLInternationalizationTest extends AbstractPapyru
 		Assert.assertEquals("The enumeration label is not the expected one.", "MyEnumeration",
 				labelProvider.getText(modelEnumeration));
 	}
-
 }
