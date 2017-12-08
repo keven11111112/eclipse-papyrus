@@ -61,9 +61,9 @@ public class ExpressionEditor extends AbstractPropertyEditor implements Listener
 		public void handleChange(ChangeEvent event) {
 			if (event.getSource() == currentExpression) {
 				bodyEditor.display(currentExpression);
+				languageEditor.refreshValue();
 			}
 		}
-
 	}
 
 	ExpressionListChangeHandler expressionListChangeHandler;
