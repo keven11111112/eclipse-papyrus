@@ -8,6 +8,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>org.eclipse.papyrus.infra.internationalization.common</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.100.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 </project>

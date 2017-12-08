@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Christian W. Damus - bug 528343
  *   
  *****************************************************************************/
 
@@ -85,10 +86,11 @@ public class InternationalizationElementItemProviderUtils {
 			final boolean shouldTranslate) {
 		if (object instanceof Element) {
 			final Element element = (Element) object;
+			final boolean i18nEnabled = InternationalizationPreferencesUtils.getInternationalizationPreference(element);
 
 			final Iterator<Stereotype> appliedStereotypes = element.getAppliedStereotypes().iterator();
 			Iterator<String> keywords = new ArrayList<String>().iterator();
-			if (InternationalizationPreferencesUtils.getInternationalizationPreference(element)) {
+			if (i18nEnabled) {
 				keywords = element.getKeywords().iterator();
 			}
 
@@ -101,7 +103,7 @@ public class InternationalizationElementItemProviderUtils {
 				text.append("<<"); //$NON-NLS-1$
 
 				while (appliedStereotypes.hasNext()) {
-					if (InternationalizationPreferencesUtils.getInternationalizationPreference(element)) {
+					if (i18nEnabled) {
 						text.append(UMLLabelInternationalization.getInstance().getKeyword(appliedStereotypes.next(), shouldTranslate));
 					} else {
 						text.append(appliedStereotypes.next().getName());

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,17 +8,16 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Christian W. Damus - bug 528343
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.internationalization.common;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -55,16 +54,15 @@ public class Activator extends AbstractUIPlugin {
 	public static LogHelper log;
 	
 	/**
-	 * Storage for preferences. Use a list of preference store (one preference
-	 * store by internationalization of a project).
+	 * Storage for preferences, per scope.
 	 */
-	private List<IPreferenceStore> preferencesStore;
+	private Map<IScopeContext, IPreferenceStore> preferencesStore;
 
 	/**
 	 * The constructor
 	 */
 	public Activator() {
-		preferencesStore = new ArrayList<IPreferenceStore>(0);
+		preferencesStore = new HashMap<>();
 	}
 
 	/**
@@ -101,28 +99,12 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public IPreferenceStore getInternationalizationPreferenceStore(final IProject project,
 			final String papyrusProjectName) {
-		IPreferenceStore result = null;
+		
 		final IScopeContext scope = new PapyrusProjectScope(project, papyrusProjectName);
-		if (!preferencesStore.isEmpty()) {
-			final IEclipsePreferences scopePreferenceNode = scope.getNode(INTERNATIONALIZATION_NODE_LABEL);
-			final Iterator<IPreferenceStore> preferenceStoreIterator = preferencesStore.iterator();
-			while (preferenceStoreIterator.hasNext() && null == result) {
-				final IPreferenceStore preferenceStore = preferenceStoreIterator.next();
-				if (preferenceStore instanceof PapyrusScopedPreferenceStore) {
-					final IEclipsePreferences[] preferenceNodes = ((PapyrusScopedPreferenceStore) preferenceStore)
-							.getPreferenceNodes(false);
-					for (int index = 0; index < preferenceNodes.length && null == result; index++) {
-						if (preferenceNodes[index].equals(scopePreferenceNode)) {
-							result = preferenceStore;
-						}
-					}
-				}
-			}
-		}
-
+		IPreferenceStore result = preferencesStore.get(scope);
 		if (null == result) {
 			result = new PapyrusScopedPreferenceStore(scope, INTERNATIONALIZATION_NODE_LABEL);
-			preferencesStore.add(result); // $NON-NLS-1$
+			preferencesStore.put(scope, result);
 		}
 
 		return result;
@@ -135,11 +117,16 @@ public class Activator extends AbstractUIPlugin {
 	 * @return The preference store.
 	 */
 	public IPreferenceStore getInternationalizationPreferenceStore() {
-		// Create the preference store lazily.
-		if (preferencesStore.isEmpty()) {
-			preferencesStore.add(new ScopedPreferenceStore(InstanceScope.INSTANCE, getBundle().getSymbolicName()));
+		IScopeContext scope = InstanceScope.INSTANCE;
+		IPreferenceStore result = preferencesStore.get(scope);
+		
+		if (result == null) {
+			// Create the preference store lazily.
+			result = new ScopedPreferenceStore(scope, getBundle().getSymbolicName());
+			preferencesStore.put(scope, result);
 		}
-		return preferencesStore.get(0);
+		
+		return result;
 	}
 
 	/**

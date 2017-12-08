@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2017 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +8,13 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Christian W. Damus - bug 528343
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.core.resource;
+
+import java.util.Objects;
 
 import org.eclipse.core.internal.preferences.AbstractScope;
 import org.eclipse.core.resources.IProject;
@@ -36,13 +39,18 @@ public class PapyrusProjectScope extends AbstractScope {
 	/**
 	 * The papyrus project name.
 	 */
-	private String papyrusProjectName;
+	private final String papyrusProjectName;
 
 	/**
 	 * The context project.
 	 */
-	private IProject context;
+	private final IProject context;
 
+	/**
+	 * Cached hash code.
+	 */
+	private int hash = 0;
+	
 	/**
 	 * Constructor.
 	 *
@@ -105,9 +113,9 @@ public class PapyrusProjectScope extends AbstractScope {
 	public boolean equals(final Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
-			return false;
 		if (!(obj instanceof PapyrusProjectScope))
+			return false;
+		if (!super.equals(obj))
 			return false;
 		PapyrusProjectScope other = (PapyrusProjectScope) obj;
 		return context.equals(other.context) && papyrusProjectName.equals(other.papyrusProjectName);
@@ -120,7 +128,15 @@ public class PapyrusProjectScope extends AbstractScope {
 	 */
 	@Override
 	public int hashCode() {
-		return super.hashCode() + context.getFullPath().hashCode() + "/".hashCode() + papyrusProjectName.hashCode(); //$NON-NLS-1$
+		if (hash == 0) {
+			int h = super.hashCode();
+			h = 37 * h + Objects.hashCode(context);
+			h = 37 * h + Objects.hashCode(papyrusProjectName);
+
+			hash = h;
+		}
+
+		return hash;
 	}
 
 }
