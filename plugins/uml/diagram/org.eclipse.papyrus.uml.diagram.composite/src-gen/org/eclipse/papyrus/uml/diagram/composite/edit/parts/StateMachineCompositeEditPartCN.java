@@ -57,7 +57,6 @@ import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.BehaviorLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.figures.StateMachineCompositeFigure;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
@@ -109,7 +108,6 @@ public class StateMachineCompositeEditPartCN extends RoundedCompartmentEditPart 
 		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
-		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -217,14 +215,14 @@ public class StateMachineCompositeEditPartCN extends RoundedCompartmentEditPart 
 
 		if (childEditPart instanceof StateMachineCompositeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((StateMachineCompositeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
 
 
 
-		//Papyrus Gencode :Affixed Port locator
+		// Papyrus Gencode :Affixed Port locator
 		if (childEditPart instanceof PortEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PortEditPart) childEditPart).getFigure(), locator);
@@ -234,7 +232,7 @@ public class StateMachineCompositeEditPartCN extends RoundedCompartmentEditPart 
 
 
 
-		//Papyrus Gencode :Affixed Port locator
+		// Papyrus Gencode :Affixed Port locator
 		if (childEditPart instanceof ParameterEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ParameterEditPart) childEditPart).getFigure(), locator);

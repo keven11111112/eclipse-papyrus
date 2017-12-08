@@ -60,7 +60,6 @@ import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.PropertyLayoutEditPolicy;
-import org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.figures.PropertyPartFigure;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
@@ -111,7 +110,6 @@ public class PropertyPartEditPartCN extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PropertyLayoutEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
-		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(ShowHideRelatedContentsEditPolicy.SHOW_HIDE_RELATED_CONTENTS_POLICY, new ShowHideRelatedContentsEditPolicy());
 		installEditPolicy(ShowHideRelatedContentsEditPolicy.SHOW_HIDE_RELATED_CONTENTS_POLICY, new ShowHideRelatedContentsEditPolicy());
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new MaskManagedNodeEditPolicy());
@@ -222,14 +220,14 @@ public class PropertyPartEditPartCN extends RoundedCompartmentEditPart {
 
 		if (childEditPart instanceof PropertyPartCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((PropertyPartCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
 
 
 
-		//Papyrus Gencode :Affixed Port locator
+		// Papyrus Gencode :Affixed Port locator
 		if (childEditPart instanceof PortEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PortEditPart) childEditPart).getFigure(), locator);
