@@ -159,7 +159,17 @@
 			</activation>
 		</profile>
 		
-		
+		<profile>
+			<id>mac-tests</id>
+			<activation>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+			<properties>
+				<test.argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100 -XstartOnFirstThread</test.argLine>
+			</properties>
+		</profile>		
 		<profile>
 			<id>buildAll</id>
 			<!-- Papyrus Update sites not included (They are included in the same build) -->
