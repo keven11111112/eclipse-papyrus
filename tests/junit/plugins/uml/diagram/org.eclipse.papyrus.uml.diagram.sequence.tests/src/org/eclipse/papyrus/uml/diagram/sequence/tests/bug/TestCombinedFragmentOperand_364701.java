@@ -37,7 +37,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -72,7 +71,6 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
-	@FailingTest("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testOperandAddDelete() {
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = setupCombinedFragment();
@@ -80,13 +78,13 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 		// add operand
 		{
 			createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(50, 100), new Dimension(100, 100));
-			assertEquals(CREATION + TEST_THE_EXECUTION,1, cfp.getChildren().size());
+			assertEquals(CREATION + TEST_THE_EXECUTION, 2, cfp.getChildren().size());
 
 			getDiagramCommandStack().undo();
-			assertEquals(CREATION + TEST_THE_UNDO,0, cfp.getChildren().size());
+			assertEquals(CREATION + TEST_THE_UNDO, 1, cfp.getChildren().size());
 
 			getDiagramCommandStack().redo();
-			assertEquals(CREATION + TEST_THE_REDO,1, cfp.getChildren().size());
+			assertEquals(CREATION + TEST_THE_REDO, 2, cfp.getChildren().size());
 		}
 
 		{ // delete operand
@@ -98,18 +96,18 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 			assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 			getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 			waitForComplete();
-			assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION,0, cfp.getChildren().size());
+			assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 1, cfp.getChildren().size());
 
 			getEMFCommandStack().undo();
-			assertEquals(DESTROY_DELETION + TEST_THE_UNDO,1, cfp.getChildren().size());
+			assertEquals(DESTROY_DELETION + TEST_THE_UNDO, 2, cfp.getChildren().size());
 
 			getEMFCommandStack().redo();
-			assertEquals(DESTROY_DELETION + TEST_THE_REDO,0, cfp.getChildren().size());
+			assertEquals(DESTROY_DELETION + TEST_THE_REDO, 1, cfp.getChildren().size());
 		}
 		getEMFCommandStack().undo();
 
 		{ // delete view
-			assertEquals(VIEW_DELETION + INITIALIZATION_TEST,1, cfp.getChildren().size());
+			assertEquals(VIEW_DELETION + INITIALIZATION_TEST, 2, cfp.getChildren().size());
 			InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 			Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 			Command command = op.getCommand(deleteViewRequest);
@@ -118,13 +116,13 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 			assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 
 			getDiagramCommandStack().execute(command);
-			assertEquals(VIEW_DELETION + TEST_THE_EXECUTION,0, cfp.getChildren().size());
+			assertEquals(VIEW_DELETION + TEST_THE_EXECUTION, 1, cfp.getChildren().size());
 
 			getDiagramCommandStack().undo();
-			assertEquals(VIEW_DELETION + TEST_THE_UNDO,1, cfp.getChildren().size());
+			assertEquals(VIEW_DELETION + TEST_THE_UNDO, 2, cfp.getChildren().size());
 
 			getDiagramCommandStack().redo();
-			assertEquals(VIEW_DELETION + TEST_THE_REDO,0, cfp.getChildren().size());
+			assertEquals(VIEW_DELETION + TEST_THE_REDO, 1, cfp.getChildren().size());
 		}
 	}
 
@@ -132,11 +130,11 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(30, 80), new Dimension(100, 100));
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart) cep.getChildren().get(0);
-		assertEquals(CREATION + INITIALIZATION_TEST,0, cfp.getChildren().size());
+		assertEquals(CREATION + INITIALIZATION_TEST, 1, cfp.getChildren().size());
 		return cfp;
 	}
 
-	
+
 	protected void resizeEast(IGraphicalEditPart op, Dimension deltaSize) {
 		Point p = getRight(op);
 		ChangeBoundsRequest req = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
@@ -189,22 +187,22 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 
 	private void manageResizeCommnad(IGraphicalEditPart op, Dimension deltaSize, Command c) {
 		assertNotNull(OPERAND_RESIZE + COMMAND_NULL, c);
-		assertTrue(OPERAND_RESIZE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, c.canExecute() );
+		assertTrue(OPERAND_RESIZE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, c.canExecute());
 		Rectangle before = getAbsoluteBounds(op);
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(c));
 		waitForComplete();
 
 		Rectangle after = getAbsoluteBounds(op);
-		assertEquals(OPERAND_RESIZE + TEST_THE_EXECUTION,deltaSize.width(), after.width() - before.width());
-		assertEquals(OPERAND_RESIZE + TEST_THE_EXECUTION,deltaSize.height(), after.height() - before.height());
+		assertEquals(OPERAND_RESIZE + TEST_THE_EXECUTION, deltaSize.width(), after.width() - before.width());
+		assertEquals(OPERAND_RESIZE + TEST_THE_EXECUTION, deltaSize.height(), after.height() - before.height());
 
 		getEMFCommandStack().undo();
 		waitForComplete();
-		assertEquals(OPERAND_RESIZE + TEST_THE_UNDO, before,getAbsoluteBounds(op));
+		assertEquals(OPERAND_RESIZE + TEST_THE_UNDO, before, getAbsoluteBounds(op));
 
 		getEMFCommandStack().redo();
 		waitForComplete();
-		assertEquals(OPERAND_RESIZE + TEST_THE_REDO, after,getAbsoluteBounds(op));
+		assertEquals(OPERAND_RESIZE + TEST_THE_REDO, after, getAbsoluteBounds(op));
 	}
 
 	public void createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {
