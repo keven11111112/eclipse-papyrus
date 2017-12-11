@@ -6,13 +6,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 /*** Updates from the Simrel repository ***/
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/updates-4.8" {
+location egit "http://download.eclipse.org/egit/updates-4.9.1" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M2-201709132000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M4-201712062000/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group

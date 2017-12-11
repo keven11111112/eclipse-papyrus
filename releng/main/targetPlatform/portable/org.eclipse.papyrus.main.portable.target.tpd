@@ -5,7 +5,7 @@ target "Papyrus Main" with requirements source
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/releases/3.7.0" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201710310601" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -24,13 +24,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M2-201709132000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M4-201712062000/" {
 	org.eclipse.sdk.feature.group
 }
 
-//updateFrom("Eclipse OCL 6.3",0) 
+//updateFrom("OCL",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201709180850" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201710302019" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -42,7 +42,7 @@ location xwt "http://download.eclipse.org/xwt/updates" {
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201709191305/" {
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.13.0/" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group

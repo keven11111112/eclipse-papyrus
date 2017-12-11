@@ -28,7 +28,7 @@ location oomph "http://download.eclipse.org/oomph/drops/release/1.8.0" {
 
 //updateFrom("EGIT",0) 
 
-location egit "http://download.eclipse.org/egit/updates-4.8" // oomph
+location egit "http://download.eclipse.org/egit/updates-4.9.1" // oomph
 
 //updateFrom("m2e",0)
 
