@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
@@ -39,7 +38,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestLink;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -181,7 +179,6 @@ public class TestCreationUndo_384618 extends TestLink {
 		assertTrue(CREATION + TEST_THE_REDO, lifeline1.getSourceConnections().size() == 1);
 	}
 
-	@FailingTest("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testMessageSync() {
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
@@ -200,7 +197,7 @@ public class TestCreationUndo_384618 extends TestLink {
 		IGraphicalEditPart source = (IGraphicalEditPart) lifeline1.getChildren().get(1);
 		IGraphicalEditPart target = (IGraphicalEditPart) lifeline2.getChildren().get(1);
 
-		createLink(UMLElementTypes.Message_SynchEdge, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, -28));
+		createLink(UMLElementTypes.Message_SynchEdge, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, -1));
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 1);
 
@@ -215,7 +212,6 @@ public class TestCreationUndo_384618 extends TestLink {
 	}
 
 	@Test
-	@Ignore
 	public void testMessageReply() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
@@ -230,7 +226,7 @@ public class TestCreationUndo_384618 extends TestLink {
 		IGraphicalEditPart source = (IGraphicalEditPart) lifeline1;
 		IGraphicalEditPart target = (IGraphicalEditPart) lifeline2;
 
-		createLink(UMLElementTypes.Message_ReplyEdge, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, -28));
+		createLink(UMLElementTypes.Message_ReplyEdge, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, 1));
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 1);
 

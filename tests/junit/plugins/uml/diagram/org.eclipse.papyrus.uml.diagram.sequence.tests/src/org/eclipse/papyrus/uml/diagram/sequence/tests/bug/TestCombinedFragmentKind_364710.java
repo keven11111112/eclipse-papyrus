@@ -37,12 +37,10 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomConsiderIgnoreFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomContinuationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
@@ -87,58 +85,56 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
-	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testConsiderIgnoreFragment() {
 		createNode(UMLElementTypes.ConsiderIgnoreFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
-		ConsiderIgnoreFragmentEditPart cep = (ConsiderIgnoreFragmentEditPart)getRootEditPart().getChildren().get(0);
-		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
+		CCombinedFragmentEditPart cep = (CCombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
+		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart) cep.getChildren().get(0);
 
 		// add operand
 		createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(30, 100), new Dimension(100, 100));
 		assertTrue(CREATION + TEST_THE_EXECUTION, cfp.getChildren().size() == 2);
 
-		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
+		CombinedFragment cf = (CombinedFragment) cep.resolveSemanticElement();
 		InteractionOperatorKind[] list = { InteractionOperatorKind.IGNORE_LITERAL, InteractionOperatorKind.CONSIDER_LITERAL };
-		for(int i = 0; i < list.length; i++) {
+		for (int i = 0; i < list.length; i++) {
 			changeOperatorKind(cep, cf, list[i]);
 			assertTrue(CHANGE_OPERATOR_KIND + TEST_THE_EXECUTION, cf.getInteractionOperator() == list[i]);
 		}
 	}
-	
-	@FailingTest ("To be erased or rewritten to take new architecture into account")
+
 	@Test
 	public void testCombinedFragment() {
 		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
-		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
-		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
+		CombinedFragmentEditPart cep = (CombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
+		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart) cep.getChildren().get(0);
 
 		// add operand
 		createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(30, 100), new Dimension(100, 100));
-		assertEquals(CREATION + TEST_THE_EXECUTION,1, cfp.getChildren().size());
+		assertEquals(CREATION + TEST_THE_EXECUTION, 2, cfp.getChildren().size());
 
-		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
-		InteractionOperatorKind[] list = { InteractionOperatorKind.ALT_LITERAL, InteractionOperatorKind.PAR_LITERAL, InteractionOperatorKind.STRICT_LITERAL, InteractionOperatorKind.CRITICAL_LITERAL, InteractionOperatorKind.ASSERT_LITERAL, InteractionOperatorKind.SEQ_LITERAL };
-		for(int i = 0; i < list.length; i++) {
+		CombinedFragment cf = (CombinedFragment) cep.resolveSemanticElement();
+		InteractionOperatorKind[] list = { InteractionOperatorKind.ALT_LITERAL, InteractionOperatorKind.PAR_LITERAL, InteractionOperatorKind.STRICT_LITERAL, InteractionOperatorKind.CRITICAL_LITERAL, InteractionOperatorKind.ASSERT_LITERAL,
+				InteractionOperatorKind.SEQ_LITERAL };
+		for (int i = 0; i < list.length; i++) {
 			changeOperatorKind(cep, cf, list[i]);
 		}
 	}
 
-	@FailingTest
 	@Test
 	public void testCombinedFragmentContinuation() throws CoreException {
 		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
-		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
-		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
+		CombinedFragmentEditPart cep = (CombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
+		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart) cep.getChildren().get(0);
 
-		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
+		CombinedFragment cf = (CombinedFragment) cep.resolveSemanticElement();
 		changeOperatorKind(cep, cf, InteractionOperatorKind.ALT_LITERAL);
-		
+
 		// add continuation
-		InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
+		InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 		createNode(UMLElementTypes.Continuation_Shape, op, new Point(1, 1), new Dimension(20, 60));
 		assertTrue(CREATION + TEST_THE_EXECUTION, op.getChildren().size() == 2);
-		CustomContinuationEditPart ccep = (CustomContinuationEditPart)op.getChildren().get(1);
+		ContinuationEditPart ccep = (ContinuationEditPart) op.getChildren().get(1);
 		Continuation continuation = (Continuation) ccep.resolveSemanticElement();
 		changeContinuationSetting(ccep, continuation, false);
 
@@ -161,7 +157,7 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 		assertTrue(CHANGE_OPERATOR_KIND + TEST_THE_EXECUTION, cf.getInteractionOperator() == kind);
 	}
 
-	protected void changeContinuationSetting(CustomContinuationEditPart p, Continuation cf, Boolean isSetting) {
+	protected void changeContinuationSetting(ContinuationEditPart p, Continuation cf, Boolean isSetting) {
 		EAttribute feature = UMLPackage.eINSTANCE.getContinuation_Setting();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(cf);
 		SetRequest request = new SetRequest(p.getEditingDomain(), cf, feature, isSetting);
@@ -174,7 +170,7 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 	}
 
 	public void createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {
-		//CREATION
+		// CREATION
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(location);
 		requestcreation.setSize(size);

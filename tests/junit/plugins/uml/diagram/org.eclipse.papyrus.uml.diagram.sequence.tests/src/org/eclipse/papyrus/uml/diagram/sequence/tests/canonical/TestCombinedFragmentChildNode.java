@@ -57,14 +57,13 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
-	@FailingTest ("To be erased or rewritten to take new architecture into account")
+	@FailingTest("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testToManageOperand() {
 		testToManageChildNode(UMLElementTypes.InteractionOperand_Shape, combinedFragmentProvider);
 	}
 
 	@Test
-	@FailingTest
 	public void testToManageContinuation() {
 		testToManageChildNode(UMLElementTypes.Continuation_Shape, operandProvider);
 	}
@@ -149,16 +148,16 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 	IChildTestProvider combinedFragmentProvider = new IChildTestProvider() {
 
 		public int getEditPartChildrenSize() {
-			return getParentEditPart().getChildren().size() ;
+			return getParentEditPart().getChildren().size();
 		}
 
 		public int getSemanticChildrenSize() {
 			CombinedFragment cf = ((CombinedFragment) getParentEditPart().getNotationView().getElement());
-			return cf.getOperands().size() ;
+			return cf.getOperands().size();
 		}
 
 		public int getViewChildrenSize() {
-			return getParentEditPart().getNotationView().getChildren().size() ;
+			return getParentEditPart().getNotationView().getChildren().size();
 		}
 
 		public Element getDropElement() {

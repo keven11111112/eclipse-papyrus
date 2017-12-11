@@ -73,17 +73,16 @@ public class TestMessageLostFound_384202 extends TestLink {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
-	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testMessageFound() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 
 		waitForComplete();
-		source = (GraphicalEditPart)getRootEditPart().getParent();
+		source = (GraphicalEditPart) getRootEditPart().getParent();
 
-		createLink(UMLElementTypes.Message_FoundEdge, source, lifeline1, getAbsoluteCenter(source), getAbsoluteCenter(lifeline1)); // new Point(100,0)
+		createLink(UMLElementTypes.Message_FoundEdge, source, lifeline1, getAbsoluteCenter(lifeline1).translate(100, 0), getAbsoluteCenter(lifeline1)); // new Point(100,0)
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 1);
 
@@ -96,15 +95,14 @@ public class TestMessageLostFound_384202 extends TestLink {
 		assertTrue(CREATION + TEST_THE_REDO, source.getSourceConnections().size() == 1);
 	}
 
-	@FailingTest ("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testMessageLost() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 
 		waitForComplete();
-		target = (GraphicalEditPart)getRootEditPart().getParent();
+		target = (GraphicalEditPart) getRootEditPart().getParent();
 
 		createLink(UMLElementTypes.Message_LostEdge, lifeline1, target, getAbsoluteCenter(lifeline1), getAbsoluteCenter(target)); // getAbsoluteBounds(target).getBottomRight());
 		waitForComplete();
@@ -119,21 +117,21 @@ public class TestMessageLostFound_384202 extends TestLink {
 		assertTrue(CREATION + TEST_THE_REDO, lifeline1.getSourceConnections().size() == 1);
 	}
 
-	@FailingTest ("To be erased or rewritten to take new architecture into account")
+	@FailingTest("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testGeneralOrderingOnExecution() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
-		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline2 = (LifelineEditPart) getRootEditPart().getChildren().get(1);
 		waitForComplete();
 
 		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline1, new Point(131, 140), new Dimension(20, 60));
 		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline2, new Point(331, 200), new Dimension(20, 60));
 		waitForComplete();
 
-		IGraphicalEditPart source = (IGraphicalEditPart)lifeline1.getChildren().get(1);
-		IGraphicalEditPart target = (IGraphicalEditPart)lifeline2.getChildren().get(1);
+		IGraphicalEditPart source = (IGraphicalEditPart) lifeline1.getChildren().get(1);
+		IGraphicalEditPart target = (IGraphicalEditPart) lifeline2.getChildren().get(1);
 
 		createLink(UMLElementTypes.GeneralOrdering_Edge, source, target, getAbsoluteBounds(source).getTop(), getAbsoluteBounds(target).getTop());
 		waitForComplete();
@@ -149,17 +147,17 @@ public class TestMessageLostFound_384202 extends TestLink {
 
 	}
 
-	@FailingTest ("To be erased or rewritten to take new architecture into account")
+	@FailingTest("To be erased or rewritten to take new architecture into account")
 	@Test
 	public void testGeneralOrderingOnMessage() {
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
 		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(400, 100), new Dimension(62, 200));
-		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
-		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
-		final LifelineEditPart lifeline3 = (LifelineEditPart)getRootEditPart().getChildren().get(2);
-		final LifelineEditPart lifeline4 = (LifelineEditPart)getRootEditPart().getChildren().get(3);
+		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
+		final LifelineEditPart lifeline2 = (LifelineEditPart) getRootEditPart().getChildren().get(1);
+		final LifelineEditPart lifeline3 = (LifelineEditPart) getRootEditPart().getChildren().get(2);
+		final LifelineEditPart lifeline4 = (LifelineEditPart) getRootEditPart().getChildren().get(3);
 		waitForComplete();
 
 		createLink(UMLElementTypes.Message_AsynchEdge, lifeline1, lifeline2, getAbsoluteCenter(lifeline1).translate(0, -20), getAbsoluteCenter(lifeline2).translate(0, -20));
@@ -168,8 +166,8 @@ public class TestMessageLostFound_384202 extends TestLink {
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getSourceConnections().size() == 1);
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline3.getSourceConnections().size() == 1);
 
-		AbstractMessageEditPart s = (AbstractMessageEditPart)lifeline1.getSourceConnections().get(0);
-		AbstractMessageEditPart t = (AbstractMessageEditPart)lifeline3.getSourceConnections().get(0);
+		AbstractMessageEditPart s = (AbstractMessageEditPart) lifeline1.getSourceConnections().get(0);
+		AbstractMessageEditPart t = (AbstractMessageEditPart) lifeline3.getSourceConnections().get(0);
 
 		createLink(UMLElementTypes.GeneralOrdering_Edge, lifeline1, lifeline3, getAbsoluteEdgeExtremity(s, true), getAbsoluteEdgeExtremity(t, true));
 		waitForComplete();
@@ -190,59 +188,59 @@ public class TestMessageLostFound_384202 extends TestLink {
 	 * Get the extremity of a connection edit part
 	 *
 	 * @param connection
-	 *        the connection edit part to find extremity
+	 *            the connection edit part to find extremity
 	 * @param isStart
-	 *        true to find the start, false for the end
+	 *            true to find the start, false for the end
 	 * @return connection's extremity in absolute coordinates or null
 	 */
 	public static Point getAbsoluteEdgeExtremity(ConnectionNodeEditPart connection, boolean isStart) {
 		Connection msgFigure = connection.getConnectionFigure();
-		if(connection.getNotationView() instanceof Edge) {
+		if (connection.getNotationView() instanceof Edge) {
 			// rather take up to date model information
-			Edge edge = (Edge)connection.getNotationView();
+			Edge edge = (Edge) connection.getNotationView();
 			Anchor idAnchor = null;
 			ConnectionAnchor conAnchor = null;
 			Object part = null;
-			if(isStart && connection.getSource() instanceof IGraphicalEditPart) {
+			if (isStart && connection.getSource() instanceof IGraphicalEditPart) {
 				View linkedFigure = edge.getSource();
 				// connection.getSource() may be not up to date, get part for linkedFigure
 				part = connection.getSource().getViewer().getEditPartRegistry().get(linkedFigure);
 				idAnchor = edge.getSourceAnchor();
 				conAnchor = msgFigure.getSourceAnchor();
-			} else if(!isStart && connection.getTarget() instanceof IGraphicalEditPart) {
+			} else if (!isStart && connection.getTarget() instanceof IGraphicalEditPart) {
 				View linkedFigure = edge.getTarget();
 				// connection.getTarget() may be not up to date, get part for linkedFigure
 				part = connection.getTarget().getViewer().getEditPartRegistry().get(linkedFigure);
 				idAnchor = edge.getTargetAnchor();
 				conAnchor = msgFigure.getTargetAnchor();
 			}
-			if(part instanceof IGraphicalEditPart && idAnchor instanceof IdentityAnchor && conAnchor != null) {
+			if (part instanceof IGraphicalEditPart && idAnchor instanceof IdentityAnchor && conAnchor != null) {
 				// take up to date bounds of the linked part in case it is moved
-				Rectangle linkedPartBounds = getAbsoluteBounds((IGraphicalEditPart)part);
+				Rectangle linkedPartBounds = getAbsoluteBounds((IGraphicalEditPart) part);
 
 				IFigure anchorOwningFigure = conAnchor.getOwner();
-				IFigure partFigure = ((IGraphicalEditPart)part).getFigure();
+				IFigure partFigure = ((IGraphicalEditPart) part).getFigure();
 				Dimension delta = anchorOwningFigure.getBounds().getLocation().getDifference(partFigure.getBounds().getLocation());
 				// get position from anchor id
-				String oldTerminal = ((IdentityAnchor)idAnchor).getId();
-				if( oldTerminal.indexOf(",")==-1) {
+				String oldTerminal = ((IdentityAnchor) idAnchor).getId();
+				if (oldTerminal.indexOf(",") == -1) {
 					assertTrue("The resulted anchor is bad build", false);
-					}
+				}
 				PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(oldTerminal);
-				int xPos = linkedPartBounds.x + delta.width + (int)Math.round(anchorOwningFigure.getBounds().width * pp.preciseX);
-				int yPos = linkedPartBounds.y + delta.height + (int)Math.round(anchorOwningFigure.getBounds().height * pp.preciseY);
+				int xPos = linkedPartBounds.x + delta.width + (int) Math.round(anchorOwningFigure.getBounds().width * pp.preciseX);
+				int yPos = linkedPartBounds.y + delta.height + (int) Math.round(anchorOwningFigure.getBounds().height * pp.preciseY);
 				return new Point(xPos, yPos);
 			}
 		}
 		// can not get from model, rely on figure
-		if(msgFigure instanceof AbstractPointListShape) {
+		if (msgFigure instanceof AbstractPointListShape) {
 			Point extremity;
-			if(isStart) {
+			if (isStart) {
 				// start event of the message
-				extremity = ((AbstractPointListShape)msgFigure).getStart().getCopy();
+				extremity = ((AbstractPointListShape) msgFigure).getStart().getCopy();
 			} else {
 				// finish event of the message
-				extremity = ((AbstractPointListShape)msgFigure).getEnd().getCopy();
+				extremity = ((AbstractPointListShape) msgFigure).getEnd().getCopy();
 			}
 			msgFigure.getParent().translateToAbsolute(extremity);
 			return extremity;
@@ -260,7 +258,7 @@ public class TestMessageLostFound_384202 extends TestLink {
 	}
 
 	CreateConnectionViewRequest createConnectionViewRequest(IElementType type, EditPart source, EditPart target, Point sourcePoint, Point targetPoint) {
-		CreateConnectionViewRequest connectionRequest = CreateViewRequestFactory.getCreateConnectionRequest(type, ((IGraphicalEditPart)getDiagramEditPart()).getDiagramPreferencesHint());
+		CreateConnectionViewRequest connectionRequest = CreateViewRequestFactory.getCreateConnectionRequest(type, ((IGraphicalEditPart) getDiagramEditPart()).getDiagramPreferencesHint());
 		connectionRequest.setLocation(sourcePoint);
 
 		connectionRequest.setSourceEditPart(null);
@@ -283,7 +281,7 @@ public class TestMessageLostFound_384202 extends TestLink {
 	}
 
 	public void createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {
-		//CREATION
+		// CREATION
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(location);
 		requestcreation.setSize(size);
