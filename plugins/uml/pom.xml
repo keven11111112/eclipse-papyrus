@@ -23,6 +23,7 @@
 		<module>org.eclipse.papyrus.uml.filters.edit</module>
 		<module>org.eclipse.papyrus.uml.icons</module>
 		<module>org.eclipse.papyrus.uml.import</module>
+		<module>org.eclipse.papyrus.uml.export</module>
 		<module>org.eclipse.papyrus.uml.modelrepair</module>
 		<module>org.eclipse.papyrus.uml.navigation</module>
 		<module>org.eclipse.papyrus.uml.oclconstraintevaluation</module>
