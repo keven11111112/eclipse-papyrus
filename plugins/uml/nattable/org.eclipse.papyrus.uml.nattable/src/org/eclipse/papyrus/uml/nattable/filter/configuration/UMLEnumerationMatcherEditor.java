@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2017 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 528479
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.filter.configuration;
@@ -121,6 +121,8 @@ public class UMLEnumerationMatcherEditor extends AbstractPapyrusMatcherEditor {
 					return ((Collection<?>) res).contains(wantedObject);
 				} else if (res instanceof EnumerationLiteral && wantedObject instanceof Enumerator) {
 					return ((EnumerationLiteral) res).getName().equals(((Enumerator) wantedObject).getName());
+				}else if (res instanceof Enumerator && wantedObject instanceof Enumerator) {
+					return ((Enumerator) res).getName().equals(((Enumerator) wantedObject).getName());
 				}else if(res instanceof EnumerationLiteral && wantedObject instanceof String){
 					return wantedObject.equals(((EnumerationLiteral) res).getName());
 				}else if(res instanceof String && wantedObject instanceof String){
