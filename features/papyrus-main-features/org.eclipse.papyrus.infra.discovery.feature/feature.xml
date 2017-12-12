@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.infra.discovery.feature"
-      label="Papyrus Discovery Feature UI"
+      label="%featureName"
       version="3.0.0.qualifier"
-      provider-name="Eclipse Modeling Project"
+      provider-name="%providerName"
       plugin="org.eclipse.papyrus.infra.discovery">
 
    <description url="https://eclipse.org/papyrus/">

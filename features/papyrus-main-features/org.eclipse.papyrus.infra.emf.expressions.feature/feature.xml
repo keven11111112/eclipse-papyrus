@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.infra.emf.expressions.feature"
-      label="Papyrus EMF Expressions Feature"
+      label="%featureName"
       version="1.0.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+      provider-name="%providerName">
 
    <description url="https://eclipse.org/papyrus/">
       Papyrus EMF Expressions provides tools to create expressions. Expressions Framework has been created to be extensible. An Expression is an object providing a method to evaluate an object and return a value.

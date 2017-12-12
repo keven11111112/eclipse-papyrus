@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.doc.feature"
-      label="Papyrus Documentation Feature"
+      label="%featureName"
       version="3.0.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+      provider-name="%providerName">
 
    <description url="https://eclipse.org/papyrus/">
       This feature regroups the different documentation plugins that should be
@@ -40,7 +40,7 @@ released in the info center.
          download-size="0"
          install-size="0"
          version="0.0.0"/>
-         
+
    <plugin
          id="org.eclipse.papyrus.infra.gmfdiag.common.doc"
          download-size="0"

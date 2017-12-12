@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.infra.gmfdiag.css.feature"
-      label="Papyrus CSS Feature"
+      label="%featureName"
       version="3.0.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+      provider-name="%providerName">
+
+   <description url="https://eclipse.org/papyrus/">
+      Common language-agnostic CSS frameworks for GMF-based diagram editors.
+   </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
       Copyright (c) 2012 CEA LIST
@@ -17,10 +21,6 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
-   
-   <description url="https://eclipse.org/papyrus/">
-   	Common language-agnostic CSS frameworks for GMF-based diagram editors.
-   </description>
 
    <plugin
          id="org.eclipse.papyrus.infra.gmfdiag.css"

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.uml.search.feature"
-      label="Papyrus UML Search Feature"
+      label="%featureName"
       version="2.0.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+      provider-name="%providerName">
 
    <description url="https://eclipse.org/papyrus/">
       Custom embedded search page for Papyrus that provides UML-specific search facilities.

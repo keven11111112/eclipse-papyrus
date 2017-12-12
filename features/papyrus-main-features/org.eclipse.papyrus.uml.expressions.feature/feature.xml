@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.uml.expressions.feature"
-      label="Papyrus UML Expressions Feature"
+      label="%featureName"
       version="1.0.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+      provider-name="%providerName">
 
    <description url="https://eclipse.org/papyrus/">
       Papyrus UML Expressions is an extension of Papyrus EMF Expressions dedicated to UML Elements. This feature provides particularly expressions to adress stereotypes applications.
