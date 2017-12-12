@@ -131,6 +131,8 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.
 location orbit "http://download.eclipse.org/tools/orbit/S-builds/S20170804160030/repository" {
 	com.google.guava 21.0.0
 	com.google.guava.source 21.0.0
+	com.google.gson 2.7.0
+	com.google.gson.source 2.7.0	
 	org.apache.commons.lang3 3.1.0
 	org.apache.commons.lang3.source 3.1.0
 }
