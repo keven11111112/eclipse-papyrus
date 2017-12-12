@@ -22,7 +22,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomPackageCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomPackageXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateMachineDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.ShowHideRelatedLinkEditPolicy;
 
 /**
@@ -60,7 +59,6 @@ public class PackageEditPart extends PapyrusDiagramEditPart {
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.PackageCanonicalEditPolicy());
 
-		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomPackageCreationEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomPackageXYLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomStateMachineDiagramDragDropEditPolicy());

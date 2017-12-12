@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2017 CEA LIST and Others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 528502
+ *  
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
@@ -26,15 +28,17 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompa
 /**
  * this policy is used to supress orphan node view in GMF view the prolicy to
  * remove orphan connection is more complex. It is dependent of the diagram. see
- * remove OrphanConnectionView policy in clazzdiagram
+ * remove OrphanConnectionView policy in clazzdiagram.
+ * 
+ * @deprecated since 3.1. Useless. Helper Advices remove views.
  *
  */
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
-	public String[] notOrphanNode = { 
-		RegionCompartmentEditPart.VISUAL_ID, 
-		StateMachineCompartmentEditPart.VISUAL_ID, 
-		StateCompartmentEditPart.VISUAL_ID 
+	public String[] notOrphanNode = {
+			RegionCompartmentEditPart.VISUAL_ID,
+			StateMachineCompartmentEditPart.VISUAL_ID,
+			StateCompartmentEditPart.VISUAL_ID
 	};
 
 	public RemoveOrphanViewPolicy() {

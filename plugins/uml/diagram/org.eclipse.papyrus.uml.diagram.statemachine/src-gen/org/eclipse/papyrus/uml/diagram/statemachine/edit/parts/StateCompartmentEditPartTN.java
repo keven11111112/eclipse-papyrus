@@ -34,7 +34,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateCompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateMachineDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.Messages;
 
 /**
@@ -82,7 +81,6 @@ public class StateCompartmentEditPartTN extends LinkLFShapeCompartmentEditPart {
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateCompartmentCanonicalEditPolicyTN());
 
-		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomStateCompartmentXYLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomStateMachineDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomStateCompartmentCreationEditPolicy());

@@ -63,10 +63,6 @@
           figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
-          key="&quot;RemoveOrphanView&quot;"
-          editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.RemoveOrphanViewPolicy"/>
-      <behaviour
-          xsi:type="gmfgen:CustomBehaviour"
           key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
           editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomPackageCreationEditPolicy"/>
       <behaviour
@@ -2381,10 +2377,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomRegionCompartmentCreationEditPolicy"/>
         <behaviour
@@ -2416,10 +2408,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateMachineCompartmentXYLayoutEditPolicy"/>
         <behaviour
@@ -2449,10 +2437,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getStateCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
@@ -2488,10 +2472,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getStateCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
