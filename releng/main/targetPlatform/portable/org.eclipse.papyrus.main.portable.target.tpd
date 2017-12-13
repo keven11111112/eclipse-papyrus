@@ -18,7 +18,7 @@ location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/releases/
 
 //updateFrom("MDT UML2",0) 
 
-location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.3" {
+location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestones" {
 	org.eclipse.uml2.sdk.feature.group
 }
 
@@ -30,7 +30,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4
 
 //updateFrom("OCL",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201710302019" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201712111714" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }

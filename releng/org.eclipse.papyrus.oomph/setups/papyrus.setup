@@ -133,14 +133,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201710302019">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201712111714">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>OCL</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.3">
+        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestones">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT UML2</value>
