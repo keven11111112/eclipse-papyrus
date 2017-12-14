@@ -71,7 +71,7 @@ public class FixNestedStateAndRegionOnOpening {
 
 				// for bug 401059
 				Shape stateShape = (Shape) current;
-				EList<View> removeChilds = new BasicEList<View>();
+				EList<View> removeChilds = new BasicEList<>();
 				for (Object child : stateShape.getChildren()) {
 					View childV = (View) child;
 					if (childV.getType().equals(COMPARTMENT_6003) || (childV.getType().equals(COMPARTMENT_6004))) {
@@ -96,7 +96,6 @@ public class FixNestedStateAndRegionOnOpening {
 
 					Bounds regionBounds = (Bounds) regionNode.getLayoutConstraint();
 
-					// stateNode.getChildren();
 					// Fix when current location is not the valid location (only possible if parent size is set)
 					if ((regionBounds.getX() != 0) || (regionBounds.getY() != 0)) {
 						final Rectangle newBounds = new Rectangle(0, 0, regionBounds.getWidth(), regionBounds.getHeight());

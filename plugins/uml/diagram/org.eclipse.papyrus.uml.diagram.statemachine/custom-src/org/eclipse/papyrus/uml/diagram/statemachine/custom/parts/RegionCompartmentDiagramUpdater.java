@@ -46,7 +46,7 @@ public class RegionCompartmentDiagramUpdater implements ICustomDiagramUpdater<UM
 			return Collections.emptyList();
 		}
 		Region modelElement = (Region) containerView.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<>();
 		for (Iterator<?> it = modelElement.getSubvertices().iterator(); it.hasNext();) {
 			Vertex childElement = (Vertex) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);

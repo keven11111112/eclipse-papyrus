@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomStateMachineResizeCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomStateMachineSetBoundsCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPartTN;

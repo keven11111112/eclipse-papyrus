@@ -40,10 +40,10 @@ public class StateFigure extends RoundedCompartmentFigure {
 	private static final String FINAL_LABEL_VALUE = "final";
 
 	/** The State Compartment */
-	private final static String STATE_COMPARTMENT = "stateCompartment";
+	private static final String STATE_COMPARTMENT = "stateCompartment";
 
 	/** The List of Compartment */
-	private final static List<String> COMPARTMENT = new ArrayList<String>() {
+	private static final List<String> COMPARTMENT = new ArrayList<String>() {
 
 		private static final long serialVersionUID = 1L;
 		{

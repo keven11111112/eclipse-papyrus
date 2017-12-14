@@ -24,10 +24,10 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigu
 public class StateMachineFigure extends RoundedCompartmentFigure {
 
 	/** The StateMachine Compartment */
-	private final static String STATEMACHINE_COMPARTMENT = "stateMachineCompartment";
+	private static final String STATEMACHINE_COMPARTMENT = "stateMachineCompartment";
 
 	/** The List of Compartment */
-	private final static List<String> COMPARTMENT = new ArrayList<String>() {
+	private static final List<String> COMPARTMENT = new ArrayList<String>() {
 
 		private static final long serialVersionUID = 1L;
 		{
@@ -50,8 +50,6 @@ public class StateMachineFigure extends RoundedCompartmentFigure {
 	 */
 	public StateMachineFigure(String tagLabel) {
 		super(COMPARTMENT, tagLabel);
-		// shadowborder = new RoundedShadowBorder(getForegroundColor());
-		// setBorder(shadowborder);
 		((AutomaticCompartmentLayoutManager) getLayoutManager()).setAddExtraHeight(false);
 	}
 
@@ -64,63 +62,4 @@ public class StateMachineFigure extends RoundedCompartmentFigure {
 		return getCompartment(STATEMACHINE_COMPARTMENT);
 	}
 
-	// @Override
-	// protected void paintBackground(Graphics graphics, Rectangle rectangle) {
-	// if (isUsingGradient()) {
-	// applyTransparency(graphics);
-	// boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-	// if (isVertical && rectangle.height > ((3 * arcwidth) / 2)) {
-	// Rectangle rect1 = new Rectangle(rectangle.getLocation(), new Dimension(rectangle.width, arcwidth));
-	// Rectangle rect2 = new Rectangle(rectangle.x, rectangle.y + rectangle.height - arcwidth, rectangle.width, arcwidth);
-	// ;
-	// graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-	// graphics.fillRoundRectangle(rect1, arcwidth, arcwidth);
-	// graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-	// graphics.fillRoundRectangle(rect2, arcwidth, arcwidth);
-	//
-	//
-	// graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-	// graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-	// Rectangle rect = new Rectangle(rectangle.x, rectangle.y + arcwidth / 2, rectangle.width, rectangle.height - arcwidth);
-	// graphics.fillGradient(rect, true);
-	// } else if (!isVertical && rectangle.width > ((3 * arcwidth) / 2)) {
-	// Rectangle rect1 = new Rectangle(rectangle.getLocation(), new Dimension(arcwidth, rectangle.height));
-	// Rectangle rect2 = new Rectangle(rectangle.x + rectangle.width - arcwidth, rectangle.y, arcwidth, rectangle.height);
-	// graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-	// graphics.fillRoundRectangle(rect1, arcwidth, arcwidth);
-	// graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-	// graphics.fillRoundRectangle(rect2, arcwidth, arcwidth);
-	//
-	//
-	// graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-	// graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-	// Rectangle rect = new Rectangle(rectangle.x + arcwidth / 2, rectangle.y, rectangle.width - arcwidth, rectangle.height);
-	// graphics.fillGradient(rect, false);
-	// } else {
-	// graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-	// graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-	// graphics.fillRoundRectangle(rectangle, arcwidth, arcwidth);
-	// }
-	// } else {
-	// graphics.setBackgroundColor(getBackgroundColor());
-	// graphics.setForegroundColor(getForegroundColor());
-	// graphics.fillRoundRectangle(rectangle, arcwidth, arcwidth);
-	// }
-	// }
-
-	// @Override
-	// public void paintFigure(Graphics graphics) {
-	// paintBackground(graphics, getBounds());
-	//
-	// shadowborder.setColor(getForegroundColor());
-	// }
-	//
-	// @Override
-	// public void setShadow(boolean shadow) {
-	// super.setShadow(shadow);
-	// if (!shadow) {
-	// RoundedBorder bord = new RoundedBorder(arcwidth, arcwidth);
-	// this.setBorder(bord);
-	// }
-	// }
 }

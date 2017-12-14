@@ -18,8 +18,6 @@ public class StateMachineDiagramModelListener implements IPapyrusListener {
 
 	@Override
 	public void notifyChanged(Notification notification) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

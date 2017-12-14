@@ -25,12 +25,10 @@ public class CustomStateMachineCompartmentEditPart extends StateMachineCompartme
 
 	public CustomStateMachineCompartmentEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void createDefaultEditPolicies() {
-		// TODO Auto-generated method stub
 		super.createDefaultEditPolicies();
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
@@ -45,14 +43,12 @@ public class CustomStateMachineCompartmentEditPart extends StateMachineCompartme
 
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
-		// TODO Auto-generated method stub
 		super.handleNotificationEvent(notification);
 		refreshVisuals();
 	}
 
 	@Override
 	protected void refreshVisuals() {
-		// TODO Auto-generated method stub
 		super.refreshVisuals();
 
 		View smView = (View) ((View) getModel()).eContainer();

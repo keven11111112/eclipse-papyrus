@@ -23,7 +23,6 @@ public class CustomRegionDeleteCommand extends CustomRegionPreDeleteCommand {
 
 	public CustomRegionDeleteCommand(TransactionalEditingDomain editingDomain, View view) {
 		super(editingDomain, view);
-		// TODO Auto-generated constructor stub
 	}
 
 	/*

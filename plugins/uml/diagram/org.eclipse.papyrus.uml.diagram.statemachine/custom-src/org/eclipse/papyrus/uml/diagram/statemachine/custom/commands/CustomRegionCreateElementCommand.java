@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;

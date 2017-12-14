@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramPrototype;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateBehavioredClassifierDiagramCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPartTN;
@@ -57,12 +57,12 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifierDiagramCommand {
 	private StateMachine stateMachine = null;
 	private State state = null;
-	public final static int defaultX = 30;
-	public final static int defaultY = 30;
-	public final static int defaultWidth = 700;
-	public final static int defaultHeight = 300;
+	public static final int defaultX = 30;
+	public static final int defaultY = 30;
+	public static final int defaultWidth = 700;
+	public static final int defaultHeight = 300;
 	// Bug 513267: The initial header must be defined to 20 because when it is smaller, a first internal resize increase it automatically to 20 (CustomStateMachineResizeCommand).
-	public final static int defaultHeader = 20;
+	public static final int defaultHeader = 20;
 
 	@Override
 	protected EClass getBehaviorEClass() {

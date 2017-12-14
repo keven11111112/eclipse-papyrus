@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
@@ -53,7 +53,7 @@ public class CustomCompositeStateWithDefaultRegionCreateNodeCommand extends Abst
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// adapt the view at execution time
-		View stateView = (View) adaptable.getAdapter(View.class);
+		View stateView = adaptable.getAdapter(View.class);
 		View compartmentView = null;
 		Iterator<?> it = stateView.getChildren().iterator();
 		while ((compartmentView == null) && it.hasNext()) {

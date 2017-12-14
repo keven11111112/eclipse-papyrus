@@ -526,7 +526,7 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 		// also take redefined (extended) regions into account, see Bug 366415
 		EList<Transition> transitions;
 		if (extendedRegion != null) {
-			transitions = new BasicEList<Transition>(region.getTransitions());
+			transitions = new BasicEList<>(region.getTransitions());
 			transitions.addAll(extendedRegion.getTransitions());
 		} else {
 			transitions = region.getTransitions();

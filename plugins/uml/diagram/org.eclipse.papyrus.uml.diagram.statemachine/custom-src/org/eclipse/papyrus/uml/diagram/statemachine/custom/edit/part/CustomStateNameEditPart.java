@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014-2017 CEA LIST.
+ * Copyright (c) 2010-2011-2014-2017 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,9 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ * Arthur daussy (Atos) arthur.daussy@atos.net - Bug : 365405: [State Machine Diagram] Behaviours (Entry,exit,do) on states should have their own
+ * mechanisms
+ * Ansgar Radermacher: Bug 402068: Correct calculation of region height in refresh visuals
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *  Pauline DEVILLE (CEA LIST): Bug 509015 - [StateMachineDiagram] lacks support for UML 2.5 notation of redefinable elements with isLeaf=true
  */
@@ -26,7 +29,7 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomStateResizeCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.StateFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
@@ -34,23 +37,6 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPart;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.State;
-
-/*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *
- * Arthur daussy (Atos) arthur.daussy@atos.net - Bug : 365405: [State Machine Diagram] Behaviours (Entry,exit,do) on states should have their own
- * mechanisms
- * Ansgar Radermacher: Bug 402068: Correct calculation of region height in refresh visuals
- *
- *****************************************************************************/
 
 public class CustomStateNameEditPart extends StateNameEditPart {
 
@@ -128,10 +114,6 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		int stateWidth = Zone.getWidth(stateView);
 
 		int stateCompartHeight = Zone.getHeight(stateCompartmentView);
-		if (stateCompartHeight == 0) {
-			// stateCompartHeight is 0 after creation, get height from figure
-			// stateCompartHeight = stateFigure.getStateCompartmentFigure().getBounds().height;
-		}
 
 		int dx = width - stateWidth;
 		int dy = stateCompartHeight + height - stateHeight;

@@ -43,14 +43,12 @@ public class CustomStateCompartmentEditPart extends StateCompartmentEditPart {
 
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
-		// TODO Auto-generated method stub
 		super.handleNotificationEvent(notification);
 		refreshVisuals();
 	}
 
 	@Override
 	protected void refreshVisuals() {
-		// TODO Auto-generated method stub
 		super.refreshVisuals();
 
 		View stateView = (View) ((View) getModel()).eContainer();

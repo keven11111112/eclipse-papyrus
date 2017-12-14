@@ -43,7 +43,7 @@ public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
 	 */
 	@Override
 	protected List<?> createSelectionHandles() {
-		List<?> list = new ArrayList<Object>();
+		List<?> list = new ArrayList<>();
 		int dirs = getResizeDirections();
 		// by default (case when dirs == -1 or 0)
 		// no move nor resize handles are provided

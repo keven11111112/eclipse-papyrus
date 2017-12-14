@@ -40,19 +40,12 @@ public class CustomRegionDestroyElementCommand extends DestroyElementCommand {
 				return true;
 			}
 			return true;
-			// else if(getElementToEdit() instanceof State){
-			// State state = (State)getElementToEdit();
-			// if(state.getRegions().size() == 1)
-			// return false;
-			// return true;
-			// }
 		}
 		return false;
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		// TODO Auto-generated method stub
 		return super.doExecuteWithResult(monitor, info);
 	}
 }

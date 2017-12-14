@@ -14,8 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.hyperlink;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -49,11 +47,11 @@ public class OwnedBehaviorHyperlinkContributor implements HyperlinkContributor {
 	 * @return
 	 */
 	public List<HyperLinkObject> getHyperlinks(Object fromElement) {
-		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<HyperLinkObject>();
+		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<>();
 		
 		if (fromElement instanceof BehavioredClassifier) {
 			List<Behavior> behaviors = ((BehavioredClassifier) fromElement).getOwnedBehaviors();
-			List<Object> objectsInViews = new ArrayList<Object>();
+			List<Object> objectsInViews = new ArrayList<>();
 			
 			for (Behavior behavior : behaviors) {
 				ViewerSearchService viewerSearchService = null;

@@ -74,7 +74,6 @@ public class CustomRegionCompartmentEditPart extends RegionCompartmentEditPart {
 
 	@Override
 	protected void refreshVisuals() {
-		// TODO Auto-generated method stub
 		super.refreshVisuals();
 
 		View regionView = (View) ((View) getModel()).eContainer();

@@ -64,7 +64,6 @@ public class CustomConnectionPointReferenceNameEditPart extends ConnectionPointR
 
 	@Override
 	protected void refreshVisuals() {
-		// TODO Auto-generated method stub
 		super.refreshVisuals();
 
 		ConnectionPointReferenceFigure connPtRefFigure = ((ConnectionPointReferenceEditPart) getParent()).getPrimaryShape();

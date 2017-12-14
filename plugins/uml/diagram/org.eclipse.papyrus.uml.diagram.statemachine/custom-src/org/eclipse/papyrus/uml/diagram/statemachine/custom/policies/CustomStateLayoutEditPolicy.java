@@ -69,7 +69,6 @@ public class CustomStateLayoutEditPolicy extends LayoutEditPolicy {
 
 	@Override
 	public Command getCommand(Request request) {
-		// TODO Auto-generated method stub
 		return super.getCommand(request);
 	}
 

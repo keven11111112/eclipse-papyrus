@@ -27,7 +27,6 @@ public class RoundedBorder extends RoundedRectangleBorder {
 
 	public RoundedBorder(int arcWidth, int arcHeight) {
 		super(arcWidth, arcHeight);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

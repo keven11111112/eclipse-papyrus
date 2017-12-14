@@ -112,7 +112,6 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 			}
 		}
 		return cc.isEmpty() ? null : new ICommandProxy(cc.reduce());
-		// return super.getReparentCommand(request);
 	}
 
 	@Override

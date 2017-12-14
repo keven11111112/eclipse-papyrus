@@ -69,18 +69,18 @@ public class CustomStateCreationEditPolicy extends SideAffixedNodesCreationEditP
 	/**
 	 * Default location for new vertex, if called from popup-bar
 	 */
-	public final static Rectangle defaultLocation = new Rectangle(20, 20, -1, -1);
+	public static final Rectangle defaultLocation = new Rectangle(20, 20, -1, -1);
 
 	/**
 	 * No specific ZONE
 	 */
-	public final static String dropLocation = Zone.NONE;
+	public static final String dropLocation = Zone.NONE;
 
 	/**
 	 * Vertical offset for region compartment within composite state (cannot be calculated from host figure, since
 	 * the region compartment has not been created when the position calculation is done.
 	 */
-	public final static int REGION_OFFSET = 20;
+	public static final int REGION_OFFSET = 20;
 
 	@Override
 	public Command getCommand(Request request) {

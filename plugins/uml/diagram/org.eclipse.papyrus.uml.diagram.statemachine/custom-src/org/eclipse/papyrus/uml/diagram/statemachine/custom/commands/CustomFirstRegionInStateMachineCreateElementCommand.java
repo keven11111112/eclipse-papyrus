@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
@@ -76,7 +76,7 @@ public class CustomFirstRegionInStateMachineCreateElementCommand extends Abstrac
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// adapt the view at execution time
-		View ownerView = (View) adaptable.getAdapter(View.class);
+		View ownerView = adaptable.getAdapter(View.class);
 		Node compartment = (Node) ownerView.getChildren().get(1);
 		// get state bounds
 		int height = Zone.getHeight(ownerView);

@@ -46,18 +46,13 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 	protected List<EObject> getObjectsBeingDropped() {
 		// get objects from transfer
 		TransferData data = getCurrentEvent().currentDataType;
-		HashSet<URI> uris = new HashSet<URI>();
+		HashSet<URI> uris = new HashSet<>();
 
 		Object transferedObject = getJavaObject(data);
 		if (transferedObject instanceof IStructuredSelection) {
 			IStructuredSelection selection = (IStructuredSelection) transferedObject;
 			for (Iterator<?> it = selection.iterator(); it.hasNext();) {
 				Object nextSelectedObject = it.next();
-				// if (nextSelectedObject instanceof UMLNavigatorItem) {
-				// View view = ((UMLNavigatorItem)
-				// nextSelectedObject).getView();
-				// nextSelectedObject = view.getElement();
-				// } else
 				if (nextSelectedObject instanceof IAdaptable) {
 					IAdaptable adaptable = (IAdaptable) nextSelectedObject;
 					nextSelectedObject = adaptable.getAdapter(EObject.class);
@@ -66,12 +61,11 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 					EObject modelElement = (EObject) nextSelectedObject;
 					Resource modelElementResource = modelElement.eResource();
 					uris.add(modelElementResource.getURI().appendFragment(modelElementResource.getURIFragment(modelElement)));
-					// TODO check visualID supported by class diagram
 				}
 			}
 		}
 
-		ArrayList<EObject> result = new ArrayList<EObject>();
+		ArrayList<EObject> result = new ArrayList<>();
 		for (URI uri : uris) {
 			EObject modelObject = getTransactionalEditingDomain().getResourceSet().getEObject(uri, true);
 			result.add(modelObject);

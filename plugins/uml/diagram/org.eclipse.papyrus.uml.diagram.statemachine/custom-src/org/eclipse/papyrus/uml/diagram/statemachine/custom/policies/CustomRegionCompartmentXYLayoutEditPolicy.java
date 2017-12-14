@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnecti
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomStateResizeCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 

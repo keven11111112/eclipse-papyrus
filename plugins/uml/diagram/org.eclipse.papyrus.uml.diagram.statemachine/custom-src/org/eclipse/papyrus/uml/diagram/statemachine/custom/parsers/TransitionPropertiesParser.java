@@ -122,7 +122,6 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 									guardConstraint.setContext(transition.getNamespace());
 									transition.setGuard(guardConstraint);
 								}
-								// transition.setName(result);
 							}
 						};
 						getEditingDomain().getCommandStack().execute(rc);
@@ -358,10 +357,6 @@ public class TransitionPropertiesParser implements IParser, ISemanticParser {
 					result.add(effect);
 				}
 			}
-			// if(constraint.getSpecification() != null) {
-			// ValueSpecification value = constraint.getSpecification();
-			// result.add(value);
-			// }
 		}
 		return result;
 	}

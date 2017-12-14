@@ -93,7 +93,6 @@ public class NoExtraHeightLayoutManager extends AutomaticCompartmentLayoutManage
 					} else {
 						bounds.setSize(prefConstraint);
 					}
-					// bound.setSize(getPreferedSize(currentCompartment));
 					if (previousCompartment != null) {
 						// next visible compartment
 						bounds.x = container.getBounds().x + 3;

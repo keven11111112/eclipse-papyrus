@@ -51,7 +51,7 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		View region = (View) adaptable.getAdapter(View.class);
+		View region = adaptable.getAdapter(View.class);
 		// a bunch of initializations
 		int direction = request.getResizeDirection();
 		int dx = request.getSizeDelta().width;

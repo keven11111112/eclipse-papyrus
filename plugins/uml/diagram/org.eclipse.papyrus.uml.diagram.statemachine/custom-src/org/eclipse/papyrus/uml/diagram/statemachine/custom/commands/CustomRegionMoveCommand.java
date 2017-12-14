@@ -63,9 +63,9 @@ public class CustomRegionMoveCommand extends AbstractTransactionalCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		// adapt the view of the existing region
-		View targetRegion = (View) adaptableForTargetRegion.getAdapter(View.class);
+		View targetRegion = adaptableForTargetRegion.getAdapter(View.class);
 		// adapt the view of the dropped region
-		View regionToMove = (View) adaptableForRegionToMove.getAdapter(View.class);
+		View regionToMove = adaptableForRegionToMove.getAdapter(View.class);
 
 		// manage the fake removal of regionToMove
 		View compartment = (View) regionToMove.eContainer();

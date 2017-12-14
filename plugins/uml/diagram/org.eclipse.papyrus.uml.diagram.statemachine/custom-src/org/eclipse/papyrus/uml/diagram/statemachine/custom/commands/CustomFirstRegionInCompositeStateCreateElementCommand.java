@@ -108,7 +108,7 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// adapt the view at execution time
-		View compartment = (View) adaptable.getAdapter(View.class);
+		View compartment = adaptable.getAdapter(View.class);
 		View ownerView = (View) compartment.eContainer();
 		// get state bounds
 		int height = Zone.getHeight(ownerView);

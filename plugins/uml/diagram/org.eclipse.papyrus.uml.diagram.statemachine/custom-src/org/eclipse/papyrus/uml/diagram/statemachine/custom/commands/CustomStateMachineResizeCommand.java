@@ -57,7 +57,7 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		View stateMachine = (View) adaptable.getAdapter(View.class);
+		View stateMachine = adaptable.getAdapter(View.class);
 		View stateMachineLabel = (View) stateMachine.getChildren().get(0);
 		View stateMachineCompartment = (View) stateMachine.getChildren().get(1);
 		// a bunch of initializations
@@ -68,7 +68,6 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 		int newY = bounds.y;
 		if (internalResize) {
 			Zone.setHeight(stateMachineLabel, Zone.getHeight(stateMachineLabel) + dy);
-			// dy = 0;
 		}
 		// first resize the state machine node with the constraint provided
 		if (!internalResize) {

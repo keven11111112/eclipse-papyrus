@@ -28,7 +28,7 @@ public class StateMachineLinkMappingHelper implements ILinkMappingHelper {
 	 */
 	private static class SingletonHolder {
 
-		private final static StateMachineLinkMappingHelper instance = new StateMachineLinkMappingHelper();
+		private static final StateMachineLinkMappingHelper instance = new StateMachineLinkMappingHelper();
 	}
 
 	/**
@@ -49,13 +49,11 @@ public class StateMachineLinkMappingHelper implements ILinkMappingHelper {
 
 	@Override
 	public Collection<?> getSource(Element link) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Collection<?> getTarget(Element link) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

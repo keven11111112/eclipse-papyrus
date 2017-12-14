@@ -77,28 +77,13 @@ public class RoundedShadowBorder extends RectangularShadowBorder {
 
 		graphics.setBackgroundColor(getColor());
 
-		// graphics.drawArc(tempRect.x+tempRect.width-arcwidth+borderwidth,
-		// tempRect.y+borderwidth,
-		// arcwidth, arcwidth, 0, 50);
 		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth, tempRect.y + borderwidth, arcwidth - 1, arcwidth - 1, 0, 40);
-		// graphics.drawArc(tempRect.x+tempRect.width-arcwidth+borderwidth,
-		// tempRect.y+borderwidth,
-		// arcwidth-2, arcwidth-2, 0, 20);
 
-		// graphics.drawArc(tempRect.x+tempRect.width-arcwidth+borderwidth,
-		// tempRect.y+borderwidth+tempRect.height-arcwidth, arcwidth, arcwidth,
-		// 270, 90);
 		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth, tempRect.y + borderwidth + tempRect.height - arcwidth, arcwidth - 1, arcwidth - 1, 270, 90);
 		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth, tempRect.y + borderwidth + tempRect.height - arcwidth, arcwidth - 2, arcwidth - 2, 270, 90);
 		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth, tempRect.y + borderwidth + tempRect.height - arcwidth, arcwidth - 3, arcwidth - 3, 270, 90);
 
-		// graphics.drawArc(tempRect.x+borderwidth,
-		// tempRect.y+borderwidth+tempRect.height-arcwidth,
-		// arcwidth, arcwidth, 220, 50);
 		graphics.drawArc(tempRect.x + borderwidth, tempRect.y + borderwidth + tempRect.height - arcwidth, arcwidth - 1, arcwidth - 1, 230, 40);
-		// graphics.drawArc(tempRect.x+borderwidth,
-		// tempRect.y+borderwidth+tempRect.height-arcwidth,
-		// arcwidth-2, arcwidth-2, 240, 20);
 
 		graphics.fillRectangle(tempRect.x + tempRect.width + 1, tempRect.y + arcwidth - 2 * borderwidth - 4, borderwidth, tempRect.height - arcwidth + borderwidth);
 		graphics.fillRectangle(tempRect.x + arcwidth - 2 * borderwidth - 4, tempRect.y + tempRect.height + 1, tempRect.width - arcwidth + borderwidth, borderwidth);

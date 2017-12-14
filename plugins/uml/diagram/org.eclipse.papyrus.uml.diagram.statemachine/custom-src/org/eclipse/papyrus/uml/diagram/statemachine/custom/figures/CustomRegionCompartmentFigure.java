@@ -31,9 +31,7 @@ public class CustomRegionCompartmentFigure extends ShapeCompartmentFigure {
 	@Override
 	protected void configureFigure(IMapMode mm) {
 		super.configureFigure(mm);
-		// scrollPane.setScrollBarVisibility(ScrollPane.AUTOMATIC);
 		scrollPane.setBorder(null);
-		// setBorder(null);
 	}
 
 }

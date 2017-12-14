@@ -200,7 +200,7 @@ public class Zone {
 	 * @return a list of the regions in the list matching the criterion
 	 */
 	public static List<View> getMatchingRegionsFromList(List<View> regionList, String initPattern, String excludingZoneInFinalPattern) {
-		List<View> matchingRegions = new ArrayList<View>();
+		List<View> matchingRegions = new ArrayList<>();
 		Iterator<View> it = regionList.iterator();
 		while (it.hasNext()) {
 			View view = it.next();

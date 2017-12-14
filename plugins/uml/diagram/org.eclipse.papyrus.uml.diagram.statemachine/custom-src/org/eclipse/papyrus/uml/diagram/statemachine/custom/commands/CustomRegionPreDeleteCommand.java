@@ -110,7 +110,6 @@ public class CustomRegionPreDeleteCommand extends DeleteCommand {
 			// get its counterpart
 			Zone.resetRegionCounterpartZone(region);
 		}
-		// ViewUtil.destroy(region);
 		return CommandResult.newOKCommandResult();
 	}
 }
