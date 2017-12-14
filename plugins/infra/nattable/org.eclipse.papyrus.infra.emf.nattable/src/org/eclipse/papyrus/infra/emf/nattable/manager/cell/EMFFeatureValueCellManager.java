@@ -11,6 +11,7 @@
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
  *  Alain Le Guennec (Esterel Technologies SAS) - Bug 497452
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr Bug 528791
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.nattable.manager.cell;
 
@@ -217,7 +218,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 											// an element can be owned by itself
 											return UnexecutableCommand.INSTANCE;
 										} else {
-											shouldOpenDialog = ((EObject) current).eContainer() != elementToEdit;
+											shouldOpenDialog = ((EObject) newValue).eContainer() != null && ((EObject) current).eContainer() != elementToEdit;
 										}
 									}
 								}
@@ -226,7 +227,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 							// an element cannot be owned by itself
 							return UnexecutableCommand.INSTANCE;
 						} else if (newValue instanceof EObject) {
-							shouldOpenDialog = ((EObject) newValue).eContainer() != elementToEdit;
+							shouldOpenDialog = ((EObject) newValue).eContainer() != null && ((EObject) newValue).eContainer() != elementToEdit;
 						}
 
 						if (shouldOpenDialog) {
