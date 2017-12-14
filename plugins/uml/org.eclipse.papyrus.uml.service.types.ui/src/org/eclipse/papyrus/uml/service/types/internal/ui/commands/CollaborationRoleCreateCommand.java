@@ -45,7 +45,7 @@ public class CollaborationRoleCreateCommand extends EditElementCommand {
 
 	@Override
 	public boolean canExecute() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 

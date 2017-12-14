@@ -57,13 +57,13 @@ public class BundlePropertiesEditor extends AbstractFileEditor {
 
 	@Override
 	public void createFiles(Set<String> files) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	protected void doSave() {
-		// TODO Auto-generated method stub
+		
 
 	}
 

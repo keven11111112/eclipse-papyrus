@@ -26,7 +26,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class AddShapeNamedElementAction: create an edit part to display an element as the shape that comes from applied stereotypes.
  */

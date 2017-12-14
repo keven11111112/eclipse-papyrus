@@ -256,7 +256,7 @@ public class CommandStackView extends AbstractTreeView {
 
 	@Override
 	protected void openElement(final Object element) {
-		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

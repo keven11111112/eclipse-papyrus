@@ -202,13 +202,13 @@ public class DynamicBodyEditor extends AbstractValueEditor implements Listener {
 
 	@Override
 	public void updateStatus(IStatus status) {
-		// TODO Auto-generated method stub
+		
 	}
 
 
 	@Override
 	public void changeColorField() {
-		// TODO Auto-generated method stub
+		
 
 	}
 }

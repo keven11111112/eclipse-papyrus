@@ -45,7 +45,7 @@ public class CheckboxIGraphicalFocusListenner implements MouseTrackListener {
 	}
 
 	public void mouseHover(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

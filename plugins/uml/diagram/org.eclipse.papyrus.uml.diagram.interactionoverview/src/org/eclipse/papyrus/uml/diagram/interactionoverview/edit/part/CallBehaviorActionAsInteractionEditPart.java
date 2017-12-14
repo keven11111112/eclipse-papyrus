@@ -74,7 +74,7 @@ public class CallBehaviorActionAsInteractionEditPart extends CallBehaviorActionE
 
 	@Override
 	public Command getCommand(final Request _request) {
-		// TODO Auto-generated method stub
+		
 		if (_request instanceof ChangeBoundsRequest) {
 			final ChangeBoundsRequest request = (ChangeBoundsRequest) _request;
 			final CompoundCommand compoundCommand = new CompoundCommand();

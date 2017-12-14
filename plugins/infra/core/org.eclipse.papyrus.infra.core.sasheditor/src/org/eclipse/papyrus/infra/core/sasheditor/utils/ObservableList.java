@@ -39,7 +39,7 @@ public class ObservableList<T> extends ArrayList<T> implements IObservableList<T
 	 *
 	 */
 	public ObservableList() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

@@ -30,7 +30,7 @@ public class InteractionOverviewDiagramViewFactory extends DiagramViewFactory {
 
 	@Override
 	protected Diagram createDiagramView() {
-		// TODO Auto-generated method stub
+		
 		Diagram diagram = super.createDiagramView();
 		DiagramVersioningUtils.stampCurrentVersion(diagram);
 		return diagram;

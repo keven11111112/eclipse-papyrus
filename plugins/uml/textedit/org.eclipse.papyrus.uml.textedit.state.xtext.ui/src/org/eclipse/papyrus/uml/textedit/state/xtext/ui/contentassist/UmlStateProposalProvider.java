@@ -81,7 +81,7 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 	@Override
 	public void completeSubmachineRule_Path(EObject model, Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
-		// TODO Auto-generated method stub
+		
 		Namespace root = (Namespace) EcoreUtil
 				.getRootContainer(ContextElementUtil.getContextElement(model.eResource()));
 		if (root == null) {
@@ -171,7 +171,7 @@ public class UmlStateProposalProvider extends AbstractUmlStateProposalProvider {
 	@Override
 	public void completeQualifiedName_Remaining(EObject model, Assignment assignment, ContentAssistContext context,
 			ICompletionProposalAcceptor acceptor) {
-		// TODO Auto-generated method stub
+		
 		QualifiedName path = (QualifiedName) model;
 		for (NamedElement n : path.getPath().getOwnedMembers()) {
 			if (n instanceof Namespace && !(n instanceof StateMachine)) {

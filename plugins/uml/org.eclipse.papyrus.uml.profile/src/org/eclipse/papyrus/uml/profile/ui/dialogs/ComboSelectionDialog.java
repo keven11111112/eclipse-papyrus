@@ -17,7 +17,7 @@ package org.eclipse.papyrus.uml.profile.ui.dialogs;
 
 import org.eclipse.swt.widgets.Shell;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ComboSelectionDialog.
  */

@@ -76,7 +76,7 @@ public class OLDCustomBehaviorExecutionSpecificationEditPart extends BehaviorExe
 	 */
 	public OLDCustomBehaviorExecutionSpecificationEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	private NotificationHelper helper = new NotificationHelper(new UIAdapterImpl() {

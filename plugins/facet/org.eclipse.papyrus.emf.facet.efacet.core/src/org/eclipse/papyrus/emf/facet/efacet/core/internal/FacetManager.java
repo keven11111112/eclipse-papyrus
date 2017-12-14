@@ -368,7 +368,7 @@ public class FacetManager implements IFacetManager, Adapter {
 
 	public List<ETypedElementResult> get(final Collection<EObject> eObjects, final EStructuralFeature structuralFeature)
 			throws DerivedTypedElementException {
-		// TODO Auto-generated method stub
+		
 		throw new UnsupportedOperationException("not implemented yet"); //$NON-NLS-1$
 	}
 
@@ -376,7 +376,7 @@ public class FacetManager implements IFacetManager, Adapter {
 	public List<ETypedElementResult> batchInvoke(
 			final Collection<EObject> eObjects, final EOperation operation,
 			final Object... arguments) throws FacetManagerException {
-		// TODO Auto-generated method stub
+		
 		throw new UnsupportedOperationException("not implemented yet"); //$NON-NLS-1$
 	}
 
@@ -403,7 +403,7 @@ public class FacetManager implements IFacetManager, Adapter {
 	}
 
 	public List<ETypedElement> getAppliedFeatures() {
-		// TODO Auto-generated method stub
+		
 		throw new UnsupportedOperationException("not implemented yet"); //$NON-NLS-1$
 	}
 

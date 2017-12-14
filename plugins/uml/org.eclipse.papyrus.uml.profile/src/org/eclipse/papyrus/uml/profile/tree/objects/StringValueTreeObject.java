@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.profile.tree.objects;
 
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class StringValueTreeObject.
  */

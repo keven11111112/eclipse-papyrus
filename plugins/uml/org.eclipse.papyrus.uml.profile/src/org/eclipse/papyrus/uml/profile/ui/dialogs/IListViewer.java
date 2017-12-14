@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.uml.profile.ui.dialogs;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface IListViewer.
  */

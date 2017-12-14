@@ -70,7 +70,7 @@ public class ProfileCatalogService implements IService {
 	 */
 	@Override
 	public void disposeService() throws ServiceException {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -79,7 +79,7 @@ public class ProfileCatalogService implements IService {
 	 * @return
 	 */
 	public UserProfileCatalog getProfileCatalog() {
-		// TODO Auto-generated method stub
+		
 		return profileCatalog;
 	}
 

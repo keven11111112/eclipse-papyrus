@@ -21,7 +21,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class DimensionGroup that display fields for the the dimension of a node (width, height)
  */

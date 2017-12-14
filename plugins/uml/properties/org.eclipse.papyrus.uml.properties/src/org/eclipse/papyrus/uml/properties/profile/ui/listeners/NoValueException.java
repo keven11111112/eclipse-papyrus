@@ -14,7 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.listeners;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class NoValueException.
  */

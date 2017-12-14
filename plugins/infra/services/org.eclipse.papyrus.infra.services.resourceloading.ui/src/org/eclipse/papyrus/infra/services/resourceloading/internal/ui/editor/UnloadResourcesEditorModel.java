@@ -82,7 +82,7 @@ public class UnloadResourcesEditorModel implements IEditorModel {
 	 * @return
 	 */
 	public Object getRawModel() {
-		// TODO Auto-generated method stub
+		
 		return this;
 	}
 

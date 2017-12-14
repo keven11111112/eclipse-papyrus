@@ -57,7 +57,7 @@ public class CustomActionExecutionSpecificationEditPart extends CCombinedCompart
 	 */
 	@Override
 	protected void refreshBounds() {
-		// TODO Auto-generated method stub
+		
 		super.refreshBounds();
 	}
 	/**
@@ -66,7 +66,7 @@ public class CustomActionExecutionSpecificationEditPart extends CCombinedCompart
 	 */
 	@Override
 	protected void refreshVisuals() {
-		// TODO Auto-generated method stub
+		
 		super.refreshVisuals();
 	}
 	/**
@@ -76,7 +76,7 @@ public class CustomActionExecutionSpecificationEditPart extends CCombinedCompart
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
-		// TODO Auto-generated method stub
+		
 		super.handleNotificationEvent(event);
 	}
 }

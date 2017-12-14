@@ -35,7 +35,7 @@ public class DiagramConnectionGroup extends ConnectionGroup {
 	 */
 	public DiagramConnectionGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

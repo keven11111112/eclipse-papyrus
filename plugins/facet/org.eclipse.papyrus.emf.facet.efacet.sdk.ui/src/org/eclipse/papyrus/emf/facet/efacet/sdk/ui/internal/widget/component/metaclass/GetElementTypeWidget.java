@@ -72,7 +72,7 @@ public class GetElementTypeWidget extends
 
 	@Override
 	protected EPackage getEPackage() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

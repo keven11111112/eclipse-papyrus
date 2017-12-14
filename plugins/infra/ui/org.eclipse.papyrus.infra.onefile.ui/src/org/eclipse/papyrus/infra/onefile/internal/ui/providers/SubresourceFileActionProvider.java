@@ -37,7 +37,7 @@ public class SubresourceFileActionProvider extends EditActionProvider {
 
 	@Override
 	public void setContext(ActionContext context) {
-		// TODO Auto-generated method stub
+		
 		List<Object> resources = new LinkedList<Object>();
 		if (context.getSelection() instanceof IStructuredSelection) {
 			IStructuredSelection contextSelec = (IStructuredSelection) context.getSelection();

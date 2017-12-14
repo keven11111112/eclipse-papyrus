@@ -68,7 +68,7 @@ public class FakeEditorModel  implements IEditorModel {
 	 * @return
 	 */
 	public Object getRawModel() {
-		// TODO Auto-generated method stub
+		
 		return this;
 	}
 

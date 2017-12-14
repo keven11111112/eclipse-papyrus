@@ -20,7 +20,7 @@ import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class FontManager.
  *

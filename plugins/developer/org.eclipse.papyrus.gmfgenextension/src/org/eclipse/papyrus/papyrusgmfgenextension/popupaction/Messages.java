@@ -15,7 +15,7 @@ package org.eclipse.papyrus.papyrusgmfgenextension.popupaction;
 
 import org.eclipse.osgi.util.NLS;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Messages.
  */

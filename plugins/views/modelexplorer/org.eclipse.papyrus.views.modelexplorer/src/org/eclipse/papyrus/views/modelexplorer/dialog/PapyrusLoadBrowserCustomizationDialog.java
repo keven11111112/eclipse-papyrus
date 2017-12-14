@@ -31,7 +31,7 @@ public class PapyrusLoadBrowserCustomizationDialog extends MultipleValueSelector
 
 	public PapyrusLoadBrowserCustomizationDialog(Shell parentShell, IElementSelector selector) {
 		super(parentShell, selector);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	// /** protected final Collection<EPackage> ePackages;

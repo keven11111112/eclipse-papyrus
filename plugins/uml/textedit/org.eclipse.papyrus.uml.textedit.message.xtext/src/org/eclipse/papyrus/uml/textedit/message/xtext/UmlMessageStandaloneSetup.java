@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.uml.textedit.message.xtext;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Initialization support for running Xtext languages
  * without equinox extension registry.

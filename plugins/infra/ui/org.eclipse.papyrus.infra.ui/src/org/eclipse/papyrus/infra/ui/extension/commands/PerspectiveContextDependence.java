@@ -24,7 +24,7 @@ public class PerspectiveContextDependence implements ICreationCondition {
 	protected String commandID = null;
 
 	public PerspectiveContextDependence() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

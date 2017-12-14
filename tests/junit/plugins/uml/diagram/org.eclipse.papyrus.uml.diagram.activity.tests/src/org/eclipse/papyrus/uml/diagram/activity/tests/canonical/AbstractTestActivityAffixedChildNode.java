@@ -46,7 +46,7 @@ public class AbstractTestActivityAffixedChildNode extends AbstractPapyrusTestCas
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

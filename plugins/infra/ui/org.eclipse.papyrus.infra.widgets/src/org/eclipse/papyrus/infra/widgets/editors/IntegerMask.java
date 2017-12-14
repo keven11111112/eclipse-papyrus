@@ -81,13 +81,13 @@ public class IntegerMask extends AbstractValueEditor implements SelectionListene
 
 	@Override
 	public void setReadOnly(final boolean readOnly) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public boolean isReadOnly() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

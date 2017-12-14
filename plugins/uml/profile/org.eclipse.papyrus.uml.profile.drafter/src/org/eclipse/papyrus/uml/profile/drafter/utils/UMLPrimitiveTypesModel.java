@@ -83,7 +83,7 @@ public class UMLPrimitiveTypesModel {
 	 * @throws UnsupportedOperationException If the Library cannot be found.
 	 */
 	public UMLPrimitiveTypesModel(ResourceSet resourceSet) {
-		// TODO Auto-generated constructor stub
+		
 		
 		try {
 			libraryResource = lookupPrimitiveTypesResource(resourceSet);

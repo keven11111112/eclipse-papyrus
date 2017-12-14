@@ -115,7 +115,7 @@ public class AccessibleTypeCatalog implements ITypeCatalog {
 //		EcoreUtil.getObjectsByType(element.eResource().getAllContents(), UMLPackage.eINSTANCE.getType());
 //		
 //		element.eResource().g
-//		// TODO Auto-generated method stub
+//		
 //		return null;
 	}
 

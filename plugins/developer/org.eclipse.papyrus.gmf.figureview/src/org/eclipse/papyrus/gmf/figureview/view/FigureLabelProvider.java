@@ -109,13 +109,13 @@ public class FigureLabelProvider implements ITableLabelProvider, ITableColorProv
 
 	@Override
 	public Color getForeground(Object element, int columnIndex) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Color getBackground(Object element, int columnIndex) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 };

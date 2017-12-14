@@ -19,7 +19,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ElementList.
  *

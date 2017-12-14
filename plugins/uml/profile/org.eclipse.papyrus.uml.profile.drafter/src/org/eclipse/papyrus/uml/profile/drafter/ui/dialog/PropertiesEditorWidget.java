@@ -318,7 +318,7 @@ public class PropertiesEditorWidget {
 
 
 	private void createDialogContents() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -326,7 +326,7 @@ public class PropertiesEditorWidget {
 	 * Fill the content area with values found in stereotype.
 	 */
 	private void fillContentArea() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -377,13 +377,13 @@ public class PropertiesEditorWidget {
 		
 		@Override
 		public void dispose() {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 

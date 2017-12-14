@@ -25,7 +25,7 @@ public class CustomAcceptTimeEventActionAppliedStereotypeEditPart extends Accept
 
 	public CustomAcceptTimeEventActionAppliedStereotypeEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override

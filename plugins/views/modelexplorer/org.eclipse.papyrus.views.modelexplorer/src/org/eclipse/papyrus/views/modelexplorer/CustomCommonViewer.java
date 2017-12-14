@@ -46,7 +46,7 @@ public class CustomCommonViewer extends CommonViewer {
 
 	public CustomCommonViewer(String aViewerId, Composite aParent, int aStyle) {
 		super(aViewerId, aParent, aStyle);
-		// TODO Auto-generated constructor stub
+		
 		setComparer(new IElementComparer() {
 
 			@Override

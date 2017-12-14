@@ -108,7 +108,7 @@ public class CreatedPapyrusProfileModel extends EMFLogicalModel {
 	 */
 	@Override
 	protected String getModelFileExtension() {
-		// TODO Auto-generated method stub
+		
 		return UML_FILE_EXTENSION;
 	}
 

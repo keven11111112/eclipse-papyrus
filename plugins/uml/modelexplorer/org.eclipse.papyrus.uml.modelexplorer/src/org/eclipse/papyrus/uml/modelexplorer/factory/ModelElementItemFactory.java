@@ -16,7 +16,7 @@ public class ModelElementItemFactory implements IAdapterFactory {
 	}
 
 	public Class<?>[] getAdapterList() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

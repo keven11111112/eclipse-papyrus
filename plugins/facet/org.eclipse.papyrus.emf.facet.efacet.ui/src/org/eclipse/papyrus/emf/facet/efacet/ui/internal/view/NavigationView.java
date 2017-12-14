@@ -627,37 +627,37 @@ public class NavigationView extends ViewPart implements INavigationView {
 	}
 
 	public List<EClassifier> getUsableEClassifiers() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public void selectETypedElement(final ETypedElement eTypedElement) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public ETypedElement getSelectedETypedElement() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public List<IETypedElementResultDisplayerOpener> getAvailableSelectedDisplayers() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public void setSelectDisplayer(final IETypedElementResultDisplayerOpener resultDisplayer) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public IETypedElementResultDisplayerOpener getSelectedDisplayer() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public WorkbenchPart preform() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

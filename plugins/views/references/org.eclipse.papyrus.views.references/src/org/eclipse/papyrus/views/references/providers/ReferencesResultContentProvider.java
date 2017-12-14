@@ -111,7 +111,7 @@ public class ReferencesResultContentProvider implements ITreeContentProvider {
 
 	@Override
 	public Object getParent(Object element) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

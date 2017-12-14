@@ -71,7 +71,7 @@ public class UpdateProfileHandler extends AbstractProfileBaseHandler {
 	 *
 	 */
 	public UpdateProfileHandler() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

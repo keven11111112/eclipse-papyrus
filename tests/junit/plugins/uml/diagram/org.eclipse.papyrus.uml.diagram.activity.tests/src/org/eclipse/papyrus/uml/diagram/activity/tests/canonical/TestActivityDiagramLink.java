@@ -27,7 +27,7 @@ public class TestActivityDiagramLink extends TestLink {
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

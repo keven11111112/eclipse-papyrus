@@ -71,7 +71,7 @@ public class ViewPageSite extends PageSite implements IViewSite {
 	 * @return
 	 */
 	public String getRegisteredName() {
-		// TODO Auto-generated method stub
+		
 		return parentViewSite.getRegisteredName();
 	}
 
@@ -94,7 +94,7 @@ public class ViewPageSite extends PageSite implements IViewSite {
 	 */
 	@Deprecated
 	public IKeyBindingService getKeyBindingService() {
-		// TODO Auto-generated method stub
+		
 		return parentViewSite.getKeyBindingService();
 	}
 

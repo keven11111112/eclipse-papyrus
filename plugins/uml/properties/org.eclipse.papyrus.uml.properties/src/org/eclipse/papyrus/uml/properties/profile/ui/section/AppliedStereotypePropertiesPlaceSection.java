@@ -39,7 +39,7 @@ import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class StereotypePropertiesPlaceSection allows users to select the way to display stereotype properties.
  *
@@ -204,7 +204,7 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 	}
 
 	public Notifier getTarget() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -213,7 +213,7 @@ public class AppliedStereotypePropertiesPlaceSection extends AbstractPropertySec
 	}
 
 	public void setTarget(Notifier newTarget) {
-		// TODO Auto-generated method stub
+		
 
 	}
 }

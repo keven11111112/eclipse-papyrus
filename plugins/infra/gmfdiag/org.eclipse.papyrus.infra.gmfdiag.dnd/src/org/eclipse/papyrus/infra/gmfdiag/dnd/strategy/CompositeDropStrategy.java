@@ -31,7 +31,7 @@ public abstract class CompositeDropStrategy implements DropStrategy {
 	}
 
 	public void setOptions(Map<String, Object> options) {
-		// TODO Auto-generated method stub
+		
 	}
 
 	public Command getCommand(Request request, EditPart targetEditPart) {

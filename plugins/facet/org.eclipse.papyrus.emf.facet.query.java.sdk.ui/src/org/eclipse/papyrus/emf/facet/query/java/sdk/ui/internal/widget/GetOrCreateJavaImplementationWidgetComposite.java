@@ -107,7 +107,7 @@ public class GetOrCreateJavaImplementationWidgetComposite extends
 	@Override
 	protected SelectOrCreateJavaClassWizard createSynchronizedWizard(
 			final SelectOrCreateJavaClassWizard wizard) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

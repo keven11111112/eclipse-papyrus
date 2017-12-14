@@ -128,7 +128,7 @@ public class TypesEventLabelProvider extends org.eclipse.jface.viewers.LabelProv
 	 */
 	@Override
 	public Color getBackground(Object element) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

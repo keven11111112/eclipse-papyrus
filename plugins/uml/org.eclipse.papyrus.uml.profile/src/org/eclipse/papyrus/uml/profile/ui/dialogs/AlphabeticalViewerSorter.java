@@ -21,7 +21,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Sorter for the TableViewer for assisted dialogs.
  */

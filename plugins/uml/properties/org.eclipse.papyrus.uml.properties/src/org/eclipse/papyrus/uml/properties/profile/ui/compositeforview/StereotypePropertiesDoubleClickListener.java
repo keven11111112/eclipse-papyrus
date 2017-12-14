@@ -18,7 +18,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.uml.properties.profile.ui.listeners.DoubleClickListener;
 import org.eclipse.swt.widgets.TreeItem;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class StereotypePropertiesDoubleClickListener.
  */

@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Property;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class InputDialogPrimitiveType.
  */

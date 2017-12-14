@@ -30,7 +30,7 @@ public class PropertyModel {
 	 *
 	 */
 	public PropertyModel() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	

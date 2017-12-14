@@ -16,7 +16,7 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentDiagramEditPart;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CreateDeploymentDiagramCommand.
  */

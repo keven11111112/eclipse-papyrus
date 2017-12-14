@@ -320,7 +320,7 @@ public class SimpleSashWindowContentProviderUtils implements ISashWindowsContent
 	 * @param string
 	 */
 	public void setActivePage(String string) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	

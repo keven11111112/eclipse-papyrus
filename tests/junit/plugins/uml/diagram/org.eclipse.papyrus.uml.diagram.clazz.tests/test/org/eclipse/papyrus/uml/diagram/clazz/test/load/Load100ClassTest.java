@@ -27,7 +27,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.test.canonical.AbstractPapyrusTestC
 import org.junit.Ignore;
 import org.junit.Test;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Load100ClassTest.
  */

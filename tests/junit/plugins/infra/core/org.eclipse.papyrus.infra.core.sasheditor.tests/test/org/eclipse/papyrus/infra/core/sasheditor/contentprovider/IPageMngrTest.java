@@ -38,14 +38,14 @@ public abstract class IPageMngrTest extends TestCase {
 	@Before
 	@Override
 	protected void setUp() throws Exception {
-		// TODO Auto-generated method stub
+		
 		super.setUp();
 	}
 
 	@After
 	@Override
 	protected void tearDown() throws Exception {
-		// TODO Auto-generated method stub
+		
 		super.tearDown();
 	}
 

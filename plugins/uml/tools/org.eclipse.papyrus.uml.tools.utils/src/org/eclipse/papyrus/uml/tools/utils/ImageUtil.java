@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Stereotype;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Utility class for <code>org.eclipse.uml2.uml.Image</code><BR>
  */

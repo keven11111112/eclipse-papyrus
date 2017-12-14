@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Default panel for the Accord/UML view.<BR>
  * If the element selected in the model explorer or in the diagrams, or if

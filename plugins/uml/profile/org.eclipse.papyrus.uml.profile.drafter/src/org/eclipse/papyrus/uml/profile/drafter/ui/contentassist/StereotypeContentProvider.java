@@ -77,7 +77,7 @@ public class StereotypeContentProvider implements IContentProposal, Comparable<S
 	 * @return
 	 */
 	public String getDescription() {
-		// TODO Auto-generated method stub
+		
 		return stereotype.getKeyword();
 	}
 

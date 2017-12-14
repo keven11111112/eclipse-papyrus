@@ -22,7 +22,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigu
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ArtifactFigure.
  */

@@ -21,7 +21,7 @@ import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class PrimitiveTypeValueTreeObject.
  */

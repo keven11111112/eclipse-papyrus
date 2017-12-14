@@ -30,7 +30,7 @@ public class CustomConnectionPointReferenceNameEditPart extends ConnectionPointR
 
 	@Override
 	protected void handleNotificationEvent(Notification event) {
-		// TODO Auto-generated method stub
+		
 		super.handleNotificationEvent(event);
 
 		refreshVisuals();

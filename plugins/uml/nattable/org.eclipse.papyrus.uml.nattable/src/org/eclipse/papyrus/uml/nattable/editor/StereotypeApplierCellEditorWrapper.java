@@ -438,7 +438,7 @@ public class StereotypeApplierCellEditorWrapper implements ICellEditor {
 	 */
 	@Override
 	public boolean activateOnTraversal(IConfigRegistry configRegistry, List<String> configLabels) {
-		// TODO Auto-generated method stub
+		
 		//TODO : new method coming from nattable 1.2.0
 		return false;
 	}

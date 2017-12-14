@@ -51,7 +51,7 @@ public class FakePageModel implements IPageModel {
 	 * {@inheritDoc}
 	 */
 	public Image getTabIcon() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -59,7 +59,7 @@ public class FakePageModel implements IPageModel {
 	 * {@inheritDoc}
 	 */
 	public String getTabTitle() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

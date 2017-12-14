@@ -39,7 +39,7 @@ public class CheckVisitor implements IQueryVisitor {
 	 * @param windowModel
 	 */
 	public void visit(WindowTerm windowTerm,  org.eclipse.papyrus.infra.core.sashwindows.di.Window windowModel) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	/**
@@ -58,7 +58,7 @@ public class CheckVisitor implements IQueryVisitor {
 	 * @param sash
 	 */
 	public void visit(HSash sash, SashPanel sashModel) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -68,7 +68,7 @@ public class CheckVisitor implements IQueryVisitor {
 	 * @param sash
 	 */
 	public void visit(VSash sash , SashPanel sashModel) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

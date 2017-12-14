@@ -47,7 +47,7 @@ public class CheckVisitor extends SimpleContentProviderBaseVisitor implements IP
 	 */
 	@Override
 	public void visit(WindowTerm windowTerm,  RootModel windowModel) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	/**
@@ -68,7 +68,7 @@ public class CheckVisitor extends SimpleContentProviderBaseVisitor implements IP
 	 */
 	@Override
 	public void visit(HSash sash, SashPanelModel sashModel) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -79,7 +79,7 @@ public class CheckVisitor extends SimpleContentProviderBaseVisitor implements IP
 	 */
 	@Override
 	public void visit(VSash sash , SashPanelModel sashModel) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

@@ -51,7 +51,7 @@ public class CheckVisitor extends DiContentProviderBaseVisitor implements IPages
 	 */
 	@Override
 	public void visit(WindowTerm windowTerm,  Window windowModel) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	/**

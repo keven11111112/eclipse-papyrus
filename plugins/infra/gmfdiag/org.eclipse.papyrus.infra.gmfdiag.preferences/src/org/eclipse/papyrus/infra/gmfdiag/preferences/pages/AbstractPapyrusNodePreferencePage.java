@@ -79,7 +79,7 @@ public abstract class AbstractPapyrusNodePreferencePage extends AbstractPapyrusE
 	 * Initialize {@link #compartmentsList} with the name of the compartment owned by the node
 	 */
 	protected void initializeCompartmentsList() {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**

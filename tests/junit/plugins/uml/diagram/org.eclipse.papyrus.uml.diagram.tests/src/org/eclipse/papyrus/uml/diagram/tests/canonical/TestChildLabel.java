@@ -43,7 +43,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEd
 import org.eclipse.uml2.uml.Element;
 import org.junit.Assert;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class TestChildLabel.
  */
@@ -380,7 +380,6 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.uml.diagram.tes
 	 */
 	@Override
 	protected Element getRootSemanticModel() {
-		// TODO Auto-generated method stub
 		return (Element)((View)getTopEditPart().getModel()).getElement();
 	}
 

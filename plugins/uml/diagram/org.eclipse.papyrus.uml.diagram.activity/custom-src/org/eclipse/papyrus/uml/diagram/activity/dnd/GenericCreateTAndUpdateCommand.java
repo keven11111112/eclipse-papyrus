@@ -155,7 +155,7 @@ public abstract class GenericCreateTAndUpdateCommand<T extends EObject ,E extend
 	 */
 	@Override
 	protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-		// TODO Auto-generated method stub
+		
 		throw new ExecutionException("not implemented");
 	}
 
@@ -169,7 +169,7 @@ public abstract class GenericCreateTAndUpdateCommand<T extends EObject ,E extend
 	 */
 	@Override
 	protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-		// TODO Auto-generated method stub
+		
 		throw new ExecutionException("not implemented");
 	}
 

@@ -163,7 +163,7 @@ public class MultiReferenceEditorWithPropertyView extends AbstractListEditor imp
 
 	@Override
 	public void changeColorField() {
-		// TODO Auto-generated method stub
+		
 
 	}
 }

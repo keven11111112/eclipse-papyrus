@@ -72,7 +72,7 @@ public class SynchonizedOclQueryWidget extends
 		return safeSyncExec(new AbstractExceptionFreeRunnable<String>() {
 			@Override
 			public String safeRun() {
-				// TODO Auto-generated method stub
+				
 				return SynchonizedOclQueryWidget.this.getSynchronizedObject()
 						.getError();
 			}

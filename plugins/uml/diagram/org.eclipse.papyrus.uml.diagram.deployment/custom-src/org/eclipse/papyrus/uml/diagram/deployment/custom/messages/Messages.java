@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.diagram.deployment.custom.messages;
 
 import org.eclipse.osgi.util.NLS;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Messages.
  */

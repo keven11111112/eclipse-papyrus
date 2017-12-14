@@ -214,7 +214,7 @@ public class AppliedProfileCompositeWithView extends org.eclipse.papyrus.uml.pro
 	}
 
 	public void setDiagramElement(EModelElement diagramElement) {
-		// TODO Auto-generated method stub
+		
 
 	}
 }

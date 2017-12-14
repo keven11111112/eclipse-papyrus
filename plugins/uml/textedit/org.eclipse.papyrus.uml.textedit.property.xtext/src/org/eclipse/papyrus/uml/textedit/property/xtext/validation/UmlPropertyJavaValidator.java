@@ -32,7 +32,7 @@ public class UmlPropertyJavaValidator extends AbstractUmlPropertyJavaValidator {
 
 	@Override
 	public void register(EValidatorRegistrar registrar) {
-		// TODO Auto-generated method stub
+		
 		super.register(registrar);
 	}
 

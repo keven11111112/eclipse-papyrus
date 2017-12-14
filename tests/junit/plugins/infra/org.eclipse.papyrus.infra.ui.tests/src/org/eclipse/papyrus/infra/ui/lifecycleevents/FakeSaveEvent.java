@@ -19,7 +19,7 @@ public class FakeSaveEvent extends DoSaveEvent {
 	 */
 	public FakeSaveEvent() {
 		super(null, null);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 }

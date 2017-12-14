@@ -28,7 +28,7 @@ public class DefaultRule implements IRule<RuleConfiguration> {
 	 */
 	@Override
 	public boolean approveRequest(IEditCommandRequest request) {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 

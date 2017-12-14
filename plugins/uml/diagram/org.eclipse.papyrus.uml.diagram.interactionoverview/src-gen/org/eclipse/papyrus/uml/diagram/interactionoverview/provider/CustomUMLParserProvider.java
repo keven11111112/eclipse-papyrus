@@ -32,7 +32,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 		default:
 			return super.getParser(visualID);
 		}
-		// TODO Auto-generated method stub
+		
 
 	}
 

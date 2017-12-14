@@ -26,7 +26,7 @@ public abstract class AbstractPapyrusTestCase extends org.eclipse.papyrus.uml.di
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		// TODO Auto-generated method stub
+		
 		return new CreateUseCaseDiagramCommand();
 	}
 

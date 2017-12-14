@@ -84,7 +84,7 @@ public class InteractionOperandFigure extends RoundedCompartmentFigure {
 	 */
 	@Override
 	public Dimension getMinimumSize(int wHint, int hHint) {
-		// TODO Auto-generated method stub
+		
 		Dimension dim= super.getMinimumSize(wHint, hHint);
 		//look for combinedFragmentFigure
 		IFigure cfFigure=getParent();

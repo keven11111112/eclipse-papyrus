@@ -328,7 +328,7 @@ public abstract class AbstractCreateNodeFromPaletteTest extends org.eclipse.papy
 	 * @return
 	 */
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

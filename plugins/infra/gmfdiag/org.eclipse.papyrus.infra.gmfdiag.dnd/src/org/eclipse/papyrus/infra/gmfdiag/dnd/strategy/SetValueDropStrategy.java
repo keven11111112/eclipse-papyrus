@@ -36,7 +36,7 @@ public abstract class SetValueDropStrategy extends TransactionalDropStrategy {
 
 	@Override
 	public Command doGetCommand(Request request, EditPart targetEditPart) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

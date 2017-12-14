@@ -28,7 +28,7 @@ public class CreateStereotypeCommand implements ICommand {
 	 */
 	@Override
 	public void execute() throws CommandExecutionException {
-		// TODO Auto-generated method stub
+		
 
 	}
 

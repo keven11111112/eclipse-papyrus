@@ -573,49 +573,49 @@ public class CustomizedLabelProvider extends CellLabelProvider implements
 
 	public String getToolTipText(final Object element,
 			final ETypedElement eTypedElement) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public Image getToolTipImage(final Object element,
 			final ETypedElement eTypedElement) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public Font getToolTipFont(final Object element,
 			final ETypedElement eTypedElement) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public Color getToolTipBackgroundColor(final Object element,
 			final ETypedElement eTypedElement) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public Color getToolTipForegroundColor(final Object element,
 			final ETypedElement eTypedElement) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public int getToolTipTimeDisplayed(final Object element,
 			final ETypedElement eTypedElement) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public int getToolTipDisplayDelayTime(final Object element,
 			final ETypedElement eTypedElement) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public int getToolTipStyle(final Object element,
 			final ETypedElement eTypedElement) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 

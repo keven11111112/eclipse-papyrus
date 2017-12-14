@@ -27,19 +27,19 @@ public class FakeComposedService extends ComposedService<FakeComposedServicePart
 
 	@Override
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void startService() throws ServiceException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void disposeService() throws ServiceException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	

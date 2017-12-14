@@ -65,7 +65,7 @@ class ActiveOclResultImpl implements ActiveOclResult, ActiveOclListener {
 	}
 
 	public Notifier adaptToEMFNotifier() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }

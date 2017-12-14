@@ -139,7 +139,7 @@ public final class JdtUtils {
 		contents.append("			final IParameterValueList2 parameterValues,\n"); //$NON-NLS-1$
 		contents.append("			final IFacetManager facetManager)\n"); //$NON-NLS-1$
 		contents.append("			throws DerivedTypedElementException {\n"); //$NON-NLS-1$
-		contents.append("		// TODO Auto-generated method stub\n"); //$NON-NLS-1$
+		contents.append("		\n"); //$NON-NLS-1$
 		contents.append("		return null;\n"); //$NON-NLS-1$
 		contents.append("	}\n"); //$NON-NLS-1$
 		contents.append("}\n"); //$NON-NLS-1$

@@ -222,7 +222,7 @@ public class DecoratorModelsObservableList extends ObservableList implements ICo
 			}
 
 			public void onFailure(Throwable t) {
-				// TODO Auto-generated method stub
+				
 			}
 		}, realmExecutor);
 	}

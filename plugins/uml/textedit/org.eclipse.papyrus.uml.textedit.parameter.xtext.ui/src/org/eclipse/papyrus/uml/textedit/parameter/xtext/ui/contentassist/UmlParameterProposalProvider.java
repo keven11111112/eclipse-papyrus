@@ -117,7 +117,7 @@ public class UmlParameterProposalProvider extends AbstractUmlParameterProposalPr
 	 */
 	@Override
 	public void completeKeyword(Keyword keyword, ContentAssistContext contentAssistContext, ICompletionProposalAcceptor acceptor) {
-		// TODO Auto-generated method stub
+		
 		EObject model = contentAssistContext.getCurrentModel();
 		if (!(model instanceof ModifiersRule)) {
 			if (model instanceof ParameterRule) {

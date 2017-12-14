@@ -70,7 +70,7 @@ public class ImageToolTipManager {
 	 * Constructor.
 	 */
 	public ImageToolTipManager() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	private void resetTimer() {

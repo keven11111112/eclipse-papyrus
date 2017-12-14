@@ -17,7 +17,7 @@ package org.eclipse.papyrus.uml.properties.profile.ui.panels;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Abstract panel for the Accord/UML view.<br>
  *

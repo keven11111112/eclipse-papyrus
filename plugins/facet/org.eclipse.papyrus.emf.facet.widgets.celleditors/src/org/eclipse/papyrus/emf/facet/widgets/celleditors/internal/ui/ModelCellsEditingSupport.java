@@ -125,6 +125,6 @@ public class ModelCellsEditingSupport<T> extends EditingSupport {
 
 	@Override
 	protected void setValue(final Object element, final Object value) {
-		// TODO Auto-generated method stub
+		
 	}
 }

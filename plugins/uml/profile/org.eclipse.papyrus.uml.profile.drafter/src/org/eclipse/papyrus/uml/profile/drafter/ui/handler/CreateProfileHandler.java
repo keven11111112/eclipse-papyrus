@@ -52,7 +52,7 @@ public class CreateProfileHandler extends AbstractBaseHandler {
 	 *
 	 */
 	public CreateProfileHandler() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class CreateProfileHandler extends AbstractBaseHandler {
 	 */
 	@Override
 	public String getCommandName() {
-		// TODO Auto-generated method stub
+		
 		return "Create new Profile";
 	}
 

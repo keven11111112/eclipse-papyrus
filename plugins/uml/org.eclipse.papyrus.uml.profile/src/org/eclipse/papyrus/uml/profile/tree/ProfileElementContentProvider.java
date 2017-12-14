@@ -22,7 +22,7 @@ import org.eclipse.papyrus.uml.profile.tree.objects.ParentTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.TreeObject;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ProfileElementContentProvider.
  */

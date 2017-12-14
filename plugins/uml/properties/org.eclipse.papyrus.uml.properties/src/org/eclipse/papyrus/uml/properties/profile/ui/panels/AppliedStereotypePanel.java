@@ -26,7 +26,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class StereotypePanel.
  */

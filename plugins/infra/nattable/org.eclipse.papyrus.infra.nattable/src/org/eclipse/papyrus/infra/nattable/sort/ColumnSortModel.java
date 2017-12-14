@@ -248,7 +248,7 @@ public class ColumnSortModel implements IPapyrusSortModel {
 	 */
 	@Override
 	public Comparator<?> getColumnComparator(int columnIndex) {
-		// TODO Auto-generated method stub
+		
 		//TODO : new method coming from nattable 1.2.0
 		return null;
 	}
@@ -260,7 +260,7 @@ public class ColumnSortModel implements IPapyrusSortModel {
 	 */
 	@Override
 	public void setTableInverted(boolean isInverted) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 }

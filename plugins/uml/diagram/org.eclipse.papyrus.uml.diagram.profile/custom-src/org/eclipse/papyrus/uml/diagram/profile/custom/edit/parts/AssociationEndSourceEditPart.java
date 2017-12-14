@@ -34,7 +34,7 @@ public class AssociationEndSourceEditPart extends AssociationRoleSourceEditPart 
 	 */
 	public AssociationEndSourceEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

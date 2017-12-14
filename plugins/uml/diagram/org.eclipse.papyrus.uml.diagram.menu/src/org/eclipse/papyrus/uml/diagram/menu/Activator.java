@@ -77,7 +77,7 @@ public class Activator extends AbstractUIPlugin implements org.eclipse.ui.IStart
 	 *
 	 */
 	public void earlyStartup() {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

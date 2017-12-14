@@ -30,7 +30,7 @@ public class CustomShortCutDiagramEditPart extends ShortCutDiagramEditPart {
 
 	public CustomShortCutDiagramEditPart(View view) {
 		super(view);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	private IPageIconsRegistry editorRegistry;

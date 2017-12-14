@@ -649,52 +649,52 @@ public class LoadCustomizationsDialog<D> extends Dialog implements
 
 	public void addCustomization(final Customization customization)
 			throws IllegalParameterException {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public void addCustomizations(final List<Customization> customizations)
 			throws IllegalParameterException {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public void removeCustomization(final Customization customization)
 			throws IllegalParameterException {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public void removeCustomizations(final List<Customization> customizations)
 			throws IllegalParameterException {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public void cancel() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public void validate() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public List<Customization> getAvailableCustomizations() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public void pushUp(final Customization customization)
 			throws IllegalParameterException {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public void pushDown(final Customization customization)
 			throws IllegalParameterException {
-		// TODO Auto-generated method stub
+		
 
 	}
 }

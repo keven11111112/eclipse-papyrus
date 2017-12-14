@@ -27,7 +27,7 @@ public class UmlTransitionContentAssistHandler extends ContentAssistHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		// TODO Auto-generated method stub
+		
 		new ContentAssistAction(XtextUIMessages.getResourceBundle(), "ContentAssistProposal.",
 				ContextEditorUtil.currentEditor).run();
 		return this;

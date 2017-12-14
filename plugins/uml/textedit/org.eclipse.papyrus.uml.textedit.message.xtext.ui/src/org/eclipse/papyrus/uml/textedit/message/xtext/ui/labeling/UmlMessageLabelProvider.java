@@ -18,7 +18,7 @@ import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
 import com.google.inject.Inject;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Provides labels for a EObjects.
  *

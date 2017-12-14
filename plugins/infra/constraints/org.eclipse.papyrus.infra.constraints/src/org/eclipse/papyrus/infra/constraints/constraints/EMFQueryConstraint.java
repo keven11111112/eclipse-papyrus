@@ -22,13 +22,13 @@ public class EMFQueryConstraint extends AbstractConstraint {
 
 	@Override
 	protected boolean equivalent(Constraint constraint) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	@Override
 	protected boolean match(Object selection) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

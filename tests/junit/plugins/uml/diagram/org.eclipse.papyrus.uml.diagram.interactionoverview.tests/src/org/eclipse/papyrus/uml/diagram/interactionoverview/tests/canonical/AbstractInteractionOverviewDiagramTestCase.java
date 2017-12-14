@@ -607,7 +607,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }

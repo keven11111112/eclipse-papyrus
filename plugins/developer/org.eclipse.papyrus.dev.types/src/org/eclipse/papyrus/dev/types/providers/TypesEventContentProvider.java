@@ -35,7 +35,7 @@ public class TypesEventContentProvider implements ITreeContentProvider {
 	 */
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -48,7 +48,7 @@ public class TypesEventContentProvider implements ITreeContentProvider {
 	 */
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

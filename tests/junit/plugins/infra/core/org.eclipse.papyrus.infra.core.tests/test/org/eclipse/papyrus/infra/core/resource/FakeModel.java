@@ -34,7 +34,7 @@ public class FakeModel extends AbstractBaseModel {
 	 */
 	@Override
 	public String getIdentifier() {
-		// TODO Auto-generated method stub
+		
 		return identifier;
 	}
 
@@ -45,7 +45,7 @@ public class FakeModel extends AbstractBaseModel {
 	 */
 	@Override
 	protected String getModelFileExtension() {
-		// TODO Auto-generated method stub
+		
 		return identifier;
 	}
 

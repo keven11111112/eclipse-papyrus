@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Property;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class EnumerationItems.
  */

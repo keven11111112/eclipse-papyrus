@@ -79,7 +79,7 @@ public class TaggedValuesEditorWidget {
 	 * @param parent
 	 */
 	protected void createContent(Composite parent) {
-		// TODO Auto-generated method stub
+		
 
 
 
@@ -137,7 +137,7 @@ public class TaggedValuesEditorWidget {
 	}	
 	
 	private void createDialogContents() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -145,7 +145,7 @@ public class TaggedValuesEditorWidget {
 	 * Fill the content area with values found in stereotype.
 	 */
 	private void fillContentArea() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -196,13 +196,13 @@ public class TaggedValuesEditorWidget {
 		
 		@Override
 		public void dispose() {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 

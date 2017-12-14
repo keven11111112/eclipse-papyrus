@@ -13,12 +13,12 @@ import org.eclipse.papyrus.uml.tools.model.UmlModel;
 public class OCLContextContentProvider implements ITreeContentProvider {
 
 	public void dispose() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -46,7 +46,7 @@ public class OCLContextContentProvider implements ITreeContentProvider {
 	}
 
 	public Object getParent(Object element) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

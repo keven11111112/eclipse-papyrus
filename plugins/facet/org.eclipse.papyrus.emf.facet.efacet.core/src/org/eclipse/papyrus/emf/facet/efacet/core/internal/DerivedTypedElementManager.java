@@ -430,14 +430,14 @@ public class DerivedTypedElementManager implements IDerivedTypedElementManager {
 	// final DerivedTypedElement derivedTypedElement, final Collection<EObject> sources, final List<ParameterValue> parameterValues,
 	// final IDerivedTypedElementCollectionImplementation collectionEvaluator)
 	// throws DerivedTypedElementException {
-	// // TODO Auto-generated method stub
+	// 
 	// return null;
 	// }
 	//
 	// private static List<DerivedTypedElementEObjectResult<?>> batchEvaluateSingleValuedEObjectDerivedTypedElementWithCollectionEvaluator(
 	// final DerivedTypedElement derivedTypedElement, final Collection<EObject> sources, final List<ParameterValue> parameterValues,
 	// final IDerivedTypedElementCollectionImplementation collectionEvaluator) throws DerivedTypedElementException {
-	// // TODO Auto-generated method stub
+	// 
 	// return null;
 	// }
 	//
@@ -527,7 +527,7 @@ public class DerivedTypedElementManager implements IDerivedTypedElementManager {
 	// final DerivedTypedElement derivedTypedElement, final Collection<EObject> sources, final List<ParameterValue> parameterValues,
 	// final IDerivedTypedElementImplementation evaluator)
 	// throws DerivedTypedElementException {
-	// // TODO Auto-generated method stub
+	// 
 	// return null;
 	// }
 	//
@@ -535,7 +535,7 @@ public class DerivedTypedElementManager implements IDerivedTypedElementManager {
 	// final DerivedTypedElement derivedTypedElement, final Collection<EObject> sources, final List<ParameterValue> parameterValues,
 	// final IDerivedTypedElementImplementation evaluator)
 	// throws DerivedTypedElementException {
-	// // TODO Auto-generated method stub
+	// 
 	// return null;
 	// }
 

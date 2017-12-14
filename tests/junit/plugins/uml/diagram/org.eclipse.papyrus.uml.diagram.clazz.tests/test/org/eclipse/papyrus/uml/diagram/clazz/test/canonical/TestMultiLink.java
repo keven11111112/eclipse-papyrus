@@ -26,7 +26,7 @@ public class TestMultiLink extends AbstractTestMultiLink {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		// TODO Auto-generated method stub
+		
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 

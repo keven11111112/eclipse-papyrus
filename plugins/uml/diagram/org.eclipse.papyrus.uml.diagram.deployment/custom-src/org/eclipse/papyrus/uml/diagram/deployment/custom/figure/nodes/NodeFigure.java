@@ -24,7 +24,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class NodeFigure.
  */

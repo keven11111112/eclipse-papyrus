@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.diagram.deployment.custom.figure.nodes;
 
 import org.eclipse.draw2d.RectangleFigure;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class DeviceFigure.
  */

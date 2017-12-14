@@ -38,7 +38,7 @@ public class UsecaseSelectionDialog extends SelectionDialog {
 	 */
 	public UsecaseSelectionDialog(Shell parentShell, UseCase sourceUsecase, Classifier subject) {
 		super(parentShell);
-		// TODO Auto-generated constructor stub
+		
 		this.sourceUsecase=sourceUsecase;
 		this.subject=subject;
 	}

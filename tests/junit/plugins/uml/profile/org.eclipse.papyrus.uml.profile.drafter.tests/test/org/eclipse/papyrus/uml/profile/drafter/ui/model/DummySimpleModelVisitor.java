@@ -26,7 +26,7 @@ public class DummySimpleModelVisitor extends SimpleModelVisitor {
 	TracesRecorder<String, Object> traces = new TracesRecorder<String, Object>();
 	
 	public DummySimpleModelVisitor() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	@Override

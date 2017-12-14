@@ -38,7 +38,7 @@ public class NoteShadowBorder extends RectangularShadowBorder {
 		super(borderwidth, color);
 		this.cornerDim = cornerDim;
 		this.noteBorder = noteBorder;
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

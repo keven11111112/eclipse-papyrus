@@ -45,7 +45,7 @@ import org.eclipse.uml2.uml.Signal;
 public class OpenAlfEditorHandler extends AbstractHandler implements IObjectActionDelegate {
 
 	public OpenAlfEditorHandler() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class OpenAlfEditorHandler extends AbstractHandler implements IObjectActi
 
 
 	public void run(IAction action) {
-		// TODO Auto-generated method stub
+		
 		this.execute(null);
 	}
 

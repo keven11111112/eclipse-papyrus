@@ -78,7 +78,7 @@ public class GetExtendedMetaclassWidget extends
 	@Override
 	protected ISelectETypeWizard<EClass> createSynchronizedWizard(
 			final ISelectETypeWizard<EClass> wizard) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }

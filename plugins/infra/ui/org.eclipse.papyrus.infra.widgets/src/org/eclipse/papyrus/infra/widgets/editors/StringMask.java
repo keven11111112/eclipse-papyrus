@@ -215,7 +215,7 @@ public class StringMask extends AbstractListEditor implements SelectionListener,
 
 	@Override
 	public void changeColorField() {
-		// TODO Auto-generated method stub
+		
 
 	}
 

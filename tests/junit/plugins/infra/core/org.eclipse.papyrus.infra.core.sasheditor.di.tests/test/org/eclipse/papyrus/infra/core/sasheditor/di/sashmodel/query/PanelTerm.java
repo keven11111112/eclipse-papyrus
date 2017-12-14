@@ -34,7 +34,7 @@ public abstract class PanelTerm implements IQueryExp {
 	 *
 	 */
 	public PanelTerm() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	/**
@@ -55,7 +55,7 @@ public abstract class PanelTerm implements IQueryExp {
 	 */
 	public void accept(IQueryVisitor visitor, EObject panel)
 			throws QueryException {
-		// TODO Auto-generated method stub
+		
 
 	}
 

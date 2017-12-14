@@ -37,17 +37,17 @@ import org.eclipse.swt.widgets.Listener;
 public class EditContextGenerator implements IGenerator {
 
 	public void dispose() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public List<Context> generate(List<URI> targetURI) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public void createControls(Composite parent) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -56,7 +56,7 @@ public class EditContextGenerator implements IGenerator {
 	}
 
 	public boolean isReady() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
@@ -65,56 +65,56 @@ public class EditContextGenerator implements IGenerator {
 	}
 
 	public boolean isSelectedSingle(Property property) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	public boolean isSelectedMultiple(Property property) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	public boolean isSelectedSingle(Property property, DataContextElement element) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	public boolean isSelectedMultiple(Property property, DataContextElement element) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	public void addListener(Listener listener) {
-		// TODO Auto-generated method stub
+		
 	}
 
 	public List<DataContextElement> getContextElementsFor(Collection<Context> contexts, View view) {
-		// TODO Auto-generated method stub
+		
 		throw new UnsupportedOperationException();
 	}
 
 	public void removeListener(Listener listener) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public IObservableValue getObservableValue() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public List<Object> getExternalReference() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public void setStrategy(int strategy) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	public void addCheckElement(Object obj) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

@@ -17,7 +17,7 @@ import org.eclipse.papyrus.uml.xtext.integration.PapyrusDefaultAutoEditStrategyP
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Use this class to register components to be used within the IDE.
  */

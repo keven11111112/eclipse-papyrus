@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.textedit.message.xtext.scoping;
 
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * This class contains custom scoping description.
  *

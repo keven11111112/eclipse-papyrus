@@ -53,7 +53,7 @@ public abstract class PanelTerm implements IModelExp {
 	 */
 	public <M> void accept(IPagesModelVisitor<M> visitor, M panel)
 			throws PagesModelException {
-		// TODO Auto-generated method stub
+		
 
 	}
 

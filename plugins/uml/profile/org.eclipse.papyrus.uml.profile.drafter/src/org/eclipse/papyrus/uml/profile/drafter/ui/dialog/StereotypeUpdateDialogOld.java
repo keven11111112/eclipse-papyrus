@@ -181,7 +181,7 @@ public class StereotypeUpdateDialogOld extends Dialog {
 	 * @param parent
 	 */
 	private void createExtendedMetaclassArea(Composite parent) {
-		// TODO Auto-generated method stub
+		
 		ReferenceSelector selector = new ReferenceSelector(true);
 		selector.setContentProvider(new UMLMetaclassContentProvider(anyUmlElement));
 		LabelProviderService serv = null;

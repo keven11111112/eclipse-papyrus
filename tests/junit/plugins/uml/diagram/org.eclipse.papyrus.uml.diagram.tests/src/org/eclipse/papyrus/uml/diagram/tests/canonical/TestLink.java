@@ -67,7 +67,7 @@ import org.eclipse.uml2.uml.Element;
 import org.junit.Assert;
 import org.junit.Rule;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class TestTopLink to test when this is link . The link is attached to a semantic element that has to be contained by the source and the target.
  * To adapt when source owns the created link

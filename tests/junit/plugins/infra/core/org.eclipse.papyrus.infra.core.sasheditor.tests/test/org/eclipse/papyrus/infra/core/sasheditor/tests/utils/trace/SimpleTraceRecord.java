@@ -66,7 +66,7 @@ public class SimpleTraceRecord extends TraceRecord {
 	 */
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		
 		super.clear();
 		value = null;
 	}

@@ -141,13 +141,13 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 		//
 		// @Override
 		// public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
-		// // TODO Auto-generated method stub
+		// 
 		// return null;
 		// }
 		//
 		// @Override
 		// public void resourceSetChanged(ResourceSetChangeEvent event) {
-		// // TODO Auto-generated method stub
+		// 
 		// for (Notification current : event.getNotifications()) {
 		// if (current.getNotifier() instanceof IAxis) {
 		// IAxis axis = (IAxis) current.getNotifier();
@@ -176,25 +176,25 @@ public class FilterRowDataProvider<T> implements IDataProvider /* , IPersistable
 		//
 		// @Override
 		// public boolean isPrecommitOnly() {
-		// // TODO Auto-generated method stub
+		// 
 		// return false;
 		// }
 		//
 		// @Override
 		// public boolean isPostcommitOnly() {
-		// // TODO Auto-generated method stub
+		// 
 		// return false;
 		// }
 		//
 		// @Override
 		// public boolean isAggregatePrecommitListener() {
-		// // TODO Auto-generated method stub
+		// 
 		// return false;
 		// }
 		//
 		// @Override
 		// public NotificationFilter getFilter() {
-		// // TODO Auto-generated method stub
+		// 
 		// return null;
 		// }
 		// };

@@ -21,7 +21,7 @@ public class FakeComposedServicePart extends ComposedServicePart<FakeComposedSer
 	 * A common method.
 	 */
 	public void walkService() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 }

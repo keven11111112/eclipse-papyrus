@@ -34,7 +34,7 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.osgi.framework.ServiceException;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class UmlDeploymentDiagramForMultiEditor.
  */

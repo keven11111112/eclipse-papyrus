@@ -539,7 +539,7 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 		// @Override
 		// public void run() {
-		// TODO Auto-generated method stub
+		
 		((ITreeNattableModelManager) manager).doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		// }
 
@@ -712,7 +712,7 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
+				
 				((ITreeNattableModelManager) manager).doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 			}
 		});

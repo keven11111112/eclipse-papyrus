@@ -172,7 +172,7 @@ public class TestTrace {
 		 * @return
 		 */
 		public String getNameTrace() {
-			// TODO Auto-generated method stub
+			
 			return name + "," + trace;
 		}
 		

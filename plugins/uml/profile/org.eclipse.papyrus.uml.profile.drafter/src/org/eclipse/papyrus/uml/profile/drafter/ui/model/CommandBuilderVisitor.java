@@ -69,7 +69,7 @@ public class CommandBuilderVisitor extends SimpleModelVisitor {
 	 */
 	@Override
 	public void doVisit(StereoptypeModel model) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -80,7 +80,7 @@ public class CommandBuilderVisitor extends SimpleModelVisitor {
 	 */
 	@Override
 	public void doVisit(PropertyModel model) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -91,7 +91,7 @@ public class CommandBuilderVisitor extends SimpleModelVisitor {
 	 */
 	@Override
 	public void doVisit(MetaclassModel model) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -102,7 +102,7 @@ public class CommandBuilderVisitor extends SimpleModelVisitor {
 	 */
 	@Override
 	public void doVisit(ExtendedStereotypeModel model) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -113,7 +113,7 @@ public class CommandBuilderVisitor extends SimpleModelVisitor {
 	 * 
 	 */
 	public boolean isExecutionRequested() {
-		// TODO Auto-generated method stub
+		
 		return isExecutionRequested;
 	}
 

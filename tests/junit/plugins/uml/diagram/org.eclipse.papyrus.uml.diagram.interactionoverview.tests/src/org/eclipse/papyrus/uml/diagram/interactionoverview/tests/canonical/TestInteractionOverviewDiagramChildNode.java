@@ -55,7 +55,7 @@ public class TestInteractionOverviewDiagramChildNode extends AbstractInteraction
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

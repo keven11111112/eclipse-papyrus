@@ -23,7 +23,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class PropertyComposite.
  */

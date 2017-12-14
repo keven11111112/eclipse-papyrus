@@ -22,7 +22,7 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ImportFromFile.
  */

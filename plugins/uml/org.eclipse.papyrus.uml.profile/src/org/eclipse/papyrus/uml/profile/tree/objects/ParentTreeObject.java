@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.profile.tree.objects;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ParentTreeObject.
  */

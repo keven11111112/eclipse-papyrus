@@ -794,7 +794,7 @@ public class ServicesRegistry {
 	 * @param map
 	 */
 	private void checkCycle(Collection<ServiceStartupEntry> roots, LookupMap map) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

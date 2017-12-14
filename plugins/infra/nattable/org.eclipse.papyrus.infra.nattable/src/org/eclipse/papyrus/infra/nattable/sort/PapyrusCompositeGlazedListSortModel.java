@@ -85,7 +85,7 @@ public class PapyrusCompositeGlazedListSortModel extends AbstractGlazedListSortM
 	 */
 	@Override
 	public void handleLayerEvent(ILayerEvent event) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -180,7 +180,7 @@ public class PapyrusCompositeGlazedListSortModel extends AbstractGlazedListSortM
 	 */
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		
 	}
 
 
@@ -230,7 +230,7 @@ public class PapyrusCompositeGlazedListSortModel extends AbstractGlazedListSortM
 	 */
 	@Override
 	public Comparator<?> getColumnComparator(int columnIndex) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

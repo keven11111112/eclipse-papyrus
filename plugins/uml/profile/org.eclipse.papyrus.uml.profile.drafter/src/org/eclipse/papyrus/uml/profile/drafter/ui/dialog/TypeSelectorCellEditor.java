@@ -49,7 +49,7 @@ public class TypeSelectorCellEditor extends TextCellEditor {
 	 *
 	 */
 	public TypeSelectorCellEditor() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class TypeSelectorCellEditor extends TextCellEditor {
 	 */
 	public TypeSelectorCellEditor(Composite parent) {
 		super(parent);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class TypeSelectorCellEditor extends TextCellEditor {
 	 */
 	public TypeSelectorCellEditor(Composite parent, int style) {
 		super(parent, style);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**

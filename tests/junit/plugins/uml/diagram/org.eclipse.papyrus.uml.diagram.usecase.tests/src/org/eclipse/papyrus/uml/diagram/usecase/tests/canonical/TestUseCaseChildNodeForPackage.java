@@ -25,7 +25,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class TestUseCaseChildNodeForPackage.
  */

@@ -114,7 +114,7 @@ public class SelectAction extends AbstractParametricAction {
 	 */
 	@Override
 	protected List<IGraphicalEditPart> getSelection() {
-		// TODO Auto-generated method stub
+		
 		return super.getSelection();
 	}
 

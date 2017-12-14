@@ -543,7 +543,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		// TODO Auto-generated method stub
+		
 		super.notifyChanged(notification);
 	}
 	@Override

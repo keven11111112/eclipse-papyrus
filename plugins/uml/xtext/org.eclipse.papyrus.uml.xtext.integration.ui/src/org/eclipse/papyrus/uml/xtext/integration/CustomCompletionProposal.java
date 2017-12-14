@@ -94,17 +94,17 @@ public class CustomCompletionProposal implements ICompletionProposal, ICompletio
 	}
 
 	public char[] getTriggerCharacters() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	public int getContextInformationPosition() {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
 	public void apply(IDocument document) {
-		// TODO Auto-generated method stub
+		
 
 	}
 

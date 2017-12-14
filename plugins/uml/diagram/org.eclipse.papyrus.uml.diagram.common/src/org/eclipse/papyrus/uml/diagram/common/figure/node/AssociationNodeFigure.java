@@ -23,12 +23,12 @@ public class AssociationNodeFigure extends DefaultSizeNodeFigure {
 	// @unused
 	public AssociationNodeFigure(Dimension defSize) {
 		super(defSize);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public AssociationNodeFigure(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	// This returns as the anchoring area only the central line

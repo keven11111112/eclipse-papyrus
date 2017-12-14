@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.uml2.uml.Property;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CompositeItems.
  */

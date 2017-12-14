@@ -79,7 +79,7 @@ public class CustomizationCatalogManager implements
 
 	public List<Customization> getCustomizationsApplicableOn(
 			final Collection<EObject> eObjects) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

@@ -490,7 +490,7 @@ public class FacetCommandFactoryImpl implements IFacetCommandFactory {
 			final String name, final int lowerBound, final int upperBound,
 			final EClassifier type, final boolean ordered,
 			final boolean unique, final Query query) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

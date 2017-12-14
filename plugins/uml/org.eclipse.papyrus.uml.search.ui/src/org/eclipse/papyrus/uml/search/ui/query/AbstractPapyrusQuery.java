@@ -50,12 +50,12 @@ public abstract class AbstractPapyrusQuery implements ISearchQuery {
 	public abstract String getSearchQueryText();
 
 	public boolean isCaseSensitive() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
 	public boolean isRegularExpression() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

@@ -853,7 +853,7 @@ public class GateNameEditPart extends FloatingLabelEditPart
 	 */
 	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
+		
 		super.refresh();
 	}
 
@@ -864,7 +864,7 @@ public class GateNameEditPart extends FloatingLabelEditPart
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		// TODO Auto-generated method stub
+		
 		super.notifyChanged(notification);
 	}
 

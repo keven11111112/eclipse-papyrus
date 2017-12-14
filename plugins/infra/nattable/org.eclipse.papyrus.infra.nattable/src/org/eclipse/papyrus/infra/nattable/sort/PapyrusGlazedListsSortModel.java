@@ -163,7 +163,7 @@ public class PapyrusGlazedListsSortModel extends AbstractGlazedListSortModel {
 	 */
 	// @Override
 	public void updateSort() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -175,7 +175,7 @@ public class PapyrusGlazedListsSortModel extends AbstractGlazedListSortModel {
 	 */
 	@Override
 	public Comparator<?> getColumnComparator(int columnIndex) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 }

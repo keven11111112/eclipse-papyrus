@@ -117,7 +117,7 @@ public class PapyrusNavigationLocation extends NavigationLocation {
 	 */
 	@Override
 	public void saveState(IMemento memento) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -128,7 +128,7 @@ public class PapyrusNavigationLocation extends NavigationLocation {
 	 */
 	@Override
 	public void restoreState(IMemento memento) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -138,7 +138,7 @@ public class PapyrusNavigationLocation extends NavigationLocation {
 	 */
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 }

@@ -49,7 +49,7 @@ public class TestActivityDiagramChildNode extends AbstractTestActivityChildNode 
 
 	@Override
 	protected boolean isSemanticTest() {
-		// TODO Auto-generated method stub
+		
 		return true;
 	}
 

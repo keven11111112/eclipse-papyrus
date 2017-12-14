@@ -198,7 +198,7 @@ public class ProfileCatalog implements IProfileCatalog {
 
 	@Override
 	public List<String> getAllStereotypeNames() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
