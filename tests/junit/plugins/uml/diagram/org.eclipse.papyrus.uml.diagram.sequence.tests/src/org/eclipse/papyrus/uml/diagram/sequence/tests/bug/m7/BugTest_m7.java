@@ -21,16 +21,17 @@ import org.junit.runners.Suite.SuiteClasses;
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 @RunWith(ClassificationSuite.class)
-@SuiteClasses({ 
-	TestExecutionSpecificationPosition_395462.class,
-	TestGuardVisibility_402966.class,
-	TestInteractionUse.class,
-	TestMessageCreateWithLifeline_403134.class,
-	TestResizeStateInvariant_395774.class,
-	TestMessageOccurrenceSpecification_402975.class,
-	TestMakeSameHeightForLifelines_402978.class,
-	TestMoveMessageLostFound_403138.class,
-	TestMessageOccurrenceSpecification_477463.class 
-	})
+@SuiteClasses({
+		TestExecutionSpecificationPosition_395462.class,
+		TestGuardVisibility_402966.class,
+		TestInteractionUse.class,
+		TestMessageCreateWithLifeline_403134.class,
+		TestResizeStateInvariant_395774.class,
+		TestMessageOccurrenceSpecification_402975.class,
+		TestMakeSameHeightForLifelines_402978.class,
+		TestMoveMessageLostFound_403138.class,
+		TestMessageOccurrenceSpecification_477463.class,
+		TestWeakReferences.class
+})
 public class BugTest_m7 {
 }

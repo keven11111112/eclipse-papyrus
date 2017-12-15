@@ -48,6 +48,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase;
+import org.eclipse.swt.widgets.Display;
 
 
 /**
@@ -84,9 +85,9 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	protected GraphicalEditPart rootPart;
 
 	protected GraphicalEditPart getRootEditPart() {
-		if(rootPart == null) {
-			GraphicalEditPart part = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
-			rootPart = (GraphicalEditPart)part.getChildren().get(1); // compart
+		if (rootPart == null) {
+			GraphicalEditPart part = (GraphicalEditPart) getDiagramEditPart().getChildren().get(0);
+			rootPart = (GraphicalEditPart) part.getChildren().get(1); // compart
 		}
 		return rootPart;
 	}
@@ -100,14 +101,14 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	}
 
 	protected void waitForComplete() {
-//		boolean run = true;
-//		while(run) {
-//			try {
-//				run = Display.getDefault().readAndDispatch();
-//			} catch (Exception e) {
-//				run = true;
-//			}
-//		}
+		boolean run = true;
+		while (run) {
+			try {
+				run = Display.getDefault().readAndDispatch();
+			} catch (Exception e) {
+				run = true;
+			}
+		}
 	}
 
 	protected Point getAbsoluteCenter(IGraphicalEditPart part) {
@@ -122,30 +123,30 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	 * Get the bounds of an edit part
 	 *
 	 * @param part
-	 *        edit part to find bounds
+	 *            edit part to find bounds
 	 * @return part's bounds in absolute coordinates
 	 */
 	public static Rectangle getAbsoluteBounds(IGraphicalEditPart part) {
 		// take bounds from figure
 		Rectangle bounds = part.getFigure().getBounds().getCopy();
 
-		if(part.getNotationView() instanceof Node) {
+		if (part.getNotationView() instanceof Node) {
 			// rather update with up to date model bounds
-			Node node = (Node)part.getNotationView();
+			Node node = (Node) part.getNotationView();
 			LayoutConstraint cst = node.getLayoutConstraint();
-			if(cst instanceof Bounds) {
-				Bounds b = (Bounds)cst;
+			if (cst instanceof Bounds) {
+				Bounds b = (Bounds) cst;
 				Point parentLoc = part.getFigure().getParent().getBounds().getLocation();
-				if(b.getX() > 0) {
+				if (b.getX() > 0) {
 					bounds.x = b.getX() + parentLoc.x;
 				}
-				if(b.getY() > 0) {
+				if (b.getY() > 0) {
 					bounds.y = b.getY() + parentLoc.y;
 				}
-				if(b.getHeight() != -1) {
+				if (b.getHeight() != -1) {
 					bounds.height = b.getHeight();
 				}
-				if(b.getWidth() != -1) {
+				if (b.getWidth() != -1) {
 					bounds.width = b.getWidth();
 				}
 			}
@@ -160,15 +161,15 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	 * Test view deletion.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 * @param provider
 	 */
 	public void testViewDeletion(IElementType type, ILinkTestProvider provider) {
-		//DELETION OF THE VIEW
+		// DELETION OF THE VIEW
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
 		int initSemanticSize = provider.getSemanticChildrenSize();
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
-		Command command = ((ConnectionEditPart)source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
+		Command command = ((ConnectionEditPart) source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(VIEW_DELETION + COMMAND_NULL, command);
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
@@ -209,35 +210,35 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	 * Test destroy.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 * @param provider
 	 */
 	public void testDestroy(IElementType type, ILinkTestProvider provider) {
 
-		//DESTROY SEMANTIC+ VIEW
-		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST,1, provider.getEdgesSize() );
-		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, 1,source.getSourceConnections().size());
+		// DESTROY SEMANTIC+ VIEW
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, 1, provider.getEdgesSize());
+		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, 1, source.getSourceConnections().size());
 
 		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
-		Command command = ((ConnectionEditPart)source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
+		Command command = ((ConnectionEditPart) source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(command));
-		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION,0, provider.getEdgesSize());
-		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION,0, source.getSourceConnections().size() );
-		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 4,provider.getSemanticChildrenSize());
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 0, provider.getEdgesSize());
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 0, source.getSourceConnections().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_EXECUTION, 4, provider.getSemanticChildrenSize());
 
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getDiagramCommandStack().canUndo() == true);
 		getEMFCommandStack().undo();
-		assertEquals(DESTROY_DELETION + TEST_THE_UNDO,1, provider.getEdgesSize() );
-		assertEquals(DESTROY_DELETION + TEST_THE_UNDO,1, source.getSourceConnections().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, 1, provider.getEdgesSize());
+		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, 1, source.getSourceConnections().size());
 
 		getEMFCommandStack().redo();
-		assertEquals(DESTROY_DELETION + TEST_THE_REDO,0, provider.getEdgesSize());
-		assertEquals(DESTROY_DELETION + TEST_THE_REDO,0, source.getSourceConnections().size() );
-		assertEquals(DESTROY_DELETION + TEST_THE_REDO,4, provider.getSemanticChildrenSize());
+		assertEquals(DESTROY_DELETION + TEST_THE_REDO, 0, provider.getEdgesSize());
+		assertEquals(DESTROY_DELETION + TEST_THE_REDO, 0, source.getSourceConnections().size());
+		assertEquals(DESTROY_DELETION + TEST_THE_REDO, 4, provider.getSemanticChildrenSize());
 	}
 
 
@@ -245,13 +246,13 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	 * Test to create a link.
 	 *
 	 * @param linkType
-	 *        the type
+	 *            the type
 	 * @param provider
 	 */
 	public void testToCreateALink(IElementType linkType, ILinkTestProvider provider) {
 		assertTrue(CREATION + INITIALIZATION_TEST, provider.getEditPartChildrenSize() == 4);
 		assertTrue(CREATION + INITIALIZATION_TEST, provider.getSemanticChildrenSize() == 4);
-		assertTrue(CREATION + INITIALIZATION_TEST, provider.getEdgesSize() == 0); //add
+		assertTrue(CREATION + INITIALIZATION_TEST, provider.getEdgesSize() == 0); // add
 
 		CreateConnectionViewRequest req = createConnectionViewRequest(linkType, source, target, provider);
 		Command command = target.getCommand(req);
@@ -275,7 +276,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootEditPart().getChildren().size() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 0);
 
-		//create the source
+		// create the source
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(sourceType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(100, 100));
 		Command command = getRootEditPart().getCommand(requestcreation);
@@ -284,7 +285,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		getDiagramCommandStack().execute(command);
 
-		//create the source player to test reconnect
+		// create the source player to test reconnect
 		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(sourceType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(200, 100));
 		command = getRootEditPart().getCommand(requestcreation);
@@ -293,7 +294,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		getDiagramCommandStack().execute(command);
 
-		//create the target
+		// create the target
 		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(targetType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(300, 100));
 		command = getRootEditPart().getCommand(requestcreation);
@@ -302,7 +303,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		getDiagramCommandStack().execute(command);
 
-		//create the target player to test reconnect
+		// create the target player to test reconnect
 		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(targetType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(400, 100));
 		command = getRootEditPart().getCommand(requestcreation);
@@ -311,10 +312,10 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		getDiagramCommandStack().execute(command);
 
-		source = (GraphicalEditPart)getRootEditPart().getChildren().get(0);
-		sourcePlayer = (GraphicalEditPart)getRootEditPart().getChildren().get(1);
-		target = (GraphicalEditPart)getRootEditPart().getChildren().get(2);
-		targetPlayer = (GraphicalEditPart)getRootEditPart().getChildren().get(3);
+		source = (GraphicalEditPart) getRootEditPart().getChildren().get(0);
+		sourcePlayer = (GraphicalEditPart) getRootEditPart().getChildren().get(1);
+		target = (GraphicalEditPart) getRootEditPart().getChildren().get(2);
+		targetPlayer = (GraphicalEditPart) getRootEditPart().getChildren().get(3);
 
 		provider.setUp();
 	}
@@ -330,11 +331,11 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 		// return last child
 		List list = parent.getChildren();
-		return (GraphicalEditPart)list.get(list.size() - 1);
+		return (GraphicalEditPart) list.get(list.size() - 1);
 	}
 
 	public CreateConnectionViewRequest createConnectionViewRequest(IElementType type, EditPart source, EditPart target, ILinkTestProvider provider) {
-		CreateConnectionViewRequest connectionRequest = CreateViewRequestFactory.getCreateConnectionRequest(type, ((IGraphicalEditPart)getDiagramEditPart()).getDiagramPreferencesHint());
+		CreateConnectionViewRequest connectionRequest = CreateViewRequestFactory.getCreateConnectionRequest(type, ((IGraphicalEditPart) getDiagramEditPart()).getDiagramPreferencesHint());
 
 		Point c = provider.getConnectionSourceLocation(source);
 		connectionRequest.setLocation(c);
@@ -354,43 +355,43 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	}
 
 	public void testTargetReconnectAMultiLink(IElementType type, ILinkTestProvider provider) {
-		//target reconnection
+		// target reconnection
 		ReconnectRequest reconnectRequest = new ReconnectRequest();
-		assertTrue(THE_LINK_RECONNECT_EXISTS, (ConnectionEditPart)target.getTargetConnections().get(0) != null);
-		ConnectionEditPart binaryLink = (ConnectionEditPart)target.getTargetConnections().get(0);
+		assertTrue(THE_LINK_RECONNECT_EXISTS, (ConnectionEditPart) target.getTargetConnections().get(0) != null);
+		ConnectionEditPart binaryLink = (ConnectionEditPart) target.getTargetConnections().get(0);
 		reconnectRequest.setConnectionEditPart(binaryLink);
 		reconnectRequest.setTargetEditPart(targetPlayer);
 		reconnectRequest.setType(RequestConstants.REQ_RECONNECT_TARGET);
 		reconnectRequest.setLocation(provider.getConnectionSourceLocation(targetPlayer));
 
 		Command cmd = targetPlayer.getCommand(reconnectRequest);
-		//assertTrue(RECONNECTION_TARGET + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, cmd.canExecute() == false);
-		//message cannot be reconnectable
-//		int initSemanticSize = provider.getSemanticChildrenSize();
-//
-//		getDiagramCommandStack().execute(cmd);
-//		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, provider.getEdgesSize() == 1);
-//		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, provider.getSemanticChildrenSize() == initSemanticSize);
-//		assertTrue(LINK_EXISTS_RECONNECTION_ON_TARGET, binaryLink.getTarget().equals(targetPlayer));
-//
-//		//undo
-//		getDiagramCommandStack().undo();
-//		assertTrue(LINK_EXISTS_RECONNECTION_ON_TARGET + TEST_THE_UNDO, binaryLink.getTarget().equals(target));
-//		assertTrue(RECONNECTION_TARGET + TEST_THE_UNDO, provider.getEdgesSize() == 1);
-//		assertTrue(RECONNECTION_TARGET + TEST_THE_UNDO, provider.getSemanticChildrenSize() == initSemanticSize);
-//
-//		//redo
-//		getDiagramCommandStack().redo();
-//		assertTrue(LINK_EXISTS_RECONNECTION_ON_TARGET + TEST_THE_REDO, binaryLink.getTarget().equals(targetPlayer));
-//		assertTrue(RECONNECTION_TARGET + TEST_THE_REDO, provider.getEdgesSize() == 1);
-//		assertTrue(RECONNECTION_TARGET + TEST_THE_REDO, provider.getSemanticChildrenSize() == initSemanticSize);
+		// assertTrue(RECONNECTION_TARGET + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, cmd.canExecute() == false);
+		// message cannot be reconnectable
+		// int initSemanticSize = provider.getSemanticChildrenSize();
+		//
+		// getDiagramCommandStack().execute(cmd);
+		// assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, provider.getEdgesSize() == 1);
+		// assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, provider.getSemanticChildrenSize() == initSemanticSize);
+		// assertTrue(LINK_EXISTS_RECONNECTION_ON_TARGET, binaryLink.getTarget().equals(targetPlayer));
+		//
+		// //undo
+		// getDiagramCommandStack().undo();
+		// assertTrue(LINK_EXISTS_RECONNECTION_ON_TARGET + TEST_THE_UNDO, binaryLink.getTarget().equals(target));
+		// assertTrue(RECONNECTION_TARGET + TEST_THE_UNDO, provider.getEdgesSize() == 1);
+		// assertTrue(RECONNECTION_TARGET + TEST_THE_UNDO, provider.getSemanticChildrenSize() == initSemanticSize);
+		//
+		// //redo
+		// getDiagramCommandStack().redo();
+		// assertTrue(LINK_EXISTS_RECONNECTION_ON_TARGET + TEST_THE_REDO, binaryLink.getTarget().equals(targetPlayer));
+		// assertTrue(RECONNECTION_TARGET + TEST_THE_REDO, provider.getEdgesSize() == 1);
+		// assertTrue(RECONNECTION_TARGET + TEST_THE_REDO, provider.getSemanticChildrenSize() == initSemanticSize);
 	}
 
 	public void testSourceReconnectAMultiLink(IElementType type, ILinkTestProvider provider) {
-		//target reconnection
+		// target reconnection
 		ReconnectRequest reconnectRequest = new ReconnectRequest();
-		assertTrue(THE_LINK_TO_RECONNECT_EXISTS, (ConnectionEditPart)source.getSourceConnections().get(0) != null);
-		ConnectionEditPart branch = (ConnectionEditPart)source.getSourceConnections().get(0);
+		assertTrue(THE_LINK_TO_RECONNECT_EXISTS, (ConnectionEditPart) source.getSourceConnections().get(0) != null);
+		ConnectionEditPart branch = (ConnectionEditPart) source.getSourceConnections().get(0);
 		reconnectRequest.setConnectionEditPart(branch);
 		reconnectRequest.setTargetEditPart(sourcePlayer);
 		reconnectRequest.setType(RequestConstants.REQ_RECONNECT_SOURCE);
@@ -420,9 +421,9 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	 * Test to manage top node.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 * @param provider
-	 *        the container type
+	 *            the container type
 	 */
 	public void testToManageLink(IElementType sourceType, IElementType targetType, IElementType linkType, ILinkTestProvider provider, boolean allowedOntheSame) {
 		installEnvironment(sourceType, targetType, provider);
@@ -433,10 +434,10 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		testViewDeletion(linkType, provider);
 
 		getEMFCommandStack().undo();
-		//testSourceReconnectAMultiLink(linkType, provider);
+		// testSourceReconnectAMultiLink(linkType, provider);
 
-		//getDiagramCommandStack().undo();
-		//testTargetReconnectAMultiLink(linkType, provider);
+		// getDiagramCommandStack().undo();
+		// testTargetReconnectAMultiLink(linkType, provider);
 
 		testToCreateAlinkOnTheSame(linkType, provider, allowedOntheSame); // self link
 	}
@@ -457,7 +458,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 		Command command = source.getCommand(request);
 		assertNotNull(CREATION + COMMAND_NULL, command);
-		if(allowed) {
+		if (allowed) {
 			assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == allowed);
 			assertTrue(CREATION + INITIALIZATION_TEST, provider.getEdgesSize() == 1);
 			getDiagramCommandStack().execute(command);
