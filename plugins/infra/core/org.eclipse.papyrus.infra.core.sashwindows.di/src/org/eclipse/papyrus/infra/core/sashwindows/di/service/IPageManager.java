@@ -18,6 +18,8 @@ package org.eclipse.papyrus.infra.core.sashwindows.di.service;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <p>
  * Interface providing method to manage pages in the Sash Windows system.

@@ -49,7 +49,7 @@ public abstract class AbstractServiceUtils<T> {
 	 * @param from
 	 * @return
 	 */
-	abstract public ServicesRegistry getServiceRegistry(T from) throws ServiceException;
+	public abstract ServicesRegistry getServiceRegistry(T from) throws ServiceException;
 
 	/**
 	 * Obtains the service registry determined automatically from the context of which

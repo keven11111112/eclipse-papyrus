@@ -35,7 +35,7 @@ import org.eclipse.ui.PlatformUI;
  *
  */
 
-abstract public class AbstractShowHideHandler extends AbstractHandler {
+public abstract class AbstractShowHideHandler extends AbstractHandler {
 
 	/** the current action */
 	private AbstractShowHideAction action = null;

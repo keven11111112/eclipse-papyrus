@@ -103,7 +103,7 @@ public abstract class ViewPartPage extends Page implements IAdaptable {
 	 * @return
 	 */
 	@Override
-	abstract public Control getControl();
+	public abstract Control getControl();
 
 	/**
 	 * @see org.eclipse.ui.part.Page#setFocus()

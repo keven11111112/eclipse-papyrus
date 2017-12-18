@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ICloseablePart;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -109,7 +108,7 @@ public abstract class PagePart extends AbstractPart implements IPage, IAdaptable
 		} else {
 			// Bad state, this is an internal error
 			// TODO : log a warning ?
-			throw new IllegalStateException("Try to change state from " + garbageState.toString() + " to UNCHANGED. This is forbidden.");
+			throw new IllegalStateException("Try to change state from " + garbageState.toString() + " to UNCHANGED. This is forbidden."); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -143,7 +142,7 @@ public abstract class PagePart extends AbstractPart implements IPage, IAdaptable
 	 *
 	 * @param parent
 	 */
-	abstract public void createPartControl(Composite parent);
+	public abstract void createPartControl(Composite parent);
 
 	/**
 	 * Get the control associated to this Part.
@@ -151,7 +150,7 @@ public abstract class PagePart extends AbstractPart implements IPage, IAdaptable
 	 * @return
 	 */
 	@Override
-	abstract public Control getControl();
+	public abstract Control getControl();
 
 	/**
 	 * reparent this Part with the specified new parent.
@@ -159,7 +158,7 @@ public abstract class PagePart extends AbstractPart implements IPage, IAdaptable
 	 *
 	 * @param parent
 	 */
-	abstract public void reparent(TabFolderPart parent);
+	public abstract void reparent(TabFolderPart parent);
 
 	/**
 	 * Return the {@link Widget} of the tab associated to this page.
@@ -239,20 +238,20 @@ public abstract class PagePart extends AbstractPart implements IPage, IAdaptable
 	 * Set focus on the SWT control associated to this PagePart.
 	 * Used by the ActivePageTracker.
 	 */
-	abstract public void setFocus();
+	public abstract void setFocus();
 
 	/**
 	 * Dispose the part. <br/>
 	 * The part and its associated resource are disposed.
 	 *
 	 */
-	abstract public void dispose();
+	public abstract void dispose();
 
 	/**
 	 * Dispose this part and all its children.
 	 * The method is called recursively on children of the part.
 	 */
-	abstract public void disposeThisAndChildren();
+	public abstract void disposeThisAndChildren();
 
 	/**
 	 * Garbage the part. <br/>
@@ -261,7 +260,7 @@ public abstract class PagePart extends AbstractPart implements IPage, IAdaptable
 	 * All resources used by this node should be reclaimed, but not its subnodes.
 	 *
 	 */
-	abstract public void garbage();
+	public abstract void garbage();
 
 	/**
 	 * Return true if the part is associated to the specified rawModel.

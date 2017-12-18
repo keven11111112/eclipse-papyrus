@@ -59,7 +59,7 @@ import org.eclipse.ui.PlatformUI;
  *
  * @author Ansgar Radermacher (CEA LIST)
  */
-abstract public class AbstractValidateCommand extends AbstractTransactionalCommand {
+public abstract class AbstractValidateCommand extends AbstractTransactionalCommand {
 
 	final String modelValidationViewID = "org.eclipse.papyrus.views.validation.ModelValidationView"; //$NON-NLS-1$
 

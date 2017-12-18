@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IComponentPage;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -79,8 +80,6 @@ public class ComponentPart extends PagePart implements IComponentPage {
 		try {
 			// Initialize it and create its controls.
 			editorControl = createEditorPartControl(parent);
-			// attachListeners(editorControl, true);
-
 		} catch (PartInitException e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage()));
 		}
@@ -112,7 +111,6 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	public void dispose() {
 
 		if( !editorControl.isDisposed() ) {
-			// detachListeners(editorControl, true);
 			// dispose the SWT root control
 			editorControl.dispose();
 		}
@@ -226,7 +224,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 		} else {
 			// Bad state, this is an internal error
 			// TODO : log a warning ?
-			throw new IllegalStateException("Try to change state from " + garbageState.toString() + " to REPARENTED. This is forbidden.");
+			throw new IllegalStateException("Try to change state from " + garbageState.toString() + " to REPARENTED. This is forbidden."); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -298,15 +296,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * Show item status.
 	 */
 	protected void showStatus() {
-		// System.out.println( "EditorTile: "
-		// + " disposed=" + editorControl.isDisposed()
-		// + ", visible=" + editorControl.isVisible()
-		// + ", garbState=" + garbageState
-		// + ", '" + editorPart.getTitle()
-		// + "', " + this);
-
 		System.out.printf("ComponentPart: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, getPageTitle(), this);
-
 	}
 
 	/**

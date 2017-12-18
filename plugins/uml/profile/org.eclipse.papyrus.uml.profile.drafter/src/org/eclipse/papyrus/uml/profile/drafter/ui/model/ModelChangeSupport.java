@@ -10,7 +10,7 @@ import java.beans.PropertyChangeSupport;
  * @author cedric dumoulin
  *
  */
-abstract public class ModelChangeSupport {
+public abstract class ModelChangeSupport {
 
 	/**
 	 * Event manager

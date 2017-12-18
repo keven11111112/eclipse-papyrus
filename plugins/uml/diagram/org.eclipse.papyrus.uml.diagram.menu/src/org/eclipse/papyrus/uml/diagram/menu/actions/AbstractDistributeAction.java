@@ -39,7 +39,7 @@ import org.eclipse.papyrus.uml.diagram.common.layout.DistributionConstants;
 /**
  * The Class AbstractDistributeAction.
  */
-abstract public class AbstractDistributeAction {
+public abstract class AbstractDistributeAction {
 
 	/**
 	 * Indicates if we are in a degraded mode for the vertical distribution
@@ -138,7 +138,7 @@ abstract public class AbstractDistributeAction {
 	 * @return
 	 *         the command to do this action
 	 */
-	abstract public Command getCommand();
+	public abstract Command getCommand();
 
 	/**
 	 *

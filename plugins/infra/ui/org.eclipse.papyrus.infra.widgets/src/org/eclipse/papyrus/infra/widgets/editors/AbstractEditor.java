@@ -274,7 +274,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	 * @param targetToModel
 	 * @param modelToTarget
 	 */
-	abstract public void setConverters(IConverter targetToModel, IConverter modelToTarget);
+	public abstract void setConverters(IConverter targetToModel, IConverter modelToTarget);
 
 
 	/**

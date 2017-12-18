@@ -68,7 +68,7 @@ public abstract class AbstractSash extends PanelTerm {
 	 * @param visitor
 	 * @throws QueryException 
 	 */
-	abstract public void accept(IQueryVisitor visitor, EObject modelObject) throws QueryException ;
+	public abstract void accept(IQueryVisitor visitor, EObject modelObject) throws QueryException ;
 
 	/**
 	 * @return The name used in toString

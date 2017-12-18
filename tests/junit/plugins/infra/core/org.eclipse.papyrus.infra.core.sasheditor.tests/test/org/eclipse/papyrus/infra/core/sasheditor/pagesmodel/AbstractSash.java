@@ -66,7 +66,7 @@ public abstract class AbstractSash extends PanelTerm {
 	 * @param visitor
 	 * @throws PagesModelException 
 	 */
-	abstract public <M> void accept(IPagesModelVisitor<M> visitor, M modelObject) throws PagesModelException ;
+	public abstract <M> void accept(IPagesModelVisitor<M> visitor, M modelObject) throws PagesModelException ;
 
 	/**
 	 * @return The name used in toString

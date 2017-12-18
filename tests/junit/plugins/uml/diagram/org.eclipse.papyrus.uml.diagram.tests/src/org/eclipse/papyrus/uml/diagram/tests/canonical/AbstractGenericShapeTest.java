@@ -26,7 +26,7 @@ import org.junit.Test;
  * getRoundedBorderNamedElementEditParts extends respectively RoundedCompartmentEditPart and
  * RoundedBorderNamedElementEditPart.
  */
-abstract public class AbstractGenericShapeTest extends AbstractPapyrusTest {
+public abstract class AbstractGenericShapeTest extends AbstractPapyrusTest {
 
 	/**
 	 * Test rounded compartment edit parts.

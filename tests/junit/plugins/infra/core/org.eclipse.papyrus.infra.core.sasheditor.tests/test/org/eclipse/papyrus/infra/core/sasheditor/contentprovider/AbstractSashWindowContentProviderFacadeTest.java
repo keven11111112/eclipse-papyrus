@@ -64,7 +64,7 @@ public abstract class AbstractSashWindowContentProviderFacadeTest {
 	 * 
 	 * @return an instance of {@link ISashWindowsContentProviderFacade};
 	 */
-	abstract public ISashWindowsContentProviderFacade createISashWindowsContentProviderFacade();
+	public abstract ISashWindowsContentProviderFacade createISashWindowsContentProviderFacade();
 	/**
 	 * Test method for {@link org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.SimpleSashWindowContentProviderUtils#assertConform(org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.IModelExp)}.
 	 * @throws PagesModelException 

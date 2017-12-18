@@ -29,6 +29,6 @@ public abstract class AbstractTreeBrowseStrategy implements TreeBrowseStrategy {
 	}
 
 	@Override
-	abstract public void revealSemanticElement(List<?> elementsList);
+	public abstract void revealSemanticElement(List<?> elementsList);
 
 }

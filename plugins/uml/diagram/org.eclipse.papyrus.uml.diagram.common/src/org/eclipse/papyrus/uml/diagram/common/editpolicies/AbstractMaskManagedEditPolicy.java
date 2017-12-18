@@ -222,7 +222,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	 * {@inheritDoc}
 	 */
 	@Override
-	abstract public void refreshDisplay();
+	public abstract void refreshDisplay();
 
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener#notifyChanged(org.eclipse.emf.common.notify.Notification)

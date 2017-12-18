@@ -26,7 +26,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.AbstractPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IMultiPageEditorSite;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
@@ -80,20 +79,9 @@ public class EditorPart extends PagePart implements IEditorPage {
 	private Composite editorControl;
 
 	/**
-	 * The MultiPageContainer system. This is the manager of all tiles.
-	 */
-	// private SashWindowsContainer tilesContainer;
-
-	/**
 	 * The manager used to access main editor properties like site, actionbars, ...
 	 */
 	private IMultiEditorManager multiEditorManager;
-
-	/**
-	 * Parent owning this PagePart.
-	 * Can be null if the Part is orphaned. Even if it is orphaned, the Item still set.
-	 */
-	// protected TabFolderPart parent;
 
 	/**
 	 * Listen on mouse enter event.
@@ -110,8 +98,6 @@ public class EditorPart extends PagePart implements IEditorPage {
 		 */
 		@Override
 		public void handleEvent(Event event) {
-			// Point globalPos = new Point(event.x, event.y);
-			// System.out.println(this.getClass().getSimpleName() + ".handleEvent(" + eventName(event.type) + ", " + globalPos + ")");
 		}
 	};
 
@@ -133,32 +119,6 @@ public class EditorPart extends PagePart implements IEditorPage {
 			disposeEditorPart();
 		}
 	};
-
-	// To be removed
-	// private String eventName(int eventType) {
-	// switch(eventType) {
-	// case SWT.MouseEnter:
-	// return "MouseEnter";
-	// case SWT.MouseDown:
-	// return "MouseDown";
-	// case SWT.MouseExit:
-	// return "MouseExit";
-	// case SWT.MouseHover:
-	// return "MouseHover";
-	// case SWT.FocusIn:
-	// return "FocusIn";
-	// case SWT.FocusOut:
-	// return "FocusOut";
-	// case SWT.MouseMove:
-	// return "MouseMove";
-	// case SWT.MouseUp:
-	// return "MouseUp";
-	// case SWT.Activate:
-	// return "Activate";
-	// default:
-	// return Integer.toString(eventType);
-	// }
-	// }
 
 	/**
 	 * Constructor.
@@ -453,7 +413,6 @@ public class EditorPart extends PagePart implements IEditorPage {
 		
 		// clean up properties to help GC
 		editorModel = null;
-		// editorPart = null;
 		rawModel = null;
 	}
 
@@ -471,7 +430,6 @@ public class EditorPart extends PagePart implements IEditorPage {
 
 		// clean up properties to help GC
 		editorModel = null;
-		// editorPart = null;
 		rawModel = null;
 	}
 
@@ -719,12 +677,6 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * Show item status.
 	 */
 	protected void showStatus() {
-		// System.out.println( "EditorTile: "
-		// + " disposed=" + editorControl.isDisposed()
-		// + ", visible=" + editorControl.isVisible()
-		// + ", garbState=" + garbageState
-		// + ", '" + editorPart.getTitle()
-		// + "', " + this);
 		String title = (editorPart != null ? editorPart.getTitle() : "no editorPart");
 		System.out.printf("EditorTile: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, title, this);
 

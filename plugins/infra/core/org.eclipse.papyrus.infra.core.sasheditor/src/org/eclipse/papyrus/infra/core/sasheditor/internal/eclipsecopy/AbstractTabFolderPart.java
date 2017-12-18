@@ -80,7 +80,7 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 *            The parent in which the editor should be created; must not be <code>null</code>.
 	 */
 	@Override
-	abstract public void createPartControl(Composite parent);
+	public abstract void createPartControl(Composite parent);
 
 	/**
 	 * Returns the active nested editor if there is one.

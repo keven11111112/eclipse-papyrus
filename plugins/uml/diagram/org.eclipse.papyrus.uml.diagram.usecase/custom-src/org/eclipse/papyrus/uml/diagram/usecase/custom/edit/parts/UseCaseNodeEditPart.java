@@ -19,7 +19,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierCon
 /**
  * Abstract EditPart for UseCase nodes.
  */
-abstract public class UseCaseNodeEditPart extends RoundedCompartmentEditPart {
+public abstract class UseCaseNodeEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * Constructor.

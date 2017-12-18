@@ -31,7 +31,7 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 /**
  * The Class CustomPopupDialog.
  */
-abstract public class CustomPopupDialog extends PopupDialog {
+public abstract class CustomPopupDialog extends PopupDialog {
 
 	/** The anchor. */
 	private Point fAnchor;

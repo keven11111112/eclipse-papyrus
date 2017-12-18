@@ -25,14 +25,14 @@ public abstract class AbstractModel {
 	 *
 	 * @return the parent
 	 */
-	abstract public AbstractModel getParent();
+	public abstract AbstractModel getParent();
 
 
 	/**
 	 * @param parent
 	 *            the parent to set
 	 */
-	abstract public void setParent(AbstractModel parent);
+	public abstract void setParent(AbstractModel parent);
 
 	/**
 	 * Replace the oldChild by the newChild
@@ -40,6 +40,6 @@ public abstract class AbstractModel {
 	 * @param oldChild
 	 * @param newChild
 	 */
-	abstract public void replaceChild(AbstractPanelModel oldChild, AbstractPanelModel newChild);
+	public abstract void replaceChild(AbstractPanelModel oldChild, AbstractPanelModel newChild);
 
 }

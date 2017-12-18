@@ -8,7 +8,7 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPa
  * @author Mickael ADAM
  *
  */
-abstract public class SubjectNodeEditPart extends RoundedCompartmentEditPart {
+public abstract class SubjectNodeEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * Constructor.

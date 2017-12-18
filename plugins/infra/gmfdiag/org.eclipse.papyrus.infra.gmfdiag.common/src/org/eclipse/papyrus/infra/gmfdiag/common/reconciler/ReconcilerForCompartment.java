@@ -33,7 +33,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * Class Diagram Reconciler from 1.1.0 to 1.2.0. Migrates all compartments Views from DecorationNode to BasicCompartment.
  */
-abstract public class ReconcilerForCompartment extends DiagramReconciler {
+public abstract class ReconcilerForCompartment extends DiagramReconciler {
 
 
 	/**
@@ -54,7 +54,7 @@ abstract public class ReconcilerForCompartment extends DiagramReconciler {
 	 *
 	 * @return the compartments visual id
 	 */
-	abstract public List<String> getCompartmentsVisualID();
+	public abstract List<String> getCompartmentsVisualID();
 
 
 	/**

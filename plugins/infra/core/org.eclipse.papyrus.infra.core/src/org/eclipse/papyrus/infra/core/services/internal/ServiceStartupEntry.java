@@ -54,7 +54,7 @@ public abstract class ServiceStartupEntry {
 	 *
 	 * @throws ServiceException
 	 */
-	abstract public void createService() throws ServiceException;
+	public abstract void createService() throws ServiceException;
 
 	/**
 	 * Init the associated service if not a Lazy Service.
@@ -64,14 +64,14 @@ public abstract class ServiceStartupEntry {
 	 *
 	 * @throws ServiceException
 	 */
-	abstract public void initService(ServicesRegistry servicesRegistry) throws ServiceException;
+	public abstract void initService(ServicesRegistry servicesRegistry) throws ServiceException;
 
 	/**
 	 * Start the associated service if not a Lazy Service.
 	 *
 	 * @throws ServiceException
 	 */
-	abstract public void startService() throws ServiceException;
+	public abstract void startService() throws ServiceException;
 
 	/**
 	 * Get the service instance.
@@ -79,12 +79,12 @@ public abstract class ServiceStartupEntry {
 	 * @return
 	 * @throws ServiceException
 	 */
-	abstract public Object getServiceInstance() throws ServiceException;
+	public abstract Object getServiceInstance() throws ServiceException;
 
 	/**
 	 * Dispose associated service.
 	 */
-	abstract public void disposeService() throws ServiceException;
+	public abstract void disposeService() throws ServiceException;
 
 	/**
 	 * Return the list of the {@link ServiceStartupEntry} required by this
