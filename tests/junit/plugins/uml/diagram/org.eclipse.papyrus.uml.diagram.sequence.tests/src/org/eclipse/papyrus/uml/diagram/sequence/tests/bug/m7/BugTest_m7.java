@@ -31,7 +31,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestMakeSameHeightForLifelines_402978.class,
 		TestMoveMessageLostFound_403138.class,
 		TestMessageOccurrenceSpecification_477463.class,
-		TestWeakReferences.class
+		TestWeakReferences.class,
+		Test_528787.class
 })
 public class BugTest_m7 {
 }
