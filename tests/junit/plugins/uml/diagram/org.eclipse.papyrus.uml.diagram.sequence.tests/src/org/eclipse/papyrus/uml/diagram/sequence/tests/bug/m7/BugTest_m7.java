@@ -32,7 +32,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestMoveMessageLostFound_403138.class,
 		TestMessageOccurrenceSpecification_477463.class,
 		TestWeakReferences.class,
-		Test_528787.class
+		Test_528787.class,
+		Test_528473.class
 })
 public class BugTest_m7 {
 }
