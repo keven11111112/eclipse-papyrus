@@ -1,8 +1,0 @@
-== Layers Developpers ==
-This is the documentation for layers developpers
-
-
-== General Architecture ==
-
-== Plugins ==
-
