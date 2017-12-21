@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <release>
+	<feature name="org.eclipse.papyrus.dev.examples.feature" version="0.0.1"/>
 	<feature name="org.eclipse.papyrus.dev.feature" version="3.0.0">
 		<feature name="org.eclipse.papyrus.junit.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.uml.m2m.qvto.tests.tools.feature" version="1.0.0"/>
@@ -39,6 +40,19 @@
 	<feature name="org.eclipse.papyrus.uml.m2m.qvto.tests.tools.feature" version="1.0.0">
 		<plugin name="org.eclipse.papyrus.uml.m2m.qvto.tests.tools" version="1.0.0"/>
 	</feature>
+	<feature name="org.eclipse.papyrus.user.examples.feature" version="0.0.1">
+		<plugin name="org.eclipse.papyrus.example.core.lifecycleevents" version="1.2.0"/>
+		<plugin name="org.eclipse.papyrus.example.core.sashwindows.fulleditor" version="1.1.0"/>
+		<plugin name="org.eclipse.papyrus.example.core.sashwindows.simpleeditor" version="1.1.0"/>
+		<plugin name="org.eclipse.papyrus.outline.emftree" version="1.1.0"/>
+		<plugin name="org.eclipse.papyrus.infra.gmfdiag.connectionpoint.preferences" version="1.1.0"/>
+		<plugin name="org.eclipse.papyrus.example.text.instance" version="1.1.0"/>
+		<plugin name="org.eclipse.papyrus.example.uml.comment.editor.newresource" version="1.1.0"/>
+		<plugin name="org.eclipse.papyrus.example.uml.comment.editor.sharedresource" version="1.1.0"/>
+		<plugin name="org.eclipse.papyrus.uml.diagram.emftree" version="1.2.0"/>
+		<plugin name="org.eclipse.papyrus.uml.diagram.example.programmaticcreation" version="1.2.0"/>
+		<plugin name="org.eclipse.papyrus.examples.user.qvto" version="1.0.0"/>
+	</feature>
 	<plugin name="org.eclipse.cbi.p2repo.aggregator" version="1.0.100"/>
 	<plugin name="org.eclipse.cbi.p2repo.aggregator.legacy" version="1.0.0"/>
 	<plugin name="org.eclipse.cbi.p2repo.cli" version="1.0.0"/>
@@ -54,21 +68,32 @@
 	<plugin name="org.eclipse.papyrus.dev.types" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.dev.ui" version="0.0.1"/>
 	<plugin name="org.eclipse.papyrus.dev.view.services.edit.request" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.example.core.lifecycleevents" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.example.core.sashwindows.fulleditor" version="1.1.0"/>
+	<plugin name="org.eclipse.papyrus.example.core.sashwindows.simpleeditor" version="1.1.0"/>
+	<plugin name="org.eclipse.papyrus.example.text.instance" version="1.1.0"/>
+	<plugin name="org.eclipse.papyrus.example.uml.comment.editor.newresource" version="1.1.0"/>
+	<plugin name="org.eclipse.papyrus.example.uml.comment.editor.sharedresource" version="1.1.0"/>
+	<plugin name="org.eclipse.papyrus.examples.user.qvto" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.gmf.editpartview" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.gmf.editpoliciesstates" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.gmf.figureview" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.gmfgenextension" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.emf.commandstack" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.infra.gmfdiag.connectionpoint.preferences" version="1.1.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.css.debug" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.junit.framework" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.junit.utils" version="2.1.0"/>
 	<plugin name="org.eclipse.papyrus.mwe2.utils" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.outline.emftree" version="1.1.0"/>
 	<plugin name="org.eclipse.papyrus.releng.dev.release" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.releng.tools" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.tests.framework" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.tests.framework.annotations" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.tests.framework.edit" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.tests.framework.editor" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.uml.diagram.emftree" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.uml.diagram.example.programmaticcreation" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.m2m.qvto.tests.tools" version="1.0.0"/>
 	<plugin name="org.eclipse.upr.utp" version="0.9.0"/>
 </release>
