@@ -14,15 +14,15 @@
 
 package org.eclipse.papyrus.infra.internationalization.tests.tests;
 
-import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(ClassificationSuite.class)
-@SuiteClasses({ 
-	InternationalizationLabelProviderTest.class,
-	InternationalizationChangePreferencesTest.class,
-	InternationalizationPreferenceChangeEventTest.class,
+@SuiteClasses({
+		InternationalizationLabelProviderTest.class,
+		InternationalizationChangePreferencesTest.class,
+		InternationalizationPreferenceChangeEventTest.class,
 })
 public class AllTests {
 
