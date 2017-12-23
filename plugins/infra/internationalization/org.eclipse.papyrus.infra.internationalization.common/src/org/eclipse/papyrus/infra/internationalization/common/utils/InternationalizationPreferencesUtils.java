@@ -14,12 +14,24 @@
 
 package org.eclipse.papyrus.infra.internationalization.common.utils;
 
+import static org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesConstants.LANGUAGE_PREFERENCE;
+import static org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesConstants.USE_INTERNATIONALIZATION_PREFERENCE;
+
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.WeakHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceProxy;
+import org.eclipse.core.resources.IResourceProxyVisitor;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
@@ -27,18 +39,44 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.internationalization.common.Activator;
+import org.eclipse.papyrus.infra.internationalization.common.IPreferenceStoreListener;
 
 /**
  * The internationalization preference utils methods which allow to get or
  * change the internationalization preference value.
  */
 public class InternationalizationPreferencesUtils {
-	
+
 	private static final CopyOnWriteArrayList<InternationalizationPreferenceListener> listeners = new CopyOnWriteArrayList<>();
-	
+
+	static {
+		IPreferenceStoreListener preferenceStoreListener = new IPreferenceStoreListener() {
+			private final Map<IPreferenceStore, IPropertyChangeListener> forwarders = new WeakHashMap<>();
+
+			@Override
+			public void preferenceStoreCreated(IProject project, String papyrusProject, IPreferenceStore store) {
+				store.addPropertyChangeListener(forwarders.computeIfAbsent(store, __ -> createForwarder(project, papyrusProject)));
+			}
+
+			@Override
+			public void preferenceStoreDisposed(IProject project, String papyrusProject, IPreferenceStore store) {
+				// The equal object will be removed from the store's listeners
+				store.removePropertyChangeListener(forwarders.get(store));
+			}
+
+			IPropertyChangeListener createForwarder(IProject project, String papyrusProject) {
+				return event -> preferenceStorePropertyChanged(project, papyrusProject, event);
+			}
+		};
+
+		Activator.getDefault().addPreferenceStoreListener(preferenceStoreListener);
+	}
+
 	/**
 	 * This allows to get the load of internationalization preference value.
 	 * 
@@ -46,17 +84,17 @@ public class InternationalizationPreferencesUtils {
 	 */
 	public static boolean isInternationalizationNeedToBeLoaded() {
 		boolean result = false;
-		
+
 		IPreferenceStore preferenceStore = Activator.getDefault().getPreferenceStore();
-		if(null != preferenceStore) {
-			if(preferenceStore.contains(InternationalizationPreferencesConstants.LOAD_INTERNATIONALIZATION)) {
+		if (null != preferenceStore) {
+			if (preferenceStore.contains(InternationalizationPreferencesConstants.LOAD_INTERNATIONALIZATION)) {
 				result = preferenceStore.getBoolean(InternationalizationPreferencesConstants.LOAD_INTERNATIONALIZATION);
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 	/**
 	 * This allows to get the load of internationalization of external files preference value.
 	 * 
@@ -64,17 +102,17 @@ public class InternationalizationPreferencesUtils {
 	 */
 	public static boolean isInternationalizationExternalFilesNeedToBeLoaded() {
 		boolean result = false;
-		
+
 		IPreferenceStore preferenceStore = Activator.getDefault().getPreferenceStore();
-		if(null != preferenceStore) {
-			if(preferenceStore.contains(InternationalizationPreferencesConstants.LOAD_INTERNATIONALIZATION_OF_EXTERNAL_FILES)) {
+		if (null != preferenceStore) {
+			if (preferenceStore.contains(InternationalizationPreferencesConstants.LOAD_INTERNATIONALIZATION_OF_EXTERNAL_FILES)) {
 				result = preferenceStore.getBoolean(InternationalizationPreferencesConstants.LOAD_INTERNATIONALIZATION_OF_EXTERNAL_FILES);
 			}
 		}
-		
+
 		return result;
 	}
-	
+
 
 	/**
 	 * Get the preference store for the project containing the {@link EObject}
@@ -185,12 +223,8 @@ public class InternationalizationPreferencesUtils {
 		final IPreferenceStore preferenceStore = getPreferenceStore(resourceURI);
 
 		if (null != preferenceStore) {
-			preferenceStore.setValue(InternationalizationPreferencesConstants.USE_INTERNATIONALIZATION_PREFERENCE,
+			preferenceStore.setValue(USE_INTERNATIONALIZATION_PREFERENCE,
 					value);
-
-			if (hasListeners()) {
-				fire(new InternationalizationPreferenceChangeEvent(preferenceStore, resourceURI, value));
-			}
 		}
 	}
 
@@ -241,9 +275,9 @@ public class InternationalizationPreferencesUtils {
 		final IPreferenceStore preferenceStore = getPreferenceStore(resourceURI);
 
 		if (null != preferenceStore && preferenceStore
-				.contains(InternationalizationPreferencesConstants.USE_INTERNATIONALIZATION_PREFERENCE)) {
+				.contains(USE_INTERNATIONALIZATION_PREFERENCE)) {
 			result = preferenceStore
-					.getBoolean(InternationalizationPreferencesConstants.USE_INTERNATIONALIZATION_PREFERENCE);
+					.getBoolean(USE_INTERNATIONALIZATION_PREFERENCE);
 		}
 
 		return result;
@@ -262,8 +296,8 @@ public class InternationalizationPreferencesUtils {
 
 		final IPreferenceStore preferenceStore = getPreferenceStore(uri);
 		if (null != preferenceStore
-				&& preferenceStore.contains(InternationalizationPreferencesConstants.LANGUAGE_PREFERENCE)) {
-			result = preferenceStore.getString(InternationalizationPreferencesConstants.LANGUAGE_PREFERENCE);
+				&& preferenceStore.contains(LANGUAGE_PREFERENCE)) {
+			result = preferenceStore.getString(LANGUAGE_PREFERENCE);
 		}
 
 		return result;
@@ -351,20 +385,14 @@ public class InternationalizationPreferencesUtils {
 		final IPreferenceStore preferenceStore = getPreferenceStore(resourceURI);
 
 		if (null != preferenceStore) {
-			preferenceStore.setValue(InternationalizationPreferencesConstants.LANGUAGE_PREFERENCE, language);
-
-			if (hasListeners()) {
-				Locale locale = (language == null) ? Locale.getDefault()
-						: LocaleNameResolver.getLocaleFromString(language);
-				fire(new InternationalizationPreferenceChangeEvent(preferenceStore, resourceURI, locale));
-			}
+			preferenceStore.setValue(LANGUAGE_PREFERENCE, language);
 		}
 	}
-	
+
 	private static boolean hasListeners() {
 		return !listeners.isEmpty();
 	}
-	
+
 	private static void fire(InternationalizationPreferenceChangeEvent event) {
 		for (InternationalizationPreferenceListener next : listeners) {
 			try {
@@ -374,28 +402,103 @@ public class InternationalizationPreferencesUtils {
 			}
 		}
 	}
-	
+
 	/**
 	 * Adds a {@code listener} for changes in the internationalization preferences of resources.
 	 * Has no effect if the {@code listener} is already attached.
 	 * 
-	 * @param listener a listener to add
+	 * @param listener
+	 *            a listener to add
 	 * 
 	 * @since 1.1
 	 */
 	public static void addPreferenceListener(InternationalizationPreferenceListener listener) {
 		listeners.addIfAbsent(listener);
 	}
-	
+
 	/**
 	 * Removes a {@code listener} for changes in the internationalization preferences of resources.
 	 * Has no effect if the {@code listener} is not currently attached.
 	 * 
-	 * @param listener a listener to remove
+	 * @param listener
+	 *            a listener to remove
 	 * 
 	 * @since 1.1
 	 */
 	public static void removePreferenceListener(InternationalizationPreferenceListener listener) {
 		listeners.remove(listener);
+	}
+
+	static void preferenceStorePropertyChanged(IProject project, String papyrusProjectName, PropertyChangeEvent event) {
+		if (!hasListeners()) {
+			return; // Nobody to notify
+		}
+
+		// FIXME: The preferences implementation assumes unique model resource names in the project
+		Collection<URI> uris = getURIs(project, papyrusProjectName);
+		switch (event.getProperty()) {
+		case USE_INTERNATIONALIZATION_PREFERENCE:
+			boolean newUse;
+			if (event.getNewValue() instanceof Boolean) {
+				newUse = ((Boolean) event.getNewValue()).booleanValue();
+			} else {
+				newUse = Boolean.valueOf(String.valueOf(event.getNewValue()));
+			}
+
+			uris.forEach(uri -> fire(new InternationalizationPreferenceChangeEvent(event.getSource(),
+					uri, newUse)));
+			break;
+		case LANGUAGE_PREFERENCE:
+			Locale locale = (event.getNewValue() == null) ? Locale.getDefault()
+					: LocaleNameResolver.getLocaleFromString(String.valueOf(event.getNewValue()));
+			uris.forEach(uri -> fire(new InternationalizationPreferenceChangeEvent(event.getSource(), uri, locale)));
+			break;
+		default:
+			// Nobody interested
+			break;
+		}
+	}
+
+	private static Set<URI> getURIs(IProject project, String papyrusProjectName) {
+		Set<URI> result = new HashSet<>();
+
+		try {
+			project.accept(new IResourceProxyVisitor() {
+
+				@Override
+				public boolean visit(IResourceProxy proxy) throws CoreException {
+					if (proxy.getType() == IResource.FILE) {
+						String name = trimFileExtension(proxy.getName());
+						if (papyrusProjectName.equals(name)) {
+							// Normalize the result to contain only the DI resource URIs
+							// if DI resources exist
+							URI uri = URI.createPlatformResourceURI(proxy.requestFullPath().toString(), true);
+							URI trim = uri.trimFileExtension();
+							if (DiModel.DI_FILE_EXTENSION.equals(uri.fileExtension())) {
+								result.removeIf(u -> u.trimFileExtension().equals(trim));
+								result.add(uri);
+							} else {
+								URI diURI = trim.appendFileExtension(DiModel.DI_FILE_EXTENSION);
+								if (!result.contains(diURI)) {
+									result.add(uri);
+								}
+							}
+						}
+					}
+					return true;
+				}
+
+				private String trimFileExtension(String name) {
+					int dot = name.lastIndexOf('.');
+					// Only accept resources that have a file extension, as all Papyrus model
+					// resources must
+					return (dot >= 0) ? name.substring(0, dot) : null;
+				}
+			}, 0);
+		} catch (CoreException e) {
+			Activator.log.log(e.getStatus());
+		}
+
+		return result;
 	}
 }

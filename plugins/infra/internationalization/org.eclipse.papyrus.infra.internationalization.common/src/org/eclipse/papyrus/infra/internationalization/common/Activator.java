@@ -14,18 +14,10 @@
 
 package org.eclipse.papyrus.infra.internationalization.common;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.preferences.IScopeContext;
-import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
-import org.eclipse.papyrus.infra.core.resource.PapyrusProjectScope;
-import org.eclipse.papyrus.infra.ui.preferences.PapyrusScopedPreferenceStore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -37,11 +29,11 @@ public class Activator extends AbstractUIPlugin {
 	 * The plug-in ID.
 	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.internationalization.common"; //$NON-NLS-1$
-	
+
 	/**
 	 * The internationalization preference node label.
 	 */
-	public static final String INTERNATIONALIZATION_NODE_LABEL = "internationalization"; //$NON-NLS-1$
+	public static final String INTERNATIONALIZATION_NODE_LABEL = PreferenceStoreManager.INTERNATIONALIZATION_NODE_LABEL;
 
 	/**
 	 * The shared instance.
@@ -52,42 +44,34 @@ public class Activator extends AbstractUIPlugin {
 	 * The log helper.
 	 */
 	public static LogHelper log;
-	
-	/**
-	 * Storage for preferences, per scope.
-	 */
-	private Map<IScopeContext, IPreferenceStore> preferencesStore;
+
+	private PreferenceStoreManager preferenceStores;
 
 	/**
-	 * The constructor
+	 * The constructor.
 	 */
 	public Activator() {
-		preferencesStore = new HashMap<>();
+		super();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(final BundleContext context) throws Exception {
 		super.start(context);
-		plugin = this;
+
 		log = new LogHelper(this);
+		preferenceStores = new PreferenceStoreManager(log);
+		plugin = this;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(final BundleContext context) throws Exception {
+		preferenceStores.dispose();
+		preferenceStores = null;
+
 		plugin = null;
 		super.stop(context);
 	}
-	
+
 	/**
 	 * Get the preference store and create it if necessary.
 	 * 
@@ -99,15 +83,8 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public IPreferenceStore getInternationalizationPreferenceStore(final IProject project,
 			final String papyrusProjectName) {
-		
-		final IScopeContext scope = new PapyrusProjectScope(project, papyrusProjectName);
-		IPreferenceStore result = preferencesStore.get(scope);
-		if (null == result) {
-			result = new PapyrusScopedPreferenceStore(scope, INTERNATIONALIZATION_NODE_LABEL);
-			preferencesStore.put(scope, result);
-		}
 
-		return result;
+		return preferenceStores.getInternationalizationPreferenceStore(project, papyrusProjectName);
 	}
 
 	/**
@@ -117,16 +94,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @return The preference store.
 	 */
 	public IPreferenceStore getInternationalizationPreferenceStore() {
-		IScopeContext scope = InstanceScope.INSTANCE;
-		IPreferenceStore result = preferencesStore.get(scope);
-		
-		if (result == null) {
-			// Create the preference store lazily.
-			result = new ScopedPreferenceStore(scope, getBundle().getSymbolicName());
-			preferencesStore.put(scope, result);
-		}
-		
-		return result;
+		return preferenceStores.getInternationalizationPreferenceStore();
 	}
 
 	/**
@@ -137,4 +105,35 @@ public class Activator extends AbstractUIPlugin {
 	public static Activator getDefault() {
 		return plugin;
 	}
+
+	/**
+	 * Add a listener for events in the preference store management cycle.
+	 * Has no effect if the listener is already added. If, at the
+	 * time of this call, there are already preference stores in existence,
+	 * the {@code listener} will be
+	 * {@link IPreferenceStoreListener#preferenceStoreCreated(IProject, String, IPreferenceStore) informed}
+	 * belatedly of their creation.
+	 * 
+	 * @param listener
+	 *            a listener to add
+	 * 
+	 * @noreference This method is not intended to be referenced by clients.
+	 */
+	public void addPreferenceStoreListener(IPreferenceStoreListener listener) {
+		preferenceStores.addPreferenceStoreListener(listener);
+	}
+
+	/**
+	 * Remove a listener for events in the preference store management cycle.
+	 * Has no effect if the listener is not (still) registered.
+	 * 
+	 * @param listener
+	 *            a listener to remove
+	 * 
+	 * @noreference This method is not intended to be referenced by clients.
+	 */
+	public void removePreferenceStoreListener(IPreferenceStoreListener listener) {
+		preferenceStores.removePreferenceStoreListener(listener);
+	}
+
 }

@@ -19,6 +19,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.util.Locale;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -27,7 +29,9 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.internationalization.edit.providers.InternationalizationUMLItemProviderAdapterFactory;
+import org.eclipse.papyrus.uml.internationalization.tests.DefaultLocaleRule;
 import org.junit.After;
+import org.junit.ClassRule;
 import org.junit.Test;
 
 /**
@@ -36,11 +40,17 @@ import org.junit.Test;
  * @author Christian W. Damus
  */
 @SuppressWarnings("nls")
-@PluginResource({"resources/model.di", "resources/model_en_US.properties", "resources/model_fr_FR.properties"})
+@PluginResource({ "resources/model.di", "resources/model_en_US.properties", "resources/model_fr_FR.properties" })
 public class InternationalizationUMLItemProviderAdapterFactoryTest extends AbstractUMLInternationalizationTest {
 
+	// Set a locale in the VM that does not have a corresponding properties file, otherwise
+	// if the host system happens to be en_US then these tests will fail because the framework
+	// will default to enabling internationalization
+	@ClassRule
+	public static final DefaultLocaleRule defaultLocale = new DefaultLocaleRule(Locale.KOREAN);
+
 	private AdapterFactory factory;
-	
+
 	/**
 	 * Initializes e.
 	 */
@@ -51,7 +61,7 @@ public class InternationalizationUMLItemProviderAdapterFactoryTest extends Abstr
 	@Test
 	public void normalAdapters() {
 		checkUMLNoLabels();
-		
+
 		// The last adapter added should be our item-provider
 		Adapter last = modelClass.eAdapters().get(modelClass.eAdapters().size() - 1);
 		assertThat(last.getClass().getSimpleName(), is("ClassItemProvider"));
@@ -61,20 +71,20 @@ public class InternationalizationUMLItemProviderAdapterFactoryTest extends Abstr
 	public void rebuildAdapters() {
 		int initialAdapterCount = modelClass.eAdapters().size();
 		checkUMLNoLabels();
-		
+
 		int newAdapterCount = modelClass.eAdapters().size();
 		assertThat(newAdapterCount, greaterThan(initialAdapterCount));
-		
+
 		Adapter adapter = modelClass.eAdapters().get(newAdapterCount - 1);
-		
+
 		setLanguagePreference(modelClass, "fr_FR");
 		setInternationalizationPreference(modelClass, true);
-		
+
 		// Purged the adapters
 		assertThat(modelClass.eAdapters().size(), lessThan(newAdapterCount));
-		
+
 		checkUMLFrenchLabels();
-		
+
 		// Just replaced the adapter with a new one
 		assertThat(modelClass.eAdapters().size(), is(newAdapterCount));
 		Adapter newAdapter = modelClass.eAdapters().get(newAdapterCount - 1);
@@ -84,21 +94,21 @@ public class InternationalizationUMLItemProviderAdapterFactoryTest extends Abstr
 	//
 	// Test framework
 	//
-	
+
 	@Override
 	protected ILabelProvider initLabelProvider() {
 		factory = new InternationalizationUMLItemProviderAdapterFactory();
-		
+
 		// Initially disable the i18n
 		setInternationalizationPreference(fixture.getModelResource(), false);
-		
+
 		return new AdapterFactoryLabelProvider(factory);
 	}
-	
+
 	@After
 	public void disposeFactory() {
 		labelProvider.dispose();
-		((IDisposable)factory).dispose();
+		((IDisposable) factory).dispose();
 	}
 
 	/**

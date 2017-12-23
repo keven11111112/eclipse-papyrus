@@ -12,13 +12,16 @@
 package org.eclipse.papyrus.infra.internationalization.tests.tests;
 
 import static org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesConstants.LANGUAGE_PREFERENCE;
+import static org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesConstants.USE_INTERNATIONALIZATION_PREFERENCE;
 import static org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils.getInternationalizationPreference;
 import static org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils.getPreferenceStore;
 import static org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils.setInternationalizationPreference;
 import static org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils.setLanguagePreference;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assume.assumeThat;
 
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -26,6 +29,7 @@ import java.util.function.IntSupplier;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.internationalization.common.Activator;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferenceChangeEvent;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferenceListener;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
@@ -90,6 +94,51 @@ public class InternationalizationPreferenceChangeEventTest extends AbstractInter
 				event -> assertThat(event.getLocale(), is(en_US)));
 
 		setLanguagePreference(diagram, "en_US");
+		assertThat(count.getAsInt(), is(1));
+	}
+
+	/**
+	 * Verify the notification that enablement of internationalization changes by direct
+	 * manipulation of the preference store.
+	 */
+	@Test
+	public void enablementNotificationByPreferences() {
+		IntSupplier count = listen(InternationalizationPreferenceChangeEvent.ENABLED, diagram,
+				event -> assertThat(event.isInternationalizationEnabled(), is(false)));
+
+		IPreferenceStore prefStore = Activator.getDefault().getInternationalizationPreferenceStore(fixture.getProject().getProject(),
+				fixture.getModelURI().trimFileExtension().lastSegment());
+		assumeThat("No preference store", prefStore, notNullValue());
+		prefStore.setValue(USE_INTERNATIONALIZATION_PREFERENCE, "false"); // Most primitive access
+		assertThat(count.getAsInt(), is(1));
+
+		count = listen(InternationalizationPreferenceChangeEvent.ENABLED, diagram,
+				event -> assertThat(event.isInternationalizationEnabled(), is(true)));
+
+		prefStore.setValue(USE_INTERNATIONALIZATION_PREFERENCE, "true"); // Most primitive access
+		assertThat(count.getAsInt(), is(1));
+	}
+
+	/**
+	 * Verify the notification that the locale of internationalization changes by direct
+	 * manipulation of the preference store.
+	 */
+	@Test
+	public void localeNotificationByPreferences() {
+		IntSupplier count = listen(InternationalizationPreferenceChangeEvent.LOCALE, diagram,
+				event -> assertThat(event.getLocale(), is(Locale.CANADA_FRENCH)));
+
+		IPreferenceStore prefStore = Activator.getDefault().getInternationalizationPreferenceStore(fixture.getProject().getProject(),
+				fixture.getModelURI().trimFileExtension().lastSegment());
+		assumeThat("No preference store", prefStore, notNullValue());
+		prefStore.setValue(LANGUAGE_PREFERENCE, Locale.CANADA_FRENCH.toLanguageTag());
+		assertThat(count.getAsInt(), is(1));
+
+		Locale en_US = Locale.forLanguageTag("en_US");
+		count = listen(InternationalizationPreferenceChangeEvent.LOCALE, diagram,
+				event -> assertThat(event.getLocale(), is(en_US)));
+
+		prefStore.setValue(LANGUAGE_PREFERENCE, "en_US");
 		assertThat(count.getAsInt(), is(1));
 	}
 
