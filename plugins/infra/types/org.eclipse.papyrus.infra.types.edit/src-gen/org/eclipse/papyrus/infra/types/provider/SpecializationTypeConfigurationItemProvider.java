@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2017 CEA LIST.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Ansgar Radermacher - Bug 526162 (use different label for references)
  */
 package org.eclipse.papyrus.infra.types.provider;
 
@@ -18,13 +19,10 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
@@ -131,14 +129,14 @@ public class SpecializationTypeConfigurationItemProvider extends ElementTypeConf
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((SpecializationTypeConfiguration)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_SpecializationTypeConfiguration_type") :
-			getString("_UI_SpecializationTypeConfiguration_type") + " " + label;
+			String.format("%s (%s)", label, getString("_UI_SpecializationTypeConfiguration_type"));
 	}
 	
 
