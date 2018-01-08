@@ -42,7 +42,13 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 	//Moreover, this constraint only relies on a Stereotype Name, without a Profile URI, so it wouldn't be able to find
 	//the correct profile without a context element.
 	//For now, the WeakReference is an acceptable compromise.
-	private WeakReference<Element> umlElement;
+	/**
+	 * @deprecated since 3.1 This field leaks the uml model
+	 */
+	@Deprecated
+	protected Element umlElement;
+	
+	private WeakReference<Element> contextElement;
 
 	@Override
 	public boolean match(Object selection) {
@@ -51,7 +57,12 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 			return false;
 		}
 
-		umlElement = new WeakReference<Element>(element);
+		contextElement = new WeakReference<Element>(element);
+		
+		//Preserve compatibility with 3.x: only populate the leaking field if we're in a subclass
+		if (getClass() != HasStereotypeConstraint.class) {
+			umlElement = element;
+		}
 
 		Stereotype stereotype = UMLUtil.getAppliedStereotype(element, stereotypeName, false);
 		return stereotype != null;
@@ -69,7 +80,7 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 		if (constraint instanceof HasStereotypeConstraint) {
 			HasStereotypeConstraint stereotypeConstraint = (HasStereotypeConstraint) constraint;
 			if (!stereotypeName.equals(stereotypeConstraint.stereotypeName)) {
-				Element element = umlElement.get();
+				Element element = contextElement.get();
 				if (element != null) {
 					Stereotype thisStereotype = element.getApplicableStereotype(stereotypeName);
 
