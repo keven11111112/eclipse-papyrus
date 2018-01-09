@@ -95,8 +95,8 @@ public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenc
 	 */
 	private Command getUpdateWeakRefForExecSpecCreate(final CreateViewAndElementRequest request) {
 		Command command = null;
-		CreateViewAndElementRequest createRequest = (CreateViewAndElementRequest) request;
-		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "Execution Specification creation request at:" + ((View) ((IAdaptable) getHost()).getAdapter(View.class)).getElement());
+		CreateViewAndElementRequest createRequest = request;
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "Execution Specification creation request at:" + ((IAdaptable) getHost()).getAdapter(View.class).getElement());
 		// Snap to grid Location
 		createRequest.setLocation(SequenceUtil.getSnappedLocation(getHost(), createRequest.getLocation()));
 
@@ -105,8 +105,8 @@ public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenc
 		getHostFigure().translateToRelative(reqlocationOnScreen);
 
 		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "=> Request Location on screen: " + reqlocationOnScreen);
-		List<OccurrenceSpecification> nextEventsFromPosition = new ArrayList<OccurrenceSpecification>();
-		List<OccurrenceSpecification> previousEventsFromPosition = new ArrayList<OccurrenceSpecification>();
+		List<OccurrenceSpecification> nextEventsFromPosition = new ArrayList<>();
+		List<OccurrenceSpecification> previousEventsFromPosition = new ArrayList<>();
 
 		// Get next and previous event from the lifeline source
 		EditPart host = getHost();
@@ -197,32 +197,32 @@ public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenc
 	 */
 	private Command getUpdateWeakRefForExecSpecResize(final ChangeBoundsRequest request) {
 		CompoundCommand compoundCommand = new CompoundCommand();
-		Point nextLocation = ((ChangeBoundsRequest) request).getLocation();
+		Point nextLocation = request.getLocation();
 		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ MOVE at " + nextLocation + " of " + getHost());//$NON-NLS-1$ //$NON-NLS-2$
 		Rectangle locationAndSize = new PrecisionRectangle(getHostFigure().getBounds());
 		Point moveDelta = new Point(0, 0);
 		if (RequestConstants.REQ_MOVE.equals(request.getType())) {
-			moveDelta = ((ChangeBoundsRequest) request).getMoveDelta();
+			moveDelta = request.getMoveDelta();
 		} else if (RequestConstants.REQ_RESIZE.equals(request.getType())) {
-			moveDelta = new Point(0, ((ChangeBoundsRequest) request).getSizeDelta().height + ((ChangeBoundsRequest) request).getMoveDelta().y);
+			moveDelta = new Point(0, request.getSizeDelta().height + request.getMoveDelta().y);
 		}
 		if (moveDelta.y != 0 && mustMove) {
 			if (getHost() instanceof AbstractExecutionSpecificationEditPart) {
 				getHostFigure().translateToAbsolute(locationAndSize);
-				locationAndSize = ((ChangeBoundsRequest) request).getTransformedRectangle(locationAndSize);
+				locationAndSize = request.getTransformedRectangle(locationAndSize);
 			}
 			if (getHost().getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
 				SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) getHost().getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
 				if (!SenderRequestUtils.isASender(request, getHost())) {
 
 					// Gets weak references
-					HashMap<EditPart, String> weakReferences = new HashMap<EditPart, String>();
+					HashMap<EditPart, String> weakReferences = new HashMap<>();
 					if ((moveDelta.y > 0 && mustMoveBelowAtMovingDown) || (moveDelta.y < 0 && mustMoveBelowAtMovingUp)) {
 						weakReferences.putAll(references.getWeakReferences());
 					}
 
 					for (Iterator<EditPart> iterator = weakReferences.keySet().iterator(); iterator.hasNext();) {
-						EditPart editPart = (EditPart) iterator.next();
+						EditPart editPart = iterator.next();
 						if (!SenderRequestUtils.isASender(request, editPart)) {
 							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move of " + moveDelta.y + " " + editPart);//$NON-NLS-1$
 							ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);

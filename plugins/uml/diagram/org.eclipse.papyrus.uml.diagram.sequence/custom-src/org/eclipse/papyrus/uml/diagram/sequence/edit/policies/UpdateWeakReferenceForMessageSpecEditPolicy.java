@@ -93,8 +93,8 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 	@SuppressWarnings("unchecked")
 	private Command getUpdateWeakRefForMessageCreate(final CreateConnectionViewAndElementRequest request) {
 		Command command = null;
-		CreateConnectionViewAndElementRequest createRequest = (CreateConnectionViewAndElementRequest) request;
-		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "Message creation request at:" + ((View) ((IAdaptable) getHost()).getAdapter(View.class)).getElement());
+		CreateConnectionViewAndElementRequest createRequest = request;
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "Message creation request at:" + ((IAdaptable) getHost()).getAdapter(View.class).getElement());
 		// Snap to grid Location
 		createRequest.setLocation(SequenceUtil.getSnappedLocation(getHost(), createRequest.getLocation()));
 
@@ -103,8 +103,8 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 		getHostFigure().getParent().translateToRelative(reqlocationOnScreen);
 
 		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "=> Request Location on screen: " + reqlocationOnScreen);
-		List<OccurrenceSpecification> nextEventsFromPosition = new ArrayList<OccurrenceSpecification>();
-		List<OccurrenceSpecification> previousEventsFromPosition = new ArrayList<OccurrenceSpecification>();
+		List<OccurrenceSpecification> nextEventsFromPosition = new ArrayList<>();
+		List<OccurrenceSpecification> previousEventsFromPosition = new ArrayList<>();
 
 		// Get next and previous event from the lifeline source
 		EditPart sourceEditPart = createRequest.getSourceEditPart();
@@ -204,7 +204,7 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 	 */
 	private Command getUpdateWeakRefForMessageReconnect(final ReconnectRequest request) {
 		CompoundCommand command = null;
-		ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+		ReconnectRequest reconnectRequest = request;
 		ConnectionEditPart hostConnectionEditPart = reconnectRequest.getConnectionEditPart();
 		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ MOVE ANCHORS of " + hostConnectionEditPart.getClass().getName());//$NON-NLS-1$
 		Point locationOnDiagram = CoordinateReferentialUtils.transformPointFromScreenToDiagramReferential(reconnectRequest.getLocation(), (GraphicalViewer) getHost().getViewer());
@@ -230,13 +230,13 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 					CompoundCommand compoundCommand = new CompoundCommand();
 
 					// Gets weak references
-					HashMap<EditPart, String> weakReferences = new HashMap<EditPart, String>();
+					HashMap<EditPart, String> weakReferences = new HashMap<>();
 					if ((moveDelta.y > 0 && mustMoveBelowAtMovingDown) || (moveDelta.y < 0 && mustMoveBelowAtMovingUp)) {
 						weakReferences.putAll(references.getWeakReferences());
 					}
 
 					for (Iterator<EditPart> iterator = weakReferences.keySet().iterator(); iterator.hasNext();) {
-						EditPart editPart = (EditPart) iterator.next();
+						EditPart editPart = iterator.next();
 						if (!SenderRequestUtils.isASender(request, editPart)) {
 							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart);//$NON-NLS-1$
 							ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
