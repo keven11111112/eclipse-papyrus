@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015, 2018 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,12 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Ansgar Radermacher - Bug 526155, enable re-generation from profile: copy existing advices
+ *   Ansgar Radermacher - Bug 526156, reference semantic base element type
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.types.generator
 
-import java.util.List
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.eclipse.core.resources.ResourcesPlugin
@@ -25,6 +26,8 @@ import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicat
 import org.eclipse.uml2.uml.Stereotype
 
 import static extension org.eclipse.emf.common.util.URI.decode
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry
+import org.eclipse.papyrus.infra.types.core.impl.ConfiguredHintedSpecializationElementType
 
 /**
  * Transformation rule for generating a {@link SpecializationTypeConfiguration} from a UML metaclass {@link Extension}.
@@ -40,39 +43,59 @@ class ElementTypeRule {
     @Inject extension Identifiers
 
     def create createSpecializationTypeConfiguration toElementType(ImpliedExtension umlExtension,
-        ElementTypeConfiguration supertype) {
+		ElementTypeConfiguration supertype) {
 
-        // Basics
-        identifier = umlExtension.toElementTypeID(supertype)
-        if (hasSemanticSupertype(supertype)) {
-            // Add the base semantic type in addition to the parent visual type
-			val baseType = createSpecializationTypeConfiguration();
-			val baseTypeId = umlExtension.toElementTypeID(umlExtension.metaclass.elementTypeConfiguration);
-			baseType.identifier = baseTypeId;
-			baseType.specializedTypes.add(umlExtension.metaclass.elementTypeConfiguration)
-			baseType.hint = umlExtension.metaclass.elementTypeConfiguration.hint
-        	baseType.name = umlExtension.toElementTypeName(umlExtension.metaclass.elementTypeConfiguration)
-        	// Icon
-        	var icon = umlExtension.stereotype.iconEntry
-        	baseType.iconEntry = if(icon != null) icon else umlExtension.metaclass.iconEntry
+		// Basics
+		identifier = umlExtension.toElementTypeID(supertype)
+		if (hasSemanticSupertype(supertype)) {
+			// try to lookup base type in the registry first
+			val baseTypeId = umlExtension.toSemanticElementTypeID(umlExtension.metaclass.elementTypeConfiguration);
+			val baseTypeFromRegistry = ElementTypeRegistry.instance.getType(baseTypeId)
+			if (baseTypeFromRegistry instanceof ConfiguredHintedSpecializationElementType) {
+				// base type found, reference it instead of creating a new one
+				val baseType = (baseTypeFromRegistry as ConfiguredHintedSpecializationElementType).configuration
+				specializedTypes.add(baseType)
+			}
+			else {
+				// Add the base semantic type in addition to the parent visual type
+				val baseType = createSpecializationTypeConfiguration()
+				baseType.identifier = umlExtension.toElementTypeID(umlExtension.metaclass.elementTypeConfiguration)
+				baseType.specializedTypes.add(umlExtension.metaclass.elementTypeConfiguration)
+				baseType.hint = umlExtension.metaclass.elementTypeConfiguration.hint
+				baseType.name = umlExtension.toElementTypeName(umlExtension.metaclass.elementTypeConfiguration)
+				// Icon
+				var icon = umlExtension.stereotype.iconEntry
+				baseType.iconEntry = if(icon != null) icon else umlExtension.metaclass.iconEntry
+				val addedBaseType = ConfigurationSetRule.addElementType(baseType)
+				specializedTypes.add(addedBaseType)
+			}
+		}
+		specializedTypes.add(supertype)
+		hint = supertype.hint
+		name = umlExtension.toElementTypeName(supertype)
 
-        	
-			val addedBaseType = ConfigurationSetRule.addElementType(baseType)
-			specializedTypes.add(addedBaseType)
-        }
-        specializedTypes.add(supertype)
-        hint = supertype.hint
-        name = umlExtension.toElementTypeName(supertype)
+		// copy eventually already existing advices from registry
+		val elemTypeFromRegistry = ElementTypeRegistry.instance.getType(identifier)
+		if (elemTypeFromRegistry instanceof ConfiguredHintedSpecializationElementType) {
+			// existing element type found, copy helper advice, if any
+			val elemTypeConfigFromRegistry = elemTypeFromRegistry.configuration
+			if (elemTypeConfigFromRegistry instanceof SpecializationTypeConfiguration) {
+				val helperAdviceFromRegistry = (elemTypeConfigFromRegistry as SpecializationTypeConfiguration).editHelperAdviceConfiguration
+				if (helperAdviceFromRegistry != null) {
+					editHelperAdviceConfiguration = helperAdviceFromRegistry
+				}
+			}
+		}
 
-        // Icon
-        var icon = umlExtension.stereotype.iconEntry
-        iconEntry = if(icon != null) icon else umlExtension.metaclass.iconEntry
+		// Icon
+		var icon = umlExtension.stereotype.iconEntry
+		iconEntry = if(icon != null) icon else umlExtension.metaclass.iconEntry
 
-        // Add stereotype matcher, if it isn't inherited from a semantic supertype
-        if (!hasSemanticSupertype(supertype)) {
-            matcherConfiguration = umlExtension.toMatcherConfiguration(supertype)
-        }
-    }
+		// Add stereotype matcher, if it isn't inherited from a semantic supertype
+		if (!hasSemanticSupertype(supertype)) {
+			matcherConfiguration = umlExtension.toMatcherConfiguration(supertype)
+		}
+	}
 
     private def create createStereotypeApplicationMatcherConfiguration toMatcherConfiguration(ImpliedExtension umlExtension,
         ElementTypeConfiguration supertype) {
