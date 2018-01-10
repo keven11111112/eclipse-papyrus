@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015, 2018 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
+ *   Ansgar Radermacher - Bug 526155, re-generation from profile: use ID as XML-ID
  *   
  *****************************************************************************/
 
@@ -32,7 +33,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.uml.profile.types.generator.internal.Activator;
 import org.eclipse.uml2.common.util.UML2Util;
 
@@ -102,6 +106,21 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 			Resource output = resourceSet.createResource(outputURI);
 
 			result = generate(input, output.getContents());
+
+			// use Identifier as XML-ID. This implies that the same XML-ID is used when re-generating
+			EObject set = output.getContents().size() > 0 ? output.getContents().get(0) : null;
+			if (set instanceof ElementTypeSetConfiguration) {
+				for (ElementTypeConfiguration elemTypeConfig : ((ElementTypeSetConfiguration) set).getElementTypeConfigurations()) {
+					String id = elemTypeConfig.getIdentifier();
+					if (id != null && id.length() > 0) {
+						// replace problematic characters in identifier with "_", before using it as XML-id
+						// in particular, the generator uses the ":", if it appends UML::MM name to the stereotype name 
+						id = id.replaceAll(" ", "_");
+						id = id.replaceAll(":", "_");
+						((XMLResource) output).setID(elemTypeConfig, id);
+					}
+				}
+			}
 
 			try {
 				output.save(null);

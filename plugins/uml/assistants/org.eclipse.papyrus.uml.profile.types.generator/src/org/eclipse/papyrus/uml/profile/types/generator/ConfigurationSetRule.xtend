@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015, 2017 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,9 @@
  * 
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   Benoit Maggi       - #474408 : order by identifier the generated file   
+ *   Benoit Maggi       - Bug 474408: order by identifier the generated file
+ *   Ansgar Radermacher - Bug 526155: set element type name from profile
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.types.generator
 
@@ -21,6 +23,7 @@ import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration
 import org.eclipse.uml2.uml.Profile
 import org.eclipse.uml2.uml.UMLPackage
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory
+import org.eclipse.emf.ecore.xmi.XMLResource
 
 /**
  * Transformation rule for generating an {@link ElementTypeSetConfiguration} from a UML {@link Profile}.
@@ -77,5 +80,8 @@ class ConfigurationSetRule {
 
 		adviceBindingsConfigurations.addAll(adviceBindingConfigurationList.sortBy[identifier])
 		elementTypeConfigurations.addAll(elementTypeConfigurationList.sortBy[identifier])
+
+		// set name (otherwise, the element type set remains invalid)
+		name = umlProfile.name
 	}
 }

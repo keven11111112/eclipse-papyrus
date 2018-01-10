@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015, 2018 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
+ *   Ansgar Radermacher - Bug 526155, add description to stereotype-application-rule
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.types.generator
@@ -35,6 +36,8 @@ class ApplyStereotypeAdviceRule {
         identifier = umlStereotype.name.toFirstLower.qualified + supertype.hintSuffix
         stereotypesToApply.add(umlStereotype.toStereotypeToApply(supertype))
         target = umlExtension.toElementType(supertype)
+        // make file more readable
+        description = umlStereotype.name
     }
 
     private def create createStereotypeToApply toStereotypeToApply(Stereotype umlStereotype, ElementTypeConfiguration supertype) {
