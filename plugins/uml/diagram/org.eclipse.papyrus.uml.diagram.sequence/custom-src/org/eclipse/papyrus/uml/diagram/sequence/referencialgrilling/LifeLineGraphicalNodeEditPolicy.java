@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756, 526191, 527333
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756, 526191
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -56,7 +56,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateExecutionSpecificationWithMessage;
 import org.eclipse.papyrus.uml.diagram.sequence.command.DropDestructionOccurenceSpecification;
-import org.eclipse.papyrus.uml.diagram.sequence.command.ReplaceExecSpecEventAtReconnectCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
@@ -657,10 +656,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	protected Command getReconnectSourceCommand(final ReconnectRequest request) {
 		// Snap to grid the request location
 		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
-
-		// Display event
-		displayEvent.addFigureEvent(getHostFigure(), request.getLocation());
-
 		// Check if the target is lower than the source
 		Point targetLocation = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) request.getConnectionEditPart(), false, true);
 		if (!isTargetLowerThanSource(request.getLocation().getCopy(), targetLocation)) {
@@ -682,28 +677,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			}
 		}
 
-		// Get the reconnect command
-		Command command = null;
-		// Check if we are in a start/finish of an exec spec
-		OccurrenceSpecification os = displayEvent.getActionExecutionSpecificationEvent(getHostFigure(), ((ReconnectRequest) request).getLocation());
-
-		if (os instanceof ExecutionOccurrenceSpecification) {
-			CompoundCommand compoundCommand = new CompoundCommand();
-			if (request.getLocation() != displayEvent.getRealEventLocation(request.getLocation())) {
-				request.setLocation(displayEvent.getRealEventLocation(request.getLocation()));
-			}
-			compoundCommand.add(getBasicGraphicalNodeEditPolicy().getCommand(request));
-			ReplaceExecSpecEventAtReconnectCommand replaceExecSpecEventAtReconnectCommand = new ReplaceExecSpecEventAtReconnectCommand(getEditingDomain(), request, os, true);
-			compoundCommand.add(new GMFtoGEFCommandWrapper(replaceExecSpecEventAtReconnectCommand));
-			command = compoundCommand;
-
-
-		} else if (os instanceof MessageEnd) {
-			// Event of Exec Spec have been already replaced. Only one message can be related to start or finish.
-			return UnexecutableCommand.INSTANCE;
-		}
-
-		return null != command ? command : getBasicGraphicalNodeEditPolicy().getCommand(request);
+		return getBasicGraphicalNodeEditPolicy().getCommand(request);
 	}
 
 	/**
@@ -714,12 +688,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	@Override
 	protected Command getReconnectTargetCommand(final ReconnectRequest request) {
 		Command command = null;
-
 		// Snap to grid the request location
 		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
-
-		// Display event
-		displayEvent.addFigureEvent(getHostFigure(), request.getLocation());
 
 		// Check if the target is lower than the source
 		Point sourceLocation = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) request.getConnectionEditPart(), true);
@@ -742,16 +712,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			}
 		}
 
-		// Check if we are in a start/finish of an exec spec
-		OccurrenceSpecification os = displayEvent.getActionExecutionSpecificationEvent(getHostFigure(), ((ReconnectRequest) request).getLocation());
-		if (os instanceof ExecutionOccurrenceSpecification) {
-			// If we reconnect to a exec spec event, we maj position to it
-			if (request.getLocation() != displayEvent.getRealEventLocation(request.getLocation())) {
-				request.setLocation(displayEvent.getRealEventLocation(request.getLocation()));
-			}
-		}
-
-		// Get the original reconnect command
 		Command reconnectTargetCommand = getBasicGraphicalNodeEditPolicy().getCommand(request);
 
 		// in case of reconnect target for message create it is need to move up the old target and move down the new target
@@ -804,20 +764,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		} else {
 			command = reconnectTargetCommand;
 		}
-
-
-		// get the command to replace event
-		if (os instanceof ExecutionOccurrenceSpecification) {
-			CompoundCommand compoundCommand = new CompoundCommand();
-			compoundCommand.add(command);
-			ReplaceExecSpecEventAtReconnectCommand replaceExecSpecEventAtReconnectCommand = new ReplaceExecSpecEventAtReconnectCommand(getEditingDomain(), request, os, false);
-			compoundCommand.add(new GMFtoGEFCommandWrapper(replaceExecSpecEventAtReconnectCommand));
-			command = compoundCommand;
-		} else if (os instanceof MessageEnd) {
-			// Event of Exec Spec have been already replaced. Only one message can be related to start or finish.
-			return UnexecutableCommand.INSTANCE;
-		}
-
 		return command;
 	}
 
