@@ -134,6 +134,8 @@ public class ProviderHelper {
 	 * 
 	 * @param modelElements
 	 * @param contentProvider
+	 * @param providerInput
+	 *            The input used to get the root elements from the {@code ITreeContentProvider}
 	 * @return
 	 * 
 	 * @since 2.1
@@ -149,7 +151,7 @@ public class ProviderHelper {
 	 * and returns a Wrapper Parent Element when passing a Semantic Model Element (Which is now the case for the EMF Facet provider)
 	 * It also works well for providers that are not wrapping model elements... by simply returning a list equivalent to its argument.
 	 */
-	public static List<Object> findObjectsToReveal(Collection<EObject> modelElements, ITreeContentProvider contentProvider) {
+	public static List<Object> findObjectsToReveal(Collection<EObject> modelElements, ITreeContentProvider contentProvider, Object providerInput) {
 		List<Object> toReveal = new ArrayList<>();
 		ITreeContentProvider provider = (ITreeContentProvider) contentProvider;
 		Map<Object, Collection<EObject>> allParents = new HashMap<>();
@@ -160,8 +162,13 @@ public class ProviderHelper {
 					allParents.put(parent, new HashSet<>());
 				}
 				allParents.get(parent).add(modelElement);
-			} else { // element can't be found via getParent; still try to reveal the raw element
-				toReveal.add(modelElement);
+			} else { // element can't be found via getParent.
+				// Try to find it in the root elements
+				Object providerElement = Arrays.stream(provider.getElements(providerInput)) //
+						.filter(element -> EMFHelper.getEObject(element) == modelElement) //
+						.findFirst().orElse(modelElement); //If we can't find it, use the raw model element
+
+				toReveal.add(providerElement);
 			}
 		}
 
@@ -192,7 +199,7 @@ public class ProviderHelper {
 	public static void selectReveal(Collection<EObject> modelElements, StructuredViewer viewer) {
 		IContentProvider contentProvider = viewer.getContentProvider();
 		if (contentProvider instanceof ITreeContentProvider) {
-			List<Object> toReveal = findObjectsToReveal(modelElements, (ITreeContentProvider)contentProvider);
+			List<Object> toReveal = findObjectsToReveal(modelElements, (ITreeContentProvider) contentProvider, viewer.getInput());
 			viewer.setSelection(new StructuredSelection(toReveal), true);
 		} else {
 			viewer.setSelection(new StructuredSelection(new ArrayList<>(modelElements)), true);

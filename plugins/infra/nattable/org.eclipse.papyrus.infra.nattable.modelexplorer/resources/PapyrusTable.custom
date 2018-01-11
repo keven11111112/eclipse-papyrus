@@ -69,6 +69,24 @@
           xsi:type="efacet:FacetOperation"
           href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/visibleReferences"/>
     </facetOperations>
+    <facetOperations
+        name="GetParent">
+      <eType
+          xsi:type="ecore:EClass"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters
+          name="eStructuralFeature">
+        <eType
+            xsi:type="ecore:EClass"
+            href="http://www.eclipse.org/emf/2002/Ecore#//ETypedElement"/>
+      </eParameters>
+      <query
+          xsi:type="javaQuery:JavaQuery"
+          implementationClassName="org.eclipse.papyrus.infra.nattable.modelexplorer.queries.GetTableContainer"/>
+      <override
+          xsi:type="efacet:FacetOperation"
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/parent"/>
+    </facetOperations>
   </eClassifiers>
   <eClassifiers
       xsi:type="efacet:Facet"
