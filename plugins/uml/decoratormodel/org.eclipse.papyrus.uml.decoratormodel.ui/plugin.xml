@@ -264,7 +264,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            category="org.eclipse.papyrus.uml.tools.profileApplicationDelegate"
             class="org.eclipse.papyrus.uml.decoratormodel.internal.ui.preferences.DecoratorModelPreferencePage"
             id="org.eclipse.papyrus.uml.decoratormodel.ui.DecoratorModelPreferences"
             name="%profapps.page.name">

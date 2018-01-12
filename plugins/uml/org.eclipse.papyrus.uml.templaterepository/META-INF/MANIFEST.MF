@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.uml.tools;bundle-version="[3.0.0,4.0.0)",
+Require-Bundle: org.eclipse.papyrus.uml.tools;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.uml.diagram.wizards;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
 Export-Package: org.eclipse.papyrus.uml.templaterepository
 Bundle-Vendor: %providerName

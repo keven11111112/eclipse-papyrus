@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2018 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
+ *   Pauline DEVILLE - Bug 529707
  *   
  *****************************************************************************/
 
@@ -115,6 +116,19 @@ public interface IProfileApplicationDelegate {
 	 */
 	EList<EObject> reapplyProfile(Package package_, Profile profile, IProgressMonitor monitor);
 
+	/**
+	 * Get the preference constant
+	 * @since 4.0
+	 */
+	String getPreferenceConstant();
+
+	/**
+	 * Get the preference label
+	 * @since 4.0
+	 */
+	String getPreferenceLabel();
+
+
 	//
 	// Nested types
 	//
@@ -155,6 +169,18 @@ public interface IProfileApplicationDelegate {
 
 		public EList<EObject> reapplyProfile(Package package_, Profile profile, IProgressMonitor monitor) {
 			return package_.applyProfile(profile);
+		}
+
+		public String getPreferenceConstant() {
+			return getPrefCons();
+		}
+
+		public String getPreferenceLabel() {
+			return "Default reapply tool"; //$NON-NLS-1$
+		}
+
+		private static String getPrefCons() {
+			return "default_delegate"; //$NON-NLS-1$
 		}
 	}
 }

@@ -123,4 +123,19 @@
             tabLabel="Flat">
       </tabDeclaration>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
+            class="org.eclipse.papyrus.uml.tools.helper.ProfileApplicationDelegatePreferencePage"
+            id="org.eclipse.papyrus.uml.tools.profileApplicationDelegate"
+            name="Profile Application">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.papyrus.uml.tools.helper.ProfileApplicationDelegatePreferenceInitializer">
+      </initializer>
+   </extension>
 </plugin>

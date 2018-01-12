@@ -16,6 +16,7 @@
  *   Christian W. Damus - bug 458197
  *   Christian W. Damus - bug 481302
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *   Pauline DEVILLE - Bug 529707
  *   
  *****************************************************************************/
 
@@ -45,6 +46,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.uml.decoratormodel.helper.DecoratorModelUtils;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.helper.IProfileApplicationDelegate;
+import org.eclipse.papyrus.uml.tools.helper.ProfileApplicationDelegatePreferenceInitializer;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -60,6 +62,8 @@ import com.google.common.collect.Sets;
  * An implementation of the profile-application delegate protocol for externalized profile applications.
  */
 public class ExternalizedProfileApplicationDelegate implements IProfileApplicationDelegate {
+
+	public static final String PREFERENCE_CONSTANT = ProfileApplicationDelegatePreferenceInitializer.PREFERENCE_CONSTANT_FOR_DEFAULT;
 
 	private final PrivateUtil util = new PrivateUtil();
 
@@ -147,6 +151,26 @@ public class ExternalizedProfileApplicationDelegate implements IProfileApplicati
 				: util.reapplyProfile(package_, existing, monitor); // Our extended UML case
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.uml.tools.helper.IProfileApplicationDelegate#getPreferenceConstant()
+	 *
+	 * @return
+	 */
+	@Override
+	public String getPreferenceConstant() {
+		return PREFERENCE_CONSTANT;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.tools.helper.IProfileApplicationDelegate#getPreferenceLabel()
+	 *
+	 * @return
+	 */
+	@Override
+	public String getPreferenceLabel() {
+		return "External stereotype application tool";
+	}
+
 	//
 	// Nested types
 	//
@@ -159,7 +183,8 @@ public class ExternalizedProfileApplicationDelegate implements IProfileApplicati
 			Profile profile = ExternalizedProfileApplicationDelegate.this.getAppliedProfile(profileApplication);
 			EPackage definition = profile.getDefinition();
 
-			monitor = SubMonitor.convert(monitor, NLS.bind("Re-applying profile \"{0}\" to package \"{1}\"", UMLLabelInternationalization.getInstance().getLabel(profile), UMLLabelInternationalization.getInstance().getLabel(package_)), IProgressMonitor.UNKNOWN);
+			monitor = SubMonitor.convert(monitor, NLS.bind("Re-applying profile \"{0}\" to package \"{1}\"", UMLLabelInternationalization.getInstance().getLabel(profile), UMLLabelInternationalization.getInstance().getLabel(package_)),
+					IProgressMonitor.UNKNOWN);
 
 			Collection<EObject> originals = Lists.newArrayList();
 			StereotypeApplicationCopier copier = new PrivateStereotypeCopier(profile);

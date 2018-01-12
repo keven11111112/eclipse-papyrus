@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
+ *   Pauline DEVILLE - Bug 529707
  *   
  *****************************************************************************/
 
@@ -23,6 +24,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.plugin.RegistryReader;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
@@ -44,7 +46,10 @@ public class ProfileApplicationDelegateRegistry {
 
 	public static final ProfileApplicationDelegateRegistry INSTANCE = new ProfileApplicationDelegateRegistry();
 
-	private final List<IProfileApplicationDelegate> delegates = new java.util.ArrayList<IProfileApplicationDelegate>(2);
+	/**
+	 * @since 4.0
+	 */
+	public final List<IProfileApplicationDelegate> delegates = new java.util.ArrayList<IProfileApplicationDelegate>(3);
 
 	private boolean needPrune;
 
@@ -88,8 +93,12 @@ public class ProfileApplicationDelegateRegistry {
 
 			for (IProfileApplicationDelegate next : delegates) {
 				if (next.appliesTo(package_)) {
-					result = next;
-					break;
+					final IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+					String preference = prefStore.getString(ProfileApplicationDelegatePreferenceInitializer.PROFILE_APPLICATION_DELEGATE_PREFERENCE);
+					if (preference.equals(next.getPreferenceConstant())) {
+						result = next;
+						break;
+					}
 				}
 			}
 		}
@@ -105,8 +114,12 @@ public class ProfileApplicationDelegateRegistry {
 
 			for (IProfileApplicationDelegate next : delegates) {
 				if (next.appliesTo(profileApplication)) {
-					result = next;
-					break;
+					final IPreferenceStore prefStore = Activator.getDefault().getPreferenceStore();
+					String preference = prefStore.getString(ProfileApplicationDelegatePreferenceInitializer.PROFILE_APPLICATION_DELEGATE_PREFERENCE);
+					if (preference.equals(next.getPreferenceConstant())) {
+						result = next;
+						break;
+					}
 				}
 			}
 		}
@@ -244,6 +257,14 @@ public class ProfileApplicationDelegateRegistry {
 
 			public EList<EObject> reapplyProfile(Package package_, Profile profile, IProgressMonitor monitor) {
 				return getInstance().reapplyProfile(package_, profile, monitor);
+			}
+
+			public String getPreferenceConstant() {
+				return getInstance().getPreferenceConstant();
+			}
+
+			public String getPreferenceLabel() {
+				return getInstance().getPreferenceLabel();
 			}
 		}
 	}

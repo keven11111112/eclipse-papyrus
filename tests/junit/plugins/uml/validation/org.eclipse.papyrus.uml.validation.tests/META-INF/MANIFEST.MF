@@ -7,7 +7,7 @@ Bundle-Name: %pluginName
 Require-Bundle: org.eclipse.papyrus.junit.utils;bundle-version="[2.0.0,3.0.0)",
  org.junit,
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.6.0",
- org.eclipse.papyrus.uml.tools;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.uml.tools;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.infra.services.validation;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.uml.service.validation;bundle-version="[2.1.0,3.0.0)",
  org.eclipse.gmf.runtime.emf.commands.core;bundle-version="1.7.0",
