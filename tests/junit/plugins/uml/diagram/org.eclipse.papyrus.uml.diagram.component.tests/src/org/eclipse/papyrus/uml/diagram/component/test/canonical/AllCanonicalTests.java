@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2018 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - bug 450921
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.test.canonical;
 
@@ -44,7 +45,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestListCompartmentPropertiesOperationsDrop.class,
 		TestComponentDiagramConnector.class,
 		TestComponentDiagramPortLink.class,
-		TestPortLocation.class
+		TestPortLocation.class, 
+		TestGeoshapes.class
 		// End
 })
 public class AllCanonicalTests {
