@@ -385,11 +385,10 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 						Edge edge = (Edge) connectionEditPart.getModel();
 						IdentityAnchor sourceAchor = (IdentityAnchor) edge.getSourceAnchor();
 						View viewsr = edge.getSource();
-						modifyAnchor(sourceAchor, (Node) viewsr, (DecorationNode) rowSource);
+//						modifyAnchor(sourceAchor, (Node) viewsr, (DecorationNode) rowSource);
 					}
 				}
 			}
-
 			// a ROW has changed at target
 			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location && (((EObject) notification.getNotifier()).eContainer().equals(rowTarget))) {
 				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT target Axis modified :" + notification);//$NON-NLS-1$
@@ -400,7 +399,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 						Edge edge = (Edge) connectionEditPart.getModel();
 						IdentityAnchor targetAchor = (IdentityAnchor) edge.getTargetAnchor();
 						View viewtg = edge.getTarget();
-						modifyAnchor(targetAchor, (Node) viewtg, (DecorationNode) rowTarget);
+//						modifyAnchor(targetAchor, (Node) viewtg, (DecorationNode) rowTarget);
 					}
 				}
 			}
