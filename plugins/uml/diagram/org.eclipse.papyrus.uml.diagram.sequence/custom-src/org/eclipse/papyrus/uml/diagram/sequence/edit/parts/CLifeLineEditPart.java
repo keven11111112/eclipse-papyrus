@@ -52,6 +52,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	public static int MIN_HEIGHT = 100;
 
 
+
 	/**
 	 * Constructor.
 	 *

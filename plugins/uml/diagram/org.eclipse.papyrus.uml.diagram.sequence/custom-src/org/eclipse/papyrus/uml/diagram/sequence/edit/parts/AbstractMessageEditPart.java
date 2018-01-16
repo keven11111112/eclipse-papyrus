@@ -145,7 +145,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	 * @return
 	 */
 	@Override
-	abstract public MessageFigure getPrimaryShape();
+	public abstract MessageFigure getPrimaryShape();
 
 	@Override
 	public void deactivate() {

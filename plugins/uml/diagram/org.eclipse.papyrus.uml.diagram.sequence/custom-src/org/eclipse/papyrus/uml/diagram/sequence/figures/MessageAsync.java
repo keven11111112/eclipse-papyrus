@@ -25,17 +25,8 @@ public class MessageAsync extends MessageFigure {
 	}
 
 	/**
-	 * Constructor.
-	 *
-	 * @param mapMode
-	 */
-	public MessageAsync(IMapMode mapMode) {
-		super(mapMode);
-	}
-
-	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure#createTargetDecoration()
 	 */
 	@Override

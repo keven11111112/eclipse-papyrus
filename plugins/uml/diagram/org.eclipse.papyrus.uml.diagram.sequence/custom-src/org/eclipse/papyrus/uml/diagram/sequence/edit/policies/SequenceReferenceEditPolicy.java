@@ -99,7 +99,9 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	 */
 	@Override
 	public void deactivate() {
+		if (null != redirectionOperationListener) {
 		OperationHistoryFactory.getOperationHistory().removeOperationHistoryListener(redirectionOperationListener);
+		}
 		super.deactivate();
 	}
 

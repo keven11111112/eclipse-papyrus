@@ -631,12 +631,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * @return true if target location point is lower than source location point
 	 */
 	private Boolean isTargetLowerThanSource(Point sourceLocation, Point targetLocation) {
-		Boolean targetLowerThanSource = true;
 		// only message with a target lower than the source is allowed.
-		Point sourceLocationPoint = (Point) sourceLocation;
-		targetLowerThanSource = sourceLocationPoint.y() <= targetLocation.y() + SequenceDiagramConstants.HORIZONTAL_MESSAGE_MAX_Y_DELTA;
-		return targetLowerThanSource;
-
+		return sourceLocation.y() <= targetLocation.y();
 	}
 
 	protected GraphicalNodeEditPolicy getBasicGraphicalNodeEditPolicy() {
@@ -654,7 +650,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 */
 	@Override
 	protected Command getReconnectSourceCommand(final ReconnectRequest request) {
-		// Snap to grid the request location
 		request.setLocation(SequenceUtil.getSnappedLocation(getHost(), request.getLocation()));
 		// Check if the target is lower than the source
 		Point targetLocation = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) request.getConnectionEditPart(), false, true);

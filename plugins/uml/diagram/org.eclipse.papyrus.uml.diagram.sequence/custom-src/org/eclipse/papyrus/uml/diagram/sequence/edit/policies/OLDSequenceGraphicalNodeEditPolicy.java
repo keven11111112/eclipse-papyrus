@@ -453,13 +453,13 @@ public class OLDSequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 	 */
 	@Override
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
-		if (isUphillMessage(request) && !isLostFoundMessage(request)) {
-			return UnexecutableCommand.INSTANCE;
-		}
+		// if (isUphillMessage(request) && !isLostFoundMessage(request)) {
+		// return UnexecutableCommand.INSTANCE;
+		// }
 		// prevent duplicate link
-		if (request.getConnectionEditPart() instanceof MessageCreateEditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)) {
-			return UnexecutableCommand.INSTANCE;
-		}
+		// if (request.getConnectionEditPart() instanceof MessageCreateEditPart && request.getTarget() != null && !LifelineMessageCreateHelper.canReconnectMessageCreate(request)) {
+		// return UnexecutableCommand.INSTANCE;
+		// }
 		Command command = super.getReconnectTargetCommand(request);
 		// Ordering message occurrence specifications after message reconnected, See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
 		if (command != null && command.canExecute()) {

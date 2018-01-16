@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -28,25 +27,8 @@ public class MessageCreate extends MessageFigure {
 	}
 
 	/**
-	 * Constructor.
-	 *
-	 * @param mapMode
-	 */
-	public MessageCreate(IMapMode mapMode) {
-		super(mapMode);
-	}
-
-	/**
-	 * Keep it for compatibility reason.
-	 */
-	@Deprecated
-	protected void setStyle() {
-		// DO nothing
-	}
-
-	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure#createTargetDecoration()
 	 */
 	@Override

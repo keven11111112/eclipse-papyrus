@@ -16,7 +16,6 @@ import org.eclipse.draw2d.ArrowLocator;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -27,15 +26,6 @@ public class MessageLost extends MessageFigure {
 	 * Constructor.
 	 */
 	public MessageLost() {
-	}
-
-	/**
-	 * Constructor.
-	 *
-	 * @param mapMode
-	 */
-	public MessageLost(IMapMode mapMode) {
-		super(mapMode);
 	}
 
 	/**

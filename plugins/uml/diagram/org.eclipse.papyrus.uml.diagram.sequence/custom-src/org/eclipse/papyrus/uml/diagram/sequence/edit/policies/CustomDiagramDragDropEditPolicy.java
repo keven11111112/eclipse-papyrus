@@ -30,6 +30,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -67,6 +68,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
@@ -114,6 +116,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CombinedFragmentMoveHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.CoordinateReferentialUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
@@ -439,7 +442,22 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	private Command dropNodeElement(Element element, String nodeVISUALID, Point location) {
 		if (LifelineEditPart.VISUAL_ID == nodeVISUALID) {
-			location.setY(50);
+
+			// Work in the Absolute coordinate
+			Point diagramAbsoluteLocation = CoordinateReferentialUtils.transformPointFromScreenToDiagramReferential(location, (GraphicalViewer) getViewer());
+			Point relativeFigurePosition = CoordinateReferentialUtils.getFigurePositionRelativeToDiagramReferential(getHostFigure(), DiagramUtils.getDiagramEditPartFrom(getHost()));
+
+			diagramAbsoluteLocation.translate(relativeFigurePosition.getNegated());
+			Point contentPaneRelativeLocation = CoordinateReferentialUtils.getFigurePositionRelativeToDiagramReferential(((GraphicalEditPart) getHost()).getContentPane().getParent(), DiagramUtils.getDiagramEditPartFrom(getHost()));
+
+			// Force the Top position of the Lifeline
+			location.setY(10 + contentPaneRelativeLocation.y);
+
+
+			// Come back to the Relative screen referential
+			diagramAbsoluteLocation.translate(relativeFigurePosition);
+			location = CoordinateReferentialUtils.transformPointFromDiagramToScreenReferential(location, (GraphicalViewer) getViewer());
+
 		}
 		Element parent = element.getOwner();
 		if (getHostObject().equals(parent)) {

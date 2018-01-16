@@ -100,7 +100,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 	private static final String MOVED_HORIZONTAL = "Moved Horizontal";
 
-	/** The minimum height of the Lifeline figure. */
+	/** The minimum height of the figure. */
 	private static final int LIFELINE_MIN_HEIGHT = 100;
 
 	public MessageConnectionLineSegEditPolicy() {
@@ -165,11 +165,17 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					CompoundCommand compoundCommand = new CompoundCommand();
 
 					// Gets weak references
-					HashMap<EditPart, String> weakReferences = new HashMap<EditPart, String>();
-					weakReferences.putAll(references.getWeakReferences());
+					List<EditPart> weakReferences = new ArrayList<EditPart>();
+					HashMap<EditPart, String> allWeakReferences = references.getWeakReferences();
+
+					allWeakReferences.forEach((editPart, value) -> {
+						if (SequenceReferenceEditPolicy.ROLE_FINISH != value) {// Do not take into account finish event of ecexution specification
+							weakReferences.add(editPart);
+						}
+					});
 
 					// for each weak reference move it
-					for (Iterator<EditPart> iterator = weakReferences.keySet().iterator(); iterator.hasNext();) {
+					for (Iterator<EditPart> iterator = weakReferences.iterator(); iterator.hasNext();) {
 						EditPart editPart = (EditPart) iterator.next();
 						if (!SenderRequestUtils.isASender(request, editPart)) {// avoid loop
 							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart);//$NON-NLS-1$
@@ -191,7 +197,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				}
 			}
 		}
-		return command;
+		return null != command && command.canExecute() ? command : null; //Don't return unexecutive commandj just null
 	}
 
 	/**

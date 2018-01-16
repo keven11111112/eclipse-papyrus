@@ -249,6 +249,7 @@ public class OccurrenceSpecificationMoveHelper {
 						// the message part must start or finish on the lifeline (with the event)
 						if (part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
 							Request reconnectRequest = makeReconnectRequest((ConnectionEditPart) part, true, referencePoint, childToReconnectTo);
+							reconnectRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 							ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
 							SenderRequestUtils.addRequestSenders(reconnectRequest, senderList);
 							Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
@@ -272,6 +273,7 @@ public class OccurrenceSpecificationMoveHelper {
 						// the message part must start or finish on the lifeline (with the event)
 						if (part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
 							Request reconnectRequest = makeReconnectRequest((ConnectionEditPart) part, false, referencePoint, childToReconnectTo);
+							reconnectRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 							ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
 							SenderRequestUtils.addRequestSenders(reconnectRequest, senderList);
 							Command reconnect = childToReconnectTo.getCommand(reconnectRequest);

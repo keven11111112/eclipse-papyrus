@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -26,22 +25,6 @@ public class MessageReply extends MessageFigure {
 	 */
 	public MessageReply() {
 		super();
-	}
-
-	/**
-	 * Constructor.
-	 *
-	 * @param mapMode
-	 */
-	public MessageReply(IMapMode mapMode) {
-		super(mapMode);
-	}
-
-	/**
-	 * keep it for compatibility reason.
-	 */
-	@Deprecated
-	protected void setStyle() {
 	}
 
 	/**
