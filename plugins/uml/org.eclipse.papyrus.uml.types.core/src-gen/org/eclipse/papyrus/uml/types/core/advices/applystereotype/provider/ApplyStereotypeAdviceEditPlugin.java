@@ -13,13 +13,9 @@
 package org.eclipse.papyrus.uml.types.core.advices.applystereotype.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
 import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
-
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 
 /**
@@ -37,6 +33,7 @@ public final class ApplyStereotypeAdviceEditPlugin extends EMFPlugin {
 	 */
 	public static final ApplyStereotypeAdviceEditPlugin INSTANCE = new ApplyStereotypeAdviceEditPlugin();
 
+	
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -49,7 +46,7 @@ public final class ApplyStereotypeAdviceEditPlugin extends EMFPlugin {
 	 * Create the instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public ApplyStereotypeAdviceEditPlugin() {
 		super
@@ -58,6 +55,8 @@ public final class ApplyStereotypeAdviceEditPlugin extends EMFPlugin {
 		     TypesConfigurationsEditPlugin.INSTANCE,
 		     UMLEditPlugin.INSTANCE,
 		   });
+		// Disable translation, see bug 526158 [ElementTypes] Element types editor freezes 
+		setShouldTranslate(false);
 	}
 
 	/**
