@@ -4,7 +4,7 @@ Export-Package: org.eclipse.papyrus.infra.services.viewersearch,
 Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
 Bundle-Vendor: %vendorName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.0.100.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.services.viewersearch.Activator

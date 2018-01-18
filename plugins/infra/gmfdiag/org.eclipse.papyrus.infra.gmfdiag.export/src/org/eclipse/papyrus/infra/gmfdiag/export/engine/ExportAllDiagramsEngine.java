@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007, 2016 Anyware Technologies, CEA, Christian W. Damus, and others.
+ * Copyright (c) 2007, 2016, 2018 Anyware Technologies, CEA, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which accompanies
  * this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
@@ -12,7 +12,7 @@
  * Christian W. Damus (CEA) - bug 410346
  * Gabriel Pascual (ALL4TEC) - Bug 440754
  * Christian W. Damus - bug 485220
- *
+ *  Camille Letavernier (EclipseSource) - Bug 529966 
  ******************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.export.engine;
 
@@ -318,6 +318,13 @@ public class ExportAllDiagramsEngine {
 			modelSet.loadModels(exportParameter.getDiFileUri());
 		} catch (ModelMultiException e) {
 			diagnostic = new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, Messages.ExportAllDiagrams_3, new Object[] { e });
+		}
+		
+		// Start all remaining services
+		try {
+			service.startRegistry();
+		} catch (ServiceException e) {
+			// Ignore errors: in headless mode, UI services may be missing
 		}
 
 		// Initialise an editing domain

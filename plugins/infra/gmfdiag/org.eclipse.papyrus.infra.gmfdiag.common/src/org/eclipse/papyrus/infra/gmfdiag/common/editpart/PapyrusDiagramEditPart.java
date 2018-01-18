@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
  *  C�line Janssens (ALL4TEC) - Override getDragTracker with the PapyrusRubberbandDragTracker
  *  Christian W. Damus - bugs 451230, 461629, 501946
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - add refresh of SVGPostProcessor - Bug 467569
+ *  Camille Letavernier (EclipseSource) - Bug 529966 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
@@ -32,7 +33,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusPopupBarEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.handler.IRefreshHandlerPart;
@@ -86,7 +86,7 @@ public class PapyrusDiagramEditPart extends DiagramEditPart {
 					IMultiDiagramEditor multiDiagramEditor = ServiceUtilsForEditPart.getInstance().getService(IMultiDiagramEditor.class, this);
 					activeEditor = multiDiagramEditor.getActiveEditor();
 				} catch (ServiceException e) {
-					Activator.log.error(e);
+					//Ignore: the IMultiDiagramEditor may not be present in headless mode
 				}
 				((IRefreshHandlerPart) SVGPostProcessor.instance).refresh(activeEditor);
 			}
