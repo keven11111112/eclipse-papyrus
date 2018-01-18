@@ -319,6 +319,13 @@ public class ExportAllDiagramsEngine {
 		} catch (ModelMultiException e) {
 			diagnostic = new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, Messages.ExportAllDiagrams_3, new Object[] { e });
 		}
+		
+		// Start all remaining services
+		try {
+			service.startRegistry();
+		} catch (ServiceException e) {
+			// Ignore errors: in headless mode, UI services may be missing
+		}
 
 		// Initialise an editing domain
 		modelSet.getTransactionalEditingDomain();
