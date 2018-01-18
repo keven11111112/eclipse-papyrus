@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.uml.export;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.jdt.ui;bundle-version="[3.13.50,4.0.0)",
  org.eclipse.papyrus.infra.onefile;bundle-version="[2.0.0,3.0.0)"
 Bundle-Activator: org.eclipse.papyrus.uml.export.Activator
 Bundle-ActivationPolicy: lazy
-Bundle-Vendor: %Bundle-Vendor
+Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.uml.export,
  org.eclipse.papyrus.uml.export.extension,
  org.eclipse.papyrus.uml.export.extension.contribution,
@@ -25,3 +25,4 @@ Export-Package: org.eclipse.papyrus.uml.export,
  org.eclipse.papyrus.uml.export.tree,
  org.eclipse.papyrus.uml.export.ui,
  org.eclipse.papyrus.uml.export.util
+Bundle-Localization: plugin
