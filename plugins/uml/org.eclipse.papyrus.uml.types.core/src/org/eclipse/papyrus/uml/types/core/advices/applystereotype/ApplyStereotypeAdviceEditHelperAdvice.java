@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,12 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 530026
  *****************************************************************************/
 package org.eclipse.papyrus.uml.types.core.advices.applystereotype;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -22,9 +23,10 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.types.core.Activator;
 import org.eclipse.papyrus.uml.types.core.requests.ApplyStereotypeRequest;
@@ -93,6 +95,28 @@ public class ApplyStereotypeAdviceEditHelperAdvice extends AbstractEditHelperAdv
 		return true;
 	}
 
+	/**
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#configureRequest(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
+	 *
+	 * @param request
+	 */
+	@Override
+	public void configureRequest(final IEditCommandRequest request) {
+		super.configureRequest(request);
+		StereotypeToApply namingStereotype = null;
+		final Iterator<StereotypeToApply> iter = this.configuration.getStereotypesToApply().iterator();
+		// we take the last stereotype for the name, to preserving the previous implementation
+		// we assume that the naming stereotype is applicable to the future created object
+		while (iter.hasNext()) {
+			final StereotypeToApply current = iter.next();
+			if (current.isUpdateName()) {
+				namingStereotype = current;
+			}
+		}
+		if (null != namingStereotype) {
+			request.setParameter(RequestParameterConstants.BASE_NAME_TO_SET, NamedElementUtil.getNameFromQualifiedName(namingStereotype.getStereotypeQualifiedName()));
+		}
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -116,7 +140,7 @@ public class ApplyStereotypeAdviceEditHelperAdvice extends AbstractEditHelperAdv
 		// retrieve edit service to get features from configure command
 		IElementEditService service = ElementEditServiceUtils.getCommandProvider(elementToConfigure);
 		if (service == null) {
-			Activator.log.error("Impossible to get edit service from element: " + elementToConfigure, null);
+			Activator.log.error(NLS.bind("Impossible to get edit service from element: {0}.", elementToConfigure), null); //$NON-NLS-1$
 			return null;
 		}
 
@@ -134,18 +158,7 @@ public class ApplyStereotypeAdviceEditHelperAdvice extends AbstractEditHelperAdv
 					resultCommand = resultCommand.compose(applyStereotypeCommand);
 				}
 
-				if (stereotypeToApply.isUpdateName() && elementToConfigure instanceof NamedElement) {
-					if (((NamedElement) elementToConfigure).getNamespace() != null) {
-						String newName = NamedElementUtil.getDefaultNameWithIncrementFromBase(stereotype.getName(), ((NamedElement) elementToConfigure).getNamespace().getMembers());
-						ICommand renameCommand = service.getEditCommand(new SetRequest(editingDomain, elementToConfigure, UMLPackage.eINSTANCE.getNamedElement_Name(), newName));
-
-						if (resultCommand == null) {
-							resultCommand = renameCommand;
-						} else {
-							resultCommand = resultCommand.compose(renameCommand);
-						}
-					}
-				}
+				// naming is now managed by configuring the request
 
 				// Set values
 				for (FeatureToSet featureToSet : stereotypeToApply.getFeaturesToSet()) {
@@ -179,11 +192,11 @@ public class ApplyStereotypeAdviceEditHelperAdvice extends AbstractEditHelperAdv
 	 */
 	protected ICommand getSetStereotypeFeatureValueCommand(Element elementToConfigure, Stereotype stereotype, String name, FeatureValue featureValue, IElementEditService service, ConfigureRequest configureRequest) {
 		if (name == null) {
-			Activator.log.debug("No feature name has been set.");
+			Activator.log.debug("No feature name has been set."); //$NON-NLS-1$
 			return null;
 		}
 		if (elementToConfigure.eClass() == null) {
-			Activator.log.error("Impossible to find EClass from EObject: " + elementToConfigure, null);
+			Activator.log.error(NLS.bind("Impossible to find EClass from EObject: {0}.", elementToConfigure), null); //$NON-NLS-1$
 			return null;
 		}
 
@@ -194,7 +207,7 @@ public class ApplyStereotypeAdviceEditHelperAdvice extends AbstractEditHelperAdv
 		// retrieve structural feature for the element to configure
 		TypedElement typedElement = (TypedElement) stereotype.getMember(name, true, UMLPackage.eINSTANCE.getTypedElement());
 		if (typedElement == null) {
-			Activator.log.error("Impossible to find feature " + name + " for eobject " + elementToConfigure, null);
+			Activator.log.error(NLS.bind("Impossible to find feature {0} for eobject {1}.", name, elementToConfigure), null); //$NON-NLS-1$
 			return null;
 		}
 		Object value = getStereotypeValue(elementToConfigure, stereotype, typedElement.getType(), featureValue);

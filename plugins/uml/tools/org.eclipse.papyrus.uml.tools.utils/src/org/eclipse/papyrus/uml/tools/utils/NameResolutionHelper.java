@@ -106,6 +106,7 @@ public class NameResolutionHelper implements INameResolutionHelper {
 	/**
 	 * A cached getter to all names structure
 	 * @return all the names
+	 * @since 3.2
 	 */
 	public Map<String, List<NamedElement>> getAllNames() {
 		if (allNames == null) {
@@ -325,8 +326,8 @@ public class NameResolutionHelper implements INameResolutionHelper {
 	 *
 	 * @param p
 	 * @return
+	 * @since 3.2
 	 */
-	@Override
 	public List<?> getMatchingElements(Predicate predicate) {
 		// Since Predicate isn't generic we need to handle the exception in filter
 		Set<?> collect = (Set<?>) this.getAllNames().values().stream().flatMap(List::stream)

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010. 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2014, 2018 CEA LIST and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,7 +10,7 @@
  * 
  * 	Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 440263
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 530026
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
@@ -47,17 +47,23 @@ public class NamedElementInitializerHelperAdvice extends AbstractEditHelperAdvic
 
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-				NamedElement element = (NamedElement)request.getElementToConfigure();
+				NamedElement element = (NamedElement) request.getElementToConfigure();
 
 				Object parameter = request.getParameter(RequestParameterConstants.NAME_TO_SET);
 				String initializedName = null;
 				if (parameter instanceof String) {
 					initializedName = (String) parameter;
 				} else {
-					initializedName = NamedElementUtil.getDefaultNameWithIncrement(element, element.eContainer().eContents());
+					parameter = request.getParameter(RequestParameterConstants.BASE_NAME_TO_SET);
+					if(null==parameter) {
+						initializedName = NamedElementUtil.getDefaultNameWithIncrement(element, element.eContainer().eContents());
+					}else if (parameter instanceof String && ((String)parameter).length()>0) {//a base name is provided
+						//if(length==0) we do nothing, according to the documentation of RequestParameterConstants.BASE_NAME_TO_SET
+						initializedName = NamedElementUtil.getDefaultNameWithIncrementFromBase((String)parameter, element.eContainer().eContents());
+					} 
 				}
 				// Initialize the element name based on the created IElementType
-				if(initializedName != null) {
+				if (initializedName != null) {
 					element.setName(initializedName);
 				}
 

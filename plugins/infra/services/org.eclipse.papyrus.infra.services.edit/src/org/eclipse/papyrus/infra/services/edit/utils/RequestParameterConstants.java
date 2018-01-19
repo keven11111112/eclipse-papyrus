@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2015, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,7 +10,8 @@
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 465899
  *   Bonnabesse Fanch (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476872
- *   Vincent Lorenzo - bug 492522
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 492522
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 530026
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.edit.utils;
 
@@ -111,6 +112,13 @@ public interface RequestParameterConstants {
 	public final static String NAME_TO_SET = "nameToSet"; //$NON-NLS-1$
 
 	/**
+	 * indicates the string to take to build the name of the new element (typically, we will increments the provided string)
+	 * if the value of the parameter can't be null. If the string is empty, the new element won't be named
+	 * @since 3.0 
+	 */
+	public final static String BASE_NAME_TO_SET = "baseNameToSet"; //$NON-NLS-1$
+
+	/**
 	 * the ID to store the visual id of the view on which we are working, the value must be a string
 	 */
 	public final static String VIEW_VISUAL_ID = "VISUAL_ID";//$NON-NLS-1$
@@ -151,12 +159,12 @@ public interface RequestParameterConstants {
 	 * Constant used to indicate where the action is done.
 	 */
 	public static final String TYPE_MOVING = "TYPE_MOVING"; //$NON-NLS-1$
-  
+
 	/**
 	 * Store the view on which we are working.
 	 */
 	public final static String AFFECTED_VIEW = "AFFECTED_VIEW";//$NON-NLS-1$
-	
+
 	/**
 	 * this constant is used to precise if it is needed to make the editdialog cancellable or not
 	 */
