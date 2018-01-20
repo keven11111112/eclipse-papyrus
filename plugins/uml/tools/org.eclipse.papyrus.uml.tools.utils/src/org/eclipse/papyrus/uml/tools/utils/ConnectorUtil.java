@@ -14,6 +14,10 @@
 
 package org.eclipse.papyrus.uml.tools.utils;
 
+import java.util.List;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
@@ -55,6 +59,29 @@ public class ConnectorUtil {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Return the connector end of a delegation originating from a given port
+	 * or null, if not such delegation exists
+	 *
+	 * @param composite
+	 *            the composite component
+	 * @param port
+	 *            a port (may be inherited) of that implementation
+	 * @return a connector end to which the port delegates or null
+	 */
+	public static List<ConnectorEnd> getDelegations(Class composite, Port port) {
+		EList<ConnectorEnd> conectorEnds = new UniqueEList<ConnectorEnd>();
+		for (Connector connector : composite.getOwnedConnectors()) {
+			if (connectsPort(connector, port)) {
+				ConnectorEnd otherEnd = connEndNotPart(connector, null);
+				if (otherEnd != null) {
+					conectorEnds.add(otherEnd);
+				}
+			}
+		}
+		return conectorEnds;
 	}
 
 	/**
