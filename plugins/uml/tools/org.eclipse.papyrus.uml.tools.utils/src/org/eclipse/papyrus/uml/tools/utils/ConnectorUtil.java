@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Ansgar Radermacher  ansgar.radermacher@cea.fr
+ *  Shuai Li (CEA LIST) <shuai.li@cea.fr> - Add getDelegations(...) method
  *
  *****************************************************************************/
 
