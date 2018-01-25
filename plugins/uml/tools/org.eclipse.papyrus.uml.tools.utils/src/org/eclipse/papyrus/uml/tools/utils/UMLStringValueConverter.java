@@ -45,9 +45,9 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * ULM String converter
+ * UML String converter
  *
- * @author vl222926
+ * @author Vincent Lorenzo
  *
  */
 public class UMLStringValueConverter extends EMFStringValueConverter {

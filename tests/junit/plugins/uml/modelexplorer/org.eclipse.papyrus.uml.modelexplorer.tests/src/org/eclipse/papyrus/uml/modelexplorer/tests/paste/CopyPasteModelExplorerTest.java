@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2018 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 434133
- *
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr  - bug 530155
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.tests.paste;
 
@@ -25,11 +25,14 @@ import org.eclipse.papyrus.junit.utils.HandlerUtils;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.modelexplorer.tests.Activator;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NameElementNamingStrategyPreferenceInitializer;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NamedElementIndexNamingStrategyEnum;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,7 +61,10 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 	@Before
 	public void initModelForCutTest() {
 		try {
-			initModel(PROJECT_NAME, MODEL_NAME, Activator.getDefault().getBundle()); //$NON-NLS-1$ //$NON-NLS-2$
+			initModel(PROJECT_NAME, MODEL_NAME, Activator.getDefault().getBundle()); // $NON-NLS-1$ //$NON-NLS-2$
+
+			// we set the default naming strategy, to preserve a previous test behavior
+			org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setValue(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION, NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
@@ -69,9 +75,9 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 		return RESOURCES_PATH;
 	}
 
-	
 
-	
+
+
 	/**
 	 * Simple copy paste of a class1
 	 * 
@@ -79,10 +85,10 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 	 */
 	@Test
 	public void copyPasteofClass1Test() throws Exception {
-		//get the rootModel
+		// get the rootModel
 		Assert.assertNotNull("RootModel is null", getRootUMLModel()); //$NON-NLS-1$
-		//get all semantic elment that will handled
-		Model model = (Model)getRootUMLModel();
+		// get all semantic elment that will handled
+		Model model = (Model) getRootUMLModel();
 
 		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
@@ -92,11 +98,11 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 		elements.add(getRootUMLModel());
 		modelExplorerView.revealSemanticElement(elements);
 
-		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class)model.getPackagedElement(CLASS1_NAME);
+		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class) model.getPackagedElement(CLASS1_NAME);
 		elements.clear();
 		elements.add(class1);
 		modelExplorerView.revealSemanticElement(elements);
-		Object class1TreeObject = ((IStructuredSelection)selectionService.getSelection()).getFirstElement();
+		Object class1TreeObject = ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
 		Assert.assertNotNull("Class1 TreeElement is null", class1TreeObject); //$NON-NLS-1$
 
 		IHandler copyHandler = HandlerUtils.getActiveHandlerFor(COPY_COMMAND_ID);
@@ -114,9 +120,9 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 		Assert.assertTrue("Paste not available", pasteHandler.isEnabled()); //$NON-NLS-1$
 		pasteHandler.execute(new ExecutionEvent());
 
-		// check that there is a Class1 
-		org.eclipse.uml2.uml.Class copyOfClass1 = (org.eclipse.uml2.uml.Class)model.getPackagedElement(NamedElementUtil.COPY_OF + "_" + CLASS1_NAME + "_1");
-		Assert.assertNotNull("The copy is missing", copyOfClass1); //$NON-NLS-1$			
+		// check that there is a Class1
+		org.eclipse.uml2.uml.Class copyOfClass1 = (org.eclipse.uml2.uml.Class) model.getPackagedElement(NamedElementUtil.COPY_OF + "_" + CLASS1_NAME + "_1");
+		Assert.assertNotNull("The copy is missing", copyOfClass1); //$NON-NLS-1$
 	}
 
 	/**
@@ -138,48 +144,48 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 		elements.add(rootUMLModel);
 		modelExplorerView.revealSemanticElement(elements);
 
-		//getItem for model
-		Object modelTreeObject = ((IStructuredSelection)selectionService.getSelection()).getFirstElement();
-		Assert.assertNotNull("Model TreeElement is null", modelTreeObject); //$NON-NLS-1$			
+		// getItem for model
+		Object modelTreeObject = ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
+		Assert.assertNotNull("Model TreeElement is null", modelTreeObject); //$NON-NLS-1$
 
 		// copy class1
-		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class)rootUMLModel.getPackagedElement(CLASS1_NAME);
+		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class) rootUMLModel.getPackagedElement(CLASS1_NAME);
 		elements.clear();
 		elements.add(class1);
 		modelExplorerView.revealSemanticElement(elements);
-		Object class1TreeObject = ((IStructuredSelection)selectionService.getSelection()).getFirstElement();
+		Object class1TreeObject = ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
 		Assert.assertNotNull("Class1 TreeElement is null", class1TreeObject); //$NON-NLS-1$
 
 		IHandler copyHandler = HandlerUtils.getActiveHandlerFor(COPY_COMMAND_ID);
 		Assert.assertTrue("Copy not available", copyHandler.isEnabled()); //$NON-NLS-1$
-		copyHandler.execute(new ExecutionEvent());		
-		
-		//get read only item
+		copyHandler.execute(new ExecutionEvent());
+
+		// get read only item
 		EList<Package> importedPackages = rootUMLModel.getImportedPackages();
 		Package primitiveTypes = importedPackages.get(0);
 
 		elements.clear();
 		elements.add(primitiveTypes);
 		modelExplorerView.revealSemanticElement(elements);
-		Object treeObject = ((IStructuredSelection)selectionService.getSelection()).getFirstElement();
+		Object treeObject = ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
 		Assert.assertNotNull("PrimitiveTypes TreeElement is null", treeObject); //$NON-NLS-1$
 
 		IHandler pasteHandler = HandlerUtils.getActiveHandlerFor(PASTE_COMMAND_ID);
-		Assert.assertFalse("Paste is available on a readonly element", pasteHandler.isEnabled()); //$NON-NLS-1$			
+		Assert.assertFalse("Paste is available on a readonly element", pasteHandler.isEnabled()); //$NON-NLS-1$
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Simple copy pasteof class1 & class2 test.
 	 */
 	@Test
 	public void copyPasteofClass1And2Test() throws Exception {
 
-		//get the rootModel
+		// get the rootModel
 		Assert.assertNotNull("RootModel is null", getRootUMLModel()); //$NON-NLS-1$
-		//get all semantic elment that will handled
-		Model model = (Model)getRootUMLModel();
+		// get all semantic elment that will handled
+		Model model = (Model) getRootUMLModel();
 
 		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
@@ -189,17 +195,17 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 		elements.add(getRootUMLModel());
 		modelExplorerView.revealSemanticElement(elements);
 
-		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class)model.getPackagedElement(CLASS1_NAME);
-		org.eclipse.uml2.uml.Class class2 = (org.eclipse.uml2.uml.Class)model.getPackagedElement(CLASS2_NAME);
+		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class) model.getPackagedElement(CLASS1_NAME);
+		org.eclipse.uml2.uml.Class class2 = (org.eclipse.uml2.uml.Class) model.getPackagedElement(CLASS2_NAME);
 		elements.clear();
 		elements.add(class1);
 		elements.add(class2);
 		modelExplorerView.revealSemanticElement(elements);
-		Object class1TreeObject = ((IStructuredSelection)selectionService.getSelection()).getFirstElement();
+		Object class1TreeObject = ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
 		Assert.assertNotNull("Class1 TreeElement is null", class1TreeObject); //$NON-NLS-1$
 
-		Object class2TreeObject = ((IStructuredSelection)selectionService.getSelection()).getFirstElement();
-		Assert.assertNotNull("Class2 TreeElement is null", class2TreeObject); //$NON-NLS-1$		
+		Object class2TreeObject = ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
+		Assert.assertNotNull("Class2 TreeElement is null", class2TreeObject); //$NON-NLS-1$
 
 		IHandler copyHandler = HandlerUtils.getActiveHandlerFor(COPY_COMMAND_ID);
 		Assert.assertTrue("Copy not available", copyHandler.isEnabled()); //$NON-NLS-1$
@@ -215,12 +221,22 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 		Assert.assertTrue("Paste not available", pasteHandler.isEnabled()); //$NON-NLS-1$
 		pasteHandler.execute(new ExecutionEvent());
 
-		// check that there is a Class1 
-		org.eclipse.uml2.uml.Class copyOfClass1 = (org.eclipse.uml2.uml.Class)model.getPackagedElement(NamedElementUtil.COPY_OF + "_" + CLASS1_NAME + "_1");
-		Assert.assertNotNull("The class1 copy is missing", copyOfClass1); //$NON-NLS-1$	
+		// check that there is a Class1
+		org.eclipse.uml2.uml.Class copyOfClass1 = (org.eclipse.uml2.uml.Class) model.getPackagedElement(NamedElementUtil.COPY_OF + "_" + CLASS1_NAME + "_1");
+		Assert.assertNotNull("The class1 copy is missing", copyOfClass1); //$NON-NLS-1$
 
-		org.eclipse.uml2.uml.Class copyOfClass2 = (org.eclipse.uml2.uml.Class)model.getPackagedElement(NamedElementUtil.COPY_OF + "_" + CLASS2_NAME + "_1");
-		Assert.assertNotNull("The class2 copy is missing", copyOfClass2); //$NON-NLS-1$			
+		org.eclipse.uml2.uml.Class copyOfClass2 = (org.eclipse.uml2.uml.Class) model.getPackagedElement(NamedElementUtil.COPY_OF + "_" + CLASS2_NAME + "_1");
+		Assert.assertNotNull("The class2 copy is missing", copyOfClass2); //$NON-NLS-1$
 	}
 
+	/**
+	 * 
+	 * @throws Exception
+	 * @since 1.3
+	 */
+	@After
+	public void tearDown() throws Exception {
+		// we reset the naming strategy to its initial value
+		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setToDefault(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION);
+	}
 }

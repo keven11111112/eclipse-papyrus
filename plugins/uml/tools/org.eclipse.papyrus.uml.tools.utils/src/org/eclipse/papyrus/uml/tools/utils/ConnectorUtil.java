@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Ansgar Radermacher  ansgar.radermacher@cea.fr
- *  Shuai Li (CEA LIST) <shuai.li@cea.fr> - Add getDelegations(...) method
+ *  Shuai Li (CEA LIST) <shuai.li@cea.fr> - Bug 530155
  *
  *****************************************************************************/
 
@@ -71,6 +71,7 @@ public class ConnectorUtil {
 	 * @param port
 	 *            a port (may be inherited) of that implementation
 	 * @return a connector end to which the port delegates or null
+	 * @since 3.3
 	 */
 	public static List<ConnectorEnd> getDelegations(Class composite, Port port) {
 		EList<ConnectorEnd> conectorEnds = new UniqueEList<ConnectorEnd>();

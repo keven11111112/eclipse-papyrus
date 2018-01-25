@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2018 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr  - bug 530155
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.tools.utils.tests.tests;
@@ -23,6 +23,8 @@ import java.util.Collections;
 
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NameElementNamingStrategyPreferenceInitializer;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NamedElementIndexNamingStrategyEnum;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.AggregationKind;
@@ -43,6 +45,7 @@ import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -71,7 +74,7 @@ public class NamedElementUtilTest {
 	private Transition transition;
 
 	private Message message;
-	
+
 	private GeneralOrdering generalOrdering;
 
 	public NamedElementUtilTest() {
@@ -125,20 +128,23 @@ public class NamedElementUtilTest {
 
 	@Before
 	public void createTestModel() {
+		// we set the default naming strategy, to preserve a previous test behavior
+		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setValue(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION, NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
+		
 		testModel = autoName(UMLFactory.eINSTANCE.createModel());
 		class_ = autoName(testModel.createOwnedClass(null, false));
 		association = autoName(class_.createAssociation(true, AggregationKind.NONE_LITERAL, "foo", 0, 1, testModel.createOwnedClass("Foo", false), false, AggregationKind.NONE_LITERAL, null, 0, LiteralUnlimitedNatural.UNLIMITED));
-		associationClass = autoName((AssociationClass)testModel.createOwnedType(null, UMLPackage.Literals.ASSOCIATION_CLASS));
+		associationClass = autoName((AssociationClass) testModel.createOwnedType(null, UMLPackage.Literals.ASSOCIATION_CLASS));
 		dependency = autoName(class_.createDependency(associationClass));
 
-		Activity activity = autoName((Activity)class_.createOwnedBehavior(null, UMLPackage.Literals.ACTIVITY));
-		controlFlow = autoName((ControlFlow)activity.createEdge(null, UMLPackage.Literals.CONTROL_FLOW));
+		Activity activity = autoName((Activity) class_.createOwnedBehavior(null, UMLPackage.Literals.ACTIVITY));
+		controlFlow = autoName((ControlFlow) activity.createEdge(null, UMLPackage.Literals.CONTROL_FLOW));
 
-		StateMachine stateMachine = autoName((StateMachine)class_.createOwnedBehavior(null, UMLPackage.Literals.STATE_MACHINE));
+		StateMachine stateMachine = autoName((StateMachine) class_.createOwnedBehavior(null, UMLPackage.Literals.STATE_MACHINE));
 		Region region = autoName(stateMachine.createRegion(null));
 		transition = autoName(region.createTransition(null));
 
-		Interaction interaction = autoName((Interaction)class_.createOwnedBehavior(null, UMLPackage.Literals.INTERACTION));
+		Interaction interaction = autoName((Interaction) class_.createOwnedBehavior(null, UMLPackage.Literals.INTERACTION));
 		message = autoName(interaction.createMessage(null));
 		generalOrdering = autoName(interaction.createGeneralOrdering(null));
 	}
@@ -146,11 +152,21 @@ public class NamedElementUtilTest {
 	<N extends NamedElement> N autoName(N element) {
 		Collection<?> siblings = (element.eContainer() != null) ? element.eContainer().eContents() : Collections.EMPTY_LIST;
 		String name = NamedElementUtil.getDefaultNameWithIncrement(element, siblings);
-		if(UML2Util.isEmpty(name)) {
+		if (UML2Util.isEmpty(name)) {
 			assertThat(NamedElementUtil.isAutoNamed(element), is(false));
 		} else {
 			element.setName(name);
 		}
 		return element;
+	}
+
+  	/**
+        * @throws Exception
+        * @since 1.3
+        */
+	@After
+	public void tearDown() throws Exception {
+		//we reset the naming strategy to its initial value
+		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setToDefault(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION);
 	}
 }

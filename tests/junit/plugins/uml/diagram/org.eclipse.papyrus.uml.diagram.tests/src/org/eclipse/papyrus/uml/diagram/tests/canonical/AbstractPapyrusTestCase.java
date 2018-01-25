@@ -12,7 +12,7 @@
  *  Christian W. Damus (CEA) - bug 436047
  *  Christian W. Damus - bug 473183
  *  Christian W. Damus - bug 464647
- *
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - bug 530155
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.tests.canonical;
 
@@ -68,6 +68,8 @@ import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NameElementNamingStrategyPreferenceInitializer;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NamedElementIndexNamingStrategyEnum;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.intro.IIntroPart;
@@ -167,6 +169,8 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 		store.setValue(alwaysCreateLinkPreferenceName, true);
 		store.setDefault(alwaysCreateLinkPreferenceName, true);
 
+		// we set the default naming strategy, to preserve a previous test behavior
+		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setValue(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION, NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
 		suiteState.setupTest();
 	}
 
@@ -201,6 +205,9 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	@After
 	public void tearDown() throws Exception {
 		suiteState.teardownTest();
+
+		// we reset the naming strategy to its initial value
+		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setToDefault(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION);
 	}
 
 	void doTearDown() throws Exception {

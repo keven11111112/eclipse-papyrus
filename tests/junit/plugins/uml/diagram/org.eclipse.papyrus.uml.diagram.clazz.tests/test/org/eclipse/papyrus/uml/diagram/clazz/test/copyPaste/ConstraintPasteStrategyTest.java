@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net- bug430548
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr  - bug 530155
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.test.copyPaste;
 
@@ -35,12 +36,16 @@ import org.eclipse.papyrus.junit.utils.rules.ShowView;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NameElementNamingStrategyPreferenceInitializer;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NamedElementIndexNamingStrategyEnum;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.services.IEvaluationService;
 import org.eclipse.uml2.uml.Model;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -64,12 +69,20 @@ public class ConstraintPasteStrategyTest extends AbstractPapyrusTest {
 
 	public final static String CLASS1_NAME = "Class1"; //$NON-NLS-1$
 
-	public final static String COPY_CLASS1_NAME = "CopyOf_Class1_1"; //$NON-NLS-N$;
+	public final static String COPY_CLASS1_NAME = "CopyOf_Class1_1"; //$NON-NLS-1$;
 
 	public final static String CONSTRAINT_NAME = "Constraint1"; //$NON-NLS-1$
 
 	public final static String DIAGRAM_NAME = "ConstraintClassDiagram"; //$NON-NLS-1$
 
+	/**
+	 * @since 1.3
+	 */
+	@Before
+	public void setUp() {
+		// we set the default naming strategy, to preserve a previous test behavior
+		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setValue(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION, NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
+	}
 
 	/**
 	 * Test copy constraint in class diagram.
@@ -101,7 +114,7 @@ public class ConstraintPasteStrategyTest extends AbstractPapyrusTest {
 		Object defaultSelectionHandler = getSelectionLikeInAbstractGraphicalHandler();
 
 		editorFixture.flushDisplayEvents();
-		Assert.assertNotNull("Constraint TreeElement is null", defaultSelection); //$NON-NLS-1$		
+		Assert.assertNotNull("Constraint TreeElement is null", defaultSelection); //$NON-NLS-1$
 		Assert.assertEquals("TreeElement is not a model", ModelEditPart.class, defaultSelection.getClass());
 		Assert.assertEquals("TreeElement is not a model", ModelEditPart.class, defaultSelectionHandler.getClass());
 
@@ -157,7 +170,7 @@ public class ConstraintPasteStrategyTest extends AbstractPapyrusTest {
 		editorFixture.flushDisplayEvents();
 
 		// Check that there is a copy of Constraint
-		Assert.assertEquals("The copy failed", amountRulesBeforeCopy + 1, class1.getOwnedRules().size()); //$NON-NLS-1$			
+		Assert.assertEquals("The copy failed", amountRulesBeforeCopy + 1, class1.getOwnedRules().size()); //$NON-NLS-1$
 
 	}
 
@@ -185,7 +198,7 @@ public class ConstraintPasteStrategyTest extends AbstractPapyrusTest {
 		Object defaultSelectionHandler = getSelectionLikeInAbstractGraphicalHandler();
 
 		editorFixture.flushDisplayEvents();
-		Assert.assertNotNull("Constraint TreeElement is null", defaultSelection); //$NON-NLS-1$		
+		Assert.assertNotNull("Constraint TreeElement is null", defaultSelection); //$NON-NLS-1$
 		Assert.assertEquals("TreeElement is not a model", ModelEditPart.class, defaultSelection.getClass());
 		Assert.assertEquals("TreeElement is not a model", ModelEditPart.class, defaultSelectionHandler.getClass());
 
@@ -199,7 +212,7 @@ public class ConstraintPasteStrategyTest extends AbstractPapyrusTest {
 		ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
 		Object constraintSelection = ((IStructuredSelection) selectionService.getSelection()).toList().get(0);
 		Object classSelection = ((IStructuredSelection) selectionService.getSelection()).toList().get(1);
-		
+
 		// it's working on service selection
 		Assert.assertEquals("TreeElement is not a constraint", CustomConstraintEditPart.class, constraintSelection.getClass());
 		Assert.assertEquals("TreeElement is not a class", ClassEditPart.class, classSelection.getClass());
@@ -272,6 +285,15 @@ public class ConstraintPasteStrategyTest extends AbstractPapyrusTest {
 		return ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
 	}
 
-
+	/**
+	 * 
+	 * @throws Exception
+	 * @since 1.3
+	 */
+	@After
+	public void tearDown() throws Exception {
+		// we reset the naming strategy to its initial value
+		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setToDefault(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION);
+	}
 
 }
