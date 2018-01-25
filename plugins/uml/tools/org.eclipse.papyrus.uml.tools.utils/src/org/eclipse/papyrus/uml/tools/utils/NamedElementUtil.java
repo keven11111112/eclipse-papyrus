@@ -10,7 +10,7 @@
  * Contributors:
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 440263
- *
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - bug 530155
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
@@ -19,7 +19,10 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NameElementNamingStrategyPreferenceInitializer;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NamedElementIndexNamingStrategyEnum;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
@@ -128,7 +131,7 @@ public class NamedElementUtil {
 
 	public static String getDefaultNameWithIncrementFromBase(String base, Collection<?> contents, EObject elementToRename, String separator) {
 		return (elementToRename != null) ? //
-		getDefaultNameSwitch(base, contents, separator).doSwitch(elementToRename).orNull()
+				getDefaultNameSwitch(base, contents, separator).doSwitch(elementToRename).orNull()
 				: //
 				computeDefaultNameWithIncrementFromBase(base, contents, elementToRename, separator);
 	}
@@ -226,6 +229,26 @@ public class NamedElementUtil {
 	}
 
 	static String computeDefaultNameWithIncrementFromBase(String base, Collection<?> contents, EObject elementToRename, String separator) {
+		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		final String preferenceValue = store.getString(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION);
+		if (null != preferenceValue) {
+			if (elementToRename instanceof NamedElement && null != ((NamedElement) elementToRename).getName() && false == ((NamedElement) elementToRename).getName().isEmpty()) {
+				if (null != elementToRename.eContainer()) {// not really equivalent to the contents.contains(elementToRename), but it works most of the time
+					return ((NamedElement) elementToRename).getName();
+				}
+			}
+			if (NamedElementIndexNamingStrategyEnum.NO_INDEX_INITIALIZATION.getName().equals(preferenceValue)) {
+				return base;
+			}
+			if (NamedElementIndexNamingStrategyEnum.QUICK_INDEX_INITIALIZATION.getName().equals(preferenceValue)) {
+				final StringBuilder builder = new StringBuilder(base);
+				builder.append(separator);
+				builder.append(contents.size());
+				//builder.append(1);// most of the time, the element to initialized is already in a list, so the +1 is not required
+				return builder.toString();
+			}
+			// in other case, we continue;
+		}
 		if (elementToRename != null) {
 			// Is this even an element that we should auto-name?
 			if (!isAutoNamed(elementToRename)) {
@@ -329,7 +352,7 @@ public class NamedElementUtil {
 	 * @param childQualifiedName
 	 *            the qualifiedName of an element
 	 * @return
-	 *         the qualified name of its parent
+	 * 		the qualified name of its parent
 	 */
 	public static String getParentQualifiedName(final String childQualifiedName) {
 		final String childName = getNameFromQualifiedName(childQualifiedName);

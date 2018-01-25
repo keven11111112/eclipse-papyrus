@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2018 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 434133
- *
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr  - bug 530155
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.tests.paste;
 
@@ -25,12 +25,15 @@ import org.eclipse.papyrus.junit.utils.HandlerUtils;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.modelexplorer.tests.Activator;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NameElementNamingStrategyPreferenceInitializer;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NamedElementIndexNamingStrategyEnum;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,6 +63,9 @@ public class CutPasteModelExplorerTest extends AbstractEditorTest {
 	public void initModelForCutTest() {
 		try {
 			initModel(PROJECT_NAME, MODEL_NAME, Activator.getDefault().getBundle()); //$NON-NLS-1$ //$NON-NLS-2$
+			
+			//we set the default naming strategy, to preserve a previous test behavior
+			org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setValue(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION, NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
@@ -189,6 +195,17 @@ public class CutPasteModelExplorerTest extends AbstractEditorTest {
 
 		org.eclipse.uml2.uml.Class secondCopyOfClass1 = (org.eclipse.uml2.uml.Class)model.getPackagedElement(NamedElementUtil.COPY_OF + "_" + CLASS1_NAME + "_1");
 		Assert.assertNotNull("The copy second is missing", secondCopyOfClass1); //$NON-NLS-1$
+	}
+	
+	/**
+	 * 
+	 * @throws Exception
+	 * @since 1.3
+	 */
+	@After
+	public void tearDown() throws Exception {
+		// we reset the naming strategy to its initial value
+		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setToDefault(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION);
 	}
 
 }

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2018 CEA LIST and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC gabriel.pascual@all4tec.net - bug 438511
- *
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr  - bug 530155
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.tests.paste;
 
@@ -26,13 +26,17 @@ import org.eclipse.papyrus.junit.utils.HandlerUtils;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NameElementNamingStrategyPreferenceInitializer;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NamedElementIndexNamingStrategyEnum;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -56,14 +60,19 @@ public class StereotypeCopyPasteModelExplorerTest extends AbstractPapyrusTest {
 	// information on the stereotype
 	public final static String STEREOTYPE_QN = "profile::First"; //$NON-NLS-1$
 
-	public final static String PARENT_STEREOTYPE_PROPERTY = "parentProperty"; //$NON-NLS-1$	
+	public final static String PARENT_STEREOTYPE_PROPERTY = "parentProperty"; //$NON-NLS-1$
 
 	public final static String PARENT_STEREOTYPE_PROPERTY_VALUE = "child"; //$NON-NLS-1$
 
 	public final static String STEREOTYPE_PROPERTY = "childProperty"; //$NON-NLS-1$
 
-	public final static Double STEREOTYPE_PROPERTY_VALUE = 2.3; //$NON-NLS-1$
+	public final static Double STEREOTYPE_PROPERTY_VALUE = 2.3; // $NON-NLS-1$
 
+	@Before
+	public void setUp() {
+		// we set the default naming strategy, to preserve a previous test behavior
+		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setValue(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION, NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
+	}
 
 	/**
 	 * Simple copy paste of a class1 with <<requirememt>> stereotype
@@ -118,8 +127,16 @@ public class StereotypeCopyPasteModelExplorerTest extends AbstractPapyrusTest {
 
 	}
 
-
-
+	/**
+	 * 
+	 * @throws Exception
+	 * @since 1.3
+	 */
+	@After
+	public void tearDown() throws Exception {
+		// we reset the naming strategy to its initial value
+		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setToDefault(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION);
+	}
 
 
 }

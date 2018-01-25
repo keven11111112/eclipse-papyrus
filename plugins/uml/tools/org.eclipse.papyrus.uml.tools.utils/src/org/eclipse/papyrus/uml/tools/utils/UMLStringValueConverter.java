@@ -45,7 +45,7 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * ULM String converter
+ * UML String converter
  *
  * @author Vincent Lorenzo
  *

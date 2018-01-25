@@ -182,5 +182,5 @@ public class ConnectorUtil {
 	 */
 	public static boolean existsConnector(Class composite, Property partA, Property partB) {
 		return getConnector(composite, partA, partB) != null;
-	}
+	} 
 }
