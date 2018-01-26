@@ -46,6 +46,7 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -1729,7 +1730,7 @@ public class SequenceUtil {
 		if (editPart != null) {
 			SnapToHelper helper = editPart.getAdapter(SnapToHelper.class);
 			if (helper != null) {
-				helper.snapPoint(new Request(), PositionConstants.NSEW, baseRect, result);
+				helper.snapPoint(new Request(RequestConstants.REQ_MOVE), PositionConstants.NSEW, baseRect, result);
 			}
 		}
 		return result;
