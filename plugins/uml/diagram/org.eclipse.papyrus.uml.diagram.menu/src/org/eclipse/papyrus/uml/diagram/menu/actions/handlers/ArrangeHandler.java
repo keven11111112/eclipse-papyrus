@@ -37,9 +37,6 @@ import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * Handler for the Arrange Action
- *
- *
- *
  */
 public class ArrangeHandler extends AbstractGraphicalCommandHandler {
 
@@ -111,7 +108,7 @@ public class ArrangeHandler extends AbstractGraphicalCommandHandler {
 		DiagramCommandStack stack = getDiagramCommandStack();
 		if (stack != null) {
 			try {
-				(stack).execute(getCommand(), progressMonitor);
+				stack.execute(getCommand(), progressMonitor);
 			} catch (ExecutionException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -132,8 +129,10 @@ public class ArrangeHandler extends AbstractGraphicalCommandHandler {
 					size += element.getFigure().getChildren().size();
 				}
 			} else if (operationSet != null && !operationSet.isEmpty()) {
-				IGraphicalEditPart container = (IGraphicalEditPart) getSelectionParent(operationSet);
-				size += container.getFigure().getChildren().size();
+				EditPart container = getSelectionParent(operationSet);
+				if (container instanceof IGraphicalEditPart) {
+					size += ((IGraphicalEditPart) container).getFigure().getChildren().size();
+				}
 			}
 
 			int totalDuration = Math.min(durationInc * factor / 2, Math.max(durationInc, (size / factor) * durationInc));
