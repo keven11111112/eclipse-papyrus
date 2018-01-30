@@ -5,7 +5,7 @@ target "Papyrus Main" with requirements source
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201710310601" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201801300706" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -24,13 +24,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestone
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M4-201712062000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M5-201801242000/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201712111714" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201801291243" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -70,37 +70,37 @@ location subversive "http://download.eclipse.org/technology/subversive/4.0/neon-
 
 //updateFrom("GMF Runtime",0) 
 
-location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201706061437" {
+location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201801291558/" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
 //updateFrom("GMF Runtime",1)
 
-location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201706061354" {
+location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201801291538" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
 }
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/updates/2.14milestones/" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201801231215" {
 	org.eclipse.emf.sdk.feature.group
 }
 
 //updateFrom("EMF Services",0) 
 
-location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releases/R201706061326" {
+location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/milestones/S201801291557" {
 	org.eclipse.emf.query.sdk.feature.group
 }
 
 //updateFrom("EMF Services",1)
 
-location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/releases/R201706061352" {
+location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201801291608" {
 	org.eclipse.emf.validation.sdk.feature.group
 }
 
 //updateFrom("EMF Services",2)
 
-location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201706061339" {
+location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201801291557/" {
 	org.eclipse.emf.transaction.sdk.feature.group
 }
 

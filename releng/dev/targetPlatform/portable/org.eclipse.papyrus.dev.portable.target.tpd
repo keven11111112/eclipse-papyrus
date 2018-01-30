@@ -28,7 +28,7 @@ location oomph "http://download.eclipse.org/oomph/drops/milestone/S20171213-0053
 
 //updateFrom("EGIT",0) 
 
-location egit "http://download.eclipse.org/egit/updates-4.9.1" // oomph
+location egit "http://download.eclipse.org/egit/updates-4.10" // oomph
 
 //updateFrom("m2e",0)
 
@@ -49,7 +49,7 @@ location tpd "http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/" {
 
 //manualUpdate 
 
-location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4.7/" {
+location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4.8/" {
 	org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group lazy
 	org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group lazy
 	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
