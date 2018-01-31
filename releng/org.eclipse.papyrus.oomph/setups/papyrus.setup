@@ -81,14 +81,14 @@
       <requirement name="org.apache.xerces"/>
       <requirement name="org.eclipse.wst.xml.core"/>
       <repositoryList name="Photon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M4-201712062000/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M5-201801242000/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.14milestones/">
+        <repository url="http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201801231215">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF (Core)</value>
@@ -104,7 +104,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201706061437">
+        <repository url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201801291558/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>GMF Runtime</value>
@@ -119,21 +119,21 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201710310601">
+        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201801300706">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>QVT Operational</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.7/S201705121344">
+        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.7/S201801301216">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T ACCELEO</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201712111714">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201801291243">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>OCL</value>
@@ -161,7 +161,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201706130827">
+        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201801301213">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF COMPARE</value>

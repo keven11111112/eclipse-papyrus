@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Dev" sequenceNumber="1517308353">
+<target name="Papyrus Dev" sequenceNumber="1517387200">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.8.0.v20180130-0706"/>
@@ -44,10 +44,6 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.9.0.v201706011851"/>
       <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.9.0/R-3.9.0-20170613094504/repository/"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.team.svn.feature.group" version="0.0.0"/>
-      <repository id="subversive" location="file:/home/data/httpd/download.eclipse.org/technology/subversive/4.0/neon-site/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.12.0.201801291558"/>
@@ -98,32 +94,32 @@
       <unit id="com.google.gson.source" version="2.7.0.v20170129-0911"/>
       <unit id="org.apache.commons.lang3" version="3.1.0.v201403281430"/>
       <unit id="org.apache.commons.lang3.source" version="3.1.0.v201403281430"/>
-      <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/S-builds/S20170804160030/repository"/>
+      <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/S-builds/S20180119201206/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.oomph.version.feature.group" version="1.8.0.v20170318-0624"/>
-      <unit id="org.eclipse.oomph.setup.workingsets.feature.group" version="1.9.0.v20171202-1121"/>
-      <unit id="org.eclipse.oomph.projectconfig.feature.group" version="1.9.0.v20171202-1121"/>
-      <unit id="org.eclipse.oomph.setup.targlets.feature.group" version="1.9.0.v20171212-1513"/>
-      <unit id="org.eclipse.oomph.setup.mylyn.feature.group" version="1.9.0.v20171202-1121"/>
-      <unit id="org.eclipse.oomph.setup.workbench.feature.group" version="1.9.0.v20171202-1121"/>
-      <unit id="org.eclipse.oomph.setup.projectset.feature.group" version="1.9.0.v20171202-1121"/>
-      <unit id="org.eclipse.oomph.setup.pde.feature.group" version="1.9.0.v20171202-1121"/>
-      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.9.0.v20171212-1513"/>
-      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.9.0.v20171202-1121"/>
-      <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.9.0.v20171202-1121"/>
-      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.9.0.v20171212-1515"/>
-      <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.9.0.v20171202-1121"/>
-      <unit id="org.eclipse.oomph.p2.feature.group" version="1.9.0.v20171212-1513"/>
-      <unit id="org.eclipse.oomph.setup.feature.group" version="1.9.0.v20171212-1513"/>
-      <unit id="org.eclipse.oomph.preferences.feature.group" version="1.8.0.v20170327-1117"/>
-      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/milestone/S20171213-005300-1.9.0-M2"/>
+      <unit id="org.eclipse.oomph.version.feature.group" version="1.9.0.v20180116-0432"/>
+      <unit id="org.eclipse.oomph.setup.workingsets.feature.group" version="1.9.0.v20171221-1140"/>
+      <unit id="org.eclipse.oomph.projectconfig.feature.group" version="1.9.0.v20171221-1140"/>
+      <unit id="org.eclipse.oomph.setup.targlets.feature.group" version="1.9.0.v20171221-1140"/>
+      <unit id="org.eclipse.oomph.setup.mylyn.feature.group" version="1.9.0.v20171221-1140"/>
+      <unit id="org.eclipse.oomph.setup.workbench.feature.group" version="1.9.0.v20171221-1140"/>
+      <unit id="org.eclipse.oomph.setup.projectset.feature.group" version="1.9.0.v20171221-1140"/>
+      <unit id="org.eclipse.oomph.setup.pde.feature.group" version="1.9.0.v20171226-0549"/>
+      <unit id="org.eclipse.oomph.targlets.feature.group" version="1.9.0.v20180116-0432"/>
+      <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.9.0.v20171221-1140"/>
+      <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.9.0.v20171221-1140"/>
+      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.9.0.v20171221-1140"/>
+      <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.9.0.v20171222-0933"/>
+      <unit id="org.eclipse.oomph.p2.feature.group" version="1.9.0.v20171221-1140"/>
+      <unit id="org.eclipse.oomph.setup.feature.group" version="1.9.0.v20171222-1315"/>
+      <unit id="org.eclipse.oomph.preferences.feature.group" version="1.9.0.v20171221-1140"/>
+      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/milestone/S20180130-044656-1.9.0-M3"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-4.10"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="m2e" location="file:/home/data/httpd/download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20171212-2050"/>
+      <repository id="m2e" location="file:/home/data/httpd/download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180131-0104"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="mylyn" location="file:/home/data/httpd/download.eclipse.org/mylyn/drops/3.24.0/v20170705-2102"/>
