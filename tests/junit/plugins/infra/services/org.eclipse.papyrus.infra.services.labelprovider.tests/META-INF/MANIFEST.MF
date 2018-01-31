@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.ui,
 Export-Package: org.eclipse.papyrus.infra.services.labelprovider.tests
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.1.qualifier
+Bundle-Version: 1.2.200.qualifier
 Bundle-Name: LabelProvider Service Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.services.labelprovider.tests.Activator

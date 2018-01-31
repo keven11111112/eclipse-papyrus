@@ -14,7 +14,7 @@ Export-Package: org.eclipse.papyrus.uml.decoratormodel.internal.controlmode;x-in
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.2.100.qualifier
+Bundle-Version: 1.2.200.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.decoratormodel.internal.controlmode.Activator

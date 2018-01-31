@@ -5,7 +5,7 @@ Require-Bundle: org.eclipse.papyrus.views.modelexplorer.widgets;bundle-version="
  org.eclipse.papyrus.uml.internationalization.utils;bundle-version="[1.0.0,2.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.0.100.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.widgets.Activator

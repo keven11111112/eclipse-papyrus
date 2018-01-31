@@ -20,7 +20,7 @@ Export-Package: org.eclipse.papyrus.uml.textedit.transition.xtext.ui,
  org.eclipse.papyrus.uml.textedit.transition.xtext.ui.quickfix
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.0.100.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.transition.xtext.ui.internal.UmlTransitionActivator
