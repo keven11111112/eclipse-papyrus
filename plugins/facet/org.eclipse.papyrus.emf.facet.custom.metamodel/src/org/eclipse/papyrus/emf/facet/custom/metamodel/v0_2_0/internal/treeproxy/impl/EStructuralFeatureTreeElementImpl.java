@@ -80,7 +80,7 @@ public class EStructuralFeatureTreeElementImpl extends TreeElementImpl implement
 				}
 
 				public EObject getEObject() {
-					return getEObject();
+					return EStructuralFeatureTreeElementImpl.this.getEObject();
 				}
 
 				public Object get(boolean resolve) {
