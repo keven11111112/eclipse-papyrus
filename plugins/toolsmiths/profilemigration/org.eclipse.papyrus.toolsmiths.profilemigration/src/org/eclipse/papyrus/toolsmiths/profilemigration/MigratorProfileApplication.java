@@ -37,6 +37,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.profilemigration.factory.IMigratorFactory;
 import org.eclipse.papyrus.toolsmiths.profilemigration.factory.MigratorFactory;
 import org.eclipse.papyrus.toolsmiths.profilemigration.internal.data.structure.StereotypeApplicationRegistry;
+import org.eclipse.papyrus.toolsmiths.profilemigration.internal.extensionPoint.AtomicMigratorRegistry;
 import org.eclipse.papyrus.toolsmiths.profilemigration.internal.utils.AtomicMigratorComparator;
 import org.eclipse.papyrus.toolsmiths.profilemigration.internal.utils.DifferenceTreeBuilder;
 import org.eclipse.papyrus.toolsmiths.profilemigration.migrators.ICompositeMigrator;
@@ -208,6 +209,7 @@ public class MigratorProfileApplication {
 		// 2] initialize lists
 		initAtomicList(treeNode, MigratorFactory.INSTANCE);
 		initCompositeList();
+		postProcessing();
 
 		// 3] reapply profile if it is necessary
 		if (shouldReapply) {
@@ -238,6 +240,24 @@ public class MigratorProfileApplication {
 		}
 		atomicList.sort(new AtomicMigratorComparator());
 	}
+
+	/**
+	 * Remove every erased migrator (erased by extension point)
+	 */
+	private void postProcessing() {
+		List<IAtomicMigrator> toRemove = new ArrayList<>();
+		for (AtomicMigratorRegistry.Descriptor descriptor : AtomicMigratorRegistry.INSTANCE.getRegistry()) {
+			for (String replacement : descriptor.getErasedMigrators()) {
+				for (IAtomicMigrator migrator : atomicList) {
+					if (!(toRemove.contains(migrator)) && migrator.getClass().getName().equals(replacement)) {
+						toRemove.add(migrator);
+					}
+				}
+			}
+		}
+		atomicList.removeAll(toRemove);
+	}
+
 
 	/**
 	 * Initialize the list of atomic migration from the list of atomic migration
