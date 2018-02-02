@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.edit.tree.TreeNode;
+import org.eclipse.papyrus.toolsmiths.profilemigration.internal.extensionPoint.AtomicMigratorRegistry;
 import org.eclipse.papyrus.toolsmiths.profilemigration.internal.migrators.atomic.enumeration.DeleteEnumerationLiteralFromEnumerationMigrator;
 import org.eclipse.papyrus.toolsmiths.profilemigration.internal.migrators.atomic.enumeration.MoveEnumerationLiteralFromEnumerationMigrator;
 import org.eclipse.papyrus.toolsmiths.profilemigration.internal.migrators.atomic.packages.MovePackageMigrator;
@@ -85,6 +86,15 @@ public class AtomicMigratorsFactory {
 		if (MoveProfileMigrator.isValid(treeNode)) {
 			result.add(instantiateMoveProfileMigrator(treeNode));
 		}
+
+		// Instantiate migrator from extensionPoint
+		for (AtomicMigratorRegistry.Descriptor descriptor : AtomicMigratorRegistry.INSTANCE.getRegistry()) {
+			IAtomicMigrator migrator = descriptor.getInstance().instantiate(treeNode);
+			if (migrator != null) {
+				result.add(migrator);
+			}
+		}
+
 		return result;
 	}
 
