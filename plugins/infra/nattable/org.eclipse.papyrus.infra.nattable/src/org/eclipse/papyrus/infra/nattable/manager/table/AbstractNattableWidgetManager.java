@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2017 CEA LIST and others.
+ * Copyright (c) 2012, 2017, 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -15,6 +15,7 @@
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 502560: add drag to diagram support
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 417095
  *  Vincent Lorenzo (CEA LIST) - bug 525221
+ *  Nicolas Fauvergue (CEA LIST) - bug 509971
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -62,7 +63,9 @@ import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.data.DefaultCornerDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.layer.CornerLayer;
 import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
+import org.eclipse.nebula.widgets.nattable.layer.AbstractDpiConverter;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
+import org.eclipse.nebula.widgets.nattable.layer.IDpiConverter;
 import org.eclipse.nebula.widgets.nattable.layer.ILayerListener;
 import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
@@ -320,6 +323,22 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	private SelectionListener cTabFolderSelectionListener;
 
 	/**
+	 * The column DPI converter.
+	 * TODO: This must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
+	 * 
+	 * @since 5.0
+	 */
+	private IDpiConverter widthDPIConverter = null;
+
+	/**
+	 * The row DPI converter.
+	 * TODO: This must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
+	 * 
+	 * @since 5.0
+	 */
+	private IDpiConverter heightDPIConverter = null;
+
+	/**
 	 *
 	 * Constructor.
 	 *
@@ -365,6 +384,34 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	public NatTable createNattable(final Composite parent, final int style, final IWorkbenchPartSite site) {
 		this.bodyDataProvider = new BodyDataProvider(this);
 
+		// Initialisation of the DPI Converters
+		this.widthDPIConverter = new AbstractDpiConverter() {
+
+			@Override
+			protected void readDpiFromDisplay() {
+				Display.getDefault().syncExec(new Runnable() {
+
+					@Override
+					public void run() {
+						dpi = Display.getDefault().getDPI().x;
+					}
+				});
+			}
+		};
+
+		this.heightDPIConverter = new AbstractDpiConverter() {
+
+			@Override
+			protected void readDpiFromDisplay() {
+				Display.getDefault().syncExec(new Runnable() {
+
+					@Override
+					public void run() {
+						dpi = Display.getDefault().getDPI().y;
+					}
+				});
+			}
+		};
 
 		this.bodyLayerStack = new BodyLayerStack(this.bodyDataProvider, this);
 
@@ -975,6 +1022,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 								}
 							}
 						} else {
+
+							// TODO: This must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
+							// Get the size depending to the DPI scale
+							newColumnSize = downScale(widthDPIConverter, newColumnSize);
+
 							ICommand cmd = createSetColumnSizeCommand(resizedColumnPosition, newColumnSize);
 							if (cmd != null && cmd.canExecute()) {
 								resizeCommand.add(cmd);
@@ -991,6 +1043,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						if (!autoResizeCellHeightFlag) {
 							int resizedRowPosition = getRangeStart(event);
 							int newRowSize = rowHeaderLayerStack.getRowHeightByPosition(resizedRowPosition);
+
+							// Get the size depending to the DPI scale
+							newRowSize = downScale(heightDPIConverter, newRowSize);
+
 							ICommand cmd = createSetRowSizeCommand(resizedRowPosition, newRowSize);
 							if (cmd != null && cmd.canExecute()) {
 								resizeCommand.add(cmd);
@@ -1180,8 +1236,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			public void handleLayerEvent(ILayerEvent event) {
 				if (event instanceof RowResizeEvent) {
 					// get the new values from the index and label headers
-					int newHeaderIndexHeight = columnHeaderLayerStack.getColumnIndexDataLayer().getRowHeightByPosition(0);
-					int newHeaderLabelHeight = columnHeaderLayerStack.getColumnLabelDataLayer().getRowHeightByPosition(0);
+					//TODO: the down scale must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
+                    // Get the size depending to the DPI scale
+					int newHeaderIndexHeight = downScale(heightDPIConverter, columnHeaderLayerStack.getColumnIndexDataLayer().getRowHeightByPosition(0));
+					int newHeaderLabelHeight = downScale(heightDPIConverter, columnHeaderLayerStack.getColumnLabelDataLayer().getRowHeightByPosition(0));
 					// get the position of the header being modified
 					int resizedHeaderPosition = getRangeStart(event);
 
@@ -1367,7 +1425,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 							// Resize the index if the position is 0
 							if (0 == resizedHeaderPosition && localRowHeaderAxis != null) {
 								// Calculate the width of the index column
-								int newHeaderIndexWidth = rowHeaderLayerStack.getRowIndexDataLayer().getColumnWidthByPosition(0);
+								//TODO: the down scale must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
+			                    // Get the size depending to the DPI scale
+								int newHeaderIndexWidth = downScale(widthDPIConverter, rowHeaderLayerStack.getRowIndexDataLayer().getColumnWidthByPosition(0));
 								IntValueStyle valueIndex = (IntValueStyle) localRowHeaderAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_INDEX_WIDTH);
 								if (valueIndex != null && valueIndex.getIntValue() != newHeaderIndexWidth) {
 									SetRequest resizeRowHeaderIndex = new SetRequest(tableDomain, valueIndex, NattablestylePackage.eINSTANCE.getIntValueStyle_IntValue(), newHeaderIndexWidth);
@@ -1387,7 +1447,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 							// This is a resize of row header label
 							if (1 <= resizedHeaderPosition && null != localRowHeaderAxis) {
 								// Calculate the width of the label column (depending to its position)
-								int newHeaderLabelWidth = rowHeaderLayerStack.getRowLabelDataLayer().getColumnWidthByPosition(resizedHeaderPosition - 1);
+								//TODO: the down scale must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
+			                    // Get the size depending to the DPI scale
+								int newHeaderLabelWidth = downScale(widthDPIConverter, rowHeaderLayerStack.getRowLabelDataLayer().getColumnWidthByPosition(resizedHeaderPosition - 1));
 								if (1 == resizedHeaderPosition) {
 									IntValueStyle valueLabel = (IntValueStyle) localRowHeaderAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_WIDTH);
 									if (valueLabel != null && valueLabel.getIntValue() != newHeaderLabelWidth) {
@@ -2266,6 +2328,26 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			}
 		}
 		return Collections.emptyMap();
+	}
+
+	/**
+	 * Calculates the size value dependent on a possible configured scaling from DPI to pixel value.
+	 * TODO: This must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
+	 *
+	 * @param dpiConverter
+	 *            The DPI Converter.
+	 * @param value
+	 *            The value that should be down scaled.
+	 * @return The scaled value if a {@link IDpiConverter} is configured, the
+	 *         value itself if no {@link IDpiConverter} is set.
+	 * 
+	 * @since 5.0
+	 */
+	private int downScale(final IDpiConverter dpiConverter, final int value) {
+		if (dpiConverter == null) {
+			return value;
+		}
+		return dpiConverter.convertDpiToPixel(value);
 	}
 
 }
