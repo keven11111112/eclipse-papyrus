@@ -62,11 +62,11 @@ location upr "http://download.eclipse.org/upr/0.9RC1/update/" {
 
 //updateFrom("EGIT",0) 
 
-location egit "http://download.eclipse.org/egit/updates-4.9.1" // oomph
+location egit "http://download.eclipse.org/egit/updates-4.9.2" // oomph
 
 //updateFrom("m2e",0)
 
-location m2e "http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.1.20170728-1531" // oomph
+location m2e "http://download.eclipse.org/technology/m2e/milestones/1.8/1.8.2.20171007-0217" // oomph
 
 //updateFrom("Mylyn",0)
 

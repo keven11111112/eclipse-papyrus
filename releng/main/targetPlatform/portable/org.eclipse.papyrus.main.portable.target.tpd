@@ -41,7 +41,7 @@ location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/update
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.2RC4-201711300510/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.3RC1-201802071700/" {
 	org.eclipse.sdk.feature.group
 }
 

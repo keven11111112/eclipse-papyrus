@@ -3,13 +3,13 @@ target "Papyrus RCP" with requirements source
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/updates-4.9.1" {
+location egit "http://download.eclipse.org/egit/updates-4.9.2" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.2RC4-201711300510/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.3RC1-201802071700/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
