@@ -43,7 +43,7 @@ public class UpdaterPinUtils {
 			while (!imported && packageImportIterator.hasNext()) {
 				PackageImport packageImport = packageImportIterator.next();
 				if (packageImport.getImportedPackage().isModelLibrary()
-						&& packageImport.getImportedPackage().getURI().equals(UML_PRIMITIVE_TYPES_URI)) {
+						&& UML_PRIMITIVE_TYPES_URI.equals(packageImport.getImportedPackage().getURI())) {
 					imported = true;
 				}
 			}
