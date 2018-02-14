@@ -187,7 +187,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.2/R-3.9.2-20171201000141/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.3/S-3.9.3RC1-20180209112900/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
