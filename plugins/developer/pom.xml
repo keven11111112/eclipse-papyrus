@@ -21,8 +21,6 @@
 		<module>org.eclipse.papyrus.dev.assistants.codegen</module>
 		<module>org.eclipse.papyrus.dev.pluginexplorer</module>
 		<module>org.eclipse.papyrus.dev.project.management</module>
-		<module>org.eclipse.papyrus.dev.tests.framework</module>
-		<module>org.eclipse.papyrus.dev.tests.framework.ui</module>
 		<module>org.eclipse.papyrus.dev.types</module>
 		<module>org.eclipse.papyrus.dev.ui</module>
 		<module>org.eclipse.papyrus.dev.view.services.edit.request</module>

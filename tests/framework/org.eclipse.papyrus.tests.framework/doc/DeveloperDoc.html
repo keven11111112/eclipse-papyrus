@@ -1,115 +1,0 @@
-<html>
-<link rel="stylesheet" href="default.css" type="text/css">
-<H1>Papyrus Test Generation Framework</H1>
-<pre id ="_spUT4CHAEeWLGf5EjabojA"><BR/>==Framework Goals==<BR/>* Automate the  development of test cases for Papyrus diagrams<BR/>* Set the bases for a model-based testing approach<BR/>* Ease the transition towards test-driven development</pre>
-<pre id ="_spU68SHAEeWLGf5EjabojA">Currently, the framework supports the generation of unit tests for a diagram editor, taking as input an input .gmfgen. See below the generation workflow to understand how it works.</pre>
-<H2 id ="_spViASHAEeWLGf5EjabojA">Table of Contents</H2>
-<ul><a href="#_spWJESHAEeWLGf5EjabojA">Requirements</a></ul>
-<ul><a href="#_spbooSHAEeWLGf5EjabojA">Use Cases</a><li><a href="#_srgsQSHAEeWLGf5EjabojA"> Papyrus Test Generation Framework</a></li>
-<ul><li><a href="#_srhTUSHAEeWLGf5EjabojA"> Define list of element edit parts under test</a></li>
-<ul></ul>
-<li><a href="#_srjIgSHAEeWLGf5EjabojA"> Generate test model</a></li>
-<ul></ul>
-<li><a href="#_srk9sCHAEeWLGf5EjabojA"> Generate JUnit test code</a></li>
-<ul></ul>
-</ul>
-</ul>
-<ul><a href="#_srmL0SHAEeWLGf5EjabojA">Design</a><li><a href="#_swf58SHAEeWLGf5EjabojA"> Package Structure</a></li>
-<ul><li><a href="#_szwpUSHAEeWLGf5EjabojA"> Class GenerateTestsWorkflow</a></li>
-<ul></ul>
-<li><a href="#_szx3cCHAEeWLGf5EjabojA"> Class StateMachineDiagramGenerateTestsWorkflow</a></li>
-<ul></ul>
-<li><a href="#_szzsoSHAEeWLGf5EjabojA"> Class ClassDiagramGenerateTestsWorkflow</a></li>
-<ul></ul>
-<li><a href="#_sz1h0CHAEeWLGf5EjabojA"> Class CommunicationDiagramGenerateTestsWorkflow</a></li>
-<ul></ul>
-<li><a href="#_sz3XACHAEeWLGf5EjabojA"> Class UseCaseDiagramGenerateTestsWorkflow</a></li>
-<ul></ul>
-<li><a href="#_sz4lISHAEeWLGf5EjabojA"> Class ActivityDiagramGenerateTestsWorkflow</a></li>
-<ul></ul>
-<li><a href="#_sz6aUSHAEeWLGf5EjabojA"> Class SequenceDiagramGenerateTestsWorkflow</a></li>
-<ul></ul>
-<li><a href="#_sz8PgSHAEeWLGf5EjabojA"> Class DeploymentDiagramGenerateTestsWorkflow</a></li>
-<ul></ul>
-<li><a href="#_sz-EsCHAEeWLGf5EjabojA"> Class CompositeStructureDiagramGenerateTestsWorkflow</a></li>
-<ul></ul>
-<li><a href="#_sz_S0SHAEeWLGf5EjabojA"> Class ComponentDiagramGenerateTestsWorkflow</a></li>
-<ul></ul>
-<li><a href="#_s0BIASHAEeWLGf5EjabojA"> Class TimingDiagramGenerateTestsWorkflow</a></li>
-<ul></ul>
-<li><a href="#_s0C9MCHAEeWLGf5EjabojA"> Class ProfileDiagramGenerateTestsWorkflow</a></li>
-<ul></ul>
-</ul>
-<li><a href="#_s0ELUSHAEeWLGf5EjabojA"> Package Behavior</a></li>
-<ul><li><a href="#_s1LloCHAEeWLGf5EjabojA"> Activity Papyrus Test Generation Workflow</a></li>
-<ul></ul>
-</ul>
-</ul>
-<ul><a href="#_s1MMsSHAEeWLGf5EjabojA">Requirements Coverage</a></ul>
-<H2 id ="_spWJESHAEeWLGf5EjabojA">Requirements</H2>
-<pre id ="_spXXMCHAEeWLGf5EjabojA">- JUnit Generation (id=req01): <BR/> The framework shall allow to generate JUnit tests for UML diagram editors, its nodes and links</pre>
-<pre id ="_spX-QSHAEeWLGf5EjabojA">- Functional test cases (id=req02): <BR/> The framework shall test functional test cases: for example creation of elements, hide, delete, edition, drop from model explorer, among many others.</pre>
-<pre id ="_spZMYCHAEeWLGf5EjabojA">- Extensibility (id=req03): <BR/> The framework shall be extensible with new diagram editors based on GMF, and other technologies where an editor description is available as a model (such as Nattable).</pre>
-<pre id ="_spZzcSHAEeWLGf5EjabojA">- Functional Coverage (id=req04): <BR/> The framework shall attain complete functional coverage for a diagram editor.</pre>
-<pre id ="_spbBkCHAEeWLGf5EjabojA">- Code Coverage (id=req05): <BR/> The framework shall cover all the possible code coverable by generated tests (expected to be around 80%)</pre>
-<H2 id ="_spbooSHAEeWLGf5EjabojA">Use Cases</H2>
-<P align="middle"><img src=/Users/damus/git/papyrus-mars/tests/framework/org.eclipse.papyrus.tests.framework/doc/imgDOC/UseCasesDiagram.png alt=UseCasesDiagram ></P><P align="middle">UseCasesDiagram</P></BR>
-<pre id ="_srfeICHAEeWLGf5EjabojA">As a prerequisite, the tests plug-in must have already been created.  Create tests plug-in, if it doesn't exist already.<BR/>As a requirement, following the Papyrus development guidelines an Eclipse plug-in project must be created to contain the tests. Example: org.eclipse.papyrus.uml.diagram.component.tests.<BR/>Add a dependency in the plug-in manifest to the test generation framework: org.eclipse.papyrus.tests.framework.</pre>
-<pre id ="_srgFMCHAEeWLGf5EjabojA">Example: Generation for the UML Component diagram<BR/>Here is an example (ComponentDiagramGenerateTestsWorkflow.xtend):<BR/><pre><BR/>package org.eclipse.papyrus.uml.diagram.component.test.generation<BR/><BR/>import org.eclipse.emf.mwe2.runtime.workflow.WorkflowContextImpl<BR/>import org.eclipse.papyrus.tests.framework.mwe.GenerateTestsWorkflow<BR/>import org.eclipse.papyrus.tests.framework.gmfgenuml2utp.GMFGen2UTPModule<BR/><BR/>class ComponentDiagramGenerateTestsWorkflow {<BR/><BR/>	def static void main(String[] args) {<BR/>		val workflow = new GenerateTestsWorkflow()<BR/>		runWorkflow(workflow);<BR/>	}<BR/><BR/>	def static void runWorkflow(GenerateTestsWorkflow workflow) {<BR/>        workflow.testProjectName = 'org.eclipse.papyrus.uml.diagram.component.tests'<BR/>		workflow.gmfgenUri = workflow.resourceURI('/org.eclipse.papyrus.uml.diagram.component/model/ComponentDiagram.gmfgen')<BR/>		workflow.testSrcGenLocation = 'test-gen/'<BR/>		workflow.testModel = 'model/ComponentDiagramTest.uml'<BR/>		<BR/>        workflow.utpModuleFunction = [gmfgen, framework, utp |<BR/>            new GMFGen2UTPModule(gmfgen, framework, utp) => [<BR/>                diagramTestPackageName = 'org.eclipse.papyrus.uml.diagram.component.test'<BR/>                topContainerEditPart = 'PackageEditPart';<BR/>                topNodesToTest += #[<BR/>                    'PackageEditPart', <BR/>                    'ModelEditPart', <BR/>                    'ComponentEditPart', <BR/>                    'InterfaceEditPart', <BR/>                    'CommentEditPart', <BR/>                    'ConstraintEditPart'<BR/>                ]<BR/>                childNodesToTest += #[<BR/>                    'ModelEditPartCN', <BR/>                    'PackageEditPartCN',<BR/>                    'RectangleInterfaceEditPartCN', <BR/>                    'ComponentEditPartCN', <BR/>                    'ComponentEditPartPCN', <BR/>                    'CommentEditPartPCN', <BR/>                    'ConstraintEditPartPCN',<BR/>                    'InterfaceEditPartPCN'<BR/>                ]<BR/>                linksToTest += #[<BR/>                    'UsageEditPart',<BR/>                    'InterfaceRealizationEditPart',<BR/>                    'ManifestationEditPart',<BR/>                    'ComponentRealizationEditPart',<BR/>                    'AbstractionEditPart',<BR/>                    'DependencyEditPart'<BR/>                ]<BR/>                linksOwnedBySourceToTest += #[<BR/>                    'GeneralizationEditPart'<BR/>                ]<BR/>                <BR/>                elementTypesAppearanceTests += #[<BR/>                    'PackageEditPart', <BR/>                    'ModelEditPart', <BR/>                    'ComponentEditPart', <BR/>                    'InterfaceEditPart', <BR/>                    'CommentEditPart', <BR/>                    'ConstraintEditPart'<BR/>                ]<BR/>                elementTypesDropTests += #[<BR/>                    'PackageEditPart', <BR/>                    'ModelEditPart', <BR/>                    'ComponentEditPart', <BR/>                    'InterfaceEditPart', <BR/>                    'CommentEditPart', <BR/>                    'ConstraintEditPart'<BR/>                ]<BR/>            ]<BR/>        ]<BR/>        <BR/>		workflow.run(new WorkflowContextImpl);<BR/>	}<BR/><BR/>}<BR/></pre><BR/></pre>
-<H3 id ="_srgsQSHAEeWLGf5EjabojA">Papyrus Test Generation Framework</H3>
-<H4 id ="_srhTUSHAEeWLGf5EjabojA">Define list of element edit parts under test</H4>
-<pre id ="_srihcSHAEeWLGf5EjabojA">Configure the Guice module for your diagram editor's UTP transformation, detailing the name of the generated package of tests and the desired edit parts to test, as they are described in the gmfgen (See example below). </pre>
-<H4 id ="_srjIgSHAEeWLGf5EjabojA">Generate test model</H4>
-<pre id ="_srjvkSHAEeWLGf5EjabojA">Create the generation launcher (either Xtend-based or Java-based) in an appropiate package, for instance org.eclipse.papyrus.uml.diagram.component.test.generation, in a file such as ComponentDiagramGenerateTestsWorkflow.xtend. Copy the example launcher below and replace with the values for the generation parameters for your own diagram editor. The parameters are:<BR/>gmfgenUri: URI for the input GMFGen file<BR/>testSrcGenLocation: Folder in the project where the launcher is located where the test code will be generated, for instance test-gen.<BR/>utpModuleFunction: injected configuration parameters for the UTP transformation, including tests package name and the various categories of edit-part to test<BR/>testModelUri: URI where the UML-UTP intermediate model will be generated. After launching the generation, this model provides an overview of all the generated test artifacts.<BR/>Launch the main method as a normal Java class.<BR/>The intermediate model and the JUnit code are generated.</pre>
-<H4 id ="_srk9sCHAEeWLGf5EjabojA">Generate JUnit test code</H4>
-<pre id ="_srlkwSHAEeWLGf5EjabojA">The generated JUnit tests extend the abstract test cases defined in the Papyrus test framework base</pre>
-<H2 id ="_srmL0SHAEeWLGf5EjabojA">Design</H2>
-<P align="middle"><img src=/Users/damus/git/papyrus-mars/tests/framework/org.eclipse.papyrus.tests.framework/doc/imgDOC/DesignOverview.png alt=DesignOverview ></P><P align="middle">DesignOverview</P></BR>
-<P align="middle"><img src=/Users/damus/git/papyrus-mars/tests/framework/org.eclipse.papyrus.tests.framework/doc/imgDOC/GenerationWorkflow.png alt=GenerationWorkflow ></P><P align="middle">GenerationWorkflow</P></BR>
-<pre id ="_suDC4SHAEeWLGf5EjabojA">This is the sequence of actions performed in the workflow to generate the tests. The input and output pins represent the inputs and outputs of every action.<BR/></pre>
-<P align="middle"><img src=/Users/damus/git/papyrus-mars/tests/framework/org.eclipse.papyrus.tests.framework/doc/imgDOC/ClassDiagram.png alt=ClassDiagram ></P><P align="middle">ClassDiagram</P></BR>
-<pre id ="_swfS4CHAEeWLGf5EjabojA">This is the structure of launchers for the generation workflow according to each type of diagram.</pre>
-<H3 id ="_swf58SHAEeWLGf5EjabojA">Package Structure</H3>
-<P align="middle"><img src=/Users/damus/git/papyrus-mars/tests/framework/org.eclipse.papyrus.tests.framework/doc/imgDOC/ClassDiagram.png alt=ClassDiagram ></P><P align="middle">ClassDiagram</P></BR>
-<H4 id ="_szwpUSHAEeWLGf5EjabojA">Class GenerateTestsWorkflow</H4>
-<H4 id ="_szx3cCHAEeWLGf5EjabojA">Class StateMachineDiagramGenerateTestsWorkflow</H4>
-<pre id ="_szzFkCHAEeWLGf5EjabojA">  - specializes <a href="#_szwpUSHAEeWLGf5EjabojA" title="Class GenerateTestsWorkflow">GenerateTestsWorkflow</a></pre>
-<H4 id ="_szzsoSHAEeWLGf5EjabojA">Class ClassDiagramGenerateTestsWorkflow</H4>
-<pre id ="_sz06wCHAEeWLGf5EjabojA">  - specializes <a href="#_szwpUSHAEeWLGf5EjabojA" title="Class GenerateTestsWorkflow">GenerateTestsWorkflow</a></pre>
-<H4 id ="_sz1h0CHAEeWLGf5EjabojA">Class CommunicationDiagramGenerateTestsWorkflow</H4>
-<pre id ="_sz2I4SHAEeWLGf5EjabojA">  - specializes <a href="#_szwpUSHAEeWLGf5EjabojA" title="Class GenerateTestsWorkflow">GenerateTestsWorkflow</a></pre>
-<H4 id ="_sz3XACHAEeWLGf5EjabojA">Class UseCaseDiagramGenerateTestsWorkflow</H4>
-<pre id ="_sz3-ESHAEeWLGf5EjabojA">  - specializes <a href="#_szwpUSHAEeWLGf5EjabojA" title="Class GenerateTestsWorkflow">GenerateTestsWorkflow</a></pre>
-<H4 id ="_sz4lISHAEeWLGf5EjabojA">Class ActivityDiagramGenerateTestsWorkflow</H4>
-<pre id ="_sz5zQCHAEeWLGf5EjabojA">  - specializes <a href="#_szwpUSHAEeWLGf5EjabojA" title="Class GenerateTestsWorkflow">GenerateTestsWorkflow</a></pre>
-<H4 id ="_sz6aUSHAEeWLGf5EjabojA">Class SequenceDiagramGenerateTestsWorkflow</H4>
-<pre id ="_sz7ocCHAEeWLGf5EjabojA">  - specializes <a href="#_szwpUSHAEeWLGf5EjabojA" title="Class GenerateTestsWorkflow">GenerateTestsWorkflow</a></pre>
-<H4 id ="_sz8PgSHAEeWLGf5EjabojA">Class DeploymentDiagramGenerateTestsWorkflow</H4>
-<pre id ="_sz82kSHAEeWLGf5EjabojA">  - specializes <a href="#_szwpUSHAEeWLGf5EjabojA" title="Class GenerateTestsWorkflow">GenerateTestsWorkflow</a></pre>
-<H4 id ="_sz-EsCHAEeWLGf5EjabojA">Class CompositeStructureDiagramGenerateTestsWorkflow</H4>
-<pre id ="_sz-rwSHAEeWLGf5EjabojA">  - specializes <a href="#_szwpUSHAEeWLGf5EjabojA" title="Class GenerateTestsWorkflow">GenerateTestsWorkflow</a></pre>
-<H4 id ="_sz_S0SHAEeWLGf5EjabojA">Class ComponentDiagramGenerateTestsWorkflow</H4>
-<pre id ="_s0Ag8CHAEeWLGf5EjabojA">  - specializes <a href="#_szwpUSHAEeWLGf5EjabojA" title="Class GenerateTestsWorkflow">GenerateTestsWorkflow</a></pre>
-<H4 id ="_s0BIASHAEeWLGf5EjabojA">Class TimingDiagramGenerateTestsWorkflow</H4>
-<pre id ="_s0BvESHAEeWLGf5EjabojA">  - specializes <a href="#_szwpUSHAEeWLGf5EjabojA" title="Class GenerateTestsWorkflow">GenerateTestsWorkflow</a></pre>
-<H4 id ="_s0C9MCHAEeWLGf5EjabojA">Class ProfileDiagramGenerateTestsWorkflow</H4>
-<pre id ="_s0DkQSHAEeWLGf5EjabojA">  - specializes <a href="#_szwpUSHAEeWLGf5EjabojA" title="Class GenerateTestsWorkflow">GenerateTestsWorkflow</a></pre>
-<H3 id ="_s0ELUSHAEeWLGf5EjabojA">Package Behavior</H3>
-<P align="middle"><img src=/Users/damus/git/papyrus-mars/tests/framework/org.eclipse.papyrus.tests.framework/doc/imgDOC/GenerationWorkflow.png alt=GenerationWorkflow ></P><P align="middle">GenerationWorkflow</P></BR>
-<H4 id ="_s1LloCHAEeWLGf5EjabojA">Activity Papyrus Test Generation Workflow</H4>
-<H2 id ="_s1MMsSHAEeWLGf5EjabojA">Requirements Coverage</H2>
-<table style="border-collapse: collapse;"><caption style="caption-side: bottom;">RequirementsCoverageTable</caption><tr><th style="border: 1px solid black">Id</th><th style="border: 1px solid black">Satisfied by</th><th style="border: 1px solid black">Verified by</th></tr>
-<tr><td style="border : 1px solid black"><a href="#_spXXMCHAEeWLGf5EjabojA" title="JUnit Generation">req01</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_spX-QSHAEeWLGf5EjabojA" title="Functional test cases">req02</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_spZMYCHAEeWLGf5EjabojA" title="Extensibility">req03</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_spZzcSHAEeWLGf5EjabojA" title="Functional Coverage">req04</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-<tr><td style="border : 1px solid black"><a href="#_spbBkCHAEeWLGf5EjabojA" title="Code Coverage">req05</a><BR/>
-</td><td style="border : 1px solid black"></td><td style="border : 1px solid black"></td></tr>
-</table>
-<pre id ="_s1Na0SHAEeWLGf5EjabojA">Unsatisfied requirements (5 out of 5) : </pre>
-<a href="#_spXXMCHAEeWLGf5EjabojA" title="JUnit Generation">req01, </a><a href="#_spX-QSHAEeWLGf5EjabojA" title="Functional test cases">req02, </a><a href="#_spZMYCHAEeWLGf5EjabojA" title="Extensibility">req03, </a><a href="#_spZzcSHAEeWLGf5EjabojA" title="Functional Coverage">req04, </a><a href="#_spbBkCHAEeWLGf5EjabojA" title="Code Coverage">req05</a><pre id ="_s1OB4SHAEeWLGf5EjabojA">Unverified requirements (5 out of 5) : </pre>
-<a href="#_spXXMCHAEeWLGf5EjabojA" title="JUnit Generation">req01, </a><a href="#_spX-QSHAEeWLGf5EjabojA" title="Functional test cases">req02, </a><a href="#_spZMYCHAEeWLGf5EjabojA" title="Extensibility">req03, </a><a href="#_spZzcSHAEeWLGf5EjabojA" title="Functional Coverage">req04, </a><a href="#_spbBkCHAEeWLGf5EjabojA" title="Code Coverage">req05</a></html>

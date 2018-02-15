@@ -13,16 +13,13 @@
 	<packaging>pom</packaging>
 	<description>The top container of plug-in projects tests for the main Papyrus distribution.</description>
 
-	<modules>
-		<!-- Suites -->
-		<!-- <module>org.eclipse.papyrus.tests</module> -->
-	
+	<modules>	
 		<!-- children -->
 		<module>developer</module>
 		<module>editor</module>
 		<module>infra</module>
 		<module>uml</module>
-		<module>views</module>
-		
+		<module>views</module>		
 	</modules>
+	
 </project>

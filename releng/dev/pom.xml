@@ -22,13 +22,8 @@
 		<module>../../features/papyrus-dev-features/org.eclipse.papyrus.uml.m2m.qvto.tests.tools.feature</module>
 		<module>../../plugins/developer</module>
 		<!-- <module>../../plugins/developer/org.eclipse.papyrus.diagramdev.modelexplorer</module> -->
-		<module>../../tests/framework/org.eclipse.papyrus.tests.framework.annotations</module>
-		<module>../../tests/framework/org.eclipse.papyrus.tests.framework.edit</module>
-		<module>../../tests/framework/org.eclipse.papyrus.tests.framework.editor</module>
-		<module>../../tests/framework/org.eclipse.papyrus.tests.framework</module>
 		<module>../../tests/junit/plugins/developer/org.eclipse.papyrus.bundles.tests</module>
-		<module>../../tests/junit/plugins/junit/org.eclipse.papyrus.junit.framework</module>
-		<module>../../tests/junit/plugins/junit/org.eclipse.papyrus.junit.utils</module>
+		<module>../../tests/junit/framework</module>
 		<module>site</module>
 		<module>targetPlatform</module>
 	</modules>

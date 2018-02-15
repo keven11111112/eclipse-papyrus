@@ -33,8 +33,6 @@ org.eclipse.papyrus.def
 org.eclipse.papyrus.dev.assistants.codegen
 org.eclipse.papyrus.dev.java.utils
 org.eclipse.papyrus.dev.project.management
-org.eclipse.papyrus.dev.tests.framework
-org.eclipse.papyrus.dev.tests.framework.ui
 org.eclipse.papyrus.developer.profile
 org.eclipse.papyrus.domaincodegen.ui
 org.eclipse.papyrus.domaincontextcodegen
