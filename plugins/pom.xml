@@ -13,6 +13,7 @@
 	<description>The top container of plug-in projects for the main Papyrus distribution.</description>
 
 	<modules>
+		<module>emf</module>
 		<module>facet</module>
 		<module>infra</module>
 		<module>infra/gmfdiag</module>

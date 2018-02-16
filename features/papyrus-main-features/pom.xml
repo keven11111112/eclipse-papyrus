@@ -16,6 +16,7 @@
 	<modules>
 		<module>org.eclipse.papyrus.doc.feature</module>
 		<module>org.eclipse.papyrus.editor.feature</module>
+		<module>org.eclipse.papyrus.emf.feature</module>
 		<module>org.eclipse.papyrus.emf.facet.feature</module>
 		<module>org.eclipse.papyrus.infra.architecture.feature</module>
 		<module>org.eclipse.papyrus.infra.core.feature</module>

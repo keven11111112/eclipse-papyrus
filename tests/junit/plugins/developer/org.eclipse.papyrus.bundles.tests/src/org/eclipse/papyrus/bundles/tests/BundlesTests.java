@@ -20,11 +20,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.internal.bundles.tests.PapyrusBundleDescription;
+import org.eclipse.papyrus.internal.bundles.tests.PapyrusBundleDescriptionRegistry;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.framework.classification.NotImplemented;
 import org.eclipse.papyrus.junit.framework.classification.rules.Condition;
@@ -76,7 +82,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 			@Override
 			public void describeTo(Description description) {
-				description.appendText("Does not contain ");
+				description.appendText("Does not contain "); //$NON-NLS-1$
 				description.appendText(INCUBATION_KEYWORD);
 			}
 		};
@@ -139,9 +145,9 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 			@Override
 			public void describeTo(Description description) {
-				description.appendText("Matching regex(");
+				description.appendText("Matching regex("); //$NON-NLS-1$
 				description.appendValue(regex);
-				description.appendText(")");
+				description.appendText(")"); //$NON-NLS-1$
 			}
 
 		};
@@ -379,7 +385,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 			}
 
 			// Pattern pattern = Pattern.compile("(" + partialDependencyName + REGEX_PLUGIN + ")" + REGEX_DEPENDENCY); //$NON-NLS-1$ //$NON-NLS-2$
-			Pattern pattern = Pattern.compile("(" + partialDependencyName + REGEX_PLUGIN + ")" + "(" + REGEX_REEXPORT + REGEX_BUNDLE + ")");
+			Pattern pattern = Pattern.compile("(" + partialDependencyName + REGEX_PLUGIN + ")" + "(" + REGEX_REEXPORT + REGEX_BUNDLE + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			Matcher matcher = pattern.matcher(value);
 			final StringBuilder localBuilder = new StringBuilder();
 			while (matcher.find()) {
@@ -393,7 +399,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 				}
 				if (versionString == null) {
 					if (localBuilder.length() == 0) {
-						localBuilder.append(NLS.bind("Incorrect version for {0}, got {1} and not {2} \n", new String[] {pluginName, current.getSymbolicName(), wantedVersion})); //$NON-NLS-1$
+						localBuilder.append(NLS.bind("Incorrect version for {0}, got {1} and not {2} \n", new String[] { pluginName, current.getSymbolicName(), wantedVersion })); //$NON-NLS-1$
 					}
 					localBuilder.append(NLS.bind("No Version number for {0}\n", pluginName)); //$NON-NLS-1$
 					nb++;
@@ -403,7 +409,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 						if (localBuilder.length() == 0) {
 							localBuilder.append(NLS.bind("{0} incorrect required bundle-version:\n", current.getSymbolicName())); //$NON-NLS-1$
 						}
-						localBuilder.append(NLS.bind("Bad version for {0}, got {1} and not {2} \n", new String[] {pluginName, versionString, wantedVersion})); //$NON-NLS-1$
+						localBuilder.append(NLS.bind("Bad version for {0}, got {1} and not {2} \n", new String[] { pluginName, versionString, wantedVersion })); //$NON-NLS-1$
 						nb++;
 					}
 				}
@@ -475,5 +481,74 @@ public class BundlesTests extends AbstractPapyrusTest {
 		// Do not fail on warnings
 		// Assert.assertTrue(nbWarning + "warning!" + warningMessage, nbWarning == 0);//$NON-NLS-1$
 	}
+
+	/**
+	 * This test checks that nobody adds an unexpected dependency on the plugin org.eclipse.papyrus.emf
+	 * 
+	 * @since 1.3
+	 */
+	@Test
+	public void checkPapyrusEMFPluginDependency() {
+		final String bundleIDToCheck = "org.eclipse.papyrus.emf"; //$NON-NLS-1$
+		final Map<String, Version> dependencies = new HashMap<>();
+		final Version undefinedVersion = new Version(null);
+		dependencies.put("org.eclipse.ui", undefinedVersion); //$NON-NLS-1$
+		dependencies.put("org.eclipse.core.runtime", undefinedVersion); //$NON-NLS-1$
+		dependencies.put("org.eclipse.emf.ecore", undefinedVersion); //$NON-NLS-1$
+		dependencies.put("org.eclipse.emf.ecore.xmi", undefinedVersion); //$NON-NLS-1$
+
+		strictCheckOfDependenciesList(bundleIDToCheck, dependencies, Collections.emptySet(), Collections.emptySet(), Collections.emptySet());
+
+	}
+
+
+	/**
+	 * 
+	 * This method check all dependencies on the bundle. The version are checked using the method {@link Version#inIncludedIn(Version)}
+	 * If there are more or less dependencies in the tested bundle, the test will fails
+	 * 
+	 * @param bundleSymbolicNameToCheck
+	 *            the name of the bundle to check
+	 * @param bundleDependenciesWithVersion
+	 *            the complete list of the dependencies to have for this bundle
+	 * @param reexportedDependencies
+	 *            the completed list of re-exported dependencies for this bundle
+	 * @param greedyDependencies
+	 *            the complete list of greedy dependencies for this bundle
+	 * @param optionalDependencies
+	 *            the complete list of optional dependencies for this bundle
+	 * 
+	 * @since 1.3
+	 */
+	private void strictCheckOfDependenciesList(final String bundleSymbolicNameToCheck, final Map<String, Version> bundleDependenciesWithVersion, final Set<String> reexportedDependencies, final Set<String> greedyDependencies,
+			final Set<String> optionalDependencies) {
+
+		Assert.assertNotNull(bundleSymbolicNameToCheck);
+		Assert.assertNotNull(bundleDependenciesWithVersion);
+		Assert.assertNotNull(reexportedDependencies);
+		Assert.assertNotNull(greedyDependencies);
+		Assert.assertNotNull(optionalDependencies);
+
+		final PapyrusBundleDescription bundleToCheck = PapyrusBundleDescriptionRegistry.INSTANCE.getPapyrusBundleDescription(bundleSymbolicNameToCheck);
+		Assert.assertNotNull(NLS.bind("The bundle {0} has not been found.", bundleSymbolicNameToCheck), bundleToCheck); //$NON-NLS-1$
+
+		final Set<String> expectedDependencies = bundleDependenciesWithVersion.keySet();
+		Assert.assertEquals("The current dependencies are not the expected ones.", expectedDependencies, PapyrusBundleDescription.asSymbolicNameSet(bundleToCheck.getDependencies())); //$NON-NLS-1$
+
+		Assert.assertEquals("The current reexported dependencies are not the expected ones.", reexportedDependencies, PapyrusBundleDescription.asSymbolicNameSet(bundleToCheck.getReexportedDependencies())); //$NON-NLS-1$
+
+		Assert.assertEquals("The current greedy dependencies are not the expected ones.", greedyDependencies, PapyrusBundleDescription.asSymbolicNameSet(bundleToCheck.getGreedyDependencies())); //$NON-NLS-1$
+
+		Assert.assertEquals("The current optional dependencies are not the expected ones.", optionalDependencies, PapyrusBundleDescription.asSymbolicNameSet(bundleToCheck.getOptionalDependencies())); //$NON-NLS-1$
+
+
+		// we check the dependency range
+		for (final Entry<String, Version> current : bundleDependenciesWithVersion.entrySet()) {
+			Assert.assertTrue(NLS.bind("The dependency {0} is not registered with compatible version range", current.getKey()), bundleToCheck.getRegisteredDependencyVersion(current.getKey()).inIncludedIn(current.getValue())); //$NON-NLS-1$
+		}
+
+	}
+
+
 
 }
