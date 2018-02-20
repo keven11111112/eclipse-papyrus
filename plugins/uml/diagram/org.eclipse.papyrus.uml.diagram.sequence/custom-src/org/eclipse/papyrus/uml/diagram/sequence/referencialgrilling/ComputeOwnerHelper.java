@@ -204,7 +204,9 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 	 * @param operandList
 	 */
 	protected static void simplifyOwnerInteractionOperand(ArrayList<InteractionOperand> operandList) {
-		while (operandList.size() > 1) {
+/*		
+  	while (operandList.size() > 1) {
+ 
 			InteractionOperand last = operandList.get(operandList.size() - 1);
 			EObject parent = last.eContainer();
 			while (parent != null) {
@@ -212,6 +214,7 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 				parent = parent.eContainer();
 			}
 		}
+*/
 	}
 
 	/**
