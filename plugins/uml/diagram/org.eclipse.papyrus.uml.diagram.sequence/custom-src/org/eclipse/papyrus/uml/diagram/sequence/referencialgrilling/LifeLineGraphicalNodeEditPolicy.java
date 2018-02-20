@@ -346,9 +346,6 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		// Check if a message can be consider as horizontal and update request accordingly
 		forceHorizontalRequest(request);
 
-		// Display event circles on the Lifeline figure
-		displayEvent.addFigureEvent(getHostFigure(), request.getLocation());
-
 		updateExtendedData(request);
 
 		if (request.getConnectionViewAndElementDescriptor().getSemanticHint().equals(UMLDIElementTypes.MESSAGE_CREATE_EDGE.getSemanticHint())) {
