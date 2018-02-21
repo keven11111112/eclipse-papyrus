@@ -183,8 +183,25 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 					displayEvent.addFigureEvent(getHostFigure().getParent().getParent(), ((CreateRequest) request).getLocation());
 				}
+				/*
+				 * Fix of Bug 531471 - [SequenceDiagram] Combined Fragment / Interaction Use should be create over a Lifeline.
+				 * Recalculation of feedback location of combined fragment creation after update in:
+				 * LifelineCreationEditPolicy.getCreateElementAndViewCommand()
+				 */
+				else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.COMBINED_FRAGMENT_SHAPE) 
+						|| ElementUtil.isTypeOf(elementType, UMLDIElementTypes.INTERACTION_USE_SHAPE)) {
+
+					Rectangle boundsLifeline = getHostFigure().getBounds();
+					Point pointCombinedFragment = ((CreateRequest) request).getLocation();
+
+					pointCombinedFragment.x = pointCombinedFragment.x - boundsLifeline.x;
+					pointCombinedFragment.y = pointCombinedFragment.y - boundsLifeline.y;
+
+					((CreateRequest) request).setLocation(pointCombinedFragment);
+				}
 
 			}
+
 		}
 
 		super.showLayoutTargetFeedback(request);

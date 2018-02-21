@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
@@ -54,6 +56,9 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy implem
 			CreateViewAndElementRequest req = (CreateViewAndElementRequest) request;
 			ViewAndElementDescriptor descriptor = (req).getViewAndElementDescriptor();
 			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
+			
+			
+			
 			if (isControlledByLifeline(elementType)) {
 				// get the element descriptor
 				CreateElementRequestAdapter requestAdapter = req.getViewAndElementDescriptor().getCreateElementRequestAdapter();
@@ -69,8 +74,25 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy implem
 				if (mos != null) {
 					createElementRequest.setParameter(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_START, mos);
 				}
+			} 
+			/*
+			 * Fix of Bug 531471 - [SequenceDiagram] Combined Fragment / Interaction Use should be create over a Lifeline.
+			 * Recalculation of location of combined fragment for according to interaction compartment position
+			 */
+			else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.COMBINED_FRAGMENT_SHAPE) 
+					|| ElementUtil.isTypeOf(elementType, UMLDIElementTypes.INTERACTION_USE_SHAPE)) {
+				Rectangle boundsLifeline = getHostFigure().getBounds();
+				Point pointCombinedFragment = req.getLocation();
+				
+				pointCombinedFragment.x = pointCombinedFragment.x + boundsLifeline.x;
+				pointCombinedFragment.y	 = pointCombinedFragment.y + boundsLifeline.y;
+				
+				req.setLocation(pointCombinedFragment);
+				
+				return getHost().getParent().getCommand(req);
 			}
 		}
+		
 		DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
 		GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 		if (grid!=null){
