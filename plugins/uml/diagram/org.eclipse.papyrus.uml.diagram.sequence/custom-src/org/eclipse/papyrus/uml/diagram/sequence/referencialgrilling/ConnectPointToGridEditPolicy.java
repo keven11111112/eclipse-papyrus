@@ -70,16 +70,6 @@ public class ConnectPointToGridEditPolicy extends ConnectRectangleToGridEditPoli
 	}
 
 
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy#updateWidthFromAxisNotification(org.eclipse.draw2d.geometry.PrecisionRectangle, org.eclipse.gmf.runtime.notation.Bounds)
-	 *
-	 * @param originPosition
-	 * @param currentBounds
-	 */
-	@Override
-	protected void updateWidthFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-		//the ColumnFinish is not listen
-	}
 
 	
 	/**
@@ -99,16 +89,6 @@ public class ConnectPointToGridEditPolicy extends ConnectRectangleToGridEditPoli
 	@Override
 	protected void updateRowFinishFromHeightNotification(PrecisionRectangle p) {
 		//the RowFinish is not listen
-	}
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy#updateHeightFromAxisNotification(org.eclipse.draw2d.geometry.PrecisionRectangle, org.eclipse.gmf.runtime.notation.Bounds)
-	 *
-	 * @param originPosition
-	 * @param currentBounds
-	 */
-	@Override
-	protected void updateHeightFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-		//theRowfinish is not Listen
 	}
 	
 }

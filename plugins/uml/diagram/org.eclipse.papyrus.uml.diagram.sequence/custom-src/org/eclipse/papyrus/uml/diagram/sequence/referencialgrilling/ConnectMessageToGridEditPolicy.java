@@ -375,68 +375,9 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 
 			}
 
-			// a ROW AXIS has changed at Source
-			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location && (((EObject) notification.getNotifier()).eContainer().equals(rowSource))) {
-				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT source Axis modified :" + notification);//$NON-NLS-1$
-				GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-				if (grilling != null) {
-					if (Math.abs(notification.getOldIntValue() - notification.getNewIntValue()) > grilling.threshold) {
-						ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
-						Edge edge = (Edge) connectionEditPart.getModel();
-						IdentityAnchor sourceAchor = (IdentityAnchor) edge.getSourceAnchor();
-						View viewsr = edge.getSource();
-//						modifyAnchor(sourceAchor, (Node) viewsr, (DecorationNode) rowSource);
-					}
-				}
-			}
-			// a ROW has changed at target
-			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location && (((EObject) notification.getNotifier()).eContainer().equals(rowTarget))) {
-				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT target Axis modified :" + notification);//$NON-NLS-1$
-				GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-				if (grilling != null) {
-					if (Math.abs(notification.getOldIntValue() - notification.getNewIntValue()) > grilling.threshold) {
-						ConnectionEditPart connectionEditPart = (ConnectionEditPart) getHost();
-						Edge edge = (Edge) connectionEditPart.getModel();
-						IdentityAnchor targetAchor = (IdentityAnchor) edge.getTargetAnchor();
-						View viewtg = edge.getTarget();
-//						modifyAnchor(targetAchor, (Node) viewtg, (DecorationNode) rowTarget);
-					}
-				}
-			}
 		}
 	}
 
-	protected void modifyAnchor(IdentityAnchor anchor, Node connectedView, DecorationNode axis) {
-		double xpercent = IdentityAnchorHelper.getXPercentage(anchor);
-		PrecisionRectangle bounds = NotationHelper.getAbsoluteBounds(connectedView);
-		bounds.height = BoundForEditPart.getHeightFromView(connectedView);
-		Location boundsRow = (Location) ((Node) axis).getLayoutConstraint();
-		Integer intergerY = new Integer(boundsRow.getY());
-		double newY = intergerY.doubleValue();
-		double localY = (newY - bounds.preciseY());
-
-		double newPercentY = localY / bounds.preciseHeight();
-		double oldPercentY = IdentityAnchorHelper.getYPercentage(anchor);
-		double oldPosition = oldPercentY * bounds.preciseHeight();
-		double newPosition = newPercentY * bounds.preciseHeight();
-		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
-		GridManagementEditPolicy grilling = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-		if (grilling != null) {
-			if (Math.abs(oldPosition - newPosition) > grilling.threshold) {
-				if (newPercentY > 1) {
-					newPercentY = 0.99;
-				}
-				if (newPercentY < 0) {
-					newPercentY = 0.01;
-				}
-				if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
-					final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xpercent, newPercentY);
-					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modify anchor to precentY=" + newPercentY);//$NON-NLS-1$
-					execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
-				}
-			}
-		}
-	}
 
 	public static int computeAnchorPositionNotation(IdentityAnchor anchor, GraphicalEditPart nodeEditPart) {
 		double yPercent = IdentityAnchorHelper.getYPercentage(anchor);

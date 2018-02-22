@@ -90,16 +90,6 @@ public class ConnectYCoordinateToGrillingEditPolicy extends ConnectRectangleToGr
 	protected void initListeningColumnStart(GridManagementEditPolicy grilling, Element element, PrecisionRectangle bounds) throws NoGrillElementFound {
 		//do nothing
 	}
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#updateWidthFromAxisNotification(org.eclipse.draw2d.geometry.PrecisionRectangle, org.eclipse.gmf.runtime.notation.Bounds)
-	 *
-	 * @param originPosition
-	 * @param currentBounds
-	 */
-	@Override
-	protected void updateWidthFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-		//do nothing
-	}
 	
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#updateColumFinishFromWitdhNotification(org.eclipse.draw2d.geometry.PrecisionRectangle)
@@ -120,14 +110,4 @@ public class ConnectYCoordinateToGrillingEditPolicy extends ConnectRectangleToGr
 		//do nothing
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy#updateXFromAxisNotification(org.eclipse.draw2d.geometry.PrecisionRectangle, org.eclipse.gmf.runtime.notation.Bounds)
-	 *
-	 * @param originPosition
-	 * @param currentBounds
-	 */
-	@Override
-	protected void updateXFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-		//do nothing
-	}
 }

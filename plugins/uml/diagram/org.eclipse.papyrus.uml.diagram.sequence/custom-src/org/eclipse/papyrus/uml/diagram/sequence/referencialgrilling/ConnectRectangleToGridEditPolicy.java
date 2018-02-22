@@ -214,32 +214,6 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 		}
 		Node nodeContainer = (Node) (((GraphicalEditPart) getHost()).getNotationView()).eContainer();
 		if (nodeContainer != null) {
-			PrecisionRectangle originPosition = NotationHelper.getAbsoluteBounds(nodeContainer);
-			Bounds currentBounds = (Bounds) ((Node) ((GraphicalEditPart) getHost()).getNotationView()).getLayoutConstraint();
-
-			// the ROW has changed so we must update the position of the combined fragment
-			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location && (((EObject) notification.getNotifier()).eContainer().equals(rowStart))) {
-				// The grid is in absolute
-				// compute next position for View.bound.y
-				updateYFromAxisNotification(originPosition, currentBounds);
-			}
-			// the COLUMN has changed so we must update the postion of the combined fragment
-			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location && (((EObject) notification.getNotifier()).eContainer().equals(columnStart))) {
-				// The grill is in absolute
-				updateXFromAxisNotification(originPosition, currentBounds);
-
-			}
-			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location && (((EObject) notification.getNotifier()).eContainer().equals(rowFinish))) {
-				// The grill is in absolute
-				updateHeightFromAxisNotification(originPosition, currentBounds);
-
-			}
-			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Location && (((EObject) notification.getNotifier()).eContainer().equals(columnFinish))) {
-				// The grill is in absolute
-				updateWidthFromAxisNotification(originPosition, currentBounds);
-
-			}
-
 			// UPDATE COLUM AND ROW of THE GRID
 			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Bounds) {
 				PrecisionRectangle bounds = NotationHelper.getAbsoluteBounds((Node) ((GraphicalEditPart) getHost()).getNotationView());
@@ -389,72 +363,13 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	}
 
-	/**
-	 * When the axis columnFinish has changed , the width of the controler has to change
-	 * 
-	 * @param originPosition
-	 *            the position of the container in absolute (origin the diagram)
-	 * @param currentBounds
-	 *            the current position of the node (relative to the container)
-	 */
-	protected void updateWidthFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-		Location boundsColumn = (Location) ((Node) columnFinish).getLayoutConstraint();
-		int newX = boundsColumn.getX() - originPosition.x() - currentBounds.getX();
-		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW FINISH change " + newX);//$NON-NLS-1$
+	
 
-		updateSizeOfControler(newX, currentBounds.getHeight());
-	}
+	
 
-	/**
-	 * When the axis rowFinish has changed , the height of the controler has to change
-	 * 
-	 * @param originPosition
-	 *            the position of the container in absolute (origin the diagram)
-	 * @param currentBounds
-	 *            the current position of the node (relative to the container)
-	 */
-	protected void updateHeightFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-		Location boundsColumn = (Location) ((Node) rowFinish).getLayoutConstraint();
-		int newHeight = boundsColumn.getY() - originPosition.y() - currentBounds.getY() - margin;
-		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW FINISH change " + newHeight);//$NON-NLS-1$
+	
 
-		updateSizeOfControler(currentBounds.getWidth(), newHeight);
-	}
-
-	/**
-	 * When the axis columnStart has changed , the position X of the controler has to change
-	 * 
-	 * @param originPosition
-	 *            the position of the container in absolute (origin the diagram)
-	 * @param currentBounds
-	 *            the current position of the node (relative to the container)
-	 */
-	protected void updateXFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-		Location boundsColumn = (Location) ((Node) columnStart).getLayoutConstraint();
-		int newX = boundsColumn.getX() - originPosition.x();
-		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS COLUMN START change " + newX);//$NON-NLS-1$
-
-		updateNodePositionOfControler(newX, currentBounds.getY());
-	}
-
-	/**
-	 * When the axis rowStart has changed , the position Y of the controler has to change
-	 * 
-	 * @param originPosition
-	 *            the position of the container in absolute (origin the diagram)
-	 * @param currentBounds
-	 *            the current position of the node (relative to the container)
-	 */
-	protected void updateYFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-		Location boundsRow = (Location) ((Node) rowStart).getLayoutConstraint();
-		int newY = boundsRow.getY() - originPosition.y() - margin;
-		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW START change " + newY);//$NON-NLS-1$
-		updateNodePositionOfControler(currentBounds.getX(), newY);
-
-		if (rowFinish != null) {
-			updatePositionGridAxis(rowFinish, 0, boundsRow.getY() + BoundForEditPart.getHeightFromView((Node) ((GraphicalEditPart) getHost()).getNotationView()) - margin);
-		}
-	}
+	
 
 
 	/**

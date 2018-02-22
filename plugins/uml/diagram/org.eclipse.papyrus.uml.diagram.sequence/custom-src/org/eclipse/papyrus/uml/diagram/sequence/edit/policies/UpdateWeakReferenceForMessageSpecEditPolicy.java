@@ -116,7 +116,7 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 
 		// Get next and previous event from the lifeline target
 		EditPart targetEditPart = createRequest.getTargetEditPart();
-		if (sourceEditPart instanceof LifelineEditPart) {
+		if (targetEditPart instanceof LifelineEditPart) {
 			nextEventsFromPosition.addAll(LifelineEditPartUtil.getNextEventsFromPosition(reqlocationOnScreen, (LifelineEditPart) targetEditPart));
 			previousEventsFromPosition.addAll(LifelineEditPartUtil.getPreviousEventsFromPosition(new Point(reqlocationOnScreen.x, reqlocationOnScreen.y + deltaMoveAtCreationAndDeletion),
 					(LifelineEditPart) targetEditPart));
