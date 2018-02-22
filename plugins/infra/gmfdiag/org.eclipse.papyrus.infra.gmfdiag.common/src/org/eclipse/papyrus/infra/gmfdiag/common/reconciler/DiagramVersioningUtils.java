@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
- *
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 531520 (update to 1.4)
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.reconciler;
 
@@ -44,7 +44,7 @@ public class DiagramVersioningUtils {
 	 * This method is intentinally NOT a constant but indeed the method. This method is intentionally private and should NOT be made public.
 	 */
 	private static String CURRENT_DIAGRAM_VERSION() {
-		return "1.3.0"; //$NON-NLS-1$
+		return "1.4.0"; //$NON-NLS-1$
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
+ * Copyright (c) 2010, 2018 CEA
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
- *
+ *   Vincent LORENZO (CEA LIST) - vincent.lorenzo@cea.fr - bug Bug 531520
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
@@ -42,9 +42,11 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.C
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
@@ -69,8 +71,6 @@ import org.eclipse.uml2.uml.MessageEnd;
  * - Creation of general ordering links.
  * This edit policy is intended to be installed on parts which represent a lifeline or which are contained within a lifeline part.
  */
-// TODO_MIA check if can be deleted
-@Deprecated
 public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNodeEditPolicy {
 
 	/** the feedback for creating a duration constraint node */
@@ -81,6 +81,54 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 
 	@Override
 	public Command getCommand(Request request) {
+		/*
+		 * 1. we check if the command must be redirected to the LifelineEditPart:
+		 * We redirect when we are creating a message or reconnecting a message
+		 * Bug 531520 : we decided to delegate the message creation directly to the Lifeline
+		 */
+		boolean delegateToLifeline = false;
+
+		if (request instanceof CreateConnectionViewAndElementRequest) {
+			CreateConnectionViewAndElementRequest r = (CreateConnectionViewAndElementRequest) request;
+			delegateToLifeline = isMessageHint(r.getConnectionViewDescriptor().getSemanticHint());
+		}
+
+		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			final List<?> coll = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
+			final Iterator<?> iter = coll.iterator();
+			while (iter.hasNext() && false == delegateToLifeline) {
+				final Object current = iter.next();
+				if (current instanceof IHintedType) {
+					if (current instanceof IHintedType) {
+						final IHintedType eltType = (IHintedType) current;
+						delegateToLifeline = isMessageHint(eltType.getSemanticHint());
+					}
+				}
+			}
+		}
+
+		if (request instanceof ReconnectRequest) {
+			final ConnectionEditPart cep = ((ReconnectRequest) request).getConnectionEditPart();
+			final Object model = cep.getModel();
+			if (model instanceof Connector) {
+				if (((Connector) model).getElement() instanceof Message) {
+					((ReconnectRequest) request).setTargetEditPart(getHost().getParent());
+					delegateToLifeline = true;
+				}
+			}
+		}
+
+		if (delegateToLifeline && getHost() instanceof AbstractExecutionSpecificationEditPart && getHost().getParent() instanceof LifelineEditPart) {
+			return getHost().getParent().getCommand(request);
+		}
+
+		/*
+		 * 2. we are in other cases:
+		 * 2.1: it is a comment link or a constraint link or a context link -> seems works fine removing this code
+		 * 2.2: it is a General Ordering, probably not supported
+		 * 
+		 * TODO : this code and more in this class should probably be deleted
+		 */
 		if (org.eclipse.gef.RequestConstants.REQ_CONNECTION_START.equals(request.getType())) {
 			if (request instanceof CreateConnectionViewAndElementRequest) {
 				return getConnectionAndRelationshipCreateCommand((CreateConnectionViewAndElementRequest) request);
