@@ -1,0 +1,74 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Context-Type: org.eclipse.rcptt.ctx.workspace
+Element-Name: EmptyPapyrusModel_SeqDiagCreated
+Element-Type: context
+Element-Version: 2.0
+Id: _KWhwYAgBEeiHkPkpSqDhSg
+Runtime-Version: 2.2.0.201706152316
+Save-Time: 2/2/18 12:44 PM
+
+------=_contents/SequenceDiagramTest/.project-bd993e17-b4d3-3df7-bc2c-63e155621a11
+Content-Type: q7/binary
+Entry-Name: contents/SequenceDiagramTest/.project
+
+UEsDBBQACAgIAAAAIQAAAAAAAAAAAAAAAAAIAAkALmNvbnRlbnRVVAUAAQAAAABVjksOwiAQhteaeIeG
+vaI7F5RuGi/QegCkkwZTBoTBeHxprRp28/2vjGhedqqeEKJxWLPT4cgqQO0Gg2PNrv1lf2aN3G2FD+4O
+mlqIOhhPOZ3VjUBlQXbwSLkErVFjULaHSIIvzhzRzlpAkoJ/r1ld9+ICvKBbMtPQedAfr0RUlAKstT/8
+JsoH31BLBwhhBzleiQAAAN8AAABQSwECFAAUAAgICAAAACEAYQc5XokAAADfAAAACAAJAAAAAAAAAAAA
+AAAAAAAALmNvbnRlbnRVVAUAAQAAAABQSwUGAAAAAAEAAQA/AAAAyAAAAAAA
+------=_contents/SequenceDiagramTest/.project-bd993e17-b4d3-3df7-bc2c-63e155621a11--
+------=_contents/SequenceDiagramTest/SequenceDiagramTest.notation-5061f09f-c419-35c8-b57b-48dcb0dbb522
+Content-Type: q7/binary
+Entry-Name: contents/SequenceDiagramTest/SequenceDiagramTest.notation
+
+UEsDBBQACAgIAAAAIQAAAAAAAAAAAAAAAAAIAAkALmNvbnRlbnRVVAUAAQAAAAC1VFtv2jAUfp+0/xB5
+z4s7qkpVBK26UiRoQVRAxZ6QSQ6JNcfObGeBf9+T61iAgibtLbHP+S4+l+79NhbOb9CGK9kj39wr4oD0
+VcBl2COL+eDrLbm/+/ypK5VlFmO8PmehZrGzjbnX5HXyPESSxsPzHomsTTxKsyxzVRy6Sod0OR7WITXW
+X3HgC54YKGLDeEN1Ki2PgaIkt0PrlBrC2J2Ak/kJS3Y6NZTLjWY5WoCiaZFTA6SxOJmOdx16g7xXdDF+
+IYVVHvTIKhikw/Ah7D8Bn69Hm9kPPRpNM+LYXYJipiUrpszgV4qvCNVbEUeyGAMmkB3cxMBMqiEGaReS
+W0ThWxAEn9xxun7ERaBBFgpKkqYOs4gl0Nb2ekrbUFrQzM8zV2VmwXCGow++0sXnRAUHZOElZBN0/sLW
+aIlewvidGe4/qjhh2uZv0ubMLjKYrrHuYZ6/D1XxowLBdirFO2msZlzao0pUKgPT4o8Oi9/YorWv+gBE
+UdY9cGwsb08ocSINmx5pNcUcjHUx9MvKv1GT1w8o/93HYaOUoC0X3WJmzNH+sxp3xBsTKczqwdpnONId
+5RQEpcuVn5fG8jUX3O5W1SohjvmDm++ja9ws9JyW6uGO6jjsmFNwxYFXTfEHkPzIBqhMPXMZDDEOt0iz
+UapllFfUrcJcU1W8mUKVSdCtThnjzImzPTL4OedPD+EjKoqeb6dLdu2LZdiUs3RZ/vzXhuzSdjnw8B1Q
+SwcIscAGNCgCAABfBgAAUEsBAhQAFAAICAgAAAAhALHABjQoAgAAXwYAAAgACQAAAAAAAAAAAAAAAAAA
+AC5jb250ZW50VVQFAAEAAAAAUEsFBgAAAAABAAEAPwAAAGcCAAAAAA==
+------=_contents/SequenceDiagramTest/SequenceDiagramTest.notation-5061f09f-c419-35c8-b57b-48dcb0dbb522--
+------=_contents/SequenceDiagramTest/SequenceDiagramTest.uml-104aebc9-0799-3bf7-ae07-9ba9e32dde28
+Content-Type: q7/binary
+Entry-Name: contents/SequenceDiagramTest/SequenceDiagramTest.uml
+
+UEsDBBQACAgIAAAAIQAAAAAAAAAAAAAAAAAIAAkALmNvbnRlbnRVVAUAAQAAAABlkdFugjAUhu+X7B1I
+dz0KGhNDYMZNTHC6MMXEXZlajqWxBVaq6Ntb2WbQXban33/Od+oPjlJYB1AVL/IAubaDLMhpkfKcBWiZ
+jJ/7aPDy+ODvpfBmRQrCOkruXYGO43Zdx3GRuRZ55ZligDKtSw/juq7tQjK7UAxXJVC8mkX4HjC5NwBQ
+wcsKGsjUOrhnO7aDl7MpajrzNEDr8S7h4ZC9hcCz9368Il0qVgxZOZEQoAV8740DjDhhisgEKo2MgmX5
+JaE7wiCSZaF0E6dPpSEucnG71u5VE0X/92oCTSRv3kP6i9+FNhtDVqZgG6CS6EySi6ixWU+j1/lwHoWL
+yylWXHLND5AYtLIF3yiiTraJeFo7CP9Mj2/GvzFKQwES8nunKNegCNXmq1pGtFd8fA7ZyBglm8l28aUm
+k7j+216LcZvOPr6amNMZUEsHCH6AMEJIAQAAMQIAAFBLAQIUABQACAgIAAAAIQB+gDBCSAEAADECAAAI
+AAkAAAAAAAAAAAAAAAAAAAAuY29udGVudFVUBQABAAAAAFBLBQYAAAAAAQABAD8AAACHAQAAAAA=
+------=_contents/SequenceDiagramTest/SequenceDiagramTest.uml-104aebc9-0799-3bf7-ae07-9ba9e32dde28--
+------=_contents/SequenceDiagramTest/SequenceDiagramTest.di-2b2fade7-8a80-3011-8ed1-78cda1f4db2d
+Content-Type: q7/binary
+Entry-Name: contents/SequenceDiagramTest/SequenceDiagramTest.di
+
+UEsDBBQACAgIAAAAIQAAAAAAAAAAAAAAAAAIAAkALmNvbnRlbnRVVAUAAQAAAABVj80KwjAQBu+C71By
+N1FPUlqLKEIP3ip4LenaLrRJ2KR/b2+sWupxP2YGNkqGpg46IItaxWzHtywAJXWBqozZPbtuDiw5rldR
+TrJCB9K1BOFpcVzASkLjvB8MDYZza/9u+bqyod9jVjlnQiH6vue6KbmmUjxu6Q9Z9v9YkDUaCxNvcjNS
+awWqJ+VCagKx9FggtXIwuLSImedn9+vxyeMWqEMJlkOBjmejgfNHY8J/+gJQSwcIwaJN67EAAAASAQAA
+UEsBAhQAFAAICAgAAAAhAMGiTeuxAAAAEgEAAAgACQAAAAAAAAAAAAAAAAAAAC5jb250ZW50VVQFAAEA
+AAAAUEsFBgAAAAABAAEAPwAAAPAAAAAAAA==
+------=_contents/SequenceDiagramTest/SequenceDiagramTest.di-2b2fade7-8a80-3011-8ed1-78cda1f4db2d--
+------=_.q7.content-3d2e0690-ce48-3609-83e0-c704d49f1eaf
+Content-Type: q7/binary
+Entry-Name: .q7.content
+
+UEsDBBQACAgIAAAAIQAAAAAAAAAAAAAAAAAIAAkALmNvbnRlbnRVVAUAAQAAAACVkl9LwzAUxd8Fv0PI
+u4n6JKV16DZQZDCoMH0aIb3r4po/S25t9+1NZ1tfBtK33OR3zuFcks5aXZFv8EFZk9E7dksJGGkLZcqM
+1ri7eaCzx+ur1PqSgayUC8C8dIhMYssa6w/BCQnJZjjNrUFokbRaJaPvfecbk0xI4n1G94gu4bxpGmZ1
+yaI5/1i9Dsg/WaN8YDr5meOR4yNHiRE60kvt8LQW7uTrsLIFVNscjgslyrkHgVBQooqMbt82++bzqXxe
+gno5rA8uPy72eUljeUJS2bUyeB7i6Lz9AomhT4h+ddwadKZe6HcISHs0wjtVwUCyXkn55fcLTqxQU2hj
+UWBc+hRNrasRT/lQ7rc5/6ue8qm/IIp+AFBLBwhQP74FFgEAAGICAABQSwECFAAUAAgICAAAACEAUD++
+BRYBAABiAgAACAAJAAAAAAAAAAAAAAAAAAAALmNvbnRlbnRVVAUAAQAAAABQSwUGAAAAAAEAAQA/AAAA
+VQEAAAAA
+------=_.q7.content-3d2e0690-ce48-3609-83e0-c704d49f1eaf--
