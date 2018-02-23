@@ -298,7 +298,7 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 250);
+		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 700);
 		return result;
 	}
 

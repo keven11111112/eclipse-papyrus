@@ -405,7 +405,7 @@
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="100"
-              height="250"/>
+              height="700"/>
         </viewmap>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
