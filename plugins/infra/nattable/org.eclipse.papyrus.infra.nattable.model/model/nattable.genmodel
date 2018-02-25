@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2013 CEA LIST.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;&#x9;Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation"
-    modelDirectory="/org.eclipse.papyrus.infra.nattable.model/src-gen" editDirectory="/org.eclipse.papyrus.infra.nattable.model.edit/src-gen"
-    editorDirectory="/org.eclipse.papyrus.infra.nattable.model.editor/src-gen" modelPluginID="org.eclipse.papyrus.infra.nattable.model"
-    modelName="Nattable" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    modelDirectory="/org.eclipse.papyrus.infra.nattable.model/src-gen" creationIcons="false"
+    editDirectory="/org.eclipse.papyrus.infra.nattable.model.edit/src-gen" editorDirectory="/org.eclipse.papyrus.infra.nattable.model.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.infra.nattable.model" modelName="Nattable"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/org.eclipse.papyrus.infra.nattable.model.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types ../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.genmodel#//expressions"
     operationReflection="true" importOrganizing="true">
@@ -93,7 +94,7 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattableaxisconfiguration" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
         disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
-        ecorePackage="nattable.ecore#//nattableaxisconfiguration">
+        extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="nattable.ecore#//nattableaxisconfiguration">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="nattable.ecore#//nattableaxisconfiguration/AxisIndexStyle">
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattableaxisconfiguration/AxisIndexStyle/ALPHABETIC"/>
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattableaxisconfiguration/AxisIndexStyle/NUMERIC"/>
@@ -339,7 +340,7 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattablecelleditor" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
         disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
-        ecorePackage="nattable.ecore#//nattablecelleditor">
+        extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="nattable.ecore#//nattablecelleditor">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection">
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection/NONE"/>
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection/FROM_ROW_TO_COLUMN"/>

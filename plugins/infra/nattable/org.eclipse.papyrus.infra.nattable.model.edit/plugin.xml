@@ -72,7 +72,7 @@
       <!-- @generated nattable -->
       <factory
             uri="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration"
-            class="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.provider.NattableaxisconfigurationItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.internal.infra.nattable.model.nattable.nattableaxisconfiguration.provider.NattableaxisconfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -171,5 +171,15 @@
                org.eclipse.emf.edit.provider.IItemLabelProvider
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
-
+   <extension
+         point="org.eclipse.emf.edit.childCreationExtenders">
+      <extender
+            class="org.eclipse.papyrus.internal.infra.nattable.model.nattable.nattableaxisconfiguration.provider.ExtendedBooleanEObjectExpressionChildCreationExtender"
+            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattableaxisconfiguration">
+      </extender>
+      <extender
+            class="org.eclipse.papyrus.internal.infra.nattable.model.nattable.nattableaxisconfiguration.provider.ExtendedBooleanEObjectExpressionChildCreationExtender"
+            uri="http://www.eclipse.org/papyrus/nattable/model/table/nattablecelleditor">
+      </extender>
+   </extension>
 </plugin>
