@@ -43,6 +43,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.wizard.AbstractTableWizard;
 import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
+import org.eclipse.papyrus.internal.infra.nattable.model.resources.NattableConfigurationResource;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
@@ -119,7 +120,7 @@ public class EditTableConfigurationWizard extends AbstractTableWizard implements
 
 		if (currentSelection instanceof StructuredSelection && 1 == ((StructuredSelection) currentSelection).size()) {
 			final Object selectedElement = ((StructuredSelection) currentSelection).getFirstElement();
-			if (selectedElement instanceof File && NattableConfigurationConstants.NATTABLE_CONFIGURATION_EXTENSION_FILE.equals(((File) selectedElement).getFileExtension())) {
+			if (selectedElement instanceof File && NattableConfigurationResource.NATTABLE_CONFIGURATION_RESOURCE_FILE_EXTENSION.equals(((File) selectedElement).getFileExtension())) {
 
 				INattableModelManager manager = null;
 				// TODO required ?

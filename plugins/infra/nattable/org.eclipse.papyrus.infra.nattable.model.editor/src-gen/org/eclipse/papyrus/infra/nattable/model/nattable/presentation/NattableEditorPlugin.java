@@ -1,22 +1,27 @@
 /**
  * Copyright (c) 2013 CEA LIST.
- *
- *
+ * 
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.presentation;
 
 import org.eclipse.emf.common.EMFPlugin;
+
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+
 import org.eclipse.papyrus.infra.emf.expressions.provider.ExpressionsEditPlugin;
+
 import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
 
 /**
@@ -33,7 +38,7 @@ public final class NattableEditorPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public static final NattableEditorPlugin INSTANCE = new NattableEditorPlugin();
-
+	
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
@@ -68,7 +73,7 @@ public final class NattableEditorPlugin extends EMFPlugin {
 	public ResourceLocator getPluginResourceLocator() {
 		return plugin;
 	}
-
+	
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
@@ -79,7 +84,7 @@ public final class NattableEditorPlugin extends EMFPlugin {
 	public static Implementation getPlugin() {
 		return plugin;
 	}
-
+	
 	/**
 	 * The actual implementation of the Eclipse <b>Plugin</b>.
 	 * <!-- begin-user-doc -->

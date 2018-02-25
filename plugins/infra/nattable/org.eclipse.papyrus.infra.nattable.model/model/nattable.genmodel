@@ -9,7 +9,8 @@
     operationReflection="true" importOrganizing="true">
   <foreignModel>nattable.ecore</foreignModel>
   <genPackages prefix="Nattable" basePackage="org.eclipse.papyrus.infra.nattable.model"
-      disposableProviderFactory="true" ecorePackage="nattable.ecore#/">
+      disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
+      ecorePackage="nattable.ecore#/">
     <genClasses ecoreClass="nattable.ecore#//Table">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference nattable.ecore#//Table/context"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference nattable.ecore#//Table/owner"/>
@@ -54,7 +55,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattableaxisprovider" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
-        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattableaxisprovider">
+        disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
+        ecorePackage="nattable.ecore#//nattableaxisprovider">
       <genClasses image="false" ecoreClass="nattable.ecore#//nattableaxisprovider/AbstractAxisProvider">
         <genOperations ecoreOperation="nattable.ecore#//nattableaxisprovider/AbstractAxisProvider/getAxis"/>
       </genClasses>
@@ -70,7 +72,8 @@
       <genClasses ecoreClass="nattable.ecore#//nattableaxisprovider/MasterObjectAxisProvider"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattablelabelprovider" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
-        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattablelabelprovider">
+        disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
+        ecorePackage="nattable.ecore#//nattablelabelprovider">
       <genClasses image="false" ecoreClass="nattable.ecore#//nattablelabelprovider/ILabelProviderConfiguration"/>
       <genClasses ecoreClass="nattable.ecore#//nattablelabelprovider/FeatureLabelProviderConfiguration">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//nattablelabelprovider/FeatureLabelProviderConfiguration/displayIsDerived"/>
@@ -89,7 +92,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattableaxisconfiguration" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
-        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattableaxisconfiguration">
+        disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
+        ecorePackage="nattable.ecore#//nattableaxisconfiguration">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="nattable.ecore#//nattableaxisconfiguration/AxisIndexStyle">
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattableaxisconfiguration/AxisIndexStyle/ALPHABETIC"/>
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattableaxisconfiguration/AxisIndexStyle/NUMERIC"/>
@@ -155,7 +159,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattabletester" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
-        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattabletester">
+        disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
+        ecorePackage="nattable.ecore#//nattabletester">
       <genClasses image="false" ecoreClass="nattable.ecore#//nattabletester/AbstractTableTester">
         <genOperations ecoreOperation="nattable.ecore#//nattabletester/AbstractTableTester/getTester"/>
       </genClasses>
@@ -164,7 +169,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattableaxis" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
-        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattableaxis">
+        disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
+        ecorePackage="nattable.ecore#//nattableaxis">
       <genClasses image="false" ecoreClass="nattable.ecore#//nattableaxis/IAxis">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference nattable.ecore#//nattableaxis/IAxis/manager"/>
@@ -220,7 +226,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattablecell" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
-        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattablecell">
+        disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
+        ecorePackage="nattable.ecore#//nattablecell">
       <genClasses ecoreClass="nattable.ecore#//nattablecell/Cell">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//nattablecell/Cell/columnWrapper"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//nattablecell/Cell/rowWrapper"/>
@@ -238,7 +245,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattableproblem" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
-        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattableproblem">
+        disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
+        ecorePackage="nattable.ecore#//nattableproblem">
       <genClasses ecoreClass="nattable.ecore#//nattableproblem/Problem"/>
       <genClasses ecoreClass="nattable.ecore#//nattableproblem/StringResolutionProblem">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//nattableproblem/StringResolutionProblem/valueAsString"/>
@@ -246,7 +254,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattablestyle" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
-        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattablestyle">
+        disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
+        ecorePackage="nattable.ecore#//nattablestyle">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="nattable.ecore#//nattablestyle/CellTextAlignment">
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablestyle/CellTextAlignment/TOP_LEFT"/>
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablestyle/CellTextAlignment/TOP_CENTER"/>
@@ -329,7 +338,8 @@
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattablecelleditor" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
-        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattablecelleditor">
+        disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
+        ecorePackage="nattable.ecore#//nattablecelleditor">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection">
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection/NONE"/>
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection/FROM_ROW_TO_COLUMN"/>
@@ -348,7 +358,8 @@
       <genClasses image="false" ecoreClass="nattable.ecore#//nattablecelleditor/IMatrixCellEditorConfiguration"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattablewrapper" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
-        disposableProviderFactory="true" ecorePackage="nattable.ecore#//nattablewrapper">
+        disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
+        ecorePackage="nattable.ecore#//nattablewrapper">
       <genClasses image="false" ecoreClass="nattable.ecore#//nattablewrapper/IWrapper">
         <genOperations ecoreOperation="nattable.ecore#//nattablewrapper/IWrapper/getElement"/>
       </genClasses>

@@ -16,7 +16,6 @@
 	<modules>
 		<module>org.eclipse.papyrus.infra.nattable.suite.tests</module>
 		<module>org.eclipse.papyrus.infra.nattable.common.tests</module>
-		<module>org.eclipse.papyrus.infra.nattable.model.editor.tests</module>
 		<module>org.eclipse.papyrus.infra.nattable.model.tests</module>
 		<module>org.eclipse.papyrus.infra.nattable.tests</module>
 		<module>org.eclipse.papyrus.infra.nattable.views.tests</module>

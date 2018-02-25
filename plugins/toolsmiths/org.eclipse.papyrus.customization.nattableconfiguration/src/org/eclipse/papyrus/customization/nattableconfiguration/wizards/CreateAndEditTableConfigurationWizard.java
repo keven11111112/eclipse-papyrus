@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
+import org.eclipse.papyrus.internal.infra.nattable.model.resources.NattableConfigurationResource;
 import org.eclipse.ui.IWorkbench;
 
 /**
@@ -103,9 +104,9 @@ public class CreateAndEditTableConfigurationWizard extends EditTableConfiguratio
 		// Check if the file has the nattable configuration extension file, else add it
 
 		if (!nattableConfigurationFileName.toString().contains(FileUtils.DOT_STRING)
-				|| !NattableConfigurationConstants.NATTABLE_CONFIGURATION_EXTENSION_FILE.equals(nattableConfigurationFileName.toString().substring(nattableConfigurationFileName.lastIndexOf(FileUtils.DOT_STRING) + 1))) {
+				|| !NattableConfigurationResource.NATTABLE_CONFIGURATION_RESOURCE_FILE_EXTENSION.equals(nattableConfigurationFileName.toString().substring(nattableConfigurationFileName.lastIndexOf(FileUtils.DOT_STRING) + 1))) {
 			nattableConfigurationFileName.append(FileUtils.DOT_STRING);
-			nattableConfigurationFileName.append(NattableConfigurationConstants.NATTABLE_CONFIGURATION_EXTENSION_FILE);
+			nattableConfigurationFileName.append(NattableConfigurationResource.NATTABLE_CONFIGURATION_RESOURCE_FILE_EXTENSION);
 		}
 
 		final ResourceSet set = new ResourceSetImpl();

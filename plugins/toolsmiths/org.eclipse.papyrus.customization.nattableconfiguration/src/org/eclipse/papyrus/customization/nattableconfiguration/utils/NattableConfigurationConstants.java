@@ -28,6 +28,7 @@ public class NattableConfigurationConstants {
 	/**
 	 * The extension for the nattable configuration file.
 	 */
+	@Deprecated
 	public static final String NATTABLE_CONFIGURATION_EXTENSION_FILE = org.eclipse.papyrus.infra.nattable.utils.NattableConfigurationConstants.NATTABLE_CONFIGURATION_EXTENSION_FILE;
 	
 	/**
