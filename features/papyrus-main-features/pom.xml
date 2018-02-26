@@ -20,7 +20,6 @@
 		<module>org.eclipse.papyrus.emf.facet.feature</module>
 		<module>org.eclipse.papyrus.infra.architecture.feature</module>
 		<module>org.eclipse.papyrus.infra.core.feature</module>
-		<module>org.eclipse.papyrus.infra.discovery.feature</module>
 		<module>org.eclipse.papyrus.infra.emf.feature</module>
 		<module>org.eclipse.papyrus.infra.emf.expressions.feature</module>
 		<module>org.eclipse.papyrus.infra.feature</module>
