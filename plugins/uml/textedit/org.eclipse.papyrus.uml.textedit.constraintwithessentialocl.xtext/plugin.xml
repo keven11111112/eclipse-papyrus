@@ -17,6 +17,7 @@
          </Priority>
       </DirectEditor>
       <DirectEditor
+            additionalConstraint="org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xtext.OCLDirectEditorConstraint"
             contributor="Eclipse Modeling Project"
             icon="icons/OCLModelFile.gif"
             language="Essential OCL constraint editor"

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Bug 528199
  *
  *****************************************************************************/
 
@@ -69,12 +70,13 @@ public class DirectEditorsUtil {
 	 */
 	public static IDirectEditorConfiguration findEditorConfiguration(String language, Object semanticObjectToEdit, Object selectedElement) {
 		IDirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getInstance().getDirectEditorConfigurations();
-		IDirectEditorConfiguration editorConfiguration = new DefaultDirectEditorConfiguration();
+		IDirectEditorConfiguration defaultConfiguration = new DefaultDirectEditorConfiguration();
+		IDirectEditorConfiguration editorConfiguration = defaultConfiguration;
 		int configurationPriority = UNKNOWN_PRIORITY;
 		for (IDirectEditorExtensionPoint directEditorExtensionPoint : extensionPoints) {
 			final String lang = directEditorExtensionPoint.getLanguage();
 			final Class<? extends EObject> classToEdit = directEditorExtensionPoint.getObjectClassToEdit();
-			if (lang.equals(language) && classToEdit.isInstance(semanticObjectToEdit)) {
+			if ((language == null || lang.equals(language)) && classToEdit.isInstance(semanticObjectToEdit)) {
 				IDirectEditorConstraint constraint = directEditorExtensionPoint.getAdditionalConstraint();
 				if ((constraint == null || constraint.appliesTo(selectedElement)) && directEditorExtensionPoint.getPriority() < configurationPriority) {
 					// extension point found!
@@ -82,6 +84,13 @@ public class DirectEditorsUtil {
 					configurationPriority = directEditorExtensionPoint.getPriority();
 				}
 			}
+		}
+
+		if (editorConfiguration == defaultConfiguration && language != null) {
+			// no extension found, retry without specific language filter. This is useful, since the default editor
+			// might not match, e.g. if you edit an opaque expression with a non-OCL body, the OCL editor should not
+			// be used, see bug 528199
+			return findEditorConfiguration(null, semanticObjectToEdit, selectedElement);
 		}
 		return editorConfiguration;
 	}
@@ -261,7 +270,7 @@ public class DirectEditorsUtil {
 		for (IDirectEditorExtensionPoint directEditorExtensionPoint : extensionPoints) {
 			final String lang = directEditorExtensionPoint.getLanguage();
 			final String oToEdit = directEditorExtensionPoint.getObjectToEdit();
-			if (lang.equals(language) && oToEdit.equals(objectToEdit)) {
+			if ((language == null || lang.equals(language)) && oToEdit.equals(objectToEdit)) {
 				// extension point found!
 				int directEditorExtensionPointPriority = directEditorExtensionPoint.getPriority() != null ? directEditorExtensionPoint.getPriority() : UNKNOWN_PRIORITY;
 				if (result == null || (directEditorExtensionPointPriority < currentPrority)) {
@@ -270,6 +279,13 @@ public class DirectEditorsUtil {
 				}
 			}
 		}
+		if (result == null && language != null) {
+			// no extension found, retry without specific language filter. This is useful, since the default editor
+			// might not match, e.g. if you edit an opaque expression with a non-OCL body, the OCL editor should not
+			// be used, see bug 528199
+			return findEditorConfigurationWithPriority(null, objectToEdit);
+		}
+		
 		return result != null ? result : new DefaultDirectEditorConfiguration();
 	}
 
