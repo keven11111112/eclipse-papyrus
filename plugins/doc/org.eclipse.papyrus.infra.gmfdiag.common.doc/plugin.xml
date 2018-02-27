@@ -26,6 +26,22 @@
       <toc
             file="target/generated-eclipse-help/connectionDecorationCustomization-toc.xml"
             primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/diagramPreferences-devDoc-main-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/diagramPreferences-devDoc-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/diagramPreferences-userDoc-main-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/diagramPreferences-userDoc-toc.xml"
+            primary="false">
       </toc>      
    </extension>
 </plugin>

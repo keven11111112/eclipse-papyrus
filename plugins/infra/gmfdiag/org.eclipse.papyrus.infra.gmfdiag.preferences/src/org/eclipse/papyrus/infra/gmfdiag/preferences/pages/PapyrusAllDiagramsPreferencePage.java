@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008 Atos Origin.
+ * Copyright (c) 2008, 2018 Atos Origin.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *		Thibault Landre (Atos Origin) - Initial API and implementation
  *		Patrick Tessier (CEA LIST)- modifications
  *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 419357
+ *		Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 531729
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.preferences.pages;
@@ -46,7 +47,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 
 /**
- * The default preference page all element of diagrams
+ * The default preference page all elements of diagrams
  *
  */
 public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferencePage {
@@ -139,6 +140,9 @@ public class PapyrusAllDiagramsPreferencePage extends AbstractPapyrusPreferenceP
 				RestoreElementGroup.initDefaults(store);
 				
 				ExternalReferenceGroup.initDefaults(store);
+				
+				//the default value for the Draw connection point preference
+				store.setDefault(PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.DRAW_CONNECTION_POINT),Boolean.FALSE);
 			}
 		});
 

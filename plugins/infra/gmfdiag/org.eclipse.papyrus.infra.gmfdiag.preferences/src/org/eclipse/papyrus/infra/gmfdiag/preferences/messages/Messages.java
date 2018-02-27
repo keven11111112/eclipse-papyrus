@@ -23,6 +23,10 @@ public class Messages extends NLS {
 
 	public static String ApplyValueOnPreferenceKeyDialog_ELEMENT;
 
+	public static String EditorConnectionGroup_ConnectionBendpoints;
+
+	public static String EditorConnectionGroup_DrawCommonBendpoint_EditorLabel;
+
 	public static String LabelGroup_Labels_To_Display;
 
 	public static String RulersAndGridGroup_GridColor;
