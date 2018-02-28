@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,14 +10,13 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 531802
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.contributions;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
@@ -40,7 +39,7 @@ public class UMLCollaborationUseEditorUtil {
 	 * @param collaborationUse
 	 *            the {@link CollaborationUse}
 	 * @return
-	 *         A String representing the {@link CollaborationUse}
+	 * 		A String representing the {@link CollaborationUse}
 	 */
 	public static String getLabel(CollaborationUse collaborationUse) {
 		StringBuffer buffer = new StringBuffer();
@@ -54,8 +53,9 @@ public class UMLCollaborationUseEditorUtil {
 
 		// type
 		if (collaborationUse.getType() != null) {
-			EList<Namespace> namespaces = collaborationUse.allNamespaces();
-			buffer.append(" : " + getTypeLabel(collaborationUse.getType(), namespaces.get(namespaces.size() - 1))); //$NON-NLS-1$
+			final List<Namespace> namespaces = collaborationUse.allNamespaces();
+			final Namespace lastNamespace = (namespaces.size() - 1) >= 0 ? namespaces.get(namespaces.size() - 1) : null;
+			buffer.append(" : " + getTypeLabel(collaborationUse.getType(), lastNamespace)); //$NON-NLS-1$
 		} else {
 			buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME); //$NON-NLS-1$
 		}
@@ -68,7 +68,7 @@ public class UMLCollaborationUseEditorUtil {
 	 * @param collaborationUse
 	 *            the {@link CollaborationUse}
 	 * @return
-	 *         The name of the {@link CollaborationUse}
+	 * 		The name of the {@link CollaborationUse}
 	 */
 	public static String getName(CollaborationUse collaborationUse) {
 		if (collaborationUse.getName() != null) {
@@ -84,35 +84,36 @@ public class UMLCollaborationUseEditorUtil {
 	 * @param type
 	 *            the type of the CollaborationUse
 	 * @return
-	 *         A string representing the Type of the {@link CollaborationUse}
+	 * 		A string representing the Type of the {@link CollaborationUse}
 	 */
 	public static String getTypeLabel(Type type, Namespace model) {
 		String label = ""; //$NON-NLS-1$
 
-		List<Package> importedPackages = new ArrayList<Package>(model.getImportedPackages());
+		if (null != model) {
+			List<Package> importedPackages = new ArrayList<Package>(model.getImportedPackages());
 
-		List<Package> visitedPackages = new ArrayList<Package>();
-		Package currentPackage = type.getNearestPackage();
+			List<Package> visitedPackages = new ArrayList<Package>();
+			Package currentPackage = type.getNearestPackage();
 
-		boolean rootFound = false;
+			boolean rootFound = false;
 
-		while (currentPackage != null && !rootFound) {
-			visitedPackages.add(currentPackage);
-			if (importedPackages.contains(currentPackage) || currentPackage == model) {
-				rootFound = true;
+			while (currentPackage != null && !rootFound) {
+				visitedPackages.add(currentPackage);
+				if (importedPackages.contains(currentPackage) || currentPackage == model) {
+					rootFound = true;
+				}
+				Element owner = currentPackage.getOwner();
+				while (owner != null && !(owner instanceof Package)) {
+					owner = owner.getOwner();
+				}
+
+				currentPackage = owner != null ? (Package) owner : null;
 			}
-			Element owner = currentPackage.getOwner();
-			while (owner != null && !(owner instanceof Package)) {
-				owner = owner.getOwner();
+
+			for (int i = visitedPackages.size() - 1; i >= 0; i--) {
+				label += visitedPackages.get(i).getName() + "::"; //$NON-NLS-1$
 			}
-
-			currentPackage = owner != null ? (Package) owner : null;
 		}
-
-		for (int i = visitedPackages.size() - 1; i >= 0; i--) {
-			label += visitedPackages.get(i).getName() + "::"; //$NON-NLS-1$
-		}
-
 		return label + type.getName();
 	}
 }
