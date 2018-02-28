@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
+ * Copyright (c) 2012, 2018 CEA LIST, Christian W. Damus, Esterel Technologies SAS, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +13,7 @@
  *  Christian W. Damus - bug 451613
  *  Christian W. Damus - bug 474610
  *  Calin Glitia (Esterel Technologies SAS) - bug 497699
+ *  Camille Letavernier (EclipseSource) - bug 530156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -141,10 +142,10 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 	}
 
 	public static List<Stereotype> findAllSubStereotypes(Stereotype parentStereotype, Package umlPackage, boolean concreteOnly) {
-		Collection<Stereotype> result = new LinkedHashSet<Stereotype>();
+		Collection<Stereotype> result = new LinkedHashSet<>();
 
 		for (Profile profile : umlPackage.getAllAppliedProfiles()) {
-			List<Stereotype> allStereotypes = new LinkedList<Stereotype>();
+			List<Stereotype> allStereotypes = new LinkedList<>();
 			findAllStereotypes(profile, allStereotypes);
 			for (Stereotype stereotype : allStereotypes) {
 				if (concreteOnly && stereotype.isAbstract()) {
@@ -158,7 +159,7 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 
 		}
 
-		return new LinkedList<Stereotype>(result);
+		return new LinkedList<>(result);
 	}
 
 	public static boolean isSubStereotype(Stereotype parentStereotype, Stereotype childStereotype) {
@@ -191,13 +192,13 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 
 	public static List<EClass> getAllExtendedMetaclasses(Stereotype stereotype, boolean concreteClassesOnly) {
 		List<Class> extendedMetaclasses = stereotype.getAllExtendedMetaclasses();
-		Set<EClass> allMetaclasses = new LinkedHashSet<EClass>();
+		Set<EClass> allMetaclasses = new LinkedHashSet<>();
 		for (Class extendedMetaclass : extendedMetaclasses) {
 			EClass UMLEClass = findEClass(extendedMetaclass);
 			allMetaclasses.addAll(EMFHelper.getSubclassesOf(UMLEClass, concreteClassesOnly));
 		}
 
-		return new LinkedList<EClass>(allMetaclasses);
+		return new LinkedList<>(allMetaclasses);
 	}
 
 	private static EClass findEClass(Class metaclass) {
@@ -257,26 +258,52 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 	/**
 	 * Finds the profile application, if any, in the context of an {@code element} that supplies the given
 	 * stereotype Ecore definition.
-	 * 
+	 *
 	 * @param element
 	 *            a model element
 	 * @param stereotypeDefinition
 	 *            the Ecore definition of a stereotype
-	 * 
+	 * @param stereotype
+	 * 			  The stereotype from which the stereotypeDefinition was derived
+	 *
 	 * @return the providing profile application, or {@code null} if none can be determined
+	 * @since 3.4
 	 */
-	public static ProfileApplication getProfileApplication(Element element, EClass stereotypeDefinition) {
+	public static ProfileApplication getProfileApplication(Element element, EClass stereotypeDefinition, Stereotype stereotype) {
+		if (stereotype == null) {
+			NamedElement umlDefinition = getNamedElement(stereotypeDefinition, element);
+			if (umlDefinition instanceof Stereotype) {
+				stereotype = (Stereotype)umlDefinition;
+			} else {
+				return null;
+			}
+		}
 		ProfileApplication result = null;
 
-		NamedElement umlDefinition = getNamedElement(stereotypeDefinition, element);
-		if (umlDefinition != null) {
-			Profile profile = getContainingProfile(umlDefinition);
-			if (profile != null) {
-				result = getApplicationOf(profile, element);
-			}
+		Profile profile = getContainingProfile(stereotype);
+		if (profile != null) {
+			result = getApplicationOf(profile, element);
 		}
 
 		return result;
+	}
+
+	/**
+	 * Finds the profile application, if any, in the context of an {@code element} that supplies the given
+	 * stereotype Ecore definition.
+	 *
+	 * @param element
+	 *            a model element
+	 * @param stereotypeDefinition
+	 *            the Ecore definition of a stereotype
+	 *
+	 * @return the providing profile application, or {@code null} if none can be determined
+	 * @deprecated since 3.4 Use {@link #getProfileApplication(Element, EClass, Stereotype)} instead,
+	 * which is more efficient.
+	 */
+	@Deprecated
+	public static ProfileApplication getProfileApplication(Element element, EClass stereotypeDefinition) {
+		return getProfileApplication(element, stereotypeDefinition, null);
 	}
 
 	static Profile getContainingProfile(NamedElement umlDefinition) {
@@ -311,7 +338,7 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 	 * <li>have attributes typed by classifiers in the other profile, or</li>
 	 * <li>have operations with parameters typed by classifiers in the other profile</li>
 	 * </ul>
-	 * 
+	 *
 	 * @param profiles
 	 *            a list of profiles to sort in place
 	 */
@@ -324,6 +351,7 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 
 		// Now sort by used profiles ahead of those that use them
 		Collections.sort(profiles, new Comparator<Profile>() {
+			@Override
 			public int compare(Profile o1, Profile o2) {
 				return dependencies.get(o1).contains(o2) ? +1 : dependencies.get(o2).contains(o1) ? -1 : 0;
 			}
@@ -332,7 +360,7 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 
 	/**
 	 * Compute a mapping of profiles to the profiles that they depend on.
-	 * 
+	 *
 	 * @param profiles
 	 *            profiles for which to compute dependencies
 	 * @return the dependency mapping (one-to-many)
@@ -385,7 +413,7 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 
 	/**
 	 * Expands a profile dependency map to include all transitive dependencies in the mapping for each profile.
-	 * 
+	 *
 	 * @param dependencies
 	 *            a dependency map to expand
 	 */
@@ -393,8 +421,8 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 		for (boolean changed = true; changed;) {
 			changed = false;
 
-			for (Profile next : new ArrayList<Profile>(dependencies.keySet())) {
-				for (Profile dep : new ArrayList<Profile>(dependencies.get(next))) {
+			for (Profile next : new ArrayList<>(dependencies.keySet())) {
+				for (Profile dep : new ArrayList<>(dependencies.get(next))) {
 					Set<Profile> transitive = dependencies.get(dep);
 
 					// Add the transitive dependencies to my own
