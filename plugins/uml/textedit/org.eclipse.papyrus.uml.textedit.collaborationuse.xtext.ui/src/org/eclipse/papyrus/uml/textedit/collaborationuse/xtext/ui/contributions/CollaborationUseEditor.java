@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,12 +10,9 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 531802
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.contributions;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.emf.ecore.EObject;
@@ -27,10 +24,12 @@ import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui.internal.UmlCollaborationUseActivator;
+import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.CollaborationUseRule;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.xtext.EcoreUtil2;
 
 import com.google.inject.Injector;
 
@@ -41,153 +40,36 @@ import com.google.inject.Injector;
  */
 public class CollaborationUseEditor extends DefaultXtextDirectEditorConfiguration {
 
-	/** the new name for the {@link CollaborationUse} */
-	private String newName;
-
-	/** the new type for the {@link CollaborationUse} */
-	private Collaboration newType;
-
-	/** the new visibility for the {@link CollaborationUse} */
-	private org.eclipse.uml2.uml.VisibilityKind newVisibility;
-
-	/** the managed {@link CollaborationUse} */
-	private CollaborationUse collaborationUse;
-
-	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#createPopupEditorHelper(java.lang.Object)
-	 *
-	 * @param editPart
-	 * @return
-	 */
-	/*
-	 * public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
-	 *
-	 * // resolves the edit part, and the associated semantic element
-	 * IGraphicalEditPart graphicalEditPart = null;
-	 * if(!(editPart instanceof IGraphicalEditPart)) {
-	 * return null;
-	 * }
-	 * graphicalEditPart = (IGraphicalEditPart)editPart;
-	 *
-	 * if(!(graphicalEditPart.resolveSemanticElement() instanceof CollaborationUse)) {
-	 * return null;
-	 * }
-	 * collaborationUse = (CollaborationUse)graphicalEditPart.resolveSemanticElement();
-	 *
-	 * // retrieves the XText injector
-	 * Injector injector = UmlCollaborationUseActivator.getInstance().getInjector("org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.UmlCollaborationUse"); //$NON-NLS-1$
-	 *
-	 * // builds the text content and extension for a temporary file, to be edited by the xtext editor
-	 * String textToEdit = "" + this.getTextToEdit(graphicalEditPart.resolveSemanticElement()); //$NON-NLS-1$
-	 * String fileExtension = "" + ".umlcollaborationuse"; //$NON-NLS-1$ //$NON-NLS-2$
-	 *
-	 * // builds a new IXtextEMFReconciler.
-	 * // Its purpose is to extract any relevant information from the textual specification,
-	 * // and then merge it in the context UML model if necessary
-	 * IXtextEMFReconciler reconciler = new IXtextEMFReconciler() {
-	 *
-	 * public void reconcile(EObject modelObject, EObject xtextObject) {
-	 * // first: retrieves / determines if the xtextObject is a CollaborationUseRule object
-	 * EObject modifiedObject = xtextObject;
-	 * if(!(modelObject instanceof CollaborationUse)) {
-	 * return;
-	 * }
-	 * while(xtextObject != null && !(xtextObject instanceof CollaborationUseRule)) {
-	 * modifiedObject = modifiedObject.eContainer();
-	 * }
-	 * if(modifiedObject == null) {
-	 * return;
-	 * }
-	 * CollaborationUseRule propertyRuleObject = (CollaborationUseRule)xtextObject;
-	 *
-	 * // Retrieves the information to be populated in modelObject
-	 *
-	 *
-	 * newName = "" + propertyRuleObject.getName(); //$NON-NLS-1$
-	 *
-	 * TypeRule typeRule = propertyRuleObject.getType();
-	 * if(typeRule == null) {
-	 * newType = null;
-	 * } else {
-	 * newType = (Collaboration)typeRule.getType();
-	 * }
-	 *
-	 * newVisibility = org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL;
-	 *
-	 * switch(propertyRuleObject.getVisibility()) {
-	 * case PUBLIC:
-	 * newVisibility = org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL;
-	 * break;
-	 * case PACKAGE:
-	 * newVisibility = org.eclipse.uml2.uml.VisibilityKind.PACKAGE_LITERAL;
-	 * break;
-	 * case PRIVATE:
-	 * newVisibility = org.eclipse.uml2.uml.VisibilityKind.PRIVATE_LITERAL;
-	 * break;
-	 * case PROTECTED:
-	 * newVisibility = org.eclipse.uml2.uml.VisibilityKind.PROTECTED_LITERAL;
-	 * break;
-	 * default:
-	 * break;
-	 * }
-	 *
-	 * IUndoableOperation updateCommand = getUpdateCommand();
-	 *
-	 * try {
-	 * CheckedOperationHistory.getInstance().execute(updateCommand, new NullProgressMonitor(), null);
-	 * } catch (ExecutionException e) {
-	 * System.err.println(e);
-	 * }
-	 * }
-	 * };
-	 * return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension, new SemanticValidator());
-	 * }
-	 */
-
-	/**
-	 * Returns the list of requests to update the {@link #collaborationUse}
-	 *
-	 * @return
-	 *         the list of requests to update the {@link #collaborationUse}
-	 */
-	protected List<SetRequest> getRequests() {
-		List<SetRequest> requests = new ArrayList<SetRequest>();
-		requests.add(new SetRequest(collaborationUse, UMLPackage.eINSTANCE.getNamedElement_Visibility(), newVisibility));
-		requests.add(new SetRequest(collaborationUse, UMLPackage.eINSTANCE.getCollaborationUse_Type(), newType));
-		return requests;
-	}
 
 	/**
 	 * Returns the update command
 	 *
 	 * @return
-	 *         the update command
+	 * 		the update command
 	 */
-	protected IUndoableOperation getUpdateCommand() {
+	private final IUndoableOperation getUpdateCommand(final CollaborationUse collaborationUse, final org.eclipse.uml2.uml.VisibilityKind newVisibility, final Collaboration newType, final String newName) {
 		CompositeCommand cc = new CompositeCommand("Set values for CollaborationUse"); //$NON-NLS-1$
 		org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(collaborationUse);
 		if (provider != null) {
 
 			// Manage the name or the label set
 			ICommand setNameCommand = null;
-			if(InternationalizationPreferencesUtils.getInternationalizationPreference(collaborationUse) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(collaborationUse)){
-				final ModelSet modelSet = (ModelSet)collaborationUse.eResource().getResourceSet();
+			if (InternationalizationPreferencesUtils.getInternationalizationPreference(collaborationUse) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(collaborationUse)) {
+				final ModelSet modelSet = (ModelSet) collaborationUse.eResource().getResourceSet();
 				setNameCommand = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), collaborationUse, newName, null));
-			}else{
+			} else {
 				final SetRequest setNameRequest = new SetRequest(collaborationUse, UMLPackage.eINSTANCE.getNamedElement_Name(), newName);
 				setNameCommand = provider.getEditCommand(setNameRequest);
 			}
 			cc.add(setNameCommand);
-			
-			ICommand editCommand = null;
-			for (SetRequest current : getRequests()) {
-				editCommand = provider.getEditCommand(current);
 
-				if (editCommand != null && editCommand.canExecute()) {
-					cc.add(editCommand);
-				}
+			// set the visibility
+			if (false == collaborationUse.getVisibility().equals(newVisibility)) {// to avoid to have the green + displayed whereas the visibility didn't change
+				cc.add(provider.getEditCommand(new SetRequest(collaborationUse, UMLPackage.eINSTANCE.getNamedElement_Visibility(), newVisibility)));
 			}
+
+			// set type
+			cc.add(provider.getEditCommand(new SetRequest(collaborationUse, UMLPackage.eINSTANCE.getCollaborationUse_Type(), newType)));
 		}
 		return cc;
 	}
@@ -209,19 +91,69 @@ public class CollaborationUseEditor extends DefaultXtextDirectEditorConfiguratio
 		return "not a CollaborationUse"; //$NON-NLS-1$
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration#getInjector()
+	 *
+	 * @return
+	 */
 	@Override
 	public Injector getInjector() {
 		return UmlCollaborationUseActivator.getInstance().getInjector(UmlCollaborationUseActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_COLLABORATIONUSE_XTEXT_UMLCOLLABORATIONUSE);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration#getParseCommand(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject)
+	 *
+	 * @param umlObject
+	 * @param xtextObject
+	 * @return
+	 */
 	@Override
-	protected ICommand getParseCommand(EObject umlObject, EObject xtextObject) {
-		if (!(umlObject instanceof CollaborationUse)) {
+	protected ICommand getParseCommand(final EObject umlObject, EObject xtextObject) {
+		if (!(umlObject instanceof CollaborationUse) || null == xtextObject) {
 			return null;
 		}
 
-		// Creates and executes the update command
-		IUndoableOperation updateCommand = getUpdateCommand();
+		// init the class fields, with the new values
+		final CollaborationUse collaborationUse = (CollaborationUse) umlObject;
+		xtextObject = EcoreUtil2.getContainerOfType(xtextObject, CollaborationUseRule.class);
+		if (null == xtextObject) {
+			return null;
+		}
+		CollaborationUseRule propertyRuleObject = (CollaborationUseRule) xtextObject;
+		final String newName = propertyRuleObject.getName();
+		final Collaboration newType;
+		if (null != propertyRuleObject.getType()) {
+			newType = (Collaboration) propertyRuleObject.getType().getType();
+		} else {
+			newType = null;
+		}
+		org.eclipse.uml2.uml.VisibilityKind newVisibility = org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL;
+
+		if (propertyRuleObject.getVisibility() != null) {
+			switch (propertyRuleObject.getVisibility()) {
+			case PUBLIC:
+				newVisibility = org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL;
+				break;
+			case PACKAGE:
+				newVisibility = org.eclipse.uml2.uml.VisibilityKind.PACKAGE_LITERAL;
+				break;
+			case PRIVATE:
+				newVisibility = org.eclipse.uml2.uml.VisibilityKind.PRIVATE_LITERAL;
+				break;
+			case PROTECTED:
+				newVisibility = org.eclipse.uml2.uml.VisibilityKind.PROTECTED_LITERAL;
+				break;
+			default:
+				newVisibility = org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL;
+				break;
+			}
+		}
+		// Creates the update command
+		IUndoableOperation updateCommand = getUpdateCommand(collaborationUse, newVisibility, newType, newName);
+
 		return (ICommand) updateCommand;
 	}
 }
