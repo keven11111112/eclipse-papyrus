@@ -33,7 +33,7 @@ fi
 
 #COMPACT_BUILD_ID="${BUILD_ID//[-_]}"
 #COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
-COMPACT_BUILD_ID="$(date +%Y%m%d%H%M%S)"
+COMPACT_BUILD_ID="$(date +%Y%m%d%H%M)"
 FULL_BUILD_ID=${buildType}${COMPACT_BUILD_ID}
 
 if [ -n "$BUILD_ALIAS" ]; then
