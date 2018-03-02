@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519756
- *   
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 531936
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -24,7 +24,6 @@ import java.util.List;
 
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
@@ -98,8 +97,8 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	public boolean CREATION_X_FREE = true;
 	/** if the CREATION_X_FREE == false COLUMN are created at fixed position **/
 	public int X_SPACING = 100;
-	private ContentDiagramListener contentDiagramListener;
-	private CommandStackListener commandStackListener;
+	// private ContentDiagramListener contentDiagramListener;
+	// private CommandStackListener commandStackListener;
 
 	/**
 	 * @return the moveAllLinesAtSamePosition
@@ -185,11 +184,14 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	public void activate() {
 		super.activate();
 		getDiagramEventBroker().addNotificationListener(((EObject) getHost().getModel()), this);
-		contentDiagramListener = new ContentDiagramListener(this);
-		commandStackListener = new GridCommandStackListener(this);
-		operationHistoryListener = new RedirectionOperationListener(this);
+
+		// contentDiagramListener = new ContentDiagramListener(this);
+		// commandStackListener = new GridCommandStackListener(this);
+
+		this.operationHistoryListener = new RedirectionOperationListener(this);
+		OperationHistoryFactory.getOperationHistory().addOperationHistoryListener(this.operationHistoryListener);
 		// ((EObject) getHost().getModel()).eResource().eAdapters().add(contentDiagramListener);
-		OperationHistoryFactory.getOperationHistory().addOperationHistoryListener(operationHistoryListener);
+
 		// getDiagramEditPart(getHost()).getEditingDomain().getCommandStack().addCommandStackListener(commandStackListener);
 		// PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, new KeyToSetMoveLinesListener(this, SWT.SHIFT, false));
 		// PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, new KeyToSetMoveLinesListener(this, SWT.SHIFT, true));
@@ -351,6 +353,9 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	@Override
 	public void deactivate() {
 		getDiagramEventBroker().removeNotificationListener(((EObject) getHost().getModel()), this);
+		if (null != this.operationHistoryListener) {
+			OperationHistoryFactory.getOperationHistory().removeOperationHistoryListener(this.operationHistoryListener);
+		}
 		super.deactivate();
 	}
 
