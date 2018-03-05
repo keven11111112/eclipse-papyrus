@@ -97,9 +97,9 @@ public class ClassifierToInteractionDropStrategy extends TransactionalDropStrate
 					dropRequest.setObjects(droppedLifelines);
 					dropRequest.setLocation(location);
 					Command cmd = interactionEditPart.getCommand(dropRequest);
-					cmd.execute();
-
-
+					if (cmd != null && cmd.canExecute()) {
+						cmd.execute();
+					}
 				}
 			};
 
