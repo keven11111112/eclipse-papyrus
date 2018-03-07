@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Ansgar Radermacher - Bug 526156, add postfix, if generating DI element types
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.types.generator.ui.internal.wizards;
@@ -59,7 +60,14 @@ class BaseElementTypeSetBlock {
 
 	private static final String SUPPRESS_SEMANTIC_SUPERTYPES = "suppressSemanticSupertypes"; //$NON-NLS-1$
 
-	private static final String UML_ELEMENT_TYPE_SET = "org.eclipse.papyrus.uml.service.types.UMLElementTypeSet"; //$NON-NLS-1$
+	/**
+	 * Add a .di postfix, if DI element types are created
+	 */
+	private static final String ADD_DI_POSTFIX = "addDiPostfix"; //$NON-NLS-1$
+
+	protected static final String UML_ELEMENT_TYPE_SET = "org.eclipse.papyrus.uml.service.types.UMLElementTypeSet"; //$NON-NLS-1$
+
+	protected static final String UMLDI_ELEMENT_TYPE_SET = "org.eclipse.papyrus.umldi.service.types.UMLDIElementTypeSet"; //$NON-NLS-1$
 
 	private final GeneratorWizardModel model;
 
@@ -107,7 +115,18 @@ class BaseElementTypeSetBlock {
 		suppressSemanticSuperElementTypes.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false, 2, 1));
 		suppressSemanticSuperElementTypes.setText("Suppress semantic parent in diagram-specific element types");
 		suppressSemanticSuperElementTypes.setSelection(model.getDialogSettings().getBoolean(SUPPRESS_SEMANTIC_SUPERTYPES));
-
+		
+		final Button addDiPostfix = new Button(parent, SWT.CHECK);
+		addDiPostfix.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false, 2, 1));
+		addDiPostfix.setText("Add .di postfix to identifier in diagram-specific element types");
+		if (model.getDialogSettings().get(ADD_DI_POSTFIX) != null) {
+			addDiPostfix.setSelection(model.getDialogSettings().getBoolean(ADD_DI_POSTFIX));
+		}
+		else {
+			// set by default
+			addDiPostfix.setSelection(true);
+		}
+		
 		ElementTypeSetConfiguration initialSelection = getInitialSelection();
 		if (initialSelection != null) {
 			combo.setSelection(new StructuredSelection(initialSelection));
@@ -119,16 +138,28 @@ class BaseElementTypeSetBlock {
 			public void selectionChanged(SelectionChangedEvent event) {
 				elementTypeSetSelectionChanged((IStructuredSelection) event.getSelection());
 				suppressSemanticSuperElementTypes.setEnabled(!UML_ELEMENT_TYPE_SET.equals(model.getSelectedElementTypeSet()));
+				addDiPostfix.setEnabled(UMLDI_ELEMENT_TYPE_SET.equals(model.getSelectedElementTypeSet()));
 				model.validatePage();
 			}
 		});
 
 		setSuppressSemanticSupertypes(suppressSemanticSuperElementTypes.getSelection());
 		suppressSemanticSuperElementTypes.setEnabled(!UML_ELEMENT_TYPE_SET.equals(model.getSelectedElementTypeSet()));
+		addDiPostfix.setEnabled(UMLDI_ELEMENT_TYPE_SET.equals(model.getSelectedElementTypeSet()));
+		model.setAddDiPostfix(addDiPostfix.getSelection());
+
 		suppressSemanticSuperElementTypes.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				setSuppressSemanticSupertypes(suppressSemanticSuperElementTypes.getSelection());
+			}
+		});
+		
+		addDiPostfix.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				System.err.println(addDiPostfix.getSelection());
+				model.setAddDiPostfix(addDiPostfix.getSelection());
 			}
 		});
 	}
@@ -152,6 +183,7 @@ class BaseElementTypeSetBlock {
 	void save() {
 		model.getDialogSettings().put(DIAGRAM, model.getSelectedElementTypeSet());
 		model.getDialogSettings().put(SUPPRESS_SEMANTIC_SUPERTYPES, model.isSuppressSemanticSuperElementTypes());
+		model.getDialogSettings().put(ADD_DI_POSTFIX, model.isAddDiPostfix());
 	}
 
 	private ElementTypeSetConfiguration getInitialSelection() {

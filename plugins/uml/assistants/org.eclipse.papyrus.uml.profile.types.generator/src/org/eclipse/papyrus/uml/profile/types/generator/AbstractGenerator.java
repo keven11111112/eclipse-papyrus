@@ -113,11 +113,7 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 				for (ElementTypeConfiguration elemTypeConfig : ((ElementTypeSetConfiguration) set).getElementTypeConfigurations()) {
 					String id = elemTypeConfig.getIdentifier();
 					if (id != null && id.length() > 0) {
-						// replace problematic characters in identifier with "_", before using it as XML-id
-						// in particular, the generator uses the ":", if it appends UML::MM name to the stereotype name 
-						id = id.replaceAll(" ", "_");
-						id = id.replaceAll(":", "_");
-						((XMLResource) output).setID(elemTypeConfig, id);
+						((XMLResource) output).setID(elemTypeConfig, escapeID(id));
 					}
 				}
 			}
@@ -135,6 +131,19 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Replace problematic characters in identifier with "_", before using it as XML-id
+ 	 * in particular, the :: can be used by the generator.
+ 	 * 
+	 * @param id an ID
+	 * @return
+	 */
+	public String escapeID(String id) {
+		id = id.replaceAll(" ", "_");
+		id = id.replaceAll(":", "_");
+		return id;
 	}
 
 	public IStatus generate(I input, EList<? super EObject> output) {

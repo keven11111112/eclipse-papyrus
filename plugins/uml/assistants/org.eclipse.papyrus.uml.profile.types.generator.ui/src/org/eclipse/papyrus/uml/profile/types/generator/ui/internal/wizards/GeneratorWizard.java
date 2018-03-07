@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2018 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Ansgar Radermacher - Bug 526156, add postfix, if generating DI element types
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.types.generator.ui.internal.wizards;
@@ -117,7 +118,13 @@ public class GeneratorWizard extends Wizard {
 		IStatus result = Status.OK_STATUS;
 
 		Identifiers identifiers = new Identifiers();
-		identifiers.setPrefix(model.getIdentifier());
+		if (model.isAddDiPostfixActive()) {
+			identifiers.setPrefix(model.getIdentifier() + Identifiers.diPostfix());
+			identifiers.setUseDiPostfix(true);
+		}
+		else {
+			identifiers.setPrefix(model.getIdentifier());
+		}
 		identifiers.setBaseElementTypesSet(model.getSelectedElementTypeSet());
 		identifiers.setSuppressSemanticSuperElementTypes(model.isSuppressSemanticSuperElementTypes());
 
