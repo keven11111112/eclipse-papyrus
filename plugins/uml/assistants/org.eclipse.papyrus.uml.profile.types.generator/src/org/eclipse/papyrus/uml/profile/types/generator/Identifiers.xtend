@@ -57,12 +57,22 @@ class Identifiers {
 
     String identifierBase
 
+	boolean useDiPostfix
+	
 	/**
 	 * Constant for postfix that is appended in case of DI element types
 	 * @since 2.1
 	 */
 	public static def String diPostfix() {
 		".di"
+	}
+	
+	def void setUseDiPostfix(boolean useDiPostfix) {
+		this.useDiPostfix = useDiPostfix	
+	}
+	
+	def boolean useDiPostfix() {
+		useDiPostfix
 	}
 	
     def setIdentifierBase(org.eclipse.uml2.uml.Package umlPackage) {

@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Ansgar Radermacher - Bug 526156, add postfix, if generating DI element types
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.types.generator.ui.internal.wizards;
@@ -49,6 +50,8 @@ public class GeneratorWizardModel {
 	private String fileName;
 
 	private boolean suppressSemanticSuperElementTypes;
+	
+	private boolean addDiPostfix;
 
 	public GeneratorWizardModel(IWizard owner, Profile profile, IDialogSettings settings) {
 		super();
@@ -112,6 +115,30 @@ public class GeneratorWizardModel {
 		return suppressSemanticSuperElementTypes;
 	}
 
+	/**
+	 * Control whether a DI postfix should be used
+	 * @since 1.3.0
+	 */
+	public void setAddDiPostfix(boolean addDiPostfix) {
+		this.addDiPostfix = addDiPostfix;
+	}
+	
+	/**
+	 * Check whether a DI postfix should be used
+	 * @since 1.3.0
+	 */
+	public boolean isAddDiPostfix() {
+		return addDiPostfix;
+	}
+
+	/**
+	 * @return isAddDiPostfix configured and DI element type set is selected.
+	 * @since 1.3.0
+	 */
+	public boolean isAddDiPostfixActive() {
+		return addDiPostfix && BaseElementTypeSetBlock.UMLDI_ELEMENT_TYPE_SET.equals(getSelectedElementTypeSet());
+	}
+	
 	public URI getOutputModelURI() {
 		return URI.createPlatformResourceURI(containerPath.append(fileName).toString(), true);
 	}

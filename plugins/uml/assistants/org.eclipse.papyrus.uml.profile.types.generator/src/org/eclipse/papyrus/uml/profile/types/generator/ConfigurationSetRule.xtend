@@ -82,6 +82,11 @@ class ConfigurationSetRule {
 		elementTypeConfigurations.addAll(elementTypeConfigurationList.sortBy[identifier])
 
 		// set name (otherwise, the element type set remains invalid)
-		name = umlProfile.name
+		if (useDiPostfix()) {
+			name = umlProfile.name + " DI"
+		}
+		else {
+			name = umlProfile.name
+		}			
 	}
 }
