@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2017 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,9 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Benoit maggi (CEA LIST) benoit.maggi@cea.fr -#501701 Showing nested port on Port 
+ *  Benoit maggi (CEA LIST) benoit.maggi@cea.fr -#501701 Showing nested port on Port
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - bug 527181, ports on part layout
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.actions;
 
@@ -176,18 +178,27 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			if (!(rep instanceof OptionalEditPartRepresentation)) {
 				continue;
 			}
-			EditPart ep = ((OptionalEditPartRepresentation) rep).getParentRepresentation().getParentRepresentation().getRepresentedEditPart();
-			View compartmentView = ((OptionalEditPartRepresentation) rep).getParentRepresentation().getRepresentedEditPart().getNotationView();
+			OptionalEditPartRepresentation optRep = (OptionalEditPartRepresentation) rep;
+			EditPart ep = optRep.getParentRepresentation().getParentRepresentation().getRepresentedEditPart();
+			View compartmentView = optRep.getParentRepresentation().getRepresentedEditPart().getNotationView();
 			if (compartmentView != null) {
-				req = new ShowHideElementsRequest(compartmentView, ((OptionalEditPartRepresentation) rep).getSemanticElement());
+				req = new ShowHideElementsRequest(compartmentView, optRep.getSemanticElement());
 				if (isXYLayout(compartmentView, ep)) {
 					propertyLocation.x += INCREMENT;
 					propertyLocation.y += INCREMENT;
 					req.setLocation(new Point(propertyLocation));
 
-				} else if (isAffixedChildNode(ep, ((OptionalEditPartRepresentation) rep).getSemanticElement())) {
+				} else if (isAffixedChildNode(ep, optRep.getSemanticElement())) {
+
 					portLocation.y += INCREMENT;
-					req.setLocation(new Point(portLocation));
+					Point initialPosition = getInitialPortLocation(ep, optRep.getSemanticElement());
+					if (initialPosition != null) {
+						// use initial-position instead of increment-based one
+						req.setLocation(initialPosition);
+					}
+					else {
+						req.setLocation(new Point(portLocation));
+					}
 				}
 				Command cmd = ep.getCommand(req);
 				if (cmd != null && cmd.canExecute()) {
@@ -196,6 +207,17 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 			}
 		}
 		return completeCmd;
+	}
+
+	/**
+	 * Return the initial position of a port on a part. Should be override by subclasses (e.g. composite diagram)
+	 *
+	 * @param partEditPart edit part of the part within a composite (for which we want to display a port)
+	 * @param port the semantic UML2 port which we want to display
+	 * @return the initial location of the port or null (if none could be determined)
+	 */
+	public Point getInitialPortLocation(EditPart partEditPart, EObject port) {
+		return null;
 	}
 
 	/**

@@ -81,3 +81,4 @@ Bundle-Version: 3.1.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.composite; singleton:=true
+Import-Package: com.google.common.base;version="21.0.0"

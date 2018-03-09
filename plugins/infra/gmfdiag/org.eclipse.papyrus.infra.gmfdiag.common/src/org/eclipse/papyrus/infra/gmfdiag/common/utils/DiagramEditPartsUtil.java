@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016, 2017 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus - bugs 433206, 473148, 485220
  *  Vincent Lorenzo - bug 492522
+ *  Ansgar Radermacher - bug 527181
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
@@ -1056,5 +1057,33 @@ public class DiagramEditPartsUtil {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Gets the diagram on the given {@code context} matching a particular
+	 * {@code filter} condition.
+	 *
+	 * @param context
+	 *            a diagram context (its {@link View#getElement() element})
+	 * @param filter
+	 *            the diagram selection criterion, or {@code null} to get any diagram
+	 *
+	 * @return the matching diagram, or {@code null} if none
+	 * @since 3.100
+	 */
+	public static Diagram getDiagram(EObject context, java.util.function.Predicate<? super Diagram> filter) {
+		if (filter == null) {
+			filter = __ -> true;
+		}
+
+		return EMFHelper.getUsages(context).stream()
+				.filter(s -> s.getEObject() instanceof Diagram)
+				.filter(s -> s.getEStructuralFeature() == NotationPackage.Literals.VIEW__ELEMENT)
+				.map(s -> s.getEObject())
+				// Not in an undone command's change description
+				.filter(o -> o.eResource() != null)
+				.map(Diagram.class::cast)
+				.filter(filter)
+				.findAny().orElse(null);
 	}
 }

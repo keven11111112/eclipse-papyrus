@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2018 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,7 +10,6 @@
  *
  *		CEA LIST - Initial API and implementation
  *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 419357
- *		Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 531055
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.preferences;
@@ -24,7 +23,7 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.properties.WorkspaceViewerPro
  * A class that defines the available preference type available through Papyrus.
  * </p>
  * <p>
- * It defines the following type (and more):
+ * It defines the following type:
  * </p>
  * <ul>
  * <li>COLOR_FILL</li>
@@ -461,10 +460,7 @@ public class PreferencesConstantsHelper {
 			break;
 		case EXTERNAL_REFERENCE_STRATEGY:
 			sb.append(EXTERNAL_REFERENCE_STRATEGY_CONSTANT);
-			break;
-		case DRAW_CONNECTION_POINT:
-			sb.append(DRAW_CONNECTION_POINT_CONSTANT);
-			break;
+			break;				
 		default:
 			break;
 		}

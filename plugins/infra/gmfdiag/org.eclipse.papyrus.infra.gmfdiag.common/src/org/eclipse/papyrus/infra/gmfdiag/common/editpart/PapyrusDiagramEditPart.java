@@ -86,7 +86,7 @@ public class PapyrusDiagramEditPart extends DiagramEditPart {
 					IMultiDiagramEditor multiDiagramEditor = ServiceUtilsForEditPart.getInstance().getService(IMultiDiagramEditor.class, this);
 					activeEditor = multiDiagramEditor.getActiveEditor();
 				} catch (ServiceException e) {
-					//Ignore: the IMultiDiagramEditor may not be present in headless mode
+					Activator.log.error(e);
 				}
 				((IRefreshHandlerPart) SVGPostProcessor.instance).refresh(activeEditor);
 			}
