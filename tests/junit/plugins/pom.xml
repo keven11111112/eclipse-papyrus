@@ -15,7 +15,7 @@
 
 	<modules>	
 		<!-- children -->
-		<module>developer</module>
+		<module>bundlestests</module>
 		<module>editor</module>
 		<module>infra</module>
 		<module>uml</module>

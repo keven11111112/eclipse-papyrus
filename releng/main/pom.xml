@@ -12,7 +12,6 @@
 		<module>../../plugins</module>
 		<module>../../examples</module>
 		<module>../../features/papyrus-main-features</module>
-		<module>../../features/papyrus-toolsmiths-features</module>
 		<module>../../features/papyrus.user.examples-features</module>
 		<module>targetPlatform</module>
 		<module>site</module>

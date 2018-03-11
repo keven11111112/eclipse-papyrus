@@ -38,7 +38,7 @@
 
 	<modules>
 		<module>main</module>
-		<module>dev</module>
+		<module>toolsmiths</module>
 		<module>main-tests</module>
 	</modules>
 

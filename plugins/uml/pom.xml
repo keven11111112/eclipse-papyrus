@@ -39,13 +39,11 @@
 		<module>org.eclipse.papyrus.uml.ui</module>
 		<module>alf</module>
 		<module>architecture</module>
-		<module>assistants</module>
 		<module>decoratormodel</module>
 		<module>diagram</module>
 		<module>expressions</module>
 		<module>modelexplorer</module>
 		<module>nattable</module>
-		<module>newchild</module>
 		<module>profile</module>
 		<module>properties</module>
 		<module>textedit</module>

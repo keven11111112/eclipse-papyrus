@@ -22,6 +22,5 @@
 		<module>uml</module>
 		<module>doc</module>
 		<module>sdk</module>
-		<module>toolsmiths</module>
 	</modules>
 </project>

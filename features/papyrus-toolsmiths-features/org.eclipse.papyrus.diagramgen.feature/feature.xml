@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.diagramgen.feature"
+      label="Papyrus Diagram Generation Tools (Incubation)"
+      version="1.0.0.qualifier"
+      provider-name="Eclipse Modeling Project">
+
+   <description url="https://eclipse.org/papyrus/">
+      Diagram Generation framework for Papyrus.
+   </description>
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2018 CEA LIST, Christian W. Damus, and others.
+All rights reserved.   This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <discovery label="gmf-tooling" url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a/"/>
+   </url>
+
+   <requires>
+      <import feature="org.eclipse.gmf.tooling" version="0.0.0"/>
+      <import feature="org.eclipse.gmf.tooling.runtime" version="0.0.0"/>
+      <import feature="org.eclipse.gmf.tooling.codegen.xtend2" version="0.0.0"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.papyrus.codegen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.def"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.gmfgenextension"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.dev.assistants.codegen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.mwe2.utils"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

@@ -21,6 +21,58 @@ http://www.eclipse.org/legal/epl-v10.html
    <description url="https://eclipse.org/papyrus/">
 	Container of the core APIs of the Papyrus editor and headless components, plugins that have in charge resource management, one file presentation, new child creation menu.
    </description>
+   
+   
+   
+   <includes
+         id="org.eclipse.papyrus.infra.core.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.gmfdiag.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.services.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.ui.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.widget.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.internationalization.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.emf.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.nattable.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.gmfdiag.css.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.viewpoints.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.architecture.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.infra.emf.expressions.feature"
+         version="0.0.0"/>
+   
+   
 
    <plugin
          id="org.eclipse.papyrus.infra.onefile"

@@ -24,7 +24,7 @@
 			</plugin>
 			
 			<!-- workaround https://bugs.eclipse.org/bugs/show_bug.cgi?id=453708 -->
-			<!-- This particular fix should be removed as soon as the next XWT release is published
+			<!-- The XWT reference should be removed as soon as the next XWT release is published
 					as the fix for the properties view performance issues requires the 1.3.1 or above -->
 			<plugin>
 				<groupId>org.jboss.tools.tycho-plugins</groupId>

@@ -25,6 +25,10 @@
       <import feature="org.eclipse.papyrus.sdk.feature" version="4.0.0.qualifier"/>
    </requires>
    
+   <includes
+         id="org.eclipse.papyrus.uml.m2m.qvto.tests.tools.feature"
+         version="0.0.0"/>
+   
    <!--Nattable-->
 
    <plugin
@@ -124,22 +128,6 @@
          
    <plugin
          id="org.eclipse.papyrus.toolsmiths"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-         
-   <!--UML New Child-->
-
-   <plugin
-         id="org.eclipse.papyrus.uml.profile.types.generator"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-         
-   <plugin
-         id="org.eclipse.papyrus.uml.profile.types.generator.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
