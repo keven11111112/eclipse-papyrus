@@ -34,7 +34,7 @@ source "$PROMOTE_FUNCTIONS_SH"
 
 echo "-------------------- user parameters --------------------"
 mainBuildNumber=""
-extrasBuildNumber=""
+toolsmithsBuildNumber=""
 testsBuildNumber=""
 version=""
 updateSite=""
@@ -44,6 +44,12 @@ echo "mainBuildNumber (the number of the \"Papyrus-Master\" Hudson build from wh
 while [[ ! "$mainBuildNumber" =~ ^[0-9]+$ || "$mainBuildNumber" < 1 ]]; do
     echo -n "? "
     read mainBuildNumber
+done
+
+echo "toolsmithsBuildNumber (the number of the \"Papyrus-Master-Toolsmiths\" Hudson build from which to publish the toolsmiths Papyrus plug-ins, or 0 to not publish): "
+while [[ ! "$toolsmithsBuildNumber" =~ ^[0-9]+$ || "$toolsmithsBuildNumber" < 0 ]]; do
+        echo -n "? "
+        read toolsmithsBuildNumber
 done
 
 echo "testsBuildNumber (the number of the \"Papyrus-Master-Tests\" Hudson build from which to publish the test results, or 0 to not publish): "
@@ -114,9 +120,51 @@ foldersInZip=$(unzip -t "$zipName" | egrep "testing: *[^/]*/ +OK" | sed 's%^ *te
 folderName="$foldersInZip"
 
 updateSiteZipName=$(basename $(ls -1 "$buildsDir/$folderName/${updateZipPrefix}"*.zip))
-unzip -o "$buildsDir/$folderName/${updateSiteZipName}" -d "$updateSiteDir"
+unzip -o "$buildsDir/$folderName/${updateSiteZipName}" -d "$updateSiteDir/main"
 
-$ADD_DOWNLOAD_STATS "$updateSiteDir" "main"
+# create the composite update site
+cat > "$updateSiteDir/compositeArtifacts.xml" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<repository name="Papyrus" type="org.eclipse.equinox.internal.p2.artifact.repository.CompositeArtifactRepository" version="1.0.0">
+  <properties size="1">
+    <property name="p2.timestamp" value="$(date +%s000)"/>
+  </properties>
+  <children size="2">
+    <child location="main"/>
+    <child location="toolsmiths"/>
+  </children>
+</repository>
+EOF
+
+cat > "$updateSiteDir/compositeContent.xml" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<repository name="Papyrus" type="org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository" version="1.0.0">
+  <properties size="1">
+    <property name="p2.timestamp" value="$(date +%s000)"/>
+  </properties>
+  <children size="2">
+    <child location="main"/>
+    <child location="toolsmiths"/>
+  </children>
+</repository>
+EOF
+
+$ADD_DOWNLOAD_STATS "$updateSiteDir/main" "main"
+
+# ============================== PUBLISH TOOLSMITHS ==============================
+if [[ "$toolsmithsBuildNumber" != "0" ]]; then
+        nfsURL="" ## Not supported for HIPP builds. Leave the variable since the promote functions are still shared with the Shared Hudson Instance builds
+        hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Photon-Toolsmiths/$toolsmithsBuildNumber/artifact/"
+        zipName="Papyrus-Toolsmiths.zip"
+        updateZipName="Papyrus-Toolsmiths-Update.zip"
+        getZip "$zipName" "$nfsURL" "$hudsonURL"
+        
+        # unzips under a "toolsmiths" folder under the main build's folder
+        unzip -o "$zipName" -d "$buildsDir/$folderName"
+        unzip -o "$buildsDir/$folderName/toolsmiths/$updateZipName" -d "$updateSiteDir/toolsmiths"
+
+        $ADD_DOWNLOAD_STATS "$updateSiteDir/toolsmiths" "toolsmiths"
+fi
 
 # ============================== PUBLISH TESTS ==============================
 if [[ "$testsBuildNumber" != "0" ]]; then

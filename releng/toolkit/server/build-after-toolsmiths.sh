@@ -22,7 +22,7 @@
 ## BUILD_ALIAS=M4
 ##
 
-p2UpdateSiteDir=${WORKSPACE}/releng/toolsmiths/site/target/repository
+p2UpdateSiteDir=${WORKSPACE}/source/releng/toolsmiths/site/target/repository
 updateSite=${WORKSPACE}/repository
 
 if [ -n "$BUILD_ALIAS" ]; then
@@ -39,7 +39,7 @@ if [ -n "$BUILD_ALIAS" ]; then
 else
   updateZipName=Papyrus-Update-${FULL_BUILD_ID}.zip
 fi
-zipName=Papyrus-Toolsmiths.zip
+zipName="Papyrus-Toolsmiths.zip"
 
 rm -rf tmp
 mkdir -p "tmp/$FULL_BUILD_ID"

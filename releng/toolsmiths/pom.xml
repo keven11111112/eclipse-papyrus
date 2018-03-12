@@ -135,6 +135,7 @@
 	</build>
 	
 	<profiles>
+	
 		<profile>
 			<id>defaultProfile</id>
 			<repositories>
@@ -148,6 +149,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 		</profile>
+		
 		<profile>
 			<id>buildAll</id>
 			<!-- Papyrus Update sites not included (They are included in the same build) -->
