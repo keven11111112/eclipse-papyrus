@@ -14,7 +14,7 @@
 
 	<modules>
 		<module>org.eclipse.papyrus.infra.gmfdiag.expansion</module>
-		<module>org.eclipse.papyrus.infra.gmfdiag.expansion.edit</module>
-		<module>org.eclipse.papyrus.infra.gmfdiag.expansion.editor</module>
+		
+		
 	</modules>
 </project>

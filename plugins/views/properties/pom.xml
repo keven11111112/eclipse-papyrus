@@ -17,6 +17,6 @@
 	<modules>
 		<module>org.eclipse.papyrus.views.properties</module>
 		<module>org.eclipse.papyrus.views.properties.model.xwt</module>
-		<module>org.eclipse.papyrus.views.properties.toolsmiths</module>
+		
 	</modules>
 </project>

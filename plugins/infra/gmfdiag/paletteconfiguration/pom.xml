@@ -15,6 +15,6 @@
 	<modules>
 		<module>org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.edit</module>
-		<module>org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.editor</module>
+		
 	</modules>
 </project>

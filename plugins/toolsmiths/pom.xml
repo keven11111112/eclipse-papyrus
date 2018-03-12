@@ -21,7 +21,16 @@
 		<module>org.eclipse.papyrus.toolsmiths.palette</module>
 		<module>org.eclipse.papyrus.toolsmiths.expressions</module>
 		
+		<module>../infra/gmfdiag/paletteconfiguration/org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.editor</module>
+		<module>../uml/properties/org.eclipse.papyrus.uml.properties.generation</module>
+		<module>../views/properties/org.eclipse.papyrus.views.properties.toolsmiths</module>
+		<module>../infra/gmfdiag/expansion/org.eclipse.papyrus.infra.gmfdiag.expansion.edit</module>
+		<module>../infra/gmfdiag/expansion/org.eclipse.papyrus.infra.gmfdiag.expansion.editor</module>
+		<module>../infra/emf/org.eclipse.papyrus.infra.emf.types.ui.properties</module>
+		<module>../uml/org.eclipse.papyrus.uml.types.ui.properties</module>
+		
 		<module>assistants</module>
+		<module>org.eclipse.papyrus.customization.nattableconfiguration</module>
 		<module>org.eclipse.papyrus.codegen</module>
 		<module>org.eclipse.papyrus.def</module>
 		<module>org.eclipse.papyrus.dev.assistants.codegen</module>

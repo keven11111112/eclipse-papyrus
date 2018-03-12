@@ -22,21 +22,34 @@
 ## BUILD_ALIAS=M4
 ##
 
-p2UpdateSiteDir=${WORKSPACE}/releng/dev/site/target/repository
+p2UpdateSiteDir=${WORKSPACE}/releng/toolsmiths/site/target/repository
 updateSite=${WORKSPACE}/repository
 
-updateZipName=Papyrus-Developer-Update.zip
-zipName=Papyrus-Developer.zip
+if [ -n "$BUILD_ALIAS" ]; then
+  buildType=S
+else
+  buildType=N
+fi
+
+COMPACT_BUILD_ID="$BUILD_TIMESTAMP"
+FULL_BUILD_ID=${buildType}${COMPACT_BUILD_ID}
+
+if [ -n "$BUILD_ALIAS" ]; then
+  updateZipName=Papyrus-Update-${BUILD_ALIAS}.zip
+else
+  updateZipName=Papyrus-Update-${FULL_BUILD_ID}.zip
+fi
+zipName=Papyrus-Toolsmiths.zip
 
 rm -rf tmp
-mkdir -p "tmp/dev"
+mkdir -p "tmp/$FULL_BUILD_ID"
 
 rm -rf $updateSite
 mv $p2UpdateSiteDir $updateSite
 
 # create the update site zip
 (cd $updateSite && zip -r $updateZipName *)
-mv $updateSite/$updateZipName "tmp/dev"
+mv $updateSite/$updateZipName "tmp/$FULL_BUILD_ID"
 
 (cd tmp && zip -r $zipName *)
 mv tmp/$zipName .

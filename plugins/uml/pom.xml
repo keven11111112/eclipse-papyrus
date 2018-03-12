@@ -17,7 +17,6 @@
 		<module>org.eclipse.papyrus.uml.controlmode.profile</module>
 		<module>org.eclipse.papyrus.uml.documentation.profile</module>
 		<module>org.eclipse.papyrus.uml.types.core</module>
-		<module>org.eclipse.papyrus.uml.types.ui.properties</module>
 		<module>org.eclipse.papyrus.uml.extensionpoints</module>
 		<module>org.eclipse.papyrus.uml.filters</module>
 		<module>org.eclipse.papyrus.uml.filters.edit</module>
