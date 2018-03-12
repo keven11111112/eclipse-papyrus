@@ -149,9 +149,9 @@
 					<url>${papyrus.repo.main}</url>
 				</repository>
 				<repository>
-					<id>papyrus-dev</id>
+					<id>papyrus-toolsmiths</id>
 					<layout>p2</layout>
-					<url>${papyrus.repo.dev}</url>
+					<url>${papyrus.repo.toolsmiths}</url>
 				</repository>
 			</repositories>
 			<activation>
