@@ -21,8 +21,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.xtend.lib;bundle-version="2.8.1",
  org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.uml.diagram.usecase.tests,
- org.eclipse.papyrus.uml.diagram.usecase.tests.canonical,
- org.eclipse.papyrus.uml.diagram.usecase.tests.generation
+ org.eclipse.papyrus.uml.diagram.usecase.tests.canonical
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.100.qualifier

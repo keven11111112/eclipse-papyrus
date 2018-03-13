@@ -18,7 +18,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.xtend.lib;bundle-version="2.8.1"
 Export-Package: org.eclipse.papyrus.uml.diagram.deployment.test,
  org.eclipse.papyrus.uml.diagram.deployment.test.canonical,
- org.eclipse.papyrus.uml.diagram.deployment.test.generation,
  org.eclipse.papyrus.uml.diagram.deployment.test.load
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
