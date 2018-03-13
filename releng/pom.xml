@@ -32,8 +32,8 @@
 		<papyrus.eclipse.target>photon</papyrus.eclipse.target>
 		<eclipse.download>http://download.eclipse.org</eclipse.download> <!-- Deprecated; kept for Legacy. Can be set to file:/home/data/httpd/download.eclipse.org 
 			when building on HIPP -->
-		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}</papyrus.repo.main>
-		<papyrus.repo.toolsmiths>https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Toolsmiths/lastSuccessfulBuild/artifact/repository/</papyrus.repo.toolsmiths>
+		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/main</papyrus.repo.main>
+		<papyrus.repo.toolsmiths>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/toolsmiths</papyrus.repo.toolsmiths>
 	</properties>
 
 	<modules>
