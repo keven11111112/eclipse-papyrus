@@ -24,13 +24,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestone
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M5-201801242000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M6-201803080630/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201801291243" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201803120833" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -58,7 +58,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.0/R-3.9.0-20170613094504/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/I-3.10.0-20180201205936/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
 
@@ -76,7 +76,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201801231215" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201803080939" {
 	org.eclipse.emf.sdk.feature.group
 }
 

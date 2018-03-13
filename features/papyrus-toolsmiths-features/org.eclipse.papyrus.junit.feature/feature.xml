@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.junit.feature"
-      label="Papyrus JUnit Framework Feature (Incubation)"
+      label="Papyrus JUnit Framework (Incubation)"
       version="1.0.0.qualifier">
 
    <description url="https://eclipse.org/papyrus/">

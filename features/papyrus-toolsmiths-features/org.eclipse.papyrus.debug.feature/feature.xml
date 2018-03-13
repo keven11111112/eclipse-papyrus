@@ -6,7 +6,7 @@
       provider-name="Eclipse Modeling Project">
 
    <description url="https://eclipse.org/papyrus/">
-      Optional tools for Papyrus developers providing aids for debugging and other development tasks.
+      Tools providing aids for debugging and other development tasks in Papyrus.
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
