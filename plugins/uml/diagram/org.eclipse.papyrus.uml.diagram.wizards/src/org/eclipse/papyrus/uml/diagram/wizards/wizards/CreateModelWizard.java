@@ -34,6 +34,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -535,7 +536,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		boolean isToInitFromTemplate = selectRepresentationKindPage.getTemplatePath() != null;
 		if (isToInitFromTemplate) {
-			initDomainModelFromTemplate(modelSet);
+			initDomainModelFromTemplate(modelSet, contextId, viewpointIds);
 		} else {
 			createEmptyDomainModel(modelSet, contextId, viewpointIds);
 		}
@@ -604,11 +605,24 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 * @param modelSet
 	 *            the di resource set
 	 */
-	protected void initDomainModelFromTemplate(ModelSet modelSet) {
-		getCommandStack(modelSet).execute(
-				new InitFromTemplateCommand(modelSet.getTransactionalEditingDomain(), modelSet, selectRepresentationKindPage.getTemplatePluginId(), selectRepresentationKindPage.getTemplatePath(), selectRepresentationKindPage.getNotationTemplatePath(),
-						selectRepresentationKindPage
-								.getDiTemplatePath()));
+	protected void initDomainModelFromTemplate(ModelSet modelSet, String contextId, String[] viewpointIds) {
+		ArchitectureDescriptionUtils helper = new ArchitectureDescriptionUtils(modelSet);
+		// create a compound command
+		CompoundCommand cc = new CompoundCommand();
+		// Add the main command to create the model from a template
+		cc.append(new InitFromTemplateCommand(
+				modelSet.getTransactionalEditingDomain(), 
+				modelSet, 
+				selectRepresentationKindPage.getTemplatePluginId(), 
+				selectRepresentationKindPage.getTemplatePath(), 
+				selectRepresentationKindPage.getNotationTemplatePath(),
+				selectRepresentationKindPage.getDiTemplatePath()));
+		// Add a command to switch the model to the new context id
+		cc.append(helper.switchArchitectureContextId(contextId));
+		// Add a command to switch the model to the new viewpoint ids
+		cc.append(helper.switchArchitectureViewpointIds(viewpointIds));
+		// execute the compound command
+		getCommandStack(modelSet).execute(cc);
 	}
 
 	/**

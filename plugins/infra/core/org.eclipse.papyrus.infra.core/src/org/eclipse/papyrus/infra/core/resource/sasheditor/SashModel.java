@@ -20,7 +20,6 @@ import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -29,7 +28,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.infra.core.Activator;
@@ -310,22 +308,20 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	 *
 	 */
 	protected URI getSashModelURI(URI uriWithoutExtension) {
-		URIConverter converter = getModelManager().getURIConverter();
 		URI legacyURI = getLegacyURI(uriWithoutExtension);
 
-		// If the DI file exists and contains a SashWindowsMngr, this is a legacy model
-		if (converter.exists(legacyURI, Collections.emptyMap())) {
-			try {
-				Resource diResource = getModelManager().getResource(legacyURI, true);
-				if (DiUtils.lookupSashWindowsMngr(diResource) != null) {
-					return legacyURI;
-				}
-			} catch (Exception ex) {
-				// Temporary workaround: the DI file may exist and be empty
-				// (DiModel is currently disabled and doesn't properly init the di file)
-				// Log the error and continue
-				Activator.log.error(ex);
+		// If the DI model exists and contains a SashWindowsMngr, this is a legacy model
+		// (don't test the DI model on the file system, in case the DI model is not saved yet)
+		try {
+			Resource diResource = getModelManager().getResource(legacyURI, false);
+			if (diResource != null && DiUtils.lookupSashWindowsMngr(diResource) != null) {
+				return legacyURI;
 			}
+		} catch (Exception ex) {
+			// Temporary workaround: the DI file may exist and be empty
+			// (DiModel is currently disabled and doesn't properly init the di file)
+			// Log the error and continue
+			Activator.log.error(ex);
 		}
 		return getSashModelStoreURI(uriWithoutExtension);
 	}

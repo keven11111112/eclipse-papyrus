@@ -29,6 +29,8 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.uml.diagram.wizards.utils.WizardsHelper;
@@ -40,14 +42,8 @@ import org.eclipse.papyrus.uml.tools.model.UmlUtils;
  */
 public class InitFromTemplateCommand extends RecordingCommand {
 
-	/** The my model resource. */
-	private final Resource myModelUMLResource;
-
-	/** The my model di resource. */
-	private final Resource myModelDiResource;
-
-	/** The my model notation resource. */
-	private final Resource myModelNotationResource;
+	/** The my model set. */
+	private final ModelSet myModelSet;
 
 	/** The my template path. */
 	private final String myUmlTemplatePath;
@@ -79,9 +75,7 @@ public class InitFromTemplateCommand extends RecordingCommand {
 	 */
 	public InitFromTemplateCommand(TransactionalEditingDomain editingDomain, ModelSet modelSet, String pluginId, String umlTemplatePath, String notationTemplatePath, String diTemplatePath) {
 		super(editingDomain);
-		myModelUMLResource = UmlUtils.getUmlResource(modelSet);
-		myModelDiResource = DiModelUtils.getDiResource(modelSet);
-		myModelNotationResource = NotationUtils.getNotationResource(modelSet);
+		myModelSet = modelSet;
 		myPluginId = pluginId;
 		myUmlTemplatePath = umlTemplatePath;
 		myDiTemplatePath = diTemplatePath;
@@ -164,11 +158,17 @@ public class InitFromTemplateCommand extends RecordingCommand {
 
 
 			//3. set copied elements in goods resources
+			Resource myModelUMLResource = UmlUtils.getUmlResource(myModelSet);
 			myModelUMLResource.getContents().addAll(umlObjects);
 			if(diObjects != null) {
+				Resource myModelDiResource = DiModelUtils.getDiResource(myModelSet);
 				myModelDiResource.getContents().addAll(diObjects);
+				SashModel myModelSashModel = SashModelUtils.getSashModel(myModelSet);
+				// reload the sash model in case the new DI content has shared sash preferences
+				myModelSashModel.loadModel(myModelSet.getURIWithoutExtension());
 			}
 			if(notationObjects != null) {
+				Resource myModelNotationResource = NotationUtils.getNotationResource(myModelSet);
 				myModelNotationResource.getContents().addAll(notationObjects);
 			}
 		} finally {
