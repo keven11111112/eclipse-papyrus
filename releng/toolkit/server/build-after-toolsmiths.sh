@@ -35,9 +35,9 @@ COMPACT_BUILD_ID="$BUILD_TIMESTAMP"
 FULL_BUILD_ID=${buildType}${COMPACT_BUILD_ID}
 
 if [ -n "$BUILD_ALIAS" ]; then
-  updateZipName=Papyrus-Update-${BUILD_ALIAS}.zip
+  updateZipName=Papyrus-Toolsmiths-${BUILD_ALIAS}.zip
 else
-  updateZipName=Papyrus-Update-${FULL_BUILD_ID}.zip
+  updateZipName=Papyrus-Toolsmiths-${FULL_BUILD_ID}.zip
 fi
 zipName="Papyrus-Toolsmiths.zip"
 
