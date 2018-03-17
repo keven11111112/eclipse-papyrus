@@ -29,6 +29,7 @@ import org.eclipse.uml2.uml.Region;
  * <pre>
  * This HelperAdvice resizes other regions of a state-machine or composite state, if a region gets deleted
  * </pre>
+ * @since 3.1
  */
 public class DeleteRegionHelperAdvice extends AbstractEditHelperAdvice {
 

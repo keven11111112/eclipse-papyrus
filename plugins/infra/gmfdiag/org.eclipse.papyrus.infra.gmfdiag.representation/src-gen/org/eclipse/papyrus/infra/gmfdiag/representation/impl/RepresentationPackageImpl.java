@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.infra.gmfdiag.representation.PathElement;
 import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationFactory;
 import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
 
+import org.eclipse.papyrus.infra.gmfdiag.representation.util.RepresentationValidator;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.uml2.types.TypesPackage;
 
@@ -156,6 +158,15 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		// Initialize created meta-data
 		theRepresentationPackage.initializePackageContents();
 
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theRepresentationPackage,
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return RepresentationValidator.INSTANCE;
+				 }
+			 });
+
 		// Mark meta-data to indicate it can't be changed
 		theRepresentationPackage.freeze();
 
@@ -225,6 +236,15 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 */
 	public EReference getPapyrusDiagram_Palettes() {
 		return (EReference)papyrusDiagramEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPapyrusDiagram__CeationCommandClassExists__DiagnosticChain_Map() {
+		return papyrusDiagramEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -397,6 +417,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		createEReference(papyrusDiagramEClass, PAPYRUS_DIAGRAM__ASSISTANT_RULES);
 		createEAttribute(papyrusDiagramEClass, PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS);
 		createEReference(papyrusDiagramEClass, PAPYRUS_DIAGRAM__PALETTES);
+		createEOperation(papyrusDiagramEClass, PAPYRUS_DIAGRAM___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP);
 
 		childRuleEClass = createEClass(CHILD_RULE);
 		createEReference(childRuleEClass, CHILD_RULE__ELEMENT);
@@ -446,6 +467,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		// Obtain other dependent packages
 		org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage theRepresentationPackage_1 = (org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.eNS_URI);
 		PaletteconfigurationPackage thePaletteconfigurationPackage = (PaletteconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(PaletteconfigurationPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -463,11 +485,17 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		initEReference(getPapyrusDiagram_ChildRules(), this.getChildRule(), null, "childRules", null, 0, -1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusDiagram_PaletteRules(), this.getPaletteRule(), null, "paletteRules", null, 0, -1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusDiagram_AssistantRules(), this.getAssistantRule(), null, "assistantRules", null, 0, -1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
-		EGenericType g2 = createEGenericType();
-		g1.getETypeArguments().add(g2);
-		initEAttribute(getPapyrusDiagram_CreationCommandClass(), g1, "creationCommandClass", null, 1, 1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPapyrusDiagram_CreationCommandClass(), ecorePackage.getEString(), "creationCommandClass", null, 1, 1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusDiagram_Palettes(), thePaletteconfigurationPackage.getPaletteConfiguration(), null, "palettes", null, 0, -1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		EOperation op = initEOperation(getPapyrusDiagram__CeationCommandClassExists__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "ceationCommandClassExists", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, !IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EGenericType g1 = createEGenericType(theEcorePackage.getEMap());
+		EGenericType g2 = createEGenericType(theEcorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theEcorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, !IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(childRuleEClass, ChildRule.class, "ChildRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getChildRule_Element(), ecorePackage.getEClass(), null, "element", null, 0, 1, ChildRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -486,7 +514,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		initEClass(assistantRuleEClass, AssistantRule.class, "AssistantRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getAssistantRule_ElementTypeID(), ecorePackage.getEString(), "elementTypeID", null, 0, 1, AssistantRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = initEOperation(getAssistantRule__Matches__IElementType(), ecorePackage.getEBoolean(), "matches", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		op = initEOperation(getAssistantRule__Matches__IElementType(), ecorePackage.getEBoolean(), "matches", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, this.getElementType(), "elementType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize data types

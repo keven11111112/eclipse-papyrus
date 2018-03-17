@@ -13,6 +13,8 @@
  */
 package org.eclipse.papyrus.infra.core.architecture;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 
@@ -144,13 +146,14 @@ public interface ArchitectureContext extends ADElement {
 	 * The fully qualified name of a command that creates models applying this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand inteface
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Creation Command Class</em>' attribute.
-	 * @see #setCreationCommandClass(Class)
+	 * @see #setCreationCommandClass(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_CreationCommandClass()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The fully qualified name of a command that creates models applying this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand inteface' propertyCategory='Context'"
 	 * @generated
+	 * @since 2.0
 	 */
-	Class<?> getCreationCommandClass();
+	String getCreationCommandClass();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getCreationCommandClass <em>Creation Command Class</em>}' attribute.
@@ -159,8 +162,9 @@ public interface ArchitectureContext extends ADElement {
 	 * @param value the new value of the '<em>Creation Command Class</em>' attribute.
 	 * @see #getCreationCommandClass()
 	 * @generated
+	 * @since 2.0
 	 */
-	void setCreationCommandClass(Class<?> value);
+	void setCreationCommandClass(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Conversion Command Class</b></em>' attribute.
@@ -174,12 +178,13 @@ public interface ArchitectureContext extends ADElement {
 	 * The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conversion Command Class</em>' attribute.
-	 * @see #setConversionCommandClass(Class)
+	 * @see #setConversionCommandClass(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_ConversionCommandClass()
 	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface' propertyCategory='Context'"
 	 * @generated
+	 * @since 2.0
 	 */
-	Class<?> getConversionCommandClass();
+	String getConversionCommandClass();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getConversionCommandClass <em>Conversion Command Class</em>}' attribute.
@@ -188,8 +193,27 @@ public interface ArchitectureContext extends ADElement {
 	 * @param value the new value of the '<em>Conversion Command Class</em>' attribute.
 	 * @see #getConversionCommandClass()
 	 * @generated
+	 * @since 2.0
 	 */
-	void setConversionCommandClass(Class<?> value);
+	void setConversionCommandClass(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model diagnosticsUnique="false" contextUnique="false"
+	 * @generated
+	 * @since 2.0
+	 */
+	boolean ceationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model diagnosticsUnique="false" contextUnique="false"
+	 * @generated
+	 * @since 2.0
+	 */
+	boolean conversionCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * Returns the value of the '<em><b>Domain</b></em>' container reference.

@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand;
 import org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand;
@@ -209,8 +210,8 @@ public class ArchitectureDescriptionUtils {
 	 */
 	protected Command getModelCreationCommand(String contextId) {
 		final MergedArchitectureContext context = manager.getArchitectureContextById(contextId);
-		if (context.getCreationCommandClass() == null)
-			return null;
+		if (context.getCreationCommandClassName() == null)
+			return UnexecutableCommand.INSTANCE;
 		return new RecordingCommand(modelSet.getTransactionalEditingDomain()) {
 			@Override
 			protected void doExecute() {
@@ -232,7 +233,7 @@ public class ArchitectureDescriptionUtils {
 	 */
 	protected Command getModelConversionCommand(String contextId) {
 		MergedArchitectureContext context = manager.getArchitectureContextById(contextId);
-		if (context.getConversionCommandClass() == null)
+		if (context.getConversionCommandClassName() == null)
 			return null;
 		return new RecordingCommand(modelSet.getTransactionalEditingDomain()) {
 			@Override

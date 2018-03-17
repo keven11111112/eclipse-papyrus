@@ -21,6 +21,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.State;
 
+/**
+ * @since 3.1
+ */
 public class ConnectionPointReferenceInStateHelperAdvice extends AbstractEditHelperAdvice {
 
 	@Override

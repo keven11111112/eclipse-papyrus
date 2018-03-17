@@ -22,6 +22,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
+/**
+ * @since 3.1
+ */
 public class CustomTransitionPreferencePage extends FieldEditorPreferencePage
 		implements IWorkbenchPreferencePage
 {

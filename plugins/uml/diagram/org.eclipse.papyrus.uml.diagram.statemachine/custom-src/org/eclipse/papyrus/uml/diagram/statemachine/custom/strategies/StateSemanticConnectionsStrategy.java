@@ -24,6 +24,7 @@ import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.TransitionKind;
 
 /**
+ * @since 3.1
  *
  */
 public class StateSemanticConnectionsStrategy extends DefaultUMLSemanticChildrenStrategy {

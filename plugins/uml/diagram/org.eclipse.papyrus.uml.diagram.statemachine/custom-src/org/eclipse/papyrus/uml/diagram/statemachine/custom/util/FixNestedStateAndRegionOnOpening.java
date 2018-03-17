@@ -35,6 +35,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
  *
  * - bug 401059, i.e. it removes obsolete compartments from states
  * - bug 397730, contents of region is not visible caused by invalid region position
+ * @since 3.1
  */
 public class FixNestedStateAndRegionOnOpening {
 

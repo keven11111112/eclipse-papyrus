@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
+import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
 import org.eclipse.papyrus.infra.editor.welcome.tests.AbstractWelcomePageTest;
 import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements.NotationObservable;
 import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements.WelcomeModelElement;

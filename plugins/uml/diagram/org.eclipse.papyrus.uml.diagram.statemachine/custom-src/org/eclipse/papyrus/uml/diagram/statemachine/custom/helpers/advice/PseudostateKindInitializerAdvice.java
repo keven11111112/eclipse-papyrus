@@ -32,6 +32,9 @@ import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.PseudostateKind;
 
 
+/**
+ * @since 3.1
+ */
 public class PseudostateKindInitializerAdvice extends AbstractEditHelperAdvice {
 
 	@Override

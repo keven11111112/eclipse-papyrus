@@ -85,6 +85,7 @@ public interface RepresentationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
+	 * @since 2.0
 	 */
 	int PAPYRUS_REPRESENTATION_KIND__ID = ArchitecturePackage.REPRESENTATION_KIND__ID;
 

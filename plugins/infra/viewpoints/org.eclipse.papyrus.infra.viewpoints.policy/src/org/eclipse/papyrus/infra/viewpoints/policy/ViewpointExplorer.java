@@ -281,6 +281,9 @@ public class ViewpointExplorer extends ViewPart {
 		};	
 	}
 	
+	/**
+	 * @since 3.0
+	 */
 	public Object[] getPropertySources(Object[] objects) {
 		ArrayList<Object> propertySources = new ArrayList<Object>();
 		for (Object object : objects) {
@@ -289,6 +292,9 @@ public class ViewpointExplorer extends ViewPart {
 		return propertySources.toArray();
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public Object getPropertySource(Object object) {
 		if (object instanceof EObject)
 			return contentProvider.getPropertySource(object);

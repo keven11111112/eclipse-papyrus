@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 
 /**
  * This class is used to constrain the position of Entry/Exit points when they are added on a StateMachine
+ * @since 3.1
  *
  */
 public class CustomEntryExitPointPositionLocator implements IBorderItemLocator {

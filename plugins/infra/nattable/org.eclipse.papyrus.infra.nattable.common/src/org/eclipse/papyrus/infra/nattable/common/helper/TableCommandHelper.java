@@ -56,7 +56,7 @@ public class TableCommandHelper extends AbstractViewTypeHelper<PapyrusTable> {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @since 4.1
+	 * @since 5.0
 	 */
 	@Override
 	protected ViewPrototype doGetPrototypeFor(PapyrusTable papyrusTable) {

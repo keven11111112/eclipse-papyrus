@@ -186,6 +186,24 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The superclass of architectural description languages or architecture frameworks. It defines a collection of viewpoints on models."/>
     </eAnnotations>
+    <eOperations name="ceationCommandClassExists" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDiagnosticChain"/>
+      <eParameters name="context" unique="false">
+        <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="conversionCommandClassExists" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDiagnosticChain"/>
+      <eParameters name="context" unique="false">
+        <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewpoints" upperBound="-1"
         eType="#//ArchitectureViewpoint" containment="true" eOpposite="#//ArchitectureViewpoint/context">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -223,25 +241,21 @@
         <details key="propertyCategory" value="Context"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationCommandClass" lowerBound="1">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationCommandClass" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The fully qualified name of a command that creates models applying this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand inteface"/>
         <details key="propertyDescription" value="The fully qualified name of a command that creates models applying this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand inteface"/>
         <details key="propertyCategory" value="Context"/>
       </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
-        <eTypeArguments/>
-      </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conversionCommandClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="conversionCommandClass"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface"/>
         <details key="propertyDescription" value="The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface"/>
         <details key="propertyCategory" value="Context"/>
       </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
-        <eTypeArguments/>
-      </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArchitectureFramework" eSuperTypes="#//ArchitectureContext">

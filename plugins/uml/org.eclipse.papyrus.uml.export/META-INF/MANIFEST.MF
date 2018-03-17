@@ -13,7 +13,9 @@ Require-Bundle: org.eclipse.jdt.ui;bundle-version="[3.13.50,4.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.export;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.emf;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.onefile;bundle-version="[2.0.0,3.0.0)"
+ org.eclipse.papyrus.infra.onefile;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.architecture;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.infra.architecture.representation;bundle-version="[2.0.0,3.0.0)"
 Bundle-Activator: org.eclipse.papyrus.uml.export.Activator
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName

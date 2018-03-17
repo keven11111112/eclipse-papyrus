@@ -82,6 +82,7 @@ public interface RepresentationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
+	 * @since 2.0
 	 */
 	int PAPYRUS_TABLE__ID = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__ID;
 

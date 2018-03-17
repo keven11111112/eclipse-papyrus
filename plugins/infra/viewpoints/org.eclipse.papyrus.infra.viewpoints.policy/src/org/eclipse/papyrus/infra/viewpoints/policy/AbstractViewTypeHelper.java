@@ -25,7 +25,7 @@ import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentati
  *
  * @author Laurent Wouters
  * 
- * @since 2.1
+ * @since 3.0
  */
 public abstract class AbstractViewTypeHelper<T extends PapyrusRepresentationKind> implements IViewTypeHelper {
 

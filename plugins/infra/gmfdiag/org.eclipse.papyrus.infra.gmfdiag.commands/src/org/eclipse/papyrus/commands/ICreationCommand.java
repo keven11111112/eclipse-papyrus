@@ -19,7 +19,7 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
  * Define a command use to create new diagram. It use to provide Eclipse
- * extension @see {@link PapyrusDiagram#creationCommand} It used by the creation
+ * extension @see  PapyrusDiagram#creationCommand It used by the creation
  * model wizard.
  *
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>

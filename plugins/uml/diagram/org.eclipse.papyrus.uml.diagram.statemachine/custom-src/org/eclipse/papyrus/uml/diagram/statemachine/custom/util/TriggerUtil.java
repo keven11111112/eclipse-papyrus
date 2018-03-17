@@ -28,6 +28,9 @@ import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.ValueSpecification;
 
+/**
+ * @since 3.1
+ */
 public class TriggerUtil {
 
 	/**

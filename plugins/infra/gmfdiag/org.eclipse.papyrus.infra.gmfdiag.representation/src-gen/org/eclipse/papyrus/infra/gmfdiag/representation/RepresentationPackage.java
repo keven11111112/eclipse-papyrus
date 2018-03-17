@@ -242,13 +242,22 @@ public interface RepresentationPackage extends EPackage {
 	int PAPYRUS_DIAGRAM_FEATURE_COUNT = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 6;
 
 	/**
+	 * The operation id for the '<em>Ceation Command Class Exists</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_DIAGRAM___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_OPERATION_COUNT + 0;
+
+	/**
 	 * The number of operations of the '<em>Papyrus Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_DIAGRAM_OPERATION_COUNT = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_OPERATION_COUNT + 0;
+	int PAPYRUS_DIAGRAM_OPERATION_COUNT = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.gmfdiag.representation.impl.ChildRuleImpl <em>Child Rule</em>}' class.
@@ -567,6 +576,16 @@ public interface RepresentationPackage extends EPackage {
 	EReference getPapyrusDiagram_Palettes();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#ceationCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Ceation Command Class Exists</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Ceation Command Class Exists</em>' operation.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#ceationCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getPapyrusDiagram__CeationCommandClassExists__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.representation.ChildRule <em>Child Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -806,6 +825,14 @@ public interface RepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAPYRUS_DIAGRAM__PALETTES = eINSTANCE.getPapyrusDiagram_Palettes();
+
+		/**
+		 * The meta object literal for the '<em><b>Ceation Command Class Exists</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation PAPYRUS_DIAGRAM___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getPapyrusDiagram__CeationCommandClassExists__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.representation.impl.ChildRuleImpl <em>Child Rule</em>}' class.

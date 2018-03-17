@@ -35,6 +35,9 @@ import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.Vertex;
 
+/**
+ * @since 3.1
+ */
 public class RegionCompartmentDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDescriptor> {
 	@Override
 	public List<UMLNodeDescriptor> getSemanticChildren(View view) {

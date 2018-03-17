@@ -13,6 +13,8 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.representation;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
@@ -133,13 +135,14 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * The fully qualified name of a command that creates the diagram. The command must implement the org.eclipse.papyrus.commands.ICreationCommand inteface
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Creation Command Class</em>' attribute.
-	 * @see #setCreationCommandClass(Class)
+	 * @see #setCreationCommandClass(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram_CreationCommandClass()
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The fully qualified name of a command that creates the diagram. The command must implement the org.eclipse.papyrus.commands.ICreationCommand inteface' propertyCategory='Diagram'"
 	 * @generated
+	 * @since 2.0
 	 */
-	Class<?> getCreationCommandClass();
+	String getCreationCommandClass();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#getCreationCommandClass <em>Creation Command Class</em>}' attribute.
@@ -148,8 +151,9 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * @param value the new value of the '<em>Creation Command Class</em>' attribute.
 	 * @see #getCreationCommandClass()
 	 * @generated
+	 * @since 2.0
 	 */
-	void setCreationCommandClass(Class<?> value);
+	void setCreationCommandClass(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Palettes</b></em>' reference list.
@@ -169,5 +173,14 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * @generated
 	 */
 	EList<PaletteConfiguration> getPalettes();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model diagnosticsUnique="false" contextUnique="false"
+	 * @generated
+	 * @since 2.0
+	 */
+	boolean ceationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // PapyrusDiagram

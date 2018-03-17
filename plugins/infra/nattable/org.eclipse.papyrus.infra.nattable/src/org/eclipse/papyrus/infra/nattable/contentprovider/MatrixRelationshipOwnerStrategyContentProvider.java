@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 /**
  * 
  * This class provides the available relationship direction required to edit relationship in case of matrix table
+ * @since 6.0
  *
  */
 public class MatrixRelationshipOwnerStrategyContentProvider implements IStaticContentProvider {

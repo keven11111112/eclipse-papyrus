@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.core.architecture;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -371,13 +372,33 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_CONTEXT_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
+	 * The operation id for the '<em>Ceation Command Class Exists</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 2.0
+	 */
+	int ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Conversion Command Class Exists</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 2.0
+	 */
+	int ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
 	 * The number of operations of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT_OPERATION_COUNT = AD_ELEMENT_OPERATION_COUNT + 0;
+	int ARCHITECTURE_CONTEXT_OPERATION_COUNT = AD_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureDescriptionLanguageImpl <em>Description Language</em>}' class.
@@ -532,6 +553,26 @@ public interface ArchitecturePackage extends EPackage {
 	 * @ordered
 	 */
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE_FEATURE_COUNT = ARCHITECTURE_CONTEXT_FEATURE_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Ceation Command Class Exists</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 2.0
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Conversion Command Class Exists</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 2.0
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Description Language</em>' class.
@@ -1034,6 +1075,26 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_FRAMEWORK_FEATURE_COUNT = ARCHITECTURE_CONTEXT_FEATURE_COUNT + 0;
 
 	/**
+	 * The operation id for the '<em>Ceation Command Class Exists</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 2.0
+	 */
+	int ARCHITECTURE_FRAMEWORK___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Conversion Command Class Exists</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @since 2.0
+	 */
+	int ARCHITECTURE_FRAMEWORK___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
+
+	/**
 	 * The number of operations of the '<em>Framework</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1473,6 +1534,28 @@ public interface ArchitecturePackage extends EPackage {
 	EAttribute getArchitectureContext_ConversionCommandClass();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#ceationCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Ceation Command Class Exists</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Ceation Command Class Exists</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#ceationCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @since 2.0
+	 */
+	EOperation getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#conversionCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Conversion Command Class Exists</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Conversion Command Class Exists</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#conversionCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 * @since 2.0
+	 */
+	EOperation getArchitectureContext__ConversionCommandClassExists__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getDomain <em>Domain</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1837,6 +1920,24 @@ public interface ArchitecturePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS = eINSTANCE.getArchitectureContext_ConversionCommandClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Ceation Command Class Exists</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 * @since 2.0
+		 */
+		EOperation ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Conversion Command Class Exists</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 * @since 2.0
+		 */
+		EOperation ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__ConversionCommandClassExists__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Domain</b></em>' container reference feature.

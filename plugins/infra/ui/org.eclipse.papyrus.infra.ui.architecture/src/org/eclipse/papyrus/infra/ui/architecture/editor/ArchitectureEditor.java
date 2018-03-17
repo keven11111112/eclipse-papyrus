@@ -95,8 +95,8 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.core.architecture.provider.ArchitectureItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.architecture.representation.provider.RepresentationItemProviderAdapterFactory;
+import org.eclipse.papyrus.infra.core.architecture.provider.ArchitectureItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.types.provider.ElementTypesConfigurationsItemProviderAdapterFactory;
 import org.eclipse.papyrus.infra.ui.architecture.ArchitectureUIPlugin;
 import org.eclipse.swt.SWT;
@@ -1210,7 +1210,7 @@ public class ArchitectureEditor
 					getActionBarContributor().shareGlobalActions(this, actionBars);
 				}
 			};
-		propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+		propertySheetPage.setPropertySourceProvider(new CustomAdapterFactoryContentProvider(adapterFactory));
 		propertySheetPages.add(propertySheetPage);
 
 		return propertySheetPage;

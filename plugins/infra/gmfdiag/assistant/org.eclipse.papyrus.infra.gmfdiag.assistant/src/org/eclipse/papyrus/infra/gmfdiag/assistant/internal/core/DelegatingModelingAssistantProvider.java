@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
-
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedADElement;
 import com.google.common.collect.Lists;
 
 /**

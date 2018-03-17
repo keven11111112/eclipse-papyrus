@@ -16,9 +16,11 @@ package org.eclipse.papyrus.infra.core.architecture.impl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
@@ -34,6 +36,7 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
 import org.eclipse.papyrus.infra.core.architecture.Concern;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.Stakeholder;
+import org.eclipse.papyrus.infra.core.architecture.util.ArchitectureValidator;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
 /**
@@ -176,6 +179,15 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 
 		// Initialize created meta-data
 		theArchitecturePackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theArchitecturePackage,
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return ArchitectureValidator.INSTANCE;
+				 }
+			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theArchitecturePackage.freeze();
@@ -487,6 +499,24 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map() {
+		return architectureContextEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getArchitectureContext__ConversionCommandClassExists__DiagnosticChain_Map() {
+		return architectureContextEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getArchitectureContext_Domain() {
 		return (EReference)architectureContextEClass.getEStructuralFeatures().get(3);
 	}
@@ -605,6 +635,8 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__EXTENSION_PREFIX);
 		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS);
 		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS);
+		createEOperation(architectureContextEClass, ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(architectureContextEClass, ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP);
 
 		architectureFrameworkEClass = createEClass(ARCHITECTURE_FRAMEWORK);
 
@@ -640,6 +672,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 
 		// Obtain other dependent packages
 		ElementTypesConfigurationsPackage theElementTypesConfigurationsPackage = (ElementTypesConfigurationsPackage)EPackage.Registry.INSTANCE.getEPackage(ElementTypesConfigurationsPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -695,14 +728,26 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		initEReference(getArchitectureContext_ElementTypes(), theElementTypesConfigurationsPackage.getElementTypeSetConfiguration(), null, "elementTypes", null, 0, -1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getArchitectureContext_Domain(), this.getArchitectureDomain(), this.getArchitectureDomain_Contexts(), "domain", null, 1, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getArchitectureContext_ExtensionPrefix(), ecorePackage.getEString(), "extensionPrefix", null, 0, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		EGenericType g1 = createEGenericType(ecorePackage.getEJavaClass());
-		EGenericType g2 = createEGenericType();
+		initEAttribute(getArchitectureContext_CreationCommandClass(), ecorePackage.getEString(), "creationCommandClass", null, 1, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getArchitectureContext_ConversionCommandClass(), ecorePackage.getEString(), "conversionCommandClass", null, 0, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		EOperation op = initEOperation(getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "ceationCommandClassExists", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, !IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EGenericType g1 = createEGenericType(theEcorePackage.getEMap());
+		EGenericType g2 = createEGenericType(theEcorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
-		initEAttribute(getArchitectureContext_CreationCommandClass(), g1, "creationCommandClass", null, 1, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		g1 = createEGenericType(ecorePackage.getEJavaClass());
-		g2 = createEGenericType();
+		g2 = createEGenericType(theEcorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
-		initEAttribute(getArchitectureContext_ConversionCommandClass(), g1, "conversionCommandClass", null, 0, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, g1, "context", 0, 1, !IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getArchitectureContext__ConversionCommandClassExists__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "conversionCommandClassExists", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theEcorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, !IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(theEcorePackage.getEMap());
+		g2 = createEGenericType(theEcorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theEcorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, !IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(architectureFrameworkEClass, ArchitectureFramework.class, "ArchitectureFramework", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

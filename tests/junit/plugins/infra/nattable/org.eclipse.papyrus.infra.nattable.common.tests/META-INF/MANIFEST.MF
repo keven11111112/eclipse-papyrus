@@ -13,12 +13,15 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.nattable.model;bundle-version="[4.0.0,5.0.0)",
  org.junit;bundle-version="4.12.0",
  org.eclipse.uml2.uml;bundle-version="[5.3.0,6.0.0)",
- org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.emf.transaction,
  org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.core.sasheditor;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="[1.2.0,2.0.0)"
+ org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.architecture;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.infra.nattable.representation;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.architecture.representation;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-Description: %Bundle-Description

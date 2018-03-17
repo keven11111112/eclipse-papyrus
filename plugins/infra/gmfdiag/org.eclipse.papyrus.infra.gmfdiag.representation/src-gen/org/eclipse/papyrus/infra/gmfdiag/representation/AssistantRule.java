@@ -71,6 +71,7 @@ public interface AssistantRule extends Rule {
 	 * <!-- end-model-doc -->
 	 * @model required="true" elementTypeDataType="org.eclipse.papyrus.infra.gmfdiag.representation.ElementType" elementTypeRequired="true"
 	 * @generated
+	 * @since 2.0
 	 */
 	boolean matches(IElementType elementType);
 

@@ -15,7 +15,9 @@ package org.eclipse.papyrus.uml.diagram.clazz;
 
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.clipboard.core.internal.MergedEObjectInfo;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;

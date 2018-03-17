@@ -13,17 +13,35 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.representation.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
+import java.util.Map;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.papyrus.infra.architecture.representation.impl.PapyrusRepresentationKindImpl;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.representation.AssistantRule;
@@ -31,6 +49,7 @@ import org.eclipse.papyrus.infra.gmfdiag.representation.ChildRule;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PaletteRule;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
+import org.eclipse.papyrus.infra.gmfdiag.representation.util.RepresentationValidator;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Papyrus
@@ -98,6 +117,17 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	protected EList<AssistantRule> assistantRules;
 
 	/**
+	 * The default value of the '{@link #getCreationCommandClass() <em>Creation Command Class</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCreationCommandClass()
+	 * @generated
+	 * @ordered
+	 * @since 2.0
+	 */
+	protected static final String CREATION_COMMAND_CLASS_EDEFAULT = null;
+
+	/**
 	 * The cached value of the '{@link #getCreationCommandClass() <em>Creation
 	 * Command Class</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
@@ -106,7 +136,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * @generated
 	 * @ordered
 	 */
-	protected Class<?> creationCommandClass;
+	protected String creationCommandClass = CREATION_COMMAND_CLASS_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getPalettes() <em>Palettes</em>}' reference list.
@@ -190,16 +220,17 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Class<?> getCreationCommandClass() {
+	public String getCreationCommandClass() {
 		return creationCommandClass;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCreationCommandClass(Class<?> newCreationCommandClass) {
-		Class<?> oldCreationCommandClass = creationCommandClass;
+	public void setCreationCommandClass(String newCreationCommandClass) {
+		String oldCreationCommandClass = creationCommandClass;
 		creationCommandClass = newCreationCommandClass;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RepresentationPackage.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS, oldCreationCommandClass, creationCommandClass));
@@ -214,6 +245,40 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 			palettes = new EObjectResolvingEList<PaletteConfiguration>(PaletteConfiguration.class, this, RepresentationPackage.PAPYRUS_DIAGRAM__PALETTES);
 		}
 		return palettes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean ceationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (creationCommandClass != null) {
+			URI uri = eResource().getURI();
+			IWorkspace workspace = ResourcesPlugin.getWorkspace();
+			IFile file = workspace.getRoot().getFile(new Path(uri.toPlatformString(false)));
+			IProject project = file.getProject();
+			IJavaProject javaProject = JavaCore.create(project);
+			IType type = null;
+			try {
+				type = javaProject.findType(creationCommandClass);
+			} catch (JavaModelException e) {
+				/* ignore */
+			}
+			if (type == null) {
+				if (diagnostics != null) {
+					diagnostics.add
+						(new BasicDiagnostic
+							(Diagnostic.ERROR,
+							 RepresentationValidator.DIAGNOSTIC_SOURCE,
+							 RepresentationValidator.PAPYRUS_DIAGRAM__CEATION_COMMAND_CLASS_EXISTS,
+							 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "ceationCommandClassExists", EObjectValidator.getObjectLabel(this, context) }), //$NON-NLS-1$ //$NON-NLS-2$
+							 new Object [] { this }));
+				}
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -280,7 +345,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 				getAssistantRules().addAll((Collection<? extends AssistantRule>)newValue);
 				return;
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS:
-				setCreationCommandClass((Class<?>)newValue);
+				setCreationCommandClass((String)newValue);
 				return;
 			case RepresentationPackage.PAPYRUS_DIAGRAM__PALETTES:
 				getPalettes().clear();
@@ -310,7 +375,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 				getAssistantRules().clear();
 				return;
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS:
-				setCreationCommandClass((Class<?>)null);
+				setCreationCommandClass(CREATION_COMMAND_CLASS_EDEFAULT);
 				return;
 			case RepresentationPackage.PAPYRUS_DIAGRAM__PALETTES:
 				getPalettes().clear();
@@ -335,11 +400,26 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 			case RepresentationPackage.PAPYRUS_DIAGRAM__ASSISTANT_RULES:
 				return assistantRules != null && !assistantRules.isEmpty();
 			case RepresentationPackage.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS:
-				return creationCommandClass != null;
+				return CREATION_COMMAND_CLASS_EDEFAULT == null ? creationCommandClass != null : !CREATION_COMMAND_CLASS_EDEFAULT.equals(creationCommandClass);
 			case RepresentationPackage.PAPYRUS_DIAGRAM__PALETTES:
 				return palettes != null && !palettes.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case RepresentationPackage.PAPYRUS_DIAGRAM___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP:
+				return ceationCommandClassExists((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

@@ -85,6 +85,14 @@
           ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/creationCommandClass"/>
       <genFeatures createChild="false" propertyCategory="Context" propertyDescription="The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface"
           ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/conversionCommandClass"/>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/ceationCommandClassExists">
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/ceationCommandClassExists/diagnostics"/>
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/ceationCommandClassExists/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/conversionCommandClassExists">
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/conversionCommandClassExists/diagnostics"/>
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/conversionCommandClassExists/context"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureFramework"/>
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureDescription">

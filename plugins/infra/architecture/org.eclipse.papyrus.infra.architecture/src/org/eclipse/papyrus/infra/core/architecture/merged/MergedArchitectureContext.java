@@ -20,10 +20,13 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
+import org.osgi.framework.Bundle;
 
 /**
  * An element that represents a merged collection of {@link org.eclipse.papyrus.infra.core.
@@ -66,11 +69,17 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * 
 	 * @return a creation command class
 	 */
-	public Class<?> getCreationCommandClass() {
+	public Class<?> getCreationCommandClass() throws ClassNotFoundException {
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getCreationCommandClass() != null)
-				return context.getCreationCommandClass();
+			if (context.getCreationCommandClass() != null) {
+				URI uri = context.eResource().getURI();
+				if (uri.isPlatformPlugin()) {
+					String bundleName = uri.segment(1);
+					Bundle bundle = Platform.getBundle(bundleName);
+					return bundle.loadClass(context.getCreationCommandClass());
+				}
+			}
 		}
 		return null;
 	}
@@ -80,7 +89,43 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * 
 	 * @return a conversion command class
 	 */
-	public Class<?> getConversionCommandClass() {
+	public Class<?> getConversionCommandClass() throws ClassNotFoundException {
+		for (ADElement element : elements) {
+			ArchitectureContext context = (ArchitectureContext) element;
+			if (context.getConversionCommandClass() != null) {
+				URI uri = context.eResource().getURI();
+				if (uri.isPlatformPlugin()) {
+					String bundleName = uri.segment(1);
+					Bundle bundle = Platform.getBundle(bundleName);
+					return bundle.loadClass(context.getConversionCommandClass());
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the context's creation command class name
+	 * 
+	 * @return a creation command class name
+	 * @since 1.1
+	 */
+	public String getCreationCommandClassName() {
+		for (ADElement element : elements) {
+			ArchitectureContext context = (ArchitectureContext) element;
+			if (context.getCreationCommandClass() != null) 
+				return context.getCreationCommandClass();
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the context's conversion command class name
+	 * 
+	 * @return a conversion command class name
+	 * @since 1.1
+	 */
+	public String getConversionCommandClassName() {
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
 			if (context.getConversionCommandClass() != null)

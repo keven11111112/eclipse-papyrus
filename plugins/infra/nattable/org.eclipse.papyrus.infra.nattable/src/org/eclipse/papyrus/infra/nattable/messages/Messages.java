@@ -497,18 +497,39 @@ public class Messages extends NLS {
 
 	public static String MatrixRelationshipDirectionLabelProvider_ColumnToRow;
 
+	/**
+	 * @since 6.0
+	 */
 	public static String MatrixRelationshipOwnerStrategyLabelProvider_ColumAsOwner;
 
+	/**
+	 * @since 6.0
+	 */
 	public static String MatrixRelationshipOwnerStrategyLabelProvider_ColumnsOwnerAsOwner;
 
+	/**
+	 * @since 6.0
+	 */
 	public static String MatrixRelationshipOwnerStrategyLabelProvider_Default;
 
+	/**
+	 * @since 6.0
+	 */
 	public static String MatrixRelationshipOwnerStrategyLabelProvider_Other;
 
+	/**
+	 * @since 6.0
+	 */
 	public static String MatrixRelationshipOwnerStrategyLabelProvider_RowAsOwner;
 
+	/**
+	 * @since 6.0
+	 */
 	public static String MatrixRelationshipOwnerStrategyLabelProvider_RowsOwnerAsOwner;
 
+	/**
+	 * @since 6.0
+	 */
 	public static String MatrixRelationshipOwnerStrategyLabelProvider_TableRootElement;
 
 	/**

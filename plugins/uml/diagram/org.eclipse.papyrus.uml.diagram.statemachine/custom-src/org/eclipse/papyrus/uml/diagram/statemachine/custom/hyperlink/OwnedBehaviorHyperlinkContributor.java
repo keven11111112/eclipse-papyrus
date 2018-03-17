@@ -36,6 +36,7 @@ import org.eclipse.uml2.uml.BehavioredClassifier;
  * owned behaviors of a BehaviorClassifier
  * 
  * @author Shuai Li
+ * @since 3.1
  *
  */
 public class OwnedBehaviorHyperlinkContributor implements HyperlinkContributor {

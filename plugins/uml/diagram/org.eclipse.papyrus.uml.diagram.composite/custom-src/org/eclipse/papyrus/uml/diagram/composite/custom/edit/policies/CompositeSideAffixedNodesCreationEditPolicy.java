@@ -30,6 +30,7 @@ import org.eclipse.uml2.uml.Port;
 
 /**
  * This EditPolicy takes care of the correct placement of ports, see bug 527181
+ * @since 3.1
  */
 public class CompositeSideAffixedNodesCreationEditPolicy extends SideAffixedNodesCreationEditPolicy {
 

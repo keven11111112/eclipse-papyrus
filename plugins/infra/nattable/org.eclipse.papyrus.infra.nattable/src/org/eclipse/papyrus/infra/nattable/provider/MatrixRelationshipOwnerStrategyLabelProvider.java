@@ -21,6 +21,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * The label provider to use for the enumeration used to define the relationship direction
+ * @since 6.0
  * 
  */
 public class MatrixRelationshipOwnerStrategyLabelProvider implements ILabelProvider {

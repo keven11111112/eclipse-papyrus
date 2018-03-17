@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
@@ -22,6 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.policy.AbstractViewTypeHelper;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
+import org.osgi.framework.Bundle;
 
 /**
  * Represents the dynamic contribution of a policy to menus
@@ -49,16 +52,35 @@ public class GMFDiagramViewTypeHelper extends AbstractViewTypeHelper<PapyrusDiag
 	 */
 	@Override
 	protected ViewPrototype doGetPrototypeFor(PapyrusDiagram diagramKind) {
-		String language = diagramKind.getLanguage().getId();
-		AbstractPapyrusGmfCreateDiagramCommandHandler command;
-		try {
-			Class<?> creationCommandClass = diagramKind.getCreationCommandClass();
-			command = (AbstractPapyrusGmfCreateDiagramCommandHandler) creationCommandClass.newInstance();
-		} catch (Exception e) {
-			Activator.log.error(e);
-			return null;
+		String commandClassName = diagramKind.getCreationCommandClass();
+		if (commandClassName != null) {
+			Class<?> creationCommandClass = null;
+			
+			URI uri = diagramKind.eResource().getURI();
+			if (uri.isPlatformPlugin()) {
+				String bundleName = uri.segment(1);
+				Bundle bundle = Platform.getBundle(bundleName);
+				try {
+					creationCommandClass = bundle.loadClass(diagramKind.getCreationCommandClass());
+				} catch (ClassNotFoundException e) {
+					Activator.log.error(e);
+				}
+			}
+			
+			if (creationCommandClass != null) {
+				AbstractPapyrusGmfCreateDiagramCommandHandler command;
+				try {
+					command = (AbstractPapyrusGmfCreateDiagramCommandHandler) creationCommandClass.newInstance();
+				} catch (Exception e) {
+					Activator.log.error(e);
+					return null;
+				}
+		
+				String language = diagramKind.getLanguage().getId();
+				return new DiagramPrototype(diagramKind, language, command);
+			}
 		}
-		return new DiagramPrototype(diagramKind, language, command);
+		return null;
 	}
 
 	/**

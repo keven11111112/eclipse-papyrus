@@ -48,9 +48,9 @@ public class MergedItemPropertyDescriptor extends ItemPropertyDescriptor {
 		if (object instanceof MergedArchitectureContext) {
 			switch (feature.getFeatureID()) {
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS:
-				return ((MergedArchitectureContext)object).getConversionCommandClass();
+				return ((MergedArchitectureContext)object).getConversionCommandClassName();
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS:
-				return ((MergedArchitectureContext)object).getCreationCommandClass();
+				return ((MergedArchitectureContext)object).getCreationCommandClassName();
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS:
 				return ((MergedArchitectureContext)object).getDefaultViewpoints();
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT__ELEMENT_TYPES:
