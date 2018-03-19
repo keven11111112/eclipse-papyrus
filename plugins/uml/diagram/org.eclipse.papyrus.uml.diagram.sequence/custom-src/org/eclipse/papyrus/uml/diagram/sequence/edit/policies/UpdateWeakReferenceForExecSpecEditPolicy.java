@@ -84,19 +84,25 @@ public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenc
 					&& getHost() instanceof AbstractExecutionSpecificationEditPart) {
 				// For change bounds request
 				command = getUpdateWeakRefForExecSpecResize((ChangeBoundsRequest) request);
-			} else if (request instanceof CreateViewAndElementRequest) {
-				// for creation request
-				command = getUpdateWeakRefForExecSpecCreate((CreateViewAndElementRequest) request);
-			} else if (request instanceof EditCommandRequestWrapper
-					&& (getHost() instanceof AbstractExecutionSpecificationEditPart)) {
-
-				// Check that this is a delete command, in this case, we have to recalculate the other execution specification positions
-				final IEditCommandRequest editCommandRequest = ((EditCommandRequestWrapper) request).getEditCommandRequest();
-				if (editCommandRequest instanceof DestroyElementRequest
-						&& ((DestroyElementRequest) editCommandRequest).getElementToDestroy() instanceof ExecutionSpecification) {
-					return getUpdateWeakRefForExecSpecDelete((EditCommandRequestWrapper) request);
-				}
 			}
+			
+			/*
+			 * Bug 532071 - [SequenceDiagram] Creation and Deletion of an element on a Lifeline should not move necessarily the other elements
+			 * This code is comment due to instability (Oxygen version is not work very well).
+			 */
+//			else if (request instanceof CreateViewAndElementRequest) {
+//				// for creation request
+//				command = getUpdateWeakRefForExecSpecCreate((CreateViewAndElementRequest) request);
+//			} else if (request instanceof EditCommandRequestWrapper
+//					&& (getHost() instanceof AbstractExecutionSpecificationEditPart)) {
+//
+//				// Check that this is a delete command, in this case, we have to recalculate the other execution specification positions
+//				final IEditCommandRequest editCommandRequest = ((EditCommandRequestWrapper) request).getEditCommandRequest();
+//				if (editCommandRequest instanceof DestroyElementRequest
+//						&& ((DestroyElementRequest) editCommandRequest).getElementToDestroy() instanceof ExecutionSpecification) {
+//					return getUpdateWeakRefForExecSpecDelete((EditCommandRequestWrapper) request);
+//				}
+//			}
 		}
 		return null == command ? super.getCommand(request) : command;
 	}
