@@ -88,7 +88,7 @@ public abstract class AbstractMatrixRelationshipCellEditorConfigurationObservabl
 	 * @param value
 	 */
 	@Override
-	protected final void doSetValue(Object value) {
+	protected void doSetValue(Object value) {
 		final Command setCommand = SetCommand.create(this.domain, getEditedEObject(), getManagedFeature(), value);
 		if (setCommand.canExecute()) {
 			this.domain.getCommandStack().execute(setCommand);

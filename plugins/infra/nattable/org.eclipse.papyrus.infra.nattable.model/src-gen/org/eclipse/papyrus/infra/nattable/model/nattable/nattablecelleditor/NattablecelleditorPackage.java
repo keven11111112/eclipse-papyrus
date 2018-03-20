@@ -316,13 +316,40 @@ public interface NattablecelleditorPackage extends EPackage {
 	int GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__EDITED_ELEMENT = IMATRIX_CELL_EDITOR_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Relationship Owner Strategy</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_STRATEGY = IMATRIX_CELL_EDITOR_CONFIGURATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Relationship Owner</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER = IMATRIX_CELL_EDITOR_CONFIGURATION_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Relationship Owner Feature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE = IMATRIX_CELL_EDITOR_CONFIGURATION_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Generic Relationship Matrix Cell Editor Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION_FEATURE_COUNT = IMATRIX_CELL_EDITOR_CONFIGURATION_FEATURE_COUNT + 3;
+	int GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION_FEATURE_COUNT = IMATRIX_CELL_EDITOR_CONFIGURATION_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -378,6 +405,17 @@ public interface NattablecelleditorPackage extends EPackage {
 	 * @generated
 	 */
 	int MATRIX_RELATION_SHIP_DIRECTION = 3;
+
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy <em>Matrix Relation Ship Owner Strategy</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.impl.NattablecelleditorPackageImpl#getMatrixRelationShipOwnerStrategy()
+	 * @generated
+	 */
+	int MATRIX_RELATION_SHIP_OWNER_STRATEGY = 4;
 
 
 	/**
@@ -445,6 +483,39 @@ public interface NattablecelleditorPackage extends EPackage {
 	EReference getGenericRelationshipMatrixCellEditorConfiguration_EditedElement();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwnerStrategy <em>Relationship Owner Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Relationship Owner Strategy</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwnerStrategy()
+	 * @see #getGenericRelationshipMatrixCellEditorConfiguration()
+	 * @generated
+	 */
+	EAttribute getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerStrategy();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwner <em>Relationship Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Relationship Owner</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwner()
+	 * @see #getGenericRelationshipMatrixCellEditorConfiguration()
+	 * @generated
+	 */
+	EReference getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwner();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwnerFeature <em>Relationship Owner Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Relationship Owner Feature</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwnerFeature()
+	 * @see #getGenericRelationshipMatrixCellEditorConfiguration()
+	 * @generated
+	 */
+	EReference getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerFeature();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.IMatrixCellEditorConfiguration <em>IMatrix Cell Editor Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -463,6 +534,16 @@ public interface NattablecelleditorPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getMatrixRelationShipDirection();
+
+	/**
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy <em>Matrix Relation Ship Owner Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Matrix Relation Ship Owner Strategy</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy
+	 * @generated
+	 */
+	EEnum getMatrixRelationShipOwnerStrategy();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -540,6 +621,30 @@ public interface NattablecelleditorPackage extends EPackage {
 		EReference GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__EDITED_ELEMENT = eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_EditedElement();
 
 		/**
+		 * The meta object literal for the '<em><b>Relationship Owner Strategy</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_STRATEGY = eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerStrategy();
+
+		/**
+		 * The meta object literal for the '<em><b>Relationship Owner</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER = eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwner();
+
+		/**
+		 * The meta object literal for the '<em><b>Relationship Owner Feature</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE = eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerFeature();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.IMatrixCellEditorConfiguration <em>IMatrix Cell Editor Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -558,6 +663,16 @@ public interface NattablecelleditorPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum MATRIX_RELATION_SHIP_DIRECTION = eINSTANCE.getMatrixRelationShipDirection();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy <em>Matrix Relation Ship Owner Strategy</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.impl.NattablecelleditorPackageImpl#getMatrixRelationShipOwnerStrategy()
+		 * @generated
+		 */
+		EEnum MATRIX_RELATION_SHIP_OWNER_STRATEGY = eINSTANCE.getMatrixRelationShipOwnerStrategy();
 
 	}
 

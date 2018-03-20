@@ -13,6 +13,10 @@ Some illustration are available after the description of the steps.
 ##fill the field '''Relation Kind''' to select the kind of relationship managed by the table,
 ##fill the field '''Direction''' to define the direction of the relationship managed by the table,
 ##if required, fill the field '''Contents Filter''', to be more precise in the displayed relationship.
+##if required, define the '''Owner Strategy''', to define which element will be the owner of the created relationships. 
+##*'''Default''': this is Papyrus which is in charge to determine the owner.
+##*'''Other''': you must define yourself the owner for all created relationship, editing the next field too. 
+##'''Relation Owner''': select a model element to contains all relationships created in the current matrix. A compatibility check will be done at your first cell edition in the Matrix and a dialog will be open in case of problems with your choices. This value is only used when '''Owner Strategy''' is set to '''Other'''.
 #Now, if it is not already done, you can expand the rows of your table: '''Right CLick''' on the row header, then '''Expand All'''.
 
 
@@ -24,6 +28,7 @@ Some illustration are available after the description of the steps.
 
 *the matrix property view used to configure the new matrix
 [[File:images/matrix/ThePropertyViewForMatrix.png|frame|none|The Matrix property view, with the described order for its configuration.]]
+
 
 *the result for a small model
 [[File:images/matrix/MatrixResult.png|frame|none|The resulting matrix, for a small model, with its configuration displayed in the Property View]]

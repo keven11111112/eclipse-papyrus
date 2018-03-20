@@ -48,4 +48,15 @@
 			property="GenericUMLRelationshipMatrixDataContext:GenericRelationshipMatrixCellEditorConfiguration:cellContentsFilter"
 			customLabel="Contents Filter"></ppe:ReferenceDialog>
 	</Group>
+	<Group text="Relation Owner">
+		<Group.layout>
+			<ppel:PropertiesLayout></ppel:PropertiesLayout>
+		</Group.layout>
+		<ppe:EnumCombo input="{Binding}"
+			property="GenericUMLRelationshipMatrixDataContext:GenericRelationshipMatrixCellEditorConfiguration:relationshipOwnerStrategy"
+			customLabel="Owner Strategy"></ppe:EnumCombo>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="GenericUMLRelationshipMatrixDataContext:GenericRelationshipMatrixCellEditorConfiguration:relationshipOwner"
+			customLabel="Relation Owner"></ppe:ReferenceDialog>
+	</Group>
 </Composite>

@@ -14,6 +14,8 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor;
 
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanEObjectExpression;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.IWrapper;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 
 /**
@@ -32,6 +34,9 @@ import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getCellContentsFilter <em>Cell Contents Filter</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getEditedElement <em>Edited Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwnerStrategy <em>Relationship Owner Strategy</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwner <em>Relationship Owner</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwnerFeature <em>Relationship Owner Feature</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage#getGenericRelationshipMatrixCellEditorConfiguration()
@@ -118,5 +123,85 @@ public interface GenericRelationshipMatrixCellEditorConfiguration extends IMatri
 	 * @generated
 	 */
 	void setEditedElement(ElementTypeConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Relationship Owner Strategy</b></em>' attribute.
+	 * The default value is <code>"DEFAULT"</code>.
+	 * The literals are from the enumeration {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This field is used to define the owner of relationships created editing the matrix.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Relationship Owner Strategy</em>' attribute.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy
+	 * @see #setRelationshipOwnerStrategy(MatrixRelationShipOwnerStrategy)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage#getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerStrategy()
+	 * @model default="DEFAULT" required="true"
+	 * @generated
+	 */
+	MatrixRelationShipOwnerStrategy getRelationshipOwnerStrategy();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwnerStrategy <em>Relationship Owner Strategy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Relationship Owner Strategy</em>' attribute.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy
+	 * @see #getRelationshipOwnerStrategy()
+	 * @generated
+	 */
+	void setRelationshipOwnerStrategy(MatrixRelationShipOwnerStrategy value);
+
+	/**
+	 * Returns the value of the '<em><b>Relationship Owner</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This field is used only when the relationshipOwnerStrategy is set to Other.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Relationship Owner</em>' containment reference.
+	 * @see #setRelationshipOwner(IWrapper)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage#getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwner()
+	 * @model containment="true"
+	 * @generated
+	 */
+	IWrapper getRelationshipOwner();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwner <em>Relationship Owner</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Relationship Owner</em>' containment reference.
+	 * @see #getRelationshipOwner()
+	 * @generated
+	 */
+	void setRelationshipOwner(IWrapper value);
+
+	/**
+	 * Returns the value of the '<em><b>Relationship Owner Feature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This field is used only when the relationshipOwnerStrategy is set to Other.
+	 * It will be used, if required, to define the feature in the relationshipOwner which will owns the created relationship
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Relationship Owner Feature</em>' containment reference.
+	 * @see #setRelationshipOwnerFeature(IAxis)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage#getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerFeature()
+	 * @model containment="true"
+	 * @generated
+	 */
+	IAxis getRelationshipOwnerFeature();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration#getRelationshipOwnerFeature <em>Relationship Owner Feature</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Relationship Owner Feature</em>' containment reference.
+	 * @see #getRelationshipOwnerFeature()
+	 * @generated
+	 */
+	void setRelationshipOwnerFeature(IAxis value);
 
 } // GenericRelationshipMatrixCellEditorConfiguration

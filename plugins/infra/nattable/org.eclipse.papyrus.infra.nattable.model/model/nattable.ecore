@@ -1006,6 +1006,25 @@
           <details key="documentation" value="This field allows to define the kind of element to edit in the cell."/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="relationshipOwnerStrategy"
+          lowerBound="1" eType="#//nattablecelleditor/MatrixRelationShipOwnerStrategy"
+          defaultValueLiteral="DEFAULT">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This field is used to define the owner of relationships created editing the matrix."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="relationshipOwner" eType="#//nattablewrapper/IWrapper"
+          containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This field is used only when the relationshipOwnerStrategy is set to Other."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="relationshipOwnerFeature"
+          eType="#//nattableaxis/IAxis" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="This field is used only when the relationshipOwnerStrategy is set to Other.&#xD;&#xA;It will be used, if required, to define the feature in the relationshipOwner which will owns the created relationship"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="MatrixRelationShipDirection">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1014,6 +1033,18 @@
       <eLiterals name="NONE" literal="NONE"/>
       <eLiterals name="FROM_ROW_TO_COLUMN" value="1" literal="FROM_ROW_TO_COLUMN"/>
       <eLiterals name="FROM_COLUMN_TO_ROW" value="2" literal="FROM_COLUMN_TO_ROW"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="MatrixRelationShipOwnerStrategy">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This Enumeration is used to define the owner of relationships created editing the matrix."/>
+      </eAnnotations>
+      <eLiterals name="DEFAULT" literal="DEFAULT"/>
+      <eLiterals name="TABLE_CONTEXT" value="1" literal="TABLE_CONTEXT"/>
+      <eLiterals name="ROW_OWNER" value="2" literal="ROW_OWNER"/>
+      <eLiterals name="ROW_AS_OWNER" value="3" literal="ROW_AS_OWNER"/>
+      <eLiterals name="COLUMN_OWNER" value="4" literal="COLUMN_OWNER"/>
+      <eLiterals name="COLUMN_AS_OWNER" value="5" literal="COLUMN_AS_OWNER"/>
+      <eLiterals name="OTHER" value="6" literal="OTHER"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IMatrixCellEditorConfiguration" abstract="true"
         interface="true" eSuperTypes="#//nattablecelleditor/ICellEditorConfiguration">

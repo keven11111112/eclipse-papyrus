@@ -20,6 +20,9 @@
       <properties xmi:id="_TDc0ISwOEeeKOdJYr-htag" name="managedElementType" type="Reference"/>
       <properties xmi:id="_TDc0IiwOEeeKOdJYr-htag" name="relationshipDirection" type="Enumeration"/>
       <properties xmi:id="_7ml2MCwPEeeKOdJYr-htag" name="cellContentsFilter" type="Reference"/>
+      <properties xmi:id="_TDc0IiwOEeeKOdJYr-htag" name="relationshipOwnerStrategy" type="Enumeration"/>
+      <properties xmi:id="_qWk8YCwOEeeKOdJYr-htag" name="relationshipOwner" type="Reference"/>
+      <properties xmi:id="_qWk8YCwOEeeKOdJYr-htag" name="relationshipOwnerFeature" type="Reference"/>
     </elements>
     <modelElementFactory href="Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>

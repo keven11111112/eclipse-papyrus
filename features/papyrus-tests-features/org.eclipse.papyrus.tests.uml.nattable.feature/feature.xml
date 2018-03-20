@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.tests.uml.nattable.feature"
       label="UML NatTable Test Feature"
-      version="1.2.0.qualifier"
+      version="1.3.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
    <description url="https://eclipse.org/papyrus/">

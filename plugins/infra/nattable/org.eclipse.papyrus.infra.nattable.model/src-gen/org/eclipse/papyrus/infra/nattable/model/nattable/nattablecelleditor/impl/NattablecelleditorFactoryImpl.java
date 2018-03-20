@@ -83,6 +83,8 @@ public class NattablecelleditorFactoryImpl extends EFactoryImpl implements Natta
 		switch (eDataType.getClassifierID()) {
 			case NattablecelleditorPackage.MATRIX_RELATION_SHIP_DIRECTION:
 				return createMatrixRelationShipDirectionFromString(eDataType, initialValue);
+			case NattablecelleditorPackage.MATRIX_RELATION_SHIP_OWNER_STRATEGY:
+				return createMatrixRelationShipOwnerStrategyFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -98,6 +100,8 @@ public class NattablecelleditorFactoryImpl extends EFactoryImpl implements Natta
 		switch (eDataType.getClassifierID()) {
 			case NattablecelleditorPackage.MATRIX_RELATION_SHIP_DIRECTION:
 				return convertMatrixRelationShipDirectionToString(eDataType, instanceValue);
+			case NattablecelleditorPackage.MATRIX_RELATION_SHIP_OWNER_STRATEGY:
+				return convertMatrixRelationShipOwnerStrategyToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -130,6 +134,26 @@ public class NattablecelleditorFactoryImpl extends EFactoryImpl implements Natta
 	 * @generated
 	 */
 	public String convertMatrixRelationShipDirectionToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MatrixRelationShipOwnerStrategy createMatrixRelationShipOwnerStrategyFromString(EDataType eDataType, String initialValue) {
+		MatrixRelationShipOwnerStrategy result = MatrixRelationShipOwnerStrategy.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertMatrixRelationShipOwnerStrategyToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
