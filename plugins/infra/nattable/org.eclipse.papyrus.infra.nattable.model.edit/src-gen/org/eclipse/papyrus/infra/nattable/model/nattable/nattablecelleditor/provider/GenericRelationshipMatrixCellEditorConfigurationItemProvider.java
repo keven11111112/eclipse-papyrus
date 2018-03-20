@@ -21,16 +21,19 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.provider.StyledElementItemProvider;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.NattablewrapperFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 
 /**
@@ -65,6 +68,7 @@ public class GenericRelationshipMatrixCellEditorConfigurationItemProvider extend
 			addDirectionPropertyDescriptor(object);
 			addCellContentsFilterPropertyDescriptor(object);
 			addEditedElementPropertyDescriptor(object);
+			addRelationshipOwnerStrategyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -158,6 +162,59 @@ public class GenericRelationshipMatrixCellEditorConfigurationItemProvider extend
 	}
 
 	/**
+	 * This adds a property descriptor for the Relationship Owner Strategy feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRelationshipOwnerStrategyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_GenericRelationshipMatrixCellEditorConfiguration_relationshipOwnerStrategy_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenericRelationshipMatrixCellEditorConfiguration_relationshipOwnerStrategy_feature", "_UI_GenericRelationshipMatrixCellEditorConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_STRATEGY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER);
+			childrenFeatures.add(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
+	}
+
+	/**
 	 * This returns GenericRelationshipMatrixCellEditorConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -197,7 +254,12 @@ public class GenericRelationshipMatrixCellEditorConfigurationItemProvider extend
 		switch (notification.getFeatureID(GenericRelationshipMatrixCellEditorConfiguration.class)) {
 			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_EDITOR_ID:
 			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__DIRECTION:
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_STRATEGY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER:
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -213,6 +275,76 @@ public class GenericRelationshipMatrixCellEditorConfigurationItemProvider extend
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER,
+				 NattablewrapperFactory.eINSTANCE.createEObjectWrapper()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER,
+				 NattablewrapperFactory.eINSTANCE.createIdWrapper()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createIdTreeItemAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createEObjectAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createEObjectTreeItemAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createFeatureIdAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createFeatureIdTreeItemAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createEStructuralFeatureAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createEOperationAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createEStructuralFeatureTreeItemAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createEOperationTreeItemAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createObjectIdAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createObjectIdTreeItemAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createAxisGroup()));
 	}
 
 	/**

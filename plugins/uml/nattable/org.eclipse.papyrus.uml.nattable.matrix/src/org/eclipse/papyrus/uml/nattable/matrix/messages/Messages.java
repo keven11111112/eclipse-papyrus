@@ -21,7 +21,19 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.nattable.matrix.messages.messages"; //$NON-NLS-1$
+	public static String AbstractUMLGenericMatrixRelationshipCellManager_CreateRelationshipMessageDialogTitle;
+	public static String AbstractUMLGenericMatrixRelationshipCellManager_RelationshipCanBeCreated;
 	public static String GenericMatrixRelationshipCellEditorConfiguration_description;
+	public static String RelationshipOwnerValidator_ChosenRelationshipIsAbstract;
+	public static String RelationshipOwnerValidator_ColumnCantbeUsedAsOwner;
+	public static String RelationshipOwnerValidator_ColumnOwnerCantbeUsedAsOwner;
+	public static String RelationshipOwnerValidator_ElementCantBeResolvedAsEObject;
+	public static String RelationshipOwnerValidator_ItIsAPapyrusBug;
+	public static String RelationshipOwnerValidator_NoRelationshipDefined;
+	public static String RelationshipOwnerValidator_RowCantbeUsedAsOwner;
+	public static String RelationshipOwnerValidator_RowOwnerCantbeUsedAsOwner;
+	public static String RelationshipOwnerValidator_TableContextCantbeUsedAsOwner;
+	public static String RelationshipOwnerValidator_TheChosenElementCantBeUsedAsOwner;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

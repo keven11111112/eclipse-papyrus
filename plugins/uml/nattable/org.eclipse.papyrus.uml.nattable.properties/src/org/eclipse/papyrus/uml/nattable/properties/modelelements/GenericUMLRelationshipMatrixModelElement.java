@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Bug 532639
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.properties.modelelements;
@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -29,8 +30,9 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanEObjectExpression;
 import org.eclipse.papyrus.infra.emf.expressions.properties.utils.BooleanEObjectExpressionPropertyEditorFactory;
-import org.eclipse.papyrus.infra.nattable.contentprovider.MatrixSourcesContentProvider;
 import org.eclipse.papyrus.infra.nattable.contentprovider.MatrixDirectionContentProvider;
+import org.eclipse.papyrus.infra.nattable.contentprovider.MatrixRelationshipOwnerStrategyContentProvider;
+import org.eclipse.papyrus.infra.nattable.contentprovider.MatrixSourcesContentProvider;
 import org.eclipse.papyrus.infra.nattable.manager.table.IMatrixTableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -47,17 +49,20 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.ICel
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.EObjectWrapper;
 import org.eclipse.papyrus.infra.nattable.provider.MatrixRelationshipDirectionLabelProvider;
+import org.eclipse.papyrus.infra.nattable.provider.MatrixRelationshipOwnerStrategyLabelProvider;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsPackage;
 import org.eclipse.papyrus.uml.nattable.properties.observables.MatrixCellContentsFilterObservableValue;
-import org.eclipse.papyrus.uml.nattable.properties.observables.MatrixColumnSourcesEMFObservableList;
 import org.eclipse.papyrus.uml.nattable.properties.observables.MatrixColumnRootFilterObservableValue;
+import org.eclipse.papyrus.uml.nattable.properties.observables.MatrixColumnSourcesEMFObservableList;
 import org.eclipse.papyrus.uml.nattable.properties.observables.MatrixDirectionObservableValue;
 import org.eclipse.papyrus.uml.nattable.properties.observables.MatrixManagedElementTypeObservableValue;
-import org.eclipse.papyrus.uml.nattable.properties.observables.MatrixRowSourcesEMFObservableList;
+import org.eclipse.papyrus.uml.nattable.properties.observables.MatrixRelationshipOwnerStrategyObservableValue;
+import org.eclipse.papyrus.uml.nattable.properties.observables.MatrixRelationshipOwneryObservableValue;
 import org.eclipse.papyrus.uml.nattable.properties.observables.MatrixRowRootFilterObservableValue;
+import org.eclipse.papyrus.uml.nattable.properties.observables.MatrixRowSourcesEMFObservableList;
 import org.eclipse.papyrus.uml.nattable.properties.providers.GenericRelationshipMatrixElementTypeContentProvider;
 import org.eclipse.papyrus.uml.nattable.properties.providers.GenericRelationshipMatrixElementTypeLabelProvider;
 import org.eclipse.papyrus.uml.nattable.properties.utils.MatrixPropertyConstants;
@@ -120,7 +125,8 @@ public class GenericUMLRelationshipMatrixModelElement extends EMFModelElement {
 		this.interestingFeatures.add(NattablecelleditorPackage.eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_CellContentsFilter());
 		this.interestingFeatures.add(NattablecelleditorPackage.eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_Direction());
 		this.interestingFeatures.add(NattablecelleditorPackage.eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_EditedElement());
-
+		this.interestingFeatures.add(NattablecelleditorPackage.eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwner());
+		this.interestingFeatures.add(NattablecelleditorPackage.eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerStrategy());
 
 		this.changeListener = new AdapterImpl() {
 
@@ -314,6 +320,10 @@ public class GenericUMLRelationshipMatrixModelElement extends EMFModelElement {
 			value = new MatrixDirectionObservableValue(getEditedTable());
 		} else if (MatrixPropertyConstants.MATRIX_CELL_FILTER.equals(propertyPath)) {
 			value = new MatrixCellContentsFilterObservableValue(getEditedTable());
+		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER_STRATEGY.equals(propertyPath)) {
+			value = new MatrixRelationshipOwnerStrategyObservableValue(getEditedTable());
+		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER.equals(propertyPath)) {
+			value = new MatrixRelationshipOwneryObservableValue(getEditedTable());
 		} else {
 			value = super.doGetObservable(propertyPath);
 		}
@@ -338,6 +348,10 @@ public class GenericUMLRelationshipMatrixModelElement extends EMFModelElement {
 			provider = new GenericRelationshipMatrixElementTypeContentProvider(getRoot(getEditedTable().getContext()));
 		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_DIRECTION.equals(propertyPath)) {
 			provider = new MatrixDirectionContentProvider();
+		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER_STRATEGY.equals(propertyPath)) {
+			provider = new MatrixRelationshipOwnerStrategyContentProvider();
+		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER.equals(propertyPath)) {
+			provider = new MatrixSourcesContentProvider(getRoot(getEditedTable().getContext()));
 		} else {
 			provider = super.getContentProvider(propertyPath);
 		}
@@ -354,18 +368,18 @@ public class GenericUMLRelationshipMatrixModelElement extends EMFModelElement {
 	public EStructuralFeature getFeature(final String propertyPath) {
 		if (MatrixPropertyConstants.MATRIX_ROW_FILTER.equals(propertyPath) || MatrixPropertyConstants.MATRIX_COLUMN_FILTER.equals(propertyPath)) {
 			return NattableaxisconfigurationPackage.eINSTANCE.getTreeFillingConfiguration_FilterRule();
-		}
-		if (MatrixPropertyConstants.MATRIX_ROW_SOURCES.equals(propertyPath) || MatrixPropertyConstants.MATRIX_COLUMN_SOURCES.equals(propertyPath)) {
+		} else if (MatrixPropertyConstants.MATRIX_ROW_SOURCES.equals(propertyPath) || MatrixPropertyConstants.MATRIX_COLUMN_SOURCES.equals(propertyPath)) {
 			return NattableaxisproviderPackage.eINSTANCE.getIMasterAxisProvider_Sources();
-		}
-		if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_DIRECTION.equals(propertyPath)) {
+		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_DIRECTION.equals(propertyPath)) {
 			return NattablecelleditorPackage.eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_Direction();
-		}
-		if (MatrixPropertyConstants.MATRIX_CELL_TYPE.equals(propertyPath)) {
+		} else if (MatrixPropertyConstants.MATRIX_CELL_TYPE.equals(propertyPath)) {
 			return NattablecelleditorPackage.eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_EditedElement();
-		}
-		if (MatrixPropertyConstants.MATRIX_CELL_FILTER.equals(propertyPath)) {
+		} else if (MatrixPropertyConstants.MATRIX_CELL_FILTER.equals(propertyPath)) {
 			return NattablecelleditorPackage.eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_CellContentsFilter();
+		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER_STRATEGY.equals(propertyPath)) {
+			return NattablecelleditorPackage.eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerStrategy();
+		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER.equals(propertyPath)) {
+			return NattablecelleditorPackage.eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwner();
 		}
 		return super.getFeature(propertyPath);
 	}
@@ -397,11 +411,16 @@ public class GenericUMLRelationshipMatrixModelElement extends EMFModelElement {
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		ILabelProvider provider = super.getLabelProvider(propertyPath);
-		if (MatrixPropertyConstants.MATRIX_COLUMN_SOURCES.equals(propertyPath) || MatrixPropertyConstants.MATRIX_ROW_SOURCES.equals(propertyPath)) {
+		if (MatrixPropertyConstants.MATRIX_COLUMN_SOURCES.equals(propertyPath) 
+				|| MatrixPropertyConstants.MATRIX_ROW_SOURCES.equals(propertyPath)
+				|| MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER.equals(propertyPath)) {
 			provider = new WrappedLabelProvider(provider);
 		}
 		if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_DIRECTION.equals(propertyPath)) {
 			provider = new MatrixRelationshipDirectionLabelProvider();
+		}
+		if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER_STRATEGY.equals(propertyPath)) {
+			provider = new MatrixRelationshipOwnerStrategyLabelProvider();
 		}
 		if (MatrixPropertyConstants.MATRIX_CELL_TYPE.equals(propertyPath)) {
 			provider = new GenericRelationshipMatrixElementTypeLabelProvider();
@@ -440,6 +459,9 @@ public class GenericUMLRelationshipMatrixModelElement extends EMFModelElement {
 		if (MatrixPropertyConstants.MATRIX_ROW_SOURCES.equals(propertyPath) || MatrixPropertyConstants.MATRIX_COLUMN_SOURCES.equals(propertyPath)) {
 			return false;// it is a containment feature, but we need to open a dialog to wrapper the selected element
 		}
+		if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER.equals(propertyPath)) {
+			return false;// it is a containment feature, but we need to open a dialog to wrapper the selected element
+		}
 		return super.getDirectCreation(propertyPath);
 	}
 
@@ -464,6 +486,8 @@ public class GenericUMLRelationshipMatrixModelElement extends EMFModelElement {
 				factory.setNsUri(UMLExpressionsPackage.eNS_URI);
 				return factory;
 			}
+		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER.equals(propertyPath)) {
+			return null;// to remove the green plus
 		}
 		return super.getValueFactory(propertyPath);
 	}

@@ -56,6 +56,21 @@ Since Papyrus 3.0 (Eclipse Oxygen), Papyrus provides a generic matrix for UML Re
 ***'''cellContentsFilter''': a IBooleanEObjectExpression to filter (if required) the contents of the cell in order to display only relationship choosen by the user;
 ***'''editedElement''': the EClass (UML in our usecase) representing the relationship edited by the table;
 *a new EPackage called '''wrapper''' has been created. It provides wrappers to be able to reference easily several kind of objects. Currently, only the implementation for EObject is provided, but extending it, we will be able to reference object which are not EObject too.
+***'''relationshipOwnerStrategy''': an enumeration value used to define the strategy to choose the owner of the created relationships.
+***'''relationshipOwner''': the owner chosen by the user, when the '''relationshipOwnerStrategy''' enumeration has the value '''Default'''
+***'''relationshipOwnerFeature''': the containment feature in the owner, defined by the user, used to contain the created relationships. This field is not yet used.
+**'''MatrixRelationShipDirection''': an enumeration used to define the direction of the relations displayed in the table:
+***'''NONE''': we display all directions in the matrixes (from row to columns AND from columns to rows),
+***'''FROM_ROW_TO_COLUMN''',
+***'''FROM_COLUMN_TO_ROW'''.
+**'''MatrixRelationShipOwnerStrategy''': an enumeration used to define the owner of the created relationships:
+***'''DEFAULT''': the owner will be calculated by Papyrus,
+***'''TABLE_CONTEXT''': the owner will be the context of the table,
+***'''ROW_OWNER''': the owner will be the row's owner,
+***'''ROW_AS_OWER''': the owner will be the row itself,
+***'''COLUMN_OWNER''': the owner will be the column's owner,
+***'''COLUMN_AS_OWNER''': the owner will be the column itself,
+***'''OTHER''': the owner is given by the user, using the field <code>'''GenericRelationshipMatrixCellEditorConfiguration#relationshipOwner'''</code>
 *in '''TableConfiguration''':
 **a new property '''ownedCellEditorConfigurations''', used to define the initial matrix configuration;
 *in '''Table'''
@@ -93,7 +108,8 @@ Here, we will explain you how to create a matrix dedicated to a given relationsh
 ##'''Edited Element''': an element type representing the relationship edited in your table. This field is typed with the object '''ElementTypeConfiguration'''. To be able to define this field, you must: 
 ###load a file '''*.elementtypesconfigurations'''. You can have defined your own element types or reuse a Papyrus one. In all cases, you must have the plugin with containing this file in your workspace.
 ###open the tableconfiguration file in text mode, to check that the reference to the element type is defined as <code>href="platform:/plugin/myFilePath"</code> and not as <code>href="platform:/resource/myFilePath"</code> or as <code>href="../../../myFilePath"</code>.
-##*the final matrix will work only if a cell editor managing the chosen element type exists
+###*the final matrix will work only if a cell editor managing the chosen element type exists
+###'''relationshipOwnerStrategy''': you should define the relationship owner strategy for your new matrix.
 #Define the feature to listen (same behavior than TreeTable)
 ##Edit the '''TreeFillingConfiguration''' for rows and columns
 ##define the feature to listen (wrapped in a IAxis)

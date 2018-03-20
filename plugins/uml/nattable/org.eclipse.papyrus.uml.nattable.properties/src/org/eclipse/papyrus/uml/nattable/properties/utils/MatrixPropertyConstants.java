@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Bug 532639
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.properties.utils;
@@ -37,4 +37,12 @@ public class MatrixPropertyConstants {
 	public static final String MATRIX_CELL_FILTER = "cellContentsFilter";//$NON-NLS-1$
 
 	public static final String MATRIX_RELATIONSHIP_DIRECTION = "relationshipDirection";//$NON-NLS-1$
+
+	public static final String MATRIX_RELATIONSHIP_OWNER = "relationshipOwner";//$NON-NLS-1$
+
+	public static final String MATRIX_RELATIONSHIP_OWNER_STRATEGY = "relationshipOwnerStrategy";//$NON-NLS-1$
+
+	// defined but not yet used
+	public static final String MATRIX_RELATIONSHIP_OWNER_FEATURE = "relationshipOwnerFeature";//$NON-NLS-1$
+
 }

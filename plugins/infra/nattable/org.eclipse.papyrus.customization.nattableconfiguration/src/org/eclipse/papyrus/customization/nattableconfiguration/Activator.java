@@ -13,8 +13,6 @@
 
 package org.eclipse.papyrus.customization.nattableconfiguration;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -22,7 +20,7 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle.
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends AbstractUIPlugin {	
 
 	/**
 	 * The plug-in ID

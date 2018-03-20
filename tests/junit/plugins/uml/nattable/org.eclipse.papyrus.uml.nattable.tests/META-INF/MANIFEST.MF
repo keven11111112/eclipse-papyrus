@@ -3,16 +3,16 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit;bundle-version="4.11.0",
  org.eclipse.uml2.uml;bundle-version="[5.3.0,6.0.0)",
- org.eclipse.papyrus.infra.nattable;bundle-version="[5.0.0,6.0.0)",
- org.eclipse.papyrus.infra.nattable.model;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.uml.nattable;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.nattable;bundle-version="[6.0.0,7.0.0)",
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.uml.nattable;bundle-version="[5.0.0,6.0.0)",
  org.eclipse.papyrus.infra.widgets;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.emf;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.junit.framework;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.junit.utils;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.emf.transaction,
- org.eclipse.papyrus.infra.nattable.common;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.nattable.common;bundle-version="[5.0.0,6.0.0)",
  org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)",
@@ -21,7 +21,7 @@ Export-Package: org.eclipse.papyrus.uml.nattable.tests,
  org.eclipse.papyrus.uml.nattable.tests.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.2.100.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.tests.Activator

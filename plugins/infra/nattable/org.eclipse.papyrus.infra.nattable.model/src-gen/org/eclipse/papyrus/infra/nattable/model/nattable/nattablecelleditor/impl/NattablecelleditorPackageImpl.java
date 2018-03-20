@@ -49,6 +49,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.Gene
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.ICellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.IMatrixCellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipDirection;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage;
 
@@ -112,6 +113,13 @@ public class NattablecelleditorPackageImpl extends EPackageImpl implements Natta
 	 * @generated
 	 */
 	private EEnum matrixRelationShipDirectionEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum matrixRelationShipOwnerStrategyEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -273,6 +281,33 @@ public class NattablecelleditorPackageImpl extends EPackageImpl implements Natta
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerStrategy() {
+		return (EAttribute)genericRelationshipMatrixCellEditorConfigurationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwner() {
+		return (EReference)genericRelationshipMatrixCellEditorConfigurationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerFeature() {
+		return (EReference)genericRelationshipMatrixCellEditorConfigurationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getIMatrixCellEditorConfiguration() {
 		return iMatrixCellEditorConfigurationEClass;
 	}
@@ -284,6 +319,15 @@ public class NattablecelleditorPackageImpl extends EPackageImpl implements Natta
 	 */
 	public EEnum getMatrixRelationShipDirection() {
 		return matrixRelationShipDirectionEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getMatrixRelationShipOwnerStrategy() {
+		return matrixRelationShipOwnerStrategyEEnum;
 	}
 
 	/**
@@ -321,11 +365,15 @@ public class NattablecelleditorPackageImpl extends EPackageImpl implements Natta
 		createEAttribute(genericRelationshipMatrixCellEditorConfigurationEClass, GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__DIRECTION);
 		createEReference(genericRelationshipMatrixCellEditorConfigurationEClass, GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_CONTENTS_FILTER);
 		createEReference(genericRelationshipMatrixCellEditorConfigurationEClass, GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__EDITED_ELEMENT);
+		createEAttribute(genericRelationshipMatrixCellEditorConfigurationEClass, GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_STRATEGY);
+		createEReference(genericRelationshipMatrixCellEditorConfigurationEClass, GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER);
+		createEReference(genericRelationshipMatrixCellEditorConfigurationEClass, GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE);
 
 		iMatrixCellEditorConfigurationEClass = createEClass(IMATRIX_CELL_EDITOR_CONFIGURATION);
 
 		// Create enums
 		matrixRelationShipDirectionEEnum = createEEnum(MATRIX_RELATION_SHIP_DIRECTION);
+		matrixRelationShipOwnerStrategyEEnum = createEEnum(MATRIX_RELATION_SHIP_OWNER_STRATEGY);
 	}
 
 	/**
@@ -355,6 +403,8 @@ public class NattablecelleditorPackageImpl extends EPackageImpl implements Natta
 		NattablestylePackage theNattablestylePackage = (NattablestylePackage)EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI);
 		BooleanExpressionsPackage theBooleanExpressionsPackage = (BooleanExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(BooleanExpressionsPackage.eNS_URI);
 		ElementTypesConfigurationsPackage theElementTypesConfigurationsPackage = (ElementTypesConfigurationsPackage)EPackage.Registry.INSTANCE.getEPackage(ElementTypesConfigurationsPackage.eNS_URI);
+		NattablewrapperPackage theNattablewrapperPackage = (NattablewrapperPackage)EPackage.Registry.INSTANCE.getEPackage(NattablewrapperPackage.eNS_URI);
+		NattableaxisPackage theNattableaxisPackage = (NattableaxisPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -373,6 +423,9 @@ public class NattablecelleditorPackageImpl extends EPackageImpl implements Natta
 		initEAttribute(getGenericRelationshipMatrixCellEditorConfiguration_Direction(), this.getMatrixRelationShipDirection(), "direction", "FROM_ROW_TO_COLUMN", 0, 1, GenericRelationshipMatrixCellEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getGenericRelationshipMatrixCellEditorConfiguration_CellContentsFilter(), theBooleanExpressionsPackage.getIBooleanEObjectExpression(), null, "cellContentsFilter", null, 0, 1, GenericRelationshipMatrixCellEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getGenericRelationshipMatrixCellEditorConfiguration_EditedElement(), theElementTypesConfigurationsPackage.getElementTypeConfiguration(), null, "editedElement", null, 0, 1, GenericRelationshipMatrixCellEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerStrategy(), this.getMatrixRelationShipOwnerStrategy(), "relationshipOwnerStrategy", "DEFAULT", 1, 1, GenericRelationshipMatrixCellEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwner(), theNattablewrapperPackage.getIWrapper(), null, "relationshipOwner", null, 0, 1, GenericRelationshipMatrixCellEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerFeature(), theNattableaxisPackage.getIAxis(), null, "relationshipOwnerFeature", null, 0, 1, GenericRelationshipMatrixCellEditorConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(iMatrixCellEditorConfigurationEClass, IMatrixCellEditorConfiguration.class, "IMatrixCellEditorConfiguration", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -381,6 +434,15 @@ public class NattablecelleditorPackageImpl extends EPackageImpl implements Natta
 		addEEnumLiteral(matrixRelationShipDirectionEEnum, MatrixRelationShipDirection.NONE);
 		addEEnumLiteral(matrixRelationShipDirectionEEnum, MatrixRelationShipDirection.FROM_ROW_TO_COLUMN);
 		addEEnumLiteral(matrixRelationShipDirectionEEnum, MatrixRelationShipDirection.FROM_COLUMN_TO_ROW);
+
+		initEEnum(matrixRelationShipOwnerStrategyEEnum, MatrixRelationShipOwnerStrategy.class, "MatrixRelationShipOwnerStrategy"); //$NON-NLS-1$
+		addEEnumLiteral(matrixRelationShipOwnerStrategyEEnum, MatrixRelationShipOwnerStrategy.DEFAULT);
+		addEEnumLiteral(matrixRelationShipOwnerStrategyEEnum, MatrixRelationShipOwnerStrategy.TABLE_CONTEXT);
+		addEEnumLiteral(matrixRelationShipOwnerStrategyEEnum, MatrixRelationShipOwnerStrategy.ROW_OWNER);
+		addEEnumLiteral(matrixRelationShipOwnerStrategyEEnum, MatrixRelationShipOwnerStrategy.ROW_AS_OWNER);
+		addEEnumLiteral(matrixRelationShipOwnerStrategyEEnum, MatrixRelationShipOwnerStrategy.COLUMN_OWNER);
+		addEEnumLiteral(matrixRelationShipOwnerStrategyEEnum, MatrixRelationShipOwnerStrategy.COLUMN_AS_OWNER);
+		addEEnumLiteral(matrixRelationShipOwnerStrategyEEnum, MatrixRelationShipOwnerStrategy.OTHER);
 	}
 
 } //NattablecelleditorPackageImpl

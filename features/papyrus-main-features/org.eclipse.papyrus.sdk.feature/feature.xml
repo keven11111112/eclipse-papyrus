@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.sdk.feature"
       label="Papyrus for UML"
-      version="3.3.0.qualifier"
+      version="3.4.0.qualifier"
       provider-name="Eclipse Modeling Project"
       plugin="org.eclipse.papyrus.sdk">
 

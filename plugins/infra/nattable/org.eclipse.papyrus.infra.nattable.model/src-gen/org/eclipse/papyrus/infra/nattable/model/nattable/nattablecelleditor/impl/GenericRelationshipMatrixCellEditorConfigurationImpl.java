@@ -22,12 +22,15 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanEObjectExpression;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipDirection;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage;
 
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StyledElementImpl;
 
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.IWrapper;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 
 /**
@@ -42,6 +45,9 @@ import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.impl.GenericRelationshipMatrixCellEditorConfigurationImpl#getDirection <em>Direction</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.impl.GenericRelationshipMatrixCellEditorConfigurationImpl#getCellContentsFilter <em>Cell Contents Filter</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.impl.GenericRelationshipMatrixCellEditorConfigurationImpl#getEditedElement <em>Edited Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.impl.GenericRelationshipMatrixCellEditorConfigurationImpl#getRelationshipOwnerStrategy <em>Relationship Owner Strategy</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.impl.GenericRelationshipMatrixCellEditorConfigurationImpl#getRelationshipOwner <em>Relationship Owner</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.impl.GenericRelationshipMatrixCellEditorConfigurationImpl#getRelationshipOwnerFeature <em>Relationship Owner Feature</em>}</li>
  * </ul>
  *
  * @generated
@@ -106,6 +112,46 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	 * @ordered
 	 */
 	protected ElementTypeConfiguration editedElement;
+
+	/**
+	 * The default value of the '{@link #getRelationshipOwnerStrategy() <em>Relationship Owner Strategy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelationshipOwnerStrategy()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final MatrixRelationShipOwnerStrategy RELATIONSHIP_OWNER_STRATEGY_EDEFAULT = MatrixRelationShipOwnerStrategy.DEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getRelationshipOwnerStrategy() <em>Relationship Owner Strategy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelationshipOwnerStrategy()
+	 * @generated
+	 * @ordered
+	 */
+	protected MatrixRelationShipOwnerStrategy relationshipOwnerStrategy = RELATIONSHIP_OWNER_STRATEGY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getRelationshipOwner() <em>Relationship Owner</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelationshipOwner()
+	 * @generated
+	 * @ordered
+	 */
+	protected IWrapper relationshipOwner;
+
+	/**
+	 * The cached value of the '{@link #getRelationshipOwnerFeature() <em>Relationship Owner Feature</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRelationshipOwnerFeature()
+	 * @generated
+	 * @ordered
+	 */
+	protected IAxis relationshipOwnerFeature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -254,11 +300,122 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MatrixRelationShipOwnerStrategy getRelationshipOwnerStrategy() {
+		return relationshipOwnerStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRelationshipOwnerStrategy(MatrixRelationShipOwnerStrategy newRelationshipOwnerStrategy) {
+		MatrixRelationShipOwnerStrategy oldRelationshipOwnerStrategy = relationshipOwnerStrategy;
+		relationshipOwnerStrategy = newRelationshipOwnerStrategy == null ? RELATIONSHIP_OWNER_STRATEGY_EDEFAULT : newRelationshipOwnerStrategy;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_STRATEGY, oldRelationshipOwnerStrategy, relationshipOwnerStrategy));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IWrapper getRelationshipOwner() {
+		return relationshipOwner;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRelationshipOwner(IWrapper newRelationshipOwner, NotificationChain msgs) {
+		IWrapper oldRelationshipOwner = relationshipOwner;
+		relationshipOwner = newRelationshipOwner;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER, oldRelationshipOwner, newRelationshipOwner);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRelationshipOwner(IWrapper newRelationshipOwner) {
+		if (newRelationshipOwner != relationshipOwner) {
+			NotificationChain msgs = null;
+			if (relationshipOwner != null)
+				msgs = ((InternalEObject)relationshipOwner).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER, null, msgs);
+			if (newRelationshipOwner != null)
+				msgs = ((InternalEObject)newRelationshipOwner).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER, null, msgs);
+			msgs = basicSetRelationshipOwner(newRelationshipOwner, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER, newRelationshipOwner, newRelationshipOwner));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IAxis getRelationshipOwnerFeature() {
+		return relationshipOwnerFeature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetRelationshipOwnerFeature(IAxis newRelationshipOwnerFeature, NotificationChain msgs) {
+		IAxis oldRelationshipOwnerFeature = relationshipOwnerFeature;
+		relationshipOwnerFeature = newRelationshipOwnerFeature;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE, oldRelationshipOwnerFeature, newRelationshipOwnerFeature);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRelationshipOwnerFeature(IAxis newRelationshipOwnerFeature) {
+		if (newRelationshipOwnerFeature != relationshipOwnerFeature) {
+			NotificationChain msgs = null;
+			if (relationshipOwnerFeature != null)
+				msgs = ((InternalEObject)relationshipOwnerFeature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE, null, msgs);
+			if (newRelationshipOwnerFeature != null)
+				msgs = ((InternalEObject)newRelationshipOwnerFeature).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE, null, msgs);
+			msgs = basicSetRelationshipOwnerFeature(newRelationshipOwnerFeature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE, newRelationshipOwnerFeature, newRelationshipOwnerFeature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_CONTENTS_FILTER:
 				return basicSetCellContentsFilter(null, msgs);
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER:
+				return basicSetRelationshipOwner(null, msgs);
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE:
+				return basicSetRelationshipOwnerFeature(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -280,6 +437,12 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__EDITED_ELEMENT:
 				if (resolve) return getEditedElement();
 				return basicGetEditedElement();
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_STRATEGY:
+				return getRelationshipOwnerStrategy();
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER:
+				return getRelationshipOwner();
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE:
+				return getRelationshipOwnerFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -303,6 +466,15 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 				return;
 			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__EDITED_ELEMENT:
 				setEditedElement((ElementTypeConfiguration)newValue);
+				return;
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_STRATEGY:
+				setRelationshipOwnerStrategy((MatrixRelationShipOwnerStrategy)newValue);
+				return;
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER:
+				setRelationshipOwner((IWrapper)newValue);
+				return;
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE:
+				setRelationshipOwnerFeature((IAxis)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -328,6 +500,15 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__EDITED_ELEMENT:
 				setEditedElement((ElementTypeConfiguration)null);
 				return;
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_STRATEGY:
+				setRelationshipOwnerStrategy(RELATIONSHIP_OWNER_STRATEGY_EDEFAULT);
+				return;
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER:
+				setRelationshipOwner((IWrapper)null);
+				return;
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE:
+				setRelationshipOwnerFeature((IAxis)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -348,6 +529,12 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 				return cellContentsFilter != null;
 			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__EDITED_ELEMENT:
 				return editedElement != null;
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_STRATEGY:
+				return relationshipOwnerStrategy != RELATIONSHIP_OWNER_STRATEGY_EDEFAULT;
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER:
+				return relationshipOwner != null;
+			case NattablecelleditorPackage.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE:
+				return relationshipOwnerFeature != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -366,6 +553,8 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 		result.append(cellEditorId);
 		result.append(", direction: "); //$NON-NLS-1$
 		result.append(direction);
+		result.append(", relationshipOwnerStrategy: "); //$NON-NLS-1$
+		result.append(relationshipOwnerStrategy);
 		result.append(')');
 		return result.toString();
 	}
