@@ -20,10 +20,9 @@ import javax.inject.Singleton
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory
 import org.eclipse.uml2.uml.Profile
 import org.eclipse.uml2.uml.UMLPackage
-import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory
-import org.eclipse.emf.ecore.xmi.XMLResource
 
 /**
  * Transformation rule for generating an {@link ElementTypeSetConfiguration} from a UML {@link Profile}.

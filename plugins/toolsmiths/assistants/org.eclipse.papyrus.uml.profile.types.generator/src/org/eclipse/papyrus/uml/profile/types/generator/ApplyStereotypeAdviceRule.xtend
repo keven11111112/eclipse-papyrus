@@ -16,8 +16,10 @@ package org.eclipse.papyrus.uml.profile.types.generator
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration
-import org.eclipse.uml2.uml.Stereotype
+import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdviceConfiguration
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdviceFactory
+import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdvicePackage
+import org.eclipse.uml2.uml.Stereotype
 
 /**
  * Transformation rule for generating an {@link ApplyStereotypeAdviceConfiguration} from a UML {@link Stereotype}.
@@ -33,11 +35,11 @@ class ApplyStereotypeAdviceRule {
     def create createApplyStereotypeAdviceConfiguration toAdviceConfiguration(Stereotype umlStereotype,
         ImpliedExtension umlExtension, ElementTypeConfiguration supertype) {
 
-        identifier = umlStereotype.name.toFirstLower.qualified + supertype.hintSuffix
+        identifier = umlStereotype.name.toFirstLower.qualified + supertype.hintSuffix +"."+ ApplyStereotypeAdvicePackage.eNAME;
         stereotypesToApply.add(umlStereotype.toStereotypeToApply(supertype))
         target = umlExtension.toElementType(supertype)
         // make file more readable
-        description = umlStereotype.name
+        description = "Apply Stereotype "+umlStereotype.name
     }
 
     private def create createStereotypeToApply toStereotypeToApply(Stereotype umlStereotype, ElementTypeConfiguration supertype) {

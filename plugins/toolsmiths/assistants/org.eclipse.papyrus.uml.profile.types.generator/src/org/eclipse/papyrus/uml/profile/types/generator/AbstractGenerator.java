@@ -104,13 +104,17 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 
 		try {
 			Resource output = resourceSet.createResource(outputURI);
-
 			result = generate(input, output.getContents());
 
 			// use Identifier as XML-ID. This implies that the same XML-ID is used when re-generating
 			EObject set = output.getContents().size() > 0 ? output.getContents().get(0) : null;
 			if (set instanceof ElementTypeSetConfiguration) {
-				for (ElementTypeConfiguration elemTypeConfig : ((ElementTypeSetConfiguration) set).getElementTypeConfigurations()) {
+				ElementTypeSetConfiguration elementTypeSet = (ElementTypeSetConfiguration) set;
+				String elementTypeSetId = elementTypeSet.getIdentifier();
+				if (elementTypeSetId != null && elementTypeSetId.length() > 0) {
+					((XMLResource) output).setID(elementTypeSet, escapeID(elementTypeSetId));
+				}				
+				for (ElementTypeConfiguration elemTypeConfig : elementTypeSet.getElementTypeConfigurations()) {
 					String id = elemTypeConfig.getIdentifier();
 					if (id != null && id.length() > 0) {
 						((XMLResource) output).setID(elemTypeConfig, escapeID(id));
