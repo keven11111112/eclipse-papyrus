@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc label="Developing profile migration tool">
+   <topic label="Developing profile migration tool" >
+      <link toc="target/site/generated-eclipse-help/profileMigrationToolUserDoc-toc.xml"/>
+      <anchor id="profileMigrationToolUserDoc"/>
+   </topic>
+</toc>

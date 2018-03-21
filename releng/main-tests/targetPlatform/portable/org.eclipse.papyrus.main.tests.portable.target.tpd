@@ -2,6 +2,11 @@ target "Papyrus Tests" with source requirements
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
+//updateFrom("EMF COMPARE",0)
+
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/releases/latest" {
+	org.eclipse.emf.compare.source.feature.group
+}
 
 //manualUpdate ("GMF Tooling",0) 
 

@@ -38,6 +38,12 @@ location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20
 
 location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20170705-2102" // oomph
 
+//updateFrom("EMF COMPARE",0)
+
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/releases/latest" {
+	org.eclipse.emf.compare.ide.ui.feature.group lazy
+	org.eclipse.emf.compare.source.feature.group
+}
 
 /*** Manual referencing ***/
 
@@ -53,12 +59,6 @@ location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4
 	org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group lazy
 	org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group lazy
 	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
-}
-
-//manualUpdate
-
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/releases/latest" {
-	org.eclipse.emf.compare.ide.ui.feature.group lazy
 }
 
 //manualUpdate ("GMF Tooling",0) 

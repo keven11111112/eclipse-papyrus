@@ -20,6 +20,7 @@
 		<module>org.eclipse.papyrus.toolsmiths</module>
 		<module>org.eclipse.papyrus.toolsmiths.palette</module>
 		<module>org.eclipse.papyrus.toolsmiths.expressions</module>
+		<module>profilemigration</module>
 		
 		<module>../infra/gmfdiag/paletteconfiguration/org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.editor</module>
 		<module>../uml/properties/org.eclipse.papyrus.uml.properties.generation</module>
