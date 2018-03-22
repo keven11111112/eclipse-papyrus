@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<toc label="Developing profile migration tool">
-   <topic label="Developing profile migration tool" >
-      <link toc="target/site/generated-eclipse-help/profileMigrationToolUserDoc-toc.xml"/>
-      <anchor id="profileMigrationToolUserDoc"/>
-   </topic>
+<toc label="Toolsmiths" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocDev">
+  <topic label="Toolsmiths" >
+    <topic label="Profile migration tool" >
+      <link toc="target/generated-eclipse-help/profileMigrationToolDevDoc-toc.xml"/>
+  	</topic>
+  </topic>
 </toc>
