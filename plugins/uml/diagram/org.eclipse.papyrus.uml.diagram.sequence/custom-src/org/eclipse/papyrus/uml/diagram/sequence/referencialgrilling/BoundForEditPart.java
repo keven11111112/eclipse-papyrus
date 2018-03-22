@@ -7,13 +7,13 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Patrick TESSIER (CEA LIST) patrick.tessier@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 531596
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentEditPart;
@@ -23,50 +23,100 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEdi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 
 /**
- * @author Patrick Tessier
- *
+ * This allows to define util methods for bounds in edit parts.
  */
 public class BoundForEditPart {
 
-	public static Bounds getBounds(Node node){
-		return (Bounds)	node.getLayoutConstraint();
-	}
-	public static int getHeightFromView(Node node){
-		Bounds bounds=BoundForEditPart.getBounds(node);
-		if( bounds!=null&& bounds.getHeight()!=-1){
-			return bounds.getHeight();
+	/**
+	 * This allows to get bounds for a node in parameter.
+	 * 
+	 * @param node
+	 *            The node which one to get bounds.
+	 * @return The bounds.
+	 */
+	public static Bounds getBounds(final Node node) {
+		Bounds initialBounds = (Bounds) node.getLayoutConstraint();
+
+		if (initialBounds.getWidth() == -1) {
+			initialBounds.setWidth(getDefaultWidthFromView(node));
 		}
-		else{
-			if (node.getType().equals(CombinedFragmentEditPart.VISUAL_ID)){
-				return CCombinedFragmentEditPart.DEFAULT_HEIGHT;
-			}
-			if (node.getType().equals(InteractionOperandEditPart.VISUAL_ID)){
-				return 40;
-			}
-			if(node.getType().equals(LifelineEditPart.VISUAL_ID)){
-				return CLifeLineEditPart.DEFAUT_HEIGHT;
-			}
-			return 100;
+		if (initialBounds.getHeight() == -1) {
+			initialBounds.setHeight(getDefaultHeightFromView(node));
 		}
 
+		return (Bounds) node.getLayoutConstraint();
 	}
-	public static int getWidthFromView(Node node){
-		Bounds bounds=BoundForEditPart.getBounds(node);
-		if(bounds!=null&& bounds.getWidth()!=-1){
-			return bounds.getWidth();
+
+	/**
+	 * This allows to get height from view node.
+	 * 
+	 * @param node
+	 *            The node which one to get height.
+	 * @return The height.
+	 */
+	public static int getHeightFromView(final Node node) {
+		Bounds bounds = BoundForEditPart.getBounds(node);
+		if (bounds != null && bounds.getHeight() != -1) {
+			return bounds.getHeight();
+		} else {
+			return getDefaultHeightFromView(node);
 		}
-		else{
-			if (node.getType().equals(CombinedFragmentEditPart.VISUAL_ID)){
-				return CCombinedFragmentEditPart.DEFAULT_HEIGHT;
-			}
-			if (node.getType().equals(InteractionOperandEditPart.VISUAL_ID)){
-				return 100;
-			}
-			if(node.getType().equals(LifelineEditPart.VISUAL_ID)){
-				return CLifeLineEditPart.DEFAUT_WIDTH;
-			}
+	}
+
+	/**
+	 * This allows to get the default height of a view node.
+	 * 
+	 * @param node
+	 *            The node which one to get the default height.
+	 * @return The default height.
+	 */
+	public static int getDefaultHeightFromView(final Node node) {
+		if (node.getType().equals(CombinedFragmentEditPart.VISUAL_ID)) {
+			return CCombinedFragmentEditPart.DEFAULT_HEIGHT;
+		}
+		if (node.getType().equals(InteractionOperandEditPart.VISUAL_ID)) {
+			return 40;
+		}
+		if (node.getType().equals(LifelineEditPart.VISUAL_ID)) {
+			return CLifeLineEditPart.DEFAUT_HEIGHT;
+		}
+		return 100;
+	}
+
+	/**
+	 * This allows to get width from view node.
+	 * 
+	 * @param node
+	 *            The node which one to get width.
+	 * @return The width.
+	 */
+	public static int getWidthFromView(final Node node) {
+		Bounds bounds = BoundForEditPart.getBounds(node);
+		if (bounds != null && bounds.getWidth() != -1) {
+			return bounds.getWidth();
+		} else {
+			return getDefaultWidthFromView(node);
+		}
+	}
+
+	/**
+	 * This allows to get the default width of a view node.
+	 * 
+	 * @param node
+	 *            The node which one to get the default width.
+	 * @return The default width.
+	 */
+	public static int getDefaultWidthFromView(final Node node) {
+		if (node.getType().equals(CombinedFragmentEditPart.VISUAL_ID)) {
+			return CCombinedFragmentEditPart.DEFAULT_HEIGHT;
+		}
+		if (node.getType().equals(InteractionOperandEditPart.VISUAL_ID)) {
 			return 100;
 		}
+		if (node.getType().equals(LifelineEditPart.VISUAL_ID)) {
+			return CLifeLineEditPart.DEFAUT_WIDTH;
+		}
+		return 100;
 	}
 
 }
