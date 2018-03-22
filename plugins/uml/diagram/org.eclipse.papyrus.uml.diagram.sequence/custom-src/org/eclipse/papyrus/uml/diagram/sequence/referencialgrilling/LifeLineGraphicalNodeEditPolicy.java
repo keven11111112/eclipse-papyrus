@@ -575,15 +575,21 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			// Translate to relative
 			getHostFigure().getParent().translateToRelative(snappedLocation);
 			int stickerHeight = ((CLifeLineEditPart) targetEditPart).getStickerHeight();
-			if (stickerHeight != -1) {
-				snappedLocation.y = snappedLocation.y - (stickerHeight / 2);
-			}
+
 			Rectangle bounds = getHostFigure().getBounds();
 
-			Rectangle newBounds = new Rectangle(new Point(bounds.x(), snappedLocation.y), new Dimension(bounds.width(), bounds.height() - snappedLocation.y));
+			// Calculate the new Y to get the message create at the middle of the life line head
+			int newY = snappedLocation.y;
+			// Calculate the new height depending to the current height, the new Y position and the life line head
+			int newHeight = bounds.height() - snappedLocation.y;
+			if (stickerHeight != -1) {
+				newY = snappedLocation.y - (stickerHeight / 2);
+				newHeight = newHeight + stickerHeight;
+			}
 
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Move&Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), //$NON-NLS-1$
-					newBounds);
+			Rectangle newBounds = new Rectangle(new Point(bounds.x(), newY), new Dimension(bounds.width(), bounds.height() - snappedLocation.y + stickerHeight));
+
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Move&Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), newBounds); //$NON-NLS-1$
 
 			compoundCommand.add(originalCommand);
 			compoundCommand.add(new GMFtoGEFCommandWrapper(setBoundsCommand));
