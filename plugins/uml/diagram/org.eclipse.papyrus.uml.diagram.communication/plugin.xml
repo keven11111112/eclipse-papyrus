@@ -356,19 +356,19 @@
          diagramType="PapyrusUMLCommunicationDiagram"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.communication.custom.migration.CommunicationReconciler_1_1_0"
          source="1.0.0"
-         target="1.3.0">
+         target="1.4.0">
    </diagramReconciler>
    <diagramReconciler
          diagramType="PapyrusUMLCommunicationDiagram"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.communication.custom.migration.CommunicationReconcilerForCompartment_1_2_0"
          source="1.1.0"
-         target="1.3.0">
+         target="1.4.0">
    </diagramReconciler>
    <diagramReconciler
          diagramType="PapyrusUMLCommunicationDiagram"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.communication.custom.migration.CommunicationReconciler_1_2_0"
          source="1.1.0"
-         target="1.3.0">
+         target="1.4.0">
    </diagramReconciler>
 </extension>
    <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
