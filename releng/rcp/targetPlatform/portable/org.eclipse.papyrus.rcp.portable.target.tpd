@@ -9,7 +9,7 @@ location egit "http://download.eclipse.org/egit/updates-4.9.2" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.7-M-builds/M-4.7.3RC4-201803010715/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.7/R-4.7.3-201803010715/" {
 	org.eclipse.e4.core.tools.feature.feature.group
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
