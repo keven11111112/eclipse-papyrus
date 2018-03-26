@@ -18,7 +18,6 @@ import javax.inject.Singleton
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdviceConfiguration
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdviceFactory
-import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdvicePackage
 import org.eclipse.uml2.uml.Stereotype
 
 /**
@@ -35,7 +34,7 @@ class ApplyStereotypeAdviceRule {
     def create createApplyStereotypeAdviceConfiguration toAdviceConfiguration(Stereotype umlStereotype,
         ImpliedExtension umlExtension, ElementTypeConfiguration supertype) {
 
-        identifier = umlStereotype.name.toFirstLower.qualified + supertype.hintSuffix +"."+ ApplyStereotypeAdvicePackage.eNAME;
+        identifier = umlStereotype.name.toFirstLower.qualified + supertype.hintSuffix;
         stereotypesToApply.add(umlStereotype.toStereotypeToApply(supertype))
         target = umlExtension.toElementType(supertype)
         // make file more readable

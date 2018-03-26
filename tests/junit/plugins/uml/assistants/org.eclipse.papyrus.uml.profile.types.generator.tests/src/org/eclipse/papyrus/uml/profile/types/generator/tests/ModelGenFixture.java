@@ -183,13 +183,11 @@ public class ModelGenFixture extends ResourceSetFixture {
 	}
 
 	public SpecializationTypeConfiguration assertSpecializationType(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
-		SpecializationTypeConfiguration result = getElementTypeConfiguration(metaclassExtension, SpecializationTypeConfiguration.class);
-		return result;
+		return getElementTypeConfiguration(metaclassExtension, SpecializationTypeConfiguration.class);
 	}
 
 	public List<SpecializationTypeConfiguration> assertAllSpecializationTypes(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
-		List<SpecializationTypeConfiguration> result = getAllElementTypeConfigurations(metaclassExtension, SpecializationTypeConfiguration.class);
-		return result;
+		return getAllElementTypeConfigurations(metaclassExtension, SpecializationTypeConfiguration.class);
 	}
 
 	public StereotypeApplicationMatcherConfiguration assertStereotypeMatcher(SpecializationTypeConfiguration specializationType) {
@@ -252,13 +250,11 @@ public class ModelGenFixture extends ResourceSetFixture {
 	}
 
 	public ApplyStereotypeAdviceConfiguration assertApplyStereotypeAdvice(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
-		ApplyStereotypeAdviceConfiguration result = getAdviceBindingConfiguration(metaclassExtension, ApplyStereotypeAdviceConfiguration.class);
-		return result;
+		return getAdviceBindingConfiguration(metaclassExtension, ApplyStereotypeAdviceConfiguration.class);
 	}
 
 	public List<ApplyStereotypeAdviceConfiguration> assertAllApplyStereotypeAdvices(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
-		List<ApplyStereotypeAdviceConfiguration> result = getAllAdviceBindingConfigurations(metaclassExtension, ApplyStereotypeAdviceConfiguration.class);
-		return result;
+		return getAllAdviceBindingConfigurations(metaclassExtension, ApplyStereotypeAdviceConfiguration.class);
 	}
 
 	public void assertNoApplyStereotypeAdvice(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {

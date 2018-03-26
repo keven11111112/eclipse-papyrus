@@ -29,3 +29,4 @@ Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profile.assistants.generator.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.uml.profile.assistants.generator.tests
