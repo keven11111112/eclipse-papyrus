@@ -10,6 +10,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *   Camille Letavernier (camille.letavernier@cea.fr) - Loosen the MessageSortChange restriction
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 531596
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -74,6 +75,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
@@ -82,6 +84,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -1734,5 +1737,50 @@ public class SequenceUtil {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * This allows to get life lines from an element in an interaction.
+	 * 
+	 * @param editPart
+	 *            The initial edit part from which one search the lifelines.
+	 * @return The existing lifelines.
+	 */
+	public static Set<LifelineEditPart> getLifeLinesFromEditPart(final EditPart editPart) {
+		final Set<LifelineEditPart> lifeLines = new HashSet<LifelineEditPart>();
+
+		final EditPart interactionCompartment = getInteractionCompartment(editPart);
+		if (null != interactionCompartment) {
+			for (Object child : interactionCompartment.getChildren()) {
+				if (child instanceof LifelineEditPart) {
+					final LifelineEditPart lifelineEditPart = (LifelineEditPart) child;
+					lifeLines.add(lifelineEditPart);
+				}
+			}
+		}
+
+		return lifeLines;
+	}
+
+	/**
+	 * Find parent interaction compartment from an edit part.
+	 *
+	 * @return The edit part of the parent interaction.
+	 */
+	public static EditPart getInteractionCompartment(final EditPart editPart) {
+		EditPart currentEditPart = editPart;
+
+		if (editPart instanceof AbstractMessageEditPart) {
+			if (((AbstractMessageEditPart) editPart).getSource() instanceof LifelineEditPart) {
+				currentEditPart = ((AbstractMessageEditPart) editPart).getSource();
+			} else if (((AbstractMessageEditPart) editPart).getTarget() instanceof LifelineEditPart) {
+				currentEditPart = ((AbstractMessageEditPart) editPart).getTarget();
+			}
+		}
+
+		while (currentEditPart != null && !(currentEditPart instanceof InteractionInteractionCompartmentEditPart)) {
+			currentEditPart = currentEditPart.getParent();
+		}
+		return currentEditPart;
 	}
 }

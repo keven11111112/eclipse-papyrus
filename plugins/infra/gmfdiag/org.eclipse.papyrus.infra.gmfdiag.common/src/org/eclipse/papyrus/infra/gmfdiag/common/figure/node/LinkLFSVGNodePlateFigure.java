@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 482586
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 531596
  *   
  *****************************************************************************/
 
@@ -101,5 +102,14 @@ public class LinkLFSVGNodePlateFigure extends SVGNodePlateFigure {
 
 			return createAnchor(pt);
 		}
+	}
+	
+	/**
+	 * Get the graphical edit part.
+	 * 
+	 * @return The myHost.
+	 */
+	public GraphicalEditPart getGraphicalEditPart() {
+		return myHost;
 	}
 }

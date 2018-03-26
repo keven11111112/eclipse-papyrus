@@ -9,6 +9,8 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756, 526191
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 531596
+ *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -62,6 +64,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageDeleteHelper;
@@ -640,7 +643,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	protected GraphicalNodeEditPolicy getBasicGraphicalNodeEditPolicy() {
 		if (graphicalNodeEditPolicy == null) {
-			graphicalNodeEditPolicy = new GraphicalNodeEditPolicy();
+			graphicalNodeEditPolicy = new CustomGraphicalNodeEditPolicy();
 			graphicalNodeEditPolicy.setHost(getHost());
 		}
 		return graphicalNodeEditPolicy;
@@ -729,6 +732,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 					if (!request.getConnectionEditPart().getTarget().equals(request.getTarget())) {
 						((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand((ConnectionEditPart) request.getConnectionEditPart()));
 					}
+				} else {
+					command = reconnectTargetCommand;
 				}
 			} else if (request.getConnectionEditPart() instanceof MessageDeleteEditPart) {
 				if (!LifelineEditPartUtil.hasNextEvent((Point) requestLocationCopy, (LifelineEditPart) getHost())) {
@@ -755,6 +760,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 					if (!request.getConnectionEditPart().getTarget().equals(request.getTarget())) {
 						((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand((ConnectionEditPart) request.getConnectionEditPart()));
 					}
+				} else {
+					command = reconnectTargetCommand;
 				}
 			} else {
 				command = reconnectTargetCommand;

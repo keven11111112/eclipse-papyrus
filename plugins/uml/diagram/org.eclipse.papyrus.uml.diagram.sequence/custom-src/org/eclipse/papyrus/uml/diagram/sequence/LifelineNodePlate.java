@@ -8,18 +8,24 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 531596
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence;
 
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.LinkLFSVGNodePlateFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
 
 /**
  * This figure is used in order to allow a link to follow the shape of the lifeLine
@@ -69,7 +75,12 @@ public class LifelineNodePlate extends LinkLFSVGNodePlateFigure {
 		} else {
 			Point temp = p.getCopy();
 			translateToRelative(temp);
-			PrecisionPoint pt = BaseSlidableAnchor.getAnchorRelativeLocation(temp, getBounds());
+			
+			// This allows to calculate the bounds corresponding to the node instead of the figure bounds
+			final Bounds bounds = BoundForEditPart.getBounds((Node)getGraphicalEditPart().getModel());
+			final Rectangle rectangle = new Rectangle(new Point(bounds.getX(), bounds.getY()), new Dimension(bounds.getWidth(), bounds.getHeight()));
+			
+			PrecisionPoint pt = BaseSlidableAnchor.getAnchorRelativeLocation(temp, rectangle);
 			return createAnchor(pt);
 		}
 	}
