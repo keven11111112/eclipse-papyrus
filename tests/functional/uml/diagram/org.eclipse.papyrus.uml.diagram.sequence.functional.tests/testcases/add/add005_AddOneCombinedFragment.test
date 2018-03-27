@@ -6,8 +6,8 @@ Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _WPB6kBh3Eeilv_R0H7e8aA
-Runtime-Version: 2.2.0.201706152316
-Save-Time: 2/23/18 2:45 PM
+Runtime-Version: 2.3.0.201803252310
+Save-Time: 3/27/18 3:22 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -22,6 +22,13 @@ Entry-Name: .content
 
 get-view "Project Explorer" | get-tree | select "SequenceDiagramTest/SequenceDiagramTest" | double-click
 get-view "Model Explorer" | get-tree | select "SequenceDiagramTest/NewSequenceDiagram" | double-click
+get-preferences-menu | click
+with [get-window Preferences] {
+    get-tree | select "Papyrus/Diagrams/PapyrusUMLSequenceDiagram Diagram"
+    get-group "Automatic creations" | get-button "A Behavior Execution Specification and a Reply Message" | click
+    get-button Apply | click
+    get-button "Apply and Close" | click
+}
 with [get-editor "SequenceDiagramTest.di"] {
     get-diagram -index 1 | get-edit-part -name Interaction1 | mouse-move 909 120 -height 1000 -width 915
     with [get-palette | get-palette-entry Lifeline] {
@@ -107,12 +114,23 @@ with [get-editor "SequenceDiagramTest.di"] {
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
-    -name CombinedFragment1] {
+    -name CombinedFragment3] {
     get-property x | equals 34 | verify-true
     get-property y | equals 156 | verify-true
     get-property width | equals 481 | verify-true
     get-property height | equals 221 | verify-true
 }
-get-view "Model Explorer" | get-tree | get-item -path "SequenceDiagramTest/Interaction1/CombinedFragment1" 
-    | get-property selection | equals false | verify-true
+with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1] {
+    with [get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
+        get-edit-part -name Lifeline2 | mouse-move 66 216 -height 700 -width 100
+        get-edit-part -name CombinedFragment3 | get-edit-part -name CombinedFragment3 | mouse-move 10 153 -height 202 
+            -width 481
+    }
+    mouse-move 916 228 -height 1000 -width 1892
+}
+get-view "Model Explorer" | get-tree | get-item 
+    -path "SequenceDiagramTest/Interaction1/CombinedFragment3/InteractionOperand0" | get-property caption 
+    | equals InteractionOperand0 | verify-true
+get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | mouse-move 1143 114 
+    -height 1000 -width 1892
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

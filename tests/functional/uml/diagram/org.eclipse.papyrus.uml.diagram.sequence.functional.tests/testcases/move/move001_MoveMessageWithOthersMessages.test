@@ -1,0 +1,557 @@
+--- RCPTT testcase ---
+Format-Version: 1.0
+Contexts: _NHXLMAf_EeiHkPkpSqDhSg,_KWhwYAgBEeiHkPkpSqDhSg
+Element-Name: move001_MoveMessageWithOthersMessages
+Element-Type: testcase
+Element-Version: 3.0
+External-Reference: 
+Id: _BqX60DDNEeiA_5cwf7Mpvw
+Runtime-Version: 2.3.0.201803252310
+Save-Time: 3/27/18 2:29 PM
+Testcase-Type: ecl
+
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
+Content-Type: text/plain
+Entry-Name: .description
+
+Move message on life lines
+------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa--
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
+Content-Type: text/ecl
+Entry-Name: .content
+
+get-view "Project Explorer" | get-tree | select "SequenceDiagramTest/SequenceDiagramTest" | double-click
+get-view "Model Explorer" | get-tree | select "SequenceDiagramTest/NewSequenceDiagram" | double-click
+get-preferences-menu | click
+with [get-window Preferences] {
+    get-tree | select "Papyrus/Diagrams/PapyrusUMLSequenceDiagram Diagram"
+    with [get-group others | get-button "When moving up a message, everything after that message is also moved up"] {
+        uncheck
+    }
+    with [get-group "Automatic creations"] {
+        get-button Nothing | click
+    }
+    get-button "Apply and Close" | click
+}
+
+with [get-editor "SequenceDiagramTest.di"] {
+    get-diagram -index 1 | get-edit-part -name Interaction1 | mouse-move 1861 127 -height 1000 -width 1892
+    with [get-palette] {
+        get-palette-entry "Action Execution Specification" | mouse-move 73 1 -height 37 -width 125
+        with [get-palette-entry Lifeline] {
+            mouse-move 71 12 button1 -height 23 -width 125
+            mouse-press 71 12 button1 -height 23 -width 125
+            mouse-release 71 12 button1 524288 -height 23 -width 125
+        }
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+        -className CInteractionInteractionCompartmentEditPart] {
+        mouse-move 67 34 button1 -height 738 -width 857
+        mouse-press 67 34 button1 -height 738 -width 857
+        mouse-release 67 34 button1 524288 -height 738 -width 857
+    }
+    get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+        -className CInteractionInteractionCompartmentEditPart | mouse-move 310 65 -height 738 -width 857
+    with [get-palette] {
+        get-palette-entry "Action Execution Specification" | mouse-move 91 1 -height 37 -width 125
+        get-palette-entry Lifeline | mouse-move 94 21 -height 23 -width 125
+    }
+    get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+        -className CInteractionInteractionCompartmentEditPart | get-edit-part -name Lifeline1 | get-edit-part 
+        -name Lifeline1 | activate-direct-edit
+    get-palette | get-palette-entry Lifeline | mouse-move 63 13 -height 23 -width 125
+    get-diagram -index 1 | commit-direct-edit
+    with [get-palette | get-palette-entry Lifeline] {
+        mouse-move 63 13 button1 -height 23 -width 125
+        mouse-press 63 13 button1 -height 23 -width 125
+        mouse-release 63 13 button1 524288 -height 23 -width 125
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+        -className CInteractionInteractionCompartmentEditPart] {
+        mouse-move 284 19 button1 -height 738 -width 857
+        mouse-press 284 19 button1 -height 738 -width 857
+        mouse-release 284 19 button1 524288 -height 738 -width 857
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1] {
+        mouse-move 1095 118 -height 1000 -width 1892
+        get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart 
+            | get-edit-part -name Lifeline2 | get-edit-part -name Lifeline2 | activate-direct-edit
+        mouse-move 1879 115 -height 1000 -width 1892
+    }
+    with [get-palette] {
+        get-palette-entry "Action Execution Specification" | mouse-move 26 2 -height 37 -width 125
+        get-palette-entry Lifeline | mouse-move 41 13 -height 23 -width 125
+    }
+    get-diagram -index 1 | commit-direct-edit
+    with [get-palette | get-palette-entry Lifeline] {
+        mouse-move 41 13 button1 -height 23 -width 125
+        mouse-press 41 13 button1 -height 23 -width 125
+        mouse-release 41 13 button1 524288 -height 23 -width 125
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+        -className CInteractionInteractionCompartmentEditPart] {
+        mouse-move 504 17 button1 -height 738 -width 857
+        mouse-press 504 17 button1 -height 738 -width 857
+        mouse-release 504 17 button1 524288 -height 738 -width 857
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1] {
+        mouse-move 1876 55 -height 1000 -width 1892
+        get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart 
+            | get-edit-part -name Lifeline3 | get-edit-part -name Lifeline3 | activate-direct-edit
+    }
+    get-palette | get-palette-entry Lifeline | mouse-move 70 7 -height 23 -width 125
+    get-diagram -index 1 | commit-direct-edit
+    with [get-palette | get-palette-entry Lifeline] {
+        mouse-move 70 7 button1 -height 23 -width 125
+        mouse-press 70 7 button1 -height 23 -width 125
+        mouse-release 70 7 button1 524288 -height 23 -width 125
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part -text Interaction1] {
+        mouse-move 807 9 -height 757 -width 857
+        with [get-edit-part -className CInteractionInteractionCompartmentEditPart] {
+            mouse-move 732 13 button1 -height 738 -width 857
+            mouse-press 732 13 button1 -height 738 -width 857
+            mouse-release 732 13 button1 524288 -height 738 -width 857
+        }
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1] {
+        mouse-move 966 150 -height 1000 -width 1892
+        get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart 
+            | get-edit-part -name Lifeline4 | get-edit-part -name Lifeline4 | activate-direct-edit
+        mouse-move 1885 677 -height 1000 -width 1892
+    }
+    with [get-palette] {
+        with [get-palette-entry "Message Delete"] {
+            mouse-move 10 21 -height 23 -width 125
+            mouse-move 44 2 -height 23 -width 125
+        }
+        get-palette-entry "Message Create" | mouse-move 49 5 -height 23 -width 125
+        get-palette-entry "Message Reply" | mouse-move 52 7 -height 23 -width 125
+        get-palette-entry "Message Async" | mouse-move 57 1 -height 23 -width 125
+        get-palette-entry "Message Sync" | mouse-move 69 16 -height 23 -width 125
+    }
+    get-diagram -index 1 | commit-direct-edit
+    with [get-palette | get-palette-entry "Message Sync"] {
+        mouse-move 69 16 button1 -height 23 -width 125
+        mouse-press 69 16 button1 -height 23 -width 125
+        mouse-release 69 16 button1 524288 -height 23 -width 125
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+        -className CInteractionInteractionCompartmentEditPart] {
+        mouse-move 604 397 -height 738 -width 857
+        with [get-edit-part -name Lifeline1] {
+            mouse-move 48 52 -height 700 -width 100
+            mouse-hover 48 52 -height 700 -width 100
+            mouse-move 50 53 -height 700 -width 100
+            mouse-hover 50 53 -height 700 -width 100
+            mouse-move 50 53 button1 -height 700 -width 100
+            mouse-press 50 53 button1 -height 700 -width 100
+            mouse-release 50 53 button1 524288 -height 700 -width 100
+        }
+        mouse-move 278 66 -height 738 -width 857
+        with [get-edit-part -name Lifeline2] {
+            mouse-move 46 47 -height 700 -width 100
+            mouse-hover 46 47 -height 700 -width 100
+            mouse-move 49 47 -height 700 -width 100
+            mouse-hover 49 47 -height 700 -width 100
+            mouse-move 49 47 button1 -height 700 -width 100
+            mouse-press 49 47 button1 -height 700 -width 100
+        }
+    }
+    with [get-diagram -index 1] {
+        with [get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+            -className CInteractionInteractionCompartmentEditPart] {
+            get-edit-part -name Lifeline2 | mouse-release 49 47 button1 524288 -height 700 -width 100
+            mouse-move 398 172 -height 738 -width 857
+            get-edit-part -name Lifeline2 | get-target-connection -path 0 | get-edit-part -text Message5 
+                | activate-direct-edit
+            mouse-hover 398 172 -height 738 -width 857
+            mouse-move 398 172 button1 -height 738 -width 857
+            mouse-press 398 172 button1 -height 738 -width 857
+        }
+        commit-direct-edit
+        with [get-edit-part -name Interaction1] {
+            with [get-edit-part -text Interaction1 | get-edit-part 
+                -className CInteractionInteractionCompartmentEditPart] {
+                mouse-release 398 172 button1 524288 -height 738 -width 857
+                mouse-move 482 163 -height 738 -width 857
+            }
+            mouse-move 918 134 -height 1000 -width 1892
+        }
+    }
+}
+with [get-editor "SequenceDiagramTest.di"] {
+    get-diagram -index 1 | get-edit-part -name Interaction1 | mouse-move 1479 768 -height 1000 -width 1892
+    with [get-palette | get-palette-entry "Message Create"] {
+        mouse-move 12 0 -height 23 -width 125
+        mouse-move 87 13 button1 -height 23 -width 125
+        mouse-press 87 13 button1 -height 23 -width 125
+        mouse-release 87 13 button1 524288 -height 23 -width 125
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1] {
+        mouse-move 872 353 -height 1000 -width 1892
+        with [get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
+            with [get-edit-part -name Lifeline2] {
+                mouse-move 50 109 button1 -height 700 -width 100
+                mouse-press 50 109 button1 -height 700 -width 100
+                mouse-release 50 109 button1 524288 -height 700 -width 100
+            }
+            mouse-move 497 120 -height 738 -width 857
+            with [get-edit-part -name Lifeline3] {
+                mouse-move 47 104 -height 700 -width 100
+                mouse-hover 47 104 -height 700 -width 100
+                mouse-move 49 104 -height 700 -width 100
+                mouse-hover 49 104 -height 700 -width 100
+                mouse-move 49 104 button1 -height 700 -width 100
+                mouse-press 49 104 button1 -height 700 -width 100
+            }
+        }
+    }
+    with [get-diagram -index 1] {
+        with [get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+            -className CInteractionInteractionCompartmentEditPart] {
+            with [get-edit-part -name Lifeline3] {
+                mouse-release 49 104 button1 524288 -height 700 -width 100
+                mouse-hover 49 7 -height 602 -width 100
+                get-target-connection -path 0 | get-edit-part -text Message8 | activate-direct-edit
+            }
+            mouse-move 549 91 button1 -height 738 -width 857
+            mouse-press 549 91 button1 -height 738 -width 857
+        }
+        commit-direct-edit
+        with [get-edit-part -name Interaction1] {
+            with [get-edit-part -text Interaction1 | get-edit-part 
+                -className CInteractionInteractionCompartmentEditPart] {
+                mouse-release 549 91 button1 524288 -height 738 -width 857
+                mouse-hover 549 91 -height 738 -width 857
+                mouse-move 690 154 -height 738 -width 857
+            }
+            mouse-move 1891 538 -height 1000 -width 1892
+        }
+    }
+    with [get-palette] {
+        get-palette-entry "Message Create" | mouse-move 42 22 -height 23 -width 125
+        with [get-palette-entry "Message Delete"] {
+            mouse-move 48 7 button1 -height 23 -width 125
+            mouse-press 48 7 button1 -height 23 -width 125
+            mouse-release 48 7 button1 524288 -height 23 -width 125
+        }
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+        -className CInteractionInteractionCompartmentEditPart] {
+        with [get-edit-part -name Lifeline2] {
+            mouse-move 50 208 -height 700 -width 100
+            mouse-hover 50 208 -height 700 -width 100
+            mouse-move 50 208 button1 -height 700 -width 100
+            mouse-press 50 208 button1 -height 700 -width 100
+            mouse-release 50 208 button1 524288 -height 700 -width 100
+        }
+        with [get-edit-part -name Lifeline3] {
+            mouse-move 48 107 -height 602 -width 100
+            mouse-hover 48 107 -height 602 -width 100
+            mouse-move 50 108 -height 602 -width 100
+            mouse-hover 50 108 -height 602 -width 100
+            mouse-move 50 108 button1 -height 602 -width 100
+            mouse-press 50 108 button1 -height 602 -width 100
+        }
+    }
+    with [get-diagram -index 1] {
+        with [get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+            -className CInteractionInteractionCompartmentEditPart] {
+            with [get-edit-part -name Lifeline3] {
+                mouse-release 50 108 button1 524288 -height 602 -width 100
+                with [get-target-connection -path 1] {
+                    get-handle PapyrusConnectionEndpointHandle -index 1 | mouse-hover 3 2 -height 7 -width 7
+                    get-edit-part -text Message11 | activate-direct-edit
+                }
+            }
+            mouse-move 546 257 button1 -height 738 -width 857
+            mouse-press 546 257 button1 -height 738 -width 857
+        }
+        commit-direct-edit
+        with [get-edit-part -name Interaction1] {
+            with [get-edit-part -text Interaction1 | get-edit-part 
+                -className CInteractionInteractionCompartmentEditPart] {
+                mouse-release 546 257 button1 524288 -height 738 -width 857
+                mouse-move 738 256 -height 738 -width 857
+            }
+            mouse-move 916 250 -height 1000 -width 1892
+        }
+    }
+}
+with [get-editor "SequenceDiagramTest.di"] {
+    with [get-diagram -index 1 | get-edit-part -name Interaction1] {
+        get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart 
+            | mouse-move 464 247 -height 738 -width 857
+        mouse-move 1866 169 -height 1000 -width 1892
+    }
+    with [get-palette] {
+        get-palette-entry "Combined Fragment" | mouse-move 19 11 -height 23 -width 196
+        get-palette-entry "Interaction Operand" | mouse-move 80 12 -height 23 -width 196
+        get-palette-entry Continuation | mouse-move 122 7 -height 23 -width 196
+        get-palette-entry "Duration Observation" | mouse-move 123 19 -height 23 -width 196
+        get-palette-entry "Time Constraint" | mouse-move 115 17 -height 23 -width 196
+        get-palette-entry "Time Observation" | mouse-move 108 21 -height 23 -width 196
+        get-palette-entry "Duration Constraint" | mouse-move 104 21 -height 23 -width 196
+        get-palette-entry Gate | mouse-move 103 18 -height 23 -width 196
+        get-palette-entry "Consider Ignore Fragment" | mouse-move 97 17 -height 23 -width 196
+        get-palette-entry "Message Sync" | mouse-move 86 17 -height 23 -width 125
+        get-palette-entry "Message Async" | mouse-move 86 13 -height 23 -width 125
+        get-palette-entry "Message Reply" | mouse-move 86 16 -height 23 -width 125
+        with [get-palette-entry "Message Create"] {
+            mouse-move 81 22 -height 23 -width 125
+            mouse-move 81 14 button1 -height 23 -width 125
+            mouse-press 81 14 button1 -height 23 -width 125
+            mouse-release 81 14 button1 524288 -height 23 -width 125
+        }
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+        -className CInteractionInteractionCompartmentEditPart] {
+        with [get-edit-part -name Lifeline2] {
+            mouse-move 49 294 button1 -height 700 -width 100
+            mouse-press 49 294 button1 -height 700 -width 100
+            mouse-release 49 294 button1 524288 -height 700 -width 100
+        }
+        with [get-edit-part -name Lifeline4] {
+            mouse-move 50 285 -height 700 -width 100
+            mouse-hover 50 285 -height 700 -width 100
+            mouse-move 50 285 button1 -height 700 -width 100
+            mouse-press 50 285 button1 -height 700 -width 100
+        }
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1] {
+        get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart 
+            | get-edit-part -name Lifeline4 | mouse-release 50 285 button1 524288 -height 700 -width 100
+        mouse-move 1887 634 -height 1000 -width 1892
+        get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart 
+            | get-edit-part -name Lifeline4 | get-target-connection -path 0 | get-edit-part -text Message14 
+            | activate-direct-edit
+    }
+    with [get-palette] {
+        get-palette-entry "General Ordering" | mouse-move 66 0 -height 37 -width 125
+        get-palette-entry "Message Found" | mouse-move 71 0 -height 23 -width 125
+        get-palette-entry "Message Lost" | mouse-move 73 0 -height 23 -width 125
+        get-palette-entry "Message Delete" | mouse-move 76 6 -height 23 -width 125
+        get-palette-entry "Message Create" | mouse-move 78 4 -height 23 -width 125
+        get-palette-entry "Message Reply" | mouse-move 78 5 -height 23 -width 125
+        get-palette-entry "Message Async" | mouse-move 78 0 -height 23 -width 125
+        get-palette-entry "Message Sync" | mouse-move 78 20 -height 23 -width 125
+    }
+    get-diagram -index 1 | commit-direct-edit
+    with [get-palette | get-palette-entry "Message Sync"] {
+        mouse-move 78 20 button1 -height 23 -width 125
+        mouse-press 78 20 button1 -height 23 -width 125
+        mouse-release 78 20 button1 524288 -height 23 -width 125
+    }
+    with [get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+        -className CInteractionInteractionCompartmentEditPart] {
+        with [get-edit-part -name Lifeline2] {
+            mouse-move 49 367 -height 700 -width 100
+            mouse-hover 49 367 -height 700 -width 100
+            mouse-move 49 367 button1 -height 700 -width 100
+            mouse-press 49 367 button1 -height 700 -width 100
+            mouse-release 49 367 button1 524288 -height 700 -width 100
+        }
+        with [get-edit-part -name Lifeline4] {
+            mouse-move 47 90 -height 422 -width 100
+            mouse-hover 47 90 -height 422 -width 100
+            mouse-move 50 90 button1 -height 422 -width 100
+            mouse-press 50 90 button1 -height 422 -width 100
+        }
+    }
+    with [get-diagram -index 1] {
+        with [get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
+            -className CInteractionInteractionCompartmentEditPart] {
+            with [get-edit-part -name Lifeline4] {
+                mouse-release 50 90 button1 524288 -height 422 -width 100
+                with [get-target-connection -path 1] {
+                    get-edit-part -text Message17 | activate-direct-edit
+                    get-handle PapyrusConnectionEndpointHandle -index 1 | mouse-hover 3 4 -height 7 -width 7
+                }
+            }
+            mouse-move 754 223 button1 -height 738 -width 857
+            mouse-press 754 223 button1 -height 738 -width 857
+        }
+        commit-direct-edit
+        with [get-edit-part -name Interaction1] {
+            get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart 
+                | mouse-release 754 223 button1 524288 -height 738 -width 857
+            mouse-move 922 224 -height 1000 -width 1892
+        }
+    }
+}
+with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1] {
+    with [get-edit-part -name Interaction1 | get-edit-part -text Interaction1] {
+        with [get-edit-part -className CInteractionInteractionCompartmentEditPart] {
+            get-edit-part -name Lifeline3 | mouse-move 16 89 -height 109 -width 100
+            mouse-move 514 279 -height 738 -width 857
+            mouse-move 178 57 -height 738 -width 857
+            with [get-edit-part -name Lifeline2 | get-target-connection -path 0] {
+                mouse-move 87 34 button1 -height 53 -width 247
+                mouse-press 87 34 button1 -height 53 -width 247
+            }
+            mouse-move 178 128 -mask 524288 -height 738 -width 857
+        }
+        mouse-drag 179 188 button1 524288 -height 757 -width 857
+        mouse-release 179 188 button1 524288 -height 757 -width 857
+        with [get-edit-part -className CInteractionInteractionCompartmentEditPart] {
+            mouse-hover 178 169 -height 738 -width 857
+            mouse-move 195 248 -height 738 -width 857
+            mouse-hover 195 248 -height 738 -width 857
+        }
+    }
+    key-type "M1+s"
+    with [get-edit-part -name Interaction1] {
+        with [get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
+            mouse-move 175 231 -height 738 -width 857
+            mouse-hover 175 231 -mask ALT -height 738 -width 857
+        }
+        mouse-move 910 152 -height 1000 -width 1892
+    }
+}
+with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1] {
+    with [get-edit-part -name Interaction1] {
+        mouse-move 869 180 -height 1000 -width 1892
+        with [get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
+            with [get-edit-part -name Lifeline2] {
+                mouse-move 59 51 -height 700 -width 100
+                with [get-target-connection -path 0] {
+                    mouse-move 183 33 button1 -height 53 -width 247
+                    mouse-press 183 33 button1 -height 53 -width 247
+                    mouse-move 182 35 -mask 524288 -height 53 -width 247
+                }
+            }
+            mouse-drag 240 309 button1 524288 -height 738 -width 857
+            mouse-release 240 309 button1 524288 -height 738 -width 857
+            mouse-hover 240 309 -height 738 -width 857
+        }
+    }
+    key-type "M1+s"
+    get-edit-part -name Interaction1 | mouse-move 919 176 -height 1000 -width 1892
+}
+get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | mouse-move 909 213 
+    -height 1000 -width 1892
+with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
+    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
+    with [get-edit-part -name Lifeline1 | get-figure -path "0/0"] {
+        get-property x | equals 54 | verify-true
+        get-property y | equals 10 | verify-true
+        get-property width | equals 100 | verify-true
+        get-property height | equals 700 | verify-true
+    }
+    with [get-edit-part -name Lifeline2 | get-figure -path "0/0"] {
+        get-property x | equals 274 | verify-true
+        get-property y | equals 10 | verify-true
+        get-property width | equals 100 | verify-true
+        get-property height | equals 700 | verify-true
+    }
+    with [get-edit-part -name Lifeline3 | get-figure -path "0/0"] {
+        get-property x | equals 494 | verify-true
+        get-property y | equals 347 | verify-true
+        get-property width | equals 100 | verify-true
+        get-property height | equals 109 | verify-true
+    }
+    with [get-edit-part -name Lifeline4 | get-figure -path "0/0"] {
+        get-property x | equals 734 | verify-true
+        get-property y | equals 527 | verify-true
+        get-property width | equals 100 | verify-true
+        get-property height | equals 182 | verify-true
+    }
+    with [get-edit-part -name Lifeline3] {
+        with [get-target-connection -path 0] {
+            get-property "sourceAnchor.id" | equals "(0.5,0.4942857142857143)" | verify-true
+            get-property "targetAnchor.id" | equals "(0.5,0.01)" | verify-true
+        }
+        with [get-target-connection -path 1] {
+            get-property "sourceAnchor.id" | equals "(0.5,0.6371428571428571)" | verify-true
+            get-property "targetAnchor.id" | equals "(0.5,1.0)" | verify-true
+        }
+    }
+    with [get-edit-part -name Lifeline4] {
+        with [get-target-connection -path 0] {
+            get-property "sourceAnchor.id" | equals "(0.5,0.7514285714285714)" | verify-true
+            get-property "targetAnchor.id" | equals "(0.5,0.023186813186813187)" | verify-true
+        }
+        with [get-target-connection -path 1] {
+            get-property "sourceAnchor.id" | equals "(0.5,0.8657142857142858)" | verify-true
+            get-property "targetAnchor.id" | equals "(0.5,0.489010989010989)" | verify-true
+        }
+    }
+}
+with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1] {
+    with [get-edit-part -name Interaction1] {
+        mouse-move 909 238 -height 1000 -width 1892
+        with [get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
+            with [get-edit-part -name Lifeline2] {
+                mouse-move 56 286 -height 700 -width 100
+                with [get-target-connection -path 0] {
+                    mouse-move 168 33 button1 -height 53 -width 247
+                    mouse-press 168 33 button1 -height 53 -width 247
+                    mouse-move 168 35 -mask 524288 -height 53 -width 247
+                }
+            }
+            mouse-drag 252 480 button1 524288 -height 738 -width 857
+            mouse-release 252 480 button1 524288 -height 738 -width 857
+            with [get-edit-part -name Lifeline2 | get-target-connection -path 0] {
+                mouse-hover 156 32 -height 53 -width 247
+                mouse-move 155 32 -height 53 -width 247
+                mouse-hover 155 32 -height 53 -width 247
+            }
+            mouse-move 696 297 button1 -height 820 -width 857
+            mouse-press 696 297 button1 -height 820 -width 857
+            mouse-release 696 297 button1 524288 -height 820 -width 857
+        }
+    }
+    key-type "M1+s"
+    get-edit-part -name Interaction1 | mouse-move 922 279 -height 1000 -width 1892
+}
+get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | mouse-move 922 413 
+    -height 1000 -width 1892
+with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
+    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
+    with [get-edit-part -name Lifeline1] {
+        get-property x | equals 54 | verify-true
+        get-property y | equals 10 | verify-true
+        get-property width | equals 100 | verify-true
+        get-property height | equals 786 | verify-true
+    }
+    with [get-edit-part -name Lifeline2 | get-figure -path "0/0"] {
+        get-property x | equals 274 | verify-true
+        get-property y | equals 10 | verify-true
+        get-property width | equals 100 | verify-true
+        get-property height | equals 786 | verify-true
+    }
+    with [get-edit-part -name Lifeline3 | get-figure -path "0/0"] {
+        get-property x | equals 494 | verify-true
+        get-property y | equals 527 | verify-true
+        get-property width | equals 100 | verify-true
+        get-property height | equals 109 | verify-true
+    }
+    with [get-edit-part -name Lifeline4] {
+        get-property x | equals 734 | verify-true
+        get-property y | equals 707 | verify-true
+        get-property width | equals 100 | verify-true
+        get-property height | equals 89 | verify-true
+    }
+    with [get-edit-part -name Lifeline3] {
+        with [get-target-connection -path 0] {
+            get-property "sourceAnchor.id" | equals "(0.5,0.6692111959287532)" | verify-true
+            get-property "targetAnchor.id" | equals "(0.5,0.01)" | verify-true
+        }
+        with [get-target-connection -path 1] {
+            get-property "sourceAnchor.id" | equals "(0.5,0.7964376590330788)" | verify-true
+            get-property "targetAnchor.id" | equals "(0.5,1.0)" | verify-true
+        }
+    }
+    with [get-edit-part -name Lifeline4] {
+        with [get-target-connection -path 0] {
+            get-property "sourceAnchor.id" | equals "(0.5,0.8982188295165394)" | verify-true
+            get-property "targetAnchor.id" | equals "(0.5,0.02044943820224719)" | verify-true
+        }
+        with [get-target-connection -path 1] {
+            get-property "sourceAnchor.id" | equals "(0.5,1.0)" | verify-true
+            get-property "targetAnchor.id" | equals "(0.5,1.0)" | verify-true
+        }
+    }
+}
+------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
