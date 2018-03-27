@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <!--
- Copyright (c) 2009, 2015 CEA, Christian W. Damus, and others.
+ Copyright (c) 2009, 2018 CEA, Christian W. Damus, and others.
  
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
    CEA - Initial API and implementation
    Christian W. Damus (CEA) - bug 323802
    Christian W. Damus - bug 451230
+   Sebastien Gabel - bug 532943
    
 -->
 <plugin> 
@@ -335,109 +336,6 @@
                id="org.eclipse.papyrus.uml.diagram.clazz.DisplayAllAssociationBranchesActionID"
                label="Display all association branches"
                menubarPath="editGroup">
-         </action>
-      </objectContribution>
-      <objectContribution
-            adaptable="true"
-            id="org.eclipse.papyrus.uml.diagram.clazz.papyrusmenu"
-            objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart">
-         <visibility>
-            <or>
-               <objectClass
-                     name="org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
-               </objectClass>
-               <objectClass
-                     name="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
-               </objectClass>
-            </or>
-         </visibility>
-         <menu
-               icon="icons/obj16/native_lib_path_attrib.png"
-               id="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationend"
-               label="Association End"
-               path="additions">
-            <separator
-                  name="group1">
-            </separator>
-            <separator
-                  name="group2">
-            </separator>
-         </menu>
-         <action
-               class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetClassifierPropertyOwnerAction"
-               enablesFor="1"
-               id="org.eclipse.papyrus.uml.diagram.clazz.setclassifierpropertyowner"
-               label="owned by the classifier"
-               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationend/group1">
-         </action>
-         <action
-               class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetAssociationPropertyOwnerAction"
-               enablesFor="1"
-               id="org.eclipse.papyrus.uml.diagram.clazz.setassociationpropertyowneraction"
-               label="owned by the association"
-               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationend/group1">
-         </action>
-         <menu
-               icon="icons/obj16/css_propertyvalue_function.gif"
-               id="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationnavigation"
-               label="navigation"
-               path="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationend">
-            <separator
-                  name="group3">
-            </separator>
-         </menu>
-         <action
-               class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetNavigablePropertyAction"
-               enablesFor="1"
-               id="org.eclipse.papyrus.uml.diagram.clazz.setnavigablepropertyaction"
-               label="set navigable"
-               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationnavigation/group3">
-         </action>
-         <action
-               class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetNonNavigablePropertyAction"
-               enablesFor="1"
-               id="org.eclipse.papyrus.uml.diagram.clazz.setnonnavigablepropertyaction"
-               label="set non navigable"
-               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationnavigation/group3">
-         </action>
-         <menu
-               icon="icons/obj16/Association_composite.gif"
-               id="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation"
-               label="aggregation"
-               path="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationend">
-            <separator
-                  name="group4">
-            </separator>
-         </menu>
-         <action
-               class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetNoneAggregationPropertyAction"
-               enablesFor="1"
-               icon="icons/obj16/Association_none.gif"
-               id="org.eclipse.papyrus.uml.diagram.clazz.SetNoneAggregationPropertyAction"
-               label="none"
-               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation/group4">
-         </action>
-         <action
-               class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetCompositePropertyAction"
-               enablesFor="1"
-               icon="icons/obj16/Association_composite.gif"
-               id="org.eclipse.papyrus.uml.diagram.clazz.SetCompositePropertyAction"
-               label="composite"
-               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation/group4">
-         </action>
-         <action
-               class="org.eclipse.papyrus.uml.diagram.clazz.custom.action.SetSharedPropertyAction"
-               enablesFor="1"
-               icon="icons/obj16/Association_shared.gif"
-               id="org.eclipse.papyrus.uml.diagram.clazz.SetSharedPropertyAction"
-               label="shared"
-               menubarPath="org.eclipse.papyrus.uml.diagram.clazz.popupmenu.associationaggregation/group4">
          </action>
       </objectContribution>
 </extension>
