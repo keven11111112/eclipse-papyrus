@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentEditPart;
@@ -35,7 +36,7 @@ public class BoundForEditPart {
 	 * @return The bounds.
 	 */
 	public static Bounds getBounds(final Node node) {
-		Bounds initialBounds = (Bounds) node.getLayoutConstraint();
+		final Bounds initialBounds = EcoreUtil.copy((Bounds) node.getLayoutConstraint());
 
 		if (initialBounds.getWidth() == -1) {
 			initialBounds.setWidth(getDefaultWidthFromView(node));
@@ -44,7 +45,7 @@ public class BoundForEditPart {
 			initialBounds.setHeight(getDefaultHeightFromView(node));
 		}
 
-		return (Bounds) node.getLayoutConstraint();
+		return initialBounds;
 	}
 
 	/**
@@ -55,7 +56,7 @@ public class BoundForEditPart {
 	 * @return The height.
 	 */
 	public static int getHeightFromView(final Node node) {
-		Bounds bounds = BoundForEditPart.getBounds(node);
+		final Bounds bounds = BoundForEditPart.getBounds(node);
 		if (bounds != null && bounds.getHeight() != -1) {
 			return bounds.getHeight();
 		} else {
@@ -91,7 +92,7 @@ public class BoundForEditPart {
 	 * @return The width.
 	 */
 	public static int getWidthFromView(final Node node) {
-		Bounds bounds = BoundForEditPart.getBounds(node);
+		final Bounds bounds = BoundForEditPart.getBounds(node);
 		if (bounds != null && bounds.getWidth() != -1) {
 			return bounds.getWidth();
 		} else {
