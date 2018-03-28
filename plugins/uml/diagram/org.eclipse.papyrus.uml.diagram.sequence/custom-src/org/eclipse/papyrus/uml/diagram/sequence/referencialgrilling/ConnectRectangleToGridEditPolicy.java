@@ -8,13 +8,16 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 533004
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionGeometry;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
@@ -31,7 +34,6 @@ import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
-import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
@@ -214,12 +216,18 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 		}
 		Node nodeContainer = (Node) (((GraphicalEditPart) getHost()).getNotationView()).eContainer();
 		if (nodeContainer != null) {
+
 			// UPDATE COLUM AND ROW of THE GRID
 			if (notification.getEventType() == Notification.SET && notification.getNotifier() instanceof Bounds) {
 				PrecisionRectangle bounds = NotationHelper.getAbsoluteBounds((Node) ((GraphicalEditPart) getHost()).getNotationView());
 				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: BOUNDS change " + notification.getNewValue());//$NON-NLS-1$
 
 				if (notification.getFeature().equals(NotationPackage.eINSTANCE.getSize_Height())) {
+
+					// Get the old and new values (but care about the -1 default value)
+					final int oldIntValue = notification.getOldIntValue() == -1 ? BoundForEditPart.getDefaultHeightFromView((Node) ((GraphicalEditPart) getHost()).getNotationView()) : notification.getOldIntValue();
+					final int newIntValue = notification.getNewIntValue() == -1 ? BoundForEditPart.getDefaultHeightFromView((Node) ((GraphicalEditPart) getHost()).getNotationView()) : notification.getNewIntValue();
+
 					updateRowFinishFromHeightNotification(bounds);
 					// update anchors
 					if ((((EObject) notification.getNotifier()).eContainer().equals(((EObject) getHost().getModel())))) {
@@ -228,14 +236,14 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 						for (Edge edge : sourceEdge) {
 							IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
 							if (anchor instanceof IdentityAnchor) {
-								updateAnchorFromHeight(anchor, ((Node) getHost().getModel()), notification.getNewIntValue() - notification.getOldIntValue());
+								updateAnchorFromHeight(anchor, ((Node) getHost().getModel()), newIntValue - oldIntValue);
 							}
 						}
 						java.util.List<Edge> targetEdge = node.getTargetEdges();
 						for (Edge edge : targetEdge) {
 							IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
 							if (anchor instanceof IdentityAnchor) {
-								updateAnchorFromHeight(anchor, ((Node) getHost().getModel()), notification.getNewIntValue() - notification.getOldIntValue());
+								updateAnchorFromHeight(anchor, ((Node) getHost().getModel()), newIntValue - oldIntValue);
 							}
 						}
 					}
@@ -363,13 +371,8 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	}
 
-	
 
-	
 
-	
-
-	
 
 
 	/**
@@ -388,10 +391,11 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 			double xPercent = IdentityAnchorHelper.getXPercentage(anchor);
 
 			// calculate bounds from notation
-			PrecisionRectangle bounds = NotationHelper.getAbsoluteBounds(node);
-			double oldHeight = BoundForEditPart.getHeightFromView(node) - deltaHeight;
+			int nodeHeight = BoundForEditPart.getHeightFromView(node);
+			double oldHeight = nodeHeight - deltaHeight;
+			double preciseHeight = nodeHeight;
 
-			double newPercentY = (yPercent * oldHeight) / (bounds.preciseHeight());
+			double newPercentY = (yPercent * oldHeight) / preciseHeight;
 			if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
 				final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xPercent, newPercentY);
 				execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
@@ -400,10 +404,12 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	}
 
 	/**
-	 * this class update the position of anchor after the move
+	 * This allows to update the position of anchor after the move.
 	 * 
-	 * @param sourceEdge
-	 * @param eObject
+	 * @param anchor The anchor to recalculate.
+	 * @param node The moved node.
+	 * @param oldY The old Y position.
+	 * @param newY The new Y position.
 	 */
 	protected void updateAnchorFromY(IdentityAnchor anchor, Node node, int oldY, int newY) {
 		if (null != anchor && !anchor.getId().trim().equals("")) { //$NON-NLS-1$
