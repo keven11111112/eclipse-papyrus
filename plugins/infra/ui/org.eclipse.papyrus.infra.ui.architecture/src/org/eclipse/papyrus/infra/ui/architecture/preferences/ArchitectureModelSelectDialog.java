@@ -224,9 +224,11 @@ public class ArchitectureModelSelectDialog extends Dialog {
 	 */
 	public List<URI> getURIs() {
 		List<URI> uris = new ArrayList<URI>();
-		for (StringTokenizer stringTokenizer = new StringTokenizer(getURIText()); stringTokenizer.hasMoreTokens();) {
-			String uri = stringTokenizer.nextToken();
-			uris.add(URI.createURI(uri));
+		if (getURIText() != null) {
+			for (StringTokenizer stringTokenizer = new StringTokenizer(getURIText()); stringTokenizer.hasMoreTokens();) {
+				String uri = stringTokenizer.nextToken();
+				uris.add(URI.createURI(uri));
+			}
 		}
 		return uris;
 	}
