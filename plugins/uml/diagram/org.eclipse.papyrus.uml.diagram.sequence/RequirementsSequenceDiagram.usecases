@@ -9,17 +9,19 @@ Requirement: ReqTechnical_SequenceDiagram_002: Message anchors must be only on l
 Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/figures/LifelineFigure.java
 - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/LifelineChildGraphicalNodeEditPolicy.java
 
-Requirement: ReqFunctional_SequenceDiagram_004: When a move of a message is done (with the preference to keep gaps between messages), all the messages and elements in the life lines must be moved down.
+Requirement: ReqFunctional_SequenceDiagram_001: When a move of a message is done (with the preference to keep gaps between messages), all the messages and elements in the life lines must be moved down.
 Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/UpdateWeakReferenceForMessageSpecEditPolicy.java
 
-Requirement: ReqFunctional_SequenceDiagram_007: When a move of a message is done (with the preference to keep gaps between messages) and if the life lines need to be enlarge, this will be done for all life lines needed. No shrinkage allowed.
+Requirement: ReqFunctional_SequenceDiagram_004: When a move of a message is done (with the preference to keep gaps between messages) and if the life lines need to be enlarge, this will be done for all life lines needed. No shrinkage allowed.
 Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/MessageConnectionLineSegEditPolicy.java
 
-Requirement: ReqFunctional_SequenceDiagram_008: When a move down of a MessageDelete is done, the life line must be enlarge to the bottom. When a move up of a MessageDelete is done, the life line must be shrinked to the top. When a move of a MessageDelete is done, the other elements of the life lines must not be moved. The 'SHIFT' case does not work for MessageDelete.
+Requirement: ReqFunctional_SequenceDiagram_005: When a move down of a MessageDelete is done, the life line must be enlarge to the bottom. When a move up of a MessageDelete is done, the life line must be shrinked to the top. When a move of a MessageDelete is done, the other elements of the life lines must not be moved. The 'SHIFT' case does not work for MessageDelete.
 Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/MessageConnectionLineSegEditPolicy.java
+- org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/referencialgrilling/ConnectRectangleToGridEditPolicy.java
 
-Requirement: ReqFunctional_SequenceDiagram_009: When a move down of a MessageCreate is done, the life line must be shrinked to the bottom. When a move up of a MessageCreate is done, the life line must be enlarge to the top. When a move of a MessageCreate is done, the other elements of the life lines must not be moved. The 'SHIFT' case does not work for MessageCreate.
+Requirement: ReqFunctional_SequenceDiagram_006: When a move down of a MessageCreate is done, the life line must be shrinked to the bottom. When a move up of a MessageCreate is done, the life line must be enlarge to the top. When a move of a MessageCreate is done, the other elements of the life lines must not be moved. The 'SHIFT' case does not work for MessageCreate.
 Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/MessageConnectionLineSegEditPolicy.java
+- org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/referencialgrilling/ConnectRectangleToGridEditPolicy.java
 
-Requirement: ReqFunctional_SequenceDiagram_011: When a move of a message is done, all previous messages and elements in the life lines must not be moved.
+Requirement: ReqFunctional_SequenceDiagram_008: When a move of a message is done, all previous messages and elements in the life lines must not be moved.
 Code instruction: None
