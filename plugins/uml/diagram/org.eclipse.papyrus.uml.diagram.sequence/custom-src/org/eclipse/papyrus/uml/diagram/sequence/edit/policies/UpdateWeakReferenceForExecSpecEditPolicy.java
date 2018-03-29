@@ -237,7 +237,7 @@ public class UpdateWeakReferenceForExecSpecEditPolicy extends UpdateWeakReferenc
 
 					// Gets weak references
 					HashMap<EditPart, String> weakReferences = new HashMap<EditPart, String>();
-					if ((moveDelta.y > 0 && mustMoveBelowAtMovingDown) || (moveDelta.y < 0 && mustMoveBelowAtMovingUp)) {
+					if (moveDelta.y > 0 && mustMoveBelowAtMovingDown) {
 						weakReferences.putAll(references.getWeakReferences());
 					}
 
