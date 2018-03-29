@@ -59,13 +59,6 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 	private final MoveMessagePropertyChangeListener moveMessageListener = new MoveMessagePropertyChangeListener();
 
 	/**
-	 * The must move preference boolean. Set to true if messages below the current message must move up at the same time.
-	 * 
-	 * @since 4.1
-	 */
-	protected boolean mustMoveBelowAtMovingUp;
-
-	/**
 	 * The must move preference boolean. Set to true if messages below the current message must move down at the same time.
 	 * 
 	 * @since 4.1
@@ -91,7 +84,6 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		// activate listeners
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, SHIFTDown);
 		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, SHIFTUp);
-		mustMoveBelowAtMovingUp = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP);
 		mustMoveBelowAtMovingDown = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN);
 		deltaMoveAtCreationAndDeletion = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getInt(CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION);
 		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().addPropertyChangeListener(moveMessageListener);
@@ -226,11 +218,6 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 		public void propertyChange(PropertyChangeEvent event) {
 			String property = event.getProperty();
 			switch (property) {
-			case CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_UP:
-				if (mustMoveBelowAtMovingUp != (boolean) event.getNewValue()) {
-					mustMoveBelowAtMovingUp = (boolean) event.getNewValue();
-				}
-				break;
 			case CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN:
 				if (mustMoveBelowAtMovingDown != (boolean) event.getNewValue()) {
 					mustMoveBelowAtMovingDown = (boolean) event.getNewValue();
