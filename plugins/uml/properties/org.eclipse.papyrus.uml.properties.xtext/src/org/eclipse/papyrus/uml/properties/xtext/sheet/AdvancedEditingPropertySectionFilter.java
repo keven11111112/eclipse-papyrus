@@ -42,8 +42,7 @@ public class AdvancedEditingPropertySectionFilter implements IFilter {
 
 			if (languagePreferred != null && !languagePreferred.equals("")) {
 				IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(
-						languagePreferred, semanticElement.eClass()
-								.getInstanceClassName());
+						languagePreferred, semanticElement);
 				return configuration instanceof ICustomDirectEditorConfiguration;
 			}
 		}

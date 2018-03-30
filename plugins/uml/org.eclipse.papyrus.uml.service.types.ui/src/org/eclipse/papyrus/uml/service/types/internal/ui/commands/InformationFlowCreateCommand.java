@@ -173,7 +173,7 @@ public class InformationFlowCreateCommand extends CreateElementCommand {
 		Shell currentShell = new Shell(Display.getCurrent(), SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
 		IDirectEditorConfiguration configuration;// = new DefaultDirectEditorConfiguration();
 		String languagePreferred = org.eclipse.papyrus.uml.service.types.Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + infoItem.eClass().getInstanceClassName());
-		configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, infoItem.eClass().getInstanceClassName());
+		configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, infoItem);
 		configuration.preEditAction(infoItem);
 		configuration.setInputValidator(new NameLabelValidator(Messages.InformationFlowCreateCommand_2));
 		ExtendedDirectEditionDialog dialog = new ExtendedDirectEditionDialog(currentShell, infoItem, infoItem.getName(), configuration);

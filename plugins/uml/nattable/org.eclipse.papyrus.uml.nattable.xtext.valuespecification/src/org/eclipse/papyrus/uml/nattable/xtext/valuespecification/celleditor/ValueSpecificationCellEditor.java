@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2017, 2018 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,10 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Ansgar Radermacher (CEA) ansgar.radermacher@cea.fr - bug 528199
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.xtext.valuespecification.celleditor;
-
-import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -93,21 +92,14 @@ public class ValueSpecificationCellEditor extends AbstractXtextCellEditor {
 		if (row instanceof EObject && column instanceof EStructuralFeature || row instanceof EStructuralFeature && column instanceof EObject) {
 			final EStructuralFeature feature = (EStructuralFeature) (column instanceof EStructuralFeature ? column : row);
 			final EObject contextElement = (EObject) (row instanceof EObject ? row : column);
-			final String semanticClassName = feature.getEType().getInstanceClassName();
-
-			if (contextElement instanceof EObject) {
-				// allow to init the extension point and allow to get existing language for the elements
-				final List<String> languages = DirectEditorsUtil.getLanguages(semanticClassName);
-
-				// if we are here, the default is not a Xtext editor
-				for (String currentLanguage : languages) {
-					IDirectEditorConfiguration directEditorConfiguration = DirectEditorsUtil.findEditorConfigurationWithPriority(currentLanguage, semanticClassName);
-					if (directEditorConfiguration instanceof DefaultXtextDirectEditorConfiguration) {
-						DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) directEditorConfiguration;
-						xtextConfiguration.preEditAction(((EObject) contextElement)
-								.eGet((EStructuralFeature) feature));
-						return xtextConfiguration;
-					}
+			final Object featureValue = contextElement.eGet(feature);
+			
+			if (featureValue instanceof EObject) {
+				IDirectEditorConfiguration directEditorConfiguration = DirectEditorsUtil.findEditorConfiguration(null, (EObject) featureValue);
+				if (directEditorConfiguration instanceof DefaultXtextDirectEditorConfiguration) {
+					DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) directEditorConfiguration;
+					xtextConfiguration.preEditAction(featureValue);
+					return xtextConfiguration;
 				}
 			}
 		}

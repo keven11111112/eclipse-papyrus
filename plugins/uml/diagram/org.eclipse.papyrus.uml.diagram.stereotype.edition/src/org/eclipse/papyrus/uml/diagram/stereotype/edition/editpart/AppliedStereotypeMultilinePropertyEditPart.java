@@ -723,7 +723,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	protected boolean checkExtendedEditor() {
 		EObject resolveSemanticElement = resolveSemanticElement();
 		if (resolveSemanticElement != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement.eClass().getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement);
 		}
 		return false;
 	}
@@ -745,9 +745,9 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 		if (configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + AppliedStereotypeProperty.class.getName());
 			if (languagePreferred != null && !"".equals(languagePreferred)) { //$NON-NLS-1$
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, AppliedStereotypeProperty.class.getName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement());
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, AppliedStereotypeProperty.class.getName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement());
 			}
 		}
 	}
@@ -759,7 +759,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + AppliedStereotypeProperty.class.getName());
 		if (languagePreferred != null && !"".equals(languagePreferred) && languagePreferred != configuration.getLanguage()) { //$NON-NLS-1$
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, AppliedStereotypeProperty.class.getName());
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement());
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}

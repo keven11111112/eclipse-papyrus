@@ -75,8 +75,7 @@ public abstract class AbstractXtextCellEditor extends
 			if (editedEObject != null && editedEObject instanceof EObject) {
 				IPreferenceStore store = Activator.getDefault()
 						.getPreferenceStore();
-				String semanticClassName = ((EObject) editedEObject).eClass()
-						.getInstanceClassName();
+				String semanticClassName = ((EObject) editedEObject).eClass().getInstanceClassName();
 
 				String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT
 						+ semanticClassName;
@@ -84,8 +83,7 @@ public abstract class AbstractXtextCellEditor extends
 
 				if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
 					IDirectEditorConfiguration configuration = DirectEditorsUtil
-							.findEditorConfiguration(languagePreferred,
-									semanticClassName);
+							.findEditorConfiguration(languagePreferred, (EObject) editedEObject);
 					if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
 
 						DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) configuration;

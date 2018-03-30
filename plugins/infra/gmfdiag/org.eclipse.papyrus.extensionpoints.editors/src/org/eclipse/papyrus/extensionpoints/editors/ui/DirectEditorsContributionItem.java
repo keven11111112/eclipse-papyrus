@@ -105,7 +105,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		}
 
 		// retrieves all editor configurations for this kind of element
-		final Collection<IDirectEditorExtensionPoint> configurations = DirectEditorsUtil.getDirectEditorConfigurations(businessObject, selectedElement);
+		final Collection<IDirectEditorExtensionPoint> configurations = DirectEditorsUtil.getDirectEditorExtensions(businessObject, selectedElement);
 
 		// if configurations is not empty, a submenu should open to select which
 		// editor to use...
@@ -132,7 +132,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 
 		// items on the submenu
 		// there are as many items as configurations
-		final IDirectEditorExtensionPoint defaultConfig = DirectEditorsUtil.getDefautDirectEditorConfiguration(businessObject, selectedElement);
+		final IDirectEditorExtensionPoint defaultConfig = DirectEditorsUtil.getDefaultDirectEditorExtension(businessObject, selectedElement);
 
 		for (final IDirectEditorExtensionPoint configuration : configurations) {
 			MenuItem item = new MenuItem(subMenu, SWT.NONE);
@@ -306,5 +306,4 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		assert (serviceLocator != null);
 		this.serviceLocator = serviceLocator;
 	}
-
 }

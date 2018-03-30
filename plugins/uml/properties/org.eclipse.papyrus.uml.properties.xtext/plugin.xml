@@ -2,13 +2,6 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.uml.properties.languageEditor">
-      <editor
-            editor="org.eclipse.papyrus.uml.properties.xtext.XtextLanguageEditor"
-            language="OCL">
-      </editor>
-   </extension>
-   <extension
          point="org.eclipse.papyrus.infra.properties.environments">
       <environment
             environmentModel="model/environment.xmi">

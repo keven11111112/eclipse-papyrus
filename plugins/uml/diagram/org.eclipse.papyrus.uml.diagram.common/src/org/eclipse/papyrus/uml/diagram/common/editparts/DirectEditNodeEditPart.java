@@ -143,9 +143,9 @@ public class DirectEditNodeEditPart {
 		if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		} else if (configuration == null) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, id);
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, gep.resolveSemanticElement());
 		} else if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) { //$NON-NLS-1$
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, id);
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, gep.resolveSemanticElement());
 		}
 	}
 

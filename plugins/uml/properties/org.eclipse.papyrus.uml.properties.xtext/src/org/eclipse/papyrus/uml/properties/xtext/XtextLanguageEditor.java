@@ -234,7 +234,7 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 			String languagePreferred = store.getString(key);
 
 			if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
-				IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticClassName);
+				IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticElement);
 				if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
 
 					DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) configuration;

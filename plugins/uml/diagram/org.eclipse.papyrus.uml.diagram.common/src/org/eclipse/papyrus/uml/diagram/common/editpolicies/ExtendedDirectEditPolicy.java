@@ -178,7 +178,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 */
 	protected boolean checkExtendedEditor() {
 		if (getUMLElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, getUMLElement().eClass().getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, getUMLElement());
 		}
 		return false;
 	}
@@ -197,7 +197,7 @@ public class ExtendedDirectEditPolicy extends LabelDirectEditPolicy {
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, getUMLElement().eClass().getInstanceClassName());
+			configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, getUMLElement());
 		}
 	}
 

@@ -241,8 +241,7 @@ public class AdvancedEditingPropertySection extends
 
 			if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
 				IDirectEditorConfiguration configuration = DirectEditorsUtil
-						.findEditorConfiguration(languagePreferred,
-								semanticClassName);
+						.findEditorConfiguration(languagePreferred, semanticElement);
 				if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
 
 					DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) configuration;

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2018 CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * Contributors:
  *     CEA LIST - initial API and implementation
  *     Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
+ *     Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Bug 528199
  *     
  *******************************************************************************/
 package org.eclipse.papyrus.extensionpoints.editors.definition;
@@ -125,11 +126,11 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 * @param class_
 	 *            the type of element to edit
 	 * @return the preferred editor configuration for the specified type or <code>null</code>
-	 * @deprecated Use {@link DirectEditorsUtil#getDefautDirectEditorConfiguration(Object, Object)} instead
+	 * @deprecated Use {@link DirectEditorsUtil#getDefaultDirectEditorExtension(Object, Object)} instead
 	 */
 	@Deprecated
 	public DirectEditorExtensionPoint getDefautDirectEditorConfiguration(EObject semanticObjectToEdit, Object selectedObject) {
-		return (DirectEditorExtensionPoint) DirectEditorsUtil.getDefautDirectEditorConfiguration(semanticObjectToEdit, selectedObject);
+		return (DirectEditorExtensionPoint) DirectEditorsUtil.getDefaultDirectEditorExtension(semanticObjectToEdit, selectedObject);
 
 	}
 
@@ -141,11 +142,11 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *            type of element to be edited
 	 * @return the set of transformations registered in the platform for the specified kind of
 	 *         element
-	 * @deprecated Use {@link DirectEditorsUtil#getDirectEditorConfigurations(Object, Object)} instead
+	 * @deprecated Use {@link DirectEditorsUtil#getDirectEditorExtensions(Object, Object)} instead
 	 */
 	@Deprecated
 	public Collection<DirectEditorExtensionPoint> getDirectEditorConfigurations(EObject semanticObjectToEdit, Object selectedObject) {
-		Collection<IDirectEditorExtensionPoint> directEditorConfigurations = DirectEditorsUtil.getDirectEditorConfigurations(semanticObjectToEdit, selectedObject);
+		Collection<IDirectEditorExtensionPoint> directEditorConfigurations = DirectEditorsUtil.getDirectEditorExtensions(semanticObjectToEdit, selectedObject);
 
 		List<DirectEditorExtensionPoint> returnList = new ArrayList<DirectEditorExtensionPoint>();
 		for (IDirectEditorExtensionPoint extension : directEditorConfigurations) {
@@ -520,5 +521,4 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	public boolean isSuperType() {
 		return superType;
 	}
-
 }

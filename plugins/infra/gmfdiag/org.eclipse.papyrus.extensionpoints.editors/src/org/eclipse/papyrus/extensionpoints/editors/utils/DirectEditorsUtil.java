@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Bug 528199
  *
  *****************************************************************************/
 
@@ -32,32 +33,21 @@ public class DirectEditorsUtil {
 	private static final int UNKNOWN_PRIORITY = 100;
 
 	/**
-	 * Finds a editor for specific language and object to edit type
+	 * Find an editor configuration for specific language and object to edit
 	 *
 	 * @param language
 	 *            the language to edit
-	 * @param objectToEdit
-	 *            the type of object to edit
-	 * @return the extension point proxy that manages this kind of editor
-	 *
-	 * @deprecated Use {@link #findEditorConfiguration(String language, EObject eObjectToEdit)} instead
+	 * @param semanticObjectToEdit
+	 *            the semantic object to edit
+	 * @return the editor configuration
+	 * @since 3.0
 	 */
-	@Deprecated
-	public static IDirectEditorConfiguration findEditorConfiguration(String language, String objectToEdit) {
-		IDirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getInstance().getDirectEditorConfigurations();
-		for (IDirectEditorExtensionPoint directEditorExtensionPoint : extensionPoints) {
-			final String lang = directEditorExtensionPoint.getLanguage();
-			final String oToEdit = directEditorExtensionPoint.getObjectToEdit();
-			if (lang.equals(language) && oToEdit.equals(objectToEdit)) {
-				// extension point found!
-				return directEditorExtensionPoint.getDirectEditorConfiguration();
-			}
-		}
-		return new DefaultDirectEditorConfiguration();
+	public static IDirectEditorConfiguration findEditorConfiguration(String language, EObject objectToEdit) {
+		return findEditorConfiguration(language, objectToEdit, objectToEdit);
 	}
 
 	/**
-	 * Finds a editor for specific language and object to edit type
+	 * Find an editor configuration for specific language and object to edit
 	 *
 	 * @param language
 	 *            the language to edit
@@ -65,50 +55,48 @@ public class DirectEditorsUtil {
 	 *            the semantic object to edit
 	 * @param selectedElement
 	 *            The real selected element (e.g. widget, edit part, ...)
-	 * @return the extension point proxy that manages this kind of editor
+	 * @return the editor configuration
 	 */
 	public static IDirectEditorConfiguration findEditorConfiguration(String language, Object semanticObjectToEdit, Object selectedElement) {
-		IDirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getInstance().getDirectEditorConfigurations();
-		IDirectEditorConfiguration editorConfiguration = new DefaultDirectEditorConfiguration();
-		int configurationPriority = UNKNOWN_PRIORITY;
-		for (IDirectEditorExtensionPoint directEditorExtensionPoint : extensionPoints) {
-			final String lang = directEditorExtensionPoint.getLanguage();
-			final Class<? extends EObject> classToEdit = directEditorExtensionPoint.getObjectClassToEdit();
-			if (lang.equals(language) && classToEdit.isInstance(semanticObjectToEdit)) {
-				IDirectEditorConstraint constraint = directEditorExtensionPoint.getAdditionalConstraint();
-				if ((constraint == null || constraint.appliesTo(selectedElement)) && directEditorExtensionPoint.getPriority() < configurationPriority) {
-					// extension point found!
-					editorConfiguration = directEditorExtensionPoint.getDirectEditorConfiguration();
-					configurationPriority = directEditorExtensionPoint.getPriority();
-				}
-			}
+		IDirectEditorExtensionPoint extension = findEditorExtension(language, semanticObjectToEdit, selectedElement);
+		if (extension != null) {
+			return extension.getDirectEditorConfiguration();
 		}
-		return editorConfiguration;
+		// none found, return default
+		return new DefaultDirectEditorConfiguration();
 	}
 
 	/**
-	 * finds if an editor for specific language and object is available to edit type
-	 *
+	 * Find an editor extension for a specific language and object to edit
+	 * 
 	 * @param language
-	 *            the language to edit
-	 * @param objectToEdit
-	 *            the object to edit
-	 * @return <code>true</code> if an editor exists
-	 *
-	 * @deprecated Use {@link #hasSpecificEditorConfiguration(String language, EObject eObjectToEdit)} instead
+	 *            the language to edit, if null accept all languages
+	 * @param semanticObjectToEdit
+	 *            the semantic object to edit
+	 * @param selectedElement
+	 *            The real selected element (e.g. widget, edit part, ...)
+	 * @return the extension point that manages this kind of editor
+	 * @since 3.0
 	 */
-	@Deprecated
-	public static boolean hasSpecificEditorConfiguration(String language, String objectToEdit) {
-		IDirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getInstance().getDirectEditorConfigurations();
-		for (IDirectEditorExtensionPoint directEditorExtensionPoint : extensionPoints) {
-			final String lang = directEditorExtensionPoint.getLanguage();
-			final String oToEdit = directEditorExtensionPoint.getObjectToEdit();
-			if (lang.equals(language) && oToEdit.equals(objectToEdit)) {
-				// extension point found!
-				return true;
+	public static IDirectEditorExtensionPoint findEditorExtension(String language, Object semanticObjectToEdit, Object selectedElement) {
+		Collection<IDirectEditorExtensionPoint> configs = getDirectEditorExtensions(semanticObjectToEdit, selectedElement);
+
+		IDirectEditorExtensionPoint currentExtension = null;
+		int currentPriority = UNKNOWN_PRIORITY;
+		for (IDirectEditorExtensionPoint extensionPoint : configs) {
+			if ((language == null || language.equals(extensionPoint.getLanguage())) && extensionPoint.getPriority() < currentPriority) {
+				currentExtension = extensionPoint;
+				currentPriority = extensionPoint.getPriority();
 			}
 		}
-		return false;
+
+		if (currentExtension == null && language != null) {
+			// no extension found, retry without specific language filter. This is useful, since the default editor
+			// might not match, e.g. if you edit an opaque expression with a non-OCL body, the OCL editor should not
+			// be used, see bug 528199
+			return findEditorExtension(null, semanticObjectToEdit, selectedElement);
+		}
+		return currentExtension;
 	}
 
 	/**
@@ -123,47 +111,22 @@ public class DirectEditorsUtil {
 	 * @return <code>true</code> if an editor exists
 	 */
 	public static boolean hasSpecificEditorConfiguration(String language, Object semanticObjectToEdit, Object selectedElement) {
-		IDirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getInstance().getDirectEditorConfigurations();
-		for (IDirectEditorExtensionPoint directEditorExtensionPoint : extensionPoints) {
-			final String lang = directEditorExtensionPoint.getLanguage();
-			final Class<? extends EObject> classToEdit = directEditorExtensionPoint.getObjectClassToEdit();
-			if (lang.equals(language) && classToEdit.isInstance(semanticObjectToEdit)) {
-				IDirectEditorConstraint constraint = directEditorExtensionPoint.getAdditionalConstraint();
-				if (constraint == null || constraint.appliesTo(selectedElement)) {
-					// extension point found!
-					return true;
-				}
-			}
-		}
-		return false;
+		return findEditorExtension(language, semanticObjectToEdit, selectedElement) != null;
 	}
 
 	/**
-	 * finds if an editor for specific object is available to edit type
-	 *
-	 * @param language
-	 *            the language to edit
+	 * finds whether an editor for specific object is available to edit
+	 * 
 	 * @param objectToEdit
-	 *            the type of object to edit
 	 * @return <code>true</code> if an editor exists
-	 *
-	 * @deprecated Use {@link #hasSpecificEditorConfiguration(EObject)} instead
+	 * @since 3.0
 	 */
-	@Deprecated
-	public static boolean hasSpecificEditorConfiguration(String objectToEdit) {
-		IDirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getInstance().getDirectEditorConfigurations();
-		for (IDirectEditorExtensionPoint directEditorExtensionPoint : extensionPoints) {
-			final String oToEdit = directEditorExtensionPoint.getObjectToEdit();
-			if (oToEdit.equals(objectToEdit)) {
-				// extension point found!
-				return true;
-			}
-		}
-		return false;
+	public static boolean hasSpecificEditorConfiguration(EObject objectToEdit) {
+		return hasSpecificEditorConfiguration(objectToEdit, objectToEdit);
 	}
 
 	/**
-	 * finds if an editor for specific object is available to edit type
+	 * finds whether an editor for a specific object is available to edit
 	 *
 	 * @param language
 	 *            the language to edit
@@ -174,122 +137,65 @@ public class DirectEditorsUtil {
 	 * @return <code>true</code> if an editor exists
 	 */
 	public static boolean hasSpecificEditorConfiguration(Object semanticObjectToEdit, Object selectedElement) {
-		IDirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getInstance().getDirectEditorConfigurations();
-		for (IDirectEditorExtensionPoint directEditorExtensionPoint : extensionPoints) {
-			final Class<? extends EObject> classToEdit = directEditorExtensionPoint.getObjectClassToEdit();
-			if (classToEdit.isInstance(semanticObjectToEdit)) {
-				IDirectEditorConstraint constraint = directEditorExtensionPoint.getAdditionalConstraint();
-				if (constraint == null || constraint.appliesTo(selectedElement)) {
-					// extension point found!
-					return true;
-				}
-			}
-		}
-		return false;
+		return getDirectEditorExtensions(semanticObjectToEdit, selectedElement).size() > 0;
 	}
 
 	/**
-	 * Retrieves the preferred editor configuration for the specified type
+	 * Retrieves the preferred editor extension for the specified type
 	 *
 	 * @param class_
 	 *            the type of element to edit
-	 * @return the preferred editor configuration for the specified type or <code>null</code>
+	 * @return the preferred editor extension for the specified or <code>null</code>
+	 * @since 3.0
 	 */
-	public static IDirectEditorExtensionPoint getDefautDirectEditorConfiguration(Object semanticObjectToEdit, Object selectedObject) {
-		// retrieves preference for this element
-		String language = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticObjectToEdit.getClass().asSubclass(EObject.class));
-		if (language == null || IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(language)) {
-			return null;
-		}
-		IDirectEditorExtensionPoint currentConfiguration = null;
-		int currentPriority = UNKNOWN_PRIORITY;
-		Collection<IDirectEditorExtensionPoint> configs = getDirectEditorConfigurations(semanticObjectToEdit, selectedObject);
-
-		for (IDirectEditorExtensionPoint extensionPoint : configs) {
-			if (language.equals(extensionPoint.getLanguage()) && extensionPoint.getPriority() < currentPriority) {
-				currentConfiguration = extensionPoint;
-				currentPriority = extensionPoint.getPriority();
-			}
-		}
-
-		return currentConfiguration;
+	public static IDirectEditorExtensionPoint getDefaultDirectEditorExtension(Object semanticObjectToEdit) {
+		return getDefaultDirectEditorExtension(semanticObjectToEdit, semanticObjectToEdit);
 	}
 
 	/**
-	 * Returns the set of transformations registered in the platform for the specified kind of
-	 * element
+	 * Retrieves the preferred editor extension for the specified type
 	 *
-	 * @param the
-	 *            type of element to be edited
-	 * @return the set of transformations registered in the platform for the specified kind of
-	 *         element
+	 * @param semanticObjectToEdit
+	 *            the object that should be edited
+	 * @param selectedObject
+	 *            the currently selected object
+	 * @return the default editor extension for the passed elements or <code>null</code>
+	 * @since 3.0
 	 */
-	public static Collection<IDirectEditorExtensionPoint> getDirectEditorConfigurations(Object semanticObjectToEdit, Object selectedObject) {
-		// list of configuration to be returned. They correspond to
-		// configuration to edit the
-		// specified type
-		final List<IDirectEditorExtensionPoint> elementConfigurations = new ArrayList<IDirectEditorExtensionPoint>();
+	public static IDirectEditorExtensionPoint getDefaultDirectEditorExtension(Object semanticObjectToEdit, Object selectedObject) {
+		// retrieves preference for this element
+		String language = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticObjectToEdit.getClass().asSubclass(EObject.class));
+		if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(language)) {
+			return null;
+		}
+		return findEditorExtension(language, semanticObjectToEdit, selectedObject);
+	}
 
-		// check each configuration in the platform and select corresponding
-		// ones.
+	/**
+	 * Return the set of editor extensions registered in the platform for the specified kind of element
+	 *
+	 * @param semanticObjectToEdit
+	 *            the object that should be edited
+	 * @param selectedObject
+	 *            the currently selected object
+	 * @return the set of editor extension registered in the platform for the specified elements
+	 * @since 3.0
+	 */
+	public static Collection<IDirectEditorExtensionPoint> getDirectEditorExtensions(Object semanticObjectToEdit, Object selectedObject) {
+		// list of extension points to be returned.
+		final List<IDirectEditorExtensionPoint> editorExtensionPoints = new ArrayList<IDirectEditorExtensionPoint>();
+
+		// check each configuration and select those satisfying the constraints
 		for (IDirectEditorExtensionPoint configuration : DirectEditorExtensionPoint.getInstance().getDirectEditorConfigurations()) {
 			// both class are compatibles ?
 			if (configuration.getObjectClassToEdit() != null) {
 				if (configuration.getObjectClassToEdit().isInstance(semanticObjectToEdit)) {
 					IDirectEditorConstraint constraint = configuration.getAdditionalConstraint();
 					if (constraint == null || constraint.appliesTo(selectedObject))
-						elementConfigurations.add(configuration);
+						editorExtensionPoints.add(configuration);
 				}
 			}
 		}
-		return elementConfigurations;
+		return editorExtensionPoints;
 	}
-
-	/**
-	 * Finds a editor for specific language and object to edit type with the higher priority.
-	 *
-	 * @param language
-	 *            the language to edit
-	 * @param objectToEdit
-	 *            the type of object to edit
-	 * @return the extension point proxy that manages this kind of editor
-	 */
-	public static IDirectEditorConfiguration findEditorConfigurationWithPriority(String language, String objectToEdit) {
-		IDirectEditorConfiguration result = null;
-		int currentPrority = UNKNOWN_PRIORITY;
-		IDirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getInstance().getDirectEditorConfigurations();
-		for (IDirectEditorExtensionPoint directEditorExtensionPoint : extensionPoints) {
-			final String lang = directEditorExtensionPoint.getLanguage();
-			final String oToEdit = directEditorExtensionPoint.getObjectToEdit();
-			if (lang.equals(language) && oToEdit.equals(objectToEdit)) {
-				// extension point found!
-				int directEditorExtensionPointPriority = directEditorExtensionPoint.getPriority() != null ? directEditorExtensionPoint.getPriority() : UNKNOWN_PRIORITY;
-				if (result == null || (directEditorExtensionPointPriority < currentPrority)) {
-					result = directEditorExtensionPoint.getDirectEditorConfiguration();
-					currentPrority = directEditorExtensionPointPriority;
-				}
-			}
-		}
-		return result != null ? result : new DefaultDirectEditorConfiguration();
-	}
-
-	/**
-	 * returns the list of languages that are available from extension points
-	 *
-	 * @return the list of languages that have an extended editor
-	 */
-	public static List<String> getLanguages(String objectToEdit) {
-		List<String> languages = new ArrayList<String>();
-		IDirectEditorExtensionPoint[] extensionPoints = DirectEditorExtensionPoint.getInstance().getDirectEditorConfigurations();
-		for (IDirectEditorExtensionPoint directEditorExtensionPoint : extensionPoints) {
-			if (objectToEdit == null || directEditorExtensionPoint.getObjectToEdit().equals(objectToEdit)) {
-				String lang = directEditorExtensionPoint.getLanguage();
-				if (!languages.contains(lang)) {
-					languages.add(lang);
-				}
-			}
-		}
-		return languages;
-	}
-
 }
