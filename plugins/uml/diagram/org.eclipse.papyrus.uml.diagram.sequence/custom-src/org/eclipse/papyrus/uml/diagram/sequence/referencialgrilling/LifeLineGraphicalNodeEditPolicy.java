@@ -732,6 +732,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 					if (!request.getConnectionEditPart().getTarget().equals(request.getTarget())) {
 						((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand((ConnectionEditPart) request.getConnectionEditPart()));
 					}
+				} else {
+					command = reconnectTargetCommand;
 				}
 			} else if (request.getConnectionEditPart() instanceof MessageDeleteEditPart) {
 				if (!LifelineEditPartUtil.hasNextEvent((Point) requestLocationCopy, (LifelineEditPart) getHost())) {
@@ -758,6 +760,8 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 					if (!request.getConnectionEditPart().getTarget().equals(request.getTarget())) {
 						((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand((ConnectionEditPart) request.getConnectionEditPart()));
 					}
+				} else {
+					command = reconnectTargetCommand;
 				}
 			} else {
 				command = reconnectTargetCommand;

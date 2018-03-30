@@ -277,44 +277,28 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						// TODO_MIA Test it
 						return getSelfLinkMoveCommand(request, connectionPart, send, rcv, srcLifelinePart);
 					} else if (getHost() instanceof MessageCreateEditPart) {
-						// Reposition lifeline
-						IFigure targetFigure = targetLifelinePart.getPrimaryShape();
-
-						Point sourcePoint = request.getLocation().getCopy();
-						sourcePoint = SequenceUtil.getSnappedLocation(targetLifelinePart, sourcePoint);
-						targetFigure.getParent().translateToRelative(sourcePoint);
-						// gets the final snapped position
-
-						// Take into account of the sticker size
-						int stickerHeight = ((CLifeLineEditPart) targetLifelinePart).getStickerHeight();
-						if (stickerHeight != -1) {
-							sourcePoint.y = sourcePoint.y - (stickerHeight / 2);
-						}
-
-						Bounds bounds = ((Bounds) ((Node) targetLifelinePart.getModel()).getLayoutConstraint());
-
-						SetBoundsCommand moveLifelineCmd = new SetBoundsCommand(targetLifelinePart.getEditingDomain(), "Move LifeLine", new EObjectAdapter(((GraphicalEditPart) targetLifelinePart).getNotationView()), //$NON-NLS-1$
-								new Point(bounds.getX(), sourcePoint.y));
-
-						SetBoundsCommand setSizeCommand = new SetBoundsCommand(targetLifelinePart.getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetLifelinePart).getNotationView()), //$NON-NLS-1$
-								new Dimension(bounds.getWidth(), bounds.getHeight() - (sourcePoint.y - targetFigure.getBounds().y)));
-
 						// Move message End
 						int y = request.getLocation().y;
 						Command srcCmd = createMoveMessageEndCommand((Message) message, srcPart, send, y, srcLifelinePart, request);
 						Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y, targetLifelinePart, request);
 
+						// Calculate if this is needed to enlarge the lifelines
+						final PolylineConnectionEx polyline = (PolylineConnectionEx) connectionPart.getFigure();
+						final Point anchorPositionOnScreen = polyline.getSourceAnchor().getReferencePoint();
+						int yMoveDelta = y - anchorPositionOnScreen.y;
+						final Command updateLifeLinesBounds = getUpdateLifeLinesBounds(request, connectionPart, yMoveDelta);
+
 						CompoundCommand compoudCmd = new CompoundCommand(CustomMessages.MoveMessageCommand_Label);
 						Point oldLocation = SequenceUtil.getAbsoluteEdgeExtremity(connectionPart, true);
 						if (oldLocation != null) {
 							int oldY = oldLocation.y;
+							if (null != updateLifeLinesBounds) {
+								compoudCmd.add(updateLifeLinesBounds);
+							}
 							if (oldY < y) {
 								compoudCmd.add(tgtCmd);
 								compoudCmd.add(srcCmd);
-								compoudCmd.add(new ICommandProxy(moveLifelineCmd));
 							} else {
-								compoudCmd.add(new ICommandProxy(moveLifelineCmd));
-								compoudCmd.add(new ICommandProxy(setSizeCommand));
 								compoudCmd.add(srcCmd);
 								compoudCmd.add(tgtCmd);
 							}
@@ -327,7 +311,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						Point refPoint = SequenceUtil.getSnappedLocation(targetLifelinePart, request.getLocation().getCopy());
 						targetFigure.getParent().translateToRelative(refPoint);
 						Bounds bounds = ((Bounds) ((Node) targetLifelinePart.getModel()).getLayoutConstraint());
-
 
 						SetBoundsCommand setSizeCommand = new SetBoundsCommand(targetLifelinePart.getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetLifelinePart).getNotationView()), //$NON-NLS-1$
 								new Dimension(bounds.getWidth(), refPoint.y - bounds.getY()));
@@ -346,18 +329,25 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 							DropDestructionOccurenceSpecification dropDestructionOccurenceSpecification = new DropDestructionOccurenceSpecification(((ConnectionEditPart) getHost()).getEditingDomain(), request, targetLifelinePart,
 									request.getLocation().getCopy());
 
+							// Calculate if this is needed to enlarge the lifelines
+							final PolylineConnectionEx polyline = (PolylineConnectionEx) connectionPart.getFigure();
+							final Point anchorPositionOnScreen = polyline.getSourceAnchor().getReferencePoint();
+							int yMoveDelta = y - anchorPositionOnScreen.y;
+							final Command updateWeekRefForMessageReconnect = getUpdateLifeLinesBounds(request, connectionPart, yMoveDelta);
+
 							Point oldLocation = SequenceUtil.getAbsoluteEdgeExtremity(connectionPart, true);
 							if (oldLocation != null) {
 								int oldY = oldLocation.y;
+								if (null != updateWeekRefForMessageReconnect) {
+									compoudCmd.add(updateWeekRefForMessageReconnect);
+								}
 								if (oldY < y) {// down
-									compoudCmd.add(new ICommandProxy(setSizeCommand));
 									compoudCmd.add(tgtCmd);
 									compoudCmd.add(srcCmd);
 									compoudCmd.add(new ICommandProxy(dropDestructionOccurenceSpecification));
 								} else {// up
 									compoudCmd.add(srcCmd);
 									compoudCmd.add(tgtCmd);
-									compoudCmd.add(new ICommandProxy(setSizeCommand));
 									compoudCmd.add(new ICommandProxy(dropDestructionOccurenceSpecification));
 								}
 							}
@@ -374,10 +364,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 						int yMoveDelta = y - anchorPositionOnScreen.y;
 
-						Command updateWeekRefForMessageReconnect = getUpdateLifeLinesHeight(request, connectionPart, yMoveDelta);
-						if (null != updateWeekRefForMessageReconnect) {
-							compoudCmd.add(updateWeekRefForMessageReconnect);
-						}
+						Command updateWeekRefForMessageReconnect = getUpdateLifeLinesBounds(request, connectionPart, yMoveDelta);
 						/*
 						 * Take care of the order of commands, to make sure target is always bellow the source.
 						 * Otherwise, moving the target above the source would cause order conflict with existing CF.
@@ -385,6 +372,9 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						Point oldLocation = SequenceUtil.getAbsoluteEdgeExtremity(connectionPart, true);
 						if (oldLocation != null) {
 							int oldY = oldLocation.y;
+							if (null != updateWeekRefForMessageReconnect) {
+								compoudCmd.add(updateWeekRefForMessageReconnect);
+							}
 							if (oldY < y) {
 								compoudCmd.add(tgtCmd);
 								compoudCmd.add(srcCmd);
@@ -416,7 +406,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	 *            The height of the move.
 	 * @return The command to update lifelines or <code>null</code>.
 	 */
-	protected Command getUpdateLifeLinesHeight(final BendpointRequest request, final ConnectionEditPart hostConnectionEditPart, final int yMoveDelta) {
+	protected Command getUpdateLifeLinesBounds(final BendpointRequest request, final ConnectionEditPart hostConnectionEditPart, final int yMoveDelta) {
 		CompoundCommand command = null;
 		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ Calculate lifelines height modification for " + hostConnectionEditPart.getClass().getName());//$NON-NLS-1$
 
@@ -433,6 +423,11 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 				// The needed y position and heights
 				int maxY = 0;
+
+				// Get the initial source and target positions of the message
+				final PolylineConnectionEx polyline = (PolylineConnectionEx) hostConnectionEditPart.getFigure();
+				final Point initialSourcePosition = polyline.getSourceAnchor().getReferencePoint();
+				final Point initialTargetPosition = polyline.getTargetAnchor().getReferencePoint();
 
 				final Set<LifelineEditPart> lifelineEditParts = new HashSet<LifelineEditPart>();
 				if (hostConnectionEditPart.getSource() instanceof LifelineEditPart) {
@@ -454,10 +449,10 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 								// Calculate the anchor target Y
 								final PolylineConnectionEx subPolyline = (PolylineConnectionEx) connectionEditPart.getFigure();
-								Point targetPositionOnScreen = subPolyline.getTargetAnchor().getReferencePoint();
-								int newYTargetPoint = targetPositionOnScreen.y + yMoveDelta;
-								Point sourcePositionOnScreen = subPolyline.getSourceAnchor().getReferencePoint();
-								int newYSourcePoint = sourcePositionOnScreen.y + yMoveDelta;
+								final Point targetPositionOnScreen = subPolyline.getTargetAnchor().getReferencePoint();
+								final int newYTargetPoint = targetPositionOnScreen.y + yMoveDelta;
+								final Point sourcePositionOnScreen = subPolyline.getSourceAnchor().getReferencePoint();
+								final int newYSourcePoint = sourcePositionOnScreen.y + yMoveDelta;
 
 								// Get the max y
 								if (maxY < newYTargetPoint) {
@@ -518,16 +513,39 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						if (lifeLineEP.getModel() instanceof Shape) {
 							final Shape view = (ShapeImpl) lifeLineEP.getModel();
 
-							// Check if there is no delete message
+							// Check if there is message delete on life line
 							final boolean hasIncomingMessageDelete = LifelineMessageDeleteHelper.hasIncomingMessageDelete(lifeLineEP);
-							final boolean hasIncomingMessageCreate = LifelineMessageCreateHelper.hasIncomingMessageCreate(lifeLineEP);
-							if (!hasIncomingMessageCreate && !hasIncomingMessageDelete) {
-								// If there is no Message delete and no Message create, resize the lifeline if needed
-								final Rectangle absoluteBounds = SequenceUtil.getAbsoluteBounds(lifeLineEP);
-								if (absoluteBounds.height == -1) {
-									absoluteBounds.setHeight(CLifeLineEditPart.DEFAUT_HEIGHT);
-								}
 
+							// Check if there is message create on life line located after the moved message
+							final List<?> incomingMessagesCreate = LifelineMessageCreateHelper.getIncomingMessageCreate(lifeLineEP);
+							boolean hasIncomingMessageCreate = incomingMessagesCreate.size() > 0;
+							if (hasIncomingMessageCreate) {
+								hasIncomingMessageCreate = false;
+
+								final Iterator<?> incomingMessagesCreateIt = incomingMessagesCreate.iterator();
+								while (incomingMessagesCreateIt.hasNext() && !hasIncomingMessageCreate) {
+									final Object incomingMessageCreate = incomingMessagesCreateIt.next();
+									if (incomingMessageCreate instanceof ConnectionEditPart) {
+										final PolylineConnectionEx subPolyline = (PolylineConnectionEx) ((ConnectionEditPart) incomingMessageCreate).getFigure();
+										final Point targetPositionOnScreen = subPolyline.getTargetAnchor().getReferencePoint();
+										final Point sourcePositionOnScreen = subPolyline.getSourceAnchor().getReferencePoint();
+
+										// If the source position is located after the moved source message, in this case, consider the message create as after
+										// As same, if the target position is located after the moved target message, in this case, consider the message create as after
+										if (sourcePositionOnScreen.y >= initialSourcePosition.y || targetPositionOnScreen.y >= initialTargetPosition.y) {
+											hasIncomingMessageCreate = true;
+										}
+									}
+								}
+							}
+
+							final Rectangle absoluteBounds = SequenceUtil.getAbsoluteBounds(lifeLineEP);
+							if (absoluteBounds.height == -1) {
+								absoluteBounds.setHeight(CLifeLineEditPart.DEFAUT_HEIGHT);
+							}
+
+							// If there is no Message delete, resize the lifeline if needed
+							if (!hasIncomingMessageDelete && !hasIncomingMessageCreate) {
 								// Check if this is needed to resize the life line
 								if (maxY > absoluteBounds.y + absoluteBounds.height) {
 									if (view.getLayoutConstraint() instanceof Bounds) {
@@ -542,10 +560,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 									}
 								}
 							} else if (lifelineEditParts.contains(lifeLineEP)) {
-								final Rectangle absoluteBounds = SequenceUtil.getAbsoluteBounds(lifeLineEP);
-								if (absoluteBounds.height == -1) {
-									absoluteBounds.setHeight(CLifeLineEditPart.DEFAUT_HEIGHT);
-								}
 
 								if (view.getLayoutConstraint() instanceof Bounds) {
 									// Create the command to change bounds
@@ -586,6 +600,54 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				}
 			}
 		}
+
+		// If the command is null and the connection is a message create or a message delete, we need to recalculate the target lifeline bounds
+		if (null == command) {
+			if (hostConnectionEditPart instanceof MessageCreateEditPart) {
+				final CompoundCommand compoundCommand = new CompoundCommand();
+
+				if (hostConnectionEditPart.getTarget() instanceof LifelineEditPart) {
+					final LifelineEditPart targetLifeLine = (LifelineEditPart) hostConnectionEditPart.getTarget();
+					if (targetLifeLine.getModel() instanceof Shape) {
+						final Shape view = (ShapeImpl) targetLifeLine.getModel();
+						// Create the command to change bounds
+						final Bounds bounds = (Bounds) view.getLayoutConstraint();
+						final Point newLocation = new Point(bounds.getX(), bounds.getY() + yMoveDelta);
+						final int newHeight = bounds.getHeight() == -1 ? BoundForEditPart.getDefaultHeightFromView(view) : bounds.getHeight();
+						final Dimension newDimension = new Dimension(bounds.getWidth(), newHeight - yMoveDelta);
+						final Rectangle newBounds = new Rectangle(newLocation, newDimension);
+						final ICommand boundsCommand = new SetBoundsCommand(targetLifeLine.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newBounds);
+
+						compoundCommand.add(new ICommandProxy(boundsCommand));
+					}
+				}
+
+				if (!compoundCommand.isEmpty()) {
+					command = compoundCommand;
+				}
+			} else if (hostConnectionEditPart instanceof MessageDeleteEditPart) {
+				final CompoundCommand compoundCommand = new CompoundCommand();
+
+				if (hostConnectionEditPart.getTarget() instanceof LifelineEditPart) {
+					final LifelineEditPart targetLifeLine = (LifelineEditPart) hostConnectionEditPart.getTarget();
+					if (targetLifeLine.getModel() instanceof Shape) {
+						final Shape view = (ShapeImpl) targetLifeLine.getModel();
+
+						final Bounds bounds = (Bounds) view.getLayoutConstraint();
+
+						final SetBoundsCommand boundsCommand = new SetBoundsCommand(targetLifeLine.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view),
+								new Dimension(bounds.getWidth(), bounds.getHeight() + yMoveDelta));
+
+						compoundCommand.add(new ICommandProxy(boundsCommand));
+					}
+				}
+
+				if (!compoundCommand.isEmpty()) {
+					command = compoundCommand;
+				}
+			}
+		}
+
 		return command;
 	}
 
