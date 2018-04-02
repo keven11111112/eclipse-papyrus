@@ -20,6 +20,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Description</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An element that is added to a DI model to record the id of the architecture context applied to a model set
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -40,10 +44,13 @@ public interface ArchitectureDescription extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The id of the context applied to a UML model
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Context Id</em>' attribute.
 	 * @see #setContextId(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDescription_ContextId()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The id of the context applied to a UML model'"
 	 * @generated
 	 */
 	String getContextId();

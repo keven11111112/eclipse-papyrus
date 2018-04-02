@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.constraints.provider.ConstraintsEditPlugin;
 
 import org.eclipse.papyrus.infra.core.architecture.provider.ArchitectureEditPlugin;
 
+import org.eclipse.papyrus.infra.emf.expressions.provider.ExpressionsEditPlugin;
 import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
 
@@ -63,6 +64,7 @@ public final class RepresentationEditPlugin extends EMFPlugin {
 		     TypesConfigurationsEditPlugin.INSTANCE,
 		     NattableEditPlugin.INSTANCE,
 		     org.eclipse.papyrus.infra.architecture.representation.provider.RepresentationEditPlugin.INSTANCE,
+		     ExpressionsEditPlugin.INSTANCE,
 		   });
 	}
 

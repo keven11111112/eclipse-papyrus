@@ -70,13 +70,13 @@ public class RepresentationKindItemProvider extends ADElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_RepresentationKind_concerns_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_RepresentationKind_concerns_feature", "_UI_RepresentationKind_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_RepresentationKind_concerns_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.REPRESENTATION_KIND__CONCERNS,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_RepresentationKindPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 

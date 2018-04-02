@@ -43,21 +43,12 @@ public interface AssistantRule extends Rule {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * <p>
-	 * Modeling assistants are identified by the ID of the element type that they create.
-	 * This element type ID supports very simple wildcard patterns:  an asterisk (<tt>*</tt>)
-	 * may be used to match any substring, including the empty substring.  This is
-	 * particularly useful to match an entire family of related element types by namespace
-	 * prefix, using a terminal asterisk.
-	 * </p><p>
-	 * If the element type ID is omitted, then the rule applies to all element types
-	 * (universal wildcard).
-	 * </p>
+	 * A pattern (that can include *) to match for the identifier of a assistant element.
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Element Type ID</em>' attribute.
 	 * @see #setElementTypeID(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getAssistantRule_ElementTypeID()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='A pattern (that can include *) to match for the identifier of a assistant element.'"
 	 * @generated
 	 */
 	String getElementTypeID();

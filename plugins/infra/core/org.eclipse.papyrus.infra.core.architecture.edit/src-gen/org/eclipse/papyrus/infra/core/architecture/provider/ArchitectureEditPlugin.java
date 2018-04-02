@@ -54,8 +54,8 @@ public final class ArchitectureEditPlugin extends EMFPlugin {
 	public ArchitectureEditPlugin() {
 		super
 		  (new ResourceLocator [] {
-		     TypesConfigurationsEditPlugin.INSTANCE,
 		     EcoreEditPlugin.INSTANCE,
+		     TypesConfigurationsEditPlugin.INSTANCE,
 		   });
 	}
 

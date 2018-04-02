@@ -150,7 +150,7 @@ public class ArchitectureDescriptionPreferencesImpl extends MinimalEObjectImpl.C
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (viewpointIds: "); //$NON-NLS-1$
 		result.append(viewpointIds);
 		result.append(')');

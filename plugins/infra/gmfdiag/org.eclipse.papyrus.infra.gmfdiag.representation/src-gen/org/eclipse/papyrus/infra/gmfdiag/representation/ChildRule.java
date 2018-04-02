@@ -24,6 +24,10 @@ import org.eclipse.papyrus.infra.architecture.representation.Rule;
  * A representation of the model object '<em><b>Child Rule</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A rule that controls the types of elements that can be dropped on this diagram kind.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -47,10 +51,13 @@ public interface ChildRule extends Rule {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type (from the language's metamodel) that an element must have to be dropped on this diagram kind.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Element</em>' reference.
 	 * @see #setElement(EClass)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getChildRule_Element()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The type (from the language\'s metamodel) that an element must have to be dropped on this diagram kind.'"
 	 * @generated
 	 */
 	EClass getElement();
@@ -74,9 +81,12 @@ public interface ChildRule extends Rule {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The stereotype (from the language's profiles) that an element must have to be dropped on this diagram kind.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Stereotypes</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getChildRule_Stereotypes()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The stereotype (from the language\'s profiles) that an element must have to be dropped on this diagram kind.'"
 	 * @generated
 	 */
 	EList<EClass> getStereotypes();
@@ -89,10 +99,13 @@ public interface ChildRule extends Rule {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type (from the language's metamodel) that an element must have to be the target of the drop of the child model element.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Origin</em>' reference.
 	 * @see #setOrigin(EClass)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getChildRule_Origin()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The type (from the language\'s metamodel) that an element must have to be the target of the drop of the child model element.'"
 	 * @generated
 	 */
 	EClass getOrigin();
@@ -116,9 +129,13 @@ public interface ChildRule extends Rule {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A path of properties that must be used from the origin to insert the new child model element in the model.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Insertion Path</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getChildRule_InsertionPath()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='A path of properties that must be used from the origin to insert the new child model element in the model.'"
 	 * @generated
 	 */
 	EList<PathElement> getInsertionPath();

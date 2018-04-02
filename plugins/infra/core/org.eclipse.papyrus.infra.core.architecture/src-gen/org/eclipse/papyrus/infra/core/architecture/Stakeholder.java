@@ -20,6 +20,10 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Stakeholder</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A stakeholder (from ISO 42010) represents in Papyrus an archetype of users. It references a set of its concerns.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -42,9 +46,12 @@ public interface Stakeholder extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of concerns of the stakeholder
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Concerns</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getStakeholder_Concerns()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of concerns of the stakeholder' propertyCategory='Stakeholder'"
 	 * @generated
 	 */
 	EList<Concern> getConcerns();
@@ -58,11 +65,15 @@ public interface Stakeholder extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The domain that defines the stakeholder
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Domain</em>' container reference.
 	 * @see #setDomain(ArchitectureDomain)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getStakeholder_Domain()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain#getStakeholders
 	 * @model opposite="stakeholders" required="true" transient="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The domain that defines the stakeholder'"
 	 * @generated
 	 */
 	ArchitectureDomain getDomain();

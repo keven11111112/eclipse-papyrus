@@ -20,6 +20,10 @@ import org.eclipse.papyrus.infra.architecture.representation.Rule;
  * A representation of the model object '<em><b>Palette Rule</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A rule that controls the palette of the diagram kind.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -40,10 +44,13 @@ public interface PaletteRule extends Rule {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A pattern (that can include *) to match for the identifier of a palette element.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Element</em>' attribute.
 	 * @see #setElement(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPaletteRule_Element()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='A pattern (that can include *) to match for the identifier of a palette element.'"
 	 * @generated
 	 */
 	String getElement();

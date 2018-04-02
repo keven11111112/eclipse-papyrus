@@ -77,8 +77,8 @@ public class ChildRuleItemProvider extends RuleItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ChildRule_element_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ChildRule_element_feature", "_UI_ChildRule_type"),
+				 getString("_UI_ChildRule_element_feature"), //$NON-NLS-1$
+				 getString("_UI_ChildRule_element_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.CHILD_RULE__ELEMENT,
 				 true,
 				 false,
@@ -99,8 +99,8 @@ public class ChildRuleItemProvider extends RuleItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ChildRule_stereotypes_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ChildRule_stereotypes_feature", "_UI_ChildRule_type"),
+				 getString("_UI_ChildRule_stereotypes_feature"), //$NON-NLS-1$
+				 getString("_UI_ChildRule_stereotypes_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.CHILD_RULE__STEREOTYPES,
 				 true,
 				 false,
@@ -121,8 +121,8 @@ public class ChildRuleItemProvider extends RuleItemProvider {
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ChildRule_origin_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ChildRule_origin_feature", "_UI_ChildRule_type"),
+				 getString("_UI_ChildRule_origin_feature"), //$NON-NLS-1$
+				 getString("_UI_ChildRule_origin_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.CHILD_RULE__ORIGIN,
 				 true,
 				 false,

@@ -88,7 +88,7 @@ public class ArchitectureDescriptionItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ArchitectureDescription_contextId_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureDescription_contextId_feature", "_UI_ArchitectureDescription_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ArchitectureDescription_contextId_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION__CONTEXT_ID,
 				 true,
 				 false,

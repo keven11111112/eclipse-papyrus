@@ -76,13 +76,13 @@ public class PapyrusRepresentationKindItemProvider extends RepresentationKindIte
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_PapyrusRepresentationKind_parent_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusRepresentationKind_parent_feature", "_UI_PapyrusRepresentationKind_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_PapyrusRepresentationKind_parent_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.PAPYRUS_REPRESENTATION_KIND__PARENT,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_RepresentationKindPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -98,13 +98,13 @@ public class PapyrusRepresentationKindItemProvider extends RepresentationKindIte
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_PapyrusRepresentationKind_implementationID_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusRepresentationKind_implementationID_feature", "_UI_PapyrusRepresentationKind_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_PapyrusRepresentationKind_implementationID_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.PAPYRUS_REPRESENTATION_KIND__IMPLEMENTATION_ID,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_RepresentationKindPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 

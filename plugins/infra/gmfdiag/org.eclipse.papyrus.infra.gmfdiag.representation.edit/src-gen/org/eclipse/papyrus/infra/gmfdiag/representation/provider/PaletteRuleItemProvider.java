@@ -75,7 +75,7 @@ public class PaletteRuleItemProvider extends RuleItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_PaletteRule_element_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PaletteRule_element_feature", "_UI_PaletteRule_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_PaletteRule_element_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.PALETTE_RULE__ELEMENT,
 				 true,
 				 false,

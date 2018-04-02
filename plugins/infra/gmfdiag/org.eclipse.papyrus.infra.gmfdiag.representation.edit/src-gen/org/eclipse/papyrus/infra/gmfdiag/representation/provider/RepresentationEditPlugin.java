@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.constraints.provider.ConstraintsEditPlugin;
 
 import org.eclipse.papyrus.infra.core.architecture.provider.ArchitectureEditPlugin;
 
+import org.eclipse.papyrus.infra.filters.provider.FiltersEditPlugin;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider.PaletteConfigurationEditPlugin;
 import org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin;
 
@@ -63,6 +64,7 @@ public final class RepresentationEditPlugin extends EMFPlugin {
 		     TypesConfigurationsEditPlugin.INSTANCE,
 		     PaletteConfigurationEditPlugin.INSTANCE,
 		     org.eclipse.papyrus.infra.architecture.representation.provider.RepresentationEditPlugin.INSTANCE,
+		     FiltersEditPlugin.INSTANCE,
 		   });
 	}
 

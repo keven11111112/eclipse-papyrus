@@ -463,7 +463,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (extensionPrefix: "); //$NON-NLS-1$
 		result.append(extensionPrefix);
 		result.append(", creationCommandClass: "); //$NON-NLS-1$

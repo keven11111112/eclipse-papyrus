@@ -21,6 +21,10 @@ import org.eclipse.emf.ecore.EReference;
  * A representation of the model object '<em><b>Root Auto Select</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The settings of selecting a model element that is the root of a representation kind
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -41,10 +45,14 @@ public interface RootAutoSelect extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A reference from the newly created element type that is used to get the root of a representation of this kind.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature</em>' reference.
 	 * @see #setFeature(EReference)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getRootAutoSelect_Feature()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='A reference from the newly created element type that is used to get the root of a representation of this kind'"
 	 * @generated
 	 */
 	EReference getFeature();

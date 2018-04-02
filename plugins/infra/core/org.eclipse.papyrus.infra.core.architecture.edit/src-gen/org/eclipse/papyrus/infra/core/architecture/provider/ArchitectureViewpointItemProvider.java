@@ -71,13 +71,13 @@ public class ArchitectureViewpointItemProvider extends ADElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ArchitectureViewpoint_concerns_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureViewpoint_concerns_feature", "_UI_ArchitectureViewpoint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ArchitectureViewpoint_concerns_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.ARCHITECTURE_VIEWPOINT__CONCERNS,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ViewpointPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -93,13 +93,13 @@ public class ArchitectureViewpointItemProvider extends ADElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ArchitectureViewpoint_representationKinds_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureViewpoint_representationKinds_feature", "_UI_ArchitectureViewpoint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ArchitectureViewpoint_representationKinds_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.ARCHITECTURE_VIEWPOINT__REPRESENTATION_KINDS,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ViewpointPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -118,13 +118,14 @@ public class ArchitectureViewpointItemProvider extends ADElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((ArchitectureViewpoint)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ArchitectureViewpoint_type") : label;
+			getString("_UI_ArchitectureViewpoint_type") : //$NON-NLS-1$
+			getString("_UI_ArchitectureViewpoint_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 

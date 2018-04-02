@@ -89,8 +89,8 @@ public class ModelAutoCreateItemProvider
 			createItemPropertyDescriptor
 				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				getString("_UI_ModelAutoCreate_feature_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_feature_feature", "_UI_ModelAutoCreate_type"),
+				getString("_UI_ModelAutoCreate_feature_feature"), //$NON-NLS-1$
+				getString("_UI_ModelAutoCreate_feature_description"), //$NON-NLS-1$
 				RepresentationPackage.Literals.MODEL_AUTO_CREATE__FEATURE,
 				true,
 				false,
@@ -112,7 +112,7 @@ public class ModelAutoCreateItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ModelAutoCreate_origin_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_origin_feature", "_UI_ModelAutoCreate_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ModelAutoCreate_origin_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.MODEL_AUTO_CREATE__ORIGIN,
 				 false,
 				 false,
@@ -131,8 +131,8 @@ public class ModelAutoCreateItemProvider
 	protected void addCreationTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(new ComplexTypePropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_ModelAutoCreate_creationType_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ModelAutoCreate_creationType_feature", "_UI_ModelAutoCreate_type"),
+				getString("_UI_ModelAutoCreate_creationType_feature"), //$NON-NLS-1$
+				getString("_UI_ModelAutoCreate_creationType_description"), //$NON-NLS-1$
 				RepresentationPackage.Literals.MODEL_AUTO_CREATE__CREATION_TYPE,
 				true,
 				false,

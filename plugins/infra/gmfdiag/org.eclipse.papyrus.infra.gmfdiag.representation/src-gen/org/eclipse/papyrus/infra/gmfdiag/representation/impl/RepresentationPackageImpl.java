@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 
+import org.eclipse.papyrus.infra.filters.FiltersPackage;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteconfigurationPackage;
 
 import org.eclipse.papyrus.infra.gmfdiag.representation.AssistantRule;
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationFactory;
 import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
 
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
+import org.eclipse.uml2.types.TypesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -119,7 +121,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link RepresentationPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -133,7 +135,8 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		if (isInited) return (RepresentationPackage)EPackage.Registry.INSTANCE.getEPackage(RepresentationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		RepresentationPackageImpl theRepresentationPackage = (RepresentationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RepresentationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new RepresentationPackageImpl());
+		Object registeredRepresentationPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		RepresentationPackageImpl theRepresentationPackage = registeredRepresentationPackage instanceof RepresentationPackageImpl ? (RepresentationPackageImpl)registeredRepresentationPackage : new RepresentationPackageImpl();
 
 		isInited = true;
 
@@ -144,6 +147,8 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 		PaletteconfigurationPackage.eINSTANCE.eClass();
 		org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.eINSTANCE.eClass();
+		FiltersPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theRepresentationPackage.createPackageContents();
@@ -154,7 +159,6 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		// Mark meta-data to indicate it can't be changed
 		theRepresentationPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(RepresentationPackage.eNS_URI, theRepresentationPackage);
 		return theRepresentationPackage;

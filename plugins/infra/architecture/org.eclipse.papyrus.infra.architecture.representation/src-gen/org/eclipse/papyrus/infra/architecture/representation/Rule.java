@@ -20,6 +20,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Rule</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A rule that controls the definition of a representation kind.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -41,10 +45,14 @@ public interface Rule extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Whether the rule permits or forbids the action it represents
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Permit</em>' attribute.
 	 * @see #setPermit(boolean)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getRule_Permit()
 	 * @model default="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='Whether the rule permits or forbids the action it represents'"
 	 * @generated
 	 */
 	boolean isPermit();

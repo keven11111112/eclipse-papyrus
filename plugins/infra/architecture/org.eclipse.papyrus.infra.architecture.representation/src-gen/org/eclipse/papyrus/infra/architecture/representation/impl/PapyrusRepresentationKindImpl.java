@@ -319,7 +319,7 @@ public abstract class PapyrusRepresentationKindImpl extends RepresentationKindIm
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (implementationID: "); //$NON-NLS-1$
 		result.append(implementationID);
 		result.append(')');

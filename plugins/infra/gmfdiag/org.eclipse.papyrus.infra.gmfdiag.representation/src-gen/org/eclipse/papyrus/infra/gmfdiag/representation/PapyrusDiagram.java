@@ -23,6 +23,10 @@ import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.PaletteConfigurati
  * A representation of the model object '<em><b>Papyrus Diagram</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A representation kind that depicts elements form a UML model as a diagram
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -48,10 +52,13 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The custom style for the diagram specified using a platform plugin URI of a CSS file
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Custom Style</em>' attribute.
 	 * @see #setCustomStyle(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram_CustomStyle()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The custom style for the diagram specified using a platform plugin URI of a CSS file' propertyCategory='Diagram'"
 	 * @generated
 	 */
 	String getCustomStyle();
@@ -72,11 +79,12 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * These rules determine which model elements can be added as child of the origin through this diagram
+	 * The set of rules that determine which model elements can be added as child of the origin through this diagram
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Child Rules</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram_ChildRules()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of rules that determine which model elements can be added as child of the origin through this diagram' propertyCategory='Diagram'"
 	 * @generated
 	 */
 	EList<ChildRule> getChildRules();
@@ -87,11 +95,12 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * These rules determine which palette elements should be available for this diagram
+	 * These set of rules that determine which palette elements should be available for this diagram
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Palette Rules</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram_PaletteRules()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='These set of rules that determine which palette elements should be available for this diagram' propertyCategory='Diagram'"
 	 * @generated
 	 */
 	EList<PaletteRule> getPaletteRules();
@@ -102,11 +111,12 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * These rules determine which modeling assistants should be presented in this diagram
+	 * The set of rules that determine which modeling assistants should be presented in this diagram
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Assistant Rules</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram_AssistantRules()
 	 * @model containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of rules that determine which modeling assistants should be presented in this diagram' propertyCategory='Diagram'"
 	 * @generated
 	 */
 	EList<AssistantRule> getAssistantRules();
@@ -119,10 +129,14 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The fully qualified name of a command that creates the diagram. The command must implement the org.eclipse.papyrus.commands.ICreationCommand inteface
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Creation Command Class</em>' attribute.
 	 * @see #setCreationCommandClass(Class)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram_CreationCommandClass()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The fully qualified name of a command that creates the diagram. The command must implement the org.eclipse.papyrus.commands.ICreationCommand inteface' propertyCategory='Diagram'"
 	 * @generated
 	 */
 	Class<?> getCreationCommandClass();
@@ -146,9 +160,12 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A set of palette configurations used by the diagram (typically found in .paletteconfiguration files)
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Palettes</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram_Palettes()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='A set of palette configurations used by the diagram (typically found in .paletteconfiguration files)' propertyCategory='Diagram'"
 	 * @generated
 	 */
 	EList<PaletteConfiguration> getPalettes();

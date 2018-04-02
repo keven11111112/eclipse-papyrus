@@ -72,13 +72,13 @@ public class PapyrusTableItemProvider extends PapyrusRepresentationKindItemProvi
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_PapyrusTable_configuration_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTable_configuration_feature", "_UI_PapyrusTable_type"),
+				 getString("_UI_PapyrusTable_configuration_description"),
 				 RepresentationPackage.Literals.PAPYRUS_TABLE__CONFIGURATION,
 				 true,
 				 false,
 				 false,
 				 null,
-				 null,
+				 getString("_UI_TablePropertyCategory"),
 				 null));
 	}
 

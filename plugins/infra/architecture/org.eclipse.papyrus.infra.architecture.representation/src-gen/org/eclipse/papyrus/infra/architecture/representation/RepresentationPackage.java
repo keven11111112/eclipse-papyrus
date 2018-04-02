@@ -80,6 +80,15 @@ public interface RepresentationPackage extends EPackage {
 	int PAPYRUS_REPRESENTATION_KIND = 0;
 
 	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_REPRESENTATION_KIND__ID = ArchitecturePackage.REPRESENTATION_KIND__ID;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,6 +116,15 @@ public interface RepresentationPackage extends EPackage {
 	int PAPYRUS_REPRESENTATION_KIND__QUALIFIED_NAME = ArchitecturePackage.REPRESENTATION_KIND__QUALIFIED_NAME;
 
 	/**
+	 * The feature id for the '<em><b>Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_REPRESENTATION_KIND__ICON = ArchitecturePackage.REPRESENTATION_KIND__ICON;
+
+	/**
 	 * The feature id for the '<em><b>Language</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -123,15 +141,6 @@ public interface RepresentationPackage extends EPackage {
 	 * @ordered
 	 */
 	int PAPYRUS_REPRESENTATION_KIND__CONCERNS = ArchitecturePackage.REPRESENTATION_KIND__CONCERNS;
-
-	/**
-	 * The feature id for the '<em><b>Icon</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PAPYRUS_REPRESENTATION_KIND__ICON = ArchitecturePackage.REPRESENTATION_KIND__ICON;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.

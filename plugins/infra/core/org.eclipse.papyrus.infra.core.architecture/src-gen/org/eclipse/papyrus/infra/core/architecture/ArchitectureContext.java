@@ -21,6 +21,10 @@ import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
  * A representation of the model object '<em><b>Context</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The superclass of architectural description languages or architecture frameworks. It defines a collection of viewpoints on models.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -49,10 +53,14 @@ public interface ArchitectureContext extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of viewpoints defined by the context
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Viewpoints</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_Viewpoints()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint#getContext
 	 * @model opposite="context" containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of viewpoints defined by the context'"
 	 * @generated
 	 */
 	EList<ArchitectureViewpoint> getViewpoints();
@@ -66,9 +74,12 @@ public interface ArchitectureContext extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of viewpoints that are selected for the context by default
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Default Viewpoints</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_DefaultViewpoints()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of viewpoints that are selected for the context by default' propertyCategory='Context'"
 	 * @generated
 	 */
 	EList<ArchitectureViewpoint> getDefaultViewpoints();
@@ -82,9 +93,12 @@ public interface ArchitectureContext extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of element type set configurations that are used by the context (typically found in .elementtypesconfigurations resources)
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Element Types</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_ElementTypes()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of element type set configurations that are used by the context (typically found in .elementtypesconfigurations resources)' propertyCategory='Context'"
 	 * @generated
 	 */
 	EList<ElementTypeSetConfiguration> getElementTypes();
@@ -97,10 +111,13 @@ public interface ArchitectureContext extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The prefix of the file extension of the UML models applying this context (e.g., <Name>.<prefixExtension>.uml)
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Extension Prefix</em>' attribute.
 	 * @see #setExtensionPrefix(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_ExtensionPrefix()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The prefix of the file extension of the UML models applying this context (e.g., &lt;Name&gt;.&lt;prefixExtension&gt;.uml)' propertyCategory='Context'"
 	 * @generated
 	 */
 	String getExtensionPrefix();
@@ -123,10 +140,14 @@ public interface ArchitectureContext extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The fully qualified name of a command that creates models applying this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand inteface
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Creation Command Class</em>' attribute.
 	 * @see #setCreationCommandClass(Class)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_CreationCommandClass()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The fully qualified name of a command that creates models applying this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand inteface' propertyCategory='Context'"
 	 * @generated
 	 */
 	Class<?> getCreationCommandClass();
@@ -149,10 +170,13 @@ public interface ArchitectureContext extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Conversion Command Class</em>' attribute.
 	 * @see #setConversionCommandClass(Class)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_ConversionCommandClass()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface' propertyCategory='Context'"
 	 * @generated
 	 */
 	Class<?> getConversionCommandClass();
@@ -176,11 +200,15 @@ public interface ArchitectureContext extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The domain that defines the context
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Domain</em>' container reference.
 	 * @see #setDomain(ArchitectureDomain)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_Domain()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain#getContexts
 	 * @model opposite="contexts" required="true" transient="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The domain that defines the context'"
 	 * @generated
 	 */
 	ArchitectureDomain getDomain();

@@ -22,6 +22,10 @@ import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
  * A representation of the model object '<em><b>Papyrus Representation Kind</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A subclass of representation kind that adds rules
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -45,10 +49,13 @@ public interface PapyrusRepresentationKind extends RepresentationKind {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The parent representation kind from which this representation kind inherits
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Parent</em>' reference.
 	 * @see #setParent(PapyrusRepresentationKind)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getPapyrusRepresentationKind_Parent()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Representation Kind' propertyDescription='The parent representation kind from which this representation kind inherits'"
 	 * @generated
 	 */
 	PapyrusRepresentationKind getParent();
@@ -69,11 +76,12 @@ public interface PapyrusRepresentationKind extends RepresentationKind {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * These rules determine which model elements can be the semantic element behind this diagram
+	 * The set of rules that determine which model elements can be the semantic element behind this diagram
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Model Rules</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getPapyrusRepresentationKind_ModelRules()
 	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Representation Kind' propertyDescription='The set of rules that determine which model elements can be the semantic element behind this diagram'"
 	 * @generated
 	 */
 	EList<ModelRule> getModelRules();
@@ -84,11 +92,12 @@ public interface PapyrusRepresentationKind extends RepresentationKind {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * These rules determine which elements can be the syntactic owner of this diagram
+	 * The set of rules that determine which elements can be the syntactic owner of this diagram
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Owning Rules</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getPapyrusRepresentationKind_OwningRules()
 	 * @model containment="true" required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Representation Kind' propertyDescription='The set of rules that determine which elements can be the syntactic owner of this diagram'"
 	 * @generated
 	 */
 	EList<OwningRule> getOwningRules();
@@ -101,10 +110,14 @@ public interface PapyrusRepresentationKind extends RepresentationKind {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The id of the underlying implementation of this representation kind
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Implementation ID</em>' attribute.
 	 * @see #setImplementationID(String)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getPapyrusRepresentationKind_ImplementationID()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Representation Kind' propertyDescription='The id of the underlying implementation of this representation kind'"
 	 * @generated
 	 */
 	String getImplementationID();

@@ -7,13 +7,14 @@
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.eclipse.papyrus.infra.nattable.representation.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     editPluginID="org.eclipse.papyrus.infra.nattable.representation.edit" editorPluginID="org.eclipse.papyrus.infra.nattable.representation.editor"
-    usedGenPackages="../../org.eclipse.papyrus.infra.core.architecture/model/Architecture.genmodel#//architecture ../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types ../../org.eclipse.papyrus.infra.nattable.model/model/nattable.genmodel#//nattable ../../org.eclipse.papyrus.infra.architecture.representation/model/Representation.genmodel#//representation"
+    usedGenPackages="../../org.eclipse.papyrus.infra.core.architecture/model/Architecture.genmodel#//architecture ../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types ../../org.eclipse.papyrus.infra.nattable.model/model/nattable.genmodel#//nattable ../../org.eclipse.papyrus.infra.architecture.representation/model/Representation.genmodel#//representation ../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.genmodel#//expressions/booleanexpressions ../../org.eclipse.papyrus.infra.emf.expressions/model/expressions.genmodel#//expressions"
     operationReflection="true" importOrganizing="true">
   <foreignModel>NattableRepresentation.ecore</foreignModel>
   <genPackages prefix="Representation" basePackage="org.eclipse.papyrus.infra.nattable"
       disposableProviderFactory="true" childCreationExtenders="true" ecorePackage="NattableRepresentation.ecore#/">
     <genClasses ecoreClass="NattableRepresentation.ecore#//PapyrusTable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference NattableRepresentation.ecore#//PapyrusTable/configuration"/>
+      <genFeatures createChild="false" propertyCategory="Table" propertyDescription="The configuration of the table"
+          ecoreFeature="ecore:EReference NattableRepresentation.ecore#//PapyrusTable/configuration"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -20,6 +20,10 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Domain</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A domain is the root of the architecture model. It can contains a collection of concerns, stakeholders, as well as contexts (which can be description languages and/or frameworks).
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -44,10 +48,14 @@ public interface ArchitectureDomain extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of stakeholders defined by the domain
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Stakeholders</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDomain_Stakeholders()
 	 * @see org.eclipse.papyrus.infra.core.architecture.Stakeholder#getDomain
 	 * @model opposite="domain" containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of stakeholders defined by the domain'"
 	 * @generated
 	 */
 	EList<Stakeholder> getStakeholders();
@@ -62,10 +70,14 @@ public interface ArchitectureDomain extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of concerns defined by the domain
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Concerns</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDomain_Concerns()
 	 * @see org.eclipse.papyrus.infra.core.architecture.Concern#getDomain
 	 * @model opposite="domain" containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of concerns defined by the domain'"
 	 * @generated
 	 */
 	EList<Concern> getConcerns();
@@ -80,10 +92,14 @@ public interface ArchitectureDomain extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of contexts defined by the domain
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Contexts</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDomain_Contexts()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getDomain
 	 * @model opposite="domain" containment="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of contexts defined by the domain'"
 	 * @generated
 	 */
 	EList<ArchitectureContext> getContexts();

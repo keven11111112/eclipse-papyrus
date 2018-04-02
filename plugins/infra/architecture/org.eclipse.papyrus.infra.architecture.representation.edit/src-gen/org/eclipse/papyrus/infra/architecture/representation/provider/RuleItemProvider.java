@@ -86,7 +86,7 @@ public class RuleItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_Rule_permit_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_Rule_permit_feature", "_UI_Rule_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_Rule_permit_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.RULE__PERMIT,
 				 true,
 				 false,

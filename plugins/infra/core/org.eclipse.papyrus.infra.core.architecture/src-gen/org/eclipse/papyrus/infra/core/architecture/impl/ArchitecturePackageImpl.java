@@ -148,7 +148,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link ArchitecturePackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -162,13 +162,14 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		if (isInited) return (ArchitecturePackage)EPackage.Registry.INSTANCE.getEPackage(ArchitecturePackage.eNS_URI);
 
 		// Obtain or create and register package
-		ArchitecturePackageImpl theArchitecturePackage = (ArchitecturePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ArchitecturePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ArchitecturePackageImpl());
+		Object registeredArchitecturePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ArchitecturePackageImpl theArchitecturePackage = registeredArchitecturePackage instanceof ArchitecturePackageImpl ? (ArchitecturePackageImpl)registeredArchitecturePackage : new ArchitecturePackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
-		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 		EcorePackage.eINSTANCE.eClass();
+		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theArchitecturePackage.createPackageContents();
@@ -179,7 +180,6 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		// Mark meta-data to indicate it can't be changed
 		theArchitecturePackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ArchitecturePackage.eNS_URI, theArchitecturePackage);
 		return theArchitecturePackage;

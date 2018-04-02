@@ -2,103 +2,274 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="architecture" nsURI="http://www.eclipse.org/papyrus/infra/core/architecture"
     nsPrefix="architecture">
-  <eAnnotations source="An architecture context is a method for customizing Papyrus for a given domain. It defines a regime for editing a Papyrus model semantically and notationally. The semantic editing is defined by a set of element type set configurations (from some domain), while the notational side is defined by a set of viewpoints consisting of a set of representation kinds (e.g., diagram kinds and table kinds) and other notational configurations.&#xA;&#xA;An architecture context is composed within an architecture domain (a namespace) and satisfies a set of concerns that belong to a set of stakeholders, both of which are composed in (the same or another) architecture domain. An architecture domain can be specified by one or more architecture models. In the latter case, all of these models are dynamically merged at runtime.&#xA;&#xA;An architecture context can either be an architecture description language or an architecture framework. In the former case, it can own its own set of representation kinds, while in the latter, it cannot. However, in both cases, a context can own a set of viewpoints that reference representation kinds owned by any description language.&#xA;&#xA;Each model in Papyrus is created using a specific architecture context, although this context may later be switched, possibly resulting in the model details being changed. A model also specifies a subset of its context's viewpoints as enabled at creation time, although this set may later be switched as well. When a viewpoint is enabled on a model, a user can create representations, based on this viewpoint's referenced representation kinds, and see them in model explorer. When a viewpoint is disabled, its representations become invisible, unless another enabled viewpoint references their representation kinds."
-      references="#/"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ADElement" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="An architecture context is a method for customizing Papyrus for a given domain. It defines a regime for editing a Papyrus model semantically and notationally. The semantic editing is defined by a set of element type set configurations (from some domain), while the notational side is defined by a set of viewpoints consisting of a set of representation kinds (e.g., diagram kinds and table kinds) and other notational configurations...."/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="ADElement" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The superclass of all architecture elements"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The unique id of the element"/>
+        <details key="propertyDescription" value="The unique id of the element"/>
+        <details key="propertyCategory" value="Element"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The name of the element"/>
+        <details key="propertyDescription" value="The name of the element"/>
+        <details key="propertyCategory" value="Element"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The description of the element"/>
+        <details key="propertyDescription" value="The description of the element"/>
+        <details key="propertyCategory" value="Element"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        changeable="false" volatile="true" transient="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The qualified name of the element"/>
+        <details key="propertyDescription" value="The qualified name of the element"/>
+        <details key="propertyCategory" value="Element"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The icon of the element specified using a platform plugin URI"/>
+        <details key="propertyDescription" value="The icon of the element specified using a platform plugin URI"/>
+        <details key="propertyCategory" value="Element"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArchitectureDomain" eSuperTypes="#//ADElement">
-    <eAnnotations source="A domain is the root of the architecture model. It can contains a collection of concerns, stakeholders, as well as contexts (which can be description languages and/or frameworks)."
-        references="#//ArchitectureDomain"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A domain is the root of the architecture model. It can contains a collection of concerns, stakeholders, as well as contexts (which can be description languages and/or frameworks)."/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stakeholders" upperBound="-1"
-        eType="#//Stakeholder" containment="true" eOpposite="#//Stakeholder/domain"/>
+        eType="#//Stakeholder" containment="true" eOpposite="#//Stakeholder/domain">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of stakeholders defined by the domain"/>
+        <details key="propertyDescription" value="The set of stakeholders defined by the domain"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="concerns" upperBound="-1"
-        eType="#//Concern" containment="true" eOpposite="#//Concern/domain"/>
+        eType="#//Concern" containment="true" eOpposite="#//Concern/domain">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of concerns defined by the domain"/>
+        <details key="propertyDescription" value="The set of concerns defined by the domain"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
-        eType="#//ArchitectureContext" containment="true" eOpposite="#//ArchitectureContext/domain"/>
+        eType="#//ArchitectureContext" containment="true" eOpposite="#//ArchitectureContext/domain">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of contexts defined by the domain"/>
+        <details key="propertyDescription" value="The set of contexts defined by the domain"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArchitectureDescriptionLanguage" eSuperTypes="#//ArchitectureContext">
-    <eAnnotations source="A description language (from ISO 42010) represents in Papyrus a modeling language (e.g., UML, SysML). It has a unique id' that corresponds to that of an ''IClientContext from GMF. It references a metamodel, a set of profiles, a set of element type set configurations, a creation command (creates a model of this language), a conversion command (converts a model to this language), and and icon. It also has an optional extension prefix for its models. It can also contain a set of representation kinds (which can be either diagrams or tables) and a set of viewpoints."
-        references="#//ArchitectureDescriptionLanguage"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A description language (from ISO 42010) represents in Papyrus a modeling language (e.g., UML, SysML). It has a unique id' that corresponds to that of an ''IClientContext from GMF. It references a metamodel, a set of profiles, a set of element type set configurations, a creation command (creates a model of this language), a conversion command (converts a model to this language), and and icon. It also has an optional extension prefix for its models. It can also contain a set of representation kinds (which can be either diagrams or tables) and a set of viewpoints."/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="representationKinds" upperBound="-1"
-        eType="#//RepresentationKind" containment="true" eOpposite="#//RepresentationKind/language"/>
+        eType="#//RepresentationKind" containment="true" eOpposite="#//RepresentationKind/language">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of representation kinds defined by the language"/>
+        <details key="propertyDescription" value="The set of representation kinds defined by the language"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" lowerBound="1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The metamodel used by the language"/>
+        <details key="propertyDescription" value="The metamodel used by the language"/>
+        <details key="propertyCategory" value="Description Language"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="profiles" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of UML profiles used by the language"/>
+        <details key="propertyDescription" value="The set of UML profiles used by the language"/>
+        <details key="propertyCategory" value="Description Language"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Stakeholder" eSuperTypes="#//ADElement">
-    <eAnnotations source="A stakeholder (from ISO 42010) represents in Papyrus an archetype of users. It references a set of its concerns."
-        references="#//Stakeholder"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A stakeholder (from ISO 42010) represents in Papyrus an archetype of users. It references a set of its concerns."/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="concerns" upperBound="-1"
-        eType="#//Concern"/>
+        eType="#//Concern">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of concerns of the stakeholder"/>
+        <details key="propertyDescription" value="The set of concerns of the stakeholder"/>
+        <details key="propertyCategory" value="Stakeholder"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
-        eType="#//ArchitectureDomain" eOpposite="#//ArchitectureDomain/stakeholders"/>
+        eType="#//ArchitectureDomain" eOpposite="#//ArchitectureDomain/stakeholders">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The domain that defines the stakeholder"/>
+        <details key="propertyDescription" value="The domain that defines the stakeholder"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Concern" eSuperTypes="#//ADElement">
-    <eAnnotations source="A concern (from ISO 42010) represents in Papyrus a matter of interest to some stakeholder."
-        references="#//Concern"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A concern (from ISO 42010) represents in Papyrus a matter of interest to some stakeholder."/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
-        eType="#//ArchitectureDomain" eOpposite="#//ArchitectureDomain/concerns"/>
+        eType="#//ArchitectureDomain" eOpposite="#//ArchitectureDomain/concerns">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The domain that defines the concern"/>
+        <details key="propertyDescription" value="The domain that defines the concern"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArchitectureViewpoint" eSuperTypes="#//ADElement">
-    <eAnnotations source="A viewpoint (from ISO 42010) in Papyrus references set of representation kinds, which can be diagrams or tables."
-        references="#//ArchitectureViewpoint"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A viewpoint (from ISO 42010) in Papyrus references set of representation kinds, which can be diagrams or tables."/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="concerns" upperBound="-1"
-        eType="#//Concern"/>
+        eType="#//Concern">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of concerns covered by the viewpoint"/>
+        <details key="propertyDescription" value="The set of concerns covered by the viewpoint"/>
+        <details key="propertyCategory" value="Viewpoint"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="representationKinds" upperBound="-1"
-        eType="#//RepresentationKind"/>
+        eType="#//RepresentationKind">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of representation kinds provided by the viewpoint"/>
+        <details key="propertyDescription" value="The set of representation kinds provided by the viewpoint"/>
+        <details key="propertyCategory" value="Viewpoint"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
-        eType="#//ArchitectureContext" eOpposite="#//ArchitectureContext/viewpoints"/>
+        eType="#//ArchitectureContext" eOpposite="#//ArchitectureContext/viewpoints">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The context that defines the viewpoint"/>
+        <details key="propertyDescription" value="The context that defines the viewpoint"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepresentationKind" abstract="true"
       eSuperTypes="#//ADElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The kind of representations defined by architectural contexts and that depict some information from a model"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="language" lowerBound="1"
-        eType="#//ArchitectureDescriptionLanguage" eOpposite="#//ArchitectureDescriptionLanguage/representationKinds"/>
+        eType="#//ArchitectureDescriptionLanguage" eOpposite="#//ArchitectureDescriptionLanguage/representationKinds">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The language that defines the representation kind"/>
+        <details key="propertyDescription" value="The language that defines the representation kind"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="concerns" upperBound="-1"
-        eType="#//Concern"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="icon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="#//Concern">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of concerns covered by the representation kind"/>
+        <details key="propertyDescription" value="The set of concerns covered by the representation kind"/>
+        <details key="propertyCategory" value="Representation Kind"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArchitectureContext" abstract="true"
       eSuperTypes="#//ADElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The superclass of architectural description languages or architecture frameworks. It defines a collection of viewpoints on models."/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewpoints" upperBound="-1"
-        eType="#//ArchitectureViewpoint" containment="true" eOpposite="#//ArchitectureViewpoint/context"/>
+        eType="#//ArchitectureViewpoint" containment="true" eOpposite="#//ArchitectureViewpoint/context">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of viewpoints defined by the context"/>
+        <details key="propertyDescription" value="The set of viewpoints defined by the context"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultViewpoints" upperBound="-1"
-        eType="#//ArchitectureViewpoint"/>
+        eType="#//ArchitectureViewpoint">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of viewpoints that are selected for the context by default"/>
+        <details key="propertyDescription" value="The set of viewpoints that are selected for the context by default"/>
+        <details key="propertyCategory" value="Context"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypes" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration"/>
+        eType="ecore:EClass ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of element type set configurations that are used by the context (typically found in .elementtypesconfigurations resources)"/>
+        <details key="propertyDescription" value="The set of element type set configurations that are used by the context (typically found in .elementtypesconfigurations resources)"/>
+        <details key="propertyCategory" value="Context"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
-        eType="#//ArchitectureDomain" eOpposite="#//ArchitectureDomain/contexts"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensionPrefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="#//ArchitectureDomain" eOpposite="#//ArchitectureDomain/contexts">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The domain that defines the context"/>
+        <details key="propertyDescription" value="The domain that defines the context"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensionPrefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The prefix of the file extension of the UML models applying this context (e.g., &lt;Name>.&lt;prefixExtension>.uml)"/>
+        <details key="propertyDescription" value="The prefix of the file extension of the UML models applying this context (e.g., &lt;Name>.&lt;prefixExtension>.uml)"/>
+        <details key="propertyCategory" value="Context"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationCommandClass" lowerBound="1">
-      <eAnnotations source="point to a java class responsible for creating the root of your model of interest. for instance, for UML, it will create the initial package, whereas for SysML it will create initial package and apply the SysML stereotype. Fill it by example with org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand"
-          references="#//ArchitectureContext/creationCommandClass"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The fully qualified name of a command that creates models applying this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand inteface"/>
+        <details key="propertyDescription" value="The fully qualified name of a command that creates models applying this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand inteface"/>
+        <details key="propertyCategory" value="Context"/>
+      </eAnnotations>
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="conversionCommandClass">
-      <eAnnotations source="point to a java class responsible to control if you switch from another Archiecturecontext to your ArchitectureContext. Fill it by example with org.eclipse.papyrus.uml.diagram.common.commands.ConversionUMLModelCommand"
-          references="#//ArchitectureContext/conversionCommandClass"/>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface"/>
+        <details key="propertyDescription" value="The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface"/>
+        <details key="propertyCategory" value="Context"/>
+      </eAnnotations>
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArchitectureFramework" eSuperTypes="#//ArchitectureContext">
-    <eAnnotations source="A framework (from ISO 42010) represents in Papyrus a modeling framework (e.g., DoDAF). It has a unique id' that corresponds to that of an ''IClientContext from GMF. It references a set of element type set configurations, a creation command (creates a model of this framework), a conversion command (converts a model to this framework), and an icon. It also has an optional extension prefix for its models. It can also contain a set of viewpoints."
-        references="#//ArchitectureFramework"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A framework (from ISO 42010) represents in Papyrus a modeling framework (e.g., DoDAF). It has a unique id' that corresponds to that of an ''IClientContext from GMF. It references a set of element type set configurations, a creation command (creates a model of this framework), a conversion command (converts a model to this framework), and an icon. It also has an optional extension prefix for its models. It can also contain a set of viewpoints."/>
+    </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArchitectureDescription">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contextId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An element that is added to a DI model to record the id of the architecture context applied to a model set"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contextId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The id of the context applied to a UML model"/>
+        <details key="propertyDescription" value="The id of the context applied to a UML model"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArchitectureDescriptionPreferences">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An element that is added to a DI model to record the architecture preferences used by a model set"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="viewpointIds" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of ids of viewpoints enabled on a UML model"/>
+        <details key="propertyDescription" value="The set of ids of viewpoints enabled on a UML model"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

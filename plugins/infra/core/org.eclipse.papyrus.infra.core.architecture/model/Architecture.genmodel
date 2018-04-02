@@ -6,60 +6,94 @@
     modelPluginID="org.eclipse.papyrus.infra.core.architecture" modelName="Architecture"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/org.eclipse.papyrus.infra.core.architecture.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types"
     operationReflection="true" importOrganizing="true">
   <foreignModel>Architecture.ecore</foreignModel>
   <genPackages prefix="Architecture" basePackage="org.eclipse.papyrus.infra.core"
       resource="XMI" disposableProviderFactory="true" extensibleProviderFactory="true"
       ecorePackage="Architecture.ecore#/">
     <genClasses image="false" ecoreClass="Architecture.ecore#//ADElement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/id"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/description"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/qualifiedName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/icon"/>
+      <genFeatures createChild="false" propertyCategory="Element" propertyDescription="The unique id of the element"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/id"/>
+      <genFeatures createChild="false" propertyCategory="Element" propertyDescription="The name of the element"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/name"/>
+      <genFeatures createChild="false" propertyCategory="Element" propertyDescription="The description of the element"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/description"/>
+      <genFeatures createChild="false" propertyCategory="Element" propertyDescription="The qualified name of the element"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/qualifiedName"/>
+      <genFeatures createChild="false" propertyCategory="Element" propertyDescription="The icon of the element specified using a platform plugin URI"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/icon"/>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureDomain">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDomain/stakeholders"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDomain/concerns"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDomain/contexts"/>
+      <genFeatures property="None" children="true" createChild="true" propertyDescription="The set of stakeholders defined by the domain"
+          ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDomain/stakeholders"/>
+      <genFeatures property="None" children="true" createChild="true" propertyDescription="The set of concerns defined by the domain"
+          ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDomain/concerns"/>
+      <genFeatures property="None" children="true" createChild="true" propertyDescription="The set of contexts defined by the domain"
+          ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDomain/contexts"/>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureDescriptionLanguage">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDescriptionLanguage/representationKinds"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDescriptionLanguage/metamodel"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDescriptionLanguage/profiles"/>
+      <genFeatures property="None" children="true" createChild="true" propertyDescription="The set of representation kinds defined by the language"
+          ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDescriptionLanguage/representationKinds"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Description Language"
+          propertyDescription="The metamodel used by the language" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDescriptionLanguage/metamodel"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Description Language"
+          propertyDescription="The set of UML profiles used by the language" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDescriptionLanguage/profiles"/>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//Stakeholder">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//Stakeholder/concerns"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Architecture.ecore#//Stakeholder/domain"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Stakeholder"
+          propertyDescription="The set of concerns of the stakeholder" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Architecture.ecore#//Stakeholder/concerns"/>
+      <genFeatures property="None" notify="false" createChild="false" propertyDescription="The domain that defines the stakeholder"
+          ecoreFeature="ecore:EReference Architecture.ecore#//Stakeholder/domain"/>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//Concern">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Architecture.ecore#//Concern/domain"/>
+      <genFeatures property="None" notify="false" createChild="false" propertyDescription="The domain that defines the concern"
+          ecoreFeature="ecore:EReference Architecture.ecore#//Concern/domain"/>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureViewpoint">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureViewpoint/concerns"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureViewpoint/representationKinds"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureViewpoint/context"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Viewpoint"
+          propertyDescription="The set of concerns covered by the viewpoint" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureViewpoint/concerns"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Viewpoint"
+          propertyDescription="The set of representation kinds provided by the viewpoint"
+          propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureViewpoint/representationKinds"/>
+      <genFeatures property="None" notify="false" createChild="false" propertyDescription="The context that defines the viewpoint"
+          ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureViewpoint/context"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Architecture.ecore#//RepresentationKind">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Architecture.ecore#//RepresentationKind/language"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//RepresentationKind/concerns"/>
+      <genFeatures property="None" notify="false" createChild="false" propertyDescription="The language that defines the representation kind"
+          ecoreFeature="ecore:EReference Architecture.ecore#//RepresentationKind/language"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Representation Kind"
+          propertyDescription="The set of concerns covered by the representation kind"
+          propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//RepresentationKind/concerns"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Architecture.ecore#//ArchitectureContext">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/viewpoints"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/defaultViewpoints"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/elementTypes"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/domain"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/extensionPrefix"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/creationCommandClass"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/conversionCommandClass"/>
+      <genFeatures property="None" children="true" createChild="true" propertyDescription="The set of viewpoints defined by the context"
+          ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/viewpoints"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Context" propertyDescription="The set of viewpoints that are selected for the context by default"
+          propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/defaultViewpoints"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Context" propertyDescription="The set of element type set configurations that are used by the context (typically found in .elementtypesconfigurations resources)"
+          propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/elementTypes"/>
+      <genFeatures property="None" notify="false" createChild="false" propertyDescription="The domain that defines the context"
+          ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureContext/domain"/>
+      <genFeatures createChild="false" propertyCategory="Context" propertyDescription="The prefix of the file extension of the UML models applying this context (e.g., &lt;Name>.&lt;prefixExtension>.uml)"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/extensionPrefix"/>
+      <genFeatures createChild="false" propertyCategory="Context" propertyDescription="The fully qualified name of a command that creates models applying this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand inteface"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/creationCommandClass"/>
+      <genFeatures createChild="false" propertyCategory="Context" propertyDescription="The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/conversionCommandClass"/>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureFramework"/>
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureDescription">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureDescription/contextId"/>
+      <genFeatures createChild="false" propertyDescription="The id of the context applied to a UML model"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureDescription/contextId"/>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureDescriptionPreferences">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureDescriptionPreferences/viewpointIds"/>
+      <genFeatures createChild="false" propertyDescription="The set of ids of viewpoints enabled on a UML model"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureDescriptionPreferences/viewpointIds"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

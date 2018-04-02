@@ -20,6 +20,10 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Viewpoint</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A viewpoint (from ISO 42010) in Papyrus references set of representation kinds, which can be diagrams or tables.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -43,9 +47,12 @@ public interface ArchitectureViewpoint extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of concerns covered by the viewpoint
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Concerns</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureViewpoint_Concerns()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of concerns covered by the viewpoint' propertyCategory='Viewpoint'"
 	 * @generated
 	 */
 	EList<Concern> getConcerns();
@@ -59,9 +66,12 @@ public interface ArchitectureViewpoint extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of representation kinds provided by the viewpoint
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Representation Kinds</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureViewpoint_RepresentationKinds()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of representation kinds provided by the viewpoint' propertyCategory='Viewpoint'"
 	 * @generated
 	 */
 	EList<RepresentationKind> getRepresentationKinds();
@@ -75,11 +85,15 @@ public interface ArchitectureViewpoint extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The context that defines the viewpoint
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Context</em>' container reference.
 	 * @see #setContext(ArchitectureContext)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureViewpoint_Context()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getViewpoints
 	 * @model opposite="viewpoints" required="true" transient="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The context that defines the viewpoint'"
 	 * @generated
 	 */
 	ArchitectureContext getContext();

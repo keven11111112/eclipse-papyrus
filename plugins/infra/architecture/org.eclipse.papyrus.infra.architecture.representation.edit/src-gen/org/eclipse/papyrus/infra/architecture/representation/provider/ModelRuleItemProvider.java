@@ -96,8 +96,8 @@ public class ModelRuleItemProvider extends RuleItemProvider {
 	protected void addElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(new EClassPropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_ModelRule_element_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ModelRule_element_feature", "_UI_ModelRule_type"),
+				getString("_UI_ModelRule_element_feature"), //$NON-NLS-1$
+				getString("_UI_ModelRule_element_description"), //$NON-NLS-1$
 				RepresentationPackage.Literals.MODEL_RULE__ELEMENT,
 				true,
 				false,
@@ -116,8 +116,8 @@ public class ModelRuleItemProvider extends RuleItemProvider {
 	protected void addStereotypesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(new StereotypePropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_ModelRule_stereotypes_feature"),
-				getString("_UI_PropertyDescriptor_description", "_UI_ModelRule_stereotypes_feature", "_UI_ModelRule_type"),
+				getString("_UI_ModelRule_stereotypes_feature"), //$NON-NLS-1$
+				getString("_UI_ModelRule_stereotypes_description"), //$NON-NLS-1$
 				RepresentationPackage.Literals.MODEL_RULE__STEREOTYPES,
 				true,
 				false,
@@ -139,7 +139,7 @@ public class ModelRuleItemProvider extends RuleItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ModelRule_multiplicity_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ModelRule_multiplicity_feature", "_UI_ModelRule_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ModelRule_multiplicity_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.MODEL_RULE__MULTIPLICITY,
 				 true,
 				 false,

@@ -79,13 +79,13 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ArchitectureContext_defaultViewpoints_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_defaultViewpoints_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ArchitectureContext_defaultViewpoints_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ContextPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -101,13 +101,13 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ArchitectureContext_elementTypes_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_elementTypes_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ArchitectureContext_elementTypes_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__ELEMENT_TYPES,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_ContextPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -123,13 +123,13 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ArchitectureContext_extensionPrefix_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_extensionPrefix_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ArchitectureContext_extensionPrefix_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__EXTENSION_PREFIX,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ContextPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -145,13 +145,13 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ArchitectureContext_creationCommandClass_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_creationCommandClass_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ArchitectureContext_creationCommandClass_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ContextPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -167,13 +167,13 @@ public class ArchitectureContextItemProvider extends ADElementItemProvider {
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ArchitectureContext_conversionCommandClass_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ArchitectureContext_conversionCommandClass_feature", "_UI_ArchitectureContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ArchitectureContext_conversionCommandClass_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ContextPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 

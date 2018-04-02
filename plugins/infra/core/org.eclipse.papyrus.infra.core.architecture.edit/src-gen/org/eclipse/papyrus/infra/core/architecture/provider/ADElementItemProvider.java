@@ -92,13 +92,13 @@ public class ADElementItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ADElement_id_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_id_feature", "_UI_ADElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ADElement_id_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.AD_ELEMENT__ID,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ElementPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -114,13 +114,13 @@ public class ADElementItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ADElement_name_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_name_feature", "_UI_ADElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ADElement_name_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.AD_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ElementPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -136,13 +136,13 @@ public class ADElementItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ADElement_description_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_description_feature", "_UI_ADElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ADElement_description_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.AD_ELEMENT__DESCRIPTION,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ElementPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -158,13 +158,13 @@ public class ADElementItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ADElement_qualifiedName_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_qualifiedName_feature", "_UI_ADElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ADElement_qualifiedName_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.AD_ELEMENT__QUALIFIED_NAME,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ElementPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -180,13 +180,13 @@ public class ADElementItemProvider
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_ADElement_icon_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ADElement_icon_feature", "_UI_ADElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ADElement_icon_description"), //$NON-NLS-1$
 				 ArchitecturePackage.Literals.AD_ELEMENT__ICON,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_ElementPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 

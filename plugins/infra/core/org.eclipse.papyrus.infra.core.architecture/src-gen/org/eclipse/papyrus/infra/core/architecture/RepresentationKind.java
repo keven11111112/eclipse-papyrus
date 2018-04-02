@@ -20,6 +20,10 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Representation Kind</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The kind of representations defined by architectural contexts and that depict some information from a model
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -42,9 +46,12 @@ public interface RepresentationKind extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of concerns covered by the representation kind
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Concerns</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getRepresentationKind_Concerns()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of concerns covered by the representation kind' propertyCategory='Representation Kind'"
 	 * @generated
 	 */
 	EList<Concern> getConcerns();
@@ -58,11 +65,15 @@ public interface RepresentationKind extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The language that defines the representation kind
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Language</em>' container reference.
 	 * @see #setLanguage(ArchitectureDescriptionLanguage)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getRepresentationKind_Language()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage#getRepresentationKinds
 	 * @model opposite="representationKinds" required="true" transient="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The language that defines the representation kind'"
 	 * @generated
 	 */
 	ArchitectureDescriptionLanguage getLanguage();

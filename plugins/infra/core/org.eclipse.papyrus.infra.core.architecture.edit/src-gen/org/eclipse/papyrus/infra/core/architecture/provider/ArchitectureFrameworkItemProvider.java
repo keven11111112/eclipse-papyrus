@@ -58,15 +58,11 @@ public class ArchitectureFrameworkItemProvider extends ArchitectureContextItemPr
 	 * This returns ArchitectureFramework.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		String icon = "full/obj16/ArchitectureFramework"; //$NON-NLS-1$
-		ArchitectureFramework framework = (ArchitectureFramework)object;
-		if (framework.getIcon() != null && !framework.getIcon().isEmpty())
-			icon = framework.getIcon();
-		return overlayImage(object, getResourceLocator().getImage(icon));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureFramework")); //$NON-NLS-1$
 	}
 
 	/**

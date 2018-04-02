@@ -22,6 +22,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Description Preferences</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An element that is added to a DI model to record the architecture preferences used by a model set
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -43,9 +47,12 @@ public interface ArchitectureDescriptionPreferences extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of ids of viewpoints enabled on a UML model
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Viewpoint Ids</em>' attribute list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDescriptionPreferences_ViewpointIds()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of ids of viewpoints enabled on a UML model'"
 	 * @generated
 	 */
 	EList<String> getViewpointIds();

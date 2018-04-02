@@ -80,13 +80,13 @@ public class PapyrusDiagramItemProvider extends PapyrusRepresentationKindItemPro
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_PapyrusDiagram_customStyle_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_customStyle_feature", "_UI_PapyrusDiagram_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_PapyrusDiagram_customStyle_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CUSTOM_STYLE,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_DiagramPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -102,13 +102,13 @@ public class PapyrusDiagramItemProvider extends PapyrusRepresentationKindItemPro
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_PapyrusDiagram_creationCommandClass_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_creationCommandClass_feature", "_UI_PapyrusDiagram_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_PapyrusDiagram_creationCommandClass_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS,
 				 true,
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
+				 getString("_UI_DiagramPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -124,13 +124,13 @@ public class PapyrusDiagramItemProvider extends PapyrusRepresentationKindItemPro
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_PapyrusDiagram_palettes_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusDiagram_palettes_feature", "_UI_PapyrusDiagram_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_PapyrusDiagram_palettes_description"), //$NON-NLS-1$
 				 RepresentationPackage.Literals.PAPYRUS_DIAGRAM__PALETTES,
 				 true,
 				 false,
 				 true,
 				 null,
-				 null,
+				 getString("_UI_DiagramPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 

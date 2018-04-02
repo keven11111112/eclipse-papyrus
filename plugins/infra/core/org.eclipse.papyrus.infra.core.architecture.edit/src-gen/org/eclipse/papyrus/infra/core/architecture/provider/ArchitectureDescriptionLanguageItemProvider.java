@@ -78,7 +78,7 @@ public class ArchitectureDescriptionLanguageItemProvider extends ArchitectureCon
 				false,
 				true,
 				null,
-				null,
+				getString("_UI_DescriptionLanguagePropertyCategory"), //$NON-NLS-1$,
 				null)));
 	}
 
@@ -98,7 +98,7 @@ public class ArchitectureDescriptionLanguageItemProvider extends ArchitectureCon
 				false,
 				true,
 				null,
-				null,
+				getString("_UI_DescriptionLanguagePropertyCategory"), //$NON-NLS-1$,
 				null)));
 	}
 
@@ -136,15 +136,11 @@ public class ArchitectureDescriptionLanguageItemProvider extends ArchitectureCon
 	 * This returns ArchitectureDescriptionLanguage.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		String icon = "full/obj16/ArchitectureDescriptionLanguage"; //$NON-NLS-1$
-		ArchitectureDescriptionLanguage language = (ArchitectureDescriptionLanguage)object;
-		if (language.getIcon() != null && !language.getIcon().isEmpty())
-			icon = language.getIcon();
-		return overlayImage(object, getResourceLocator().getImage(icon));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ArchitectureDescriptionLanguage")); //$NON-NLS-1$
 	}
 
 	/**

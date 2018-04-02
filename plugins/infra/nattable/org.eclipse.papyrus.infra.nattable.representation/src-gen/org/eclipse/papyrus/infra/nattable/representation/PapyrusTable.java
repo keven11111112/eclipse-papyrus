@@ -21,6 +21,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
  * A representation of the model object '<em><b>Papyrus Table</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A representation kind that depicts elements form a UML model as a table
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -41,10 +45,14 @@ public interface PapyrusTable extends PapyrusRepresentationKind {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The configuration of the table
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Configuration</em>' reference.
 	 * @see #setConfiguration(TableConfiguration)
 	 * @see org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage#getPapyrusTable_Configuration()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The configuration of the table' propertyCategory='Table'"
 	 * @generated
 	 */
 	TableConfiguration getConfiguration();

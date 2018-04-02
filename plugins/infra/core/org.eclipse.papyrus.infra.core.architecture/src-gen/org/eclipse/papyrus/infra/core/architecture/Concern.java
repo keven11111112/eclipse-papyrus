@@ -19,6 +19,10 @@ package org.eclipse.papyrus.infra.core.architecture;
  * A representation of the model object '<em><b>Concern</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A concern (from ISO 42010) represents in Papyrus a matter of interest to some stakeholder.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -41,11 +45,15 @@ public interface Concern extends ADElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The domain that defines the concern
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Domain</em>' container reference.
 	 * @see #setDomain(ArchitectureDomain)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getConcern_Domain()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain#getConcerns
 	 * @model opposite="concerns" required="true" transient="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The domain that defines the concern'"
 	 * @generated
 	 */
 	ArchitectureDomain getDomain();

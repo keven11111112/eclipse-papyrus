@@ -19,6 +19,10 @@ package org.eclipse.papyrus.infra.core.architecture;
  * A representation of the model object '<em><b>Framework</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A framework (from ISO 42010) represents in Papyrus a modeling framework (e.g., DoDAF). It has a unique id' that corresponds to that of an ''IClientContext from GMF. It references a set of element type set configurations, a creation command (creates a model of this framework), a conversion command (converts a model to this framework), and an icon. It also has an optional extension prefix for its models. It can also contain a set of viewpoints.
+ * <!-- end-model-doc -->
+ *
  *
  * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureFramework()
  * @model

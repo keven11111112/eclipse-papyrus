@@ -20,6 +20,10 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>AD Element</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The superclass of all architecture elements
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -44,10 +48,14 @@ public interface ADElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The unique id of the element
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getADElement_Id()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The unique id of the element' propertyCategory='Element'"
 	 * @generated
 	 */
 	String getId();
@@ -70,10 +78,14 @@ public interface ADElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The name of the element
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getADElement_Name()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The name of the element' propertyCategory='Element'"
 	 * @generated
 	 */
 	String getName();
@@ -96,10 +108,13 @@ public interface ADElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The description of the element
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getADElement_Description()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The description of the element' propertyCategory='Element'"
 	 * @generated
 	 */
 	String getDescription();
@@ -122,9 +137,13 @@ public interface ADElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The qualified name of the element
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Qualified Name</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getADElement_QualifiedName()
 	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The qualified name of the element' propertyCategory='Element'"
 	 * @generated
 	 */
 	String getQualifiedName();
@@ -137,10 +156,13 @@ public interface ADElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The icon of the element specified using a platform plugin URI
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Icon</em>' attribute.
 	 * @see #setIcon(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getADElement_Icon()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The icon of the element specified using a platform plugin URI' propertyCategory='Element'"
 	 * @generated
 	 */
 	String getIcon();

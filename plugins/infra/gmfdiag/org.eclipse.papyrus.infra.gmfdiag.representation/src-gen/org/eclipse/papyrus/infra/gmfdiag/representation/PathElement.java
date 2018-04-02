@@ -22,6 +22,10 @@ import org.eclipse.emf.ecore.EReference;
  * A representation of the model object '<em><b>Path Element</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A path of properties that must be used from the origin to insert the new child model element in the model.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -44,10 +48,14 @@ public interface PathElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The reference from the origin type that represents the collection of next elements in the path.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Feature</em>' reference.
 	 * @see #setFeature(EReference)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPathElement_Feature()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The reference from the origin type that represents the collection of next elements in the path.'"
 	 * @generated
 	 */
 	EReference getFeature();
@@ -70,9 +78,13 @@ public interface PathElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type (from the language's metamodel) that an element must have to be the next segment in the path.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Origin</em>' reference.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPathElement_Origin()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The type (from the language\'s metamodel) that an element must have to be the next segment in the path.'"
 	 * @generated
 	 */
 	EClass getOrigin();
@@ -85,9 +97,13 @@ public interface PathElement extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The type (from the language's metamodel) that is the type of the reference feature.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPathElement_Target()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The type (from the language\'s metamodel) that is the type of the reference feature.'"
 	 * @generated
 	 */
 	EClass getTarget();

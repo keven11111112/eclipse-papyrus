@@ -3,7 +3,16 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="representation" nsURI="http://www.eclipse.org/papyrus/infra/nattable/representation"
     nsPrefix="nattablerepresentation">
   <eClassifiers xsi:type="ecore:EClass" name="PapyrusTable" eSuperTypes="../../org.eclipse.papyrus.infra.architecture.representation/model/Representation.ecore#//PapyrusRepresentationKind">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A representation kind that depicts elements form a UML model as a table"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.papyrus.infra.nattable.model/model/nattable.ecore#//nattableconfiguration/TableConfiguration"/>
+        eType="ecore:EClass ../../org.eclipse.papyrus.infra.nattable.model/model/nattable.ecore#//nattableconfiguration/TableConfiguration">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The configuration of the table"/>
+        <details key="propertyDescription" value="The configuration of the table"/>
+        <details key="propertyCategory" value="Table"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>
