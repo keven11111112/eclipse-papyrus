@@ -192,6 +192,10 @@
       widgetClass="DataTypeEditor"
       namespace="//@namespaces.3"
       type="Reference"/>
+  <propertyEditorTypes
+      label="DirectorySelector"
+      widgetClass="StringDirectorySelector"
+      namespace="//@namespaces.3"/>
   <compositeWidgetTypes
       label="Composite"
       widgetClass="Composite"/>
