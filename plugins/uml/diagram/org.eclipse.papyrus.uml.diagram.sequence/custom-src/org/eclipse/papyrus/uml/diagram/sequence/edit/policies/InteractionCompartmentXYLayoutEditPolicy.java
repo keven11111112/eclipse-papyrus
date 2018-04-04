@@ -45,7 +45,6 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -68,13 +67,15 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OldCustomInteractionEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OldCustomInteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -266,7 +267,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					// Apply SizeDelta to the children
 					widthDelta = Math.round(widthDelta / ((float) 2 * number));
 					newBounds.x += widthDelta;
-					SetBoundsCommand setBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Re-location of a ExecutionSpecification due to a Lifeline movement", executionSpecificationEP, newBounds);
+					ICommand setBoundsCmd = new SetResizeAndLocationCommand(executionSpecificationEP.getEditingDomain(), "Re-location of a ExecutionSpecification due to a Lifeline movement", executionSpecificationEP, newBounds);
 					compoundCmd.add(new ICommandProxy(setBoundsCmd));
 				}
 				// update the enclosing interaction of a moved execution specification
@@ -591,7 +592,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			Dimension d = realLocation.getTopLeft().getDifference(parentOrigin);
 			Point location = new Point(d.width, d.height);
 			location = location.translate(0, moveDelta.y);
-			ICommandProxy resize = new ICommandProxy(new SetBoundsCommand(dcp.getEditingDomain(), DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View) dcp.getModel()), location));
+			ICommandProxy resize = new ICommandProxy(new SetLocationCommand(dcp.getEditingDomain(), DiagramUIMessages.Commands_MoveElement, new EObjectAdapter((View) dcp.getModel()), location));
 			compoundCmd.add(resize);
 		}
 	}

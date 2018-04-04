@@ -44,7 +44,6 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -67,6 +66,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.command.DropDestructionOccurenceSpecification;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter.RouterKind;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
@@ -312,7 +313,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						targetFigure.getParent().translateToRelative(refPoint);
 						Bounds bounds = ((Bounds) ((Node) targetLifelinePart.getModel()).getLayoutConstraint());
 
-						SetBoundsCommand setSizeCommand = new SetBoundsCommand(targetLifelinePart.getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetLifelinePart).getNotationView()), //$NON-NLS-1$
+						ICommand setSizeCommand = new SetResizeCommand(targetLifelinePart.getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetLifelinePart).getNotationView()), //$NON-NLS-1$
 								new Dimension(bounds.getWidth(), refPoint.y - bounds.getY()));
 
 						CompoundCommand compoudCmd = new CompoundCommand(CustomMessages.MoveMessageCommand_Label);
@@ -553,10 +554,11 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 										final Bounds bounds = (Bounds) view.getLayoutConstraint();
 										final Point newLocation = new Point(bounds.getX(), bounds.getY());
 										final Dimension newDimension = new Dimension(bounds.getWidth(), maxY - absoluteBounds.y);
-										final Rectangle newBounds = new Rectangle(newLocation, newDimension);
-										final ICommand boundsCommand = new SetBoundsCommand(lifeLineEP.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newBounds);
 
-										compoundCommand.add(new ICommandProxy(boundsCommand));
+										final ICommand heightCommand = new SetResizeCommand(lifeLineEP.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newDimension);
+										compoundCommand.add(new ICommandProxy(heightCommand));
+										final ICommand locationCommand = new SetLocationCommand(lifeLineEP.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newLocation);
+										compoundCommand.add(new ICommandProxy(locationCommand));
 									}
 								}
 							} else if (lifelineEditParts.contains(lifeLineEP)) {
@@ -574,9 +576,9 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 										newY = bounds.getY() + yMoveDelta;
 										// If a message create and no message delete exists, calculate the new height of the life line depending to the current height and to the new maximum Y position
 										if (!hasIncomingMessageDelete) {
-											newHeight = absoluteBounds.height - yMoveDelta;
+											newHeight = (absoluteBounds.y + absoluteBounds.height) - newY;
 											if (maxY > (newY + newHeight)) {
-												newHeight = maxY - absoluteBounds.y - yMoveDelta;
+												newHeight = maxY - newY;
 											}
 										}
 									} else if (hasIncomingMessageDelete) {
@@ -585,10 +587,11 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 									final Point newLocation = new Point(bounds.getX(), newY);
 									final Dimension newDimension = new Dimension(bounds.getWidth(), newHeight);
-									final Rectangle newBounds = new Rectangle(newLocation, newDimension);
-									final ICommand boundsCommand = new SetBoundsCommand(lifeLineEP.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newBounds);
 
-									compoundCommand.add(new ICommandProxy(boundsCommand));
+									final ICommand heightCommand = new SetResizeCommand(lifeLineEP.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newDimension);
+									compoundCommand.add(new ICommandProxy(heightCommand));
+									final ICommand locationCommand = new SetLocationCommand(lifeLineEP.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newLocation);
+									compoundCommand.add(new ICommandProxy(locationCommand));
 								}
 							}
 						}
@@ -615,10 +618,11 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						final Point newLocation = new Point(bounds.getX(), bounds.getY() + yMoveDelta);
 						final int newHeight = bounds.getHeight() == -1 ? BoundForEditPart.getDefaultHeightFromView(view) : bounds.getHeight();
 						final Dimension newDimension = new Dimension(bounds.getWidth(), newHeight - yMoveDelta);
-						final Rectangle newBounds = new Rectangle(newLocation, newDimension);
-						final ICommand boundsCommand = new SetBoundsCommand(targetLifeLine.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newBounds);
 
-						compoundCommand.add(new ICommandProxy(boundsCommand));
+						final ICommand heightCommand = new SetResizeCommand(targetLifeLine.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newDimension);
+						compoundCommand.add(new ICommandProxy(heightCommand));
+						final ICommand locationCommand = new SetLocationCommand(targetLifeLine.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newLocation);
+						compoundCommand.add(new ICommandProxy(locationCommand));
 					}
 				}
 
@@ -632,12 +636,10 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					final LifelineEditPart targetLifeLine = (LifelineEditPart) hostConnectionEditPart.getTarget();
 					if (targetLifeLine.getModel() instanceof Shape) {
 						final Shape view = (ShapeImpl) targetLifeLine.getModel();
-
 						final Bounds bounds = (Bounds) view.getLayoutConstraint();
 
-						final SetBoundsCommand boundsCommand = new SetBoundsCommand(targetLifeLine.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view),
+						final ICommand boundsCommand = new SetResizeCommand(targetLifeLine.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view),
 								new Dimension(bounds.getWidth(), bounds.getHeight() + yMoveDelta));
-
 						compoundCommand.add(new ICommandProxy(boundsCommand));
 					}
 				}

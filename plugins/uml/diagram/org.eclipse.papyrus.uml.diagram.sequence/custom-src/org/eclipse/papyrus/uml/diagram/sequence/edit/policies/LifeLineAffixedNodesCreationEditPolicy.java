@@ -23,13 +23,13 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
@@ -73,7 +73,7 @@ public class LifeLineAffixedNodesCreationEditPolicy extends DefaultCreationEditP
 			requestedLocation.y=requestedLocation.y-destructionEventFigure.getDefaultSize().height/2;
 		}
 
-		setBoundsCommand = new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, descriptor, requestedLocation);
+		setBoundsCommand = new SetLocationCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, descriptor, requestedLocation);
 
 		return setBoundsCommand;
 	}

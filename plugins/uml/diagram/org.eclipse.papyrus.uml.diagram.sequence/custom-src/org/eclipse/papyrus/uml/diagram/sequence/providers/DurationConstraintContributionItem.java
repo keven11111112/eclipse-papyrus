@@ -9,7 +9,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionAnchorsCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
@@ -19,6 +18,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomCommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintEditPart;
@@ -277,7 +277,7 @@ public class DurationConstraintContributionItem extends ContributionItem impleme
 		compositeCmd.add(new EMFtoGMFCommandWrapper(rotateCmd));
 
 		// set bounds command
-		ICommand boundsCommand = new SetBoundsCommand(durationPart.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(durationPart.getNotationView()), getNewBounds(durationPart.getBounds()));
+		ICommand boundsCommand = new SetResizeAndLocationCommand(durationPart.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(durationPart.getNotationView()), getNewBounds(durationPart.getBounds()));
 		compositeCmd.add(boundsCommand);
 
 		// update anchor

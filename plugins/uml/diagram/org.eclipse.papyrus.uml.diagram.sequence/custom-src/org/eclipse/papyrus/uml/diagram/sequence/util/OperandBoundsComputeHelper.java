@@ -38,7 +38,6 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -61,19 +60,21 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomInteractionOperandEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomInteractionOperandEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -975,7 +976,7 @@ public class OperandBoundsComputeHelper {
 								height = height + OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT;
 								View shapeView = (View) parent.getModel();
 								Rectangle newBounds = new Rectangle(containerBounds.getX(), containerBounds.getY(), width, height);
-								ICommand setParentBoundsCmd = new SetBoundsCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(shapeView), newBounds);
+								ICommand setParentBoundsCmd = new SetResizeAndLocationCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(shapeView), newBounds);
 								command.add(setParentBoundsCmd);
 								// Preserve Message anchors.
 								ICommand preserveMessageAnchorsCommand = MessageAnchorRepairer.createPreserveMessageAnchorsCommand(parent, OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT);
@@ -992,7 +993,7 @@ public class OperandBoundsComputeHelper {
 							}
 						}
 					}
-					command.add(new SetBoundsCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, rect));
+					command.add(new SetResizeAndLocationCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, rect));
 				}
 			}
 		} else { // first add operand
@@ -1006,7 +1007,7 @@ public class OperandBoundsComputeHelper {
 						int width = containerBounds.getWidth() != -1 ? containerBounds.getWidth() : preferredSize.width();
 						int height = containerBounds.getHeight() != -1 ? containerBounds.getHeight() : preferredSize.height();
 						height = height - computeCombinedFragementHeaderHeight(parent);
-						command.add(new SetBoundsCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, new Rectangle(0, 0, width - COMBINED_FRAGMENT_FIGURE_BORDER * 2, height
+						command.add(new SetResizeAndLocationCommand(compartment.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, new Rectangle(0, 0, width - COMBINED_FRAGMENT_FIGURE_BORDER * 2, height
 								- COMBINED_FRAGMENT_FIGURE_BORDER * 2)));
 					}
 				}
@@ -1041,7 +1042,7 @@ public class OperandBoundsComputeHelper {
 						if (height > rect.height) {
 							int heightDelta = height - rect.height;
 							rect.height = height;
-							command.add(new SetBoundsCommand(parent.getEditingDomain(), "Expand covered Lifeline by CombinedFragment", new EObjectAdapter(view), rect));
+							command.add(new SetResizeAndLocationCommand(parent.getEditingDomain(), "Expand covered Lifeline by CombinedFragment", new EObjectAdapter(view), rect));
 							command.add(MessageAnchorRepairer.createPreserveMessageAnchorsCommand((LifelineEditPart) part, heightDelta));
 						}
 						break;
@@ -1583,7 +1584,7 @@ public class OperandBoundsComputeHelper {
 					Rectangle newBounds = fillRectangle(bounds);
 					newBounds.y += moveDelta;
 					CompoundCommand moveCommand = new CompoundCommand();
-					SetBoundsCommand cmd = new SetBoundsCommand(getEditingDomain(), getLabel(), child, newBounds);
+					ICommand cmd = new SetResizeAndLocationCommand(getEditingDomain(), getLabel(), child, newBounds);
 					moveCommand.add(new ICommandProxy(cmd));
 					moveCommand = OccurrenceSpecificationMoveHelper.completeMoveExecutionSpecificationCommand(moveCommand, child, newBounds, new ChangeBoundsRequest());
 					List<?> targetConnections = child.getTargetConnections();
@@ -1640,7 +1641,7 @@ public class OperandBoundsComputeHelper {
 						Location layout = (Location) ((Shape) gate.getNotationView()).getLayoutConstraint();
 						Point location = new Point(layout.getX(), layout.getY());
 						location.y += moveDelta;
-						SetBoundsCommand command = new SetBoundsCommand(getEditingDomain(), "", gate, location);
+						ICommand command = new SetLocationCommand(getEditingDomain(), "", gate, location);
 						commands.add(new ICommandProxy(command));
 					} else {
 						ConnectionAnchor sourceAnchor = msgFigure.getSourceAnchor();
@@ -1655,7 +1656,7 @@ public class OperandBoundsComputeHelper {
 						Location layout = (Location) ((Shape) gate.getNotationView()).getLayoutConstraint();
 						Point location = new Point(layout.getX(), layout.getY());
 						location.y += moveDelta;
-						SetBoundsCommand command = new SetBoundsCommand(getEditingDomain(), "", gate, location);
+						ICommand command = new SetLocationCommand(getEditingDomain(), "", gate, location);
 						commands.add(new ICommandProxy(command));
 					} else {
 						IdentityAnchor gmfTargetAnchor = (IdentityAnchor) edge.getTargetAnchor();

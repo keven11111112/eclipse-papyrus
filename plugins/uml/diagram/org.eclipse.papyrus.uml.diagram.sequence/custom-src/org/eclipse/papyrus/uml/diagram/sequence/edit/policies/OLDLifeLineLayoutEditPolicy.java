@@ -25,7 +25,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
@@ -35,6 +34,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
@@ -102,7 +102,7 @@ public class OLDLifeLineLayoutEditPolicy extends DefaultCreationEditPolicy {
 
 			DestructionEventFigure destructionEventFigure= new DestructionEventFigure();
 			requestedLocation.y=requestedLocation.y-destructionEventFigure.getDefaultSize().height/2;
-			setBoundsCommand = new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, descriptor, requestedLocation);
+			setBoundsCommand = new SetLocationCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, descriptor, requestedLocation);
 		}
 		else{
 			super.getSetBoundsCommand(request, descriptor);

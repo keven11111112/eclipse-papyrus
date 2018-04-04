@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SemanticCreateCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
@@ -39,6 +38,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RefreshConnectionsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -66,7 +66,7 @@ public class OLDLifelineCreationEditPolicy extends CreationEditPolicy {
 		if (hostElement == null && view.getElement() == null) {
 			hostElement = view;
 		}
-		
+
 		CreateElementRequest createElementRequest = (CreateElementRequest) requestAdapter.getAdapter(CreateElementRequest.class);
 		if (createElementRequest.getContainer() == null) {
 			// complete the semantic request by filling in the host's semantic
@@ -81,7 +81,7 @@ public class OLDLifelineCreationEditPolicy extends CreationEditPolicy {
 		Map<String, Object> extendedData = request.getExtendedData();
 		extendedData.put(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
 		extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.COVERED, hostElement);
-		
+
 		createElementRequest.setContainer(ift);
 		// record the nearest event if necessary
 		String requestHint = request.getViewAndElementDescriptor().getSemanticHint();
@@ -151,7 +151,7 @@ public class OLDLifelineCreationEditPolicy extends CreationEditPolicy {
 		childBounds.width = -1; // default size
 		childBounds.y = 0; // y offset from parent
 		childBounds.x = location.x - parentBounds.x; // x offset from parent
-		SetBoundsCommand cmd = new SetBoundsCommand(parentPart.getEditingDomain(), "set size", request.getViewAndElementDescriptor(), childBounds);
+		SetResizeAndLocationCommand cmd = new SetResizeAndLocationCommand(parentPart.getEditingDomain(), "set size", request.getViewAndElementDescriptor(), childBounds);
 		cc.compose(cmd);
 	}
 

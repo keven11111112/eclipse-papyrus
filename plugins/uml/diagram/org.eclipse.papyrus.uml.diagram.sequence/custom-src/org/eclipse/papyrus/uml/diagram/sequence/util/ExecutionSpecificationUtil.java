@@ -22,10 +22,10 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
@@ -198,7 +198,7 @@ public class ExecutionSpecificationUtil {
 
 				// If the rectangle is modified, add the command to modify its bound
 				if (!initialCurrentRectangle.equals(modifiedCurrentRectangle)) {
-					compoundCommand.add(new ICommandProxy(new SetBoundsCommand(lifeLineEditPart.getEditingDomain(), "Change Execution Specification bounds", modifiedEditPartsEntry.getKey(), modifiedCurrentRectangle))); //$NON-NLS-1$
+					compoundCommand.add(new ICommandProxy(new SetResizeAndLocationCommand(lifeLineEditPart.getEditingDomain(), "Change Execution Specification bounds", modifiedEditPartsEntry.getKey(), modifiedCurrentRectangle))); //$NON-NLS-1$
 				}
 			}
 		}

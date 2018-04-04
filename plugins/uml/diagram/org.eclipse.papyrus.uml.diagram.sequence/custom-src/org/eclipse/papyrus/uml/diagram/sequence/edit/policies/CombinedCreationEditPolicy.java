@@ -13,19 +13,16 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import java.awt.Rectangle;
-
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 
 /**
  * @author Patrick Tessier
@@ -58,7 +55,7 @@ public class CombinedCreationEditPolicy extends DefaultCreationEditPolicy {
 			height=height-previousheight;
 		}
 		org.eclipse.draw2d.geometry.Rectangle rect= new org.eclipse.draw2d.geometry.Rectangle(0,y ,-1,height);
-		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(editingDomain, "Set dimension", descriptor, rect);
+		ICommand setBoundsCommand = new SetResizeAndLocationCommand(editingDomain, "Set dimension", descriptor, rect);
 		return setBoundsCommand;
 	}
 

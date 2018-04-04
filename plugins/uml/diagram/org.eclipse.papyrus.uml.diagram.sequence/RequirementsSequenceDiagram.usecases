@@ -9,6 +9,11 @@ Requirement: ReqTechnical_SequenceDiagram_002: Message anchors must be only on l
 Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/figures/LifelineFigure.java
 - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/LifelineChildGraphicalNodeEditPolicy.java
 
+Requirement: ReqTechnical_SequenceDiagram_005: Replace the 'SetBoundsCommand' with 3 different commands used in sequence diagram.
+Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/command/SetLocationCommand.java
+- org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/command/SetResizeCommand.java
+- org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/command/SetResizeAndLocationCommand.java
+
 Requirement: ReqFunctional_SequenceDiagram_001: When a move of a message is done (with the preference to keep gaps between messages), all the messages and elements in the life lines must be moved down.
 Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/UpdateWeakReferenceForMessageSpecEditPolicy.java
 

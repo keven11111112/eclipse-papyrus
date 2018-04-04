@@ -32,7 +32,6 @@ import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -44,6 +43,7 @@ import org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
 
 /**
  * This class offers the same features as {@link NonResizableLabelEditPolicy}, except that move is privileged instead of drag and drop.
@@ -156,7 +156,7 @@ public class MoveableNonResizableLabelEditPolicy extends NonResizableEditPolicyE
 		rect.resize(request.getSizeDelta());
 		getHostFigure().translateToRelative(rect);
 		Point normalPoint = LabelHelper.offsetFromRelativeCoordinate(getHostFigure(), rect, refPoint);
-		ICommand moveCommand = new SetBoundsCommand(editPart.getEditingDomain(), DiagramUIMessages.MoveLabelCommand_Label_Location, new EObjectAdapter((View) editPart.getModel()), normalPoint);
+		ICommand moveCommand = new SetLocationCommand(editPart.getEditingDomain(), DiagramUIMessages.MoveLabelCommand_Label_Location, new EObjectAdapter((View) editPart.getModel()), normalPoint);
 		return new ICommandProxy(moveCommand);
 	}
 

@@ -29,7 +29,6 @@ import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
@@ -38,6 +37,7 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
@@ -102,7 +102,7 @@ public class LifelineMessageCreateHelper {
 					Shape view = (ShapeImpl) target.getModel();
 					if (view.getLayoutConstraint() instanceof Bounds) {
 						Bounds bounds = (Bounds) view.getLayoutConstraint();
-						ICommand boundsCommand = new SetBoundsCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), new Point(bounds.getX(), SequenceUtil.LIFELINE_VERTICAL_OFFSET));
+						ICommand boundsCommand = new SetLocationCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), new Point(bounds.getX(), SequenceUtil.LIFELINE_VERTICAL_OFFSET));
 						commands = commands.chain(new ICommandProxy(boundsCommand));
 						int dy = SequenceUtil.LIFELINE_VERTICAL_OFFSET - bounds.getY();
 						commands = moveCascadeLifeline(target, commands, dy);
@@ -126,7 +126,7 @@ public class LifelineMessageCreateHelper {
 						Rectangle bounds = lp.getPrimaryShape().getBounds();
 						Point location = new Point(bounds.x, SequenceUtil.LIFELINE_VERTICAL_OFFSET);
 						int dy = location.y - bounds.y;
-						ICommand boundsCommand = new SetBoundsCommand(lp.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(lp.getNotationView()), location);
+						ICommand boundsCommand = new SetLocationCommand(lp.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(lp.getNotationView()), location);
 						command = command.chain(new ICommandProxy(boundsCommand));
 						command = moveCascadeLifeline(lp, command, dy);
 					}
@@ -190,7 +190,7 @@ public class LifelineMessageCreateHelper {
 			Rectangle bounds = oldTarget.getPrimaryShape().getBounds();
 			Point location = new Point(bounds.x, SequenceUtil.LIFELINE_VERTICAL_OFFSET);
 			int dy = location.y - bounds.y;
-			ICommand boundsCommand = new SetBoundsCommand(oldTarget.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(oldTarget.getNotationView()), location);
+			ICommand boundsCommand = new SetLocationCommand(oldTarget.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(oldTarget.getNotationView()), location);
 			command = command.chain(new ICommandProxy(boundsCommand));
 			command = moveCascadeLifeline(oldTarget, command, dy);
 		}
@@ -217,7 +217,7 @@ public class LifelineMessageCreateHelper {
 			int dy = location.y - bounds.y;
 			fig.translateToRelative(location);
 			fig.translateToParent(location);
-			ICommand boundsCommand = new SetBoundsCommand(part.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(targetView), location);
+			ICommand boundsCommand = new SetLocationCommand(part.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(targetView), location);
 			command = command.chain(new ICommandProxy(boundsCommand));
 			command = moveCascadeLifeline(part, command, dy);
 		}

@@ -76,6 +76,7 @@ import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateLocatedConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.RestoreDurationConstraintLinkCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
@@ -955,7 +956,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					lifelinePart.getFigure().translateToRelative(newBounds);
 					Point parentLoc = lifelinePart.getLocation();
 					newBounds.translate(parentLoc.getNegated());
-					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", descriptor, newBounds);
+					ICommand setBoundsCommand = new SetResizeAndLocationCommand(getEditingDomain(), "move", descriptor, newBounds);
 					cc.add(new ICommandProxy(setBoundsCommand));
 					return cc;
 				}
@@ -964,7 +965,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (getHost() instanceof InteractionInteractionCompartmentEditPart) {
 			Rectangle newBounds = new Rectangle(dropLocation, new Dimension(-1, -1));
 			((InteractionInteractionCompartmentEditPart) getHost()).getFigure().translateToRelative(newBounds);
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", descriptor, newBounds);
+			ICommand setBoundsCommand = new SetResizeAndLocationCommand(getEditingDomain(), "move", descriptor, newBounds);
 			cc.add(new ICommandProxy(setBoundsCommand));
 			return cc;
 		}
@@ -1003,7 +1004,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					lifelinePart.getFigure().translateToRelative(newBounds);
 					Point parentLoc = lifelinePart.getLocation();
 					newBounds.translate(parentLoc.getNegated());
-					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", descriptor, newBounds);
+					ICommand setBoundsCommand = new SetResizeAndLocationCommand(getEditingDomain(), "move", descriptor, newBounds);
 					cc.add(new ICommandProxy(setBoundsCommand));
 					return cc;
 				}
@@ -1022,7 +1023,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					lifelinePart.getFigure().translateToRelative(newBounds);
 					Point parentLoc = lifelinePart.getLocation();
 					newBounds.translate(parentLoc.getNegated());
-					SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", descriptor, newBounds);
+					ICommand setBoundsCommand = new SetResizeAndLocationCommand(getEditingDomain(), "move", descriptor, newBounds);
 					cc.add(new ICommandProxy(setBoundsCommand));
 					return cc;
 				}

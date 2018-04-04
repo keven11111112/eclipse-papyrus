@@ -36,7 +36,6 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
@@ -50,6 +49,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LifelineDotLineFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomZOrderCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
@@ -233,7 +233,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		newBounds.performTranslate(t.x, t.y);
 		newBounds.translate(0, bounds.y);
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
+		return new ICommandProxy(new SetResizeAndLocationCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 	}
 
 	@Override
@@ -308,7 +308,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 		newBounds = getNewBoundsForChild((LifelineEditPart) getHost(), newBounds, COREGION_INIT_WIDTH);
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-		return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
+		return new ICommandProxy(new SetResizeAndLocationCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 	}
 
 	private Command getCommandForDestructionOccuranceCreation(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
@@ -414,7 +414,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		// if(newBounds == null) {
 		// return UnexecutableCommand.INSTANCE;
 		// }
-		Command p = new ICommandProxy(new SetBoundsCommand(editPart.getEditingDomain(), "Creation of an ExecutionSpecification", viewDescriptor, newBounds));
+		Command p = new ICommandProxy(new SetResizeAndLocationCommand(editPart.getEditingDomain(), "Creation of an ExecutionSpecification", viewDescriptor, newBounds));
 		// resize parent bar
 		if (parent != null) {
 			Rectangle newAdjustedBounds = newBounds.getCopy();
@@ -440,7 +440,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 		Rectangle newBounds = rect.getCopy();
 		CompoundCommand command = new CompoundCommand();
-		Command c = new ICommandProxy(new SetBoundsCommand(part.getEditingDomain(), "Resize of Parent Bar", part, newBounds.getCopy()));
+		Command c = new ICommandProxy(new SetResizeAndLocationCommand(part.getEditingDomain(), "Resize of Parent Bar", part, newBounds.getCopy()));
 		command.add(c);
 		Point moveDelta = new Point(newBounds.x - bounds.x, newBounds.y - bounds.y);
 		Dimension sizeDelta = new Dimension(newBounds.width() - bounds.width(), newBounds.height() - bounds.height());
@@ -478,7 +478,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			// Define the bounds of the new time element
 			Rectangle newBounds = new Rectangle(referencePoint.x, referencePoint.y - newHeight / 2, -1, newHeight);
 			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-			return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
+			return new ICommandProxy(new SetResizeAndLocationCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 		}
 		return null;
 	}
@@ -507,7 +507,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				Rectangle newBounds = new Rectangle(referenceTop.x, referenceTop.y, -1, newHeight);
 				newBounds = CustomDurationConstraintEditPart.fixMessageBounds(newBounds, cvr, (LifelineEditPart) getHost());
 				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-				return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
+				return new ICommandProxy(new SetResizeAndLocationCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 			} else if (newHeight < 0) {
 				parentFigure.translateToRelative(referenceBottom);
 				Point parentFigDelta = parentFigure.getBounds().getLocation().getCopy().negate();
@@ -516,7 +516,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				Rectangle newBounds = new Rectangle(referenceBottom.x, referenceBottom.y, -1, -newHeight);
 				newBounds = CustomDurationConstraintEditPart.fixMessageBounds(newBounds, cvr, (LifelineEditPart) getHost());
 				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-				return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
+				return new ICommandProxy(new SetResizeAndLocationCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 			}
 		}
 		return null;
@@ -689,7 +689,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 						compoundCmd.add(resizeParentExecutionSpecification(lifelineEP, parentBar, newBounds.getCopy(), executionSpecificationList));
 					}
 					// Create and add the command to the compound command
-					SetBoundsCommand setBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Resize of a ExecutionSpecification", executionSpecificationEP, newBounds);
+					SetResizeAndLocationCommand setBoundsCmd = new SetResizeAndLocationCommand(executionSpecificationEP.getEditingDomain(), "Resize of a ExecutionSpecification", executionSpecificationEP, newBounds);
 					compoundCmd.add(new ICommandProxy(setBoundsCmd));
 					Rectangle realMoveDelta = getRealMoveDelta(getRelativeBounds(executionSpecificationEP.getFigure()), newBounds);
 					if (isMove) {
@@ -775,7 +775,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		lifelineResizeRequest.setSizeDelta(new Dimension(0, heightDelta));
 		lifelineResizeRequest.setResizeDirection(PositionConstants.NORTH);
 		lifelineResizeRequest.setEditParts(lifelineEP);
-		compoundCmd.add(new ICommandProxy(new SetBoundsCommand(lifelineEP.getEditingDomain(), "Move of Lifeline/DOS", lifelineEP, rectLifeline)));
+		compoundCmd.add(new ICommandProxy(new SetResizeAndLocationCommand(lifelineEP.getEditingDomain(), "Move of Lifeline/DOS", lifelineEP, rectLifeline)));
 		PreserveAnchorsPositionCommandEx preserveAnchorsCommand = new PreserveAnchorsPositionCommandEx(lifelineEP, new Dimension(0, heightDelta), PreserveAnchorsPositionCommand.PRESERVE_Y, lifelineEP.getPrimaryShape()
 				.getFigureLifelineDotLineFigure(), PositionConstants.SOUTH);
 		compoundCmd.add(new ICommandProxy(preserveAnchorsCommand));
@@ -1000,7 +1000,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				childBounds.y += moveDelta.y;
 				childBounds.x += moveDelta.x;
 				// Create the child's SetBoundsCommand
-				SetBoundsCommand childSetBoundsCmd = new SetBoundsCommand(executionSpecificationEP.getEditingDomain(), "Movement of affixed ExecutionSpecification", childExecutionSpecificationEP, childBounds);
+				SetResizeAndLocationCommand childSetBoundsCmd = new SetResizeAndLocationCommand(executionSpecificationEP.getEditingDomain(), "Movement of affixed ExecutionSpecification", childExecutionSpecificationEP, childBounds);
 				compoundCmd.add(new ICommandProxy(childSetBoundsCmd));
 				IFigure parentFigure = childExecutionSpecificationEP.getFigure().getParent();
 				parentFigure.translateToAbsolute(newBounds);
