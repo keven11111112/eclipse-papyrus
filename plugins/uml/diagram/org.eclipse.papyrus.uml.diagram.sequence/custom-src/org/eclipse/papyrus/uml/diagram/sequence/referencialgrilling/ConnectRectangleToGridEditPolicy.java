@@ -23,7 +23,6 @@ import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -38,6 +37,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.IdentityAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.uml2.uml.Element;
@@ -309,7 +309,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 		LayoutConstraint layoutConstraint = execSpecNode.getLayoutConstraint();
 		if (layoutConstraint instanceof Bounds) {
 			int delta = newYValue - oldYValue;
-			execute(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update ExecutionSpecification", new EObjectAdapter(execSpecNode), //$NON-NLS-1$
+			execute(new SetLocationCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update ExecutionSpecification", new EObjectAdapter(execSpecNode), //$NON-NLS-1$
 					new Point(((Bounds) layoutConstraint).getX(), ((Bounds) layoutConstraint).getY() - delta)));
 		}
 	}
@@ -461,10 +461,8 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 			double preciseHeight = nodeHeight;
 
 			double newPercentY = (yPercent * oldHeight) / preciseHeight;
-			if (newPercentY <= 1 && newPercentY >= 0 && newPercentY <= 1 && newPercentY >= 0) {
-				final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xPercent, newPercentY);
-				execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
-			}
+			final String newIdValue = IdentityAnchorHelper.createNewAnchorIdValue(xPercent, newPercentY);
+			execute(new SetCommand(getDiagramEditPart(getHost()).getEditingDomain(), anchor, NotationPackage.eINSTANCE.getIdentityAnchor_Id(), newIdValue));
 		}
 	}
 

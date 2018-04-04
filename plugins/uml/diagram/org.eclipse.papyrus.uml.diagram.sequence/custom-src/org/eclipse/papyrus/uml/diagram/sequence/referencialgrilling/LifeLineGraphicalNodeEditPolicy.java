@@ -39,7 +39,6 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
@@ -58,6 +57,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateExecutionSpecificationWithMessage;
 import org.eclipse.papyrus.uml.diagram.sequence.command.DropDestructionOccurenceSpecification;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
@@ -526,7 +527,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 					Bounds lifelineBounds = ((Bounds) ((Node) targetEditPart.getModel()).getLayoutConstraint());
 					Dimension size = new Dimension(lifelineBounds.getWidth(), relativeSnappedLocation.y - lifelineBounds.getY());
 
-					SetBoundsCommand setSizeCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), //$NON-NLS-1$
+					ICommand setSizeCommand = new SetResizeCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), //$NON-NLS-1$
 							size);
 					compoundCommand.add(new GMFtoGEFCommandWrapper(setSizeCommand));
 				}
@@ -592,7 +593,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 			Rectangle newBounds = new Rectangle(new Point(bounds.x(), newY), new Dimension(bounds.width(), bounds.height() - snappedLocation.y + stickerHeight));
 
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Move&Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), newBounds); //$NON-NLS-1$
+			ICommand setBoundsCommand = new SetResizeAndLocationCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Move&Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), newBounds); //$NON-NLS-1$
 
 			compoundCommand.add(originalCommand);
 			compoundCommand.add(new GMFtoGEFCommandWrapper(setBoundsCommand));
@@ -748,7 +749,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 						// Get resize command
 						if (targetEditPart instanceof CLifeLineEditPart) {
 							Bounds lifeLineBounds = ((Bounds) ((Node) targetEditPart.getModel()).getLayoutConstraint());
-							SetBoundsCommand setSizeCommand = new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), //$NON-NLS-1$
+							ICommand setSizeCommand = new SetResizeCommand(getDiagramEditPart(getHost()).getEditingDomain(), "Size LifeLine", new EObjectAdapter(((GraphicalEditPart) targetEditPart).getNotationView()), //$NON-NLS-1$
 									new Dimension(lifeLineBounds.getWidth(), request.getLocation().y - lifeLineBounds.getY()));
 							compoundCommand.add(new GMFtoGEFCommandWrapper(setSizeCommand));
 						}

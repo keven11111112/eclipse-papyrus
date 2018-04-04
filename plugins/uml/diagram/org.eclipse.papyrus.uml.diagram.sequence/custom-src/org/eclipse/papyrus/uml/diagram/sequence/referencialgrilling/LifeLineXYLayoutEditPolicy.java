@@ -49,6 +49,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
@@ -227,7 +228,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	 *            the element being resized.
 	 * @param constraint
 	 *            the elements new bounds.
-	 * @return {@link SetBoundsCommand}
+	 * @return {@link SetResizeAndLocationCommand}
 	 */
 	@Override
 	protected Command createChangeConstraintCommand(
@@ -289,7 +290,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
 				.getEditingDomain();
-		ICommand boundsCommand = new SetBoundsCommand(editingDomain,
+		ICommand boundsCommand = new SetResizeAndLocationCommand(editingDomain,
 				DiagramUIMessages.SetLocationCommand_Label_Resize,
 				new EObjectAdapter(shapeView),
 				newBounds);

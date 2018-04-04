@@ -27,7 +27,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -39,6 +38,7 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -132,7 +132,7 @@ public class LifelineEditPartUtil {
 						Dimension newDimension = new Dimension(bounds.getWidth(), bounds.getHeight() + (bounds.getY() - SequenceUtil.LIFELINE_VERTICAL_OFFSET));
 						Rectangle newBounds = new Rectangle(newLocation, newDimension);
 
-						ICommand boundsCommand = new SetBoundsCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newBounds);
+						ICommand boundsCommand = new SetResizeAndLocationCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newBounds);
 
 						commands = new ICommandProxy(boundsCommand);
 					}
@@ -164,7 +164,7 @@ public class LifelineEditPartUtil {
 						Dimension newDimension = new Dimension(bounds.getWidth(), CLifeLineEditPart.DEFAUT_HEIGHT - bounds.getY());
 						Rectangle newBounds = new Rectangle(newLocation, newDimension);
 
-						ICommand boundsCommand = new SetBoundsCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newBounds);
+						ICommand boundsCommand = new SetResizeAndLocationCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newBounds);
 
 						commands = new ICommandProxy(boundsCommand);
 					}

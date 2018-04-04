@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SemanticCreateCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
@@ -39,6 +38,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RefreshConnectionsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -151,7 +151,7 @@ public class OLDLifelineCreationEditPolicy extends CreationEditPolicy {
 		childBounds.width = -1; // default size
 		childBounds.y = 0; // y offset from parent
 		childBounds.x = location.x - parentBounds.x; // x offset from parent
-		SetBoundsCommand cmd = new SetBoundsCommand(parentPart.getEditingDomain(), "set size", request.getViewAndElementDescriptor(), childBounds);
+		ICommand cmd = new SetResizeAndLocationCommand(parentPart.getEditingDomain(), "set size", request.getViewAndElementDescriptor(), childBounds);
 		cc.compose(cmd);
 	}
 

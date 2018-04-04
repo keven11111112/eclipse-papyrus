@@ -23,11 +23,11 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.ExposeHelper;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -79,7 +79,7 @@ public class CombinedFragmentHeadImpactLayoutEditPolicy extends AbstractHeadImpa
 				Bounds bounds = (Bounds) shape.getLayoutConstraint();
 				Dimension size = new Dimension(bounds.getWidth(), bounds.getHeight()).expand(0, -resizeDelta);
 				Rectangle newBounds = new Rectangle(new Point(bounds.getX(), bounds.getY() + resizeDelta), size);
-				commands.appendIfCanExecute(new GMFtoEMFCommandWrapper(new SetBoundsCommand(getEditingDomain(), "", operand, newBounds)));
+				commands.appendIfCanExecute(new GMFtoEMFCommandWrapper(new SetResizeAndLocationCommand(getEditingDomain(), "", operand, newBounds)));
 				Command cmd = OperandBoundsComputeHelper.getShiftEnclosedFragmentsCommand(operand, newBounds, resizeDelta);
 				if (cmd != null) {
 					commands.appendIfCanExecute(new GEFtoEMFCommandWrapper(cmd));

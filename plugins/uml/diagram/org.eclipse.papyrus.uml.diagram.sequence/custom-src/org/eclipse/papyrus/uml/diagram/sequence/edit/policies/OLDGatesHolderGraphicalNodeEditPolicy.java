@@ -43,7 +43,6 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandUtilities;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.requests.SuppressibleUIRequest;
@@ -57,6 +56,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateElementAndViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.ReconnectToGateCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
@@ -116,7 +116,7 @@ public class OLDGatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalN
 		hostFigure.translateToRelative(newBounds);
 		GateLocator locator = new GateLocator(hostFigure);
 		Rectangle validLocation = locator.getValidLocation(newBounds, gateEditPart.getFigure());
-		SetBoundsCommand command = new SetBoundsCommand(getEditingDomain(), "Update Gate Location", new EObjectAdapter(gateEditPart.getNotationView()), validLocation.getLocation());
+		ICommand command = new SetLocationCommand(getEditingDomain(), "Update Gate Location", new EObjectAdapter(gateEditPart.getNotationView()), validLocation.getLocation());
 		return new ICommandProxy(command);
 	}
 

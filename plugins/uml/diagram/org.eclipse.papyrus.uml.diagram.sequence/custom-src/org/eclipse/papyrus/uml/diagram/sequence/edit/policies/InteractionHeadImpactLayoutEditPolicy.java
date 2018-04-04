@@ -23,7 +23,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.gef.NodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -32,10 +31,11 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.StereotypeInteractionFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 
@@ -86,7 +86,7 @@ public class InteractionHeadImpactLayoutEditPolicy extends AbstractHeadImpactLay
 					Location location = (Location) view.getLayoutConstraint();
 					Point pt = new Point(location.getX(), location.getY());
 					if (pt.x == rect.x - OLDGateEditPart.DEFAULT_SIZE.width / 2 || pt.x == rect.right() - OLDGateEditPart.DEFAULT_SIZE.width / 2) {
-						commands.appendIfCanExecute(new GMFtoEMFCommandWrapper(new SetBoundsCommand(getEditingDomain(), "Move gate", gateEditPart, pt.getTranslated(0, resizeDelta))));
+						commands.appendIfCanExecute(new GMFtoEMFCommandWrapper(new SetLocationCommand(getEditingDomain(), "Move gate", gateEditPart, pt.getTranslated(0, resizeDelta))));
 					}
 				}
 			}
