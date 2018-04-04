@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage#getMatrixRelationShipOwnerStrategy()
  * @model
  * @generated
+ * @since 4.1
  */
 public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	/**

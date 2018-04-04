@@ -7,7 +7,7 @@
 	    <version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>org.eclipse.papyrus.infra.gmfdiag.style.edit</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 	<description>Papyrus fork of org.eclipse.gmf.tooling.runtime to remain in the release train</description>
 </project>

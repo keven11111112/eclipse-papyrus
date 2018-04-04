@@ -70,12 +70,12 @@ Require-Bundle: org.eclipse.papyrus.extensionpoints.editors;bundle-version="[3.0
  org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.emf.readonly;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.services.localizer;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.uml.modelrepair;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.menu;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
  org.eclipse.e4.ui.css.core;bundle-version="[0.11.0,1.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.canonical;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.gmfdiag.expansion;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.expansion;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.uml.appearance;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.hyperlink;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.nebula.widgets.richtext;bundle-version="[1.0.0,2.0.0)",
@@ -86,11 +86,13 @@ Require-Bundle: org.eclipse.papyrus.extensionpoints.editors;bundle-version="[3.0
  org.eclipse.papyrus.infra.internationalization.common;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.architecture;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.infra.architecture;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.architecture.representation;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.uml.tools;bundle-version="[4.0.0,5.0.0)"
+ org.eclipse.papyrus.uml.tools;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.representation;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
-Bundle-Version: 3.1.0.qualifier
+Bundle-Version: 3.2.0.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.common.Activator
 Bundle-ManifestVersion: 2

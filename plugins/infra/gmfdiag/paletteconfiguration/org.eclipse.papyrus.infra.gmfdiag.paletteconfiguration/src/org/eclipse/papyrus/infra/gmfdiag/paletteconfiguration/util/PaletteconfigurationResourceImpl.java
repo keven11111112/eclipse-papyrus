@@ -13,16 +13,16 @@
 package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.util;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.papyrus.emf.resources.AbstractEMFResource;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
  * @see org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.util.PaletteconfigurationResourceFactoryImpl
- * @generated
+ * @generated NOT
  */
-public class PaletteconfigurationResourceImpl extends XMIResourceImpl {
+public class PaletteconfigurationResourceImpl extends AbstractEMFResource {
 	/**
 	 * Creates an instance of the resource.
 	 * <!-- begin-user-doc -->

@@ -19,7 +19,6 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
-import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 
 /**
  * An element that represents a merged collection of {@link org.eclipse.papyrus.infra.core.
@@ -134,8 +133,9 @@ public class MergedADElement {
 	 * By default, any one of the merge increments will be returned. Subclasses may override.
 	 * 
 	 * @return a merge increment
+	 * @since 2.0
 	 */
-	public Object getImageObject() {
+	public ADElement getImageObject() {
 		for (ADElement element : elements) {
 			if (element.getIcon() != null)
 				return element;

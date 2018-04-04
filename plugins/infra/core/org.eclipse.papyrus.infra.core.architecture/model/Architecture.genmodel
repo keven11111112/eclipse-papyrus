@@ -10,8 +10,7 @@
     operationReflection="true" importOrganizing="true">
   <foreignModel>Architecture.ecore</foreignModel>
   <genPackages prefix="Architecture" basePackage="org.eclipse.papyrus.infra.core"
-      resource="XMI" disposableProviderFactory="true" extensibleProviderFactory="true"
-      ecorePackage="Architecture.ecore#/">
+      disposableProviderFactory="true" extensibleProviderFactory="true" ecorePackage="Architecture.ecore#/">
     <genClasses image="false" ecoreClass="Architecture.ecore#//ADElement">
       <genFeatures createChild="false" propertyCategory="Element" propertyDescription="The unique id of the element"
           ecoreFeature="ecore:EAttribute Architecture.ecore#//ADElement/id"/>

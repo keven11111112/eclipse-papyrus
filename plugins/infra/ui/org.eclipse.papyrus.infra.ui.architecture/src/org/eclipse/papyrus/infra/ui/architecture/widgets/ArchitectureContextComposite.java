@@ -13,6 +13,8 @@
  */
 package org.eclipse.papyrus.infra.ui.architecture.widgets;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -38,10 +40,12 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.ToolTip;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedADElement;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
+import org.eclipse.papyrus.infra.ui.architecture.ArchitectureUIPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -146,11 +150,18 @@ public class ArchitectureContextComposite extends Composite {
 		contextsViewer.setLabelProvider(new AdapterFactoryLabelProvider(composedAdapterFactory) {
 			@Override
 			public Image getImage(Object object) {
-				if (object instanceof MergedADElement) {
-					MergedADElement element = (MergedADElement) object;
-					return super.getImage(element.getImageObject());
+				MergedADElement element = (MergedADElement) object;
+				ADElement imageObject = element.getImageObject();
+				if (imageObject != null && imageObject.getIcon() != null) {
+					try {
+						URL image = new URL(imageObject.getIcon().toString());
+						return getImageFromObject(image);                   
+					} catch (MalformedURLException e) {
+						ArchitectureUIPlugin.log.error(e);
+						return null;                 
+					}
 				}
-				return super.getImage(object);
+				return super.getImage(imageObject);
 			}
 			@Override
 			public String getText(Object object) {

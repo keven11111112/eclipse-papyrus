@@ -16,6 +16,9 @@ package org.eclipse.papyrus.emf.resources;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -43,7 +46,7 @@ public final class LoadAndSaveOptionsUtils {
 		// create the save options
 		SAVE_OPTIONS = new HashMap<Object, Object>();
 		// idem in Papyrus ModelSet
-		SAVE_OPTIONS.put(XMLResource.OPTION_URI_HANDLER, new URIHandlerImpl.PlatformSchemeAware());
+		SAVE_OPTIONS.put(XMLResource.OPTION_URI_HANDLER, new PapyrusURIHandler());
 
 
 		// idem in MultiDiagramUtil
@@ -67,7 +70,9 @@ public final class LoadAndSaveOptionsUtils {
 		LOAD_OPTIONS.put(XMLResource.OPTION_LAX_FEATURE_PROCESSING, Boolean.TRUE);
 		LOAD_OPTIONS.put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 		LOAD_OPTIONS.put(XMLResource.OPTION_USE_PACKAGE_NS_URI_AS_LOCATION, Boolean.FALSE);
-	}
+		// idem in Papyrus ModelSet
+		LOAD_OPTIONS.put(XMLResource.OPTION_URI_HANDLER, new PapyrusURIHandler());
+}
 
 	/**
 	 * Constructor.
@@ -93,5 +98,42 @@ public final class LoadAndSaveOptionsUtils {
 	 */
 	public static final Map<Object, Object> getSaveOptions() {
 		return new HashMap<Object, Object>(SAVE_OPTIONS);// we create a copy, to avoid non wanted changes
+	}
+	
+	/**
+	 * A URI handler that converts all platform:/resource URIs on save to platform:/plugin format
+	 * and loads them back as either platform:/resource (if they exist in the workspace) or
+	 * platform:/plugin (if they do not).
+	 */
+	protected static class PapyrusURIHandler extends URIHandlerImpl.PlatformSchemeAware {
+	   
+		@Override
+	    public URI deresolve(URI uri) {
+	    		// Convert all platform:/resource URIs to platform:/plugin format on save 
+	    		if (uri.isPlatformResource()) {
+	    			String platformString = uri.toPlatformString(true);
+	    			String fragment = uri.fragment();
+	    			URI pluginURI = URI.createPlatformPluginURI(platformString, true);
+	    			pluginURI = pluginURI.appendFragment(fragment);
+	    			return pluginURI;
+	    		}
+	    		return super.deresolve(uri);
+	    }
+		
+	    @Override
+		public URI resolve(URI uri) {
+    			// Convert platform:/plugin URIs to platform:/resource format on load if the resource exists in the workspace 
+	    		if (uri.isPlatformPlugin()) {
+	    			String platformString = uri.toPlatformString(true);
+	    			IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(platformString);
+	    			if (resource != null) {
+		    			String fragment = uri.fragment();
+		    			URI resourceURI = URI.createPlatformResourceURI(platformString, true);
+		    			resourceURI = resourceURI.appendFragment(fragment);
+		    			return resourceURI;
+	    			}
+	    		}
+	    		return super.resolve(uri);
+	    }
 	}
 }

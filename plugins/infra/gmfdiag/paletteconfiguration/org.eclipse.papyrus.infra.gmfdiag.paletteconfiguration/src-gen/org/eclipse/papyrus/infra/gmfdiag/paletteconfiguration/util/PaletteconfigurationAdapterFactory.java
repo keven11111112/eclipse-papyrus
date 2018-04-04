@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.filters.FilteredElement;
+import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.*;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.ChildConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.DrawerConfiguration;

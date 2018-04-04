@@ -1,116 +1,116 @@
-<?xml version="1.0" encoding="ASCII"?>
-<paletteconfiguration:PaletteConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="org.eclipse.papyrus.uml.diagram.interactionoverview.paletteconfiguration" label="InteractionOverviewDiagram Palette" description="this is the palette of InteractionOverviewDiagram">
-  <drawerConfigurations id="interactionoverview.drawer.nodes" label="Nodes" description="">
-    <icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.activity" label="Activity" description="Create a new Activity">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Activity.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Activity_Shape"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<paletteconfiguration:PaletteConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8" id="org.eclipse.papyrus.uml.diagram.interactionoverview.paletteconfiguration" label="InteractionOverviewDiagram Palette" description="this is the palette of InteractionOverviewDiagram">
+  <drawerConfigurations xmi:type="paletteconfiguration:DrawerConfiguration" id="interactionoverview.drawer.nodes" label="Nodes" description="">
+    <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.activity" label="Activity" description="Create a new Activity" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Activity.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Activity_Shape"/>
       </elementDescriptors>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Activity_Shape_CN"/>
-      </elementDescriptors>
-    </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.initialnode" label="InitialNode" description="Create a new InitialNode">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InitialNode.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InitialNode_Shape"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Activity_Shape_CN"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.activityfinalnode" label="ActivityFinalNode" description="Create a new ActivityFinalNode">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActivityFinalNode.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ActivityFinalNode_Shape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.initialnode" label="InitialNode" description="Create a new InitialNode" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InitialNode.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InitialNode_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.flowfinalnode" label="FlowFinalNode" description="Create a new FlowFinalNode">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/FlowFinalNode.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.FlowFinalNode_Shape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.activityfinalnode" label="ActivityFinalNode" description="Create a new ActivityFinalNode" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActivityFinalNode.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ActivityFinalNode_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.decisionnode" label="DecisionNode" description="Create a new DecisionNode">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DecisionNode.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DecisionNode_Shape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.flowfinalnode" label="FlowFinalNode" description="Create a new FlowFinalNode" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/FlowFinalNode.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.FlowFinalNode_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.forknode" label="ForkNode" description="Create a new ForkNode">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ForkNode.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ForkNode_Shape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.decisionnode" label="DecisionNode" description="Create a new DecisionNode" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DecisionNode.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.DecisionNode_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.joinnode" label="JoinNode" description="Create a new JoinNode">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/JoinNode.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.JoinNode_Shape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.forknode" label="ForkNode" description="Create a new ForkNode" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ForkNode.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ForkNode_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.mergenode" label="MergeNode" description="Create a new MergeNode">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/MergeNode.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.MergeNode_Shape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.joinnode" label="JoinNode" description="Create a new JoinNode" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/JoinNode.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.JoinNode_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.conditionalnode" label="ConditionalNode" description="Create a new ConditionalNode">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ConditionalNode.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ConditionalNode_Shape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.mergenode" label="MergeNode" description="Create a new MergeNode" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/MergeNode.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.MergeNode_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.loopnode" label="LoopNode" description="Create a new LoopNode">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/LoopNode.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.LoopNode_Shape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.conditionalnode" label="ConditionalNode" description="Create a new ConditionalNode" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ConditionalNode.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ConditionalNode_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.sequencenode" label="SequenceNode" description="Create a new SequenceNode">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/SequenceNode.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.SequenceNode_Shape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.loopnode" label="LoopNode" description="Create a new LoopNode" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/LoopNode.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.LoopNode_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.comment" label="Comment" description="Create a new Comment">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Comment.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Comment_Shape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.sequencenode" label="SequenceNode" description="Create a new SequenceNode" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/SequenceNode.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.SequenceNode_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.constraint" label="Constraint" description="Create a new Constraint">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Constraint.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Constraint_Shape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.comment" label="Comment" description="Create a new Comment" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Comment.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Comment_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverview.drawer.nodes.interaction" label="Interaction" description="Create a new Interaction">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Interaction.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.CallBehaviorAction_InteractionShape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.constraint" label="Constraint" description="Create a new Constraint" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Constraint.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Constraint_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverview.drawer.nodes.interactionuse" label="Interaction Use" description="Create a new InteractionUse">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InteractionUse.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.CallBehaviorAction_InteractionUseShape"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverview.drawer.nodes.interaction" label="Interaction" description="Create a new Interaction" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Interaction.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.CallBehaviorAction_InteractionShape"/>
+      </elementDescriptors>
+    </ownedConfigurations>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverview.drawer.nodes.interactionuse" label="Interaction Use" description="Create a new InteractionUse" kind="CreationTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InteractionUse.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.CallBehaviorAction_InteractionUseShape"/>
       </elementDescriptors>
     </ownedConfigurations>
   </drawerConfigurations>
-  <drawerConfigurations id="interactionoverview.drawer.edges" label="Edges">
-    <icon pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.commentannotatedelement" label="CommentAnnotatedElement" description="Create a new CommentAnnotatedElement" kind="ConnectionTool">
-      <icon pluginID="org.eclipse.papyrus.uml.diagram.activity" iconPath="/icons/obj16/Link.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"/>
+  <drawerConfigurations xmi:type="paletteconfiguration:DrawerConfiguration" id="interactionoverview.drawer.edges" label="Edges">
+    <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.gmf.runtime.diagram.ui" iconPath="/icons/group.gif"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.commentannotatedelement" label="CommentAnnotatedElement" description="Create a new CommentAnnotatedElement" kind="ConnectionTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.papyrus.uml.diagram.activity" iconPath="/icons/obj16/Link.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"/>
       </elementDescriptors>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.controlflow" label="ControlFlow" description="Create a new ControlFlow" kind="ConnectionTool">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ControlFlow.gif"/>
-      <elementDescriptors>
-        <elementType xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ControlFlow_Edge"/>
+    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="interactionoverviewdiagram.tool.controlflow" label="ControlFlow" description="Create a new ControlFlow" kind="ConnectionTool">
+      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ControlFlow.gif"/>
+      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
+        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ControlFlow_Edge"/>
       </elementDescriptors>
     </ownedConfigurations>
   </drawerConfigurations>

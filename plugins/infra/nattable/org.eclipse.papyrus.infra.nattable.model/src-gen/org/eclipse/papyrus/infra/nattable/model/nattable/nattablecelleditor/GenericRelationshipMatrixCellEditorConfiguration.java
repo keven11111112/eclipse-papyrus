@@ -139,6 +139,7 @@ public interface GenericRelationshipMatrixCellEditorConfiguration extends IMatri
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage#getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerStrategy()
 	 * @model default="DEFAULT" required="true"
 	 * @generated
+	 * @since 4.1
 	 */
 	MatrixRelationShipOwnerStrategy getRelationshipOwnerStrategy();
 
@@ -150,6 +151,7 @@ public interface GenericRelationshipMatrixCellEditorConfiguration extends IMatri
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.MatrixRelationShipOwnerStrategy
 	 * @see #getRelationshipOwnerStrategy()
 	 * @generated
+	 * @since 4.1
 	 */
 	void setRelationshipOwnerStrategy(MatrixRelationShipOwnerStrategy value);
 
@@ -165,6 +167,7 @@ public interface GenericRelationshipMatrixCellEditorConfiguration extends IMatri
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage#getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwner()
 	 * @model containment="true"
 	 * @generated
+	 * @since 4.1
 	 */
 	IWrapper getRelationshipOwner();
 
@@ -175,6 +178,7 @@ public interface GenericRelationshipMatrixCellEditorConfiguration extends IMatri
 	 * @param value the new value of the '<em>Relationship Owner</em>' containment reference.
 	 * @see #getRelationshipOwner()
 	 * @generated
+	 * @since 4.1
 	 */
 	void setRelationshipOwner(IWrapper value);
 
@@ -191,6 +195,7 @@ public interface GenericRelationshipMatrixCellEditorConfiguration extends IMatri
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage#getGenericRelationshipMatrixCellEditorConfiguration_RelationshipOwnerFeature()
 	 * @model containment="true"
 	 * @generated
+	 * @since 4.1
 	 */
 	IAxis getRelationshipOwnerFeature();
 
@@ -201,6 +206,7 @@ public interface GenericRelationshipMatrixCellEditorConfiguration extends IMatri
 	 * @param value the new value of the '<em>Relationship Owner Feature</em>' containment reference.
 	 * @see #getRelationshipOwnerFeature()
 	 * @generated
+	 * @since 4.1
 	 */
 	void setRelationshipOwnerFeature(IAxis value);
 

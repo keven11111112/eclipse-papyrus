@@ -14,14 +14,13 @@ package org.eclipse.papyrus.infra.types.resource;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.infra.types.util.ElementTypesConfigurationsResourceFactoryImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 
-public class CustomElementTypesConfigurationsResourceFactoryImpl extends ElementTypesConfigurationsResourceFactoryImpl {
+public class CustomElementTypesConfigurationsResourceFactoryImpl extends ResourceFactoryImpl {
 
 	@Override
 	public Resource createResource(URI uri) {
-		Resource result = new CustomElementTypesConfigurationsResourceImpl(uri);
-		return result;
+		return new CustomElementTypesConfigurationsResourceImpl(uri);
 	}
 
 }

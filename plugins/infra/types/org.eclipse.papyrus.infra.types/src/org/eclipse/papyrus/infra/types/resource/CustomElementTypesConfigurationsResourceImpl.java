@@ -13,16 +13,12 @@
 package org.eclipse.papyrus.infra.types.resource;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.infra.types.util.ElementTypesConfigurationsResourceImpl;
+import org.eclipse.papyrus.emf.resources.AbstractEMFResourceWithUUID;
 
-public class CustomElementTypesConfigurationsResourceImpl extends ElementTypesConfigurationsResourceImpl {
+public class CustomElementTypesConfigurationsResourceImpl extends AbstractEMFResourceWithUUID {
 
 	public CustomElementTypesConfigurationsResourceImpl(URI uri) {
 		super(uri);
 	}
 
-	@Override
-	protected boolean useUUIDs() {
-		return true;
-	}
 }

@@ -1,19 +1,20 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.types.core;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.uml.service.types;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.types.core;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.uml.service.types;bundle-version="[4.0.0,5.0.0)",
  org.junit;bundle-version="4.10.0",
  org.eclipse.papyrus.junit.framework;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.infra.newchild;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.newchild;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.8.0",
  org.eclipse.papyrus.infra.services.edit;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.junit.utils;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)"
+ org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.types;bundle-version="[4.0.0,5.0.0)"
 Export-Package: org.eclipse.papyrus.infra.types.tests
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.0.100.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

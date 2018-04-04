@@ -13,11 +13,14 @@
  */
 package org.eclipse.papyrus.infra.ui.architecture.preferences;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -46,9 +49,11 @@ import org.eclipse.jface.viewers.StyledString.Styler;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.ToolTip;
+import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedADElement;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDomain;
+import org.eclipse.papyrus.infra.ui.architecture.ArchitectureUIPlugin;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainPreferences;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainMerger;
@@ -156,7 +161,17 @@ public class ArchitectureContextPreferencePage extends PreferencePage implements
 			@Override
 			public Image getImage(Object object) {
 				MergedADElement element = (MergedADElement) object;
-				return super.getImage(element.getImageObject());
+				ADElement imageObject = element.getImageObject();
+				if (imageObject != null && imageObject.getIcon() != null) {
+					try {
+						URL image = new URL(imageObject.getIcon().toString());
+						return getImageFromObject(image);                   
+					} catch (MalformedURLException e) {
+						ArchitectureUIPlugin.log.error(e);
+						return null;                 
+					}
+				}
+				return super.getImage(imageObject);
 			}
 		};
 

@@ -73,6 +73,7 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 
 	/**
 	 * Listener to to the diagram kind
+	 * @since 3.1
 	 */
 	protected Adapter diagramKindAdapter;
 

@@ -78,7 +78,7 @@ The architecture metamodel in Papyrus is implemented as a realization and an ext
 
 ==Walkthrough==
 
-The definition of an architecture model in Papyrus starts with the selection of the ''Architecture Model''  option in the Eclipse ''New'' creation wizard under the ''Papyrus'' category. The top element of the file should be a ''Architecture Domain'' element.
+The definition of an architecture model in Papyrus starts with the selection of the ''Architecture Model''  option in the Eclipse ''New'' creation wizard under the ''Papyrus'' category and clicking Finish.
 
 <u>Step 1</u>: Specify the ''Name'' and ''Description'' of the ''Architecture Domain'' (the root element).
 
@@ -86,15 +86,17 @@ The definition of an architecture model in Papyrus starts with the selection of 
 
 <u>Step 3</u>: Right click on the domain to add one or more ''Stakeholders''. In the properties view, specify the following for each stakeholder: a ''Name'', a ''Description'', and one or more references to ''Concerns''.
 
-<u>Step 4</u>: Right click on the domain to add one or more ''Architecture Description Languages''. In the properties view, specify for each language: a ''Name'', a ''Description'', a unique ''Id'' (e.g., org.eclipse.uml2.UML), an ''Extension Prefix'' if desired (e.g., profile), an ''Icon'' using a platform URI (e.g., platform:/plugin/project/icons/xxx.png), a ''Metamodel'' as a reference to an ''EPackage'' (load the Ecore model first), one or more ''Profiles'' as references to ''EPackages'' (load the Ecore models first), one or more ''Element Types'' as references to ''ElementTypeSetConfigurations'' (load the *.elementtypesetconfiguration models first), a creation command using a fully qualified of a Java class implementing the IModelCreationCommand interface, and an optional conversion command using a fully qualified of a Java class implementing the IModelConversionCommand interface.
+<u>Step 4</u>: Right click on the domain to add one or more ''Architecture Description Languages''. In the properties view, specify for each language: a ''Name'', a ''Description'', a unique ''Id'' (e.g., org.eclipse.uml2.UML), an ''Extension Prefix'' if desired (e.g., profile), an ''Icon'' using a platform plugin URI (e.g., platform:/plugin/project/icons/xxx.png), a ''Metamodel'' as a reference to an ''EPackage'' (load the Ecore model first), one or more ''Profiles'' as references to ''EPackages'' (load the Ecore models first), one or more ''Element Types'' as references to ''ElementTypeSetConfigurations'' (load the *.elementtypesetconfiguration models first), a creation command using a fully qualified of a Java class implementing the IModelCreationCommand interface, and an optional conversion command using a fully qualified of a Java class implementing the IModelConversionCommand interface.
 
 <u>Step 4A</u>: Right click on the description language to add one or more representation kinds, i.e., ''Papyrus Diagram'', ''Papyrus Table'' or ''Papyrus Sync Table'' (see details below).
 
-<u>Step 5</u>: Right click on the domain to add one or more ''Architecture Framework''. In the properties view, specify for each framework: a ''Name'', a ''Description'', a unique ''Id'' (e.g., org.eclipse.dodaf), an ''Extension Prefix'' if desired (e.g., profile), an ''Icon'' using a platform URI (e.g., platform:/plugin/project/icons/xxx.png), and one or more ''Element Types'' as references to ''ElementTypeSetConfigurations'' (load the *.elementtypesetconfiguration models first). 
+<u>Step 5</u>: Right click on the domain to add one or more ''Architecture Framework''. In the properties view, specify for each framework: a ''Name'', a ''Description'', a unique ''Id'' (e.g., org.eclipse.dodaf), an ''Extension Prefix'' if desired (e.g., profile), an ''Icon'' using a platform plugin URI (e.g., platform:/plugin/project/icons/xxx.png), and one or more ''Element Types'' as references to ''ElementTypeSetConfigurations'' (load the *.elementtypesetconfiguration models first). 
 
 <u>Step 6</u>: Right click on the description language (step 4) or framework (step 5) to add one or more ''Architecture Viewpoints''. In the properties view, specify for each viewpoint: a ''Name'', a ''Description'',  a unique ''Id'' (e.g., org.eclipse.uml.design), one ore more references to ''Concerns'', and one or more references to ''Representation Kinds''.
 
 <u>Step 7</u>: Deploy the model. The new architecture file can be deployed in an Eclipse plugin and registered through an extension point. The extension point to use is <code>org.eclipse.papyrus.infra.architecture.models</code>. Alternatively, the model can be deployed using the ''Other Architecture Model'' button in the ''Architecture Contexts'' preference page.
+
+Note: If the Architecture Model you are developing is considered an extension of another model that is available in the target platform, and you want to reference some of its dependencies (like elementtypeconfigurations and palleteconfiguration, etc.) you first need to load the plugin that contains the model in your workspace. Then, using the  Architecture Model editor, load the other Architecture Model using the ''Load Resource->Browse Workspace'' context menu action). This will import it using its "platform:/resource" URI. On the other hand, if the extended architecture model is rather deployed in the current platform, then use the ''Loaded Resource->Browse Registered Architectures'' context menu action. This will load the model using its "platform:/plugin" URI. Once the extended model is loaded in the editor, you can invoke the context menu action ''Resolve All'' to load all its related resources.
 
 ==Papyrus Diagram Specification==
 
@@ -104,7 +106,7 @@ Once a ''Papyrus Diagram'' is created, in the properties view, specify for it:
 * An ''Implementation ID'' (required) which selects the physical (hard-coded) diagram in Papyrus that will be used as a base. The possible values for this property are summarized in the following table.
 * An optional ''Parent'' that specifies a parent viewpoint-defined diagram to inherit from. Essentially, the inheriting diagram will defer to its parent�s rules (see below) when its own are not sufficient to take a decision.
 * An optional ''Custom Style'' as an URI of the form <code>platform:/plugin/...</code>. It must point to a CSS file that will then be automatically applied to the diagram.
-* An optional ''Custom Palette'' as an URI of the form <code>platform:/plugin/...</code>. It must point a palette definition in XML that will be automatically applied to the diagram.
+* An optional ''Palette'' as an URI. It must point a palette definition in XML that will be automatically applied to the diagram.
 * Other attributes are inherited from the ISO 42010 implementation and are currently not used in Papyrus.
 
 {| border="solid 1px grey"

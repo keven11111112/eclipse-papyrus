@@ -39,8 +39,7 @@
     </ownedAxisConfigurations>
     <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_UJaUsDzQEei_1txcmoHe_A" detachedMode="true" pastedElementId="org.eclipse.papyrus.uml.Class">
       <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
-      <axisIdentifier xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_inl0QHl4EeWqi9yWvPfrQQ">
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
+      <axisIdentifier xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_inl0QHl4EeWqi9yWvPfrQQ" manager="_UJa7yDzQEei_1txcmoHe_A">
         <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
       </axisIdentifier>
     </ownedAxisConfigurations>

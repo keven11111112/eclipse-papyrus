@@ -24,12 +24,12 @@
             class="org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage"
             genModel="model/Architecture.genmodel"/>
    </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated Architecture -->
+     <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated Architecture NOT -->
       <parser
-            type="architecture"
-            class="org.eclipse.papyrus.infra.core.architecture.util.ArchitectureResourceFactoryImpl"/>
+            class="org.eclipse.papyrus.infra.core.architecture.util.ArchitectureResourceFactory"
+            type="architecture">
+      </parser>
    </extension>
 
 </plugin>

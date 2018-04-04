@@ -79,6 +79,15 @@ public class ArchitectureDomainMerger implements Cloneable {
 	}
 
 	/**
+	 * Gets the extension model URIs 
+	 * 
+	 * @return the collection of extension model URIs
+	 */
+	Collection<URI> getExtensionModels() {
+		return this.extensionModels;
+	}
+	
+	/**
 	 * Sets the collection of architecture models URIs read from extensions
 	 * 
 	 * @param models a collection of architecture model URIs
@@ -89,6 +98,15 @@ public class ArchitectureDomainMerger implements Cloneable {
 	}
 	
 	/**
+	 * Gets the preference model URIs 
+	 * 
+	 * @return the collection of preference model URIs
+	 */
+	Collection<URI> getPrefereceModels() {
+		return this.preferenceModels;
+	}
+
+	/**
 	 * Sets the collection of architecture model URIs read from preferences
 	 * 
 	 * @param models a collection of architecture model URIS
@@ -96,6 +114,15 @@ public class ArchitectureDomainMerger implements Cloneable {
 	public void setPreferenceModels(Collection<URI> models) {
 		this.preferenceModels = models;
 		reset();
+	}
+
+	/**
+	 * Gets the dynamic model domains 
+	 * 
+	 * @return the collection of dynamic domains
+	 */
+	Collection<ArchitectureDomain> getDynamicDomains() {
+		return this.dynamicDomains;
 	}
 
 	/**

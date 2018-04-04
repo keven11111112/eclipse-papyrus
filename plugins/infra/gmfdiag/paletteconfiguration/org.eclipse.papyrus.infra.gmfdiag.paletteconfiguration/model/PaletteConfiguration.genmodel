@@ -38,8 +38,8 @@
   </genAnnotations>
   <foreignModel>PaletteConfiguration.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Paletteconfiguration" basePackage="org.eclipse.papyrus.infra.gmfdiag"
-      resource="XMI" disposableProviderFactory="true" multipleEditorPages="false"
-      extensibleProviderFactory="true" childCreationExtenders="true" ecorePackage="PaletteConfiguration.ecore#/">
+      disposableProviderFactory="true" multipleEditorPages="false" extensibleProviderFactory="true"
+      childCreationExtenders="true" ecorePackage="PaletteConfiguration.ecore#/">
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="PaletteConfiguration.ecore#//ToolKind">
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="PaletteConfiguration.ecore#//ToolKind/CreationTool"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="PaletteConfiguration.ecore#//ToolKind/ConnectionTool"/>

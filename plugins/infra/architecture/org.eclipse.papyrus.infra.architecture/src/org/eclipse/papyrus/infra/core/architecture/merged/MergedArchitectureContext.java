@@ -108,7 +108,7 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * Gets the context's creation command class name
 	 * 
 	 * @return a creation command class name
-	 * @since 1.1
+	 * @since 2.0
 	 */
 	public String getCreationCommandClassName() {
 		for (ADElement element : elements) {
@@ -123,7 +123,7 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * Gets the context's conversion command class name
 	 * 
 	 * @return a conversion command class name
-	 * @since 1.1
+	 * @since 2.0
 	 */
 	public String getConversionCommandClassName() {
 		for (ADElement element : elements) {

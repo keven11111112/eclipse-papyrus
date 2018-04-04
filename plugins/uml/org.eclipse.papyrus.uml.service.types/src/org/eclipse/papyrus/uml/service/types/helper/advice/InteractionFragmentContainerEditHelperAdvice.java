@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.InteractionOperand;
  * Edit-helper advice for elements that own {@link InteractionFragment}s, being
  * {@link Interaction}s and {@link InteractionOperand}s.
  * 
- * @since 3.1
+ * @since 4.0
  */
 public class InteractionFragmentContainerEditHelperAdvice extends AbstractEditHelperAdvice {
 

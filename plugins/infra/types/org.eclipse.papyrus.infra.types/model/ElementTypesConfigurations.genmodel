@@ -37,9 +37,8 @@
   </genAnnotations>
   <foreignModel>ElementTypesConfigurations.uml</foreignModel>
   <genPackages prefix="ElementTypesConfigurations" basePackage="org.eclipse.papyrus.infra"
-      resource="XMI" disposableProviderFactory="true" extensibleProviderFactory="true"
-      contentTypeIdentifier="org.eclipse.papyrus.infra.types" fileExtensions="elementtypesconfigurations"
-      ecorePackage="ElementTypesConfigurations.ecore#/">
+      disposableProviderFactory="true" extensibleProviderFactory="true" contentTypeIdentifier="org.eclipse.papyrus.infra.types"
+      fileExtensions="elementtypesconfigurations" ecorePackage="ElementTypesConfigurations.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="ElementTypesConfigurations.ecore#//InheritanceKind">
       <genEnumLiterals ecoreEnumLiteral="ElementTypesConfigurations.ecore#//InheritanceKind/none"/>
       <genEnumLiterals ecoreEnumLiteral="ElementTypesConfigurations.ecore#//InheritanceKind/all"/>

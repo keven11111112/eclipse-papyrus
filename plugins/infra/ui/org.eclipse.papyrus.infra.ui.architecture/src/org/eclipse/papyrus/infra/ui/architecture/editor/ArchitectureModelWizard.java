@@ -310,8 +310,6 @@ public class ArchitectureModelWizard extends Wizard implements INewWizard {
 	 * This is the page where the type of object to create is selected.
 	 */
 	public class ArchitectureModelWizardInitialObjectCreationPage extends WizardPage {
-		protected Combo initialObjectField;
-
 		protected List<String> encodings;
 
 		protected Combo encodingField;
@@ -337,32 +335,6 @@ public class ArchitectureModelWizard extends Wizard implements INewWizard {
 				data.horizontalAlignment = GridData.FILL;
 				composite.setLayoutData(data);
 			}
-
-			Label containerLabel = new Label(composite, SWT.LEFT);
-			{
-				containerLabel.setText(ArchitectureUIPlugin.INSTANCE.getString("_UI_ModelObject"));
-
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				containerLabel.setLayoutData(data);
-			}
-
-			initialObjectField = new Combo(composite, SWT.BORDER);
-			{
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				data.grabExcessHorizontalSpace = true;
-				initialObjectField.setLayoutData(data);
-			}
-
-			for (String objectName : getInitialObjectNames()) {
-				initialObjectField.add(getLabel(objectName));
-			}
-
-			if (initialObjectField.getItemCount() == 1) {
-				initialObjectField.select(0);
-			}
-			initialObjectField.addModifyListener(validator);
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
@@ -406,19 +378,12 @@ public class ArchitectureModelWizard extends Wizard implements INewWizard {
 		public void setVisible(boolean visible) {
 			super.setVisible(visible);
 			if (visible) {
-				if (initialObjectField.getItemCount() == 1) {
-					initialObjectField.clearSelection();
-					encodingField.setFocus();
-				}
-				else {
-					encodingField.clearSelection();
-					initialObjectField.setFocus();
-				}
+				encodingField.setFocus();
 			}
 		}
 
 		public String getInitialObjectName() {
-			String label = initialObjectField.getText();
+			String label = getLabel(ArchitecturePackage.eINSTANCE.getArchitectureDomain().getName());
 
 			for (String name : getInitialObjectNames()) {
 				if (getLabel(name).equals(label)) {

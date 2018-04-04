@@ -604,6 +604,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 *
 	 * @param modelSet
 	 *            the di resource set
+	 * @since 3.0
 	 */
 	protected void initDomainModelFromTemplate(ModelSet modelSet, String contextId, String[] viewpointIds) {
 		ArchitectureDescriptionUtils helper = new ArchitectureDescriptionUtils(modelSet);

@@ -85,6 +85,7 @@ public interface RepresentationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
+	 * @since 2.0
 	 */
 	int PAPYRUS_DIAGRAM__ID = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__ID;
 
@@ -247,6 +248,7 @@ public interface RepresentationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
+	 * @since 2.0
 	 */
 	int PAPYRUS_DIAGRAM___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_OPERATION_COUNT + 0;
 
@@ -582,6 +584,7 @@ public interface RepresentationPackage extends EPackage {
 	 * @return the meta object for the '<em>Ceation Command Class Exists</em>' operation.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram#ceationCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
+	 * @since 2.0
 	 */
 	EOperation getPapyrusDiagram__CeationCommandClassExists__DiagnosticChain_Map();
 
@@ -831,6 +834,7 @@ public interface RepresentationPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
+		 * @since 2.0
 		 */
 		EOperation PAPYRUS_DIAGRAM___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getPapyrusDiagram__CeationCommandClassExists__DiagnosticChain_Map();
 

@@ -29,6 +29,12 @@
             class="org.eclipse.papyrus.infra.types.resource.CustomElementTypesConfigurationsResourceFactoryImpl"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="elementtypesconfigurations"
+            class="org.eclipse.papyrus.infra.types.resource.CustomElementTypesConfigurationsResourceFactoryImpl"/>
+   </extension>
+
    <extension point="org.eclipse.core.contenttype.contentTypes">
       <!-- @generated ElementTypesConfigurations -->
       <content-type

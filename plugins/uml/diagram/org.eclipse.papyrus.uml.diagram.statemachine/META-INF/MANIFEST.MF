@@ -44,7 +44,7 @@ Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12
  org.eclipse.papyrus.infra.gmfdiag.preferences;visibility:=reexport;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.uml.appearance;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.diagram.navigation;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.uml.service.types;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.uml.service.types;bundle-version="[4.0.0,5.0.0)",
  org.eclipse.papyrus.infra.hyperlink;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.core.runtime,
  org.eclipse.core.resources,

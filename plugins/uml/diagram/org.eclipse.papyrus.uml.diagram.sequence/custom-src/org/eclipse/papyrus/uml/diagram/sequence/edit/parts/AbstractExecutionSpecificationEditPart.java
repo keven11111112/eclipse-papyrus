@@ -226,6 +226,9 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	@Override
 	public abstract ExecutionSpecificationRectangleFigure getPrimaryShape();
 
+	/**
+	 * @since 5.0
+	 */
 	protected void moveExecutionSpecificationFeedback(ChangeBoundsRequest request, AbstractExecutionSpecificationEditPart movedPart, PrecisionRectangle rect, Rectangle originalBounds) {
 
 		// If this is a move to the top, the execution specification cannot be moved upper than the life line y position

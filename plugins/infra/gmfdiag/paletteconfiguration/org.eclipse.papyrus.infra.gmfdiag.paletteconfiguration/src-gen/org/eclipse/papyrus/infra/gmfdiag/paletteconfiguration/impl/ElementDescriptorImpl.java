@@ -209,7 +209,7 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (graphicalHints: ");
 		result.append(graphicalHints);
 		result.append(')');

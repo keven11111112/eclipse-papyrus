@@ -127,6 +127,16 @@ public class ArchitectureDomainManager implements IPreferenceChangeListener {
 		}
 		merger.setPreferenceModels(models);
 	}
+	
+	/**
+	 * Gets the registered architecture models
+	 * 
+	 * @return a collection of registered architecture model URIs
+	 * @since 2.0
+	 */
+	public Collection<URI> getRegisteredArchitectureModels() {
+		return new ArrayList<URI>(merger.getExtensionModels());
+	}
 
 	/**
 	 * Add the given listener to the domain changes

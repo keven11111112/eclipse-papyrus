@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provider;
  * This interface is intended to distinguish the palette entries that Papyrus can handle among coming from other tools.
  * 
  * @see {@link PapyrusPaletteService}
- * @since 4.0.0
+ * @since 4.0
  */
 public interface IExtendedPaletteEntry {
 

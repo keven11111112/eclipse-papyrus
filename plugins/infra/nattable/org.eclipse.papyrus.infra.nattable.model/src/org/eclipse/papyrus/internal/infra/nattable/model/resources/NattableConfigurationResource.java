@@ -14,13 +14,13 @@
 package org.eclipse.papyrus.internal.infra.nattable.model.resources;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.emf.resources.AbstractEMFResource;
+import org.eclipse.papyrus.emf.resources.AbstractEMFResourceWithUUID;
 
 /**
  * @author Vincent LORENZO
  * @since 4.1
  */
-public class NattableConfigurationResource extends AbstractEMFResource {
+public class NattableConfigurationResource extends AbstractEMFResourceWithUUID {
 
 	/**
 	 * the extension of the table configuration file

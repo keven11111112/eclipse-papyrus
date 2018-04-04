@@ -148,7 +148,7 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link PaletteconfigurationPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -162,7 +162,8 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		if (isInited) return (PaletteconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(PaletteconfigurationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		PaletteconfigurationPackageImpl thePaletteconfigurationPackage = (PaletteconfigurationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof PaletteconfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new PaletteconfigurationPackageImpl());
+		Object registeredPaletteconfigurationPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		PaletteconfigurationPackageImpl thePaletteconfigurationPackage = registeredPaletteconfigurationPackage instanceof PaletteconfigurationPackageImpl ? (PaletteconfigurationPackageImpl)registeredPaletteconfigurationPackage : new PaletteconfigurationPackageImpl();
 
 		isInited = true;
 
@@ -181,7 +182,6 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		// Mark meta-data to indicate it can't be changed
 		thePaletteconfigurationPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(PaletteconfigurationPackage.eNS_URI, thePaletteconfigurationPackage);
 		return thePaletteconfigurationPackage;

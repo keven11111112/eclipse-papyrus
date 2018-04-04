@@ -43,17 +43,6 @@ public abstract class AbstractEMFResource extends XMIResourceImpl {
 	}
 
 	/**
-	 * @see org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#useUUIDs()
-	 *
-	 * @return
-	 */
-
-	@Override
-	protected boolean useUUIDs() {
-		return true;
-	}
-
-	/**
 	 * 
 	 * @see org.eclipse.emf.ecore.resource.impl.ResourceImpl#save(java.util.Map)
 	 *
@@ -63,6 +52,18 @@ public abstract class AbstractEMFResource extends XMIResourceImpl {
 	@Override
 	public final void save(Map<?, ?> options) throws IOException {
 		super.save(getDefaultSaveOptions());// we bypass the options argument to avoid changes between editors (ExpressionEditor, Ecore Sample Reflexive Editor and Ecore Editor
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.emf.ecore.resource.impl.ResourceImpl#load(java.util.Map)
+	 *
+	 * @param options
+	 * @throws IOException
+	 */
+	@Override
+	public final void load(Map<?, ?> options) throws IOException {
+		super.load(getDefaultLoadOptions());// we bypass the options argument to avoid changes between editors (ExpressionEditor, Ecore Sample Reflexive Editor and Ecore Editor
 	}
 
 	/**

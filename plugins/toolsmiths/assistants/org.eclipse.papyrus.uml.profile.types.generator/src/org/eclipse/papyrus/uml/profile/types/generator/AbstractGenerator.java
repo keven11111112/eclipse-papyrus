@@ -143,6 +143,7 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
  	 * 
 	 * @param id an ID
 	 * @return
+	 * @since 2.1
 	 */
 	public String escapeID(String id) {
 		id = id.replaceAll(" ", "_");

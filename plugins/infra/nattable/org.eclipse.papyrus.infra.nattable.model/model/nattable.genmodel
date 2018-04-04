@@ -146,7 +146,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//nattableaxisconfiguration/PasteEObjectConfiguration/pastedElementId"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference nattable.ecore#//nattableaxisconfiguration/PasteEObjectConfiguration/pasteElementContainementFeature"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EReference nattable.ecore#//nattableaxisconfiguration/PasteEObjectConfiguration/axisIdentifier"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//nattableaxisconfiguration/PasteEObjectConfiguration/axisIdentifier"/>
       </genClasses>
       <genClasses ecoreClass="nattable.ecore#//nattableaxisconfiguration/TreeFillingConfiguration">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//nattableaxisconfiguration/TreeFillingConfiguration/axisUsedAsAxisProvider"/>

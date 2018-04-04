@@ -13,7 +13,7 @@
 package org.eclipse.papyrus.infra.emf.expressions.util.custom;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.emf.resources.AbstractEMFResource;
+import org.eclipse.papyrus.emf.resources.AbstractEMFResourceWithUUID;
 
 /**
  * 
@@ -21,7 +21,7 @@ import org.eclipse.papyrus.emf.resources.AbstractEMFResource;
  * The goal is to avoid formatting trouble between editors, to use ID, and to save default values, as provided by the super class
  *
  */
-public class ExpressionsResource extends AbstractEMFResource {
+public class ExpressionsResource extends AbstractEMFResourceWithUUID {
 
 	/**
 	 * The extension for the file owning Expressions

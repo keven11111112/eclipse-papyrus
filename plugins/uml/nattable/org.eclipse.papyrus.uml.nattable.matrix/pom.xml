@@ -8,7 +8,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>org.eclipse.papyrus.uml.nattable.matrix</artifactId>
-	<version>1.0.100-SNAPSHOT</version>
+	<version>1.0.200-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 	<description>This plugin provides the specific code used to managed UML Table Matrix</description>
 </project>

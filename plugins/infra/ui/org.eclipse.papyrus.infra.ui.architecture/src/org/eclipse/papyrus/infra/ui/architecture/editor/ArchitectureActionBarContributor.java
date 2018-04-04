@@ -17,17 +17,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-
 import org.eclipse.emf.edit.ui.action.ControlAction;
 import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
-import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
@@ -39,12 +35,12 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.SubContributionItem;
-
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.ui.architecture.ArchitectureUIPlugin;
 import org.eclipse.ui.IEditorPart;
@@ -56,8 +52,8 @@ import org.eclipse.ui.PartInitException;
  * @since 1.0
  */
 public class ArchitectureActionBarContributor
-	extends EditingDomainActionBarContributor
-	implements ISelectionChangedListener {
+		extends EditingDomainActionBarContributor
+		implements ISelectionChangedListener {
 	/**
 	 * This keeps track of the active editor.
 	 */
@@ -71,40 +67,42 @@ public class ArchitectureActionBarContributor
 	/**
 	 * This action opens the Properties view.
 	 */
-	protected IAction showPropertiesViewAction =
-		new Action(ArchitectureUIPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
-			@Override
-			public void run() {
-				try {
-					getPage().showView("org.eclipse.ui.views.PropertySheet");
-				}
-				catch (PartInitException exception) {
-					ArchitectureUIPlugin.INSTANCE.log(exception);
-				}
+	protected IAction showPropertiesViewAction = new Action(ArchitectureUIPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+		@Override
+		public void run() {
+			try {
+				getPage().showView("org.eclipse.ui.views.PropertySheet");
+			} catch (PartInitException exception) {
+				ArchitectureUIPlugin.INSTANCE.log(exception);
 			}
-		};
+		}
+	};
 
 	/**
 	 * This action refreshes the viewer of the current editor if the editor
 	 * implements {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}.
 	 */
-	protected IAction refreshViewerAction =
-		new Action(ArchitectureUIPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
-			@Override
-			public boolean isEnabled() {
-				return activeEditorPart instanceof IViewerProvider;
-			}
+	protected IAction refreshViewerAction = new Action(ArchitectureUIPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+		@Override
+		public boolean isEnabled() {
+			return activeEditorPart instanceof IViewerProvider;
+		}
 
-			@Override
-			public void run() {
-				if (activeEditorPart instanceof IViewerProvider) {
-					Viewer viewer = ((IViewerProvider)activeEditorPart).getViewer();
-					if (viewer != null) {
-						viewer.refresh();
-					}
+		@Override
+		public void run() {
+			if (activeEditorPart instanceof IViewerProvider) {
+				Viewer viewer = ((IViewerProvider) activeEditorPart).getViewer();
+				if (viewer != null) {
+					viewer.refresh();
 				}
 			}
-		};
+		}
+	};
+
+	/**
+	 * Resolve All Action
+	 */
+	protected ResolveAllAction resolveAllAction;
 
 	/**
 	 * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
@@ -133,9 +131,10 @@ public class ArchitectureActionBarContributor
 	 */
 	public ArchitectureActionBarContributor() {
 		super(ADDITIONS_LAST_STYLE);
-		loadResourceAction = new LoadResourceAction();
+		loadResourceAction = new ExtendedLoadResourceAction();
 		validateAction = new ValidateAction();
 		controlAction = new ControlAction();
+		resolveAllAction = new ResolveAllAction();
 	}
 
 	/**
@@ -174,12 +173,11 @@ public class ArchitectureActionBarContributor
 
 		// Force an update because Eclipse hides empty menus now.
 		//
-		submenuManager.addMenuListener
-			(new IMenuListener() {
-				 public void menuAboutToShow(IMenuManager menuManager) {
-					 menuManager.updateAll(true);
-				 }
-			 });
+		submenuManager.addMenuListener(new IMenuListener() {
+			public void menuAboutToShow(IMenuManager menuManager) {
+				menuManager.updateAll(true);
+			}
+		});
 
 		addGlobalActions(submenuManager);
 	}
@@ -199,8 +197,7 @@ public class ArchitectureActionBarContributor
 		}
 		if (part == null) {
 			selectionProvider = null;
-		}
-		else {
+		} else {
 			selectionProvider = part.getSite().getSelectionProvider();
 			selectionProvider.addSelectionChangedListener(this);
 
@@ -233,10 +230,10 @@ public class ArchitectureActionBarContributor
 		Collection<?> newSiblingDescriptors = null;
 
 		ISelection selection = event.getSelection();
-		if (selection instanceof IStructuredSelection && ((IStructuredSelection)selection).size() == 1) {
-			Object object = ((IStructuredSelection)selection).getFirstElement();
+		if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1) {
+			Object object = ((IStructuredSelection) selection).getFirstElement();
 
-			EditingDomain domain = ((IEditingDomainProvider)activeEditorPart).getEditingDomain();
+			EditingDomain domain = ((IEditingDomainProvider) activeEditorPart).getEditingDomain();
 
 			newChildDescriptors = domain.getNewChildDescriptors(object, null);
 			newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
@@ -296,14 +293,13 @@ public class ArchitectureActionBarContributor
 			for (IAction action : actions) {
 				if (contributionID != null) {
 					manager.insertBefore(contributionID, action);
-				}
-				else {
+				} else {
 					manager.add(action);
 				}
 			}
 		}
 	}
-		
+
 	/**
 	 * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
 	 * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection.
@@ -316,13 +312,13 @@ public class ArchitectureActionBarContributor
 				//
 				IContributionItem contributionItem = items[i];
 				while (contributionItem instanceof SubContributionItem) {
-					contributionItem = ((SubContributionItem)contributionItem).getInnerItem();
+					contributionItem = ((SubContributionItem) contributionItem).getInnerItem();
 				}
 
 				// Delete the ActionContributionItems with matching action.
 				//
 				if (contributionItem instanceof ActionContributionItem) {
-					IAction action = ((ActionContributionItem)contributionItem).getAction();
+					IAction action = ((ActionContributionItem) contributionItem).getAction();
 					if (actions.contains(action)) {
 						manager.remove(contributionItem);
 					}
@@ -356,8 +352,10 @@ public class ArchitectureActionBarContributor
 		menuManager.insertAfter("additions-end", new Separator("ui-actions"));
 		menuManager.insertAfter("ui-actions", showPropertiesViewAction);
 
-		refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());		
+		refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());
 		menuManager.insertAfter("ui-actions", refreshViewerAction);
+
+		menuManager.appendToGroup("additions", resolveAllAction);
 
 		super.addGlobalActions(menuManager);
 	}
@@ -370,4 +368,46 @@ public class ArchitectureActionBarContributor
 		return true;
 	}
 
+	@Override
+	public void update() {
+		super.update();
+
+		ISelectionProvider selectionProvider = activeEditor instanceof ISelectionProvider ? (ISelectionProvider) activeEditor : activeEditor.getEditorSite().getSelectionProvider();
+
+		if (selectionProvider != null) {
+			ISelection selection = selectionProvider.getSelection();
+			IStructuredSelection structuredSelection = selection instanceof IStructuredSelection ? (IStructuredSelection) selection : StructuredSelection.EMPTY;
+
+			if (resolveAllAction != null) {
+				resolveAllAction.updateSelection(structuredSelection);
+			}
+		}
+
+	}
+
+	@Override
+	public void activate() {
+		super.activate();
+
+		ISelectionProvider selectionProvider = activeEditor instanceof ISelectionProvider ? (ISelectionProvider) activeEditor : activeEditor.getEditorSite().getSelectionProvider();
+
+		if (selectionProvider != null) {
+			if (resolveAllAction != null) {
+				selectionProvider.addSelectionChangedListener(resolveAllAction);
+			}
+		}
+	}
+
+	@Override
+	public void deactivate() {
+		ISelectionProvider selectionProvider = activeEditor instanceof ISelectionProvider ? (ISelectionProvider) activeEditor : activeEditor.getEditorSite().getSelectionProvider();
+
+		if (selectionProvider != null) {
+			if (resolveAllAction != null) {
+				selectionProvider.removeSelectionChangedListener(resolveAllAction);
+			}
+		}		
+		
+		super.deactivate();
+	}
 }

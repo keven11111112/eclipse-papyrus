@@ -120,6 +120,7 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	 * @see #getRelationshipOwnerStrategy()
 	 * @generated
 	 * @ordered
+	 * @since 4.1
 	 */
 	protected static final MatrixRelationShipOwnerStrategy RELATIONSHIP_OWNER_STRATEGY_EDEFAULT = MatrixRelationShipOwnerStrategy.DEFAULT;
 
@@ -130,6 +131,7 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	 * @see #getRelationshipOwnerStrategy()
 	 * @generated
 	 * @ordered
+	 * @since 4.1
 	 */
 	protected MatrixRelationShipOwnerStrategy relationshipOwnerStrategy = RELATIONSHIP_OWNER_STRATEGY_EDEFAULT;
 
