@@ -21,6 +21,7 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.TransactionalDropStrategy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeEditPart;
 import org.eclipse.swt.graphics.Image;
@@ -70,18 +71,20 @@ public class TypeToClassDropStrategy extends TransactionalDropStrategy {
 
 	@Override
 	public Command doGetCommand(Request request, final EditPart targetEditPart) {
-		List<EObject> sourceElements = getSourceEObjects(request);
-		if (!sourceElements.isEmpty() && targetEditPart instanceof GraphicalEditPart) {
-			GraphicalEditPart graphicalEditPart = (GraphicalEditPart) targetEditPart;
-			EObject semanticElement = graphicalEditPart.resolveSemanticElement();
-			if (semanticElement instanceof org.eclipse.uml2.uml.Class) {
-				org.eclipse.uml2.uml.Class clazz = (org.eclipse.uml2.uml.Class) semanticElement;
-				EObject eObject = sourceElements.get(0);
-				if (eObject instanceof Type) {
-					if (graphicalEditPart instanceof ClassCompositeEditPart) {
-						return getDropTypeOnClassifierCommand((ClassCompositeEditPart) graphicalEditPart, (Type) eObject, clazz);
-					} else if (graphicalEditPart.getParent() instanceof ClassCompositeEditPart) {
-						return getDropTypeOnClassifierCommand((ClassCompositeEditPart) graphicalEditPart.getParent(), (Type) eObject, clazz);
+		if (request instanceof DropObjectsRequest) {
+			List<EObject> sourceElements = getSourceEObjects(request);
+			if (!sourceElements.isEmpty() && targetEditPart instanceof GraphicalEditPart) {
+				GraphicalEditPart graphicalEditPart = (GraphicalEditPart) targetEditPart;
+				EObject semanticElement = graphicalEditPart.resolveSemanticElement();
+				if (semanticElement instanceof org.eclipse.uml2.uml.Class) {
+					org.eclipse.uml2.uml.Class clazz = (org.eclipse.uml2.uml.Class) semanticElement;
+					EObject eObject = sourceElements.get(0);
+					if (eObject instanceof Type) {
+						if (graphicalEditPart instanceof ClassCompositeEditPart) {
+							return getDropTypeOnClassifierCommand((ClassCompositeEditPart) graphicalEditPart, (Type) eObject, clazz);
+						} else if (graphicalEditPart.getParent() instanceof ClassCompositeEditPart) {
+							return getDropTypeOnClassifierCommand((ClassCompositeEditPart) graphicalEditPart.getParent(), (Type) eObject, clazz);
+						}
 					}
 				}
 			}
