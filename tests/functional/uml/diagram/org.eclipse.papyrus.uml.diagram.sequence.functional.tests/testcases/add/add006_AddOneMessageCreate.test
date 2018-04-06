@@ -7,7 +7,7 @@ Element-Version: 3.0
 External-Reference: 
 Id: _qbdN4DMhEei_49Y9iBceHC
 Runtime-Version: 2.3.0.201803252310
-Save-Time: 3/29/18 9:59 AM
+Save-Time: 4/6/18 3:07 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -76,7 +76,6 @@ with [get-editor "SequenceDiagramTest.di"] {
         mouse-move 1891 540 -height 1000 -width 1892
     }
     with [get-palette] {
-        get-palette-entry "Consider Ignore Fragment" | mouse-move 19 29 -height 37 -width 125
         get-palette-entry "Message Sync" | mouse-move 59 15 -height 23 -width 125
     }
     get-diagram -index 1 | commit-direct-edit
@@ -240,13 +239,13 @@ with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
     -name Lifeline2 | get-target-connection -path 0] {
     get-property "sourceAnchor.id" | equals "(0.5,0.20857142857142857)" | verify-true
-    get-property "targetAnchor.id" | equals "(0.5,0.11093247588424437)" | verify-true
+    get-property "targetAnchor.id" | equals "(0.5,0.11093247588424439)" | verify-true
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
     -name Lifeline2 | get-target-connection -path 1] {
     get-property "sourceAnchor.id" | equals "(0.5,0.29428571428571426)" | verify-true
-    get-property "targetAnchor.id" | equals "(0.5,0.20739549839228297)" | verify-true
+    get-property "targetAnchor.id" | equals "(0.5,0.20739549839228294)" | verify-true
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
