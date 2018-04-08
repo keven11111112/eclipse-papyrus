@@ -527,8 +527,6 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 			currentSemanticParent = semanticElement;
 			if (currentPathElement != null) {
 				treePath.add(currentPathElement);
-			} else {
-				System.err.println("Invalid root element: " + currentPathElement);
 			}
 		}
 
