@@ -20,13 +20,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.preferences.ConfigurationScope;
-import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
-import org.eclipse.core.runtime.preferences.IPreferencesService;
-import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
 import org.osgi.service.prefs.BackingStoreException;
@@ -54,31 +49,32 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	public static final String DEFAULT_CONTEXT = "defaultContext"; //$NON-NLS-1$
 
 	/**
-	 * The look-up order of preference scopes.
-	 */
-	private final IScopeContext[] scopes = { InstanceScope.INSTANCE, ConfigurationScope.INSTANCE,
-			DefaultScope.INSTANCE };
-
-	/**
-	 * The list of added architecture models in the preferences
-	 */
-	private List<String> addedModels;
-
-	/**
-	 * The set of excluded architecture contexts in the preferences
-	 */
-	private Set<String> excludedContexts;
-
-	/**
-	 * The id of the default context in the preferences
-	 */
-	private String defaultContext;
-
-	/**
 	 * The default value of the default context when not set
 	 */
-	private String defaultDefaultContext = TypeContext.getDefaultContextId();
+	static final String DEFAULT_DEFAULT_CONTEXT_ID = TypeContext.getDefaultContextId();
 
+	/**
+	 * The list of added architecture model URIs in the preferences
+	 */
+	private List<String> addedModelURIs = new ArrayList<>();
+
+	/**
+	 * The set of excluded architecture context ids in the preferences
+	 */
+	private Set<String> excludedContextIds = new HashSet<>();
+
+	/**
+	 * The id of the default context id in the preferences
+	 */
+	private String defaultContextId = DEFAULT_DEFAULT_CONTEXT_ID;
+
+	/**
+	 * Constructor
+	 */
+	public ArchitectureDomainPreferences() {
+		read();
+	}
+	
 	/*
 	 * Gets the preferences node
 	 */
@@ -90,28 +86,22 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	 * Reads the state of the preferences
 	 */
 	public void read() {
-		IPreferencesService preferences = Platform.getPreferencesService();
-
-		addedModels = Arrays.asList(preferences
-				.getString(Activator.PLUGIN_ID, ArchitectureDomainPreferences.ADDED_MODELS, "", scopes).split(" "));
-		excludedContexts = new HashSet<String>(Arrays.asList(
-				preferences.getString(Activator.PLUGIN_ID, ArchitectureDomainPreferences.EXCLUDED_CONTEXTS, "", scopes)
-						.split(",")));
-		defaultContext = preferences.getString(Activator.PLUGIN_ID, ArchitectureDomainPreferences.DEFAULT_CONTEXT,
-				defaultDefaultContext, scopes);
+		String value;
+		value = getPreferences().get(ArchitectureDomainPreferences.ADDED_MODELS, "");
+		addedModelURIs = value.equals("")? new ArrayList<>() : Arrays.asList(value.split(" "));
+		value = getPreferences().get(ArchitectureDomainPreferences.EXCLUDED_CONTEXTS, "");
+		excludedContextIds = value.equals("")? new HashSet<>() : new HashSet<>(Arrays.asList(value.split(",")));
+		value = getPreferences().get(ArchitectureDomainPreferences.DEFAULT_CONTEXT, DEFAULT_DEFAULT_CONTEXT_ID);
+		defaultContextId = value;
 	}
 
 	/**
 	 * Writes the state of the preferences
 	 */
 	public void write() {
-		getPreferences().put(ArchitectureDomainPreferences.ADDED_MODELS, "");
-		getPreferences().put(ArchitectureDomainPreferences.ADDED_MODELS, String.join(" ", addedModels));
-		getPreferences().put(ArchitectureDomainPreferences.EXCLUDED_CONTEXTS, String.join(",", excludedContexts));
-		if (defaultContext != null)
-			getPreferences().put(ArchitectureDomainPreferences.DEFAULT_CONTEXT, defaultContext);
-		else
-			getPreferences().remove(ArchitectureDomainPreferences.DEFAULT_CONTEXT);
+		getPreferences().put(ArchitectureDomainPreferences.ADDED_MODELS, String.join(" ", addedModelURIs));
+		getPreferences().put(ArchitectureDomainPreferences.EXCLUDED_CONTEXTS, String.join(",", excludedContextIds));
+		getPreferences().put(ArchitectureDomainPreferences.DEFAULT_CONTEXT, defaultContextId);
 		try {
 			getPreferences().flush();
 		} catch (BackingStoreException e) {
@@ -123,9 +113,9 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	 * Resets the state of this class to default
 	 */
 	public void reset() {
-		addedModels.clear();
-		excludedContexts.clear();
-		defaultContext = defaultDefaultContext;
+		addedModelURIs.clear();
+		excludedContextIds.clear();
+		defaultContextId = DEFAULT_DEFAULT_CONTEXT_ID;
 	}
 
 	/**
@@ -133,7 +123,7 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	 * 
 	 * @param listener
 	 */
-	public void addListener(IPreferenceChangeListener listener) {
+	static void addListener(IPreferenceChangeListener listener) {
 		getPreferences().addPreferenceChangeListener(listener);
 	}
 
@@ -141,38 +131,38 @@ public class ArchitectureDomainPreferences implements Cloneable {
 	 * @return the added model URIs
 	 */
 	public List<String> getAddedModelURIs() {
-		return addedModels;
+		return addedModelURIs;
 	}
 
 	/**
 	 * @return the excluded context ids
 	 */
 	public Set<String> getExcludedContextIds() {
-		return excludedContexts;
+		return excludedContextIds;
 	}
 
 	/**
 	 * @return the default context id
 	 */
 	public String getDefaultContextId() {
-		return defaultContext;
+		return defaultContextId;
 	}
 
 	/**
 	 * Sets the default context id
 	 * 
-	 * @param defaultContext
+	 * @param defaultContextId
 	 *            the default context id
 	 */
-	public void setDefaultContextId(String defaultContext) {
-		this.defaultContext = defaultContext;
+	public void setDefaultContextId(String defaultContextId) {
+		this.defaultContextId = defaultContextId;
 	}
 
 	@Override
 	public ArchitectureDomainPreferences clone() {
 		ArchitectureDomainPreferences clone = new ArchitectureDomainPreferences();
-		clone.addedModels = new ArrayList<String>(getAddedModelURIs());
-		clone.excludedContexts = new HashSet<String>(getExcludedContextIds());
+		clone.addedModelURIs = new ArrayList<>(getAddedModelURIs());
+		clone.excludedContextIds = new HashSet<>(getExcludedContextIds());
 		clone.setDefaultContextId(getDefaultContextId());
 		return clone;
 	}

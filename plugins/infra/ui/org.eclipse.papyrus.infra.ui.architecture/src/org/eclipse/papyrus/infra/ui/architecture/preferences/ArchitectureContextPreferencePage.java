@@ -20,7 +20,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -28,8 +27,8 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.layout.PixelConverter;
 import org.eclipse.jface.preference.PreferencePage;
-import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.text.contentassist.BoldStylerProvider;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
@@ -45,31 +44,26 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StyledString;
-import org.eclipse.jface.viewers.StyledString.Styler;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.ToolTip;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainMerger;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainPreferences;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedADElement;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDomain;
 import org.eclipse.papyrus.infra.ui.architecture.ArchitectureUIPlugin;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainPreferences;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainMerger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.TextStyle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.ui.IWorkbench;
@@ -87,14 +81,7 @@ public class ArchitectureContextPreferencePage extends PreferencePage implements
 	public static final String PAGE_ID = ArchitectureContextPreferencePage.class.getName();
 	
 	//A bold style
-	private static final Styler BOLD_FONT_STYLER = new Styler() {
-		@Override
-		public void applyStyles(TextStyle textStyle) {
-	        FontDescriptor boldDescriptor = FontDescriptor.createFrom(new FontData()).setStyle(SWT.ITALIC|SWT.BOLD);
-	        Font boldFont = boldDescriptor.createFont(Display.getCurrent());
-	        textStyle.font = boldFont;
-		}
-	};
+	private BoldStylerProvider boldStylerProvider;
 	
 	// Contexts viewer
 	private CheckboxTreeViewer fContextsViewer;
@@ -119,15 +106,27 @@ public class ArchitectureContextPreferencePage extends PreferencePage implements
 	public ArchitectureContextPreferencePage() {
 		fComposedAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		fMerger = ArchitectureDomainManager.getInstance().getMerger().clone();
-		fPreferences = ArchitectureDomainManager.getInstance().getPreferences().clone();
+		fPreferences = new ArchitectureDomainPreferences();
 	}
 	
 	@Override
 	public Control createContents(Composite parent) {
+		boldStylerProvider = new BoldStylerProvider(parent.getFont()); 
 		Composite container = createComposite(parent, 1, 1, GridData.FILL_BOTH, 0, 0);
 		createArchitectureContextsGroup(container);
 		Dialog.applyDialogFont(container);
 		return container;
+	}
+	
+	/**
+	 * @see org.eclipse.jface.dialogs.DialogPage#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		if (boldStylerProvider != null)
+			boldStylerProvider.dispose();
+		super.dispose();
 	}
 
 	/**
@@ -154,7 +153,7 @@ public class ArchitectureContextPreferencePage extends PreferencePage implements
 				if (element instanceof MergedArchitectureContext) {
 					MergedArchitectureContext context = (MergedArchitectureContext)element;
 					if (context.getId() != null && context.getId().equals(fPreferences.getDefaultContextId()))
-						return new StyledString(element.getName(), BOLD_FONT_STYLER);
+						return new StyledString(element.getName(), boldStylerProvider.getBoldStyler());
 				}
 				return new StyledString(element.getName());
 			}
@@ -164,7 +163,7 @@ public class ArchitectureContextPreferencePage extends PreferencePage implements
 				ADElement imageObject = element.getImageObject();
 				if (imageObject != null && imageObject.getIcon() != null) {
 					try {
-						URL image = new URL(imageObject.getIcon().toString());
+						URL image = new URL(imageObject.getIcon());
 						return getImageFromObject(image);                   
 					} catch (MalformedURLException e) {
 						ArchitectureUIPlugin.log.error(e);
@@ -203,6 +202,7 @@ public class ArchitectureContextPreferencePage extends PreferencePage implements
 		});
 		fContextsViewer.setLabelProvider(new DelegatingStyledCellLabelProvider(labelProvider));
 		fContextsViewer.setComparator(new ViewerComparator() {
+			@Override
 		    public int compare(Viewer viewer, Object e1, Object e2) {
 		        String name1 = labelProvider.getStyledText(e1).getString();
 		        String name2 = labelProvider.getStyledText(e2).getString();
@@ -255,6 +255,8 @@ public class ArchitectureContextPreferencePage extends PreferencePage implements
 
 		fOtherButton = createPushButton(buttonComposite, "Other Architecture Models...", null, SWT.PUSH);
 		fOtherButton.addSelectionListener(new SelectionAdapter() {
+			
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 				handleOther();
 			}
@@ -290,6 +292,7 @@ public class ArchitectureContextPreferencePage extends PreferencePage implements
 			}
 		});
 		fDescription.setLabelProvider(new LabelProvider() {
+			@Override
 			public String getText(Object element) {
 				return ((MergedADElement)element).getDescription();
 			}
@@ -331,8 +334,6 @@ public class ArchitectureContextPreferencePage extends PreferencePage implements
 			MergedADElement selected = (MergedADElement) selection.getFirstElement();
 			if (selected instanceof MergedArchitectureContext) {
 				fDefaultButton.setEnabled(true);
-				//ArchitectureContext context = (ArchitectureContext)selected;
-				//fDefaultButton.setSelection(context.getId().equals(fPreferences.getDefaultContextId()));
 				return;
 			}
 		}

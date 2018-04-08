@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainPreferences;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureFactory;
@@ -55,6 +56,7 @@ public class TableLabelProviderTest {
 	private Package package_;
 	private PapyrusTable proto;
 	private Table table;
+	private ArchitectureDomainPreferences preferences;
 
 	@Test
 	public void getText_namedTable() {
@@ -140,7 +142,9 @@ public class TableLabelProviderTest {
 		language.getViewpoints().add(viewpoint);
 
 		ArchitectureDomainManager.getInstance().getMerger().setDynamicDomains(Collections.singleton(domain));
-		ArchitectureDomainManager.getInstance().getPreferences().setDefaultContextId("Testing.TestTable");
+		preferences = new ArchitectureDomainPreferences();
+		preferences.setDefaultContextId("Testing.TestTable");
+		preferences.write();
 
 		package_ = UMLFactory.eINSTANCE.createPackage();
 		package_.setName("foo");
@@ -155,6 +159,7 @@ public class TableLabelProviderTest {
 	@After
 	public void teardown() {
 		ArchitectureDomainManager.getInstance().getMerger().setDynamicDomains(Collections.emptyList());
-		ArchitectureDomainManager.getInstance().getPreferences().setDefaultContextId(TypeContext.getDefaultContextId());
+		preferences.setDefaultContextId(TypeContext.getDefaultContextId());
+		preferences.write();
 	}
 }

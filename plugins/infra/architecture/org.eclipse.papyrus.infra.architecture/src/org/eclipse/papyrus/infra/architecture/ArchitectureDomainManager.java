@@ -72,6 +72,20 @@ public class ArchitectureDomainManager implements IPreferenceChangeListener {
 	}
 	
 	/**
+	 * An abstract class for listening to specific changes to architectural domains 
+	 */
+	public abstract static class SpecificListener implements Listener {
+		@Override
+		public void domainManagerChanged() {}
+		/** the set of excluded contexts in the preferences have changed */
+		public void excludedContextsChanged() {}
+		/** the set of architecture models added through preferences has changed */
+		public void addedModelsChanged() {}
+		/** the default architecture context set in preferences has changed */
+		public void defaultContextChanged() {}
+	}
+
+	/**
 	 * The architecture domain preferences
 	 */
 	private ArchitectureDomainPreferences preferences;
@@ -90,10 +104,10 @@ public class ArchitectureDomainManager implements IPreferenceChangeListener {
 	 * Constructs a new instance of this class
 	 */
 	private ArchitectureDomainManager() {
-		listeners = new HashSet<Listener>();
+		listeners = new HashSet<>();
 		merger = new ArchitectureDomainMerger();
 		preferences = new ArchitectureDomainPreferences();
-		preferences.addListener(this);
+		ArchitectureDomainPreferences.addListener(this);
 		initializeFromExtensions();
 		initializeFromPreferences();
 		merger.init(); // init as early as possible
@@ -103,7 +117,7 @@ public class ArchitectureDomainManager implements IPreferenceChangeListener {
 	 * initialize the architecture domain merger from the registered extensions
 	 */
 	private void initializeFromExtensions() {
-		List<URI> models = new ArrayList<URI>();
+		List<URI> models = new ArrayList<>();
 		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_POINT);
 		for (IConfigurationElement element : elements) {
 			String path = element.getAttribute(PATH);
@@ -118,8 +132,7 @@ public class ArchitectureDomainManager implements IPreferenceChangeListener {
 	 * initialize the architecture domain merger from the preferences
 	 */
 	private void initializeFromPreferences() {
-		preferences.read();
-		List<URI> models = new ArrayList<URI>();
+		List<URI> models = new ArrayList<>();
 		for (String value : preferences.getAddedModelURIs()) {
 			if (value.length()>0) {
 				models.add(URI.createURI(value, true));
@@ -135,7 +148,7 @@ public class ArchitectureDomainManager implements IPreferenceChangeListener {
 	 * @since 2.0
 	 */
 	public Collection<URI> getRegisteredArchitectureModels() {
-		return new ArrayList<URI>(merger.getExtensionModels());
+		return new ArrayList<>(merger.getExtensionModels());
 	}
 
 	/**
@@ -164,20 +177,37 @@ public class ArchitectureDomainManager implements IPreferenceChangeListener {
 	 */
 	@Override
 	public void preferenceChange(PreferenceChangeEvent event) {
-		initializeFromPreferences();
-		for (Listener listener : listeners)
+		preferences.read();
+
+		if (event.getKey().equals(ArchitectureDomainPreferences.ADDED_MODELS))
+			initializeFromPreferences();
+		
+		for (Listener listener : listeners) {
+			if (listener instanceof SpecificListener) {
+				SpecificListener specificListener = (SpecificListener) listener;
+				if (event.getKey().equals(ArchitectureDomainPreferences.ADDED_MODELS))
+					specificListener.addedModelsChanged();
+				else if (event.getKey().equals(ArchitectureDomainPreferences.DEFAULT_CONTEXT))
+					specificListener.defaultContextChanged();
+				else if (event.getKey().equals(ArchitectureDomainPreferences.EXCLUDED_CONTEXTS))
+					specificListener.excludedContextsChanged();
+			}
 			listener.domainManagerChanged();
-	}
-	
-	/**
-	 * Gets the architecture domain preferences
-	 * 
-	 * @return the architecture domain preferences
-	 */
-	public ArchitectureDomainPreferences getPreferences() {
-		return preferences;
+		}
 	}
 
+	/**
+	 * Gets the architecture domain preferences
+	 * @deprecated Deprecate the public API ArchitectureDomainManager.getPreferences()
+     * method to avoid changing the preferences through the object only as
+     * opposed to the preference store
+	 * @return the architecture domain preferences
+	 */
+	@Deprecated
+	public ArchitectureDomainPreferences getPreferences() {
+		return preferences;
+	}	
+	
 	/**
 	 * Get the architecture domain merger
 	 * 
@@ -193,7 +223,7 @@ public class ArchitectureDomainManager implements IPreferenceChangeListener {
 	 * @return a list of architecture contexts
 	 */
 	public Collection<MergedArchitectureContext> getVisibleArchitectureContexts() {
-		Collection<MergedArchitectureContext> contexts = new ArrayList<MergedArchitectureContext>();
+		Collection<MergedArchitectureContext> contexts = new ArrayList<>();
 		for (MergedArchitectureDomain domain : merger.getDomains()) {
 			for (MergedArchitectureContext context : domain.getContexts()) {
 				if (!preferences.getExcludedContextIds().contains(context.getId()))
