@@ -75,6 +75,10 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.papyrus.tests.uml.assistants.feature"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.papyrus.tests.toolsmiths.feature"
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.papyrus.bundles.tests"
          download-size="0"

@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.toolsmiths.feature"
       label="Papyrus for Toolsmiths"
-      version="1.1.0.qualifier"
+      version="1.2.0.qualifier"
       provider-name="Eclipse Modeling Project">
       
    <description url="https://eclipse.org/papyrus/">
@@ -117,6 +117,22 @@
 
    <plugin
          id="org.eclipse.papyrus.uml.types.ui.properties"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+   <!--Profile migration-->
+
+   <plugin
+         id="org.eclipse.papyrus.toolsmiths.profilemigration"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.toolsmiths.profilemigration.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

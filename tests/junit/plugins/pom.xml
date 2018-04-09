@@ -23,6 +23,7 @@
 		<module>infra</module>
 		<module>uml</module>
 		<module>views</module>
+		<module>toolsmiths</module>
 		
 	</modules>
 </project>

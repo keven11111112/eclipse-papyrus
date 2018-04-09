@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.tests.toolsmiths.feature" label="Papyrus UML Toolsmiths Tests Feature" provider-name="Eclipse Modeling Project" version="1.0.0.qualifier">
+
+   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
+      Copyright (c) 2017 CEA LIST.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+   
+   <description url="https://eclipse.org/papyrus/">
+   	Tests for toolsmiths.
+   </description>
+
+   <plugin download-size="0" id="org.eclipse.papyrus.toolsmiths.profilemigration.tests" install-size="0" unpack="false" version="0.0.0"/>
+
+</feature>
