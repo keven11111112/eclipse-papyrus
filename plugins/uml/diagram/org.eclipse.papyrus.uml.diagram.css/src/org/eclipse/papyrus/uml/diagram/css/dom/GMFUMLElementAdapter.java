@@ -13,6 +13,7 @@
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 517679
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 431940
  *  Alain Le Guennec (Esterel Technologies SAS) - Bug 521575
+ *  Asma Smaoui (CEA LIST) - Bug 533382
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.css.dom;
 
@@ -23,6 +24,7 @@ import static org.eclipse.papyrus.uml.diagram.common.stereotype.IStereotypePrope
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -37,7 +39,11 @@ import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.css.helper.CSSDOMUMLSemanticElementHelper;
+import org.eclipse.papyrus.uml.service.types.utils.ConnectorUtils;
 import org.eclipse.uml2.uml.AcceptEventAction;
+import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.NamedElement;
@@ -64,6 +70,11 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	 */
 	private static final String STEREOTYPE_REFERENCE_EDGE_SOURCE_APPLIED_STEREOTYPES_PROPERTY = "sourceAppliedStereotypes";//$NON-NLS-1$
 
+	/**
+	 * CSS property to access the connected elements type of a connector
+	 */
+	private static final String CONNECTOR_END_TYPE_PROPERTY = "connectorEndType"; //$NON-NLS-1$
+	
 	/**
 	 * Name of the CSS Simple Selector to match on the Stereotype Compartment Shape
 	 */
@@ -249,6 +260,17 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 					return String.valueOf(true);
 				} else {
 					return String.valueOf(false);
+				}
+			}
+			if (CONNECTOR_END_TYPE_PROPERTY.equals(attr) && semanticElement instanceof Connector) {
+				EList<ConnectorEnd> ends = ((Connector) semanticElement).getEnds();
+				if (ends != null && !ends.isEmpty()) {
+					// check that both connectable elements have the same type before returning the type 
+					ConnectableElement source = new ConnectorUtils().getSourceConnectorEnd((Connector) semanticElement).getRole();
+					ConnectableElement target = new ConnectorUtils().getTargetConnectorEnd((Connector) semanticElement).getRole();
+					if (source.getType() != null && target.getType() != null && source.getType().equals(target.getType())) {
+						return source.getType().getName();
+					}
 				}
 			}
 		}
