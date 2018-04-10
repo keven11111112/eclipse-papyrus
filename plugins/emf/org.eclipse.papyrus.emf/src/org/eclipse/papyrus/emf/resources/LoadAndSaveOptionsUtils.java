@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl;
 
@@ -56,6 +57,7 @@ public final class LoadAndSaveOptionsUtils {
 		// to force the save of the default content
 		SAVE_OPTIONS.put(XMLResource.OPTION_KEEP_DEFAULT_CONTENT, Boolean.TRUE);
 		SAVE_OPTIONS.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+		SAVE_OPTIONS.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
 
 		// create the load options
 		// the same as in Papyrus ModelSet
