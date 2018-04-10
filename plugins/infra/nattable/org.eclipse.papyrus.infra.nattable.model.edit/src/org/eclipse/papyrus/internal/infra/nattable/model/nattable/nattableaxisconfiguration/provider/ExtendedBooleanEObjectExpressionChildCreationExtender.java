@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
@@ -29,6 +30,7 @@ import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.provider.Boo
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.GenericRelationshipMatrixCellEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPlugin;
 
 public class ExtendedBooleanEObjectExpressionChildCreationExtender implements IChildCreationExtender {
@@ -54,14 +56,15 @@ public class ExtendedBooleanEObjectExpressionChildCreationExtender implements IC
 	public Collection<?> getNewChildDescriptors(final Object object, final EditingDomain editingDomain) {
 		Collection<CommandParameter> result = new ArrayList<CommandParameter>();
 		if (object instanceof TreeFillingConfiguration || object instanceof GenericRelationshipMatrixCellEditorConfiguration) {
-
+			final EStructuralFeature editedFeature = object instanceof TreeFillingConfiguration ? NattableaxisconfigurationPackage.eINSTANCE.getTreeFillingConfiguration_FilterRule()
+					: NattablecelleditorPackage.eINSTANCE.getGenericRelationshipMatrixCellEditorConfiguration_CellContentsFilter();
 			// for an unknown reason, we get the contribution twice, so I manage it only the first time, identified by its EClass
 			final List<EClass> alreadyManaged = new ArrayList<EClass>();
-			for (final Object curr : expressionsExtendedChildrenFactory.getNewChildDescriptors(this.dummyExpression, editingDomain)) {
+			for (final Object curr : this.expressionsExtendedChildrenFactory.getNewChildDescriptors(this.dummyExpression, editingDomain)) {
 				if (curr instanceof CommandParameter) {
 					final EObject value = ((CommandParameter) curr).getEValue();
 					if (false == alreadyManaged.contains(value.eClass())) {
-						final CommandParameter cp = new CommandParameter(null, NattableaxisconfigurationPackage.eINSTANCE.getTreeFillingConfiguration_FilterRule(), value);
+						final CommandParameter cp = new CommandParameter(null, editedFeature, value);
 						alreadyManaged.add(value.eClass());
 						result.add(cp);
 					}

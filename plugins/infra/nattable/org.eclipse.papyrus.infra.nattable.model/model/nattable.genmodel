@@ -346,15 +346,27 @@
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection/FROM_ROW_TO_COLUMN"/>
         <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipDirection/FROM_COLUMN_TO_ROW"/>
       </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="nattable.ecore#//nattablecelleditor/MatrixRelationShipOwnerStrategy">
+        <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipOwnerStrategy/DEFAULT"/>
+        <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipOwnerStrategy/TABLE_CONTEXT"/>
+        <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipOwnerStrategy/ROW_OWNER"/>
+        <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipOwnerStrategy/ROW_AS_OWNER"/>
+        <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipOwnerStrategy/COLUMN_OWNER"/>
+        <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipOwnerStrategy/COLUMN_AS_OWNER"/>
+        <genEnumLiterals ecoreEnumLiteral="nattable.ecore#//nattablecelleditor/MatrixRelationShipOwnerStrategy/OTHER"/>
+      </genEnums>
       <genClasses image="false" ecoreClass="nattable.ecore#//nattablecelleditor/ICellEditorConfiguration">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//nattablecelleditor/ICellEditorConfiguration/cellEditorId"/>
       </genClasses>
       <genClasses ecoreClass="nattable.ecore#//nattablecelleditor/GenericRelationshipMatrixCellEditorConfiguration">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//nattablecelleditor/GenericRelationshipMatrixCellEditorConfiguration/direction"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+        <genFeatures children="true" createChild="true" propertySortChoices="true"
             ecoreFeature="ecore:EReference nattable.ecore#//nattablecelleditor/GenericRelationshipMatrixCellEditorConfiguration/cellContentsFilter"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference nattable.ecore#//nattablecelleditor/GenericRelationshipMatrixCellEditorConfiguration/editedElement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute nattable.ecore#//nattablecelleditor/GenericRelationshipMatrixCellEditorConfiguration/relationshipOwnerStrategy"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//nattablecelleditor/GenericRelationshipMatrixCellEditorConfiguration/relationshipOwner"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference nattable.ecore#//nattablecelleditor/GenericRelationshipMatrixCellEditorConfiguration/relationshipOwnerFeature"/>
       </genClasses>
       <genClasses image="false" ecoreClass="nattable.ecore#//nattablecelleditor/IMatrixCellEditorConfiguration"/>
     </nestedGenPackages>
