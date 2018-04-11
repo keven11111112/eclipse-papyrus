@@ -17,3 +17,5 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.toolsmiths.profilemigration.ui,
  org.eclipse.papyrus.toolsmiths.profilemigration.ui.dialogs,
  org.eclipse.papyrus.toolsmiths.profilemigration.ui.preferences
+Bundle-Localization: plugin
+Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.profilemigration.ui

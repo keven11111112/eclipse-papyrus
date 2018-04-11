@@ -25,3 +25,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.toolsmiths.profilemigration.Activator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.profilemigration
