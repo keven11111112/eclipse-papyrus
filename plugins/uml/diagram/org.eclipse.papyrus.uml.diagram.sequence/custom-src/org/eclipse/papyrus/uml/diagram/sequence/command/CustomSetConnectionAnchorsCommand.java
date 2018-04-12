@@ -233,7 +233,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 		}
 
 		if (isTargetSet()) {
-			final ConnectionAnchor targetAnchor = getNode().getSourceConnectionAnchor(getTargetReconnectRequest());
+			final ConnectionAnchor targetAnchor = getNode().getTargetConnectionAnchor(getTargetReconnectRequest());
 			final String newTargetTerminal = getNode().mapConnectionAnchorToTerminal(targetAnchor);
 
 			if (newTargetTerminal.length() == 0) {
