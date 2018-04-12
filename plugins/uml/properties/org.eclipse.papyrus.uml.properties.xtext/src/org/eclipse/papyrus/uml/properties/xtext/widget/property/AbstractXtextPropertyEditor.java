@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
+ *                                                            Bug 533527
  *
  *****************************************************************************/
 
@@ -113,7 +114,7 @@ public abstract class AbstractXtextPropertyEditor extends AbstractPropertyEditor
 	 * Display the editor contents, calculate the initial text via the editor configuration.
 	 */
 	public void display() {
-		IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(language, elementToEdit, null);
+		IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(language, elementToEdit, elementToEdit);
 		String initialText = configuration.getTextToEdit(elementToEdit);// use xtext UI editor
 
 		xtextEditor.setInput(initialText);
