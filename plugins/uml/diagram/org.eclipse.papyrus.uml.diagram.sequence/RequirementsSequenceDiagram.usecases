@@ -4,8 +4,15 @@
 # Messages requirements
 Requirement: ReqTechnical_SequenceDiagram_001: When a move of a message is done, the 2 anchors must be moved.
 Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/MessageConnectionLineSegEditPolicy.java
+- org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/CustomGraphicalNodeEditPolicy.java
 
-Requirement: ReqTechnical_SequenceDiagram_002: Message anchors must be only on life line or gates, but not on the ExcutionSpecification
+Requirement: ReqTechnical_SequenceDiagram_002: When a move of a Lost message is done, the 2 anchors must be moved.
+Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/MessageConnectionLineSegEditPolicy.java
+
+Requirement: ReqTechnical_SequenceDiagram_003: When a move of a Found message is done, the 2 anchors must be moved.
+Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/MessageConnectionLineSegEditPolicy.java
+
+Requirement: ReqTechnical_SequenceDiagram_004: Message anchors must be only on life line or gates, but not on the ExcutionSpecification
 Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/figures/LifelineFigure.java
 - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/LifelineChildGraphicalNodeEditPolicy.java
 
@@ -14,7 +21,7 @@ Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/ecli
 - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/command/SetResizeCommand.java
 - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/command/SetResizeAndLocationCommand.java
 
-Requirement: ReqFunctional_SequenceDiagram_001: When a move of a message is done (with the preference to keep gaps between messages), all the messages and elements in the life lines must be moved down.
+Requirement: ReqFunctional_SequenceDiagram_003: When a move of a message is done (with the preference to keep gaps between messages), all the messages and elements in the life lines must be moved down.
 Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/UpdateWeakReferenceForMessageSpecEditPolicy.java
 
 Requirement: ReqFunctional_SequenceDiagram_004: When a move of a message is done (with the preference to keep gaps between messages) and if the life lines need to be enlarge, this will be done for all life lines needed. No shrinkage allowed.
@@ -30,3 +37,6 @@ Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/ecli
 
 Requirement: ReqFunctional_SequenceDiagram_008: When a move of a message is done, all previous messages and elements in the life lines must not be moved.
 Code instruction: None
+
+Requirement: ReqFunctional_SequenceDiagram_009: It will be possible to move a message over life lines and those ones will be resized as needed.
+Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/MessageConnectionLineSegEditPolicy.java
