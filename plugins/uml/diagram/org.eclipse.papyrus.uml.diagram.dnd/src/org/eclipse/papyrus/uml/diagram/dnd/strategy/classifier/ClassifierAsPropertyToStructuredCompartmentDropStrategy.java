@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -60,6 +60,10 @@ public class ClassifierAsPropertyToStructuredCompartmentDropStrategy extends Tra
 			return false;
 		}
 		DropObjectsRequest dropRequest = (DropObjectsRequest) request;
+		// workaround for bug 533525 (avoid creation of property in nested classifier) 
+		if (request.getExtendedData().size() == 0) {
+			return false;
+		}
 		if (dropRequest.getLocation() == null) {
 			return false;
 		}
