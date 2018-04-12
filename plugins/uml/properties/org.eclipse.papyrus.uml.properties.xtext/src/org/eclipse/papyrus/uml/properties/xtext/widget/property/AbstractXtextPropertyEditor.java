@@ -113,7 +113,7 @@ public abstract class AbstractXtextPropertyEditor extends AbstractPropertyEditor
 	 * Display the editor contents, calculate the initial text via the editor configuration.
 	 */
 	public void display() {
-		IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(language, elementToEdit, null);
+		IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(language, elementToEdit, elementToEdit);
 		String initialText = configuration.getTextToEdit(elementToEdit);// use xtext UI editor
 
 		xtextEditor.setInput(initialText);

@@ -24,7 +24,7 @@ import org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.UmlCommonActiva
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.MultiplicityRule;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule;
-import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -90,8 +90,9 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	 *
 	 */
 	protected void initModel() {
-		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		ISelection mySelection = activePage.getSelection();
+		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		ISelection mySelection = activeEditor.getEditorSite().getSelectionProvider().getSelection();
+
 		if (mySelection instanceof IStructuredSelection) {
 			EObject first = EMFHelper.getEObject(((IStructuredSelection) mySelection).getFirstElement());
 
