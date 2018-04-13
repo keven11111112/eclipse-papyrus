@@ -22,8 +22,8 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
@@ -106,9 +106,6 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 			i++;
 		}
 		newElement.setName(elementName);
-		if(!elementName.isEmpty()){
-			UMLLabelInternationalization.getInstance().setLabel(newElement, elementName, null);
-		}
 
 		return CommandResult.newOKCommandResult(semanticAdapter);
 	}
