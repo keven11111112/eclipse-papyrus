@@ -22,8 +22,9 @@ import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
  * This class provides the elements of the model to used them as source for the rows and columns of the matrix
  * 
  * @since 3.0
- *
+ * @deprecated since Papyrus 6.0.100
  */
+@Deprecated
 public class MatrixSourcesContentProvider extends EcoreModelContentProvider implements IStaticContentProvider {
 
 	/**
