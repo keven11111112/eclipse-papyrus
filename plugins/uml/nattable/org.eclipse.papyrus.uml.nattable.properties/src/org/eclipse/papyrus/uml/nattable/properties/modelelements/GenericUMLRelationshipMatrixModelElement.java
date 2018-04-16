@@ -9,6 +9,7 @@
  * Contributors:
  *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Bug 532639
+ *   Asma Smaoui (CEA LIST) - asma.smaoui@cea.fr - Bug 533613
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.properties.modelelements;
@@ -18,12 +19,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.IObservable;
-import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -51,6 +52,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.EObject
 import org.eclipse.papyrus.infra.nattable.provider.MatrixRelationshipDirectionLabelProvider;
 import org.eclipse.papyrus.infra.nattable.provider.MatrixRelationshipOwnerStrategyLabelProvider;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsPackage;
@@ -340,10 +342,13 @@ public class GenericUMLRelationshipMatrixModelElement extends EMFModelElement {
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {
 		IStaticContentProvider provider = null;
-		if (MatrixPropertyConstants.MATRIX_ROW_SOURCES.equals(propertyPath)) {
-			provider = new MatrixSourcesContentProvider(getRoot(getEditedTable().getContext()));
+		
+		if (MatrixPropertyConstants.MATRIX_ROW_SOURCES.equals(propertyPath)) {	
+			ResourceSet resourceSet= getRoot(getEditedTable().getContext()).eResource().getResourceSet();
+			provider  = ProviderHelper.encapsulateProvider(ProviderHelper.getContentProvider(resourceSet), resourceSet, "rowSources");
 		} else if (MatrixPropertyConstants.MATRIX_COLUMN_SOURCES.equals(propertyPath)) {
-			provider = new MatrixSourcesContentProvider(getRoot(getEditedTable().getContext()));
+			ResourceSet resourceSet= getRoot(getEditedTable().getContext()).eResource().getResourceSet();
+			provider  = ProviderHelper.encapsulateProvider(ProviderHelper.getContentProvider(resourceSet), resourceSet, "columnSources");
 		} else if (MatrixPropertyConstants.MATRIX_CELL_TYPE.equals(propertyPath)) {
 			provider = new GenericRelationshipMatrixElementTypeContentProvider(getRoot(getEditedTable().getContext()));
 		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_DIRECTION.equals(propertyPath)) {
@@ -351,7 +356,8 @@ public class GenericUMLRelationshipMatrixModelElement extends EMFModelElement {
 		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER_STRATEGY.equals(propertyPath)) {
 			provider = new MatrixRelationshipOwnerStrategyContentProvider();
 		} else if (MatrixPropertyConstants.MATRIX_RELATIONSHIP_OWNER.equals(propertyPath)) {
-			provider = new MatrixSourcesContentProvider(getRoot(getEditedTable().getContext()));
+			ResourceSet resourceSet= getRoot(getEditedTable().getContext()).eResource().getResourceSet();
+			provider = ProviderHelper.encapsulateProvider(ProviderHelper.getContentProvider(resourceSet), resourceSet, "relationshipOwner");
 		} else {
 			provider = super.getContentProvider(propertyPath);
 		}
