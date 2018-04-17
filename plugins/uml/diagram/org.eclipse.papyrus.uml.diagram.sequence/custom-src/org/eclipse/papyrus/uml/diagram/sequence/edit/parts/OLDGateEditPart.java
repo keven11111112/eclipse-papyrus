@@ -18,6 +18,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
+@Deprecated
 public class OLDGateEditPart {
 
 	public static final String GATE_TYPE = "Gate";
