@@ -68,7 +68,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionGraphic
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionHeadImpactLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDGateCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.StereotypeInteractionFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
@@ -81,7 +80,10 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Add implementing IPapyrusEditPart to displaying Stereotypes.
  *
  * @author Jin Liu (jin.liu@soyatec.com)
+ *
+ *         XXX Check remaining usages
  */
+@Deprecated
 public class OldCustomInteractionEditPart extends InteractionEditPart implements IPapyrusEditPart {
 
 	/**
@@ -541,13 +543,13 @@ public class OldCustomInteractionEditPart extends InteractionEditPart implements
 	 * Create Anchor
 	 *
 	 * @param request
-	 *            The request
+	 *                        The request
 	 * @param elementType
-	 *            The element type of the message
+	 *                        The element type of the message
 	 * @param visualId
-	 *            The visual ID of the message
+	 *                        The visual ID of the message
 	 * @param messageType
-	 *            The type of the message
+	 *                        The type of the message
 	 * @return The connection anchor
 	 */
 	private ConnectionAnchor createAnchor(Request request, IElementType elementType, String visualId, Class<?> messageType) {
@@ -582,7 +584,7 @@ public class OldCustomInteractionEditPart extends InteractionEditPart implements
 	 * Create Anchor
 	 *
 	 * @param location
-	 *            The location
+	 *                     The location
 	 * @return The connection anchor
 	 */
 	private ConnectionAnchor createAnchor(Point location) {
@@ -600,9 +602,6 @@ public class OldCustomInteractionEditPart extends InteractionEditPart implements
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.remove(((InteractionInteractionCompartmentEditPart) childEditPart).getFigure());
 			return true;
-		} else if (childEditPart instanceof OLDGateEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((OLDGateEditPart) childEditPart).getFigure());
-			return true;
 		}
 		return false;
 	}
@@ -617,10 +616,6 @@ public class OldCustomInteractionEditPart extends InteractionEditPart implements
 
 	@Override
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof OLDGateEditPart) {
-			getBorderedFigure().getBorderItemContainer().add(((OLDGateEditPart) childEditPart).getFigure(), new GateLocator((OLDGateEditPart) childEditPart, getFigure()));
-			return true;
-		}
 		return super.addFixedChild(childEditPart);
 	}
 

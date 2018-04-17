@@ -23,23 +23,18 @@ import java.util.Set;
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
-import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.AddCommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
@@ -54,12 +49,10 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -106,8 +99,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
@@ -115,7 +106,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.sequence.util.CombinedFragmentMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CoordinateReferentialUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceLinkMappingHelper;
@@ -208,110 +198,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		// handle nodes on messages (no visual ID detected for them)
 		// elementsVisualId.add(null);
 		return elementsVisualId;
-	}
-
-	@Override
-	public Command getCommand(Request request) {
-		Command command = super.getCommand(request);
-		if (false == request instanceof ChangeBoundsRequest) {
-			return command;
-		}
-
-		boolean someCombinedFragment = false;
-		boolean someNonCombinedFragment = false;
-
-
-		List<?> editParts = ((ChangeBoundsRequest) request).getEditParts();
-
-		if (editParts != null) {
-			for (Object part : editParts) {
-				someCombinedFragment |= (part instanceof OLDCustomCombinedFragmentEditPart);
-				someNonCombinedFragment |= !(part instanceof OLDCustomCombinedFragmentEditPart);
-			}
-		}
-
-		if (someCombinedFragment && someNonCombinedFragment) {
-			// Can't Drop CombinedFragment and other nodes at the same time
-			return UnexecutableCommand.INSTANCE;
-		} else if (someNonCombinedFragment) {
-			return command;
-		} else {
-			return getMoveCombinedFragmentCommand((ChangeBoundsRequest) request);
-		}
-	}
-
-	/*
-	 * "In-place" drag-and-drop command for Combined Fragment
-	 */
-	protected Command getMoveCombinedFragmentCommand(ChangeBoundsRequest request) {
-		CompoundCommand cc = new CompoundCommand("move CombinedFragments to new parent"); //$NON-NLS-1$
-
-		Rectangle rectangleDroppedCombined = CombinedFragmentMoveHelper.calcCombinedRect(request);
-		GraphicalEditPart newParentEP = CombinedFragmentMoveHelper.findNewParentEP(request, getHost());
-
-		List<?> editParts = request.getEditParts();
-
-		// Move the request's CFs models and views
-		if (editParts != null) {
-			for (Object part : editParts) {
-				OLDCustomCombinedFragmentEditPart combinedFragmentEP = (OLDCustomCombinedFragmentEditPart) part;
-				CombinedFragment combinedFragment = (CombinedFragment) ViewUtil.resolveSemanticElement((View) ((IGraphicalEditPart) combinedFragmentEP).getModel());
-
-				if (combinedFragmentEP.getParent() == newParentEP) {
-					continue; // no change of the parent
-				}
-
-				View containerNewParent = (View) newParentEP.getModel();
-				EObject contextNewParent = ViewUtil.resolveSemanticElement(containerNewParent);
-				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-
-				// Move semantic
-				Command moveSemanticCmd = getHost().getCommand(new EditCommandRequestWrapper(
-						new MoveRequest(editingDomain, contextNewParent, combinedFragment)));
-				if (moveSemanticCmd == null) {
-					return UnexecutableCommand.INSTANCE;
-				}
-				cc.add(moveSemanticCmd);
-
-				// Move view
-				View container = (View) newParentEP.getModel();
-				View view = (View) combinedFragmentEP.getModel();
-				cc.add(new ICommandProxy(new AddCommand(combinedFragmentEP.getEditingDomain(), new EObjectAdapter(container),
-						new EObjectAdapter(view))));
-			}
-		}
-
-		// Calc new parent rect
-		Rectangle newParentOldRect = newParentEP.getFigure().getBounds().getCopy();
-		newParentEP.getFigure().translateToAbsolute(newParentOldRect);
-		Rectangle newParentNewRect = new Rectangle(newParentOldRect.getUnion(rectangleDroppedCombined));
-
-		if (getHost().getParent() instanceof OLDCustomCombinedFragmentEditPart) {
-			CombinedFragmentMoveHelper.adjustNewParentOperands(cc, newParentNewRect, newParentOldRect, getHost());
-		}
-		// TODO: resize parent's parent (and so on)
-
-		// Move & resize parent CF
-		Point newParentOffsetSW = new Point(newParentNewRect.x - newParentOldRect.x, newParentNewRect.y - newParentOldRect.y);
-		if (newParentEP.getParent().getParent() != null) {
-			final ChangeBoundsRequest moveParentRequest = new ChangeBoundsRequest();
-			moveParentRequest.setType(REQ_MOVE);
-			moveParentRequest.setMoveDelta(newParentOffsetSW);
-			moveParentRequest.setEditParts(newParentEP.getParent().getParent());
-			moveParentRequest.setSizeDelta(new Dimension(newParentNewRect.width - newParentOldRect.width,
-					newParentNewRect.height - newParentOldRect.height));
-			moveParentRequest.setResizeDirection(PositionConstants.SOUTH_WEST);
-			cc.add(newParentEP.getParent().getParent().getCommand(moveParentRequest));
-		}
-
-		if (editParts != null) {
-			for (Object part : request.getEditParts()) {
-				OLDCustomCombinedFragmentEditPart combinedFragmentEP = (OLDCustomCombinedFragmentEditPart) part;
-				CombinedFragmentMoveHelper.moveCombinedFragmentEP(cc, request, combinedFragmentEP, newParentEP, newParentOffsetSW);
-			}
-		}
-
-		return cc;
 	}
 
 	@Override
@@ -436,9 +322,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the drop command for the Element
 	 *
 	 * @param element
-	 *            the Element
+	 *                         the Element
 	 * @param nodeVISUALID
-	 *            the node visual id
+	 *                         the node visual id
 	 * @return the drop command if the Element can be dropped
 	 */
 	private Command dropNodeElement(Element element, String nodeVISUALID, Point location) {
@@ -476,9 +362,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the drop command for the Element
 	 *
 	 * @param element
-	 *            the Element
+	 *                         the Element
 	 * @param nodeVISUALID
-	 *            the node visual id
+	 *                         the node visual id
 	 * @return the drop command if the element can be dropped
 	 */
 	private Command dropCombinedFragment(CombinedFragment combinedFragment, String nodeVISUALID, Point location) {
@@ -618,11 +504,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the drop command in case the element can be handled as a node on a message
 	 *
 	 * @param semanticElement
-	 *            the element being dropped from the model
+	 *                            the element being dropped from the model
 	 * @param nodeVISUALID
-	 *            node visual id or -1
+	 *                            node visual id or -1
 	 * @param linkVISUALID
-	 *            link visual id or -1
+	 *                            link visual id or -1
 	 * @param location
 	 * @return the drop command if the element can be dropped as a message label node, or null otherwise
 	 */
@@ -844,11 +730,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the command to drop an element between two events in order to create a message label
 	 *
 	 * @param droppedElement
-	 *            the dropped element
+	 *                           the dropped element
 	 * @param event1
-	 *            first event (of type MessageOccurrenceSpecification)
+	 *                           first event (of type MessageOccurrenceSpecification)
 	 * @param event2
-	 *            second event (of type MessageOccurrenceSpecification)
+	 *                           second event (of type MessageOccurrenceSpecification)
 	 * @param element
 	 * @return the command or false if the elements can not be dropped as message label
 	 */
@@ -895,9 +781,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Test whether visual ids are compatible with a duration constraint element
 	 *
 	 * @param nodeVISUALID
-	 *            the detected node visual id
+	 *                         the detected node visual id
 	 * @param linkVISUALID
-	 *            the detected link visual id
+	 *                         the detected link visual id
 	 * @return true if element may be a duration constraint
 	 */
 	private boolean isDurationConstraintHint(String nodeVISUALID, String linkVISUALID) {
@@ -912,11 +798,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Drop a duration observation or a duration constraint on a message edit part
 	 *
 	 * @param durationLabelElement
-	 *            the duration observation or duration constraint to display as message label
+	 *                                 the duration observation or duration constraint to display as message label
 	 * @param MessageSyncEditPart
-	 *            the containing message edit part
+	 *                                 the containing message edit part
 	 * @param nodeVISUALID
-	 *            the label node visual id
+	 *                                 the label node visual id
 	 * @return the command or UnexecutableCommand
 	 */
 	private Command dropNodeOnMessage(PackageableElement durationLabelElement, ConnectionNodeEditPart MessageSyncEditPart, String nodeVISUALID) {
@@ -929,9 +815,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Drop a time observation on a lifeline.
 	 *
 	 * @param observation
-	 *            the time constraint
+	 *                         the time constraint
 	 * @param nodeVISUALID
-	 *            the node visual id
+	 *                         the node visual id
 	 * @param dropLocation
 	 * @return the command if the lifeline is the correct one or UnexecutableCommand
 	 */
@@ -975,9 +861,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Drop an interval constraint (duration or time) on a lifeline.
 	 *
 	 * @param constraint
-	 *            the interval constraint
+	 *                         the interval constraint
 	 * @param nodeVISUALID
-	 *            the node visual id
+	 *                         the node visual id
 	 * @return the command if the lifeline is the correct one or UnexecutableCommand
 	 */
 	private Command dropIntervalConstraintInLifeline(IntervalConstraint constraint, String nodeVISUALID) {
@@ -1035,7 +921,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the default height to set to a drop object. This method is useful for dropped objects which must be positioned relatively to their center.
 	 *
 	 * @param nodeVISUALID
-	 *            the node visual id
+	 *                         the node visual id
 	 * @return arbitrary default height for the node visual id (eventually -1)
 	 */
 	private int getDefaultDropHeight(String nodeVISUALID) {
@@ -1059,7 +945,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get lifelines element which contains these existingViews
 	 *
 	 * @param existingViews
-	 *            the existing views.
+	 *                          the existing views.
 	 * @return the list of lifeline.
 	 */
 	private List<Lifeline> getLifelines(List<View> existingViews) {
@@ -1110,9 +996,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Drop a destructionEvent on a lifeline
 	 *
 	 * @param destructionOccurence
-	 *            the destructionEvent to drop
+	 *                                 the destructionEvent to drop
 	 * @param nodeVISUALID
-	 *            the node visualID
+	 *                                 the node visualID
 	 * @return the command to drop the destructionEvent on a lifeline if allowed.
 	 */
 	private Command dropDestructionOccurrence(DestructionOccurrenceSpecification destructionOccurence, String nodeVISUALID, Point location) {
@@ -1140,11 +1026,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the command to drop an execution specification node
 	 *
 	 * @param es
-	 *            execution specification
+	 *                         execution specification
 	 * @param nodeVISUALID
-	 *            the execution specification's visual id
+	 *                         the execution specification's visual id
 	 * @param location
-	 *            the location of the drop request
+	 *                         the location of the drop request
 	 * @return the drop command
 	 */
 	private Command dropExecutionSpecification(ExecutionSpecification es, String nodeVISUALID, Point location) {
@@ -1193,11 +1079,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the command to drop a message link
 	 *
 	 * @param dropRequest
-	 *            request to drop
+	 *                         request to drop
 	 * @param semanticLink
-	 *            message link
+	 *                         message link
 	 * @param linkVISUALID
-	 *            the message's visual id
+	 *                         the message's visual id
 	 * @return the drop command
 	 */
 	private Command dropMessage(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
@@ -1224,20 +1110,20 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * This implementation is very similar to {@link CommonDiagramDragDropEditPolicy#dropBinaryLink(CompositeCommand, Element, Element, int, Point, Element)}.
 	 *
 	 * @param dropRequest
-	 *            the drop request
+	 *                         the drop request
 	 * @param cc
-	 *            the composite command that will contain the set of command to create the binary
-	 *            link
+	 *                         the composite command that will contain the set of command to create the binary
+	 *                         link
 	 * @param source
-	 *            the element source of the link
+	 *                         the element source of the link
 	 * @param target
-	 *            the element target of the link
+	 *                         the element target of the link
 	 * @param linkVISUALID
-	 *            the link VISUALID used to create the view
+	 *                         the link VISUALID used to create the view
 	 * @param location
-	 *            the location the location where the view will be be created
+	 *                         the location the location where the view will be be created
 	 * @param semanticLink
-	 *            the semantic link that will be attached to the view
+	 *                         the semantic link that will be attached to the view
 	 *
 	 * @return the composite command
 	 */
@@ -1288,13 +1174,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the source and target recommended points for creating the link
 	 *
 	 * @param semanticLink
-	 *            link to create
+	 *                           link to create
 	 * @param sourceEditPart
-	 *            edit part source of the link
+	 *                           edit part source of the link
 	 * @param targetEditPart
-	 *            edit part target of the link
+	 *                           edit part target of the link
 	 * @param dropLocation
-	 *            default location if NOT found.
+	 *                           default location if NOT found.
 	 * @return a point array of size 2, with eventually null values (when no point constraint). Index 0 : source location, 1 : target location
 	 */
 	private Point[] getLinkSourceAndTargetLocations(Element semanticLink, GraphicalEditPart sourceEditPart, GraphicalEditPart targetEditPart, Point dropLocation) {
@@ -1342,20 +1228,12 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					possibleSourceLocations = SequenceUtil.findPossibleLocationsForEvent((LifelineEditPart) sourceEditPart, sourceEvent);
 				}
 			}
-			// find possible source location on Gate
-			else if (sourceEditPart instanceof OLDGateEditPart) {
-				possibleSourceLocations = SequenceUtil.getAbsoluteBounds(sourceEditPart);
-			}
 			// find location constraints for target
 			if (targetEvent != null && targetEditPart instanceof LifelineEditPart) {
 				sourceAndTarget[1] = SequenceUtil.findLocationOfEvent((LifelineEditPart) targetEditPart, targetEvent);
 				if (sourceAndTarget[1] == null) {
 					possibleTargetLocations = SequenceUtil.findPossibleLocationsForEvent((LifelineEditPart) targetEditPart, targetEvent);
 				}
-			}
-			// find possible target location on Gate
-			else if (targetEditPart instanceof OLDGateEditPart) {
-				possibleTargetLocations = SequenceUtil.getAbsoluteBounds(sourceEditPart);
 			}
 			// deduce a possibility
 			if (sourceAndTarget[0] == null && possibleSourceLocations != null) {
@@ -1445,11 +1323,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the command to drop a general ordering link
 	 *
 	 * @param dropRequest
-	 *            request to drop
+	 *                         request to drop
 	 * @param semanticLink
-	 *            general ordering link
+	 *                         general ordering link
 	 * @param linkVISUALID
-	 *            the link's visual id
+	 *                         the link's visual id
 	 * @return the drop command
 	 */
 	private Command dropGeneralOrdering(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {

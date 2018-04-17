@@ -117,7 +117,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineModelChildrenHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.common.util.CacheAdapter;
@@ -277,7 +276,7 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 	 * Return the inner ConnectableElements of the lifeline
 	 *
 	 * @param lifeline
-	 *            The lifeline
+	 *                     The lifeline
 	 * @return inner ConnectableElements
 	 */
 	// TODO Extract in a helper
@@ -381,7 +380,7 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 	 * Configure the lifeline
 	 *
 	 * @param inlineMode
-	 *            True if the lifeline is in inline mode
+	 *                       True if the lifeline is in inline mode
 	 */
 	private void configure(boolean inlineMode, boolean refresh) {
 		(getPrimaryShape().getFigureLifelineDotLineFigure()).configure(inlineMode, LifelineEditPartUtil.getInnerConnectableElementList(this).size());
@@ -1249,7 +1248,7 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 	 * for generated figure.
 	 *
 	 * @param nodeShape
-	 *            instance of generated figure class
+	 *                      instance of generated figure class
 	 * @Override Execution specification handling
 	 */
 	@Override
@@ -1271,29 +1270,6 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 	}
 
 	public int getAdjustedHeight() {
-		if (false == getParent() instanceof OLDCustomInteractionInteractionCompartmentEditPart) {
-			return -1;
-		}
-		OLDCustomInteractionInteractionCompartmentEditPart parentEP = (OLDCustomInteractionInteractionCompartmentEditPart) getParent();
-		OldCustomInteractionEditPart grandParent = (OldCustomInteractionEditPart) parentEP.getParent();
-		final Bounds bounds = (Bounds) ((Shape) getModel()).getLayoutConstraint();
-		final Bounds boundsGrandParent = (Bounds) ((Shape) grandParent.getModel()).getLayoutConstraint();
-		if (bounds != null && boundsGrandParent != null) {
-			Rectangle grandParentRect = OperandBoundsComputeHelper.fillRectangle(boundsGrandParent);
-			if (grandParentRect.height == -1) {
-				grandParentRect = grandParent.getFigure().getBounds().getCopy();
-			}
-			Rectangle boundsRect = OperandBoundsComputeHelper.fillRectangle(bounds);
-			if (boundsRect.height == -1) {
-				boundsRect.height = this.getFigure().getBounds().height;
-			}
-			grandParent.getFigure().translateToRelative(boundsRect);
-			// return boundsGrandParent.getHeight() - boundsRect.y - LifelineXYLayoutEditPolicy.LIFELINE_SOUTH_SPACING;
-			int heightDiff = grandParent.getFigure().getBounds().height - parentEP.getFigure().getBounds().height;
-			Dimension zoomedAddon = new Dimension(0, OLDLifelineXYLayoutEditPolicy.LIFELINE_SOUTH_SPACING);
-			grandParent.getFigure().translateToRelative(zoomedAddon);
-			return grandParentRect.height() - bounds.getY() - heightDiff - zoomedAddon.height;
-		}
 		return -1;
 	}
 
@@ -1347,7 +1323,7 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 	 * set the bounds of the lifeline.
 	 *
 	 * @param rect
-	 *            the rectangle corresponding to the bounds.
+	 *                 the rectangle corresponding to the bounds.
 	 */
 	public void updateLifelineBounds(final Rectangle rect) {
 		final Bounds bounds = getBounds();
@@ -1449,7 +1425,7 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 	 * In case of a move, when the lifeline has not be resize, the width or height may be set to -1. Get the according figure bounds.
 	 *
 	 * @param rect
-	 *            the rectangle to update
+	 *                 the rectangle to update
 	 */
 	private void updateRectangleBounds(Rectangle rect) {
 		// When moving the lifeline

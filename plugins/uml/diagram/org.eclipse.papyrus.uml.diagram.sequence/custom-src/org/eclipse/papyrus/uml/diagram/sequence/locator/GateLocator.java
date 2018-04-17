@@ -18,19 +18,12 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
 public class GateLocator extends AdvancedBorderItemLocator {
-
-	private OLDGateEditPart gateEditPart;
 
 	private Integer alignment;
 
@@ -41,11 +34,6 @@ public class GateLocator extends AdvancedBorderItemLocator {
 	 */
 	public GateLocator(IFigure parentFigure) {
 		super(parentFigure);
-	}
-
-	public GateLocator(OLDGateEditPart gateEditPart, IFigure parentFigure) {
-		super(parentFigure);
-		this.gateEditPart = gateEditPart;
 	}
 
 	/**
@@ -139,24 +127,6 @@ public class GateLocator extends AdvancedBorderItemLocator {
 	}
 
 	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator#getParentBorder()
-	 *
-	 * @return
-	 */
-	@Override
-	protected Rectangle getParentBorder() {
-		Rectangle parentBorder = super.getParentBorder();
-		if (parentBorder.isEmpty() && gateEditPart != null) {
-			// This can be only used when the diagram is opening.
-			EditPart parent = gateEditPart.getParent();
-			if (parent instanceof IGraphicalEditPart) {
-				return SequenceUtil.getAbsoluteBounds((IGraphicalEditPart) parent);
-			}
-		}
-		return parentBorder;
-	}
-
-	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator#relocate(org.eclipse.draw2d.IFigure)
 	 *
 	 * @param borderItem
@@ -171,26 +141,11 @@ public class GateLocator extends AdvancedBorderItemLocator {
 	}
 
 	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator#getConstraint()
-	 *
-	 * @return
-	 */
-	@Override
-	public Rectangle getConstraint() {
-		if (gateEditPart != null) {
-			return getModelConstraint();
-		}
-		return super.getConstraint();
-	}
-
-	/**
 	 * @return
 	 */
 	protected Rectangle getModelConstraint() {
-		// Ensure the constraint is same as the model.
-		int x = ((Integer) gateEditPart.getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer) gateEditPart.getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-		Rectangle constraint = new Rectangle(x, y, OLDGateEditPart.DEFAULT_SIZE.width, OLDGateEditPart.DEFAULT_SIZE.height);
-		return constraint;
+		// This is an old method that assumes the gateEditPart is non-null; but this edit part no longer exists
+		// That method shouldn't be called, but it is still referenced from getAlignment without any check
+		throw new IllegalStateException();
 	}
 }

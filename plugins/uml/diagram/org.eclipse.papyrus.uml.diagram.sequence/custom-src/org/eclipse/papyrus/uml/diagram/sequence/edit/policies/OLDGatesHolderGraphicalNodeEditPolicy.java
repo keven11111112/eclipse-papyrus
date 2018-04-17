@@ -21,12 +21,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
@@ -38,7 +35,6 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandUtilities;
@@ -50,22 +46,16 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateElementAndViewCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.command.ReconnectToGateCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
-import org.eclipse.uml2.uml.Message;
 
 /**
  * Graphical Presentation of Gate with In/Out
@@ -86,38 +76,7 @@ public class OLDGatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalN
 	 */
 	@Override
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
-		ConnectionEditPart connection = request.getConnectionEditPart();
-		EditPart source = connection.getSource();
-		if (source instanceof OLDGateEditPart) {
-			if (getHost() == source.getParent()) {
-				return getMoveGateCommand((OLDGateEditPart) source, request);
-			} else if (isReconnectMessage(request) && !isRedirectFailed(request)) {
-				Point location = GateHelper.computeGateLocation(request.getLocation(), getHostFigure(), null);
-				CompositeCommand result = new CompositeCommand("");
-				OLDCreateGateElementAndViewCommand createGateCommand = new OLDCreateGateElementAndViewCommand(getEditingDomain(), getHost(), location);
-				createGateCommand.setCreateInnerCFGate(getHost() instanceof CombinedFragmentEditPart);
-				result.add(createGateCommand);
-				ReconnectToGateCommand reconnectTargetCommand = new ReconnectToGateCommand(getEditingDomain(), getHost().getViewer(), createGateCommand.getResult(), request);
-				result.add(reconnectTargetCommand);
-				return new ICommandProxy(result);
-			}
-		}
 		return super.getReconnectSourceCommand(request);
-	}
-
-	/**
-	 * @param gateEditPart
-	 * @param request
-	 * @return
-	 */
-	protected Command getMoveGateCommand(OLDGateEditPart gateEditPart, ReconnectRequest request) {
-		Rectangle newBounds = new Rectangle(request.getLocation(), OLDGateEditPart.DEFAULT_SIZE);
-		IFigure hostFigure = getHostFigure();
-		hostFigure.translateToRelative(newBounds);
-		GateLocator locator = new GateLocator(hostFigure);
-		Rectangle validLocation = locator.getValidLocation(newBounds, gateEditPart.getFigure());
-		ICommand command = new SetLocationCommand(getEditingDomain(), "Update Gate Location", new EObjectAdapter(gateEditPart.getNotationView()), validLocation.getLocation());
-		return new ICommandProxy(command);
 	}
 
 	/**
@@ -128,34 +87,7 @@ public class OLDGatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalN
 	 */
 	@Override
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
-		ConnectionEditPart connection = request.getConnectionEditPart();
-		EditPart target = connection.getTarget();
-		if (target instanceof OLDGateEditPart) {
-			if (getHost() == target.getParent()) {
-				return getMoveGateCommand((OLDGateEditPart) target, request);
-			} else if (isReconnectMessage(request) && !isRedirectFailed(request)) {
-				Point location = GateHelper.computeGateLocation(request.getLocation(), getHostFigure(), null);
-				CompositeCommand result = new CompositeCommand("");
-				OLDCreateGateElementAndViewCommand createGateCommand = new OLDCreateGateElementAndViewCommand(getEditingDomain(), getHost(), location);
-				createGateCommand.setCreateInnerCFGate(getHost() instanceof CombinedFragmentEditPart);
-				result.add(createGateCommand);
-				ReconnectToGateCommand reconnectTargetCommand = new ReconnectToGateCommand(getEditingDomain(), getHost().getViewer(), createGateCommand.getResult(), request);
-				result.add(reconnectTargetCommand);
-				return new ICommandProxy(result);
-			}
-		}
 		return super.getReconnectTargetCommand(request);
-	}
-
-	private boolean isRedirectFailed(ReconnectRequest request) {
-		Object data = request.getExtendedData().get(ReconnectToGateCommand.REDIRECT_GATE_FAILED);
-		return data != null && "true".equalsIgnoreCase(data.toString());
-	}
-
-	private boolean isReconnectMessage(ReconnectRequest request) {
-		ConnectionEditPart conn = request.getConnectionEditPart();
-		IGraphicalEditPart adapter = conn.getAdapter(IGraphicalEditPart.class);
-		return adapter != null && adapter.resolveSemanticElement() instanceof Message;
 	}
 
 	/**

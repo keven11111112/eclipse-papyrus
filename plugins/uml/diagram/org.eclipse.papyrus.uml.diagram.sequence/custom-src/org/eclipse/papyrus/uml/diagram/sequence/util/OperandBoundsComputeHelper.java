@@ -55,7 +55,6 @@ import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
-import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
@@ -63,7 +62,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
@@ -72,9 +70,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditP
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomInteractionOperandEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -775,17 +770,6 @@ public class OperandBoundsComputeHelper {
 		}
 		// Recursively process children
 		CompoundCommand cc = new CompoundCommand("shift inner CFs' exec blocks"); //$NON-NLS-1$
-		List<?> children = editPart.getChildren();
-		for (int i = 0; i < children.size(); i++) {
-			if (false == children.get(i) instanceof OLDCustomCombinedFragmentEditPart) {
-				continue;
-			}
-			OLDCustomCombinedFragmentEditPart childCF = (OLDCustomCombinedFragmentEditPart) children.get(i);
-			List<OLDCustomInteractionOperandEditPart> childOperands = childCF.getOperandChildrenEditParts();
-			for (OLDCustomInteractionOperandEditPart childOperand : childOperands) {
-				cc.add(getForcedShiftEnclosedFragmentsCommand(childOperand, movedY, alreadyMovedItems));
-			}
-		}
 
 		List<OperandBlock> operandBlocks = getOperandBlocks(editPart);
 		if (operandBlocks.isEmpty()) {
@@ -1057,7 +1041,7 @@ public class OperandBoundsComputeHelper {
 	 * Check if it is a combined fragment.
 	 *
 	 * @param hint
-	 *            the semantic hint
+	 *                 the semantic hint
 	 * @return
 	 */
 	public static boolean isDerivedCombinedFragment(String hint) {
@@ -1326,9 +1310,6 @@ public class OperandBoundsComputeHelper {
 			Point start = SequenceUtil.getAbsoluteEdgeExtremity(message, true);
 			Point end = SequenceUtil.getAbsoluteEdgeExtremity(message, false);
 			Rectangle bounds = new Rectangle(start, end);
-			if (message.getSource() instanceof OLDGateEditPart || message.getTarget() instanceof OLDGateEditPart) {
-				bounds.expand(0, Math.round((OLDGateEditPart.DEFAULT_SIZE.height - bounds.height) / 2.0));
-			}
 			if (bounds.height < EXECUTION_VERTICAL_MARGIN) {
 				bounds.height = EXECUTION_VERTICAL_MARGIN;
 			}
@@ -1636,14 +1617,7 @@ public class OperandBoundsComputeHelper {
 				if (message != null) {
 					Edge edge = (Edge) message.getModel();
 					Connection msgFigure = message.getConnectionFigure();
-					if (message.getSource() instanceof OLDGateEditPart) {
-						OLDGateEditPart gate = (OLDGateEditPart) message.getSource();
-						Location layout = (Location) ((Shape) gate.getNotationView()).getLayoutConstraint();
-						Point location = new Point(layout.getX(), layout.getY());
-						location.y += moveDelta;
-						ICommand command = new SetLocationCommand(getEditingDomain(), "", gate, location);
-						commands.add(new ICommandProxy(command));
-					} else {
+					{ // Source
 						ConnectionAnchor sourceAnchor = msgFigure.getSourceAnchor();
 						IdentityAnchor gmfSourceAnchor = (IdentityAnchor) edge.getSourceAnchor();
 						Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
@@ -1651,14 +1625,8 @@ public class OperandBoundsComputeHelper {
 							commands.add(new ICommandProxy(getMoveAnchorCommand(moveDelta, figureBounds, gmfSourceAnchor)));
 						}
 					}
-					if (message.getTarget() instanceof OLDGateEditPart) {
-						OLDGateEditPart gate = (OLDGateEditPart) message.getTarget();
-						Location layout = (Location) ((Shape) gate.getNotationView()).getLayoutConstraint();
-						Point location = new Point(layout.getX(), layout.getY());
-						location.y += moveDelta;
-						ICommand command = new SetLocationCommand(getEditingDomain(), "", gate, location);
-						commands.add(new ICommandProxy(command));
-					} else {
+
+					{ // Target
 						IdentityAnchor gmfTargetAnchor = (IdentityAnchor) edge.getTargetAnchor();
 						ConnectionAnchor targetAnchor = msgFigure.getTargetAnchor();
 						Rectangle figureBounds = targetAnchor.getOwner().getBounds();

@@ -42,7 +42,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.DirectEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.DirectEditRequest;
-import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -110,6 +109,8 @@ import org.eclipse.uml2.uml.ValueSpecification;
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  * @deprecated
+ *
+ * 			XXX Check remaining usages
  */
 @Deprecated
 public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditPart implements ITextAwareEditPart {
@@ -174,7 +175,7 @@ public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditP
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		//installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
+		// installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CombinedFragmentCreationEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new GuardConditionDirectEditPolicy());
 		removeEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE);
 		// display stereotype
@@ -214,7 +215,7 @@ public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditP
 	 * Get the initial position of the continuation
 	 *
 	 * @param borderItemEditPart
-	 *            the borderItemEditPart
+	 *                               the borderItemEditPart
 	 * @return the initial position. ContinuationLocator.BOTTOM if none found
 	 */
 	private int getContinuationPosition(IBorderItemEditPart borderItemEditPart) {
@@ -751,13 +752,6 @@ public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditP
 		if (ignoreRequest(request)) {
 			return null;
 		}
-		if (request instanceof ReconnectRequest) {
-			if (REQ_RECONNECT_SOURCE.equals(request.getType()) && ((ReconnectRequest) request).getConnectionEditPart().getSource() instanceof OLDGateEditPart) {
-				return getParent().getParent().getCommand(request);
-			} else if (REQ_RECONNECT_TARGET.equals(request.getType()) && ((ReconnectRequest) request).getConnectionEditPart().getTarget() instanceof OLDGateEditPart) {
-				return getParent().getParent().getCommand(request);
-			}
-		}
 		return super.getCommand(request);
 	}
 
@@ -834,7 +828,7 @@ public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditP
 		 * Update the interaction constraint value
 		 *
 		 * @param interactionOperand
-		 *            The UML Interaction Operand
+		 *                               The UML Interaction Operand
 		 */
 		protected void updateConstraintLabel() {
 			// Show or Hide Guard: https://bugs.eclipse.org/bugs/show_bug.cgi?id=402966
@@ -1055,9 +1049,9 @@ public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditP
 		 * constructor
 		 *
 		 * @param element
-		 *            element to be wrapped
+		 *                    element to be wrapped
 		 * @param view
-		 *            view to be wrapped
+		 *                    view to be wrapped
 		 */
 		public EObjectAdapterEx(EObject element, View view) {
 			super(element);
