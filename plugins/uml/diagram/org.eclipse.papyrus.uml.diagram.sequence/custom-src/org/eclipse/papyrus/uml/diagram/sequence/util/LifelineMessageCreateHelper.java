@@ -33,10 +33,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.gmf.runtime.notation.Shape;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -69,12 +65,8 @@ public class LifelineMessageCreateHelper {
 	@Deprecated // TODO_MIA TO_DELETE
 	static ConnectionAnchor getTargetConnectionAnchor(LifelineEditPart part, Request request) {
 		NodeFigure nodeFigure = null;
-		if (part instanceof OLDLifelineEditPart) {
-			nodeFigure = ((OLDLifelineEditPart) part).getNodeFigure();
-		} else {
-			if (part.getContentPane() instanceof LifelineDotLineCustomFigure) {
-				nodeFigure = ((LifelineDotLineCustomFigure) part.getContentPane()).getDashLineRectangle();
-			}
+		if (part.getContentPane() instanceof LifelineDotLineCustomFigure) {
+			nodeFigure = ((LifelineDotLineCustomFigure) part.getContentPane()).getDashLineRectangle();
 		}
 		if (nodeFigure == null) {
 			return null;
@@ -89,28 +81,6 @@ public class LifelineMessageCreateHelper {
 			return nodeFigure.getTargetConnectionAnchorAt(((DropRequest) request).getLocation());
 		}
 		return nodeFigure.getTargetConnectionAnchorAt(null);
-	}
-
-	// when a create message is deleted, move its target lifelines up
-	@Deprecated // TODO_MIA TO_DELETE
-	public static Command restoreLifelineOnMessageDelete(Command commands, EditPart editPart) {
-		if (editPart instanceof MessageCreateEditPart) {
-			MessageCreateEditPart part = (MessageCreateEditPart) editPart;
-			if (part.getTarget() instanceof LifelineEditPart && LifelineMessageCreateHelper.getIncomingMessageCreate(part.getTarget()).size() == 1) {
-				LifelineEditPart target = (LifelineEditPart) part.getTarget();
-				if (target.getModel() instanceof Shape) {
-					Shape view = (ShapeImpl) target.getModel();
-					if (view.getLayoutConstraint() instanceof Bounds) {
-						Bounds bounds = (Bounds) view.getLayoutConstraint();
-						ICommand boundsCommand = new SetLocationCommand(target.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), new Point(bounds.getX(), SequenceUtil.LIFELINE_VERTICAL_OFFSET));
-						commands = commands.chain(new ICommandProxy(boundsCommand));
-						int dy = SequenceUtil.LIFELINE_VERTICAL_OFFSET - bounds.getY();
-						commands = moveCascadeLifeline(target, commands, dy);
-					}
-				}
-			}
-		}
-		return commands;
 	}
 
 	// TODO_MIA TO_DELETE
@@ -201,27 +171,9 @@ public class LifelineMessageCreateHelper {
 
 	@Deprecated // TODO_MIA TO_DELETE
 	public static Command moveLifelineDown(Command command, OLDLifelineEditPart part, Point sourcePointCopy) {
-		IFigure fig = part.getFigure();
-		Rectangle bounds = fig.getBounds().getCopy();
-		int height = part.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height;
-		// Fixed bug: When the Lifeline is created by MessageCreate at dynamic time(@see https://bugs.eclipse.org/bugs/show_bug.cgi?id=403134), the bounds would not be get when the Lifeline is not displayed yet.
-		if (bounds.isEmpty()) {
-			bounds = SequenceUtil.getAbsoluteBounds(part);
-			height = 29;
-		} else {
-			fig.translateToAbsolute(bounds);
-		}
-		Point location = new Point(bounds.x, Math.max(bounds.y, sourcePointCopy.y() - height / 2));
-		View targetView = part.getNotationView();
-		if (location.y != bounds.y) {
-			int dy = location.y - bounds.y;
-			fig.translateToRelative(location);
-			fig.translateToParent(location);
-			ICommand boundsCommand = new SetLocationCommand(part.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(targetView), location);
-			command = command.chain(new ICommandProxy(boundsCommand));
-			command = moveCascadeLifeline(part, command, dy);
-		}
-		return command;
+		// XXX during refactoring, this method still references classes that are no longer used.
+		// If anyone called this method, it would necessarily crash; so just make that explicit by throwing immediately.
+		throw new IllegalStateException();
 	}
 
 	@Deprecated // TODO_MIA TO_DELETE

@@ -49,7 +49,6 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.RestoreExecutionEndAdvice;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
@@ -68,58 +67,15 @@ import org.eclipse.uml2.uml.TimeObservation;
 public class SequenceDeleteHelper {
 
 	/**
-	 * Complete an ICommand which destroys an DestructionEvent element to also destroy dependent time/duration constraint/observation linked with
-	 * these ends
-	 *
-	 * @param deleteViewsCmd
-	 *            the command to complete
-	 * @param editingDomain
-	 *            the editing domain
-	 * @param destructionEventPart
-	 *            the execution specification edit part on which the request is called
-	 * @return the deletion command deleteViewsCmd for convenience
-	 */
-	public static CompoundCommand completeDeleteDestructionOccurenceViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart destructionEventPart) {
-		if (destructionEventPart instanceof IGraphicalEditPart) {
-			EObject obj = ((IGraphicalEditPart) destructionEventPart).resolveSemanticElement();
-			if (obj instanceof DestructionOccurrenceSpecification) {
-				LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(destructionEventPart);
-				if (lifelinePart != null) {
-					for (Object lifelineChild : lifelinePart.getChildren()) {
-						if (lifelineChild instanceof IBorderItemEditPart) {
-							final IBorderItemEditPart timePart = (IBorderItemEditPart) lifelineChild;
-							// At most one destruction event. Only parts linked to it can not move for now.
-							boolean isNotLinked = OccurrenceSpecificationMoveHelper.canTimeElementPartBeYMoved(timePart);
-							if (!isNotLinked) {
-								// time part is linked, delete the view
-								Command deleteTimeViewCommand = new ICommandProxy(new DeleteCommand(editingDomain, (View) timePart.getModel()));
-								deleteViewsCmd.add(deleteTimeViewCommand);
-							}
-						}
-					}
-					DestructionOccurrenceSpecification dos = (DestructionOccurrenceSpecification) obj;
-					if (dos.getMessage() != null) {
-						destroyMessageEvent(deleteViewsCmd, dos.getMessage().getSendEvent(), editingDomain);
-						DestroyElementRequest myReq = new DestroyElementRequest(editingDomain, dos.getMessage(), false);
-						deleteViewsCmd.add(new ICommandProxy(new DestroyElementCommand(myReq)));
-					}
-					deleteViewsCmd.add(((OLDLifelineEditPart)lifelinePart).getAlignLifelineBottomToParentCommand(null, true));
-				}
-			}
-		}
-		return deleteViewsCmd;
-	}
-
-	/**
 	 * Complete an ICommand which destroys an ExecutionSpecification element to also destroy dependent finish and start events and time/duration
 	 * constraint/observation linked with these ends
 	 *
 	 * @param deleteViewsCmd
-	 *            the command to complete
+	 *                           the command to complete
 	 * @param editingDomain
-	 *            the editing domain
+	 *                           the editing domain
 	 * @param executionPart
-	 *            the execution specification edit part on which the request is called
+	 *                           the execution specification edit part on which the request is called
 	 * @return the deletion command deleteViewsCmd for convenience
 	 */
 	public static CompoundCommand completeDeleteMessageViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart messagePart) {
@@ -166,11 +122,11 @@ public class SequenceDeleteHelper {
 	 * constraint/observation linked with these ends
 	 *
 	 * @param deleteViewsCmd
-	 *            the command to complete
+	 *                           the command to complete
 	 * @param editingDomain
-	 *            the editing domain
+	 *                           the editing domain
 	 * @param executionPart
-	 *            the execution specification edit part on which the request is called
+	 *                           the execution specification edit part on which the request is called
 	 * @return the deletion command deleteViewsCmd for convenience
 	 */
 	public static CompoundCommand completeDeleteExecutionSpecificationViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart executionPart) {
@@ -224,11 +180,11 @@ public class SequenceDeleteHelper {
 	 * Delete the views associated with a list of elements.
 	 *
 	 * @param cmd
-	 *            the CompositeTransactionalCommand
+	 *                          the CompositeTransactionalCommand
 	 * @param element
-	 *            the list of model elements
+	 *                          the list of model elements
 	 * @param editingDomain
-	 *            the editing domain to use.
+	 *                          the editing domain to use.
 	 */
 	public static void deleteView(CompositeTransactionalCommand cmd, List<Element> elements, TransactionalEditingDomain editingDomain) {
 		for (Element element : elements) {
@@ -240,11 +196,11 @@ public class SequenceDeleteHelper {
 	 * Delete the views associated with an element.
 	 *
 	 * @param cmd
-	 *            the CompositeTransactionalCommand
+	 *                          the CompositeTransactionalCommand
 	 * @param element
-	 *            the model element referenced by the views
+	 *                          the model element referenced by the views
 	 * @param editingDomain
-	 *            the editing domain to use.
+	 *                          the editing domain to use.
 	 */
 	public static void deleteView(CompositeTransactionalCommand cmd, Element element, TransactionalEditingDomain editingDomain) {
 		// Destroy its views
@@ -273,7 +229,7 @@ public class SequenceDeleteHelper {
 			if (deleteCommand != null) {
 				CompoundCommand command = new CompoundCommand(deleteCommand.getLabel());
 				command.add(new ICommandProxy(deleteCommand));
-				//return completeDeleteMessageCommand(command, (ConnectionEditPart)editPart, req.getEditingDomain());
+				// return completeDeleteMessageCommand(command, (ConnectionEditPart)editPart, req.getEditingDomain());
 				destroyMessageEvents(command, Arrays.asList(editPart), req.getEditingDomain());
 				return command;
 			}
