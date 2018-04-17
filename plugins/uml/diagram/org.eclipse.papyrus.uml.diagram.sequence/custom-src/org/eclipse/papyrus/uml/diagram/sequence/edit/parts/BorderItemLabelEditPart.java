@@ -10,6 +10,7 @@
  * Contributors:
  *   Soyatec - Initial API and implementation
  *   Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 440230 : Label Margin
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 533689
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -58,6 +59,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
@@ -366,29 +368,45 @@ public abstract class BorderItemLabelEditPart extends PapyrusLabelEditPart imple
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
+				// Create default edit manager
+				setManager(new MultilineLabelDirectEditManager(this,
+						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+						UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				Dialog dialog = null;
-				if (configuration instanceof IPopupEditorConfiguration) {
-					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration).createPopupEditorHelper(this);
+				if (configuration instanceof ICustomDirectEditorConfiguration) {
+					setManager(((ICustomDirectEditorConfiguration) configuration).createDirectEditManager(this));
+					initializeDirectEditManager(theRequest);
+					return;
+				} else if (configuration instanceof IPopupEditorConfiguration) {
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration)
+							.createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
 				} else if (configuration instanceof IAdvancedEditorConfiguration) {
-					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
+					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()));
 				} else if (configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
+					dialog = new ExtendedDirectEditionDialog(
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
 				final Dialog finalDialog = dialog;
+
 				if (Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
 
 						@Override
 						protected void doExecute() {
-							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog) finalDialog).getValue());
+							configuration.postEditAction(resolveSemanticElement(),
+									((ILabelEditorDialog) finalDialog).getValue());
+
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -424,6 +442,36 @@ public abstract class BorderItemLabelEditPart extends PapyrusLabelEditPart imple
 		}
 	}
 
+	/**
+	 * This allows to initialize the direct edit manager for the edit.
+	 * 
+	 * @param request
+	 *            The called request.
+	 * @since 5.0
+	 */
+	protected void initializeDirectEditManager(final Request request) {
+		// initialize the direct edit manager
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+				@Override
+				public void run() {
+					if (isActive() && isEditable()) {
+						if (request.getExtendedData()
+								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) request.getExtendedData()
+									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							performDirectEdit(initialChar.charValue());
+						} else {
+							performDirectEdit();
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
