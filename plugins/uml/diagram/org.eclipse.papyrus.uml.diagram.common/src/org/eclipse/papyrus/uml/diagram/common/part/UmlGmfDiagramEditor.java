@@ -18,6 +18,7 @@ import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -25,6 +26,8 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationPackage;
 import org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
@@ -66,6 +69,11 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 	 * of Papyrus editor.
 	 */
 	protected boolean viewerInitialized = false;
+	
+	/**
+	 * Listener to to the diagram kind
+	 */
+	protected Adapter diagramKindAdapter;
 
 	/**
 	 * Constructor.
@@ -91,6 +99,19 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 		ISaveAndDirtyService saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
 		saveAndDirtyService.registerIsaveablePart(this);
 		viewerInitialized = false;
+		
+		// add a listener to the diagram kind id
+		PapyrusDiagramStyle style = DiagramUtils.getPapyrusDiagramStyle(diagram);
+		style.eAdapters().add(diagramKindAdapter = new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				//reload the editor's two viewers
+				getEditDomain().setPaletteRoot(createPaletteRoot(null));
+				getGraphicalViewer().setContents(getDiagram());
+			}
+			
+		});
 	}
 
 	/**
@@ -148,6 +169,13 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 	 */
 	@Override
 	public void dispose() {
+		// remove the listener to the diagram kind id
+		if (diagramKindAdapter != null) {
+			PapyrusDiagramStyle style = DiagramUtils.getPapyrusDiagramStyle(getDiagram());
+			style.eAdapters().remove(diagramKindAdapter);
+			diagramKindAdapter = null;
+		}
+
 		this.setUndoContext(new IUndoContext() {
 
 			@Override
@@ -174,7 +202,7 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 			// the service can't be found. Maybe it is already disposed.
 			// Do nothing
 		}
-
+		
 		partNameSynchronizer = null;
 		diagram = null;
 		servicesRegistry = null;

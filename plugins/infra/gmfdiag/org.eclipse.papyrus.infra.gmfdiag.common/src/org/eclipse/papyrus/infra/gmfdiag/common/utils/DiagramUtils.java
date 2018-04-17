@@ -252,13 +252,16 @@ public class DiagramUtils {
 	 *            The new diagram's prototype
 	 */
 	public static void setPrototype(Diagram diagram, DiagramPrototype prototype) {
-		PapyrusDiagramStyle pvs = getPapyrusDiagramStyle(diagram);
-		if (pvs != null) {
-			pvs.setDiagramKindId(prototype.getRepresentationKind().getId());
-		} else {
-			pvs = (PapyrusDiagramStyle) diagram.createStyle(StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE);
-			pvs.setDiagramKindId(prototype.getRepresentationKind().getId());
-		}
+		if (diagram.getType() == null || diagram.getType().equals(prototype.getRepresentationKind().getImplementationID())) {
+			PapyrusDiagramStyle pvs = getPapyrusDiagramStyle(diagram);
+			if (pvs != null) {
+				pvs.setDiagramKindId(prototype.getRepresentationKind().getId());
+			} else {
+				pvs = (PapyrusDiagramStyle) diagram.createStyle(StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE);
+				pvs.setDiagramKindId(prototype.getRepresentationKind().getId());
+			}
+		} else
+			throw new IllegalArgumentException("The diagram's type differs from the prototype's implementation id");
 	}
 
 
