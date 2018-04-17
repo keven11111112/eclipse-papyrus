@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -69,7 +69,7 @@ public class DisplayEvent {
 
 	/**
 	 * if the position is the same a an event it return the event.
-	 * 
+	 *
 	 * @param container
 	 *            the figure container
 	 * @param locationOntheScreen
@@ -110,7 +110,7 @@ public class DisplayEvent {
 
 	/**
 	 * if the position is the same a an event it return the event.
-	 * 
+	 *
 	 * @param container
 	 *            the figure container
 	 * @param locationOntheScreen
@@ -144,10 +144,10 @@ public class DisplayEvent {
 
 	/**
 	 * Get the Exact location of an Event around the location (from Execution Specification or Message )
-	 * 
+	 *
 	 * @param location
 	 *            absolute value on the screen
-	 * 
+	 *
 	 * @return the location if no event found around, or the event precise location if existing
 	 */
 	public Point getRealEventLocation(final Point location) {
@@ -161,7 +161,7 @@ public class DisplayEvent {
 
 	/**
 	 * Get the Exact location of an Event from execution Specification
-	 * 
+	 *
 	 * @param location
 	 *            absolute value on the screen
 	 * @return the location if no event belonging to executionSpecification found around, or the event precise location if existing.
@@ -202,14 +202,14 @@ public class DisplayEvent {
 
 	/**
 	 * Get the new position of an event located at the reference Y if the mouse location is around (delta is 8px ) the reference value of Y
-	 * 
+	 *
 	 * @param relativeMouseLocation
 	 *            Location of Mouse relatively to the Lifeline
 	 * @param editPartFigure
 	 *            Lifeline Figure to compute the Absolute Coordinate from the Interaction
 	 * @param referenceY
 	 *            The reference Y coordinate where the event is located
-	 * 
+	 *
 	 * @return a new Point in the absolute coordinate with the Y updated to the Event exact position or the initial position if not in the interval
 	 */
 	private Point getNewEventLocationY(Point relativeMouseLocation, int referenceY, IFigure editPartFigure) {
@@ -226,7 +226,7 @@ public class DisplayEvent {
 
 	/**
 	 * Get the Exact location of an Event from Messages
-	 * 
+	 *
 	 * @param location
 	 *            absolute value on the screen
 	 * @return the location if no event belonging to Messages found around, or the event precise location if existing.
@@ -275,7 +275,7 @@ public class DisplayEvent {
 
 	/**
 	 * Get the y value of an anchor from the height ratio of a node
-	 * 
+	 *
 	 * @param node
 	 *            where the Anchor is on
 	 * @param anchor
@@ -316,7 +316,7 @@ public class DisplayEvent {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param container
 	 *            the container edipart
 	 * @param node
@@ -354,7 +354,7 @@ public class DisplayEvent {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param container
 	 *            the figure container where we want display event
 	 * @param location
@@ -407,7 +407,7 @@ public class DisplayEvent {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param container
 	 *            the container editpart
 	 * @param node
@@ -465,12 +465,12 @@ public class DisplayEvent {
 
 	/**
 	 * use to remove all event from the figures
-	 * 
+	 *
 	 * @param container
 	 *            the container figure
 	 */
 	public void removeFigureEvent(IFigure container) {
-		ArrayList<IFigure> eventFigureList = new ArrayList<IFigure>();
+		ArrayList<IFigure> eventFigureList = new ArrayList<>();
 		for (Object iFigure : container.getChildren()) {
 			if (iFigure instanceof IEventFig) {
 				eventFigureList.add((IFigure) iFigure);

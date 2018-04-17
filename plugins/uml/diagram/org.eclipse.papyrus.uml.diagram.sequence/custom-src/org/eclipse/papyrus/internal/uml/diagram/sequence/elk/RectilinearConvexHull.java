@@ -22,7 +22,7 @@ import com.google.common.collect.Lists;
 
 /**
  * The rectilinear convex hull is represented by four staircases.
- * 
+ *
  *   q1 | q2
  *  ---------
  *   q4 | q3
@@ -39,7 +39,7 @@ public final class RectilinearConvexHull {
     private Point yMax1 = null, yMax2 = null;
     @SuppressWarnings("unused")
     private Point yMin1 = null, yMin2 = null;
-    
+
     private static final boolean DEBUG = false;
 
     private RectilinearConvexHull() { }
@@ -50,7 +50,7 @@ public final class RectilinearConvexHull {
      * @return The {@link RectilinearConvexHull} for the passed points.
      */
     public static RectilinearConvexHull of(final Iterable<Point> points) {
-        
+
         RectilinearConvexHull rch = new RectilinearConvexHull();
 
         for (Point p : points) {
@@ -92,7 +92,7 @@ public final class RectilinearConvexHull {
         // Q3
         MaximalElementsEventHandler q3 = new MaximalElementsEventHandler(Quadrant.Q3);
         Scanline.execute(points, LEFT_HIGH_FIRST, q3);
-        
+
         if (DEBUG) {
             // print clockwise
             System.out.println("The four stairs (no concaves):");
@@ -101,8 +101,8 @@ public final class RectilinearConvexHull {
             System.out.println(q3.points);
             System.out.println(Lists.reverse(q4.points));
         }
-        
-        // the scanline algorithm detected all convex corners, 
+
+        // the scanline algorithm detected all convex corners,
         // now we add the concave corners to the lists
         addConcaveCorners(q1.points, Quadrant.Q1);
         addConcaveCorners(q2.points, Quadrant.Q2);
@@ -117,7 +117,7 @@ public final class RectilinearConvexHull {
             System.out.println(q3.points);
             System.out.println(Lists.reverse(q4.points));
         }
-        
+
         // ... and add everything to the hull list
         // (in clockwise order, q1..q4)
         rch.getHull().clear();
@@ -128,7 +128,7 @@ public final class RectilinearConvexHull {
 
         return rch;
     }
-    
+
     /**
      * @return the points uniquely specifying the rectilinear convex hull. The points are ordered
      *         clock-wise starting with the Q1 staircase (Q1, Q2, Q3, Q4).
@@ -155,7 +155,7 @@ public final class RectilinearConvexHull {
         return handler.rects;
     }
 
-    
+
     /**
      * @param pts
      *            a list of points representing convex points of one staircase of the rectilinear
@@ -176,7 +176,7 @@ public final class RectilinearConvexHull {
             last = next;
         }
     }
-    
+
     private static final Comparator<Point> RIGHT_HIGH_FIRST = (p1, p2) -> {
         if (p1.x == p2.x) {
             return Double.compare(p2.y, p1.y);
@@ -210,7 +210,7 @@ public final class RectilinearConvexHull {
     };
 
     /**
-     * An {@link EventHandler} that can be passed to the {@link Scanline} algorithm to 
+     * An {@link EventHandler} that can be passed to the {@link Scanline} algorithm to
      * determine the rectilinear convex hull.
      */
     private static class MaximalElementsEventHandler implements EventHandler<Point> {
@@ -229,18 +229,18 @@ public final class RectilinearConvexHull {
          * the specified quadrant. Note however that for this handler to work properly the
          * {@link Scanline} must run left-to-right for quadrants Q1 and Q4 and right-to-left for
          * quadrants Q2 and Q3.
-         * See the for specially defined comparators 
+         * See the for specially defined comparators
          * (such as {@link RectilinearConvexHull#LEFT_HIGH_FIRST) for more details.
-         * 
+         *
          * @param quadrant
          *            the {@link Quadrant} for which this handler finds points on the hull.
          */
         MaximalElementsEventHandler(final Quadrant quadrant) {
             this.quadrant = quadrant;
-            
+
             switch (quadrant) {
-            case Q1: 
-            case Q2: 
+            case Q1:
+            case Q2:
                 compare = Collections.reverseOrder(DBL_CMP);
                 maximalY = Double.POSITIVE_INFINITY;
                 break;
@@ -266,7 +266,7 @@ public final class RectilinearConvexHull {
      *-----------------------------------------------------------------------------------------*/
 
     /**
-     * If the x coordinates are the same, Q1,Q4 < Q2,Q3, for Q1,Q2 convex smaller than concave. 
+     * If the x coordinates are the same, Q1,Q4 < Q2,Q3, for Q1,Q2 convex smaller than concave.
      */
     private static final Comparator<Point> RIGHT_SPECIAL_ORDER = (p1, p2) -> {
 
@@ -313,7 +313,7 @@ public final class RectilinearConvexHull {
         public void handle(final Point p) {
 
             if (queued != null
-                    && (p.x != queuedPnt.x 
+                    && (p.x != queuedPnt.x
                         || Quadrant.isOneLeftOneRight(queuedPnt.quadrant, p.quadrant))) {
 
                 rects.add(queued);

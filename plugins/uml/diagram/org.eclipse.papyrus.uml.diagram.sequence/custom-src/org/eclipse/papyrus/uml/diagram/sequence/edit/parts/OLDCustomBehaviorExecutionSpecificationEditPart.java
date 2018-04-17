@@ -76,7 +76,7 @@ public class OLDCustomBehaviorExecutionSpecificationEditPart extends BehaviorExe
 	 */
 	public OLDCustomBehaviorExecutionSpecificationEditPart(View view) {
 		super(view);
-		
+
 	}
 
 	private NotificationHelper helper = new NotificationHelper(new UIAdapterImpl() {
@@ -326,7 +326,7 @@ public class OLDCustomBehaviorExecutionSpecificationEditPart extends BehaviorExe
 			location.setY(16);
 			behaviorLabel.setLayoutConstraint(location);
 			behaviorLabel.setType(BehaviorExecutionSpecificationBehaviorEditPart.BEHAVIOR_TYPE);
-			
+
 			modelChildren.add(behaviorLabel);
 		}
 		return modelChildren;

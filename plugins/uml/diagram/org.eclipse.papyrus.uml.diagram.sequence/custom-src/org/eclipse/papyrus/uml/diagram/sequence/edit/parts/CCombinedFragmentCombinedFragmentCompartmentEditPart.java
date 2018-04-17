@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -30,7 +30,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
  * This class has been modified for 2 reasons:
  * - refresh in order to ensure the refresh about size of children
  * - compute the ratio for each children.
- * 
+ *
  * @since 3.0
  *
  */
@@ -48,6 +48,7 @@ public class CCombinedFragmentCombinedFragmentCompartmentEditPart extends Combin
 	/**
 	 * this method has been overloaded in order to ensure the refresh about children size
 	 */
+	@Override
 	protected void refreshBounds() {
 		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
 		int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
@@ -70,9 +71,10 @@ public class CCombinedFragmentCombinedFragmentCompartmentEditPart extends Combin
 	/**
 	 * This code is specific an use to constraint the size of sub compartments.
 	 * the ratio has to be recompute in order to have a good display
-	 * 
+	 *
 	 * @see GraphicalEditPart#setLayoutConstraint(EditPart, IFigure, Object)
 	 */
+	@Override
 	public void setLayoutConstraint(EditPart child, IFigure childFigure,
 			Object childConstraint) {
 		EditPart parentEditPart = this.getParent();

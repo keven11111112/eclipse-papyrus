@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Bug 531520 - Initial API and implementation 
+ *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Bug 531520 - Initial API and implementation
  *
  *****************************************************************************/
 
@@ -50,14 +50,14 @@ import org.eclipse.uml2.uml.NamedElement;
  * <li>recalculate the anchors location of retargeted message</li>
  * <li>bendpoints are really ignored</li>
  * </ul>
- * 
+ *
  * @author Vincent LORENZO
  * @since 5.0
  */
 public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconciler_1_4_0 extends DiagramReconciler {
 
 	/**
-	 * 
+	 *
 	 * Constructor.
 	 *
 	 */
@@ -107,7 +107,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 
 
 		// 3. the y of the anchor in the currentParent (an ExecutionSpecification)
-		final double yOnOldEndShape = currentPercentageOnOldEndShape.preciseY() * (double) oldEnd_Size.getHeight();
+		final double yOnOldEndShape = currentPercentageOnOldEndShape.preciseY() * oldEnd_Size.getHeight();
 
 		// 4. we calculate the Y location of the ExecutionSpec
 		final double yOnLifeline = yOnOldEndShape + oldEnd_Size.getY();
@@ -134,7 +134,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	}
 
 	/**
-	 * 
+	 *
 	 * @param view
 	 *            a view
 	 * @return
@@ -145,7 +145,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	}
 
 	/**
-	 * 
+	 *
 	 * @param object
 	 *            an object
 	 * @return
@@ -156,7 +156,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	}
 
 	/**
-	 * 
+	 *
 	 * @param messageConnector
 	 *            a message connector
 	 * @return
@@ -167,7 +167,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	}
 
 	/**
-	 * 
+	 *
 	 * @param messageConnector
 	 *            a message connector
 	 * @return
@@ -178,7 +178,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	}
 
 	/**
-	 * 
+	 *
 	 * @param messageConnector
 	 *            a message connector
 	 * @return
@@ -196,7 +196,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	}
 
 	/**
-	 * 
+	 *
 	 * @param messageConnector
 	 *            a message connector
 	 * @return
@@ -214,7 +214,7 @@ public class RetargetMessageEndFromExecutionSpecificationToLifelineDiagramReconc
 	}
 
 	/**
-	 * 
+	 *
 	 * @param view
 	 *            a view
 	 * @return

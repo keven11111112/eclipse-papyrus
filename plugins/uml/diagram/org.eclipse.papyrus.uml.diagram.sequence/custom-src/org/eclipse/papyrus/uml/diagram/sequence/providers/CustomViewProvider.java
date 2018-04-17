@@ -208,7 +208,7 @@ public class CustomViewProvider extends UMLViewProvider {
 
 	/**
 	 * This class has bee overloaded in order to set the combined fragment under the lifelines
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.providers.UMLViewProvider#createCombinedFragment_Shape(org.eclipse.emf.ecore.EObject, org.eclipse.gmf.runtime.notation.View, int, boolean, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint)
 	 */
 	@Override
@@ -242,7 +242,7 @@ public class CustomViewProvider extends UMLViewProvider {
 	 *            the view that can contains lifeline representation
 	 * @return the position of the first lifeline in the notation
 	 * @since 3.0
-	 * 
+	 *
 	 */
 	protected int LifelinePosition(View containerView) {
 		@SuppressWarnings("unchecked")
@@ -380,7 +380,7 @@ public class CustomViewProvider extends UMLViewProvider {
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+		ArrayList<RelativeBendpoint> points = new ArrayList<>(
 				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());

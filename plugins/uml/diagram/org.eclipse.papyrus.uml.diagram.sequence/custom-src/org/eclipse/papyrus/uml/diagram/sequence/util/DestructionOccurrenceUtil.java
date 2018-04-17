@@ -28,7 +28,7 @@ public class DestructionOccurrenceUtil {
 
 	public static void reorderDestructionOccurrence(List<InteractionFragment> reorderedFragments) {
 		int size = reorderedFragments.size();
-		List<InteractionFragment> destructionOccurrenceList = new ArrayList<InteractionFragment>(size);
+		List<InteractionFragment> destructionOccurrenceList = new ArrayList<>(size);
 		for (int i = 0; i < size; i++) {
 			InteractionFragment o = reorderedFragments.get(i);
 			if (o instanceof DestructionOccurrenceSpecification) {

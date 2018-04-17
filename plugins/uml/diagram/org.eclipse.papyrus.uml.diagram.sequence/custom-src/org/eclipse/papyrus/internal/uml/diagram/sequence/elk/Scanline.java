@@ -19,7 +19,7 @@ import com.google.common.collect.Lists;
 
 /**
  * Simple scaffold for a scanline algorithm.
- * 
+ *
  * @param <T>
  *            The type of the points the scanline works on.
  */
@@ -54,7 +54,7 @@ public final class Scanline<T> {
             final Iterable<EventHandler<T>> eventHandlers) {
         // copy the points! we will resort them!
         List<T> copy = Lists.newArrayList(points);
-        new Scanline<T>(copy, comparator, eventHandlers).go();
+        new Scanline<>(copy, comparator, eventHandlers).go();
     }
 
     /**
@@ -89,7 +89,7 @@ public final class Scanline<T> {
 
     /**
      * An event handler, gets passed a point of type T and does with it whatever it likes.
-     * 
+     *
      * @param <T>
      *            The type of the point.
      */

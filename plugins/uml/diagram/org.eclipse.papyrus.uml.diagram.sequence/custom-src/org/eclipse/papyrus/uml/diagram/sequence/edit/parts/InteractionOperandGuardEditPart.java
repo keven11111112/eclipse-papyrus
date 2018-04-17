@@ -314,7 +314,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	/**
 	 * return the interactionoperand
-	 * 
+	 *
 	 * @return
 	 */
 	protected EObject getParserElement() {
@@ -542,7 +542,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		
+
 		super.notifyChanged(notification);
 	}
 	@Override
@@ -830,7 +830,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 		@Override
 		public List getSemanticElementsBeingParsed(EObject element) {
-			List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+			List<Element> semanticElementsBeingParsed = new ArrayList<>();
 			if (element instanceof InteractionConstraint) {
 				InteractionConstraint op = (InteractionConstraint) element;
 				semanticElementsBeingParsed.add(op);
@@ -852,7 +852,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 		@Override
 		public String getPrintString(IAdaptable element, int flags) {
-			EObject operand = (EObject) element.getAdapter(EObject.class);
+			EObject operand = element.getAdapter(EObject.class);
 			// InteractionOperand operand = getInteractionOperand(adapter);
 			if (operand instanceof InteractionOperand) {
 				return getGuardLabelText((InteractionOperand) operand, false);

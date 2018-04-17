@@ -133,8 +133,8 @@ public abstract class InteractionFragmentEditPart extends RoundedCompartmentEdit
 		Rectangle newBound = new Rectangle(newBounds.getX(), newBounds.getY(), newBounds.getWidth(), newBounds.getHeight());
 		InteractionFragment combinedFragment = (InteractionFragment) resolveSemanticElement();
 		EList<Lifeline> coveredLifelines = combinedFragment.getCovereds();
-		List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>();
-		List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>();
+		List<Lifeline> coveredLifelinesToAdd = new ArrayList<>();
+		List<Lifeline> coveredLifelinesToRemove = new ArrayList<>();
 		EditPart interactionCompartment = getInteractionCompartment();
 		if (interactionCompartment != null) {
 			this.getFigure().translateToAbsolute(newBound);

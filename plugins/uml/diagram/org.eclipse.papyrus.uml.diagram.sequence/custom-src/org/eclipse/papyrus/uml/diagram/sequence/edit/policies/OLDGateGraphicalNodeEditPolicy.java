@@ -85,7 +85,7 @@ public class OLDGateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				if (source instanceof CombinedFragment || source instanceof Interaction || source instanceof InteractionUse) {
 					CompoundCommand cc = new CompoundCommand("Redirect to Gate");
 					Point location = null;
-					IGraphicalEditPart adapter = (IGraphicalEditPart) sourceEP.getAdapter(IGraphicalEditPart.class);
+					IGraphicalEditPart adapter = sourceEP.getAdapter(IGraphicalEditPart.class);
 					if (adapter != null) {
 						Point sourceLocation = request.getLocation();
 						Object object = request.getExtendedData().get(SequenceRequestConstant.SOURCE_LOCATION_DATA);
@@ -102,7 +102,7 @@ public class OLDGateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 							@Override
 							public Object getAdapter(Class adapter) {
 								if (Gate.class == adapter) {
-									Message message = (Message) elementAdapter.getAdapter(Message.class);
+									Message message = elementAdapter.getAdapter(Message.class);
 									MessageEnd sendEvent = message.getSendEvent();
 									if (sendEvent instanceof Gate) {
 										return sendEvent;
@@ -231,7 +231,7 @@ public class OLDGateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	@Override
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
 		ConnectionEditPart connectionEditPart = request.getConnectionEditPart();
-		IGraphicalEditPart adapter = (IGraphicalEditPart) connectionEditPart.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart adapter = connectionEditPart.getAdapter(IGraphicalEditPart.class);
 		if (adapter != null && adapter.resolveSemanticElement() instanceof Message) {
 			Message oldMessage = (Message) adapter.resolveSemanticElement();
 			Gate gate = resolveSemanticElement();

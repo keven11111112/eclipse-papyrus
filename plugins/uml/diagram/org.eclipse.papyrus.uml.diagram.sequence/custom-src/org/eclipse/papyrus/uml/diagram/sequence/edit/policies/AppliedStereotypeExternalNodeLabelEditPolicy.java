@@ -109,7 +109,7 @@ public class AppliedStereotypeExternalNodeLabelEditPolicy extends AppliedStereot
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void refreshStereotypeLabel() {
 		if (getHost() instanceof IPapyrusEditPart) {

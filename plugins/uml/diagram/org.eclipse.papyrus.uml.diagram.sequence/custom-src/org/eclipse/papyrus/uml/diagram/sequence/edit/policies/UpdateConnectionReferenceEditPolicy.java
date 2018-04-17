@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright s(c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -36,7 +36,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 /**
  * this editpolicy is to manage the movement of Execution specification and update move of messages
  * It is like a graphical node
- * 
+ *
  * @since 4.0
  *
  */
@@ -49,8 +49,8 @@ public class UpdateConnectionReferenceEditPolicy extends GraphicalEditPolicy {
 	 *
 	 * @param request
 	 * @return
-	 * 
-	 * 
+	 *
+	 *
 	 * 		<img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
 	 *         <UL>
 	 *         <LI>when move E --> move B on the coordinate Y of E and move A on the coordinate Y of E
@@ -75,7 +75,7 @@ public class UpdateConnectionReferenceEditPolicy extends GraphicalEditPolicy {
 				if (!SenderRequestUtils.isASender(request, getHost())) {
 					CompoundCommand compoundCommand = new CompoundCommand();
 					for (Iterator<EditPart> iterator = references.getStrongReferences().keySet().iterator(); iterator.hasNext();) {
-						EditPart editPart = (EditPart) iterator.next();
+						EditPart editPart = iterator.next();
 						if (!SenderRequestUtils.isASender(request, editPart)) {
 							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart.getClass().getName());//$NON-NLS-1$
 							if (editPart instanceof ConnectionEditPart) {
@@ -105,7 +105,7 @@ public class UpdateConnectionReferenceEditPolicy extends GraphicalEditPolicy {
 
 	/**
 	 * Create a reconnection request
-	 * 
+	 *
 	 * @param connectionEditPart
 	 *            the link controller to reconnect
 	 * @param locationAndSize

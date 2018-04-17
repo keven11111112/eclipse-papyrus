@@ -23,10 +23,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
  * this policy is used to suppress orphan node view in GMF view the policy to remove orphan
  * connection is more complex. It is dependent of the diagram. see remove OrphanConnectionView
  * policy.
- * 
+ *
  * @deprecated since 5.0. Useless. Helper Advices remove views.
  *
  */
+@Deprecated
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
 	public String[] notOrphanNode = { LifelineNameEditPart.VISUAL_ID };

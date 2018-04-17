@@ -49,7 +49,7 @@ public class LinkRouteModelElementFactory extends AnnotationModelElementFactory 
 
 	public static final String AUTOMATIC = "Automatic";
 
-	public static final Map<Object, LinkRouteModelElement> elements = new HashMap<Object, LinkRouteModelElement>();
+	public static final Map<Object, LinkRouteModelElement> elements = new HashMap<>();
 
 	@Override
 	protected AnnotationModelElement doCreateFromSource(Object sourceElement, DataContextElement context) {

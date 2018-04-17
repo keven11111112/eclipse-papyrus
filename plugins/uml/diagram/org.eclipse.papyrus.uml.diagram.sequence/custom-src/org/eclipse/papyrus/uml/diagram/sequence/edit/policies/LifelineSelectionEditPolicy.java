@@ -56,7 +56,7 @@ public class LifelineSelectionEditPolicy extends PapyrusResizableShapeEditPolicy
 		final LifelineEditPart host = (LifelineEditPart) getHost();
 		final LifelineFigure primaryShape = host.getPrimaryShape();
 		// resizable in at least one direction
-		List<Handle> list = new ArrayList<Handle>();
+		List<Handle> list = new ArrayList<>();
 		// createMoveHandle(list);
 		final RectangleFigure figure = primaryShape.getFigureLifelineNameContainerFigure();
 		final Locator locator = new MoveHandleLocator(figure);

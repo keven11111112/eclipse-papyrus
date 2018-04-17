@@ -674,7 +674,7 @@ public class OperandBoundsComputeHelper {
 				}
 			}
 			// 3. Compute min area for all blocks, this will remove all margins.
-			Map<OperandBlock, Rectangle> constraints = new HashMap<OperandBoundsComputeHelper.OperandBlock, Rectangle>();
+			Map<OperandBlock, Rectangle> constraints = new HashMap<>();
 			OperandBlock topBlock = operandBlocks.get(0);
 			Rectangle minArea = new Rectangle(topBlock.getBounds());
 			minArea.height += EXECUTION_VERTICAL_MARGIN;// margin
@@ -724,7 +724,7 @@ public class OperandBoundsComputeHelper {
 			View model = (View) source.getModel();
 			EObject element = model.getElement();
 			if (toCheckExecutions.contains(element)) {
-				List<ExecutionSpecification> myCheckingList = new ArrayList<ExecutionSpecification>(toCheckExecutions);
+				List<ExecutionSpecification> myCheckingList = new ArrayList<>(toCheckExecutions);
 				myCheckingList.remove(element);
 				Rectangle rect = getExecutionGroupBounds(source, myCheckingList);
 				groupRect.union(rect);
@@ -732,7 +732,7 @@ public class OperandBoundsComputeHelper {
 		}
 		List<ShapeNodeEditPart> affixedExecutionSpecificationEditParts = OLDLifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts((ShapeNodeEditPart) currentExecutionPart);
 		for (ShapeNodeEditPart shapeNodeEditPart : affixedExecutionSpecificationEditParts) {
-			List<ExecutionSpecification> myCheckingList = new ArrayList<ExecutionSpecification>(toCheckExecutions);
+			List<ExecutionSpecification> myCheckingList = new ArrayList<>(toCheckExecutions);
 			myCheckingList.remove(shapeNodeEditPart);
 			Rectangle rect = getExecutionGroupBounds(shapeNodeEditPart, myCheckingList);
 			groupRect.union(rect);
@@ -755,7 +755,7 @@ public class OperandBoundsComputeHelper {
 		newArea.translate(figure.getParent().getBounds().getLocation());
 		layout.layout(newArea, movedY > 0 ? true : false);
 
-		final Map<OperandBlock, Integer> blockToMove = new HashMap<OperandBoundsComputeHelper.OperandBlock, Integer>();
+		final Map<OperandBlock, Integer> blockToMove = new HashMap<>();
 		for (OperandBlock blk : operandBlocks) {
 			int moveDelta = layout.getMoveDelta(blk);
 			if (moveDelta == 0) {
@@ -792,7 +792,7 @@ public class OperandBoundsComputeHelper {
 			return null;
 		}
 
-		final Map<OperandBlock, Integer> blockToMove = new HashMap<OperandBoundsComputeHelper.OperandBlock, Integer>();
+		final Map<OperandBlock, Integer> blockToMove = new HashMap<>();
 		for (OperandBlock blk : operandBlocks) {
 			blockToMove.put(blk, movedY);
 		}
@@ -1110,11 +1110,11 @@ public class OperandBoundsComputeHelper {
 	}
 
 	private static List<OperandBlock> getOperandBlocks(InteractionOperandEditPart editPart) {
-		List<OperandBlock> blocks = new ArrayList<OperandBoundsComputeHelper.OperandBlock>();
+		List<OperandBlock> blocks = new ArrayList<>();
 		if (editPart != null) {
 			InteractionOperand interactionOperand = (InteractionOperand) editPart.resolveSemanticElement();
-			Set<ExecutionSpecification> executions = new HashSet<ExecutionSpecification>();
-			Set<Message> messages = new HashSet<Message>();
+			Set<ExecutionSpecification> executions = new HashSet<>();
+			Set<Message> messages = new HashSet<>();
 			EList<InteractionFragment> fragments = interactionOperand.getFragments();
 			for (InteractionFragment fragment : fragments) {
 				if (fragment instanceof ExecutionSpecification) {
@@ -1223,7 +1223,7 @@ public class OperandBoundsComputeHelper {
 				return;
 			}
 			children.add(child);
-			List<ExecutionSpecification> toCheckExecutions = new ArrayList<ExecutionSpecification>(executions);
+			List<ExecutionSpecification> toCheckExecutions = new ArrayList<>(executions);
 			toCheckExecutions.remove(child.resolveSemanticElement());
 			Set<ShapeNodeEditPart> executionGroups = getExecutionGroups(child, toCheckExecutions);
 			if (executionGroups != null && !executionGroups.isEmpty()) {
@@ -1267,7 +1267,7 @@ public class OperandBoundsComputeHelper {
 			if (toCheckExecutions == null || toCheckExecutions.isEmpty()) {
 				return null;
 			}
-			Set<ShapeNodeEditPart> executionGroups = new HashSet<ShapeNodeEditPart>();
+			Set<ShapeNodeEditPart> executionGroups = new HashSet<>();
 			List connections = new ArrayList();
 			connections.addAll(executionEditPart.getSourceConnections());
 			connections.addAll(executionEditPart.getTargetConnections());
@@ -1281,7 +1281,7 @@ public class OperandBoundsComputeHelper {
 				EObject element = model.getElement();
 				if (toCheckExecutions.contains(element)) {
 					executionGroups.add((ShapeNodeEditPart) source);
-					List<ExecutionSpecification> myCheckingList = new ArrayList<ExecutionSpecification>(toCheckExecutions);
+					List<ExecutionSpecification> myCheckingList = new ArrayList<>(toCheckExecutions);
 					myCheckingList.remove(element);
 					Set<ShapeNodeEditPart> myGroups = getExecutionGroups((ShapeNodeEditPart) source, myCheckingList);
 					if (myGroups != null) {
@@ -1293,7 +1293,7 @@ public class OperandBoundsComputeHelper {
 		}
 
 		public List<ShapeNodeEditPart> getShapeNodeChildren() {
-			List<ShapeNodeEditPart> shapes = new ArrayList<ShapeNodeEditPart>();
+			List<ShapeNodeEditPart> shapes = new ArrayList<>();
 			List<EditPart> children = getChildren();
 			for (EditPart editPart : children) {
 				if (editPart instanceof ShapeNodeEditPart) {
@@ -1343,7 +1343,7 @@ public class OperandBoundsComputeHelper {
 
 	private static abstract class OperandBlock {
 
-		protected List<EditPart> children = new ArrayList<EditPart>();
+		protected List<EditPart> children = new ArrayList<>();
 
 		public boolean contains(EditPart child) {
 			return children.contains(child);
@@ -1354,7 +1354,7 @@ public class OperandBoundsComputeHelper {
 		}
 
 		public List<EditPart> getChildren() {
-			return new ArrayList<EditPart>(children);
+			return new ArrayList<>(children);
 		}
 
 		protected abstract Rectangle computeBounds();
@@ -1362,11 +1362,11 @@ public class OperandBoundsComputeHelper {
 
 	private static class OperandBlockLayout {
 
-		private Map<OperandBlock, Rectangle> constraints = new HashMap<OperandBoundsComputeHelper.OperandBlock, Rectangle>();
+		private Map<OperandBlock, Rectangle> constraints = new HashMap<>();
 
-		private List<OperandBlock> fBlocks = new ArrayList<OperandBoundsComputeHelper.OperandBlock>();
+		private List<OperandBlock> fBlocks = new ArrayList<>();
 
-		private List<Rectangle> validBlocks = new ArrayList<Rectangle>();
+		private List<Rectangle> validBlocks = new ArrayList<>();
 
 		/**
 		 * Constructor.
@@ -1464,7 +1464,7 @@ public class OperandBoundsComputeHelper {
 			constraints.put(invalidBlock, newRect);
 			validBlocks.add(newRect);
 
-			List<OperandBlock> remainBlocks = new ArrayList<OperandBoundsComputeHelper.OperandBlock>(blocks);
+			List<OperandBlock> remainBlocks = new ArrayList<>(blocks);
 			remainBlocks.remove(invalidBlock);
 			return doLayout(area, remainBlocks, moveDown);
 		}
@@ -1507,7 +1507,7 @@ public class OperandBoundsComputeHelper {
 
 		/**
 		 * Constructor.
-		 * 
+		 *
 		 * @param domain
 		 * @param label
 		 * @param affectedFiles
@@ -1528,7 +1528,7 @@ public class OperandBoundsComputeHelper {
 
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			List<OperandBlock> blocks = new ArrayList<OperandBoundsComputeHelper.OperandBlock>(blockToMove.keySet());
+			List<OperandBlock> blocks = new ArrayList<>(blockToMove.keySet());
 			Collections.sort(blocks, new Comparator<OperandBlock>() {
 
 				@Override

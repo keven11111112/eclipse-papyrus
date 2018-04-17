@@ -140,6 +140,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author Jin Liu (jin.liu@soyatec.com)
  * @deprecated will be remove in Oxygen
  */
+@Deprecated
 public class OLDLifelineEditPart extends LifelineEditPart {
 
 	public class CustomLifelineFigure extends LifelineFigure {
@@ -288,7 +289,7 @@ public class OLDLifelineEditPart extends LifelineEditPart {
 				if (type instanceof StructuredClassifier) {
 					StructuredClassifier structuredClassifier = (StructuredClassifier) type;
 					if (!structuredClassifier.getAllAttributes().isEmpty()) {
-						return new ArrayList<Property>(((StructuredClassifier) type).getAllAttributes());
+						return new ArrayList<>(((StructuredClassifier) type).getAllAttributes());
 					}
 				}
 			}

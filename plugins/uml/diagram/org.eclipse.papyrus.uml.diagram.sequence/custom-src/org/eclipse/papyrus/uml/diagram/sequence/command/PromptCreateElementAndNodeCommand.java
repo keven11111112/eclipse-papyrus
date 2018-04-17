@@ -22,10 +22,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.C
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.swt.widgets.Control;
@@ -35,7 +31,7 @@ import org.eclipse.uml2.uml.InteractionFragment;
 
 public class PromptCreateElementAndNodeCommand extends CreateOrSelectElementCommand {
 
-	private static final List<IElementType> executionTypes = new ArrayList<IElementType>();
+	private static final List<IElementType> executionTypes = new ArrayList<>();
 	static {
 		executionTypes.add(UMLElementTypes.ActionExecutionSpecification_Shape);
 		executionTypes.add(UMLElementTypes.BehaviorExecutionSpecification_Shape);

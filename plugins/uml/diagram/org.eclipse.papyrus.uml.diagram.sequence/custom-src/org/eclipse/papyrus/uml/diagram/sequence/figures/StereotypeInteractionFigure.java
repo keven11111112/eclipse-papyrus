@@ -13,24 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
-import org.eclipse.draw2d.BorderLayout;
-import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RectangleFigure;
-import org.eclipse.draw2d.ToolbarLayout;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
-import org.eclipse.papyrus.uml.diagram.common.draw2d.InteractionFigure;
-import org.eclipse.papyrus.uml.diagram.common.draw2d.LeftToolbarLayout;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.InteractionRectangleFigure;
-import org.eclipse.swt.graphics.Font;
 
 
 /**

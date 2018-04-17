@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,12 +8,10 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
-
-import java.io.ObjectInputStream.GetField;
 
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.emf.common.notify.Notification;
@@ -53,7 +51,7 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangle
 		if( getHost().getParent() instanceof CombinedFragmentCombinedFragmentCompartmentEditPart){
 			if(getHost().getParent().getParent() instanceof CombinedFragmentEditPart){
 				combinedFragmentEditPart = (CombinedFragmentEditPart)getHost().getParent().getParent();
-				getDiagramEventBroker().addNotificationListener(combinedFragmentEditPart.getNotationView(), this);	
+				getDiagramEventBroker().addNotificationListener(combinedFragmentEditPart.getNotationView(), this);
 			}
 		}
 		super.activate();
@@ -88,8 +86,8 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangle
 		}
 	}
 
-	
-	
+
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy#updateColumFinishFromWitdhNotification(org.eclipse.draw2d.geometry.PrecisionRectangle)
 	 *
@@ -118,5 +116,5 @@ public class ConnectInteractionOperandToGridEditPolicy  extends ConnectRectangle
 			}
 		}
 	}
-	
+
 }

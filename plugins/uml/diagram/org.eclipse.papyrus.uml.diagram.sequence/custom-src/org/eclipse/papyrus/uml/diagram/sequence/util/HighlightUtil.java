@@ -40,7 +40,7 @@ public class HighlightUtil {
 		}
 	}
 
-	private static Map<Object, FigureState> figureState = new HashMap<Object, FigureState>();
+	private static Map<Object, FigureState> figureState = new HashMap<>();
 
 	/**
 	 * Make a private instance, avoid highlight above highlight.
@@ -67,7 +67,7 @@ public class HighlightUtil {
 	}
 
 	private static List<IFigure> getHighlightFigures(EditPart host) {
-		List<IFigure> figures = new ArrayList<IFigure>();
+		List<IFigure> figures = new ArrayList<>();
 		if (host instanceof LifelineEditPart) {
 			LifelineEditPart part = (LifelineEditPart) host;
 			//figures.add(part.getPrimaryShape().getFigureLifelineNameContainerFigure());

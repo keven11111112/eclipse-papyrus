@@ -38,7 +38,7 @@ public class CustomMessageNameEditPart extends MessageSyncNameEditPart implement
 	public CustomMessageNameEditPart(View view) {
 		super(view);
 	}
-	
+
 	@Override
 	public int getDirectEditionType() {
 		return IDirectEdition.DEFAULT_DIRECT_EDITOR;

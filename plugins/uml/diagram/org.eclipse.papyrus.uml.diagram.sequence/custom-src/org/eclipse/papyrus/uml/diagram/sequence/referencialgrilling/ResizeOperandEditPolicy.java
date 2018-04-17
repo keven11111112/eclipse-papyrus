@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -94,14 +94,15 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy implements Auto
 
 	/**
 	 * Factors incoming requests into various specific methods.
-	 * 
+	 *
 	 * @see org.eclipse.gef.EditPolicy#getCommand(Request)
 	 */
+	@Override
 	public Command getCommand(Request request) {
 		if (request instanceof CreateViewAndElementRequest) {
 			CreateViewAndElementRequest req = (CreateViewAndElementRequest) request;
 			ViewAndElementDescriptor descriptor = (req).getViewAndElementDescriptor();
-			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
+			IElementType elementType = descriptor.getElementAdapter().getAdapter(IElementType.class);
 			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.INTERACTION_OPERAND_SHAPE)) {
 				Node combinedFragmentNode = (Node) ((GraphicalEditPart) (getHost().getParent())).getNotationView();
 				// we add a new Operand so we add the default height
@@ -109,7 +110,7 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy implements Auto
 				if (getHost().getChildren().size() > 0) {
 					int newHeight = height + CInteractionOperandEditPart.DEFAULT_HEIGHT;
 
-					return new ICommandProxy(new SetResizeCommand(getEditingDomain(), "set dimension", new EObjectAdapter(combinedFragmentNode), new Dimension(BoundForEditPart.getWidthFromView(combinedFragmentNode), (int) newHeight)));
+					return new ICommandProxy(new SetResizeCommand(getEditingDomain(), "set dimension", new EObjectAdapter(combinedFragmentNode), new Dimension(BoundForEditPart.getWidthFromView(combinedFragmentNode), newHeight)));
 				}
 			}
 		}
@@ -157,7 +158,7 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy implements Auto
 					for (int i = 1; i < getHost().getChildren().size(); i++) {
 						GraphicalEditPart graphicalEditPart = (GraphicalEditPart) getHost().getChildren().get(i);
 						int y = ((Bounds) ((Node) graphicalEditPart.getNotationView()).getLayoutConstraint()).getY() - changeBoundsRequest.getMoveDelta().y;
-						compositeCommand.add(new SetLocationCommand(editingDomain, "Resize Operands", new EObjectAdapter(((Node) graphicalEditPart.getNotationView())), new Point(0, y)));
+						compositeCommand.add(new SetLocationCommand(editingDomain, "Resize Operands", new EObjectAdapter((graphicalEditPart.getNotationView())), new Point(0, y)));
 					}
 
 				} else {
@@ -190,7 +191,7 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy implements Auto
 	}
 
 	/**
-	 * 
+	 *
 	 * @param operandEditPart
 	 * @return true if this the last children of the compartment.
 	 */
@@ -202,7 +203,7 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy implements Auto
 	}
 
 	/**
-	 * 
+	 *
 	 * @param operandEditPart
 	 * @return true if this the first children of the compartment.
 	 */
@@ -214,7 +215,7 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy implements Auto
 
 	/**
 	 * get the next view at the same level at the current editPart
-	 * 
+	 *
 	 * @param operandEditPart
 	 * @return can return null if this the last;
 	 */
@@ -230,7 +231,7 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy implements Auto
 
 	/**
 	 * get the previous view at the same level at the current editPart
-	 * 
+	 *
 	 * @param operandEditPart
 	 * @return can return null if this the last;
 	 */
@@ -245,7 +246,7 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy implements Auto
 
 	/**
 	 * the border effect is to resize the combined fragment
-	 * 
+	 *
 	 * @param changeBoundsRequest
 	 * @return a command to to resize the combinedfragment
 	 */
@@ -255,14 +256,14 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy implements Auto
 		int combinedFragmentHeight = BoundForEditPart.getHeightFromView(combinedFragmentNode);
 		int newHeight = getComputedCombinedFragmentHeight() + changeBoundsRequest.getSizeDelta().height;
 		if (newHeight != combinedFragmentHeight) {
-			return new SetResizeCommand(editingDomain, "Resize Operands", new EObjectAdapter(combinedFragmentNode), new Dimension(BoundForEditPart.getWidthFromView(combinedFragmentNode), (int) newHeight));
+			return new SetResizeCommand(editingDomain, "Resize Operands", new EObjectAdapter(combinedFragmentNode), new Dimension(BoundForEditPart.getWidthFromView(combinedFragmentNode), newHeight));
 		}
 		return IdentityCommand.INSTANCE;
 	}
 
 	/**
 	 * the border effect is to move the combined fragment
-	 * 
+	 *
 	 * @param changeBoundsRequest
 	 * @return a command to to resize the combinedfragment
 	 */
@@ -277,7 +278,7 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy implements Auto
 		int newY = combinedFragmentBound.getY() + changeBoundsRequest.getMoveDelta().y;
 
 		if (newHeight != combinedFragmentHeight) {
-			return new SetResizeAndLocationCommand(editingDomain, "Resize Operands", new EObjectAdapter(combinedFragmentNode), new Rectangle(combinedFragmentBound.getX(), newY, BoundForEditPart.getWidthFromView(combinedFragmentNode), (int) newHeight));
+			return new SetResizeAndLocationCommand(editingDomain, "Resize Operands", new EObjectAdapter(combinedFragmentNode), new Rectangle(combinedFragmentBound.getX(), newY, BoundForEditPart.getWidthFromView(combinedFragmentNode), newHeight));
 		}
 		return IdentityCommand.INSTANCE;
 	}
@@ -295,13 +296,13 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy implements Auto
 			int newHeight = getComputedCombinedFragmentHeight();
 			int combinedFragmentHeight = BoundForEditPart.getHeightFromView(combinedFragmentNode);
 			if (newHeight != combinedFragmentHeight) {
-				execute(new SetResizeCommand(getEditingDomain(), "Resize Operands", new EObjectAdapter(combinedFragmentNode), new Dimension(BoundForEditPart.getWidthFromView(combinedFragmentNode), (int) newHeight)));
+				execute(new SetResizeCommand(getEditingDomain(), "Resize Operands", new EObjectAdapter(combinedFragmentNode), new Dimension(BoundForEditPart.getWidthFromView(combinedFragmentNode), newHeight)));
 			}
 		}
 	}
 
 	/**
-	 * 
+	 *
 	 * @return the height of the combined fragment by computing the size of interaction operand
 	 */
 	protected int getComputedCombinedFragmentHeight() {

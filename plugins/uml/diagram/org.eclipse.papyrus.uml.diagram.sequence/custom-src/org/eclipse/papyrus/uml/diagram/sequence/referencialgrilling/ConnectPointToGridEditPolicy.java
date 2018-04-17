@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,13 +8,12 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
-import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.uml2.uml.Element;
@@ -53,7 +52,7 @@ public class ConnectPointToGridEditPolicy extends ConnectRectangleToGridEditPoli
 	protected void initListeningColumnFinish(Node node, GridManagementEditPolicy grilling,  Element element, PrecisionRectangle p) throws NoGrillElementFound {
 		//the ColumnFinish is not listen
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy#initListeningRowFinish(org.eclipse.gmf.runtime.notation.Node, org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingManagementEditPolicy, org.eclipse.draw2d.geometry.PrecisionRectangle, org.eclipse.uml2.uml.Element, org.eclipse.draw2d.geometry.PrecisionRectangle)
 	 *
@@ -71,7 +70,7 @@ public class ConnectPointToGridEditPolicy extends ConnectRectangleToGridEditPoli
 
 
 
-	
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectNodeToGridEditPolicy#updateColumFinishFromWitdhNotification(org.eclipse.draw2d.geometry.PrecisionRectangle)
 	 *
@@ -90,5 +89,5 @@ public class ConnectPointToGridEditPolicy extends ConnectRectangleToGridEditPoli
 	protected void updateRowFinishFromHeightNotification(PrecisionRectangle p) {
 		//the RowFinish is not listen
 	}
-	
+
 }

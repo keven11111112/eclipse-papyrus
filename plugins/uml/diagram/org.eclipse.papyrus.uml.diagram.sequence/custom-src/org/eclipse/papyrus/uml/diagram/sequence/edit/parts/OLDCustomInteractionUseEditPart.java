@@ -45,7 +45,6 @@ import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDGateCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDGatesHolderGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionUseRectangleFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionUseUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;

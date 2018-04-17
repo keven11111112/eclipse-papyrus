@@ -40,7 +40,7 @@ public class ElkRectangle {
     /**
      * Constructs and initializes a <code>Rectangle</code> from the specified <code>double</code>
      * coordinates.
-     * 
+     *
      * @param x
      *            the x coordinate of the upper-left corner of the newly constructed
      *            <code>Rectangle</code>
@@ -61,7 +61,7 @@ public class ElkRectangle {
 
     /**
      * Constructs and initializes a <code>Rectangle</code> from the specified instance.
-     * 
+     *
      * @param rect
      *            the existing rectangle whose values to copy.
      */
@@ -75,7 +75,7 @@ public class ElkRectangle {
     /**
      * Sets the location and size of this <code>Rectangle</code> to the specified
      * <code>double</code> values.
-     * 
+     *
      * @param nx
      *            the X coordinate of the upper-left corner of this <code>Rectangle</code>
      * @param ny
@@ -98,7 +98,7 @@ public class ElkRectangle {
     public KVector getPosition() {
         return new KVector(x, y);
     }
-    
+
     /**
      * @return the top left coordinate (x,y).
      */
@@ -126,18 +126,18 @@ public class ElkRectangle {
     public KVector getBottomRight() {
         return new KVector(x + width, y + height);
     }
-    
+
     /**
      * @return the center point of a rectangle.
      */
     public KVector getCenter() {
         return new KVector(x + width / 2, y + height / 2);
     }
-    
+
     /**
      * Unions the receiver and the given <code>Rectangle</code> objects and puts the result into the
      * receiver.
-     * 
+     *
      * @param other
      *            the <code>Rectangle</code> to be combined with this instance
      */
@@ -158,10 +158,10 @@ public class ElkRectangle {
         }
         setRect(x1, y1, x2 - x1, y2 - y1);
     }
-    
+
     /**
      * Moves the rectangle by the given offset.
-     * 
+     *
      * @param offset
      *            the offset to move the rectangle by.
      */
@@ -169,7 +169,7 @@ public class ElkRectangle {
         x += offset.x;
         y += offset.y;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -190,7 +190,7 @@ public class ElkRectangle {
         return Objects.equals(x, other.x) && Objects.equals(y, other.y)
                 && Objects.equals(width, other.width) && Objects.equals(height, other.height);
     }
-    
+
     /**
      * {@inheritDoc}
      */

@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
- * 
+ *
  *         TODO : refactore me, see Bugs 493512, and 492522
  */
 public class SequenceViewDependentsAdvice extends AbstractEditHelperAdvice {
@@ -59,8 +59,8 @@ public class SequenceViewDependentsAdvice extends AbstractEditHelperAdvice {
 			if (!(value instanceof List<?>)) {
 				return null;
 			}
-			List<Edge> destroyEdges = new ArrayList<Edge>();
-			List<Element> targetObjects = new ArrayList<Element>();
+			List<Edge> destroyEdges = new ArrayList<>();
+			List<Element> targetObjects = new ArrayList<>();
 			if (element instanceof Comment && UMLPackage.Literals.COMMENT__ANNOTATED_ELEMENT == feature) {
 				targetObjects.addAll(((Comment) element).getAnnotatedElements());
 			} else if (element instanceof DurationObservation && UMLPackage.Literals.DURATION_OBSERVATION__EVENT == feature) {

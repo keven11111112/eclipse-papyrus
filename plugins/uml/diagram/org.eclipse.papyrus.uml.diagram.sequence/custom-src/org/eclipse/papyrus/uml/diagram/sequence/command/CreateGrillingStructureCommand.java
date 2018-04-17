@@ -4,18 +4,10 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
-import org.eclipse.gmf.runtime.notation.Compartment;
-import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
-import org.eclipse.gmf.runtime.notation.StringValueStyle;
-import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingEditpart;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
-import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * the goal of this command is to create a basic compartment in the notation that represent a compartment of stereotypes
@@ -25,7 +17,7 @@ public class CreateGrillingStructureCommand extends RecordingCommand {
 
 
 	/**
-	 * 
+	 *
 	 */
 	private static final int Y_SPACE = 30;
 
@@ -39,7 +31,7 @@ public class CreateGrillingStructureCommand extends RecordingCommand {
 	 *
 	 * Constructor.
 	 *
-	 * @param domain 
+	 * @param domain
 	 * @param node
 	 *            The EditPart view of the Compartment
 	 */

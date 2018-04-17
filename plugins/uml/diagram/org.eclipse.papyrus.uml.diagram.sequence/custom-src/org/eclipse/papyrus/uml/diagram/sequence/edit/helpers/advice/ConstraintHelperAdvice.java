@@ -57,7 +57,7 @@ public class ConstraintHelperAdvice extends AbstractEditHelperAdvice {
 			if (element instanceof Constraint) {
 				EStructuralFeature feature = request.getFeature();
 				final Object value = request.getValue();
-				Vector<Edge> edgesToDestroy = new Vector<Edge>();
+				Vector<Edge> edgesToDestroy = new Vector<>();
 				Element targetContextElement = null;
 				if (UMLPackage.eINSTANCE.getConstraint_Context().equals(feature)) {
 					Namespace constraintContext = ((Constraint) element).getContext();

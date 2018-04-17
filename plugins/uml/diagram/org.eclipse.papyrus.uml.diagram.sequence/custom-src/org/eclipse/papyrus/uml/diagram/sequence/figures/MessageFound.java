@@ -29,9 +29,10 @@ public class MessageFound extends MessageFigure {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure#createTargetDecoration()
 	 */
+	@Override
 	protected RotatableDecoration createSourceDecoration() {
 		EllipseDecoration df = new EllipseDecoration();
 		df.setPreferredSize(new Dimension(10, 10));
@@ -41,7 +42,7 @@ public class MessageFound extends MessageFigure {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure#createTargetDecoration()
 	 *
 	 * @return

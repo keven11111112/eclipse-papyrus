@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -43,7 +43,7 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * the goal of this editpat is to propose a set of method and action by SHIFT key button to move messages and execution spec under the current editpart
- * 
+ *
  * @since 4.0
  *
  */
@@ -98,7 +98,7 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 
 	/**
 	 * Add a command of reconnection of the given connection editpart at the location.
-	 * 
+	 *
 	 * @param hostEditpart
 	 *            the current editpart that is the origin of this impact
 	 * @param connectionEditPart
@@ -130,7 +130,7 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.IKeyPressState#setKeyPressState(java.lang.Boolean)
 	 */
 	@Override
@@ -140,7 +140,7 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 
 	/**
 	 * Move the editPart to move at this location withe the move delta
-	 * 
+	 *
 	 * @param moveDelta
 	 *            the move delta (very important)
 	 * @param compoundCommand
@@ -174,7 +174,7 @@ public abstract class UpdateWeakReferenceEditPolicy extends GraphicalEditPolicy 
 
 	/**
 	 * move the target anchor of the connection editpartPart
-	 * 
+	 *
 	 * @param hostEditPart
 	 *            the editpart that impacts the connection editpart
 	 * @param moveDelta

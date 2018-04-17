@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -23,14 +23,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 
 /**
  * The purpose of this class is to provide method to transform local coordinates to screen coordinate or absolute coordinate
- * 
+ *
  * @since 4.0
  */
 public class CoordinateReferentialUtils {
 
 	/**
 	 * this method transform a position seen on the screen referential to the position with the referential of the diagram
-	 * 
+	 *
 	 * @param locationOnScreen
 	 *            the position on the screen
 	 * @param graphicalViewer
@@ -50,7 +50,7 @@ public class CoordinateReferentialUtils {
 
 	/**
 	 * this method transform a position on the diagram to the position on the screen
-	 * 
+	 *
 	 * @param locationOnDiagram
 	 *            shall be never null
 	 * @param graphicalViewer
@@ -71,7 +71,7 @@ public class CoordinateReferentialUtils {
 
 	/**
 	 * return the relative position of the figure according the diagram
-	 * 
+	 *
 	 * @param figure
 	 *            the figure from which we want the position
 	 *            never null

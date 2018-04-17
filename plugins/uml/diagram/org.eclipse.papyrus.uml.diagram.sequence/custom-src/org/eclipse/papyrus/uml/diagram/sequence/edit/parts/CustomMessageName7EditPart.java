@@ -37,7 +37,7 @@ public class CustomMessageName7EditPart extends MessageFoundNameEditPart impleme
 	public CustomMessageName7EditPart(View view) {
 		super(view);
 	}
-	
+
 	@Override
 	public int getDirectEditionType() {
 		return IDirectEdition.DEFAULT_DIRECT_EDITOR;

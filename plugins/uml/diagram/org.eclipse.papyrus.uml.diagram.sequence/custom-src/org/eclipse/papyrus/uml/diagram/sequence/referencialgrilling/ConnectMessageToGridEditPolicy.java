@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016, 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -68,7 +68,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 
 	/**
 	 * update an axis of the grid from coordinate X or Y
-	 * 
+	 *
 	 * @param axis
 	 *            the axis to update
 	 * @param x
@@ -191,7 +191,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
 		if (diagramEditPart != null) {
 			// CREATION
-			if (notification.getNotifier().equals(((EObject) getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_SourceAnchor().equals(notification.getFeature()) && notification.getNewValue() != null) {
+			if (notification.getNotifier().equals((getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_SourceAnchor().equals(notification.getFeature()) && notification.getNewValue() != null) {
 				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT :CREATION add SourceAnchor " + notification.getNotifier());//$NON-NLS-1$
 				IdentityAnchor sourceAnchor = (IdentityAnchor) notification.getNewValue();
 				if (sourceAnchor.getId() != null && !(sourceAnchor.getId().equals(""))) {
@@ -233,7 +233,7 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 			}
 
 			// CREATION
-			if (notification.getNotifier().equals(((EObject) getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_TargetAnchor().equals(notification.getFeature()) && notification.getNewValue() != null) {
+			if (notification.getNotifier().equals((getHost().getModel())) && NotationPackage.eINSTANCE.getEdge_TargetAnchor().equals(notification.getFeature()) && notification.getNewValue() != null) {
 				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: CREATION add targetAnchor " + notification.getNotifier());//$NON-NLS-1$
 				IdentityAnchor targetAnchor = (IdentityAnchor) notification.getNewValue();
 				if (targetAnchor.getId() != null && !(targetAnchor.getId().equals(""))) {

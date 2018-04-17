@@ -126,7 +126,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 		 * 2. we are in other cases:
 		 * 2.1: it is a comment link or a constraint link or a context link -> seems works fine removing this code
 		 * 2.2: it is a General Ordering, probably not supported
-		 * 
+		 *
 		 * TODO : this code and more in this class should probably be deleted
 		 */
 		if (org.eclipse.gef.RequestConstants.REQ_CONNECTION_START.equals(request.getType())) {
@@ -206,12 +206,12 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 	 */
 	@Override
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
-		ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+		ReconnectRequest reconnectRequest = request;
 		ConnectionEditPart linkEditPart = reconnectRequest.getConnectionEditPart();
 		if (linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
 			SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
 			for (Iterator<EditPart> iterator = references.getStrongReferences().keySet().iterator(); iterator.hasNext();) {
-				EditPart editPart = (EditPart) iterator.next();
+				EditPart editPart = iterator.next();
 				if (editPart.equals(getHost())) {
 					reconnectRequest.setTargetEditPart(getHost().getParent());
 					return getHost().getParent().getCommand(reconnectRequest);
@@ -241,12 +241,12 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 	 */
 	@Override
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
-		ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+		ReconnectRequest reconnectRequest = request;
 		ConnectionEditPart linkEditPart = reconnectRequest.getConnectionEditPart();
 		if (linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
 			SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
 			for (Iterator<EditPart> iterator = references.getStrongReferences().keySet().iterator(); iterator.hasNext();) {
-				EditPart editPart = (EditPart) iterator.next();
+				EditPart editPart = iterator.next();
 				if (editPart.equals(getHost())) {
 					reconnectRequest.setTargetEditPart(getHost().getParent());
 					return getHost().getParent().getCommand(reconnectRequest);
@@ -355,7 +355,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 				if (source instanceof CombinedFragment || source instanceof Interaction || source instanceof InteractionUse) {
 					CompoundCommand cc = new CompoundCommand("Redirect to Gate");
 					Point location = null;
-					IGraphicalEditPart adapter = (IGraphicalEditPart) sourceEP.getAdapter(IGraphicalEditPart.class);
+					IGraphicalEditPart adapter = sourceEP.getAdapter(IGraphicalEditPart.class);
 					if (adapter != null) {
 						Point sourceLocation = request.getLocation();
 						Object object = request.getExtendedData().get(SequenceRequestConstant.SOURCE_LOCATION_DATA);
@@ -372,7 +372,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 							@Override
 							public Object getAdapter(Class adapter) {
 								if (Gate.class == adapter) {
-									Message message = (Message) elementAdapter.getAdapter(Message.class);
+									Message message = elementAdapter.getAdapter(Message.class);
 									MessageEnd sendEvent = message.getSendEvent();
 									if (sendEvent instanceof Gate) {
 										return sendEvent;

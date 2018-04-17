@@ -35,6 +35,7 @@ public class CustomNamespaceEditPolicyProvider extends AbstractProvider implemen
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean provides(IOperation operation) {
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
 		EditPart editPart = epOperation.getEditPart();
@@ -61,6 +62,7 @@ public class CustomNamespaceEditPolicyProvider extends AbstractProvider implemen
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void createEditPolicies(EditPart editPart) {
 	}
 }

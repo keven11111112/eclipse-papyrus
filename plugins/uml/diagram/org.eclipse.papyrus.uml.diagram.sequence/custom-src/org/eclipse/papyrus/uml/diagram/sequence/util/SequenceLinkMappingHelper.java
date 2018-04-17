@@ -74,7 +74,7 @@ public class SequenceLinkMappingHelper implements ILinkMappingHelper {
 					if (messageEnd instanceof MessageOccurrenceSpecification) {
 						return ((MessageOccurrenceSpecification) messageEnd).getCovereds();
 					} else if (messageEnd instanceof Gate) {
-						ArrayList<Element> sources = new ArrayList<Element>();
+						ArrayList<Element> sources = new ArrayList<>();
 						sources.add((messageEnd)/* .getOwner() */);// The gate view is available now.
 						return sources;
 					}
@@ -109,7 +109,7 @@ public class SequenceLinkMappingHelper implements ILinkMappingHelper {
 					if (messageEnd instanceof MessageOccurrenceSpecification) {
 						return ((MessageOccurrenceSpecification) messageEnd).getCovereds();
 					} else if (messageEnd instanceof Gate) {
-						ArrayList<Element> sources = new ArrayList<Element>();
+						ArrayList<Element> sources = new ArrayList<>();
 						sources.add((messageEnd)/* .getOwner() */);// The gate view is available now.
 						return sources;
 					}

@@ -69,7 +69,7 @@ public class TimeMarkElementFigure extends SequencePolylineShape {
 						TransactionalEditingDomain dom = ((IGraphicalEditPart) host).getEditingDomain();
 						org.eclipse.emf.common.command.Command setCmd = SetCommand.create(dom, constraint, NotationPackage.eINSTANCE.getLocation_X(), mirroredLocation);
 						TransactionalCommandStack stack = (TransactionalCommandStack) dom.getCommandStack();
-						Map<String, Boolean> options = new HashMap<String, Boolean>();
+						Map<String, Boolean> options = new HashMap<>();
 						options.put(Transaction.OPTION_NO_NOTIFICATIONS, true);
 						options.put(Transaction.OPTION_NO_UNDO, true);
 						options.put(Transaction.OPTION_UNPROTECTED, true);

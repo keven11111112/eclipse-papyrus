@@ -105,7 +105,7 @@ public class InteractionEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public Command getCommand(Request _request) {
-		
+
 		return super.getCommand(_request);
 	}
 

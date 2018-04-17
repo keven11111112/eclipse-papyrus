@@ -42,7 +42,7 @@ public class CustomMessageName6EditPart extends MessageLostNameEditPart implemen
 	public int getDirectEditionType() {
 		return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 	}
-	
+
 	@Override
 	protected void refreshLabel() {
 		EditPolicy maskLabelPolicy = getParent().getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);

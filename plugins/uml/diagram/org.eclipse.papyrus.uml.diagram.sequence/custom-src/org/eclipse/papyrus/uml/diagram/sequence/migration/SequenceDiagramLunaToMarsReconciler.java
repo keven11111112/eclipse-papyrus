@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.Lifeline;
 
 /**
  * This class has been created to fix the bugs 490251 and 493874.
- * 
+ *
  * The size of the lifeline was saved in Luna, but ignored in Eclipse Mars, so the following problem appears:
  * <ul>
  * <li>the width of the lifeline name edit part changed, so:</li>
@@ -49,7 +49,7 @@ import org.eclipse.uml2.uml.Lifeline;
  * just under the name of the lifeline. + recalculate the anchors location with this new size.
  * </li>
  * </ul>
- * 
+ *
  * The solutions:
  * <ul>
  * <li>bad solution: To fix the bug we tried to determine the futur height of the lifeline, to reset them to the good location in order to keep alignment between Lifeline and {@link ActionExecutionSpecification} and {@link BehaviorExecutionSpecification},
@@ -105,7 +105,7 @@ public class SequenceDiagramLunaToMarsReconciler extends DiagramReconciler {
 
 	/**
 	 * Eclipse Mars forces changes on the Lifeline width (ignoring saved values), excepted adding a specific EAnnoation to the Lifeline shapes
-	 * 
+	 *
 	 * @param diagram
 	 *            the diagram to update
 	 */
@@ -136,9 +136,9 @@ public class SequenceDiagramLunaToMarsReconciler extends DiagramReconciler {
 			}
 		}
 	}
-	
+
 //the first version of the reconcilier -> not the good result, but I prefer save it before to be fully sure of the current version is the good one
-	
+
 //	/**
 //	 * the default width for the lifeline in Mars, always used excepted when it was bigger in Luna
 //	 */
@@ -155,8 +155,8 @@ public class SequenceDiagramLunaToMarsReconciler extends DiagramReconciler {
 //	 */
 //	protected static final int DEFAULT_HEIGHT = -1;
 //
-//	
-//	
+//
+//
 //	/**
 //	 * @see org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler#getReconcileCommand(org.eclipse.gmf.runtime.notation.Diagram)
 //	 */
@@ -232,7 +232,7 @@ public class SequenceDiagramLunaToMarsReconciler extends DiagramReconciler {
 //	}
 //
 //	/**
-//	 * 
+//	 *
 //	 * @param diagram
 //	 *            the sequence diagram
 //	 * @param newLifelineHeight
@@ -257,7 +257,7 @@ public class SequenceDiagramLunaToMarsReconciler extends DiagramReconciler {
 //
 //	/**
 //	 * Set the new percentage to the anchors
-//	 * 
+//	 *
 //	 * @param edge
 //	 *            an edge
 //	 * @param lifelineHeigthInMars
@@ -276,7 +276,7 @@ public class SequenceDiagramLunaToMarsReconciler extends DiagramReconciler {
 //	}
 //
 //	/**
-//	 * 
+//	 *
 //	 * @param anchor
 //	 *            the anchor to update
 //	 * @param lifelineView
@@ -302,7 +302,7 @@ public class SequenceDiagramLunaToMarsReconciler extends DiagramReconciler {
 //	/**
 //	 * Eclipse Mars forces changes on the Lifeline width (ignoring saved values), so, we need to change the Lifeline position in order to keep alignment of Action Execution Specification
 //	 * and Behavior Exceution Specification aligned with it
-//	 * 
+//	 *
 //	 * @param diagram
 //	 *            the diagram to update
 //	 */
@@ -361,7 +361,7 @@ public class SequenceDiagramLunaToMarsReconciler extends DiagramReconciler {
 //
 //	/**
 //	 * Get The new corrected position.
-//	 * 
+//	 *
 //	 * @param lifelineHeightInMars
 //	 */
 //	private String getNewAnchorPosition(IdentityAnchor anchor, int lunaHeight, int lifelineHeightInMars) {

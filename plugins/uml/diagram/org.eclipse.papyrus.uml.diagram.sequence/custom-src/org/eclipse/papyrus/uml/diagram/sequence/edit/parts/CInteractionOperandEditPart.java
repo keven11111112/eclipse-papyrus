@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -17,7 +17,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartListener;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
@@ -28,7 +27,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
 
 /**
- * This class has been modified 
+ * This class has been modified
  * because the container is used to manipulate as a list
  * the refresh has been modified to take the size of the operand.
  *
@@ -91,6 +90,7 @@ public class CInteractionOperandEditPart extends InteractionOperandEditPart {
 	 * @param editPart
 	 * @return
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
@@ -103,6 +103,7 @@ public class CInteractionOperandEditPart extends InteractionOperandEditPart {
 	 * because the container is used to manipulate as a list
 	 * the refresh has been modified to take the size of the operand.
 	 */
+	@Override
 	protected void refreshBounds() {
 		int width = BoundForEditPart.getWidthFromView((Node)getNotationView());
 		int height = BoundForEditPart.getHeightFromView((Node)getNotationView());

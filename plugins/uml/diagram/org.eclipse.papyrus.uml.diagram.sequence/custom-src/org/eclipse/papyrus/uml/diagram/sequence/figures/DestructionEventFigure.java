@@ -31,7 +31,7 @@ public class DestructionEventFigure extends org.eclipse.draw2d.Figure {
 		super();
 	}
 	/**
-	 * @return a <code>Dimension</code> that represents the minimum or default size of 
+	 * @return a <code>Dimension</code> that represents the minimum or default size of
 	 * this figure.
 	 * @since 3.0
 	 */

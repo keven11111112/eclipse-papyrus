@@ -44,12 +44,12 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.RestoreExecutionEndAdvice;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OLDLifelineXYLayoutEditPolicy;
@@ -103,7 +103,7 @@ public class SequenceDeleteHelper {
 						DestroyElementRequest myReq = new DestroyElementRequest(editingDomain, dos.getMessage(), false);
 						deleteViewsCmd.add(new ICommandProxy(new DestroyElementCommand(myReq)));
 					}
-					deleteViewsCmd.add(((OLDLifelineEditPart)lifelinePart).getAlignLifelineBottomToParentCommand(null, true));					
+					deleteViewsCmd.add(((OLDLifelineEditPart)lifelinePart).getAlignLifelineBottomToParentCommand(null, true));
 				}
 			}
 		}
@@ -288,7 +288,7 @@ public class SequenceDeleteHelper {
 		deleteElementsCommand.add(new ICommandProxy(new DestroyElementCommand(delEnd)));
 		destroyMessageEvents(deleteElementsCommand, host, req.getEditingDomain());
 		if (host.getParent() instanceof LifelineEditPart) {
-			List<OccurrenceSpecification> oss = new ArrayList<OccurrenceSpecification>();
+			List<OccurrenceSpecification> oss = new ArrayList<>();
 			oss.add(es.getStart());
 			oss.add(es.getFinish());
 			SequenceDeleteHelper.addDeleteRelatedTimeObservationLinkCommand(deleteElementsCommand, req.getEditingDomain(), (LifelineEditPart) host.getParent(), oss, true);
@@ -304,7 +304,7 @@ public class SequenceDeleteHelper {
 	static void destroyMessageEvents(CompoundCommand deleteElementsCommand, List<?> list, TransactionalEditingDomain transactionalEditingDomain) {
 		for (Object o : list) {
 			if (o instanceof ConnectionEditPart) {
-				ConnectionEditPart connectionEP = (ConnectionEditPart) o; 
+				ConnectionEditPart connectionEP = (ConnectionEditPart) o;
 				EObject model = ((ConnectionEditPart) o).resolveSemanticElement();
 				if (model instanceof Message) {
 					Message message = (Message) model;
@@ -377,7 +377,7 @@ public class SequenceDeleteHelper {
 	 * @param deleteRelatedEvent
 	 */
 	private static void addDeleteRelatedTimeObservationLinkCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, OccurrenceSpecification os, LifelineEditPart srcLifelinePart, boolean deleteRelatedEvent) {
-		List<OccurrenceSpecification> oss = new ArrayList<OccurrenceSpecification>();
+		List<OccurrenceSpecification> oss = new ArrayList<>();
 		oss.add(os);
 		addDeleteRelatedTimeObservationLinkCommand(deleteViewsCmd, editingDomain, srcLifelinePart, oss, deleteRelatedEvent);
 	}

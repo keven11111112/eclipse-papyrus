@@ -154,7 +154,7 @@ public class OLDGatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalN
 
 	private boolean isReconnectMessage(ReconnectRequest request) {
 		ConnectionEditPart conn = request.getConnectionEditPart();
-		IGraphicalEditPart adapter = (IGraphicalEditPart) conn.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart adapter = conn.getAdapter(IGraphicalEditPart.class);
 		return adapter != null && adapter.resolveSemanticElement() instanceof Message;
 	}
 
@@ -341,7 +341,7 @@ public class OLDGatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalN
 				if (typeInfoAdapter == null) {
 					return false;
 				}
-				final IElementType typeInfo = (IElementType) typeInfoAdapter.getAdapter(IElementType.class);
+				final IElementType typeInfo = typeInfoAdapter.getAdapter(IElementType.class);
 				if (typeInfo != null) {
 					if (((CreateUnspecifiedTypeConnectionRequest) request).getRequestForType(typeInfo) == null) {
 						return false;
@@ -363,7 +363,7 @@ public class OLDGatesHolderGraphicalNodeEditPolicy extends OLDSequenceGraphicalN
 				return CommandResult.newErrorCommandResult(getLabel());
 			}
 			if (typeInfoAdapter != null) {
-				IElementType typeInfo = (IElementType) typeInfoAdapter.getAdapter(IElementType.class);
+				IElementType typeInfo = typeInfoAdapter.getAdapter(IElementType.class);
 				if (typeInfo == null) {
 					return CommandResult.newErrorCommandResult(getLabel());
 				}

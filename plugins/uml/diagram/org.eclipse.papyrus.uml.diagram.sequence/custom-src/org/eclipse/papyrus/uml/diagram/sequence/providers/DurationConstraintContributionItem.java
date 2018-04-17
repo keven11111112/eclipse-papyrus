@@ -156,7 +156,7 @@ public class DurationConstraintContributionItem extends ContributionItem impleme
 	 *         service was found.
 	 */
 	protected ISelectionService getSelectionService() {
-		ISelectionService selectionService = (ISelectionService) serviceLocator.getService(ISelectionService.class);
+		ISelectionService selectionService = serviceLocator.getService(ISelectionService.class);
 		return selectionService;
 	}
 

@@ -290,7 +290,7 @@ public class OLDCustomCombinedFragmentEditPart extends CombinedFragmentEditPart 
 	}
 
 	public List<OLDCustomInteractionOperandEditPart> getOperandChildrenEditParts() {
-		List<OLDCustomInteractionOperandEditPart> children = new LinkedList<OLDCustomInteractionOperandEditPart>();
+		List<OLDCustomInteractionOperandEditPart> children = new LinkedList<>();
 		IGraphicalEditPart compartment = getChildBySemanticHint(String.valueOf(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID));
 		if (compartment instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 			for (Object ep : compartment.getChildren()) {
@@ -372,13 +372,13 @@ public class OLDCustomCombinedFragmentEditPart extends CombinedFragmentEditPart 
 					EList<Lifeline> operandCoveredLifelines = operand.getCovereds();
 					if (!operandCoveredLifelines.equals(combinedFragmentCoveredLifelines)) {
 						// Add new covered lifelines (not already covered)
-						List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>(combinedFragmentCoveredLifelines);
+						List<Lifeline> coveredLifelinesToAdd = new ArrayList<>(combinedFragmentCoveredLifelines);
 						coveredLifelinesToAdd.removeAll(operandCoveredLifelines);
 						if (!coveredLifelinesToAdd.isEmpty()) {
 							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd), true);
 						}
 						// Delete old covered lifelines (not covered anymore)
-						List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>(operandCoveredLifelines);
+						List<Lifeline> coveredLifelinesToRemove = new ArrayList<>(operandCoveredLifelines);
 						coveredLifelinesToRemove.removeAll(combinedFragmentCoveredLifelines);
 						if (!coveredLifelinesToRemove.isEmpty()) {
 							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove), true);
@@ -745,7 +745,7 @@ public class OLDCustomCombinedFragmentEditPart extends CombinedFragmentEditPart 
 
 		@Override
 		public List getSemanticElementsBeingParsed(EObject element) {
-			List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+			List<Element> semanticElementsBeingParsed = new ArrayList<>();
 			if (element instanceof CombinedFragment) {
 				CombinedFragment cf = (CombinedFragment) element;
 				semanticElementsBeingParsed.add(cf);
@@ -782,12 +782,12 @@ public class OLDCustomCombinedFragmentEditPart extends CombinedFragmentEditPart 
 
 		@Override
 		public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
-			EObject element = (EObject) adapter.getAdapter(EObject.class);
+			EObject element = adapter.getAdapter(EObject.class);
 			TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
 			if (editingDomain == null || !(element instanceof CombinedFragment)) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			
+
 			ICommand command = null;
 			if (InternationalizationPreferencesUtils.getInternationalizationPreference(element) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML((NamedElement) element)) {
 				final ModelSet modelSet = (ModelSet) element.eResource().getResourceSet();

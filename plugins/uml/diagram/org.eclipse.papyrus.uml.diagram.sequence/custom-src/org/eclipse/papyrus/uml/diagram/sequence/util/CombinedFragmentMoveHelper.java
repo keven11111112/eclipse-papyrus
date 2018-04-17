@@ -31,12 +31,12 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomInteractionOperandEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;
 
 public class CombinedFragmentMoveHelper {
@@ -102,7 +102,7 @@ public class CombinedFragmentMoveHelper {
 	 *
 	 */
 	public static void adjustNewParentOperands(CompoundCommand cc, Rectangle newParentNewRect, Rectangle newParentOldRect, EditPart hostEP) {
-		Set<Object> alreadyMovedBlocks = new HashSet<Object>();
+		Set<Object> alreadyMovedBlocks = new HashSet<>();
 		OLDCustomCombinedFragmentEditPart hostCFEP = (OLDCustomCombinedFragmentEditPart) hostEP.getParent();
 		List<OLDCustomInteractionOperandEditPart> operands = hostCFEP.getOperandChildrenEditParts();
 		int moveUpperYOffset = newParentNewRect.y - newParentOldRect.y;
@@ -179,7 +179,7 @@ public class CombinedFragmentMoveHelper {
 
 		// CFs children moveDelta need special processing (no need to translate coords)
 		Point childrenMoveDelta = moveDelta.getCopy();
-		HashMap<String, Object> extData = new HashMap<String, Object>();
+		HashMap<String, Object> extData = new HashMap<>();
 		forceLocationRequest.setExtendedData(extData);
 		extData.put(InteractionCompartmentXYLayoutEditPolicy.CHILDREN_MOVEDELTA, childrenMoveDelta);
 

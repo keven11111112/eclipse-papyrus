@@ -33,8 +33,8 @@ public class LifelineModelChildrenHelper {
 	}
 
 	private static List<View> sortChildren(List<View> children) {
-		List<View> result = new ArrayList<View>();
-		List<View> original = new ArrayList<View>(children);
+		List<View> result = new ArrayList<>();
+		List<View> original = new ArrayList<>(children);
 		for (Iterator<View> iterator = original.iterator(); iterator.hasNext();) {
 			View view = iterator.next();
 			EObject elt = ViewUtil.resolveSemanticElement(view);
@@ -51,8 +51,8 @@ public class LifelineModelChildrenHelper {
 		if (executionSpecifications.isEmpty()) {
 			return executionSpecifications;
 		}
-		List<View> views = new ArrayList<View>(executionSpecifications);
-		List<View> result = new ArrayList<View>(executionSpecifications.size());
+		List<View> views = new ArrayList<>(executionSpecifications);
+		List<View> result = new ArrayList<>(executionSpecifications.size());
 		int minX = -1;
 		for (View view : views) {
 			Rectangle rect = getViewBounds(view);
@@ -60,7 +60,7 @@ public class LifelineModelChildrenHelper {
 				minX = rect.x;
 			}
 		}
-		List<View> firstLevelViews = new ArrayList<View>();
+		List<View> firstLevelViews = new ArrayList<>();
 		for (View view : views) {
 			Rectangle rect = getViewBounds(view);
 			if (rect.x >= minX - 2 && rect.x <= minX + 2) {
@@ -69,9 +69,9 @@ public class LifelineModelChildrenHelper {
 		}
 		List<View> insertViews = doSortVertically(firstLevelViews);
 		for (View view : insertViews) {
-			doInsert(view, result, views, new ArrayList<View>(insertViews));
+			doInsert(view, result, views, new ArrayList<>(insertViews));
 		}
-		List<View> remains = new ArrayList<View>();
+		List<View> remains = new ArrayList<>();
 		for (View view : views) {
 			if (!result.contains(view)) {
 				remains.add(view);
@@ -79,7 +79,7 @@ public class LifelineModelChildrenHelper {
 		}
 		insertViews = doSortVertically(remains);
 		for (View view : remains) {
-			doInsert(view, result, views, new ArrayList<View>(insertViews));
+			doInsert(view, result, views, new ArrayList<>(insertViews));
 		}
 		return result;
 	}
@@ -91,7 +91,7 @@ public class LifelineModelChildrenHelper {
 			result.add(view);
 		}
 		ignoreViews.add(view);
-		List<View> newLevelViews = new ArrayList<View>();
+		List<View> newLevelViews = new ArrayList<>();
 		for (View v : allViews) {
 			if (ignoreViews.contains(v)) {
 				continue;
@@ -110,7 +110,7 @@ public class LifelineModelChildrenHelper {
 	}
 
 	private static List<View> doSortVertically(List<View> views) {
-		List<View> insertViews = new ArrayList<View>();
+		List<View> insertViews = new ArrayList<>();
 		for (int i = 0; i < views.size(); i++) {
 			View current = views.get(i);
 			Rectangle r1 = getViewBounds(current);

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -43,7 +43,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 
 /**
  * Edit policy to restore target lifeline line position after a deletion of a {@link MessageCreate}.
- * 
+ *
  * @author Mickaël ADAM
  */
 public class LifeLineRestorePositionEditPolicy extends SemanticEditPolicy implements NodeListener {
@@ -53,9 +53,10 @@ public class LifeLineRestorePositionEditPolicy extends SemanticEditPolicy implem
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#activate()
 	 */
+	@Override
 	public void activate() {
 		// add listener on life line edit part
 		EditPart host = getHost();
@@ -66,7 +67,7 @@ public class LifeLineRestorePositionEditPolicy extends SemanticEditPolicy implem
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#deactivate()
 	 */
 	@Override
@@ -80,11 +81,11 @@ public class LifeLineRestorePositionEditPolicy extends SemanticEditPolicy implem
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * <p>
 	 * Overridden to add the request parameters to inform if the event of the target is the first on the lifeline.
 	 * </p>
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy#getSemanticCommand(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
 	 */
 	@Override
@@ -95,9 +96,9 @@ public class LifeLineRestorePositionEditPolicy extends SemanticEditPolicy implem
 
 	/**
 	 * If the removed connection is a MessageCreate, then we restore life line position.
-	 * 
+	 *
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.NodeListener#removingTargetConnection(org.eclipse.gef.ConnectionEditPart, int)
 	 */
 	@Override
@@ -156,7 +157,7 @@ public class LifeLineRestorePositionEditPolicy extends SemanticEditPolicy implem
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.NodeListener#removingSourceConnection(org.eclipse.gef.ConnectionEditPart, int)
 	 */
 	@Override
@@ -166,7 +167,7 @@ public class LifeLineRestorePositionEditPolicy extends SemanticEditPolicy implem
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.NodeListener#sourceConnectionAdded(org.eclipse.gef.ConnectionEditPart, int)
 	 */
 	@Override
@@ -176,7 +177,7 @@ public class LifeLineRestorePositionEditPolicy extends SemanticEditPolicy implem
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.NodeListener#targetConnectionAdded(org.eclipse.gef.ConnectionEditPart, int)
 	 */
 	@Override

@@ -49,8 +49,8 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.LifelineDotLineFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CustomZOrderCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintEditPart;
@@ -68,9 +68,10 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
  * The custom LayoutEditPolicy for LifelineEditPart.
- * 
+ *
  * @deprecated will be removed in Oxygen
  */
+@Deprecated
 public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	/** Initialization width of Execution Specification. */
@@ -671,7 +672,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 						newBounds.height += unZoomedSizeDelta.height;
 					}
 					// Not to check list
-					List<ShapeNodeEditPart> notToCheckExecutionSpecificationList = new BasicEList<ShapeNodeEditPart>();
+					List<ShapeNodeEditPart> notToCheckExecutionSpecificationList = new BasicEList<>();
 					// Affixed ExecutionSpecification List
 					notToCheckExecutionSpecificationList.addAll(getAffixedExecutionSpecificationEditParts(executionSpecificationEP));
 					// Add also current ExecutionSpecification EditPart
@@ -918,7 +919,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *         ExecutionSpecification, then an empty list will be returned
 	 */
 	public final static List<ShapeNodeEditPart> getAffixedExecutionSpecificationEditParts(ShapeNodeEditPart executionSpecificationEP) {
-		List<ShapeNodeEditPart> notToCheckExecutionSpecificationList = new ArrayList<ShapeNodeEditPart>();
+		List<ShapeNodeEditPart> notToCheckExecutionSpecificationList = new ArrayList<>();
 		return getAffixedExecutionSpecificationEditParts(executionSpecificationEP, notToCheckExecutionSpecificationList);
 	}
 
@@ -937,7 +938,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 */
 	protected final static List<ShapeNodeEditPart> getAffixedExecutionSpecificationEditParts(ShapeNodeEditPart executionSpecificationEP, List<ShapeNodeEditPart> notToCheckExecutionSpecificationList) {
 		// Add itself to the notToCheck list
-		List<ShapeNodeEditPart> newNotToCheckExecutionSpecificationList = new ArrayList<ShapeNodeEditPart>(notToCheckExecutionSpecificationList);
+		List<ShapeNodeEditPart> newNotToCheckExecutionSpecificationList = new ArrayList<>(notToCheckExecutionSpecificationList);
 		newNotToCheckExecutionSpecificationList.add(executionSpecificationEP);
 		// LifelineEditPart where the ExecutionSpecification EditPart is contained
 		LifelineEditPart lifelineEP = (LifelineEditPart) executionSpecificationEP.getParent();
@@ -945,7 +946,7 @@ public class OLDLifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		List<ShapeNodeEditPart> executionSpecificationList = LifelineEditPartUtil.getChildShapeNodeEditPart(lifelineEP);
 		executionSpecificationList.removeAll(newNotToCheckExecutionSpecificationList);
 		// List to store the Affixed ExecutionSpecification
-		List<ShapeNodeEditPart> affixedExecutionSpecificationList = new ArrayList<ShapeNodeEditPart>();
+		List<ShapeNodeEditPart> affixedExecutionSpecificationList = new ArrayList<>();
 		// Loop ExecutionSpecificationough the ExecutionSpecification list
 		for (ShapeNodeEditPart childExecutionSpecificationEP : executionSpecificationList) {
 			if (isAffixedToRight(executionSpecificationEP.getFigure().getBounds(), childExecutionSpecificationEP.getFigure().getBounds())) {

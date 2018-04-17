@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016, 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -83,15 +83,15 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 *            the threshold to set
 	 */
 	public void setThreshold(int threshold) {
-		this.threshold = threshold;
+		GridManagementEditPolicy.threshold = threshold;
 	}
 
 	public int margin = 50;
 	public boolean respectMargin = true;
 	public boolean moveAllLinesAtSamePosition = false;
 
-	public ArrayList<DecorationNode> rows = new ArrayList<DecorationNode>();
-	public ArrayList<DecorationNode> columns = new ArrayList<DecorationNode>();
+	public ArrayList<DecorationNode> rows = new ArrayList<>();
+	public ArrayList<DecorationNode> columns = new ArrayList<>();
 
 	// ok if the creation a X is free
 	public boolean CREATION_X_FREE = true;
@@ -146,7 +146,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			LayoutConstraint layoutConstrainto1 = ((Node) o1).getLayoutConstraint();
 			LayoutConstraint layoutConstrainto2 = ((Node) o2).getLayoutConstraint();
 			if (layoutConstrainto1 != null && layoutConstrainto2 != null) {
-				return ((Integer) ((Location) layoutConstrainto1).getY()).compareTo(((Integer) ((Location) layoutConstrainto2).getY()));
+				return ((Integer) ((Location) layoutConstrainto1).getY()).compareTo((((Location) layoutConstrainto2).getY()));
 			}
 			return 0;
 		}
@@ -159,7 +159,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			LayoutConstraint layoutConstrainto1 = ((Node) o1).getLayoutConstraint();
 			LayoutConstraint layoutConstrainto2 = ((Node) o2).getLayoutConstraint();
 			if (layoutConstrainto1 != null && layoutConstrainto2 != null) {
-				return ((Integer) ((Location) layoutConstrainto1).getX()).compareTo(((Integer) ((Location) layoutConstrainto2).getX()));
+				return ((Integer) ((Location) layoutConstrainto1).getX()).compareTo((((Location) layoutConstrainto2).getX()));
 			}
 			return 0;
 		}
@@ -199,7 +199,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void refreshGrillingStructure() {
 		EditPart host = getHost();
@@ -265,7 +265,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	}
 
 	protected void updateCoveredBy() {
-		HashSet<Lifeline> lifelineList = new HashSet<Lifeline>();
+		HashSet<Lifeline> lifelineList = new HashSet<>();
 		for (DecorationNode column : columns) {
 			if ((column.getElement()) instanceof Lifeline) {
 				lifelineList.add((Lifeline) (column.getElement()));
@@ -276,7 +276,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 
 		// for each lifeline recreat the list of covered element
 		for (Lifeline lifeline : lifelineList) {
-			ArrayList<InteractionFragment> covered = new ArrayList<InteractionFragment>();
+			ArrayList<InteractionFragment> covered = new ArrayList<>();
 			for (DecorationNode row : rows) {
 				if (row.getElement() instanceof InteractionFragment && (!(row.getElement() instanceof InteractionOperand))) {
 					InteractionFragment interactionFragment = (InteractionFragment) (row.getElement());
@@ -307,14 +307,14 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			// 3. management of InteractionOperand
 			// There are columns.
 
-			ArrayList<InteractionOperand> coveredbyInteractionOperand = new ArrayList<InteractionOperand>();
-			covered = new ArrayList<InteractionFragment>();
+			ArrayList<InteractionOperand> coveredbyInteractionOperand = new ArrayList<>();
+			covered = new ArrayList<>();
 			for (DecorationNode column : columns) {
 				if (column.getElement() instanceof InteractionOperand) {
 					if (!(coveredbyInteractionOperand.contains(column.getElement()))) {
 						coveredbyInteractionOperand.add((InteractionOperand) column.getElement());
 					} else {
-						coveredbyInteractionOperand.remove((InteractionOperand) column.getElement());
+						coveredbyInteractionOperand.remove(column.getElement());
 					}
 				}
 				if (column.getElement().equals(lifeline)) {
@@ -348,7 +348,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 
 	/**
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#deactivate()
-	 * 
+	 *
 	 */
 	@Override
 	public void deactivate() {
@@ -374,7 +374,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 
 	/**
 	 * get the decoration node that represents a column from a position (absolute)
-	 * 
+	 *
 	 * @param x
 	 *            the position x for the column
 	 * @return the decoration node
@@ -387,7 +387,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 
 	/**
 	 * get the decoration node that represents a line from a position (absolute)
-	 * 
+	 *
 	 * @param y
 	 *            the position y for the line
 	 * @return the decoration node
@@ -415,13 +415,13 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 
 
 	/**
-	 * 
+	 *
 	 * @param y
 	 *            the position y where we look for a row
 	 * @return the rows that exists at the position [y- threshold, y+threshold]s
 	 */
 	public ArrayList<DecorationNode> getRowAtPosition(int y) {
-		ArrayList<DecorationNode> sameLines = new ArrayList<DecorationNode>();
+		ArrayList<DecorationNode> sameLines = new ArrayList<>();
 		for (Iterator<DecorationNode> iterator = rows.iterator(); iterator.hasNext();) {
 			DecorationNode currentRow = iterator.next();
 			int Yposition = getPositionY(currentRow);
@@ -456,7 +456,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 		int nextDistance = ((Location) nextConstraint).getY() - ((Location) newconstraint).getY();
 		int margin = getGridSpacing();
 		if (nextDistance < margin) {
-			ArrayList<DecorationNode> rowsCopy = new ArrayList<DecorationNode>();
+			ArrayList<DecorationNode> rowsCopy = new ArrayList<>();
 			rowsCopy.addAll(rows);
 			for (int i = rowsCopy.indexOf(nextRow); i < rowsCopy.size(); i++) {
 				if (!(rowsCopy.get(i).equals(movedRow))) {
@@ -474,7 +474,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	}
 
 	/**
-	 * 
+	 *
 	 * @param currentRow
 	 * @param currentRowPosition
 	 * @return get the next row that has not the same position

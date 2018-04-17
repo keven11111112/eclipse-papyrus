@@ -51,21 +51,21 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 	/**
 	 * preference key to move down messages in the same time that message down.
-	 * 
+	 *
 	 * @since 5.0
 	 */
 	public static final String PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN = "PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN"; //$NON-NLS-1$
 
 	/**
 	 * preference key to move down messages in the same time that message is created.
-	 * 
+	 *
 	 * @since 5.0
 	 */
 	public static final String PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION = "PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION"; //$NON-NLS-1$
 
 	/**
 	 * Value to move down messages in the same time that message down.
-	 * 
+	 *
 	 * @since 5.0
 	 */
 	public static final int PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE = 40;
@@ -118,7 +118,7 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param composite
 	 */
 	protected void createFieldEditors(Composite composite) {

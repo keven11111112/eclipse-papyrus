@@ -13,21 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.handlers;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.menu.actions.SizeAction;
 import org.eclipse.papyrus.uml.diagram.menu.actions.handlers.SizeHandler;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -58,7 +50,7 @@ public class CustomSizeHandler extends SizeHandler {
 		}
 		return constraint;
 	}
-	
+
 	protected boolean isLifelines(List<IGraphicalEditPart> selectedElements) {
 		if (selectedElements.isEmpty()) {
 			return true;
@@ -69,13 +61,13 @@ public class CustomSizeHandler extends SizeHandler {
 		}
 		return isLifelines;
 	}
-	
+
 	private static Dimension correctDelta(IGraphicalEditPart toResize, Dimension delta, Rectangle constraint) {
 		// Align all Lifelines at bottom.
 		Rectangle previousRect = SequenceUtil.getAbsoluteBounds(toResize);
 		return new Dimension(delta.width, constraint.bottom() - previousRect.bottom());
 	}
-	
+
 	public class CustomSizeAction extends SizeAction {
 
 		/**
@@ -95,7 +87,7 @@ public class CustomSizeHandler extends SizeHandler {
 			}
 			return super.getBothCommand();
 		}
-		
+
 		@Override
 		protected Command getHeightCommand() {
 			if (isLifelines(selectedElements)) {
@@ -103,11 +95,11 @@ public class CustomSizeHandler extends SizeHandler {
 			}
 			return super.getHeightCommand();
 		}
-		
+
 		protected class LifeLinedSameBothSizeAction extends SameBothSizeAction {
-			
+
 			private final Rectangle lifelinesContext;
-			
+
 			public LifeLinedSameBothSizeAction(List<IGraphicalEditPart> selectedElements) {
 				super(selectedElements);
 				lifelinesContext = getLifelineConstraint(selectedElements);
@@ -120,11 +112,11 @@ public class CustomSizeHandler extends SizeHandler {
 				return correctDelta(toResize, delta, lifelinesContext);
 			}
 		}
-		
+
 		protected class LifeLinedSameHeightAction extends SameHeightSizeAction {
-			
+
 			private final Rectangle lifelinesContext;
-			
+
 			public LifeLinedSameHeightAction(List<IGraphicalEditPart> selectedElements) {
 				super(selectedElements);
 				lifelinesContext = getLifelineConstraint(selectedElements);

@@ -389,7 +389,7 @@ public final class KVector implements IDataObject, Cloneable {
     public double dotProduct(final KVector v2) {
         return ((this.x * v2.x) + (this.y * v2.y));
     }
-    
+
     /**
      * Calculates the cross product of two vectors v and w.
      * @param v
@@ -455,7 +455,8 @@ public final class KVector implements IDataObject, Cloneable {
     /**
      * {@inheritDoc}
      */
-    public void parse(final String string) {
+    @Override
+	public void parse(final String string) {
         int start = 0;
         while (start < string.length() && isdelim(string.charAt(start), "([{\"' \t\r\n")) {
             start++;

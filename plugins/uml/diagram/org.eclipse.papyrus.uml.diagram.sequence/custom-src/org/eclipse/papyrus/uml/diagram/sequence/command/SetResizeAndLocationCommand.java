@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.command;
@@ -46,7 +46,7 @@ public class SetResizeAndLocationCommand extends AbstractTransactionalCommand {
 
 	/**
 	 * Creates a <code>CustomSetBoundsCommand</code> for the given view adapter with a given bounds.
-	 * 
+	 *
 	 * @param editingDomain
 	 *            the editing domain through which model changes are made.
 	 * @param label
@@ -66,7 +66,7 @@ public class SetResizeAndLocationCommand extends AbstractTransactionalCommand {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
@@ -77,7 +77,7 @@ public class SetResizeAndLocationCommand extends AbstractTransactionalCommand {
 			return CommandResult.newErrorCommandResult("SetResizeAndLocationCommand: viewAdapter does not adapt to IView.class"); //$NON-NLS-1$
 		}
 
-		final View view = (View) adapter.getAdapter(View.class);
+		final View view = adapter.getAdapter(View.class);
 
 		if (bounds != null) {
 			final Point location = bounds.getLocation();
@@ -92,13 +92,13 @@ public class SetResizeAndLocationCommand extends AbstractTransactionalCommand {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#getAffectedFiles()
 	 */
 	@Override
 	public List<?> getAffectedFiles() {
 		if (adapter != null) {
-			View view = (View) adapter.getAdapter(View.class);
+			View view = adapter.getAdapter(View.class);
 			if (view != null) {
 				return getWorkspaceFiles(view);
 			}

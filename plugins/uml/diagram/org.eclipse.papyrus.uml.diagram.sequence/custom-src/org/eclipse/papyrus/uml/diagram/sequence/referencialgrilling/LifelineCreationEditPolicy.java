@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -53,12 +53,12 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy implem
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
 		// Used during the drop from the model explorer
 		if (request instanceof CreateViewAndElementRequest) {
-			CreateViewAndElementRequest req = (CreateViewAndElementRequest) request;
+			CreateViewAndElementRequest req = request;
 			ViewAndElementDescriptor descriptor = (req).getViewAndElementDescriptor();
-			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
-			
-			
-			
+			IElementType elementType = descriptor.getElementAdapter().getAdapter(IElementType.class);
+
+
+
 			if (isControlledByLifeline(elementType)) {
 				// get the element descriptor
 				CreateElementRequestAdapter requestAdapter = req.getViewAndElementDescriptor().getCreateElementRequestAdapter();
@@ -74,25 +74,25 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy implem
 				if (mos != null) {
 					createElementRequest.setParameter(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_START, mos);
 				}
-			} 
+			}
 			/*
 			 * Fix of Bug 531471 - [SequenceDiagram] Combined Fragment / Interaction Use should be create over a Lifeline.
 			 * Recalculation of location of combined fragment for according to interaction compartment position
 			 */
-			else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.COMBINED_FRAGMENT_SHAPE) 
+			else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.COMBINED_FRAGMENT_SHAPE)
 					|| ElementUtil.isTypeOf(elementType, UMLDIElementTypes.INTERACTION_USE_SHAPE)) {
 				Rectangle boundsLifeline = getHostFigure().getBounds();
 				Point pointCombinedFragment = req.getLocation();
-				
+
 				pointCombinedFragment.x = pointCombinedFragment.x + boundsLifeline.x;
 				pointCombinedFragment.y	 = pointCombinedFragment.y + boundsLifeline.y;
-				
+
 				req.setLocation(pointCombinedFragment);
-				
+
 				return getHost().getParent().getCommand(req);
 			}
 		}
-		
+
 		DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
 		GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
 		if (grid!=null){
@@ -101,7 +101,7 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy implem
 			cmd.add(setMoveAllLineAtSamePositionCommand);
 			cmd.add(super.getCreateElementAndViewCommand(request));
 			setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand( grid, true);
-			cmd.add(setMoveAllLineAtSamePositionCommand);	
+			cmd.add(setMoveAllLineAtSamePositionCommand);
 			return cmd;
 		}
 		return super.getCreateElementAndViewCommand(request);
@@ -110,9 +110,9 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy implem
 	/**
 	 * test if the element Type that is normally not a child of the Lifeline should be controlled by the lifeline.
 	 * Then The lifeline will be set as the parent editpart, but not as the semantic parent.
-	 * 
+	 *
 	 * This is the case of most of the affixed node.
-	 * 
+	 *
 	 * @param elementType
 	 *            the tested element type
 	 * @return true if the Lifeline should be the

@@ -101,7 +101,7 @@ public class DurationObservationParser extends MessageFormatParser implements IS
 	@Override
 	@SuppressWarnings("unchecked")
 	public List getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof DurationObservation) {
 			DurationObservation observation = (DurationObservation) element;
 			semanticElementsBeingParsed.add(observation);

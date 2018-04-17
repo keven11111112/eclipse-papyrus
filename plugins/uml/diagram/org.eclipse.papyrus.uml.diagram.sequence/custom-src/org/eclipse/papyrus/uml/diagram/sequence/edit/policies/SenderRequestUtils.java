@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -21,7 +21,7 @@ import org.eclipse.gef.Request;
 
 /**
  * this class is used to add senders of request in the request
- * 
+ *
  * @since 4.0
  *
  */
@@ -30,7 +30,7 @@ public class SenderRequestUtils {
 
 	/**
 	 * from a request add the editpart as sender of the request
-	 * 
+	 *
 	 * @param request
 	 *            a given request, never null
 	 * @param editPart
@@ -44,7 +44,7 @@ public class SenderRequestUtils {
 			senderList = ((ArrayList<EditPart>) extendedData.get(REQUEST_SENDER));
 
 		} else {
-			senderList = new ArrayList<EditPart>();
+			senderList = new ArrayList<>();
 		}
 		senderList.add(editPart);
 		extendedData.put(REQUEST_SENDER, senderList);
@@ -53,7 +53,7 @@ public class SenderRequestUtils {
 
 	/**
 	 * test if the given editpart is a sender of the request
-	 * 
+	 *
 	 * @param request
 	 *            a given request, never null
 	 * @param editPart
@@ -74,7 +74,7 @@ public class SenderRequestUtils {
 
 	/**
 	 * get all senders from a given request
-	 * 
+	 *
 	 * @param request
 	 *            a a given request, never null
 	 * @return always a list maybe empty
@@ -86,14 +86,14 @@ public class SenderRequestUtils {
 			senderList = ((ArrayList<EditPart>) extendedData.get(REQUEST_SENDER));
 
 		} else {
-			senderList = new ArrayList<EditPart>();
+			senderList = new ArrayList<>();
 		}
 		return senderList;
 	}
 
 	/**
 	 * add a list of editpart as sender of the request
-	 * 
+	 *
 	 * @param request
 	 *            a given request, never null
 	 * @param senderList

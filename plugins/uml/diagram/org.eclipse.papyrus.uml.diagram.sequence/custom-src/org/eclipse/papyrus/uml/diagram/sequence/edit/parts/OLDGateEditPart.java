@@ -387,9 +387,10 @@ public class OLDGateEditPart extends AbstractBorderEditPart implements IBorderIt
 
 	/**
 	 * this method will return the primary child EditPart inside this edit part
-	 * 
+	 *
 	 * @return the primary child view inside this edit part
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		if (getChildren().size() > 0) {
 			return (EditPart) getChildren().get(0);

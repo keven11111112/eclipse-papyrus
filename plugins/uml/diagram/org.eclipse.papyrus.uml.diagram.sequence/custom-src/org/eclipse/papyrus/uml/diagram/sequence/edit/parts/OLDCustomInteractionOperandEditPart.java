@@ -111,6 +111,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * @author Jin Liu (jin.liu@soyatec.com)
  * @deprecated
  */
+@Deprecated
 public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditPart implements ITextAwareEditPart {
 
 	/**
@@ -371,13 +372,13 @@ public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditP
 						EList<Lifeline> continuationCoveredLifelines = interactionFragment.getCovereds();
 						if (!continuationCoveredLifelines.equals(currentlyCoveredLifeline)) {
 							// Add new covered lifelines (not already covered)
-							List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>(currentlyCoveredLifeline);
+							List<Lifeline> coveredLifelinesToAdd = new ArrayList<>(currentlyCoveredLifeline);
 							coveredLifelinesToAdd.removeAll(continuationCoveredLifelines);
 							if (!coveredLifelinesToAdd.isEmpty()) {
 								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd), true);
 							}
 							// Delete old covered lifelines (not covered anymore)
-							List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>(continuationCoveredLifelines);
+							List<Lifeline> coveredLifelinesToRemove = new ArrayList<>(continuationCoveredLifelines);
 							coveredLifelinesToRemove.removeAll(currentlyCoveredLifeline);
 							if (!coveredLifelinesToRemove.isEmpty()) {
 								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove), true);
@@ -439,7 +440,7 @@ public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditP
 				if (view.getElement() instanceof InteractionOperand) {
 					guardNode.setElement(((InteractionOperand) view.getElement()).getGuard());
 				}
-				
+
 				modelChildren.add(guardNode);
 			}
 		}
@@ -970,7 +971,7 @@ public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditP
 
 		@Override
 		public List getSemanticElementsBeingParsed(EObject element) {
-			List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+			List<Element> semanticElementsBeingParsed = new ArrayList<>();
 			if (element instanceof InteractionOperand) {
 				InteractionOperand op = (InteractionOperand) element;
 				semanticElementsBeingParsed.add(op);
@@ -1008,7 +1009,7 @@ public class OLDCustomInteractionOperandEditPart extends InteractionOperandEditP
 
 		@Override
 		public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
-			EObject element = (EObject) adapter.getAdapter(EObject.class);
+			EObject element = adapter.getAdapter(EObject.class);
 			TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
 			if (editingDomain == null || !(element instanceof InteractionOperand)) {
 				return UnexecutableCommand.INSTANCE;

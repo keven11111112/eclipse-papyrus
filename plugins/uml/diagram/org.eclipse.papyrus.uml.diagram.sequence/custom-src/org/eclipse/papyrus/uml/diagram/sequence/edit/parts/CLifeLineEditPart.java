@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017, 2018 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -51,7 +51,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 
 	/**
 	 * The minimum height of the figure.
-	 * 
+	 *
 	 * @since 4.0
 	 */
 	public static int MIN_HEIGHT = 100;
@@ -68,7 +68,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart#createSVGNodePlate()
 	 */
 	@Override
@@ -89,14 +89,14 @@ public class CLifeLineEditPart extends LifelineEditPart {
 		if (getPrimaryShape() instanceof LifelineFigure) {
 			//Bug 531520: we redefine the border of the lifeline, in order to include the children
 			//the message are connected to the middle line of the Lifeline, but they must be drawn as connected on the ExecutionSpeficiation
-			final List<NodeFigure> childrenFigure = new ArrayList<NodeFigure>();
+			final List<NodeFigure> childrenFigure = new ArrayList<>();
 			for (final Object current : getChildren()) {
 				if (current instanceof AbstractExecutionSpecificationEditPart) {
 					NodeFigure figure = ((AbstractExecutionSpecificationEditPart) current).getPrimaryShape();
 					childrenFigure.add(figure);
 				}
 			}
-			((LifelineFigure) getPrimaryShape()).setChildrenFigure(childrenFigure);
+			getPrimaryShape().setChildrenFigure(childrenFigure);
 		}
 
 		super.refresh();
@@ -104,7 +104,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart#createDefaultEditPolicies()
 	 */
 	@Override
@@ -119,7 +119,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.UMLNodeEditPart#setLayoutConstraint(org.eclipse.gef.EditPart, org.eclipse.draw2d.IFigure, java.lang.Object)
 	 */
 	@Override

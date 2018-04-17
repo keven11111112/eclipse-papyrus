@@ -97,7 +97,7 @@ public class CenterLocator extends AdvancedBorderItemLocator {
 	/**
 	 * Overridden :
 	 * - the destructionEventFigure is always drawn at the end of the figure
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator#getValidLocation(org.eclipse.draw2d.geometry.Rectangle, org.eclipse.draw2d.IFigure)
 	 */
 	@Override

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 533004
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -68,7 +68,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	/**
 	 * avoid to modify it directly, try to modify call of sub-methods: initListeningXXX
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#activate()
 	 *
 	 */
@@ -98,7 +98,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * this method is called during the activate
 	 * It initialize a columnFinish and listen it
-	 * 
+	 *
 	 * @param grilling
 	 *            the grid manager that allow creating rows
 	 * @param element
@@ -115,7 +115,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * this method is called during the activate
 	 * It initialize a rowFinish and listen it
-	 * 
+	 *
 	 * @param grilling
 	 *            the grid manager that allow creating rows
 	 * @param element
@@ -132,7 +132,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * this method is called during the activate
 	 * It initialize a ColumnStart and listen it
-	 * 
+	 *
 	 * @param grilling
 	 *            the grid manager that allow creating rows
 	 * @param element
@@ -149,7 +149,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * this method is called during the activate
 	 * It initialize a rowStart and listen it
-	 * 
+	 *
 	 * @param grilling
 	 *            the grid manager that allow creating rows
 	 * @param element
@@ -201,7 +201,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	/**
 	 * avoid to modify it directly, try to modify call of sub-methods: updateXXX
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
 	 *
 	 * @param notification
@@ -228,7 +228,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 					updateRowFinishFromHeightNotification(bounds);
 					// update anchors
-					if ((((EObject) notification.getNotifier()).eContainer().equals(((EObject) getHost().getModel())))) {
+					if ((((EObject) notification.getNotifier()).eContainer().equals((getHost().getModel())))) {
 						Node node = (Node) this.getHost().getModel();
 						java.util.List<Edge> sourceEdge = node.getSourceEdges();
 						for (Edge edge : sourceEdge) {
@@ -253,7 +253,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 					// compute next position for RowStart
 					updateRowStartFromYNotification(bounds);
 					// updateAnchors
-					if (((EObject) notification.getNotifier()).eContainer().equals(((EObject) getHost().getModel()))) {
+					if (((EObject) notification.getNotifier()).eContainer().equals((getHost().getModel()))) {
 						Node node = (Node) this.getHost().getModel();
 
 						// children case
@@ -294,7 +294,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	/**
 	 * This update the position of {@link ExecutionSpecification} {@link Node} after the Y move of lifeline parent.
-	 * 
+	 *
 	 * @param execSpecNode
 	 *            the {@link ExecutionSpecification} {@link Node}
 	 * @param newYValue
@@ -314,7 +314,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * When the bounds of the notation has change the axis must change
 	 * In this case this is the height that has change so rowFinish must change
-	 * 
+	 *
 	 * @param originPosition
 	 *            the position of the node is the relative position ( relative to the container)
 	 */
@@ -326,7 +326,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * When the bounds of the notation has change the axis must change
 	 * In this case this is the width that has changed so ColumnFinish must change
-	 * 
+	 *
 	 * @param notationBound
 	 *            the position of the node is the absolute position ( the origin to the referential is the diagram)
 	 */
@@ -340,7 +340,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * When the bounds of the notation has change the axis must change
 	 * In this case this is the position Y that has change so RowStart must change
-	 * 
+	 *
 	 * @param bounds
 	 *            the position of the node is the absolute position ( the origin to the referential is the diagram)
 	 */
@@ -358,7 +358,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * When the bounds of the notation has change the axis must change
 	 * In this case this is the position X that has change so ColumnStart must change
-	 * 
+	 *
 	 * @param bounds
 	 *            the position of the node is the absolute position ( the origin to the referential is the diagram)
 	 */
@@ -375,7 +375,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	/**
 	 * this class update the position of anchor after the resize
-	 * 
+	 *
 	 * @param edge
 	 *            the edge anchor to update
 	 * @param node
@@ -401,7 +401,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	/**
 	 * This allows to update the position of anchor after the move.
-	 * 
+	 *
 	 * @param anchor The anchor to recalculate.
 	 * @param node The moved node.
 	 * @param oldY The old Y position.

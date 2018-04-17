@@ -76,7 +76,7 @@ public class ReconnectToGateCommand extends AbstractTransactionalCommand {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List getAffectedFiles() {
 		if (newEndAdapter != null) {
-			View view = (View) newEndAdapter.getAdapter(View.class);
+			View view = newEndAdapter.getAdapter(View.class);
 			if (view != null) {
 				List result = new ArrayList();
 				IFile file = WorkspaceSynchronizer.getFile(view.eResource());
@@ -99,7 +99,7 @@ public class ReconnectToGateCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		View view = (View) newEndAdapter.getAdapter(View.class);
+		View view = newEndAdapter.getAdapter(View.class);
 		EditPart target = (EditPart) editPartViewer.getEditPartRegistry().get(view);
 		boolean redirected = false;
 		EditPart oldTarget = reconnectRequest.getTarget();

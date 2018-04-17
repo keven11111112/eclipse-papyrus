@@ -73,7 +73,7 @@ public class InteractionHeadImpactLayoutEditPolicy extends AbstractHeadImpactLay
 		// 1. move gate
 		{
 			List children = getHost().getChildren();
-			List<OLDGateEditPart> gates = new ArrayList<OLDGateEditPart>();
+			List<OLDGateEditPart> gates = new ArrayList<>();
 			for (Object object : children) {
 				if (object instanceof OLDGateEditPart) {
 					gates.add((OLDGateEditPart) object);

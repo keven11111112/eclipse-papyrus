@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Patrick Tessier (CEA LIST) - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 /**
  * this class is to delegate all notification in all trre of an eObject to a notofication listener
  * for example an editpolicy
- * 
+ *
  * @since 4.0
  */
 public class RedirectionContentAdapter extends EContentAdapter {

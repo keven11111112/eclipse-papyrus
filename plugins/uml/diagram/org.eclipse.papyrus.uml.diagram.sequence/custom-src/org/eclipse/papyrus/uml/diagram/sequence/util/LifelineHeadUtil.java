@@ -48,12 +48,11 @@ import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -106,7 +105,7 @@ public class LifelineHeadUtil {
 		if (lifeline == null || resized == 0) {
 			return;
 		}
-		List<LifelineEditPart> toMovedLifelines = new ArrayList<LifelineEditPart>();
+		List<LifelineEditPart> toMovedLifelines = new ArrayList<>();
 		collectLifelines(toMovedLifelines, lifeline);
 		List<ShapeNodeEditPart> children = LifelineEditPartUtil.getChildShapeNodeEditPart(lifeline);
 		for (ShapeNodeEditPart child : children) {
@@ -226,7 +225,7 @@ public class LifelineHeadUtil {
 		if (SequenceUtil.isCreateMessageEndLifeline(lifeline)) {
 			return;
 		}
-		List<LifelineEditPart> toMovedLifelines = new ArrayList<LifelineEditPart>();
+		List<LifelineEditPart> toMovedLifelines = new ArrayList<>();
 		collectLifelines(toMovedLifelines, lifeline);
 		List<ShapeNodeEditPart> children = LifelineEditPartUtil.getChildShapeNodeEditPart(lifeline);
 		for (ShapeNodeEditPart child : children) {

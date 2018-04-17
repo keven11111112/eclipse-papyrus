@@ -94,7 +94,7 @@ public class RestoreDurationConstraintLinkCommand extends AbstractTransactionalC
 		if (!canExecute()) {
 			return CommandResult.newCancelledCommandResult();
 		}
-		View view = (View) dcViewAdapter.getAdapter(View.class);
+		View view = dcViewAdapter.getAdapter(View.class);
 		if (view == null) {
 			return CommandResult.newErrorCommandResult("No view found");
 		}

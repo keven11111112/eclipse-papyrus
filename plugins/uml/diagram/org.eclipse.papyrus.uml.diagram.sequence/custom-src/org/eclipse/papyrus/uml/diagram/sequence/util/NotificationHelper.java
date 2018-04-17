@@ -23,7 +23,7 @@ public class NotificationHelper {
 
 	private UIAdapterImpl modelListener;
 
-	private List<Notifier> listeners = new ArrayList<Notifier>();
+	private List<Notifier> listeners = new ArrayList<>();
 
 	public NotificationHelper(UIAdapterImpl modelListener) {
 		this.modelListener = modelListener;

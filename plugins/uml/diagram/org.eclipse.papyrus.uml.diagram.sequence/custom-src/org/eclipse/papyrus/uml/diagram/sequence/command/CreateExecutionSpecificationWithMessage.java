@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.command;
@@ -235,7 +235,7 @@ public class CreateExecutionSpecificationWithMessage extends AbstractTransaction
 
 	/**
 	 * Get the list of all commands contained into {@link CompoundCommand}, {@link CompositeCommand} or {@link ICommandProxy}.
-	 * 
+	 *
 	 * @param parent
 	 *            the command to looking for
 	 * @return the list of all commands
@@ -251,10 +251,10 @@ public class CreateExecutionSpecificationWithMessage extends AbstractTransaction
 		}
 
 		if (command instanceof CompoundCommand) {
-			return (Stream<Object>) ((CompoundCommand) command).getCommands().stream()
+			return ((CompoundCommand) command).getCommands().stream()
 					.flatMap(childNode -> getAllCommands(childNode));
 		} else if (command instanceof CompositeCommand) {
-			return (Stream<Object>) StreamSupport.stream(Spliterators.spliteratorUnknownSize(((CompositeCommand) command).iterator(), Spliterator.ORDERED), false)
+			return StreamSupport.stream(Spliterators.spliteratorUnknownSize(((CompositeCommand) command).iterator(), Spliterator.ORDERED), false)
 					.flatMap(childNode -> getAllCommands(childNode));
 		} else {
 			return Stream.of(command);
@@ -263,7 +263,7 @@ public class CreateExecutionSpecificationWithMessage extends AbstractTransaction
 
 	/**
 	 * Get the created semantic element.
-	 * 
+	 *
 	 * @param <T>
 	 *            the type of expected element
 	 * @param command

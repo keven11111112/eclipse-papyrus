@@ -128,7 +128,7 @@ public class InteractionGraphicalNodeEditPolicy extends OLDGatesHolderGraphicalN
 			// ignore CoRegion
 			if ((source instanceof CombinedFragment || source instanceof Interaction || source instanceof InteractionUse)) {
 				Point location = null;
-				IGraphicalEditPart adapter = (IGraphicalEditPart) sourceEditPart.getAdapter(IGraphicalEditPart.class);
+				IGraphicalEditPart adapter = sourceEditPart.getAdapter(IGraphicalEditPart.class);
 				TransactionalEditingDomain editingDomain = null;
 				if (adapter != null) {
 					location = GateHelper.computeGateLocation(request.getLocation(), adapter.getFigure(), null);
@@ -156,7 +156,7 @@ public class InteractionGraphicalNodeEditPolicy extends OLDGatesHolderGraphicalN
 							@Override
 							public Object getAdapter(Class adapter) {
 								if (Gate.class == adapter) {
-									Message message = (Message) elementAdapter.getAdapter(Message.class);
+									Message message = elementAdapter.getAdapter(Message.class);
 									MessageEnd sendEvent = message.getSendEvent();
 									if (sendEvent instanceof Gate) {
 										return sendEvent;
@@ -285,7 +285,7 @@ public class InteractionGraphicalNodeEditPolicy extends OLDGatesHolderGraphicalN
 				if (typeInfoAdapter == null) {
 					return false;
 				}
-				final IElementType typeInfo = (IElementType) typeInfoAdapter.getAdapter(IElementType.class);
+				final IElementType typeInfo = typeInfoAdapter.getAdapter(IElementType.class);
 				if (typeInfo != null) {
 					if (((CreateUnspecifiedTypeConnectionRequest) request).getRequestForType(typeInfo) == null) {
 						return false;
@@ -307,7 +307,7 @@ public class InteractionGraphicalNodeEditPolicy extends OLDGatesHolderGraphicalN
 				return CommandResult.newErrorCommandResult(getLabel());
 			}
 			if (typeInfoAdapter != null) {
-				IElementType typeInfo = (IElementType) typeInfoAdapter.getAdapter(IElementType.class);
+				IElementType typeInfo = typeInfoAdapter.getAdapter(IElementType.class);
 				if (typeInfo == null) {
 					return CommandResult.newErrorCommandResult(getLabel());
 				}

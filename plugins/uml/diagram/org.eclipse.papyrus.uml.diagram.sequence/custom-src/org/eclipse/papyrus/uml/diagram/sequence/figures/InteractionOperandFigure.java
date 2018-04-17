@@ -13,16 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
-import javax.swing.text.StyleConstants.ColorConstants;
-
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
-import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 
 public class InteractionOperandFigure extends RoundedCompartmentFigure {
@@ -84,7 +80,7 @@ public class InteractionOperandFigure extends RoundedCompartmentFigure {
 	 */
 	@Override
 	public Dimension getMinimumSize(int wHint, int hHint) {
-		
+
 		Dimension dim= super.getMinimumSize(wHint, hHint);
 		//look for combinedFragmentFigure
 		IFigure cfFigure=getParent();

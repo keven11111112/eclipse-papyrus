@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   C�line Jansens - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
@@ -35,7 +35,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * Class extracted from the Custom State Invariant edit part
- * 
+ *
  * @since 3.0
  *
  */

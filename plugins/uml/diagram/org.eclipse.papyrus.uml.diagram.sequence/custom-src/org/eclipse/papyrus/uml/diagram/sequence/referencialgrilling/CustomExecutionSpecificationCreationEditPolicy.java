@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -50,7 +50,7 @@ public class CustomExecutionSpecificationCreationEditPolicy extends DefaultCreat
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy#getCommand(org.eclipse.gef.Request)
 	 */
 	@Override
@@ -66,7 +66,7 @@ public class CustomExecutionSpecificationCreationEditPolicy extends DefaultCreat
 	/**
 	 * When this is a {@link CreateUnspecifiedTypeRequest}, we need to check if the position needed by the user is on an ExecutionSpecification because this is not allowed by the UML Norm
 	 * but this will be possible graphically.
-	 * 
+	 *
 	 * @param request
 	 *            The unspecified type request.
 	 * @return The command.
@@ -75,11 +75,11 @@ public class CustomExecutionSpecificationCreationEditPolicy extends DefaultCreat
 	private Command getUnspecifiedTypeCreateCommand(
 			final CreateUnspecifiedTypeRequest request) {
 
-		final Map<IElementType, Command> createCmds = new HashMap<IElementType, Command>();
-		List<IElementType> validTypes = new ArrayList<IElementType>();
+		final Map<IElementType, Command> createCmds = new HashMap<>();
+		List<IElementType> validTypes = new ArrayList<>();
 		for (Iterator<IElementType> iter = request.getElementTypes().iterator(); iter
 				.hasNext();) {
-			IElementType elementType = (IElementType) iter.next();
+			IElementType elementType = iter.next();
 			Request createRequest = request.getRequestForType(elementType);
 			if (createRequest != null) {
 				EditPart target = SequenceUtil.getParentLifelinePart(getHost().getTargetEditPart(createRequest));
@@ -112,6 +112,7 @@ public class CustomExecutionSpecificationCreationEditPolicy extends DefaultCreat
 				 * menu, then executes the command prepared for the element
 				 * type that the user selected.
 				 */
+				@Override
 				protected CommandResult doExecuteWithResult(
 						IProgressMonitor progressMonitor, IAdaptable info)
 						throws ExecutionException {
@@ -124,7 +125,7 @@ public class CustomExecutionSpecificationCreationEditPolicy extends DefaultCreat
 					IElementType type = (IElementType) cmdResult
 							.getReturnValue();
 
-					_createCmd = (Command) createCmds.get(type);
+					_createCmd = createCmds.get(type);
 					Assert.isTrue(_createCmd != null && _createCmd.canExecute());
 
 					// validate the affected files
@@ -146,6 +147,7 @@ public class CustomExecutionSpecificationCreationEditPolicy extends DefaultCreat
 					return CommandResult.newOKCommandResult(newObject);
 				}
 
+				@Override
 				protected CommandResult doUndoWithResult(
 						IProgressMonitor progressMonitor, IAdaptable info)
 						throws ExecutionException {
@@ -161,6 +163,7 @@ public class CustomExecutionSpecificationCreationEditPolicy extends DefaultCreat
 					return super.doUndoWithResult(progressMonitor, info);
 				}
 
+				@Override
 				protected CommandResult doRedoWithResult(
 						IProgressMonitor progressMonitor, IAdaptable info)
 						throws ExecutionException {
@@ -182,7 +185,7 @@ public class CustomExecutionSpecificationCreationEditPolicy extends DefaultCreat
 					int fileCount = affectedFiles.size();
 					if (fileCount > 0) {
 						return FileModificationValidator
-								.approveFileModification((IFile[]) affectedFiles
+								.approveFileModification(affectedFiles
 										.toArray(new IFile[fileCount]));
 					}
 					return Status.OK_STATUS;

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015, 2016 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.canonical;
@@ -121,7 +121,7 @@ public class LifelineSemanticChildrenStrategy extends DefaultUMLSemanticChildren
 	 * Collects execution specifications implicitly covering a lifeline. They typically don't actually cover
 	 * a lifeline: their start/end occurrence specifications do in the semantics, but the diagram has views
 	 * only for the executions, not for the occurrences.
-	 * 
+	 *
 	 * @param lifeline
 	 *            a lifeline visualized in the sequence diagram
 	 * @param result
@@ -144,7 +144,7 @@ public class LifelineSemanticChildrenStrategy extends DefaultUMLSemanticChildren
 	/**
 	 * Gets/finds the execution(s) started or finished by an {@code occurrence}, which
 	 * may just be a message-end and so not have a reference to the execution(s).
-	 * 
+	 *
 	 * @param occurrence
 	 *            an occurrence that may or may not start or finish an execution
 	 * @return the execution(s) started or finished by the {@code occurrence}, or
@@ -222,10 +222,10 @@ public class LifelineSemanticChildrenStrategy extends DefaultUMLSemanticChildren
 	 * Obtains the execution-specification or lifeline to which a message {@code end}
 	 * connects a message, if the {@code end} is not explicitly visualized in the
 	 * sequence diagram as a gate or destruction is.
-	 * 
+	 *
 	 * @param end
 	 *            a message end
-	 * 
+	 *
 	 * @return the element that is actually visualized in the diagram at that {@code end}
 	 */
 	private Object resolveMessageEnd(MessageEnd end) {
@@ -254,7 +254,7 @@ public class LifelineSemanticChildrenStrategy extends DefaultUMLSemanticChildren
 	/**
 	 * If a message end is a message occurrence specification (not a gate), get the lifeline
 	 * that it covers.
-	 * 
+	 *
 	 * @param messageEnd
 	 *            a message end
 	 * @return its covered lifeline

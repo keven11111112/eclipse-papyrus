@@ -174,7 +174,7 @@ public class CreateLocatedConnectionViewCommand extends CommonDeferredCreateConn
 	 * @return true if message hint
 	 */
 	private boolean isMessageHint(String hint) {
-		List<String> messageHints = new ArrayList<String>(7);
+		List<String> messageHints = new ArrayList<>(7);
 		String messageHint = ((IHintedType) UMLElementTypes.Message_SynchEdge).getSemanticHint();
 		messageHints.add(messageHint);
 		messageHint = ((IHintedType) UMLElementTypes.Message_AsynchEdge).getSemanticHint();

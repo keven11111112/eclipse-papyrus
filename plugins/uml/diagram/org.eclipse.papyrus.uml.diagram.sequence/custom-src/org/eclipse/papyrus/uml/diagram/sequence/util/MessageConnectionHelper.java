@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.papyrus.uml.diagram.sequence.CustomMessages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.Element;

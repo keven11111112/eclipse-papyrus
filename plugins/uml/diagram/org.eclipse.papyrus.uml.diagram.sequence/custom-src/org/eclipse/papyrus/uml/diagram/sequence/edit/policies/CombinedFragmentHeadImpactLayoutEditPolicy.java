@@ -93,7 +93,7 @@ public class CombinedFragmentHeadImpactLayoutEditPolicy extends AbstractHeadImpa
 			EditPart part = (EditPart) object;
 			EditPart current = part.getParent();
 			while (current != null) {
-				ExposeHelper helper = (ExposeHelper) current
+				ExposeHelper helper = current
 						.getAdapter(ExposeHelper.class);
 				if (helper != null) {
 					helper.exposeDescendant(part);

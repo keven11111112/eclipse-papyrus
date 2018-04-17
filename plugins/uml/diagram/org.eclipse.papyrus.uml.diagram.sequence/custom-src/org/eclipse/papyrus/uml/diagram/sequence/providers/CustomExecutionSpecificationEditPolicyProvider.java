@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
@@ -21,8 +21,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.CustomExecutionSpecificationXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.CustomExecutionSpecificationCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.CustomExecutionSpecificationXYLayoutEditPolicy;
 
 /**
  * The edit policy provider for the execution specifications.
@@ -31,7 +31,7 @@ public class CustomExecutionSpecificationEditPolicyProvider extends AbstractProv
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.common.core.service.IProvider#provides(org.eclipse.gmf.runtime.common.core.service.IOperation)
 	 */
 	@Override
@@ -49,7 +49,7 @@ public class CustomExecutionSpecificationEditPolicyProvider extends AbstractProv
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider#createEditPolicies(org.eclipse.gef.EditPart)
 	 */
 	@Override

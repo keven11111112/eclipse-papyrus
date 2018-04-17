@@ -131,7 +131,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		for (Object o : request.getEditParts()) {
 			GraphicalEditPart child = (GraphicalEditPart) o;
 			boolean hasCreateLink = LifelineMessageCreateHelper.hasIncomingMessageCreate(child);
-			// Adjust excessive vertical resizing 
+			// Adjust excessive vertical resizing
 			if (child instanceof LifelineEditPart && hasCreateLink && request.getMoveDelta().y > 0) {
 				int oldHeight = child.getFigure().getBounds().height;
 				int oldMinimumHeight = ((OLDLifelineEditPart)child).getMinimumHeight(-1);
@@ -460,10 +460,10 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			if (combinedFragmentEditPart.getChildren().size() > 0 && combinedFragmentEditPart.getChildren().get(0) instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 				CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart) combinedFragmentEditPart.getChildren().get(0);
 				List<EditPart> combinedFragmentChildrenEditParts = compartment.getChildren();
-				List<InteractionOperandEditPart> interactionOperandEditParts = new ArrayList<InteractionOperandEditPart>();
+				List<InteractionOperandEditPart> interactionOperandEditParts = new ArrayList<>();
 				InteractionOperand firstOperand = cf.getOperands().get(0);
 				// interaction fragments which will not be covered by the operands
-				Set<InteractionFragment> notCoveredAnymoreInteractionFragments = new HashSet<InteractionFragment>();
+				Set<InteractionFragment> notCoveredAnymoreInteractionFragments = new HashSet<>();
 				int headerHeight = 0;
 				for (EditPart ep : combinedFragmentChildrenEditParts) {
 					if (ep instanceof InteractionOperandEditPart) {
@@ -486,7 +486,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				for (InteractionOperandEditPart ioEP : interactionOperandEditParts) {
 					InteractionOperand io = (InteractionOperand) ioEP.resolveSemanticElement();
 					Rectangle newBoundsIO = SequenceUtil.getAbsoluteBounds(ioEP);
-					Rectangle oldBoundsIO = newBoundsIO.getCopy(); 
+					Rectangle oldBoundsIO = newBoundsIO.getCopy();
 					// apply the move delta which will impact all operands
 					newBoundsIO.translate(moveDelta);
 					// calculate the new bounds of the interaction operand
@@ -501,7 +501,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 						oldBoundsIO.height += headerHeight;
 					}
 					// ignore current CF and enclosed IO
-					Set<InteractionFragment> ignoreSet = new HashSet<InteractionFragment>();
+					Set<InteractionFragment> ignoreSet = new HashSet<>();
 					ignoreSet.add(cf);
 					ignoreSet.addAll(cf.getOperands());
 					Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(newBoundsIO, combinedFragmentEditPart, ignoreSet);
@@ -521,7 +521,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 							}
 							Interaction interactionOwner = ift.getEnclosingInteraction();
 							InteractionOperand ioOwner = ift.getEnclosingOperand();
-							if ((ioOwner != null && (ioOwner.equals(cf.getEnclosingOperand()) || cf.equals(ioOwner.getOwner()))) 
+							if ((ioOwner != null && (ioOwner.equals(cf.getEnclosingOperand()) || cf.equals(ioOwner.getOwner())))
 									|| (interactionOwner != null && (interactionOwner.equals(cf.getEnclosingInteraction()) || cf.equals(interactionOwner.getOwner())))) {
 								compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, io)));
 							}
@@ -531,7 +531,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					if (firstOperand.equals(io)) {
 						offsetInnerCFs.y = oldBoundsIO.y - newBoundsIO.y; // no need to adjust other IOs
 					}
-					Command adjustInnerCFsCommand = CombinedFragmentMoveHelper.getShiftEnclosedCFsCommand(ioEP, offsetInnerCFs); 
+					Command adjustInnerCFsCommand = CombinedFragmentMoveHelper.getShiftEnclosedCFsCommand(ioEP, offsetInnerCFs);
 					if (adjustInnerCFsCommand != null) {
 						compoundCmd.add(adjustInnerCFsCommand);
 					}
@@ -696,13 +696,13 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			List<?> editParts = ((ChangeBoundsRequest)request).getEditParts();
 			if(editParts.size() == 1) {
 				if (editParts.get(0) instanceof AppliedStereotypeCommentEditPart) {
-					// Allow to move-in AppliedStereotypeCommentEditPart			
+					// Allow to move-in AppliedStereotypeCommentEditPart
 					return super.getAddCommand(request);
 				}
 				if(editParts.get(0) instanceof CombinedFragmentEditPart) {
 					// Prevent UnexecutableCommand.INSTANCE to be added to a valid CombinedFragmentEditPart move command chain
 					return null;
-				}			
+				}
 			}
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -860,5 +860,5 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		super.eraseSizeOnDropFeedback(request);
 	}
 
-	private List<LifelineEditPart> coveredLifelines = new ArrayList<LifelineEditPart>(1);
+	private List<LifelineEditPart> coveredLifelines = new ArrayList<>(1);
 }

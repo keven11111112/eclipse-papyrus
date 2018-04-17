@@ -151,7 +151,7 @@ public class LifelineMessageCreateHelper {
 	}
 
 	public static List<?> getIncomingMessageCreate(EditPart target) {
-		List<EditPart> create = new ArrayList<EditPart>();
+		List<EditPart> create = new ArrayList<>();
 		if (target instanceof LifelineEditPart) {
 			List<?> list = ((LifelineEditPart) target).getTargetConnections();
 			if (list != null && list.size() > 0) {

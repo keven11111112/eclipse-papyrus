@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.command;
@@ -115,7 +115,7 @@ public class DropDestructionOccurenceSpecification extends AbstractTransactional
 			destructionEventFigure = new DestructionEventFigure();
 			point.y = point.y - destructionEventFigure.getDefaultSize().height / 2;
 			dropDestructionOccurrenceRequest.setLocation(point);
-			ArrayList<EObject> destructionOccurrenceListToDrop = new ArrayList<EObject>();
+			ArrayList<EObject> destructionOccurrenceListToDrop = new ArrayList<>();
 			destructionOccurrenceListToDrop.add(destructionOccurrenceSpecification);
 			dropDestructionOccurrenceRequest.setObjects(destructionOccurrenceListToDrop);
 			// give the position from the layer it is not relative
@@ -126,7 +126,7 @@ public class DropDestructionOccurenceSpecification extends AbstractTransactional
 
 	/**
 	 * get the DestructionOccurenceSpecification from a given message
-	 * 
+	 *
 	 * @param deleteMessage
 	 *            the message to look for must be never null
 	 * @return DestructionOccurenceSpecification or null

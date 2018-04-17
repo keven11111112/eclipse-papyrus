@@ -254,7 +254,7 @@ public class GateHelper {
 		if (interaction == null) {
 			return Collections.emptyList();
 		}
-		List<InteractionUse> refersToBy = new ArrayList<InteractionUse>();
+		List<InteractionUse> refersToBy = new ArrayList<>();
 		Resource eResource = interaction.eResource();
 		if (eResource != null) {
 			ResourceSet resourceSet = eResource.getResourceSet();

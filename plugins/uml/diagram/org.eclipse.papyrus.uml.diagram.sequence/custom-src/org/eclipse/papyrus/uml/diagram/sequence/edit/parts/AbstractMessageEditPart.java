@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectMessageToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectPointToGridEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifeLineGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelectMessagesEditPartTracker;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
@@ -73,13 +74,13 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	/**
 	 * This method has been added in order to satisfy the requirement Diagram.UML.Sequence.REQ_004:
 	 * <I>"It should be possible to select and move several messages at the same time."</I>
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart#getDragTracker(org.eclipse.gef.Request)
 	 *
 	 *
 	 * @param req
 	 * @return the drag tracker
-	 * 
+	 *
 	 */
 	@Override
 	public DragTracker getDragTracker(Request req) {
@@ -200,7 +201,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		super.createDefaultEditPolicies();
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new MessageLabelEditPolicy());
 		// Ordering Message Occurrence Specification. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
-		installEditPolicy(ConnectPointToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectMessageToGridEditPolicy());
+		installEditPolicy(ConnectRectangleToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectMessageToGridEditPolicy());
 		installEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE, new SequenceReferenceEditPolicy());
 
 	}

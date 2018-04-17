@@ -44,7 +44,6 @@ import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdap
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -165,7 +164,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	@Override
 	protected Set<String> getDroppableElementVisualId() {
-		Set<String> elementsVisualId = new HashSet<String>();
+		Set<String> elementsVisualId = new HashSet<>();
 		elementsVisualId.add(LifelineEditPart.VISUAL_ID);
 		elementsVisualId.add(CCombinedCompartmentEditPart.VISUAL_ID);
 		elementsVisualId.add(ActionExecutionSpecificationEditPart.VISUAL_ID);
@@ -1064,7 +1063,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the list of lifeline.
 	 */
 	private List<Lifeline> getLifelines(List<View> existingViews) {
-		List<Lifeline> lifelines = new ArrayList<Lifeline>();
+		List<Lifeline> lifelines = new ArrayList<>();
 		for (View view : existingViews) {
 			EObject eObject = ViewUtil.resolveSemanticElement((View) view.eContainer());
 			if (eObject instanceof Lifeline) {
