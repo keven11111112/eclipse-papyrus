@@ -13,12 +13,8 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import java.util.ArrayList;
-
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
@@ -42,6 +38,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.CustomSetConnectionAncho
 /**
  * This class allows to redefine the reconnect source and target commands to use the {@link CustomSetConnectionAnchorsCommand} instead of {@link SetConnectionAnchorsCommand} because the custom manage the calculation during the execution and not in the
  * initialisation.
+ * @since 5.0
  */
 public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 

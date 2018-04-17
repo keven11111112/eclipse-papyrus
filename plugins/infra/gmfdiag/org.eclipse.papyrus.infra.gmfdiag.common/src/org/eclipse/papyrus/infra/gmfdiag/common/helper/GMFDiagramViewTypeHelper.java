@@ -45,7 +45,7 @@ public class GMFDiagramViewTypeHelper extends AbstractViewTypeHelper<PapyrusDiag
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @since 3.2
+	 * @since 3.100
 	 */
 	@Override
 	protected ViewPrototype doGetPrototypeFor(PapyrusDiagram diagramKind) {

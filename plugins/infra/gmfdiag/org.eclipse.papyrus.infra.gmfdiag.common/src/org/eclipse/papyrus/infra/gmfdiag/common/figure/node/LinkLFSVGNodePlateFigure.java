@@ -108,6 +108,7 @@ public class LinkLFSVGNodePlateFigure extends SVGNodePlateFigure {
 	 * Get the graphical edit part.
 	 * 
 	 * @return The myHost.
+	 * @since 3.100
 	 */
 	public GraphicalEditPart getGraphicalEditPart() {
 		return myHost;

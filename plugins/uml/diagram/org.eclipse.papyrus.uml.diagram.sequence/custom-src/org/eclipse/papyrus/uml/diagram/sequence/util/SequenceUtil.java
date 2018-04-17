@@ -524,7 +524,7 @@ public class SequenceUtil {
 	}
 
 	/**
-	 * @since 4.1
+	 * @since 5.0
 	 */
 	public static Point findLocationOfMessageOccurrence(GraphicalEditPart nodeEditPart, MessageOccurrenceSpecification event, boolean relyOnMessageFigure) {
 		// messages to the node
@@ -1749,6 +1749,7 @@ public class SequenceUtil {
 	 * @param editPart
 	 *            The initial edit part from which one search the lifelines.
 	 * @return The existing lifelines.
+	 * @since 5.0
 	 */
 	public static Set<LifelineEditPart> getLifeLinesFromEditPart(final EditPart editPart) {
 		final Set<LifelineEditPart> lifeLines = new HashSet<LifelineEditPart>();
@@ -1770,6 +1771,7 @@ public class SequenceUtil {
 	 * Find parent interaction compartment from an edit part.
 	 *
 	 * @return The edit part of the parent interaction.
+	 * @since 5.0
 	 */
 	public static EditPart getInteractionCompartment(final EditPart editPart) {
 		EditPart currentEditPart = editPart;

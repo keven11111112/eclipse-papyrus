@@ -406,6 +406,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	 * @param yMoveDelta
 	 *            The height of the move.
 	 * @return The command to update lifelines or <code>null</code>.
+	 * @since 5.0
 	 */
 	protected Command getUpdateLifeLinesBounds(final BendpointRequest request, final ConnectionEditPart hostConnectionEditPart, final int yMoveDelta) {
 		CompoundCommand command = null;

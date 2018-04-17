@@ -215,6 +215,7 @@ public class ShowHideContentsAction extends AbstractShowHideAction implements IA
 	 * @param partEditPart edit part of the part within a composite (for which we want to display a port)
 	 * @param port the semantic UML2 port which we want to display
 	 * @return the initial location of the port or null (if none could be determined)
+	 * @since 3.1
 	 */
 	public Point getInitialPortLocation(EditPart partEditPart, EObject port) {
 		return null;
