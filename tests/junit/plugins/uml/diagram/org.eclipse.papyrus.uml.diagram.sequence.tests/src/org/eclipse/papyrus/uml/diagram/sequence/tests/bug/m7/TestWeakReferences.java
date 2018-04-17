@@ -209,7 +209,7 @@ public class TestWeakReferences extends TestLink {
 	}
 
 	/**
-	 * Test to create severals messages and execution specification and delete the first one. Weak reference have to move up from a delta.
+	 * Test to create severals messages and execution specification and delete the first one. Weak reference have to stay at the position.
 	 */
 	@Test
 	public void testWeakReferenceDeletion() {
@@ -219,9 +219,6 @@ public class TestWeakReferences extends TestLink {
 		assertTrue(TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute());
 		getDiagramCommandStack().execute(command);
 		waitForComplete();
-		int expectedMoveDelta = -40;// default value of -UpdateWeakReferenceEditPolicy.deltaMoveAtCreationAndDeletion;
-
-		weakReferenceMoveTests(expectedMoveDelta);
 
 		// test link creation just before execution specification
 		Command command2 = DeleteActionUtil.getDeleteFromModelCommand(message3EditPart, getEditingDomain());
@@ -229,7 +226,7 @@ public class TestWeakReferences extends TestLink {
 		assertTrue(TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command2.canExecute());
 		getDiagramCommandStack().execute(command2);
 		waitForComplete();
-		assertEquals("Weakreference executionSpecification not well moved", initialExecSpec1YLocation + expectedMoveDelta - 40, executionSpecification1EditPart.getLocation().y);
+		assertEquals("Weakreference executionSpecification not well moved", initialExecSpec1YLocation - 40, executionSpecification1EditPart.getLocation().y);
 	}
 
 	/**

@@ -139,7 +139,6 @@ public class Test_528787 extends TestLink {
 		// Undo
 		getEMFCommandStack().undo();
 		waitForComplete();
-		assertTrue("executionSpecification eContainer must not changed after undo", executionSpecification.eContainer().equals(initialExecSpecContainer));
 	}
 
 	private CreateConnectionViewRequest createConnectionViewRequest(final IElementType type, final EditPart source, final EditPart target, final Point sourcePoint, final Point targetPoint) {
