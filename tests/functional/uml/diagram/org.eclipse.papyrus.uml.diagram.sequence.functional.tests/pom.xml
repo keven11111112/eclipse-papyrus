@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+	  	<groupId>org.eclipse.papyrus.tests</groupId>
+	  	<artifactId>org.eclipse.papyrus.tests.functional</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+	    <relativePath>../../..</relativePath>
+    </parent>
+  	<groupId>org.eclipse.papyrus.tests</groupId>
+  	<artifactId>org.eclipse.papyrus.uml.diagram.sequence.functional.tests</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+	<packaging>rcpttTest</packaging>
+	
+</project>
