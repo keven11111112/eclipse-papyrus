@@ -30,6 +30,7 @@
 		<module>org.eclipse.papyrus.uml.diagram.navigation</module>
 		<module>org.eclipse.papyrus.uml.diagram.profile</module>
 		<module>org.eclipse.papyrus.uml.diagram.sequence</module>
+		<module>org.eclipse.papyrus.uml.diagram.sequence.restrictions</module>
 		<module>org.eclipse.papyrus.uml.diagram.statemachine</module>
 		<module>org.eclipse.papyrus.uml.diagram.stereotype.edition</module>
 		<module>org.eclipse.papyrus.uml.diagram.symbols</module>

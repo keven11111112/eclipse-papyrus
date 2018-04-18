@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.ProviderServiceUtil;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
@@ -61,6 +62,9 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 	 */
 	@Override
 	protected boolean provides(CreateViewForKindOperation op) {
+		if (!ProviderServiceUtil.isEnabled(this, op.getContainerView())) {
+			return false;
+		}
 		if (!isRelevantDiagram(op.getContainerView().getDiagram())) {
 			return false;
 		}
@@ -81,6 +85,9 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 	 */
 	@Override
 	protected boolean provides(CreateEdgeViewOperation operation) {
+		if (!ProviderServiceUtil.isEnabled(this, operation.getContainerView())) {
+			return false;
+		}
 		if (!isRelevantDiagram(operation.getContainerView().getDiagram())) {
 			return false;
 		}
@@ -93,6 +100,9 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 	 */
 	@Override
 	protected boolean provides(CreateNodeViewOperation operation) {
+		if (!ProviderServiceUtil.isEnabled(this, operation.getContainerView())) {
+			return false;
+		}
 		if (!isRelevantDiagram(operation.getContainerView().getDiagram())) {
 			return false;
 		}
@@ -138,7 +148,7 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 
 	/**
 	 * This method is used to know id the diagram is conform to type, it may be a prototype view, or a generatedDiagram
-	 * 
+	 *
 	 * @param diagram
 	 * @return
 	 */

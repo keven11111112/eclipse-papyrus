@@ -23,6 +23,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.HighlightEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.ProviderServiceUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 
 /**
@@ -70,8 +71,11 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean provides(IOperation operation) {	
+	public boolean provides(IOperation operation) {
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
+		if (!ProviderServiceUtil.isEnabled(this, epOperation.getEditPart())) {
+			return false;
+		}
 		try {
 			EditPart editPart = epOperation.getEditPart();
 			if (!(editPart instanceof GraphicalEditPart)) {

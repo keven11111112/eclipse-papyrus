@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvide
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ExternalReferenceEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.ProviderServiceUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 
 /**
@@ -35,6 +36,9 @@ public class ExternalReferenceEditPolicyProvider extends AbstractProvider implem
 	public boolean provides(IOperation operation) {
 		if (operation instanceof CreateEditPoliciesOperation) {
 			CreateEditPoliciesOperation createOperation = (CreateEditPoliciesOperation) operation;
+			if (!ProviderServiceUtil.isEnabled(this, createOperation.getEditPart())) {
+				return false;
+			}
 			try {
 				if (ServiceUtilsForEditPart.getInstance().getServiceRegistry(createOperation.getEditPart()) != null) {
 					return createOperation.getEditPart().getModel() instanceof Node;

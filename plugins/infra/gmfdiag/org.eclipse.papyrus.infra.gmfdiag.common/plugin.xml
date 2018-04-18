@@ -127,6 +127,18 @@
             priority="1"
             startKind="lazy">
       </service>
+      <serviceFactory
+            classname="org.eclipse.papyrus.infra.gmfdiag.common.service.ViewProviderService$Factory"
+            id="org.eclipse.papyrus.infra.gmfdiag.common.service.ViewProviderService"
+            priority="1"
+            startKind="lazy">
+      </serviceFactory>
+      <serviceFactory
+            classname="org.eclipse.papyrus.infra.gmfdiag.common.service.EditPolicyProviderService$Factory"
+            id="org.eclipse.papyrus.infra.gmfdiag.common.service.EditPolicyProviderService"
+            priority="1"
+            startKind="lazy">
+      </serviceFactory>
    </extension>
 <extension
       point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">

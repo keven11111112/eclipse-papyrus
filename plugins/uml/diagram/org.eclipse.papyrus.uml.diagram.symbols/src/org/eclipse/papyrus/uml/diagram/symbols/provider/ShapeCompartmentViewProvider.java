@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOpera
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.AbstractShapeCompartmentViewProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.GraphicalTypeRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.ProviderServiceUtil;
 
 /**
  * View Provider for Internal Block Diagram. It adds the shape compartment edit parts
@@ -50,6 +51,9 @@ public class ShapeCompartmentViewProvider extends AbstractShapeCompartmentViewPr
 	 */
 	@Override
 	protected boolean provides(CreateNodeViewOperation operation) {
+		if (!ProviderServiceUtil.isEnabled(this, operation.getContainerView())) {
+			return false;
+		}
 		return (getNodeViewClass(operation.getSemanticAdapter(), operation.getContainerView(), operation.getSemanticHint()) != null);
 	}
 

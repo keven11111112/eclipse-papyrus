@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvide
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.ProviderServiceUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCommentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
@@ -44,6 +45,7 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 	 *
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void createEditPolicies(EditPart editPart) {
 		if (editPart instanceof IPapyrusEditPart) {
 			if (!(editPart instanceof AppliedStereotypeMultilinePropertyEditPart)) {
@@ -71,8 +73,13 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 	 *
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean provides(IOperation operation) {
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
+		if (!ProviderServiceUtil.isEnabled(this, epOperation.getEditPart())) {
+			return false;
+		}
+
 		if (!(epOperation.getEditPart() instanceof GraphicalEditPart) && !(epOperation.getEditPart() instanceof ConnectionEditPart)) {
 			return false;
 		}

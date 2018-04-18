@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.ProviderServiceUtil;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.AbstractRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.RepresentationKind;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.DiagramExpansionSingleton;
@@ -35,10 +36,10 @@ import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
- * 
+ *
  * This class is a generic ViewProvider that is enable to create notation element by reading an expansion model
  * See Requirement #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010
- *                 #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040
+ * #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040
  *
  */
 public class ExpandViewProvider extends CustomAbstractViewProvider implements IViewProvider {
@@ -76,44 +77,52 @@ public class ExpandViewProvider extends CustomAbstractViewProvider implements IV
 
 	@Override
 	protected boolean provides(CreateNodeViewOperation operation) {
+		if (!ProviderServiceUtil.isEnabled(this, operation.getContainerView())) {
+			return false;
+		}
 		return providesFromExpansionModel(operation);
 	}
+
 	@Override
 	protected boolean provides(CreateEdgeViewOperation operation) {
+		if (!ProviderServiceUtil.isEnabled(this, operation.getContainerView())) {
+			return false;
+		}
 		return providesFromExpansionModel(operation);
 	}
 
 	/**
 	 * this method consults the expansion model to know if the view can be created in the current container.
-	 * @param operation the proposition of creation
+	 * 
+	 * @param operation
+	 *                      the proposition of creation
 	 * @return true if the expansion model declare it, else false
 	 */
 	protected boolean providesFromExpansionModel(CreateChildViewOperation operation) {
 		String currentDiagramType = getDiagramType(operation.getContainerView());
 
-		//this diagram is known as extended?
-		if(diagramExpansionRegistry.mapChildreen.get(currentDiagramType)==null){
-			Activator.log.trace(Activator.EXPANSION_TRACE,this.getClass().getName()+" " +currentDiagramType+ " not supported by loaded expansion model");
-			
-			//this diagram is unknown
+		// this diagram is known as extended?
+		if (diagramExpansionRegistry.mapChildreen.get(currentDiagramType) == null) {
+			Activator.log.trace(Activator.EXPANSION_TRACE, this.getClass().getName() + " " + currentDiagramType + " not supported by loaded expansion model");
+
+			// this diagram is unknown
 			return false;
 		}
-		String graphicalType =operation.getSemanticHint();
+		String graphicalType = operation.getSemanticHint();
 		String containerType;
-		if(operation.getContainerView() instanceof Diagram ){
-			containerType=currentDiagramType;
+		if (operation.getContainerView() instanceof Diagram) {
+			containerType = currentDiagramType;
+		} else {
+			containerType = operation.getContainerView().getType();
 		}
-		else{
-			containerType	= operation.getContainerView().getType();
-		}
-		Activator.log.trace(Activator.EXPANSION_TRACE,this.getClass().getName()+" try to create view in the container "+containerType+ " the view "+ operation.getSemanticHint()); //$NON-NLS-1$ //$NON-NLS-2$
-		//get the list of childreen Id from a parent ID
-		List<String> possibleChildreenIDs=diagramExpansionRegistry.mapChildreen.get(currentDiagramType).parentChildrenRelation.get(containerType);
-		if(possibleChildreenIDs==null){
+		Activator.log.trace(Activator.EXPANSION_TRACE, this.getClass().getName() + " try to create view in the container " + containerType + " the view " + operation.getSemanticHint()); //$NON-NLS-1$ //$NON-NLS-2$
+		// get the list of childreen Id from a parent ID
+		List<String> possibleChildreenIDs = diagramExpansionRegistry.mapChildreen.get(currentDiagramType).parentChildrenRelation.get(containerType);
+		if (possibleChildreenIDs == null) {
 			return false;
 		}
-		//the child ID is known?
-		if(possibleChildreenIDs.contains(graphicalType)){
+		// the child ID is known?
+		if (possibleChildreenIDs.contains(graphicalType)) {
 			return true;
 		}
 		return false;
@@ -133,21 +142,20 @@ public class ExpandViewProvider extends CustomAbstractViewProvider implements IV
 		String currentDiagramType = getDiagramType(containerView);
 
 		// the map from the diagram ID
-		if(diagramExpansionRegistry.mapChildreen.get(currentDiagramType)!=null){
-			EObject eObject=diagramExpansionRegistry.mapChildreen.get(currentDiagramType).IDMap.get(graphicalType);
+		if (diagramExpansionRegistry.mapChildreen.get(currentDiagramType) != null) {
+			EObject eObject = diagramExpansionRegistry.mapChildreen.get(currentDiagramType).IDMap.get(graphicalType);
 
-			//look for the representation and the view factory path
-			if( eObject instanceof AbstractRepresentation){
-				String viewFactoryPath=((AbstractRepresentation)eObject).getViewFactory();
-				if( viewFactoryPath!=null&& (!"".equals(viewFactoryPath.trim()))){
-					return ClassLoaderHelper.loadClass( viewFactoryPath);
-				}
-				else{
-					RepresentationKind  representationKind=((AbstractRepresentation)eObject).getKind();
-					if(representationKind!=null){
-						viewFactoryPath=representationKind.getViewFactory();
-						if( viewFactoryPath!=null){
-							return 	ClassLoaderHelper.loadClass( viewFactoryPath);
+			// look for the representation and the view factory path
+			if (eObject instanceof AbstractRepresentation) {
+				String viewFactoryPath = ((AbstractRepresentation) eObject).getViewFactory();
+				if (viewFactoryPath != null && (!"".equals(viewFactoryPath.trim()))) {
+					return ClassLoaderHelper.loadClass(viewFactoryPath);
+				} else {
+					RepresentationKind representationKind = ((AbstractRepresentation) eObject).getKind();
+					if (representationKind != null) {
+						viewFactoryPath = representationKind.getViewFactory();
+						if (viewFactoryPath != null) {
+							return ClassLoaderHelper.loadClass(viewFactoryPath);
 						}
 					}
 				}
@@ -158,20 +166,21 @@ public class ExpandViewProvider extends CustomAbstractViewProvider implements IV
 
 	/**
 	 * get the diagram type from a view.
-	 * @param currentView the current view
+	 * 
+	 * @param currentView
+	 *                        the current view
 	 * @return the diagram type it can be also a view point
 	 */
 	protected String getDiagramType(View currentView) {
-		Diagram diagram=currentView.getDiagram();
-		String currentDiagramType=null;
-		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
-		if(viewPrototype!=null){
-			currentDiagramType=viewPrototype.getLabel();
+		Diagram diagram = currentView.getDiagram();
+		String currentDiagramType = null;
+		ViewPrototype viewPrototype = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
+		if (viewPrototype != null) {
+			currentDiagramType = viewPrototype.getLabel();
+		} else {
+			currentDiagramType = diagram.getType();
 		}
-		else{
-			currentDiagramType=diagram.getType();
-		}
-		diagramType=currentDiagramType;
+		diagramType = currentDiagramType;
 		return currentDiagramType;
 	}
 
@@ -182,11 +191,12 @@ public class ExpandViewProvider extends CustomAbstractViewProvider implements IV
 	protected Class<?> getEdgeViewClass(IAdaptable semanticAdapter, View containerView, String graphicalType) {
 		return getViewFactory(containerView, graphicalType);
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	protected void initDiagramType() {
-		diagramType=null;
+		diagramType = null;
 	}
 
 

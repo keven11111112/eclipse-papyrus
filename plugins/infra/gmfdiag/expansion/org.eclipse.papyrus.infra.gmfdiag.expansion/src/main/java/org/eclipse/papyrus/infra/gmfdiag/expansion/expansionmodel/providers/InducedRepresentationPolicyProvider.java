@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPolicies
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.ProviderServiceUtil;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.DiagramExpansionSingleton;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.DiagramExpansionsRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.rendering.InducedRepresentationCreationEditPolicy;
@@ -34,7 +35,7 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 public class InducedRepresentationPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 
 
-	private DiagramExpansionsRegistry diagramExpansionRegistry=null;
+	private DiagramExpansionsRegistry diagramExpansionRegistry = null;
 
 	/**
 	 * Constructor.
@@ -46,40 +47,46 @@ public class InducedRepresentationPolicyProvider extends AbstractProvider implem
 
 	/**
 	 * get the diagram type from a view.
-	 * @param currentView the current view
+	 * 
+	 * @param currentView
+	 *                        the current view
 	 * @return the diagram type it can be also a view point
 	 */
 	protected String getDiagramType(View currentView) {
-		Diagram diagram=currentView.getDiagram();
-		String currentDiagramType=null;
-		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
-		if(viewPrototype!=null){
-			currentDiagramType=viewPrototype.getLabel();
-		}
-		else{
-			currentDiagramType=diagram.getType();
+		Diagram diagram = currentView.getDiagram();
+		String currentDiagramType = null;
+		ViewPrototype viewPrototype = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
+		if (viewPrototype != null) {
+			currentDiagramType = viewPrototype.getLabel();
+		} else {
+			currentDiagramType = diagram.getType();
 		}
 		return currentDiagramType;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean provides(IOperation operation) {
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
+		if (!ProviderServiceUtil.isEnabled(this, epOperation.getEditPart())) {
+			return false;
+		}
 		if (!(epOperation.getEditPart() instanceof IGraphicalEditPart)) {
 			return false;
 		}
 
 		// Make sure this concern Block Definition Diagram only
 		IGraphicalEditPart gep = (IGraphicalEditPart) epOperation.getEditPart();
-		String diagramType=getDiagramType(gep.getNotationView());
-		if(diagramExpansionRegistry.mapChildreen.get(diagramType)!=null){
+		String diagramType = getDiagramType(gep.getNotationView());
+		if (diagramExpansionRegistry.mapChildreen.get(diagramType) != null) {
 			return true;
 		}
 
 		return false;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */

@@ -20,13 +20,18 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPolicies
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.ProviderServiceUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 
 
 public class CustomizableDropEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 
+	@Override
 	public boolean provides(IOperation operation) {
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
+		if (!ProviderServiceUtil.isEnabled(this, epOperation.getEditPart())) {
+			return false;
+		}
 
 		try {
 			ServicesRegistry registry = ServiceUtilsForEditPart.getInstance().getServiceRegistry(epOperation.getEditPart());
@@ -36,6 +41,7 @@ public class CustomizableDropEditPolicyProvider extends AbstractProvider impleme
 		}
 	}
 
+	@Override
 	public void createEditPolicies(EditPart editPart) {
 		EditPolicy defaultDropEditPolicy = editPart.getEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE);
 		EditPolicy defaultCreationEditPolicy = editPart.getEditPolicy(EditPolicyRoles.CREATION_ROLE);

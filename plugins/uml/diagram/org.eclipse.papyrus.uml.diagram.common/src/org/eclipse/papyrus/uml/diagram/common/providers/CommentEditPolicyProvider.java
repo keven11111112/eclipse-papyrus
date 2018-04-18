@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPolicies
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.ProviderServiceUtil;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractNameReferencesListenerEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommentReferencesListenerEditPolicy;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
@@ -38,6 +39,9 @@ public class CommentEditPolicyProvider extends AbstractProvider implements IEdit
 	@Override
 	public boolean provides(IOperation operation) {
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
+		if (!ProviderServiceUtil.isEnabled(this, epOperation.getEditPart())) {
+			return false;
+		}
 		Element element = UMLUtil.resolveUMLElement(epOperation.getEditPart());
 		if (!(element instanceof Comment)) {
 			return false;

@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPolicies
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ShapeCompartmentEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.ProviderServiceUtil;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
@@ -39,6 +40,9 @@ public class ShapeEditPolicyProvider extends AbstractProvider implements IEditPo
 	@Override
 	public boolean provides(IOperation operation) {
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
+		if (!ProviderServiceUtil.isEnabled(this, epOperation.getEditPart())) {
+			return false;
+		}
 		if (!(epOperation.getEditPart() instanceof IGraphicalEditPart)) {
 			return false;
 		}
@@ -47,7 +51,7 @@ public class ShapeEditPolicyProvider extends AbstractProvider implements IEditPo
 		IGraphicalEditPart gep = (IGraphicalEditPart) epOperation.getEditPart();
 		return provides(gep);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -61,7 +65,9 @@ public class ShapeEditPolicyProvider extends AbstractProvider implements IEditPo
 
 	/**
 	 * check whether edit part provides a symbol compartment
-	 * @param the edit part
+	 * 
+	 * @param the
+	 *                edit part
 	 * @return
 	 */
 	protected boolean provides(EditPart ep) {

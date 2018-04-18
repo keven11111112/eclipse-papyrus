@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.ProviderServiceUtil;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSHelper;
 
 /**
@@ -35,6 +36,9 @@ public class EventListenerEditPolicyProvider extends AbstractProvider implements
 	public boolean provides(IOperation operation) {
 		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
 		EditPart editPart = epOperation.getEditPart();
+		if (!ProviderServiceUtil.isEnabled(this, editPart)) {
+			return false;
+		}
 		if (!(editPart instanceof GraphicalEditPart)) {
 			return false;
 		}
