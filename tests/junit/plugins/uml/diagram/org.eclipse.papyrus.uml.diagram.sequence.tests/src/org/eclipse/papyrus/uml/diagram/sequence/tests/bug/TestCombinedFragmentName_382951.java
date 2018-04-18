@@ -30,14 +30,11 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.junit.framework.classification.FailingTest;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDCustomCombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomConsiderIgnoreFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestTopNode;
-import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.junit.Test;
 
@@ -71,17 +68,16 @@ public class TestCombinedFragmentName_382951 extends TestTopNode {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
-	
-@FailingTest
+	@FailingTest
 	@Test
 	public void testConsiderIgnoreFragment() {
 		IEclipsePreferences store = InstanceScope.INSTANCE.getNode(PREF_STORE);
 		store.putBoolean(CONSIDER_FRAGMENT_KEY, false);
 
 		createNode(UMLElementTypes.ConsiderIgnoreFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
-		CustomConsiderIgnoreFragmentEditPart cep = (CustomConsiderIgnoreFragmentEditPart)getRootEditPart().getChildren().get(0);
-		ConsiderIgnoreFragment cf = (ConsiderIgnoreFragment)cep.resolveSemanticElement();
-		WrappingLabel label = cep.getTitleLabel();
+		CCombinedFragmentEditPart cep = (CCombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
+		ConsiderIgnoreFragment cf = (ConsiderIgnoreFragment) cep.resolveSemanticElement();
+		WrappingLabel label = cep.getPrimaryShape().getTitleLabel();
 		assertFalse(TEST_THE_EXECUTION, label.isVisible());
 
 		store.putBoolean(CONSIDER_FRAGMENT_KEY, true);
@@ -90,7 +86,7 @@ public class TestCombinedFragmentName_382951 extends TestTopNode {
 	}
 
 	public void createNode(IElementType type, EditPart parentPart, Point location, Dimension size) {
-		//CREATION
+		// CREATION
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(location);
 		requestcreation.setSize(size);

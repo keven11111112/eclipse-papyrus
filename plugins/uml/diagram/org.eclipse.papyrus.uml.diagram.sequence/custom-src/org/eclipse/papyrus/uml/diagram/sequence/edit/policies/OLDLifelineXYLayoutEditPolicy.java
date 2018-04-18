@@ -403,7 +403,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 *
 	 * @return a corrected sizeDelta
 	 */
-	private final static Dimension adaptSizeDeltaToMaxHeight(IFigure figure, Dimension sizeDelta) {
+	public final static Dimension adaptSizeDeltaToMaxHeight(IFigure figure, Dimension sizeDelta) {
 		Dimension newSizeDelta = new Dimension(sizeDelta);
 		int figureHeight = figure.getBounds().height;
 		int maximunFigureHeight = figure.getMaximumSize().height;
@@ -483,7 +483,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * @return true if the rectangles of both figures touch and the right figure is really on the
 	 *         right. False otherwise
 	 */
-	private final static boolean isAffixedToRight(Rectangle leftFigure, Rectangle rightFigure) {
+	public final static boolean isAffixedToRight(Rectangle leftFigure, Rectangle rightFigure) {
 		// return leftFigure.touches(rightFigure) && leftFigure.x < rightFigure.x;
 		return leftFigure.contains(rightFigure.getLocation()) && leftFigure.x < rightFigure.x;
 	}
@@ -546,7 +546,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 *
 	 * @return The real MoveDelta applied
 	 */
-	private final static Rectangle getRealMoveDelta(Rectangle oldRelativeBounds, Rectangle newRelativeBounds) {
+	public final static Rectangle getRealMoveDelta(Rectangle oldRelativeBounds, Rectangle newRelativeBounds) {
 		Rectangle realMoveDelta = new Rectangle();
 		realMoveDelta.x = newRelativeBounds.x - oldRelativeBounds.x;
 		realMoveDelta.y = newRelativeBounds.y - oldRelativeBounds.y;
@@ -563,7 +563,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 *
 	 * @return The relative bounds regarding it's parent figure
 	 */
-	private final static Rectangle getRelativeBounds(IFigure figure) {
+	public final static Rectangle getRelativeBounds(IFigure figure) {
 		Rectangle relBounds = figure.getBounds().getCopy();
 		Rectangle parentRectangle = figure.getParent().getBounds();
 		relBounds.x -= parentRectangle.x;
