@@ -67,7 +67,7 @@ public class MessageRouter extends ObliqueRouter {
 
 		/**
 		 * isHorizontalConnection tests whether an asynchronous message is horizontal
-		 * 
+		 *
 		 * @param conn
 		 *            controller representing the link
 		 * @param newLine

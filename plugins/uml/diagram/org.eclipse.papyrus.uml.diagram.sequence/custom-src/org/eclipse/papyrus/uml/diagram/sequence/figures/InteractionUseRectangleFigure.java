@@ -88,7 +88,7 @@ public class InteractionUseRectangleFigure extends RoundedCompartmentFigure {
 
 	/**
 	 * Getter of the centerLabel
-	 * 
+	 *
 	 * @return centerLabel (creates it if null)
 	 */
 	public PapyrusWrappingLabel getCenterLabel() {

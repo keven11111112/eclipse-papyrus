@@ -56,7 +56,7 @@ public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 
 	protected Command nodeCreationCommand;
 
-	protected Map<String, Object> createElementRequestParameters = new HashMap<String, Object>();
+	protected Map<String, Object> createElementRequestParameters = new HashMap<>();
 
 	protected IHintedType elementType;
 

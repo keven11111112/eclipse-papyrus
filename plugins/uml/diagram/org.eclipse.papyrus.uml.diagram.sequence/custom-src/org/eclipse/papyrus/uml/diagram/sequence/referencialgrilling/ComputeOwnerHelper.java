@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
@@ -35,13 +34,13 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This class is a basic class to compute owners.
- * 
+ *
  * @since 3.0
  */
 public class ComputeOwnerHelper implements IComputeOwnerHelper {
 
 	protected static void fillHorizontalMatch(ArrayList<DecorationNode> columns, HashMap<Lifeline, ArrayList<InteractionOperand>> HorizontalLifeLinetoOperand) {
-		ArrayList<InteractionOperand> interactionOperandStack = new ArrayList<InteractionOperand>();
+		ArrayList<InteractionOperand> interactionOperandStack = new ArrayList<>();
 		for (DecorationNode column : columns) {
 			if (column.getElement() instanceof InteractionOperand) {
 				if (interactionOperandStack.contains(column.getElement())) {
@@ -61,7 +60,7 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 
 
 	protected static void fillVerticalMatch(ArrayList<DecorationNode> rows, HashMap<Element, ArrayList<InteractionOperand>> verticalElementToOperand) {
-		ArrayList<InteractionOperand> interactionOperandStack = new ArrayList<InteractionOperand>();
+		ArrayList<InteractionOperand> interactionOperandStack = new ArrayList<>();
 		for (DecorationNode row : rows) {
 			if (row.getElement() instanceof InteractionOperand) {
 				if (interactionOperandStack.contains(row.getElement())) {
@@ -81,8 +80,8 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 	public void updateOwnedByInteractionOperand(EditingDomain domain, ArrayList<DecorationNode> rows, ArrayList<DecorationNode> columns, Interaction interaction, GridManagementEditPolicy grid) {
 		// update owner of interaction operand
 
-		HashMap<Lifeline, ArrayList<InteractionOperand>> horizontalLifeLinetoOperand = new HashMap<Lifeline, ArrayList<InteractionOperand>>();
-		HashMap<Element, ArrayList<InteractionOperand>> verticalElementToOperand = new HashMap<Element, ArrayList<InteractionOperand>>();
+		HashMap<Lifeline, ArrayList<InteractionOperand>> horizontalLifeLinetoOperand = new HashMap<>();
+		HashMap<Element, ArrayList<InteractionOperand>> verticalElementToOperand = new HashMap<>();
 		fillHorizontalMatch(columns, horizontalLifeLinetoOperand);
 		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "horizontal parsing done " + horizontalLifeLinetoOperand);//$NON-NLS-1$
 		fillVerticalMatch(rows, verticalElementToOperand);
@@ -91,9 +90,9 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 
 		// list of element for the interaction
 
-		ArrayList<InteractionFragment> elementForInteraction = new ArrayList<InteractionFragment>();
+		ArrayList<InteractionFragment> elementForInteraction = new ArrayList<>();
 		// list of element for the interactionOperand
-		HashMap<InteractionOperand, ArrayList<InteractionFragment>> elementForIneractionOp = new HashMap<InteractionOperand, ArrayList<InteractionFragment>>();
+		HashMap<InteractionOperand, ArrayList<InteractionFragment>> elementForIneractionOp = new HashMap<>();
 		Iterator elementInteraction = interaction.eAllContents();
 		while (elementInteraction.hasNext()) {
 			Element element = (Element) elementInteraction.next();
@@ -136,11 +135,11 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 		// update fragments of interaction operrands
 		Iterator<InteractionOperand> iterator = elementForIneractionOp.keySet().iterator();
 		while (iterator.hasNext()) {
-			InteractionOperand interactionOperand = (InteractionOperand) iterator.next();
+			InteractionOperand interactionOperand = iterator.next();
 			ArrayList<InteractionFragment> elements = elementForIneractionOp.get(interactionOperand);
 			if (elements.size() != 0) {
 				// sort list bu taking
-				ArrayList<InteractionFragment> existedFragments = new ArrayList<InteractionFragment>();
+				ArrayList<InteractionFragment> existedFragments = new ArrayList<>();
 				ArrayList<InteractionFragment> sorted = sortSemanticFromRows(elements, rows);
 				existedFragments.addAll(sorted);
 				existedFragments.addAll(interactionOperand.getFragments());
@@ -150,7 +149,7 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 
 		// Update fragments of the interaction
 		if (elementForInteraction.size() != 0) {
-			ArrayList<InteractionFragment> existedFragments = new ArrayList<InteractionFragment>();
+			ArrayList<InteractionFragment> existedFragments = new ArrayList<>();
 			ArrayList<InteractionFragment> sorted = sortSemanticFromRows(elementForInteraction, rows);
 			existedFragments.addAll(sorted);
 			// Add not sorted element existing into fragment
@@ -176,7 +175,7 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 
 	/**
 	 * The goal is to create a new list of ordered fragment form a list of fragments by taking general order from rows
-	 * 
+	 *
 	 * @param fragments
 	 *            a list of fragments
 	 * @param rows
@@ -184,11 +183,11 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 	 * @return an ordered list
 	 */
 	protected ArrayList<InteractionFragment> sortSemanticFromRows(ArrayList<InteractionFragment> fragments, ArrayList<DecorationNode> rows) {
-		ArrayList<InteractionFragment> sortedList = new ArrayList<InteractionFragment>();
+		ArrayList<InteractionFragment> sortedList = new ArrayList<>();
 		for (Iterator<DecorationNode> iteratorRow = rows.iterator(); iteratorRow.hasNext();) {
 			DecorationNode row = iteratorRow.next();
 			if (fragments.contains(row.getElement())) {
-				if (!sortedList.contains((InteractionFragment) row.getElement())) {
+				if (!sortedList.contains(row.getElement())) {
 					sortedList.add((InteractionFragment) row.getElement());
 				}
 			}
@@ -200,13 +199,13 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 	/**
 	 * simplify the list of interaction operand to find only one.
 	 * all interaction operand in this list must have a relation owner-owned.
-	 * 
+	 *
 	 * @param operandList
 	 */
 	protected static void simplifyOwnerInteractionOperand(ArrayList<InteractionOperand> operandList) {
-/*		
+/*
   	while (operandList.size() > 1) {
- 
+
 			InteractionOperand last = operandList.get(operandList.size() - 1);
 			EObject parent = last.eContainer();
 			while (parent != null) {
@@ -219,13 +218,13 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 
 	/**
 	 * make the intersection of 2 lists
-	 * 
+	 *
 	 * @param list1
 	 * @param list2
 	 * @return
 	 */
 	protected static <T> ArrayList<T> intersection(List<T> list1, List<T> list2) {
-		ArrayList<T> list = new ArrayList<T>();
+		ArrayList<T> list = new ArrayList<>();
 
 		for (T t : list1) {
 			if (list2.contains(t)) {

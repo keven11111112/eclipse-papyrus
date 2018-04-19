@@ -550,8 +550,14 @@ public class MessageAsyncAppliedStereotypeEditPart extends PapyrusLabelEditPart
 			maskLabelPolicy = getEditPolicy(IndirectMaskLabelEditPolicy.INDRIRECT_MASK_MANAGED_LABEL);
 		}
 		if (maskLabelPolicy == null) {
-			setLabelTextHelper(getFigure(), getLabelText());
-			setLabelIconHelper(getFigure(), getLabelIcon());
+			View view = (View) getModel();
+			if (view.isVisible()) {
+				setLabelTextHelper(getFigure(), getLabelText());
+				setLabelIconHelper(getFigure(), getLabelIcon());
+			} else {
+				setLabelTextHelper(getFigure(), ""); //$NON-NLS-1$
+				setLabelIconHelper(getFigure(), null);
+			}
 		}
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
@@ -819,6 +825,7 @@ public class MessageAsyncAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getLabelRole() {
 		return "Stereotype";//$NON-NLS-1$
 	}
@@ -826,6 +833,7 @@ public class MessageAsyncAppliedStereotypeEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif";//$NON-NLS-1$
 	}

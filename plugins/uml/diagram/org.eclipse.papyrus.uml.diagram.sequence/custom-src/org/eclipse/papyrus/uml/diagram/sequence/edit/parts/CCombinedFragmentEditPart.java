@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   C�line Janssens (celine.janssens@all4tec.net) - Add Coregion  functionnality
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  * @since 3.0
  * this class has been customized to prevent the strange feedback of lifeline during the move
  *
@@ -60,7 +60,7 @@ public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
 
 	/**
 	 * Get the Notation Value of the CoRegion boolean
-	 * 
+	 *
 	 * @return true if the Combined Fragment should be displayed as a CoRegion with Brackets.
 	 *         This is the case if the Operator is Parallel and if the combinedFragment covers only 1 lifeline
 	 */
@@ -91,7 +91,7 @@ public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
 	@Override
 	public void refresh() {
 
-		((CombinedFragmentFigure) getPrimaryShape()).setCoregion(isCoregion());
+		getPrimaryShape().setCoregion(isCoregion());
 		super.refresh();
 
 	}

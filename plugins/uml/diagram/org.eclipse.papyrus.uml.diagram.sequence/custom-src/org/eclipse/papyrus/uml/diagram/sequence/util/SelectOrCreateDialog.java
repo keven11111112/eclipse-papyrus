@@ -448,8 +448,8 @@ public class SelectOrCreateDialog extends FormDialog {
 	}
 
 	private Set<Signal> getAllSignals(List<Type> types) {
-		Set<Signal> accept = new HashSet<Signal>();
-		Set<Classifier> collected = new HashSet<Classifier>();
+		Set<Signal> accept = new HashSet<>();
+		Set<Classifier> collected = new HashSet<>();
 		for (Type t : types) {
 			if (t instanceof Classifier) {
 				Classifier c = (Classifier) t;
@@ -469,15 +469,18 @@ public class SelectOrCreateDialog extends FormDialog {
 			for (org.eclipse.uml2.uml.Interface intf : comp.getProvideds()) {
 				collectSignals(intf, accept, collected);
 			}
-			
+
 			for (Property prop : comp.getAllAttributes()) {
-				if (!(prop instanceof Port))
+				if (!(prop instanceof Port)) {
 					continue;
+				}
 				VisibilityKind v = prop.getVisibility();
-				if (v == VisibilityKind.PRIVATE_LITERAL)
+				if (v == VisibilityKind.PRIVATE_LITERAL) {
 					continue;
-				if (v == VisibilityKind.PACKAGE_LITERAL && (prop.getClass() == null || prop.getClass_().getNamespace() != c))
+				}
+				if (v == VisibilityKind.PACKAGE_LITERAL && (prop.getClass() == null || prop.getClass_().getNamespace() != c)) {
 					continue;
+				}
 				Port port = (Port)prop;
 				for (org.eclipse.uml2.uml.Interface intf : port.getProvideds()) {
 					collectSignals(intf, accept, collected);
@@ -491,7 +494,7 @@ public class SelectOrCreateDialog extends FormDialog {
 					}
 				}
 			}
-			
+
 			if (c instanceof org.eclipse.uml2.uml.Class) {
 				EList<Property> attrs = c.getAllAttributes();
 				for (Property p : attrs) {
@@ -510,7 +513,7 @@ public class SelectOrCreateDialog extends FormDialog {
 			return elements.toArray(new EObject[elements.size()]);
 		}
 		Set<Signal> accept = getAllSignals(types);
-		List<EObject> result = new ArrayList<EObject>();
+		List<EObject> result = new ArrayList<>();
 		for (EObject o : elements) {
 			if (!(o instanceof Signal)) {
 				result.add(o);

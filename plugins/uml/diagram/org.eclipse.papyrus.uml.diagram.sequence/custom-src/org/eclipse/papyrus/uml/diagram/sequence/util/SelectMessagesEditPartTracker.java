@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -33,7 +33,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  * @since 3.0
  *
  */
@@ -88,7 +88,7 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 		// and find the MinDistancetop (maximum mouvment without reorder to the top) and the MinDistancebottom (maximum distance without reorder to the bottom)
 
 
-		ArrayList<GraphicalEditPart> nodeEditPart = new ArrayList<GraphicalEditPart>();
+		ArrayList<GraphicalEditPart> nodeEditPart = new ArrayList<>();
 
 		List selectedEditparts = getOperationSet();
 
@@ -102,7 +102,7 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 
 		}
 		// 2. take all messages between this nodes
-		ArrayList<AbstractMessageEditPart> messageEditPartList = new ArrayList<AbstractMessageEditPart>();
+		ArrayList<AbstractMessageEditPart> messageEditPartList = new ArrayList<>();
 		for (GraphicalEditPart anodeEditPart : nodeEditPart) {
 			for (Object connection : anodeEditPart.getSourceConnections()) {
 
@@ -165,9 +165,10 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gef.Tool#deactivate()
 	 */
+	@Override
 	public void deactivate() {
 		PlatformUI.getWorkbench().getDisplay().removeFilter(SWT.KeyUp, KeyDownListener);
 		PlatformUI.getWorkbench().getDisplay().removeFilter(SWT.KeyUp, KeyUPListener);
@@ -177,6 +178,7 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 	/**
 	 * @see org.eclipse.gef.tools.SimpleDragTracker#updateSourceRequest()
 	 */
+	@Override
 	protected void updateSourceRequest() {
 		if (!allowReoder) {
 			Dimension computedDelta = getLocation().getDifference(getStartLocation());
@@ -200,6 +202,7 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 		super.updateSourceRequest();
 	}
 
+	@Override
 	protected Dimension getDragMoveDelta() {
 		if (delta == null) {
 			return getLocation().getDifference(getStartLocation());

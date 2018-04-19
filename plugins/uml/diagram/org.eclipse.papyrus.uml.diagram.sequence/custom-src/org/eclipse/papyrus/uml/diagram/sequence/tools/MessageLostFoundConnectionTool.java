@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -50,7 +50,7 @@ public class MessageLostFoundConnectionTool extends SequenceSpecificConnectionTo
 	 * Returns the current x, y position of the mouse cursor.
 	 * Sets the Y coordinate to the one of the start location
 	 * for messages created with SHIFT being pressed.
-	 * 
+	 *
 	 * @return the mouse location
 	 */
 	@Override
@@ -69,43 +69,49 @@ public class MessageLostFoundConnectionTool extends SequenceSpecificConnectionTo
 	 * changes. The target is updated by using the target conditional and the
 	 * target request. If the target has been locked, this method does nothing
 	 * and returns <code>false</code>.
-	 * 
+	 *
 	 * @return <code>true</code> if the target was changed
 	 */
+	@Override
 	protected boolean updateTargetUnderMouse() {
 		if (!isTargetLocked()) {
 			EditPart editPart = null;
-			if (getCurrentViewer() != null)
+			if (getCurrentViewer() != null) {
 				editPart = getCurrentViewer().findObjectAtExcluding(
 						getLocation(), getExclusionSet(),
 						getTargetingConditional());
+			}
 			if( editPart instanceof InteractionInteractionCompartmentEditPart){
 				editPart = getCurrentViewer().findObjectAtExcluding(
 						getLocation(), getExclusionSet(),
 						getTargetingConditional());
 				editPart= editPart.getParent();
 			}
-			if (editPart != null)
+			if (editPart != null) {
 				editPart = editPart.getTargetEditPart(getTargetRequest());
+			}
 			boolean changed = getTargetEditPart() != editPart;
 			setTargetEditPart(editPart);
 			return changed;
-		} else
+		} else {
 			return false;
+		}
 	}
 	/**
 	 * Queries the target editpart for a command.
-	 * 
+	 *
 	 * @see org.eclipse.gef.tools.AbstractTool#getCommand()
 	 */
+	@Override
 	protected Command getCommand() {
-		if (getTargetEditPart() == null)
+		if (getTargetEditPart() == null) {
 			return null;
+		}
 		return getTargetEditPart().getCommand(getTargetRequest());
 	}
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.tools.ConnectionCreationTool#selectAddedObject(org.eclipse.gef.EditPartViewer, java.util.Collection)
 	 */
 	@Override

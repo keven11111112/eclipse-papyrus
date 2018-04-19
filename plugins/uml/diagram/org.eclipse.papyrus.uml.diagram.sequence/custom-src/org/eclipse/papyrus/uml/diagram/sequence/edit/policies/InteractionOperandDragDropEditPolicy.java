@@ -13,14 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 
 /**
  * The customn DragDropEditPolicy for InteractionOperandEditPart.
@@ -52,7 +47,7 @@ public class InteractionOperandDragDropEditPolicy extends ResizableEditPolicy {
 //			if (this.getHost() instanceof InteractionOperandEditPart && this.getHost().getParent() instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 //				InteractionOperandEditPart currentIOEP = (InteractionOperandEditPart) this.getHost();
 //				CombinedFragmentCombinedFragmentCompartmentEditPart compartEP = (CombinedFragmentCombinedFragmentCompartmentEditPart) this.getHost().getParent();
-//				// if the OP's border same as/linked to the CF's border 
+//				// if the OP's border same as/linked to the CF's border
 //				if (this.getHost() == OperandBoundsComputeHelper.findFirstIOEP(compartEP) && isNorthResize
 //						|| this.getHost() == OperandBoundsComputeHelper.findLastIOEP(compartEP) && isSouthResize) {
 //					return getHost().getParent().getParent().getCommand(request);

@@ -150,7 +150,7 @@ public class LifelineCustomParsers extends MessageFormatParser implements ISeman
 	 */
 	@Override
 	public List getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof Lifeline) {
 			Lifeline lifeline = (Lifeline) element;
 			// Add the lifeline

@@ -70,7 +70,7 @@ public class TooltipUtil {
 
 	public static final String TOOLTIP_ROLE = "tooltip Edit Policy";
 
-	private static final List<EClass> ELEMENT_SUPPORT_TOOLTIPS = new ArrayList<EClass>();
+	private static final List<EClass> ELEMENT_SUPPORT_TOOLTIPS = new ArrayList<>();
 	static {
 		ELEMENT_SUPPORT_TOOLTIPS.add(UMLPackage.Literals.LIFELINE);
 		ELEMENT_SUPPORT_TOOLTIPS.add(UMLPackage.Literals.ACTION_EXECUTION_SPECIFICATION);

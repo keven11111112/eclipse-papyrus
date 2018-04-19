@@ -63,7 +63,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  */
 public class FragmentsOrdererHelper {
 
-	private static final List<String> INTERACTION_FRAGMENT_HINTS = new ArrayList<String>();
+	private static final List<String> INTERACTION_FRAGMENT_HINTS = new ArrayList<>();
 	static {
 		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.ActionExecutionSpecification_Shape).getSemanticHint());
 		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.BehaviorExecutionSpecification_Shape).getSemanticHint());
@@ -105,7 +105,7 @@ public class FragmentsOrdererHelper {
 		if (editPart == null) {
 			return null;
 		}
-		IGraphicalEditPart graphicalEditPart = (IGraphicalEditPart) editPart.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart graphicalEditPart = editPart.getAdapter(IGraphicalEditPart.class);
 		if (graphicalEditPart != null) {
 			return graphicalEditPart.getEditingDomain();
 		}
@@ -120,7 +120,7 @@ public class FragmentsOrdererHelper {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				final Map<View, Float[]> viewPositions = new HashMap<View, Float[]>();
+				final Map<View, Float[]> viewPositions = new HashMap<>();
 				ConnectionEditPart conn = request.getConnectionEditPart();
 				if (conn != null) {
 					// View view = (View)conn.getAdapter(View.class);
@@ -150,7 +150,7 @@ public class FragmentsOrdererHelper {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				final Map<View, Float[]> viewPositions = new HashMap<View, Float[]>();
+				final Map<View, Float[]> viewPositions = new HashMap<>();
 				ConnectionViewAndElementDescriptor desc = request.getConnectionViewAndElementDescriptor();
 				if (desc != null) {
 					View view = (View) desc.getAdapter(View.class);
@@ -179,7 +179,7 @@ public class FragmentsOrdererHelper {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				final Map<View, Float[]> viewPositions = new HashMap<View, Float[]>();
+				final Map<View, Float[]> viewPositions = new HashMap<>();
 				ViewAndElementDescriptor desc = request.getViewAndElementDescriptor();
 				if (desc != null) {
 					View view = (View) desc.getAdapter(View.class);
@@ -202,15 +202,15 @@ public class FragmentsOrdererHelper {
 		if (editPart == null) {
 			return null;
 		}
-		IGraphicalEditPart graphicalEditPart = (IGraphicalEditPart) editPart.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart graphicalEditPart = editPart.getAdapter(IGraphicalEditPart.class);
 		if (graphicalEditPart instanceof InteractionEditPart || graphicalEditPart instanceof InteractionOperandEditPart) {
-			Set<IGraphicalEditPart> rootEditParts = new HashSet<IGraphicalEditPart>();
+			Set<IGraphicalEditPart> rootEditParts = new HashSet<>();
 			rootEditParts.add(graphicalEditPart);
 			return rootEditParts;
 		} else if (graphicalEditPart instanceof AbstractMessageEditPart) {
-			Set<IGraphicalEditPart> rootEditParts = new HashSet<IGraphicalEditPart>();
+			Set<IGraphicalEditPart> rootEditParts = new HashSet<>();
 			EObject element = graphicalEditPart.resolveSemanticElement();
-			Set<EObject> enclosingParents = new HashSet<EObject>();
+			Set<EObject> enclosingParents = new HashSet<>();
 			if (element instanceof Message) {
 				MessageEnd receiveEvent = ((Message) element).getReceiveEvent();
 				if (receiveEvent instanceof OccurrenceSpecification) {

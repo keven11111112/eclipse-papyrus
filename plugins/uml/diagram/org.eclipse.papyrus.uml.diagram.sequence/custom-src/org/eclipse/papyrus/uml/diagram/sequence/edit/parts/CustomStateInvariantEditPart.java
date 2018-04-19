@@ -179,7 +179,7 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 			final View view = getNotationView();
 			final DecorationNode guardNode = NotationFactory.eINSTANCE.createDecorationNode();
 			guardNode.setType(UMLVisualIDRegistry.getType(StateInvariantLabelEditPart.VISUAL_ID));
-			
+
 			modelChildren.add(guardNode);
 		}
 		return modelChildren;

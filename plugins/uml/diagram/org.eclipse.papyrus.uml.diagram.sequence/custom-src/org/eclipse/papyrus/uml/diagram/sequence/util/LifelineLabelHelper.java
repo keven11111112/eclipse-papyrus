@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
 public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 
 	public static final String SHOW_REPRESENT_NAME = "representsName";
-	
+
 	public static final String SHOW_REPRESENT_SELECTOR = "representsSelector";
 
 	public static final String SHOW_REPRESENT_TYPE = "representsType";
@@ -66,7 +66,7 @@ public class LifelineLabelHelper extends StereotypedElementLabelHelper {
 	}
 
 	/** Map for masks */
-	protected final Map<String, String> masks = new HashMap<String, String>();
+	protected final Map<String, String> masks = new HashMap<>();
 
 	/**
 	 * Creates a new Operation label helper.

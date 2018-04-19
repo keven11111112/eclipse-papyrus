@@ -144,7 +144,7 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List getSemanticElementsBeingParsed(EObject element) {
-		HashSet<Element> semanticElementsBeingParsed = new HashSet<Element>();
+		HashSet<Element> semanticElementsBeingParsed = new HashSet<>();
 		if (element instanceof Constraint) {
 			Constraint constraint = (Constraint) element;
 			ValueSpecificationUtil.addEnclosedValueSpecificationToCollection(constraint.getSpecification(), semanticElementsBeingParsed);
@@ -178,7 +178,7 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 
 	@Override
 	public String getEditString(IAdaptable adapter, int flags) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
+		EObject element = adapter.getAdapter(EObject.class);
 		if (element instanceof DurationConstraint) {
 			return getDurationConstraint((DurationConstraint) element, false);
 		}
@@ -201,7 +201,7 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 
 	@Override
 	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
+		EObject element = adapter.getAdapter(EObject.class);
 		if (element instanceof DurationConstraint) {
 			TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(element);
 			if (editingDomain == null) {

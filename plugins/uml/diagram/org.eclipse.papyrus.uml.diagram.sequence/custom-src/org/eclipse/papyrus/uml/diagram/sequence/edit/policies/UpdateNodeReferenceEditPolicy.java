@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright s(c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -40,7 +40,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 /**
  * this editpolicy is to manage the movement of message on node as lifeline
  * It is like a graphical node
- * 
+ *
  * @since 4.0
  *
  */
@@ -49,12 +49,12 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 
 	/**
 	 * To extract in other EditPolicy
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#getCommand(org.eclipse.gef.Request)
 	 *
 	 * @param request
 	 * @return
-	 * 
+	 *
 	 * 		<img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
 	 *         <UL>
 	 *         <LI>when move B (anchor of the message)-->
@@ -76,7 +76,7 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 				SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
 				CompoundCommand compoundCommand = new CompoundCommand();
 				for (Iterator<EditPart> iterator = references.getStrongReferences().keySet().iterator(); iterator.hasNext();) {
-					EditPart editPart = (EditPart) iterator.next();
+					EditPart editPart = iterator.next();
 					if (!SenderRequestUtils.isASender(request, editPart) && getHost().getChildren().contains(editPart)) {
 						GraphicalEditPart gEditPart = (GraphicalEditPart) editPart;
 						Point GEPlocationOnDiagram = CoordinateReferentialUtils.getFigurePositionRelativeToDiagramReferential(gEditPart.getFigure(), getDiagramEditPart(getHost()));

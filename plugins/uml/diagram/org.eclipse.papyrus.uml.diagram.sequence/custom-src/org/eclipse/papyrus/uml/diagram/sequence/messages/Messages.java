@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.messages;
@@ -80,22 +80,22 @@ public class Messages extends NLS {
 	public static String Commands_DropDestructionOccurenceSpecification_Label;
 
 	/**
-	 * @since 4.1
+	 * @since 5.0
 	 */
 	public static String CustomDiagramGeneralPreferencePage_MinimumSpaceBelowMessageAtCreation;
 
 	/**
-	 * @since 4.1
+	 * @since 5.0
 	 */
 	public static String CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageUpDescription;
 
 	/**
-	 * @since 4.1
+	 * @since 5.0
 	 */
 	public static String CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageDownDescription;
 
 	/**
-	 * @since 4.1
+	 * @since 5.0
 	 */
 	public static String CustomDiagramGeneralPreferencePage_othersGroupLabel;
 

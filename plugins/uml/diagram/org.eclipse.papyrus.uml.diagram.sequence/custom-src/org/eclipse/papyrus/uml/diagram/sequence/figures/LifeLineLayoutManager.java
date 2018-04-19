@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 - 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,7 +31,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure.LifelineH
 public class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
 	private int bottomHeaderY = 0;
 	/** The layout contraints */
-	protected Map<IFigure, Rectangle> constraints = new HashMap<IFigure, Rectangle>();
+	protected Map<IFigure, Rectangle> constraints = new HashMap<>();
 
 	public int getBottomHeader() {
 		return bottomHeaderY;
@@ -53,13 +53,14 @@ public class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
 	 *
 	 * @param container
 	 * The container to layout
-	 * 
+	 *
 	 * @param bound
 	 * The bound to fill
-	 * 
+	 *
 	 * @param previous
 	 * The previously filled bound
 	 */
+	@Override
 	protected void fillBoundsForOther(IFigure container, Rectangle bound, Rectangle previous) {
 		bound.x = container.getBounds().x + 1; // +1, see bug 490318, restore +1 to fix shift from Papyrus Luna to Papyrus Mars
 		bound.width = container.getBounds().width;
@@ -195,7 +196,7 @@ public class LifeLineLayoutManager extends AutomaticCompartmentLayoutManager {
 
 	/**
 	 * all {@link ILifelineInternalFigure} must be managed as XY layout by respecting their position and size
-	 * 
+	 *
 	 * @param container
 	 */
 	protected void layoutXYFigure(IFigure container) {

@@ -43,7 +43,7 @@ public class CustomMessages extends NLS {
 	public static String SelectOrCreateDialog_TypeLabel;
 
 	public static String CommandHelper_CreateMessage;
-	
+
 	/**
 	 * Error message for when an error occurs in FragmentOrderingKeeper evaluation.
 	 */

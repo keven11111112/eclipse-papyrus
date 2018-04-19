@@ -57,7 +57,7 @@ public class DisplayBehaviorContributionItem extends ContributionItem implements
 		if (serviceLocator == null) {
 			return null;
 		}
-		ISelectionService selectionService = (ISelectionService) serviceLocator.getService(ISelectionService.class);
+		ISelectionService selectionService = serviceLocator.getService(ISelectionService.class);
 		if (selectionService != null) {
 			return selectionService.getSelection();
 		}

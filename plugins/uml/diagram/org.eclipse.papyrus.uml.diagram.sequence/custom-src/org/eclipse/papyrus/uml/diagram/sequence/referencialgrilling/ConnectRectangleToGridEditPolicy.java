@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,14 +9,13 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 533004
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
@@ -69,7 +68,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	/**
 	 * avoid to modify it directly, try to modify call of sub-methods: initListeningXXX
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#activate()
 	 *
 	 */
@@ -99,7 +98,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * this method is called during the activate
 	 * It initialize a columnFinish and listen it
-	 * 
+	 *
 	 * @param grilling
 	 *            the grid manager that allow creating rows
 	 * @param element
@@ -116,7 +115,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * this method is called during the activate
 	 * It initialize a rowFinish and listen it
-	 * 
+	 *
 	 * @param grilling
 	 *            the grid manager that allow creating rows
 	 * @param element
@@ -133,7 +132,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * this method is called during the activate
 	 * It initialize a ColumnStart and listen it
-	 * 
+	 *
 	 * @param grilling
 	 *            the grid manager that allow creating rows
 	 * @param element
@@ -150,7 +149,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * this method is called during the activate
 	 * It initialize a rowStart and listen it
-	 * 
+	 *
 	 * @param grilling
 	 *            the grid manager that allow creating rows
 	 * @param element
@@ -202,7 +201,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	/**
 	 * avoid to modify it directly, try to modify call of sub-methods: updateXXX
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener#notifyChanged(org.eclipse.emf.common.notify.Notification)
 	 *
 	 * @param notification
@@ -229,7 +228,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 					updateRowFinishFromHeightNotification(bounds);
 					// update anchors
-					if ((((EObject) notification.getNotifier()).eContainer().equals(((EObject) getHost().getModel())))) {
+					if ((((EObject) notification.getNotifier()).eContainer().equals((getHost().getModel())))) {
 						Node node = (Node) this.getHost().getModel();
 						java.util.List<Edge> sourceEdge = node.getSourceEdges();
 						for (Edge edge : sourceEdge) {
@@ -254,7 +253,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 					// compute next position for RowStart
 					updateRowStartFromYNotification(bounds);
 					// updateAnchors
-					if (((EObject) notification.getNotifier()).eContainer().equals(((EObject) getHost().getModel()))) {
+					if (((EObject) notification.getNotifier()).eContainer().equals((getHost().getModel()))) {
 						Node node = (Node) this.getHost().getModel();
 
 						// children case
@@ -273,16 +272,14 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 						for (Edge edge : sourceEdge) {
 							IdentityAnchor anchor = (IdentityAnchor) edge.getSourceAnchor();
 							if (anchor instanceof IdentityAnchor) {
-								// We need to manage the new Y position with the figure height instead of node height (that was already changed)
-								updateAnchorFromY(anchor, ((Node) getHost().getModel()), ((GraphicalEditPart) getHost()).getFigure().getBounds(), notification.getOldIntValue(), notification.getNewIntValue());
+								updateAnchorFromY(anchor, ((Node) getHost().getModel()), notification.getOldIntValue(), notification.getNewIntValue());
 							}
 						}
 						java.util.List<Edge> targetEdge = node.getTargetEdges();
 						for (Edge edge : targetEdge) {
 							IdentityAnchor anchor = (IdentityAnchor) edge.getTargetAnchor();
 							if (anchor instanceof IdentityAnchor) {
-								// We need to manage the new Y position with the figure height instead of node height (that was already changed)
-								updateAnchorFromY(anchor, ((Node) getHost().getModel()), ((GraphicalEditPart) getHost()).getFigure().getBounds(), notification.getOldIntValue(), notification.getNewIntValue());
+								updateAnchorFromY(anchor, ((Node) getHost().getModel()), notification.getOldIntValue(), notification.getNewIntValue());
 							}
 						}
 					}
@@ -297,7 +294,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	/**
 	 * This update the position of {@link ExecutionSpecification} {@link Node} after the Y move of lifeline parent.
-	 * 
+	 *
 	 * @param execSpecNode
 	 *            the {@link ExecutionSpecification} {@link Node}
 	 * @param newYValue
@@ -317,7 +314,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * When the bounds of the notation has change the axis must change
 	 * In this case this is the height that has change so rowFinish must change
-	 * 
+	 *
 	 * @param originPosition
 	 *            the position of the node is the relative position ( relative to the container)
 	 */
@@ -329,7 +326,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * When the bounds of the notation has change the axis must change
 	 * In this case this is the width that has changed so ColumnFinish must change
-	 * 
+	 *
 	 * @param notationBound
 	 *            the position of the node is the absolute position ( the origin to the referential is the diagram)
 	 */
@@ -343,7 +340,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * When the bounds of the notation has change the axis must change
 	 * In this case this is the position Y that has change so RowStart must change
-	 * 
+	 *
 	 * @param bounds
 	 *            the position of the node is the absolute position ( the origin to the referential is the diagram)
 	 */
@@ -361,7 +358,7 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * When the bounds of the notation has change the axis must change
 	 * In this case this is the position X that has change so ColumnStart must change
-	 * 
+	 *
 	 * @param bounds
 	 *            the position of the node is the absolute position ( the origin to the referential is the diagram)
 	 */
@@ -372,77 +369,13 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	}
 
-	/**
-	 * When the axis columnFinish has changed , the width of the controler has to change
-	 * 
-	 * @param originPosition
-	 *            the position of the container in absolute (origin the diagram)
-	 * @param currentBounds
-	 *            the current position of the node (relative to the container)
-	 */
-	protected void updateWidthFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-//		Location boundsColumn = (Location) ((Node) columnFinish).getLayoutConstraint();
-//		int newX = boundsColumn.getX() - originPosition.x() - currentBounds.getX();
-//		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW FINISH change " + newX);//$NON-NLS-1$
-//
-//		updateSizeOfControler(newX, currentBounds.getHeight());
-	}
-//
-	/**
-	 * When the axis rowFinish has changed , the height of the controler has to change
-	 * 
-	 * @param originPosition
-	 *            the position of the container in absolute (origin the diagram)
-	 * @param currentBounds
-	 *            the current position of the node (relative to the container)
-	 */
-	protected void updateHeightFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-//		Location boundsColumn = (Location) ((Node) rowFinish).getLayoutConstraint();
-//		int newHeight = boundsColumn.getY() - originPosition.y() - currentBounds.getY() - margin;
-//		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW FINISH change " + newHeight);//$NON-NLS-1$
-//
-//		updateSizeOfControler(currentBounds.getWidth(), newHeight);
-	}
 
-	/**
-	 * When the axis columnStart has changed , the position X of the controler has to change
-	 * 
-	 * @param originPosition
-	 *            the position of the container in absolute (origin the diagram)
-	 * @param currentBounds
-	 *            the current position of the node (relative to the container)
-	 */
-	protected void updateXFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-//		Location boundsColumn = (Location) ((Node) columnStart).getLayoutConstraint();
-//		int newX = boundsColumn.getX() - originPosition.x();
-//		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS COLUMN START change " + newX);//$NON-NLS-1$
-//
-//		updateNodePositionOfControler(newX, currentBounds.getY());
-	}
 
-	/**
-	 * When the axis rowStart has changed , the position Y of the controler has to change
-	 * 
-	 * @param originPosition
-	 *            the position of the container in absolute (origin the diagram)
-	 * @param currentBounds
-	 *            the current position of the node (relative to the container)
-	 */
-	protected void updateYFromAxisNotification(PrecisionRectangle originPosition, Bounds currentBounds) {
-//		Location boundsRow = (Location) ((Node) rowStart).getLayoutConstraint();
-//		int newY = boundsRow.getY() - originPosition.y() - margin;
-//		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+ EVENT: AXIS ROW START change " + newY);//$NON-NLS-1$
-//		updateNodePositionOfControler(currentBounds.getX(), newY);
-//
-//		if (rowFinish != null) {
-//			updatePositionGridAxis(rowFinish, 0, boundsRow.getY() + BoundForEditPart.getHeightFromView((Node) ((GraphicalEditPart) getHost()).getNotationView()) - margin);
-//		}
-	}
 
 
 	/**
 	 * this class update the position of anchor after the resize
-	 * 
+	 *
 	 * @param edge
 	 *            the edge anchor to update
 	 * @param node
@@ -468,20 +401,19 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 
 	/**
 	 * This allows to update the position of anchor after the move.
-	 * 
+	 *
 	 * @param anchor The anchor to recalculate.
 	 * @param node The moved node.
-	 * @param nodeBounds The node bounds (from the figure (that was not already changed)).
 	 * @param oldY The old Y position.
 	 * @param newY The new Y position.
 	 */
-	protected void updateAnchorFromY(IdentityAnchor anchor, Node node, Rectangle nodeBounds, int oldY, int newY) {
+	protected void updateAnchorFromY(IdentityAnchor anchor, Node node, int oldY, int newY) {
 		if (null != anchor && !anchor.getId().trim().equals("")) { //$NON-NLS-1$
 			double yPercent = IdentityAnchorHelper.getYPercentage(anchor);
 			double xPercent = IdentityAnchorHelper.getXPercentage(anchor);
 
 			// calculate bounds from notation
-			double height = nodeBounds.height == -1 ? BoundForEditPart.getDefaultHeightFromView(node) : nodeBounds.height;
+			double height = BoundForEditPart.getHeightFromView(node);
 
 			double newPercentY = (oldY - newY) / (height) + yPercent;
 			if (newPercentY < 0) {

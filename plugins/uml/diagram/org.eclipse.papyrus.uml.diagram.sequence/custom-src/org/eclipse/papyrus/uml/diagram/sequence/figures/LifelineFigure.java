@@ -49,13 +49,13 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 
 	/**
 	 * Utility figure to get header. Used for selection bounds.
-	 * 
+	 *
 	 * @author Mickael ADAM
 	 *
 	 */
 	public final class LifelineHeaderFigure extends RectangleFigure {
 		/**
-		 * 
+		 *
 		 * @see org.eclipse.draw2d.RectangleFigure#fillShape(org.eclipse.draw2d.Graphics)
 		 */
 		@Override
@@ -81,11 +81,11 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 
 	/**
 	 * This field contains the figure of the children to include into the PolygonPoint list.
-	 * 
+	 *
 	 * @see bug 531520 : all messages are connected to the Lifeline, but they must be drawn as attached to the ExecutionSpecification when required.
 	 * @since 5.0
 	 */
-	private List<NodeFigure> childrenFigure = new ArrayList<NodeFigure>();
+	private List<NodeFigure> childrenFigure = new ArrayList<>();
 
 	/**
 	 * Constructor.
@@ -100,7 +100,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 
 	/**
 	 * This method has been used in order to display combinedFragment
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#setTransparency(int)
 	 */
 	@Override
@@ -143,7 +143,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the LifelineFigure including its children (ExecutionSpecification)
 	 */
@@ -164,7 +164,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 		final List<Set<Rectangle>> groups = getGroupedRectangles(getChildrenRectangle());
 
 		// 3. we get the set of points composition the global shape of each group of rectangle
-		final List<List<Point>> groupPointsLists = new ArrayList<List<Point>>();
+		final List<List<Point>> groupPointsLists = new ArrayList<>();
 		for (final Set<Rectangle> currentGroup : groups) {
 			groupPointsLists.add(PapyrusRectilinearConvexHull.getExternalShapeForRectangle(currentGroup));
 		}
@@ -174,8 +174,8 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 		groupPointsLists.sort(new OrdinatePointListComparator());
 
 		// 5. we divide each list in 2 parts: 1 one for the top to bottom way, and the second one, for the bottom to the top way
-		final List<List<Point>> descendingList = new ArrayList<List<Point>>();
-		final List<List<Point>> ascendingList = new ArrayList<List<Point>>();
+		final List<List<Point>> descendingList = new ArrayList<>();
+		final List<List<Point>> ascendingList = new ArrayList<>();
 		for (final List<Point> groupList : groupPointsLists) {
 			final List<Point> topToBottom = new ArrayList<>();
 			final List<Point> bottomToTop = new ArrayList<>();
@@ -227,7 +227,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the list of {@link Rectangle} representing each child figure
 	 */
@@ -240,7 +240,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param ptList
 	 *            the initial list of points
 	 * @param topToBottomList
@@ -280,7 +280,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 
 	/**
 	 * This class allows to compare list of points. The term used for the comparison is the point with the smallest y value
-	 * 
+	 *
 	 * @since 5.0
 	 */
 	private static final class OrdinatePointListComparator implements Comparator<Collection<Point>> {
@@ -299,7 +299,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param points
 	 *            a points' collection
 	 * @return
@@ -317,7 +317,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param points
 	 *            a points' collection
 	 * @return
@@ -335,17 +335,17 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param rectangles
 	 *            a collections of rectangle
 	 * @return
 	 * 		a list of set of rectangles. Each Set in the List contains the rectangles which have intersections between them
-	 * 
+	 *
 	 * @since 5.0
 	 */
 	private List<Set<Rectangle>> getGroupedRectangles(final Collection<Rectangle> rectangles) {
-		List<Set<Rectangle>> groups = new ArrayList<Set<Rectangle>>();
-		final List<Rectangle> localRectangles = new ArrayList<Rectangle>(rectangles);
+		List<Set<Rectangle>> groups = new ArrayList<>();
+		final List<Rectangle> localRectangles = new ArrayList<>(rectangles);
 		Iterator<Rectangle> iter = localRectangles.iterator();
 		while (iter.hasNext()) {
 			Set<Rectangle> result = getIntersectingRectangles(iter.next(), localRectangles);
@@ -357,7 +357,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param aRectangle
 	 *            a rectangle
 	 * @param allAvailableRectangle
@@ -369,7 +369,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	private Set<Rectangle> getIntersectingRectangles(final Rectangle aRectangle, Collection<Rectangle> allAvailableRectangle) {
 		allAvailableRectangle = new ArrayList<>(allAvailableRectangle);
 		allAvailableRectangle.remove(aRectangle);
-		final Set<Rectangle> intersectingRectangles = new HashSet<Rectangle>();
+		final Set<Rectangle> intersectingRectangles = new HashSet<>();
 		for (Rectangle current : allAvailableRectangle) {
 			if (current.intersects(aRectangle)) {
 				intersectingRectangles.add(current);
@@ -383,6 +383,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void paint(Graphics graphics) {
 		Rectangle rect = this.getBounds();
 		graphics.pushState();
@@ -411,7 +412,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 
 	/**
 	 * [{@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.draw2d.Figure#getLayoutManager()
 	 */
 	@Override
@@ -508,18 +509,18 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 
 
 	/**
-	 * 
+	 *
 	 * @author Vincent LORENZO
 	 *         Papyrus integration of the ELK class RectilinearConvexHull.
 	 *         This class allow to get the list of points describing the polygon represented by a set of overlaping rectangles
-	 * 
+	 *
 	 *         N.B.: In some specific cases, the result is not the better
 	 * @since 5.0
 	 */
 	private static final class PapyrusRectilinearConvexHull {
 
 		/**
-		 * 
+		 *
 		 * @param rectangles
 		 *            overlaping rectangles
 		 * @return
@@ -530,7 +531,7 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 		}
 
 		/**
-		 * 
+		 *
 		 * @param inputPoints
 		 *            a collection of points
 		 * @return
@@ -548,14 +549,14 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 		}
 
 		/**
-		 * 
+		 *
 		 * @param rectangles
 		 *            the input rectangles
 		 * @return
 		 * 		a set of points composed by all the corners of the input rectangles AND the intersection's points of the rectangles between them
 		 */
 		private static final Set<Point> getAllPoints(final Collection<Rectangle> rectangles) {
-			final Set<Point> points = new HashSet<Point>();
+			final Set<Point> points = new HashSet<>();
 			for (final Rectangle current : rectangles) {
 				for (final Rectangle internalCurrent : rectangles) {
 					if (internalCurrent.intersects(current)) {
@@ -575,14 +576,14 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 		}
 
 		/**
-		 * 
+		 *
 		 * @param draw2DPoints
 		 *            drawd2D points
 		 * @return
 		 * 		a list of ELK Points
 		 */
 		private static final List<org.eclipse.papyrus.internal.uml.diagram.sequence.elk.Point> convertToELKPoints(final Collection<Point> draw2DPoints) {
-			final List<org.eclipse.papyrus.internal.uml.diagram.sequence.elk.Point> elkPoints = new ArrayList<org.eclipse.papyrus.internal.uml.diagram.sequence.elk.Point>();
+			final List<org.eclipse.papyrus.internal.uml.diagram.sequence.elk.Point> elkPoints = new ArrayList<>();
 			for (final Point current : draw2DPoints) {
 				elkPoints.add(new org.eclipse.papyrus.internal.uml.diagram.sequence.elk.Point(current.preciseX(), current.preciseY()));
 			}
@@ -590,14 +591,14 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 		}
 
 		/**
-		 * 
+		 *
 		 * @param elkPoints
 		 *            ELK points
 		 * @return
 		 * 		a list of draw2D points
 		 */
 		private static final List<Point> convertToPoints(final Collection<org.eclipse.papyrus.internal.uml.diagram.sequence.elk.Point> elkPoints) {
-			final List<Point> draw2DPoints = new ArrayList<Point>();
+			final List<Point> draw2DPoints = new ArrayList<>();
 			for (final org.eclipse.papyrus.internal.uml.diagram.sequence.elk.Point current : elkPoints) {
 				draw2DPoints.add(new Point((int) current.x, (int) current.y));
 			}

@@ -10,7 +10,7 @@ public class InteractionOperatorKindCompatibleMapping {
 	/**
 	 * Set the true if the kind of InteractionOperator supports multi operand
 	 */
-	private static final Map<InteractionOperatorKind, Boolean> map = new HashMap<InteractionOperatorKind, Boolean>();
+	private static final Map<InteractionOperatorKind, Boolean> map = new HashMap<>();
 	static {
 		map.put(InteractionOperatorKind.SEQ_LITERAL, true);
 		map.put(InteractionOperatorKind.ALT_LITERAL, true);

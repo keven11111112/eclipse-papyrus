@@ -269,7 +269,7 @@ public class CommandHelper {
 			parentsOwner = source;
 			useSignals = false;
 		}
-		LinkedHashMap<EClass, List<EObject>> mapTypesPossibleParents = new LinkedHashMap<EClass, List<EObject>>();
+		LinkedHashMap<EClass, List<EObject>> mapTypesPossibleParents = new LinkedHashMap<>();
 		if (useSignals) {
 			mapTypesPossibleParents.put(UMLPackage.eINSTANCE.getSignal(), new LinkedList<EObject>());
 		}
@@ -278,7 +278,7 @@ public class CommandHelper {
 		}
 		// add the parents we can find
 		boolean existingParent = false;
-		List<Type> types = new ArrayList<Type>();
+		List<Type> types = new ArrayList<>();
 		if (parentsOwner instanceof InteractionFragment) {
 			EList<Lifeline> lifelines = ((InteractionFragment) parentsOwner).getCovereds();
 			for (Lifeline l : lifelines) {
@@ -305,7 +305,7 @@ public class CommandHelper {
 		}
 		// if no parent available => no signature
 		if (!existingParent) {
-			return new ArrayList<NamedElement>();
+			return new ArrayList<>();
 		}
 		Set<EObject> existingElements = getExistingElementsFromParents(mapTypesPossibleParents);
 		// fix bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=383420, remove connection feedbacks before opening dialog
@@ -323,7 +323,7 @@ public class CommandHelper {
 		// Get the selected result
 		if (dialog.open() == Window.OK) {
 			// list to return
-			List<NamedElement> returnElements = new ArrayList<NamedElement>();
+			List<NamedElement> returnElements = new ArrayList<>();
 			EObject element = dialog.getSelected();
 			if (element instanceof NamedElement) {
 				returnElements.add((NamedElement) element);
@@ -356,7 +356,7 @@ public class CommandHelper {
 	 */
 	private static Set<EObject> getExistingElementsFromParents(Map<EClass, List<EObject>> mapTypesPossibleParents) {
 		// find the existing elements using the parents we just found
-		Set<EObject> existingElements = new HashSet<EObject>();
+		Set<EObject> existingElements = new HashSet<>();
 		for (EClass eClass : mapTypesPossibleParents.keySet()) {
 			List<EObject> parents = mapTypesPossibleParents.get(eClass);
 			for (EObject parent : parents) {

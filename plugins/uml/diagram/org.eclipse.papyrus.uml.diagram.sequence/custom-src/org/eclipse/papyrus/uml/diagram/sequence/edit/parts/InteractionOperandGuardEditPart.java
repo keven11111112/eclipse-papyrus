@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 533689
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -87,6 +88,7 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
@@ -116,7 +118,6 @@ import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.CombinedFragment;
-import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.InteractionConstraint;
@@ -315,7 +316,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	/**
 	 * return the interactionoperand
-	 * 
+	 *
 	 * @return
 	 */
 	protected EObject getParserElement() {
@@ -465,29 +466,45 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
+				// Create default edit manager
+				setManager(new MultilineLabelDirectEditManager(this,
+						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+						UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				Dialog dialog = null;
-				if (configuration instanceof IPopupEditorConfiguration) {
-					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration).createPopupEditorHelper(this);
+				if (configuration instanceof ICustomDirectEditorConfiguration) {
+					setManager(((ICustomDirectEditorConfiguration) configuration).createDirectEditManager(this));
+					initializeDirectEditManager(theRequest);
+					return;
+				} else if (configuration instanceof IPopupEditorConfiguration) {
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration)
+							.createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
 				} else if (configuration instanceof IAdvancedEditorConfiguration) {
-					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
+					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()));
 				} else if (configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
+					dialog = new ExtendedDirectEditionDialog(
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
 				final Dialog finalDialog = dialog;
+
 				if (Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
 
 						@Override
 						protected void doExecute() {
-							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog) finalDialog).getValue());
+							configuration.postEditAction(resolveSemanticElement(),
+									((ILabelEditorDialog) finalDialog).getValue());
+
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -524,6 +541,36 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	}
 
+	/**
+	 * This allows to initialize the direct edit manager for the edit.
+	 * 
+	 * @param request
+	 *            The called request.
+	 * @since 5.0
+	 */
+	protected void initializeDirectEditManager(final Request request) {
+		// initialize the direct edit manager
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+				@Override
+				public void run() {
+					if (isActive() && isEditable()) {
+						if (request.getExtendedData()
+								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) request.getExtendedData()
+									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							performDirectEdit(initialChar.charValue());
+						} else {
+							performDirectEdit();
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
@@ -536,6 +583,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#notifyChanged(org.eclipse.emf.common.notify.Notification)
 	 *
@@ -543,9 +591,10 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		// TODO Auto-generated method stub
+
 		super.notifyChanged(notification);
 	}
+
 	@Override
 	public void refreshBounds() {
 		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
@@ -670,7 +719,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	protected boolean checkExtendedEditor() {
 		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement(), this);
 		}
 		return false;
 	}
@@ -683,9 +732,9 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		if (configuration == null) {
 			final String languagePreferred = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement(), this);
 			}
 		}
 	}
@@ -693,7 +742,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
@@ -748,12 +797,12 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 	@Override
 	protected IFigure createFigure() {
-		WrappingLabel label=null;
-		if(getParent() instanceof InteractionOperandEditPart){
-			InteractionOperandFigure fig=((InteractionOperandEditPart)getParent()).getPrimaryShape();
-			label=	fig.getInteractionConstraintLabel();
+		WrappingLabel label = null;
+		if (getParent() instanceof InteractionOperandEditPart) {
+			InteractionOperandFigure fig = ((InteractionOperandEditPart) getParent()).getPrimaryShape();
+			label = fig.getInteractionConstraintLabel();
 		}
-		//GuardFigure label = new GuardFigure();
+		// GuardFigure label = new GuardFigure();
 		// WrappingLabel label = new WrappingLabel();
 		defaultText = getLabelTextHelper(label);
 		return label;
@@ -831,7 +880,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 		@Override
 		public List getSemanticElementsBeingParsed(EObject element) {
-			List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+			List<Element> semanticElementsBeingParsed = new ArrayList<>();
 			if (element instanceof InteractionConstraint) {
 				InteractionConstraint op = (InteractionConstraint) element;
 				semanticElementsBeingParsed.add(op);
@@ -853,7 +902,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 		@Override
 		public String getPrintString(IAdaptable element, int flags) {
-			EObject operand = (EObject) element.getAdapter(EObject.class);
+			EObject operand = element.getAdapter(EObject.class);
 			// InteractionOperand operand = getInteractionOperand(adapter);
 			if (operand instanceof InteractionOperand) {
 				return getGuardLabelText((InteractionOperand) operand, false);
@@ -957,167 +1006,167 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 			return CommandResult.newOKCommandResult();
 		}
 
-	private LiteralInteger createLiteralInteger(int val) {
-		LiteralInteger li = UMLFactory.eINSTANCE.createLiteralInteger();
-		li.setValue(val);
-		return li;
-	}
+		private LiteralInteger createLiteralInteger(int val) {
+			LiteralInteger li = UMLFactory.eINSTANCE.createLiteralInteger();
+			li.setValue(val);
+			return li;
+		}
 
-	private void setIntValue(ValueSpecification spec, int val) {
-		if (spec instanceof LiteralInteger) {
-			((LiteralInteger) spec).setValue(val);
+		private void setIntValue(ValueSpecification spec, int val) {
+			if (spec instanceof LiteralInteger) {
+				((LiteralInteger) spec).setValue(val);
+			}
+		}
+
+		private int parseInt(String string, int defaultInt) {
+			try {
+				return Integer.parseInt(string);
+			} catch (NumberFormatException e) {
+			}
+			return defaultInt;
 		}
 	}
 
-	private int parseInt(String string, int defaultInt) {
-		try {
-			return Integer.parseInt(string);
-		} catch (NumberFormatException e) {
-		}
-		return defaultInt;
-	}
-}
+	public class GuardFigure extends Figure implements ILabelFigure, IPapyrusNodeUMLElementFigure {
 
-public class GuardFigure extends Figure implements ILabelFigure, IPapyrusNodeUMLElementFigure {
+		private WrappingLabel primaryLabel;
 
-	private WrappingLabel primaryLabel;
+		private PapyrusWrappingLabel stereotypeLabel;
 
-	private PapyrusWrappingLabel stereotypeLabel;
+		private WrappingLabel stereotypePropertiesInBraceContent;
 
-	private WrappingLabel stereotypePropertiesInBraceContent;
-
-	/**
-	 * Constructor.
-	 *
-	 */
-	public GuardFigure() {
-		ToolbarLayout layout = new ToolbarLayout(false);
-		layout.setStretchMinorAxis(true);
-		setLayoutManager(layout);
-		primaryLabel = new WrappingLabel();
-		primaryLabel.setTextWrap(true);
-		primaryLabel.setAlignment(PositionConstants.CENTER);
-		this.add(primaryLabel);
-	}
-
-	public WrappingLabel getPrimaryLabel() {
-		return primaryLabel;
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String, org.eclipse.swt.graphics.Image)
-	 *
-	 * @param stereotypes
-	 * @param image
-	 */
-
-	@Override
-	public void setStereotypeDisplay(String stereotypes, Image image) {
-		if ((stereotypes == null || stereotypes.trim().equals("")) && image == null) {
-			if (stereotypeLabel != null) {
-				remove(stereotypeLabel);
-			}
-			stereotypeLabel = null;
-		} else {
-			if (stereotypeLabel == null) {
-				stereotypeLabel = new PapyrusWrappingLabel();
-				add(stereotypeLabel, 0);
-			}
-			stereotypeLabel.setText(stereotypes);
-			stereotypeLabel.setIcon(image);
-		}
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInBrace(java.lang.String)
-	 *
-	 * @param stereotypeProperties
-	 */
-
-	@Override
-	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
-		if (stereotypeProperties == null || stereotypeProperties.trim().equals("")) {
-			if (stereotypePropertiesInBraceContent != null) {
-				remove(stereotypePropertiesInBraceContent);
-			}
-			stereotypePropertiesInBraceContent = null;
-		} else {
-			if (stereotypePropertiesInBraceContent == null) {
-				stereotypePropertiesInBraceContent = new WrappingLabel();
-				stereotypePropertiesInBraceContent.setOpaque(false);
-				int index = getChildren().indexOf(stereotypeLabel);
-				this.add(stereotypePropertiesInBraceContent, index + 1);
-			}
-			stereotypePropertiesInBraceContent.setText("{" + stereotypeProperties + "}");
+		/**
+		 * Constructor.
+		 *
+		 */
+		public GuardFigure() {
+			ToolbarLayout layout = new ToolbarLayout(false);
+			layout.setStretchMinorAxis(true);
+			setLayoutManager(layout);
+			primaryLabel = new WrappingLabel();
+			primaryLabel.setTextWrap(true);
+			primaryLabel.setAlignment(PositionConstants.CENTER);
+			this.add(primaryLabel);
 		}
 
+		public WrappingLabel getPrimaryLabel() {
+			return primaryLabel;
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String, org.eclipse.swt.graphics.Image)
+		 *
+		 * @param stereotypes
+		 * @param image
+		 */
+
+		@Override
+		public void setStereotypeDisplay(String stereotypes, Image image) {
+			if ((stereotypes == null || stereotypes.trim().equals("")) && image == null) {
+				if (stereotypeLabel != null) {
+					remove(stereotypeLabel);
+				}
+				stereotypeLabel = null;
+			} else {
+				if (stereotypeLabel == null) {
+					stereotypeLabel = new PapyrusWrappingLabel();
+					add(stereotypeLabel, 0);
+				}
+				stereotypeLabel.setText(stereotypes);
+				stereotypeLabel.setIcon(image);
+			}
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInBrace(java.lang.String)
+		 *
+		 * @param stereotypeProperties
+		 */
+
+		@Override
+		public void setStereotypePropertiesInBrace(String stereotypeProperties) {
+			if (stereotypeProperties == null || stereotypeProperties.trim().equals("")) {
+				if (stereotypePropertiesInBraceContent != null) {
+					remove(stereotypePropertiesInBraceContent);
+				}
+				stereotypePropertiesInBraceContent = null;
+			} else {
+				if (stereotypePropertiesInBraceContent == null) {
+					stereotypePropertiesInBraceContent = new WrappingLabel();
+					stereotypePropertiesInBraceContent.setOpaque(false);
+					int index = getChildren().indexOf(stereotypeLabel);
+					this.add(stereotypePropertiesInBraceContent, index + 1);
+				}
+				stereotypePropertiesInBraceContent.setText("{" + stereotypeProperties + "}");
+			}
+
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInCompartment(java.lang.String)
+		 *
+		 * @param stereotypeProperties
+		 */
+
+		@Override
+		public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
+
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#getStereotypesLabel()
+		 *
+		 * @return
+		 */
+
+		@Override
+		public PapyrusWrappingLabel getStereotypesLabel() {
+			return stereotypeLabel;
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#setText(java.lang.String)
+		 *
+		 * @param text
+		 */
+
+		@Override
+		public void setText(String text) {
+			primaryLabel.setText(text);
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#getText()
+		 *
+		 * @return
+		 */
+
+		@Override
+		public String getText() {
+			return primaryLabel.getText();
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#setIcon(org.eclipse.swt.graphics.Image)
+		 *
+		 * @param icon
+		 */
+
+		@Override
+		public void setIcon(Image icon) {
+			primaryLabel.setIcon(icon);
+		}
+
+		/**
+		 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#getIcon()
+		 *
+		 * @return
+		 */
+
+		@Override
+		public Image getIcon() {
+			return primaryLabel.getIcon();
+		}
+
 	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#setStereotypePropertiesInCompartment(java.lang.String)
-	 *
-	 * @param stereotypeProperties
-	 */
-
-	@Override
-	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure#getStereotypesLabel()
-	 *
-	 * @return
-	 */
-
-	@Override
-	public PapyrusWrappingLabel getStereotypesLabel() {
-		return stereotypeLabel;
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#setText(java.lang.String)
-	 *
-	 * @param text
-	 */
-
-	@Override
-	public void setText(String text) {
-		primaryLabel.setText(text);
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#getText()
-	 *
-	 * @return
-	 */
-
-	@Override
-	public String getText() {
-		return primaryLabel.getText();
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#setIcon(org.eclipse.swt.graphics.Image)
-	 *
-	 * @param icon
-	 */
-
-	@Override
-	public void setIcon(Image icon) {
-		primaryLabel.setIcon(icon);
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure#getIcon()
-	 *
-	 * @return
-	 */
-
-	@Override
-	public Image getIcon() {
-		return primaryLabel.getIcon();
-	}
-
-}
 }

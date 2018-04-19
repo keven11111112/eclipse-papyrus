@@ -536,8 +536,14 @@ public class MessageLostNameEditPart extends PapyrusLabelEditPart
 			maskLabelPolicy = getEditPolicy(IndirectMaskLabelEditPolicy.INDRIRECT_MASK_MANAGED_LABEL);
 		}
 		if (maskLabelPolicy == null) {
-			setLabelTextHelper(getFigure(), getLabelText());
-			setLabelIconHelper(getFigure(), getLabelIcon());
+			View view = (View) getModel();
+			if (view.isVisible()) {
+				setLabelTextHelper(getFigure(), getLabelText());
+				setLabelIconHelper(getFigure(), getLabelIcon());
+			} else {
+				setLabelTextHelper(getFigure(), ""); //$NON-NLS-1$
+				setLabelIconHelper(getFigure(), null);
+			}
 		}
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
@@ -813,6 +819,7 @@ public class MessageLostNameEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getLabelRole() {
 		return "Name";//$NON-NLS-1$
 	}
@@ -820,6 +827,7 @@ public class MessageLostNameEditPart extends PapyrusLabelEditPart
 	/**
 	 * @generated
 	 */
+	@Override
 	public String getIconPathRole() {
 		return "platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png";//$NON-NLS-1$
 	}

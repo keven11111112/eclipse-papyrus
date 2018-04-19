@@ -48,7 +48,7 @@ public class MessageLabelHelper extends StereotypedElementLabelHelper {
 	private static MessageLabelHelper labelHelper;
 
 	/** Map for masks */
-	protected final Map<String, String> masks = new HashMap<String, String>();
+	protected final Map<String, String> masks = new HashMap<>();
 
 	protected MessageLabelHelper() {
 		// initialize the map

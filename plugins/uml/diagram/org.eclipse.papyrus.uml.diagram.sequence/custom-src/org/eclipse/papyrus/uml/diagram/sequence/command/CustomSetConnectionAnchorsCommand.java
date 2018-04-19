@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.command;
@@ -66,7 +66,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param editingDomain
 	 *            The editing domain through which model changes are made.
 	 * @param label
@@ -78,20 +78,21 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#getAffectedFiles()
 	 */
 	@Override
 	public List<?> getAffectedFiles() {
-		View view = (View) edgeAdaptor.getAdapter(View.class);
-		if (view != null)
+		View view = edgeAdaptor.getAdapter(View.class);
+		if (view != null) {
 			return getWorkspaceFiles(view);
+		}
 		return super.getAffectedFiles();
 	}
 
 	/**
 	 * Gets the edge adaptor.
-	 * 
+	 *
 	 * @return IAdaptable The edge adapter.
 	 */
 	public IAdaptable getEdgeAdaptor() {
@@ -100,7 +101,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Sets the edge adaptor.
-	 * 
+	 *
 	 * @param edgeAdaptor
 	 *            The edgeAdaptor to set.
 	 */
@@ -110,7 +111,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Gets the node.
-	 * 
+	 *
 	 * @return The node.
 	 */
 	public INodeEditPart getNode() {
@@ -119,7 +120,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Sets the node.
-	 * 
+	 *
 	 * @param node
 	 *            The node to set.
 	 */
@@ -129,7 +130,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Gets the source ReconnectRequest.
-	 * 
+	 *
 	 * @return The source ReconnectRequest.
 	 */
 	public ReconnectRequest getSourceReconnectRequest() {
@@ -138,7 +139,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Sets the source ReconnectRequest.
-	 * 
+	 *
 	 * @param sourceReconnectRequest
 	 *            The source ReconnectRequest to set.
 	 */
@@ -148,7 +149,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Gets the target ReconnectRequest.
-	 * 
+	 *
 	 * @return The target ReconnectRequest.
 	 */
 	public ReconnectRequest getTargetReconnectRequest() {
@@ -157,7 +158,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Sets the target ReconnectRequest.
-	 * 
+	 *
 	 * @param targetReconnectRequest
 	 *            The target ReconnectRequest to set.
 	 */
@@ -167,7 +168,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Sets the isSourceSet.
-	 * 
+	 *
 	 * @return the isSourceSet
 	 */
 	public boolean isSourceSet() {
@@ -176,7 +177,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Gets the isSourceSet.
-	 * 
+	 *
 	 * @param isSourceSet
 	 *            The isSourceSet to set.
 	 */
@@ -186,7 +187,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Sets the isTargetSet.
-	 * 
+	 *
 	 * @return the isTargetSet
 	 */
 	public boolean isTargetSet() {
@@ -195,7 +196,7 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * Gets the isTargetSet.
-	 * 
+	 *
 	 * @param isSourceSet
 	 *            The isSourceSet to set.
 	 */
@@ -205,14 +206,14 @@ public class CustomSetConnectionAnchorsCommand extends AbstractTransactionalComm
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 		assert null != edgeAdaptor : "Null child in CustomSetConnectionAnchorsCommand"; //$NON-NLS-1$
 
-		final Edge edge = (Edge) getEdgeAdaptor().getAdapter(Edge.class);
+		final Edge edge = getEdgeAdaptor().getAdapter(Edge.class);
 		assert null != edge : "Null edge in CustomSetConnectionAnchorsCommand"; //$NON-NLS-1$
 
 		if (isSourceSet()) {

@@ -81,7 +81,7 @@ public class FragmentsOrderer {
 
 	public void addCachePosition(View view, Float[] position) {
 		if (cachePositions == null) {
-			cachePositions = new HashMap<View, Float[]>(1);
+			cachePositions = new HashMap<>(1);
 		}
 		cachePositions.put(view, position);
 	}
@@ -97,9 +97,9 @@ public class FragmentsOrderer {
 			return false;
 		}
 		// compute fragment position;
-		fragmentPositions = new HashMap<InteractionFragment, Float>();
+		fragmentPositions = new HashMap<>();
 		// compute new indexes.
-		fragmentIndexes = new HashMap<InteractionFragment, Integer>();
+		fragmentIndexes = new HashMap<>();
 		EList<InteractionFragment> orderingFragments = getOrderingFragments();
 		return orderingFragments != null && !orderingFragments.isEmpty();
 	}
@@ -110,7 +110,7 @@ public class FragmentsOrderer {
 	private void computeNewIndexes() {
 		fragmentIndexes.clear();
 		computePositions();
-		List<Entry<InteractionFragment, Float>> positionalEntries = new ArrayList<Map.Entry<InteractionFragment, Float>>(fragmentPositions.entrySet());
+		List<Entry<InteractionFragment, Float>> positionalEntries = new ArrayList<>(fragmentPositions.entrySet());
 		Collections.sort(positionalEntries, new Comparator<Map.Entry<InteractionFragment, Float>>() {
 
 			@Override
@@ -297,7 +297,7 @@ public class FragmentsOrderer {
 		EList<InteractionFragment> orderingFragments = getOrderingFragments();
 		synchronized (orderingFragments) {
 			computeNewIndexes();
-			for (InteractionFragment fragment : new ArrayList<InteractionFragment>(orderingFragments)) {
+			for (InteractionFragment fragment : new ArrayList<>(orderingFragments)) {
 				int oldPos = orderingFragments.indexOf(fragment);
 				if (oldPos == -1) {
 					continue;

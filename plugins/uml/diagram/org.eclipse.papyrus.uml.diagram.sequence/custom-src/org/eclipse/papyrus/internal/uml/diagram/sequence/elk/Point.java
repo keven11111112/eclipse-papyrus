@@ -30,7 +30,7 @@ public class Point {
 
     /**
      * Constructs a new point.
-     * 
+     *
      * @param x
      *            coordinate
      * @param y
@@ -43,7 +43,7 @@ public class Point {
 
     /**
      * Constructs a new point with is associated with a quadrant.
-     * 
+     *
      * @param x
      *            coordinate
      * @param y
@@ -99,10 +99,10 @@ public class Point {
 
     /**
      * Represents a quadrant of a plane split into four parts.
-     * 
+     *
      * <pre>
-     *  Q1 | Q2 
-     * --------- 
+     *  Q1 | Q2
+     * ---------
      *  Q4 | Q3
      * </pre>
      */

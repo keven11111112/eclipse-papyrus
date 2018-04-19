@@ -73,7 +73,7 @@ public class TimeRelatedSelectionEditPolicy extends BorderItemSelectionEditPolic
 		DurationConstraintEditPart editPart = (DurationConstraintEditPart) getHost();
 		DurationConstraint durationConstraint = (DurationConstraint) editPart.resolveSemanticElement();
 		EList<Element> constrainedElements = durationConstraint.getConstrainedElements();
-		List<ExecutionSpecification> executions = new ArrayList<ExecutionSpecification>();
+		List<ExecutionSpecification> executions = new ArrayList<>();
 		for (Element element : constrainedElements) {
 			if (!(element instanceof ExecutionOccurrenceSpecification)) {
 				continue;

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,7 +23,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPolicy;
@@ -45,7 +44,6 @@ import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Anchor;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
@@ -67,7 +65,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectYCoor
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.uml2.uml.ExecutionSpecification;
 
 /**
  * Add implementing IPapyrusEditPart to displaying Stereotypes.
@@ -84,9 +81,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 
 	public AbstractExecutionSpecificationEditPart(View view) {
 		super(view);
-	}
-
-	protected void initExecutionSpecificationEndEditPart() {
 	}
 
 	static class FillParentLocator implements Locator {
@@ -492,7 +486,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		figure.setLayoutManager(new DelegatingLayout() {
 			/**
 			 * Override it to verify type of constraint.
-			 * 
+			 *
 			 * @see org.eclipse.draw2d.DelegatingLayout#layout(org.eclipse.draw2d.IFigure)
 			 */
 			@Override

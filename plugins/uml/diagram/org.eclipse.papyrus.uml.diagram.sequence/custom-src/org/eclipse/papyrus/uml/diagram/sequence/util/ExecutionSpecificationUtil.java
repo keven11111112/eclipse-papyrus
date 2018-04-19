@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -47,7 +47,7 @@ public class ExecutionSpecificationUtil {
 
 	/**
 	 * This allows to calculate the correct location of the execution specification.
-	 * 
+	 *
 	 * @param lifeLineEditPart
 	 *            The current life line edit part.
 	 * @param initialRectangle
@@ -63,7 +63,7 @@ public class ExecutionSpecificationUtil {
 
 	/**
 	 * This allows to calculate the correct location of the execution specification with the list of rectangles of the execution specification for the current life line.
-	 * 
+	 *
 	 * @param lifeLineEditPart
 	 *            The current life line edit part.
 	 * @param executionSpecificationRectangles
@@ -101,7 +101,7 @@ public class ExecutionSpecificationUtil {
 
 	/**
 	 * This allows to get a command to move needed execution specification when an execution specification is moved or deleted.
-	 * 
+	 *
 	 * @param lifeLineEditPart
 	 *            The current life line edit part.
 	 * @param initialRectangle
@@ -119,7 +119,7 @@ public class ExecutionSpecificationUtil {
 
 	/**
 	 * This allows to get a command to move needed execution specification with the list of rectangles of the execution specification for the current life line when an execution specification is moved or deleted.
-	 * 
+	 *
 	 * @param lifeLineEditPart
 	 *            The current life line edit part.
 	 * @param executionSpecificationRectangles
@@ -208,13 +208,13 @@ public class ExecutionSpecificationUtil {
 
 	/**
 	 * This allows to get initial rectangles by execution specification available in the current life line.
-	 * 
+	 *
 	 * @param lifeLineEditPart
 	 *            The current life line edit part.
 	 * @return The map with the rectangle by execution specification edit part.
 	 */
 	public static Map<AbstractExecutionSpecificationEditPart, Rectangle> getRectangles(final LifelineEditPart lifeLineEditPart) {
-		final Map<AbstractExecutionSpecificationEditPart, Rectangle> executionSpecificationRectangles = new HashMap<AbstractExecutionSpecificationEditPart, Rectangle>();
+		final Map<AbstractExecutionSpecificationEditPart, Rectangle> executionSpecificationRectangles = new HashMap<>();
 
 		final Iterator<?> editPartChildren = lifeLineEditPart.getChildren().iterator();
 		while (editPartChildren.hasNext()) {
@@ -233,13 +233,13 @@ public class ExecutionSpecificationUtil {
 
 	/**
 	 * This allows to copy the map of the rectangle with creation (to avoid rectangle modification by instance).
-	 * 
+	 *
 	 * @param rectangles
 	 *            The initial map of rectangle by edit part.
 	 * @return The copy of the initial map of rectangle by edit part with new rectangles.
 	 */
 	private static Map<AbstractExecutionSpecificationEditPart, Rectangle> copyRectangles(final Map<AbstractExecutionSpecificationEditPart, Rectangle> rectangles) {
-		final Map<AbstractExecutionSpecificationEditPart, Rectangle> copiedRectangles = new HashMap<AbstractExecutionSpecificationEditPart, Rectangle>();
+		final Map<AbstractExecutionSpecificationEditPart, Rectangle> copiedRectangles = new HashMap<>();
 
 		for (final Entry<AbstractExecutionSpecificationEditPart, Rectangle> entry : rectangles.entrySet()) {
 			copiedRectangles.put(entry.getKey(), new Rectangle(entry.getValue()));
@@ -250,7 +250,7 @@ public class ExecutionSpecificationUtil {
 
 	/**
 	 * This allows to calculate the initial x of the execution specification for a life line.
-	 * 
+	 *
 	 * @param lifeLineEditPart
 	 *            The life line edit part.
 	 * @param executionSpecificationRectangle

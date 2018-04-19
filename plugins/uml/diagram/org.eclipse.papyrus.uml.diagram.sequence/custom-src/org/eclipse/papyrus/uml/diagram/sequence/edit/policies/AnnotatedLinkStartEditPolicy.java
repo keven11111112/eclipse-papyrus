@@ -68,7 +68,7 @@ public class AnnotatedLinkStartEditPolicy extends GraphicalNodeEditPolicy {
 		if (host instanceof INodeEditPart) {
 			return (INodeEditPart) host;
 		} else {
-			IGraphicalEditPart hostGraphical = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
+			IGraphicalEditPart hostGraphical = host.getAdapter(IGraphicalEditPart.class);
 			if (hostGraphical == null) {
 				return null;
 			}
@@ -80,7 +80,7 @@ public class AnnotatedLinkStartEditPolicy extends GraphicalNodeEditPolicy {
 			if (!(parent instanceof INodeEditPart)) {
 				return null;
 			}
-			IGraphicalEditPart parentGraphical = (IGraphicalEditPart) parent.getAdapter(IGraphicalEditPart.class);
+			IGraphicalEditPart parentGraphical = parent.getAdapter(IGraphicalEditPart.class);
 			if (parentGraphical != null && element == parentGraphical.resolveSemanticElement()) {
 				return (INodeEditPart) parent;
 			}

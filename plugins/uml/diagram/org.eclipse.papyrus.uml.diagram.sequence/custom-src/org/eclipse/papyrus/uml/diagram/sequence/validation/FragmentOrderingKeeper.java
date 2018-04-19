@@ -22,8 +22,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.MDTUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.MDTUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.util.DestructionOccurrenceUtil;
@@ -225,12 +225,12 @@ public class FragmentOrderingKeeper {
 			diagram = ((IDiagramWorkbenchPart) editor).getDiagramEditPart();
 		}
 		// reset constraints
-		constrainingNotRepresentedLifelines = new HashSet<Lifeline>();
-		constrainingLifelineParts = new HashSet<LifelineEditPart>();
+		constrainingNotRepresentedLifelines = new HashSet<>();
+		constrainingLifelineParts = new HashSet<>();
 		/* constrainingCombinedFragments = new HashSet<CombinedFragment>(); */
-		constrainingMessages = new HashSet<Message>();
-		constrainingExecutions = new HashSet<ExecutionSpecification>();
-		constrainingGeneralOrderings = new HashSet<GeneralOrdering>();
+		constrainingMessages = new HashSet<>();
+		constrainingExecutions = new HashSet<>();
+		constrainingGeneralOrderings = new HashSet<>();
 		// get new constraining objects
 		for (InteractionFragment fragment : orderedFragments) {
 			// get Lifelines
@@ -315,16 +315,16 @@ public class FragmentOrderingKeeper {
 	 * </li>
 	 */
 	private void constructPartialOrders() {
-		optionallyOrderedFragments = new HashMap<Integer, List<InteractionFragment>>();
+		optionallyOrderedFragments = new HashMap<>();
 		int numberOfConstraints = constrainingNotRepresentedLifelines.size() + constrainingLifelineParts.size() + constrainingMessages.size() + constrainingExecutions.size() + constrainingGeneralOrderings.size();
 		/*
 		 * + constrainingCombinedFragments.size();
 		 */
-		orderConstraints = new ArrayList<List<InteractionFragment>>(numberOfConstraints);
+		orderConstraints = new ArrayList<>(numberOfConstraints);
 		int indexConstraint = 0;
 		// construct lifelines constraints (model only)
 		for (Lifeline lifeline : constrainingNotRepresentedLifelines) {
-			List<InteractionFragment> constraint = new ArrayList<InteractionFragment>();
+			List<InteractionFragment> constraint = new ArrayList<>();
 			// fill constraint : previous order for elements of lifeline not drawn
 			for (InteractionFragment fragment : orderedFragments) {
 				if (lifeline.getCoveredBys().contains(fragment)) {
@@ -338,11 +338,11 @@ public class FragmentOrderingKeeper {
 		}
 		// construct lifelines constraints (graphical and model)
 		for (LifelineEditPart part : constrainingLifelineParts) {
-			TreeMap<Float, InteractionFragment> constraint = new TreeMap<Float, InteractionFragment>();
+			TreeMap<Float, InteractionFragment> constraint = new TreeMap<>();
 			// fill constraint : graphical location and previous order of elements not drawn
 			fillConstraintWithLifelineEvents(constraint, part, indexConstraint);
 			// store constraint
-			ArrayList<InteractionFragment> list = new ArrayList<InteractionFragment>(constraint.values());
+			ArrayList<InteractionFragment> list = new ArrayList<>(constraint.values());
 			DestructionOccurrenceUtil.reorderDestructionOccurrence(list);
 			orderConstraints.add(indexConstraint, list);
 			indexConstraint++;
@@ -361,7 +361,7 @@ public class FragmentOrderingKeeper {
 		 */
 		// construct messages constraints
 		for (Message mess : constrainingMessages) {
-			List<InteractionFragment> constraint = new ArrayList<InteractionFragment>(2);
+			List<InteractionFragment> constraint = new ArrayList<>(2);
 			// fill constraint : send > receive
 			MessageEnd frag = mess.getSendEvent();
 			if (frag instanceof InteractionFragment && orderedFragments.contains(frag)) {
@@ -378,7 +378,7 @@ public class FragmentOrderingKeeper {
 		}
 		// construct executions constraints
 		for (ExecutionSpecification exe : constrainingExecutions) {
-			List<InteractionFragment> constraint = new ArrayList<InteractionFragment>(3);
+			List<InteractionFragment> constraint = new ArrayList<>(3);
 			// fill constraint : start > execution > finish
 			InteractionFragment frag = exe.getStart();
 			if (frag != null && orderedFragments.contains(frag)) {
@@ -398,7 +398,7 @@ public class FragmentOrderingKeeper {
 		}
 		// construct general orderings constraints
 		for (GeneralOrdering genOrd : constrainingGeneralOrderings) {
-			List<InteractionFragment> constraint = new ArrayList<InteractionFragment>(2);
+			List<InteractionFragment> constraint = new ArrayList<>(2);
 			// fill constraint : before > after
 			InteractionFragment frag = genOrd.getBefore();
 			if (frag != null && orderedFragments.contains(frag)) {
@@ -427,7 +427,7 @@ public class FragmentOrderingKeeper {
 	private void fillConstraintWithLifelineEvents(TreeMap<Float, InteractionFragment> constraint, LifelineEditPart lifelinePart, int indexConstraint) {
 		EObject lifeline = lifelinePart.resolveSemanticElement();
 		if (lifeline instanceof Lifeline) {
-			List<InteractionFragment> nonLocalizedEvents = new ArrayList<InteractionFragment>();
+			List<InteractionFragment> nonLocalizedEvents = new ArrayList<>();
 			// sort fragments according to their location on the lifeline
 			for (InteractionFragment event : ((Lifeline) lifeline).getCoveredBys()) {
 				if (orderedFragments.contains(event)) {
@@ -572,8 +572,8 @@ public class FragmentOrderingKeeper {
 	 * @return true if a valid trace has been computed, false if there is no valid trace
 	 */
 	private boolean reorderFragmentsInAValidTrace() {
-		List<InteractionFragment> initialFragmentsList = new ArrayList<InteractionFragment>(orderedFragments);
-		List<InteractionFragment> reorderedFragments = new ArrayList<InteractionFragment>(orderedFragments.size());
+		List<InteractionFragment> initialFragmentsList = new ArrayList<>(orderedFragments);
+		List<InteractionFragment> reorderedFragments = new ArrayList<>(orderedFragments.size());
 		/*
 		 * This algorithm merges constraints to compute a valid trace.
 		 * With little adaptation, it could compute all valid traces.
@@ -587,7 +587,7 @@ public class FragmentOrderingKeeper {
 		Arrays.fill(pointers, 0);
 		while (getFragmentToInspect(-1, pointers) != null) {
 			// inspect each constraint list to know whether fragment is mature enough, in such a case, store it with constraint index
-			Map<Integer, InteractionFragment> matureFragments = new HashMap<Integer, InteractionFragment>(n);
+			Map<Integer, InteractionFragment> matureFragments = new HashMap<>(n);
 			for (int i = 0; i < n; i++) {
 				InteractionFragment fragmentToInspect = getFragmentToInspect(i, pointers);
 				// if no more fragment in this constraint (fragmentToInspect == null), nothing to do
@@ -618,7 +618,7 @@ public class FragmentOrderingKeeper {
 			if (matureFragments.isEmpty()) {
 				// FIXME duplicated code : try again, without optional order
 				// inspect each constraint list to know whether fragment is mature enough, in such a case, store it with constraint index
-				matureFragments = new HashMap<Integer, InteractionFragment>(n);
+				matureFragments = new HashMap<>(n);
 				for (int i = 0; i < n; i++) {
 					InteractionFragment fragmentToInspect = getFragmentToInspect(i, pointers);
 					// if no more fragment in this constraint (fragmentToInspect == null), nothing to do
@@ -667,7 +667,7 @@ public class FragmentOrderingKeeper {
 					// no valid trace.
 					if (valid) {
 						// store first conflicting fragments for user explanation
-						conflictingFragments = new HashSet<InteractionFragment>(n);
+						conflictingFragments = new HashSet<>(n);
 						for (int k = 0; k < n; k++) {
 							InteractionFragment frag = getFragmentToInspect(k, pointers);
 							if (frag != null) {
@@ -697,7 +697,7 @@ public class FragmentOrderingKeeper {
 					 * branch and continuing the algorithm.
 					 */
 					// All matureFragments can happen in any order. Add them all (without doubles).
-					Set<InteractionFragment> fragmentsSet = new HashSet<InteractionFragment>(matureFragments.values());
+					Set<InteractionFragment> fragmentsSet = new HashSet<>(matureFragments.values());
 					reorderedFragments.addAll(fragmentsSet);
 					// increment pointers of constraints whose fragment has been added.
 					for (int incrementingPointerIndex : matureFragments.keySet()) {
@@ -742,7 +742,7 @@ public class FragmentOrderingKeeper {
 				 * branch and continuing the algorithm.
 				 */
 				// All matureFragments can happen in any order. Add them all (without doubles).
-				Set<InteractionFragment> fragmentsSet = new HashSet<InteractionFragment>(matureFragments.values());
+				Set<InteractionFragment> fragmentsSet = new HashSet<>(matureFragments.values());
 				reorderedFragments.addAll(fragmentsSet);
 				// increment pointers of constraints whose fragment has been added.
 				for (int incrementingPointerIndex : matureFragments.keySet()) {

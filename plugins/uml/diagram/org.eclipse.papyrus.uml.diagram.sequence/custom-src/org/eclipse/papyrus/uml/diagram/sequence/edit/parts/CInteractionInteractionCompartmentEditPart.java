@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -54,7 +54,7 @@ public class CInteractionInteractionCompartmentEditPart extends InteractionInter
 		if (request instanceof CreateViewAndElementRequest && request.getType().equals(REQ_CREATE)) {
 			CreateViewAndElementRequest createrequest = (CreateViewAndElementRequest) request;
 			ViewAndElementDescriptor descriptor = createrequest.getViewAndElementDescriptor();
-			IElementType elementType = (IElementType) descriptor.getElementAdapter().getAdapter(IElementType.class);
+			IElementType elementType = descriptor.getElementAdapter().getAdapter(IElementType.class);
 			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.DURATION_CONSTRAINT_SHAPE)) {
 				return null;
 			}

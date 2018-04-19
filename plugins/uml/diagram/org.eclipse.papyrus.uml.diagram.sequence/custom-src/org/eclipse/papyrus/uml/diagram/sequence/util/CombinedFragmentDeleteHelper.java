@@ -152,7 +152,7 @@ public class CombinedFragmentDeleteHelper {
 		}
 
 		private List<CombinedFragmentEditPart> collectCombinedFragmentParts() {
-			List<CombinedFragmentEditPart> parts = new ArrayList<CombinedFragmentEditPart>();
+			List<CombinedFragmentEditPart> parts = new ArrayList<>();
 			for (InteractionFragment f : fragmentsToMove) {
 				if (f instanceof CombinedFragment) {
 					EditPart p = findEditPartByModel(host, f);

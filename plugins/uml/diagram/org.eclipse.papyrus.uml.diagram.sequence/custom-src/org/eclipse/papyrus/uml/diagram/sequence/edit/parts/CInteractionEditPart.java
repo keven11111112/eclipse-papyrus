@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016-2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -38,7 +38,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
  * @author Patrick Tessier
  * @since 3.0
  *        this class has been customized to prevent the strange feedback of lifeline during the move
- * 
+ *
  */
 public class CInteractionEditPart extends InteractionEditPart {
 
@@ -173,11 +173,11 @@ public class CInteractionEditPart extends InteractionEditPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * <pre>
 	 * Interaction is not selectable.
 	 * </pre>
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#isSelectable()
 	 */
 	@Override

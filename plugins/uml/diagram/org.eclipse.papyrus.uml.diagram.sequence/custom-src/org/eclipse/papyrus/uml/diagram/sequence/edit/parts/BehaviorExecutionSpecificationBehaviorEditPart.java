@@ -97,7 +97,7 @@ public class BehaviorExecutionSpecificationBehaviorEditPart extends
 			@Override
 			public String getPrintString(IAdaptable adapter, int flags) {
 				String printString = super.getPrintString(adapter, flags);
-				EObject obj = (EObject) adapter.getAdapter(EObject.class);
+				EObject obj = adapter.getAdapter(EObject.class);
 				if (obj instanceof OpaqueBehavior) {
 					OpaqueBehavior opaque = (OpaqueBehavior) obj;
 					if (opaque.isSetLanguages()) {

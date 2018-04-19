@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Graphics;
@@ -24,7 +23,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -52,6 +50,7 @@ public abstract class AnnotatedLinkEditPart extends org.eclipse.papyrus.infra.gm
 		return new AnnotatedLinkDescriptor();
 	}
 
+	@Override
 	public AnnotatedLinkDescriptor getPrimaryShape() {
 		return (AnnotatedLinkDescriptor) getFigure();
 	}

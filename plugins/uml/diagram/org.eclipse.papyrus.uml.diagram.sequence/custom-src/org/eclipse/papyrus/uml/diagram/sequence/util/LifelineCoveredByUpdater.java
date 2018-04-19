@@ -37,8 +37,8 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart.PreserveAnchorsPositionCommandEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart.PreserveAnchorsPositionCommandEx;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
@@ -55,9 +55,9 @@ public class LifelineCoveredByUpdater {
 
 	protected GraphicalEditPart context;
 
-	protected Map<LifelineEditPart, Rectangle> lifelines = new HashMap<LifelineEditPart, Rectangle>();
+	protected Map<LifelineEditPart, Rectangle> lifelines = new HashMap<>();
 
-	protected HashMap<GraphicalEditPart, Rectangle> interactionFragments = new HashMap<GraphicalEditPart, Rectangle>();
+	protected HashMap<GraphicalEditPart, Rectangle> interactionFragments = new HashMap<>();
 
 	protected TransactionalEditingDomain editingDomain;
 
@@ -86,12 +86,12 @@ public class LifelineCoveredByUpdater {
 		}
 		if (editPart instanceof GraphicalEditPart) {
 			EObject modelObject = ViewUtil.resolveSemanticElement((View) editPart.getModel());
-			if (modelObject instanceof InteractionFragment 
+			if (modelObject instanceof InteractionFragment
 					&& false == modelObject instanceof Interaction) {
 				IFigure figure = editPart.getFigure();
 				Rectangle childBounds = figure.getBounds().getCopy();
 				figure.translateToAbsolute(childBounds);
-				interactionFragments.put((GraphicalEditPart) editPart, childBounds);
+				interactionFragments.put(editPart, childBounds);
 			}
 		}
 		for (Object child : editPart.getChildren()) {
@@ -117,8 +117,8 @@ public class LifelineCoveredByUpdater {
 			return;
 		}
 		EList<InteractionFragment> coveredByLifelines = lifeline.getCoveredBys();
-		Set<InteractionFragment> coveredByLifelinesToAdd = new LinkedHashSet<InteractionFragment>();
-		Set<InteractionFragment> coveredByLifelinesToRemove = new LinkedHashSet<InteractionFragment>();
+		Set<InteractionFragment> coveredByLifelinesToAdd = new LinkedHashSet<>();
+		Set<InteractionFragment> coveredByLifelinesToRemove = new LinkedHashSet<>();
 		// Update height of Lifeline when coveredBy some InteractionFragments.
 		int bottom = 0;
 		for (Map.Entry<GraphicalEditPart, Rectangle> entry : interactionFragments.entrySet()) {
@@ -132,10 +132,10 @@ public class LifelineCoveredByUpdater {
 				coveredByLifelinesToRemove.add(interactionFragment);
 			}
 		}
-		
+
 		coveredByLifelinesToRemove.removeAll(coveredByLifelinesToAdd);
 		coveredByLifelinesToAdd.removeAll(coveredByLifelines);
-		
+
 		if (!coveredByLifelinesToAdd.isEmpty()) {
 			CommandHelper.executeCommandWithoutHistory(editingDomain, AddCommand.create(editingDomain, lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToAdd), true);
 			// Update Lifeline height.

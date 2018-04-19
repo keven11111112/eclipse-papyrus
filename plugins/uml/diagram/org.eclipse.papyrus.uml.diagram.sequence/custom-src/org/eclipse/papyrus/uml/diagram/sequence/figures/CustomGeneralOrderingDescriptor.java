@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
@@ -165,7 +165,7 @@ public class CustomGeneralOrderingDescriptor extends GeneralOrderingDescriptor i
 
 	/**
 	 * Create the arrow locator to draw the arrow to the proper location
-	 * 
+	 *
 	 * @return Arrow Locator using the middle point as reference
 	 */
 	private ArrowLocator getArrowLocator() {

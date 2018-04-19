@@ -76,7 +76,7 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 	public static final String KEY = "DeleteTimeElementWithoutEvent";
 
 	/** list of element to listen */
-	protected HashMap<EObject, List<View>> additionalParentToListen = new HashMap<EObject, List<View>>();
+	protected HashMap<EObject, List<View>> additionalParentToListen = new HashMap<>();
 
 	/** stores the host associated semantic element */
 	protected EObject hostSemanticElement;
@@ -259,7 +259,7 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 			if (occs.size() >= 2 && occs.get(0) instanceof OccurrenceSpecification && occs.get(1) instanceof OccurrenceSpecification) {
 				EditPart part1 = SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification) occs.get(0));
 				EditPart part2 = SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification) occs.get(1));
-				List<View> list = new ArrayList<View>(2);
+				List<View> list = new ArrayList<>(2);
 				if (part1 != null) {
 					list.add((View) part1.getModel());
 				}
@@ -383,13 +383,13 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 	 */
 	protected void removeListenerForView(View oldView) {
 		// create a temp list of elements to delete (iterator concurrent modification..)
-		Map<EObject, List<View>> parentsToDelete = new HashMap<EObject, List<View>>();
+		Map<EObject, List<View>> parentsToDelete = new HashMap<>();
 		for (EObject parent : additionalParentToListen.keySet()) {
 			List<View> parentViews = additionalParentToListen.get(parent);
 			if (parentViews.contains(oldView)) {
 				List<View> views = parentsToDelete.get(parent);
 				if (views == null) {
-					views = new ArrayList<View>();
+					views = new ArrayList<>();
 				}
 				views.add(oldView);
 				parentsToDelete.put(parent, views);
@@ -402,7 +402,7 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 	 */
 	protected void removeListeners(List<View> impactedViews) {
 		// create a temp list of elements to delete (iterator concurrent modification..)
-		Map<EObject, List<View>> parentsToDelete = new HashMap<EObject, List<View>>();
+		Map<EObject, List<View>> parentsToDelete = new HashMap<>();
 		// collect the elements to delete
 		for (View view : impactedViews) {
 			for (EObject parent : additionalParentToListen.keySet()) {
@@ -410,7 +410,7 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 				if (parentViews.contains(view)) {
 					List<View> views = parentsToDelete.get(parent);
 					if (views == null) {
-						views = new ArrayList<View>();
+						views = new ArrayList<>();
 					}
 					views.add(view);
 					parentsToDelete.put(parent, views);

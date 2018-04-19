@@ -32,8 +32,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNode
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationComponentEditPolicy;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -66,6 +64,7 @@ public class CCombinedCompartmentEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -126,9 +125,10 @@ public class CCombinedCompartmentEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	public RoundedCompartmentFigure getPrimaryShape() {
 		return (RoundedCompartmentFigure) primaryShape;
 	}
@@ -136,6 +136,7 @@ public class CCombinedCompartmentEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(200, 100);
 		return result;
@@ -144,6 +145,7 @@ public class CCombinedCompartmentEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if (result instanceof ResizableEditPolicy) {
@@ -170,11 +172,12 @@ public class CCombinedCompartmentEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
+	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		return nodeShape; // use nodeShape itself as contentPane
 	}
@@ -182,6 +185,7 @@ public class CCombinedCompartmentEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -192,6 +196,7 @@ public class CCombinedCompartmentEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -201,6 +206,7 @@ public class CCombinedCompartmentEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -217,6 +223,7 @@ public class CCombinedCompartmentEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);

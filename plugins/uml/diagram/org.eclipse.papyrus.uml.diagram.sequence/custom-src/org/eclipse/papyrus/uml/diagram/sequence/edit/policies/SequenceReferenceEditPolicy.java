@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017, 2018 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   Patrick Tessier (CEA LIST) - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 521312, 526079, 526191
- *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 531520 
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 531520
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -48,7 +48,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  * for example: a message connected to an executionSpecification means that a strong reference exists between editpart of the message
  * and the editpart of the execution specification.
  * Two consecutive execution specifications on the same life-line means that a weak reference exists from the top exec to the bottom lifeline.
- * 
+ *
  * @since 4.0
  */
 public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements NotificationListener {
@@ -60,8 +60,8 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	public static final String ROLE_SOURCE = "SOURCE"; //$NON-NLS-1$
 	public static final String ROLE_TARGET = "TARGET"; //$NON-NLS-1$
 
-	protected HashMap<EditPart, String> weakReferences = new HashMap<EditPart, String>();
-	protected HashMap<EditPart, String> strongReferences = new HashMap<EditPart, String>();
+	protected HashMap<EditPart, String> weakReferences = new HashMap<>();
+	protected HashMap<EditPart, String> strongReferences = new HashMap<>();
 	protected RedirectionContentAdapter redirectionContentAdapter;
 	protected RedirectionCommandStackListener redirectionCommandStackListener;
 	protected RedirectionOperationListener redirectionOperationListener;
@@ -90,7 +90,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 		// add a listener to update weak and string references
 		redirectionOperationListener = new RedirectionOperationListener(this);
 		OperationHistoryFactory.getOperationHistory().addOperationHistoryListener(redirectionOperationListener);
-		
+
 		updateStrongAndWeakReferences();
 	}
 
@@ -101,7 +101,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	@Override
 	public void deactivate() {
 		if (null != redirectionOperationListener) {
-		OperationHistoryFactory.getOperationHistory().removeOperationHistoryListener(redirectionOperationListener);
+			OperationHistoryFactory.getOperationHistory().removeOperationHistoryListener(redirectionOperationListener);
 		}
 		super.deactivate();
 	}
@@ -110,7 +110,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	 * compute strong a weak reference
 	 */
 	public void updateStrongAndWeakReferences() {
-		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ Update Strong and weak ref " + getHost().getClass().getName());//$NON-NLS-1$ //$NON-NLS-2$
+		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ Update Strong and weak ref " + getHost().getClass().getName());//$NON-NLS-1$
 
 		strongReferences.clear();
 		weakReferences.clear();
@@ -132,7 +132,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 			// the weak reference is the next element associated to next event after the finish event.
 			if (exec.getCovereds().size() == 1) {
 				Lifeline currentLifeline = exec.getCovereds().get(0);
-				fillWeakReference((OccurrenceSpecification) exec.getFinish(), currentLifeline);
+				fillWeakReference(exec.getFinish(), currentLifeline);
 			}
 		}
 		// management of messages
@@ -169,7 +169,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 
 	/**
 	 * this method is used to add a weak reference from the next event after the given event
-	 * 
+	 *
 	 * @param sourceEvent
 	 *            the given event the next is maybe an element to add in the weakreference
 	 * @param currentLifeline,
@@ -188,7 +188,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 
 	/**
 	 * this method is used to get the execution specification associated to the message End
-	 * 
+	 *
 	 * @param event
 	 *            the given event where we look for a executionSpecification, must be never null
 	 * @return the associated execution specification or null if there is no association
@@ -216,7 +216,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 
 	/**
 	 * this method returns the next events after the given event
-	 * 
+	 *
 	 * @param event
 	 *            we look for the next event after this one.
 	 * @param currentLifeline
@@ -243,7 +243,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 
 	public boolean isCoveredByStrinReference(Element event) {
 		for (Iterator<EditPart> iterator = getStrongReferences().keySet().iterator(); iterator.hasNext();) {
-			EditPart editPart = (EditPart) iterator.next();
+			EditPart editPart = iterator.next();
 			if (editPart instanceof AbstractMessageEditPart) {
 				Message message = (Message) (((AbstractMessageEditPart) editPart)).resolveSemanticElement();
 				if (message.getSendEvent().equals(event)) {
@@ -268,7 +268,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 
 	/**
 	 * given a messageEnd, the corresponding editPart to a message is adding to the references list
-	 * 
+	 *
 	 * @param messageEnd
 	 *            a messageEnd
 	 * @param referenceList
@@ -290,7 +290,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 
 	/**
 	 * test if this event is only use of a message not also for an executionSpecification
-	 * 
+	 *
 	 * @param messageEnd
 	 * @return true if the message End is only used by a message
 	 */
@@ -313,7 +313,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 
 	/**
 	 * given a messageEnd, the corresponding editPart to a ExecutionSpec is added to the references list
-	 * 
+	 *
 	 * @param messageEnd
 	 *            a messageEnd
 	 * @param referenceList
@@ -347,7 +347,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	/**
 	 * this method return the controller attached to the semantic element
 	 * the complexity of this algorithm is N (N the number of controller in the opened sequence diagram)
-	 * 
+	 *
 	 * @param semanticElement
 	 *            must be different from null
 	 * @return the reference to the controller or null.
@@ -389,7 +389,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 
 	/**
 	 * get the current Interaction from the editpart
-	 * 
+	 *
 	 * @return null or the interaction
 	 */
 	protected Interaction getInteraction() {

@@ -105,7 +105,7 @@ public class InteractionEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public Command getCommand(Request _request) {
-		// TODO Auto-generated method stub
+
 		return super.getCommand(_request);
 	}
 

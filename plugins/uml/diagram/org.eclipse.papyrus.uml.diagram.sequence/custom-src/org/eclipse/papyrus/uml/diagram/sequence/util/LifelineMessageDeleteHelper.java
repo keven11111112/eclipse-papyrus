@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014-2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -87,11 +87,11 @@ public class LifelineMessageDeleteHelper {
 
 	/**
 	 * Get the list of incoming message delete of an edit part.
-	 * 
+	 *
 	 * @since 4.0
 	 */
 	public static List<?> getIncomingMessageDelete(final EditPart target) {
-		List<EditPart> create = new ArrayList<EditPart>();
+		List<EditPart> create = new ArrayList<>();
 		if (target instanceof LifelineEditPart) {
 			List<?> list = ((LifelineEditPart) target).getTargetConnections();
 			if (list != null && list.size() > 0) {

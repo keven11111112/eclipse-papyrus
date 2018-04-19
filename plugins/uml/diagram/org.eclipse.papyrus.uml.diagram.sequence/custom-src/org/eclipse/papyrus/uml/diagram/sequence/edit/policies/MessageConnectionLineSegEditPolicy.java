@@ -11,7 +11,7 @@
  *   Atos Origin - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519408, 525372, 526628
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 531596
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
@@ -159,7 +159,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 	/**
 	 * Get the command to update weak references of the message for a deletion.
-	 * 
+	 *
 	 * @param request
 	 *            the delete command wrapped into a {@link EditCommandRequestWrapper}.
 	 * @return the command
@@ -180,7 +180,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					CompoundCommand compoundCommand = new CompoundCommand();
 
 					// Gets weak references
-					List<EditPart> weakReferences = new ArrayList<EditPart>();
+					List<EditPart> weakReferences = new ArrayList<>();
 					HashMap<EditPart, String> allWeakReferences = references.getWeakReferences();
 
 					allWeakReferences.forEach((editPart, value) -> {
@@ -191,7 +191,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 					// for each weak reference move it
 					for (Iterator<EditPart> iterator = weakReferences.iterator(); iterator.hasNext();) {
-						EditPart editPart = (EditPart) iterator.next();
+						EditPart editPart = iterator.next();
 						if (!SenderRequestUtils.isASender(request, editPart)) {// avoid loop
 							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart);//$NON-NLS-1$
 							ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
@@ -389,7 +389,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				} else
 				// Found message case && Lost message case
 				if ((srcLifelinePart == null) && (targetLifelinePart != null) || (srcLifelinePart != null && targetLifelinePart == null)) {
-					return getMoveMessageCommand((BendpointRequest) request);
+					return getMoveMessageCommand(request);
 				}
 			}
 		}
@@ -398,7 +398,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 	/**
 	 * This allows to updates lifelines height if necessary.
-	 * 
+	 *
 	 * @param request
 	 *            The initial request.
 	 * @param hostConnectionEditPart
@@ -406,6 +406,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	 * @param yMoveDelta
 	 *            The height of the move.
 	 * @return The command to update lifelines or <code>null</code>.
+	 * @since 5.0
 	 */
 	protected Command getUpdateLifeLinesBounds(final BendpointRequest request, final ConnectionEditPart hostConnectionEditPart, final int yMoveDelta) {
 		CompoundCommand command = null;
@@ -418,19 +419,19 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			if (!SenderRequestUtils.isASender(request, getHost())) {
 
 				// Gets weak references
-				final List<EditPart> weakAndStrongReferences = new ArrayList<EditPart>();
+				final List<EditPart> weakAndStrongReferences = new ArrayList<>();
 				weakAndStrongReferences.addAll(references.getWeakReferences().keySet());
 				weakAndStrongReferences.addAll(references.getStrongReferences().keySet());
 
 				// The needed y position and heights
 				int maxY = 0;
-				
+
 				// Get the initial source and target positions of the message
 				final PolylineConnectionEx polyline = (PolylineConnectionEx) hostConnectionEditPart.getFigure();
 				final Point initialSourcePosition = polyline.getSourceAnchor().getReferencePoint();
 				final Point initialTargetPosition = polyline.getTargetAnchor().getReferencePoint();
 
-				final Set<LifelineEditPart> lifelineEditParts = new HashSet<LifelineEditPart>();
+				final Set<LifelineEditPart> lifelineEditParts = new HashSet<>();
 				if (hostConnectionEditPart.getSource() instanceof LifelineEditPart) {
 					lifelineEditParts.add((LifelineEditPart) hostConnectionEditPart.getSource());
 				}
@@ -554,7 +555,6 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 										final Bounds bounds = (Bounds) view.getLayoutConstraint();
 										final Point newLocation = new Point(bounds.getX(), bounds.getY());
 										final Dimension newDimension = new Dimension(bounds.getWidth(), maxY - absoluteBounds.y);
-										final Rectangle newBounds = new Rectangle(newLocation, newDimension);
 
 										final ICommand heightCommand = new SetResizeCommand(lifeLineEP.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(view), newDimension);
 										compoundCommand.add(new ICommandProxy(heightCommand));

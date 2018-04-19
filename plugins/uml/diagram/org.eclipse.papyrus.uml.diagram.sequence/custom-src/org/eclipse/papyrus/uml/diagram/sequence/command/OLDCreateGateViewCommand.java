@@ -95,7 +95,7 @@ public class OLDCreateGateViewCommand extends AbstractTransactionalCommand {
 
 	protected View getContainerView() {
 		if (containerViewAdapter != null) {
-			return (View) containerViewAdapter.getAdapter(View.class);
+			return containerViewAdapter.getAdapter(View.class);
 		}
 		return null;
 	}
@@ -183,7 +183,7 @@ public class OLDCreateGateViewCommand extends AbstractTransactionalCommand {
 	private Gate getGate() {
 		IAdaptable gateAdapter = getGateAdapter();
 		if (gateAdapter != null) {
-			return (Gate) gateAdapter.getAdapter(Gate.class);
+			return gateAdapter.getAdapter(Gate.class);
 		}
 		return null;
 	}

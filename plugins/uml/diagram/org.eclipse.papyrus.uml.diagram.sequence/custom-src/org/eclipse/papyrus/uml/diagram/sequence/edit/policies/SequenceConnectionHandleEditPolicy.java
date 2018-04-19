@@ -88,7 +88,7 @@ public class SequenceConnectionHandleEditPolicy extends ConnectionHandleEditPoli
 				if (activePart instanceof IDiagramWorkbenchPart) {
 					editorPart = (IDiagramWorkbenchPart) activePart;
 				} else if (activePart instanceof IAdaptable) {
-					editorPart = (IDiagramWorkbenchPart) ((IAdaptable) activePart).getAdapter(IDiagramWorkbenchPart.class);
+					editorPart = ((IAdaptable) activePart).getAdapter(IDiagramWorkbenchPart.class);
 				}
 				if (editorPart == null) {
 					return false;

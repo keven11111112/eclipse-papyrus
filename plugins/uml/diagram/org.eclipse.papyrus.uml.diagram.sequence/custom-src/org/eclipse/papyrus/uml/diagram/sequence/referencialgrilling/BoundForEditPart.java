@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others. 
- * 
+ * Copyright (c) 2017 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   Patrick TESSIER (CEA LIST) patrick.tessier@cea.fr - Initial API and implementation
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 531596
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -30,7 +30,7 @@ public class BoundForEditPart {
 
 	/**
 	 * This allows to get bounds for a node in parameter.
-	 * 
+	 *
 	 * @param node
 	 *            The node which one to get bounds.
 	 * @return The bounds.
@@ -50,13 +50,13 @@ public class BoundForEditPart {
 
 	/**
 	 * This allows to get height from view node.
-	 * 
+	 *
 	 * @param node
 	 *            The node which one to get height.
 	 * @return The height.
 	 */
 	public static int getHeightFromView(final Node node) {
-		Bounds bounds = BoundForEditPart.getBounds(node);
+		final Bounds bounds = BoundForEditPart.getBounds(node);
 		if (bounds != null && bounds.getHeight() != -1) {
 			return bounds.getHeight();
 		} else {
@@ -66,7 +66,7 @@ public class BoundForEditPart {
 
 	/**
 	 * This allows to get the default height of a view node.
-	 * 
+	 *
 	 * @param node
 	 *            The node which one to get the default height.
 	 * @return The default height.
@@ -86,13 +86,13 @@ public class BoundForEditPart {
 
 	/**
 	 * This allows to get width from view node.
-	 * 
+	 *
 	 * @param node
 	 *            The node which one to get width.
 	 * @return The width.
 	 */
 	public static int getWidthFromView(final Node node) {
-		Bounds bounds = BoundForEditPart.getBounds(node);
+		final Bounds bounds = BoundForEditPart.getBounds(node);
 		if (bounds != null && bounds.getWidth() != -1) {
 			return bounds.getWidth();
 		} else {
@@ -102,7 +102,7 @@ public class BoundForEditPart {
 
 	/**
 	 * This allows to get the default width of a view node.
-	 * 
+	 *
 	 * @param node
 	 *            The node which one to get the default width.
 	 * @return The default width.

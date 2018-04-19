@@ -35,7 +35,6 @@ import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageDeleteHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationHelper;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -116,7 +115,7 @@ public class ChangeEdgeTargetCommand extends AbstractTransactionalCommand {
 		if (bendpoints instanceof RelativeBendpoints) {
 			List points = ((RelativeBendpoints) bendpoints).getPoints();
 			if (!points.isEmpty()) {
-				List<RelativeBendpoint> newPoints = new ArrayList<RelativeBendpoint>();
+				List<RelativeBendpoint> newPoints = new ArrayList<>();
 				RelativeBendpoint first = (RelativeBendpoint) points.get(0);
 				RelativeBendpoint last = (RelativeBendpoint) points.get(1);
 				RelativeBendpoint rb1 = new RelativeBendpoint(first.getSourceX(), first.getSourceY(), first.getTargetX() - 8, first.getTargetY());
@@ -144,7 +143,7 @@ public class ChangeEdgeTargetCommand extends AbstractTransactionalCommand {
 					}
 				}
 			}
-			
+
 			OccurrenceSpecificationHelper.resetExecutionStart((ExecutionSpecification) targetElement, receiveEvent);
 		}
 		if (edgeElement instanceof Message && MessageSort.DELETE_MESSAGE_LITERAL == ((Message) edgeElement).getMessageSort() && targetElement instanceof DestructionOccurrenceSpecification) {

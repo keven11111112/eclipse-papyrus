@@ -48,12 +48,10 @@ import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDLifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.OLDGateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -80,11 +78,11 @@ public class LifelineHeadUtil {
 					continue;
 				}
 				LifelineFigure primaryShape = lifeline.getPrimaryShape();
-//				RectangleFigure figure = primaryShape.getFigureLifelineNameContainerFigure();
-//				Rectangle r = figure.getBounds().getCopy();
-//				if (!r.isEmpty()) {
-//					bottom = Math.max(bottom, r.bottom());
-//				}
+				// RectangleFigure figure = primaryShape.getFigureLifelineNameContainerFigure();
+				// Rectangle r = figure.getBounds().getCopy();
+				// if (!r.isEmpty()) {
+				// bottom = Math.max(bottom, r.bottom());
+				// }
 			}
 			if (bottom != -1) {
 				RectangleFigure figure = new RectangleFigure();
@@ -106,7 +104,7 @@ public class LifelineHeadUtil {
 		if (lifeline == null || resized == 0) {
 			return;
 		}
-		List<LifelineEditPart> toMovedLifelines = new ArrayList<LifelineEditPart>();
+		List<LifelineEditPart> toMovedLifelines = new ArrayList<>();
 		collectLifelines(toMovedLifelines, lifeline);
 		List<ShapeNodeEditPart> children = LifelineEditPartUtil.getChildShapeNodeEditPart(lifeline);
 		for (ShapeNodeEditPart child : children) {
@@ -202,13 +200,6 @@ public class LifelineHeadUtil {
 							if (movedEditParts.contains(object)) {
 								continue;
 							}
-							if (object instanceof OLDGateEditPart) {
-								OLDGateEditPart gate = (OLDGateEditPart) object;
-								Command command = getVerticalMoveShapeCommand(gate, moveDelta, false);
-								commands.appendIfCanExecute(command);
-								movedEditParts.add(gate);
-								fillMoveDownMessageEnds(commands, gate, moveDelta, movedEditParts);
-							}
 						}
 					}
 				}
@@ -226,7 +217,7 @@ public class LifelineHeadUtil {
 		if (SequenceUtil.isCreateMessageEndLifeline(lifeline)) {
 			return;
 		}
-		List<LifelineEditPart> toMovedLifelines = new ArrayList<LifelineEditPart>();
+		List<LifelineEditPart> toMovedLifelines = new ArrayList<>();
 		collectLifelines(toMovedLifelines, lifeline);
 		List<ShapeNodeEditPart> children = LifelineEditPartUtil.getChildShapeNodeEditPart(lifeline);
 		for (ShapeNodeEditPart child : children) {
@@ -256,11 +247,7 @@ public class LifelineHeadUtil {
 		for (Object object : sourceConnections) {
 			ConnectionEditPart conn = (ConnectionEditPart) object;
 			EditPart target = conn.getTarget();
-			if (target instanceof OLDGateEditPart) {
-				Command command = getVerticalMoveShapeCommand((OLDGateEditPart) target, moveDelta, false);
-				commands.appendIfCanExecute(command);
-				movedEditParts.add(target);
-			} else if (object instanceof MessageLostEditPart) {
+			if (object instanceof MessageLostEditPart) {
 				Command command = getMoveAnchorCommand(conn, moveDelta, false);
 				commands.appendIfCanExecute(command);
 			}
@@ -271,10 +258,6 @@ public class LifelineHeadUtil {
 			if (conn instanceof MessageFoundEditPart) {
 				Command command = getMoveAnchorCommand(conn, moveDelta, true);
 				commands.appendIfCanExecute(command);
-			} else if (conn.getSource() instanceof OLDGateEditPart) {
-				Command command = getVerticalMoveShapeCommand((OLDGateEditPart) conn.getSource(), moveDelta, false);
-				commands.appendIfCanExecute(command);
-				movedEditParts.add(conn.getSource());
 			}
 		}
 	}
@@ -339,18 +322,18 @@ public class LifelineHeadUtil {
 			}
 			toMovedLifelines.add(source);
 		}
-//
-//		if (editPart instanceof CustomLifelineEditPart && ((CustomLifelineEditPart) editPart).isInlineMode()) {
-//			List<?> children = ((CustomLifelineEditPart) editPart).getChildren();
-//			for (Object object : children) {
-//				if (object instanceof LifelineEditPart) {
-//					collectLifelines(toMovedLifelines, (LifelineEditPart) object);
-//				}
-//			}
-//			if (toMovedLifelines.isEmpty()) {
-//				toMovedLifelines.add((LifelineEditPart) editPart);
-//			}
-//		}
+		//
+		// if (editPart instanceof CustomLifelineEditPart && ((CustomLifelineEditPart) editPart).isInlineMode()) {
+		// List<?> children = ((CustomLifelineEditPart) editPart).getChildren();
+		// for (Object object : children) {
+		// if (object instanceof LifelineEditPart) {
+		// collectLifelines(toMovedLifelines, (LifelineEditPart) object);
+		// }
+		// }
+		// if (toMovedLifelines.isEmpty()) {
+		// toMovedLifelines.add((LifelineEditPart) editPart);
+		// }
+		// }
 	}
 
 	private static Command getVerticalMoveShapeCommand(GraphicalEditPart shapeEditPart, int moveDelta, boolean increaseHeight) {

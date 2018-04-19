@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 - 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 
 public class MessageAsync extends MessageFigure {
 
@@ -36,7 +35,7 @@ public class MessageAsync extends MessageFigure {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure#createSourceDecoration()
 	 */
 	@Override

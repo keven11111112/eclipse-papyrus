@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 
 /**
  * This class redefine the SetConnectionBendpointsCommand with the anchors calculation during the execution instead of during the initialisation.
+ * @since 5.0
  */
 public class CustomSetConnectionBendpointsCommand extends AbstractTransactionalCommand {
 
@@ -67,20 +68,21 @@ public class CustomSetConnectionBendpointsCommand extends AbstractTransactionalC
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#getAffectedFiles()
 	 */
 	@Override
 	public List<?> getAffectedFiles() {
-		View view = (View) edgeAdaptor.getAdapter(View.class);
-		if (view != null)
+		View view = edgeAdaptor.getAdapter(View.class);
+		if (view != null) {
 			return getWorkspaceFiles(view);
+		}
 		return super.getAffectedFiles();
 	}
 
 	/**
 	 * Gets the edge adaptor.
-	 * 
+	 *
 	 * @return The edgeAdapter.
 	 */
 	public IAdaptable getEdgeAdaptor() {
@@ -89,7 +91,7 @@ public class CustomSetConnectionBendpointsCommand extends AbstractTransactionalC
 
 	/**
 	 * Sets the edge adaptor.
-	 * 
+	 *
 	 * @param edgeAdapter
 	 *            The edgeAdapter to set.
 	 */
@@ -99,7 +101,7 @@ public class CustomSetConnectionBendpointsCommand extends AbstractTransactionalC
 
 	/**
 	 * Gets the request.
-	 * 
+	 *
 	 * @return The request.
 	 */
 	public ReconnectRequest getRequest() {
@@ -108,7 +110,7 @@ public class CustomSetConnectionBendpointsCommand extends AbstractTransactionalC
 
 	/**
 	 * Sets the request.
-	 * 
+	 *
 	 * @param request
 	 *            The request to set.
 	 */
@@ -118,7 +120,7 @@ public class CustomSetConnectionBendpointsCommand extends AbstractTransactionalC
 
 	/**
 	 * Gets the node.
-	 * 
+	 *
 	 * @return The node.
 	 */
 	public INodeEditPart getNode() {
@@ -127,7 +129,7 @@ public class CustomSetConnectionBendpointsCommand extends AbstractTransactionalC
 
 	/**
 	 * Sets the node.
-	 * 
+	 *
 	 * @param node
 	 *            The node to set.
 	 */
@@ -137,7 +139,7 @@ public class CustomSetConnectionBendpointsCommand extends AbstractTransactionalC
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 */
 	@Override
@@ -146,7 +148,7 @@ public class CustomSetConnectionBendpointsCommand extends AbstractTransactionalC
 
 		Assert.isNotNull(request);
 
-		final Edge edge = (Edge) getEdgeAdaptor().getAdapter(Edge.class);
+		final Edge edge = getEdgeAdaptor().getAdapter(Edge.class);
 		Assert.isNotNull(edge);
 
 		final ConnectionAnchor sourceAnchor = node.getSourceConnectionAnchor(request);
@@ -159,7 +161,7 @@ public class CustomSetConnectionBendpointsCommand extends AbstractTransactionalC
 		pointList.addPoint(sourceAnchor.getLocation(targetRefPoint));
 		pointList.addPoint(targetAnchor.getLocation(sourceRefPoint));
 
-		final List<RelativeBendpoint> newBendpoints = new ArrayList<RelativeBendpoint>();
+		final List<RelativeBendpoint> newBendpoints = new ArrayList<>();
 		for (short i = 0; i < pointList.size(); i++) {
 			final Dimension s = pointList.getPoint(i).getDifference(sourceRefPoint);
 			final Dimension t = pointList.getPoint(i).getDifference(targetRefPoint);

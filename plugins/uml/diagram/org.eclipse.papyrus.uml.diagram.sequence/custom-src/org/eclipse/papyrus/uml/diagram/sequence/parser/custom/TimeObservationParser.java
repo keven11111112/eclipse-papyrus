@@ -107,7 +107,7 @@ public class TimeObservationParser extends MessageFormatParser implements ISeman
 	@Override
 	@SuppressWarnings("unchecked")
 	public List getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof TimeObservation) {
 			semanticElementsBeingParsed.add((TimeObservation) element);
 		}

@@ -15,9 +15,10 @@ package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 /**
  * Constants used in the sequence diagram
- * 
+ *
  * @deprecated
  */
+@Deprecated
 public interface SequenceRequestConstant {
 
 	/** A constant representing the container of an interactionFragment. It can be an Interaction or an InteractionOperand */

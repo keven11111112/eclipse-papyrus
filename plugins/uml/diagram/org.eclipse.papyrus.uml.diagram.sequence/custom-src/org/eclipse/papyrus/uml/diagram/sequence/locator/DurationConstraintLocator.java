@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Céline Janssens (celine.janssens@all4tec.net) - Initial API and implementation
- *   
+ *   Cï¿½line Janssens (celine.janssens@all4tec.net) - Initial API and implementation
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.locator;
@@ -20,7 +20,7 @@ import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 
 /**
- * @author Céline JANSSENS
+ * @author Cï¿½line JANSSENS
  *         This class is used for Duration Constraint (@see {@link LifelineEditPart}) in order to locate it just next to the middle of it's parent (the Lifeline) on the X axe.
  *         The Y Axe is free except if the top is upper than its Parent.
  */
@@ -84,9 +84,9 @@ public class DurationConstraintLocator extends AdvancedBorderItemLocator {
 	}
 
 	/**
-	 * 
+	 *
 	 * The Valid location for a Duration Constraint is just next to the center of its parent (the lifeline).
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator#getValidLocation(org.eclipse.draw2d.geometry.Rectangle, org.eclipse.draw2d.IFigure)
 	 *
 	 * @param proposedLocation

@@ -87,7 +87,7 @@ public class MessageCustomParser extends MessageFormatParser implements ISemanti
 
 	@Override
 	public List<Element> getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof Message) {
 			Message message = (Message) element;
 			semanticElementsBeingParsed.add(message);

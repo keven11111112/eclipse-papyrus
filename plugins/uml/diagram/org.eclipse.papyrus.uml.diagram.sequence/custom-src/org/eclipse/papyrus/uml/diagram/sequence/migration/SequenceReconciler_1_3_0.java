@@ -70,7 +70,7 @@ public class SequenceReconciler_1_3_0 extends DiagramReconciler {
 					}
 				}
 				if(interactionCompartmentShape!=null) {
-					ArrayList<View>  combinedViews= new ArrayList<View>();
+					ArrayList<View>  combinedViews= new ArrayList<>();
 					for (int i = 0; i < interactionCompartmentShape.getChildren().size(); i++) {
 						View child=(View)interactionCompartmentShape.getChildren().get(i);
 						if( "CombinedFragment_Shape".equals(child.getType())) {

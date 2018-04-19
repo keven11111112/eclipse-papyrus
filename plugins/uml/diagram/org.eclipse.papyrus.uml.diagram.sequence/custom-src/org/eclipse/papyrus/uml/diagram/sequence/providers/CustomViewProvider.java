@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2017 CEA and others.
+ * Copyright (c) 2010 CEA
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,6 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *   Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 518361
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
@@ -20,7 +19,6 @@ import java.util.List;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -52,7 +50,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
@@ -101,18 +98,6 @@ public class CustomViewProvider extends UMLViewProvider {
 				return true;
 			}
 		}
-		return super.provides(op);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected boolean provides(CreateEdgeViewOperation op) {
-		if (!SequenceDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
-			return false; // foreign diagram
-		}
-
 		return super.provides(op);
 	}
 
@@ -223,7 +208,7 @@ public class CustomViewProvider extends UMLViewProvider {
 
 	/**
 	 * This class has bee overloaded in order to set the combined fragment under the lifelines
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.providers.UMLViewProvider#createCombinedFragment_Shape(org.eclipse.emf.ecore.EObject, org.eclipse.gmf.runtime.notation.View, int, boolean, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint)
 	 */
 	@Override
@@ -257,7 +242,7 @@ public class CustomViewProvider extends UMLViewProvider {
 	 *            the view that can contains lifeline representation
 	 * @return the position of the first lifeline in the notation
 	 * @since 3.0
-	 * 
+	 *
 	 */
 	protected int LifelinePosition(View containerView) {
 		@SuppressWarnings("unchecked")
@@ -395,7 +380,7 @@ public class CustomViewProvider extends UMLViewProvider {
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+		ArrayList<RelativeBendpoint> points = new ArrayList<>(
 				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 - 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,8 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
- *   
+ *   Cï¿½line Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -41,7 +41,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 /**
  * This class is over load the creation of element and to avoid to move element directly at creation
  * this class has been customized to prevent the strange feedback of lifeline during the move
- * 
+ *
  */
 public class GridBasedXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEditPolicy implements IGrillingEditpolicy {
 	/**
@@ -77,9 +77,10 @@ public class GridBasedXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedE
 	/**
 	 * Override to use to deal with causes where the point is UNDERFINED
 	 * we will ask the layout helper to find a location for us
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.ConstrainedLayoutEditPolicy#getConstraintFor(org.eclipse.gef.requests.CreateRequest)
 	 */
+	@Override
 	protected Object getConstraintFor(CreateRequest request) {
 		// Used during the creation from the palette
 		Object constraint = super.getConstraintFor(request);
@@ -107,10 +108,10 @@ public class GridBasedXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedE
 
 
 			/**
-			 * 
+			 *
 			 * In the case of Sequence Diagram, the Edge are managed by other mechanisms.
 			 * The Command then should do nothing.
-			 * 
+			 *
 			 * @see org.eclipse.papyrus.infra.gmfdiag.common.helper.FixAnchorHelper#getFixAnchorCommand(org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart, org.eclipse.draw2d.geometry.PrecisionRectangle, org.eclipse.draw2d.geometry.PrecisionRectangle,
 			 *      org.eclipse.gef.editparts.AbstractConnectionEditPart, org.eclipse.draw2d.geometry.Point, org.eclipse.draw2d.geometry.Dimension, boolean)
 			 */

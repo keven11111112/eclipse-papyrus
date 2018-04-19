@@ -85,7 +85,7 @@ public class LifelineResizeHelper {
 				return object;
 			}
 			if (adapter != null) {
-				return (View) adapter.getAdapter(View.class);
+				return adapter.getAdapter(View.class);
 			}
 			return null;
 		}

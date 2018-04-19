@@ -108,7 +108,7 @@ public class TestSequenceDiagramInsideInteraction extends AbstractTestSequenceCh
 
 	@Override
 	protected boolean isSemanticTest() {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 

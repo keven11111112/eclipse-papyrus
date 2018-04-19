@@ -118,7 +118,7 @@ public class InteractionUseCustomParsers extends MessageFormatParser implements 
 	 */
 	@Override
 	public List getSemanticElementsBeingParsed(EObject element) {
-		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
+		List<Element> semanticElementsBeingParsed = new ArrayList<>();
 		if (element instanceof InteractionUse) {
 			InteractionUse interactionUse = (InteractionUse) element;
 			semanticElementsBeingParsed.add(interactionUse);

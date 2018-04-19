@@ -778,7 +778,7 @@ public class OccurrenceSpecificationMoveHelper {
 		}
 		CompoundCommand globalCmd = new CompoundCommand();
 		globalCmd.add(command);
-		List<EditPart> notToMoveEditParts = new ArrayList<EditPart>(1);
+		List<EditPart> notToMoveEditParts = new ArrayList<>(1);
 		notToMoveEditParts.add(request.getConnectionEditPart());
 		// move time related elements linked with the event
 		LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(connectableNode);
@@ -842,7 +842,7 @@ public class OccurrenceSpecificationMoveHelper {
 			int startY = newBounds.getTop().y;
 			OccurrenceSpecification finish = ((ExecutionSpecification) execSpec).getFinish();
 			int finishY = newBounds.getBottom().y;
-			List<EditPart> notToMoveEditParts = new ArrayList<EditPart>(1);
+			List<EditPart> notToMoveEditParts = new ArrayList<>(1);
 			notToMoveEditParts.add(executionSpecificationEP);
 			// Fixed bug for moving ExecutionSpecification, since fixed bug(https://bugs.eclipse.org/bugs/show_bug.cgi?id=402975)
 			// The start and finish event may be a MessageOccurrenceSpecification, in case, we need ignore the message when moving.

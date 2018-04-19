@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright s(c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -49,7 +49,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 /**
  * this editpolicy is to manage the movement of Execution specification and update move of messages
  * It is like a graphical node
- * 
+ *
  * @since 4.0
  *
  */
@@ -61,7 +61,7 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 	 *
 	 * @param request
 	 * @return
-	 * 
+	 *
 	 * 		<img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
 	 *         <UL>
 	 *         <LI>when move E --> move B on the coordinate Y of E and move A on the coordinate Y of E
@@ -85,7 +85,7 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 
 	/**
 	 * Get the command to update weak references of the message for a creation.
-	 * 
+	 *
 	 * @param request
 	 *            the create connection view and element request
 	 * @return the command
@@ -197,7 +197,7 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 
 	/**
 	 * Get the command to update weak references of the message for a reconnect.
-	 * 
+	 *
 	 * @param request
 	 *            the reconnect request
 	 * @return the command

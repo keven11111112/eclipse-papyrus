@@ -207,8 +207,8 @@ public class SequenceUtil {
 			return null;
 		}
 		InteractionFragment container = null;
-		Set<InteractionFragment> coveredInteractions = new HashSet<InteractionFragment>();
-		Set<CombinedFragment> coveredCF = new HashSet<CombinedFragment>();
+		Set<InteractionFragment> coveredInteractions = new HashSet<>();
+		Set<CombinedFragment> coveredCF = new HashSet<>();
 		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
 		for (Entry<Object, EditPart> epEntry : allEditPartEntries) {
 			EditPart ep = epEntry.getValue();
@@ -523,7 +523,10 @@ public class SequenceUtil {
 		return findLocationOfMessageOccurrence(nodeEditPart, event, false);
 	}
 
-	static Point findLocationOfMessageOccurrence(GraphicalEditPart nodeEditPart, MessageOccurrenceSpecification event, boolean relyOnMessageFigure) {
+	/**
+	 * @since 5.0
+	 */
+	public static Point findLocationOfMessageOccurrence(GraphicalEditPart nodeEditPart, MessageOccurrenceSpecification event, boolean relyOnMessageFigure) {
 		// messages to the node
 		List<?> targetConnections = nodeEditPart.getTargetConnections();
 		for (Object conn : targetConnections) {
@@ -612,7 +615,7 @@ public class SequenceUtil {
 			return null;
 		}
 		// Map referencing children occurrences by their location on the lifeline.
-		Map<Point, List<OccurrenceSpecification>> occurrences = new HashMap<Point, List<OccurrenceSpecification>>();
+		Map<Point, List<OccurrenceSpecification>> occurrences = new HashMap<>();
 		// //Find message end directly.
 		// EditPart editPart = lifelineEditPart.getViewer().findObjectAt(location);
 		// if (editPart instanceof MessageEndEditPart){
@@ -813,6 +816,7 @@ public class SequenceUtil {
 	 * @param nodeEditPart
 	 *            the contained edit part or itself
 	 * @return lifeline edit part or null
+	 * @since 4.1
 	 */
 	public static LifelineEditPart getParentLifelinePart(EditPart nodeEditPart) {
 		EditPart parent = nodeEditPart;
@@ -924,7 +928,7 @@ public class SequenceUtil {
 		if (occurrenceSpecificationList instanceof List<?>) {
 			List<?> list = (List<?>) occurrenceSpecificationList;
 			if (!list.isEmpty()) {
-				List<OccurrenceSpecification> newList = new ArrayList<OccurrenceSpecification>(list.size());
+				List<OccurrenceSpecification> newList = new ArrayList<>(list.size());
 				for (Object elt : list) {
 					if (elt instanceof OccurrenceSpecification) {
 						newList.add((OccurrenceSpecification) elt);
@@ -982,7 +986,7 @@ public class SequenceUtil {
 	}
 
 	public static List<Element> getCombinedFragmentAssociatedElement(CombinedFragment cf) {
-		List<Element> elements = new LinkedList<Element>();
+		List<Element> elements = new LinkedList<>();
 		for (InteractionOperand operand : cf.getOperands()) {
 			// Add all elements related to this operand
 			elements.addAll(getInteractionOperandAssociatedElement(operand));
@@ -993,7 +997,7 @@ public class SequenceUtil {
 	}
 
 	public static List<Element> getInteractionOperandAssociatedElement(InteractionOperand interactionOperand) {
-		List<Element> elements = new LinkedList<Element>();
+		List<Element> elements = new LinkedList<>();
 		for (InteractionFragment itf : interactionOperand.getFragments()) {
 			if (itf instanceof CombinedFragment) {
 				// add the combinedFragment
@@ -1031,7 +1035,7 @@ public class SequenceUtil {
 
 	@SuppressWarnings("unchecked")
 	public static Set<Lifeline> getCoveredLifelines(Rectangle selectionRect, EditPart hostEditPart) {
-		Set<Lifeline> coveredLifelines = new HashSet<Lifeline>();
+		Set<Lifeline> coveredLifelines = new HashSet<>();
 		// retrieve all the edit parts in the registry
 		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
 		for (Entry<Object, EditPart> epEntry : allEditPartEntries) {
@@ -1065,9 +1069,9 @@ public class SequenceUtil {
 	 */
 	@SuppressWarnings("unchecked")
 	public static Set<InteractionFragment> getCoveredInteractionFragments(Rectangle selectionRect, EditPart hostEditPart, Set<InteractionFragment> ignoreSet) {
-		Set<InteractionFragment> coveredInteractionFragments = new HashSet<InteractionFragment>();
+		Set<InteractionFragment> coveredInteractionFragments = new HashSet<>();
 		if (ignoreSet == null) {
-			ignoreSet = new HashSet<InteractionFragment>();
+			ignoreSet = new HashSet<>();
 		}
 		// retrieve all the edit parts in the registry
 		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
@@ -1261,7 +1265,7 @@ public class SequenceUtil {
 		// Rectangle bottom = new Rectangle(xCenter, absoluteNewBounds.bottom(), 0, 0);
 		//
 		// // associate es with its bounds, and start and finish event with the top and bottom of the bounds
-		HashMap<InteractionFragment, Rectangle> iftToCheckForUpdate = new HashMap<InteractionFragment, Rectangle>();
+		HashMap<InteractionFragment, Rectangle> iftToCheckForUpdate = new HashMap<>();
 		//
 		// ExecutionSpecification es = (ExecutionSpecification)executionSpecificationEP.resolveSemanticElement();
 		iftToCheckForUpdate.put(movedMos, new Rectangle(newLocation, new Dimension()));
@@ -1341,7 +1345,7 @@ public class SequenceUtil {
 		Rectangle top = new Rectangle(xCenter, absoluteNewBounds.y, 0, 0);
 		Rectangle bottom = new Rectangle(xCenter, absoluteNewBounds.bottom(), 0, 0);
 		// associate es with its bounds, and start and finish event with the top and bottom of the bounds
-		HashMap<InteractionFragment, Rectangle> iftToCheckForUpdate = new HashMap<InteractionFragment, Rectangle>();
+		HashMap<InteractionFragment, Rectangle> iftToCheckForUpdate = new HashMap<>();
 		ExecutionSpecification es = (ExecutionSpecification) executionSpecificationEP.resolveSemanticElement();
 		iftToCheckForUpdate.put(es, absoluteNewBounds);
 		iftToCheckForUpdate.put(es.getStart(), top);
@@ -1603,7 +1607,7 @@ public class SequenceUtil {
 	 * @return List<TimeObservationLabelEditPart>
 	 */
 	public static List<TimeObservationLabelEditPart> findOccurenceSpecificationRelatedTimeObservationPart(LifelineEditPart lifelinePart, List<OccurrenceSpecification> oss) {
-		List<TimeObservationLabelEditPart> list = new ArrayList<TimeObservationLabelEditPart>();
+		List<TimeObservationLabelEditPart> list = new ArrayList<>();
 		if (oss == null || oss.size() == 0) {
 			return list;
 		}
@@ -1634,7 +1638,7 @@ public class SequenceUtil {
 	 * @return List<TimeObservationLabelEditPart>
 	 */
 	public static List<TimeObservationLabelEditPart> findOccurenceSpecificationRelatedTimeObservationPart(LifelineEditPart lifelinePart, OccurrenceSpecification os) {
-		List<OccurrenceSpecification> oss = new ArrayList<OccurrenceSpecification>();
+		List<OccurrenceSpecification> oss = new ArrayList<>();
 		oss.add(os);
 		return findOccurenceSpecificationRelatedTimeObservationPart(lifelinePart, oss);
 	}
@@ -1698,12 +1702,12 @@ public class SequenceUtil {
 	/**
 	 * update the bounds of the rectangle to snap to grid
 	 * Snap is done with screen position.
-	 * 
+	 *
 	 * @param editPart
 	 *            the referential edit part
 	 * @param bounds
 	 *            the bounds to snap
-	 * 
+	 *
 	 */
 	public static PrecisionRectangle getSnappedBounds(final EditPart editPart, final Rectangle bounds) {
 		PrecisionRectangle baseRect = new PrecisionRectangle(bounds);
@@ -1720,12 +1724,12 @@ public class SequenceUtil {
 	/**
 	 * update the bounds of the rectangle to snap to grid.
 	 * Snap is done with screen position.
-	 * 
+	 *
 	 * @param editPart
 	 *            the referential edit part
 	 * @param location
 	 *            the location to snap
-	 * 
+	 *
 	 */
 	public static PrecisionPoint getSnappedLocation(final EditPart editPart, final Point location) {
 		PrecisionPoint baseRect = new PrecisionPoint(location);
@@ -1741,13 +1745,14 @@ public class SequenceUtil {
 
 	/**
 	 * This allows to get life lines from an element in an interaction.
-	 * 
+	 *
 	 * @param editPart
 	 *            The initial edit part from which one search the lifelines.
 	 * @return The existing lifelines.
+	 * @since 5.0
 	 */
 	public static Set<LifelineEditPart> getLifeLinesFromEditPart(final EditPart editPart) {
-		final Set<LifelineEditPart> lifeLines = new HashSet<LifelineEditPart>();
+		final Set<LifelineEditPart> lifeLines = new HashSet<>();
 
 		final EditPart interactionCompartment = getInteractionCompartment(editPart);
 		if (null != interactionCompartment) {
@@ -1766,15 +1771,16 @@ public class SequenceUtil {
 	 * Find parent interaction compartment from an edit part.
 	 *
 	 * @return The edit part of the parent interaction.
+	 * @since 5.0
 	 */
 	public static EditPart getInteractionCompartment(final EditPart editPart) {
 		EditPart currentEditPart = editPart;
 
-		if (editPart instanceof AbstractMessageEditPart) {
-			if (((AbstractMessageEditPart) editPart).getSource() instanceof LifelineEditPart) {
-				currentEditPart = ((AbstractMessageEditPart) editPart).getSource();
-			} else if (((AbstractMessageEditPart) editPart).getTarget() instanceof LifelineEditPart) {
-				currentEditPart = ((AbstractMessageEditPart) editPart).getTarget();
+		if(editPart instanceof AbstractMessageEditPart) {
+			if(((AbstractMessageEditPart)editPart).getSource() instanceof LifelineEditPart) {
+				currentEditPart = ((AbstractMessageEditPart)editPart).getSource();
+			} else if(((AbstractMessageEditPart)editPart).getTarget() instanceof LifelineEditPart) {
+				currentEditPart = ((AbstractMessageEditPart)editPart).getTarget();
 			}
 		}
 

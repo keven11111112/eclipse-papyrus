@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -25,13 +25,13 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEdit
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 
 /**
- * @author PT202707
+ * @author Patrick Tessier
  * @since 3.0
  * This class is used to set location and dimension for the InteractionOperand
  *
  */
 public class CombinedCreationEditPolicy extends DefaultCreationEditPolicy {
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy#getSetBoundsCommand(org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest, org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor)
 	 *
@@ -48,7 +48,7 @@ public class CombinedCreationEditPolicy extends DefaultCreationEditPolicy {
 		int y=0;
 		int height=((Bounds)combinedFragmentNode.getLayoutConstraint()).getHeight()-labelHeight;
 		for(int i=0; i<getHost().getChildren().size();i++) {
-			
+
 			Node currentNode=(Node)(((GraphicalEditPart)getHost().getChildren().get(i))).getNotationView();
 			int previousheight=((Bounds)currentNode.getLayoutConstraint()).getHeight();
 			y=y+previousheight;

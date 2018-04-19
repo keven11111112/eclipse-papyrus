@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -32,38 +32,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 public abstract class ConnectToGridEditPolicy extends GraphicalEditPolicyEx implements AutomaticNotationEditPolicy, IGrillingEditpolicy {
 
 	protected int displayImprecision=2;
-	/**
-	 * Update the position of the node that is displayed
-	 * @param x the position X
-	 * @param y the position Y
-	 */
-	protected void updateNodePositionOfControler(int x, int y) {
-//		Bounds currentBounds=(Bounds)	((Node)((GraphicalEditPart)getHost()).getNotationView()).getLayoutConstraint();
-//		if(x<currentBounds.getX()-displayImprecision||x>currentBounds.getX()+displayImprecision){
-//			execute(new GMFtoEMFCommandWrapper(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update notation from Column", new EObjectAdapter( ((GraphicalEditPart)getHost()).getNotationView()),
-//					new Point(x,y))));
-//		}
-//		if(y<currentBounds.getY()-displayImprecision||y>currentBounds.getY()+displayImprecision){
-//			execute(new GMFtoEMFCommandWrapper(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update notation from Row", new EObjectAdapter( ((GraphicalEditPart)getHost()).getNotationView()),
-//					new Point(x,y))));
-//		}
-	}
-	/**
-	 * Update the size of the Node from the given data
-	 * @param width the width of the node
-	 * @param height the height of the node
-	 */
-	protected void updateSizeOfControler(int width, int height) {
-//		Bounds currentBounds=(Bounds)	((Node)((GraphicalEditPart)getHost()).getNotationView()).getLayoutConstraint();
-//		if(width<currentBounds.getWidth()-displayImprecision||width>currentBounds.getWidth()+displayImprecision){
-//			execute(new GMFtoEMFCommandWrapper(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update notation from Column", new EObjectAdapter( ((GraphicalEditPart)getHost()).getNotationView()),
-//					new Dimension(width,currentBounds.getHeight()))));
-//		}
-//		if(height<currentBounds.getHeight()-displayImprecision||height>currentBounds.getHeight()+displayImprecision){
-//			execute(new GMFtoEMFCommandWrapper(new SetBoundsCommand(getDiagramEditPart(getHost()).getEditingDomain(), "update notation from Row", new EObjectAdapter( ((GraphicalEditPart)getHost()).getNotationView()),
-//					new Dimension(currentBounds.getWidth(),height))));
-//		}
-	}
+
 	/**
 	 * update an axis of the grid from coordinate X or Y
 	 * @param axis the axis to update

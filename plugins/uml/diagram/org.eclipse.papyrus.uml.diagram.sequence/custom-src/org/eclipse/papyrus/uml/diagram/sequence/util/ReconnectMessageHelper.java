@@ -46,7 +46,7 @@ public class ReconnectMessageHelper {
 	 * @param message
 	 */
 	public static void updateMessage(Message message) {
-		// TODO Auto-generated method stub
+
 	}
 
 	/**

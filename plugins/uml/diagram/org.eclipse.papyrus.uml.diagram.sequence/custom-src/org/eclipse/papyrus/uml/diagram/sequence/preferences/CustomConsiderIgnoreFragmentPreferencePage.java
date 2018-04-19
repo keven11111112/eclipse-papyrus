@@ -59,7 +59,7 @@ public class CustomConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusN
 
 	@Override
 	protected TreeMap<String, Boolean> getCompartmentTitleVisibilityPreferences() {
-		TreeMap<String, Boolean> map = new TreeMap<String, Boolean>();
+		TreeMap<String, Boolean> map = new TreeMap<>();
 		for (String name : compartments) {
 			map.put(name, Boolean.FALSE);
 		}
@@ -75,7 +75,7 @@ public class CustomConsiderIgnoreFragmentPreferencePage extends AbstractPapyrusN
 
 	@Override
 	protected TreeMap<String, String> getLabelRole() {
-		return new TreeMap<String, String>();
+		return new TreeMap<>();
 	}
 
 	@Override

@@ -70,7 +70,7 @@ public class LifelineEditPartUtil {
 		if (lifeline == null) {
 			return Collections.emptyList();
 		}
-		List<ShapeNodeEditPart> executionSpecificationList = new ArrayList<ShapeNodeEditPart>();
+		List<ShapeNodeEditPart> executionSpecificationList = new ArrayList<>();
 		for (Object obj : lifeline.getChildren()) {
 			if (obj instanceof AbstractExecutionSpecificationEditPart) {
 				executionSpecificationList.add((ShapeNodeEditPart) obj);
@@ -89,7 +89,7 @@ public class LifelineEditPartUtil {
 		if (lifeline == null) {
 			return Collections.emptyList();
 		}
-		List<LifelineEditPart> propertyList = new ArrayList<LifelineEditPart>();
+		List<LifelineEditPart> propertyList = new ArrayList<>();
 		for (Object obj : lifeline.getChildren()) {
 			if (obj instanceof LifelineEditPart) {
 				propertyList.add((LifelineEditPart) obj);
@@ -115,7 +115,7 @@ public class LifelineEditPartUtil {
 	 *            the remove {@link MessageCreateEditPart}
 	 * @return the command when the last create message is remove to a lifeline to move it up and resize it.
 	 * @since 4.0
-	 * 
+	 *
 	 */
 	public static Command getRestoreLifelinePositionOnMessageCreateRemovedCommand(final ConnectionEditPart editPart) {
 		Command commands = null;
@@ -147,7 +147,7 @@ public class LifelineEditPartUtil {
 	 *            the remove {@link MessageCreateEditPart}
 	 * @return the command when the last delete message is remove to a lifeline to move it up and resize it.
 	 * @since 3.1
-	 * 
+	 *
 	 */
 	public static Command getRestoreLifelinePositionOnMessageDeleteRemovedCommand(final ConnectionEditPart editPart) {
 		Command commands = null;
@@ -176,14 +176,14 @@ public class LifelineEditPartUtil {
 
 	/**
 	 * Get the list of previous {@link OccurrenceSpecification} on the {@link LifelineEditPart} according to the position.
-	 * 
+	 *
 	 * @param position
 	 *            The reference position.
 	 * @param lifelineEditPart
 	 *            The lifeline edit part
 	 */
 	public static List<OccurrenceSpecification> getPreviousEventsFromPosition(final Point position, final LifelineEditPart lifelineEditPart) {
-		List<OccurrenceSpecification> previous = new ArrayList<OccurrenceSpecification>();
+		List<OccurrenceSpecification> previous = new ArrayList<>();
 		DiagramEditPart diagramEditPart = getDiagramEditPart(lifelineEditPart);
 		Lifeline lifeline = (Lifeline) lifelineEditPart.resolveSemanticElement();
 		try {
@@ -210,7 +210,7 @@ public class LifelineEditPartUtil {
 
 	/**
 	 * @since 3.1
-	 * 
+	 *
 	 */
 	public static boolean hasPreviousEvent(final Point position, final LifelineEditPart lifelineEditPart) {
 		return !getPreviousEventsFromPosition(position, lifelineEditPart).isEmpty();
@@ -218,7 +218,7 @@ public class LifelineEditPartUtil {
 
 	/**
 	 * @since 3.1
-	 * 
+	 *
 	 */
 	public static boolean hasNextEvent(final Point position, final LifelineEditPart lifelineEditPart) {
 		return !getNextEventsFromPosition(position, lifelineEditPart).isEmpty();
@@ -226,7 +226,7 @@ public class LifelineEditPartUtil {
 
 	/**
 	 * Get the list of previous {@link OccurrenceSpecification} on the {@link LifelineEditPart} according to the position.
-	 * 
+	 *
 	 * @param position
 	 *            The reference position.
 	 * @param lifelineEditPart
@@ -234,7 +234,7 @@ public class LifelineEditPartUtil {
 	 * @since 3.1
 	 */
 	public static List<OccurrenceSpecification> getNextEventsFromPosition(final Point position, final LifelineEditPart lifelineEditPart) {
-		List<OccurrenceSpecification> previous = new ArrayList<OccurrenceSpecification>();
+		List<OccurrenceSpecification> previous = new ArrayList<>();
 		DiagramEditPart diagramEditPart = getDiagramEditPart(lifelineEditPart);
 		Lifeline lifeline = (Lifeline) lifelineEditPart.resolveSemanticElement();
 		try {
@@ -262,7 +262,7 @@ public class LifelineEditPartUtil {
 	/**
 	 * Walks up the editpart hierarchy to find and return the
 	 * <code>TopGraphicEditPart</code> instance.
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	public static DiagramEditPart getDiagramEditPart(EditPart editPart) {

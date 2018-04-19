@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST, ALL4TEC and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *   CEA LIST - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 519756, 526191
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 531596
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -195,7 +195,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy#getSourceConnectionAnchor(org.eclipse.gef.requests.CreateConnectionRequest)
 	 */
 	@Override
@@ -269,7 +269,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 				/**
 				 * Force the Horizontal position of the feedback
-				 * 
+				 *
 				 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor#getIntersectionPoints(org.eclipse.draw2d.geometry.Point, org.eclipse.draw2d.geometry.Point)
 				 */
 				@Override
@@ -324,7 +324,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getConnectionAndRelationshipCompleteCommand(org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest)
 	 */
 	@Override
@@ -375,7 +375,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * This method update the Extended Data of the the Creation Request
 	 * 1) Adding the Previous Event of the Target
 	 * 2) Adding the OccurenceSpecification which needs to be replaced by the Message ReceiveEvent
-	 * 
+	 *
 	 * @param request
 	 *            initial Request to be updated
 	 */
@@ -477,7 +477,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	/**
 	 * Get the Command for a Message Sync and Async creation
 	 * Adding the command to create the AES or BES and update Grid position accordingly
-	 * 
+	 *
 	 * @param request
 	 *            the initial request
 	 * @param cmd
@@ -487,13 +487,13 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	protected Command getSyncAsyncEdgeCommand(CreateConnectionViewAndElementRequest request, Command cmd) {
 		// in the case of messages of sort: synchCall, asynchCall or asynchSignal
 		// an execution specification may be created at target
-		OccurrenceSpecification messageEvent = displayEvent.getActionExecutionSpecificationEvent(getHostFigure(), ((CreateConnectionViewAndElementRequest) request).getLocation());
+		OccurrenceSpecification messageEvent = displayEvent.getActionExecutionSpecificationEvent(getHostFigure(), request.getLocation());
 
 		CompoundCommand compoundCommand = new CompoundCommand();
 		compoundCommand.add(cmd);
 		// If we are not into an existing event we create Execution specification in the same time
 		if (null == messageEvent) {
-			CreateExecutionSpecificationWithMessage createExecutionSpecificationwithMsg = new CreateExecutionSpecificationWithMessage(getDiagramEditPart(getHost()).getEditingDomain(), request, (NodeEditPart) request.getTargetEditPart());
+			CreateExecutionSpecificationWithMessage createExecutionSpecificationwithMsg = new CreateExecutionSpecificationWithMessage(getDiagramEditPart(getHost()).getEditingDomain(), request, request.getTargetEditPart());
 			compoundCommand.add(new GMFtoGEFCommandWrapper(createExecutionSpecificationwithMsg));
 		}
 		return compoundCommand;
@@ -502,7 +502,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	/**
 	 * Get the Command for a Message delete creation
 	 * Adding the Delete Occurrence Specification command
-	 * 
+	 *
 	 * @param request
 	 *            the initial request
 	 * @param cmd
@@ -541,7 +541,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	/**
 	 * Get the Command for a Message Create creation
 	 * Adding the command to update the grid accordingly
-	 * 
+	 *
 	 * @param request
 	 *            the initial request
 	 * @param cmd
@@ -562,7 +562,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/**
 	 * Get the command to set lifeline position in case of MessageCreate reorient or creation.
-	 * 
+	 *
 	 * @param originalCommand
 	 *            the original command which needs to be completed
 	 * @param targetEditPart
@@ -603,7 +603,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/**
 	 * Check if the request is allowed
-	 * 
+	 *
 	 * @param request
 	 *            The Connection END creation Request
 	 * @return true if all the validation are passed
@@ -631,10 +631,10 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 	 * Validation1:
 	 * Check if the Target point is Lower than the Source.
 	 * The target should be lower than the source to be valid.
-	 * 
+	 *
 	 * @param request
 	 *            The Connection END creation Request
-	 * 
+	 *
 	 * @return true if target location point is lower than source location point
 	 */
 	private Boolean isTargetLowerThanSource(Point sourceLocation, Point targetLocation) {
@@ -652,7 +652,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getReconnectSourceCommand(org.eclipse.gef.requests.ReconnectRequest)
 	 */
 	@Override
@@ -684,7 +684,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy#getReconnectTargetCommand(org.eclipse.gef.requests.ReconnectRequest)
 	 */
 	@Override
@@ -720,7 +720,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 		if (nodeEP instanceof CLifeLineEditPart) {
 			Point requestLocationCopy = request.getLocation().getCopy();
 			if (request.getConnectionEditPart() instanceof MessageCreateEditPart) {
-				if (!LifelineEditPartUtil.hasPreviousEvent((Point) requestLocationCopy, (LifelineEditPart) getHost())) {
+				if (!LifelineEditPartUtil.hasPreviousEvent(requestLocationCopy, (LifelineEditPart) getHost())) {
 
 					command = new CompoundCommand();
 					if (!LifelineMessageCreateHelper.hasIncomingMessageCreate(nodeEP)) {
@@ -731,17 +731,17 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 					}
 					// move up old target if the target is different of the source
 					if (!request.getConnectionEditPart().getTarget().equals(request.getTarget())) {
-						((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand((ConnectionEditPart) request.getConnectionEditPart()));
+						((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand(request.getConnectionEditPart()));
 					}
 				} else {
 					command = reconnectTargetCommand;
 				}
 			} else if (request.getConnectionEditPart() instanceof MessageDeleteEditPart) {
-				if (!LifelineEditPartUtil.hasNextEvent((Point) requestLocationCopy, (LifelineEditPart) getHost())) {
+				if (!LifelineEditPartUtil.hasNextEvent(requestLocationCopy, (LifelineEditPart) getHost())) {
 					command = new CompoundCommand();
 					if (!LifelineMessageDeleteHelper.hasIncomingMessageDelete(nodeEP)) {
 
-						NodeEditPart targetEditPart = (NodeEditPart) (LifelineEditPart) getHost();
+						NodeEditPart targetEditPart = (LifelineEditPart) getHost();
 						DropDestructionOccurenceSpecification dropDestructionOccurenceSpecification = new DropDestructionOccurenceSpecification(getDiagramEditPart(getHost()).getEditingDomain(), request, targetEditPart, requestLocationCopy);
 						CompoundCommand compoundCommand = new CompoundCommand();
 						compoundCommand.add(reconnectTargetCommand);
@@ -759,7 +759,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 					// restore position of the old target
 					if (!request.getConnectionEditPart().getTarget().equals(request.getTarget())) {
-						((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand((ConnectionEditPart) request.getConnectionEditPart()));
+						((CompoundCommand) command).add(LifelineEditPartUtil.getRestoreLifelinePositionOnMessageCreateRemovedCommand(request.getConnectionEditPart()));
 					}
 				} else {
 					command = reconnectTargetCommand;
@@ -776,7 +776,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/**
 	 * This method must look for event that are upper than the given position
-	 * 
+	 *
 	 * @param point
 	 *            the position on the lifeline
 	 */
@@ -787,7 +787,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 	/**
 	 * This method update the request in order to make the point at the correct position on the grill.
-	 * 
+	 *
 	 * @param request
 	 *            the request
 	 * @param wanted
@@ -822,10 +822,11 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getFeedbackHelper(org.eclipse.gef.requests.CreateConnectionRequest)
 	 *      This method is used in order to manage the snap to grid of LOST Message
 	 */
+	@Override
 	protected FeedbackHelper getFeedbackHelper(CreateConnectionRequest request) {
 		if (request.getTargetEditPart() instanceof NodeEditPart) {
 			ConnectionAnchor targetAnchor = ((NodeEditPart) request.getTargetEditPart()).getTargetConnectionAnchor(request);

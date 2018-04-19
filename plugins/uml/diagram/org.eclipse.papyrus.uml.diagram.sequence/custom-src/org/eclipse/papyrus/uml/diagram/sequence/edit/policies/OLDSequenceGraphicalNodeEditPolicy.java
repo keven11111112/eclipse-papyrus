@@ -196,7 +196,7 @@ public class OLDSequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 	 * @return true if creation of a message
 	 */
 	protected boolean isMessageHint(String requestHint) {
-		List<String> messageHints = new ArrayList<String>(7);
+		List<String> messageHints = new ArrayList<>(7);
 		String messageHint = ((IHintedType) UMLElementTypes.Message_SynchEdge).getSemanticHint();
 		messageHints.add(messageHint);
 		messageHint = ((IHintedType) UMLElementTypes.Message_AsynchEdge).getSemanticHint();

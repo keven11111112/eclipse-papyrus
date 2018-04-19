@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -19,10 +19,10 @@ package org.eclipse.papyrus.uml.diagram.sequence.util;
  */
 public class LogOptions {
 
-	/**  
+	/**
 	 * tracing option for general sequence diagram debug
 	 */
-	public static String SEQUENCE_DEBUG = "SequenceDebug"; //$NON-NLS-1$	
+	public static String SEQUENCE_DEBUG = "SequenceDebug"; //$NON-NLS-1$
 	/**
 	 * tracing option for sequence diagram grid debug
 	 */
@@ -31,8 +31,8 @@ public class LogOptions {
 	 * tracing option for sequence diagram util debug
 	 */
 	public static String SEQUENCE_DEBUG_UTIL = "SequenceDebugUtil"; //$NON-NLS-1$
-	
 
 
-	
+
+
 }

@@ -13,15 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.figures.ILifelineInternalFigure;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -48,16 +43,16 @@ public class CustomActionExecutionSpecificationEditPart extends CCombinedCompart
 		removeEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE);
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ExecutionGraphicalNodeEditPolicy());
 	}
-	
-	
-	
+
+
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart#refreshBounds()
 	 *
 	 */
 	@Override
 	protected void refreshBounds() {
-		
+
 		super.refreshBounds();
 	}
 	/**
@@ -66,7 +61,7 @@ public class CustomActionExecutionSpecificationEditPart extends CCombinedCompart
 	 */
 	@Override
 	protected void refreshVisuals() {
-		
+
 		super.refreshVisuals();
 	}
 	/**
@@ -76,7 +71,7 @@ public class CustomActionExecutionSpecificationEditPart extends CCombinedCompart
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
-		
+
 		super.handleNotificationEvent(event);
 	}
 }

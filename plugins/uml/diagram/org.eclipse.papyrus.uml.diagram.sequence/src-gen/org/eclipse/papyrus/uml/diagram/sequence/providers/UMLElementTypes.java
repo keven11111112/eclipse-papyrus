@@ -278,7 +278,7 @@ public class UMLElementTypes {
 	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
-			elements = new IdentityHashMap<IElementType, ENamedElement>();
+			elements = new IdentityHashMap<>();
 
 			elements.put(Package_SequenceDiagram, UMLPackage.eINSTANCE.getPackage());
 
@@ -359,7 +359,7 @@ public class UMLElementTypes {
 	 */
 	public static synchronized boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
+			KNOWN_ELEMENT_TYPES = new HashSet<>();
 			KNOWN_ELEMENT_TYPES.add(Package_SequenceDiagram);
 			KNOWN_ELEMENT_TYPES.add(Interaction_Shape);
 			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_Shape);

@@ -33,7 +33,7 @@ public class DurationConstraintFigure extends RectangleFigure {
 	private static final int ARROW_SIZE = 10;
 
 	/**
-	 * 
+	 *
 	 * Constructor.
 	 *
 	 */
@@ -45,7 +45,7 @@ public class DurationConstraintFigure extends RectangleFigure {
 
 	/**
 	 * Create and display the top and bottom line of the figure.
-	 * 
+	 *
 	 * @return the created Border
 	 */
 	private Border createBorder() {
@@ -105,11 +105,12 @@ public class DurationConstraintFigure extends RectangleFigure {
 
 	/**
 	 * Not used anymore (present for compilation purpose of CustomDurationConstraintFigure that is no more called )
-	 * 
+	 *
 	 * @return null
 	 * @deprecated Use paint instead.
-	 * 
+	 *
 	 */
+	@Deprecated
 	protected PolylineShape getDurationArrow() {
 		return null;
 	}

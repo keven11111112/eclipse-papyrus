@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,7 +33,6 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
@@ -64,7 +63,7 @@ import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 /**
  * This class is used to manage node element in the compartment by using grill system.
  * this class has been customized to prevent the strange feedback of lifeline during the move
- * 
+ *
  */
 public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEditPolicy implements IGrillingEditpolicy {
 
@@ -99,7 +98,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	/*
 	 * Override to use to deal with causes where the point is UNDERFINED
 	 * we will ask the layout helper to find a location for us
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.ConstrainedLayoutEditPolicy#getConstraintFor(org.eclipse.gef.requests.CreateRequest)
 	 */
 	@Override
@@ -162,7 +161,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#showLayoutTargetFeedback(org.eclipse.gef.Request)
 	 */
 	@Override
@@ -184,8 +183,25 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 					displayEvent.addFigureEvent(getHostFigure().getParent().getParent(), ((CreateRequest) request).getLocation());
 				}
+				/*
+				 * Fix of Bug 531471 - [SequenceDiagram] Combined Fragment / Interaction Use should be create over a Lifeline.
+				 * Recalculation of feedback location of combined fragment creation after update in:
+				 * LifelineCreationEditPolicy.getCreateElementAndViewCommand()
+				 */
+				else if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.COMBINED_FRAGMENT_SHAPE)
+						|| ElementUtil.isTypeOf(elementType, UMLDIElementTypes.INTERACTION_USE_SHAPE)) {
+
+					Rectangle boundsLifeline = getHostFigure().getBounds();
+					Point pointCombinedFragment = ((CreateRequest) request).getLocation();
+
+					pointCombinedFragment.x = pointCombinedFragment.x - boundsLifeline.x;
+					pointCombinedFragment.y = pointCombinedFragment.y - boundsLifeline.y;
+
+					((CreateRequest) request).setLocation(pointCombinedFragment);
+				}
 
 			}
+
 		}
 
 		super.showLayoutTargetFeedback(request);
@@ -220,10 +236,10 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 	/**
 	 * Called in response to a <tt>REQ_RESIZE_CHILDREN</tt> request.
-	 * 
+	 *
 	 * This implementation creates a <tt>SetPropertyCommand</i> and sets
 	 * the <tt>ID_BOUNDS</tt> property value to the supplied constraints.
-	 * 
+	 *
 	 * @param child
 	 *            the element being resized.
 	 * @param constraint
@@ -333,7 +349,7 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 
 	/**
 	 * In the specific case of Execution Specification, the resize of the Lifeline should trigger the move of the ES to remain centered on it.
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy#getCommand(org.eclipse.gef.Request)
 	 *
 	 * @param request

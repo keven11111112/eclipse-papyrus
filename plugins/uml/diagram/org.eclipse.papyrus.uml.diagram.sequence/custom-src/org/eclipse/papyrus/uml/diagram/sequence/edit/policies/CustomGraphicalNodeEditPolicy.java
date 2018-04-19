@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,17 +8,13 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import java.util.ArrayList;
-
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
@@ -42,12 +38,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.CustomSetConnectionAncho
 /**
  * This class allows to redefine the reconnect source and target commands to use the {@link CustomSetConnectionAnchorsCommand} instead of {@link SetConnectionAnchorsCommand} because the custom manage the calculation during the execution and not in the
  * initialisation.
+ * @since 5.0
  */
 public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy#getReconnectSourceCommand(org.eclipse.gef.requests.ReconnectRequest)
 	 */
 	@Override
@@ -75,14 +72,15 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy#getReconnectTargetCommand(org.eclipse.gef.requests.ReconnectRequest)
 	 */
 	@Override
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
 		final INodeEditPart node = getConnectableEditPart();
-		if (node == null)
+		if (node == null) {
 			return null;
+		}
 
 		final TransactionalEditingDomain editingDomain = getEditingDomain();
 
@@ -127,16 +125,16 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 	/**
 	 * This allows to get the editing domain.
-	 * 
+	 *
 	 * @return The editing domain.
 	 */
 	private TransactionalEditingDomain getEditingDomain() {
 		return ((IGraphicalEditPart) getHost()).getEditingDomain();
 	}
-	
+
 	/**
 	 * Add a command of reconnection of the given connection editpart at the location.
-	 * 
+	 *
 	 * @param hostEditpart
 	 *            the current editpart that is the origin of this impact
 	 * @param connectionEditPart
