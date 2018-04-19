@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009, 2018 Atos Origin, EclipseSource and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   EclipseSource - Bug 533770
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import org.eclipse.gef.commands.Command;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
-import org.eclipse.gef.requests.ChangeBoundsRequest;
 
 /**
  * The customn DragDropEditPolicy for InteractionOperandEditPart.
@@ -32,14 +32,6 @@ public class InteractionOperandDragDropEditPolicy extends ResizableEditPolicy {
 		// Bug 533770: The layout is now handled exclusively by the parent.
 		// The operand is no longer directly resizable. It may still provide
 		// a height hint (Integer or Rectangle, height in pixels)
-		setResizeDirections(0);
-	}
-
-	/**
-	 * Handle resize InteractionOperand {@inheritDoc}
-	 */
-	@Override
-	protected Command getResizeCommand(ChangeBoundsRequest request) {
-		return super.getResizeCommand(request);
+		setResizeDirections(PositionConstants.NONE);
 	}
 }
