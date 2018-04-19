@@ -10,7 +10,6 @@
  *   EclipseSource - Initial API and implementation: Bug 533770
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.diagram.sequence.figures.layout;
 
 import java.util.ArrayList;
@@ -193,7 +192,6 @@ public class SwimlanesCompartmentLayout extends ConstrainedToolbarLayout {
 			}
 			newBounds.height -= amntShrinkCurrentHeight;
 			child.setBounds(transposer.t(newBounds));
-			System.out.println(child.getBounds());
 
 			amntShrinkHeight -= amntShrinkCurrentHeight;
 			prefMinSumHeight -= (prefHeight - minHeight);
