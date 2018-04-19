@@ -14,17 +14,11 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.layout.SwimlanesCompartmentLayout;
 
 /**
  * This class has been modified for 2 reasons:
@@ -50,13 +44,7 @@ public class CCombinedFragmentCombinedFragmentCompartmentEditPart extends Combin
 	 */
 	@Override
 	protected void refreshBounds() {
-		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-		int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
-		Dimension size = new Dimension(width, height);
-		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
+		super.refreshBounds();
 
 		// this code has been added in order to force the refresh of Sub Combined fragment
 		if (children != null) {
@@ -69,24 +57,19 @@ public class CCombinedFragmentCombinedFragmentCompartmentEditPart extends Combin
 	}
 
 	/**
-	 * This code is specific an use to constraint the size of sub compartments.
-	 * the ratio has to be recompute in order to have a good display
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart#createFigure()
 	 *
-	 * @see GraphicalEditPart#setLayoutConstraint(EditPart, IFigure, Object)
+	 * @return
 	 */
 	@Override
-	public void setLayoutConstraint(EditPart child, IFigure childFigure,
-			Object childConstraint) {
-		EditPart parentEditPart = this.getParent();
-		// compute the ratio for each children
-		int parentHeight = BoundForEditPart.getHeightFromView((Node) parentEditPart.getModel())-27;
-		if (childConstraint instanceof Rectangle) {
-			double ratio = ((double) ((Rectangle) childConstraint).height) / parentHeight;
-			if (ratio >= 1.0) {
-				ratio = 0.95;
-			}
-			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, ((Rectangle) childConstraint).height +"--> ratio" + ratio); //$NON-NLS-1$
-			childFigure.getParent().setConstraint(childFigure, ratio);
-		}
+	public IFigure createFigure() {
+		ResizableCompartmentFigure rcf = (ResizableCompartmentFigure) super.createFigure();
+		SwimlanesCompartmentLayout layout = new SwimlanesCompartmentLayout();
+		layout.setStretchMajorAxis(false);
+		layout.setStretchMinorAxis(true);
+		layout.setMinorAlignment(ConstrainedToolbarLayout.ALIGN_TOPLEFT);
+		rcf.getContentPane().setLayoutManager(layout);
+		rcf.getContentPane().setBorder(null);
+		return rcf;
 	}
 }
