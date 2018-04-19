@@ -18,7 +18,7 @@ Export-Package: org.eclipse.papyrus.junit.matchers,
  org.eclipse.papyrus.junit.utils.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.1.100.qualifier
+Bundle-Version: 2.2.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.junit.utils.Activator

@@ -31,6 +31,7 @@
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/StandardProfile.elementtypesconfigurations#_jfoLkGT_EeSEqNuV3JpFCA"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#_ScP1oFYCEeS0WsAAtVmToA"/>
     <elementTypes href="platform:/plugin/org.eclipse.papyrus.uml.service.types.ui/model/uml-advice.elementtypesconfigurations#_ScP1oFYCEeS0WsAAtVmToA"/>
+    <elementTypes href="platform:/plugin/org.eclipse.papyrus.uml.diagram.sequence/model/SequenceDiagram.elementtypesconfigurations#_uuwoQENKEeimO7ZhVBpjkg"/>
     <representationKinds xsi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_UzcgsHDtEeWh-MssWmCB_A" id="org.eclipse.papyrus.uml.diagram.activity" name="Activity Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.activity/icons/obj16/Diagram_Activity.gif" concerns="_HQhf5MSYEeaKZJ_pGfaSiA" implementationID="PapyrusUMLActivityDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand">
       <modelRules xmi:id="_UzcgsXDtEeWh-MssWmCB_A">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
