@@ -14,26 +14,35 @@
 package org.eclipse.papyrus.uml.service.types.tests.deletion;
 
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThan;
+import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeThat;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.junit.utils.rules.ModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.common.util.UML2Util;
@@ -45,6 +54,9 @@ import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.hamcrest.CustomTypeSafeMatcher;
+import org.hamcrest.Matcher;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -157,7 +169,7 @@ public class InteractionDeletionTest {
 
 		delete(exec);
 
-		assertThat("Execution specification not deleted", exec.eResource(), nullValue());
+		assertThat("Execution specification not deleted", exec, isDeleted());
 		assertThat("Operand still has the execution specification", operand.getFragments(), not(hasItem(exec)));
 		assertThat("Interaction has the execution specification", interaction.getFragments(), not(hasItem(exec)));
 	}
@@ -176,8 +188,8 @@ public class InteractionDeletionTest {
 
 		delete(interaction);
 
-		assertThat("Execution specification not deleted", exec.eResource(), nullValue());
-		assertThat("Interaction not deleted", interaction.eResource(), nullValue());
+		assertThat("Execution specification not deleted", exec, isDeleted());
+		assertThat("Interaction not deleted", interaction, isDeleted());
 	}
 
 	@Test
@@ -193,13 +205,78 @@ public class InteractionDeletionTest {
 
 		delete(interaction);
 
-		assertThat("Execution specification not deleted", exec.eResource(), nullValue());
-		assertThat("Interaction not deleted", interaction.eResource(), nullValue());
+		assertThat("Execution specification not deleted", exec, isDeleted());
+		assertThat("Interaction not deleted", interaction, isDeleted());
+	}
+
+	/**
+	 * Verify that the deletion of the last operand of a combined fragment results in the
+	 * combined fragment also being deleted.
+	 */
+	@Test
+	@PluginResource("resource/interactions/bug533683.uml")
+	public void deleteOperandsOfCombinedFragment() {
+		CombinedFragment cfrag = findElement("cfrag", CombinedFragment.class);
+		Interaction interaction = cfrag.getEnclosingInteraction();
+		assumeThat("No interaction", interaction, notNullValue());
+
+		InteractionOperand alt1 = cfrag.getOperand("alt1");
+		InteractionOperand alt2 = cfrag.getOperand("alt2");
+
+		// We have at least four message ends and one execution specification
+		InteractionFragment[] fragments = alt1.getFragments().toArray(new InteractionFragment[0]);
+		assumeThat("Lost fragments on opening editor", fragments.length, greaterThan(4));
+		ExecutionSpecification exec = (ExecutionSpecification) alt1.getFragment("exec");
+		assumeThat("No execution specification", exec, notNullValue());
+
+		delete(alt2);
+
+		assertThat(cfrag.getOperands(), is(Collections.singletonList(alt1)));
+
+		assertThat("Interaction fragments were moved or deleted", alt1.getFragments(), hasItems(fragments));
+
+		delete(alt1);
+
+		assertThat("Combined fragment not deleted", cfrag, isDeleted());
+
+		assertThat("Interaction fragments not retained", interaction.getFragments(), hasItems(fragments));
+	}
+
+	/**
+	 * Verify that the simultaneous deletion of all operands of a combined fragment results in the
+	 * combined fragment also being deleted.
+	 */
+	@Test
+	@PluginResource("resource/interactions/bug533683.uml")
+	public void deleteAllOperandsOfCombinedFragment() {
+		CombinedFragment cfrag = findElement("cfrag", CombinedFragment.class);
+		Interaction interaction = cfrag.getEnclosingInteraction();
+		assumeThat("No interaction", interaction, notNullValue());
+
+		InteractionOperand alt1 = cfrag.getOperand("alt1");
+		InteractionOperand alt2 = cfrag.getOperand("alt2");
+
+		// We have at least four message ends and one execution specification
+		InteractionFragment[] fragments = alt1.getFragments().toArray(new InteractionFragment[0]);
+		assumeThat("Lost fragments on opening editor", fragments.length, greaterThan(4));
+		ExecutionSpecification exec = (ExecutionSpecification) alt1.getFragment("exec");
+		assumeThat("No execution specification", exec, notNullValue());
+
+		delete(Arrays.asList(alt1, alt2));
+		assertThat(Arrays.asList(alt1, alt2), everyItem(isDeleted()));
+
+		assertThat("Combined fragment not deleted", cfrag, isDeleted());
+		assertThat("Interaction fragments not retained", interaction.getFragments(), hasItems(fragments));
 	}
 
 	//
 	// Test framework
 	//
+
+	@BeforeClass
+	public static void ensureModeledEditHelperAdvice() {
+		ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations();
+	}
 
 	<T extends NamedElement> T findElement(String name, Class<T> type) {
 		Iterator<? extends EObject> eObjects = Iterators.filter(model.getResourceSet().getAllContents(), EObject.class);
@@ -209,6 +286,25 @@ public class InteractionDeletionTest {
 	void delete(EObject object) {
 		DestroyElementRequest request = new DestroyElementRequest(model.getEditingDomain(), object, false);
 		model.execute(command(object.eContainer(), request));
+	}
+
+	void delete(Collection<? extends EObject> objects) {
+		DestroyElementRequest request = new DestroyElementRequest(model.getEditingDomain(), false);
+		Map<String, Object> parameters = new HashMap<>();
+
+		@SuppressWarnings("unchecked")
+		ICommand command = objects.stream().reduce((ICommand) IdentityCommand.INSTANCE,
+				(cmd, object) -> {
+					request.setElementToDestroy(object);
+					request.addParameters(parameters);
+					ICommand delete = command(object.eContainer(), request);
+					parameters.clear();
+					parameters.putAll(request.getParameters());
+					return cmd.compose(delete);
+				},
+				CompositeCommand::compose);
+
+		model.execute(command.reduce());
 	}
 
 	ICommand command(EObject object, IEditCommandRequest request) {
@@ -253,5 +349,14 @@ public class InteractionDeletionTest {
 		}
 
 		return result[0];
+	}
+
+	static Matcher<EObject> isDeleted() {
+		return new CustomTypeSafeMatcher<EObject>("is deleted") {
+			@Override
+			protected boolean matchesSafely(EObject item) {
+				return item.eResource() == null;
+			}
+		};
 	}
 }

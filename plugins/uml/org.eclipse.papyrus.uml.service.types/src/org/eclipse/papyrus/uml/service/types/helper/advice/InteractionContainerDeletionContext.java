@@ -29,7 +29,9 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.GeneralOrdering;
@@ -60,7 +62,7 @@ class InteractionContainerDeletionContext {
 	/**
 	 * Initializes me with the initial destroy request.
 	 */
-	private InteractionContainerDeletionContext(DestroyElementRequest request) {
+	private InteractionContainerDeletionContext(DestroyRequest request) {
 		super();
 
 		this.domain = request.getEditingDomain();
@@ -68,16 +70,24 @@ class InteractionContainerDeletionContext {
 	}
 
 	static Optional<InteractionContainerDeletionContext> get(DestroyElementRequest request) {
+		return get(request, request.getElementToDestroy());
+	}
+
+	static Optional<InteractionContainerDeletionContext> get(DestroyDependentsRequest request) {
+		return get(request, request.getElementToDestroy());
+	}
+
+	private static Optional<InteractionContainerDeletionContext> get(DestroyRequest request, EObject elementToDestroy) {
 		Optional<InteractionContainerDeletionContext> result = Optional.ofNullable(request.getParameter(PARAMETER_NAME))
 				.filter(InteractionContainerDeletionContext.class::isInstance)
 				.map(InteractionContainerDeletionContext.class::cast);
 
-		if (isInteractionContainer(request.getElementToDestroy())) {
+		if (isInteractionContainer(elementToDestroy)) {
 			if (!result.isPresent()) {
 				result = Optional.of(new InteractionContainerDeletionContext(request));
 			}
 
-			result.get().add(request);
+			result.get().add(elementToDestroy);
 		}
 
 		return result;
@@ -96,8 +106,7 @@ class InteractionContainerDeletionContext {
 				|| object instanceof Interaction;
 	}
 
-	private void add(DestroyElementRequest request) {
-		EObject elementToDestroy = request.getElementToDestroy();
+	private void add(EObject elementToDestroy) {
 		interactionContainersBeingDestroyed.add((InteractionFragment) elementToDestroy);
 	}
 
