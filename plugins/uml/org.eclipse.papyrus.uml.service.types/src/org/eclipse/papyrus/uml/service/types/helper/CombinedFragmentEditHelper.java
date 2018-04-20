@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2018 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 533682
  *   
  *****************************************************************************/
 
@@ -21,7 +22,6 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.uml2.uml.CombinedFragment;
 
 /**
@@ -40,6 +40,7 @@ public class CombinedFragmentEditHelper extends ElementEditHelper {
 
 		ICommand configureCommand = new ConfigureElementCommand(req) {
 
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 				CombinedFragment combinedFragment = (CombinedFragment) req.getElementToConfigure();
 				return CommandResult.newOKCommandResult(combinedFragment);
@@ -47,47 +48,6 @@ public class CombinedFragmentEditHelper extends ElementEditHelper {
 		};
 
 		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
-
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper#getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest)
-	 *
-	 * @param req
-	 * @return
-	 */
-	@Override
-	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
-		return super.getDestroyElementCommand(req);
-		// EObject elementToDestroy = req.getElementToDestroy();
-		// if (elementToDestroy instanceof CombinedFragment) {
-		// CombinedFragment combinedFragment = (CombinedFragment) elementToDestroy;
-		// IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToDestroy);
-		// if (provider != null) {
-		// // Retrieve delete command from the Element Edit service
-		// ICommand deleteCommand = super.getDestroyElementCommand(req);
-		//// if (deleteCommand != null) {
-		//// if (elementToDestroy instanceof CombinedFragment) {
-		////
-		//// CompositeCommand deleteAll = new CompositeCommand(req.getLabel());
-		//// deleteAll.add(deleteCommand);
-		//// CompositeCommand deleteCfOnly = new CompositeCommand(req.getLabel());
-		////
-		//// // remove children from operands and append to parent combined fragment
-		//// for (InteractionOperand op : combinedFragment.getOperands()) {
-		//// deleteCfOnly.add(new MoveOperandFragmentsCommand(combinedFragment, op, new MoveOperandFragmentEditRequest(req.getEditingDomain(), combinedFragment)));
-		//// }
-		//// deleteCfOnly.add(new CombinedFragmentDestroyCommand(req.getEditingDomain(), provider, req));
-		////
-		//// return new SelectAndDeleteCommand(deleteAll, deleteCfOnly, new String[] { "Delete all", "Keep contents" });
-		//// } else {
-		// return deleteCommand;
-		//// }
-		//// }
-		// }
-		// }
-		// return UnexecutableCommand.INSTANCE;
-
 
 	}
 
