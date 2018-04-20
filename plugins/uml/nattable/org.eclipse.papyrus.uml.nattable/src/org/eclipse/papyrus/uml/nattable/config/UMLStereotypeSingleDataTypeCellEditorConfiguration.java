@@ -74,8 +74,8 @@ public class UMLStereotypeSingleDataTypeCellEditorConfiguration implements ICell
 		final String id = AxisUtils.getPropertyId(axisElement);
 		if (id != null && id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX)) {
 			final Property prop = UMLTableUtils.getRealStereotypeProperty(table.getContext(), id);
-			final Type type = prop.getType();
 			if (null != prop && !prop.isMultivalued()) {
+				final Type type = prop.getType();
 				result = type instanceof DataType && !(type instanceof Enumeration) && !(type instanceof PrimitiveType);
 			}
 		}
