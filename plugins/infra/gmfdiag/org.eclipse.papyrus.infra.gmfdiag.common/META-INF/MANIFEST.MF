@@ -1,48 +1,4 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.common;singleton:=true
-Bundle-Version: 3.100.0.qualifier
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: 
- org.eclipse.emf.ecore.edit;bundle-version="[2.9.0,3.0.0)",
- org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="[1.7.0,2.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.emf.appearance;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.gmf.runtime.draw2d.ui.render;bundle-version="[1.7.0,2.0.0)";visibility:=reexport,
- org.eclipse.gmf.runtime.draw2d.ui.render.awt;bundle-version="[1.8.0,2.0.0)",
- org.w3c.dom.svg;bundle-version="[1.1.0,2.0.0)";visibility:=reexport,
- org.apache.batik.anim;bundle-version="[1.9.1, 2.0.0)",
- org.apache.batik.dom;bundle-version="[1.9.1, 2.0.0)",
- org.apache.batik.dom.svg;bundle-version="[1.9.1, 2.0.0)",
- org.apache.batik.xml;bundle-version="[1.9.1, 2.0.0)",
- org.apache.batik.util;bundle-version="[1.9.1, 2.0.0)",
- org.apache.batik.svggen;bundle-version="[1.9.1, 2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- com.ibm.icu,
- org.eclipse.papyrus.infra.services.decoration;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
- org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="[1.7.0,2.0.0)",
- org.eclipse.papyrus.infra.emf.readonly;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.types.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.sync;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.services.edit.ui;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.emf.gmf;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.representation;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.filters;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.architecture.representation;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.architecture;bundle-version="[1.0.0,2.0.0)"
-Bundle-Vendor: %providerName
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Localization: plugin
-Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.adapter,
  org.eclipse.papyrus.infra.gmfdiag.common.advice,
@@ -87,7 +43,48 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.utils,
  org.eclipse.papyrus.infra.gmfdiag.internal.common.expressions;x-internal:=true,
  org.eclipse.papyrus.infra.gmfdiag.internal.common.model;x-internal:=true
+Require-Bundle: org.eclipse.emf.ecore.edit;bundle-version="[2.9.0,3.0.0)",
+ org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="[1.7.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.emf.appearance;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.gmf.runtime.draw2d.ui.render;bundle-version="[1.7.0,2.0.0)";visibility:=reexport,
+ org.eclipse.gmf.runtime.draw2d.ui.render.awt;bundle-version="[1.8.0,2.0.0)",
+ org.apache.batik.util;bundle-version="[1.6.0,1.7.0)",
+ org.apache.batik.svggen;bundle-version="[1.6.0,1.7.0)",
+ org.w3c.dom.svg;bundle-version="[1.1.0,2.0.0)";visibility:=reexport,
+ org.apache.batik.dom.svg;bundle-version="[1.6.0,1.7.0)",
+ org.apache.batik.dom;bundle-version="[1.6.0,1.7.0)",
+ org.apache.batik.xml;bundle-version="[1.6.0,1.7.0)",
+ org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ com.ibm.icu,
+ org.eclipse.papyrus.infra.services.decoration;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="[1.7.0,2.0.0)",
+ org.eclipse.papyrus.infra.emf.readonly;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.types.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.sync;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.services.edit.ui;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.emf.gmf;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.representation;bundle-version="[1.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.filters;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[2.100.0,4.0.0)",
+ org.eclipse.papyrus.infra.architecture.representation;bundle-version="[1.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.architecture;bundle-version="[1.0.0,2.0.0)"
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 3.100.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.common;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.google.common.base;version="21.0.0",
  com.google.common.collect;version="21.0.0",
  com.google.common.util.concurrent;version="21.0.0"
-Automatic-Module-Name: org.eclipse.papyrus.infra.gmfdiag.common

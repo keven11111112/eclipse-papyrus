@@ -58,7 +58,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/I-latest/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/S-3.10.0.M6-20180309052619/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
 
@@ -127,23 +127,11 @@ location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repositor
 
 //manualUpdate (Needed by infra.tools, API Evolution Report generation and other plugins)
 
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/S20180302171354/repository" {
+location orbit "http://download.eclipse.org/tools/orbit/S-builds/S20180119201206/repository" {
 	com.google.guava 21.0.0
 	com.google.guava.source 21.0.0
 	com.google.gson [2.7.0,2.8.0)
 	com.google.gson.source [2.7.0,2.8.0)
 	org.apache.commons.lang3 3.1.0
 	org.apache.commons.lang3.source 3.1.0
-	org.apache.batik.anim [1.9.1,2.0.0)
-	org.apache.batik.anim.source [1.9.1,2.0.0)
-	org.apache.batik.dom [1.9.1,2.0.0)
-	org.apache.batik.dom.source [1.9.1,2.0.0)
-	org.apache.batik.dom.svg [1.9.1,2.0.0)
-	org.apache.batik.dom.svg.source [1.9.1,2.0.0)
-	org.apache.batik.xml [1.9.1,2.0.0)
-	org.apache.batik.xml.source [1.9.1,2.0.0)
-	org.apache.batik.util [1.9.1,2.0.0)
-	org.apache.batik.util.source [1.9.1,2.0.0)
-	org.apache.batik.svggen [1.9.1,2.0.0)
-	org.apache.batik.svggen.source [1.9.1,2.0.0)
 }

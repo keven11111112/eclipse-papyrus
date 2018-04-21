@@ -26,7 +26,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.apache.batik.anim.dom.SVGDOMImplementation;
+import org.apache.batik.dom.svg.SVGDOMImplementation;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -57,17 +57,15 @@ import org.w3c.dom.Element;
 public class PapyrusDiagramSVGGenerator extends OpenAPIDiagramSVGGenerator {
 
 	/** The annotations. */
-	private List<AnnotateSVG> annotations = new ArrayList<>();
-
+	private  List<AnnotateSVG> annotations = new ArrayList<>();	
+	
 	/**
 	 * Instantiates a new papyrus diagram SVG generator.
 	 *
-	 * @param diagramEditPart
-	 *            the diagram edit part
-	 * @param annotations
-	 *            the annotations
+	 * @param diagramEditPart the diagram edit part
+	 * @param annotations the annotations
 	 */
-	public PapyrusDiagramSVGGenerator(DiagramEditPart diagramEditPart, List<AnnotateSVG> annotations) {
+	public PapyrusDiagramSVGGenerator(DiagramEditPart diagramEditPart, List<AnnotateSVG> annotations ) {
 		super(diagramEditPart);
 		this.annotations = annotations;
 	}
@@ -118,11 +116,11 @@ public class PapyrusDiagramSVGGenerator extends OpenAPIDiagramSVGGenerator {
 			Activator.log(IStatus.INFO, "Start transformation from Graphics to image descriptor");
 
 			GraphicsSVG svgG = (GraphicsSVG) g;
-			svgRoot = svgG.getRoot();
-
+			svgRoot = svgG.getRoot();	
+			
 			//////// Papyrus Specific code //////////
 			List<PartPositionInfo> allPartPositionInfo = this.getDiagramPartInfo();
-
+			
 			Collections.reverse(allPartPositionInfo);// Required to have property after class
 			for (PartPositionInfo partPositionInfo : allPartPositionInfo) {
 				Element rectangle = svgG.getDocument().createElementNS(SVGDOMImplementation.SVG_NAMESPACE_URI, "rect");
@@ -130,27 +128,27 @@ public class PapyrusDiagramSVGGenerator extends OpenAPIDiagramSVGGenerator {
 					NamedElement nameElement = (NamedElement) partPositionInfo.getSemanticElement();
 					rectangle.setAttributeNS(null, "id", nameElement.getName());// useful for svg debug
 				}
-
+				
 				rectangle.setAttributeNS(null, "x", String.valueOf(partPositionInfo.getPartX()));
 				rectangle.setAttributeNS(null, "y", String.valueOf(partPositionInfo.getPartY()));
 				rectangle.setAttributeNS(null, "width", String.valueOf(partPositionInfo.getPartWidth()));
 				rectangle.setAttributeNS(null, "height", String.valueOf(partPositionInfo.getPartHeight()));
-				rectangle.setAttributeNS(null, "fill-opacity", "0"); // transparent
+				rectangle.setAttributeNS(null, "fill-opacity", "0"); //transparent
 				rectangle.setAttributeNS(null, "stroke-opacity", "0"); // no border
-				View view = partPositionInfo.getView();
+				View view =  partPositionInfo.getView();
 				if (view instanceof Shape) { // filter on shape only to avoid duplication
 
 					boolean hasAnnotation = applyAll(view, svgG, rectangle);
 					if (hasAnnotation) {
-						svgRoot.appendChild(rectangle);
-					}
+						svgRoot.appendChild(rectangle);	
+					}					
 				}
 
 			}
-
+			
 			/////////////////////////
-
-
+			
+			
 			ByteArrayOutputStream os = new ByteArrayOutputStream(5000); // 5K
 																		// buffer
 			stream(os);
@@ -159,25 +157,22 @@ public class PapyrusDiagramSVGGenerator extends OpenAPIDiagramSVGGenerator {
 			setRenderedImage(RenderedImageFactory.getInstance(os.toByteArray()));
 
 			return RenderedImageDescriptor
-					.createFromRenderedImage(getRenderedImage());
+				.createFromRenderedImage(getRenderedImage());
 		} catch (IOException ex) {
 			Log.error(DiagramUIRenderPlugin.getInstance(), IStatus.ERROR, ex
-					.getMessage(), ex);
+				.getMessage(), ex);
 		}
 
 		return null;
 	}
 
-
+	
 	/**
 	 * Apply all.
 	 *
-	 * @param view
-	 *            the view
-	 * @param svgG
-	 *            the svg G
-	 * @param rectangle
-	 *            the rectangle
+	 * @param view the view
+	 * @param svgG the svg G
+	 * @param rectangle the rectangle
 	 * @return true, if successful
 	 */
 	public boolean applyAll(View view, GraphicsSVG svgG, Element rectangle) {
@@ -186,15 +181,14 @@ public class PapyrusDiagramSVGGenerator extends OpenAPIDiagramSVGGenerator {
 			res = res || annotateSVG.addAnnotation(view, svgG, rectangle);
 		}
 		return true;
-	}
-
+	}	
+	
 	/**
 	 * Writes the SVG Model out to a file.
 	 * 
 	 * @param outputStream
 	 *            output stream to store the SVG Model
 	 */
-	@Override
 	public void stream(OutputStream outputStream) {
 		try {
 			// Define the view box
@@ -230,12 +224,11 @@ public class PapyrusDiagramSVGGenerator extends OpenAPIDiagramSVGGenerator {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.internal.clipboard.DiagramGenerator#
 	 * createAWTImageForParts(java.util.List)
 	 */
-	@Override
 	public Image createAWTImageForParts(List editparts, org.eclipse.swt.graphics.Rectangle sourceRect) {
 		createSWTImageDescriptorForParts(editparts, sourceRect);
 		if (getRenderedImage() != null) {
 			try {
-				BufferedImage bufImg = getRenderedImage().getAdapter(BufferedImage.class);
+				BufferedImage bufImg = (BufferedImage) getRenderedImage().getAdapter(BufferedImage.class);
 				if (bufImg == null)
 					bufImg = ImageConverter.convert(getRenderedImage().getSWTImage());
 				return bufImg;
@@ -264,7 +257,6 @@ public class PapyrusDiagramSVGGenerator extends OpenAPIDiagramSVGGenerator {
 	 * @return Returns the rendered image created by previous call to
 	 *         createSWTImageDescriptorForParts
 	 */
-	@Override
 	public RenderedImage getRenderedImage() {
 		return renderedImage;
 	}
@@ -272,8 +264,7 @@ public class PapyrusDiagramSVGGenerator extends OpenAPIDiagramSVGGenerator {
 	/**
 	 * Sets the rendered image.
 	 *
-	 * @param renderedImage
-	 *            the new rendered image
+	 * @param renderedImage the new rendered image
 	 */
 	private void setRenderedImage(RenderedImage renderedImage) {
 		this.renderedImage = renderedImage;
