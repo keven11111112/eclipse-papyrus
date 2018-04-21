@@ -30,12 +30,13 @@ public class ArchitectureDescriptionAdapter extends EContentAdapter {
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		if (notification.getEventType() == Notification.REMOVING_ADAPTER)
-			return;
-		Object notifier = notification.getNotifier();
-		if (notifier instanceof ArchitectureDescription) {
+		if (notification.getNotifier() instanceof ArchitectureDescription ||
+			notification.getNewValue() instanceof ArchitectureDescription ||
+			notification.getOldValue() instanceof ArchitectureDescription) {
 			ArchitectureDescriptionNotifier.getInstance().fireArchitectureContextChanged(notification);
-		} else if (notifier instanceof ArchitectureDescriptionPreferences) {
+		} else if (notification.getNotifier() instanceof ArchitectureDescriptionPreferences ||
+			notification.getNewValue() instanceof ArchitectureDescriptionPreferences ||
+			notification.getOldValue() instanceof ArchitectureDescriptionPreferences) {
 			ArchitectureDescriptionNotifier.getInstance().fireArchitectureViewpointsChanged(notification);
 		}
 	}
