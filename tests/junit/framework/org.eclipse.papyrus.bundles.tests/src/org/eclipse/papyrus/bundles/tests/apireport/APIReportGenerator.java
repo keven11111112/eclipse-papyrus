@@ -48,6 +48,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.papyrus.bundles.tests.Activator;
 import org.eclipse.papyrus.bundles.tests.BundleTestsUtils;
+import org.eclipse.papyrus.junit.utils.PrintingProgressMonitor;
 import org.eclipse.pde.api.tools.internal.model.ApiModelFactory;
 import org.eclipse.pde.api.tools.internal.model.BundleComponent;
 import org.eclipse.pde.api.tools.internal.provisional.VisibilityModifiers;
@@ -114,6 +115,15 @@ public class APIReportGenerator {
 
 		this.baselineLocation = baselineLocation;
 		this.apiXML = apiXML;
+	}
+
+	/**
+	 * Generates the XML API delta report file.
+	 * 
+	 * @param progress
+	 */
+	public IStatus generate(PrintingProgressMonitor progress) {
+		return generate(progress);
 	}
 
 	/**

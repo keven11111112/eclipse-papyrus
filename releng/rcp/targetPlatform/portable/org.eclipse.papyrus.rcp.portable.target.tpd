@@ -10,9 +10,9 @@ location egit "http://download.eclipse.org/egit/updates-4.10" {
 	org.eclipse.egit.feature.group
 }
 
-//updateFrom("Eclipse",0)
+//manualUpdate
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M6-201803080630/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8-I-builds/I20180418-2000" {
 	org.eclipse.e4.core.tools.feature.feature.group
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -20,7 +20,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20170705-2102" {
+location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180404-1809" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group
