@@ -39,6 +39,8 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 */
 	private RadioGroupFieldEditor executionSpecificationWithAsyncMsg = null;
 
+	private BooleanFieldEditor triggerValidation;
+
 	/**
 	 * preference key for asynchronous messages
 	 */
@@ -69,6 +71,13 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 * @since 5.0
 	 */
 	public static final int PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE = 40;
+
+	/**
+	 * preference key to trigger model validation after edition.
+	 *
+	 * @since 5.0
+	 */
+	public static final String PREF_TRIGGER_ASYNC_VALIDATION = "PREF_TRIGGER_ASYNC_VALIDATION"; //$NON-NLS-1$
 
 	/**
 	 * possible preference values
@@ -106,6 +115,7 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 		addField(executionSpecificationWithSyncMsg);
 		addField(executionSpecificationWithAsyncMsg);
 
+
 		Group otherGroup = new Group(parent, SWT.NONE);
 		otherGroup.setLayout(new GridLayout(2, false));
 		GridData otherGroupGridData = new GridData(GridData.FILL_HORIZONTAL);
@@ -115,6 +125,9 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 		otherGroup.setText(Messages.CustomDiagramGeneralPreferencePage_othersGroupLabel);
 		addField(new BooleanFieldEditor(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN, Messages.CustomDiagramGeneralPreferencePage_MoveBelowElementsAtMessageDownDescription, otherGroup));
 		addField(new IntegerFieldEditor(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION, Messages.CustomDiagramGeneralPreferencePage_MinimumSpaceBelowMessageAtCreation, otherGroup));
+		triggerValidation = new BooleanFieldEditor(PREF_TRIGGER_ASYNC_VALIDATION,
+				Messages.DiagramsPreferencePage_triggerValidation_label, otherGroup);
+		addField(triggerValidation);
 	}
 
 	/**
@@ -143,6 +156,7 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 						{ Messages.DiagramsPreferencePage_createActionExecutionSpecification, CHOICE_ACTION },
 						{ Messages.DiagramsPreferencePage_createNoExecutionSpecification, CHOICE_NONE }
 				}, composite);
+
 	}
 
 	/**
@@ -157,6 +171,9 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 		preferenceStore.setDefault(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN, true);
 		preferenceStore.setDefault(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION, PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE);
+
+		// by default, validation is activated.
+		preferenceStore.setDefault(PREF_TRIGGER_ASYNC_VALIDATION, false);
 
 	}
 }

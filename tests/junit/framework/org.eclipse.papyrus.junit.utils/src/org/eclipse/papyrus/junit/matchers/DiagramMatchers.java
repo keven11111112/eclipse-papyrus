@@ -8,10 +8,15 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bug 533673
+ *   Christian W. Damus - bugs 533673, 533676
  *
  */
 package org.eclipse.papyrus.junit.matchers;
+
+import static org.hamcrest.CoreMatchers.hasItem;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -19,6 +24,11 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.services.decoration.DecorationService;
+import org.eclipse.papyrus.infra.services.decoration.IDecorationService;
+import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
+import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -133,6 +143,81 @@ public class DiagramMatchers {
 	 */
 	public static Matcher<EditPart> semanticThat(Matcher<? super EObject> elementMatcher) {
 		return viewThat(elementThat(elementMatcher));
+	}
+
+	/**
+	 * Match an edit-part that has an {@linkplain IPapyrusMarker#SEVERITY_ERROR error}
+	 * decoration having a message matching a given matcher.
+	 * 
+	 * @param messageMatcher
+	 *            matcher for the decoration message
+	 * 
+	 * @return the decoration matcher
+	 * 
+	 * @since 2.2
+	 * 
+	 * @see #hasDecorationThat(int, Matcher)
+	 * @see IPapyrusMarker#SEVERITY_ERROR
+	 */
+	public static Matcher<EditPart> hasErrorDecorationThat(Matcher<? super String> messageMatcher) {
+		return hasDecorationThat(IPapyrusMarker.SEVERITY_ERROR, messageMatcher);
+	}
+
+	/**
+	 * Match an edit-part that has a decoration of a given severity having a message matching
+	 * a given matcher.
+	 * 
+	 * @param severity
+	 *            severity, as per the {@link IPapyrusMarker#SEVERITY} marker attribute values
+	 * @param messageMatcher
+	 *            matcher for the decoration message
+	 * 
+	 * @return the decoration matcher
+	 * 
+	 * @since 2.2
+	 */
+	public static Matcher<EditPart> hasDecorationThat(int severity, Matcher<? super String> messageMatcher) {
+
+		return new TypeSafeDiagnosingMatcher<EditPart>() {
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("has error decoration that ").appendDescriptionOf(messageMatcher);
+			}
+
+			@Override
+			protected boolean matchesSafely(EditPart item, Description mismatchDescription) {
+				IDecorationService service = null;
+				try {
+					// For some reason, the service is registered under the implementation class instead
+					// of the interface. For maximal compatibility, we try both
+					service = ServiceUtilsForEditPart.getInstance().getService(IDecorationService.class, item);
+				} catch (Exception e) {
+					try {
+						service = ServiceUtilsForEditPart.getInstance().getService(DecorationService.class, item);
+					} catch (Exception e2) {
+						// Will fail, below
+					}
+				}
+
+				if (service == null) {
+					mismatchDescription.appendText("no decoration service");
+					return false;
+				}
+
+				List<IPapyrusDecoration> decorations = service.getDecorations(item, false);
+				List<String> messages = decorations.stream()
+						.filter(d -> d.getPriority() == severity)
+						.map(IPapyrusDecoration::getMessage)
+						.collect(Collectors.toList());
+
+				Matcher<Iterable<? super String>> delegate = hasItem(messageMatcher);
+				boolean result = delegate.matches(messages);
+				if (!result) {
+					delegate.describeMismatch(messages, mismatchDescription);
+				}
+				return result;
+			}
+		};
 	}
 
 	//

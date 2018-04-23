@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.papyrus.infra.services.validation" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.infra.services.validation" id="diagnostician" name="Registered diagnostician"/>
+         <meta.schema plugin="org.eclipse.papyrus.infra.services.validation" id="diagnosticians" name="Registered diagnosticians"/>
       </appinfo>
       <documentation>
          Manage the relation between a language (such as UML) and the associated diagnostician
@@ -61,7 +61,7 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="filter" type="string">
+         <attribute name="filter" type="string" use="required">
             <annotation>
                <documentation>
                   A filter class that determines whether this diagnostician is chosen for a certain element

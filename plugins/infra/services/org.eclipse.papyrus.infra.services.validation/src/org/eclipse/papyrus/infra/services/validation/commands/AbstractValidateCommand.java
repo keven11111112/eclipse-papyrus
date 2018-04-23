@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2018 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,7 +12,7 @@
  *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
  *  Patrick Tessier (CEA LIST) refacor to add allowing adding validation specific to UML
  *  Christian W. Damus (CEA) - bug 432813
- *  Christian W. Damus - bug 497379
+ *  Christian W. Damus - bugs 497379, 533676
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.validation.commands;
@@ -38,6 +38,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.infra.emf.gmf.command.INonDirtying;
 import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.Messages;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
@@ -59,7 +60,7 @@ import org.eclipse.ui.PlatformUI;
  *
  * @author Ansgar Radermacher (CEA LIST)
  */
-public abstract class AbstractValidateCommand extends AbstractTransactionalCommand {
+public abstract class AbstractValidateCommand extends AbstractTransactionalCommand implements INonDirtying {
 
 	final String modelValidationViewID = "org.eclipse.papyrus.views.validation.ModelValidationView"; //$NON-NLS-1$
 

@@ -71,6 +71,11 @@ public class Messages extends NLS {
 	 */
 	public static String DiagramsPreferencePage_createNoExecutionSpecification;
 
+	/**
+	 * label specifying that validation should be triggered after edition
+	 */
+	public static String DiagramsPreferencePage_triggerValidation_label;
+
 	/*************************************************************************
 	 * Command labels
 	 ************************************************************************/

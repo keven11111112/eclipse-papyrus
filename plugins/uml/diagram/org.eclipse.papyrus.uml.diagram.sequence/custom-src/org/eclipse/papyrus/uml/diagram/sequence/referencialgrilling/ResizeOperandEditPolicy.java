@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017, 2018 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2017, 2018 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   EclipseSource - Bug 533770
+ *   Christian W. Damus - bug 533676
  *
  *****************************************************************************/
 
@@ -20,6 +21,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -29,11 +31,14 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.validation.AsyncValidateCommand;
+import org.eclipse.uml2.uml.InteractionOperand;
 
 
 /**
@@ -81,6 +86,17 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy {
 
 			Object currentEditPart = editParts.get(0);
 			updateCurrentChildSize(compositeCommand, changeBoundsRequest, editingDomain, currentEditPart);
+
+			if (!compositeCommand.isEmpty() && (currentEditPart instanceof IGraphicalEditPart)
+					&& compositeCommand.canExecute()) {
+
+				EObject object = ((IGraphicalEditPart) currentEditPart).resolveSemanticElement();
+				if (object instanceof InteractionOperand) {
+					InteractionOperand operand = (InteractionOperand) object;
+					// In case the containment of interaction fragments changes, validate
+					AsyncValidateCommand.get(operand).ifPresent(compositeCommand::add);
+				}
+			}
 			return new ICommandProxy(compositeCommand);
 		}
 		return null;

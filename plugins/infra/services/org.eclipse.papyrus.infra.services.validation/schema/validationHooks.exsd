@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.papyrus.infra.services.validation" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.papyrus.infra.services.validation" id="validationHook" name="Registered validation hooks"/>
+         <meta.schema plugin="org.eclipse.papyrus.infra.services.validation" id="validationHooks" name="Registered validation hooks"/>
       </appinfo>
       <documentation>
          Associate hooks with a modeling language. These hooks are executed before and after validation of a model in this language.
@@ -64,7 +64,7 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="filter" type="string">
+         <attribute name="filter" type="string" use="required">
             <annotation>
                <documentation>
                   A filter class that determines whether this hook is active for a certain model element

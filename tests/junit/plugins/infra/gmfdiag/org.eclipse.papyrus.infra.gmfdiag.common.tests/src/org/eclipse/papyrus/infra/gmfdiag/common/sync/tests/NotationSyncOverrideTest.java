@@ -58,7 +58,7 @@ public class NotationSyncOverrideTest {
 
 	private DiagramEditPart master;
 
-	private EditPart class2EP;
+	private GraphicalEditPart class2EP;
 
 	public NotationSyncOverrideTest() {
 		super();
@@ -76,7 +76,7 @@ public class NotationSyncOverrideTest {
 
 		editor.move(class2EP, newBounds.getLocation());
 
-		EditPart class2Slave = editor.requireEditPart(slave, class2);
+		GraphicalEditPart class2Slave = (GraphicalEditPart) editor.requireEditPart(slave, class2);
 
 		if (verificationPoint()) {
 			assertThat(getBounds(class2Slave), is(newBounds));
@@ -127,7 +127,7 @@ public class NotationSyncOverrideTest {
 
 		editor.resize(class2EP, newBounds.getSize());
 
-		EditPart class2Slave = editor.requireEditPart(slave, class2);
+		GraphicalEditPart class2Slave = (GraphicalEditPart) editor.requireEditPart(slave, class2);
 
 		if (verificationPoint()) {
 			assertThat(getBounds(class2Slave), is(newBounds));
@@ -177,7 +177,7 @@ public class NotationSyncOverrideTest {
 		class2 = (Class) rootPackage.getOwnedType("Class2");
 
 		master = editor.getActiveDiagramEditor().getDiagramEditPart();
-		class2EP = editor.requireEditPart(master, class2);
+		class2EP = (GraphicalEditPart) editor.requireEditPart(master, class2);
 	}
 
 	DiagramEditPart activate(String diagramName) {

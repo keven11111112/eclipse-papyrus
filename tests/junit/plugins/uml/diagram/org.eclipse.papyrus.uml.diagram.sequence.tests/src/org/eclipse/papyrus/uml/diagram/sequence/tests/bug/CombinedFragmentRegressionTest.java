@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
 
+import static org.eclipse.papyrus.junit.matchers.DiagramMatchers.hasErrorDecorationThat;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThan;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
@@ -28,6 +29,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeThat;
 
@@ -44,6 +46,9 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.validation.model.EvaluationMode;
+import org.eclipse.emf.validation.service.IValidationListener;
+import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
@@ -636,6 +641,51 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 			result.setSnapToEnabled(false);
 			return result;
 		});
+	}
+
+	/**
+	 * Verify the validation of an interaction operand when it is resized.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533676.di")
+	public void validateResizedInteractionOperand_533676() {
+		GraphicalEditPart operandEP = (GraphicalEditPart) editor.findEditPart("opt", InteractionOperand.class);
+		InteractionOperand operand = (InteractionOperand) operandEP.getAdapter(EObject.class);
+		Interaction interaction = (Interaction) operand.eContainer().eContainer();
+
+		editor.resize(operandEP, sized(100, 185));
+
+		EditPart messageEP = editor.requireEditPart(editor.getActiveDiagram(), interaction.getMessage("async"));
+		assertThat(messageEP, hasErrorDecorationThat(startsWith("Message crosses")));
+
+		EditPart execEP = editor.requireEditPart(editor.getActiveDiagram(), operand.getFragment("exec2"));
+		assertThat(execEP, hasErrorDecorationThat(startsWith("Execution specification crosses")));
+	}
+
+	/**
+	 * Verify the validation of an interaction operand when it is created.
+	 * Note that <em>what</em> is validated depends on how well the new interaction operand
+	 * encloses and adopts interaction fragments. We do not test that here as that is an
+	 * orthogonal concern to the fact of running validation.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533676a.di")
+	public void validateCreatedInteractionOperand_533676() {
+		EditPart interactionEP = editor.findEditPart("doIt", Interaction.class);
+		EditPart interactionCompartment = editor.getShapeCompartment(interactionEP);
+
+		boolean[] validationOccurred = { false };
+		// Lots of live validations occur; we don't want those
+		IValidationListener listener = event -> validationOccurred[0] |= (event.getEvaluationMode() == EvaluationMode.BATCH);
+
+		ModelValidationService.getInstance().addValidationListener(listener);
+		try {
+			editor.createShape(interactionCompartment, UMLElementTypes.CombinedFragment_Shape, at(15, 40), sized(360, 200));
+		} finally {
+			ModelValidationService.getInstance().removeValidationListener(listener);
+		}
+
+		assertThat("No batch validation occurred", validationOccurred[0], is(true));
 	}
 
 	//

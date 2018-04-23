@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <!--
- Copyright (c) 2009, 2014, 2017 CEA and others.
+ Copyright (c) 2009, 2018 CEA, Christian W. Damus, and others.
  
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  Contributors:
    CEA - Initial API and implementation
    Christian W. Damus (CEA) - bug 323802
+   Christian W. Damus - bug 533676
    
 -->
 <plugin>
@@ -637,4 +638,11 @@
       <?gmfgen generated="true"?>
    </extension>
 
+   <extension
+         point="org.eclipse.papyrus.infra.services.validation.validationHooks">
+      <validationHook
+            id="org.eclipse.papyrus.uml.diagram.sequence.ocl"
+            filter="org.eclipse.papyrus.uml.service.validation.internal.UMLFilter"
+            hook="org.eclipse.papyrus.uml.diagram.sequence.validation.SequenceOCLRegistration"/>
+   </extension>
 </plugin>

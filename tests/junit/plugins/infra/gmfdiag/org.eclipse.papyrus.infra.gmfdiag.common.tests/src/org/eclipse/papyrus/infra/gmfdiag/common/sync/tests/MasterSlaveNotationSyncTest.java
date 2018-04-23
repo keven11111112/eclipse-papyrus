@@ -74,9 +74,9 @@ public class MasterSlaveNotationSyncTest {
 
 	private DiagramEditPart master;
 
-	private EditPart class1EP;
+	private GraphicalEditPart class1EP;
 
-	private EditPart class2EP;
+	private GraphicalEditPart class2EP;
 
 	public MasterSlaveNotationSyncTest() {
 		super();
@@ -266,8 +266,8 @@ public class MasterSlaveNotationSyncTest {
 		class1_class2 = class1.getOwnedAttribute(null, class2).getAssociation();
 
 		master = editor.getActiveDiagramEditor().getDiagramEditPart();
-		class1EP = editor.requireEditPart(master, class1);
-		class2EP = editor.requireEditPart(master, class2);
+		class1EP = (GraphicalEditPart) editor.requireEditPart(master, class1);
+		class2EP = (GraphicalEditPart) editor.requireEditPart(master, class2);
 	}
 
 	DiagramEditPart activate(String diagramName) {

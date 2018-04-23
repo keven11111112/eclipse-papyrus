@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673, 533682
+ *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673, 533682, 533676
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 521550
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils.rules;
@@ -39,8 +39,11 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.e4.ui.model.application.ui.MUIElement;
 import org.eclipse.e4.ui.model.application.ui.advanced.MPlaceholder;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
@@ -59,11 +62,11 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.RootEditPart;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IDiagramPreferenceSupport;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -1151,12 +1154,26 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		editPart.getViewer().getSelectionManager().deselect(editPart);
 	}
 
-	public void move(EditPart editPart, Point newLocation) {
-		execute(new ICommandProxy(new SetBoundsCommand(getEditingDomain(), "Move Node", editPart, newLocation)));
+	public void move(GraphicalEditPart editPart, Point newLocation) {
+		ChangeBoundsRequest move = new ChangeBoundsRequest(RequestConstants.REQ_MOVE);
+		IFigure figure = editPart.getFigure();
+		Rectangle bounds = figure.getBounds();
+		move.setEditParts(editPart);
+		move.setConstrainedMove(false);
+		move.setMoveDelta(at(newLocation.x() - bounds.x(), newLocation.y() - bounds.y()));
+		execute(editPart.getCommand(move));
 	}
 
-	public void resize(EditPart editPart, Dimension newSize) {
-		execute(new ICommandProxy(new SetBoundsCommand(getEditingDomain(), "Resize Node", editPart, newSize)));
+	public void resize(GraphicalEditPart editPart, Dimension newSize) {
+		ChangeBoundsRequest resize = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
+		IFigure figure = editPart.getFigure();
+		Rectangle bounds = figure.getBounds();
+		resize.setEditParts(editPart);
+		resize.setResizeDirection(PositionConstants.SOUTH_WEST);
+		resize.setCenteredResize(false);
+		resize.setConstrainedResize(false);
+		resize.setSizeDelta(sized(newSize.width() - bounds.width(), newSize.height() - bounds.height()));
+		execute(editPart.getCommand(resize));
 	}
 
 	public void execute(org.eclipse.gef.commands.Command command) {
