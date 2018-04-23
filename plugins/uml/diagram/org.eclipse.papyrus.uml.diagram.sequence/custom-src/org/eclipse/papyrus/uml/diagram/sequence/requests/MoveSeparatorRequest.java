@@ -24,6 +24,8 @@ import org.eclipse.gef.Request;
  * This should expand one of the Operands, and shrink the other one of the same
  * amount.
  * </p>
+ * 
+ * @since 5.0
  */
 public class MoveSeparatorRequest extends Request {
 
