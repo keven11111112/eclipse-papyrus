@@ -17,8 +17,6 @@ package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 import java.util.List;
 
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -36,7 +34,8 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
@@ -114,14 +113,13 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy {
 	}
 
 	private void updateCurrentChildSize(CompositeCommand compositeCommand, ChangeBoundsRequest changeBoundsRequest, TransactionalEditingDomain editingDomain, Object currentEditPart) {
-		Node shapeView = (Node) ((GraphicalEditPart) currentEditPart).getNotationView();
-		Dimension size = new Dimension(BoundForEditPart.getWidthFromView(shapeView), BoundForEditPart.getHeightFromView(shapeView));
+		GraphicalEditPart operandPart = (GraphicalEditPart) currentEditPart;
+		View shapeView = NotationHelper.findView(operandPart);
+		Dimension size = operandPart.getFigure().getSize();
+
 		size.expand(changeBoundsRequest.getSizeDelta().width, changeBoundsRequest.getSizeDelta().height);
 
-		Point location = new Point(0, ((Bounds) shapeView.getLayoutConstraint()).getY() + changeBoundsRequest.getMoveDelta().y);
-		Rectangle rect = new Rectangle(location, size);
-
-		ICommand setBoundsCommand = new SetResizeAndLocationCommand(editingDomain, "Resize Operands", new EObjectAdapter(shapeView), rect);
+		ICommand setBoundsCommand = new SetResizeCommand(editingDomain, "Resize Operands", new EObjectAdapter(shapeView), size);
 		compositeCommand.add(setBoundsCommand);
 	}
 
