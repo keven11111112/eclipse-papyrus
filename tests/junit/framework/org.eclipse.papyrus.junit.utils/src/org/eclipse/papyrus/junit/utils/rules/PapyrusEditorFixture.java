@@ -23,9 +23,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+import java.util.Objects;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
@@ -79,7 +78,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -93,6 +91,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.nattable.common.editor.AbstractEMFNattableEditor;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -136,7 +135,6 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 
 
 /**
@@ -1493,17 +1491,17 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	public EditPart createShape(EditPart parent, IElementType type, Point location, Dimension size) {
 		CreateViewRequest request = CreateViewRequestFactory.getCreateShapeRequest(type, ((IGraphicalEditPart) parent).getDiagramPreferencesHint());
 
-		// Collect existing children
-		Set<EditPart> initialChildren = stream(parent.getChildren(), EditPart.class).collect(Collectors.toSet());
 		request.setLocation(location);
 		request.setSize(size);
 		org.eclipse.gef.commands.Command command = parent.getCommand(request);
 		execute(command);
 
 		// Find the new edit-part
-		Set<EditPart> children = stream(parent.getChildren(), EditPart.class).collect(Collectors.toSet());
-		return Sets.difference(children, initialChildren).stream()
-				.filter(ep -> ep.getModel() instanceof Shape)
+		return request.getViewDescriptors().stream()
+				.map(desc -> desc.getAdapter(View.class)).map(View.class::cast)
+				.filter(Objects::nonNull)
+				.map(view -> DiagramEditPartsUtil.getEditPartFromView(view, parent))
+				.filter(Objects::nonNull)
 				.findAny().orElseGet(failOnAbsence("Could not find new shape edit-part"));
 	}
 
