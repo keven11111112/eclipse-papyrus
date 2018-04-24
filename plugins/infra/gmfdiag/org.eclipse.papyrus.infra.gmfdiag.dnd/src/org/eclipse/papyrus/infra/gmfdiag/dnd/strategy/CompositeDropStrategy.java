@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.Image;
 
 public abstract class CompositeDropStrategy implements DropStrategy {
 
-	protected final List<DropStrategy> strategies = new LinkedList<DropStrategy>();
+	protected final List<DropStrategy> strategies = new LinkedList<>();
 
 	public Image getImage() {
 		return null;

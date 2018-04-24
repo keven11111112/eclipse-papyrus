@@ -78,7 +78,7 @@ public class DropStrategyEditor extends MultipleReferenceEditor {
 		treeViewer.refresh();
 
 		// Adds a checkbox for each DropStrategy, to toggle it
-		checkboxes = new HashMap<DropStrategy, Button>();
+		checkboxes = new HashMap<>();
 
 		for (TreeItem item : tree.getItems()) {
 			if (item.getData() instanceof DropStrategy) {

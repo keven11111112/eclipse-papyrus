@@ -96,9 +96,9 @@ public class DropStrategyManager {
 	private boolean enabled = true;
 
 	private DropStrategyManager() {
-		allAvailableStrategies = new TreeMap<Integer, List<DropStrategy>>();
-		activeStrategies = new HashMap<DropStrategy, Boolean>();
-		defaultStrategies = new HashMap<Set<DropStrategy>, DropStrategy>();
+		allAvailableStrategies = new TreeMap<>();
+		activeStrategies = new HashMap<>();
+		defaultStrategies = new HashMap<>();
 		preferences = Activator.getDefault().getPreferenceStore();
 		init();
 	}
@@ -168,7 +168,7 @@ public class DropStrategyManager {
 	private void parseDefaultDropStrategy(String key) {
 		String[] strategyIds = key.substring(0, key.lastIndexOf(":")).split(":");
 
-		Set<DropStrategy> strategies = new HashSet<DropStrategy>();
+		Set<DropStrategy> strategies = new HashSet<>();
 		for (String strategyId : strategyIds) {
 			DropStrategy strategy = findStrategy(strategyId);
 			if (strategy == null) {
@@ -202,7 +202,7 @@ public class DropStrategyManager {
 	 * @return
 	 */
 	public List<DropStrategy> getActiveStrategies() {
-		List<DropStrategy> orderedActiveStrategies = new LinkedList<DropStrategy>();
+		List<DropStrategy> orderedActiveStrategies = new LinkedList<>();
 		if (isEnabled()) {
 			for (List<DropStrategy> strategies : allAvailableStrategies.values()) {
 				for (DropStrategy strategy : strategies) {
@@ -234,7 +234,7 @@ public class DropStrategyManager {
 	}
 
 	public static String getDefaultStrategyKey(Collection<DropStrategy> conflict) {
-		List<DropStrategy> orderedStrategies = new LinkedList<DropStrategy>(conflict);
+		List<DropStrategy> orderedStrategies = new LinkedList<>(conflict);
 
 		Collections.sort(orderedStrategies, new Comparator<DropStrategy>() {
 
@@ -300,7 +300,7 @@ public class DropStrategyManager {
 	 * @return
 	 */
 	public List<DropStrategy> getAllStrategies() {
-		List<DropStrategy> result = new LinkedList<DropStrategy>();
+		List<DropStrategy> result = new LinkedList<>();
 		for (List<DropStrategy> strategies : allAvailableStrategies.values()) {
 			result.addAll(strategies);
 		}
@@ -343,7 +343,7 @@ public class DropStrategyManager {
 		if (strategies.size() == 1) {
 			defaultStrategy = strategies.iterator().next();
 		} else {
-			Set<DropStrategy> conflictingStrategies = new HashSet<DropStrategy>(strategies);
+			Set<DropStrategy> conflictingStrategies = new HashSet<>(strategies);
 			defaultStrategy = defaultStrategies.get(conflictingStrategies);
 		}
 
@@ -365,7 +365,7 @@ public class DropStrategyManager {
 			return;
 		}
 
-		Set<DropStrategy> conflict = new HashSet<DropStrategy>(conflictingStrategies);
+		Set<DropStrategy> conflict = new HashSet<>(conflictingStrategies);
 		defaultStrategies.put(conflict, defaultStrategy);
 		preferences.putValue(getDefaultStrategyKey(conflict), defaultStrategy.getID());
 

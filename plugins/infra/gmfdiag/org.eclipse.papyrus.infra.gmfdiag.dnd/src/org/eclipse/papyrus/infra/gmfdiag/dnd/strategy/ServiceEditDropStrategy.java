@@ -49,9 +49,7 @@ public abstract class ServiceEditDropStrategy extends TransactionalDropStrategy 
 					return null;
 				}
 
-				Command command = new ICommandProxy(createGMFCommand);
-
-				return command;
+				return  new ICommandProxy(createGMFCommand);
 			}
 		} catch (Exception ex) {
 			Activator.log.error(ex);

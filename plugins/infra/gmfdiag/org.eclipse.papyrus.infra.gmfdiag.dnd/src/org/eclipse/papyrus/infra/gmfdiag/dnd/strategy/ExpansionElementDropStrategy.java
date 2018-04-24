@@ -214,7 +214,7 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 			@Override
 			public void execute() {
 				if (iSpecializationType instanceof IHintedType) {
-					ViewService.createNode(((GraphicalEditPart) targetEditPart).getNotationView(), valuesToAdd.get(0), ((IHintedType) iSpecializationType).getSemanticHint(), ((GraphicalEditPart) targetEditPart).getDiagramPreferencesHint());
+					ViewService.createNode(((GraphicalEditPart) targetEditPart).getNotationView(), sourceElement, ((IHintedType) iSpecializationType).getSemanticHint(), ((GraphicalEditPart) targetEditPart).getDiagramPreferencesHint());
 				}
 			}
 

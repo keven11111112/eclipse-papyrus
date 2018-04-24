@@ -84,7 +84,7 @@ public abstract class TransactionalCommandsDropStrategy extends TransactionalDro
 	 * @return
 	 */
 	public List<Command> getCommands(Request request, EditPart targetEditPart) {
-		List<Command> commands = new ArrayList<Command>();
+		List<Command> commands = new ArrayList<>();
 		if(doGetCommands(request,targetEditPart)!=null && doGetCommands(request,targetEditPart).size()!=0){
 
 			for(final Command c : doGetCommands(request,targetEditPart)){

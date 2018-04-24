@@ -91,7 +91,7 @@ public abstract class MoveDropStrategy extends TransactionalDropStrategy {
 			newValue = objectsToDrop.get(0);
 		} else {
 			EList<?> currentValues = (EList<?>) targetElement.eGet(targetFeature);
-			List<? extends Object> values = new LinkedList<Object>(currentValues);
+			List<? extends Object> values = new LinkedList<>(currentValues);
 			values.addAll((List) objectsToDrop);
 			newValue = values;
 		}

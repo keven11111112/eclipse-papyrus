@@ -69,7 +69,7 @@ public abstract class AbstractDropStrategy implements DropStrategy {
 	 *         The list of dropped Objects
 	 */
 	protected List<Object> getSourceObjects(Request request) {
-		List<Object> result = new LinkedList<Object>();
+		List<Object> result = new LinkedList<>();
 		if (request instanceof DropObjectsRequest) {
 			List objects = ((DropObjectsRequest) request).getObjects();
 			if (objects != null) {
@@ -94,7 +94,7 @@ public abstract class AbstractDropStrategy implements DropStrategy {
 	 *         The list of dropped EObjects
 	 */
 	protected List<EObject> getSourceEObjects(Request request) {
-		List<EObject> result = new LinkedList<EObject>();
+		List<EObject> result = new LinkedList<>();
 
 		for (Object object : getSourceObjects(request)) {
 			EObject eObject = EMFHelper.getEObject(object);
@@ -127,7 +127,7 @@ public abstract class AbstractDropStrategy implements DropStrategy {
 			ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
 			Iterator<EditPart> editParts = ToolUtilities.getSelectionWithoutDependants(changeBoundsRequest.getEditParts()).iterator();
 
-			List<EObject> elements = new LinkedList<EObject>();
+			List<EObject> elements = new LinkedList<>();
 			while (editParts.hasNext()) {
 				EditPart editPart = editParts.next();
 				if (editPart instanceof IGraphicalEditPart) {
