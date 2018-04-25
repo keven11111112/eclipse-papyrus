@@ -20,6 +20,7 @@ import static org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture.sized;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -54,6 +55,7 @@ import org.junit.Test;
  * @author Christian W. Damus
  * @see <a href="http://eclip.se/533670">bug 533670</a>
  */
+@ActiveDiagram("sequence")
 public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 
 	@Rule
@@ -72,7 +74,6 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	@PluginResource("resource/bugs/bug533673.di")
-	@ActiveDiagram("sequence")
 	public void defaultInteractionOperand_533673() {
 		EditPart interactionEP = editor.findEditPart("DoIt", Interaction.class);
 		EditPart interactionCompartment = editor.getShapeCompartment(interactionEP);
@@ -121,7 +122,6 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	@PluginResource("resource/bugs/bug533682.di")
-	@ActiveDiagram("sequence")
 	public void deleteInteractionOperand() {
 		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
 		CombinedFragment cfrag = (CombinedFragment) combinedFragmentEP.getAdapter(EObject.class);
@@ -155,7 +155,6 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	@PluginResource("resource/bugs/bug533682.di")
-	@ActiveDiagram("sequence")
 	public void deleteCombinedFragment() {
 		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
 		CombinedFragment cfrag = (CombinedFragment) combinedFragmentEP.getAdapter(EObject.class);
@@ -182,7 +181,6 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	@PluginResource("resource/bugs/bug533682.di")
-	@ActiveDiagram("sequence")
 	public void deleteInteractionFragmentInOperand() {
 		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
 		CombinedFragment cfrag = (CombinedFragment) combinedFragmentEP.getAdapter(EObject.class);
@@ -210,7 +208,6 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	@PluginResource("resource/bugs/bug533682.di")
-	@ActiveDiagram("sequence")
 	public void deleteInteraction() {
 		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
 		CombinedFragment cfrag = (CombinedFragment) combinedFragmentEP.getAdapter(EObject.class);
@@ -228,4 +225,61 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 		assertThat("Interaction not deleted", interaction.eResource(), nullValue());
 	}
 
+	/**
+	 * Verify that the deletion of the only (or last remaining) interaction operand
+	 * in a combined fragment results in deletion of the combined fragment, also.
+	 * 
+	 * @see <a href="http://eclip.se/533683">bug 533683</a>
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533682.di")
+	public void deleteOnlyInteractionOperand() {
+		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
+		CombinedFragment cfrag = (CombinedFragment) combinedFragmentEP.getAdapter(EObject.class);
+		Interaction interaction = cfrag.getEnclosingInteraction();
+		assumeThat("No interaction", interaction, notNullValue());
+
+		InteractionOperand operand = cfrag.getOperands().get(0);
+		EditPart operandEP = editor.requireEditPart(combinedFragmentEP, operand);
+
+		editor.delete(operandEP);
+
+		combinedFragmentEP = editor.findEditPart(cfrag);
+
+		assertThat("Combined fragment not deleted", cfrag.eResource(), nullValue());
+		assertThat("Combined fragment still presented in diagram", combinedFragmentEP, nullValue());
+	}
+
+	/**
+	 * Verify that the deletion of an interaction operand that leaves at least one
+	 * remaining in a combined fragment does not result in deletion of the combined fragment.
+	 * 
+	 * @see <a href="http://eclip.se/533683">bug 533683</a>
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533683.di")
+	public void deleteNotOnlyInteractionOperand() {
+		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
+		CombinedFragment cfrag = (CombinedFragment) combinedFragmentEP.getAdapter(EObject.class);
+		Interaction interaction = cfrag.getEnclosingInteraction();
+		assumeThat("No interaction", interaction, notNullValue());
+
+		InteractionOperand operand = cfrag.getOperands().get(1);
+		InteractionFragment deleteSend = operand.getFragment("delete-send");
+		assumeThat("Lost the delete send event on editor open", deleteSend, notNullValue());
+		InteractionFragment deleted = operand.getFragment("deleted");
+		assumeThat("Lost the deletion occurrence on editor open", deleted, notNullValue());
+
+		EditPart operandEP = editor.requireEditPart(combinedFragmentEP, operand);
+
+		editor.delete(operandEP);
+
+		combinedFragmentEP = editor.findEditPart(cfrag);
+
+		assertThat("Combined fragment was deleted", cfrag.getEnclosingInteraction(), is(interaction));
+		assertThat("Combined fragment no longer presented in diagram", combinedFragmentEP, notNullValue());
+
+		assertThat("Fragments of deleted operand not retained",
+				interaction.getFragments(), hasItems(deleteSend, deleted));
+	}
 }
