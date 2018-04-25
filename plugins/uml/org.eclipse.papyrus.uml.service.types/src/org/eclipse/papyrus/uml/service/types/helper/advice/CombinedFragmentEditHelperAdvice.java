@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 533682
  *   
  *****************************************************************************/
 
@@ -21,6 +22,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
@@ -33,11 +35,6 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public class CombinedFragmentEditHelperAdvice extends AbstractEditHelperAdvice {
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeConfigureCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest)
-	 */
 	@Override
 	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
 		return new ConfigureElementCommand(request) {
@@ -66,4 +63,11 @@ public class CombinedFragmentEditHelperAdvice extends AbstractEditHelperAdvice {
 		return interactionOperand;
 	}
 
+	@Override
+	protected ICommand getBeforeDestroyElementCommand(DestroyElementRequest req) {
+		// If it's an operand, record that it's being deleted
+		InteractionContainerDeletionContext.deleting(req);
+
+		return super.getBeforeDestroyElementCommand(req);
+	}
 }

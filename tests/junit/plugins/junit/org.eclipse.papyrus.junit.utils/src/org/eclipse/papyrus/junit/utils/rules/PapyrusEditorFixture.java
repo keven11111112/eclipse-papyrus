@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673
+ *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673, 533682
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 521550
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils.rules;
@@ -63,6 +63,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.ui.palette.PaletteViewer;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
@@ -76,6 +77,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
@@ -95,6 +97,8 @@ import org.eclipse.papyrus.infra.nattable.common.editor.AbstractEMFNattableEdito
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
@@ -1531,5 +1535,24 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 */
 	public static Dimension sized(int width, int height) {
 		return new Dimension(width, height);
+	}
+
+	/**
+	 * Delete an edit-part from the diagram.
+	 * 
+	 * @param editPart
+	 *            the edit-part to delete
+	 * 
+	 * @since 2.2
+	 */
+	public void delete(EditPart editPart) {
+		EObject toDestroy = editPart.getAdapter(EObject.class);
+		EObject container = toDestroy.eContainer();
+		DestroyElementRequest request = new DestroyElementRequest(toDestroy, false);
+		IElementEditService edit = ElementEditServiceUtils.getCommandProvider(container);
+		ICommand delete = edit.getEditCommand(request);
+
+		assertThat("No delete command obtained", delete, notNullValue());
+		execute(delete);
 	}
 }

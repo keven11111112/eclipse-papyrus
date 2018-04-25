@@ -17,7 +17,6 @@
 package org.eclipse.papyrus.uml.service.types.tests.suites;
 
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
-import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.eclipse.papyrus.uml.service.types.tests.creation.ConnectorReadOnlyTestBug465899;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreateAssociationCompositeDirectedTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.CreateAssociationCompositeTest;
@@ -32,13 +31,13 @@ import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteContainmentSub
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteDependentWithStereotypeApplications458685;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeletePureUMLElementTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteTransitionsWithVertexTest;
+import org.eclipse.papyrus.uml.service.types.tests.deletion.InteractionDeletionTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * Main Test suite.
  */
-@Headless
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		// TestElementTypeRegistryContent.class,
@@ -56,6 +55,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		CreateAssociationCompositeDirectedTest.class,
 		CreateAssociationSharedTest.class,
 		CreateAssociationSharedDirectedTest.class,
+		InteractionDeletionTest.class,
 })
 public class AllTests {
 	// JUnit 4 Test Suite
