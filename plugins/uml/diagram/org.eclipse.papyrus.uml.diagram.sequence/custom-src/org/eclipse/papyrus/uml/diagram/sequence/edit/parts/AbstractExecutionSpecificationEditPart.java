@@ -25,7 +25,9 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
@@ -44,9 +46,11 @@ import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Anchor;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
@@ -60,8 +64,10 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateConnectionRe
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceForExecSpecEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ExecutionSpecificationNodePlate;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectExecutionToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectYCoordinateToGrillingEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.util.CoordinateReferentialUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 import org.eclipse.swt.graphics.Color;
@@ -137,7 +143,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 					request.getMoveDelta().y = loc.y - originalBounds.y;
 				}
 				if (request.getSizeDelta().height == 0) { // moving
-					moveExecutionSpecificationFeedback(request, AbstractExecutionSpecificationEditPart.this, rect);
+					moveExecutionSpecificationFeedback(request, AbstractExecutionSpecificationEditPart.this, rect, originalBounds);
 				}
 				feedback.translateToRelative(rect);
 				feedback.setBounds(rect);
@@ -223,46 +229,25 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	@Override
 	public abstract ExecutionSpecificationRectangleFigure getPrimaryShape();
 
-	// see bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=385604
-	protected ShapeNodeEditPart moveExecutionSpecificationFeedback(ChangeBoundsRequest request, AbstractExecutionSpecificationEditPart movedPart, PrecisionRectangle rect) {
-		LifelineEditPart lifelineEP = (LifelineEditPart) movedPart.getParent();
-		Rectangle copy = rect.getCopy();
-		lifelineEP.getPrimaryShape().translateToRelative(copy);
-		List<ShapeNodeEditPart> executionSpecificationList = LifelineEditPartUtil.getChildShapeNodeEditPart(lifelineEP);
-		List<ShapeNodeEditPart> movedChildrenParts = OLDLifelineXYLayoutEditPolicy.getAffixedExecutionSpecificationEditParts(AbstractExecutionSpecificationEditPart.this);
-		executionSpecificationList.remove(movedPart); // ignore current action and its children
-		executionSpecificationList.removeAll(movedChildrenParts);
-		ShapeNodeEditPart parentBar = OLDLifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
-		Rectangle dotLineBounds = lifelineEP.getPrimaryShape().getBounds().getCopy().translate(0, 10);// TODO header eight
-		int dotLineBarLocationX = dotLineBounds.x + dotLineBounds.width / 2 - DEFAUT_WIDTH / 2;
+	protected void moveExecutionSpecificationFeedback(ChangeBoundsRequest request, AbstractExecutionSpecificationEditPart movedPart, PrecisionRectangle rect, Rectangle originalBounds) {
 
-
-		if (parentBar == null) {
-			if (dotLineBarLocationX < copy.x) { // there is no parent bar, move to the center dotline position
-				int dx = dotLineBarLocationX - copy.x;
-				request.getMoveDelta().x += dx;
-				rect.x += dx;
-			}
-		} else {
-			while (!executionSpecificationList.isEmpty()) {
-				Rectangle parentBounds = parentBar.getFigure().getBounds();
-				int width = parentBounds.width > 0 ? parentBounds.width : DEFAUT_WIDTH;
-				int x = parentBounds.x + width / 2 + 1; // affixed to the parent bar
-				int dx = x - copy.x;
-				rect.x += dx;
-				request.getMoveDelta().x += dx;
-				copy.x = x;
-				// check again to see if the new bar location overlaps with existing bars
-				ShapeNodeEditPart part = OLDLifelineXYLayoutEditPolicy.getParent(lifelineEP, copy, executionSpecificationList);
-				if (part == parentBar) {
-					break;
-				} else {
-					// if overlaps, go on moving the bar to next x position
-					parentBar = part;
+		// If this is a move to the top, the execution specification cannot be moved upper than the life line y position
+		if(request.getMoveDelta().y < 0) {
+			EditPart parent = getParent();
+			if(parent instanceof CLifeLineEditPart) {
+				
+				Point locationOnDiagram = CoordinateReferentialUtils.transformPointFromScreenToDiagramReferential(originalBounds.getCopy().getLocation(), (GraphicalViewer) movedPart.getViewer());
+				Bounds parentBounds = BoundForEditPart.getBounds((Node)((CLifeLineEditPart)parent).getModel());
+				
+				// This magic delta is needed to be at the bottom of the life line name
+				if((locationOnDiagram.y + request.getMoveDelta().y) < (parentBounds.getY() + 50)) {
+					Point loc = locationOnDiagram.getCopy();
+					loc.y = parentBounds.getY() + 50;
+					rect.setLocation(loc);
+					request.getMoveDelta().y = parentBounds.getY() + 50 - locationOnDiagram.y;
 				}
 			}
 		}
-		return parentBar;
 	}
 
 	// /**
