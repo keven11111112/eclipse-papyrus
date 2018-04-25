@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2018 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865
+ *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 521550
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils.rules;
@@ -23,6 +23,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IOperationHistoryListener;
@@ -64,10 +68,16 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IDiagramPreferenceSupport;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -122,6 +132,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 
 /**
@@ -926,7 +937,52 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		DiagramEditPart diagram = editor.getDiagramEditPart();
 		return findEditPart(diagram, modelElement);
 	}
+	
+	/**
+	 * Get the shape compartment of an edit-part. Fails if the edit-part has no
+	 * shape compartment.
+	 * 
+	 * @param shapeEditPart
+	 *            a shape edit part
+	 * @return its shape compartment
+	 * 
+	 * @since 2.2
+	 */
+	public EditPart getShapeCompartment(EditPart shapeEditPart) {
+		return stream(shapeEditPart.getChildren(), EditPart.class)
+				.filter(ShapeCompartmentEditPart.class::isInstance)
+				.findFirst().orElseGet(failOnAbsence("No shape compartment"));
+	}
 
+	/**
+	 * Obtain a typed stream over a raw-typed collection from a legacy pre-generics API
+	 * such as GEF.
+	 * 
+	 * @param rawCollection
+	 *            a raw-typed collection
+	 * @param type
+	 *            the expected element type of the collection
+	 * @return the typed stream
+	 */
+	private static <T> Stream<T> stream(@SuppressWarnings("rawtypes") Collection rawCollection, Class<T> type) {
+		return ((Collection<?>) rawCollection).stream()
+				.filter(type::isInstance).map(type::cast);
+	}
+
+	/**
+	 * Obtain a fake supplier that just fails the test with the given {@code message}
+	 * instead of supplying a result.
+	 * 
+	 * @param message
+	 *            the failure message
+	 * @return the fake supplier
+	 */
+	private static <T> Supplier<T> failOnAbsence(String message) {
+		return () -> {
+			fail(message);
+			return null;
+		};
+	}
 
 	/**
 	 * Find orphan edit part with a type.
@@ -1104,6 +1160,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	}
 
 	public void execute(org.eclipse.gef.commands.Command command) {
+		assertThat("No command", command, notNullValue());
 		assertThat("Command not executable", command.canExecute(), is(true));
 		getActiveDiagramEditor().getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		flushDisplayEvents();
@@ -1411,5 +1468,68 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 				}
 			}
 		});
+	}
+
+	/**
+	 * Create a new shape in the {@code parent}. Fails if the shape cannot be created or
+	 * cannot be found in the diagram after creation.
+	 * 
+	 * @param parent
+	 *            the parent edit-part in which to create a shape
+	 * @param type
+	 *            the type of shape to create
+	 * @param location
+	 *            the location (mouse pointer) at which to create the shape
+	 * @param size
+	 *            the size of the shape to create
+	 * @return the newly created shape edit-part
+	 * 
+	 * @since 2.2
+	 */
+	public EditPart createShape(EditPart parent, IElementType type, Point location, Dimension size) {
+		CreateViewRequest request = CreateViewRequestFactory.getCreateShapeRequest(type, ((IGraphicalEditPart) parent).getDiagramPreferencesHint());
+
+		// Collect existing children
+		Set<EditPart> initialChildren = stream(parent.getChildren(), EditPart.class).collect(Collectors.toSet());
+		request.setLocation(location);
+		request.setSize(size);
+		org.eclipse.gef.commands.Command command = parent.getCommand(request);
+		execute(command);
+
+		// Find the new edit-part
+		Set<EditPart> children = stream(parent.getChildren(), EditPart.class).collect(Collectors.toSet());
+		return Sets.difference(children, initialChildren).stream()
+				.filter(ep -> ep.getModel() instanceof Shape)
+				.findAny().orElseGet(failOnAbsence("Could not find new shape edit-part"));
+	}
+
+	/**
+	 * Create a point location (useful as a static import for test readability).
+	 * 
+	 * @param x
+	 *            the x coördinate
+	 * @param y
+	 *            the y coördinate
+	 * @return the point
+	 * 
+	 * @since 2.2
+	 */
+	public static Point at(int x, int y) {
+		return new Point(x, y);
+	}
+
+	/**
+	 * Create a size dimension (useful as a static import for test readability).
+	 * 
+	 * @param width
+	 *            the size width
+	 * @param height
+	 *            the the size height
+	 * @return the size
+	 * 
+	 * @since 2.2
+	 */
+	public static Dimension sized(int width, int height) {
+		return new Dimension(width, height);
 	}
 }

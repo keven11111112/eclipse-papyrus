@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2018 CEA, Christian W. Damus, CEA and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,17 +8,21 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 533673
  *
  */
 package org.eclipse.papyrus.junit.matchers;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.ui.palette.PaletteViewer;
+import org.eclipse.gmf.runtime.notation.View;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeDiagnosingMatcher;
 
 
 /**
@@ -51,6 +55,86 @@ public class DiagramMatchers {
 		return new DrawerExpansion(viewer, false);
 	}
 
+	/**
+	 * Match an edit-part by some condition of its notation view.
+	 * 
+	 * @param viewMatcher
+	 *            view matcher condition
+	 * 
+	 * @since 2.2
+	 */
+	public static Matcher<EditPart> viewThat(Matcher<? super View> viewMatcher) {
+		return new TypeSafeDiagnosingMatcher<EditPart>() {
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("view that ").appendDescriptionOf(viewMatcher);
+			}
+
+			@Override
+			protected boolean matchesSafely(EditPart item, Description mismatchDescription) {
+				boolean result = false;
+
+				if (!(item.getModel() instanceof View)) {
+					mismatchDescription.appendText("edit-part model is not a notation view");
+				} else {
+					View view = (View) item.getModel();
+					result = viewMatcher.matches(view);
+					if (!result) {
+						viewMatcher.describeMismatch(view, mismatchDescription);
+					}
+				}
+
+				return result;
+			}
+		};
+	}
+
+	/**
+	 * Match a notation view by some condition of its semantic element.
+	 * 
+	 * @param elementMatcher
+	 *            element matcher condition
+	 * 
+	 * @since 2.2
+	 */
+	public static Matcher<View> elementThat(Matcher<? super EObject> elementMatcher) {
+		return new TypeSafeDiagnosingMatcher<View>() {
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("element that ").appendDescriptionOf(elementMatcher);
+			}
+
+			@Override
+			protected boolean matchesSafely(View item, Description mismatchDescription) {
+				boolean result = false;
+
+				EObject element = item.getElement();
+				if (element == null) {
+					mismatchDescription.appendText("view has no semantic element");
+				} else {
+					result = elementMatcher.matches(element);
+					if (!result) {
+						elementMatcher.describeMismatch(element, mismatchDescription);
+					}
+				}
+
+				return result;
+			}
+		};
+	}
+
+	/**
+	 * Match an edit-part by some condition of its semantic element.
+	 * 
+	 * @param elementMatcher
+	 *            element matcher condition
+	 * 
+	 * @since 2.2
+	 */
+	public static Matcher<EditPart> semanticThat(Matcher<? super EObject> elementMatcher) {
+		return viewThat(elementThat(elementMatcher));
+	}
+
 	//
 	// Nested types
 	//
@@ -63,14 +147,16 @@ public class DiagramMatchers {
 			super();
 		}
 
+		@Override
 		public void describeTo(Description description) {
 			description.appendText("edit-part is selected");
 		}
 
+		@Override
 		public boolean matches(Object item) {
-			return (item instanceof EditPart) && isSelected((EditPart)item);
+			return (item instanceof EditPart) && isSelected((EditPart) item);
 		}
-
+		
 		boolean isSelected(EditPart editPart) {
 			EditPartViewer viewer = editPart.getViewer();
 			return (viewer != null) && viewer.getSelectedEditParts().contains(editPart);
@@ -88,13 +174,15 @@ public class DiagramMatchers {
 			this.expanded = expanded;
 		}
 
+		@Override
 		public void describeTo(Description description) {
 			description.appendText("drawer is ");
 			description.appendText(expanded ? "expanded" : "collapsed");
 		}
 
+		@Override
 		public boolean matches(Object item) {
-			return (item instanceof PaletteDrawer) && (isExpanded((PaletteDrawer)item) == expanded);
+			return (item instanceof PaletteDrawer) && (isExpanded((PaletteDrawer) item) == expanded);
 		}
 
 		boolean isExpanded(PaletteDrawer drawer) {
