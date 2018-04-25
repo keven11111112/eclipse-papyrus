@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   CEA LIST - bug 532639  [Table][Matrix]System shall enable to specify the creation location of relationships created using a matrix editor.
  *   
  *****************************************************************************/
 
@@ -32,6 +33,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablewrapper.EObject
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration;
+import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.ui.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.uml.nattable.matrix.Activator;
 import org.eclipse.papyrus.uml.nattable.matrix.messages.Messages;
@@ -136,11 +138,15 @@ public class RelationshipOwnerValidator implements IValidator {
 	private final IStatus hasADefinedRelationship() {
 		final ElementTypeConfiguration etc = this.conf.getEditedElement();
 		if (null == etc) {
+			
 			return createErrorStatus(Messages.RelationshipOwnerValidator_NoRelationshipDefined);
 		}
-		final EClass eclass = ((MetamodelTypeConfiguration) etc).getEClass();
+		
+		final EClass eclass = getBaseMetamodelEClass(etc);
+		if (null != eclass) {
 		if (eclass.isAbstract()) {
 			return createErrorStatus(Messages.RelationshipOwnerValidator_ChosenRelationshipIsAbstract); // very unlucky case, probably impossible
+		}
 		}
 		return Status.OK_STATUS;
 	}
@@ -156,15 +162,64 @@ public class RelationshipOwnerValidator implements IValidator {
 	private final boolean hasFeatureAcceptingRelationShip(final EObject wantedOwner) {
 		Assert.isNotNull(wantedOwner);
 		final ElementTypeConfiguration etc = this.conf.getEditedElement();
-		final EClass eclass = ((MetamodelTypeConfiguration) etc).getEClass();
-		final EObject dummyRelationship = eclass.getEPackage().getEFactoryInstance().create(eclass);
-		for (EStructuralFeature current : wantedOwner.eClass().getEAllContainments()) {
-			if (current.getEType().isInstance(dummyRelationship)) {
-				return true;
+		final EClass eclass = getBaseMetamodelEClass(etc);
+		if (null != eclass) {
+			final EObject dummyRelationship = eclass.getEPackage().getEFactoryInstance().create(eclass);
+			for (EStructuralFeature current : wantedOwner.eClass().getEAllContainments()) {
+				if (current.getEType().isInstance(dummyRelationship)) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
+	
+
+	// TODO : move these 3 methods in a util class. Such methods already exists in UMLRelationshipHelper
+	/**
+	 * 
+	 * @param elementTypeConfiguration
+	 *            an element type configuration
+	 * @return
+	 * 		the base EClass for this element type configuration(when it is unique) and <code>null</code> otherwise
+	 * @since 1.0.100
+	 * 
+	 */
+	private EClass getBaseMetamodelEClass(final ElementTypeConfiguration elementTypeConfiguration) {
+		return getBaseMetamodelTypeConfiguration(elementTypeConfiguration) != null ? getBaseMetamodelTypeConfiguration(elementTypeConfiguration).getEClass() : null;
+	}
+
+	/**
+	 * 
+	 * @param elementTypeConfiguration
+	 *            an element type configuration
+	 * @return
+	 * 		the base metamodel type configuration (when it is unique) and <code>null</code> otherwise
+	 * @since 1.0.100
+	 */
+	private MetamodelTypeConfiguration getBaseMetamodelTypeConfiguration(final ElementTypeConfiguration elementTypeConfiguration) {
+		if (elementTypeConfiguration instanceof MetamodelTypeConfiguration) {
+			return (MetamodelTypeConfiguration) elementTypeConfiguration;
+		} else if (elementTypeConfiguration instanceof SpecializationTypeConfiguration) {
+			return getBaseMetamodelTypeConfiguration((SpecializationTypeConfiguration) elementTypeConfiguration);
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param elementTypeConfiguration
+	 *            an element type configuration
+	 * @return
+	 * 		the base metamodel type configuration (when it is unique) and <code>null</code> otherwise
+	 * @since 1.0.100
+	 */
+	private MetamodelTypeConfiguration getBaseMetamodelTypeConfiguration(final SpecializationTypeConfiguration elementTypeConfiguration) {
+		return 1 == elementTypeConfiguration.getSpecializedTypes().size() ? getBaseMetamodelTypeConfiguration(elementTypeConfiguration.getSpecializedTypes().get(0)) : null;
+	}
+
+
+
 
 	/**
 	 * 
