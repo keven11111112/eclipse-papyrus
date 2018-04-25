@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ArrowStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSArrowStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSArrowStyleDelegate;
@@ -40,7 +40,7 @@ public class CSSArrowStyleImpl extends ArrowStyleImpl implements CSSArrowStyle {
 
 	protected ExtendedCSSEngine getEngine() {
 		if (engine == null) {
-			engine = ((CSSDiagramImpl) findView().getDiagram()).getEngine();
+			engine = ((CSSDiagram) findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}

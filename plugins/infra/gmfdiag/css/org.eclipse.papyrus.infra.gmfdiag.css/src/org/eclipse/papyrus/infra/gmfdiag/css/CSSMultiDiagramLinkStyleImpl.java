@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.MultiDiagramLinkStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSMultiDiagramLinkStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSMultiDiagramLinkStyleDelegate;
@@ -36,7 +36,7 @@ public class CSSMultiDiagramLinkStyleImpl extends MultiDiagramLinkStyleImpl impl
 
 	protected ExtendedCSSEngine getEngine() {
 		if (engine == null) {
-			engine = ((CSSDiagramImpl) findView().getDiagram()).getEngine();
+			engine = ((CSSDiagram) findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}

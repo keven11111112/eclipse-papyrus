@@ -17,7 +17,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.DataTypeStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSDataTypeStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSDataTypeStyleDelegate;
@@ -37,7 +37,7 @@ public class CSSDataTypeStyleImpl extends DataTypeStyleImpl implements CSSDataTy
 
 	protected ExtendedCSSEngine getEngine() {
 		if (engine == null) {
-			engine = ((CSSDiagramImpl) findView().getDiagram()).getEngine();
+			engine = ((CSSDiagram) findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}

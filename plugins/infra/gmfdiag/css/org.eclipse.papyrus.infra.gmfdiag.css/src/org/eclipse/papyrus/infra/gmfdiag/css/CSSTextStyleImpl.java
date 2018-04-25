@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.notation.TextAlignment;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.TextStyleImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSTextStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSTextStyleDelegate;
@@ -38,7 +38,7 @@ public class CSSTextStyleImpl extends TextStyleImpl implements CSSTextStyle {
 
 	protected ExtendedCSSEngine getEngine() {
 		if (engine == null) {
-			engine = ((CSSDiagramImpl) findView().getDiagram()).getEngine();
+			engine = ((CSSDiagram) findView().getDiagram()).getEngine();
 		}
 		return engine;
 	}
