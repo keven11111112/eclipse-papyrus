@@ -72,10 +72,10 @@ public class EventListenerEditPolicy extends AbstractEditPolicy implements EditP
 
 	// Event support
 
-	private final Set<String> state = new HashSet<String>();
+	private final Set<String> state = new HashSet<>();
 
 	private void removeState(String... states) {
-		Set<String> statesToRemove = new HashSet<String>();
+		Set<String> statesToRemove = new HashSet<>();
 		for (String state : states) {
 			statesToRemove.add(state);
 		}
@@ -88,7 +88,7 @@ public class EventListenerEditPolicy extends AbstractEditPolicy implements EditP
 	}
 
 	private void addState(String... states) {
-		Set<String> newStates = new HashSet<String>();
+		Set<String> newStates = new HashSet<>();
 		for (String state : states) {
 			newStates.add(state);
 		}
@@ -166,7 +166,7 @@ public class EventListenerEditPolicy extends AbstractEditPolicy implements EditP
 	}
 
 	private Collection<EditPart> getChildEditParts() {
-		List<EditPart> result = new LinkedList<EditPart>();
+		List<EditPart> result = new LinkedList<>();
 		for (Object editPart : getHost().getChildren()) {
 			if (semanticCompareEditParts(getHost(), (EditPart) editPart)) {
 				result.add((EditPart) editPart);
