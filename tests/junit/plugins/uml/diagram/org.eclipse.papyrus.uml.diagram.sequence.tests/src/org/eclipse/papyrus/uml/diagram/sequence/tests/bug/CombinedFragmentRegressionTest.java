@@ -34,12 +34,22 @@ import static org.junit.Assume.assumeThat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
@@ -521,6 +531,72 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 		assertThat(allInteractionContents, everyItem(not(
 				either(CoreMatchers.<Element> instanceOf(Constraint.class))
 						.or(instanceOf(Comment.class)))));
+	}
+
+	/**
+	 * Verify that the guard of an interaction operand cannot be moved.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533681.di")
+	public void attemptToMoveOperandGuard_533699() {
+		operandGuardUnchangeable("move", ep -> {
+			Rectangle currentBounds = ep.getFigure().getBounds();
+			ChangeBoundsRequest result = new ChangeBoundsRequest(RequestConstants.REQ_MOVE);
+			Point moveDelta = new Point(5, 5); // Just a nudge
+			Point newLoc = currentBounds.getLocation().getTranslated(moveDelta);
+			result.setLocation(newLoc); // Within the constraint shape
+			result.setMoveDelta(moveDelta);
+			result.setConstrainedMove(false);
+			result.setSnapToEnabled(false);
+			return result;
+		});
+	}
+
+	private void operandGuardUnchangeable(String action, Function<? super GraphicalEditPart, ? extends Request> requestFunction) {
+		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
+		CombinedFragment cfrag = (CombinedFragment) combinedFragmentEP.getAdapter(EObject.class);
+		Interaction interaction = cfrag.getEnclosingInteraction();
+		assumeThat("No interaction", interaction, notNullValue());
+
+		InteractionOperand alt1 = cfrag.getOperand("alt1");
+		Constraint alt1Guard = alt1.getGuard();
+		InteractionOperand alt2 = cfrag.getOperand("alt2");
+		Constraint alt2Guard = alt2.getGuard();
+
+		List<GraphicalEditPart> guardEPs = Stream.of(alt1Guard, alt2Guard)
+				.map(g -> editor.requireEditPart(editor.getActiveDiagram(), g))
+				.filter(GraphicalEditPart.class::isInstance).map(GraphicalEditPart.class::cast)
+				.collect(Collectors.toList());
+		assertThat(guardEPs.size(), greaterThanOrEqual(2));
+
+		guardEPs.forEach(ep -> {
+			Request request = requestFunction.apply(ep);
+
+			EditPart target = ep.getTargetEditPart(request);
+			if (target != null) {
+				Command command = target.getCommand(request);
+				assertThat("Can " + action + " guard", command, not(CommandMatchers.GEF.canExecute()));
+			} // null target EP is a way to disable the request
+		});
+	}
+
+	/**
+	 * Verify that the guard of an interaction operand cannot be resized.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533681.di")
+	public void attemptToResizeOperandGuard_533699() {
+		operandGuardUnchangeable("resize", ep -> {
+			Rectangle currentBounds = ep.getFigure().getBounds();
+			ChangeBoundsRequest result = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
+			result.setLocation(currentBounds.getBottomRight());
+			result.setSizeDelta(new Dimension(5, 5)); // Just a tweak
+			result.setResizeDirection(PositionConstants.SOUTH_WEST);
+			result.setConstrainedResize(false);
+			result.setCenteredResize(false);
+			result.setSnapToEnabled(false);
+			return result;
+		});
 	}
 
 	//
