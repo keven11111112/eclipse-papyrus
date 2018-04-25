@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA
+ * Copyright (c) 2009, 2018 CEA, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *   Atos Origin - Initial API and implementation
  *   Camille Letavernier (camille.letavernier@cea.fr) - Loosen the MessageSortChange restriction
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 531596
+ *   Christian W. Damus - bug 533672
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
@@ -138,6 +139,9 @@ import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLPackage;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
+
 public class SequenceUtil {
 
 	private static final double MAXIMAL_DISTANCE_FROM_EVENT = 10;
@@ -182,12 +186,110 @@ public class SequenceUtil {
 	 *
 	 * @param location
 	 *            the location
+	 * @param hostEditPart
+	 *            any edit part in the contextual diagram
 	 * @return the interaction or null
 	 */
 	public static InteractionFragment findInteractionFragmentContainerAt(Point location, EditPart hostEditPart) {
 		Rectangle bounds = new Rectangle();
 		bounds.setLocation(location);
 		return findInteractionFragmentContainerAt(bounds, hostEditPart);
+	}
+
+	/**
+	 * Find the interaction fragment container edit-part for the given bounds.
+	 * The elements are drawn under the lifeline, but their model container is an interaction.
+	 * The resulting edit-part can present either an Interaction or an InteractionOperand.
+	 *
+	 * @param bounds
+	 *            the bounds
+	 * @param hostEditPart
+	 *            any edit part in the contextual diagram
+	 * @return the interaction or operand edit-part, or {@code null} if none
+	 * @since 5.0
+	 */
+	public static IGraphicalEditPart findInteractionFragmentContainerEditPartAt(Rectangle bounds, EditPart hostEditPart) {
+		if (hostEditPart == null) {
+			return null;
+		}
+		IGraphicalEditPart result = null;
+		BiMap<IGraphicalEditPart, InteractionFragment> coveredInteractions = HashBiMap.create();
+		BiMap<IGraphicalEditPart, CombinedFragment> coveredCF = HashBiMap.create();
+		@SuppressWarnings("unchecked")
+		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
+		for (Entry<Object, EditPart> epEntry : allEditPartEntries) {
+			EditPart ep = epEntry.getValue();
+			if (ep instanceof ShapeEditPart) {
+				ShapeEditPart sep = (ShapeEditPart) ep;
+				EObject eObject = sep.resolveSemanticElement();
+				if (eObject instanceof Interaction || eObject instanceof InteractionOperand) {
+					Rectangle figureBounds = getAbsoluteBounds(sep);
+					if (figureBounds.contains(bounds)) {
+						coveredInteractions.put(sep, (InteractionFragment) eObject);
+					}
+				} else if (eObject instanceof CombinedFragment) {
+					// handle case when the figure is located in the CF header as if it were in the first Interaction Operand
+					Rectangle figureBounds = getAbsoluteBounds(sep);
+					if (figureBounds.contains(bounds)) {
+						coveredCF.put(sep, (CombinedFragment) eObject);
+					}
+				}
+			}
+		}
+		// inspect coveredCF to ensure at least on child operand is in coveredInteractions list
+		for (Map.Entry<IGraphicalEditPart, CombinedFragment> cf : coveredCF.entrySet()) {
+			List<InteractionOperand> operands = cf.getValue().getOperands();
+			if (operands.size() > 0 && Collections.disjoint(operands, coveredInteractions.values())) {
+				// bounds are in the header, add the first operand
+				coveredInteractions.put(DiagramEditPartsUtil.getChildByEObject(operands.get(0), cf.getKey(), false), operands.get(0));
+			}
+		}
+		// for each interaction verify if its children list does not contain an other covered interaction
+		// if it doesn't we have found the top-level interaction
+		out: for (InteractionFragment ift : coveredInteractions.values()) {
+			if (ift instanceof Interaction) {
+				for (InteractionFragment subift : ((Interaction) ift).getFragments()) {
+					if (subift instanceof CombinedFragment) {
+						for (InteractionOperand io : ((CombinedFragment) subift).getOperands()) {
+							if (coveredInteractions.containsValue(io)) {
+								result = coveredInteractions.inverse().get(io);
+								break out;
+							}
+						}
+					}
+				}
+			} else if (ift instanceof InteractionOperand) {
+				for (InteractionFragment subift : ((InteractionOperand) ift).getFragments()) {
+					if (subift instanceof CombinedFragment) {
+						for (InteractionOperand io : ((CombinedFragment) subift).getOperands()) {
+							if (coveredInteractions.containsValue(io)) {
+								result = coveredInteractions.inverse().get(io);
+								break out;
+							}
+						}
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Find the interaction fragment container edit-part at the given location.
+	 * The elements are drawn under the lifeline, but their model container is an interaction.
+	 * The resulting edit-part can present either an Interaction or an InteractionOperand.
+	 *
+	 * @param location
+	 *            the location
+	 * @param hostEditPart
+	 *            any edit part in the contextual diagram
+	 * @return the interaction or operand edit-part, or {@code null} if none
+	 * @since 5.0
+	 */
+	public static IGraphicalEditPart findInteractionFragmentContainerEditPartAt(Point location, EditPart hostEditPart) {
+		Rectangle bounds = new Rectangle();
+		bounds.setLocation(location);
+		return findInteractionFragmentContainerEditPartAt(bounds, hostEditPart);
 	}
 
 	/**
@@ -198,77 +300,21 @@ public class SequenceUtil {
 	 * @param bounds
 	 *            the bounds
 	 * @param hostEditPart
-	 *            any adit part in the corresponding diagram
+	 *            any edit part in the contextual diagram
 	 * @return the interaction or null
 	 */
-	@SuppressWarnings("unchecked")
 	public static InteractionFragment findInteractionFragmentContainerAt(Rectangle bounds, EditPart hostEditPart) {
-		if (hostEditPart == null) {
-			return null;
-		}
-		InteractionFragment container = null;
-		Set<InteractionFragment> coveredInteractions = new HashSet<>();
-		Set<CombinedFragment> coveredCF = new HashSet<>();
-		Set<Entry<Object, EditPart>> allEditPartEntries = hostEditPart.getViewer().getEditPartRegistry().entrySet();
-		for (Entry<Object, EditPart> epEntry : allEditPartEntries) {
-			EditPart ep = epEntry.getValue();
-			if (ep instanceof ShapeEditPart) {
-				ShapeEditPart sep = (ShapeEditPart) ep;
-				EObject eObject = sep.resolveSemanticElement();
-				if (eObject instanceof Interaction || eObject instanceof InteractionOperand) {
-					Rectangle figureBounds = getAbsoluteBounds(sep);
-					if (figureBounds.contains(bounds)) {
-						coveredInteractions.add((InteractionFragment) eObject);
-					}
-				} else if (eObject instanceof CombinedFragment) {
-					// handle case when the figure is located in the CF header as if it were in the first Interaction Operand
-					Rectangle figureBounds = getAbsoluteBounds(sep);
-					if (figureBounds.contains(bounds)) {
-						coveredCF.add((CombinedFragment) eObject);
-					}
-				}
+		InteractionFragment result = null;
+
+		IGraphicalEditPart container = findInteractionFragmentContainerEditPartAt(bounds, hostEditPart);
+		if (container != null) {
+			EObject semantic = container.resolveSemanticElement();
+			if (semantic instanceof InteractionFragment) {
+				result = (InteractionFragment) semantic;
 			}
 		}
-		// inspect coveredCF to ensure at least on child operand is in coveredInteractions list
-		for (CombinedFragment cf : coveredCF) {
-			List<InteractionOperand> operands = cf.getOperands();
-			if (operands.size() > 0 && Collections.disjoint(operands, coveredInteractions)) {
-				// bounds are in the header, add the first operand
-				coveredInteractions.add(operands.get(0));
-			}
-		}
-		// for each interaction verify if its children list does not contain an other covered interaction
-		// if it doesn't we have found the top-level interaction
-		for (InteractionFragment ift : coveredInteractions) {
-			boolean subiftFounded = false;
-			if (ift instanceof Interaction) {
-				for (InteractionFragment subift : ((Interaction) ift).getFragments()) {
-					if (subift instanceof CombinedFragment) {
-						for (InteractionOperand io : ((CombinedFragment) subift).getOperands()) {
-							if (coveredInteractions.contains(io)) {
-								subiftFounded = true;
-							}
-						}
-					}
-				}
-			}
-			if (!subiftFounded && ift instanceof InteractionOperand) {
-				for (InteractionFragment subift : ((InteractionOperand) ift).getFragments()) {
-					if (subift instanceof CombinedFragment) {
-						for (InteractionOperand io : ((CombinedFragment) subift).getOperands()) {
-							if (coveredInteractions.contains(io)) {
-								subiftFounded = true;
-							}
-						}
-					}
-				}
-			}
-			if (!subiftFounded) {
-				container = ift;
-				break;
-			}
-		}
-		return container;
+
+		return result;
 	}
 
 	/**
@@ -1776,11 +1822,11 @@ public class SequenceUtil {
 	public static EditPart getInteractionCompartment(final EditPart editPart) {
 		EditPart currentEditPart = editPart;
 
-		if(editPart instanceof AbstractMessageEditPart) {
-			if(((AbstractMessageEditPart)editPart).getSource() instanceof LifelineEditPart) {
-				currentEditPart = ((AbstractMessageEditPart)editPart).getSource();
-			} else if(((AbstractMessageEditPart)editPart).getTarget() instanceof LifelineEditPart) {
-				currentEditPart = ((AbstractMessageEditPart)editPart).getTarget();
+		if (editPart instanceof AbstractMessageEditPart) {
+			if (((AbstractMessageEditPart) editPart).getSource() instanceof LifelineEditPart) {
+				currentEditPart = ((AbstractMessageEditPart) editPart).getSource();
+			} else if (((AbstractMessageEditPart) editPart).getTarget() instanceof LifelineEditPart) {
+				currentEditPart = ((AbstractMessageEditPart) editPart).getTarget();
 			}
 		}
 
