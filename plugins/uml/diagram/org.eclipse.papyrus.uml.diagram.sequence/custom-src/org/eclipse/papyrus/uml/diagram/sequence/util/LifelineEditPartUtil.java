@@ -14,8 +14,10 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -25,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -39,12 +42,14 @@ import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GridManagementEditPolicy;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -277,5 +282,53 @@ public class LifelineEditPartUtil {
 			return (DiagramEditPart) ((DiagramRootEditPart) editPart).getChildren().get(0);
 		}
 		return null;
+	}
+	
+	/**
+	 * This allows to create command to resize life lines of the interaction if needed.
+	 * 
+	 * @param compoundCommand
+	 *            The compound command to fill.
+	 * @param initialEditPart
+	 *            The initial edit part from which get the life lines of the interaction.
+	 * @param maxY
+	 *            The max y position.
+	 * @param lifeLineEditPartsToSkip
+	 *            The life lines edit part to not resize.
+	 * @since 5.0
+	 */
+	public static void resizeAllLifeLines(final CompoundCommand compoundCommand, final EditPart initialEditPart, final int maxY, final Collection<LifelineEditPart> lifeLineEditPartsToSkip) {
+
+		// Get all the life lines in the interaction
+		final Set<LifelineEditPart> lifeLinesToResize = SequenceUtil.getLifeLinesFromEditPart(initialEditPart);
+		// Loop on each life lines
+		for (final LifelineEditPart lifeLineEP : lifeLinesToResize) {
+
+			if (lifeLineEditPartsToSkip == null || !lifeLineEditPartsToSkip.contains(lifeLineEP)) {
+				// Check if there is message delete on life line
+				final boolean hasIncomingMessageDelete = LifelineMessageDeleteHelper.hasIncomingMessageDelete(lifeLineEP);
+				if (!hasIncomingMessageDelete) {
+
+					// Get the initial bounds of the current LifeLine
+					if (lifeLineEP.getModel() instanceof Shape) {
+						final Shape lifeLineView = (ShapeImpl) lifeLineEP.getModel();
+
+						if (lifeLineView.getLayoutConstraint() instanceof Bounds) {
+							// Create the command to change height
+							final Bounds lifeLineBounds = (Bounds) lifeLineView.getLayoutConstraint();
+							final int realLifeLineHeight = BoundForEditPart.getHeightFromView(lifeLineView);
+
+							// If the new max Y position is greater than the y position + height, resize the current lifeline
+							if (maxY > (lifeLineBounds.getY() + realLifeLineHeight)) {
+								final Dimension newLifeLineDimension = new Dimension(lifeLineBounds.getWidth(), maxY - lifeLineBounds.getY());
+
+								final ICommand heightCommand = new SetResizeCommand(lifeLineEP.getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(lifeLineView), newLifeLineDimension);
+								compoundCommand.add(new ICommandProxy(heightCommand));
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

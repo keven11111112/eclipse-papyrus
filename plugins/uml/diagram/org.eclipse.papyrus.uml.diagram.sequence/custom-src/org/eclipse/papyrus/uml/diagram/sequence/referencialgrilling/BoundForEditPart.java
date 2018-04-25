@@ -38,11 +38,13 @@ public class BoundForEditPart {
 	public static Bounds getBounds(final Node node) {
 		final Bounds initialBounds = EcoreUtil.copy((Bounds) node.getLayoutConstraint());
 
-		if (initialBounds.getWidth() == -1) {
-			initialBounds.setWidth(getDefaultWidthFromView(node));
-		}
-		if (initialBounds.getHeight() == -1) {
-			initialBounds.setHeight(getDefaultHeightFromView(node));
+		if (null != initialBounds) {
+			if (initialBounds.getWidth() == -1) {
+				initialBounds.setWidth(getDefaultWidthFromView(node));
+			}
+			if (initialBounds.getHeight() == -1) {
+				initialBounds.setHeight(getDefaultHeightFromView(node));
+			}
 		}
 
 		return initialBounds;

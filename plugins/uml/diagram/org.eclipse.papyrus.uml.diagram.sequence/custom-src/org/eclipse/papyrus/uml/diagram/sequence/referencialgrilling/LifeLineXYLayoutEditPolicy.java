@@ -56,6 +56,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPar
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ExecutionSpecificationUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
@@ -301,6 +302,17 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 				} while (compoundCommand != null && !compoundCommand.isEmpty());
 
 				newBounds.setBounds(boundsToRectangle);
+				
+				// Check if this is needed to resize life lines
+				final Bounds lifeLineBounds = BoundForEditPart.getBounds((Node) lifeLineEditPart.getModel());
+				if((newBounds.y + newBounds.height) > lifeLineBounds.getHeight()) {
+					final CompoundCommand resizeCompoundCommand = new CompoundCommand("Resize life lines"); //$NON-NLS-1$
+					LifelineEditPartUtil.resizeAllLifeLines(resizeCompoundCommand, lifeLineEditPart, lifeLineBounds.getY() + newBounds.y + newBounds.height, null);
+					
+					if(!resizeCompoundCommand.isEmpty()) {
+						subCommand.add(resizeCompoundCommand);
+					}
+				}
 			}
 		}
 
