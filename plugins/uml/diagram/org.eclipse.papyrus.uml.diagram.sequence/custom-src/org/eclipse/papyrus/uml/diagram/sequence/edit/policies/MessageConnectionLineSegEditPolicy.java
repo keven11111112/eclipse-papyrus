@@ -151,7 +151,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 		}
 
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-		if (kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate) {
+		if (kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || kind == RouterKind.OBLIQUE || getConnection() instanceof MessageCreate) {
 			return super.getCommand(request);
 		} else if (request instanceof BendpointRequest) {
 			return getMoveMessageCommand((BendpointRequest) request);
@@ -392,8 +392,18 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 						return compoudCmd;
 					} else {
 						int y = request.getLocation().y;
+						int yDelta = 0;
+
+						PolylineConnectionEx polyline = (PolylineConnectionEx) connectionPart.getFigure();
+						Point sourceAnchorPosition = polyline.getSourceAnchor().getReferencePoint();
+						Point targetAnchorPosition = polyline.getTargetAnchor().getReferencePoint();
+
+						if (kind == RouterKind.OBLIQUE) {
+							yDelta = targetAnchorPosition.y - sourceAnchorPosition.y;
+						}
+
 						Command srcCmd = createMoveMessageEndCommand((Message) message, srcPart, send, y, srcLifelinePart, request);
-						Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y, targetLifelinePart, request);
+						Command tgtCmd = createMoveMessageEndCommand((Message) message, tgtPart, rcv, y + yDelta, targetLifelinePart, request);
 						CompoundCommand compoudCmd = new CompoundCommand(CustomMessages.MoveMessageCommand_Label);
 
 						/*
@@ -880,7 +890,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
 			if (getHost() instanceof MessageFoundEditPart || getHost() instanceof MessageLostEditPart) {
 				showMoveLineSegFeedback((BendpointRequest) request);
-			} else if (kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || getConnection() instanceof MessageCreate) {
+			} else if (kind == RouterKind.SELF || kind == RouterKind.HORIZONTAL || kind == RouterKind.OBLIQUE || getConnection() instanceof MessageCreate) {
 				if (getLineSegMode() != LineMode.OBLIQUE && REQ_MOVE_BENDPOINT.equals(request.getType())) {
 					// Fixed bug about show feedback for moving bendpoints, make sure at least 3 points.
 					List constraint = (List) getConnection().getRoutingConstraint();
@@ -910,7 +920,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	@SuppressWarnings("unchecked")
 	protected void showMoveLineSegFeedback(BendpointRequest request) {
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-		if ((getHost() instanceof MessageSyncEditPart || getHost() instanceof MessageAsyncEditPart || getHost() instanceof MessageDeleteEditPart) && kind == RouterKind.SELF) {
+		if (((getHost() instanceof MessageSyncEditPart || getHost() instanceof MessageAsyncEditPart || getHost() instanceof MessageDeleteEditPart) && kind == RouterKind.SELF) || kind == RouterKind.OBLIQUE){
 			if (router == null) {
 				router = getConnection().getConnectionRouter();
 				getConnection().setConnectionRouter(new DummyRouter());
