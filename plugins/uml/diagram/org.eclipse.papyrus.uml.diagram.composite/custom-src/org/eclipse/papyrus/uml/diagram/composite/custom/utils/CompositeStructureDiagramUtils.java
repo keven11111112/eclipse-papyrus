@@ -18,6 +18,7 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.utils;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -85,7 +86,8 @@ public class CompositeStructureDiagramUtils {
 	/**
 	 * Obtains the first view of the Type (here the Class) in any diagrams
 	 * 
-	 * @param typingClass: the type of the Part 
+	 * @param typingClass:
+	 *            the type of the Part
 	 * 
 	 */
 	public static View getPartTypeFirstView(Class typingClass) {
@@ -153,26 +155,28 @@ public class CompositeStructureDiagramUtils {
 			} else {
 				typingClassView = getPartTypeFirstView(typingClass);
 			}
-			View portOnTypingClass = null;
-			for (Object child : typingClassView.getChildren()) {
-				if (child instanceof View && ((View) child).getElement() == port) {
-					portOnTypingClass = (View) child;
-					break;
+			if (typingClassView != null) {
+				// we can only continue, if an view of the typing class is found.
+				View portOnTypingClass = null;
+				for (Object child : typingClassView.getChildren()) {
+					if (child instanceof View && ((View) child).getElement() == port) {
+						portOnTypingClass = (View) child;
+						break;
+					}
+				}
+				if (portOnTypingClass != null) {
+					Bounds typingClassBounds = TypeUtils.as(((Node) typingClassView).getLayoutConstraint(), Bounds.class);
+					Bounds portOnTypingClassBounds = TypeUtils.as(((Node) portOnTypingClass).getLayoutConstraint(), Bounds.class);
+					int portWidth = portOnTypingClassBounds.getWidth();
+					int portHeight = portOnTypingClassBounds.getHeight();
+					Rectangle r = new Rectangle(portOnTypingClassBounds.getX(), portOnTypingClassBounds.getY(), portWidth, portHeight);
+					// use 0, 0 as starting point, since the port coordinates are relative to the part.
+					RelativePortLocation relative = RelativePortLocation.of(r, new Rectangle(0, 0, typingClassBounds.getWidth(), typingClassBounds.getHeight()));
+					final Rectangle partBounds = ((NodeEditPart) partEditPart).getFigure().getBounds();
+
+					return relative.applyTo(partBounds, new Dimension(portWidth, portHeight));
 				}
 			}
-			if (portOnTypingClass != null) {
-				Bounds typingClassBounds = TypeUtils.as(((Node) typingClassView).getLayoutConstraint(), Bounds.class);
-				Bounds portOnTypingClassBounds = TypeUtils.as(((Node) portOnTypingClass).getLayoutConstraint(), Bounds.class);
-				int portWidth = portOnTypingClassBounds.getWidth();
-				int portHeight = portOnTypingClassBounds.getHeight();
-				Rectangle r = new Rectangle(portOnTypingClassBounds.getX(), portOnTypingClassBounds.getY(), portWidth, portHeight);
-				// use 0, 0 as starting point, since the port coordinates are relative to the part.
-				RelativePortLocation relative = RelativePortLocation.of(r, new Rectangle(0, 0, typingClassBounds.getWidth(), typingClassBounds.getHeight()));
-				final Rectangle partBounds = ((NodeEditPart) partEditPart).getFigure().getBounds();
-
-				return relative.applyTo(partBounds, new Dimension(portWidth, portHeight));
-			}
-
 		}
 		return null;
 	}
