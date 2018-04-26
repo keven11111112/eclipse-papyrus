@@ -13,6 +13,7 @@
 
 	<modules>
 		<module>org.eclipse.papyrus.infra.ui</module>
+		<module>org.eclipse.papyrus.infra.ui.fonts</module>
 		<module>org.eclipse.papyrus.infra.ui.architecture</module>
 		<module>org.eclipse.papyrus.infra.ui.resources</module>
 		<module>org.eclipse.papyrus.infra.onefile.ui</module>
