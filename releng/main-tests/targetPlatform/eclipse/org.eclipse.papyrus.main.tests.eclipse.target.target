@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Tests" sequenceNumber="1524399254">
+<target name="Papyrus Tests" sequenceNumber="1524819623">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.8.0.v20180130-0706"/>
@@ -30,19 +30,19 @@
       <repository id="xwt" location="file:/home/data/httpd/download.eclipse.org/xwt/updates"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.13.0.v20171020-0920"/>
-      <unit id="org.eclipse.xtend.sdk.feature.group" version="2.13.0.v20171020-0920"/>
-      <unit id="org.eclipse.xtext.redist.feature.group" version="2.13.0.v20171020-0920"/>
-      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.13.0.v20171020-0920"/>
-      <unit id="org.eclipse.xtext.ui.feature.group" version="2.13.0.v20171020-0920"/>
-      <repository id="xtext" location="file:/home/data/httpd/download.eclipse.org/modeling/tmf/xtext/updates/releases/2.13.0/"/>
+      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.14.0.v20180424-2303"/>
+      <unit id="org.eclipse.xtend.sdk.feature.group" version="2.14.0.v20180424-2303"/>
+      <unit id="org.eclipse.xtext.redist.feature.group" version="2.14.0.v20180424-2303"/>
+      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.14.0.v20180424-2303"/>
+      <unit id="org.eclipse.xtext.ui.feature.group" version="2.14.0.v20180424-2303"/>
+      <repository id="xtext" location="file:/home/data/httpd/download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201804242303"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.mwe2.language.sdk.feature.group" version="2.9.1.201705291011"/>
       <repository id="mwe" location="file:/home/data/httpd/download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.1/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.9.2.v201804101955"/>
+      <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="0.0.0"/>
       <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.10.0/I-latest/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
@@ -108,6 +108,8 @@
       <unit id="org.apache.batik.svggen.source" version="1.9.1.v20180313-1559"/>
       <unit id="org.apache.batik.ext" version="1.9.1.v20180227-1645"/>
       <unit id="org.apache.batik.ext.source" version="1.9.1.v20180227-1645"/>
+      <unit id="org.objectweb.asm" version="5.0.1.v201404251740"/>
+      <unit id="org.objectweb.asm.source" version="5.0.1.v201404251740"/>
       <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/downloads/drops/I20180417184143/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
