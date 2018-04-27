@@ -135,12 +135,16 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 				ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
 
 				List<?> connectionsAndChildren = new ArrayList<>();
-				connectionsAndChildren.addAll(sourceLifeLineEP.getSourceConnections());
-				connectionsAndChildren.addAll(sourceLifeLineEP.getTargetConnections());
-				connectionsAndChildren.addAll(sourceLifeLineEP.getChildren());
-				connectionsAndChildren.addAll(targetLifeLineEP.getSourceConnections());
-				connectionsAndChildren.addAll(targetLifeLineEP.getTargetConnections());
-				connectionsAndChildren.addAll(targetLifeLineEP.getChildren());
+				if (null != sourceLifeLineEP) {
+					connectionsAndChildren.addAll(sourceLifeLineEP.getSourceConnections());
+					connectionsAndChildren.addAll(sourceLifeLineEP.getTargetConnections());
+					connectionsAndChildren.addAll(sourceLifeLineEP.getChildren());
+				}
+				if (null != targetLifeLineEP) {
+					connectionsAndChildren.addAll(targetLifeLineEP.getSourceConnections());
+					connectionsAndChildren.addAll(targetLifeLineEP.getTargetConnections());
+					connectionsAndChildren.addAll(targetLifeLineEP.getChildren());
+				}
 
 				for (Object editPart : connectionsAndChildren) {
 					if (editPart instanceof ConnectionEditPart) {

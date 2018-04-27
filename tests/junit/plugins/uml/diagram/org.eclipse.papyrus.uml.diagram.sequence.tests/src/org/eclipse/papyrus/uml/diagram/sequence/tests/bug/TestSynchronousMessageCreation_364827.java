@@ -37,10 +37,12 @@ import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.CreateSequenceDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.canonical.TestLink;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.junit.Test;
 
 /**
@@ -76,22 +78,22 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 		waitForComplete();
 		new PopupUtil(houseKeeper).addMenuListener(0);
 		createLink(linkType, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, 60));
+		
+		final LifelineEditPart lifeline1 = SequenceUtil.getParentLifelinePart(source);
+		final LifelineEditPart lifeline2 = SequenceUtil.getParentLifelinePart(target);
 
-		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 1);
-		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().get(0) instanceof AbstractMessageEditPart);
-		AbstractMessageEditPart p = (AbstractMessageEditPart)source.getSourceConnections().get(0);
+		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getSourceConnections().size() == 1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getSourceConnections().get(0) instanceof AbstractMessageEditPart);
+		AbstractMessageEditPart p = (AbstractMessageEditPart)lifeline1.getSourceConnections().get(0);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((View)p.getModel()).getType().equals(((IHintedType)linkType).getSemanticHint()));
 
-		//		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2); // LifelineNameEditPart
-		assertTrue(CREATION + TEST_THE_EXECUTION, target instanceof ActionExecutionSpecificationEditPart);
-
 		getDiagramCommandStack().undo();
-		assertTrue(CREATION + TEST_THE_UNDO, source.getSourceConnections().size() == 0);
-		assertTrue(CREATION + TEST_THE_UNDO, target.getTargetConnections().size() == 0);
+		assertTrue(CREATION + TEST_THE_UNDO, lifeline1.getSourceConnections().size() == 0);
+		assertTrue(CREATION + TEST_THE_UNDO, lifeline2.getTargetConnections().size() == 0);
 
 		getDiagramCommandStack().redo();
-		assertTrue(CREATION + TEST_THE_REDO, source.getSourceConnections().size() == 1);
-		assertTrue(CREATION + TEST_THE_UNDO, target.getTargetConnections().size() == 1);
+		assertTrue(CREATION + TEST_THE_REDO, lifeline1.getSourceConnections().size() == 1);
+		assertTrue(CREATION + TEST_THE_UNDO, lifeline2.getTargetConnections().size() == 1);
 	}
 
 	public void selectBehaviorExecution(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType subNodeType) {
@@ -103,28 +105,31 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 		waitForComplete();
 		new PopupUtil(houseKeeper).addMenuListener(1);
 		createLink(linkType, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, 60));
+		
+		final LifelineEditPart lifeline1 = SequenceUtil.getParentLifelinePart(source);
+		final LifelineEditPart lifeline2 = SequenceUtil.getParentLifelinePart(target);
 
-		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 1);
-		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().get(0) instanceof AbstractMessageEditPart);
-		AbstractMessageEditPart p = (AbstractMessageEditPart)source.getSourceConnections().get(0);
+		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getSourceConnections().size() == 1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getSourceConnections().get(0) instanceof AbstractMessageEditPart);
+		AbstractMessageEditPart p = (AbstractMessageEditPart)lifeline1.getSourceConnections().get(0);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((View)p.getModel()).getType().equals(((IHintedType)linkType).getSemanticHint()));
 
-		//		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2);
-
 		getDiagramCommandStack().undo();
-		assertTrue(CREATION + TEST_THE_UNDO, source.getSourceConnections().size() == 0);
-		assertTrue(CREATION + TEST_THE_UNDO, target.getTargetConnections().size() == 0);
+		assertTrue(CREATION + TEST_THE_UNDO, lifeline1.getSourceConnections().size() == 0);
+		assertTrue(CREATION + TEST_THE_UNDO, lifeline2.getTargetConnections().size() == 0);
 
 		getDiagramCommandStack().redo();
-		assertTrue(CREATION + TEST_THE_REDO, source.getSourceConnections().size() == 1);
-		assertTrue(CREATION + TEST_THE_REDO, target.getTargetConnections().size() == 1);
+		assertTrue(CREATION + TEST_THE_REDO, lifeline1.getSourceConnections().size() == 1);
+		assertTrue(CREATION + TEST_THE_REDO, lifeline2.getTargetConnections().size() == 1);
 	}
 
+	@FailingTest ("To be erased or rewritten after the message redirection on life line")
 	@Test
 	public void testMessageSync_4003_Action() {
 		selectActionExecution(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
+	@FailingTest ("To be erased or rewritten after the message redirection on life line")
 	@Test
 	public void testMessageSync_4003_Behavior() {
 		selectBehaviorExecution(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, UMLElementTypes.BehaviorExecutionSpecification_Shape);

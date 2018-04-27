@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.ISequenceDiagramTestsConstants;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -107,7 +108,8 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		getDiagramCommandStack().undo();
 		doCheckExecution(execution);
 		getDiagramCommandStack().redo();
-		message = (MessageSyncEditPart)part2.getTargetConnections().get(0);
+		LifelineEditPart lifeline2 = SequenceUtil.getParentLifelinePart(part2);
+		message = (MessageSyncEditPart)lifeline2.getTargetConnections().get(0);
 		msg = (Message)message.resolveSemanticElement();
 		assertNotNull("message", msg);
 		doCheckExecution(execution, msg, true);
@@ -191,7 +193,8 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		getDiagramCommandStack().undo();
 		doCheckExecution(execution);
 		getDiagramCommandStack().redo();
-		messagePart = (MessageReplyEditPart)part1.getSourceConnections().get(0);
+		LifelineEditPart lifeline1 = SequenceUtil.getParentLifelinePart(part1);
+		messagePart = (MessageReplyEditPart)lifeline1.getSourceConnections().get(0);
 		message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
 		doCheckExecution(execution, message, false);
@@ -199,33 +202,32 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 
 	@Test
 	public void testReconnectReplyMessage() {
-		AbstractExecutionSpecificationEditPart part1 = createExecutionSpecificationWithLifeline(new Point(200, 100), null);
-		AbstractExecutionSpecificationEditPart part2 = createExecutionSpecificationWithLifeline(new Point(50, 100), null);
+		AbstractExecutionSpecificationEditPart part1 = createExecutionSpecificationWithLifeline(new Point(50, 100), new Dimension(100,1000));
+		AbstractExecutionSpecificationEditPart part2 = createExecutionSpecificationWithLifeline(new Point(200, 100),new Dimension(100,1000));
 		Point startLocation = getAbsoluteBounds(part1).getCenter();
-		Point endLocation = getAbsoluteBounds(part2).getBottom();
-		ExecutionSpecification execution = (ExecutionSpecification)part1.resolveSemanticElement();
-		assertNotNull("execution", execution);
-		doCheckExecution(execution);
+		Point endLocation = getAbsoluteCenter(part2).setY(startLocation.y + 1);
+		ExecutionSpecification execution2 = (ExecutionSpecification)part2.resolveSemanticElement();
+		assertNotNull("execution2", execution2);
+		doCheckExecution(execution2);
 		MessageReplyEditPart messagePart = (MessageReplyEditPart)createLink(UMLElementTypes.Message_ReplyEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Reply message", messagePart);
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
-		doCheckExecution(execution, message, false);
-		Point location = startLocation.getTranslated(0, -100);
-		AbstractExecutionSpecificationEditPart part3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, part1.getParent(), location, null);
+		doCheckExecution(execution2, message, true);
+		AbstractExecutionSpecificationEditPart part3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, part2.getParent(), new Point(0,300), null);
 		ExecutionSpecification execution3 = (ExecutionSpecification)part3.resolveSemanticElement();
 		assertNotNull("execution3", execution3);
-		//reconnect from execution to execution3.
-		reconnectSource(messagePart, part3, getAbsoluteBounds(part3).getLocation());
-		doCheckExecution(execution);
-		doCheckExecution(execution3, message, false);
+		//reconnect from execution2 to execution3.
+		reconnectTarget(messagePart, part3, getAbsoluteBounds(part3).getLocation());
+		doCheckExecution(execution2);
+		doCheckExecution(execution3, message, true);
 		getDiagramCommandStack().undo();
 		doCheckExecution(execution3);
-		doCheckExecution(execution, message, false);
+		doCheckExecution(execution2, message, true);
 		getDiagramCommandStack().redo();
 		assertNotNull("message", message);
-		doCheckExecution(execution);
-		doCheckExecution(execution3, message, false);
+		doCheckExecution(execution2);
+		doCheckExecution(execution3, message, true);
 	}
 
 	@Test

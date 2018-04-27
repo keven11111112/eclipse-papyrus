@@ -199,15 +199,15 @@ public class TestCreationUndo_384618 extends TestLink {
 
 		createLink(UMLElementTypes.Message_SynchEdge, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, -1));
 		waitForComplete();
-		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getSourceConnections().size() == 1);
 
 		assertTrue(CREATION + TEST_THE_UNDO, getDiagramCommandStack().canUndo());
 		getEMFCommandStack().undo();
-		assertTrue(CREATION + TEST_THE_UNDO, source.getSourceConnections().size() == 0);
+		assertTrue(CREATION + TEST_THE_UNDO, lifeline1.getSourceConnections().size() == 0);
 
 		assertTrue(CREATION + TEST_THE_REDO, getDiagramCommandStack().canRedo());
 		getEMFCommandStack().redo();
-		assertTrue(CREATION + TEST_THE_REDO, source.getSourceConnections().size() == 1);
+		assertTrue(CREATION + TEST_THE_REDO, lifeline1.getSourceConnections().size() == 1);
 
 	}
 
