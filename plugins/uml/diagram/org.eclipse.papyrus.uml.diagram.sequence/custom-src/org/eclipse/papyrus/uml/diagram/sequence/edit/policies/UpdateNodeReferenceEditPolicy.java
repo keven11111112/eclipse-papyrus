@@ -14,8 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Map.Entry;
 
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.ConnectionEditPart;
@@ -32,8 +33,13 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CoordinateReferentialUtils;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
@@ -49,12 +55,12 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 
 	/**
 	 * To extract in other EditPolicy
-	 *
+	 * 
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#getCommand(org.eclipse.gef.Request)
 	 *
 	 * @param request
 	 * @return
-	 *
+	 * 
 	 * 		<img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
 	 *         <UL>
 	 *         <LI>when move B (anchor of the message)-->
@@ -66,55 +72,139 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 	public Command getCommand(Request request) {
 		if (request instanceof ReconnectRequest && !(SenderRequestUtils.isASender(request, getHost()))) {
 
-			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
-			ConnectionEditPart linkEditPart = reconnectRequest.getConnectionEditPart();
+			final ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+			final ConnectionEditPart linkEditPart = reconnectRequest.getConnectionEditPart();
 			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ MOVE ANCHORS of " + linkEditPart.getClass().getName());//$NON-NLS-1$
 			Point locationOnDiagram = CoordinateReferentialUtils.transformPointFromScreenToDiagramReferential(reconnectRequest.getLocation(), (GraphicalViewer) getHost().getViewer());
 			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+-- LocationOnDiagram " + locationOnDiagram);//$NON-NLS-1$
 
 			if (linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
-				SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
-				CompoundCommand compoundCommand = new CompoundCommand();
-				for (Iterator<EditPart> iterator = references.getStrongReferences().keySet().iterator(); iterator.hasNext();) {
-					EditPart editPart = iterator.next();
+				final SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) linkEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
+				final CompoundCommand compoundCommand = new CompoundCommand();
+				for (Entry<EditPart, String> iterator : references.getStrongReferences().entrySet()) {
+					final EditPart editPart = iterator.getKey();
 					if (!SenderRequestUtils.isASender(request, editPart) && getHost().getChildren().contains(editPart)) {
-						GraphicalEditPart gEditPart = (GraphicalEditPart) editPart;
-						Point GEPlocationOnDiagram = CoordinateReferentialUtils.getFigurePositionRelativeToDiagramReferential(gEditPart.getFigure(), getDiagramEditPart(getHost()));
+						final GraphicalEditPart gEditPart = (GraphicalEditPart) editPart;
+						final Point GEPlocationOnDiagram = CoordinateReferentialUtils.getFigurePositionRelativeToDiagramReferential(gEditPart.getFigure(), getDiagramEditPart(getHost()));
 
 						locationOnDiagram = CoordinateReferentialUtils.transformPointFromScreenToDiagramReferential(SequenceUtil.getSnappedLocation(gEditPart, reconnectRequest.getLocation().getCopy()), (GraphicalViewer) getHost().getViewer());
 
 						UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move  from " + GEPlocationOnDiagram + " " + editPart.getClass().getName()); //$NON-NLS-1$ //$NON-NLS-2$
-						ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
+						final ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
 						changeBoundsRequest.setLocation(reconnectRequest.getLocation().getCopy());
 						changeBoundsRequest.setEditParts(editPart);
 
-						if (references.getStrongReferences().get(editPart).equals(SequenceReferenceEditPolicy.ROLE_START)) {
-							int delta = (locationOnDiagram.y() - GEPlocationOnDiagram.y());
+						if (iterator.getValue().equals(SequenceReferenceEditPolicy.ROLE_START)) {
+							final int delta = (locationOnDiagram.y() - GEPlocationOnDiagram.y());
 							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> Delta " + delta + " " + editPart.getClass().getName()); //$NON-NLS-1$ //$NON-NLS-2$
 							changeBoundsRequest.setMoveDelta(new Point(0, delta));
 							changeBoundsRequest.setSizeDelta(new Dimension(0, 0));
 						}
-						if (references.getStrongReferences().get(editPart).equals(SequenceReferenceEditPolicy.ROLE_FINISH)) {
-							int delta = (locationOnDiagram.y() - GEPlocationOnDiagram.y() - gEditPart.getFigure().getBounds().height);
+						if (iterator.getValue().equals(SequenceReferenceEditPolicy.ROLE_FINISH)) {
+							final int delta = (locationOnDiagram.y() - GEPlocationOnDiagram.y() - gEditPart.getFigure().getBounds().height);
 							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> Delta " + delta + " " + editPart.getClass().getName());//$NON-NLS-1$ //$NON-NLS-2$
 							changeBoundsRequest.setMoveDelta(new Point(0, delta));
 							changeBoundsRequest.setSizeDelta(new Dimension(0, 0));
 						}
-						ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
+						final ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
 						SenderRequestUtils.addRequestSenders(changeBoundsRequest, senderList);
 						SenderRequestUtils.addRequestSender(changeBoundsRequest, linkEditPart);
-						Command cmd = editPart.getCommand(changeBoundsRequest);
+						final Command cmd = editPart.getCommand(changeBoundsRequest);
 						compoundCommand.add(cmd);
 					}
 				}
-				if (compoundCommand.size() == 0) {
-					// to avoid pb of non-executable command
-					return super.getCommand(reconnectRequest);
+				if (!compoundCommand.isEmpty()) {
+					return compoundCommand;
 				}
-				return compoundCommand;
-
 			}
-			return super.getCommand(request);
+
+			// Manage the strong references if this is a change bounds request
+		} else if (request instanceof ChangeBoundsRequest && (!org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_AUTOSIZE.equals(request.getType()))) {
+
+			final ChangeBoundsRequest initialChangeBoundsRequest = (ChangeBoundsRequest) request;
+			final Point moveDelta = initialChangeBoundsRequest.getMoveDelta();
+			
+			final CompoundCommand compoundCommand = new CompoundCommand();
+			
+			if (moveDelta.y != 0) {
+				
+				UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ MOVE delta " + moveDelta + " of " + getHost());//$NON-NLS-1$ //$NON-NLS-2$
+	
+				// The variables needed to check the possible resize of life lines
+				int maxY = -1;
+				EditPart editPartSaved = null;
+				
+				for (final Object changedEditPart : initialChangeBoundsRequest.getEditParts()) {
+					if (changedEditPart instanceof AbstractExecutionSpecificationEditPart) {
+						final AbstractExecutionSpecificationEditPart execSpecEditPart = (AbstractExecutionSpecificationEditPart) changedEditPart;
+						editPartSaved = execSpecEditPart;
+						
+						if(((EditPart) changedEditPart).getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
+							if (!SenderRequestUtils.isASender(request, execSpecEditPart)) {
+		
+								final SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) execSpecEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
+								for (EditPart editPart : references.getStrongReferences().keySet()) {
+									if (!SenderRequestUtils.isASender(request, editPart) && editPart instanceof GraphicalEditPart && editPart.getModel() instanceof Node) {
+		
+										final Bounds initialBoundStrongRef = BoundForEditPart.getBounds((Node)editPart.getModel());
+										
+										UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart.getClass().getName());//$NON-NLS-1$
+			
+										UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move from " + initialBoundStrongRef.getY() + " " + editPart.getClass().getName()); //$NON-NLS-1$ //$NON-NLS-2$
+										ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
+										changeBoundsRequest.setLocation(new Point(initialBoundStrongRef.getX(), initialBoundStrongRef.getY()));
+										changeBoundsRequest.setEditParts(editPart);
+		
+										UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> Delta " + moveDelta.y + " " + editPart.getClass().getName()); //$NON-NLS-1$ //$NON-NLS-2$
+										changeBoundsRequest.setMoveDelta(new Point(0, moveDelta.y));
+										changeBoundsRequest.setSizeDelta(new Dimension(0, 0));
+		
+										final ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
+										SenderRequestUtils.addRequestSenders(changeBoundsRequest, senderList);
+										SenderRequestUtils.addRequestSender(changeBoundsRequest, execSpecEditPart);
+										final Command cmd = editPart.getCommand(changeBoundsRequest);
+										compoundCommand.add(cmd);
+										
+										// If the move delta is going down, keep the maximum Y of the execution specification
+										if (moveDelta.y > 0) {
+											// The magical number '15' is here to define the Life line header height
+											// TODO : We need to remove this magical number
+											if (maxY < initialBoundStrongRef.getY() + initialBoundStrongRef.getHeight() + changeBoundsRequest.getMoveDelta().y + 15) {
+												maxY = initialBoundStrongRef.getY() + initialBoundStrongRef.getHeight() + changeBoundsRequest.getMoveDelta().y + 15;
+											}
+										}
+									}
+								}
+							}
+						}
+						
+						// If the move delta is going down, keep the maximum Y of the execution specification
+						if (moveDelta.y > 0) {
+							final Bounds initialBoundStrongRef = BoundForEditPart.getBounds((Node)execSpecEditPart.getModel());
+							
+							// The magical number '15' is here to define the Life line header height
+							// TODO : We need to remove this magical number
+							if (maxY < initialBoundStrongRef.getY() + initialBoundStrongRef.getHeight() + moveDelta.y + 15) {
+								maxY = initialBoundStrongRef.getY() + initialBoundStrongRef.getHeight() + moveDelta.y + 15;
+							}
+						}
+					}
+				}
+				
+				// Check if this is needed to resize life lines
+				if(null != editPartSaved && maxY > 0) {
+					final CompoundCommand resizeCompoundCommand = new CompoundCommand("Resize life lines"); //$NON-NLS-1$
+					LifelineEditPartUtil.resizeAllLifeLines(resizeCompoundCommand, editPartSaved, maxY, null);
+					
+					if(!resizeCompoundCommand.isEmpty()) {
+						compoundCommand.add(resizeCompoundCommand);
+					}
+				}
+			}
+			
+			if (!compoundCommand.isEmpty()) {
+				return compoundCommand;
+			}
 		}
 		return super.getCommand(request);
 	}

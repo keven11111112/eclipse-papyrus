@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -76,11 +78,29 @@ public class ExecutionSpecificationUtil {
 	 */
 	public static Rectangle calculateExecutionSpecificationCorrectLocation(final LifelineEditPart lifeLineEditPart, final Map<AbstractExecutionSpecificationEditPart, Rectangle> executionSpecificationRectangles, final Rectangle initialRectangle,
 			final EditPart editPartToSkip) {
+		return calculateExecutionSpecificationCorrectLocation(lifeLineEditPart, executionSpecificationRectangles, initialRectangle, Collections.singleton(editPartToSkip));
+	}
+	
+	/**
+	 * This allows to calculate the correct location of the execution specification with the list of rectangles of the execution specification for the current life line.
+	 *
+	 * @param lifeLineEditPart
+	 *            The current life line edit part.
+	 * @param executionSpecificationRectangles
+	 *            The list of rectangles of the execution specification for the current life line.
+	 * @param initialRectangle
+	 *            The initial rectangle of the execution specification.
+	 * @param editPartsToSkip
+	 *            The edit parts to don't modify.
+	 * @returnThe rectangle of the execution specification
+	 */
+	public static Rectangle calculateExecutionSpecificationCorrectLocation(final LifelineEditPart lifeLineEditPart, final Map<AbstractExecutionSpecificationEditPart, Rectangle> executionSpecificationRectangles, final Rectangle initialRectangle,
+			final Collection<EditPart> editPartsToSkip) {
 		final Rectangle result = new Rectangle(getInitialXForExecutionSpecification(lifeLineEditPart, initialRectangle), initialRectangle.y, initialRectangle.width, initialRectangle.height);
 
 		for (final Entry<AbstractExecutionSpecificationEditPart, Rectangle> entry : executionSpecificationRectangles.entrySet()) {
 			final Rectangle currentRectangle = entry.getValue();
-			if (entry.getKey() != editPartToSkip) {
+			if (editPartsToSkip == null || !editPartsToSkip.contains(entry.getKey())) {
 				if (result.y > currentRectangle.y && result.y < (currentRectangle.y + currentRectangle.height)) {
 					// The top spacing between execution specification must be respected
 					if (result.y < currentRectangle.y + TOP_SPACING_HEIGHT) {
@@ -214,12 +234,24 @@ public class ExecutionSpecificationUtil {
 	 * @return The map with the rectangle by execution specification edit part.
 	 */
 	public static Map<AbstractExecutionSpecificationEditPart, Rectangle> getRectangles(final LifelineEditPart lifeLineEditPart) {
+		return getRectangles(lifeLineEditPart, null);
+	}
+	
+	/**
+	 * This allows to get initial rectangles by execution specification available in the current life line.
+	 *
+	 * @param lifeLineEditPart
+	 *            The current life line edit part.
+	 * @param editPartsToSkip The collection of edit parts to skip during the calculation.
+	 * @return The map with the rectangle by execution specification edit part.
+	 */
+	public static Map<AbstractExecutionSpecificationEditPart, Rectangle> getRectangles(final LifelineEditPart lifeLineEditPart, final Collection<EditPart> editPartsToSkip) {
 		final Map<AbstractExecutionSpecificationEditPart, Rectangle> executionSpecificationRectangles = new HashMap<>();
 
 		final Iterator<?> editPartChildren = lifeLineEditPart.getChildren().iterator();
 		while (editPartChildren.hasNext()) {
 			final Object childEditPart = editPartChildren.next();
-			if (childEditPart instanceof AbstractExecutionSpecificationEditPart) {
+			if (childEditPart instanceof AbstractExecutionSpecificationEditPart && (editPartsToSkip == null || !editPartsToSkip.contains(childEditPart))) {
 				final Object view = ((AbstractExecutionSpecificationEditPart) childEditPart).getModel();
 				if (view instanceof Node) {
 					final Bounds bounds = BoundForEditPart.getBounds((Node) view);

@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +56,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceReferenceEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ExecutionSpecificationUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
@@ -274,17 +278,32 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 				// Initial default x and y positions
 				newBounds.setLocation(new Point((parentBound.width / 2) - (AbstractExecutionSpecificationEditPart.DEFAUT_WIDTH / 2), newBounds.getLocation().y));
 
+				// Manage a collection of edit parts to skip during the calculation of new bounds (because the strong references are moved with the execution specification and the weak references can be moved with the execution specification)
+				final Collection<EditPart> editPartsToSkipForCalculation = new HashSet<EditPart>();
+				if(((EditPart) child).getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE) != null) {
+					final AbstractExecutionSpecificationEditPart execSpecEditPart = (AbstractExecutionSpecificationEditPart) child;
+					final SequenceReferenceEditPolicy references = (SequenceReferenceEditPolicy) execSpecEditPart.getEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE);
+					editPartsToSkipForCalculation.addAll(references.getStrongReferences().keySet());
+					
+					boolean mustMoveBelowAtMovingDown = UMLDiagramEditorPlugin.getInstance().getPreferenceStore().getBoolean(CustomDiagramGeneralPreferencePage.PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN);
+					
+					if(mustMoveBelowAtMovingDown) {
+						editPartsToSkipForCalculation.addAll(references.getWeakReferences().keySet());
+					}
+				}
+				editPartsToSkipForCalculation.add(child);
+
 				final CLifeLineEditPart lifeLineEditPart = (CLifeLineEditPart) getHost();
 				final Map<AbstractExecutionSpecificationEditPart, Rectangle> executionSpecificationRectangles = ExecutionSpecificationUtil.getRectangles(lifeLineEditPart);
 
 				Rectangle boundsToRectangle = null;
 				CompoundCommand compoundCommand = null;
-
+				
 				// Loop until found command for the execution specifications bounds (because by moving other execution specification, the first one can be moved another time).
 				do {
 					// Calculate the moved execution specification bounds
 					boundsToRectangle = ExecutionSpecificationUtil.calculateExecutionSpecificationCorrectLocation(
-							lifeLineEditPart, executionSpecificationRectangles, new Rectangle(newBounds.x, newBounds.y, newBounds.width, newBounds.height), child);
+							lifeLineEditPart, executionSpecificationRectangles, new Rectangle(newBounds.x, newBounds.y, newBounds.width, newBounds.height), editPartsToSkipForCalculation);
 
 					if (boundsToRectangle.height == -1) {
 						boundsToRectangle.height = AbstractExecutionSpecificationEditPart.DEFAUT_HEIGHT;
@@ -302,17 +321,6 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 				} while (compoundCommand != null && !compoundCommand.isEmpty());
 
 				newBounds.setBounds(boundsToRectangle);
-				
-				// Check if this is needed to resize life lines
-				final Bounds lifeLineBounds = BoundForEditPart.getBounds((Node) lifeLineEditPart.getModel());
-				if((newBounds.y + newBounds.height) > lifeLineBounds.getHeight()) {
-					final CompoundCommand resizeCompoundCommand = new CompoundCommand("Resize life lines"); //$NON-NLS-1$
-					LifelineEditPartUtil.resizeAllLifeLines(resizeCompoundCommand, lifeLineEditPart, lifeLineBounds.getY() + newBounds.y + newBounds.height, null);
-					
-					if(!resizeCompoundCommand.isEmpty()) {
-						subCommand.add(resizeCompoundCommand);
-					}
-				}
 			}
 		}
 
