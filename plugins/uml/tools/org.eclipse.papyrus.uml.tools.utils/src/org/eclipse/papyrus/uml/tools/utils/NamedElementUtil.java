@@ -45,13 +45,13 @@ public class NamedElementUtil {
 
 	public static final String QUALIFIED_NAME_SEPARATOR = "::";
 
-	private final static String PUBLIC_STRING = "+";
+	private static final String PUBLIC_STRING = "+";
 
-	private final static String PROTECTED_STRING = "#";
+	private static final String PROTECTED_STRING = "#";
 
-	private final static String PRIVATE_STRING = "-";
+	private static final String PRIVATE_STRING = "-";
 
-	private final static String PACKAGE_STRING = "~";
+	private static final String PACKAGE_STRING = "~";
 
 	private static final UMLSwitch<Boolean> IS_AUTONAMED = getIsAutoNamedSwitch();
 
@@ -231,6 +231,18 @@ public class NamedElementUtil {
 	static String computeDefaultNameWithIncrementFromBase(String base, Collection<?> contents, EObject elementToRename, String separator) {
 		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 		final String preferenceValue = store.getString(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION);
+		return computeDefaultNameWithIncrementFromBase(base, contents, elementToRename, separator, preferenceValue);
+	}
+
+	/**
+	 * @param base
+	 * @param contents
+	 * @param elementToRename
+	 * @param separator
+	 * @param preferenceValue
+	 * @return
+	 */
+	public static String computeDefaultNameWithIncrementFromBase(String base, Collection<?> contents, EObject elementToRename, String separator, final String preferenceValue) {
 		if (null != preferenceValue) {
 			if (elementToRename instanceof NamedElement && null != ((NamedElement) elementToRename).getName() && false == ((NamedElement) elementToRename).getName().isEmpty()) {
 				if (null != elementToRename.eContainer()) {// not really equivalent to the contents.contains(elementToRename), but it works most of the time
