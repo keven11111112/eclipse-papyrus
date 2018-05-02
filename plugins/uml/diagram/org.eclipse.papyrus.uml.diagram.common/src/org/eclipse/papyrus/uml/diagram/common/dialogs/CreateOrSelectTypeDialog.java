@@ -39,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.common.messages.Messages;
 import org.eclipse.papyrus.uml.tools.providers.ServiceEditContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
+import org.eclipse.papyrus.uml.tools.utils.internal.preferences.NamedElementIndexNamingStrategyEnum;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -458,9 +459,9 @@ public class CreateOrSelectTypeDialog extends FormDialog {
 	protected void setNewTypeName(String text) {
 		String name = text;
 		if (text == null) {
-			name = NamedElementUtil.getDefaultNameWithIncrementFromBase(elementType.getEClass().getName(), newTypeContainer.eContents());
+			name = NamedElementUtil.computeDefaultNameWithIncrementFromBase(elementType.getEClass().getName(), newTypeContainer.eContents(),null, "",NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
 			if (elementEClass != null) {
-				name = NamedElementUtil.getDefaultNameWithIncrementFromBase(elementEClass.getName(), newTypeContainer.eContents());
+				name = NamedElementUtil.computeDefaultNameWithIncrementFromBase(elementEClass.getName(), newTypeContainer.eContents(),null, "",NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
 			}
 			newTypeNameText.setText(name);
 
