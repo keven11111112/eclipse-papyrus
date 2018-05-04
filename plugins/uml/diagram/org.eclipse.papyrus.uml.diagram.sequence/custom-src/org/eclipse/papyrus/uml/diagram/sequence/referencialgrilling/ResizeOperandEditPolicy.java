@@ -28,18 +28,10 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.notation.Bounds;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionOperandEditPart;
-import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
-import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 
 
 /**
@@ -74,21 +66,6 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy {
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			CreateViewAndElementRequest req = (CreateViewAndElementRequest) request;
-			ViewAndElementDescriptor descriptor = (req).getViewAndElementDescriptor();
-			IElementType elementType = descriptor.getElementAdapter().getAdapter(IElementType.class);
-			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.INTERACTION_OPERAND_SHAPE)) {
-				Node combinedFragmentNode = (Node) ((GraphicalEditPart) (getHost().getParent())).getNotationView();
-				// we add a new Operand so we add the default height
-				int height = ((Bounds) combinedFragmentNode.getLayoutConstraint()).getHeight();
-				if (getHost().getChildren().size() > 0) {
-					int newHeight = height + CInteractionOperandEditPart.DEFAULT_HEIGHT;
-
-					return new ICommandProxy(new SetResizeCommand(getEditingDomain(), "set dimension", new EObjectAdapter(combinedFragmentNode), new Dimension(BoundForEditPart.getWidthFromView(combinedFragmentNode), newHeight)));
-				}
-			}
-		}
 		if (RequestConstants.REQ_RESIZE_CHILDREN.equals(request.getType())) {
 			CompositeCommand compositeCommand = new CompositeCommand("Resize Operands");
 			ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;

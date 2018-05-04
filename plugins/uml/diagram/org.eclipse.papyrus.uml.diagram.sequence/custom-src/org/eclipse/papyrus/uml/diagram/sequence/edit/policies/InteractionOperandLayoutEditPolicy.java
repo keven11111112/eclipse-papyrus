@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
@@ -29,14 +30,15 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 
 /**
  * The custom LayoutEditPolicy for InteractionOperandEditPart.
-* this class has been customized to prevent the strange feedback of lifeline during the move
-*
+ * this class has been customized to prevent the strange feedback of lifeline during the move
+ *
  */
 public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 
@@ -65,6 +67,9 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 		EditPart interactionCompartment = combinedFragment.getParent();
 		if (REQ_CREATE.equals(request.getType()) && request instanceof CreateUnspecifiedTypeRequest) {
 			if (UMLElementTypes.InteractionOperand_Shape.equals(((CreateUnspecifiedTypeRequest) request).getElementTypes().get(0))) {
+				Map<? super String, Object> extendedData = request.getExtendedData();
+				int hostIndex = combinedFragmentCompartment.getChildren().indexOf(getHost());
+				extendedData.put(RequestParameterConstants.INSERT_AT, hostIndex + 1); // Insert after the target
 				return combinedFragmentCompartment.getCommand(request);
 			} else if (UMLElementTypes.CombinedFragment_Shape.equals(((CreateUnspecifiedTypeRequest) request).getElementTypes().get(0))) {
 				// Fixed bug about creating on InteractionOperand. (executed Twice).
@@ -133,6 +138,7 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 		return super.getOrphanChildrenCommand(request);
 	}
+
 	/**
 	 * @see org.eclipse.gef.editpolicies.ConstrainedLayoutEditPolicy#createAddCommand(org.eclipse.gef.requests.ChangeBoundsRequest, org.eclipse.gef.EditPart, java.lang.Object)
 	 *
@@ -143,11 +149,12 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 	 */
 	@Override
 	protected Command createAddCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
-		if( child instanceof LifelineEditPart) {
+		if (child instanceof LifelineEditPart) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.createAddCommand(request, child, constraint);
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#showTargetFeedback(org.eclipse.gef.Request)
 	 *
@@ -155,11 +162,11 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 	 */
 	@Override
 	public void showTargetFeedback(Request request) {
-		if(request instanceof ChangeBoundsRequest){
-			ChangeBoundsRequest changeBoundsRequest= (ChangeBoundsRequest)request;
+		if (request instanceof ChangeBoundsRequest) {
+			ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
 
-			if( changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
-				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x,0));
+			if (changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
+				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x, 0));
 			}
 		}
 		super.showTargetFeedback(request);
