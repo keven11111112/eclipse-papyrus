@@ -69,7 +69,7 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 	 * of Papyrus editor.
 	 */
 	protected boolean viewerInitialized = false;
-	
+
 	/**
 	 * Listener to to the diagram kind
 	 */
@@ -99,10 +99,10 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 		ISaveAndDirtyService saveAndDirtyService = servicesRegistry.getService(ISaveAndDirtyService.class);
 		saveAndDirtyService.registerIsaveablePart(this);
 		viewerInitialized = false;
-		
+
 		// add a listener to the diagram kind id
 		PapyrusDiagramStyle style = DiagramUtils.getPapyrusDiagramStyle(diagram);
-		style.eAdapters().add(diagramKindAdapter = new AdapterImpl() {
+		diagramKindAdapter = new AdapterImpl() {
 
 			@Override
 			public void notifyChanged(Notification msg) {
@@ -110,8 +110,11 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 				getEditDomain().setPaletteRoot(createPaletteRoot(null));
 				getGraphicalViewer().setContents(getDiagram());
 			}
-			
-		});
+
+		};
+		if(style!=null) {
+			style.eAdapters().add(diagramKindAdapter);
+		}
 	}
 
 	/**
@@ -172,7 +175,9 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 		// remove the listener to the diagram kind id
 		if (diagramKindAdapter != null) {
 			PapyrusDiagramStyle style = DiagramUtils.getPapyrusDiagramStyle(getDiagram());
-			style.eAdapters().remove(diagramKindAdapter);
+			if(style!=null) {
+				style.eAdapters().remove(diagramKindAdapter);
+			}
 			diagramKindAdapter = null;
 		}
 
@@ -202,7 +207,7 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 			// the service can't be found. Maybe it is already disposed.
 			// Do nothing
 		}
-		
+
 		partNameSynchronizer = null;
 		diagram = null;
 		servicesRegistry = null;
