@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.gef.KeyHandler;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -108,7 +109,10 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 			public void notifyChanged(Notification msg) {
 				//reload the editor's two viewers
 				getEditDomain().setPaletteRoot(createPaletteRoot(null));
-				getGraphicalViewer().setContents(getDiagram());
+				DiagramEditPart diagramEditPart = (DiagramEditPart) UmlGmfDiagramEditor.this.getAdapter(DiagramEditPart.class);
+				if(diagramEditPart!= null) {
+				getGraphicalViewer().setContents(diagramEditPart);
+				}
 			}
 
 		};
