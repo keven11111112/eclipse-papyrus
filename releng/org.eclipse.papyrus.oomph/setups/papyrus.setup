@@ -185,7 +185,7 @@
         <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
         <repository url="http://download.eclipse.org/nattable/releases/1.5.0/repository/"/>
         <repository url="http://download.eclipse.org/nebula/releases/1.2.0/"/>
-        <repository url="http://download.eclipse.org/tools/orbit/downloads/drops/R20170818183741/repository"/>
+        <repository url="http://download.eclipse.org/tools/orbit/downloads/drops/S20180504181223/repository"/>
       </repositoryList>
       <repositoryList name="Oxygen">
         <repository url="http://download.eclipse.org/eclipse/updates/4.7/R-4.7-201706120950/">
