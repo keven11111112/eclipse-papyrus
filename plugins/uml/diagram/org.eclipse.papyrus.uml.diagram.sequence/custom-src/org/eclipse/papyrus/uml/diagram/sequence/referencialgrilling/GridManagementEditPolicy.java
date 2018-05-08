@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016, 2017 CEA LIST, ALL4TEC and others.
+ * Copyright (c) 2016, 2018 CEA LIST, ALL4TEC, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *   CEA LIST - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519756
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 531936
+ *   Christian W. Damus - bug 533679
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -21,6 +22,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.draw2d.geometry.Point;
@@ -42,6 +44,8 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.utils.OneShotExecutor;
+import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateCoordinateCommand;
@@ -49,6 +53,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGrillingStructureC
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.diagram.sequence.util.RedirectionOperationListener;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Interaction;
@@ -70,6 +75,9 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	public static String ROW = "ROW_"; //$NON-NLS-1$
 
 	public static int threshold = 5;
+
+	private Executor transactionExecutor;
+	private Executor coveredUpdateExecutor;
 
 	/**
 	 * @return the threshold
@@ -183,6 +191,12 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	@Override
 	public void activate() {
 		super.activate();
+
+		transactionExecutor = TransactionHelper.createTransactionExecutor(
+				((IGraphicalEditPart) getHost()).getEditingDomain(),
+				Display.getCurrent()::asyncExec);
+		coveredUpdateExecutor = new OneShotExecutor(transactionExecutor);
+
 		getDiagramEventBroker().addNotificationListener(((EObject) getHost().getModel()), this);
 
 		// contentDiagramListener = new ContentDiagramListener(this);
@@ -224,8 +238,7 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			i++;
 		}
 		// cleanUnusedRowAndColumn();
-		updateRowsAndColumns();
-		updateCoveredAndOwnerAfterUpdate();
+		postRowColumnCoverageUpdate();
 	}
 
 	/**
@@ -353,6 +366,10 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	@Override
 	public void deactivate() {
 		getDiagramEventBroker().removeNotificationListener(((EObject) getHost().getModel()), this);
+		TransactionHelper.disposeTransactionExecutor(transactionExecutor);
+		transactionExecutor = null;
+		coveredUpdateExecutor = null;
+
 		if (null != this.operationHistoryListener) {
 			OperationHistoryFactory.getOperationHistory().removeOperationHistoryListener(this.operationHistoryListener);
 		}
@@ -366,11 +383,21 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		updateRowsAndColumns();
-		updateCoveredAndOwnerAfterUpdate();
+		postRowColumnCoverageUpdate();
 	}
 
+	private void postRowColumnCoverageUpdate() {
+		Runnable update = () -> {
+			updateRowsAndColumns();
+			updateCoveredAndOwnerAfterUpdate();
+		};
 
+		if (coveredUpdateExecutor == null) {
+			update.run();
+		} else {
+			coveredUpdateExecutor.execute(update);
+		}
+	}
 
 	/**
 	 * get the decoration node that represents a column from a position (absolute)

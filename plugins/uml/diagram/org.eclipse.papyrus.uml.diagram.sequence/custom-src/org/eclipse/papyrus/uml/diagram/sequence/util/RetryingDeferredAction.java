@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
+import java.util.concurrent.Executor;
 import java.util.function.BooleanSupplier;
 
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -27,12 +28,45 @@ import org.eclipse.swt.widgets.Display;
 public abstract class RetryingDeferredAction {
 	private static final int DEFAULT_RETRY_LIMIT = 3;
 
-	private final Display display;
+	private final Executor executor;
 	private final int retryLimit;
 	private volatile int retries;
 
 	/**
-	 * Initializes me.
+	 * Initializes me with the {@code executor} on which to run myself.
+	 * 
+	 * @param executor
+	 *            the executor on which to run myself
+	 * @param retryLimit
+	 *            the number of times I may retry
+	 * 
+	 * @throws IllegalArgumentException
+	 *             if the retry limit is non-positive
+	 */
+	public RetryingDeferredAction(Executor executor, int retryLimit) {
+		super();
+
+		if (retryLimit <= 0) {
+			throw new IllegalArgumentException("retry limit must be positive"); //$NON-NLS-1$
+		}
+
+		this.executor = executor;
+		this.retryLimit = retryLimit;
+	}
+
+	/**
+	 * Initializes me with the default number (three) of retries and
+	 * an {@code executor} on which to run myself.
+	 * 
+	 * @param executor
+	 *            the executor on which to run myself
+	 */
+	public RetryingDeferredAction(Executor executor) {
+		this(executor, DEFAULT_RETRY_LIMIT);
+	}
+
+	/**
+	 * Initializes me with a {@code display} on which to executor myself.
 	 * 
 	 * @param display
 	 *            the display on which I post myself for delayed execution
@@ -43,18 +77,12 @@ public abstract class RetryingDeferredAction {
 	 *             if the retry limit is non-positive
 	 */
 	public RetryingDeferredAction(Display display, int retryLimit) {
-		super();
-
-		if (retryLimit <= 0) {
-			throw new IllegalArgumentException("retry limit must be positive"); //$NON-NLS-1$
-		}
-
-		this.display = display;
-		this.retryLimit = retryLimit;
+		this(display::asyncExec, retryLimit);
 	}
 
 	/**
-	 * Initializes me with the default number (three) of retries.
+	 * Initializes me with the default number (three) of retries and
+	 * a {@code display} on which to executor myself.
 	 * 
 	 * @param display
 	 *            the display on which I post myself for delayed execution
@@ -64,7 +92,7 @@ public abstract class RetryingDeferredAction {
 	}
 
 	/**
-	 * Initializes me with the current display.
+	 * Initializes me to execute myself asynchronously on the current display.
 	 * 
 	 * @param retryLimit
 	 *            the number of times I may retry
@@ -77,7 +105,8 @@ public abstract class RetryingDeferredAction {
 	}
 
 	/**
-	 * Initializes me with the current display and the default number (three) of retries.
+	 * Initializes me to execute myself asynchronously on the current display and
+	 * with the default number (three) of retries.
 	 */
 	public RetryingDeferredAction() {
 		this(Display.getCurrent(), DEFAULT_RETRY_LIMIT);
@@ -100,7 +129,7 @@ public abstract class RetryingDeferredAction {
 	 *             if the retry limit is non-positive
 	 */
 	public static void defer(Display display, int retryLimit, BooleanSupplier action) {
-		new Wrapper(display, retryLimit, action).post();
+		defer(display::asyncExec, retryLimit, action);
 	}
 
 	/**
@@ -113,6 +142,38 @@ public abstract class RetryingDeferredAction {
 	 */
 	public static void defer(Display display, BooleanSupplier action) {
 		defer(display, DEFAULT_RETRY_LIMIT, action);
+	}
+
+	/**
+	 * Try an {@code action} up to the given number of times, asynchronously on an {@code executor}.
+	 * This is useful for the simple case where it is only necessary to attempt to perform the
+	 * action and there is no need for an explicit preparation step.
+	 * 
+	 * @param executor
+	 *            the executor on which to run myself
+	 * @param retryLimit
+	 *            the maximal number of times to tr-try the {@code action}
+	 * @param action
+	 *            the action to perform. If it returns {@code false}, then it will
+	 *            be re-tried (unless the limit is exceeded, of course)
+	 * 
+	 * @throws IllegalArgumentException
+	 *             if the retry limit is non-positive
+	 */
+	public static void defer(Executor executor, int retryLimit, BooleanSupplier action) {
+		new Wrapper(executor, retryLimit, action).post();
+	}
+
+	/**
+	 * Try an {@code action} up to the default number (three) of times, asynchronously on an {@code executor}.
+	 * 
+	 * @param executor
+	 *            the executor on which to run myself
+	 * @param action
+	 *            the action to perform
+	 */
+	public static void defer(Executor executor, BooleanSupplier action) {
+		defer(executor, DEFAULT_RETRY_LIMIT, action);
 	}
 
 	/**
@@ -168,7 +229,7 @@ public abstract class RetryingDeferredAction {
 	 */
 	public void post() {
 		if (retries < retryLimit) {
-			display.asyncExec(this::run);
+			executor.execute(this::run);
 		} else {
 			UMLDiagramEditorPlugin.log.warn("Retry limit exceeded for " + this); //$NON-NLS-1$
 		}
@@ -181,8 +242,8 @@ public abstract class RetryingDeferredAction {
 	private static final class Wrapper extends RetryingDeferredAction {
 		private final BooleanSupplier action;
 
-		Wrapper(Display display, int retryLimit, BooleanSupplier action) {
-			super(display, retryLimit);
+		Wrapper(Executor executor, int retryLimit, BooleanSupplier action) {
+			super(executor, retryLimit);
 
 			this.action = action;
 		}

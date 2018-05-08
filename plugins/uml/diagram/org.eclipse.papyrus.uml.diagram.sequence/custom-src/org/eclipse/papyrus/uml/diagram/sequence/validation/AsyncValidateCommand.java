@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.validation;
 import static org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationHelper.findExecutionWith;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,11 +30,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.core.utils.OneShotExecutor;
 import org.eclipse.papyrus.infra.emf.gmf.command.INonDirtying;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateSubtreeCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.AsynchronousCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionOperand;
@@ -43,10 +46,13 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
+import com.google.common.collect.MapMaker;
+
 /**
  * An asynchronous validation command.
  */
 public class AsyncValidateCommand extends AsynchronousCommand implements INonDirtying {
+	private static Map<EObject, OneShotExecutor> executors = new MapMaker().weakKeys().makeMap();
 
 	/**
 	 * Initializes me with the {@code object to validate}.
@@ -55,7 +61,10 @@ public class AsyncValidateCommand extends AsynchronousCommand implements INonDir
 	 *            the object to validate later
 	 */
 	public AsyncValidateCommand(EObject object) {
-		super("Validate", TransactionUtil.getEditingDomain(object), () -> validate(object));
+		super("Validate", TransactionUtil.getEditingDomain(object), () -> validate(object),
+				// Ensure that only one async validation of this object can be pending at any time
+				// and that subsequent requests just supersede any previous pending requests
+				executors.computeIfAbsent(object, __ -> new OneShotExecutor(Display.getDefault()::asyncExec)));
 	}
 
 	private static ICommand validate(EObject object) {

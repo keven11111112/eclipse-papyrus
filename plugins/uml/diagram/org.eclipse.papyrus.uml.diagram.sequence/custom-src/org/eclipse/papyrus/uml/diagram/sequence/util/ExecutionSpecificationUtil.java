@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 533679
  *
  *****************************************************************************/
 
@@ -19,8 +20,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -31,6 +35,10 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationComm
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
+import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This call allows to define needed methods for the exeuction specification objects.
@@ -300,5 +308,23 @@ public class ExecutionSpecificationUtil {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Query the execution, if any, that is started by an {@code occurrence}.
+	 * 
+	 * @param occurrence
+	 *            an occurrence specification
+	 * @return the execution specification that it starts
+	 * @since 5.0
+	 */
+	public static Optional<ExecutionSpecification> getStartedExecution(OccurrenceSpecification occurrence) {
+		CacheAdapter cache = CacheAdapter.getCacheAdapter(occurrence);
+		Predicate<EStructuralFeature.Setting> settingFilter = setting -> setting.getEStructuralFeature() == UMLPackage.Literals.EXECUTION_SPECIFICATION__START;
+
+		return cache.getInverseReferences(occurrence).stream()
+				.filter(settingFilter).findFirst()
+				.map(EStructuralFeature.Setting::getEObject)
+				.map(ExecutionSpecification.class::cast);
 	}
 }

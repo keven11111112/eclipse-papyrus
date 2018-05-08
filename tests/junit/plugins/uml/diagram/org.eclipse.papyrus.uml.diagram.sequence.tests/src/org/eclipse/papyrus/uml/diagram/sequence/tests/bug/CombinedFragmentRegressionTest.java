@@ -35,15 +35,20 @@ import static org.junit.Assume.assumeThat;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.EvaluationMode;
@@ -710,6 +715,50 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 		assertThat("No batch validation occurred", validationOccurred[0], is(true));
 	}
 
+	/**
+	 * Verify that the creation of a combined fragment doesn't cause the interaction
+	 * fragments that it encloses to move visually.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533679.di")
+	public void createCFragDoesNotMoveExistingFragments_533679() {
+		EditPart interactionEP = editor.findEditPart("DoIt", Interaction.class);
+		EditPart interactionCompartment = editor.getShapeCompartment(interactionEP);
+		Interaction interaction = interactionEP.getAdapter(Interaction.class);
+
+		// Collect the geometries of existing interaction fragments and messages
+		Map<EObject, Object> geometries = interaction.eContents().stream()
+				.collect(Collectors.toMap(Function.identity(), this::getGeometry));
+
+		editor.createShape(interactionCompartment, UMLElementTypes.CombinedFragment_Shape,
+				at(40, 60), sized(360, 360));
+
+		assumeThat(geometries.size(), greaterThanOrEqual(8));
+		geometries.forEach((element, geometry) -> assertThat(getGeometry(element), equalGeometry(geometry)));
+	}
+
+	/**
+	 * Verify that the creation of a combined fragment causes all enclosed interaction
+	 * fragments to be owned by the initial operand.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533679.di")
+	public void createCFragEnclosedFragments_533679() {
+		EditPart interactionEP = editor.findEditPart("DoIt", Interaction.class);
+		Interaction interaction = interactionEP.getAdapter(Interaction.class);
+
+		// Collect the interaction fragments that should move to the new operand
+		InteractionFragment[] fragments = interaction.getFragments().toArray(new InteractionFragment[0]);
+
+		EditPart cfragEP = editor.createShape(UMLElementTypes.CombinedFragment_Shape,
+				at(20, 60), sized(360, 360));
+
+		// All preëxisting interaction fragments are contained now in the operand
+		CombinedFragment cfrag = cfragEP.getAdapter(CombinedFragment.class);
+		InteractionOperand operand = cfrag.getOperands().get(0);
+		assertThat(operand.getFragments(), hasItems(fragments));
+	}
+
 	//
 	// Test framework
 	//
@@ -721,5 +770,52 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 				return item.eResource() == null;
 			}
 		};
+	}
+
+	/**
+	 * Work around the absence of an {@code equals} method in the {@link PointList} class.
+	 * 
+	 * @param geometry
+	 *            a geometry to test for equality with an actual observed geometry
+	 * @return the geometry matcher
+	 */
+	static Matcher<Object> equalGeometry(Object geometry) {
+		return new CustomTypeSafeMatcher<Object>("equals " + geometry) {
+			@Override
+			protected boolean matchesSafely(Object item) {
+
+				return ((item instanceof PointList) && (geometry instanceof PointList))
+						? Arrays.equals(((PointList) item).toIntArray(),
+								((PointList) geometry).toIntArray())
+						: Objects.equals(item, geometry);
+			}
+		};
+	}
+
+	/**
+	 * Query the geometry of an interaction element in the diagram.
+	 * 
+	 * @param interactionElement
+	 *            an interaction element (interaction fragment or message)
+	 * 
+	 * @return its geometry, either a {@link Rectangle}, {@link PointList}, or {@code null}
+	 *         for elements that have no geometry of their own but would be implied by others (such
+	 *         as execution occurrences)
+	 */
+	Object getGeometry(EObject interactionElement) {
+		Object result = null;
+		GraphicalEditPart editPart = Optional.ofNullable(editor.findEditPart(interactionElement))
+				.filter(GraphicalEditPart.class::isInstance).map(GraphicalEditPart.class::cast)
+				.orElse(null);
+
+		// Some things don't have edit-parts, such as execution occurrences
+		if (editPart != null) {
+			IFigure figure = editPart.getFigure();
+			result = (figure instanceof Connection)
+					? ((Connection) figure).getPoints().getCopy()
+					: figure.getBounds().getCopy();
+		}
+
+		return result;
 	}
 }

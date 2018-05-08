@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673, 533682, 533676
+ *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673, 533682, 533676, 533679
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 521550
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils.rules;
@@ -20,10 +20,12 @@ import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
@@ -61,7 +63,9 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
@@ -75,6 +79,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -93,6 +98,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.nattable.common.editor.AbstractEMFNattableEditor;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
@@ -109,7 +115,10 @@ import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPage;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IPartListener;
@@ -1498,7 +1507,8 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 * @param location
 	 *            the location (mouse pointer) at which to create the shape
 	 * @param size
-	 *            the size of the shape to create
+	 *            the size of the shape to create, or {@code null} for the default size as
+	 *            would be created when just clicking in the diagram
 	 * @return the newly created shape edit-part
 	 * 
 	 * @since 2.2
@@ -1514,13 +1524,98 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		org.eclipse.gef.commands.Command command = target.getCommand(request);
 		execute(command);
 
-		// Find the new edit-part
-		return request.getViewDescriptors().stream()
+		return getNewEditPart(parent, request.getViewDescriptors());
+	}
+
+	private EditPart getNewEditPart(EditPart context, Collection<? extends ViewDescriptor> viewDescriptors) {
+		return viewDescriptors.stream()
 				.map(desc -> desc.getAdapter(View.class)).map(View.class::cast)
 				.filter(Objects::nonNull)
-				.map(view -> DiagramEditPartsUtil.getEditPartFromView(view, parent))
+				.map(view -> DiagramEditPartsUtil.getEditPartFromView(view, context))
 				.filter(Objects::nonNull)
-				.findAny().orElseGet(failOnAbsence("Could not find new shape edit-part"));
+				.findAny().orElseGet(failOnAbsence("Could not find newly created edit-part"));
+	}
+
+	/**
+	 * Create a new shape in the current diagram by automating the creation tool.
+	 * Fails if the shape cannot be created or cannot be found in the diagram after creation.
+	 * 
+	 * @param type
+	 *            the type of shape to create
+	 * @param location
+	 *            the location (mouse pointer) at which to create the shape
+	 * @param size
+	 *            the size of the shape to create, or {@code null} for the default size as
+	 *            would be created when just clicking in the diagram
+	 * @return the newly created shape edit-part
+	 * 
+	 * @since 2.2
+	 */
+	public EditPart createShape(IElementType type, Point location, Dimension size) {
+		class MyTool extends AspectUnspecifiedTypeCreationTool {
+			private Collection<? extends ViewDescriptor> results = Collections.emptyList();
+
+			MyTool() {
+				super(Collections.singletonList(type));
+			}
+
+			@Override
+			protected Request getTargetRequest() {
+				return super.getTargetRequest();
+			}
+
+			@Override
+			protected void selectAddedObject(EditPartViewer viewer, @SuppressWarnings("rawtypes") Collection objects) {
+				super.selectAddedObject(viewer, objects);
+
+				results = ((Collection<?>) objects).stream()
+						.filter(ViewDescriptor.class::isInstance).map(ViewDescriptor.class::cast)
+						.collect(Collectors.toList());
+			}
+
+			Collection<? extends ViewDescriptor> getResults() {
+				return results;
+			}
+		}
+
+		EditPartViewer viewer = getActiveDiagram().getViewer();
+		MyTool tool = new MyTool();
+
+		Event mouse = new Event();
+		mouse.display = editor.getSite().getShell().getDisplay();
+		mouse.widget = viewer.getControl();
+		mouse.button = 1;
+		mouse.x = location.x();
+		mouse.y = location.y();
+
+		viewer.getEditDomain().setActiveTool(tool);
+		tool.setViewer(viewer);
+		mouse.type = SWT.MouseDown;
+		tool.mouseDown(new MouseEvent(mouse), viewer);
+
+		flushDisplayEvents();
+
+		if (size == null) {
+			// Just a click
+			mouse.type = SWT.MouseUp;
+			tool.mouseUp(new MouseEvent(mouse), viewer);
+		} else {
+			// Drag and release
+			mouse.type = SWT.MouseMove;
+			mouse.x = location.x() + size.width();
+			mouse.y = location.y() + size.height();
+			tool.mouseDrag(new MouseEvent(mouse), viewer);
+
+			flushDisplayEvents();
+
+			mouse.type = SWT.MouseUp;
+			tool.mouseUp(new MouseEvent(mouse), viewer);
+		}
+
+		flushDisplayEvents();
+
+		// Find the new edit-part
+		return getNewEditPart(getActiveDiagram(), tool.getResults());
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,20 +9,26 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 525369
+ *   Christian W. Damus - bug 533679
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
+
+import static org.eclipse.papyrus.uml.diagram.sequence.util.ExecutionSpecificationUtil.getStartedExecution;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
+import org.eclipse.papyrus.uml.diagram.sequence.validation.AsyncValidateCommand;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -30,6 +36,7 @@ import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -51,7 +58,7 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 				}
 			}
 			if (column.getElement() instanceof Lifeline) {
-				HorizontalLifeLinetoOperand.put((Lifeline) column.getElement(), (ArrayList<InteractionOperand>) interactionOperandStack.clone());
+				HorizontalLifeLinetoOperand.put((Lifeline) column.getElement(), new ArrayList<>(interactionOperandStack));
 			}
 
 
@@ -70,7 +77,7 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 					interactionOperandStack.add((InteractionOperand) row.getElement());
 				}
 			} else if (row.getElement() instanceof Element) {
-				verticalElementToOperand.put((Element) row.getElement(), (ArrayList<InteractionOperand>) interactionOperandStack.clone());
+				verticalElementToOperand.put((Element) row.getElement(), new ArrayList<>(interactionOperandStack));
 			}
 		}
 
@@ -92,8 +99,8 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 
 		ArrayList<InteractionFragment> elementForInteraction = new ArrayList<>();
 		// list of element for the interactionOperand
-		HashMap<InteractionOperand, ArrayList<InteractionFragment>> elementForIneractionOp = new HashMap<>();
-		Iterator elementInteraction = interaction.eAllContents();
+		HashMap<InteractionOperand, ArrayList<InteractionFragment>> elementForInteractionOp = new HashMap<>();
+		Iterator<EObject> elementInteraction = interaction.eAllContents();
 		while (elementInteraction.hasNext()) {
 			Element element = (Element) elementInteraction.next();
 			if (element instanceof InteractionFragment) {
@@ -107,19 +114,21 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 							if (potentialoperand.size() >= 1) {
 								simplifyOwnerInteractionOperand(potentialoperand);
 								if (potentialoperand.size() == 1) {
-									if (elementForIneractionOp.get(potentialoperand.get(0)) == null) {
-										elementForIneractionOp.put(potentialoperand.get(0), new ArrayList<InteractionFragment>());
+									if (elementForInteractionOp.get(potentialoperand.get(0)) == null) {
+										elementForInteractionOp.put(potentialoperand.get(0), new ArrayList<InteractionFragment>());
 									}
-									elementForIneractionOp.get(potentialoperand.get(0)).add(aFragment);
-									if (aFragment instanceof ExecutionOccurrenceSpecification) {
-										elementForIneractionOp.get(potentialoperand.get(0)).add(((ExecutionOccurrenceSpecification) aFragment).getExecution());
+									elementForInteractionOp.get(potentialoperand.get(0)).add(aFragment);
+									if (aFragment instanceof OccurrenceSpecification) {
+										Optional<ExecutionSpecification> exec = getStartedExecution((OccurrenceSpecification) aFragment);
+										exec.ifPresent(elementForInteractionOp.get(potentialoperand.get(0))::add);
 									}
 								}
 							} else {
 								if (!(aFragment instanceof InteractionOperand)) {
 									elementForInteraction.add(aFragment);
 									if (aFragment instanceof ExecutionOccurrenceSpecification) {
-										elementForInteraction.add(((ExecutionOccurrenceSpecification) aFragment).getExecution());
+										Optional<ExecutionSpecification> exec = getStartedExecution((OccurrenceSpecification) aFragment);
+										exec.ifPresent(elementForInteraction::add);
 									}
 								}
 							}
@@ -133,10 +142,10 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 		}
 
 		// update fragments of interaction operrands
-		Iterator<InteractionOperand> iterator = elementForIneractionOp.keySet().iterator();
+		Iterator<InteractionOperand> iterator = elementForInteractionOp.keySet().iterator();
 		while (iterator.hasNext()) {
 			InteractionOperand interactionOperand = iterator.next();
-			ArrayList<InteractionFragment> elements = elementForIneractionOp.get(interactionOperand);
+			ArrayList<InteractionFragment> elements = elementForInteractionOp.get(interactionOperand);
 			if (elements.size() != 0) {
 				// sort list bu taking
 				ArrayList<InteractionFragment> existedFragments = new ArrayList<>();
@@ -144,6 +153,9 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 				existedFragments.addAll(sorted);
 				existedFragments.addAll(interactionOperand.getFragments());
 				grid.execute(new SetCommand(domain, interactionOperand, UMLPackage.eINSTANCE.getInteractionOperand_Fragment(), existedFragments));
+
+				AsyncValidateCommand.get(interactionOperand)
+						.ifPresent(grid::execute);
 			}
 		}
 
@@ -188,7 +200,18 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 			DecorationNode row = iteratorRow.next();
 			if (fragments.contains(row.getElement())) {
 				if (!sortedList.contains(row.getElement())) {
-					sortedList.add((InteractionFragment) row.getElement());
+					InteractionFragment fragment = (InteractionFragment) row.getElement();
+					sortedList.add(fragment);
+
+					if (fragment instanceof OccurrenceSpecification) {
+						// These (often) aren't in the rows
+						Optional<ExecutionSpecification> execSpec = getStartedExecution((OccurrenceSpecification) fragment);
+						execSpec.ifPresent(exec -> {
+							if (!sortedList.contains(exec)) {
+								sortedList.add(exec);
+							}
+						});
+					}
 				}
 			}
 
@@ -203,17 +226,17 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 	 * @param operandList
 	 */
 	protected static void simplifyOwnerInteractionOperand(ArrayList<InteractionOperand> operandList) {
-/*
-  	while (operandList.size() > 1) {
-
-			InteractionOperand last = operandList.get(operandList.size() - 1);
-			EObject parent = last.eContainer();
-			while (parent != null) {
-				operandList.remove(parent);
-				parent = parent.eContainer();
-			}
-		}
-*/
+		/*
+		 * while (operandList.size() > 1) {
+		 * 
+		 * InteractionOperand last = operandList.get(operandList.size() - 1);
+		 * EObject parent = last.eContainer();
+		 * while (parent != null) {
+		 * operandList.remove(parent);
+		 * parent = parent.eContainer();
+		 * }
+		 * }
+		 */
 	}
 
 	/**

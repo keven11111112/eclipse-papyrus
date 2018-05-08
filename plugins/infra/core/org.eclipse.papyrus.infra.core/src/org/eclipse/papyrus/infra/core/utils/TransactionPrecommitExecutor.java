@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2018 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -39,6 +39,7 @@ import com.google.common.collect.Maps;
  * write transaction is active.
  */
 class TransactionPrecommitExecutor implements Executor, TransactionalEditingDomainListener {
+	private final TransactionalEditingDomain editingDomain;
 	private final Executor fallback;
 
 	private final AtomicBoolean writeActive = new AtomicBoolean();
@@ -46,9 +47,12 @@ class TransactionPrecommitExecutor implements Executor, TransactionalEditingDoma
 	private final IExecutorPolicy policy;
 	private final Map<?, ?> options;
 
+	private final AtomicBoolean disposed = new AtomicBoolean();
+
 	TransactionPrecommitExecutor(TransactionalEditingDomain domain, Executor fallback, IExecutorPolicy policy, Map<?, ?> options) {
 		super();
 
+		this.editingDomain = domain;
 		this.fallback = fallback;
 		this.policy = (policy == null) ? IExecutorPolicy.NULL : policy;
 		this.options = ((options != null) && options.isEmpty()) ? null : options;
@@ -56,8 +60,25 @@ class TransactionPrecommitExecutor implements Executor, TransactionalEditingDoma
 		TransactionUtil.getAdapter(domain, TransactionalEditingDomain.Lifecycle.class).addTransactionalEditingDomainListener(this);
 	}
 
+	/**
+	 * Disposes me. This entails at least desisting in listening to lifecycle changes in
+	 * my editing domain.
+	 */
+	public void dispose() {
+		if (disposed.compareAndSet(false, true)) {
+			TransactionalEditingDomain.Lifecycle lifecycle = TransactionUtil.getAdapter(editingDomain, TransactionalEditingDomain.Lifecycle.class);
+			if (lifecycle != null) {
+				lifecycle.removeTransactionalEditingDomainListener(this);
+			}
+		}
+	}
+
 	@Override
 	public void execute(Runnable command) {
+		if (disposed.get()) {
+			return;
+		}
+
 		if (writeActive.get() && selectSelf(command)) {
 			queue.offer(command);
 		} else {

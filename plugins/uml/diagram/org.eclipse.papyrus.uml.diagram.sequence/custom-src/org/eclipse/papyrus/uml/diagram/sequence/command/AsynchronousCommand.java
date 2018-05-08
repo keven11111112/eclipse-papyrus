@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.command;
 
 import java.util.List;
+import java.util.concurrent.Executor;
 import java.util.function.Supplier;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -28,6 +29,7 @@ import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.RetryingDeferredAction;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * A command that posts its execution asynchronously on the UI thread
@@ -39,11 +41,12 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.RetryingDeferredAction;
 public class AsynchronousCommand extends AbstractCommand {
 
 	private final TransactionalEditingDomain editingDomain;
+	private final Executor executor;
 	private Supplier<ICommand> futureCommand;
 	private ICommand actualCommand;
 
 	/**
-	 * Initializes me with my label and an asynchronous supplier of the command
+	 * Initializes me with my {@code label} and an asynchronous supplier of the command
 	 * to be executed.
 	 *
 	 * @param label
@@ -58,14 +61,11 @@ public class AsynchronousCommand extends AbstractCommand {
 	 *            up to three times
 	 */
 	public AsynchronousCommand(String label, TransactionalEditingDomain editingDomain, Supplier<ICommand> futureCommand) {
-		super(label);
-
-		this.editingDomain = editingDomain;
-		this.futureCommand = futureCommand;
+		this(label, editingDomain, futureCommand, Display.getDefault()::asyncExec);
 	}
 
 	/**
-	 * Initializes me with my label, affected filesm, and an asynchronous supplier of the command
+	 * Initializes me with my {@code label}, affected files, and an asynchronous supplier of the command
 	 * to be executed.
 	 *
 	 * @param label
@@ -82,15 +82,64 @@ public class AsynchronousCommand extends AbstractCommand {
 	 *            up to three times
 	 */
 	public AsynchronousCommand(String label, @SuppressWarnings("rawtypes") List affectedFiles, TransactionalEditingDomain editingDomain, Supplier<ICommand> futureCommand) {
+		this(label, affectedFiles, editingDomain, futureCommand, Display.getDefault()::asyncExec);
+	}
+
+	/**
+	 * Initializes me with my {@code label}, an asynchronous supplier of the command
+	 * to be executed, and an {@code executor} on which to run.
+	 *
+	 * @param label
+	 *            my label
+	 * @param editingDomain
+	 *            my contextual editing domain
+	 * @param futureCommand
+	 *            a supplier of the command. It will be invoked later on
+	 *            the UI thread to compute the command to be executed then and captured
+	 *            back into the original context of this GMF command. If the supplied
+	 *            command is {@code null}, then it will be asynchronously re-tried
+	 *            up to three times
+	 * @param executor
+	 *            the executor on which to run myself
+	 */
+	public AsynchronousCommand(String label, TransactionalEditingDomain editingDomain, Supplier<ICommand> futureCommand, Executor executor) {
+		super(label);
+
+		this.editingDomain = editingDomain;
+		this.futureCommand = futureCommand;
+		this.executor = executor;
+	}
+
+	/**
+	 * Initializes me with my {@code label}, affected files, an asynchronous supplier of the command
+	 * to be executed, and an {@code executor} on which to run.
+	 *
+	 * @param label
+	 *            my label
+	 * @param affectedFiles
+	 *            my affected files
+	 * @param editingDomain
+	 *            my contextual editing domain
+	 * @param futureCommand
+	 *            a supplier of the command. It will be invoked later on
+	 *            the UI thread to compute the command to be executed then and captured
+	 *            back into the original context of this GMF command. If the supplied
+	 *            command is {@code null}, then it will be asynchronously re-tried
+	 *            up to three times
+	 * @param executor
+	 *            the executor on which to run myself
+	 */
+	public AsynchronousCommand(String label, @SuppressWarnings("rawtypes") List affectedFiles, TransactionalEditingDomain editingDomain, Supplier<ICommand> futureCommand, Executor executor) {
 		super(label, affectedFiles);
 
 		this.editingDomain = editingDomain;
 		this.futureCommand = futureCommand;
+		this.executor = executor;
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-		RetryingDeferredAction.defer(this::captureCommand);
+		RetryingDeferredAction.defer(executor, this::captureCommand);
 		return CommandResult.newOKCommandResult();
 	}
 

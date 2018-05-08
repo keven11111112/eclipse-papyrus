@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,13 +9,14 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bugs 429826, 408491, 433320
- *  Christian W. Damus - bugs 451557, 457560, 461629, 463564, 466997, 465416, 485220, 498140
+ *  Christian W. Damus - bugs 451557, 457560, 461629, 463564, 466997, 465416, 485220, 498140, 533679
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicReference;
@@ -471,6 +472,26 @@ public class TransactionHelper {
 		}
 
 		return new TransactionPrecommitExecutor(domain, fallback, policy, options);
+	}
+
+	/**
+	 * Disposes of a {@linkplain #createTransactionExecutor(TransactionalEditingDomain, Executor) transaction executor}
+	 * that is no longer needed on an editing domain that is still in use.
+	 * 
+	 * @param executor
+	 *            a transaction executor to dispose
+	 * 
+	 * @throws IllegalArgumentException
+	 *             if the {@code executor} is not a transaction executor
+	 * @throws NullPointerException
+	 *             if the {@code executor} is {@code null}
+	 * @since 3.0
+	 */
+	public static void disposeTransactionExecutor(Executor executor) {
+		if (!(Objects.requireNonNull(executor) instanceof TransactionPrecommitExecutor)) {
+			throw new IllegalArgumentException("executor"); //$NON-NLS-1$
+		}
+		((TransactionPrecommitExecutor) executor).dispose();
 	}
 
 	/**
