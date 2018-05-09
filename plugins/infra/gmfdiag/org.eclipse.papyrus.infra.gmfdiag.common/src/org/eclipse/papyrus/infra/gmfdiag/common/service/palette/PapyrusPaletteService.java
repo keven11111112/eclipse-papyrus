@@ -227,17 +227,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				if (!(part instanceof DiagramEditorWithFlyOutPalette)) {
 					return false;
 				}
-				boolean supports = getProviderConfiguration().supports(o.getEditor(), o.getContent());
-
-				if (!supports) {
-					return false;
-				}
-
-				if (isHidden(o)) {
-					return false;
-				}
-
-				return true;
+				return getProviderConfiguration().supports(o.getEditor(), o.getContent()) && !isHidden(o);
 			}
 
 			return false;
@@ -264,23 +254,8 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				return policy.provides(operation);
 			}
 
-			// FIXME: that statement is always true (let's see the method's
-			// parameter).
-			// => Remove the test
-			if (operation instanceof ContributeToPaletteOperation) {
-				ContributeToPaletteOperation o = operation;
 
-				// FIXME returns directly the result
-				boolean supports = getProviderConfiguration().supports(o.getEditor(), o.getContent());
-
-				if (!supports) {
-					return false;
-				}
-
-				return true;
-			}
-
-			return false;
+			return getProviderConfiguration().supports(operation.getEditor(), operation.getContent());
 		}
 
 		/**
@@ -466,7 +441,6 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 						filePath = filePath.substring(jarPathEndIndex + 2, path.length());
 						ZipEntry entry = zipFile.getEntry(path);
 						return zipFile.getInputStream(entry);
-						// return new File(filePath);
 					}
 				}
 			} catch (IOException e) {
@@ -502,8 +476,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				Activator.log.error("Impossible to read local definition of the file " + stateLocationRootFile, null);
 				return null;
 			}
-			URI uri = URI.createFileURI(stateLocationRootFile.getAbsolutePath());
-			return uri;
+			return URI.createFileURI(stateLocationRootFile.getAbsolutePath());
 		}
 	}
 
@@ -638,29 +611,21 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			if (!isEnable) {
 				return false;
 			}
-			// FIXME: that statement is always true (let's see the method's
-			// parameter).
-			// => Remove the test
-			if (operation instanceof ContributeToPaletteOperation) {
-				ContributeToPaletteOperation o = operation;
 
-				IEditorPart part = o.getEditor();
-				if (!(part instanceof DiagramEditorWithFlyOutPalette)) {
-					return false;
-				}
-
-				// will never work, ID of the site is the multi diagram
-				// editor...
-				if (description.getContributionEditorID() != null) {
-					if (!description.getContributionEditorID().equals(((DiagramEditorWithFlyOutPalette) part).getContributorId())) {
-						return false;
-					}
-				}
-
-				return true;
+			IEditorPart part = operation.getEditor();
+			if (!(part instanceof DiagramEditorWithFlyOutPalette)) {
+				return false;
 			}
 
-			return false;
+			// will never work, ID of the site is the multi diagram
+			// editor...
+			if (description.getContributionEditorID() != null) {
+				if (!description.getContributionEditorID().equals(((DiagramEditorWithFlyOutPalette) part).getContributorId())) {
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 	}
@@ -944,7 +909,18 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 				configurePaletteVisibility(checker, diagram, drawer);
 			}
 		}
+		
+		// if the default entry is set but not visible, set it to null instead to avoid a potential NPE
+		if (root.getDefaultEntry() != null && !isVisible(root.getDefaultEntry())) {
+			root.setDefaultEntry(null);
+		}	
+		
 		return root;
+	}
+	
+	private boolean isVisible(PaletteEntry entry) {
+		PaletteContainer parent = entry.getParent();
+		return entry.isVisible() && (parent == null || isVisible(parent));
 	}
 	
 	protected void configurePaletteVisibility(PolicyChecker checker, Diagram diagram, PaletteContainer container) {
@@ -1047,7 +1023,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		// 2. inits the operation used to check if the provider really provides
 		// to this service
 		// 3. inits the list of ids of hidden palettes
-		List<PapyrusPaletteService.ProviderDescriptor> descriptors = new ArrayList<PapyrusPaletteService.ProviderDescriptor>();
+		List<PapyrusPaletteService.ProviderDescriptor> descriptors = new ArrayList<>();
 		final ContributeToPaletteOperation o = new ContributeToPaletteOperation(part, part.getEditorInput(), root, new HashMap());
 		// For each provider, checks it contributes to the palette of this
 		// editor part

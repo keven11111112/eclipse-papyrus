@@ -20,7 +20,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.gef.KeyHandler;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -29,6 +28,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.gmfdiag.style.PapyrusDiagramStyle;
+import org.eclipse.papyrus.infra.gmfdiag.style.StylePackage;
 import org.eclipse.papyrus.infra.internationalization.InternationalizationPackage;
 import org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
@@ -103,20 +103,31 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 		viewerInitialized = false;
 
 		// add a listener to the diagram kind id
-		PapyrusDiagramStyle style = DiagramUtils.getPapyrusDiagramStyle(diagram);
 		diagramKindAdapter = new AdapterImpl() {
-
 			@Override
 			public void notifyChanged(Notification msg) {
-				//reload the editor's two viewers
-				getEditDomain().setPaletteRoot(createPaletteRoot(null));
-				DiagramEditPart diagramEditPart = (DiagramEditPart) UmlGmfDiagramEditor.this.getAdapter(DiagramEditPart.class);
-				if(diagramEditPart!= null) {
-				getGraphicalViewer().setContents(diagramEditPart);
+				if (msg.getNewValue() instanceof PapyrusDiagramStyle) {
+					((PapyrusDiagramStyle)msg.getNewValue()).eAdapters().add(diagramKindAdapter);
+				} else if (msg.getOldValue() instanceof PapyrusDiagramStyle) {
+					((PapyrusDiagramStyle)msg.getOldValue()).eAdapters().remove(diagramKindAdapter);
+				}
+				if (StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE__DIAGRAM_KIND_ID.equals(msg.getFeature()) ||
+					msg.getNewValue() instanceof PapyrusDiagramStyle ||
+					msg.getOldValue() instanceof PapyrusDiagramStyle	) {
+					//reload the editor's two viewers
+					if (getEditDomain().getPaletteViewer() != null) {
+						getEditDomain().setPaletteRoot(createPaletteRoot(null));
+					}			
+					if (getGraphicalViewer() != null) {
+						getGraphicalViewer().setContents(diagram);
+					}
+						
 				}
 			}
-
 		};
+		
+		diagram.eAdapters().add(diagramKindAdapter);
+		PapyrusDiagramStyle style = DiagramUtils.getPapyrusDiagramStyle(diagram);
 		if(style!=null) {
 			style.eAdapters().add(diagramKindAdapter);
 		}
@@ -148,9 +159,6 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 		super.initializeGraphicalViewer();
 	}
 
-	/**
-	 * @generated
-	 */
 	@Override
 	protected void initializeGraphicalViewer() {
 		// do nothing to enable a lazy initialization.
@@ -183,6 +191,7 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 			if(style!=null) {
 				style.eAdapters().remove(diagramKindAdapter);
 			}
+			getDiagram().eAdapters().remove(diagramKindAdapter);
 			diagramKindAdapter = null;
 		}
 
@@ -226,11 +235,6 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 		return super.getAdapter(type);
 	}
 
-	@Override
-	protected void stopListening() {
-		super.stopListening();
-	}
-
 	/**
 	 *
 	 * @return the backbone service registry. it cannot return null.
@@ -263,9 +267,7 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 	 */
 	@Override
 	protected KeyHandler getKeyHandler() {
-		// we remove all keybinding provided by GMF
-		KeyHandler keyHandler = new KeyHandler();
-		return keyHandler;
+		return new KeyHandler();// we remove all keybinding provided by GMF
 	}
 
 	/**
@@ -343,7 +345,7 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 
 	@Override
 	public void createPartControl(Composite parent) {
-		IContextService contextService = (IContextService) getSite().getService(IContextService.class);
+		IContextService contextService = getSite().getService(IContextService.class);
 		// FIXME : before Eclipse Juno, this line was not necessary
 		// see bug 367816 and bug 382218
 		contextService.activateContext("org.eclipse.gmf.runtime.diagram.ui.diagramContext"); //$NON-NLS-1$
