@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   C�line Janssens (celine.janssens@all4tec.net) - Add Coregion  functionnality
+ *   EclipseSource - Bug 533770
  *
  *****************************************************************************/
 
@@ -16,10 +17,11 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.sequence.figures.CombinedFragmentFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentResizeEditPolicy;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Element;
@@ -28,7 +30,7 @@ import org.eclipse.uml2.uml.InteractionOperatorKind;
 /**
  * @author Patrick Tessier
  * @since 3.0
- * this class has been customized to prevent the strange feedback of lifeline during the move
+ *        this class has been customized to prevent the strange feedback of lifeline during the move
  *
  */
 public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
@@ -55,6 +57,16 @@ public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
 
 		super.handleNotificationEvent(event);
 		getPrimaryShape().setName(((CombinedFragment) this.resolveSemanticElement()).getInteractionOperator().getLiteral());
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart#createDefaultEditPolicies()
+	 *
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new CombinedFragmentResizeEditPolicy());
 	}
 
 
@@ -95,6 +107,7 @@ public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
 		super.refresh();
 
 	}
+
 	/**
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#showTargetFeedback(org.eclipse.gef.Request)
 	 *
@@ -102,11 +115,11 @@ public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
 	 */
 	@Override
 	public void showTargetFeedback(Request request) {
-		if(request instanceof ChangeBoundsRequest){
-			ChangeBoundsRequest changeBoundsRequest= (ChangeBoundsRequest)request;
+		if (request instanceof ChangeBoundsRequest) {
+			ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
 
-			if( changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
-				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x,0));
+			if (changeBoundsRequest.getEditParts().get(0) instanceof LifelineEditPart) {
+				changeBoundsRequest.setMoveDelta(new Point(changeBoundsRequest.getMoveDelta().x, 0));
 			}
 		}
 		super.showTargetFeedback(request);
