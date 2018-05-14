@@ -16,11 +16,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Cursors;
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Locator;
+import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
@@ -30,12 +35,12 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.handles.RelativeHandleLocator;
 import org.eclipse.gef.handles.SquareHandle;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -54,7 +59,9 @@ import org.eclipse.uml2.uml.CombinedFragment;
  *
  * @since 5.0
  */
-public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicy {
+public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicyEx {
+
+	private Polyline separatorFeedback;
 
 	/**
 	 * @see org.eclipse.gef.editpolicies.ResizableEditPolicy#createSelectionHandles()
@@ -169,7 +176,7 @@ public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicy {
 		}
 
 		double moveDistance = request.getMoveDelta().getDistance(new Point(0, 0));
-		if (moveDistance < 5) {
+		if (moveDistance < 1) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
@@ -234,7 +241,36 @@ public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicy {
 	}
 
 	protected void showMoveSeparatorFeedback(MoveSeparatorRequest request) {
-		// TODO Feedback
+		Polyline feedback = getMoveSeparatorFeedbackFigure();
+		GraphicalEditPart operandPart = getOperandBelow(request.getSeparatorIndex());
+		IFigure operandBelowFigure = operandPart.getFigure();
+		IFigure operandAboveFigure = getOperandAbove(request.getSeparatorIndex()).getFigure();
+
+		PrecisionRectangle location = new PrecisionRectangle(operandBelowFigure.getBounds());
+		location.translate(0., request.getMoveDelta().preciseY());
+
+		Point newPosition = location.getTopLeft();
+		if (operandBelowFigure.containsPoint(newPosition) || operandAboveFigure.containsPoint(newPosition)) {
+			feedback.setVisible(true);
+		} else {
+			// We're leaving the valid area; hide the feedback
+			feedback.setVisible(false);
+		}
+
+		operandBelowFigure.translateToAbsolute(location);
+		feedback.translateToRelative(location);
+
+		feedback.setPoint(location.getTopLeft(), 0);
+		feedback.setPoint(location.getTopRight(), 1);
+
+		feedback.validate();
+	}
+
+	protected Polyline getMoveSeparatorFeedbackFigure() {
+		if (separatorFeedback == null) {
+			separatorFeedback = createSeparatorFeedbackFigure();
+		}
+		return separatorFeedback;
 	}
 
 	/**
@@ -251,7 +287,32 @@ public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicy {
 	}
 
 	protected void eraseMoveSeparatorFeedback(MoveSeparatorRequest request) {
-		// TODO Feedback
+		if (separatorFeedback != null) {
+			removeFeedback(separatorFeedback);
+		}
+		separatorFeedback = null;
+	}
+
+	protected Polyline createSeparatorFeedbackFigure() {
+		Polyline l = new Polyline() {
+			/**
+			 * @see org.eclipse.draw2d.Figure#paint(org.eclipse.draw2d.Graphics)
+			 *
+			 * @param graphics
+			 */
+			@Override
+			public void paint(Graphics graphics) {
+				super.paint(graphics);
+			}
+		};
+		l.setLineStyle(Graphics.LINE_DASH);
+		l.setForegroundColor(ColorConstants.darkGray);
+		l.addPoint(new Point(0, 0));
+		l.addPoint(new Point(0, 50));
+		l.setBounds(getHostFigure().getBounds());
+		l.validate();
+		addFeedback(l);
+		return l;
 	}
 
 	/**
