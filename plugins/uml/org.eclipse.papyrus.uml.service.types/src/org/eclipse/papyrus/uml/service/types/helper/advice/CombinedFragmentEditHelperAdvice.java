@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 533682
+ *   Christian W. Damus - bugs 533682, 530201
  *   EclipseSource - Bug 533678
  *
  *****************************************************************************/
@@ -19,28 +19,52 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.services.edit.commands.InsertAtCommand;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.UMLFactory;
+
+import com.google.common.collect.Iterables;
 
 /**
  * This allows to manage the combined fragment creation with an interaction operand at the same moment.
  *
  * @since 3.0
  */
-public class CombinedFragmentEditHelperAdvice extends AbstractEditHelperAdvice {
+public class CombinedFragmentEditHelperAdvice extends InteractionFragmentEditHelperAdvice {
+
+	@Override
+	public void configureRequest(IEditCommandRequest request) {
+		super.configureRequest(request);
+
+		if (request instanceof CreateElementRequest) {
+			CreateElementRequest createRequest = (CreateElementRequest) request;
+			IElementType typeToCreate = createRequest.getElementType();
+
+			if (ElementUtil.isTypeOf(typeToCreate, UMLElementTypes.INTERACTION_OPERAND)) {
+				CombinedFragment combinedFragment = (CombinedFragment) createRequest.getContainer();
+				RequestParameterUtils.setCoveredLifelines(request, combinedFragment.getCovereds());
+			}
+		}
+	}
 
 	@Override
 	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
-		return new ConfigureElementCommand(request) {
+		ICommand superResult = super.getBeforeConfigureCommand(request);
+
+		ICommand result = new ConfigureElementCommand(request) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
@@ -51,10 +75,15 @@ public class CombinedFragmentEditHelperAdvice extends AbstractEditHelperAdvice {
 				interactionOperand.setName(NamedElementUtil.getDefaultNameWithIncrement(interactionOperand, combinedFragment.eContents()));
 				combinedFragment.getOperands().add(interactionOperand);
 
+				Iterable<Lifeline> coveredLifelines = RequestParameterUtils.getCoveredLifelines(request);
+				Iterables.addAll(interactionOperand.getCovereds(), coveredLifelines);
+
 				return CommandResult.newOKCommandResult(combinedFragment);
 			}
 
 		};
+
+		return (superResult != null) ? superResult.compose(result) : result;
 	}
 
 	/**

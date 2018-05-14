@@ -1,19 +1,20 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2018 CEA LIST, Christian W. Damus, and others.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
- * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *  	Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - remove linked messages too
+ * 	 Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *   Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - remove linked messages too
+ *   Christian W. Damus - bug 530201
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
+
+import static org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils.getCoveredLifelines;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,32 +27,29 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.InteractionFragmentHelper;
 import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
-import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 
+import com.google.common.collect.Iterables;
+
 /**
  * Helper advice for all {@link ExecutionSpecification} elements.
  */
-public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice {
+public class ExecutionSpecificationHelperAdvice extends InteractionFragmentEditHelperAdvice {
 
 	/**
 	 * Create an execution Occurrence
@@ -82,21 +80,20 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 	@Override
 	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
 
+		final ICommand superResult = super.getBeforeConfigureCommand(request);
+
 		final ExecutionSpecification execution = (ExecutionSpecification) request.getElementToConfigure();
-		IElementType elementType = request.getTypeToConfigure();
-		return new ConfigureElementCommand(request) {
+		Lifeline coveredLifeline = Iterables.getFirst(getCoveredLifelines(request), null);
+
+		if (coveredLifeline == null) {
+			// Not a valid scenario, so don't bother with start/finish occurrences
+			return superResult;
+		}
+
+		ICommand result = new ConfigureElementCommand(request) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-				Object coveredParam = request.getParameters().get(SequenceRequestConstant.COVERED);
-
-				Lifeline coveredLifeline = null;
-				if (coveredParam instanceof Lifeline) {
-					coveredLifeline = (Lifeline) coveredParam;
-				}
-
-				final ExecutionSpecification execution = (ExecutionSpecification) request.getElementToConfigure();
-
 				Object replaceStart = request.getParameters().get(SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_START);
 				if (replaceStart instanceof MessageOccurrenceSpecification) {
 					execution.setStart((MessageOccurrenceSpecification) replaceStart);
@@ -107,9 +104,6 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 					start.setExecution(execution);
 					execution.setStart(start);
 				}
-				// add covered for the execution
-				coveredLifeline.getCoveredBys().add(execution);
-				execution.getCovereds().add(coveredLifeline);
 
 				// create Occurrence SpecFinish
 				Object replaceFinish = request.getParameters().get(SequenceRequestConstant.REPLACE_EXECUTION_SPECIFICATION_FINISH);
@@ -125,6 +119,8 @@ public class ExecutionSpecificationHelperAdvice extends AbstractEditHelperAdvice
 			}
 
 		};
+		
+		return (superResult != null) ? superResult.compose(result) : result;
 	}
 
 	/**

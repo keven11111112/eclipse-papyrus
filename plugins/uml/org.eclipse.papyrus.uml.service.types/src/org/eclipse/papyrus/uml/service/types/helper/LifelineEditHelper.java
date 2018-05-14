@@ -1,18 +1,20 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2018 CEA LIST, Christian W. Damus, and others.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
- * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ * 	 Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 530201
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
+
+import static java.util.Collections.singleton;
+import static org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils.setCoveredLifelines;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -42,13 +44,16 @@ public class LifelineEditHelper extends ElementEditHelper {
 	 *
 	 * @param request
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void configureRequest(IEditCommandRequest request) {
 		if (request instanceof CreateElementRequest) {
 			CreateElementRequest createRequest = (CreateElementRequest) request;
+			EObject container = createRequest.getContainer();
 
-			if (createRequest.getContainer() instanceof Lifeline) {
-				createRequest.getParameters().put(SequenceRequestConstant.COVERED, createRequest.getContainer());
+			if (container instanceof Lifeline) {
+				createRequest.getParameters().put(SequenceRequestConstant.COVERED, container);
+				setCoveredLifelines(createRequest, singleton((Lifeline) container));
 			}
 
 			IElementType elementtype = createRequest.getElementType();

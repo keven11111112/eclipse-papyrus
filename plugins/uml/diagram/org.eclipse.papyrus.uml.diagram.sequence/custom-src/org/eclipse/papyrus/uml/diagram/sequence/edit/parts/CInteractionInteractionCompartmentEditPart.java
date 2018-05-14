@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 530201
  *
  *****************************************************************************/
 
@@ -21,10 +22,12 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionFragmentContainerCreationEditPolicy;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 
@@ -41,6 +44,13 @@ public class CInteractionInteractionCompartmentEditPart extends InteractionInter
 	 */
 	public CInteractionInteractionCompartmentEditPart(View view) {
 		super(view);
+	}
+
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new InteractionFragmentContainerCreationEditPolicy());
 	}
 
 	/**

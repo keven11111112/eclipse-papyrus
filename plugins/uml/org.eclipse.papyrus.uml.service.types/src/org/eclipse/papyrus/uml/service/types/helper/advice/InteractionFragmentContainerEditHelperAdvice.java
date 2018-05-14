@@ -19,7 +19,6 @@ import java.util.Optional;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.uml2.uml.GeneralOrdering;
@@ -33,7 +32,7 @@ import org.eclipse.uml2.uml.InteractionOperand;
  * 
  * @since 4.0
  */
-public class InteractionFragmentContainerEditHelperAdvice extends AbstractEditHelperAdvice {
+public class InteractionFragmentContainerEditHelperAdvice extends InteractionFragmentEditHelperAdvice {
 
 	/**
 	 * Initializes me.

@@ -10,7 +10,7 @@
  *   CEA LIST - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519756
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 531936
- *   Christian W. Damus - bug 533679
+ *   Christian W. Damus - bugs 533679, 530201
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -324,11 +324,9 @@ public class GridManagementEditPolicy extends GraphicalEditPolicyEx implements A
 			covered = new ArrayList<>();
 			for (DecorationNode column : columns) {
 				if (column.getElement() instanceof InteractionOperand) {
-					if (!(coveredbyInteractionOperand.contains(column.getElement()))) {
-						coveredbyInteractionOperand.add((InteractionOperand) column.getElement());
-					} else {
-						coveredbyInteractionOperand.remove(column.getElement());
-					}
+					// Except for the initial operand creation, coverage is managed
+					// explicitly by the user
+					continue;
 				}
 				if (column.getElement().equals(lifeline)) {
 					covered.addAll(coveredbyInteractionOperand);

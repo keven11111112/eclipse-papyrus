@@ -1584,13 +1584,19 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		Event mouse = new Event();
 		mouse.display = editor.getSite().getShell().getDisplay();
 		mouse.widget = viewer.getControl();
-		mouse.button = 1;
 		mouse.x = location.x();
 		mouse.y = location.y();
 
 		viewer.getEditDomain().setActiveTool(tool);
 		tool.setViewer(viewer);
+
+		// Move to the place where we'll click
+		mouse.type = SWT.MouseMove;
+		tool.mouseMove(new MouseEvent(mouse), viewer);
+
+		// Press down
 		mouse.type = SWT.MouseDown;
+		mouse.button = 1;
 		tool.mouseDown(new MouseEvent(mouse), viewer);
 
 		flushDisplayEvents();

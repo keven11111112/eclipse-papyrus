@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +8,13 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 530201
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
+
+import static java.util.Collections.singleton;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
@@ -39,6 +42,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
+import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
 /**
@@ -73,7 +77,8 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy implem
 				View view = (View) getHost().getModel();
 				EObject hostElement = ViewUtil.resolveSemanticElement(view);
 				createElementRequest.setContainer(hostElement.eContainer());
-				createElementRequest.setParameter(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.COVERED, hostElement);
+				createElementRequest.setParameter(SequenceRequestConstant.COVERED, hostElement);
+				createElementRequest.setParameter(SequenceRequestConstant.COVERED_LIFELINES, singleton(hostElement));
 				// case of Message Occurence Specification
 				MessageOccurrenceSpecification mos = displayEvent.getMessageEvent(getHostFigure().getParent().getParent(), ((CreateRequest) request).getLocation());
 				if (mos != null) {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA
+ * Copyright (c) 2017, 2018 CEA, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,12 +9,16 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 530201
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.utils;
 
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+
 /**
  * Constants used in the sequence diagram
+ * 
  * @since 3.0
  */
 public interface SequenceRequestConstant {
@@ -25,8 +29,24 @@ public interface SequenceRequestConstant {
 	/** The occurrence specification(s) which are the nearest from a creation request */
 	public static final String NEAREST_OCCURRENCE_SPECIFICATION = "Nearest occurrence specification"; //$NON-NLS-1$
 
-	/** Add in the request that a element cover another element */
+	/**
+	 * Add in the request that a element cover another element.
+	 * 
+	 * @deprecated Since version 3.1, use the {@link #COVERED_LIFELINES}, instead.
+	 * @see RequestParameterUtils#getCoveredLifelines(IEditCommandRequest)
+	 * @see RequestParameterUtils#setCoveredLifelines(IEditCommandRequest, Iterable)
+	 */
+	@Deprecated
 	public static final String COVERED = "Element Covers this one"; //$NON-NLS-1$
+
+	/**
+	 * Hint providing a collection of covered lifelines ({@code {@literal Collection<Lifeline>}}).
+	 * 
+	 * @since 4.0
+	 * @see RequestParameterUtils#getCoveredLifelines(IEditCommandRequest)
+	 * @see RequestParameterUtils#setCoveredLifelines(IEditCommandRequest, Iterable)
+	 */
+	public static final String COVERED_LIFELINES = "PAPYRUS_SEQD_COVERED_LIFELINES"; //$NON-NLS-1$
 
 	/** when you create a message, sometimes you create after another event **/
 	public static final String PREVIOUS_EVENT = "previous event"; //$NON-NLS-1$
@@ -34,11 +54,11 @@ public interface SequenceRequestConstant {
 	public static final String SECOND_PREVIOUS_EVENT = "second previous event"; //$NON-NLS-1$
 
 	public static final String MESSAGE_SENTEVENT_REPLACE_EXECUTIONEVENT = "MESSAGE_SENTEVENT_REPLACE_EXECUTIONEVENT";
-	public static final String MESSAGE_RECEIVEEVENT_REPLACE_EXECUTIONEVENT  = "MESSAGE_RECEIVEEVENT_REPLACE_EXECUTIONEVENT";
-	
+	public static final String MESSAGE_RECEIVEEVENT_REPLACE_EXECUTIONEVENT = "MESSAGE_RECEIVEEVENT_REPLACE_EXECUTIONEVENT";
+
 	/** the start of Execution specification can be replace by an event of a message */
 	public static final String REPLACE_EXECUTION_SPECIFICATION_START = "REPLACE_EXECUTION_SPECIFICATION_START"; //$NON-NLS-1$
 	/** the finish of Execution specification can be replace by an event of a message */
 	public static final String REPLACE_EXECUTION_SPECIFICATION_FINISH = "REPLACE_EXECUTION_SPECIFICATION_FINISH"; //$NON-NLS-1$
- 
+
 }
