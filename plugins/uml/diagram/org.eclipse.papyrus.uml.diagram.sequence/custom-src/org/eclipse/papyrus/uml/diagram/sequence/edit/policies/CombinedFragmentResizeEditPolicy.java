@@ -107,10 +107,59 @@ public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicy {
 	public Command getCommand(Request request) {
 		if (request instanceof MoveSeparatorRequest) {
 			return getMoveSeparatorCommand((MoveSeparatorRequest) request);
-		} else if (request instanceof ChangeBoundsRequest) {
-			// TODO Update the size of the first/last Operand(s)
 		}
 		return super.getCommand(request);
+	}
+
+	/**
+	 * @see org.eclipse.gef.editpolicies.ResizableEditPolicy#getResizeCommand(org.eclipse.gef.requests.ChangeBoundsRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected Command getResizeCommand(ChangeBoundsRequest request) {
+		Command resizeCFCommand = super.getResizeCommand(request);
+		if (resizeCFCommand != null && resizeCFCommand.canExecute()) {
+			CompoundCommand command = new CompoundCommand(resizeCFCommand.getLabel());
+			command.setDebugLabel("Resize CF & Operand");
+
+			@SuppressWarnings("unchecked")
+			List<Command> commands = command.getCommands();
+			commands.add(resizeCFCommand);
+
+			ChangeBoundsRequest cbr = request;
+			int direction = cbr.getResizeDirection();
+
+			List<GraphicalEditPart> operands = getOperands();
+			if (!operands.isEmpty() && ((direction & PositionConstants.NORTH) != 0 || (direction & PositionConstants.SOUTH) != 0)) {
+				ChangeBoundsRequest resizeFirstOrLastOperand = new ChangeBoundsRequest();
+				GraphicalEditPart operand;
+				if ((direction & PositionConstants.NORTH) != 0) {
+					operand = operands.get(0);
+					resizeFirstOrLastOperand.setResizeDirection(PositionConstants.NORTH);
+				} else {
+					operand = operands.get(operands.size() - 1);
+					resizeFirstOrLastOperand.setResizeDirection(PositionConstants.SOUTH);
+				}
+
+				resizeFirstOrLastOperand.setMoveDelta(cbr.getMoveDelta());
+				resizeFirstOrLastOperand.setLocation(cbr.getLocation());
+				resizeFirstOrLastOperand.setEditParts(operand);
+				resizeFirstOrLastOperand.setSizeDelta(new Dimension(0, cbr.getSizeDelta().height));
+				resizeFirstOrLastOperand.setType(RequestConstants.REQ_RESIZE);
+				commands.add(operand.getCommand(resizeFirstOrLastOperand));
+			} else {
+				// Width change only; nothing is required.
+				// XXX Optionally, we may force the new width to all operands. That's not required, as the layout
+				// will take care of that anyway.
+				return resizeCFCommand;
+			}
+
+			return command;
+		}
+
+		return resizeCFCommand;
 	}
 
 	protected Command getMoveSeparatorCommand(MoveSeparatorRequest request) {
@@ -171,35 +220,38 @@ public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicy {
 		return requestBelow;
 	}
 
-	@Override
-	public void showTargetFeedback(Request request) {
-		if (request instanceof MoveSeparatorRequest) {
-			showMoveSeparatorFeedback((MoveSeparatorRequest) request);
-		}
-		super.showTargetFeedback(request);
-	}
-
-	protected void showMoveSeparatorFeedback(MoveSeparatorRequest request) {
-		// getOperandAbove(request).showTargetFeedback(getResizeAboveRequest(request));
-		// getOperandBelow(request).showTargetFeedback(getResizeBelowRequest(request));
-	}
-
 	/**
-	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#eraseTargetFeedback(org.eclipse.gef.Request)
+	 * @see org.eclipse.gef.editpolicies.ResizableEditPolicy#showSourceFeedback(org.eclipse.gef.Request)
 	 *
 	 * @param request
 	 */
 	@Override
-	public void eraseTargetFeedback(Request request) {
+	public void showSourceFeedback(Request request) {
+		if (request instanceof MoveSeparatorRequest) {
+			showMoveSeparatorFeedback((MoveSeparatorRequest) request);
+		}
+		super.showSourceFeedback(request);
+	}
+
+	protected void showMoveSeparatorFeedback(MoveSeparatorRequest request) {
+		// TODO Feedback
+	}
+
+	/**
+	 * @see org.eclipse.gef.editpolicies.ResizableEditPolicy#eraseSourceFeedback(org.eclipse.gef.Request)
+	 *
+	 * @param request
+	 */
+	@Override
+	public void eraseSourceFeedback(Request request) {
 		if (request instanceof MoveSeparatorRequest) {
 			eraseMoveSeparatorFeedback((MoveSeparatorRequest) request);
 		}
-		super.eraseTargetFeedback(request);
+		super.eraseSourceFeedback(request);
 	}
 
 	protected void eraseMoveSeparatorFeedback(MoveSeparatorRequest request) {
-		// getOperandAbove(request).eraseTargetFeedback(getResizeAboveRequest(request));
-		// getOperandBelow(request).eraseTargetFeedback(getResizeBelowRequest(request));
+		// TODO Feedback
 	}
 
 	/**
