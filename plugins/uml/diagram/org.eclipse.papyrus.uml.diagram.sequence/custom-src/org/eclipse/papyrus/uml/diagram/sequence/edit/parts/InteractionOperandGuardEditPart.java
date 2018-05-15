@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA
+ * Copyright (c) 2013, 2018 CEA, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *   Soyatec - Initial API and implementation
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 533689
+ *   Christian W. Damus - bug 533699
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -251,6 +252,19 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 				// Fixed bug about moving guard.
 				feedback.translateToAbsolute(rect);
 				request.setMoveDelta(new Point(rect.x - initialAbsBounds.x, rect.y - initialAbsBounds.y));
+			}
+			
+			/**
+			 * Disable moving of the interaction operand guard, per
+			 * <a href="http://eclip.se/533699">bug 533699</a>.
+			 *
+			 * @return {@code false}, always
+			 * 
+			 * @see <a href="http://eclip.se/533699">bug 533699</a>
+			 */
+			@Override
+			public boolean isDragAllowed() {
+				return false;
 			}
 		};
 	}

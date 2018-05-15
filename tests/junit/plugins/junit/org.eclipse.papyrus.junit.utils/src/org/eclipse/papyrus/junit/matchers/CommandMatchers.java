@@ -17,7 +17,7 @@ import java.util.function.Predicate;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.TypeSafeDiagnosingMatcher;
 
 /**
  * Matchers for commands of various flavours, which are defined in nested classes.
@@ -34,15 +34,21 @@ public final class CommandMatchers {
 	}
 
 	static <C> Matcher<C> executable(Predicate<? super C> canExecute) {
-		return new TypeSafeMatcher<C>() {
+		return new TypeSafeDiagnosingMatcher<C>() {
 			@Override
 			public void describeTo(Description description) {
-				description.appendText("unexecutable");
+				description.appendText("executable");
 			}
 
 			@Override
-			protected boolean matchesSafely(C item) {
-				return canExecute.test(item);
+			protected boolean matchesSafely(C item, Description mismatch) {
+				boolean result = canExecute.test(item);
+
+				if (!result) {
+					mismatch.appendText("unexecutable");
+				}
+
+				return result;
 			}
 		};
 	}
