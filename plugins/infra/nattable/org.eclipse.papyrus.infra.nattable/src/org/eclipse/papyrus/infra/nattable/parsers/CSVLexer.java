@@ -65,7 +65,7 @@ public class CSVLexer {
 	private RewindableTextStream input; // the input stream
 	private char separator; // The cell separator character
 	private char textMarker; // The raw text beginning and end character
-	private char[] builder; // The buffer used to build the tokens
+	private StringBuilder builder; // The buffer used to build the tokens
 	private int lastTokenType; // The type of the last matched token
 	private String lastTokenValue; // The value of the last matched token
 
@@ -82,7 +82,7 @@ public class CSVLexer {
 	public CSVLexer(final Reader input, final char valueSeparator, final char textMarker) {
 		this(input, valueSeparator, textMarker, false);
 	}
-	
+
 	/**
 	 * Initializes this lexer with boolean to determinate if the beginning whitespace must be kept.
 	 *
@@ -99,7 +99,7 @@ public class CSVLexer {
 		this.input = new RewindableTextStream(input);
 		this.separator = valueSeparator;
 		this.textMarker = textMarker;
-		this.builder = new char[BUFFER_SIZE];
+		this.builder = new StringBuilder(BUFFER_SIZE);
 		this.lastTokenType = TOKEN_ERROR;
 		this.lastTokenValue = null;
 		this.keepBeginningWhiteSpace = keepBeginningWhiteSpace;
@@ -155,8 +155,7 @@ public class CSVLexer {
 		}
 
 		// Here we are on normal data
-		int length = 1;
-		builder[0] = c;
+		builder.append(c);
 		while (true) {
 			c = input.read();
 			if (input.isAtEnd()) {
@@ -166,13 +165,14 @@ public class CSVLexer {
 				input.rewind(1);
 				break;
 			}
-			builder[length] = c;
-			length++;
+			builder.append(c);
 		}
 
 		// we matched the data
 		// Now, trim the trailing white spaces
-		while (length > 0 && isWhitespace(builder[length - 1])) {
+		int length = builder.length() - 1;
+		while (length > 0 && isWhitespace(builder.charAt(length))) {
+			builder.deleteCharAt(length);
 			length--;
 		}
 
@@ -229,14 +229,14 @@ public class CSVLexer {
 				return getTokenError();
 			}
 			if (c != textMarker) {
-				builder[length] = c;
+				builder.append(c);
 				length++;
 			} else {
 				// get the following char
 				c = input.read();
 				if (c == textMarker) {
 					// This is a double marker
-					builder[length] = c;
+					builder.append(c);
 					length++;
 				} else {
 					// This was the end of the quoted text
@@ -302,7 +302,8 @@ public class CSVLexer {
 	 */
 	private String getTokenValue(int length) {
 		lastTokenType = TOKEN_VALUE;
-		lastTokenValue = new String(builder, 0, length);
+		lastTokenValue = builder.toString();
+		builder.setLength(0);
 		return lastTokenValue;
 	}
 
