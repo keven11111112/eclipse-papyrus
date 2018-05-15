@@ -35,6 +35,8 @@
 		<module>org.eclipse.papyrus.codegen</module>
 		<module>org.eclipse.papyrus.def</module>
 		<module>org.eclipse.papyrus.dev.assistants.codegen</module>
+		<module>org.eclipse.papyrus.gmfgenextension</module>
+		<module>org.eclipse.papyrus.mwe2.utils</module>
 		<module>org.eclipse.papyrus.dev.pluginexplorer</module>
 		<module>org.eclipse.papyrus.dev.project.management</module>
 		<module>org.eclipse.papyrus.dev.types</module>
@@ -43,10 +45,8 @@
 		<module>org.eclipse.papyrus.gmf.editpartview</module>
 		<module>org.eclipse.papyrus.gmf.editpoliciesstates</module>
 		<module>org.eclipse.papyrus.gmf.figureview</module>
-		<module>org.eclipse.papyrus.gmfgenextension</module>
 		<module>org.eclipse.papyrus.infra.emf.commandstack</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.css.debug</module>
-		<module>org.eclipse.papyrus.mwe2.utils</module>
 		<module>org.eclipse.papyrus.releng.tools</module>
 		<module>org.eclipse.papyrus.uml.m2m.qvto.tests.tools</module>
 	</modules>

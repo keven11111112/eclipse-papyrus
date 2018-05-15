@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Main" sequenceNumber="1526389859">
+<target name="Papyrus Main" sequenceNumber="1526397285">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.8.0.v20180130-0706"/>
@@ -46,12 +46,12 @@
       <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.10.0/I-latest/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.12.0.201801291558"/>
-      <repository id="gmfRuntime" location="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201801291558/"/>
+      <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.12.0.201805151421"/>
+      <repository id="gmfRuntime" location="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201805151421"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.gmf.runtime.notation.sdk.feature.group" version="1.12.0.201801291538"/>
-      <repository id="gmfNotation" location="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201801291538"/>
+      <unit id="org.eclipse.gmf.runtime.notation.sdk.feature.group" version="1.12.0.201805141341"/>
+      <repository id="gmfNotation" location="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201805141341"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.sdk.feature.group" version="2.14.0.v20180421-1151"/>

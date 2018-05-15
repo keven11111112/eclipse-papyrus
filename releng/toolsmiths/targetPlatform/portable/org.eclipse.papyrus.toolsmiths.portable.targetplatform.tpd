@@ -32,7 +32,7 @@ location egit "http://download.eclipse.org/egit/updates-4.10" // oomph
 
 //updateFrom("m2e",0)
 
-location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180313-2237" // oomph
+location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180515-2017" // oomph
 
 //updateFrom("Mylyn",0)
 
@@ -64,7 +64,8 @@ location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4
 //manualUpdate ("GMF Tooling",0) 
 
 location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" { // gen
-	org.eclipse.gmf.tooling.feature.group
-	org.eclipse.gmf.tooling.runtime.feature.group
-	org.eclipse.gmf.tooling.codegen.xtend2.feature.group
+	org.eclipse.gmf.codegen
+	org.eclipse.gmf.codegen.ui
+	org.eclipse.gmf.codegen.xtend
+	org.eclipse.gmf.codegen.xtend.ui
 }

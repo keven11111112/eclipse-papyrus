@@ -64,13 +64,13 @@ location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/
 
 //updateFrom("GMF Runtime",0) 
 
-location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201801291558/" {
+location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201805151421" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
 //updateFrom("GMF Runtime",1)
 
-location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201801291538" {
+location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201805141341" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
 }
 
