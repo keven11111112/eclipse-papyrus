@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
+ * Copyright (c) 2014, 2018 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.CombinableMatcher;
 
 import com.google.common.base.Strings;
@@ -33,32 +34,99 @@ public class MoreMatchers {
 		super();
 	}
 
+	/**
+	 * Obtain a matcher for numbers greater than a {@code minimum}.
+	 * 
+	 * @param minimum
+	 *            the lower bound (exclusive) to match against
+	 * @return the matcher
+	 */
 	public static <N extends Number & Comparable<N>> Matcher<N> greaterThan(final N minimum) {
-		return new BaseMatcher<N>() {
-			@Override
-			public void describeTo(Description description) {
-				description.appendText("greater than ").appendValue(minimum);
-			}
-
-			@Override
-			@SuppressWarnings("unchecked")
-			public boolean matches(Object item) {
-				return ((N) item).compareTo(minimum) > 0;
-			}
-		};
+		return comparesAs(minimum, +1, false);
 	}
 
+	/**
+	 * Obtain a matcher for numbers less than a {@code maximum}.
+	 * 
+	 * @param maximum
+	 *            the upper bound (exclusive) to match against
+	 * @return the matcher
+	 */
 	public static <N extends Number & Comparable<N>> Matcher<N> lessThan(final N maximum) {
-		return new BaseMatcher<N>() {
+		return comparesAs(maximum, -1, false);
+	}
+
+	/**
+	 * Obtain a matcher for numbers greater or equal to a {@code minimum}.
+	 * 
+	 * @param minimum
+	 *            the lower bound (inclusive) to match against
+	 * @return the matcher
+	 * @since 2.2
+	 */
+	public static <N extends Number & Comparable<N>> Matcher<N> greaterThanOrEqual(final N minimum) {
+		return comparesAs(minimum, +1, true);
+	}
+
+	/**
+	 * Obtain a matcher for numbers less or equal to a {@code maximum}.
+	 * 
+	 * @param maximum
+	 *            the upper bound (inclusive) to match against
+	 * @return the matcher
+	 * @since 2.2
+	 */
+	public static <N extends Number & Comparable<N>> Matcher<N> lessThanOrEqual(final N maximum) {
+		return comparesAs(maximum, -1, true);
+	}
+
+	/**
+	 * Obtain a matcher for comparables that matches comparisons yielding the given
+	 * {@code sign}.
+	 * 
+	 * @param compareTo
+	 *            the value to compare with
+	 * @param sign
+	 *            the sign of the comparison result, either negative for less
+	 *            than {@code compareTo}, positive for greater than {@code compareTo},
+	 *            or zero for equal to {@code compareTo}
+	 * @param orEqual
+	 *            in the case of non-zero {@code sign}, whether to match equality also
+	 * 
+	 * @return the matcher
+	 * 
+	 * @since 2.2
+	 */
+	public static <C extends Comparable<C>> Matcher<C> comparesAs(final C compareTo, final int sign, final boolean orEqual) {
+		final int normalizedSign = Integer.signum(sign);
+		return new TypeSafeMatcher<C>() {
 			@Override
 			public void describeTo(Description description) {
-				description.appendText("less than ").appendValue(maximum);
+				switch (normalizedSign) {
+				case -1:
+					description.appendText(orEqual ? "≤ " : "< ");
+					break;
+				case +1:
+					description.appendText(orEqual ? "≥ " : "> ");
+					break;
+				default:
+					description.appendText("= ");
+					break;
+				}
+				description.appendValue(compareTo);
 			}
 
 			@Override
-			@SuppressWarnings("unchecked")
-			public boolean matches(Object item) {
-				return ((N) item).compareTo(maximum) < 0;
+			protected boolean matchesSafely(C item) {
+				int comparison = item.compareTo(compareTo);
+				switch (normalizedSign) {
+				case -1:
+					return orEqual ? comparison <= 0 : comparison < 0;
+				case +1:
+					return orEqual ? comparison >= 0 : comparison > 0;
+				default:
+					return comparison == 0;
+				}
 			}
 		};
 	}

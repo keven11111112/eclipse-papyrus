@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.junit.utils.rules;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
@@ -101,6 +100,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.junit.matchers.CommandMatchers;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
@@ -1163,7 +1163,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	public void execute(org.eclipse.gef.commands.Command command) {
 		assertThat("No command", command, notNullValue());
-		assertThat("Command not executable", command.canExecute(), is(true));
+		assertThat(command, CommandMatchers.GEF.canExecute());
 		getActiveDiagramEditor().getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		flushDisplayEvents();
 	}
@@ -1493,7 +1493,10 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 		request.setLocation(location);
 		request.setSize(size);
-		org.eclipse.gef.commands.Command command = parent.getCommand(request);
+
+		EditPart target = parent.getTargetEditPart(request);
+		assertThat("No target edit part", target, notNullValue());
+		org.eclipse.gef.commands.Command command = target.getCommand(request);
 		execute(command);
 
 		// Find the new edit-part

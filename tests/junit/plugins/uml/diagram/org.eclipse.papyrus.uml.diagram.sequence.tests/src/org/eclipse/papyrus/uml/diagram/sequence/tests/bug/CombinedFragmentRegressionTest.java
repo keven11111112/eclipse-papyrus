@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
 
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThan;
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.lessThan;
 import static org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture.at;
@@ -35,12 +36,17 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.matchers.CommandMatchers;
 import org.eclipse.papyrus.junit.matchers.DiagramMatchers;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
@@ -358,5 +364,113 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 
 		combinedFragmentEP = (GraphicalEditPart) editor.findEditPart(cfrag);
 		verifyCFrag.accept(combinedFragmentEP);
+	}
+
+	/**
+	 * Verify the creation of an interaction operand by dropping the tool over a lifeline
+	 * that is covered by (but in the diagram actually occludes) a combined fragment.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533683.di")
+	public void createOperandOnLifeline_533672() {
+		GraphicalEditPart lifelineEP = (GraphicalEditPart) editor.findEditPart("a", Lifeline.class);
+		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
+		assumeThat("Combined fragment not found", combinedFragmentEP, notNullValue());
+
+		GraphicalEditPart interactionOperandEP = (GraphicalEditPart) editor.createShape(
+				lifelineEP, UMLElementTypes.InteractionOperand_Shape,
+				at(80, 80), null); // Null rectangle for the default size
+
+		Consumer<GraphicalEditPart> verifyOperand = operandEP -> {
+			assertThat(operandEP, DiagramMatchers.semanticThat(instanceOf(InteractionOperand.class)));
+			EditPart cfragEP = SequenceUtil.getParentCombinedFragmentPart(operandEP);
+			assertThat("No containing combined fragment", cfragEP, notNullValue());
+			assertThat("Wrong combined fragment", cfragEP, is(combinedFragmentEP));
+
+			Rectangle lifelineBounds = lifelineEP.getFigure().getBounds();
+			Rectangle operandBounds = operandEP.getFigure().getBounds();
+			Rectangle intersection = operandBounds.intersect(lifelineBounds);
+			assertThat("Interaction operand does not span lifeline",
+					intersection.width(), greaterThanOrEqual(lifelineBounds.width()));
+		};
+		verifyOperand.accept(interactionOperandEP);
+
+		InteractionOperand operand = (InteractionOperand) interactionOperandEP.getAdapter(EObject.class);
+
+		editor.undo();
+
+		interactionOperandEP = (GraphicalEditPart) editor.findEditPart(operand);
+		assertThat("Interaction operand still present in the diagram", interactionOperandEP, nullValue());
+
+		editor.redo();
+
+		interactionOperandEP = (GraphicalEditPart) editor.findEditPart(operand);
+		verifyOperand.accept(interactionOperandEP);
+	}
+
+	/**
+	 * Verify the creation of an interaction operand by drawing the tool over two lifelines
+	 * that are covered by (but in the diagram actually occlude) a combined fragment.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533683.di")
+	public void createOperandOverLifelines_533672() {
+		GraphicalEditPart aEP = (GraphicalEditPart) editor.findEditPart("a", Lifeline.class);
+		GraphicalEditPart bEP = (GraphicalEditPart) editor.findEditPart("b", Lifeline.class);
+		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
+		assumeThat("Combined fragment not found", combinedFragmentEP, notNullValue());
+
+		GraphicalEditPart interactionOperandEP = (GraphicalEditPart) editor.createShape(
+				aEP, UMLElementTypes.InteractionOperand_Shape,
+				at(80, 80), sized(220, 120)); // Extend to a point within lifeline b
+
+		Consumer<GraphicalEditPart> verifyOperand = operandEP -> {
+			assertThat(operandEP, DiagramMatchers.semanticThat(instanceOf(InteractionOperand.class)));
+			EditPart cfragEP = SequenceUtil.getParentCombinedFragmentPart(operandEP);
+			assertThat("No containing combined fragment", cfragEP, notNullValue());
+			assertThat("Wrong combined fragment", cfragEP, is(combinedFragmentEP));
+
+			Rectangle lifelineBounds = aEP.getFigure().getBounds().getUnion(
+					bEP.getFigure().getBounds());
+			Rectangle operandBounds = operandEP.getFigure().getBounds();
+			Rectangle intersection = operandBounds.intersect(lifelineBounds);
+			assertThat("Interaction operand does not span lifeline",
+					intersection.width(), greaterThanOrEqual(lifelineBounds.width()));
+		};
+		verifyOperand.accept(interactionOperandEP);
+
+		InteractionOperand operand = (InteractionOperand) interactionOperandEP.getAdapter(EObject.class);
+
+		editor.undo();
+
+		interactionOperandEP = (GraphicalEditPart) editor.findEditPart(operand);
+		assertThat("Interaction operand still present in the diagram", interactionOperandEP, nullValue());
+
+		editor.redo();
+
+		interactionOperandEP = (GraphicalEditPart) editor.findEditPart(operand);
+		verifyOperand.accept(interactionOperandEP);
+	}
+
+	/**
+	 * Verify that an interaction operand cannot be created on a lifeline that is not
+	 * covered by a combined fragment.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533673.di")
+	public void noCreateOperandOnLifelineWithoutCFrag_533672() {
+		IGraphicalEditPart lifelineEP = (IGraphicalEditPart) editor.findEditPart("a", Lifeline.class);
+
+		CreateViewRequest request = CreateViewRequestFactory.getCreateShapeRequest(
+				UMLElementTypes.InteractionOperand_Shape,
+				lifelineEP.getDiagramPreferencesHint());
+
+		request.setLocation(at(80, 80));
+		// Default size
+
+		EditPart target = lifelineEP.getTargetEditPart(request);
+		assertThat("No target edit part", target, notNullValue());
+		org.eclipse.gef.commands.Command command = target.getCommand(request);
+		assertThat("Should not be able to create", command, not(CommandMatchers.GEF.canExecute()));
 	}
 }

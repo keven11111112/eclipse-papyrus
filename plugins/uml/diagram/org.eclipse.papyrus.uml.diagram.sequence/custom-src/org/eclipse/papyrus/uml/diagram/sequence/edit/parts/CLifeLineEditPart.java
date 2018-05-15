@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017, 2018 CEA LIST, ALL4TEC and others.
+ * Copyright (c) 2017, 2018 CEA LIST, ALL4TEC, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *   CEA LIST - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519621, 526803
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 531520
+ *   Christian W. Damus - bug 533672
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -22,6 +23,9 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.FixedAnchor;
@@ -35,6 +39,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.ILifelineInternalFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifeLineLayoutManager;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.MessageCreateLifelineAnchor;
+import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
  * @author Patrick Tessier
@@ -87,8 +93,8 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	@Override
 	public void refresh() {
 		if (getPrimaryShape() instanceof LifelineFigure) {
-			//Bug 531520: we redefine the border of the lifeline, in order to include the children
-			//the message are connected to the middle line of the Lifeline, but they must be drawn as connected on the ExecutionSpeficiation
+			// Bug 531520: we redefine the border of the lifeline, in order to include the children
+			// the message are connected to the middle line of the Lifeline, but they must be drawn as connected on the ExecutionSpeficiation
 			final List<NodeFigure> childrenFigure = new ArrayList<>();
 			for (final Object current : getChildren()) {
 				if (current instanceof AbstractExecutionSpecificationEditPart) {
@@ -176,5 +182,28 @@ public class CLifeLineEditPart extends LifelineEditPart {
 		// }
 		return super.getTargetConnectionAnchor(connEditPart);
 	}
+	
+	/**
+	 * @since 5.0
+	 */
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateViewAndElementRequest req = (CreateViewAndElementRequest) request;
 
+			// If we're creating an operand, it needs to be done by the covering combined fragment
+			if (UMLElementTypes.InteractionOperand_Shape.equals(req.getViewAndElementDescriptor().getElementAdapter().getAdapter(IElementType.class))) {
+				EditPart container = SequenceUtil.findInteractionFragmentContainerEditPartAt(req.getLocation(), this);
+				if (container instanceof CInteractionOperandEditPart) {
+					// Delegate again to the combined fragment
+					container = SequenceUtil.getParentCombinedFragmentPart(container);
+				}
+				if (container != null) {
+					return container.getTargetEditPart(request);
+				}
+			}
+		}
+
+		return super.getTargetEditPart(request);
+	}
 }
