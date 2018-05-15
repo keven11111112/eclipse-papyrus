@@ -19,6 +19,8 @@ import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.lessThan;
 import static org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture.at;
 import static org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture.sized;
+import static org.hamcrest.CoreMatchers.either;
+import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -29,6 +31,8 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeThat;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
 import org.eclipse.draw2d.IFigure;
@@ -48,11 +52,19 @@ import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Message;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.CustomTypeSafeMatcher;
+import org.hamcrest.Matcher;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -472,5 +484,55 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 		assertThat("No target edit part", target, notNullValue());
 		org.eclipse.gef.commands.Command command = target.getCommand(request);
 		assertThat("Should not be able to create", command, not(CommandMatchers.GEF.canExecute()));
+	}
+	
+	/**
+	 * Verify that the deletion of a combined fragment deletes all of the interaction
+	 * operands within it (this is different to {@link #deleteCombinedFragment()} which
+	 * tests a combined fragment having only one operand).
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533681.di")
+	public void deleteCombinedFragmentMultipleOperands_533681() {
+		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
+
+		CombinedFragment cfrag = (CombinedFragment) combinedFragmentEP.getAdapter(EObject.class);
+		Interaction interaction = cfrag.getEnclosingInteraction();
+		assumeThat("No interaction", interaction, notNullValue());
+
+		InteractionOperand alt1 = cfrag.getOperand("alt1");
+		InteractionOperand alt2 = cfrag.getOperand("alt2");
+
+		editor.delete(combinedFragmentEP);
+
+		assertThat("Operands not deleted", Arrays.asList(alt1, alt2), everyItem(isDeleted()));
+		assertThat("Combined fragment not deleted", cfrag, isDeleted());
+
+		// Key interaction fragments still exist and are shown, and messages
+		EditPart requestMessage = editor.findEditPart("request", Message.class);
+		assertThat("Message went missing", requestMessage, notNullValue());
+		EditPart execSpec = editor.findEditPart("exec", ExecutionSpecification.class);
+		assertThat("Execution went missing", execSpec, notNullValue());
+		EditPart destruction = editor.findEditPart("deleted", DestructionOccurrenceSpecification.class);
+		assertThat("Destruction went missing", destruction, notNullValue());
+
+		// But other contents of the interaction operands are, of course, gone
+		List<Element> allInteractionContents = interaction.allOwnedElements();
+		assertThat(allInteractionContents, everyItem(not(
+				either(CoreMatchers.<Element> instanceOf(Constraint.class))
+						.or(instanceOf(Comment.class)))));
+	}
+
+	//
+	// Test framework
+	//
+
+	static Matcher<EObject> isDeleted() {
+		return new CustomTypeSafeMatcher<EObject>("is deleted") {
+			@Override
+			protected boolean matchesSafely(EObject item) {
+				return item.eResource() == null;
+			}
+		};
 	}
 }
