@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
 
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThan;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.lessThan;
 import static org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture.at;
 import static org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture.sized;
 import static org.hamcrest.CoreMatchers.hasItem;
@@ -45,6 +46,7 @@ import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.Lifeline;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -281,5 +283,80 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 
 		assertThat("Fragments of deleted operand not retained",
 				interaction.getFragments(), hasItems(deleteSend, deleted));
+	}
+
+	/**
+	 * Verify the creation of a combined fragment by just dropping the tool on a
+	 * lifeline.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533673.di")
+	public void createCFragOnLifeline_533671() {
+		GraphicalEditPart lifelineEP = (GraphicalEditPart) editor.findEditPart("a", Lifeline.class);
+
+		// Null size to just drop the tool
+		GraphicalEditPart combinedFragmentEP = (GraphicalEditPart) editor.createShape(lifelineEP, UMLElementTypes.CombinedFragment_Shape, at(80, 80), null);
+
+		Consumer<GraphicalEditPart> verifyCFrag = cfragEP -> {
+			assertThat(cfragEP, DiagramMatchers.semanticThat(instanceOf(CombinedFragment.class)));
+			assertThat("Combined fragment is not a peer of the lifeline", cfragEP.getParent(), is(lifelineEP.getParent()));
+			Rectangle lifelineBounds = lifelineEP.getFigure().getBounds();
+			Rectangle cfragBounds = cfragEP.getFigure().getBounds();
+			assertThat("Combined fragment not bounded by the lifeline", lifelineBounds.contains(cfragBounds), is(true));
+		};
+		verifyCFrag.accept(combinedFragmentEP);
+
+		CombinedFragment cfrag = (CombinedFragment) combinedFragmentEP.getAdapter(EObject.class);
+
+		editor.undo();
+
+		combinedFragmentEP = (GraphicalEditPart) editor.findEditPart(cfrag);
+		assertThat("Combined fragment still present in the diagram", combinedFragmentEP, nullValue());
+
+		editor.redo();
+
+		combinedFragmentEP = (GraphicalEditPart) editor.findEditPart(cfrag);
+		verifyCFrag.accept(combinedFragmentEP);
+	}
+
+	/**
+	 * Verify the creation of a combined fragment by drawing the tool out over
+	 * a pair of lifelines.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533673.di")
+	public void createCFragOverLifelines_533671() {
+		GraphicalEditPart aEP = (GraphicalEditPart) editor.findEditPart("a", Lifeline.class);
+		GraphicalEditPart bEP = (GraphicalEditPart) editor.findEditPart("b", Lifeline.class);
+		GraphicalEditPart interactionCompartment = (GraphicalEditPart) aEP.getParent();
+
+		GraphicalEditPart combinedFragmentEP = (GraphicalEditPart) editor.createShape(
+				interactionCompartment, UMLElementTypes.CombinedFragment_Shape,
+				at(25, 80), sized(360, 200));
+
+		Consumer<GraphicalEditPart> verifyCFrag = cfragEP -> {
+			assertThat(cfragEP, DiagramMatchers.semanticThat(instanceOf(CombinedFragment.class)));
+			assertThat("Combined fragment not contained in interaction compartment", cfragEP.getParent(), is(interactionCompartment));
+			Rectangle aBounds = aEP.getFigure().getBounds();
+			Rectangle bBounds = bEP.getFigure().getBounds();
+			Rectangle cfragBounds = cfragEP.getFigure().getBounds();
+			assertThat("Combined fragment does not extend east of lifeline a",
+					aBounds.x(), greaterThan(cfragBounds.x()));
+			assertThat("Combined fragment does not extend west of lifeline b",
+					bBounds.right(), lessThan(cfragBounds.right()));
+		};
+		verifyCFrag.accept(combinedFragmentEP);
+
+		CombinedFragment cfrag = (CombinedFragment) combinedFragmentEP.getAdapter(EObject.class);
+
+		editor.undo();
+
+		combinedFragmentEP = (GraphicalEditPart) editor.findEditPart(cfrag);
+		assertThat("Combined fragment still present in the diagram", combinedFragmentEP, nullValue());
+
+		editor.redo();
+
+		combinedFragmentEP = (GraphicalEditPart) editor.findEditPart(cfrag);
+		verifyCFrag.accept(combinedFragmentEP);
 	}
 }
