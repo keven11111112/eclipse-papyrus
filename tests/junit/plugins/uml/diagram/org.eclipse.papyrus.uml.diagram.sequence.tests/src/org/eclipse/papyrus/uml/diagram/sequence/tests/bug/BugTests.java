@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2012, 2018 CEA LIST, Christian W. Damus, and others.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -34,6 +34,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestAdvancedDragDrop_364696.class,
 		TestGuardEdition_364808.class,
 		CombinedFragmentRegressionTest.class,
+		TestCombinedFragmentOperandsLayout.class,
 })
 public class BugTests {
 
