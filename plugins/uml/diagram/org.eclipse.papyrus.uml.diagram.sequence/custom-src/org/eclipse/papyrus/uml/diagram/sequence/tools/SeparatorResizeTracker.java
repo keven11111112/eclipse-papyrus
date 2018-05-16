@@ -67,15 +67,6 @@ public class SeparatorResizeTracker extends ResizeTracker {
 		request.setLocation(location);
 		request.setEditParts(getOperationSet());
 		request.getExtendedData().clear();
-
-		enforceConstraintsForResize(request);
-	}
-
-	/**
-	 * @param request
-	 */
-	private void enforceConstraintsForResize(MoveSeparatorRequest request) {
-		// TODO Make sure we don't go further than the Owner's bounds, or further than the previous/next separator
 	}
 
 	/**

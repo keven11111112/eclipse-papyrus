@@ -94,7 +94,10 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy {
 		View shapeView = NotationHelper.findView(operandPart);
 		Dimension size = operandPart.getFigure().getSize();
 
-		size.expand(changeBoundsRequest.getSizeDelta().width, changeBoundsRequest.getSizeDelta().height);
+		// Take zoom into account; the request contains absolute mouse coordinates delta.
+		Dimension sizeDelta = changeBoundsRequest.getSizeDelta().getCopy();
+		operandPart.getFigure().translateToRelative(sizeDelta);
+		size.expand(sizeDelta.width, sizeDelta.height);
 
 		ICommand setBoundsCommand = new SetResizeCommand(editingDomain, "Resize Operands", new EObjectAdapter(shapeView), size);
 		compositeCommand.add(setBoundsCommand);

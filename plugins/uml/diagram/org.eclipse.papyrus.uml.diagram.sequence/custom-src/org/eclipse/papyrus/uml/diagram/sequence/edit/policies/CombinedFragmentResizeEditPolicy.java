@@ -246,7 +246,6 @@ public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicyEx {
 		IFigure operandAboveFigure = getOperandAbove(request.getSeparatorIndex()).getFigure();
 
 		PrecisionRectangle location = new PrecisionRectangle(operandBelowFigure.getBounds());
-		location.translate(0., request.getMoveDelta().preciseY());
 
 		Point newPosition = location.getTopLeft();
 		if (operandBelowFigure.containsPoint(newPosition) || operandAboveFigure.containsPoint(newPosition)) {
@@ -258,6 +257,7 @@ public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicyEx {
 
 		operandBelowFigure.translateToAbsolute(location);
 		feedback.translateToRelative(location);
+		location.translate(0., request.getMoveDelta().preciseY());
 
 		feedback.setPoint(location.getTopLeft(), 0);
 		feedback.setPoint(location.getTopRight(), 1);

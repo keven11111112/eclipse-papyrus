@@ -68,6 +68,9 @@ public class InteractionOperandDragDropEditPolicy extends ResizableEditPolicy {
 		IFigure figure = getHostFigure();
 		if (figure != null) {
 			Dimension currentDimension = figure.getBounds().getSize();
+
+			// Take zoom into account; the request contains absolute mouse coordinates delta.
+			figure.translateToRelative(delta);
 			Dimension newDimension = currentDimension.expand(delta);
 			if (newDimension.width() < MIN_WIDTH || newDimension.height < MIN_HEIGHT) {
 				// XXX Currently we just reject the request. Ideally, we'd simply edit
