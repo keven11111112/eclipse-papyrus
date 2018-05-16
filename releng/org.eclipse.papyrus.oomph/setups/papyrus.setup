@@ -104,7 +104,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201805151421">
+        <repository url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201801291558/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>GMF Runtime</value>

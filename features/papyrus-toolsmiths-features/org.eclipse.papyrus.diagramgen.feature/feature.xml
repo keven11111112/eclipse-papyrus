@@ -21,6 +21,16 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
+   <url>
+      <discovery label="gmf-tooling" url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a/"/>
+   </url>
+
+   <requires>
+      <import feature="org.eclipse.gmf.tooling" version="0.0.0"/>
+      <import feature="org.eclipse.gmf.tooling.runtime" version="0.0.0"/>
+      <import feature="org.eclipse.gmf.tooling.codegen.xtend2" version="0.0.0"/>
+   </requires>
+
    <plugin
          id="org.eclipse.papyrus.codegen"
          download-size="0"
