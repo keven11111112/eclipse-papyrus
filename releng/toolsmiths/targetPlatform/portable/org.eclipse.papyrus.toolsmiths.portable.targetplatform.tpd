@@ -32,7 +32,7 @@ location egit "http://download.eclipse.org/egit/updates-4.10" // oomph
 
 //updateFrom("m2e",0)
 
-location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180313-2237" // oomph
+location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180515-2017" // oomph
 
 //updateFrom("Mylyn",0)
 
@@ -40,7 +40,7 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180418-0301" /
 
 //updateFrom("EMF COMPARE",0)
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201805031224" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201805161152/" {
 	org.eclipse.emf.compare.ide.ui.feature.group lazy
 	org.eclipse.emf.compare.source.feature.group
 }
@@ -61,10 +61,9 @@ location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4
 	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
 }
 
-//manualUpdate ("GMF Tooling",0) 
+//manualUpdate
 
-location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" { // gen
-	org.eclipse.gmf.tooling.feature.group
-	org.eclipse.gmf.tooling.runtime.feature.group
-	org.eclipse.gmf.tooling.codegen.xtend2.feature.group
+location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" {
+	org.eclipse.gmf.codegen.xtend
+	org.eclipse.gmf.codegen.xtend.ui
 }

@@ -62,13 +62,11 @@ location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
-//updateFrom("GMF Runtime",0) 
 
 location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201801291558/" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
-//updateFrom("GMF Runtime",1)
 
 location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201801291538" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
@@ -146,7 +144,6 @@ location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/S2018050
 	org.apache.batik.util.source [1.9.1,2.0.0)
 	org.apache.batik.svggen [1.9.1,2.0.0)
 	org.apache.batik.svggen.source [1.9.1,2.0.0)
-	// may not be necessary
 	org.apache.batik.ext [1.9.1,2.0.0)
 	org.apache.batik.ext.source [1.9.1,2.0.0)
 	org.objectweb.asm [5.0.1, 6.0.0)
