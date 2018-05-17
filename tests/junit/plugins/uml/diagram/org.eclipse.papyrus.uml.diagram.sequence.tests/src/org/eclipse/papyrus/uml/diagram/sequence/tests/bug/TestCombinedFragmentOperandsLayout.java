@@ -306,6 +306,58 @@ public class TestCombinedFragmentOperandsLayout extends AbstractPapyrusTest {
 		}
 	}
 
+	// Bug 533696: It is not possible to move an operand
+	@Test
+	public void testMoveOperandForbidden() {
+		ChangeBoundsRequest request = new ChangeBoundsRequest(RequestConstants.REQ_MOVE);
+		request.setEditParts(op1EditPart);
+		Command command;
+
+		// Move on X/Y
+		request.setMoveDelta(new Point(-60, 25));
+		command = op1EditPart.getCommand(request);
+		Assert.assertFalse("It shouldn't be possible to move the Operand", command != null && command.canExecute());
+
+		// Move on X
+		request.setMoveDelta(new Point(30, 0));
+		command = op1EditPart.getCommand(request);
+		Assert.assertFalse("It shouldn't be possible to move the Operand", command != null && command.canExecute());
+
+		// Move on Y
+		request.setMoveDelta(new Point(0, -10));
+		command = op1EditPart.getCommand(request);
+		Assert.assertFalse("It shouldn't be possible to move the Operand", command != null && command.canExecute());
+	}
+
+	// Check that moving the CF (without resizing) won't change the size of its operands
+	@Test
+	public void testMoveCombinedFragment() {
+		// Prepare request & store initial state
+		ChangeBoundsRequest request = new ChangeBoundsRequest(RequestConstants.REQ_MOVE);
+		request.setEditParts(cfEditPart);
+
+		Rectangle op1Bounds = op1EditPart.getFigure().getBounds().getCopy();
+		Rectangle op2Bounds = op2EditPart.getFigure().getBounds().getCopy();
+
+		// Move on X/Y
+		request.setMoveDelta(new Point(-60, 25));
+		editor.execute(cfEditPart.getCommand(request));
+		assertOperandSize(op1Bounds.width(), op1Bounds.height(), op1EditPart);
+		assertOperandSize(op2Bounds.width(), op2Bounds.height(), op2EditPart);
+
+		// Move on X
+		request.setMoveDelta(new Point(30, 0));
+		editor.execute(cfEditPart.getCommand(request));
+		assertOperandSize(op1Bounds.width(), op1Bounds.height(), op1EditPart);
+		assertOperandSize(op2Bounds.width(), op2Bounds.height(), op2EditPart);
+
+		// Move on Y
+		request.setMoveDelta(new Point(0, -10));
+		editor.execute(cfEditPart.getCommand(request));
+		assertOperandSize(op1Bounds.width(), op1Bounds.height(), op1EditPart);
+		assertOperandSize(op2Bounds.width(), op2Bounds.height(), op2EditPart);
+	}
+
 	// Don't use editor.createShape(), because we need a special type of request to create operands.
 	// The "InsertAt" behavior will only be computed if we use a CreateUnspecifiedTypeRequest (From the palette)
 	// and target an Operand. The Operand will then be responsible for setting the InsertAt parameter
