@@ -35,6 +35,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestGuardEdition_364808.class,
 		CombinedFragmentRegressionTest.class,
 		TestCombinedFragmentOperandsLayout.class,
+		TestCFOperandsCoveredNodes.class,
 })
 public class BugTests {
 
