@@ -5,7 +5,7 @@ target "Papyrus Main" with requirements source
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201801300706" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201805221518" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -24,13 +24,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestone
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M7-201805092000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC1-201805162000/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201805141830" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201805211007" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -62,13 +62,15 @@ location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
+//updateFrom("GMF Runtime",0)
 
-location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201801291558/" {
+location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201805221147" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
+//updateFrom("GMF Runtime",1)
 
-location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201801291538" {
+location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201805221301" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
 }
 

@@ -6,13 +6,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 /*** Updates from the Simrel repository ***/
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/updates-4.10" {
+location egit "http://download.eclipse.org/egit/staging/v5.0.0.201805221745-rc1" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8M7-201805092000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC1-201805162000/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group 
 	org.eclipse.equinox.executable.feature.group 
@@ -31,7 +31,7 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180418-0301" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201805031224" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201805161152/" {
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
@@ -44,6 +44,6 @@ location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20170614-0227" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20180522-2342" {
 	org.eclipse.emf.cdo.epp.feature.group
 }

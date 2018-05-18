@@ -11,6 +11,8 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/mi
 //manualUpdate
 
 location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" {
+	org.eclipse.gmf.codegen
+	org.eclipse.gmf.codegen.ui
 	org.eclipse.gmf.codegen.xtend
 	org.eclipse.gmf.codegen.xtend.ui
 }
