@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 EclipseSource and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,7 +17,9 @@ import java.net.URL;
 import javax.annotation.PostConstruct;
 
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.infra.ui.fonts.Activator;
 import org.eclipse.swt.widgets.Display;
@@ -59,9 +61,11 @@ public class FontAddon {
 					continue;
 				}
 
-				if (!Display.getCurrent().loadFont(fontFileURL.getFile())) {
+				IPath path = new Path(fontFileURL.getFile());
+				String osPath = path.toOSString();
+				if (!Display.getCurrent().loadFont(osPath)) {
 					Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID,
-							"Failed to load font " + fontURL + " (Resolved URL: " + fontFileURL + ")")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+							"Failed to load font " + fontURL + " (Resolved URL: " + osPath + ")")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					continue;
 				}
 			}
