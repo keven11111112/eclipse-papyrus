@@ -42,6 +42,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.NotationAndTypeAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 
@@ -135,9 +136,9 @@ public class CombinedCreationEditPolicy extends DefaultCreationEditPolicy {
 
 			// We get the size from the mouse cursor location to the bottom of the existing operand
 			int height = targetOperandBounds.getBottom().y() - locationToOperand.y();
-
-			Dimension size = new Dimension(-1, height);
-			ICommand setBoundsCommand = new SetResizeCommand(editingDomain, "Set dimension", descriptor, size);
+			int distanceToCompartmentTop = compartmentFigure.getBounds().getTopLeft().getNegated().translate(locationToCompartment).y;
+			Rectangle bounds = new Rectangle(0, distanceToCompartmentTop, -1, height);
+			ICommand setBoundsCommand = new SetResizeAndLocationCommand(editingDomain, "Set dimension", descriptor, bounds);
 
 			// Also reduce the size of the existing operand, to avoid shifting the entire operands stack
 			View view = targetOperandPart.getNotationView();

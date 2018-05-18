@@ -20,6 +20,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -29,12 +30,14 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
+import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.NotationAndTypeAdapter;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.uml2.uml.InteractionOperand;
@@ -102,19 +105,21 @@ public class InteractionOperandViewAdvice extends AbstractEditHelperAdvice {
 					return null;
 				}
 				View viewBefore = findViewBefore(viewToDestroy);
+				int height = deletedSize.height();
 				if (viewBefore != null) {
 					Dimension sizeOfViewBefore = getSize(viewBefore);
-					sizeOfViewBefore.expand(0, deletedSize.height());
+					sizeOfViewBefore.expand(0, height);
 					NotationAndTypeAdapter adapter = new NotationAndTypeAdapter(viewBefore.getElement(), viewBefore);
 					ICommand result = new SetResizeCommand(editingDomain, "Expand previous operand", adapter, sizeOfViewBefore);
 					result.execute(monitor, info);
 				} else {
 					View viewAfter = findViewAfter(viewToDestroy);
 					if (viewAfter != null) {
-						Dimension sizeOfViewAfter = getSize(viewAfter);
-						sizeOfViewAfter.expand(0, deletedSize.height());
+						Rectangle boundsOfViewAfter = getBounds(viewAfter);
+						boundsOfViewAfter.height += height; // Do not use expand, because it would also translate the rectangle
+						boundsOfViewAfter.y -= height; // Shift the following operand up (Used by the Grid policy to compute coverage)
 						NotationAndTypeAdapter adapter = new NotationAndTypeAdapter(viewAfter.getElement(), viewAfter);
-						ICommand result = new SetResizeCommand(editingDomain, "Expand previous operand", adapter, sizeOfViewAfter);
+						ICommand result = new SetResizeAndLocationCommand(editingDomain, "Expand previous operand", adapter, boundsOfViewAfter);
 						result.execute(monitor, info);
 					}
 				}
@@ -134,6 +139,7 @@ public class InteractionOperandViewAdvice extends AbstractEditHelperAdvice {
 			return null;
 		}
 
+		@SuppressWarnings("unchecked") // GMF is Java 1.4
 		List<View> viewSiblings = ((View) view.eContainer()).getPersistedChildren();
 
 		int index = viewSiblings.indexOf(view);
@@ -154,6 +160,7 @@ public class InteractionOperandViewAdvice extends AbstractEditHelperAdvice {
 			return null;
 		}
 
+		@SuppressWarnings("unchecked") // GMF is Java 1.4
 		List<View> viewSiblings = ((View) view.eContainer()).getPersistedChildren();
 
 		int index = viewSiblings.indexOf(view) - 1;
@@ -167,18 +174,31 @@ public class InteractionOperandViewAdvice extends AbstractEditHelperAdvice {
 	/**
 	 * @param view
 	 * @return
-	 * 		A new {@link Dimension} instance representing the model size of the {@link View},
+	 * 		A new {@link Rectangle} instance representing the model bounds of the {@link View},
 	 *         or <code>null</code> if the View doesn't have a size.
 	 */
-	private Dimension getSize(View view) {
+	private Rectangle getBounds(View view) {
 		if (view instanceof Node) {
 			Node node = (Node) view;
 			LayoutConstraint constraint = node.getLayoutConstraint();
+			Rectangle bounds = new Rectangle();
 			if (constraint instanceof Size) {
 				Size size = (Size) constraint;
-				return new Dimension(size.getWidth(), size.getHeight());
+				bounds.setSize(size.getWidth(), size.getHeight());
 			}
+			if (constraint instanceof Location) {
+				Location location = (Location) constraint;
+				bounds.setLocation(location.getX(), location.getY());
+			}
+			return bounds;
 		}
 		return null;
+	}
+
+
+
+	private Dimension getSize(View viewToDestroy) {
+		Rectangle bounds = getBounds(viewToDestroy);
+		return bounds == null ? null : bounds.getSize();
 	}
 }

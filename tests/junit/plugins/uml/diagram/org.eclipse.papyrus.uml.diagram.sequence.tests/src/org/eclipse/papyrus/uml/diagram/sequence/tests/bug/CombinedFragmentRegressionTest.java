@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
@@ -81,7 +81,7 @@ import org.junit.Test;
 /**
  * Regression tests specifically for {@link CombinedFragment}s in the sequence diagram
  * editor, especially those tracked under the umbrella of <a href="http://eclip.se/533670">bug 533670</a>.
- * 
+ *
  * @author Christian W. Damus
  * @see <a href="http://eclip.se/533670">bug 533670</a>
  */
@@ -258,7 +258,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	/**
 	 * Verify that the deletion of the only (or last remaining) interaction operand
 	 * in a combined fragment results in deletion of the combined fragment, also.
-	 * 
+	 *
 	 * @see <a href="http://eclip.se/533683">bug 533683</a>
 	 */
 	@Test
@@ -283,7 +283,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	/**
 	 * Verify that the deletion of an interaction operand that leaves at least one
 	 * remaining in a combined fragment does not result in deletion of the combined fragment.
-	 * 
+	 *
 	 * @see <a href="http://eclip.se/533683">bug 533683</a>
 	 */
 	@Test
@@ -304,13 +304,18 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 
 		editor.delete(operandEP);
 
+		editor.flushDisplayEvents();
+
 		combinedFragmentEP = editor.findEditPart(cfrag);
 
 		assertThat("Combined fragment was deleted", cfrag.getEnclosingInteraction(), is(interaction));
 		assertThat("Combined fragment no longer presented in diagram", combinedFragmentEP, notNullValue());
 
+		InteractionOperand firstOperand = cfrag.getOperands().get(0);
+		// The CombinedFragment still covers the same area, so fragments should
+		// now be owned by the other operand
 		assertThat("Fragments of deleted operand not retained",
-				interaction.getFragments(), hasItems(deleteSend, deleted));
+				firstOperand.getFragments(), hasItems(deleteSend, deleted));
 	}
 
 	/**

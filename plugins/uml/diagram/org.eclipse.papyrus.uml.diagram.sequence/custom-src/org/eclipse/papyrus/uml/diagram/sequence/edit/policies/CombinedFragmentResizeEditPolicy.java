@@ -208,7 +208,7 @@ public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicyEx {
 
 	protected ChangeBoundsRequest getResizeAboveRequest(MoveSeparatorRequest request) {
 		ChangeBoundsRequest requestAbove = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
-		requestAbove.setMoveDelta(request.getMoveDelta());
+		requestAbove.setMoveDelta(new Point(0, 0));
 		requestAbove.setSizeDelta(new Dimension(request.getMoveDelta().x, request.getMoveDelta().y));
 		requestAbove.setResizeDirection(PositionConstants.SOUTH);
 		requestAbove.setLocation(request.getLocation());
@@ -218,8 +218,9 @@ public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicyEx {
 
 	protected ChangeBoundsRequest getResizeBelowRequest(MoveSeparatorRequest request) {
 		ChangeBoundsRequest requestBelow = new ChangeBoundsRequest(RequestConstants.REQ_RESIZE);
-		requestBelow.setMoveDelta(request.getMoveDelta());
-		requestBelow.setSizeDelta(new Dimension(-request.getMoveDelta().x, -request.getMoveDelta().y));
+		Point sizeDelta = request.getMoveDelta().getNegated();
+		requestBelow.setSizeDelta(new Dimension(sizeDelta.x, sizeDelta.y));
+		requestBelow.setMoveDelta(request.getMoveDelta().getCopy());
 		requestBelow.setResizeDirection(PositionConstants.NORTH);
 		requestBelow.setLocation(request.getLocation());
 		requestBelow.setEditParts(getOperandBelow(request.getSeparatorIndex()));

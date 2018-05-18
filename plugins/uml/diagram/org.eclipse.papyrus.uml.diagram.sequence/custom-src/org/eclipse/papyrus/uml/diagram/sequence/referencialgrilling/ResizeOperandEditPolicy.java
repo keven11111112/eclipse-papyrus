@@ -16,7 +16,10 @@ package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
 import java.util.List;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -26,12 +29,11 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
-import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 
 
 /**
@@ -90,16 +92,28 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy {
 	}
 
 	private void updateCurrentChildSize(CompositeCommand compositeCommand, ChangeBoundsRequest changeBoundsRequest, TransactionalEditingDomain editingDomain, Object currentEditPart) {
-		GraphicalEditPart operandPart = (GraphicalEditPart) currentEditPart;
+		IGraphicalEditPart operandPart = (IGraphicalEditPart) currentEditPart;
 		View shapeView = NotationHelper.findView(operandPart);
-		Dimension size = operandPart.getFigure().getSize();
+		// Dimension size = operandPart.getFigure().getSize();
+		// Point location = operandPart.getFigure().getBounds().getLocation().getCopy();
+
+		Dimension sizeDelta = changeBoundsRequest.getSizeDelta().getCopy();
+		Point moveDelta = changeBoundsRequest.getMoveDelta().getCopy();
 
 		// Take zoom into account; the request contains absolute mouse coordinates delta.
-		Dimension sizeDelta = changeBoundsRequest.getSizeDelta().getCopy();
-		operandPart.getFigure().translateToRelative(sizeDelta);
-		size.expand(sizeDelta.width, sizeDelta.height);
+		IFigure operandFigure = operandPart.getFigure();
+		PrecisionRectangle bounds = new PrecisionRectangle(operandFigure.getBounds());
+		operandFigure.translateToAbsolute(bounds);
+		bounds.resize(sizeDelta);
+		bounds.translate(moveDelta);
+		operandFigure.translateToRelative(bounds);
 
-		ICommand setBoundsCommand = new SetResizeCommand(editingDomain, "Resize Operands", new EObjectAdapter(shapeView), size);
+		// Set the new bounds, relative to the parent (CombinedFragment), to make
+		// sure the notation is consistent with the visuals. We should get x = 0; y = sizeOf(Cf_Label) + Sum(sizeOf(previousOperands))
+		IFigure cfFigure = ((IGraphicalEditPart) operandPart.getParent()).getFigure();
+		bounds.translate(cfFigure.getBounds().getTopLeft().getNegated());
+
+		ICommand setBoundsCommand = new SetResizeAndLocationCommand(editingDomain, "Resize Operands", new EObjectAdapter(shapeView), bounds);
 		compositeCommand.add(setBoundsCommand);
 	}
 
