@@ -31,7 +31,7 @@
 	</feature>
 	<feature name="org.eclipse.papyrus.junit.feature" version="2.0.0">
 		<plugin name="org.eclipse.papyrus.junit.framework" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.junit.utils" version="2.1.0"/>
+		<plugin name="org.eclipse.papyrus.junit.utils" version="2.2.0"/>
 		<plugin name="org.eclipse.papyrus.bundles.tests" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.tests.framework" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.tests.framework.annotations" version="1.2.0"/>
@@ -83,7 +83,7 @@
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.connectionpoint.preferences" version="1.1.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.css.debug" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.junit.framework" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.junit.utils" version="2.1.0"/>
+	<plugin name="org.eclipse.papyrus.junit.utils" version="2.2.0"/>
 	<plugin name="org.eclipse.papyrus.mwe2.utils" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.outline.emftree" version="1.1.0"/>
 	<plugin name="org.eclipse.papyrus.releng.dev.release" version="2.0.0"/>

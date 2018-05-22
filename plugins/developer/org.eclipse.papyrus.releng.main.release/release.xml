@@ -7,7 +7,7 @@
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.common.doc" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.css.doc" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.internationalization.doc" version="1.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.doc" version="1.2.0"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.doc" version="1.3.0"/>
 		<plugin name="org.eclipse.papyrus.infra.newchild.doc" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.services.controlmode.doc" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.architecture.doc" version="1.0.0"/>
@@ -166,7 +166,7 @@
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.editor" version="1.3.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.ui" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.canonical" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.gmfdiag.welcome" version="1.2.0"/>
+		<plugin name="org.eclipse.papyrus.infra.gmfdiag.welcome" version="1.2.100"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.tooling.runtime" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.representation" version="1.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.representation.edit" version="1.0.0"/>
@@ -176,33 +176,33 @@
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.edit" version="3.1.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.internationalization.feature" version="1.0.0">
-		<plugin name="org.eclipse.papyrus.infra.internationalization" version="1.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.internationalization" version="1.0.100"/>
 		<plugin name="org.eclipse.papyrus.infra.internationalization.edit" version="1.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.internationalization.utils" version="1.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.internationalization.utils" version="1.0.100"/>
 		<plugin name="org.eclipse.papyrus.infra.internationalization.ui" version="1.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.internationalization.controlmode" version="1.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.internationalization.controlmode" version="1.0.100"/>
 		<plugin name="org.eclipse.papyrus.infra.internationalization.common" version="1.1.0"/>
 		<plugin name="org.eclipse.papyrus.infra.internationalization.readonly" version="1.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.editor.welcome.internationalization" version="2.0.0"/>
 	</feature>
-	<feature name="org.eclipse.papyrus.infra.nattable.feature" version="3.0.0">
-		<plugin name="org.eclipse.papyrus.infra.nattable.model" version="3.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.model.edit" version="3.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.model.editor" version="3.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable" version="5.0.100"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.common" version="4.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.modelexplorer" version="3.1.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.views.config" version="4.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.views.editor" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.infra.emf.nattable" version="4.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.controlmode" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.properties" version="2.2.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.gmfdiag" version="1.2.0"/>
+	<feature name="org.eclipse.papyrus.infra.nattable.feature" version="4.0.0">
+		<plugin name="org.eclipse.papyrus.infra.nattable.model" version="4.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.model.edit" version="4.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.model.editor" version="4.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable" version="6.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.common" version="5.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.modelexplorer" version="4.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.views.config" version="5.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.views.editor" version="1.2.100"/>
+		<plugin name="org.eclipse.papyrus.infra.emf.nattable" version="5.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.controlmode" version="2.0.100"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.properties" version="2.2.100"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.gmfdiag" version="1.2.100"/>
 		<plugin name="org.eclipse.nebula.widgets.nattable.core" version="1.5.0"/>
 		<plugin name="ca.odell.glazedlists" version="1.9.0"/>
 		<plugin name="org.eclipse.nebula.widgets.nattable.extension.glazedlists" version="1.5.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.representation" version="1.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.nattable.representation.edit" version="1.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.representation" version="1.0.100"/>
+		<plugin name="org.eclipse.papyrus.infra.nattable.representation.edit" version="1.0.100"/>
 		<plugin name="org.eclipse.nebula.cwt" version="1.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.services.feature" version="3.0.0">
@@ -224,7 +224,7 @@
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.ui.feature" version="3.0.0">
 		<plugin name="org.eclipse.papyrus.infra.ui" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.ui.architecture" version="1.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.ui.architecture" version="1.0.100"/>
 		<plugin name="org.eclipse.papyrus.infra.onefile.ui" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.ui.emf" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.infra.ui.resources" version="1.2.0"/>
@@ -233,21 +233,22 @@
 		<plugin name="org.eclipse.papyrus.infra.types.ui" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.services.edit.ui" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.services.resourceloading.ui" version="1.2.100"/>
-		<plugin name="org.eclipse.papyrus.infra.properties.ui" version="3.2.0"/>
+		<plugin name="org.eclipse.papyrus.infra.properties.ui" version="3.3.0"/>
 		<plugin name="org.eclipse.papyrus.infra.editor.welcome" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.editor.welcome.nattable" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.newchild.ui" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.newchild.editor" version="3.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.ui.fonts" version="1.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.viewpoints.feature" version="3.0.0">
 		<plugin name="org.eclipse.papyrus.infra.viewpoints.policy" version="2.1.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.widget.feature" version="3.0.0">
-		<plugin name="org.eclipse.papyrus.infra.widgets" version="3.1.0"/>
+		<plugin name="org.eclipse.papyrus.infra.widgets" version="3.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.widgets.toolbox" version="2.0.0"/>
 		<plugin name="org.eclipse.nebula.widgets.richtext" version="1.2.0"/>
 	</feature>
-	<feature name="org.eclipse.papyrus.sdk.feature" version="3.3.0">
+	<feature name="org.eclipse.papyrus.sdk.feature" version="3.4.0">
 		<feature name="org.eclipse.papyrus.editor.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.infra.core.feature" version="3.0.0"/>
 		<feature name="org.eclipse.papyrus.infra.feature" version="3.0.0"/>
@@ -276,8 +277,8 @@
 		<feature name="org.eclipse.papyrus.infra.internationalization.feature" version="1.0.0"/>
 		<feature name="org.eclipse.papyrus.uml.internationalization.feature" version="1.0.0"/>
 		<feature name="org.eclipse.papyrus.uml.m2m.qvto.feature" version="1.0.0"/>
-		<feature name="org.eclipse.papyrus.infra.nattable.feature" version="3.0.0"/>
-		<feature name="org.eclipse.papyrus.uml.nattable.feature" version="3.0.0"/>
+		<feature name="org.eclipse.papyrus.infra.nattable.feature" version="4.0.0"/>
+		<feature name="org.eclipse.papyrus.uml.nattable.feature" version="4.0.0"/>
 		<feature name="org.eclipse.papyrus.infra.gmfdiag.css.feature" version="3.0.0"/>
 		<feature name="org.eclipse.papyrus.uml.diagram.css.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.emf.facet.feature" version="3.0.0"/>
@@ -303,12 +304,12 @@
 		<plugin name="org.eclipse.papyrus.uml.alf.ui" version="3.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.architecture.feature" version="1.0.0">
-		<plugin name="org.eclipse.papyrus.uml.architecture" version="1.1.0"/>
+		<plugin name="org.eclipse.papyrus.uml.architecture" version="1.1.100"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.assistants.feature" version="3.0.0">
 		<plugin name="org.eclipse.papyrus.uml.profile.assistants.generator" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.profile.assistants.generator.ui" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.uml.profile.types.generator" version="2.0.0"/>
+		<plugin name="org.eclipse.papyrus.uml.profile.types.generator" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.uml.profile.types.generator.ui" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.decoratormodel.feature" version="3.0.0">
@@ -335,7 +336,7 @@
 		<plugin name="org.eclipse.papyrus.uml.diagram.usecase" version="3.1.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.wizards" version="3.0.1"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.communication" version="3.1.0"/>
-		<plugin name="org.eclipse.papyrus.uml.diagram.sequence" version="4.1.100"/>
+		<plugin name="org.eclipse.papyrus.uml.diagram.sequence" version="5.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.activity" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.composite" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.dnd" version="1.3.0"/>
@@ -389,22 +390,22 @@
 		<plugin name="org.eclipse.papyrus.uml.modelexplorer" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.modelexplorer.widgets" version="2.0.0"/>
 	</feature>
-	<feature name="org.eclipse.papyrus.uml.nattable.feature" version="3.0.0">
-		<plugin name="org.eclipse.papyrus.uml.nattable" version="4.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.nattable.generic" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.uml.nattable.generic.config" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.uml.nattable.matrix" version="1.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.nattable.properties" version="1.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.nattable.menu" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.uml.nattable.xtext.integration" version="2.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.nattable.clazz.config" version="4.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.nattable.xtext.valuespecification" version="4.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.nattable.stereotype.display" version="3.0.0"/>
-		<plugin name="org.eclipse.papyrus.uml.nattable.richtext" version="2.1.0"/>
+	<feature name="org.eclipse.papyrus.uml.nattable.feature" version="4.0.0">
+		<plugin name="org.eclipse.papyrus.uml.nattable" version="5.0.0"/>
+		<plugin name="org.eclipse.papyrus.uml.nattable.generic" version="1.2.100"/>
+		<plugin name="org.eclipse.papyrus.uml.nattable.generic.config" version="1.2.100"/>
+		<plugin name="org.eclipse.papyrus.uml.nattable.matrix" version="1.0.100"/>
+		<plugin name="org.eclipse.papyrus.uml.nattable.properties" version="1.0.100"/>
+		<plugin name="org.eclipse.papyrus.uml.nattable.menu" version="1.2.100"/>
+		<plugin name="org.eclipse.papyrus.uml.nattable.xtext.integration" version="2.0.100"/>
+		<plugin name="org.eclipse.papyrus.uml.nattable.clazz.config" version="5.0.0"/>
+		<plugin name="org.eclipse.papyrus.uml.nattable.xtext.valuespecification" version="5.0.0"/>
+		<plugin name="org.eclipse.papyrus.uml.nattable.stereotype.display" version="3.0.100"/>
+		<plugin name="org.eclipse.papyrus.uml.nattable.richtext" version="2.1.100"/>
 		<plugin name="org.eclipse.nebula.widgets.nattable.extension.nebula" version="1.1.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.properties.feature" version="3.0.0">
-		<plugin name="org.eclipse.papyrus.uml.properties" version="3.1.0"/>
+		<plugin name="org.eclipse.papyrus.uml.properties" version="3.1.100"/>
 		<plugin name="org.eclipse.papyrus.uml.properties.xtext" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.search.feature" version="2.0.0">
@@ -560,7 +561,7 @@
 	<plugin name="org.eclipse.papyrus.infra.emf.expressions.editor" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.emf.expressions.properties" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.emf.gmf" version="1.2.100"/>
-	<plugin name="org.eclipse.papyrus.infra.emf.nattable" version="4.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.emf.nattable" version="5.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.emf.readonly" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.emf.types" version="4.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.emf.types.ui" version="4.0.0"/>
@@ -607,32 +608,32 @@
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.style.edit" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.tooling.runtime" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.viewersearcher" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.infra.gmfdiag.welcome" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.infra.gmfdiag.welcome" version="1.2.100"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.widgets" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.hyperlink" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.internationalization" version="1.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.internationalization" version="1.0.100"/>
 	<plugin name="org.eclipse.papyrus.infra.internationalization.common" version="1.1.0"/>
-	<plugin name="org.eclipse.papyrus.infra.internationalization.controlmode" version="1.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.internationalization.controlmode" version="1.0.100"/>
 	<plugin name="org.eclipse.papyrus.infra.internationalization.doc" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.internationalization.edit" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.internationalization.readonly" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.internationalization.tests" version="1.1.0"/>
 	<plugin name="org.eclipse.papyrus.infra.internationalization.ui" version="1.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.internationalization.utils" version="1.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable" version="5.0.100"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.common" version="4.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.controlmode" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.doc" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.gmfdiag" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.model" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.model.edit" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.model.editor" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.modelexplorer" version="3.1.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.properties" version="2.2.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.representation" version="1.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.representation.edit" version="1.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.views.config" version="4.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.nattable.views.editor" version="1.2.0"/>
+	<plugin name="org.eclipse.papyrus.infra.internationalization.utils" version="1.0.100"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable" version="6.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.common" version="5.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.controlmode" version="2.0.100"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.doc" version="1.3.0"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.gmfdiag" version="1.2.100"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.model" version="4.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.model.edit" version="4.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.model.editor" version="4.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.modelexplorer" version="4.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.properties" version="2.2.100"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.representation" version="1.0.100"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.representation.edit" version="1.0.100"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.views.config" version="5.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.nattable.views.editor" version="1.2.100"/>
 	<plugin name="org.eclipse.papyrus.infra.newchild" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.newchild.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.newchild.edit" version="3.0.0"/>
@@ -643,7 +644,7 @@
 	<plugin name="org.eclipse.papyrus.infra.properties" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.properties.edit" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.properties.editor" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.properties.ui" version="3.2.0"/>
+	<plugin name="org.eclipse.papyrus.infra.properties.ui" version="3.3.0"/>
 	<plugin name="org.eclipse.papyrus.infra.psf" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.services.architecture" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.services.controlmode" version="2.0.0"/>
@@ -673,11 +674,12 @@
 	<plugin name="org.eclipse.papyrus.infra.types.rulebased" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.types.ui" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.ui" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.infra.ui.architecture" version="1.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.ui.architecture" version="1.0.100"/>
 	<plugin name="org.eclipse.papyrus.infra.ui.emf" version="2.1.0"/>
+	<plugin name="org.eclipse.papyrus.infra.ui.fonts" version="1.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.ui.resources" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.viewpoints.policy" version="2.1.0"/>
-	<plugin name="org.eclipse.papyrus.infra.widgets" version="3.1.0"/>
+	<plugin name="org.eclipse.papyrus.infra.widgets" version="3.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.widgets.toolbox" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.releng.main.release" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.req.reqif.doc" version="1.2.0"/>
@@ -690,7 +692,7 @@
 	<plugin name="org.eclipse.papyrus.uml.alf.to.fuml" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.alf.ui" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.appearance" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.architecture" version="1.1.0"/>
+	<plugin name="org.eclipse.papyrus.uml.architecture" version="1.1.100"/>
 	<plugin name="org.eclipse.papyrus.uml.commands" version="1.3.0"/>
 	<plugin name="org.eclipse.papyrus.uml.controlmode.profile" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.decoratormodel" version="2.0.0"/>
@@ -717,7 +719,7 @@
 	<plugin name="org.eclipse.papyrus.uml.diagram.navigation" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.profile" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.profile.doc" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.uml.diagram.sequence" version="4.1.100"/>
+	<plugin name="org.eclipse.papyrus.uml.diagram.sequence" version="5.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.statemachine" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.stereotype.edition" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.diagram.symbols" version="1.2.0"/>
@@ -747,17 +749,17 @@
 	<plugin name="org.eclipse.papyrus.uml.modelexplorer.widgets" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.modelrepair" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.modelrepair.doc" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.uml.nattable" version="4.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.nattable.clazz.config" version="4.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.nattable.generic" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.uml.nattable.generic.config" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.uml.nattable.matrix" version="1.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.nattable.menu" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.uml.nattable.properties" version="1.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.nattable.richtext" version="2.1.0"/>
-	<plugin name="org.eclipse.papyrus.uml.nattable.stereotype.display" version="3.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.nattable.xtext.integration" version="2.0.0"/>
-	<plugin name="org.eclipse.papyrus.uml.nattable.xtext.valuespecification" version="4.0.0"/>
+	<plugin name="org.eclipse.papyrus.uml.nattable" version="5.0.0"/>
+	<plugin name="org.eclipse.papyrus.uml.nattable.clazz.config" version="5.0.0"/>
+	<plugin name="org.eclipse.papyrus.uml.nattable.generic" version="1.2.100"/>
+	<plugin name="org.eclipse.papyrus.uml.nattable.generic.config" version="1.2.100"/>
+	<plugin name="org.eclipse.papyrus.uml.nattable.matrix" version="1.0.100"/>
+	<plugin name="org.eclipse.papyrus.uml.nattable.menu" version="1.2.100"/>
+	<plugin name="org.eclipse.papyrus.uml.nattable.properties" version="1.0.100"/>
+	<plugin name="org.eclipse.papyrus.uml.nattable.richtext" version="2.1.100"/>
+	<plugin name="org.eclipse.papyrus.uml.nattable.stereotype.display" version="3.0.100"/>
+	<plugin name="org.eclipse.papyrus.uml.nattable.xtext.integration" version="2.0.100"/>
+	<plugin name="org.eclipse.papyrus.uml.nattable.xtext.valuespecification" version="5.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.navigation" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.oclconstraintevaluation" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.perspective" version="1.2.0"/>
@@ -766,9 +768,9 @@
 	<plugin name="org.eclipse.papyrus.uml.profile.assistants.generator" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.uml.profile.assistants.generator.ui" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.profile.drafter" version="1.3.0"/>
-	<plugin name="org.eclipse.papyrus.uml.profile.types.generator" version="2.0.0"/>
+	<plugin name="org.eclipse.papyrus.uml.profile.types.generator" version="2.1.0"/>
 	<plugin name="org.eclipse.papyrus.uml.profile.types.generator.ui" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.uml.properties" version="3.1.0"/>
+	<plugin name="org.eclipse.papyrus.uml.properties" version="3.1.100"/>
 	<plugin name="org.eclipse.papyrus.uml.properties.generation" version="2.1.0"/>
 	<plugin name="org.eclipse.papyrus.uml.properties.xtext" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.resourceloading.profile" version="1.2.0"/>
