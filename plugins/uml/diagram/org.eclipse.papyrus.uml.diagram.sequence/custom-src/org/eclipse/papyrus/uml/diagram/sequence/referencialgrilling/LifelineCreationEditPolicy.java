@@ -22,9 +22,11 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -32,6 +34,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetMoveAllLineAtSamePositionCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
@@ -85,7 +90,7 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy implem
 				Point pointCombinedFragment = req.getLocation();
 
 				pointCombinedFragment.x = pointCombinedFragment.x + boundsLifeline.x;
-				pointCombinedFragment.y	 = pointCombinedFragment.y + boundsLifeline.y;
+				pointCombinedFragment.y = pointCombinedFragment.y + boundsLifeline.y;
 
 				req.setLocation(pointCombinedFragment);
 
@@ -93,18 +98,54 @@ public class LifelineCreationEditPolicy extends DefaultCreationEditPolicy implem
 			}
 		}
 
-		DiagramEditPart diagramEditPart=getDiagramEditPart(getHost());
-		GridManagementEditPolicy grid=(GridManagementEditPolicy)diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
-		if (grid!=null){
-			CompoundCommand cmd= new CompoundCommand();
-			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand(grid, false);
+		DiagramEditPart diagramEditPart = getDiagramEditPart(getHost());
+		GridManagementEditPolicy grid = (GridManagementEditPolicy) diagramEditPart.getEditPolicy(GridManagementEditPolicy.GRID_MANAGEMENT);
+		if (grid != null) {
+			CompoundCommand cmd = new CompoundCommand();
+			SetMoveAllLineAtSamePositionCommand setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, false);
 			cmd.add(setMoveAllLineAtSamePositionCommand);
 			cmd.add(super.getCreateElementAndViewCommand(request));
-			setMoveAllLineAtSamePositionCommand= new SetMoveAllLineAtSamePositionCommand( grid, true);
+			setMoveAllLineAtSamePositionCommand = new SetMoveAllLineAtSamePositionCommand(grid, true);
 			cmd.add(setMoveAllLineAtSamePositionCommand);
 			return cmd;
 		}
 		return super.getCreateElementAndViewCommand(request);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy#getReparentCommand(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
+	 */
+	@Override
+	protected ICommand getReparentCommand(final IGraphicalEditPart gep) {
+		// The reparent of execution specification in another life line is not allowed
+		if (gep instanceof AbstractExecutionSpecificationEditPart) {
+			final LifelineEditPart parentLifeLine = SequenceUtil.getParentLifelinePart(gep);
+			if (null != parentLifeLine && !parentLifeLine.equals(getHost())) {
+				return null;
+			}
+		}
+
+		return super.getReparentCommand(gep);
+	}
+	
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy#getReparentViewCommand(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
+	 *
+	 * @param gep
+	 * @return
+	 */
+	@Override
+	protected ICommand getReparentViewCommand(IGraphicalEditPart gep) {
+		// The reparent of execution specification in another life line is not allowed
+		if (gep instanceof AbstractExecutionSpecificationEditPart) {
+			final LifelineEditPart parentLifeLine = SequenceUtil.getParentLifelinePart(gep);
+			if (null != parentLifeLine && !parentLifeLine.equals(getHost())) {
+				return null;
+			}
+		}
+		return super.getReparentViewCommand(gep);
 	}
 
 	/**

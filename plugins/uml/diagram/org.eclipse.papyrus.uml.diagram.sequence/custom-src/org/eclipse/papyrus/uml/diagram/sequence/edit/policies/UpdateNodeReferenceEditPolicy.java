@@ -14,9 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map.Entry;
 
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.ConnectionEditPart;
@@ -27,6 +27,7 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
@@ -36,6 +37,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CoordinateReferentialUtils;
@@ -122,6 +125,19 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 		} else if (request instanceof ChangeBoundsRequest && (!org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_AUTOSIZE.equals(request.getType()))) {
 
 			final ChangeBoundsRequest initialChangeBoundsRequest = (ChangeBoundsRequest) request;
+			final Iterator<?> editParts = initialChangeBoundsRequest.getEditParts().iterator();
+			
+			// The reparent of execution specification in another life line is not allowed
+			while(editParts.hasNext()) {
+				Object childEP = editParts.next();
+				if(childEP instanceof AbstractExecutionSpecificationEditPart && getHost() instanceof CLifeLineEditPart) {
+					final LifelineEditPart parentLifeLine = SequenceUtil.getParentLifelinePart((AbstractExecutionSpecificationEditPart)childEP);
+					if (null != parentLifeLine && !parentLifeLine.equals(getHost())) {
+						return UnexecutableCommand.INSTANCE;
+					}
+				}
+			}
+
 			final Point moveDelta = initialChangeBoundsRequest.getMoveDelta();
 			
 			final CompoundCommand compoundCommand = new CompoundCommand();

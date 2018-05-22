@@ -62,6 +62,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneral
 import org.eclipse.papyrus.uml.diagram.sequence.util.ExecutionSpecificationUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
+import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 
@@ -433,6 +434,12 @@ public class LifeLineXYLayoutEditPolicy extends XYLayoutWithConstrainedResizedEd
 	protected Command createAddCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
 		if (child instanceof LifelineEditPart || child instanceof CombinedFragmentEditPart || child instanceof InteractionUseEditPart) {
 			return UnexecutableCommand.INSTANCE;
+		// The reparent of execution specification in another life line is not allowed
+		} else if(child instanceof AbstractExecutionSpecificationEditPart && getHost() instanceof CLifeLineEditPart) {
+			final LifelineEditPart parentLifeLine = SequenceUtil.getParentLifelinePart(child);
+			if (null != parentLifeLine && !parentLifeLine.equals(getHost())) {
+				return UnexecutableCommand.INSTANCE;
+			}
 		}
 		return super.createAddCommand(request, child, constraint);
 	}
