@@ -111,8 +111,8 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 		}
 
 		public int getViewChildrenSize() {
-			// ignore guard editpart and compartment_shape_display
-			return getParentEditPart().getNotationView().getChildren().size() - 2;
+			// ignore guard editpart
+			return getParentEditPart().getNotationView().getChildren().size() - 1;
 		}
 
 		public Element getDropElement() {
