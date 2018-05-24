@@ -24,7 +24,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
    
    <requires>
-      <import feature="org.eclipse.papyrus.junit.feature" version="1.0.0.qualifier" match="compatible"/>
+      <import feature="org.eclipse.papyrus.junit.feature" version="1.0.0" match="compatible"/>
    </requires>
 
    <includes
