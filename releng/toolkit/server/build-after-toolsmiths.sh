@@ -42,14 +42,16 @@ fi
 zipName="Papyrus-Toolsmiths.zip"
 
 rm -rf tmp
-mkdir -p "tmp/$FULL_BUILD_ID"
+#mkdir -p "tmp/$FULL_BUILD_ID"
+mkdir -p "tmp/toolsmiths"
 
 rm -rf $updateSite
 mv $p2UpdateSiteDir $updateSite
 
 # create the update site zip
 (cd $updateSite && zip -r $updateZipName *)
-mv $updateSite/$updateZipName "tmp/$FULL_BUILD_ID"
+#mv $updateSite/$updateZipName "tmp/$FULL_BUILD_ID"
+mv $updateSite/$updateZipName "tmp/toolsmiths"
 
 (cd tmp && zip -r $zipName *)
 mv tmp/$zipName .

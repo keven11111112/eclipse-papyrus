@@ -118,36 +118,22 @@ location nebula "http://download.eclipse.org/nebula/releases/1.2.0/" {
 
 location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repository" {
 	org.eclipse.nebula.widgets.nattable.core.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group
 	org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group
 	org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group
-	org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group
 }
 
 //manualUpdate (Needed by infra.tools, API Evolution Report generation and other plugins)
 
 location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/S20180504181223/repository/" {
 	com.google.guava 21.0.0
-	com.google.guava.source 21.0.0
 	com.google.gson [2.7.0,2.8.0)
-	com.google.gson.source [2.7.0,2.8.0)
 	org.apache.commons.lang3 3.1.0
-	org.apache.commons.lang3.source 3.1.0
 	org.apache.batik.anim [1.9.1,2.0.0)
-	org.apache.batik.anim.source [1.9.1,2.0.0)
 	org.apache.batik.dom [1.9.1,2.0.0)
-	org.apache.batik.dom.source [1.9.1,2.0.0)
 	org.apache.batik.dom.svg [1.9.1,2.0.0)
-	org.apache.batik.dom.svg.source [1.9.1,2.0.0)
 	org.apache.batik.xml [1.9.1,2.0.0)
-	org.apache.batik.xml.source [1.9.1,2.0.0)
 	org.apache.batik.util [1.9.1,2.0.0)
-	org.apache.batik.util.source [1.9.1,2.0.0)
 	org.apache.batik.svggen [1.9.1,2.0.0)
-	org.apache.batik.svggen.source [1.9.1,2.0.0)
 	org.apache.batik.ext [1.9.1,2.0.0)
-	org.apache.batik.ext.source [1.9.1,2.0.0)
 	org.objectweb.asm [5.0.1, 6.0.0)
-	org.objectweb.asm.source [5.0.1, 6.0.0)
 }

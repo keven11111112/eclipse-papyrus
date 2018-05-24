@@ -153,17 +153,23 @@ $ADD_DOWNLOAD_STATS "$updateSiteDir/main" "main"
 
 # ============================== PUBLISH TOOLSMITHS ==============================
 if [[ "$toolsmithsBuildNumber" != "0" ]]; then
-        nfsURL="" ## Not supported for HIPP builds. Leave the variable since the promote functions are still shared with the Shared Hudson Instance builds
-        hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Photon-Toolsmiths/$toolsmithsBuildNumber/artifact/"
-        zipName="Papyrus-Toolsmiths.zip"
-        updateZipName="Papyrus-Toolsmiths-Update.zip"
-        getZip "$zipName" "$nfsURL" "$hudsonURL"
-        
-        # unzips under a "toolsmiths" folder under the main build's folder
-        unzip -o "$zipName" -d "$buildsDir/$folderName"
-        unzip -o "$buildsDir/$folderName/toolsmiths/$updateZipName" -d "$updateSiteDir/toolsmiths"
+    nfsURL="" ## Not supported for HIPP builds. Leave the variable since the promote functions are still shared with the Shared Hudson Instance builds
+    hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Toolsmiths/$toolsmithsBuildNumber/artifact/"
+    zipName="Papyrus-Toolsmiths.zip"
+    updateZipPrefix="Papyrus-Toolsmiths"
+    getZip "$zipName" "$nfsURL" "$hudsonURL"
 
-        $ADD_DOWNLOAD_STATS "$updateSiteDir/toolsmiths" "toolsmiths"
+    echo "publishing toolsmiths (version='$version') to the builds directory '$buildsDir'..."
+    unzip -o "$zipName" -d "$buildsDir/$folderName"
+
+    foldersInZip=$(unzip -t "$zipName" | egrep "testing: *[^/]*/ +OK" | sed 's%^ *testing: *\([^/]*\)/ *OK$%\1%')
+    [ $(echo "$foldersInZip" | wc -l) == 1 ] || { echo "one directory expected in zip"; exit 1; }
+    folderNameToolsmith="$foldersInZip"
+
+    updateSiteZipName=$(basename $(ls -1 "$buildsDir/$folderName/$folderNameToolsmith/${updateZipPrefix}"*.zip))
+    unzip -o "$buildsDir/$folderName/$folderNameToolsmith/$updateSiteZipName" -d "$updateSiteDir/toolsmiths"
+
+    #$ADD_DOWNLOAD_STATS "$updateSiteDir/toolsmiths" "toolsmiths"
 fi
 
 # ============================== PUBLISH TESTS ==============================

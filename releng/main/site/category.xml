@@ -25,7 +25,5 @@
          Papyrus User Examples offers a set of plugins dedicated to gather examples of Papyrus usage.
       </description>
    </category-def>
-
-   <repository-reference location="http://download.eclipse.org/releases/oxygen/" enabled="true" />
 </site>
 
