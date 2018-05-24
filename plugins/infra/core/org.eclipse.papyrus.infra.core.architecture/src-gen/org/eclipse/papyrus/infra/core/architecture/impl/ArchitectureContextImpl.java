@@ -17,11 +17,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -39,7 +37,6 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
@@ -48,6 +45,7 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
 import org.eclipse.papyrus.infra.core.architecture.util.ArchitectureValidator;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
+import org.osgi.framework.Bundle;
 
 /**
  * <!-- begin-user-doc -->
@@ -286,18 +284,29 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	public boolean ceationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (creationCommandClass != null) {
+			boolean exists = false;
+			
 			URI uri = eResource().getURI();
-			IWorkspace workspace = ResourcesPlugin.getWorkspace();
-			IFile file = workspace.getRoot().getFile(new Path(uri.toPlatformString(false)));
-			IProject project = file.getProject();
-			IJavaProject javaProject = JavaCore.create(project);
-			IType type = null;
-			try {
-				type = javaProject.findType(creationCommandClass);
-			} catch (JavaModelException e) {
-				/* ignore */
+			if (uri.isPlatformPlugin()) {
+				String bundleName = uri.segment(1);
+				Bundle bundle = Platform.getBundle(bundleName);
+				try {
+					exists = bundle.loadClass(creationCommandClass) != null;
+				} catch (ClassNotFoundException e) {
+					/* ignore */
+				}
+			} else if (uri.isPlatformResource()) {
+				String projectName = uri.segment(1);
+				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+				IJavaProject javaProject = JavaCore.create(project);
+				try {
+					exists = javaProject.findType(creationCommandClass) != null;
+				} catch (JavaModelException e) {
+					/* ignore */
+				}
 			}
-			if (type == null) {
+			
+			if (!exists) {
 				if (diagnostics != null) {
 					diagnostics.add
 						(new BasicDiagnostic
@@ -320,18 +329,29 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 */
 	public boolean conversionCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (conversionCommandClass != null) {
+			boolean exists = false;
+			
 			URI uri = eResource().getURI();
-			IWorkspace workspace = ResourcesPlugin.getWorkspace();
-			IFile file = workspace.getRoot().getFile(new Path(uri.toPlatformString(false)));
-			IProject project = file.getProject();
-			IJavaProject javaProject = JavaCore.create(project);
-			IType type = null;
-			try {
-				type = javaProject.findType(conversionCommandClass);
-			} catch (JavaModelException e) {
-				/* ignore */
+			if (uri.isPlatformPlugin()) {
+				String bundleName = uri.segment(1);
+				Bundle bundle = Platform.getBundle(bundleName);
+				try {
+					exists = bundle.loadClass(conversionCommandClass) != null;
+				} catch (ClassNotFoundException e) {
+					/* ignore */
+				}
+			} else if (uri.isPlatformResource()) {
+				String projectName = uri.segment(1);
+				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+				IJavaProject javaProject = JavaCore.create(project);
+				try {
+					exists = javaProject.findType(conversionCommandClass) != null;
+				} catch (JavaModelException e) {
+					/* ignore */
+				}
 			}
-			if (type == null) {
+			
+			if (!exists) {
 				if (diagnostics != null) {
 					diagnostics.add
 						(new BasicDiagnostic

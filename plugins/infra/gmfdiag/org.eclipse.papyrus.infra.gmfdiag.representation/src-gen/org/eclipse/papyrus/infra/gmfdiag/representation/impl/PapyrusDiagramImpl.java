@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -50,6 +51,7 @@ import org.eclipse.papyrus.infra.gmfdiag.representation.PaletteRule;
 import org.eclipse.papyrus.infra.gmfdiag.representation.PapyrusDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.representation.util.RepresentationValidator;
+import org.osgi.framework.Bundle;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Papyrus
@@ -254,18 +256,29 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 */
 	public boolean ceationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (creationCommandClass != null) {
+			boolean exists = false;
+			
 			URI uri = eResource().getURI();
-			IWorkspace workspace = ResourcesPlugin.getWorkspace();
-			IFile file = workspace.getRoot().getFile(new Path(uri.toPlatformString(false)));
-			IProject project = file.getProject();
-			IJavaProject javaProject = JavaCore.create(project);
-			IType type = null;
-			try {
-				type = javaProject.findType(creationCommandClass);
-			} catch (JavaModelException e) {
-				/* ignore */
+			if (uri.isPlatformPlugin()) {
+				String bundleName = uri.segment(1);
+				Bundle bundle = Platform.getBundle(bundleName);
+				try {
+					exists = bundle.loadClass(creationCommandClass) != null;
+				} catch (ClassNotFoundException e) {
+					/* ignore */
+				}
+			} else if (uri.isPlatformResource()) {
+				String projectName = uri.segment(1);
+				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+				IJavaProject javaProject = JavaCore.create(project);
+				try {
+					exists = javaProject.findType(creationCommandClass) != null;
+				} catch (JavaModelException e) {
+					/* ignore */
+				}
 			}
-			if (type == null) {
+			
+			if (!exists) {
 				if (diagnostics != null) {
 					diagnostics.add
 						(new BasicDiagnostic
