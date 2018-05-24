@@ -22,7 +22,9 @@
    </license>
    
    <requires>
-      <import feature="org.eclipse.papyrus.sdk.feature" version="4.0.0.qualifier"/>
+      <import feature="org.eclipse.papyrus.sdk.feature" version="4.0.0" match="compatible"/>
+      <import plugin="org.eclipse.gmf.runtime.emf.ui.properties" version="1.7.0" match="compatible"/>
+      <import plugin="org.eclipse.papyrus.views.properties.model.xwt" version="2.0.0" match="compatible"/>
    </requires>
    
    <includes
@@ -68,13 +70,6 @@
          install-size="0"
          version="0.0.0"/>
 
-   <plugin
-         id="org.eclipse.papyrus.views.properties.model.xwt"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-         
   <!--Expansion-->
 
    <plugin
@@ -98,14 +93,6 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>      
-         
-         
-    <plugin
-         id="org.eclipse.gmf.runtime.emf.ui.properties"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
          
 
    <!--EMF Expressions-->      

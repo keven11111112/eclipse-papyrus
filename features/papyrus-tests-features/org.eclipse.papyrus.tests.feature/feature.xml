@@ -22,6 +22,10 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
+   
+   <requires>
+      <import feature="org.eclipse.papyrus.junit.feature" version="1.0.0.qualifier" match="compatible"/>
+   </requires>
 
    <includes
          id="org.eclipse.papyrus.tests.uml.diagram.feature"
@@ -80,13 +84,6 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <plugin
-         id="org.eclipse.papyrus.bundles.tests"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.papyrus.editor.integration.tests"
          download-size="0"
          install-size="0"
@@ -98,20 +95,6 @@ http://www.eclipse.org/legal/epl-v10.html
          download-size="0"
          install-size="0"
          version="0.0.0"/>
-
-   <plugin
-         id="org.eclipse.papyrus.junit.utils"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.papyrus.junit.framework"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.infra.core.clipboard.tests"

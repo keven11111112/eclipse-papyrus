@@ -20,10 +20,6 @@ which accompanies this distribution, and is available at
    <license url="%licenseURL">
       %license
    </license>
-   
-   <description url="https://eclipse.org/papyrus/">
-   	Common language-agnostic CSS frameworks for GMF-based diagram editors.
-   </description>
 
    <plugin
          id="org.eclipse.papyrus.infra.gmfdiag.css"
