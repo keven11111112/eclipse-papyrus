@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Vincent LORENZO (CEA LIST) - Initial API and implementation
- *   
+ *   Vincent LORENZO (CEA LIST) - Bug 535070
  *****************************************************************************/
 
 package org.eclipse.papyrus.emf.resources;
@@ -73,7 +73,7 @@ public abstract class AbstractEMFResource extends XMIResourceImpl {
 	@Override
 	public Map<Object, Object> getDefaultSaveOptions() {
 		if (null == this.defaultSaveOptions) {
-			super.getDefaultSaveOptions();//initialize the default save options
+			super.getDefaultSaveOptions();// initialize the default save options
 			this.defaultSaveOptions.putAll(LoadAndSaveOptionsUtils.getSaveOptions());
 		}
 		return this.defaultSaveOptions;
@@ -89,9 +89,21 @@ public abstract class AbstractEMFResource extends XMIResourceImpl {
 	@Override
 	public Map<Object, Object> getDefaultLoadOptions() {
 		if (null == this.defaultLoadOptions) {
-			super.getDefaultLoadOptions(); //initialize the default load options
+			super.getDefaultLoadOptions(); // initialize the default load options
 			this.defaultLoadOptions.putAll(LoadAndSaveOptionsUtils.getLoadOptions());
 		}
 		return this.defaultLoadOptions;
+	}
+
+	/**
+	 * @see org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#assignIDsWhileLoading()
+	 *
+	 * @return
+	 */
+	@Override
+	protected boolean assignIDsWhileLoading() {
+		//bug 535070
+		return false; // overridden to avoid to assign XMI_ID to element of previous configuration which are stilling use position to be saved
+		
 	}
 }
