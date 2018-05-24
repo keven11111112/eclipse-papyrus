@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2018 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 535055
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.ui.editors;
@@ -72,6 +73,9 @@ public class InsertReferenceToolbarButton extends AbstractToolbarButton {
 	 */
 	@Override
 	public Object execute() {
+		if(null==this.richTextEditor) {
+			Activator.log.warn("The insert references action cannot be executed, because the Richtext editor has not be registered for this action");//$NON-NLS-1$
+		}else 
 		if (!(this.richTextEditor instanceof UMLRichtextEditorWithReferences)) {
 			Activator.log.warn("The insert references action cannot be executed, because the Richtext editor is not a UMLRichtextEditorWithReferences");//$NON-NLS-1$
 		} else {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016, 2017 CEA LIST and others.
+ * Copyright (c) 2016, 2017, 2018 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 522485
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 535055
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors.richtext;
 
@@ -115,7 +116,8 @@ public class GenericRichTextEditor extends RichTextEditor {
 	 */
 	public GenericRichTextEditor(Composite parent, GenericToolbarConfiguration toolbarConfig, int style) {
 		super(parent, toolbarConfig, style);
-		toolbarConfig.setRichTextEditor(this);
+		toolbarConfig.setBrowser(getEditorConfiguration().getBrowser());
+		toolbarConfig.setRichTextEditor(this);		
 	}
 
 	/**
