@@ -54,9 +54,28 @@ public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
-
 		super.handleNotificationEvent(event);
-		getPrimaryShape().setName(((CombinedFragment) this.resolveSemanticElement()).getInteractionOperator().getLiteral());
+		refreshLabel();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart#refreshVisuals()
+	 *
+	 */
+	@Override
+	protected void refreshVisuals() {
+		refreshLabel();
+		super.refreshVisuals();
+	}
+
+	/**
+	 * @since 5.0
+	 */
+	protected void refreshLabel() {
+		CombinedFragment semantic = (CombinedFragment) this.resolveSemanticElement();
+		if (semantic != null && semantic.getInteractionOperator() != null) {
+			getPrimaryShape().setName(semantic.getInteractionOperator().getLiteral());
+		}
 	}
 
 	/**

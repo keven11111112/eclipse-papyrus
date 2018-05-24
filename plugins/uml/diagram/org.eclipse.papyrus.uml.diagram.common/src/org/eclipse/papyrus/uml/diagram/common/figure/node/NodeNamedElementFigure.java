@@ -938,7 +938,6 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * @param name
 	 *            the name
 	 */
-	// @unused
 	public void setName(String name) {
 		this.nameLabel.setText(name);
 	}
