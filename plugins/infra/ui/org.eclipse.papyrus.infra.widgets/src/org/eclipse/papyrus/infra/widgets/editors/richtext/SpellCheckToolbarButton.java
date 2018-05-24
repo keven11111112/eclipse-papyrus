@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA
+ * Copyright (c) 2013, 2018 CEA
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,7 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
- *
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 535055
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors.richtext;
 
@@ -64,10 +64,13 @@ public class SpellCheckToolbarButton extends AbstractToolbarButton {
 	 */
 	@Override
 	public Object execute() {
-		if (richTextEditor != null) {
+		if(null==this.richTextEditor) {
+			Activator.log.warn("The action can't be executed, because the richtext editor has not bee registered for this action");// $NON-NLS-1$
+		}
+		if (this.richTextEditor != null) {
 			try {
-				dialog = createCheckSpellDialog();
-				dialog.open();
+				this.dialog = createCheckSpellDialog();
+				this.dialog.open();
 			} catch (Exception e) {
 				Activator.log.error(e);
 			}
