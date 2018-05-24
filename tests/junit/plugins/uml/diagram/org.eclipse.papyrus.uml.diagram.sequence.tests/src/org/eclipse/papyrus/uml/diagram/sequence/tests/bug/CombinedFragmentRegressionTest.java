@@ -319,6 +319,40 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	}
 
 	/**
+	 * Verify that the simultaneous deletion of all interaction operands in a combined
+	 * fragment deletes the combined fragment.
+	 *
+	 * @see <a href="http://eclip.se/533683">bug 533683</a>
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533683.di")
+	public void deleteAllInteractionOperands() {
+		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
+		CombinedFragment cfrag = (CombinedFragment) combinedFragmentEP.getAdapter(EObject.class);
+		Interaction interaction = cfrag.getEnclosingInteraction();
+		assumeThat("No interaction", interaction, notNullValue());
+
+		InteractionOperand operand0 = cfrag.getOperands().get(0);
+		InteractionOperand operand = cfrag.getOperands().get(1);
+		InteractionFragment deleteSend = operand.getFragment("delete-send");
+		assumeThat("Lost the delete send event on editor open", deleteSend, notNullValue());
+		InteractionFragment deleted = operand.getFragment("deleted");
+		assumeThat("Lost the deletion occurrence on editor open", deleted, notNullValue());
+
+		EditPart operand0EP = editor.requireEditPart(combinedFragmentEP, operand0);
+		EditPart operandEP = editor.requireEditPart(combinedFragmentEP, operand);
+
+		editor.delete(operand0EP, operandEP);
+
+		combinedFragmentEP = editor.findEditPart(cfrag);
+
+		assertThat("Combined fragment not deleted", cfrag, isDeleted());
+		assertThat("Combined fragment still presented in diagram", combinedFragmentEP, nullValue());
+
+		assertThat("Fragments of deleted operand not retained", interaction.getFragments(), hasItems(deleteSend, deleted));
+	}
+
+	/**
 	 * Verify the creation of a combined fragment by just dropping the tool on a
 	 * lifeline.
 	 */
