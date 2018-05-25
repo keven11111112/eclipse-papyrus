@@ -56,6 +56,22 @@ import org.junit.Test;
 public class TestCombinedFragmentOperandsLayout extends AbstractPapyrusTest {
 
 	/**
+	 * <p>
+	 * Bug 535061: Even though we're using a fixed font, the Font Renderer
+	 * may still cause minor layout differences (1-2 pixels). This constant
+	 * is a workaround, so that the test can ignore these minor layout diffs.
+	 * </p>
+	 * <p>
+	 * A value of 0 means we expect a pixel-perfect layout. A value of 1-2 means
+	 * we ignore minor layout differences (Typically due to a different rendered font height)
+	 * </p>
+	 * <p>
+	 * The value is specified in Pixels.
+	 * </p>
+	 */
+	private static final int LAYOUT_TOLERANCE = 2; // FIXME: When Bug 535061 is fixed, we should be able to set this to 0.
+
+	/**
 	 * Size of the CF Label (It is fixed on all platforms, because we use a font explicitly shipped with Papyrus)
 	 */
 	private static final int CF_LABEL_HEIGHT = 19;
@@ -408,7 +424,18 @@ public class TestCombinedFragmentOperandsLayout extends AbstractPapyrusTest {
 	}
 
 	private void assertSize(int width, int height, Dimension actual) {
-		Assert.assertEquals(new Dimension(width, height), actual);
+		Dimension expected = new Dimension(width, height);
+		String message = String.format("Expected %s (with a %spx tolerance); got %s", expected, LAYOUT_TOLERANCE, actual);
+		// Note: This test only works at 100% DPI Scaling. This is a general SeqD issue
+		// that needs to be solved properly. If you're using a 1440p or 4K screen, errors
+		// are expected.
+		Assert.assertTrue(message, getDelta(expected, actual) <= LAYOUT_TOLERANCE);
+	}
+
+	// The delta is the max difference between the expected width/height and the actual values
+	private int getDelta(Dimension expected, Dimension actual) {
+		Dimension shrinked = expected.getCopy().getShrinked(actual);
+		return Math.max(Math.abs(shrinked.width()), Math.abs(shrinked.height()));
 	}
 
 }
