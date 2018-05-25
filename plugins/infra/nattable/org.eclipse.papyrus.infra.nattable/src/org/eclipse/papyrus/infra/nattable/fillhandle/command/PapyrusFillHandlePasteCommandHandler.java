@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016, 2017 CEA LIST and others.
+ * Copyright (c) 2016, 2017, 2018 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 519383
+ *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - Bug 535073
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.fillhandle.command;
@@ -119,8 +120,10 @@ public class PapyrusFillHandlePasteCommandHandler extends FillHandlePasteCommand
 	 * Clone the method {@link FillHandlePasteCommandHandler#doCommand(ILayer, FillHandlePasteCommand)}.
 	 * But before updating data, row index is adapted to row position when some rows are hidden.
 	 *
-	 * @param targetLayer The target layer
-	 * @param command The command
+	 * @param targetLayer
+	 *            The target layer
+	 * @param command
+	 *            The command
 	 * @return <code>true</code> if the command has been handled, <code>false</code> otherwise
 	 * @since 4.0
 	 */
@@ -164,7 +167,7 @@ public class PapyrusFillHandlePasteCommandHandler extends FillHandlePasteCommand
 					// BUG 519383: EditUtils.isCellEditable and UpdateDataCommand use row (column) position but not row (column) index as parameters.
 					// But here, the variables pasteRow and pasteColumns are retrieved from fill handle region, which means they are index not position (see FillHandleDragMode.performDragAction).
 					// As there is no hidden rows, row index and row position are the same in SelectionLayer and RowHideShowLayer.
-					// When there is at least one hidden row, using the wrong index parameter in the SelectionLayer will lead to the wrong one in RowHideShowLayer. 
+					// When there is at least one hidden row, using the wrong index parameter in the SelectionLayer will lead to the wrong one in RowHideShowLayer.
 					// It seems that this is a bug in NatTable.
 
 					// A workaround is proposed here to adapt row index to row position when some rows are hidden.
@@ -197,7 +200,8 @@ public class PapyrusFillHandlePasteCommandHandler extends FillHandlePasteCommand
 	/**
 	 * Adapt row index to row position when some rows are hidden.
 	 *
-	 * @param rowIndex The row index to be adapted
+	 * @param rowIndex
+	 *            The row index to be adapted
 	 * @return the adapted row position
 	 * @since 4.0
 	 */
@@ -292,7 +296,14 @@ public class PapyrusFillHandlePasteCommandHandler extends FillHandlePasteCommand
 							newValue = intValue - ((Integer) diff);
 						}
 
-						final String numDigitsFormat = PapyrusFillHandleUtils.getZeroLeadingFormatString(numberString.length(), newValue);
+						int nbDigit;
+						if (intValue == 0 && numberString.startsWith("-")) { //$NON-NLS-1$
+							nbDigit = numberString.length() - 1; // avoid to get, when we increment from Req1-00 -> Req1000. Here we get Req100.
+							// so we continue to get a bug here with minus sign used as name separator, particularly starting a zero.
+						} else {
+							nbDigit = intValue < 0 ? numberString.length() - 1 : numberString.length();
+						}
+						final String numDigitsFormat = PapyrusFillHandleUtils.getZeroLeadingFormatString(nbDigit, newValue);
 						final String newValueString = String.format(numDigitsFormat, newValue);
 
 						if (isBeginningByNumber) {

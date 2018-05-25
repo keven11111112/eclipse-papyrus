@@ -49,6 +49,8 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandle
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug499466BeginningEndingSuffix_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug499466BeginningPrefix_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug499466EndingSuffix_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug535073BeginningPrefix_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleNameBug535073EndingSuffix_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleStringOnlyPrefix_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleStringOnlySuffix_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleStringPrefix_V1_V3_V1_Test;
@@ -288,6 +290,15 @@ import org.junit.runners.Suite.SuiteClasses;
 	FillHandleNameBug499466BeginningEndingPrefix_V1_V3_V1_Test.class,
 	FillHandleNameBug499466BeginningEndingSuffix_V1_V3_V1_Test.class,
 
+	// Bug 519383 - Increment action in table throws a NPE in some cases
+	FillHandleHiddenRowsBug519383BeginningEndingPrefix_V1_H1_H1_Test.class,
+	FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_H1_H1_Test.class,
+	
+	//Bug 535073 : trouble with increment for name such as Class-01
+	FillHandleNameBug535073BeginningPrefix_V1_V3_V1_Test.class,
+	FillHandleNameBug535073EndingSuffix_V1_V3_V1_Test.class,
+	
+	
 	// Attached Mode
 	// Paste tests for single column
 	PasteWithCategories_Empty_H1_H1_SingleColumn_AttachedMode_Test.class,
@@ -446,9 +457,6 @@ import org.junit.runners.Suite.SuiteClasses;
 	// Bug 515806 - Provide a preference to choose the string to display instead of N/A
 	UnsupportedColumnCellTextTest.class,
 
-	// Bug 519383 - Increment action in table throws a NPE in some cases
-	FillHandleHiddenRowsBug519383BeginningEndingPrefix_V1_H1_H1_Test.class,
-	FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_H1_H1_Test.class
 })
 public class AllTests {
 	// JUnit 4 test suite

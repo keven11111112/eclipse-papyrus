@@ -453,6 +453,8 @@ When an integer is available at the beginning or at the ending of the value, it 
 
 The filled integer values are calculated by the same way than the fill numbers.
 
+Warning: the minus sign is used as minus and not as a separator. So when you have Class-01 and you decide to Increment to name the next one, you get Class00, then Class01. In order to get Class-02 and Class-02, you must use Decrement.
+
 ==Tree Table Features==
 The feature of the tree table are mostly the same than for the flat table.
 
