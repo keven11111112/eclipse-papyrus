@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST, ALL4TEC and others.
+ * Copyright (c) 2016, 2018 CEA LIST, ALL4TEC and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and implementation
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 535120
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.listener;
 
@@ -77,9 +78,9 @@ public class NatTableDragSourceListener implements DragSourceListener {
 	@Override
 	public void dragStart(final DragSourceEvent event) {
 		event.doit = false;
-
 		for (int i = 0; i < getGridRegions().size() && !event.doit; i++) {
-			if (!isResizing(event) && this.nattable.getRegionLabelsByXY(event.x, event.y).hasLabel(getGridRegions().get(i))) {
+
+			if (!isResizing(event) && isInsideTheTable(event) && this.nattable.getRegionLabelsByXY(event.x, event.y).hasLabel(getGridRegions().get(i))) {
 				event.doit = true;
 			}
 		}
@@ -91,6 +92,20 @@ public class NatTableDragSourceListener implements DragSourceListener {
 		}
 	}
 
+	/**
+	 * 
+	 * @param event
+	 *            the event
+	 * @return
+	 * 		<code>true</code> if we are in the table
+	 */
+	private boolean isInsideTheTable(final DragSourceEvent event) {
+		//see bug 535120
+		return this.nattable.getRegionLabelsByXY(event.x, event.y) != null;
+		// alternative method:
+		// INattableModelManager manager = this.nattable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+		// LocationValue location = manager.getLocationInTheTable(new Point(event.x, event.y));
+	}
 
 	/**
 	 * @return The grid region where drag is enabled.
