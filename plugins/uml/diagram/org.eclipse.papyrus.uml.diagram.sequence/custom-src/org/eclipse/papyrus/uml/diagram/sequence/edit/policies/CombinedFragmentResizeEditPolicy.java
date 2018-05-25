@@ -139,31 +139,38 @@ public class CombinedFragmentResizeEditPolicy extends ResizableEditPolicyEx {
 			int direction = cbr.getResizeDirection();
 
 			List<GraphicalEditPart> operands = getOperands();
-			if (!operands.isEmpty() && ((direction & PositionConstants.NORTH) != 0 || (direction & PositionConstants.SOUTH) != 0)) {
-				ChangeBoundsRequest resizeFirstOrLastOperand = new ChangeBoundsRequest();
+			if (!operands.isEmpty()) {
+				ChangeBoundsRequest resizeOperand = new ChangeBoundsRequest();
 				GraphicalEditPart operand;
+				int firstOrLastOperandResizeDirection;
 				if ((direction & PositionConstants.NORTH) != 0) {
 					operand = operands.get(0);
-					resizeFirstOrLastOperand.setResizeDirection(PositionConstants.NORTH);
+					firstOrLastOperandResizeDirection = PositionConstants.NORTH;
 				} else {
 					operand = operands.get(operands.size() - 1);
-					resizeFirstOrLastOperand.setResizeDirection(PositionConstants.SOUTH);
+					firstOrLastOperandResizeDirection = PositionConstants.SOUTH;
 				}
 
-				resizeFirstOrLastOperand.setMoveDelta(cbr.getMoveDelta());
-				resizeFirstOrLastOperand.setLocation(cbr.getLocation());
-				resizeFirstOrLastOperand.setEditParts(operand);
-				resizeFirstOrLastOperand.setSizeDelta(new Dimension(0, cbr.getSizeDelta().height));
-				resizeFirstOrLastOperand.setType(RequestConstants.REQ_RESIZE);
-				commands.add(operand.getCommand(resizeFirstOrLastOperand));
-			} else {
-				// Width change only; nothing is required.
-				// XXX Optionally, we may force the new width to all operands. That's not required, as the layout
-				// will take care of that anyway.
-				return resizeCFCommand;
-			}
+				resizeOperand.setMoveDelta(cbr.getMoveDelta());
+				resizeOperand.setLocation(cbr.getLocation());
+				resizeOperand.setType(RequestConstants.REQ_RESIZE);
 
-			return command;
+				for (GraphicalEditPart operandPart : operands) {
+					resizeOperand.setEditParts(operand);
+					if (operandPart == operand) {
+						// Give all the delta (Height and width) to either the first or last operand
+						resizeOperand.setSizeDelta(new Dimension(cbr.getSizeDelta()));
+						resizeOperand.setResizeDirection(firstOrLastOperandResizeDirection);
+					} else {
+						// Give only the width delta to other operands
+						resizeOperand.setSizeDelta(new Dimension(cbr.getSizeDelta().width(), 0));
+						resizeOperand.setResizeDirection(PositionConstants.EAST);
+					}
+					commands.add(operandPart.getCommand(resizeOperand));
+				}
+
+				return command;
+			}
 		}
 
 		return resizeCFCommand;

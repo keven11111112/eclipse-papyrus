@@ -124,7 +124,7 @@ public class ResizeOperandEditPolicy extends GraphicalEditPolicy {
 		operandFigure.translateToRelative(bounds);
 
 		// Set the new bounds, relative to the parent (CombinedFragment), to make
-		// sure the notation is consistent with the visuals. We should get x = 0; y = sizeOf(Cf_Label) + Sum(sizeOf(previousOperands))
+		// sure the notation is consistent with the visuals. We should get x = 0; y = Sum(sizeOf(previousOperands)); width = width(CF)
 		IFigure cfFigure = ((IGraphicalEditPart) operandPart.getParent()).getFigure();
 		bounds.translate(cfFigure.getBounds().getTopLeft().getNegated());
 

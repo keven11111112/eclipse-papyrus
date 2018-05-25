@@ -365,6 +365,10 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	protected void updateColumnStartFromXNotification(PrecisionRectangle bounds) {
 		int newX = bounds.x();
 		updatePositionGridAxis(columnStart, newX, 0);
+		if (columnFinish != null) {
+			newX = bounds.x() + bounds.width();
+			updatePositionGridAxis(columnFinish, newX, 0);
+		}
 		UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_REFERENCEGRID, "+---->ACTION: modifiy AXIS START to  x=" + newX);//$NON-NLS-1$
 
 	}
@@ -402,10 +406,14 @@ public class ConnectRectangleToGridEditPolicy extends ConnectToGridEditPolicy im
 	/**
 	 * This allows to update the position of anchor after the move.
 	 *
-	 * @param anchor The anchor to recalculate.
-	 * @param node The moved node.
-	 * @param oldY The old Y position.
-	 * @param newY The new Y position.
+	 * @param anchor
+	 *            The anchor to recalculate.
+	 * @param node
+	 *            The moved node.
+	 * @param oldY
+	 *            The old Y position.
+	 * @param newY
+	 *            The new Y position.
 	 */
 	protected void updateAnchorFromY(IdentityAnchor anchor, Node node, int oldY, int newY) {
 		if (null != anchor && !anchor.getId().trim().equals("")) { //$NON-NLS-1$

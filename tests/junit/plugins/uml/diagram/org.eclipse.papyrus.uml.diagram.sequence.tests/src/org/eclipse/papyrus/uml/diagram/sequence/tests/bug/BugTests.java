@@ -36,6 +36,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		CombinedFragmentRegressionTest.class,
 		TestCombinedFragmentOperandsLayout.class,
 		TestCFOperandsCoveredNodes.class,
+		TestCFOperandsSemanticCoverage.class,
 })
 public class BugTests {
 

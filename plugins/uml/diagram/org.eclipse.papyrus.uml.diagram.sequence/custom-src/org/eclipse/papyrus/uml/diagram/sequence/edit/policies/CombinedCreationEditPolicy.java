@@ -136,8 +136,10 @@ public class CombinedCreationEditPolicy extends DefaultCreationEditPolicy {
 
 			// We get the size from the mouse cursor location to the bottom of the existing operand
 			int height = targetOperandBounds.getBottom().y() - locationToOperand.y();
+			int width = compartmentFigure.getBounds().width();
+
 			int distanceToCompartmentTop = compartmentFigure.getBounds().getTopLeft().getNegated().translate(locationToCompartment).y;
-			Rectangle bounds = new Rectangle(0, distanceToCompartmentTop, -1, height);
+			Rectangle bounds = new Rectangle(0, distanceToCompartmentTop, width, height);
 			ICommand setBoundsCommand = new SetResizeAndLocationCommand(editingDomain, "Set dimension", descriptor, bounds);
 
 			// Also reduce the size of the existing operand, to avoid shifting the entire operands stack
@@ -145,16 +147,15 @@ public class CombinedCreationEditPolicy extends DefaultCreationEditPolicy {
 
 			int siblingHeight = targetOperandPart.getFigure().getBounds().height();
 
-			Dimension siblingDimension = new Dimension(-1, siblingHeight - height);
+			Dimension siblingDimension = new Dimension(width, siblingHeight - height);
 			ICommand reduceSiblingSizeCommand = new SetResizeCommand(editingDomain, "Set dimension", new NotationAndTypeAdapter(view.getElement(), view), siblingDimension);
 			return setBoundsCommand.compose(reduceSiblingSizeCommand);
 		}
 
 		// Shouldn't happen in a well-formed diagram, since a CF should always have at least one operand.
-		// If this happens, simply take all available height
+		// If this happens, simply take all available size
 		Rectangle clientArea = compartmentFigure.getClientArea();
-		int height = clientArea.height();
-		Dimension size = new Dimension(-1, height);
+		Dimension size = new Dimension(clientArea.getSize());
 		ICommand setBoundsCommand = new SetResizeCommand(editingDomain, "Set dimension", descriptor, size);
 		return setBoundsCommand;
 	}
