@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
- * 
+ * Copyright (c) 2014, 2018 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,13 +8,16 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.tools.file;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -22,16 +25,22 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * A simple class providing access to the file system relative to a specified project
  *
  */
-public class ProjectBasedFileAccess implements IPFileSystemAccess {
+public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouched {
 
 	IProject project;
 
 	String subFolderName;
+
+	/**
+	 * Store information which files have been created in a hash map
+	 */
+	protected Map<String, Boolean> touched;
 
 	/**
 	 * force an update of resources (currently always true)
@@ -40,17 +49,17 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess {
 
 	/**
 	 * Create a project based file access for a specific project.
-	 * 
+	 *
 	 * @param project
 	 *            the project for which file system access is provided
 	 */
 	public ProjectBasedFileAccess(IProject project) {
-		setProject(project, null);
+		this(project, null);
 	}
 
 	/**
 	 * Create a project based file access for a specific project.
-	 * 
+	 *
 	 * @param project
 	 *            the project for which file system access is provided
 	 * @param subFolderName
@@ -58,11 +67,12 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess {
 	 */
 	public ProjectBasedFileAccess(IProject project, String subFolderName) {
 		setProject(project, subFolderName);
+		touched = new HashMap<String, Boolean>();
 	}
 
 	/**
 	 * Set/update project, reset subFolderName to null
-	 * 
+	 *
 	 * @param project
 	 *            the project for which file system access is provided
 	 */
@@ -94,26 +104,37 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess {
 	 */
 	public void generateFile(String fileName, String content) {
 		IFile file = getFile(fileName);
+		touched.put(file.getFullPath().toString(), true);
 		InputStream contentStream = new ByteArrayInputStream(content.getBytes());
 		try {
+			boolean needsRefresh = false;
 			if (file.exists()) {
-				if (force) {
-					file.setContents(contentStream, true, true, null);
+				if (!IOUtils.contentEquals( file.getContents(), contentStream)) {
+					if (force) {
+						contentStream.reset();
+						file.setContents(contentStream, true, true, null);
+						needsRefresh = true;
+					}
+					// else - file is not updated
 				}
-				// else - file is not updated
 			} else {
 				// the file does not exists
 				file.create(contentStream, true, null);
+				needsRefresh = true;
 			}
 			// Refresh the container for the newly created files. This needs to be done even
 			// during error because of the possibility for partial results.
-			file.refreshLocal(IResource.DEPTH_INFINITE, null);
+			if (needsRefresh) {
+				file.refreshLocal(IResource.DEPTH_INFINITE, null);
+			}
 		} catch (CoreException e) {
 			throw new RuntimeException(e);
+		} catch (IOException ioe) {
+			throw new RuntimeException(ioe);
 		}
 	}
 
-	/**
+    /**
 	 * @see org.eclipse.papyrus.infra.tools.util.IPFileSystemAccess.generator.IFileSystemAccess#deleteFile(java.lang.String)
 	 *
 	 * @param fileName
@@ -145,6 +166,7 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess {
 			for (int i = 0; i < paths.length - 1; i++) {
 				String path = paths[i];
 				packageContainer = getFolder(packageContainer, path);
+				touched.put(packageContainer.getFullPath().toString(), true);
 				if (!packageContainer.exists()) {
 					// if packageContainer is a Project, it necessarily exists
 					((IFolder) packageContainer).create(false, true, null);
@@ -159,7 +181,7 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess {
 
 	/**
 	 * Return the a sub-folder from a given container
-	 * 
+	 *
 	 * @param container
 	 *            a container (must be a project or a folder)
 	 * @param folderName
@@ -180,7 +202,7 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess {
 
 	/**
 	 * Return a file within a container
-	 * 
+	 *
 	 * @param container
 	 *            a container (must be a project or a folder)
 	 * @param fileName
@@ -194,5 +216,24 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess {
 			return ((IProject) container).getFile(fileName);
 		}
 		return null;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.tools.file.ICleanUntouched#cleanOldCode(org.eclipse.core.resources.IFolder, org.eclipse.core.runtime.IProgressMonitor)
+	 *
+	 * @param folder
+	 * @param monitor
+	 * @throws CoreException
+	 */
+	@Override
+	public void cleanUntouched(IFolder folder, IProgressMonitor monitor) throws CoreException {
+		for (IResource resource : folder.members()) {
+			if (resource instanceof IFolder) {
+				cleanUntouched((IFolder) resource, monitor);
+			}
+			if (!touched.containsKey(resource.getFullPath().toString())) {
+				resource.delete(false, monitor);
+			}
+		}
 	}
 }
