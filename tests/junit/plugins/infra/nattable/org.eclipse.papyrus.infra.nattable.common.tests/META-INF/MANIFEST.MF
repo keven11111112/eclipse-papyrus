@@ -26,3 +26,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-Description: %Bundle-Description
 Export-Package: org.eclipse.papyrus.infra.nattable.common.tests
+Automatic-Module-Name: org.eclipse.papyrus.infra.nattable.common.tests

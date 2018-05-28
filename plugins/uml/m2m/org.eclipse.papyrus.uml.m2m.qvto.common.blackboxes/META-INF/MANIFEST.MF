@@ -21,3 +21,4 @@ Export-Package: org.eclipse.papyrus.uml.m2m.qvto.common.blackboxes,
  org.eclipse.papyrus.uml.m2m.qvto.common.blackboxes.emf,
  org.eclipse.papyrus.uml.m2m.qvto.common.blackboxes.uml,
  org.eclipse.papyrus.uml.m2m.qvto.common.blackboxes.utils
+Automatic-Module-Name: org.eclipse.papyrus.uml.m2m.qvto.common.blackboxes

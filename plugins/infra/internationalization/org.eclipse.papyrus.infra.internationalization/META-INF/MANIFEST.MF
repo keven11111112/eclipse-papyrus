@@ -29,3 +29,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.infra.internationalization.Activator
 Import-Package: com.google.common.base;version="21.0.0",
  com.google.common.collect;version="21.0.0"
+Automatic-Module-Name: org.eclipse.papyrus.infra.internationalization

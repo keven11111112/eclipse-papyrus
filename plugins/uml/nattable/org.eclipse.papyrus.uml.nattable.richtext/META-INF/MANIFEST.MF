@@ -18,3 +18,4 @@ Require-Bundle: org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)
  org.eclipse.papyrus.uml.nattable;bundle-version="[5.0.0,6.0.0)"
 Export-Package: org.eclipse.papyrus.uml.nattable.richtext.celleditor.config
 Bundle-Description: %Bundle-Description
+Automatic-Module-Name: org.eclipse.papyrus.uml.nattable.richtext

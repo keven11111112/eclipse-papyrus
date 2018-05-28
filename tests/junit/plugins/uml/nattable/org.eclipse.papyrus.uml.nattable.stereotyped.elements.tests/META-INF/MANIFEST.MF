@@ -30,3 +30,4 @@ Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests

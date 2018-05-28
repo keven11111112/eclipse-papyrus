@@ -53,3 +53,4 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.tooling.runtime,
  org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.sheet,
  org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.structure,
  org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.update
+Automatic-Module-Name: org.eclipse.papyrus.infra.gmfdiag.tooling.runtime

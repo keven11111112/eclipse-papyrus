@@ -13,13 +13,7 @@
 
 package org.eclipse.papyrus.uml.service.types.helper;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 public class TimeConstraintEditHelper extends ConstraintEditHelper {

@@ -15,3 +15,4 @@ Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.resourceloading.Activa
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer.resourceloading;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Automatic-Module-Name: org.eclipse.papyrus.views.modelexplorer.resourceloading

@@ -13,3 +13,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.profile.newchildmenu.generator.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profile.newchildmenu.generator;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Automatic-Module-Name: org.eclipse.papyrus.uml.profile.newchildmenu.generator

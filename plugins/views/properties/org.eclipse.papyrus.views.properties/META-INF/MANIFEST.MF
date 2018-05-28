@@ -21,3 +21,4 @@ Bundle-Activator: org.eclipse.papyrus.views.properties.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.views.properties;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.views.properties

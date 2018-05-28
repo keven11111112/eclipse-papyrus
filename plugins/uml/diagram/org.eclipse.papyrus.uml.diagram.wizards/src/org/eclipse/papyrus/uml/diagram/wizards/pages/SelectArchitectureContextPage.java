@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -24,9 +23,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
 import org.eclipse.papyrus.infra.ui.architecture.widgets.ArchitectureContextComposite;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.utils.SettingsHelper;

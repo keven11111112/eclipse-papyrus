@@ -85,3 +85,4 @@ Bundle-Version: 3.1.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.component; singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.component

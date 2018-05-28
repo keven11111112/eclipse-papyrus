@@ -21,3 +21,4 @@ Export-Package: org.eclipse.papyrus.dev.project.management,
  org.eclipse.papyrus.dev.project.management.handlers.plugins,
  org.eclipse.papyrus.dev.project.management.internal.operations;x-internal:=true,
  org.eclipse.papyrus.dev.project.management.utils
+Automatic-Module-Name: org.eclipse.papyrus.dev.project.management

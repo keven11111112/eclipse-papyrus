@@ -13,3 +13,4 @@ Bundle-Activator: org.eclipse.papyrus.emf.facet.efacet.plugin.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.efacet;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Automatic-Module-Name: org.eclipse.papyrus.emf.facet.efacet

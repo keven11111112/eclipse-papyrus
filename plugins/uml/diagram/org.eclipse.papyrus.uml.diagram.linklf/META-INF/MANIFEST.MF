@@ -21,3 +21,4 @@ Export-Package: org.eclipse.papyrus.uml.diagram.linklf;x-internal:=true,
  org.eclipse.papyrus.uml.diagram.linklf.common,
  org.eclipse.papyrus.uml.diagram.linklf.policy.graphicalnode,
  org.eclipse.papyrus.uml.diagram.linklf.providers
+Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.linklf

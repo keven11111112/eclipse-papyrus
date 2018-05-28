@@ -13,3 +13,4 @@ Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.xtext.integration;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Automatic-Module-Name: org.eclipse.papyrus.uml.nattable.xtext.integration

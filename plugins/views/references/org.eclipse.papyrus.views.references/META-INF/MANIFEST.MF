@@ -13,3 +13,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Description: %pluginDescription
 Bundle-Localization: plugin
+Automatic-Module-Name: org.eclipse.papyrus.views.references

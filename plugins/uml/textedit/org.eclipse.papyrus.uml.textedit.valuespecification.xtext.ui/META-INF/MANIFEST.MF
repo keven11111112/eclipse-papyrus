@@ -24,3 +24,4 @@ Bundle-Activator: org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.i
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui

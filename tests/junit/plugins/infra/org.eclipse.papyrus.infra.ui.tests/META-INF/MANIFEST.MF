@@ -19,3 +19,4 @@ Bundle-Name: Papyrus Infrastructure UI Tests
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.ui.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.infra.ui.tests

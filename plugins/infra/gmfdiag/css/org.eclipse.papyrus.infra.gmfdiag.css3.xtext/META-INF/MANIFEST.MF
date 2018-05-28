@@ -34,3 +34,4 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css3.xtext;singleton:=true
 Import-Package: org.apache.log4j;version="[1.2.0,2.0.0)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Automatic-Module-Name: org.eclipse.papyrus.infra.gmfdiag.css3.xtext

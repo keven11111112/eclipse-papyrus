@@ -7,3 +7,4 @@ Bundle-Name: XText integration Core
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.xtext.integration.core;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Automatic-Module-Name: org.eclipse.papyrus.uml.xtext.integration.core

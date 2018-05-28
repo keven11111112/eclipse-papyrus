@@ -19,3 +19,4 @@ Bundle-Vendor: %providerName
 Bundle-Version: 1.2.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sashwindows.di;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.infra.core.sashwindows.di

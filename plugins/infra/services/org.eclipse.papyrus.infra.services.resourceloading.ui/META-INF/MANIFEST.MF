@@ -19,3 +19,4 @@ Export-Package: org.eclipse.papyrus.infra.services.resourceloading.internal.ui;x
  org.eclipse.papyrus.infra.services.resourceloading.internal.ui.expressions;x-internal:=true,
  org.eclipse.papyrus.infra.services.resourceloading.internal.ui.preferences;x-internal:=true,
  org.eclipse.papyrus.infra.services.resourceloading.internal.ui.strategy;x-internal:=true
+Automatic-Module-Name: org.eclipse.papyrus.infra.services.resourceloading.ui

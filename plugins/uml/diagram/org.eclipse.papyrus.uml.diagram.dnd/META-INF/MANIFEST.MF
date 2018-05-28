@@ -16,3 +16,4 @@ Bundle-Name: UML Drag and Drop
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.dnd.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.dnd;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.dnd

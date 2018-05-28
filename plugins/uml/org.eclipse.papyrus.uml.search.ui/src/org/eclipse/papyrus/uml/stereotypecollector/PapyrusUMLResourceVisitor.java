@@ -14,18 +14,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.stereotypecollector;
 
-import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.HashSet;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceProxy;
-import org.eclipse.core.resources.IResourceProxyVisitor;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.emf.common.util.URI;
 
 /**

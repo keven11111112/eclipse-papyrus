@@ -17,3 +17,4 @@ Bundle-SymbolicName: org.eclipse.papyrus.releng.tools;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.google.common.base,
  com.google.common.collect
+Automatic-Module-Name: org.eclipse.papyrus.releng.tools

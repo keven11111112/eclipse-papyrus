@@ -20,3 +20,4 @@ Eclipse-BuddyPolicy: dependent
 Bundle-Activator: org.eclipse.papyrus.infra.constraints.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.constraints;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.infra.constraints

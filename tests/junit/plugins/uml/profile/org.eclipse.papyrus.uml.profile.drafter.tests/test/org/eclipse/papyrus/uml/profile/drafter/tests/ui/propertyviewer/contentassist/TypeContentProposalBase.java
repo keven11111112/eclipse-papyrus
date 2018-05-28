@@ -14,8 +14,6 @@
 
 package org.eclipse.papyrus.uml.profile.drafter.tests.ui.propertyviewer.contentassist;
 
-import java.util.List;
-
 import org.eclipse.jface.fieldassist.IContentProposal;
 import org.eclipse.papyrus.uml.profile.drafter.tests.ui.propertyviewer.Type;
 

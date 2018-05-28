@@ -32,3 +32,4 @@ Bundle-Activator: org.eclipse.papyrus.infra.properties.internal.ui.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.properties.ui;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.infra.properties.ui

@@ -18,3 +18,4 @@ Bundle-Version: 2.0.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.views.search.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.views.search;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.views.search

@@ -25,3 +25,4 @@ Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.properties;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Activator: org.eclipse.papyrus.infra.properties.internal.InfraPropertiesPlugin
+Automatic-Module-Name: org.eclipse.papyrus.infra.properties

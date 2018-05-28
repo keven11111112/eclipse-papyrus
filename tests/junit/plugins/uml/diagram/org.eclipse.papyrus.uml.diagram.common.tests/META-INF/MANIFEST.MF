@@ -41,3 +41,4 @@ Bundle-ManifestVersion: 2
 Bundle-Description: This plugin provides tests for the papyrus plugin UML Diagram Common
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.common.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.common.tests

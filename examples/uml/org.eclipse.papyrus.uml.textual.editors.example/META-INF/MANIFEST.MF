@@ -27,3 +27,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-Description: %Bundle-Description
 Bundle-Localization: plugin
+Automatic-Module-Name: org.eclipse.papyrus.uml.textual.editors.example

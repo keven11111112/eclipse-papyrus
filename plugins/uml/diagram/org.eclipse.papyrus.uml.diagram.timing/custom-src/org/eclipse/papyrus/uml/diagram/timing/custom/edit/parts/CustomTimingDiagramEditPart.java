@@ -10,9 +10,6 @@ package org.eclipse.papyrus.uml.diagram.timing.custom.edit.parts;
 
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -22,8 +19,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.InteractionEditPartTN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimingDiagramEditPart;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
 
 public class CustomTimingDiagramEditPart extends TimingDiagramEditPart {
 

@@ -25,3 +25,4 @@ Bundle-Activator: org.eclipse.papyrus.customization.properties.generation.Activa
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.properties.generation;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.uml.properties.generation

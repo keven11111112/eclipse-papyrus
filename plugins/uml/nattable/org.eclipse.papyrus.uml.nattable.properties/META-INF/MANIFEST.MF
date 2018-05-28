@@ -24,3 +24,4 @@ Require-Bundle: org.eclipse.papyrus.infra.nattable;bundle-version="[6.0.0,7.0.0]
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.properties.Activator
 Bundle-Description: %Bundle-Description
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: org.eclipse.papyrus.uml.nattable.properties

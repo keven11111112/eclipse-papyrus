@@ -15,3 +15,4 @@ Bundle-Activator: org.eclipse.papyrus.infra.onefile.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.onefile;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Automatic-Module-Name: org.eclipse.papyrus.infra.onefile

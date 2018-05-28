@@ -49,3 +49,4 @@ Bundle-Version: 1.4.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.timing.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.timing;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.timing

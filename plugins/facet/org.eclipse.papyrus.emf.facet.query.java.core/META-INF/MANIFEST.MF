@@ -16,3 +16,4 @@ Bundle-Activator: org.eclipse.papyrus.emf.facet.query.java.core.internal.plugin.
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.query.java.core;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.emf.facet.query.java.core

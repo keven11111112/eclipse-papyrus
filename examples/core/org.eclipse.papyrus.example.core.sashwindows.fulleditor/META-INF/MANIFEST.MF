@@ -22,3 +22,4 @@ Export-Package: org.eclipse.papyrus.example.core.sashwindows.fulleditor,
  org.eclipse.papyrus.example.core.sashwindows.fulleditor.msgpage,
  org.eclipse.papyrus.example.core.sashwindows.fulleditor.texteditor,
  org.eclipse.papyrus.example.core.sashwindows.fulleditor.wizards
+Automatic-Module-Name: org.eclipse.papyrus.example.core.sashwindows.fulleditor

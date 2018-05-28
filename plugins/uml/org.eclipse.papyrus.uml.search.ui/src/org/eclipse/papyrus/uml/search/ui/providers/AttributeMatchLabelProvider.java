@@ -25,7 +25,6 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProvid
 import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.Messages;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
-import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
 import org.eclipse.papyrus.views.search.results.AttributeMatch;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Class;

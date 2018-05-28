@@ -14,3 +14,4 @@ Export-Package: org.eclipse.papyrus.uml.properties.xtext,
  org.eclipse.papyrus.uml.properties.xtext.sheet,
  org.eclipse.papyrus.uml.properties.xtext.widget,
  org.eclipse.papyrus.uml.properties.xtext.widget.property
+Automatic-Module-Name: org.eclipse.papyrus.uml.properties.xtext

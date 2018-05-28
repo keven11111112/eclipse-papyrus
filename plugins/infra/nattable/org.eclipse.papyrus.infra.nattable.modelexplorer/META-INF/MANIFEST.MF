@@ -27,3 +27,4 @@ Bundle-Activator: org.eclipse.papyrus.infra.nattable.modelexplorer.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.modelexplorer;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.infra.nattable.modelexplorer

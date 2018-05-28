@@ -13,13 +13,12 @@
 package org.eclipse.papyrus.uml.diagram.deployment.test.canonical;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.deployment.CreateDeploymentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.deployment.providers.UMLElementTypes;

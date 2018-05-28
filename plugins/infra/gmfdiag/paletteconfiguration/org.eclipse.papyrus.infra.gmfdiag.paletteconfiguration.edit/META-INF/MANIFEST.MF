@@ -29,3 +29,4 @@ Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.provide
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.edit;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.edit

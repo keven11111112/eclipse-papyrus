@@ -23,3 +23,4 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: Eclipse Modeling Project
+Automatic-Module-Name: org.eclipse.papyrus.uml.alf.backend.tests

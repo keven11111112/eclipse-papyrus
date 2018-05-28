@@ -83,3 +83,4 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.statemachine; singleton:=true
 Import-Package: com.google.common.base;version="21.0.0",
  com.google.common.collect;version="21.0.0"
+Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.statemachine

@@ -21,9 +21,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.swt.graphics.Image;
 
@@ -41,8 +39,6 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	private WrappingLabel taggedLabel;
 
 	protected static final String RIGHT_BRACE = "}";
-
-	// protected TextFlowEx textFlow;
 
 	private WrappingLabel nameLabel;
 

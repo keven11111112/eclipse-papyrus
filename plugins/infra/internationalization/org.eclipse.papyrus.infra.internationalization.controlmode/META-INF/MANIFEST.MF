@@ -20,3 +20,4 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility
  org.eclipse.papyrus.infra.nattable.model;bundle-version="[4.0.0,5.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.infra.internationalization.controlmode.Activator
+Automatic-Module-Name: org.eclipse.papyrus.infra.internationalization.controlmode

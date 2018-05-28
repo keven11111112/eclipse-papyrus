@@ -14,9 +14,9 @@
 
 package org.eclipse.papyrus.uml.profile.drafter.ui.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import org.eclipse.core.commands.ITypedParameter;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.junit.After;

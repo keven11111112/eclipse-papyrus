@@ -19,3 +19,4 @@ Export-Package: org.eclipse.papyrus.uml.service.types.internal.ui;x-internal:=tr
  org.eclipse.papyrus.uml.service.types.ui.handlers,
  org.eclipse.papyrus.uml.service.types.ui.menu,
  org.eclipse.papyrus.uml.service.types.ui.util
+Automatic-Module-Name: org.eclipse.papyrus.uml.service.types.ui

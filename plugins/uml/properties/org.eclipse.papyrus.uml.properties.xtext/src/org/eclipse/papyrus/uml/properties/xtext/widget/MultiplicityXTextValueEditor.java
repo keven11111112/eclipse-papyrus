@@ -12,14 +12,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.xtext.widget;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractReferenceDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextReferenceDialog;
-import org.eclipse.papyrus.infra.widgets.messages.Messages;
-import org.eclipse.papyrus.infra.widgets.validator.AbstractValidator;
-import org.eclipse.papyrus.infra.widgets.validator.IntegerValidator;
 import org.eclipse.papyrus.uml.properties.widgets.ExtendedMultiplicityDialog;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;

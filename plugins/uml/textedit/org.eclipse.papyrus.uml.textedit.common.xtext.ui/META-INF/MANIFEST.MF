@@ -26,3 +26,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.UmlCommonActivator
 Import-Package: org.apache.log4j;version="[1.2.0,2.0.0)"
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.common.xtext.ui;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.uml.textedit.common.xtext.ui

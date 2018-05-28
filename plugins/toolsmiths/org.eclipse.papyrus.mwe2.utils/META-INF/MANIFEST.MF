@@ -17,3 +17,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.mwe2.utils.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.mwe2.utils;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Automatic-Module-Name: org.eclipse.papyrus.mwe2.utils

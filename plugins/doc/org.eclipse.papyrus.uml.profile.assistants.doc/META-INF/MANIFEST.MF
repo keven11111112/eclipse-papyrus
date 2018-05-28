@@ -9,3 +9,4 @@ Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profile.assistants.doc;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.uml.profile.assistants.doc

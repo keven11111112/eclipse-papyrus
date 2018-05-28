@@ -23,3 +23,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.types.rulebased.provider.RuleBasedEditPlugin$Implementation
 Bundle-SymbolicName: org.eclipse.papyrus.infra.types.rulebased;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Automatic-Module-Name: org.eclipse.papyrus.infra.types.rulebased

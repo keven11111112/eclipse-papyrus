@@ -37,3 +37,4 @@ Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.tests.Activator
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Automatic-Module-Name: org.eclipse.papyrus.views.modelexplorer.tests

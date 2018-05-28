@@ -90,7 +90,6 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.TypedElement;
-import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;

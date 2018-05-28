@@ -18,3 +18,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.textedit.parameter.tests;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.uml.textedit.valuespecification.tests;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.uml.textedit.tests;bundle-version="[1.2.0,2.0.0)"
+Automatic-Module-Name: org.eclipse.papyrus.uml.textedit.suite.tests

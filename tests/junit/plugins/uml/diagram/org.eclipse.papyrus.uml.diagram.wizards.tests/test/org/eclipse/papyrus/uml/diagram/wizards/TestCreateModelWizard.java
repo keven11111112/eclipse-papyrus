@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.wizards;
 import static org.junit.Assert.assertEquals;
 
 import org.eclipse.papyrus.uml.architecture.UMLArchitectureContextIds;
-import org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectArchitectureContextPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectRepresentationKindPage;

@@ -20,3 +20,4 @@ Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.welcome.internal.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.welcome;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.infra.gmfdiag.welcome

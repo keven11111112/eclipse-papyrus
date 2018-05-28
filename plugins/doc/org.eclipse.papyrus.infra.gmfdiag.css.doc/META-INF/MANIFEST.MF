@@ -6,3 +6,4 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: CSS Documentation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.doc;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.infra.gmfdiag.css.doc

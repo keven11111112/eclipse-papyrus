@@ -20,15 +20,12 @@ import java.util.Set;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
-import org.eclipse.papyrus.infra.widgets.util.ImageConstants;
 import org.eclipse.papyrus.infra.widgets.util.ValueUtils;
 import org.eclipse.papyrus.infra.widgets.widgets.MultipleValueSelectionWidget;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Shell;
 
 /**
  * @author Vincent Lorenzo

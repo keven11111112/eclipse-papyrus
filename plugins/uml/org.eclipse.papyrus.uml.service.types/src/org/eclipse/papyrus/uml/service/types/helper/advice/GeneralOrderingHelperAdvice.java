@@ -15,10 +15,6 @@
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -27,7 +23,6 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.GetEditContextCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -37,15 +32,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.GeneralOrdering;
-import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
-import org.eclipse.uml2.uml.MessageSort;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
-import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**

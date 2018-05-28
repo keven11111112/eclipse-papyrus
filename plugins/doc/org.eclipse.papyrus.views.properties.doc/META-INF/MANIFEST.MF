@@ -6,3 +6,4 @@ Bundle-Version: 1.3.0.qualifier
 Bundle-Name: Properties view Documentation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.views.properties.doc;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.views.properties.doc

@@ -13,35 +13,25 @@
 
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs;
 
-import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
-import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
-import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
-import org.eclipse.papyrus.infra.tools.util.FileUtils;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.papyrus.uml.nattable.clazz.config.tests.Activator;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;

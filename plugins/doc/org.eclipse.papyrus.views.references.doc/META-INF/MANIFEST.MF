@@ -6,3 +6,4 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: References view Documentation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.views.references.doc;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.views.references.doc

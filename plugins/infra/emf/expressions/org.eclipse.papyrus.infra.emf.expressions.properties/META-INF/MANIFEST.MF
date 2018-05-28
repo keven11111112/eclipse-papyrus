@@ -12,3 +12,4 @@ Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.expressions.properties;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.papyrus.infra.emf.expressions.properties.utils
+Automatic-Module-Name: org.eclipse.papyrus.infra.emf.expressions.properties

@@ -37,3 +37,4 @@ Export-Package: org.eclipse.papyrus.customization.nattableconfiguration,
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Description: %Bundle-Description
 Bundle-Localization: plugin
+Automatic-Module-Name: org.eclipse.papyrus.customization.nattableconfiguration

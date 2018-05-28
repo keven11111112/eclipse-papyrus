@@ -13,8 +13,6 @@
 
 package org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite;
 
-import java.util.Map;
-
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.selection.command.ClearAllSelectionsCommand;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;

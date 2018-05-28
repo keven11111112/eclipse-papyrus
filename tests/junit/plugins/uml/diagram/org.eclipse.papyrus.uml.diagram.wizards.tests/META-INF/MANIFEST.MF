@@ -23,3 +23,4 @@ Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.wizards.tests;singleton:=tr
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: com.google.common.base;version="21.0.0",
  com.google.common.collect;version="21.0.0"
+Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.wizards.tests

@@ -17,3 +17,4 @@ Require-Bundle: org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)
 Bundle-Activator: org.eclipse.papyrus.toolsmiths.expressions.Activator
 Bundle-ActivationPolicy: lazy
 Bundle-Description: %Bundle-Description
+Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.expressions

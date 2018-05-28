@@ -33,7 +33,6 @@ import org.eclipse.papyrus.infra.widgets.selectors.NullSelector;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;

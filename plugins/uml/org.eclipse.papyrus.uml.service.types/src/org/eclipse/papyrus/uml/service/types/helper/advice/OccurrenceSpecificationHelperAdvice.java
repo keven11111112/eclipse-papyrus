@@ -32,14 +32,12 @@ import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.TimeConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.TimeObservationHelper;
 import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
-import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * Helper advice for all {@link OccurrenceSpecification} elements.

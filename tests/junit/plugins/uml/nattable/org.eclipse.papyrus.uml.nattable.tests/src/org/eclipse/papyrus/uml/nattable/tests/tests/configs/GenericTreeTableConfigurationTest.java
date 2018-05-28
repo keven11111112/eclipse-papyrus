@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**

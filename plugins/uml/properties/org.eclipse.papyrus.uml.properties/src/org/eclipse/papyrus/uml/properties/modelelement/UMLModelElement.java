@@ -22,7 +22,6 @@ import static org.eclipse.uml2.uml.ParameterDirectionKind.OUT_LITERAL;
 import static org.eclipse.uml2.uml.ParameterDirectionKind.RETURN_LITERAL;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

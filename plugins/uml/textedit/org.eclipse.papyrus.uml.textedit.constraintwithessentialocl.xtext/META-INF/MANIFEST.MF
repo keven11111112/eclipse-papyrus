@@ -17,3 +17,4 @@ Bundle-Activator: org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xt
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xtext;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xtext

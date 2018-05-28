@@ -18,7 +18,6 @@ import java.util.concurrent.ExecutorService;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.ui.util.UIUtil;
-import org.eclipse.papyrus.uml.decoratormodel.internal.resource.DecoratorModelIndex;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;

@@ -18,26 +18,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.ContributionItem;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.DefaultNavigationMenu.NavigationMenuInitializationException;
 import org.eclipse.papyrus.infra.services.navigation.service.ExtendedNavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
 import org.eclipse.papyrus.infra.services.openelement.service.OpenElementService;
 import org.eclipse.papyrus.infra.services.viewersearch.impl.ViewerSearchService;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.ui.ISelectionService;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * A dynamic menu of Navigate, which will provide navigable element contribution items

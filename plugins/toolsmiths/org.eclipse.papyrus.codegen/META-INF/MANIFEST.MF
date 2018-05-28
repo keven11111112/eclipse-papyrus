@@ -17,3 +17,4 @@ Bundle-Activator: org.eclipse.papyrus.codegen.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.codegen;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.codegen

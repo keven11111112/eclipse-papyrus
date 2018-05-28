@@ -9,3 +9,4 @@ Bundle-Name: %Bundle-Name
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Description: %Bundle-Description
 Bundle-Localization: plugin
+Automatic-Module-Name: org.eclipse.papyrus.doctemplate.doc

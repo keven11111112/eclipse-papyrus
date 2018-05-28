@@ -24,3 +24,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.core.sasheditor.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor;singleton:=true
 Eclipse-ExtensibleAPI: true
+Automatic-Module-Name: org.eclipse.papyrus.infra.core.sasheditor

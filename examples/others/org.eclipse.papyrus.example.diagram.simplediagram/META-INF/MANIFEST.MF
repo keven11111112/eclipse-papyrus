@@ -48,3 +48,4 @@ Export-Package: org.eclipse.papyrus.example.diagram.simplediagram.edit.parts,
  org.eclipse.papyrus.example.diagram.simplediagram.part,
  org.eclipse.papyrus.example.diagram.simplediagram.providers
 Eclipse-LazyStart: true
+Automatic-Module-Name: org.eclipse.papyrus.example.diagram.simplediagram

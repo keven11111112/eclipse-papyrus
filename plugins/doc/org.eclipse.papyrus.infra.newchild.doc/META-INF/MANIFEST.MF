@@ -7,3 +7,4 @@ Bundle-Name: New Child Documentation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.newchild.doc;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Automatic-Module-Name: org.eclipse.papyrus.infra.newchild.doc

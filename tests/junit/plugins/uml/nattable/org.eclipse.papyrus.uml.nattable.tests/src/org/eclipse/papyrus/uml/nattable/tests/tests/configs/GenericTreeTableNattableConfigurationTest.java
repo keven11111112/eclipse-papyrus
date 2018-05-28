@@ -18,10 +18,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**

@@ -18,3 +18,4 @@ Export-Package: org.eclipse.papyrus.infra.emf.types.ui.properties,
  org.eclipse.papyrus.infra.emf.types.ui.properties.providers,
  org.eclipse.papyrus.infra.emf.types.ui.properties.widgets
 Bundle-Activator: org.eclipse.papyrus.infra.emf.types.ui.properties.Activator
+Automatic-Module-Name: org.eclipse.papyrus.infra.emf.types.ui.properties

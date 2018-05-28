@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.databinding;
 
-import java.util.List;
-
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
@@ -62,7 +60,7 @@ public class CompletionStyledTextObservableValue extends StyledTextObservableVal
 	 * 
 	 * @see org.eclipse.papyrus.infra.widgets.databinding.StyledTextObservableValue#doGetValue()
 	 *
-	 * @return²
+	 * @return
 	 */
 	@Override
 	protected Object doGetValue() {

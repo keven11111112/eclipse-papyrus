@@ -18,3 +18,4 @@ Import-Package: com.google.common.base;version="21.0.0",
  com.google.common.collect;version="21.0.0",
  com.google.common.reflect;version="21.0.0",
  com.google.common.util.concurrent;version="21.0.0"
+Automatic-Module-Name: org.eclipse.papyrus.infra.sync

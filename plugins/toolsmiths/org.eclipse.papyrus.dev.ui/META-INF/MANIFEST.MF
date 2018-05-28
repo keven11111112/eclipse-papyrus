@@ -15,3 +15,4 @@ Bundle-Activator: org.eclipse.papyrus.dev.ui.Activator
 Bundle-Description: Plugin dedicated to manage generic menus and actions,
  linked to Papyrus Developer.
 Bundle-SymbolicName: org.eclipse.papyrus.dev.ui;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.dev.ui

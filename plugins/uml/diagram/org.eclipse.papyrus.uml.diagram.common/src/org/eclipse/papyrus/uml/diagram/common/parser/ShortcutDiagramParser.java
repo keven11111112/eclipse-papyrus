@@ -34,7 +34,6 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.uml.diagram.common.Messages;
-import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 
 /**
  * parser to display the name of diagram in the case of a short cut

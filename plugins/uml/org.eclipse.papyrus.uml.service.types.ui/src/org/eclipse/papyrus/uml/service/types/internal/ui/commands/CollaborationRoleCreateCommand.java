@@ -26,9 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.uml.service.types.internal.ui.dialogs.CollaborationRoleValidator;
 import org.eclipse.papyrus.uml.service.types.internal.ui.messages.Messages;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -45,7 +43,6 @@ public class CollaborationRoleCreateCommand extends EditElementCommand {
 
 	@Override
 	public boolean canExecute() {
-		
 		return true;
 	}
 

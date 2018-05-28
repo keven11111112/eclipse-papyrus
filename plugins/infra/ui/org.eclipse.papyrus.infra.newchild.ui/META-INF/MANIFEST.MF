@@ -13,3 +13,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-Description: %pluginDescription
+Automatic-Module-Name: org.eclipse.papyrus.infra.newchild.ui

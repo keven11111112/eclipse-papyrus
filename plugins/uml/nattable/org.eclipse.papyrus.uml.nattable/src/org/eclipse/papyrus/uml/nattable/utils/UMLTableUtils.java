@@ -18,7 +18,6 @@ package org.eclipse.papyrus.uml.nattable.utils;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +35,6 @@ import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.CrossAxisWrapper;
 import org.eclipse.papyrus.uml.nattable.paste.StereotypeApplicationStructure;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;

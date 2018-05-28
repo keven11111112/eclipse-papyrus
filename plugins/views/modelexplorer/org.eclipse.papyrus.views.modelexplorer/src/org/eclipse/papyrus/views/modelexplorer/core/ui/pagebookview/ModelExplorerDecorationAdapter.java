@@ -18,7 +18,6 @@ import java.util.List;
 import org.eclipse.papyrus.infra.services.decoration.util.DecorationImageUtils;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Point;
 
 
 
@@ -108,6 +107,7 @@ public class ModelExplorerDecorationAdapter {
 	 * 		a unique id to identify the image
 	 * @deprecated since Papyrus 1.2
 	 */
+	@Deprecated
 	public String calcId() {
 		return DecorationImageUtils.calcId(decoratorTarget, decorations);
 	}

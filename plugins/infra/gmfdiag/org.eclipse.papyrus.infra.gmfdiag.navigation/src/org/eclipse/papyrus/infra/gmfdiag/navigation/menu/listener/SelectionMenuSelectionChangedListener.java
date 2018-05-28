@@ -14,12 +14,10 @@
 package org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;

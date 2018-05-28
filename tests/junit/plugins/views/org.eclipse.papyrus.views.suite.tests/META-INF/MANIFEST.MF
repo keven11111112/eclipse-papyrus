@@ -16,3 +16,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.bundles.tests;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.views.properties.toolsmiths.tests;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.views.modelexplorer.tests;bundle-version="[1.2.0,2.0.0)"
+Automatic-Module-Name: org.eclipse.papyrus.views.suite.tests

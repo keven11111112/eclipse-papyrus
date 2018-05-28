@@ -16,3 +16,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.papyrus.uml.types.ui.properties.modelelement,
  org.eclipse.papyrus.uml.types.ui.properties.providers,
  org.eclipse.papyrus.uml.types.ui.properties.widgets
+Automatic-Module-Name: org.eclipse.papyrus.uml.types.ui.properties

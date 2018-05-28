@@ -13,9 +13,6 @@
 
 package org.eclipse.papyrus.editor.handlers;
 
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
-
 /**
  * The handler for the previous tab command that lets the user navigate to
  * the previous page of the active tab-folder with Ctrl+Shift+Tab

@@ -16,3 +16,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.alf.ui.internal.CommonActivator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.common.ui;singleton:=true
 Import-Package: org.apache.log4j;version="[1.2.0,2.0.0)"
+Automatic-Module-Name: org.eclipse.papyrus.uml.alf.common.ui

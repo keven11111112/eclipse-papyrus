@@ -13,32 +13,16 @@
 
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.sort.command.SortColumnCommand;
-import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
-import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
-import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
-import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
-import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
-import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.ActiveTable;
-import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
-import org.eclipse.papyrus.uml.nattable.clazz.config.tests.Activator;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests.AbstractTableTest;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
 /**

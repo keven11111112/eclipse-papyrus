@@ -6,3 +6,4 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Name: Documentation view Documentation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.views.documentation.doc;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.views.documentation.doc

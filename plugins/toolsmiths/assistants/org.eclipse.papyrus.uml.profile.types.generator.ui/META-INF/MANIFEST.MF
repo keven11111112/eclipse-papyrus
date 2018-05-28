@@ -19,3 +19,4 @@ Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profile.types.generator.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.google.common.util.concurrent
+Automatic-Module-Name: org.eclipse.papyrus.uml.profile.types.generator.ui

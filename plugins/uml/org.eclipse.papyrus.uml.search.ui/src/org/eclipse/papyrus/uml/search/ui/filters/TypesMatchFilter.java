@@ -18,7 +18,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.uml.search.ui.Messages;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
 import org.eclipse.search.ui.text.Match;
 import org.eclipse.search.ui.text.MatchFilter;

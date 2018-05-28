@@ -21,3 +21,4 @@ Export-Package: org.eclipse.papyrus.uml.internationalization.edit,
  org.eclipse.papyrus.uml.internationalization.edit.internal.providers;x-internal:=true,
  org.eclipse.papyrus.uml.internationalization.edit.providers,
  org.eclipse.papyrus.uml.internationalization.edit.utils
+Automatic-Module-Name: org.eclipse.papyrus.uml.internationalization.edit

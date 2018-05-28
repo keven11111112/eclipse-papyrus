@@ -18,11 +18,10 @@ import static org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.SashPagesMode
 import static org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.SashPagesModelFactory.page;
 import static org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.SashPagesModelFactory.vSash;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.SimpleSashWindowContentProviderUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.IModelExp;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.PagesModelException;
 import org.eclipse.swt.SWT;

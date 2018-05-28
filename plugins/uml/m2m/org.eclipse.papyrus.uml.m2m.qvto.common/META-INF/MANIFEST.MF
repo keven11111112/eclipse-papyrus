@@ -38,3 +38,4 @@ Export-Package: org.eclipse.papyrus.uml.m2m.qvto.common,
  org.eclipse.papyrus.uml.m2m.qvto.common.MigrationParameters.util
 Import-Package: com.google.common.base;version="21.0.0",
  com.google.common.collect;version="21.0.0"
+Automatic-Module-Name: org.eclipse.papyrus.uml.m2m.qvto.common

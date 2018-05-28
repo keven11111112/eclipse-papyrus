@@ -21,7 +21,6 @@ import org.eclipse.papyrus.infra.nattable.fillhandle.command.PapyrusFillHandlePa
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.swt.graphics.Rectangle;
-import org.junit.Before;
 
 /**
  * This allows to manage the fill handle tests for integer column.

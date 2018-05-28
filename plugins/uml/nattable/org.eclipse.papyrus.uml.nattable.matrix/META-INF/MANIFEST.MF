@@ -20,3 +20,4 @@ Require-Bundle: org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.matrix.Activator
 Bundle-Description: This plugin provides the specific code used to managed UML Table Matrix
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: org.eclipse.papyrus.uml.nattable.matrix

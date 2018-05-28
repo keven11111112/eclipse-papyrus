@@ -36,3 +36,4 @@ Bundle-ManifestVersion: 2
 Bundle-Description: %Bundle-Description
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.views.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Automatic-Module-Name: org.eclipse.papyrus.infra.nattable.views.tests

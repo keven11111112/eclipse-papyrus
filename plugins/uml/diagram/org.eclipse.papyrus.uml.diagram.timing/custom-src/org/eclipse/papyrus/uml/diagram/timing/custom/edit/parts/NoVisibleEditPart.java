@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.timing.custom.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 

@@ -14,15 +14,11 @@
 package org.eclipse.papyrus.infra.gmfdiag.navigation.menu.listener;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.DefaultNavigationMenu;
-import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.button.MoreButton;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.button.NavigationSubMenuButton;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.provider.SelectionMenuLabelProvider;
-import org.eclipse.papyrus.infra.gmfdiag.navigation.menu.provider.SubSelectionMenuLabelProvider;
-import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.widgets.editors.SelectionMenu;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.swt.events.MouseEvent;

@@ -76,3 +76,4 @@ Bundle-Version: 4.0.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.usecase; singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.usecase
