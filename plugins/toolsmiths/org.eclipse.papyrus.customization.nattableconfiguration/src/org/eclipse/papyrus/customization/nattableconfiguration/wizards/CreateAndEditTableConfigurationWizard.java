@@ -56,6 +56,7 @@ public class CreateAndEditTableConfigurationWizard extends EditTableConfiguratio
 	 * @see org.eclipse.papyrus.customization.nattableconfiguration.wizards.EditTableConfigurationWizard#addEditNattableConfigurationPage()
 	 *
 	 */
+	@Override
 	protected void addEditNattableConfigurationPage() {
 		addPage(this.page = new NattableConfigurationFileCreationPage(this.helper));
 	}
@@ -66,6 +67,7 @@ public class CreateAndEditTableConfigurationWizard extends EditTableConfiguratio
 	 * @return
 	 * 		the edited table configuration.
 	 */
+	@Override
 	protected TableConfiguration getEditedTableConfiguration(final Resource resource) {
 		// 1. create the configuration itself
 		TableConfiguration configuration = NattableconfigurationFactory.eINSTANCE.createTableConfiguration();

@@ -100,7 +100,7 @@ public class Test2StereotypeApplications extends AbstractPapyrusTestCase {
 		// stereotype that is applied on class1
 		Stereotype stereotypeTest = null;
 		// view of the class
-		View NotationClass1 = null;
+		View notationClass1 = null;
 		// editpart of class1
 		GraphicalEditPart classEditPart = null;
 		// compartment of stereotype
@@ -112,9 +112,6 @@ public class Test2StereotypeApplications extends AbstractPapyrusTestCase {
 
 		// compartment Shape
 		View shapeCompartmentView = null;
-		// the view of the applied stereotype property
-		View stereotypePropertyView = null;
-		GraphicalEditPart stereotypeClassLabelEditPart = null;
 
 
 		// CREATION
@@ -162,10 +159,10 @@ public class Test2StereotypeApplications extends AbstractPapyrusTestCase {
 		}
 
 		// look for the applied stereotype compartment
-		NotationClass1 = classEditPart.getNotationView();
+		notationClass1 = classEditPart.getNotationView();
 
-		for (int i = 0; i < NotationClass1.getTransientChildren().size(); i++) {
-			View view = (View) NotationClass1.getTransientChildren().get(i);
+		for (int i = 0; i < notationClass1.getTransientChildren().size(); i++) {
+			View view = (View) notationClass1.getTransientChildren().get(i);
 			if (view.getType().equals(StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE)) {
 				appliedStereotypeCompartmentNotation = view;
 			}

@@ -93,7 +93,6 @@ public class StereotypeUpdateDialogOld extends Dialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		Stereotype stereotype;
 		List<Stereotype> appliedStereotypes = anyUmlElement.getAppliedStereotypes();
 
 		Composite container = (Composite) super.createDialogArea(parent);

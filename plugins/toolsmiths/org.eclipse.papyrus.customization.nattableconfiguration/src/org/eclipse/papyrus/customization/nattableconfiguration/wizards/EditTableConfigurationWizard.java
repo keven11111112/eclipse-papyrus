@@ -126,7 +126,7 @@ public class EditTableConfigurationWizard extends AbstractTableWizard implements
 				// TODO required ?
 				final IEditorPart currentPart = WorkbenchPartHelper.getCurrentActiveWorkbenchPart().getSite().getPage().getActiveEditor();
 				if (null != currentPart) {
-					manager = (INattableModelManager) currentPart.getAdapter(INattableModelManager.class);
+					manager = currentPart.getAdapter(INattableModelManager.class);
 				}
 
 				if (null != manager) {

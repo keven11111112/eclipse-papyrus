@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.sync;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**

@@ -89,6 +89,7 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 	 *
 	 * @return the editing domain (can be null)
 	 */
+	@Override
 	protected TransactionalEditingDomain getEditingDomain() {
 		ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
 		TransactionalEditingDomain editingDomain = null;
@@ -294,7 +295,6 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 	 *            the container type
 	 */
 	public void testToManageTopNode(IElementType type, IElementType containerType) {
-		int i = 0;
 		testToCreateANode(type);
 		testDestroy(type);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
@@ -312,7 +312,6 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 	 *            the container type
 	 */
 	public void testToManageSpecificTopNode(IElementType type, IElementType containerType, EClass eClassHint) {
-		int i = 0;
 		testToCreateSpecificNode(type, eClassHint);
 		testDestroy(type);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();

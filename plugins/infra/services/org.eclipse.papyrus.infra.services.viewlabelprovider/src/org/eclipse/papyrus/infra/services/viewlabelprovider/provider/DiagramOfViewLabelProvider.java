@@ -13,7 +13,6 @@
 
 package org.eclipse.papyrus.infra.services.viewlabelprovider.provider;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -36,6 +35,7 @@ public class DiagramOfViewLabelProvider extends ViewLabelProvider {
 	 * @param element
 	 * @return
 	 */
+	@Override
 	public Image getImage(Object element) {
 		if (element instanceof View) {
 			Diagram diagram = ((View) element).getDiagram();
@@ -60,6 +60,7 @@ public class DiagramOfViewLabelProvider extends ViewLabelProvider {
 	 * @param element
 	 * @return
 	 */
+	@Override
 	public String getText(Object element) {
 		if (element instanceof View) {
 			Diagram diagram = ((View) element).getDiagram();

@@ -70,7 +70,6 @@ public class TestReopenAsCompartment extends AbstractPapyrusTestCase {
 
 		editor = fixture.getEditor(MODEL_DI);
 		fixture.openDiagram("ClassDiagram"); //$NON-NLS-1$
-		boolean isPresent = false;
 		// Check initial model
 		{// test the node class edipart
 			NamedElement stereotypedClass = fixture.getModel().getOwnedMember(STEREOTYPEDCLASS);

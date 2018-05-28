@@ -14,8 +14,6 @@ package org.eclipse.papyrus.uml.tools.commands;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.uml2.uml.Element;

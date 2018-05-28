@@ -115,10 +115,6 @@ public class TestDisplayAsBrace extends AbstractPapyrusTestCase {
 
 		// compartment Shape
 		View shapeCompartmentView = null;
-		// the view of the applied stereotype property
-		View stereotypePropertyView = null;
-		GraphicalEditPart stereotypeClassLabelEditPart = null;
-
 
 		// CREATION
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);

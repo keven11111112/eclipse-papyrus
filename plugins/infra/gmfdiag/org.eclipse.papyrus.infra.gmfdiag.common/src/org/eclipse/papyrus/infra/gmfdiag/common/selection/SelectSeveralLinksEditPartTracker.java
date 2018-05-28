@@ -55,8 +55,6 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	private String type;
 	private boolean bSourceFeedback = false;
 
-	private PrecisionRectangle sourceRectangle;	
-	private Point originalLocation = null;
 	protected HashMap<EditPart, Point> locationsForEditParts= new HashMap<EditPart, Point>();
 
 	int[] relativePosition=null;
@@ -79,6 +77,7 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	 * (non-Javadoc)
 	 * @see org.eclipse.gef.tools.AbstractTool#handleButtonDown(int)
 	 */
+	@Override
 	protected boolean handleButtonDown(int button) {
 		if (!super.handleButtonDown(button))
 			return false;
@@ -173,8 +172,6 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	 * @see org.eclipse.gef.tools.AbstractTool#handleDragStarted()
 	 */
 	protected boolean handleDragStarted() {
-		originalLocation = null;
-		sourceRectangle = null;		
 		return stateTransition(STATE_DRAG, STATE_DRAG_IN_PROGRESS);
 	}
 
@@ -314,6 +311,7 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	 * (non-Javadoc)
 	 * @see org.eclipse.gef.tools.AbstractTool#getCommand()
 	 */
+	@Override
 	protected Command getCommand() {
 		List editparts = getOperationSet();
 		EditPart part;

@@ -295,20 +295,6 @@
       </editpartProvider>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
-	<?gmfgen generated="true"?>
-	<modelingAssistantProvider class="org.eclipse.papyrus.example.diagram.simplediagram.providers.assistants.UMLModelingAssistantProviderOfModelEditPart">
-		<Priority name="Lowest"/>
-		<object class="org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ModelEditPart" id="Model_1000"/>
-		<context elements="Model_1000"/>
-	</modelingAssistantProvider>
-	<modelingAssistantProvider class="org.eclipse.papyrus.example.diagram.simplediagram.providers.assistants.UMLModelingAssistantProviderOfComponentEditPart">
-		<Priority name="Lowest"/>
-		<object class="org.eclipse.papyrus.example.diagram.simplediagram.edit.parts.ComponentEditPart" id="Component_2001"/>
-		<context elements="Component_2001"/>
-	</modelingAssistantProvider>
-</extension>
-
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
       <?gmfgen generated="true"?>
       <IconProvider class="org.eclipse.papyrus.example.diagram.simplediagram.providers.UMLIconProvider">

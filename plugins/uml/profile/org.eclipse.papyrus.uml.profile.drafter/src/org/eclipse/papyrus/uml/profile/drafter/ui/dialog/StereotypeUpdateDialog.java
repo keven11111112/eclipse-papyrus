@@ -3,7 +3,6 @@ package org.eclipse.papyrus.uml.profile.drafter.ui.dialog;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -45,11 +44,7 @@ import org.eclipse.uml2.uml.NamedElement;
  *
  */
 public class StereotypeUpdateDialog extends Dialog {
-	private Binding stereotypeNameBinding;
-	private Binding profileNameBinding;
-	private Binding stereotypeBinding;
 	private DataBindingContext m_bindingContext;
-	private org.eclipse.core.databinding.Binding profileBinding;
 	private Text quickSetText;
 	private Text stereotypeText;
 	private Text profileText;

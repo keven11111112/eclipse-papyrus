@@ -77,8 +77,6 @@ public class TableVerifyContents extends AbstractPapyrusTest {
 
 	private static IMultiDiagramEditor papyrusEditor;
 
-	private static final String BUNDLE_ID = Activator.getDefault().getBundle().getSymbolicName();
-
 	private static Model rootModel;
 
 	private static Model subModel;

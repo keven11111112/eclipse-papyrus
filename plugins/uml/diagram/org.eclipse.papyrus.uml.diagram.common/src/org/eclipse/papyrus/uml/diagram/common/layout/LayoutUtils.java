@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IOvalAnchorableFigure;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
 
@@ -41,39 +40,39 @@ import org.eclipse.papyrus.uml.diagram.common.util.Util;
  */
 public class LayoutUtils {
 
-	public final static String alignementCmdId = "org.eclipse.papyrus.uml.diagram.common.commands.AlignmentCommand"; //$NON-NLS-1$
+	public static final String alignementCmdId = "org.eclipse.papyrus.uml.diagram.common.commands.AlignmentCommand"; //$NON-NLS-1$
 
-	public final static String routingCmdId = "org.eclipse.papyrus.uml.diagram.common.commands.RoutingCommand"; //$NON-NLS-1$
+	public static final String routingCmdId = "org.eclipse.papyrus.uml.diagram.common.commands.RoutingCommand"; //$NON-NLS-1$
 
 	/** the parameter for the left command (alignment and routing command) */
-	final public static String LEFT = "parameter_left"; //$NON-NLS-1$
+	public static final String LEFT = "parameter_left"; //$NON-NLS-1$
 
 	/** the parameter for the right commands (alignment and routing command) */
-	final public static String RIGHT = "parameter_right"; //$NON-NLS-1$
+	public static final String RIGHT = "parameter_right"; //$NON-NLS-1$
 
 	/** the parameter for the top commands (alignment and routing command) */
-	final public static String TOP = "parameter_top"; //$NON-NLS-1$
+	public static final String TOP = "parameter_top"; //$NON-NLS-1$
 
 	/** the parameter for the bottom commands (alignment and routing command) */
-	final public static String BOTTOM = "parameter_bottom"; //$NON-NLS-1$
+	public static final String BOTTOM = "parameter_bottom"; //$NON-NLS-1$
 
 	/** the parameter for the center alignment */
-	final public static String CENTER = "parameter_center"; //$NON-NLS-1$
+	public static final String CENTER = "parameter_center"; //$NON-NLS-1$
 
 	/** the parameter for the horizontal distribution */
-	final public static String MIDDLE = "parameter_middle"; //$NON-NLS-1$
+	public static final String MIDDLE = "parameter_middle"; //$NON-NLS-1$
 
 	/** the parameter for the horizontal distribution */
-	final public static String HORIZONTALLY = "parameter_horizontally"; //$NON-NLS-1$
+	public static final String HORIZONTALLY = "parameter_horizontally"; //$NON-NLS-1$
 
 	/** the parameter for the horizontal distribution between nodes */
-	final public static String HORIZONTALLY_BETWEEN_NODES = "parameter_horizontally_between_nodes"; //$NON-NLS-1$
+	public static final String HORIZONTALLY_BETWEEN_NODES = "parameter_horizontally_between_nodes"; //$NON-NLS-1$
 
 	/** the parameter for the vertical distribution */
-	final public static String VERTICALLY = "parameter_vertically"; //$NON-NLS-1$
+	public static final String VERTICALLY = "parameter_vertically"; //$NON-NLS-1$
 
 	/** the parameter for the vertical distribution between nodes */
-	final public static String VERTICALLY_BETWEEN_NODES = "parameter_vertically_between_nodes"; //$NON-NLS-1$
+	public static final String VERTICALLY_BETWEEN_NODES = "parameter_vertically_between_nodes"; //$NON-NLS-1$
 
 	/**
 	 * the shift to avoid the scrollbar If there is no scrollBar, set
@@ -201,24 +200,24 @@ public class LayoutUtils {
 		return position;
 	}
 
-	private final static int[] northArray = { PositionConstants.NORTH, PositionConstants.NORTH_EAST, PositionConstants.NORTH_WEST };
+	private static final int[] northArray = { PositionConstants.NORTH, PositionConstants.NORTH_EAST, PositionConstants.NORTH_WEST };
 
-	private final static int[] southArray = { PositionConstants.SOUTH, PositionConstants.SOUTH_EAST, PositionConstants.SOUTH_WEST };
+	private static final int[] southArray = { PositionConstants.SOUTH, PositionConstants.SOUTH_EAST, PositionConstants.SOUTH_WEST };
 
-	private final static int[] eastArray = { PositionConstants.EAST, PositionConstants.NORTH_EAST, PositionConstants.SOUTH_EAST };
+	private static final int[] eastArray = { PositionConstants.EAST, PositionConstants.NORTH_EAST, PositionConstants.SOUTH_EAST };
 
-	private final static int[] westArray = { PositionConstants.WEST, PositionConstants.NORTH_WEST, PositionConstants.SOUTH_WEST };
+	private static final int[] westArray = { PositionConstants.WEST, PositionConstants.NORTH_WEST, PositionConstants.SOUTH_WEST };
 
-	public final static List<Integer> northPositions = fillList(northArray);
+	public static final List<Integer> northPositions = fillList(northArray);
 
-	public final static List<Integer> southPositions = fillList(southArray);
+	public static final List<Integer> southPositions = fillList(southArray);
 
-	public final static List<Integer> eastPositions = fillList(eastArray);
+	public static final List<Integer> eastPositions = fillList(eastArray);
 
-	public final static List<Integer> westPositions = fillList(westArray);
+	public static final List<Integer> westPositions = fillList(westArray);
 
 	private static List<Integer> fillList(int[] array) {
-		List<Integer> list = new ArrayList<Integer>();
+		List<Integer> list = new ArrayList<>();
 		for (int i = 0; i < array.length; i++) {
 			list.add(new Integer(array[i]));
 		}

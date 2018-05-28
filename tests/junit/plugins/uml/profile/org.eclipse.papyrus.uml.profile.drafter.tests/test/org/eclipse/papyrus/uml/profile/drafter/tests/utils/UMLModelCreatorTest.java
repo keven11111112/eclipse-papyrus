@@ -206,12 +206,12 @@ public class UMLModelCreatorTest {
 	public void testCreation() {
 		UMLModelCreator creator = new UMLModelCreator("temp.uml", "model");
 		// Create model
-		Package p1 = creator.createPackage("p1");
+		creator.createPackage("p1");
 		creator.createDatatype("dt1");
 		creator.createDatatype("dt2");
 		creator.createClass("C1");
 		creator.cdToRoot();
-		Package p2 = creator.createPackage("p2");
+		creator.createPackage("p2");
 		creator.createDatatype("dt21");
 		creator.createDatatype("dt12");
 		creator.createClass("C21");

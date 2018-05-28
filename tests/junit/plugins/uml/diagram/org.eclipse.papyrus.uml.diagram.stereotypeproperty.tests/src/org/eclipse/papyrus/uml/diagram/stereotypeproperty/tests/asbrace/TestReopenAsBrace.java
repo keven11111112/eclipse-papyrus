@@ -51,13 +51,13 @@ public class TestReopenAsBrace extends AbstractPapyrusTestCase {
 	/** name of the test model */
 	public final String FILE_NAME = "TestReopenAsBraceTest.di";
 
-	final static String MODEL_DI = "resource/ReopenFileBrace.di"; //$NON-NLS-1$
+	static final String MODEL_DI = "resource/ReopenFileBrace.di"; //$NON-NLS-1$
 
-	final static String STEREOTYPEDCLASS = "StereotypedClass"; //$NON-NLS-1$
-	final static String CLASS1 = "Class1"; //$NON-NLS-1$
-	final static String STEREOTYPEDLINK = "StereotypedLink"; //$NON-NLS-1$
+	static final String STEREOTYPEDCLASS = "StereotypedClass"; //$NON-NLS-1$
+	static final String CLASS1 = "Class1"; //$NON-NLS-1$
+	static final String STEREOTYPEDLINK = "StereotypedLink"; //$NON-NLS-1$
 
-	final static String PROFILE = "testProfile"; //$NON-NLS-1$
+	static final String PROFILE = "testProfile"; //$NON-NLS-1$
 
 	private IMultiDiagramEditor editor;
 
@@ -71,15 +71,14 @@ public class TestReopenAsBrace extends AbstractPapyrusTestCase {
 		View appliedStereotypeBraceNotation = null;
 		editor = fixture.getEditor(MODEL_DI);
 		fixture.openDiagram("ClassDiagram"); //$NON-NLS-1$
-		boolean isPresent = false;
 		// Check initial model
 		{// test the node class edipart
 			NamedElement stereotypedClass = fixture.getModel().getOwnedMember(STEREOTYPEDCLASS);
 			GraphicalEditPart stereotypedClassEditPart = (GraphicalEditPart) fixture.findEditPart(stereotypedClass);
 			// look for the applied stereotype compartment
-			View NotationClass1 = stereotypedClassEditPart.getNotationView();
-			for (int i = 0; i < NotationClass1.getChildren().size(); i++) {
-				View view = (View) NotationClass1.getChildren().get(i);
+			View notationClass1 = stereotypedClassEditPart.getNotationView();
+			for (int i = 0; i < notationClass1.getChildren().size(); i++) {
+				View view = (View) notationClass1.getChildren().get(i);
 				if (view.getType().equals(StereotypeDisplayConstant.STEREOTYPE_BRACE_TYPE)) {
 					appliedStereotypeBraceNotation = view;
 				}

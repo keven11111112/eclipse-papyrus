@@ -161,10 +161,7 @@ public class TransformationsTests extends AbstractPapyrusTest {
 					// nothing
 				}
 				LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();
-				ModelExtent temp = new BasicModelExtent();
 				ModelExtent inPackage = new BasicModelExtent(Collections.singletonList(ecorePackage));
-
-
 
 				PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
 				ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));

@@ -207,7 +207,6 @@ public abstract class AbstractCreateNodeFromPaletteTest extends org.eclipse.papy
 		//
 		testSizeCompartment(expectedGraphicalChildren);
 		Element root = (Element) getContainerEditPart().resolveSemanticElement();
-		List<Element> ownedElements = root.getOwnedElements();
 		if (isSemanticTest()) {
 			// assertEquals(CREATION + INITIALIZATION_TEST, expectedSemanticChildren, ownedElements.size());
 		}

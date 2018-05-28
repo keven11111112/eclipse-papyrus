@@ -64,7 +64,6 @@ public class UpdateProfileHandler extends AbstractProfileBaseHandler {
 	 */
 	private StereoptypeModel stereoptypeModel;
 	
-	private String taggedValeNameInput;
 	
 	/**
 	 * Constructor.
@@ -141,7 +140,6 @@ public class UpdateProfileHandler extends AbstractProfileBaseHandler {
 		stereotypeNameInput = updateArgs.getStereotypeName();
 		profileNameInput = updateArgs.getProfileName();
 
-		taggedValeNameInput = "";
 		
 		return true;
 	}
@@ -217,7 +215,6 @@ public class UpdateProfileHandler extends AbstractProfileBaseHandler {
 		cachedSelectionAsNamedElement = null;
 		stereotypeNameInput = null;
 		profileNameInput = null;
-		taggedValeNameInput = null;
 	}
 	
 	/**

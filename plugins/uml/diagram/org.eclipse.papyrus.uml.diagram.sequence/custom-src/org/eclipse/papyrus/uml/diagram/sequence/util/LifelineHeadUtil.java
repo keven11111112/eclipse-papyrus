@@ -246,7 +246,6 @@ public class LifelineHeadUtil {
 		List<?> sourceConnections = editPart.getSourceConnections();
 		for (Object object : sourceConnections) {
 			ConnectionEditPart conn = (ConnectionEditPart) object;
-			EditPart target = conn.getTarget();
 			if (object instanceof MessageLostEditPart) {
 				Command command = getMoveAnchorCommand(conn, moveDelta, false);
 				commands.appendIfCanExecute(command);

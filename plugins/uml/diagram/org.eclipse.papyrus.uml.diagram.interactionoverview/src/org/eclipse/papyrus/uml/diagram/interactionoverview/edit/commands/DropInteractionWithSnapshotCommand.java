@@ -16,8 +16,6 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.EditPartViewer;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -37,7 +35,7 @@ public class DropInteractionWithSnapshotCommand extends
 	protected CallBehaviorAction callBehaviorAction;
 
 	public DropInteractionWithSnapshotCommand(final TransactionalEditingDomain domain, final IGraphicalEditPart parentEditPart, CallBehaviorAction callBehaviorAction, final String commandLabel) {
-		super(domain, commandLabel, Collections.EMPTY_LIST);
+		super(domain, commandLabel, Collections.emptyList());
 		this.parentEditPart = parentEditPart;
 		this.callBehaviorAction = callBehaviorAction;
 	}

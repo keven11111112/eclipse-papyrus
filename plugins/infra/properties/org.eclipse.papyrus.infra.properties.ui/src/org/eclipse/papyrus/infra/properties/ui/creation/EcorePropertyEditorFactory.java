@@ -35,10 +35,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EClassNameComparator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.internal.ui.Activator;
 import org.eclipse.papyrus.infra.properties.internal.ui.messages.Messages;
@@ -555,7 +553,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
 			private EObject context;
 
-			private List<Object> createdElements = new ArrayList<Object>(2); // Anticipate small depth of dialog nesting
+			private List<Object> createdElements = new ArrayList<>(2); // Anticipate small depth of dialog nesting
 
 			EObjectCreationContext(EObject context) {
 				this.context = context;

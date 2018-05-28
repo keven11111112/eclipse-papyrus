@@ -278,6 +278,7 @@ public abstract class AbstractSortTable extends AbstractTableTest {
 	/**
 	 * this method initialize some field for the test + expand all the table + check the initial state of the table
 	 */
+	@Override
 	protected void startTest() {
 		super.startTest();
 		manager.selectAll();
@@ -345,6 +346,7 @@ public abstract class AbstractSortTable extends AbstractTableTest {
 	/**
 	 * @return
 	 */
+	@Override
 	protected String getSourcePath() {
 		return RESOURCES_PATH;
 	}

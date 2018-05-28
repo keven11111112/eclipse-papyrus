@@ -7,7 +7,7 @@
     domainFileExtension="PapyrusNewDiagram"
     dynamicTemplates="true"
     templateDirectory="/org.eclipse.papyrus.def/dynamic-templates3.5/codegen"
-    pluginDirectory="/org.eclipse.papyrus.example.diagram.simplediagram/src">
+    pluginDirectory="/org.eclipse.papyrus.example.diagram.simplediagram/src-gen">
   <diagram
       visualID="1000"
       editPartClassName="ModelEditPart"

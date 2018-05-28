@@ -54,10 +54,6 @@ public class TableFillingAndExpandTest extends AbstractEditorTest {
 
 	protected Package packageTest;
 
-	private List<?> root;
-
-	private Object diagramTest;
-
 	private final String modelName = "tableFillingAndTableExpandTest"; //$NON-NLS-1$
 
 	private final String uml_EXT = "uml"; //$NON-NLS-1$
@@ -96,7 +92,6 @@ public class TableFillingAndExpandTest extends AbstractEditorTest {
 		}
 
 		rootModel = (Model) uml.getContents().get(0);
-		root = notation.getContents();
 		// TODO on luna : open diagram
 	}
 
@@ -121,9 +116,6 @@ public class TableFillingAndExpandTest extends AbstractEditorTest {
 		INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
 		List<?> elements = manager.getRowElementsList();
 		Assert.isTrue(elements instanceof TreeList<?>, " the list managing the rows in not a TreeList"); //$NON-NLS-1$
-		int size = elements.size();
-		int i = 0;
-		i++;
 	}
 
 	protected void selectTablePage(int index) {

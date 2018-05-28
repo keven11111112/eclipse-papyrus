@@ -103,7 +103,7 @@ public class TestStereotypeApplicationQualifiedName extends AbstractPapyrusTestC
 		// stereotype that is applied on class1
 		Stereotype stereotypeTest = null;
 		// view of the class
-		View NotationClass1 = null;
+		View notationClass1 = null;
 		// editpart of class1
 		GraphicalEditPart classEditPart = null;
 		// compartment of stereotype
@@ -115,10 +115,6 @@ public class TestStereotypeApplicationQualifiedName extends AbstractPapyrusTestC
 
 		// compartment Shape
 		View shapeCompartmentView = null;
-		// the view of the applied stereotype property
-		View stereotypePropertyView = null;
-		GraphicalEditPart stereotypeClassLabelEditPart = null;
-
 
 		// CREATION
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
@@ -155,10 +151,10 @@ public class TestStereotypeApplicationQualifiedName extends AbstractPapyrusTestC
 		}
 
 		// look for the applied stereotype compartment
-		NotationClass1 = classEditPart.getNotationView();
+		notationClass1 = classEditPart.getNotationView();
 
-		for (int i = 0; i < NotationClass1.getTransientChildren().size(); i++) {
-			View view = (View) NotationClass1.getTransientChildren().get(i);
+		for (int i = 0; i < notationClass1.getTransientChildren().size(); i++) {
+			View view = (View) notationClass1.getTransientChildren().get(i);
 			if (view.getType().equals(StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE)) {
 				appliedStereotypeCompartmentNotation = view;
 			}
@@ -185,7 +181,7 @@ public class TestStereotypeApplicationQualifiedName extends AbstractPapyrusTestC
 		{// display stereotype1
 
 
-			RecordingCommand displayStereotypeCommand = StereotypeUserActionHelper.getAddAppliedStereotypeToDisplayWithQNCommand(diagramEditor.getEditingDomain(), NotationClass1, stereotypeTest, "full");
+			RecordingCommand displayStereotypeCommand = StereotypeUserActionHelper.getAddAppliedStereotypeToDisplayWithQNCommand(diagramEditor.getEditingDomain(), notationClass1, stereotypeTest, "full");
 			diagramEditor.getEditingDomain().getCommandStack().execute(displayStereotypeCommand);
 			classEditPart.refresh();
 			org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure nodePlate = (org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure) ((BorderedNodeFigure) classEditPart.getFigure()).getChildren().get(0);

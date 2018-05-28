@@ -107,6 +107,7 @@ public final class LifelineUtils {
 	 *            the Lifeline to update
 	 * @param lifelineView
 	 *            the Lifeline's view, containing the StateDefinitions (ignored for a Compact lifeline)
+	 *            
 	 */
 	@SuppressWarnings("boxing")
 	public static void updateFragmentNames(final Lifeline lifeline, final View lifelineView) {

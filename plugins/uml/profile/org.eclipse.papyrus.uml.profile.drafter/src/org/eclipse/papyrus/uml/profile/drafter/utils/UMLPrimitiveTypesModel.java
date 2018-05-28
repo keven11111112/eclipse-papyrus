@@ -4,17 +4,14 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.uml.extensionpoints.Registry;
 import org.eclipse.papyrus.uml.extensionpoints.library.IRegisteredLibrary;
-import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
 import org.eclipse.papyrus.uml.profile.drafter.exceptions.NotFoundException;
-import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Type;
 
 
 /**
