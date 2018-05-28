@@ -92,6 +92,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.CustomTypeSafeMatcher;
 import org.hamcrest.Matcher;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
@@ -128,6 +130,22 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	 */
 	public CombinedFragmentRegressionTest() {
 		super();
+	}
+
+	/**
+	 * Before test initialization with preference initialization.
+	 */
+	@Before
+	public void init() {
+		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().setValue(CustomDiagramGeneralPreferencePage.PREF_TRIGGER_ASYNC_VALIDATION, true);
+	}
+
+	/**
+	 * After test with preference modification.
+	 */
+	@After
+	public void cleanUp() {
+		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().setValue(CustomDiagramGeneralPreferencePage.PREF_TRIGGER_ASYNC_VALIDATION, false);
 	}
 
 	/**
@@ -394,7 +412,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 		GraphicalEditPart lifelineEP = (GraphicalEditPart) editor.findEditPart("a", Lifeline.class);
 
 		// Null size to just drop the tool
-		GraphicalEditPart combinedFragmentEP = (GraphicalEditPart) editor.createShape(lifelineEP, UMLElementTypes.CombinedFragment_Shape, at(80, 80), null);
+		GraphicalEditPart combinedFragmentEP = editor.createShape(lifelineEP, UMLElementTypes.CombinedFragment_Shape, at(80, 80), null);
 
 		Consumer<GraphicalEditPart> verifyCFrag = cfragEP -> {
 			assertThat(cfragEP, DiagramMatchers.semanticThat(instanceOf(CombinedFragment.class)));
@@ -429,7 +447,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 		GraphicalEditPart bEP = (GraphicalEditPart) editor.findEditPart("b", Lifeline.class);
 		GraphicalEditPart interactionCompartment = (GraphicalEditPart) aEP.getParent();
 
-		GraphicalEditPart combinedFragmentEP = (GraphicalEditPart) editor.createShape(
+		GraphicalEditPart combinedFragmentEP = editor.createShape(
 				interactionCompartment, UMLElementTypes.CombinedFragment_Shape,
 				at(25, 80), sized(360, 200));
 
@@ -470,7 +488,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
 		assumeThat("Combined fragment not found", combinedFragmentEP, notNullValue());
 
-		GraphicalEditPart interactionOperandEP = (GraphicalEditPart) editor.createShape(
+		GraphicalEditPart interactionOperandEP = editor.createShape(
 				lifelineEP, UMLElementTypes.InteractionOperand_Shape,
 				at(80, 80), null); // Null rectangle for the default size
 
@@ -513,7 +531,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 		EditPart combinedFragmentEP = editor.findEditPart("cfrag", CombinedFragment.class);
 		assumeThat("Combined fragment not found", combinedFragmentEP, notNullValue());
 
-		GraphicalEditPart interactionOperandEP = (GraphicalEditPart) editor.createShape(
+		GraphicalEditPart interactionOperandEP = editor.createShape(
 				aEP, UMLElementTypes.InteractionOperand_Shape,
 				at(80, 80), sized(220, 120)); // Extend to a point within lifeline b
 
@@ -874,6 +892,76 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 		assertThat(operandEP, not(hasWarningDecorationThat(startsWith("Lifeline"))));
 	}
 
+	/**
+	 * Verify the creation of a combined fragment that covers nothing at all.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533675.di")
+	public void createCFragInFreeSpace_533675() {
+		EditPart interactionEP = editor.findEditPart("DoIt", Interaction.class);
+		EditPart interactionCompartment = editor.getShapeCompartment(interactionEP);
+
+		GraphicalEditPart cfragEP = editor.createShape(interactionCompartment,
+				UMLElementTypes.CombinedFragment_Shape,
+				at(400, 80), sized(80, 80));
+		GraphicalEditPart lifelineEP = (GraphicalEditPart) editor.findEditPart("b", Lifeline.class);
+
+		Rectangle cfragBounds = cfragEP.getFigure().getBounds();
+		Rectangle lifelineBounds = lifelineEP.getFigure().getBounds();
+		Rectangle intersection = cfragBounds.getIntersection(lifelineBounds);
+
+		assertThat("Combined fragment is in the wrong place", intersection,
+				is(new Rectangle(0, 0, 0, 0)));
+	}
+
+	/**
+	 * Verify the creation of a combined fragment that only partially
+	 * covers a message.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533675.di")
+	public void createCFragOverHalfMessage_533675() {
+		EditPart interactionEP = editor.findEditPart("DoIt", Interaction.class);
+		EditPart interactionCompartment = editor.getShapeCompartment(interactionEP);
+
+		GraphicalEditPart cfragEP = editor.createShape(interactionCompartment,
+				UMLElementTypes.CombinedFragment_Shape,
+				at(15, 60), sized(140, 140));
+
+		// TODO: Assert that the message crosses an interaction operand boundary
+		// when the diagram is able to update the combined fragment ownership in
+		// an undo-safe way using proper commands, not reacting post execution
+		GraphicalEditPart messageEP = (GraphicalEditPart) editor.findEditPart("create", Message.class);
+		// assertThat(messageEP, hasErrorDecorationThat(startsWith("Message crosses")));
+
+		Rectangle cfragBounds = cfragEP.getFigure().getBounds();
+		Rectangle messageBounds = messageEP.getFigure().getBounds();
+		Rectangle intersection = cfragBounds.getIntersection(messageBounds);
+		assertThat("Combined fragment does not overlap message", intersection,
+				not(new Rectangle(0, 0, 0, 0)));
+	}
+
+	/**
+	 * Verify the creation of a combined fragment within a combined fragment.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533683.di")
+	public void createCFragInCFrag_533675() {
+		EditPart topOperandEP = editor.findEditPart("alt1", InteractionOperand.class);
+		GraphicalEditPart lifelineEP = (GraphicalEditPart) editor.findEditPart("a", Lifeline.class);
+
+		GraphicalEditPart cfragEP = editor.createShape(topOperandEP,
+				UMLElementTypes.CombinedFragment_Shape,
+				at(40, 100), sized(140, 160));
+
+		Rectangle cfragBounds = cfragEP.getFigure().getBounds();
+		Rectangle lifelineBounds = lifelineEP.getFigure().getBounds();
+		Rectangle intersection = cfragBounds.getIntersection(lifelineBounds);
+
+		assertThat("Combined fragment does not span lifeline", intersection.width(),
+				is(lifelineBounds.width()));
+	}
+
 	//
 	// Test framework
 	//
@@ -889,7 +977,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 
 	/**
 	 * Work around the absence of an {@code equals} method in the {@link PointList} class.
-	 * 
+	 *
 	 * @param geometry
 	 *            a geometry to test for equality with an actual observed geometry
 	 * @return the geometry matcher
@@ -909,10 +997,10 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 
 	/**
 	 * Query the geometry of an interaction element in the diagram.
-	 * 
+	 *
 	 * @param interactionElement
 	 *            an interaction element (interaction fragment or message)
-	 * 
+	 *
 	 * @return its geometry, either a {@link Rectangle}, {@link PointList}, or {@code null}
 	 *         for elements that have no geometry of their own but would be implied by others (such
 	 *         as execution occurrences)

@@ -108,6 +108,7 @@ import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.matchers.CommandMatchers;
+import org.eclipse.papyrus.junit.utils.CommandUtils;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
@@ -152,6 +153,7 @@ import com.google.common.collect.Lists;
  * completion of the test.
  */
 public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEditingDomain> {
+	private static boolean DUMP_COMMANDS = Boolean.getBoolean("dump.commands"); //$NON-NLS-1$
 
 	private final Collection<IEditorPart> editorsToClose = Lists.newArrayList();
 
@@ -279,6 +281,11 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 			operationHistoryIntegrityListener = new IOperationHistoryListener() {
 				@Override
 				public void historyNotification(OperationHistoryEvent event) {
+					if (DUMP_COMMANDS && (event.getEventType() == OperationHistoryEvent.ABOUT_TO_EXECUTE)) {
+						System.err.println(">> Executing command"); //$NON-NLS-1$
+						CommandUtils.dump(event.getOperation());
+						System.err.println();
+					}
 					if ((event.getEventType() == OperationHistoryEvent.DONE) && (activeDiagramEditor != null)) {
 						IUndoContext diagramContext = activeDiagramEditor.getDiagramEditDomain().getDiagramCommandStack().getUndoContext();
 						if (diagramContext != null) {
@@ -1513,7 +1520,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 * 
 	 * @since 2.2
 	 */
-	public EditPart createShape(EditPart parent, IElementType type, Point location, Dimension size) {
+	public IGraphicalEditPart createShape(EditPart parent, IElementType type, Point location, Dimension size) {
 		CreateViewRequest request = CreateViewRequestFactory.getCreateShapeRequest(type, ((IGraphicalEditPart) parent).getDiagramPreferencesHint());
 
 		request.setLocation(location);
@@ -1527,12 +1534,12 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return getNewEditPart(parent, request.getViewDescriptors());
 	}
 
-	private EditPart getNewEditPart(EditPart context, Collection<? extends ViewDescriptor> viewDescriptors) {
+	private IGraphicalEditPart getNewEditPart(EditPart context, Collection<? extends ViewDescriptor> viewDescriptors) {
 		return viewDescriptors.stream()
 				.map(desc -> desc.getAdapter(View.class)).map(View.class::cast)
 				.filter(Objects::nonNull)
 				.map(view -> DiagramEditPartsUtil.getEditPartFromView(view, context))
-				.filter(Objects::nonNull)
+				.filter(IGraphicalEditPart.class::isInstance).map(IGraphicalEditPart.class::cast)
 				.findAny().orElseGet(failOnAbsence("Could not find newly created edit-part"));
 	}
 
@@ -1551,7 +1558,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 * 
 	 * @since 2.2
 	 */
-	public EditPart createShape(IElementType type, Point location, Dimension size) {
+	public IGraphicalEditPart createShape(IElementType type, Point location, Dimension size) {
 		class MyTool extends AspectUnspecifiedTypeCreationTool {
 			private Collection<? extends ViewDescriptor> results = Collections.emptyList();
 
@@ -1637,6 +1644,36 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 */
 	public static Point at(int x, int y) {
 		return new Point(x, y);
+	}
+
+	/**
+	 * Convert a point that is relative to the given part to a point relative to the
+	 * current viewport (taking zoom and scroll into account). This can be used to get
+	 * a "Mouse Location" to configure requests. Useful as a static import for test
+	 * readability
+	 * 
+	 * @param x
+	 *            the relative x coördinate
+	 * @param y
+	 *            the relative y coördinate
+	 * @param relativeTo
+	 *            the edit-part in which coördinate space the {@code x} and {@code y}
+	 *            are specified
+	 * @return the point in absolute mouse-pointer coördinates
+	 * 
+	 * @since 2.2
+	 */
+	public static Point at(int x, int y, IGraphicalEditPart relativeTo) {
+		Point at = new Point(x, y);
+
+		IFigure figure = relativeTo.getContentPane();
+		Point layoutOrigin = figure.getClientArea().getLocation();
+
+		at.performTranslate(layoutOrigin.x, layoutOrigin.y);
+		figure.translateToParent(at);
+		figure.translateToAbsolute(at);
+
+		return at;
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2018 EclipseSource and others.
+ * Copyright (c) 2018 EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +8,12 @@
  *
  * Contributors:
  *   EclipseSource - Initial API and implementation
+ *   Christian W. Damus - bug 533675
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
+
+import static org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture.at;
 
 import java.util.Collections;
 
@@ -151,7 +154,7 @@ public class TestCFOperandsSemanticCoverage extends AbstractOperandsTest {
 
 	@Test
 	public void testCreateOperand() {
-		IGraphicalEditPart operand2Part = createOperand(operandPart, at(200, 100, cfPart)); // Between Message10 and Message11
+		IGraphicalEditPart operand2Part = createOperand(at(200, 100, cfPart)); // Between Message10 and Message11
 
 		// Covered by the first operand
 		assertCovered(message10, operandPart);
@@ -203,7 +206,7 @@ public class TestCFOperandsSemanticCoverage extends AbstractOperandsTest {
 	public void testDeleteOperand() {
 		// Create a new operand, delete the first one, and check that the new
 		// one covers everything that was initially covered by the first
-		IGraphicalEditPart operand2Part = createOperand(operandPart, at(200, 100, cfPart)); // Between Message10 and Message11
+		IGraphicalEditPart operand2Part = createOperand(at(200, 100, cfPart)); // Between Message10 and Message11
 		editor.delete(operandPart);
 
 		assertCovered(message10, operand2Part);
@@ -221,9 +224,9 @@ public class TestCFOperandsSemanticCoverage extends AbstractOperandsTest {
 		editor.execute(cfPart.getCommand(request));
 
 		// Create some operands every 100px
-		IGraphicalEditPart operand3Part = createOperand(operand2Part, at(200, 100, cfPart)); // Between Message10 and Message11
-		IGraphicalEditPart operand4Part = createOperand(operand3Part, at(150, 200, cfPart)); // Between Exec1 and Exec2
-		IGraphicalEditPart operand5Part = createOperand(operand4Part, at(75, 300, cfPart)); // Middle of exec 2, below Message12
+		IGraphicalEditPart operand3Part = createOperand(at(200, 100, cfPart)); // Between Message10 and Message11
+		IGraphicalEditPart operand4Part = createOperand(at(150, 200, cfPart)); // Between Exec1 and Exec2
+		IGraphicalEditPart operand5Part = createOperand(at(75, 300, cfPart)); // Middle of exec 2, below Message12
 
 		// Before deleting, make sure everything is what we expect...
 		assertCovered(message10, operand2Part);
@@ -280,9 +283,9 @@ public class TestCFOperandsSemanticCoverage extends AbstractOperandsTest {
 		editor.execute(cfPart.getCommand(request));
 
 		// ...and create some operands...
-		IGraphicalEditPart operand2Part = createOperand(operandPart, at(200, 100, cfPart)); // Between Message10 and Message11
-		IGraphicalEditPart operand3Part = createOperand(operand2Part, at(150, 200, cfPart)); // Between Exec1 and Exec2
-		IGraphicalEditPart operand4Part = createOperand(operand3Part, at(75, 300, cfPart)); // Middle of exec 2, below Message12
+		IGraphicalEditPart operand2Part = createOperand(at(200, 100, cfPart)); // Between Message10 and Message11
+		IGraphicalEditPart operand3Part = createOperand(at(150, 200, cfPart)); // Between Exec1 and Exec2
+		IGraphicalEditPart operand4Part = createOperand(at(75, 300, cfPart)); // Middle of exec 2, below Message12
 
 		// ...Check the initial state...
 		assertCovered(message10, operandPart);
@@ -338,5 +341,4 @@ public class TestCFOperandsSemanticCoverage extends AbstractOperandsTest {
 		assertCoverage(getSend(message12), getOperand(operand4Part), true);
 		assertCoverage(getFinish(exec2), getOperand(operand4Part), true);
 	}
-
 }

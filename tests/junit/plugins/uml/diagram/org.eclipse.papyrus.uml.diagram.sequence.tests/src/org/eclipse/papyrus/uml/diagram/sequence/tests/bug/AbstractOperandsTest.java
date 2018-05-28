@@ -13,24 +13,9 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Objects;
-
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -120,46 +105,7 @@ public abstract class AbstractOperandsTest extends AbstractPapyrusTest {
 		Assert.assertEquals(expectedCoverage, operand.getFragments().contains(fragment));
 	}
 
-	// Don't use editor.createShape(), because we need a special type of request to create operands.
-	// The "InsertAt" behavior will only be computed if we use a CreateUnspecifiedTypeRequest (From the palette)
-	// and target an Operand. The Operand will then be responsible for setting the InsertAt parameter
-	// and delegate to the CombinedFragment compartment for the actual creation
-	protected GraphicalEditPart createOperand(IGraphicalEditPart targetVisualPart, Point location) {
-		CreateUnspecifiedTypeRequest request = new CreateUnspecifiedTypeRequest(Collections.singletonList(UMLElementTypes.InteractionOperand_Shape), targetVisualPart.getDiagramPreferencesHint());
-
-		request.setLocation(location);
-
-		EditPart target = targetVisualPart.getTargetEditPart(request);
-		assertThat("No target edit part", target, notNullValue());
-		org.eclipse.gef.commands.Command command = target.getCommand(request);
-		editor.execute(command);
-
-		// Find the new edit-part
-		Object result = request.getNewObject();
-		Assert.assertThat(result, instanceOf(Collection.class));
-		Collection<?> results = (Collection<?>) result;
-		return results.stream()
-				.filter(ViewDescriptor.class::isInstance).map(ViewDescriptor.class::cast)
-				.map(desc -> desc.getAdapter(View.class)).map(View.class::cast)
-				.filter(Objects::nonNull)
-				.map(view -> DiagramEditPartsUtil.getEditPartFromView(view, targetVisualPart))
-				.filter(GraphicalEditPart.class::isInstance).map(GraphicalEditPart.class::cast)
-				.filter(Objects::nonNull)
-				.findAny().orElseThrow(() -> new IllegalStateException("Could not find new shape edit-part"));
-	}
-
-	// Convert a point that is relative to the given part to a point relative to the current Viewport (Taking zoom & translate into account).
-	// This can be used to get a "Mouse Location" to configure Requests
-	protected static Point at(int x, int y, IGraphicalEditPart relativeTo) {
-		Point at = new Point(x, y);
-
-		IFigure figure = relativeTo.getContentPane();
-		Point layoutOrigin = figure.getClientArea().getLocation();
-
-		at.performTranslate(layoutOrigin.x, layoutOrigin.y);
-		figure.translateToParent(at);
-		figure.translateToAbsolute(at);
-
-		return at;
+	protected IGraphicalEditPart createOperand(Point location) {
+		return editor.createShape(UMLElementTypes.InteractionOperand_Shape, location, null);
 	}
 }

@@ -60,6 +60,7 @@
       <owner xmi:type="uml:Model" href="bug535097-OperandsSemantic.uml#_3U8U0F_vEei3wLtnYCLwnw"/>
     </styles>
     <styles xmi:type="notation:EObjectListValueStyle" xmi:id="_kLDn8F_xEei3wLtnYCLwnw" name="css_stylesheets" eObjectListValue="_kK-IYF_xEei3wLtnYCLwnw"/>
+    <styles xmi:type="notation:BooleanValueStyle" xmi:id="_qplB8G9EEeiGVqCxr7fmEg" name="rulergrid.snaptogrid" booleanValue="false"/>
     <element xmi:type="uml:Interaction" href="bug535097-OperandsSemantic.uml#_3XhHsF_vEei3wLtnYCLwnw"/>
     <edges xmi:type="notation:Connector" xmi:id="_xGHW4F_2EeiussJ5A9xGlQ" type="Message_AsynchEdge" source="_5ndxEF_vEei3wLtnYCLwnw" target="_5vV6sF_vEei3wLtnYCLwnw">
       <children xmi:type="notation:DecorationNode" xmi:id="_xGHW41_2EeiussJ5A9xGlQ" type="Message_AsynchNameLabel">

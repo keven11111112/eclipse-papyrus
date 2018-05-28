@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.UmlSequenceDiagramForMultiEditor;
 import org.eclipse.papyrus.uml.diagram.sequence.command.AsynchronousCommand;
+import org.eclipse.papyrus.uml.diagram.sequence.validation.AsyncValidateCommand;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
@@ -114,7 +115,13 @@ public class DefaultInteractionOperandAdvice extends AbstractEditHelperAdvice {
 		request.setSnapToEnabled(false);
 		request.setEditParts(operand);
 		org.eclipse.gef.commands.Command command = operand.getCommand(request);
-		return (command == null) ? null : new CommandProxy(command);
+
+		ICommand result = (command == null) ? null : new CommandProxy(command);
+		if (result != null) {
+			// Trigger validation of the operand
+			result = result.compose(new AsyncValidateCommand(operand.resolveSemanticElement()));
+		}
+		return result;
 	}
 
 }

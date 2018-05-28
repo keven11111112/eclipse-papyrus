@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 533675
  *
  *****************************************************************************/
 
@@ -42,6 +43,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This allows to define the creation edit policy for the interaction operand.
@@ -82,7 +84,12 @@ public class CustomInteractionOperandCreationEditPolicy extends DefaultCreationE
 			IElementType elementType = iter.next();
 			Request createRequest = request.getRequestForType(elementType);
 			if (createRequest != null) {
-				EditPart target = SequenceUtil.getParentCombinedFragmentPart(getHost().getTargetEditPart(createRequest));
+				EditPart target = getHost().getTargetEditPart(createRequest);
+				// Don't re-target creation of an interaction fragment to a thing that
+				// cannot contain it
+				if (!UMLPackage.Literals.INTERACTION_FRAGMENT.isSuperTypeOf(elementType.getEClass())) {
+					target = SequenceUtil.getParentCombinedFragmentPart(target);
+				}
 				if (target == null) {
 					continue;
 				}
