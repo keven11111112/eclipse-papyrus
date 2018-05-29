@@ -28,6 +28,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
@@ -81,10 +82,22 @@ public class UpdateConnectionReferenceEditPolicy extends GraphicalEditPolicy {
 							if (editPart instanceof ConnectionEditPart) {
 								ConnectionEditPart connectionEditPart = (ConnectionEditPart) editPart;
 								ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
+								
+								// Calculate the target position if the message is not vertical
+								final Rectangle endLocation = new Rectangle(locationAndSize);
+								if(connectionEditPart instanceof ConnectionNodeEditPart) {
+									final Point startPoint = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) connectionEditPart, true);
+									final Point endPoint = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) connectionEditPart, false);
+									
+									if(endPoint.y() != startPoint.y()) {
+										endLocation.setY(endLocation.y() + (endPoint.y() - startPoint.y()));
+									}
+								}
+								
 								// create the request
 								ReconnectRequest reconnectSourceRequest = createReconnectRequest(connectionEditPart, locationAndSize, senderList, RequestConstants.REQ_RECONNECT_SOURCE, references);
 								reconnectSourceRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
-								ReconnectRequest reconnectTargetRequest = createReconnectRequest(connectionEditPart, locationAndSize, senderList, RequestConstants.REQ_RECONNECT_TARGET, references);
+								ReconnectRequest reconnectTargetRequest = createReconnectRequest(connectionEditPart, endLocation, senderList, RequestConstants.REQ_RECONNECT_TARGET, references);
 								reconnectTargetRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 								compoundCommand.add(connectionEditPart.getTarget().getCommand(reconnectTargetRequest));
 								compoundCommand.add(connectionEditPart.getSource().getCommand(reconnectSourceRequest));
