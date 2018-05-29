@@ -19,14 +19,13 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.editpolicies.ConstrainedLayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
@@ -50,15 +49,11 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 	 */
 	@Override
 	protected Command createChangeConstraintCommand(EditPart child, Object constraint) {
-
-		// code that comes form XYLayoutEditPolicy
-		Rectangle newBounds = (Rectangle) constraint;
-		View shapeView = (View) child.getModel();
-
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-
-		ICommand boundsCommand = new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(shapeView), newBounds);
-		return new ICommandProxy(boundsCommand);
+		if (constraint instanceof Rectangle) {
+			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+			return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View) child.getModel()), (Rectangle) constraint));
+		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
@@ -68,7 +63,6 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 	@Override
 	protected EditPolicy createChildEditPolicy(EditPart child) {
 		if ((child instanceof IBorderItemEditPart) && !(child instanceof IFloatingLabelEditPart)) {
-			// return new BorderItemSelectionEditPolicy();
 			return new BorderItemResizableEditPolicy();
 		}
 		EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -97,18 +91,7 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Object getConstraintFor(ChangeBoundsRequest request, GraphicalEditPart child) {
-
-		return super.getConstraintFor(request, child);
-	}
-
-	/**
-	 *
-	 * {@inheritDoc}
-	 */
-	@Override
 	protected Object getConstraintFor(Point point) {
-
 		return null;
 	}
 
@@ -127,8 +110,8 @@ public class ConstrainedItemBorderLayoutEditPolicy extends ConstrainedLayoutEdit
 	 */
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
-
 		return null;
 	}
+
 
 }
