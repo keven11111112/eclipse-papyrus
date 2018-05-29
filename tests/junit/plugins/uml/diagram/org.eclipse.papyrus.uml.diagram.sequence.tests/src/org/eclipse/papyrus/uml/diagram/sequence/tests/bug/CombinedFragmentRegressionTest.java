@@ -64,6 +64,8 @@ import org.eclipse.papyrus.junit.matchers.DiagramMatchers;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -80,6 +82,8 @@ import org.eclipse.uml2.uml.Message;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.CustomTypeSafeMatcher;
 import org.hamcrest.Matcher;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -102,7 +106,23 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	public CombinedFragmentRegressionTest() {
 		super();
 	}
-
+	
+	/**
+	 * Before test initialization with preference initialization.
+	 */
+	@Before
+	public void init() {
+		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().setValue(CustomDiagramGeneralPreferencePage.PREF_TRIGGER_ASYNC_VALIDATION, true);
+	}
+	
+	/**
+	 * After test with preference modification.
+	 */
+	@After
+	public void finalize() {
+		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().setValue(CustomDiagramGeneralPreferencePage.PREF_TRIGGER_ASYNC_VALIDATION, false);
+	}
+	
 	/**
 	 * Verify the creation and extent of a default interaction operand in a newly
 	 * created combined fragment.
@@ -649,6 +669,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	@Test
 	@PluginResource("resource/bugs/bug533676.di")
 	public void validateResizedInteractionOperand_533676() {
+		
 		GraphicalEditPart operandEP = (GraphicalEditPart) editor.findEditPart("opt", InteractionOperand.class);
 		InteractionOperand operand = (InteractionOperand) operandEP.getAdapter(EObject.class);
 		Interaction interaction = (Interaction) operand.eContainer().eContainer();
@@ -671,6 +692,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	@Test
 	@PluginResource("resource/bugs/bug533676a.di")
 	public void validateCreatedInteractionOperand_533676() {
+		
 		EditPart interactionEP = editor.findEditPart("doIt", Interaction.class);
 		EditPart interactionCompartment = editor.getShapeCompartment(interactionEP);
 

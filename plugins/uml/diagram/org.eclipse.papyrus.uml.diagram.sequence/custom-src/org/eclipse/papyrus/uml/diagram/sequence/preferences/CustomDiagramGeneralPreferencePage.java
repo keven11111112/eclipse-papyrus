@@ -172,7 +172,6 @@ public class CustomDiagramGeneralPreferencePage extends DiagramPreferencePage {
 		preferenceStore.setDefault(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_DOWN, true);
 		preferenceStore.setDefault(PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION, PREF_MOVE_BELOW_ELEMENTS_AT_MESSAGE_CREATION_VALUE);
 
-		// by default, validation is activated.
 		preferenceStore.setDefault(PREF_TRIGGER_ASYNC_VALIDATION, false);
 
 	}
