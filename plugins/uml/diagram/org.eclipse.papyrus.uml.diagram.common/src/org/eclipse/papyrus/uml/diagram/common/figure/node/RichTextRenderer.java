@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2018 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 502878
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 522427
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
@@ -64,11 +65,40 @@ public class RichTextRenderer implements HTMLRenderer {
 		return contentPane;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.HTMLRenderer#paintHTML(java.lang.String, int, int, int, int)
+	 *
+	 * @param text
+	 * @param width
+	 *            not used
+	 * @param height
+	 *            not used
+	 * @param x
+	 * @param y
+	 */
 	@Override
 	public void paintHTML(String text, int width, int height, int x, int y) {
+		paintHTML(text, x, y);
+	}
+
+
+	private void paintHTML(final String text, final int x, final int y) {
 		if (renderFigure == null || painter == null || contentPane == null) {
 			return;
 		}
+
+		// ***************** bug fix *************************
+		// see bug 522427: to avoid an infinite loop, we calculus the default size, with the same args each time
+		Image htmlImageTmp = new Image(Display.getDefault(), 10, 10);// magic number!
+		GC gcTmp = new GC(htmlImageTmp);
+		Rectangle boundsTmp = new Rectangle(x, y, 10, 10); // magic number
+		painter.preCalculate(text != null ? text : "", gcTmp, boundsTmp, false);//$NON-NLS-1$ // false instead true, seems me better (more width than height)
+		int width = this.painter.getPreferredSize().x;
+		int height = this.painter.getPreferredSize().y;
+		// *************** end bug fix ************************
+
+
 
 		// Validate first time, otherwise infinite layout loop
 		if (!validated) {
@@ -87,46 +117,44 @@ public class RichTextRenderer implements HTMLRenderer {
 			htmlImage = new Image(Display.getDefault(), width, height);
 		}
 
-		if (htmlImage != null) {
-			// Compute the preferred size of the image to display all of the HTML content
-			GC gc = new GC(htmlImage);
-			Rectangle bounds = new Rectangle(x, y, width, height);
-			painter.preCalculate(text != null ? text : "", gc, bounds, true);
+		// Compute the preferred size of the image to display all of the HTML content
+		GC gc = new GC(htmlImage);
+		Rectangle bounds = new Rectangle(x, y, width, height);
+		painter.preCalculate(text != null ? text : "", gc, bounds, true);//$NON-NLS-1$
 
-			boolean changeBounds = false;
-			if (width < getPreferredSize().x) {
-				width = getPreferredSize().x;
-				changeBounds = true;
-			}
-			if (height < getPreferredSize().y) {
-				height = getPreferredSize().y;
-				changeBounds = true;
-			}
-
-			// Changing bounds means creating a new image with new width and height, its gc, and the new bounds for the painter
-			if (changeBounds) {
-				gc.dispose();
-				htmlImage.dispose();
-
-				htmlImage = getTransparentBackground(Display.getDefault(), width, height);
-				if (htmlImage == null) {
-					htmlImage = new Image(Display.getDefault(), width, height);
-				}
-				gc = new GC(htmlImage);
-
-				bounds = new Rectangle(x, y, width, height);
-			}
-
-			// Paint and clean up
-			painter.paintHTML(text != null ? text : "", gc, bounds); //$NON-NLS-1$
-
-			if (gc != null) {
-				gc.dispose();
-			}
-
-			renderFigure.setImage(htmlImage);
+		boolean changeBounds = false;
+		if (width < getPreferredSize().x) {
+			width = getPreferredSize().x;
+			changeBounds = true;
 		}
+		if (height < getPreferredSize().y) {
+			height = getPreferredSize().y;
+			changeBounds = true;
+		}
+
+		// Changing bounds means creating a new image with new width and height, its gc, and the new bounds for the painter
+		if (changeBounds) {
+			gc.dispose();
+			htmlImage.dispose();
+
+			htmlImage = getTransparentBackground(Display.getDefault(), width, height);
+			if (htmlImage == null) {
+				htmlImage = new Image(Display.getDefault(), width, height);
+			}
+			gc = new GC(htmlImage);
+
+			bounds = new Rectangle(x, y, width, height);
+		}
+
+		// Paint and clean up
+		painter.paintHTML(text != null ? text : "", gc, bounds); //$NON-NLS-1$
+
+		gc.dispose();
+
+		renderFigure.setImage(htmlImage);
+
 	}
+
 
 	@Override
 	public Point getPreferredSize() {
