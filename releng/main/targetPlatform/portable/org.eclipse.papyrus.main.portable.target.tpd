@@ -5,7 +5,7 @@ target "Papyrus Main" with requirements source
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201805221518" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201805290850" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -24,13 +24,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestone
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC1-201805162000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC2-201805240900/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201805211007" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201805280838" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -42,7 +42,7 @@ location xwt "http://download.eclipse.org/xwt/updates" {
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201804242303" {
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.14.0" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -58,7 +58,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/I-latest/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/S-3.10.0.RC2-20180524070951/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
@@ -118,22 +118,34 @@ location nebula "http://download.eclipse.org/nebula/releases/1.2.0/" {
 
 location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repository" {
 	org.eclipse.nebula.widgets.nattable.core.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.core.source.feature.feature.group
 	org.eclipse.nebula.widgets.nattable.extension.glazedlists.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.extension.glazedlists.source.feature.feature.group
 	org.eclipse.nebula.widgets.nattable.extension.nebula.feature.feature.group
+	org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group
 }
 
 //manualUpdate (Needed by infra.tools, API Evolution Report generation and other plugins)
 
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/S20180504181223/repository/" {
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/I20180528174014/repository" {
 	com.google.guava 21.0.0
-	com.google.gson [2.7.0,2.8.0)
-	org.apache.commons.lang3 3.1.0
-	org.apache.batik.anim [1.9.1,2.0.0)
-	org.apache.batik.dom [1.9.1,2.0.0)
-	org.apache.batik.dom.svg [1.9.1,2.0.0)
-	org.apache.batik.xml [1.9.1,2.0.0)
-	org.apache.batik.util [1.9.1,2.0.0)
-	org.apache.batik.svggen [1.9.1,2.0.0)
-	org.apache.batik.ext [1.9.1,2.0.0)
-	org.objectweb.asm [5.0.1, 6.0.0)
+	com.google.guava.source 21.0.0
+ 	com.google.gson [2.7.0,2.8.0)
+	com.google.gson.source [2.7.0,2.8.0)
+ 	org.apache.commons.lang3 3.1.0
+	org.apache.commons.lang3.source 3.1.0
+ 	org.apache.batik.anim [1.9.1,2.0.0)
+	org.apache.batik.anim.source [1.9.1,2.0.0)
+ 	org.apache.batik.dom [1.9.1,2.0.0)
+	org.apache.batik.dom.source [1.9.1,2.0.0)
+ 	org.apache.batik.dom.svg [1.9.1,2.0.0)
+	org.apache.batik.dom.svg.source [1.9.1,2.0.0)
+ 	org.apache.batik.xml [1.9.1,2.0.0)
+	org.apache.batik.xml.source [1.9.1,2.0.0)
+ 	org.apache.batik.util [1.9.1,2.0.0)
+	org.apache.batik.util.source [1.9.1,2.0.0)
+ 	org.apache.batik.svggen [1.9.1,2.0.0)
+	org.apache.batik.svggen.source [1.9.1,2.0.0)
+ 	org.objectweb.asm [5.0.1, 6.0.0)
+	org.objectweb.asm.source [5.0.1, 6.0.0)
 }

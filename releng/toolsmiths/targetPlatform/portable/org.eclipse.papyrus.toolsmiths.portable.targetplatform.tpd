@@ -32,7 +32,7 @@ location egit "http://download.eclipse.org/egit/staging/v5.0.0.201805221745-rc1"
 
 //updateFrom("m2e",0)
 
-location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180523-0050" // oomph
+location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180529-1731" // oomph
 
 //updateFrom("Mylyn",0)
 

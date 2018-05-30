@@ -37,9 +37,8 @@
 						
 						<!-- p2 update site transitive dependencies repositories -->
 							<associateSites>
-								<!-- this update site is used to palliate the problems of GMF Notation until the patched version has been aggregated -->
-								<site>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201805221147</site>
-								<site>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201805221301</site>
+								<!-- last aggregation site for orbit bundles -->
+								<site>http://download.eclipse.org/tools/orbit/downloads/drops/I20180417184143/</site>
 							</associateSites>
 						</configuration>
 					</execution>
