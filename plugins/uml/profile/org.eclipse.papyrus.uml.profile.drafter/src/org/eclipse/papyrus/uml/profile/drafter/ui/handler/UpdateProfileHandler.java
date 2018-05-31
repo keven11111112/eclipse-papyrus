@@ -51,9 +51,6 @@ public class UpdateProfileHandler extends AbstractProfileBaseHandler {
 
 	private List<NamedElement> cachedSelectionAsNamedElement;
 	
-	private String stereotypeNameInput;
-	private String profileNameInput;
-	
 	/**
 	 * Object used to hold the update values.
 	 */
@@ -97,12 +94,6 @@ public class UpdateProfileHandler extends AbstractProfileBaseHandler {
 
 		// Check if an element is selected.
 		List<NamedElement> selected = getSelectionAsNamedElements(context);
-
-//		System.err.println("Add Profile called. Selected elements:");
-//		for( NamedElement ele : selected) {
-//				System.err.println(ele.getName());
-//		}
-//		System.err.println("********************");
 		
 		if( selected.isEmpty()) {
 			// Stop if no NamedElement is selected
@@ -111,21 +102,14 @@ public class UpdateProfileHandler extends AbstractProfileBaseHandler {
 
 		// Open the dialog to ask the new name
 		// TODO dialog should not be in the transaction !! put it outside !
-//		String inputName = null;
 
-		// PRofileDialog
+		// ProfileDialog
 		StereotypeUpdateDialog newDialog = new StereotypeUpdateDialog(Display.getCurrent().getActiveShell(), "Update Stereotype", 
 				selected.get(0), new ArrayList<Class>(  getSelectedElementMetaclasses(context)) );
 		if(newDialog.open() == Window.OK) {
 			
 			// Lookup commands
 			stereoptypeModel = newDialog.getStereotypeModel();
-//			CommandBuilderVisitor commandBuilderVisitor = new CommandBuilderVisitor();
-//			stereoptypeModel.accept(commandBuilderVisitor);
-//			if( ! commandBuilderVisitor.isExecutionRequested() ) {
-//				return false;
-//			}
-			
 				
 			// old fashion
 			updateArgs = newDialog.getUpdateArgs();
@@ -137,10 +121,6 @@ public class UpdateProfileHandler extends AbstractProfileBaseHandler {
 			return false;
 		}
 
-		stereotypeNameInput = updateArgs.getStereotypeName();
-		profileNameInput = updateArgs.getProfileName();
-
-		
 		return true;
 	}
 	
@@ -182,22 +162,11 @@ public class UpdateProfileHandler extends AbstractProfileBaseHandler {
 	@Override
 	protected void doExecute(ExecutionEvent event, IEvaluationContext context) {
 
-//		System.err.println("Add Profile called. Selected elements:");
 		List<NamedElement> selected = getSelectionAsNamedElements(context);
-//		for( NamedElement ele : selected) {
-//				System.err.println(ele.getName());
-//		}
-//		System.err.println("********************");
-//		
-//		if( selected.isEmpty()) {
-//			return;
-//		}
 		
 		// Try to apply the stereotype
 		ProfileApplicator profileApplicator = new ProfileApplicator(selected.get(0));
 		try {
-//			profileApplicator.applyStereotype2(profileNameInput, stereotypeNameInput);
-//			profileApplicator.updateStereotype(updateArgs);
 			profileApplicator.updateStereotype(stereoptypeModel);
 		} catch (DraftProfileException e) {
 			e.printStackTrace();
@@ -213,8 +182,6 @@ public class UpdateProfileHandler extends AbstractProfileBaseHandler {
 	protected void resetCachedValues() {
 		super.resetCachedValues();
 		cachedSelectionAsNamedElement = null;
-		stereotypeNameInput = null;
-		profileNameInput = null;
 	}
 	
 	/**

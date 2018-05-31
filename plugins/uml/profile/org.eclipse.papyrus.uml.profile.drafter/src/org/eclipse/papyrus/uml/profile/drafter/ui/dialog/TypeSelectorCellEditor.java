@@ -84,8 +84,6 @@ public class TypeSelectorCellEditor extends TextCellEditor {
 
 		Control control = super.createControl(parent);
 		// Install content assist
-		
-		
 		return control;
 	}
 	
@@ -97,7 +95,6 @@ public class TypeSelectorCellEditor extends TextCellEditor {
 	 * @param contentProposalProvider The associated {@link ContentProposalAdapter}.
 	 */
 	protected void installContentAssistantProvider( IContentProposalProvider contentProposalProvider) {
-//		KeyStroke keyStroke = KeyStroke.getInstance("Ctrl+Space");
 		KeyStroke keyStroke = null;
 		char[] autoActivationCharacters = null;
 		int autoActivationDelay = 500;
@@ -119,8 +116,6 @@ public class TypeSelectorCellEditor extends TextCellEditor {
 			public void proposalAccepted(IContentProposal proposal) {
 				// set the corresponding type
 				if( proposal instanceof TypeContentProposalBase ) {
-					TypeContentProposalBase typeProposal = (TypeContentProposalBase)proposal;
-//					setType(typeProposal.getType());
 				}
 				
 			}

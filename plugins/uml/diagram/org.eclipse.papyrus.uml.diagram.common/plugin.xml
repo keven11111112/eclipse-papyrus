@@ -21,7 +21,6 @@
  <extension-point id="editorAssistantProvider" name="editorAssistantProvider" schema="schema/editorAssistantProvider.exsd"/>
  <extension-point id="viewInfo" name="viewInfo" schema="schema/viewInfo.exsd"/>
  <extension-point id="moskittEditorFactory" name="moskittEditorFactory" schema="schema/moskittEditorFactory.exsd"/>
- <extension-point id="aspectToolProvider" name="aspectToolProvider" schema="schema/aspectToolProvider.exsd"/>
  <extension-point id="htmlRendererContributor" name="htmlRendererContributor" schema="schema/htmlRendererContributor.exsd"/>
       
       <extension point="org.eclipse.ui.views">

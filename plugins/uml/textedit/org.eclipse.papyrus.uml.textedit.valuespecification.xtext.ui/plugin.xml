@@ -344,7 +344,7 @@
           point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
        <DirectEditor
              contributor="CEA LIST"
-             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecification.gif"
+             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecificationAction.gif"
              language="Advanced Value Specification Textual Editor"
              objectToEdit="org.eclipse.uml2.uml.ValueSpecification">
           <popupeditor
@@ -357,7 +357,7 @@
        <DirectEditor
              additionalConstraint="org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.constraint.MultiplicityLowerValueDirectEditorConstraint"
              contributor="CEA LIST"
-             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecification.gif"
+             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecificationAction.gif"
              language="Advanced Value Specification Textual Editor"
              objectToEdit="org.eclipse.uml2.uml.ValueSpecification">
           <popupeditor
@@ -370,7 +370,7 @@
        <DirectEditor
              additionalConstraint="org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.constraint.MultiplicityUpperValueDirectEditorConstraint"
              contributor="CEA LIST"
-             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecification.gif"
+             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecificationAction.gif"
              language="Advanced Value Specification Textual Editor"
              objectToEdit="org.eclipse.uml2.uml.ValueSpecification">
           <popupeditor
