@@ -40,6 +40,7 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouch
 
 	/**
 	 * Store information which files have been created in a hash map
+	 * @since 3.0
 	 */
 	protected Map<String, Boolean> touched;
 
