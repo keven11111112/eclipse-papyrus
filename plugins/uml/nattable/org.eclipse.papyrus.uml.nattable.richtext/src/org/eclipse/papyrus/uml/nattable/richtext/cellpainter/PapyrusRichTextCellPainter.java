@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 527733
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 535545
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.richtext.cellpainter;
@@ -34,7 +35,7 @@ public class PapyrusRichTextCellPainter extends RichTextCellPainter {
 	 * Create a new {@link PapyrusRichTextCellPainter} with text wrapping enabled and auto-resizing disabled.
 	 */
 	public PapyrusRichTextCellPainter() {
-		super(true, false, false);
+		this(true, false, false);
 	}
 
 	/**
