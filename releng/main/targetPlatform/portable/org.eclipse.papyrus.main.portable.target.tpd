@@ -24,7 +24,7 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestone
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC2-201805240900/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC3-201805310700/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -64,7 +64,7 @@ location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/
 
 //updateFrom("GMF Runtime",0)
 
-location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201805221147" {
+location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201806010809" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
@@ -76,7 +76,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201805041039" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201805310718" {
 	org.eclipse.emf.sdk.feature.group
 }
 
@@ -134,18 +134,7 @@ location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/I2018052
 	com.google.gson.source [2.7.0,2.8.0)
  	org.apache.commons.lang3 3.1.0
 	org.apache.commons.lang3.source 3.1.0
- 	org.apache.batik.anim [1.9.1,2.0.0)
-	org.apache.batik.anim.source [1.9.1,2.0.0)
- 	org.apache.batik.dom [1.9.1,2.0.0)
-	org.apache.batik.dom.source [1.9.1,2.0.0)
- 	org.apache.batik.dom.svg [1.9.1,2.0.0)
-	org.apache.batik.dom.svg.source [1.9.1,2.0.0)
- 	org.apache.batik.xml [1.9.1,2.0.0)
-	org.apache.batik.xml.source [1.9.1,2.0.0)
- 	org.apache.batik.util [1.9.1,2.0.0)
-	org.apache.batik.util.source [1.9.1,2.0.0)
- 	org.apache.batik.svggen [1.9.1,2.0.0)
-	org.apache.batik.svggen.source [1.9.1,2.0.0)
  	org.objectweb.asm [5.0.1, 6.0.0)
 	org.objectweb.asm.source [5.0.1, 6.0.0)
+	// The batik plugins are transitively fetched through GMF_Runtime sdk's org.eclipse.gmf.runtime.thirdparty
 }

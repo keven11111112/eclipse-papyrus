@@ -7,7 +7,7 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //updateFrom("oomph",0) 
 
-location oomph "http://download.eclipse.org/oomph/drops/milestone/S20180504-103957-1.9.0-M6" {
+location oomph "http://download.eclipse.org/oomph/drops/milestone/S20180530-081107-1.9.0-RC2" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
@@ -28,7 +28,7 @@ location oomph "http://download.eclipse.org/oomph/drops/milestone/S20180504-1039
 
 //updateFrom("EGIT",0) 
 
-location egit "http://download.eclipse.org/egit/staging/v5.0.0.201805221745-rc1" // oomph
+location egit "http://download.eclipse.org/egit/staging/v5.0.0.201805301535-rc2" // oomph
 
 //updateFrom("m2e",0)
 
@@ -36,7 +36,7 @@ location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180418-0301" // oomph
+location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180530-1844" // oomph
 
 //updateFrom("EMF COMPARE",0)
 

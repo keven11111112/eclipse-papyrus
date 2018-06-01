@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Main" sequenceNumber="1527668908">
+<target name="Papyrus Main" sequenceNumber="1527860084">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.8.0.v20180529-0850"/>
@@ -17,8 +17,8 @@
       <repository id="uml" location="http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestones"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.8.0.v20180524-1240"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC2-201805240900/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.8.0.v20180531-1055"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC3-201805310700/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.4.0.v20180528-0838"/>
@@ -46,16 +46,16 @@
       <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.10.0/S-3.10.0.RC2-20180524070951/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.12.0.201805221147"/>
-      <repository id="gmfRuntime" location="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201805221147"/>
+      <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.12.0.201806010809"/>
+      <repository id="gmfRuntime" location="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201806010809"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.notation.sdk.feature.group" version="1.12.0.201805221301"/>
       <repository id="gmfNotation" location="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201805221301"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.sdk.feature.group" version="2.14.0.v20180421-1151"/>
-      <repository id="emf" location="http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201805041039"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.14.0.v20180529-1157"/>
+      <repository id="emf" location="http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201805310718"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.query.sdk.feature.group" version="1.12.0.201805030653"/>
@@ -94,18 +94,6 @@
       <unit id="com.google.gson.source" version="2.7.0.v20170129-0911"/>
       <unit id="org.apache.commons.lang3" version="3.1.0.v201403281430"/>
       <unit id="org.apache.commons.lang3.source" version="3.1.0.v201403281430"/>
-      <unit id="org.apache.batik.anim" version="1.9.1.v20180528-1434"/>
-      <unit id="org.apache.batik.anim.source" version="1.9.1.v20180528-1434"/>
-      <unit id="org.apache.batik.dom" version="1.9.1.v20180528-1434"/>
-      <unit id="org.apache.batik.dom.source" version="1.9.1.v20180528-1434"/>
-      <unit id="org.apache.batik.dom.svg" version="1.9.1.v20180313-1559"/>
-      <unit id="org.apache.batik.dom.svg.source" version="1.9.1.v20180313-1559"/>
-      <unit id="org.apache.batik.xml" version="1.9.1.v20180227-1645"/>
-      <unit id="org.apache.batik.xml.source" version="1.9.1.v20180227-1645"/>
-      <unit id="org.apache.batik.util" version="1.9.1.v20180227-1645"/>
-      <unit id="org.apache.batik.util.source" version="1.9.1.v20180227-1645"/>
-      <unit id="org.apache.batik.svggen" version="1.9.1.v20180313-1559"/>
-      <unit id="org.apache.batik.svggen.source" version="1.9.1.v20180313-1559"/>
       <unit id="org.objectweb.asm" version="5.0.1.v201404251740"/>
       <unit id="org.objectweb.asm.source" version="5.0.1.v201404251740"/>
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/I20180528174014/repository"/>

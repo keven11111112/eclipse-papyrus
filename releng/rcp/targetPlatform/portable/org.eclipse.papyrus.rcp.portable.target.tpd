@@ -6,13 +6,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 /*** Updates from the Simrel repository ***/
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/staging/v5.0.0.201805221745-rc1" {
+location egit "http://download.eclipse.org/egit/staging/v5.0.0.201805301535-rc2" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC2-201805240900/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC3-201805310700/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group 
 	org.eclipse.equinox.executable.feature.group 
@@ -20,7 +20,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180418-0301" {
+location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180530-1844" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group
@@ -38,12 +38,12 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/mi
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201805041039" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201805310718" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20180522-2342" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20180530-0803" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
