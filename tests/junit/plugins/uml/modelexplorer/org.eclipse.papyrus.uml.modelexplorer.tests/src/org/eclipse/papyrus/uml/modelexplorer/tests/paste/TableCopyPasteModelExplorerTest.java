@@ -50,9 +50,9 @@ public class TableCopyPasteModelExplorerTest extends AbstractEditorTest {
 
 	public static final String PROJECT_NAME = "copyPasteTest"; //$NON-NLS-1$
 
-	public final static String VIEW_TABLE_NAME = "TableOfViews0"; //$NON-NLS-1$
+	public static final String VIEW_TABLE_NAME = "TableOfViews0"; //$NON-NLS-1$
 
-	public final static String CLASS1_NAME = "Class1"; //$NON-NLS-1$
+	public static final String CLASS1_NAME = "Class1"; //$NON-NLS-1$
 
 	@Before
 	public void initModelForCutTest() {

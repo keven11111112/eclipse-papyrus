@@ -61,7 +61,7 @@ public class ScopeCollector implements IScopeCollector {
 		scopeProviders = loadScopeProviders();
 	}
 
-	public final static ScopeCollector getInstance() {
+	public static final ScopeCollector getInstance() {
 
 
 

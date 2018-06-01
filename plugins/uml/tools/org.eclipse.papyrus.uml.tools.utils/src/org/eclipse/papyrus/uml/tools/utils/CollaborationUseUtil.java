@@ -25,7 +25,7 @@ import org.eclipse.uml2.uml.CollaborationUse;
  */
 public class CollaborationUseUtil {
 
-	public final static String UNDEFINED_TYPE_NAME = "<Undefined>";
+	public static final String UNDEFINED_TYPE_NAME = "<Undefined>";
 
 	/**
 	 * return the full label of the CollaborationUse, given UML2 specification.

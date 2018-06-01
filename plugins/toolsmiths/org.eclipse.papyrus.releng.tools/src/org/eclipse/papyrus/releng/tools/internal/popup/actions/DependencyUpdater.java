@@ -127,7 +127,7 @@ public abstract class DependencyUpdater<T> {
 		}
 	}
 
-	abstract protected void save(IFile file) throws Exception;
+	protected abstract void save(IFile file) throws Exception;
 
 	protected void updateWithContribution(final Shell parentShell, final T uri, final Contribution contribution, final int repositoryIndex, final Map<Object, Object> context) {
 		EList<MappedRepository> repositories = contribution.getRepositories();

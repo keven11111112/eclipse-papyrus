@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreat
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 
 /**
- * @author C�line JANSSENS
+ * @author Celine JANSSENS
  *
  */
 public class CustomCombinedFragmentEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {

@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  C�line Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;

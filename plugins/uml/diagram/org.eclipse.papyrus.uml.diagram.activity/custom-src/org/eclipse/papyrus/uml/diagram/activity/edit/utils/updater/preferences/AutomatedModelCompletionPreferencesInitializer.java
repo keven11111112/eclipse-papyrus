@@ -25,9 +25,9 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
  */
 public class AutomatedModelCompletionPreferencesInitializer extends AbstractPreferenceInitializer {
 
-	final static public String PIN_SYNCHRONIZATION = CustomMessages.AutomatedModelCompletionPreferencesInitializer_PinSynchronization;
+	public static final String PIN_SYNCHRONIZATION = CustomMessages.AutomatedModelCompletionPreferencesInitializer_PinSynchronization;
 
-	final static public String NONE = CustomMessages.AutomatedModelCompletionPreferencesInitializer_None;
+	public static final String NONE = CustomMessages.AutomatedModelCompletionPreferencesInitializer_None;
 
 	/**
 	 * Constructor.

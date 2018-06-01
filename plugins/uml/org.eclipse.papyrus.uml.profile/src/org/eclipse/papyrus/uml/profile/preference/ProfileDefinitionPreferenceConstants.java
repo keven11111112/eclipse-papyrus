@@ -22,10 +22,10 @@ import org.eclipse.jface.preference.IPreferenceStore;
 public class ProfileDefinitionPreferenceConstants {
 
 	/** preference ID for author name */
-	public final static String PREF_AUTHOR_NAME = "ProfileDefinitionPreferenceConstants.author.name";
+	public static final String PREF_AUTHOR_NAME = "ProfileDefinitionPreferenceConstants.author.name";
 
 	/** preference ID for author name */
-	public final static String PREF_COPYRIGHT = "ProfileDefinitionPreferenceConstants.copyright";
+	public static final String PREF_COPYRIGHT = "ProfileDefinitionPreferenceConstants.copyright";
 
 	/**
 	 * initialize default preferences

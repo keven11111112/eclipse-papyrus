@@ -26,17 +26,17 @@ public class ExtensionIds {
 	public static final String METAMODEL_EXTENSION_ID = Activator.PLUGIN_ID + "." + "UMLMetamodel";
 
 	/** name of the <code>name</code> attribute in the DTD */
-	public final static String ATT_NAME = "name";
+	public static final String ATT_NAME = "name";
 
 	/** name of the <code>path</code> attribute in the DTD */
-	public final static String ATT_PATH = "path";
+	public static final String ATT_PATH = "path";
 
 	/** name of the <code>icon</code> attribute in the DTD */
-	public final static String ATT_ICON_PATH = "iconpath";
+	public static final String ATT_ICON_PATH = "iconpath";
 
 	/** name of the <code>description</code> attribute in the DTD */
-	public final static String ATT_DESCRIPTION = "description";
+	public static final String ATT_DESCRIPTION = "description";
 
 	/** name of the <code>provider</code>attribute in the DTD */
-	public final static String ATT_PROVIDER = "provider";
+	public static final String ATT_PROVIDER = "provider";
 }

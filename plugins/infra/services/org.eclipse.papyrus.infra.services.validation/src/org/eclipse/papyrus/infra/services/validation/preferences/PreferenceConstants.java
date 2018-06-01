@@ -21,10 +21,10 @@ public class PreferenceConstants {
 	/**
 	 * Should the validation operation automatically open the validation view, once done (and errors/warnings are present)?
 	 */
-	public final static String AUTO_SHOW_VALIDATION_VIEW = "org.eclipse.papyrus.infra.services.validation.AutoShowValidationView"; //$NON-NLS-1$
+	public static final String AUTO_SHOW_VALIDATION_VIEW = "org.eclipse.papyrus.infra.services.validation.AutoShowValidationView"; //$NON-NLS-1$
 	/**
 	 * different ways to show markers that belong to children
 	 */
-	public final static String HIERARCHICAL_MARKERS = "org.eclipse.papyrus.infra.services.validation.HierarchicalMarkers"; //$NON-NLS-1$
+	public static final String HIERARCHICAL_MARKERS = "org.eclipse.papyrus.infra.services.validation.HierarchicalMarkers"; //$NON-NLS-1$
 
 }

@@ -33,7 +33,7 @@ public class JavaQueryConstraint extends AbstractConstraint {
 	/**
 	 * The Java Class property
 	 */
-	public final static String QUERY_CLASS_NAME_PROPERTY = "className"; //$NON-NLS-1$
+	public static final String QUERY_CLASS_NAME_PROPERTY = "className"; //$NON-NLS-1$
 
 	private JavaQuery query = new FalseQuery();
 

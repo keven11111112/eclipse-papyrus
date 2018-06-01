@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   C�line Janssens (celine.janssens@all4tec.net) - Initial API and implementation
+ *   Celine Janssens (celine.janssens@all4tec.net) - Initial API and implementation
  *
  *****************************************************************************/
 
@@ -20,7 +20,7 @@ import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 
 /**
- * @author C�line JANSSENS
+ * @author Celine JANSSENS
  *         This class is used for Duration Constraint (@see {@link LifelineEditPart}) in order to locate it just next to the middle of it's parent (the Lifeline) on the X axe.
  *         The Y Axe is free except if the top is upper than its Parent.
  */

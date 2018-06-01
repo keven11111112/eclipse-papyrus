@@ -32,10 +32,10 @@ import org.eclipse.uml2.uml.Profile;
 public class UMLModelTester extends PropertyTester {
 
 	/** Tester ID for UML Model nature */
-	public final static String IS_UML_MODEL = "isUMLModel";
+	public static final String IS_UML_MODEL = "isUMLModel";
 
 	/** Tester ID for UML Profile nature */
-	public final static String IS_UML_PROFILE = "isUMLProfile";
+	public static final String IS_UML_PROFILE = "isUMLProfile";
 
 	/** Test the receiver against the selected property */
 	@Override

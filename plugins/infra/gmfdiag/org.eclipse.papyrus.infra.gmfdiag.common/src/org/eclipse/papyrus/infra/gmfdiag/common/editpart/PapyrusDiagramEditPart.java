@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - support pluggable edit-part conflict detection (CDO)
- *  C�line Janssens (ALL4TEC) - Override getDragTracker with the PapyrusRubberbandDragTracker
+ *  Celine Janssens (ALL4TEC) - Override getDragTracker with the PapyrusRubberbandDragTracker
  *  Christian W. Damus - bugs 451230, 461629, 501946
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - add refresh of SVGPostProcessor - Bug 467569
  *
@@ -53,7 +53,7 @@ public class PapyrusDiagramEditPart extends DiagramEditPart {
 	/**
 	 * Id of the right clic button
 	 */
-	public final static int RIGHT_MOUSE_BUTTON = 3;
+	public static final int RIGHT_MOUSE_BUTTON = 3;
 
 	public PapyrusDiagramEditPart(View diagramView) {
 		super(diagramView);

@@ -110,7 +110,7 @@ public interface RequestParameterConstants {
 	/**
 	 * the ID to store the name to be set for the new element.
 	 */
-	public final static String NAME_TO_SET = "nameToSet"; //$NON-NLS-1$
+	public static final String NAME_TO_SET = "nameToSet"; //$NON-NLS-1$
 
 	/**
 	 * indicates the string to take to build the name of the new element (typically, we will increments the provided string)
@@ -118,12 +118,12 @@ public interface RequestParameterConstants {
 	 *
 	 * @since 3.0
 	 */
-	public final static String BASE_NAME_TO_SET = "baseNameToSet"; //$NON-NLS-1$
+	public static final String BASE_NAME_TO_SET = "baseNameToSet"; //$NON-NLS-1$
 
 	/**
 	 * the ID to store the visual id of the view on which we are working, the value must be a string
 	 */
-	public final static String VIEW_VISUAL_ID = "VISUAL_ID";//$NON-NLS-1$
+	public static final String VIEW_VISUAL_ID = "VISUAL_ID";//$NON-NLS-1$
 
 	/**
 	 * this constant is used to precise if it is needed to launch UI during the edition of an element
@@ -165,7 +165,7 @@ public interface RequestParameterConstants {
 	/**
 	 * Store the view on which we are working.
 	 */
-	public final static String AFFECTED_VIEW = "AFFECTED_VIEW";//$NON-NLS-1$
+	public static final String AFFECTED_VIEW = "AFFECTED_VIEW";//$NON-NLS-1$
 
 	/**
 	 * this constant is used to precise if it is needed to make the editdialog cancellable or not

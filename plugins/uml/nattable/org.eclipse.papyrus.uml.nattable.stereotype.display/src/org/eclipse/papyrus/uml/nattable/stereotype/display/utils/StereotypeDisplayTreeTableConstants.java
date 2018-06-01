@@ -18,20 +18,20 @@ package org.eclipse.papyrus.uml.nattable.stereotype.display.utils;
  */
 public class StereotypeDisplayTreeTableConstants {
 
-	public final static String NAME_DEPTH = "nameDepth"; //$NON-NLS-1$
-	public final static String IS_DISPLAYED = "isDisplayed"; //$NON-NLS-1$
-	public final static String IN_COMMENT = "isDisplayedInComment"; //$NON-NLS-1$
-	public final static String IN_COMPARTMENT = "isDisplayedInCompartment"; //$NON-NLS-1$
-	public final static String IN_BRACE = "isDisplayedInBraces"; //$NON-NLS-1$
-	public final static String SELECTION = "selection"; //$NON-NLS-1$
+	public static final String NAME_DEPTH = "nameDepth"; //$NON-NLS-1$
+	public static final String IS_DISPLAYED = "isDisplayed"; //$NON-NLS-1$
+	public static final String IN_COMMENT = "isDisplayedInComment"; //$NON-NLS-1$
+	public static final String IN_COMPARTMENT = "isDisplayedInCompartment"; //$NON-NLS-1$
+	public static final String IN_BRACE = "isDisplayedInBraces"; //$NON-NLS-1$
+	public static final String SELECTION = "selection"; //$NON-NLS-1$
 
-	public final static String PREFIX = "stereotype_display_properties:/"; //$NON-NLS-1$
-	public final static String GMF_CUSTOM_PREFIX = "gmf_custom:/"; //$NON-NLS-1$
+	public static final String PREFIX = "stereotype_display_properties:/"; //$NON-NLS-1$
+	public static final String GMF_CUSTOM_PREFIX = "gmf_custom:/"; //$NON-NLS-1$
 	
-	public final static String NAME_DEPTH_LABEL = "Name Depth"; //$NON-NLS-1$
-	public final static String IS_DISPLAYED_LABEL = "Visible"; //$NON-NLS-1$
-	public final static String IN_COMMENT_LABEL = "In Comment"; //$NON-NLS-1$
-	public final static String IN_COMPARTMENT_LABEL = "In Compartment"; //$NON-NLS-1$
-	public final static String IN_BRACE_LABEL = "in Brace"; //$NON-NLS-1$
+	public static final String NAME_DEPTH_LABEL = "Name Depth"; //$NON-NLS-1$
+	public static final String IS_DISPLAYED_LABEL = "Visible"; //$NON-NLS-1$
+	public static final String IN_COMMENT_LABEL = "In Comment"; //$NON-NLS-1$
+	public static final String IN_COMPARTMENT_LABEL = "In Compartment"; //$NON-NLS-1$
+	public static final String IN_BRACE_LABEL = "in Brace"; //$NON-NLS-1$
 
 }

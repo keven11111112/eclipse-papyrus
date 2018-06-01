@@ -118,11 +118,11 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 	private Diagram diagram = null;
 
 	/** Outline mode */
-	public final static int SHOW_TREE = 1;
+	public static final int SHOW_TREE = 1;
 
-	public final static int SHOW_OVERVIEW = 2;
+	public static final int SHOW_OVERVIEW = 2;
 
-	public final static int SHOW_BOTH = 0;
+	public static final int SHOW_BOTH = 0;
 
 	private Composite overview;
 

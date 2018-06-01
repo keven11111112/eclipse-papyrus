@@ -68,11 +68,11 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	protected final static String COMMAND_ERROR_MESSAGE = "One of the anchors is left outside of the new figure's size";
 
 	// Constants to describe which axis position should be preserved
-	public final static int PRESERVE_Y = 0;
+	public static final int PRESERVE_Y = 0;
 
-	public final static int PRESERVE_X = 1;
+	public static final int PRESERVE_X = 1;
 
-	public final static int PRESERVE_XY = 2;
+	public static final int PRESERVE_XY = 2;
 
 	/**
 	 * Constructor. It needs the shape being resized, it's re-size delta and the

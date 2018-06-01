@@ -61,7 +61,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 
 
 	/** constant for this edit policy role */
-	public final static String APPLIED_STEREOTYPE_COMMENT = "AppliedStereotypeComment";//$NON-NLS-1$
+	public static final String APPLIED_STEREOTYPE_COMMENT = "AppliedStereotypeComment";//$NON-NLS-1$
 
 	/** the comment node associated to the Host EditPart */
 	private Node comment;

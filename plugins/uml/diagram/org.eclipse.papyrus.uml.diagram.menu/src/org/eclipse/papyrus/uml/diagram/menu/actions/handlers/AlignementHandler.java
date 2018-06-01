@@ -20,7 +20,6 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.papyrus.uml.diagram.common.handlers.ParametricAndListeningHandler;
 import org.eclipse.papyrus.uml.diagram.common.layout.LayoutUtils;
 import org.eclipse.papyrus.uml.diagram.menu.actions.CustomAlignAction;
-//import org.eclipse.papyrus.uml.diagram.menu.actions.CustomAlignAction2;
 
 
 /**

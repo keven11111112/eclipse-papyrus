@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   C�line Jansens - Initial API and implementation
+ *   Celine Jansens - Initial API and implementation
  *
  *****************************************************************************/
 

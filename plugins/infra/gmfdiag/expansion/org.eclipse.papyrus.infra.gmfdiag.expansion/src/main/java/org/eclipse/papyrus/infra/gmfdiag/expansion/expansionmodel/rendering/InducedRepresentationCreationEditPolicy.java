@@ -38,7 +38,7 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy {
 
 	/** constant for this edit policy role */
-	public final static String INDUCED_REPRESENTATION_CREATOR_EDITPOLICY = "InducedRepresentationCreationEditPolicy"; //$NON-NLS-1$
+	public static final String INDUCED_REPRESENTATION_CREATOR_EDITPOLICY = "InducedRepresentationCreationEditPolicy"; //$NON-NLS-1$
 
 	/** manager for notifications: should the compartment react to the notification? */
 	protected NotificationManager notificationManager;

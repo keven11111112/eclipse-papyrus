@@ -79,7 +79,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	protected String EMPTY_STRING = "";//$NON-NLS-1$
 
 	/** constant for this edit policy role */
-	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeDisplayEditPolicy";//$NON-NLS-1$
+	public static final String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeDisplayEditPolicy";//$NON-NLS-1$
 
 	/** host semantic element */
 	protected Element hostSemanticElement;

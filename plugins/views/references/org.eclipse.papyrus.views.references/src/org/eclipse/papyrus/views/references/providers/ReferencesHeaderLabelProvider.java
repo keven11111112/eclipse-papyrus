@@ -33,7 +33,7 @@ public class ReferencesHeaderLabelProvider extends LabelProvider {
 	/**
 	 * The {@link LabelProviderService} Context
 	 */
-	public final static String REFERENCES_HEADER_CONTEXT = "org.eclipse.papyrus.view.references.header.labelProvider.context"; //$NON-NLS-1$
+	public static final String REFERENCES_HEADER_CONTEXT = "org.eclipse.papyrus.view.references.header.labelProvider.context"; //$NON-NLS-1$
 
 	/**
 	 * Constructor.

@@ -300,7 +300,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 *
 	 * @return the input for the TreeDialog
 	 */
-	abstract protected List<Object> getInput();
+	protected abstract List<Object> getInput();
 
 	/**
 	 * Fill the following fields with the elements to show and the elements to
@@ -323,7 +323,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 *
 	 * @return the command done by this action
 	 */
-	abstract protected Command getActionCommand();
+	protected abstract Command getActionCommand();
 
 	/**
 	 * Setter for {@link #labelProvider}

@@ -38,7 +38,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEdit
 public class ExecutionSpecificationUtil {
 
 	/** The default spacing used between Execution Specification */
-	public final static int TOP_SPACING_HEIGHT = 5;
+	public static final int TOP_SPACING_HEIGHT = 5;
 
 	/**
 	 * Private constructor to avoid initialization.

@@ -158,7 +158,7 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 	 * @return true if there are parameters which will be mapped with output
 	 *         pins
 	 */
-	abstract protected boolean hasOutParameters(EObject invokedObject);
+	protected abstract boolean hasOutParameters(EObject invokedObject);
 
 	/**
 	 *

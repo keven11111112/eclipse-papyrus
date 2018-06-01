@@ -67,13 +67,13 @@ public class ConstraintPasteStrategyTest extends AbstractPapyrusTest {
 
 	public static final String PASTE_COMMAND_ID = "org.eclipse.ui.edit.paste"; //$NON-NLS-1$
 
-	public final static String CLASS1_NAME = "Class1"; //$NON-NLS-1$
+	public static final String CLASS1_NAME = "Class1"; //$NON-NLS-1$
 
-	public final static String COPY_CLASS1_NAME = "CopyOf_Class1_1"; //$NON-NLS-1$;
+	public static final String COPY_CLASS1_NAME = "CopyOf_Class1_1"; //$NON-NLS-1$;
 
-	public final static String CONSTRAINT_NAME = "Constraint1"; //$NON-NLS-1$
+	public static final String CONSTRAINT_NAME = "Constraint1"; //$NON-NLS-1$
 
-	public final static String DIAGRAM_NAME = "ConstraintClassDiagram"; //$NON-NLS-1$
+	public static final String DIAGRAM_NAME = "ConstraintClassDiagram"; //$NON-NLS-1$
 
 	/**
 	 * @since 1.3

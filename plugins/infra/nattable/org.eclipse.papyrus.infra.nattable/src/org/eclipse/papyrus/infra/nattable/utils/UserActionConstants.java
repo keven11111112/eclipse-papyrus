@@ -21,26 +21,26 @@ public interface UserActionConstants {
 	/**
 	 * The integer representing the undefined user action.
 	 */
-	public final static int UNDEFINED_USER_ACTION = -1;
+	public static final int UNDEFINED_USER_ACTION = -1;
 
 	/**
 	 * The integer representing the replace user action.
 	 */
-	public final static int REPLACE_USER_ACTION = 0;
+	public static final int REPLACE_USER_ACTION = 0;
 
 	/**
 	 * The integer representing the add user action.
 	 */
-	public final static int ADD_USER_ACTION = 1;
+	public static final int ADD_USER_ACTION = 1;
 
 	/**
 	 * The integer representing the skip user action.
 	 */
-	public final static int SKIP_USER_ACTION = 2;
+	public static final int SKIP_USER_ACTION = 2;
 	
 	/**
 	 * The integer representing the cancel user action.
 	 */
-	public final static int CANCEL_USER_ACTION = 3;
+	public static final int CANCEL_USER_ACTION = 3;
 	
 }

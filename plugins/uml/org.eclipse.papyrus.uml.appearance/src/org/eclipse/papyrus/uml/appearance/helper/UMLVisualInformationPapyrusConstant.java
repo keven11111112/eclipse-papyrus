@@ -103,12 +103,12 @@ public interface UMLVisualInformationPapyrusConstant {
 	/**
 	 * The Constant P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED.
 	 */
-	public final static String P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED = "User Controlled";
+	public static final String P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED = "User Controlled";
 
 	/**
 	 * The Constant P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM.
 	 */
-	public final static String P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM = "UML Compatibility (lower case first letter - default)";
+	public static final String P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM = "UML Compatibility (lower case first letter - default)";
 
 	/**
 	 * The Constant P_STEREOTYPE_NAME_APPEARANCE.

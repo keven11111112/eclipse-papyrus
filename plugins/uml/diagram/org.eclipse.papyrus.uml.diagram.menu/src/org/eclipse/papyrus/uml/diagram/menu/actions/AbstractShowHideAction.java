@@ -268,7 +268,7 @@ public abstract class AbstractShowHideAction implements IActionDelegate, IWorkbe
 	 * @return
 	 *         the input for the TreeDialog
 	 */
-	abstract protected List<Object> getInput();
+	protected abstract List<Object> getInput();
 
 	/**
 	 * Fill the following fields with the elements to show and the elements to hide

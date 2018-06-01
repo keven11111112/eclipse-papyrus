@@ -60,6 +60,6 @@ public final class StereotypeDisplayMigrationConstant {
 	/**
 	 * Separator Constants
 	 */
-	public final static String EANNOTATION_LIST_SEPARATOR = ","; //$NON-NLS-1$
-	public final static String EANNOTATION_PROPERTY_SEPARATOR = "."; //$NON-NLS-1$
+	public static final String EANNOTATION_LIST_SEPARATOR = ","; //$NON-NLS-1$
+	public static final String EANNOTATION_PROPERTY_SEPARATOR = "."; //$NON-NLS-1$
 }

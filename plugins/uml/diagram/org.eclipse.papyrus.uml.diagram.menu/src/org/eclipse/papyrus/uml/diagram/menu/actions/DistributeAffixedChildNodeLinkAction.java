@@ -62,10 +62,10 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 	private int mode;
 
 	/** constant for the link selection mode. */
-	public final static int DISTRIBUTE_ON_ONE_END = 1;
+	public static final int DISTRIBUTE_ON_ONE_END = 1;
 
 	/** constant for the link/node selection. */
-	public final static int DISTRIBUTE_ON_TWO_END = DISTRIBUTE_ON_ONE_END + 1;
+	public static final int DISTRIBUTE_ON_TWO_END = DISTRIBUTE_ON_ONE_END + 1;
 
 	/**
 	 *

@@ -33,7 +33,7 @@ public class FollowSVGSymbolEditPolicy extends GraphicalEditPolicy implements IC
 	public static final String FOLLOW_SVG_SYMBOL = "followSVGSymbol";
 
 	/** key for this edit policy */
-	public final static String FOLLOW_SVG_SYMBOL_EDITPOLICY = "followSVGSymbolEditPolicy";
+	public static final String FOLLOW_SVG_SYMBOL_EDITPOLICY = "followSVGSymbolEditPolicy";
 
 	protected IObservableValue styleObservable;
 

@@ -135,7 +135,7 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	 *            the index of the page
 	 * @return the editor for the specified page, or <code>null</code> if the specified page was not created with <code>addPage(IEditorPart,IEditorInput)</code>
 	 */
-	// abstract protected IEditorPart getEditor(int pageIndex);
+	// protected abstract IEditorPart getEditor(int pageIndex);
 
 	/**
 	 * Returns the service locator for the given page index. This method can be used to create service locators for pages that are just controls. The
@@ -465,12 +465,12 @@ public abstract class AbstractTabFolderPart extends AbstractPanelPart {
 	// /**
 	// *
 	// */
-	// abstract protected void firePropertyChange(int propertyId);
+	// protected abstract void firePropertyChange(int propertyId);
 	//
 	// /**
 	// *
 	// */
-	// abstract protected IEditorSite getEditorSite();
+	// protected abstract IEditorSite getEditorSite();
 
 
 }

@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   C�line Janssens (celine.janssens@all4tec.net) - Add Coregion  functionnality
+ *   Celine Janssens (celine.janssens@all4tec.net) - Add Coregion  functionnality
  *   EclipseSource - Bug 533770
  *
  *****************************************************************************/

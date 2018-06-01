@@ -728,13 +728,13 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 	private static PapyrusPaletteService instance;
 
 	/** the standard group id */
-	public final static String GROUP_STANDARD = "standardGroup"; //$NON-NLS-1$
+	public static final String GROUP_STANDARD = "standardGroup"; //$NON-NLS-1$
 
 	/** the standard separator id */
-	public final static String SEPARATOR_STANDARD = "standardSeparator"; //$NON-NLS-1$
+	public static final String SEPARATOR_STANDARD = "standardSeparator"; //$NON-NLS-1$
 
 	/** the standard separator id */
-	public final static String TOOL_SELECTION = "selectionTool"; //$NON-NLS-1$
+	public static final String TOOL_SELECTION = "selectionTool"; //$NON-NLS-1$
 
 	/**
 	 * Creates a new instance of the Palette Service

@@ -93,7 +93,7 @@ public abstract class ViewPartPage extends Page implements IAdaptable {
 	 *
 	 * @return The Viewer to render in the page.
 	 */
-	abstract protected IViewPart createViewer(IWorkbenchPart part);
+	protected abstract IViewPart createViewer(IWorkbenchPart part);
 
 	/**
 	 * Subclass must implement this method.

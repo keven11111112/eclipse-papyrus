@@ -36,11 +36,11 @@ import org.eclipse.papyrus.infra.services.viewersearch.Messages;
  */
 public class ViewerSearchService extends AbstractViewerSearcher implements IService {
 
-	public final static String EXTENSION_ID = Activator.PLUGIN_ID + ".viewerSearcher"; //$NON-NLS-1$
+	public static final String EXTENSION_ID = Activator.PLUGIN_ID + ".viewerSearcher"; //$NON-NLS-1$
 
-	public final static String VIEWER_SEARCHER_ID = "id"; //$NON-NLS-1$
+	public static final String VIEWER_SEARCHER_ID = "id"; //$NON-NLS-1$
 
-	public final static String VIEWER_SEARCHER_CLASS = "class"; //$NON-NLS-1$
+	public static final String VIEWER_SEARCHER_CLASS = "class"; //$NON-NLS-1$
 
 	/** The viewerSearchers that contribute to the service. */
 	private final Map<String, IViewerSearcher> viewerSearchers = new HashMap<String, IViewerSearcher>();

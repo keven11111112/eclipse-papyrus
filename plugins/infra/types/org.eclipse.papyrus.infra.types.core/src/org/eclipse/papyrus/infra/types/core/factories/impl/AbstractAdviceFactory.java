@@ -30,15 +30,15 @@ public abstract class AbstractAdviceFactory<T extends AdviceConfiguration> imple
 				getInheritance(adviceConfiguration));
 	}
 
-	abstract protected String getId(T adviceConfiguration);
+	protected abstract String getId(T adviceConfiguration);
 
-	abstract protected String getTypeId(T adviceConfiguration);
+	protected abstract String getTypeId(T adviceConfiguration);
 
-	abstract protected IElementMatcher getMatcher(T adviceConfiguration);
+	protected abstract IElementMatcher getMatcher(T adviceConfiguration);
 
-	abstract protected IContainerDescriptor getContainerDescriptor(T adviceConfiguration);
+	protected abstract IContainerDescriptor getContainerDescriptor(T adviceConfiguration);
 
-	abstract protected IEditHelperAdvice getEditHelperAdvice(T adviceConfiguration);
+	protected abstract IEditHelperAdvice getEditHelperAdvice(T adviceConfiguration);
 
-	abstract protected AdviceBindingInheritance getInheritance(T adviceConfiguration);
+	protected abstract AdviceBindingInheritance getInheritance(T adviceConfiguration);
 }

@@ -199,12 +199,12 @@ public abstract class AbstractPaletteConfigurationWizard extends Wizard {
 	/**
 	 * Load models on papyrus( Palettes, element types, etc...).
 	 */
-	abstract protected void deployModels();
+	protected abstract void deployModels();
 
 	/**
 	 * save resources()
 	 */
-	abstract protected void saveResources();
+	protected abstract void saveResources();
 
 	/**
 	 * {@inheritDoc}

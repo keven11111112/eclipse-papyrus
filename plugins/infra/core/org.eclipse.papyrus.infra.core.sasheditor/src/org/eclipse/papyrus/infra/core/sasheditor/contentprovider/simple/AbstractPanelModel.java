@@ -64,7 +64,7 @@ public abstract class AbstractPanelModel extends AbstractModel implements IAbstr
 	 * @param tabItem
 	 * @return
 	 */
-	abstract protected TabFolderModel lookupTabFolder(IPageModel tabItem);
+	protected abstract TabFolderModel lookupTabFolder(IPageModel tabItem);
 
 
 }

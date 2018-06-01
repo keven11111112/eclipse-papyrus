@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.types.rulebased.Activator;
 public interface IRuleExtensionPoint {
 
 	/** ID of the extension point */
-	public final static String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".ruleKind";
+	public static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".ruleKind";
 
 	public static final String CONFIGURATION_CLASS = "configurationClass";
 

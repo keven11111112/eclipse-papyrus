@@ -200,7 +200,7 @@ public class ProfileElementLabelProvider extends LabelProvider {
 		}
 	}
 
-	public final static String TAG_PROFILE_CHANGED = TAB + "(has changed, consider re-applying profile)"; //$NON-NLS-1$
+	public static final String TAG_PROFILE_CHANGED = TAB + "(has changed, consider re-applying profile)"; //$NON-NLS-1$
 
 	/**
 	 * Returns the label to show for a property.

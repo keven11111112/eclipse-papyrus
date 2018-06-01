@@ -22,10 +22,10 @@ import org.eclipse.jface.preference.IPreferenceStore;
 public class ProfilePreferenceConstants {
 
 	/** Constant for the expand stereotype tree preference */
-	public final static String EXPAND_STEREOTYPES_TREE = "StereotypesTree.expandAll";
+	public static final String EXPAND_STEREOTYPES_TREE = "StereotypesTree.expandAll";
 
 	/** Constant for the use of Stereotype icons in Outline */
-	public final static String USE_STEREOTYPE_ICON_IN_OUTLINE = "StereotypesIcon.useInOutline";
+	public static final String USE_STEREOTYPE_ICON_IN_OUTLINE = "StereotypesIcon.useInOutline";
 
 	/**
 	 * this method is used to store default preference of stereotype display.

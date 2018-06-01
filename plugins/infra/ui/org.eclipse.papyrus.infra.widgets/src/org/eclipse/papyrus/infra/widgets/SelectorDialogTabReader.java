@@ -125,7 +125,7 @@ public class SelectorDialogTabReader extends RegistryReader {
 	 * 
 	 * @return
 	 */
-	public final static SelectorDialogTabReader getInstance() {
+	public static final SelectorDialogTabReader getInstance() {
 		if (ourInstance == null) {
 			synchronized (SelectorDialogTabReader.class) {
 				if (ourInstance == null) {

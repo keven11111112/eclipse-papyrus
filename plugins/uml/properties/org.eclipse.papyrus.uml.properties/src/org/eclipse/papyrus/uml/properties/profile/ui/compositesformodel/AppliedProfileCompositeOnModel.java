@@ -80,7 +80,7 @@ import org.eclipse.uml2.uml.Profile;
  */
 public class AppliedProfileCompositeOnModel extends Composite {
 
-	public final static String TAG_PROFILE_CHANGED = " (has changed, consider re-applying profile)";
+	public static final String TAG_PROFILE_CHANGED = " (has changed, consider re-applying profile)";
 
 	/**
 	 * The add registered button.

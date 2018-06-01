@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   C�line JANSSENS (All4tec.net) - Initial API and implementation
+ *   Celine JANSSENS (All4tec.net) - Initial API and implementation
  *
  *****************************************************************************/
 
@@ -19,7 +19,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 
 /**
- * @author C�line JANSSENS
+ * @author Celine JANSSENS
  *
  */
 public class StateInvariantLocator extends CenterLocator {

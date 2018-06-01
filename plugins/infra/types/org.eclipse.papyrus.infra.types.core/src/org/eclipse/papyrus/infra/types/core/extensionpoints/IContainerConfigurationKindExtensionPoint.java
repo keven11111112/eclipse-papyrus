@@ -17,7 +17,7 @@ import org.eclipse.papyrus.infra.types.core.Activator;
 public interface IContainerConfigurationKindExtensionPoint {
 
 	/** ID of the extension point */
-	public final static String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".containerConfigurationKind";
+	public static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".containerConfigurationKind";
 
 	public static final String FACTORY_CLASS = "factoryClass";
 

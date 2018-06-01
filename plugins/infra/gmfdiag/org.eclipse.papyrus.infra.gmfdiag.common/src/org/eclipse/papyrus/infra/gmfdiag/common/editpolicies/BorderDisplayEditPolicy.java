@@ -59,7 +59,7 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IC
 	private static final int DEFAULT_LENGTH_VALUE = -1;
 
 	/** key for this edit policy. */
-	public final static String BORDER_DISPLAY_EDITPOLICY = "BORDER_DISPLAY_EDITPOLICY";//$NON-NLS-1$
+	public static final String BORDER_DISPLAY_EDITPOLICY = "BORDER_DISPLAY_EDITPOLICY";//$NON-NLS-1$
 
 	/** The style observable. */
 	protected IObservableValue styleObservable;

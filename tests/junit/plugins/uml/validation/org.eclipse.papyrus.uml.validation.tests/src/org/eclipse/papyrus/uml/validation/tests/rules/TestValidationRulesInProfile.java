@@ -45,19 +45,19 @@ public class TestValidationRulesInProfile extends AbstractValidationEditorTest {
 	/**
 	 * A non active class applying a stereotype with an attached OCL constraint requiring that the class is active
 	 */
-	public final static String INACTIVE_NAME = "Inactive"; //$NON-NLS-1$
+	public static final String INACTIVE_NAME = "Inactive"; //$NON-NLS-1$
 	protected Class active;
 
 	/**
 	 * An active class applying a stereotype with an attached OCL constraint requiring that the class is active
 	 */
-	public final static String ACTIVE_NAME = "Active"; //$NON-NLS-1$
+	public static final String ACTIVE_NAME = "Active"; //$NON-NLS-1$
 	protected Class inactive;
 
 	/**
 	 * An active class applying a stereotype with a malformed OCL constraint attached
 	 */
-	public final static String ACTIVE_MALFORMED_NAME = "ActiveMalformed"; //$NON-NLS-1$
+	public static final String ACTIVE_MALFORMED_NAME = "ActiveMalformed"; //$NON-NLS-1$
 	protected Class activeMalformed;
 
 	@Before

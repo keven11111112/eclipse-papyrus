@@ -48,9 +48,9 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements NotificationListener, IPapyrusListener {
 
-	public final static String SPECIFIC_EXTENSION_NAME_POLICY = org.eclipse.papyrus.uml.service.types.ui.util.ExtensionHelper.SPECIFIC_EXTENSION_NAME_POLICY;
+	public static final String SPECIFIC_EXTENSION_NAME_POLICY = org.eclipse.papyrus.uml.service.types.ui.util.ExtensionHelper.SPECIFIC_EXTENSION_NAME_POLICY;
 
-	public final static int CHANGE_NAME_OF_A_STEREOTYPE = Notification.SET;
+	public static final int CHANGE_NAME_OF_A_STEREOTYPE = Notification.SET;
 
 	/** stores the host associated semantic element */
 	protected EObject hostSemanticElement;

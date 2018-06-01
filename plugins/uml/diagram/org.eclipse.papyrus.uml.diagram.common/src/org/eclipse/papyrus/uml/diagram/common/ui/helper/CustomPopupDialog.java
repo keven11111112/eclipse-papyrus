@@ -142,12 +142,12 @@ public abstract class CustomPopupDialog extends PopupDialog {
 	 *
 	 * @return the actions
 	 */
-	abstract protected Collection<Action> getActions();
+	protected abstract Collection<Action> getActions();
 
 	/**
 	 * Creates the subsection.
 	 */
-	abstract protected void createSubsection();
+	protected abstract void createSubsection();
 
 	/**
 	 * {@inheritDoc}

@@ -52,21 +52,21 @@ public class StereotypeCopyPasteModelExplorerTest extends AbstractPapyrusTest {
 
 	public static final String PASTE_COMMAND_ID = "org.eclipse.ui.edit.paste"; //$NON-NLS-1$
 
-	public final static String STEREOTYPED_ELEMENT_NAME = "theFirst"; //$NON-NLS-1$
+	public static final String STEREOTYPED_ELEMENT_NAME = "theFirst"; //$NON-NLS-1$
 
 	@Rule
 	public final PapyrusEditorFixture editorFixture = new PapyrusEditorFixture();
 
 	// information on the stereotype
-	public final static String STEREOTYPE_QN = "profile::First"; //$NON-NLS-1$
+	public static final String STEREOTYPE_QN = "profile::First"; //$NON-NLS-1$
 
-	public final static String PARENT_STEREOTYPE_PROPERTY = "parentProperty"; //$NON-NLS-1$
+	public static final String PARENT_STEREOTYPE_PROPERTY = "parentProperty"; //$NON-NLS-1$
 
-	public final static String PARENT_STEREOTYPE_PROPERTY_VALUE = "child"; //$NON-NLS-1$
+	public static final String PARENT_STEREOTYPE_PROPERTY_VALUE = "child"; //$NON-NLS-1$
 
-	public final static String STEREOTYPE_PROPERTY = "childProperty"; //$NON-NLS-1$
+	public static final String STEREOTYPE_PROPERTY = "childProperty"; //$NON-NLS-1$
 
-	public final static Double STEREOTYPE_PROPERTY_VALUE = 2.3; // $NON-NLS-1$
+	public static final Double STEREOTYPE_PROPERTY_VALUE = 2.3; // $NON-NLS-1$
 
 	@Before
 	public void setUp() {

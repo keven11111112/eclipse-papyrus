@@ -47,7 +47,7 @@ import org.junit.Test;
 
 public class ExpansionRegionHelperTest extends AbstractPapyrusTest {
 
-	public final static String TEST_UML_MODEL = "platform:/plugin/org.eclipse.papyrus.uml.diagram.activity.tests/content/UMLActivityTestModel.uml";
+	public static final String TEST_UML_MODEL = "platform:/plugin/org.eclipse.papyrus.uml.diagram.activity.tests/content/UMLActivityTestModel.uml";
 
 	private MockExpansionRegionHelper myHelperInstance;
 

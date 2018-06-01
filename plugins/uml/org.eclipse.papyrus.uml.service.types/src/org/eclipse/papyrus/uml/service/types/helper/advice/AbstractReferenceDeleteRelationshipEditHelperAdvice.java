@@ -93,7 +93,7 @@ public abstract class AbstractReferenceDeleteRelationshipEditHelperAdvice extend
 	 * @return
 	 * 		the map linking an element type to a EReference
 	 */
-	abstract protected Map<String, EReference> getFeatureElementTypeToEReferenceMap();
+	protected abstract Map<String, EReference> getFeatureElementTypeToEReferenceMap();
 
 	/**
 	 * 
@@ -212,14 +212,14 @@ public abstract class AbstractReferenceDeleteRelationshipEditHelperAdvice extend
 	 * @return
 	 * 		<code>true</code> if we cross the connector whose the source is connected to the element
 	 */
-	abstract protected boolean checkSourceEdgeToFindConnectorToDestroy();
+	protected abstract boolean checkSourceEdgeToFindConnectorToDestroy();
 
 	/**
 	 * 
 	 * @return
 	 * 		<code>true</code> if we cross the connector whose the target is connected to the element
 	 */
-	abstract protected boolean checkTargetEdgeToFindConnectorToDestroy();
+	protected abstract boolean checkTargetEdgeToFindConnectorToDestroy();
 
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeDestroyReferenceCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest)

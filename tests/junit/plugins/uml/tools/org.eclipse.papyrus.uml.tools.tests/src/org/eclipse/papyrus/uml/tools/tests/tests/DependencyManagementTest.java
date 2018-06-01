@@ -59,7 +59,7 @@ import org.osgi.framework.Bundle;
  */
 public class DependencyManagementTest extends AbstractEditorTest {
 
-	public final static String SOURCE_PATH = "resources/dependencyManagement/";
+	public static final String SOURCE_PATH = "resources/dependencyManagement/";
 
 	// Switch from a library to a copy
 	@Test

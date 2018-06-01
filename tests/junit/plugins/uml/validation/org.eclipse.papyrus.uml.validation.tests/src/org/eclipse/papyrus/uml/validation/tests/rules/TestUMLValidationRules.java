@@ -40,13 +40,13 @@ public class TestUMLValidationRules extends AbstractValidationEditorTest {
 
 	public static final String MODEL_NAME = "UMLValidationTests"; //$NON-NLS-1$
 
-	public final static String PKG_NAME_CLASH = "nameclash"; //$NON-NLS-1$
+	public static final String PKG_NAME_CLASH = "nameclash"; //$NON-NLS-1$
 	
-	public final static String CLASS1 = "Class1"; //$NON-NLS-1$
+	public static final String CLASS1 = "Class1"; //$NON-NLS-1$
 	protected Class class1;
 	
-	public final static String PKG_MULTIPLICITY = "multiplicity"; //$NON-NLS-1$
-	public final static String NON_STANDARD_MULTIPLICITY = "NonStandardMultiplicity"; //$NON-NLS-1$
+	public static final String PKG_MULTIPLICITY = "multiplicity"; //$NON-NLS-1$
+	public static final String NON_STANDARD_MULTIPLICITY = "NonStandardMultiplicity"; //$NON-NLS-1$
 	protected Class nonStandardMultiplicity;
 	
 	@Before

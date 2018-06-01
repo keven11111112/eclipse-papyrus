@@ -229,14 +229,14 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 *
 	 * @return preference id
 	 */
-	abstract protected String getSelectionIsDefaultPreference();
+	protected abstract String getSelectionIsDefaultPreference();
 
 	/**
 	 * Get the id of the preference storing the last selected owner.
 	 *
 	 * @return preference id
 	 */
-	abstract protected String getCreationDefaultOwnerPreference();
+	protected abstract String getCreationDefaultOwnerPreference();
 
 	/**
 	 * Create the other needed sections. Subclasses can override this method.
@@ -677,7 +677,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 *
 	 * @return array of EClasses
 	 */
-	abstract protected EClass[] getPossibleInvokedTypes();
+	protected abstract EClass[] getPossibleInvokedTypes();
 
 	/**
 	 * Get the possible parents of the new invoked element
@@ -686,7 +686,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 *            the parent of the action
 	 * @return collection of EObject possible owners
 	 */
-	abstract protected Set<? extends EClassifier> getPossibleInvokedParents(EObject actionParent);
+	protected abstract Set<? extends EClassifier> getPossibleInvokedParents(EObject actionParent);
 
 	/**
 	 * Whether element can be parent of the new invoked element
@@ -695,21 +695,21 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 *            the parent to test
 	 * @return true if parent is of an appropriate eclass
 	 */
-	abstract protected boolean isPossibleInvokedParent(EObject parent);
+	protected abstract boolean isPossibleInvokedParent(EObject parent);
 
 	/**
 	 * Get feature referencing the invoked object
 	 *
 	 * @return invocation feature
 	 */
-	abstract protected EReference getInvocationFeature();
+	protected abstract EReference getInvocationFeature();
 
 	/**
 	 * Get the image for the parent selection button
 	 *
 	 * @return image
 	 */
-	abstract protected Image getParentImage();
+	protected abstract Image getParentImage();
 
 	/**
 	 * Get the label to present the name of the invoked object
@@ -752,40 +752,40 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 *
 	 * @return dialog title
 	 */
-	abstract protected String getTitle();
+	protected abstract String getTitle();
 
 	/**
 	 * Get the title of the invocation creation section
 	 *
 	 * @return section title
 	 */
-	abstract protected String getInvocationCreationSectionTitle();
+	protected abstract String getInvocationCreationSectionTitle();
 
 	/**
 	 * Get the help description of the invocation creation section
 	 *
 	 * @return section title
 	 */
-	abstract protected String getInvocationCreationSectionHelp();
+	protected abstract String getInvocationCreationSectionHelp();
 
 	/**
 	 * Get the title of the invocation selection section
 	 *
 	 * @return section title
 	 */
-	abstract protected String getInvocationSelectionSectionTitle();
+	protected abstract String getInvocationSelectionSectionTitle();
 
 	/**
 	 * Get the label to choose to select an existing element
 	 *
 	 * @return label
 	 */
-	abstract protected String getSelectionLabel();
+	protected abstract String getSelectionLabel();
 
 	/**
 	 * Get the label to choose to create a new element
 	 *
 	 * @return label
 	 */
-	abstract protected String getCreationLabel();
+	protected abstract String getCreationLabel();
 }

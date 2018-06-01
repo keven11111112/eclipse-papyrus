@@ -8,7 +8,7 @@
  *
  * Contributors:
  *
- *    Céline Janssens - inspired by IBM class RubberbandSelectionTool : modify the calculateNewSelection method and add constructors
+ *    Celine Janssens - inspired by IBM class RubberbandSelectionTool : modify the calculateNewSelection method and add constructors
  *
  ****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.selection;

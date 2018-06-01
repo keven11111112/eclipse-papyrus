@@ -40,7 +40,7 @@ public class ConstraintsManager {
 	/**
 	 * The Constraints extension point ID
 	 */
-	public final static String EXTENSION_ID = Activator.PLUGIN_ID + ".ConstraintEnvironment"; //$NON-NLS-1$
+	public static final String EXTENSION_ID = Activator.PLUGIN_ID + ".ConstraintEnvironment"; //$NON-NLS-1$
 
 	private ResourceSet resourceSet;
 

@@ -38,21 +38,21 @@ public class UMLPrimitiveTypesModel {
 	public Type UMLPrimitiveTypes_REAL;
 	
 	/** constant to identify the type of a Boolean property */
-	final static public String UMLPrimitiveTypes_BOOLEAN_NAME = "PrimitiveTypes::Boolean"; //$NON-NLS-1$
+	public static final String UMLPrimitiveTypes_BOOLEAN_NAME = "PrimitiveTypes::Boolean"; //$NON-NLS-1$
 
 	/** constant to identify the type of an Integer property */
-	final static public String UMLPrimitiveTypes_INTEGER_NAME = "PrimitiveTypes::Integer"; //$NON-NLS-1$
+	public static final String UMLPrimitiveTypes_INTEGER_NAME = "PrimitiveTypes::Integer"; //$NON-NLS-1$
 
 	/** constant to identify the type of a String property */
-	final static public String UMLPrimitiveTypes_STRING_NAME = "PrimitiveTypes::String"; //$NON-NLS-1$
+	public static final String UMLPrimitiveTypes_STRING_NAME = "PrimitiveTypes::String"; //$NON-NLS-1$
 
 	/** constant to identify the type of an Unlimited Natural property */
-	final static public String UMLPrimitiveTypes_UNLIMITED_NATURAL_NAME = "PrimitiveTypes::UnlimitedNatural"; //$NON-NLS-1$
+	public static final String UMLPrimitiveTypes_UNLIMITED_NATURAL_NAME = "PrimitiveTypes::UnlimitedNatural"; //$NON-NLS-1$
 
 	/** constant to identify the type of an Unlimited Natural property */
-	final static public String UMLPrimitiveTypes_REAL_NAME = "PrimitiveTypes::Real"; //$NON-NLS-1$
+	public static final String UMLPrimitiveTypes_REAL_NAME = "PrimitiveTypes::Real"; //$NON-NLS-1$
 	
-	final static public String UMLPrimitiveTypes_LIBRARY_NAME = "UMLPrimitiveTypes"; //$NON-NLS-1$
+	public static final String UMLPrimitiveTypes_LIBRARY_NAME = "UMLPrimitiveTypes"; //$NON-NLS-1$
 
 	private static final Object UMLPrimitiveTypes_PACKAGE_NAME = "PrimitiveTypes"; //$NON-NLS-1$;
 	

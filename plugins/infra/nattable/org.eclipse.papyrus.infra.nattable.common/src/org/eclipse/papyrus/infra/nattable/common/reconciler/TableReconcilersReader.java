@@ -37,7 +37,7 @@ public class TableReconcilersReader extends RegistryReader {
 
 	private List<TableReconciler> myReconcilers;
 
-	public final static TableReconcilersReader getInstance() {
+	public static final TableReconcilersReader getInstance() {
 		if (ourInstance == null) {
 			synchronized (TableReconcilersReader.class) {
 				if (ourInstance == null) {

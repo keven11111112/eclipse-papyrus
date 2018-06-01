@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.InvocationAction;
 public class UMLCallActionTester extends PropertyTester {
 
 	/** Tester ID for UML Call Action nature */
-	public final static String IS_CALL_ACTION = "isCallAction";
+	public static final String IS_CALL_ACTION = "isCallAction";
 
 	/** Default constructor */
 	public UMLCallActionTester() {

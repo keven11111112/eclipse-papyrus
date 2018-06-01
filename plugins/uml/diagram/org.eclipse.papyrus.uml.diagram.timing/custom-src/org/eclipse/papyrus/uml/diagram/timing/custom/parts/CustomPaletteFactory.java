@@ -82,7 +82,7 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 
 	private final static String CREATEGENERALORDERINGCREATIONTOOL = "createGeneralOrderingCreationTool"; //$NON-NLS-1$
 
-	public final static String ORIGINAL_TARGET = "ORIGINAL_TARGET"; //$NON-NLS-1$
+	public static final String ORIGINAL_TARGET = "ORIGINAL_TARGET"; //$NON-NLS-1$
 
 	@Override
 	public Tool createTool(final String toolId) {

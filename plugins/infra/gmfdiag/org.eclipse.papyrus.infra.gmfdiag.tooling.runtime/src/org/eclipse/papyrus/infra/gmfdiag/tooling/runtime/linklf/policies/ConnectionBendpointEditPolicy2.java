@@ -611,7 +611,7 @@ abstract class ConnectionBendpointEditPolicy2 extends
 	 * @return Command SetBendpointsCommand that contains the point changes for
 	 *         the connection.
 	 */
-	abstract protected Command getBendpointsChangedCommand(
+	protected abstract Command getBendpointsChangedCommand(
 			BendpointRequest request);
 
 	protected Command getCreateBendpointCommand(BendpointRequest request) {

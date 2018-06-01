@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 public class RefreshTextAlignmentEditPolicy extends GraphicalEditPolicyEx implements IChangeListener {
 
 	/** key for this edit policy. */
-	public final static String REFRESH_TEXT_ALIGNMENT_EDITPOLICY = "Refresh text alignment edit policy";//$NON-NLS-N$
+	public static final String REFRESH_TEXT_ALIGNMENT_EDITPOLICY = "Refresh text alignment edit policy";//$NON-NLS-N$
 
 	/** The style observable. */
 	protected IObservableValue styleObservable;

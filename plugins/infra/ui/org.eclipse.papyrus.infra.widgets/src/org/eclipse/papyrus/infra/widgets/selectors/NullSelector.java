@@ -56,6 +56,6 @@ public class NullSelector implements IElementSelector {
 		// Nothing
 	}
 
-	public final static NullSelector instance = new NullSelector();
+	public static final NullSelector instance = new NullSelector();
 
 }

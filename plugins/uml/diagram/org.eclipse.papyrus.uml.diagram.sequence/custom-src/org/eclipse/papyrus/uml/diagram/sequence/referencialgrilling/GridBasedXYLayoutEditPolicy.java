@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   C�line Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
+ *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 520154
  *
  *****************************************************************************/
 

@@ -130,7 +130,7 @@ public abstract class AbstractDistributeAction {
 	 * @param elementsForAction
 	 *            the elements on which this action is applied
 	 */
-	abstract protected void buildAction(List<?> elementsForAction);
+	protected abstract void buildAction(List<?> elementsForAction);
 
 	/**
 	 * Return the command to do this action

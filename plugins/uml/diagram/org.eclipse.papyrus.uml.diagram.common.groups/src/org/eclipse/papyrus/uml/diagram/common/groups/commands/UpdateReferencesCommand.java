@@ -41,12 +41,12 @@ public class UpdateReferencesCommand extends AbstractTransactionalCommand {
 	/**
 	 * Mode used to set references
 	 */
-	public final static boolean SET_MODE = true;
+	public static final boolean SET_MODE = true;
 
 	/**
 	 * Mode used to unset references
 	 */
-	public final static boolean UNSET_MODE = false;
+	public static final boolean UNSET_MODE = false;
 
 	/**
 	 * List of all {@link IGraphicalEditPart} of all children

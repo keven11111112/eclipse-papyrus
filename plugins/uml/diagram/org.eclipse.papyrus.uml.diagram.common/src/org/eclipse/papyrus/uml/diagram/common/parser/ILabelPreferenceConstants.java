@@ -24,23 +24,23 @@ public interface ILabelPreferenceConstants extends ICustomAppearance {
 	public String LABEL_DISPLAY_PREFERENCE = "label.display"; //$NON-NLS-1$
 
 	/** Style constant for id info display in labels. */
-	public final static String DISP_ID = "id"; //$NON-NLS-1$
+	public static final String DISP_ID = "id"; //$NON-NLS-1$
 
 	/** Style constant for dimension info display in labels. */
-	public final static String DISP_DIMENSION = "dimension"; //$NON-NLS-1$
+	public static final String DISP_DIMENSION = "dimension"; //$NON-NLS-1$
 
 	/** Style constant for specification info display in labels. */
-	public final static String DISP_SPECIFICATION = "specification"; //$NON-NLS-1$
+	public static final String DISP_SPECIFICATION = "specification"; //$NON-NLS-1$
 
 	/** Style constant for signal info display in labels. */
-	public final static String DISP_SIGNAL = "signal"; //$NON-NLS-1$
+	public static final String DISP_SIGNAL = "signal"; //$NON-NLS-1$
 
 	/** Style constant forcing multiplicity display in labels. */
-	public final static String DISP_DEFAULT_MULTIPLICITY = "defaultMultiplicity"; //$NON-NLS-1$
+	public static final String DISP_DEFAULT_MULTIPLICITY = "defaultMultiplicity"; //$NON-NLS-1$
 
 	/** Style constant forcing type display in labels. */
-	public final static String DISP_UNDEFINED_TYPE = "undefinedType"; //$NON-NLS-1$
+	public static final String DISP_UNDEFINED_TYPE = "undefinedType"; //$NON-NLS-1$
 
 	/** Style constant forcing name display in labels. */
-	public final static String DISP_NON_NAVIGABLE_ROLE = "nonNavigableRole"; //$NON-NLS-1$
+	public static final String DISP_NON_NAVIGABLE_ROLE = "nonNavigableRole"; //$NON-NLS-1$
 }

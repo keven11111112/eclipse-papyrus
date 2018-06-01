@@ -52,7 +52,7 @@ import org.eclipse.uml2.uml.Element;
 @SuppressWarnings({ "rawtypes", "restriction" })
 public class PasteEditPolicy extends ContainerEditPolicy {
 
-	public final static String PASTE_ROLE = "PASTE_ROLE"; //$NON-NLS-1$
+	public static final String PASTE_ROLE = "PASTE_ROLE"; //$NON-NLS-1$
 
 	/**
 	 * @see org.eclipse.gef.EditPolicy#getCommand(Request)

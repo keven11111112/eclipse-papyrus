@@ -57,7 +57,7 @@ public final class HyperLinkConstants {
 
 	public static final String LEGACY_HYPERLINK_TABLE = PAPYRUS_HYPERLINK_PREFIX + "Table";
 
-	public final static String[] validHyperLinkPageSources = new String[] { HyperLinkConstants.PAPYRUS_HYPERLINK_PAGE, HyperLinkConstants.LEGACY_HYPERLINK_DIAGRAM, HyperLinkConstants.LEGACY_HYPERLINK_TABLE };
+	public static final String[] validHyperLinkPageSources = new String[] { HyperLinkConstants.PAPYRUS_HYPERLINK_PAGE, HyperLinkConstants.LEGACY_HYPERLINK_DIAGRAM, HyperLinkConstants.LEGACY_HYPERLINK_TABLE };
 
 	/**
 	 * Plugin constants

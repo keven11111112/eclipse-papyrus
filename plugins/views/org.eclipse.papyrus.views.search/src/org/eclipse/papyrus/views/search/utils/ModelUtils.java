@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 
 public class ModelUtils {
 
-	public final static ModelSet openResource(URI resourceURI) throws ModelMultiException {
+	public static final ModelSet openResource(URI resourceURI) throws ModelMultiException {
 		if (resourceURI != null) {
 			// TODO: Need to be able to create CDOAwareModelSet
 			ModelSet modelSet = new ModelSet();

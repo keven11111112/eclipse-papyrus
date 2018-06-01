@@ -38,13 +38,13 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 	protected String extensionPointNamespace;
 
 	/** Extension point name inside the extension description **/
-	public final static String SERVICE_EXTENSIONPOINT = "service";
+	public static final String SERVICE_EXTENSIONPOINT = "service";
 
 	/** ServiceFactory Extension point **/
-	public final static String SERVICE_FACTORY_ELEMENT_NAME = "serviceFactory";
+	public static final String SERVICE_FACTORY_ELEMENT_NAME = "serviceFactory";
 
 	/** constant for the attribute factoryClass **/
-	public final static String CONTEXTCLASS_ATTRIBUTE = "contextClass";
+	public static final String CONTEXTCLASS_ATTRIBUTE = "contextClass";
 
 	/** extension point propertyname */
 	private final static String STARTKIND_PROPERTY = "startKind";

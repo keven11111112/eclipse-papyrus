@@ -17,11 +17,11 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfigurationAcce
 import org.eclipse.xtext.ui.editor.utils.TextStyle;
 
 public class CSSHighlightingConfiguration extends DefaultHighlightingConfiguration {
-	public final static String DECLARATIONNAME = "DeclarationName";
-	public final static String SELECTOR = "Selector";
-	public final static String ELEMENT = "ELEMENT";
-	public final static String URL = "Url";
-	public final static String FUNCTION = "Function";
+	public static final String DECLARATIONNAME = "DeclarationName";
+	public static final String SELECTOR = "Selector";
+	public static final String ELEMENT = "ELEMENT";
+	public static final String URL = "Url";
+	public static final String FUNCTION = "Function";
 
 	@Override
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {

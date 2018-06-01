@@ -29,7 +29,7 @@ public class RotateAction implements IObjectActionDelegate {
 
 	/** The Constant ID. */
 	// @unused
-	public final static String ID = "org.eclipse.papyrus.uml.diagram.common.actions.RotateAction.id"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.diagram.common.actions.RotateAction.id"; //$NON-NLS-1$
 
 	private ShapeNodeEditPart selectedElement;
 

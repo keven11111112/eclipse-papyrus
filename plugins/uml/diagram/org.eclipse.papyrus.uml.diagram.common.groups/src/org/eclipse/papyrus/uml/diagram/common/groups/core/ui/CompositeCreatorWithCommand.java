@@ -110,13 +110,13 @@ public abstract class CompositeCreatorWithCommand implements ICompositeCreator {
 	/**
 	 * Remove the notification using {@link PendingGroupNotificationsManager} and the appropriate key
 	 */
-	abstract protected void removeNotification();
+	protected abstract void removeNotification();
 
 	/**
 	 * Get the run action label
 	 *
 	 * @return string label
 	 */
-	abstract protected String getRunLabel();
+	protected abstract String getRunLabel();
 
 }

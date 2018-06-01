@@ -32,7 +32,7 @@ public class NameDisplayEditPolicy extends GraphicalEditPolicy implements IChang
 	public static final String DISPLAY_NAME = "displayName";
 
 	/** key for this edit policy */
-	public final static String NAME_DISPLAY_EDITPOLICY = "NAME_DISPLAY_EDITPOLICY";
+	public static final String NAME_DISPLAY_EDITPOLICY = "NAME_DISPLAY_EDITPOLICY";
 
 	protected IObservableValue styleObservable;
 

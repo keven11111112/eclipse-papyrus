@@ -34,7 +34,7 @@ public class PatternHelper {
 	 *
 	 * @return the helper
 	 */
-	public final static PatternHelper getInstance() {
+	public static final PatternHelper getInstance() {
 
 		synchronized (PatternHelper.class) {
 			if (PatternHelper.instance == null) {

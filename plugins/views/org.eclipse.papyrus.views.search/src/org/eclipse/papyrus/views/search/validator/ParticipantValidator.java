@@ -34,7 +34,7 @@ public class ParticipantValidator implements IParticipantValidator {
 		super();
 	}
 
-	public final static ParticipantValidator getInstance() {
+	public static final ParticipantValidator getInstance() {
 
 
 		synchronized (ParticipantValidator.class) {

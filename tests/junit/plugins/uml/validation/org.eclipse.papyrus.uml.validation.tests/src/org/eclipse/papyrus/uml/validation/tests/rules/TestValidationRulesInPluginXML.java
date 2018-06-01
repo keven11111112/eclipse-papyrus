@@ -49,25 +49,25 @@ public class TestValidationRulesInPluginXML extends AbstractValidationEditorTest
 	/**
 	 * An active class applying a stereotype with an attached OCL constraint requiring that the class is active
 	 */
-	public final static String INACTIVE_OCL_NAME = "ActiveOCL"; //$NON-NLS-1$
+	public static final String INACTIVE_OCL_NAME = "ActiveOCL"; //$NON-NLS-1$
 	protected Class activeOCL;
 
 	/**
 	 * A non active class applying a stereotype with an attached OCL constraint requiring that the class is active
 	 */
-	public final static String ACTIVE_OCL_NAME = "InactiveOCL"; //$NON-NLS-1$
+	public static final String ACTIVE_OCL_NAME = "InactiveOCL"; //$NON-NLS-1$
 	protected Class inactiveOCL;
 
 	/**
 	 * A non active class applying a stereotype with an attached Java constraint requiring that the class is passive
 	 */
-	public final static String INACTIVE_JAVA_NAME = "InactiveJava"; //$NON-NLS-1$
+	public static final String INACTIVE_JAVA_NAME = "InactiveJava"; //$NON-NLS-1$
 	protected Class inactiveJava;
 
 	/**
 	 * An active class applying a stereotype with an attached Java constraint requiring that the class is passive
 	 */
-	public final static String ACTIVE_JAVA_NAME = "ActiveJava"; //$NON-NLS-1$
+	public static final String ACTIVE_JAVA_NAME = "ActiveJava"; //$NON-NLS-1$
 	protected Class activeJava;
 
 	@Before

@@ -76,16 +76,16 @@ public class StereotypeDisplayConstant {
 
 
 	// Special Char Constants
-	public final static String STEREOTYPE_LABEL_SEPARATOR = ", ";//$NON-NLS-1$
+	public static final String STEREOTYPE_LABEL_SEPARATOR = ", ";//$NON-NLS-1$
 	public static final String STEREOTYPE_PROPERTY_SEPARATOR = "\n";//$NON-NLS-1$
 	public static final String STEREOTYPE_PROPERTY_VALUE_SEPARATOR = " = ";//$NON-NLS-1$
 	public static final String STEREOTYPE_PROPERTIES_SEPARATOR = " ";//$NON-NLS-1$
 
 	// Ornament Constants
-	public final static String QUOTE_LEFT = Activator.ST_LEFT;
-	public final static String QUOTE_RIGHT = Activator.ST_RIGHT;
-	public final static String BRACE_LEFT = "{";//$NON-NLS-1$
-	public final static String BRACE_RIGHT = "}";//$NON-NLS-1$
+	public static final String QUOTE_LEFT = Activator.ST_LEFT;
+	public static final String QUOTE_RIGHT = Activator.ST_RIGHT;
+	public static final String BRACE_LEFT = "{";//$NON-NLS-1$
+	public static final String BRACE_RIGHT = "}";//$NON-NLS-1$
 
 
 	// Define if Stereotype View are Persistent or not.

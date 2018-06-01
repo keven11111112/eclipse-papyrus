@@ -31,7 +31,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationComm
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 
 /**
- * @author C�line JANSSENS
+ * @author Celine JANSSENS
  *
  */
 public class StateInvariantResizableEditPolicy extends BorderItemResizableEditPolicy {

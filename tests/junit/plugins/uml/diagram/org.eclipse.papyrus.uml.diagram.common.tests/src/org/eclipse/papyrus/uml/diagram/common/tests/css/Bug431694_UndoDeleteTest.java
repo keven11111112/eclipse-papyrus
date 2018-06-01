@@ -51,7 +51,7 @@ public class Bug431694_UndoDeleteTest extends AbstractEditorTest {
 
 	private static final String PROJECT_NAME = "431694_UndoDeleteTest";
 
-	public final static String SOURCE_PATH = "resources/431694/";
+	public static final String SOURCE_PATH = "resources/431694/";
 
 	protected boolean operationFailed = false;
 

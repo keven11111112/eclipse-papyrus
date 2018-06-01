@@ -75,7 +75,7 @@ public abstract class MultiViewPageBookView extends PageBookView {
 	 * @return
 	 */
 	@Override
-	abstract protected PageRec doCreatePage(IWorkbenchPart part);
+	protected abstract PageRec doCreatePage(IWorkbenchPart part);
 
 	/**
 	 * @see org.eclipse.ui.part.PageBookView#doDestroyPage(org.eclipse.ui.IWorkbenchPart, org.eclipse.ui.part.PageBookView.PageRec)

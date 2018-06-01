@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.selection;

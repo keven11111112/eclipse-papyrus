@@ -269,7 +269,7 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 	 * Subclass must implements this method. It should return the provider used by the editor.
 	 *
 	 */
-	abstract protected ISashWindowsContentProvider createPageProvider();
+	protected abstract ISashWindowsContentProvider createPageProvider();
 
 	/**
 	 * Refresh the tabs order.

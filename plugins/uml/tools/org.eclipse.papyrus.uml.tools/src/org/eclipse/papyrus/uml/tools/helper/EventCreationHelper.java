@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
  */
 public class EventCreationHelper {
 	public static final String NATURAL_LANGUAGE = "Natural language"; //$NON-NLS-1$
-	public final static String EVENTS = "events"; //$NON-NLS-1$
+	public static final String EVENTS = "events"; //$NON-NLS-1$
 	
 	Transition transition;
 	

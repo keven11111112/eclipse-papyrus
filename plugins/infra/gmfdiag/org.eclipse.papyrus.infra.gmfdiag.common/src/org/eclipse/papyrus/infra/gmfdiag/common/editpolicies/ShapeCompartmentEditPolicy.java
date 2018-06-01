@@ -41,7 +41,7 @@ import org.eclipse.swt.widgets.Display;
 public class ShapeCompartmentEditPolicy extends GraphicalEditPolicy implements AutomaticNotationEditPolicy, NotificationListener, IPapyrusListener {
 
 	/** constant for this edit policy role */
-	public final static String SHAPE_COMPARTMENT_EDIT_POLICY = "ShapeCompartmentEditPolicy"; //$NON-NLS-1$
+	public static final String SHAPE_COMPARTMENT_EDIT_POLICY = "ShapeCompartmentEditPolicy"; //$NON-NLS-1$
 
 	/** manager for notifications: should the compartment react to the notification? */
 	protected NotificationManager notificationManager;

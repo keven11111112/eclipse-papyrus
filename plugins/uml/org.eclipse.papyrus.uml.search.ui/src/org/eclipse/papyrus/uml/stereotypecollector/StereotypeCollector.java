@@ -55,7 +55,7 @@ public class StereotypeCollector implements IStereotypeCollector {
 		super();
 	}
 
-	public final static StereotypeCollector getInstance() {
+	public static final StereotypeCollector getInstance() {
 		return StereotypeCollector.instance;
 	}
 

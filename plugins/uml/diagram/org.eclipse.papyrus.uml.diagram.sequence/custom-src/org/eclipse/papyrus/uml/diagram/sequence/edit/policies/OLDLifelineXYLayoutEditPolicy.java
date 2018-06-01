@@ -374,7 +374,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 *                                              List of EditPart to check
 	 * @return The parent
 	 */
-	public final static ShapeNodeEditPart getParent(LifelineEditPart lifelinePart, Rectangle childBounds, List<ShapeNodeEditPart> toCheckExecutionSpecificationList) {
+	public static final ShapeNodeEditPart getParent(LifelineEditPart lifelinePart, Rectangle childBounds, List<ShapeNodeEditPart> toCheckExecutionSpecificationList) {
 		ShapeNodeEditPart parent = null;
 		// Loop through the ExecutionSpecification list and try to find the most to the right
 		// ExecutionSpecification within the executionSpecificationEP Y-axis bounds
@@ -403,7 +403,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 *
 	 * @return a corrected sizeDelta
 	 */
-	public final static Dimension adaptSizeDeltaToMaxHeight(IFigure figure, Dimension sizeDelta) {
+	public static final Dimension adaptSizeDeltaToMaxHeight(IFigure figure, Dimension sizeDelta) {
 		Dimension newSizeDelta = new Dimension(sizeDelta);
 		int figureHeight = figure.getBounds().height;
 		int maximunFigureHeight = figure.getMaximumSize().height;
@@ -429,7 +429,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * @return the list of affixed ExecutionSpecification. If there is no affixed
 	 *         ExecutionSpecification, then an empty list will be returned
 	 */
-	public final static List<ShapeNodeEditPart> getAffixedExecutionSpecificationEditParts(ShapeNodeEditPart executionSpecificationEP) {
+	public static final List<ShapeNodeEditPart> getAffixedExecutionSpecificationEditParts(ShapeNodeEditPart executionSpecificationEP) {
 		List<ShapeNodeEditPart> notToCheckExecutionSpecificationList = new ArrayList<>();
 		return getAffixedExecutionSpecificationEditParts(executionSpecificationEP, notToCheckExecutionSpecificationList);
 	}
@@ -483,7 +483,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 * @return true if the rectangles of both figures touch and the right figure is really on the
 	 *         right. False otherwise
 	 */
-	public final static boolean isAffixedToRight(Rectangle leftFigure, Rectangle rightFigure) {
+	public static final boolean isAffixedToRight(Rectangle leftFigure, Rectangle rightFigure) {
 		// return leftFigure.touches(rightFigure) && leftFigure.x < rightFigure.x;
 		return leftFigure.contains(rightFigure.getLocation()) && leftFigure.x < rightFigure.x;
 	}
@@ -546,7 +546,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 *
 	 * @return The real MoveDelta applied
 	 */
-	public final static Rectangle getRealMoveDelta(Rectangle oldRelativeBounds, Rectangle newRelativeBounds) {
+	public static final Rectangle getRealMoveDelta(Rectangle oldRelativeBounds, Rectangle newRelativeBounds) {
 		Rectangle realMoveDelta = new Rectangle();
 		realMoveDelta.x = newRelativeBounds.x - oldRelativeBounds.x;
 		realMoveDelta.y = newRelativeBounds.y - oldRelativeBounds.y;
@@ -563,7 +563,7 @@ public class OLDLifelineXYLayoutEditPolicy {
 	 *
 	 * @return The relative bounds regarding it's parent figure
 	 */
-	public final static Rectangle getRelativeBounds(IFigure figure) {
+	public static final Rectangle getRelativeBounds(IFigure figure) {
 		Rectangle relBounds = figure.getBounds().getCopy();
 		Rectangle parentRectangle = figure.getParent().getBounds();
 		relBounds.x -= parentRectangle.x;

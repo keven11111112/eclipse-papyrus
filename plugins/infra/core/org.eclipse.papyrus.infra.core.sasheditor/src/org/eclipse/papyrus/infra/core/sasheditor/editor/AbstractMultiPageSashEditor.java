@@ -113,7 +113,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * Subclass must implements this method. It should return the provider used by the editor.
 	 *
 	 */
-	abstract protected ISashWindowsContentProvider createPageProvider();
+	protected abstract ISashWindowsContentProvider createPageProvider();
 
 	/**
 	 * Handles a property change notification from a nested editor. The default implementation simply forwards the change to

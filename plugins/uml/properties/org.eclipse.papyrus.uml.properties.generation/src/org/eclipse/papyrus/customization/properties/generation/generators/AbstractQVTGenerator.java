@@ -100,7 +100,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	 * @return the list of in/out/inout ModelExtents (including the OutContextExtent)
 	 *         Implementors should ensure they add the outContextExtent to the list.
 	 */
-	abstract protected List<ModelExtent> getModelExtents();
+	protected abstract List<ModelExtent> getModelExtents();
 
 	/**
 	 * @return the ModelExtent containing the generated context
@@ -116,7 +116,7 @@ public abstract class AbstractQVTGenerator implements IGenerator, Listener {
 	/**
 	 * @return the URI of the QVTO transformation file.
 	 */
-	abstract protected URI getTransformationURI();
+	protected abstract URI getTransformationURI();
 
 	/**
 	 * Loads the EObject from the given URI.

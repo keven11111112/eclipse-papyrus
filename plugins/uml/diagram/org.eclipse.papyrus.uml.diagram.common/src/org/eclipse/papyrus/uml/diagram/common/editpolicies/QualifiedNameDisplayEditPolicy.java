@@ -43,7 +43,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class QualifiedNameDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
 	/** key for this edit policy */
-	public final static String QUALIFIED_NAME_POLICY = "Qualified_name_editpolicy"; //$NON-NLS-1$
+	public static final String QUALIFIED_NAME_POLICY = "Qualified_name_editpolicy"; //$NON-NLS-1$
 
 	/** host semantic element */
 	protected NamedElement hostSemanticNamedElement;

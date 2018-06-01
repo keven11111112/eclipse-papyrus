@@ -40,12 +40,12 @@ public class CustomizationPreferencePage extends FieldEditorPreferencePage imple
 	/**
 	 *
 	 */
-	public final static String OPEN_CUSTOMIZATION_PERSPECTIVE = "openCustomizationPerspective"; //$NON-NLS-1$
+	public static final String OPEN_CUSTOMIZATION_PERSPECTIVE = "openCustomizationPerspective"; //$NON-NLS-1$
 
 	/**
 	 *
 	 */
-	public final static String ASK_FOR_CONFIRMATION = "askForConfirmation"; //$NON-NLS-1$
+	public static final String ASK_FOR_CONFIRMATION = "askForConfirmation"; //$NON-NLS-1$
 
 	/**
 	 *

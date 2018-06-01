@@ -32,7 +32,7 @@ public class PastePreferencesPage extends FieldEditorPreferencePage implements I
 	/**
 	 * Keep the references
 	 */
-	public final static String KEEP_EXTERNAL_REFERENCES = "KEEP_EXTERNAL_REFERENCES"; //$NON-NLS-1$
+	public static final String KEEP_EXTERNAL_REFERENCES = "KEEP_EXTERNAL_REFERENCES"; //$NON-NLS-1$
 
 	/**
 	 * Editor for managing paste strategies

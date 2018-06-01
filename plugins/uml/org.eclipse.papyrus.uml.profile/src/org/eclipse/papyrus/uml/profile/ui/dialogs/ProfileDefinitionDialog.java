@@ -50,7 +50,7 @@ import org.eclipse.uml2.uml.Profile;
 public class ProfileDefinitionDialog extends TitleAreaDialog {
 
 	/** path to the banner image */
-	public final static String PROFILE_DEFINITION = ImageManager.IMAGE_PATH + "wizban/NewDefinition.gif"; //$NON-NLS-1$
+	public static final String PROFILE_DEFINITION = ImageManager.IMAGE_PATH + "wizban/NewDefinition.gif"; //$NON-NLS-1$
 
 	/** Text area that displays previous version of the profile definition */
 	protected Text oldVersionText;

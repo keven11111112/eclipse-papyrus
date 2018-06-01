@@ -201,13 +201,13 @@ public class LayoutUtils {
 
 	private final static int[] westArray = { PositionConstants.WEST, PositionConstants.NORTH_WEST, PositionConstants.SOUTH_WEST };
 
-	public final static List<Integer> northPositions = fillList(northArray);
+	public static final List<Integer> northPositions = fillList(northArray);
 
-	public final static List<Integer> southPositions = fillList(southArray);
+	public static final List<Integer> southPositions = fillList(southArray);
 
-	public final static List<Integer> eastPositions = fillList(eastArray);
+	public static final List<Integer> eastPositions = fillList(eastArray);
 
-	public final static List<Integer> westPositions = fillList(westArray);
+	public static final List<Integer> westPositions = fillList(westArray);
 
 	private static List<Integer> fillList(int[] array) {
 		List<Integer> list = new ArrayList<Integer>();

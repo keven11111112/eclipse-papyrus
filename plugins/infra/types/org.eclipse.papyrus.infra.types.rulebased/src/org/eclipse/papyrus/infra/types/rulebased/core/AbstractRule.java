@@ -88,11 +88,11 @@ public abstract class AbstractRule<T extends RuleConfiguration> implements IRule
 	}
 
 
-	abstract protected boolean approveMoveRequest(ConfiguredHintedSpecializationElementType type, MoveRequest request);
+	protected abstract boolean approveMoveRequest(ConfiguredHintedSpecializationElementType type, MoveRequest request);
 
-	abstract protected boolean approveSetRequest(ConfiguredHintedSpecializationElementType type, SetRequest request);
+	protected abstract boolean approveSetRequest(ConfiguredHintedSpecializationElementType type, SetRequest request);
 
-	abstract protected boolean approveCreationRequest(ConfiguredHintedSpecializationElementType type, CreateElementRequest request);
+	protected abstract boolean approveCreationRequest(ConfiguredHintedSpecializationElementType type, CreateElementRequest request);
 
 	@Override
 	public void init(T invariantRuleConfiguration) {

@@ -24,7 +24,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNode
 public class AppliedStereotypeLabelEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
 
 	/** constant for this edit policy role */
-	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeLabelEditPolicy"; //$NON-NLS-1$
+	public static final String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeLabelEditPolicy"; //$NON-NLS-1$
 
 	/**
 	 * Creates a new AppliedStereotype display edit policy

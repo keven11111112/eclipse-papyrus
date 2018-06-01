@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DuplicateRequest;
 public class PasteRequest extends Request {
 
 	/** The Constant REQ_PAPYRUS_PASTE. */
-	public final static String REQ_PAPYRUS_PASTE = "Papyrus_PASTE"; //$NON-NLS-1$
+	public static final String REQ_PAPYRUS_PASTE = "Papyrus_PASTE"; //$NON-NLS-1$
 
 	/** The element to paste. */
 	protected Collection elementToPaste;

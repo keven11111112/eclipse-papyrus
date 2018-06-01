@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.Element;
 public abstract class AbstractCustomLabelEditPolicy extends GraphicalEditPolicy implements IPapyrusListener, NotificationListener {
 
 	/** constant for this edit policy role. */
-	public final static String SPECIFIC_NAME_LABEL_POLICY = "SpecificNameLabelEditPolicy"; //$NON-NLS-1$
+	public static final String SPECIFIC_NAME_LABEL_POLICY = "SpecificNameLabelEditPolicy"; //$NON-NLS-1$
 
 	/**
 	 * Creates a new Specific Name display edit policy.

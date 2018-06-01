@@ -77,15 +77,15 @@ public abstract class AbstractUmlRule<T extends RuleConfiguration> extends Abstr
 		return super.approveRequest(request);
 	}
 
-	abstract protected boolean approveApplyStereotypeRequest(ConfiguredHintedSpecializationElementType type, ApplyStereotypeRequest request);
+	protected abstract boolean approveApplyStereotypeRequest(ConfiguredHintedSpecializationElementType type, ApplyStereotypeRequest request);
 
-	abstract protected boolean approveUnapplyStereotypeRequest(ConfiguredHintedSpecializationElementType type, UnapplyStereotypeRequest request);
+	protected abstract boolean approveUnapplyStereotypeRequest(ConfiguredHintedSpecializationElementType type, UnapplyStereotypeRequest request);
 
-	abstract protected boolean approveApplyProfileRequest(ConfiguredHintedSpecializationElementType type, ApplyProfileRequest request);
+	protected abstract boolean approveApplyProfileRequest(ConfiguredHintedSpecializationElementType type, ApplyProfileRequest request);
 
-	abstract protected boolean approveUnapplyProfileRequest(ConfiguredHintedSpecializationElementType type, UnapplyProfileRequest request);
+	protected abstract boolean approveUnapplyProfileRequest(ConfiguredHintedSpecializationElementType type, UnapplyProfileRequest request);
 
-	abstract protected boolean approveSetStereotypeValueRequest(ConfiguredHintedSpecializationElementType type, SetStereotypeValueRequest request);
+	protected abstract boolean approveSetStereotypeValueRequest(ConfiguredHintedSpecializationElementType type, SetStereotypeValueRequest request);
 
 	@Override
 	public void init(T invariantRuleConfiguration) {

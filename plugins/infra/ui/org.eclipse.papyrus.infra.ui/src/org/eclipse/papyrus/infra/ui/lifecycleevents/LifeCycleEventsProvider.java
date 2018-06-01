@@ -191,7 +191,7 @@ public class LifeCycleEventsProvider implements ILifeCycleEventsProvider {
 	 *
 	 * @param <T>
 	 */
-	abstract protected class AbstractEventListenersLazyList<T> {
+	protected abstract class AbstractEventListenersLazyList<T> {
 
 		List<T> listeners;
 

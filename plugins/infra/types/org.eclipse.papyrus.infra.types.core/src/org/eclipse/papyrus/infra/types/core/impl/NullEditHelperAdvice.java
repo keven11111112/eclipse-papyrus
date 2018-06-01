@@ -22,7 +22,7 @@ public class NullEditHelperAdvice extends AbstractEditHelperAdvice {
 		super();
 	}
 
-	public final static synchronized NullEditHelperAdvice getInstance() {
+	public static final synchronized NullEditHelperAdvice getInstance() {
 		if(instance == null) {
 			instance = new NullEditHelperAdvice();
 		}

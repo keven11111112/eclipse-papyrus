@@ -32,7 +32,7 @@ public class MaintainSymbolRatioEditPolicy extends GraphicalEditPolicy implement
 	public static final String MAINTAIN_SYMBOL_RATIO = "maintainSymbolRatio";
 
 	/** key for this edit policy */
-	public final static String MAINTAIN_SYMBOL_RATIO_EDITPOLICY = "MAINTAIN_SYMBOL_RATIO_EDITPOLICY";
+	public static final String MAINTAIN_SYMBOL_RATIO_EDITPOLICY = "MAINTAIN_SYMBOL_RATIO_EDITPOLICY";
 
 	protected IObservableValue styleObservable;
 

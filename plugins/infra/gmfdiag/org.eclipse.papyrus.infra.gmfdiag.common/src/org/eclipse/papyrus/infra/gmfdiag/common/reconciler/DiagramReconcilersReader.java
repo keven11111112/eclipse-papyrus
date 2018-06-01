@@ -28,7 +28,7 @@ public class DiagramReconcilersReader extends RegistryReader {
 	 */
 	private Map<String, Collection<DiagramReconciler>> myReconcilersRO;
 
-	public final static DiagramReconcilersReader getInstance() {
+	public static final DiagramReconcilersReader getInstance() {
 		if (ourInstance == null) {
 			synchronized (DiagramReconcilersReader.class) {
 				if (ourInstance == null) {

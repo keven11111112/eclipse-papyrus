@@ -181,5 +181,5 @@ public abstract class AbstractCheckedTreeColumnViewerSelectionDialog extends Cus
 	 * @param columnIndex
 	 * @return the {@link EditingSupport} for the column or <code>null</code>
 	 */
-	abstract protected EditingSupport getEditingSupport(int columnIndex);
+	protected abstract EditingSupport getEditingSupport(int columnIndex);
 }

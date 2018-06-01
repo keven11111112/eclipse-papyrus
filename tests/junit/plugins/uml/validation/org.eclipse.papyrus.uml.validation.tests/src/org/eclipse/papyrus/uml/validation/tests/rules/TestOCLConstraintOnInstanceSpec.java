@@ -39,7 +39,7 @@ public class TestOCLConstraintOnInstanceSpec extends AbstractValidationEditorTes
 
 	public static final String MODEL_NAME = "instanceSpecification"; //$NON-NLS-1$
 
-	public final static String INSTANCE_NAME = "instance"; //$NON-NLS-1$
+	public static final String INSTANCE_NAME = "instance"; //$NON-NLS-1$
 
 	/** instance specification with constraint violation */
 	protected InstanceSpecification instance;

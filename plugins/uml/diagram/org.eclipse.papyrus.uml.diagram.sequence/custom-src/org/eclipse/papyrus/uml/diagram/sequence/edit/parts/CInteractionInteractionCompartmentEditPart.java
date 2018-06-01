@@ -29,7 +29,7 @@ import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 
 /**
- * @author C�line JANSSENS
+ * @author Celine JANSSENS
  *
  */
 public class CInteractionInteractionCompartmentEditPart extends InteractionInteractionCompartmentEditPart {

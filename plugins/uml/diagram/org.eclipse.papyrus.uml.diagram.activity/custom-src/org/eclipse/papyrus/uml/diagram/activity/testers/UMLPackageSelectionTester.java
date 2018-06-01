@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.Package;
 public class UMLPackageSelectionTester extends PropertyTester {
 
 	/** Tester ID for UML Call Action nature */
-	public final static String IS_PACKAGE = "isUMLPackage";
+	public static final String IS_PACKAGE = "isUMLPackage";
 
 	public UMLPackageSelectionTester() {
 	}

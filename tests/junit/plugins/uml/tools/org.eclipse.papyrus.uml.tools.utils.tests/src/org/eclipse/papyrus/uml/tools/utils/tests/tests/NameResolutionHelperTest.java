@@ -29,11 +29,11 @@ import org.junit.Test;
 @PluginResource("resources/recursiveModelImport.di")
 public class NameResolutionHelperTest extends AbstractPapyrusTest {
 
-	public final static String PACKAGE1_NAME = "Package1"; //$NON-NLS-1$
+	public static final String PACKAGE1_NAME = "Package1"; //$NON-NLS-1$
 
-	public final static String PACKAGE2_NAME = "Package2"; //$NON-NLS-1$
+	public static final String PACKAGE2_NAME = "Package2"; //$NON-NLS-1$
 
-	public final static String CLASS1_NAME = "Class1"; //$NON-NLS-1$
+	public static final String CLASS1_NAME = "Class1"; //$NON-NLS-1$
 
 	public static final String PROJECT_NAME = "NameResolutionHelperTest"; //$NON-NLS-1$
 

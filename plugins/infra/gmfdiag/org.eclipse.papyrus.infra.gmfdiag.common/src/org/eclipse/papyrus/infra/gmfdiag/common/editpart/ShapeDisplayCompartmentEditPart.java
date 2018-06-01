@@ -49,7 +49,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 public class ShapeDisplayCompartmentEditPart extends ResizableCompartmentEditPart {
 
 	/** Title of this compartment */
-	public final static String COMPARTMENT_NAME = "symbol"; // $NON-NLS-1$
+	public static final String COMPARTMENT_NAME = "symbol"; // $NON-NLS-1$
 
 	/**
 	 * Creates a new ShapeDisplayCompartmentEditPart

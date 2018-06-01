@@ -51,17 +51,17 @@ public class PreferencesConstantsHelper {
 	/**
 	 * Prefix for preference for Papyrus Level editor
 	 */
-	public final static String PAPYRUS_EDITOR_PREFERENCE_PREFIX = "PAPYRUS_EDITOR"; //$NON-NLS-1$
+	public static final String PAPYRUS_EDITOR_PREFERENCE_PREFIX = "PAPYRUS_EDITOR"; //$NON-NLS-1$
 
 	/**
 	 * Prefix for preference for Diagram Level
 	 */
-	public final static String DIAGRAM_PREFERENCE_PREFIX = "DIAGRAM_"; //$NON-NLS-1$
+	public static final String DIAGRAM_PREFERENCE_PREFIX = "DIAGRAM_"; //$NON-NLS-1$
 
 	/**
 	 * Prefix for preference for element Level
 	 */
-	public final static String DIAGRAM_ELEMENT = "ELEMENT_"; //$NON-NLS-1$
+	public static final String DIAGRAM_ELEMENT = "ELEMENT_"; //$NON-NLS-1$
 
 	private final static String COLOR = "color."; //$NON-NLS-1$
 
@@ -121,113 +121,113 @@ public class PreferencesConstantsHelper {
 
 	private final static String LOCATION_Y_CONSTANT = "location_y"; //$NON-NLS-1$
 
-	public final static String VIEW_RULERS_CONSTANT = WorkspaceViewerProperties.VIEWRULERS;
+	public static final String VIEW_RULERS_CONSTANT = WorkspaceViewerProperties.VIEWRULERS;
 
-	public final static String VIEW_GRID_CONSTANT = WorkspaceViewerProperties.VIEWGRID;
+	public static final String VIEW_GRID_CONSTANT = WorkspaceViewerProperties.VIEWGRID;
 
-	public final static String RULER_UNITS_CONSTANT = WorkspaceViewerProperties.RULERUNIT;
+	public static final String RULER_UNITS_CONSTANT = WorkspaceViewerProperties.RULERUNIT;
 
-	public final static String SNAP_TO_GRID_CONSTANT = WorkspaceViewerProperties.SNAPTOGRID;
+	public static final String SNAP_TO_GRID_CONSTANT = WorkspaceViewerProperties.SNAPTOGRID;
 
-	public final static String SNAP_TO_GEOMETRY_CONSTANT = WorkspaceViewerProperties.SNAPTOGEOMETRY;
+	public static final String SNAP_TO_GEOMETRY_CONSTANT = WorkspaceViewerProperties.SNAPTOGEOMETRY;
 
-	public final static String GRID_LINE_COLOR_CONSTANT = WorkspaceViewerProperties.GRIDLINECOLOR;
+	public static final String GRID_LINE_COLOR_CONSTANT = WorkspaceViewerProperties.GRIDLINECOLOR;
 
-	public final static String GRID_SPACING_CONSTANT = WorkspaceViewerProperties.GRIDSPACING;
+	public static final String GRID_SPACING_CONSTANT = WorkspaceViewerProperties.GRIDSPACING;
 
-	public final static String GRID_ORDER_CONSTANT = WorkspaceViewerProperties.GRIDORDER;
+	public static final String GRID_ORDER_CONSTANT = WorkspaceViewerProperties.GRIDORDER;
 
-	public final static String GRID_LINE_STYLE_CONSTANT = WorkspaceViewerProperties.GRIDLINESTYLE;
+	public static final String GRID_LINE_STYLE_CONSTANT = WorkspaceViewerProperties.GRIDLINESTYLE;
 
-	public final static String VIEW_PAGE_BREAK_CONSTANT = WorkspaceViewerProperties.VIEWPAGEBREAKS;
+	public static final String VIEW_PAGE_BREAK_CONSTANT = WorkspaceViewerProperties.VIEWPAGEBREAKS;
 
-	public final static String DRAW_CONNECTION_POINT_CONSTANT = "drawConnectionPoint"; //$NON-NLS-1$
+	public static final String DRAW_CONNECTION_POINT_CONSTANT = "drawConnectionPoint"; //$NON-NLS-1$
 
-	public final static String INVERT_BINDING_FOR_DEFAULT_RESIZE_AND_CONSTRAINED_RESIZE_CONSTANT = "invertBindingForDefaultResizeAndConstrainedResize"; //$NON-NLS-1$
+	public static final String INVERT_BINDING_FOR_DEFAULT_RESIZE_AND_CONSTRAINED_RESIZE_CONSTANT = "invertBindingForDefaultResizeAndConstrainedResize"; //$NON-NLS-1$
 
-	public final static String RESTORE_LINK_ELEMENT_CONSTANT = "restoreLinkElement"; //$NON-NLS-1$
+	public static final String RESTORE_LINK_ELEMENT_CONSTANT = "restoreLinkElement"; //$NON-NLS-1$
 
-	public final static String EXTERNAL_REFERENCE_STRATEGY_CONSTANT = "externalReferenceStrategy"; //$NON-NLS-1$
+	public static final String EXTERNAL_REFERENCE_STRATEGY_CONSTANT = "externalReferenceStrategy"; //$NON-NLS-1$
 	
 	/**
 	 * A preference of type COLOR FILL
 	 */
-	public final static int COLOR_FILL = 0;
+	public static final int COLOR_FILL = 0;
 
 	/**
 	 * A preference of type FONT
 	 */
-	public final static int FONT = COLOR_FILL + 1;
+	public static final int FONT = COLOR_FILL + 1;
 
 	/**
 	 * A preference of type COLOR FONT
 	 */
-	public final static int COLOR_FONT = FONT + 1;
+	public static final int COLOR_FONT = FONT + 1;
 
 	/**
 	 * A preference of type COLOR LINE
 	 */
-	public final static int COLOR_LINE = COLOR_FONT + 1;
+	public static final int COLOR_LINE = COLOR_FONT + 1;
 
 	/**
 	 * A preference of type COLOR GRADIENT
 	 */
-	public final static int COLOR_GRADIENT = COLOR_LINE + 1;
+	public static final int COLOR_GRADIENT = COLOR_LINE + 1;
 
 	/**
 	 * A preference of type GRADIENT POLICY
 	 */
-	public final static int GRADIENT_POLICY = COLOR_GRADIENT + 1;
+	public static final int GRADIENT_POLICY = COLOR_GRADIENT + 1;
 
 	/**
 	 * A preference of type JUMPLINK STATUS
 	 */
-	public final static int JUMPLINK_STATUS = GRADIENT_POLICY + 1;
+	public static final int JUMPLINK_STATUS = GRADIENT_POLICY + 1;
 
 	/**
 	 * A preference of type JUMPLINK REVERSE
 	 */
-	public final static int JUMPLINK_REVERSE = JUMPLINK_STATUS + 1;
+	public static final int JUMPLINK_REVERSE = JUMPLINK_STATUS + 1;
 
 	/**
 	 * A preference of type JUMPLINK TYPE
 	 */
-	public final static int JUMPLINK_TYPE = JUMPLINK_REVERSE + 1;
+	public static final int JUMPLINK_TYPE = JUMPLINK_REVERSE + 1;
 
 	/**
 	 * A preference of type ROUTING POLICY DISTANCE
 	 */
-	public final static int ROUTING_POLICY_DISTANCE = JUMPLINK_TYPE + 1;
+	public static final int ROUTING_POLICY_DISTANCE = JUMPLINK_TYPE + 1;
 
 	/**
 	 * A preference of type ROUTING POLICY OBSTRUCTION
 	 */
-	public final static int ROUTING_POLICY_OBSTRUCTION = ROUTING_POLICY_DISTANCE + 1;
+	public static final int ROUTING_POLICY_OBSTRUCTION = ROUTING_POLICY_DISTANCE + 1;
 
 	/**
 	 * A preference of type ROUTING STYLE
 	 */
-	public final static int ROUTING_STYLE = ROUTING_POLICY_OBSTRUCTION + 1;
+	public static final int ROUTING_STYLE = ROUTING_POLICY_OBSTRUCTION + 1;
 
 	/**
 	 * A preference of type SMOOTHNESS
 	 */
-	public final static int SMOOTHNESS = ROUTING_STYLE + 1;
+	public static final int SMOOTHNESS = ROUTING_STYLE + 1;
 
 	/**
 	 * A preference of type Shadow
 	 */
-	public final static int SHADOW = SMOOTHNESS + 1;
+	public static final int SHADOW = SMOOTHNESS + 1;
 
 	/**
 	 * A preference of type elementIcon
 	 */
-	public final static int ELEMENTICON = SHADOW + 1;
+	public static final int ELEMENTICON = SHADOW + 1;
 
 	/**
 	 * A preference of type QualifiedName
 	 */
-	public final static int QUALIFIEDNAME = ELEMENTICON + 1;
+	public static final int QUALIFIEDNAME = ELEMENTICON + 1;
 
 	/**
 	 * A preference of type height

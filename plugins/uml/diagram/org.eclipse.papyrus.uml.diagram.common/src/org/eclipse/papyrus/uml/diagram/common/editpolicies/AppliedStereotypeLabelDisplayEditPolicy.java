@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Usage;
 public abstract class AppliedStereotypeLabelDisplayEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy {
 
 	/** constant for this edit policy role */
-	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeLabelDisplayEditPolicy";
+	public static final String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeLabelDisplayEditPolicy";
 
 	/** tag displayed for the UML element */
 	public String tag;

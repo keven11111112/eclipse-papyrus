@@ -8,7 +8,7 @@
  *
  * Contributors:
  *
- *    Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - initial API and implementation
+ *    Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - initial API and implementation
  *
  ****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.selection;
@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
  * By default they are all part of the selection.
  * This factory creates 8 tools combining those criteria.<br/>
  *
- * @author Céline JANSSENS
+ * @author Celine JANSSENS
  *
  */
 public class SelectionToolPaletteFactory extends PaletteFactory.Adapter {

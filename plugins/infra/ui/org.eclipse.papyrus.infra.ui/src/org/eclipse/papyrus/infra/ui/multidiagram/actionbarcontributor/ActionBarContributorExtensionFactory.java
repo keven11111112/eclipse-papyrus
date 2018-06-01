@@ -30,16 +30,16 @@ import org.eclipse.ui.part.EditorActionBarContributor;
 public class ActionBarContributorExtensionFactory extends ExtensionUtils {
 
 	/** singleton eINSTANCE of this class */
-	public final static ActionBarContributorExtensionFactory eINSTANCE = new ActionBarContributorExtensionFactory();
+	public static final ActionBarContributorExtensionFactory eINSTANCE = new ActionBarContributorExtensionFactory();
 
 	/** constant for the editor diagram **/
-	public final static String EDITOR_ACTIONBARCONTRIBUTOR_EXTENSIONPOINT = "" + "actionBarContributor";
+	public static final String EDITOR_ACTIONBARCONTRIBUTOR_EXTENSIONPOINT = "" + "actionBarContributor";
 
 	/** constant for the attribute factoryClass **/
-	public final static String CONTEXTCLASS_ATTRIBUTE = "implementingClass";
+	public static final String CONTEXTCLASS_ATTRIBUTE = "implementingClass";
 
 	/** constant for the attribute contextId **/
-	public final static String ID_ATTRIBUTE = "id";
+	public static final String ID_ATTRIBUTE = "id";
 
 	/**
 	 * @return the eINSTANCE

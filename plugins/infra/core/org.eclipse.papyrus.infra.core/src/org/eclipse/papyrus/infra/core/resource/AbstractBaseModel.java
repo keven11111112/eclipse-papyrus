@@ -73,7 +73,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	 *
 	 * @return
 	 */
-	abstract protected String getModelFileExtension();
+	protected abstract String getModelFileExtension();
 
 	/**
 	 * Return true if the resource is set, false otherwise. When the resource is

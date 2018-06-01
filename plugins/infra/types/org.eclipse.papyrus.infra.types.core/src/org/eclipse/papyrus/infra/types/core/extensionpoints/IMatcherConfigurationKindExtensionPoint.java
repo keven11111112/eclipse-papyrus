@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.types.core.Activator;
 public interface IMatcherConfigurationKindExtensionPoint {
 
 	/** ID of the extension point */
-	public final static String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".matcherConfigurationKind";
+	public static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".matcherConfigurationKind";
 
 	/** attribute factoryClass */
 	public static final String FACTORY_CLASS = "factoryClass";

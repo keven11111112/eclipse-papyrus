@@ -14,16 +14,16 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 /**
- * @author C�line JANSSENS
+ * @author Celine JANSSENS
  *
  */
 public interface SequenceDiagramConstants {
 
 	/** Threshold of Y axis to consider a Message as Horizontal */
-	public final static int HORIZONTAL_MESSAGE_MAX_Y_DELTA = 65;
+	public static final int HORIZONTAL_MESSAGE_MAX_Y_DELTA = 65;
 
 	/** Threshold of Y axis to consider a Message as Horizontal in the precision Mode (Shift key ) */
-	public final static int HORIZONTAL_MESSAGE_PRECISION_Y_DELTA = 10;
+	public static final int HORIZONTAL_MESSAGE_PRECISION_Y_DELTA = 10;
 
 
 

@@ -29,10 +29,10 @@ public interface IBuildEditor extends IFileEditor {
 	 * @Deprecated The build key should be specified for each IBuildEditor instance
 	 */
 	@Deprecated
-	public final static String BUILD_KEY = "bin.includes"; //$NON-NLS-1$
+	public static final String BUILD_KEY = "bin.includes"; //$NON-NLS-1$
 
 	/** key for the source folders */
-	public final static String SOURCE_FOLDER_KEY = "source.."; //$NON-NLS-1$
+	public static final String SOURCE_FOLDER_KEY = "source.."; //$NON-NLS-1$
 
 	/** key for the bin folders */
 	public static final String BIN_KEY = "bin.."; //$NON-NLS-1$

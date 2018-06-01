@@ -133,7 +133,7 @@ abstract public class AbstractProfileMigrationDialog extends FormDialog {
 	 * 
 	 * @return the description
 	 */
-	abstract protected String getDecription();
+	protected abstract String getDecription();
 
 	/**
 	 * Create the migration action section
@@ -179,7 +179,7 @@ abstract public class AbstractProfileMigrationDialog extends FormDialog {
 	 * @param toolkit
 	 *            the form toolkit
 	 */
-	abstract protected void getMigrationActionSectionContent(Composite body, FormToolkit toolkit);
+	protected abstract void getMigrationActionSectionContent(Composite body, FormToolkit toolkit);
 
 	/**
 	 * Create a checkbox for not displaying the popup again

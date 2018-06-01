@@ -43,7 +43,7 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 
 
 	/** constant for this edit policy role */
-	public final static String CHANGE_SHAPE_POLICY = "CHANGE_SHAPE_POLICY";
+	public static final String CHANGE_SHAPE_POLICY = "CHANGE_SHAPE_POLICY";
 
 	/** host semantic element */
 	protected Element hostSemanticElement;

@@ -38,9 +38,9 @@ import com.google.common.base.Strings;
  * @author David Servat
  */
 public class Zone {
-	public final static int defaultWidth = 200;
-	public final static int defaultHeight = 100;
-	public final static int defaultHeader = 13;
+	public static final int defaultWidth = 200;
+	public static final int defaultHeight = 100;
+	public static final int defaultHeader = 13;
 	/**
 	 * Key string for EAnnotation
 	 */

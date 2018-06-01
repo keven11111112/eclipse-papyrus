@@ -30,13 +30,13 @@ import org.eclipse.uml2.uml.InformationFlow;
 public class InformationFlowCustomLabelEditPolicy extends AbstractCustomLabelEditPolicy {
 
 	/** constant for this edit policy role */
-	public final static String SPECIFIC_NAME_LABEL_POLICY = "SpecificNameLabelEditPolicy"; //$NON-NLS-1$
+	public static final String SPECIFIC_NAME_LABEL_POLICY = "SpecificNameLabelEditPolicy"; //$NON-NLS-1$
 
-	public final static int ADD_CONVEYED_CLASSIFIER = Notification.ADD;
+	public static final int ADD_CONVEYED_CLASSIFIER = Notification.ADD;
 
-	public final static int REMOVE_CONVEYED_CLASSIFER = Notification.REMOVE;
+	public static final int REMOVE_CONVEYED_CLASSIFER = Notification.REMOVE;
 
-	public final static int CHANGE_NAME_OF_A_CONVOYED_CLASSIFIER = Notification.SET;
+	public static final int CHANGE_NAME_OF_A_CONVOYED_CLASSIFIER = Notification.SET;
 
 	public InformationFlowCustomLabelEditPolicy() {
 		super();

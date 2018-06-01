@@ -31,22 +31,22 @@ import org.eclipse.papyrus.infra.ui.Activator;
 public class EditorDescriptorExtensionFactory extends ExtensionUtils {
 
 	/** singleton eINSTANCE of this class */
-	public final static EditorDescriptorExtensionFactory eINSTANCE = new EditorDescriptorExtensionFactory();
+	public static final EditorDescriptorExtensionFactory eINSTANCE = new EditorDescriptorExtensionFactory();
 
 	/** constant for the editor diagram **/
-	public final static String EDITOR_DIAGRAM_EXTENSIONPOINT = "editorDiagram";
+	public static final String EDITOR_DIAGRAM_EXTENSIONPOINT = "editorDiagram";
 
 	/** constant for the attribute factoryClass **/
-	public final static String FACTORYCLASS_ATTRIBUTE = "factoryClass";
+	public static final String FACTORYCLASS_ATTRIBUTE = "factoryClass";
 
 	/** constant for the attribute contextId **/
-	public final static String ACTIONBARCONTRIBUTORID_ATTRIBUTE = "actionBarContributorId";
+	public static final String ACTIONBARCONTRIBUTORID_ATTRIBUTE = "actionBarContributorId";
 
 	/** constant for the attribute icon **/
-	public final static String ICON_ATTRIBUTE = "icon";
+	public static final String ICON_ATTRIBUTE = "icon";
 
 	/** constant for the order attribute */
-	public final static String ORDER_ATTRIBUTE = "order";
+	public static final String ORDER_ATTRIBUTE = "order";
 
 	/**
 	 * @return the eINSTANCE

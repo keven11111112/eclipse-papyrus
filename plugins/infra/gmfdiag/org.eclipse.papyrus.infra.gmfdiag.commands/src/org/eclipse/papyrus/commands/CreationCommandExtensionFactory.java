@@ -27,28 +27,28 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 public class CreationCommandExtensionFactory extends ExtensionUtils {
 
 	/** singleton eINSTANCE of this class */
-	public final static CreationCommandExtensionFactory eINSTANCE = new CreationCommandExtensionFactory();
+	public static final CreationCommandExtensionFactory eINSTANCE = new CreationCommandExtensionFactory();
 
 	/** constant for the creation command **/
-	public final static String CREATION_COMMAND_EXTENSIONPOINT = "creationCommand";
+	public static final String CREATION_COMMAND_EXTENSIONPOINT = "creationCommand";
 
 	/** constant for the attribute creationCommandClass **/
-	public final static String CREATION_COMMAND_CLASS_ATTR = "creationCommandClass";
+	public static final String CREATION_COMMAND_CLASS_ATTR = "creationCommandClass";
 
 	/** constant for the attribute creationCommandClass **/
-	public final static String CONDITION_COMMAND_CLASS_ATTR = "creationCondition";
+	public static final String CONDITION_COMMAND_CLASS_ATTR = "creationCondition";
 
 	/** constant for the attribute label **/
-	public final static String LABEL_ATTR = "label";
+	public static final String LABEL_ATTR = "label";
 
 	/** constant for the attribute contextId **/
-	public final static String ID_ATTRIBUTE = "id";
+	public static final String ID_ATTRIBUTE = "id";
 
 	/** constant for the attribute icon **/
-	public final static String ICON_ATTR = "icon";
+	public static final String ICON_ATTR = "icon";
 
 	/** constant for the attribute language **/
-	public final static String LANGUAGE_ATTR = "language";
+	public static final String LANGUAGE_ATTR = "language";
 
 	/**
 	 * @return the eINSTANCE

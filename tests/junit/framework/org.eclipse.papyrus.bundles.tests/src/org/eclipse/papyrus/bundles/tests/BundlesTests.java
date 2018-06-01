@@ -238,7 +238,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 						"org.eclipse.uml2.uml.validation", "org.eclipse.uml2.uml.editor"))); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
-	public final static String REGEX_PACKAGE_WORD = "\\w(?:\\w|\\d)*";// match a //$NON-NLS-1$
+	public static final String REGEX_PACKAGE_WORD = "\\w(?:\\w|\\d)*";// match a //$NON-NLS-1$
 																		// package
 																		// name
 

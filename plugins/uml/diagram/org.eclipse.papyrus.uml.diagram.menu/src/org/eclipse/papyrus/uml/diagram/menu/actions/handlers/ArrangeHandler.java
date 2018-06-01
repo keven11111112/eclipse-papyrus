@@ -189,7 +189,7 @@ public class ArrangeHandler extends AbstractGraphicalCommandHandler {
 			diagramPart = (IDiagramWorkbenchPart) part;
 
 		} else if (part != null) {
-			diagramPart = (IDiagramWorkbenchPart) part.getAdapter(IDiagramWorkbenchPart.class);
+			diagramPart = part.getAdapter(IDiagramWorkbenchPart.class);
 		}
 
 		return diagramPart;

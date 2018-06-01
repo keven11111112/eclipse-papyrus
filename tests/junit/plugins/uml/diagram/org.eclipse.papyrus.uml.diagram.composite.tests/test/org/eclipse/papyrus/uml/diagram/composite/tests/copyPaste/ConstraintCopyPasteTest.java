@@ -54,13 +54,13 @@ public class ConstraintCopyPasteTest {
 
 	public static final String PASTE_COMMAND_ID = "org.eclipse.ui.edit.paste"; //$NON-NLS-1$
 
-	public final static String CLASS1_NAME = "Class1"; //$NON-NLS-1$
+	public static final String CLASS1_NAME = "Class1"; //$NON-NLS-1$
 
-	public final static String CLASS2_NAME = "Class2"; //$NON-NLS-1$
+	public static final String CLASS2_NAME = "Class2"; //$NON-NLS-1$
 
-	public final static String CONSTRAINT_NAME = "Constraint1"; //$NON-NLS-1$
+	public static final String CONSTRAINT_NAME = "Constraint1"; //$NON-NLS-1$
 
-	public final static String DIAGRAM_NAME = "ConstraintCompositeStructureDiagram"; //$NON-NLS-1$
+	public static final String DIAGRAM_NAME = "ConstraintCompositeStructureDiagram"; //$NON-NLS-1$
 
 	@Test
 	public void testCopyConstraintFromClassToClass() throws Exception {

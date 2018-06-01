@@ -18,7 +18,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 public class SwitchLifelineAction implements IObjectActionDelegate {
 
-	public final static String ID = "org.eclipse.papyrus.uml.diagram.timing.custom.SwitchLifelineActionID"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.uml.diagram.timing.custom.SwitchLifelineActionID"; //$NON-NLS-1$
 
 	@Override
 	public void run(final IAction action) {

@@ -312,7 +312,7 @@ public class UMLModelElement extends EMFModelElement {
 	/**
 	 * The set of all EStructuralFeature representing subsets of {@link Namespace#getOwnedRules()}
 	 */
-	public final static Set<EStructuralFeature> ownedRuleSubsets = new HashSet<EStructuralFeature>();
+	public static final Set<EStructuralFeature> ownedRuleSubsets = new HashSet<EStructuralFeature>();
 
 	static {
 		// Behavior

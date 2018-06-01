@@ -40,7 +40,7 @@ public class TestStereotypeValidation extends AbstractValidationEditorTest {
 
 	public static final String PROFILE_NAME = "simple.profile"; //$NON-NLS-1$
 
-	public final static String CLASS1 = "Class1"; //$NON-NLS-1$
+	public static final String CLASS1 = "Class1"; //$NON-NLS-1$
 	protected Class class1;
 	
 	@Before

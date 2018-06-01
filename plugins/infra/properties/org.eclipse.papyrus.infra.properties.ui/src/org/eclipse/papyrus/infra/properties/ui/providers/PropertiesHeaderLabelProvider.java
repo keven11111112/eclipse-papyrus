@@ -38,7 +38,7 @@ public class PropertiesHeaderLabelProvider extends LabelProvider {
 	/**
 	 * The {@link LabelProviderService} Context
 	 */
-	public final static String PROPERTIES_HEADER_CONTEXT = "org.eclipse.papyrus.infra.properties.ui.header.labelProvider.context";
+	public static final String PROPERTIES_HEADER_CONTEXT = "org.eclipse.papyrus.infra.properties.ui.header.labelProvider.context";
 
 	public PropertiesHeaderLabelProvider() {
 		LabelProviderService labelProviderService = new LabelProviderServiceImpl();

@@ -36,10 +36,10 @@ public abstract class AbstractTwoPointCreationTool extends AspectUnspecifiedType
 	private static final int STATE_FIRST = 1 << 16;
 
 	/** A request parameter that indicates the first clicked element */
-	public final static String FIRST_TARGET = "FIRST_TARGET"; //$NON-NLS-1$
+	public static final String FIRST_TARGET = "FIRST_TARGET"; //$NON-NLS-1$
 
 	/** A request parameter that indicates the second clicked element */
-	public final static String SECOND_TARGET = "SECOND_TARGET"; //$NON-NLS-1$
+	public static final String SECOND_TARGET = "SECOND_TARGET"; //$NON-NLS-1$
 
 	protected EditPart first = null;
 

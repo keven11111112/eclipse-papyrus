@@ -61,17 +61,17 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class ExtensionHelper extends ElementHelper {
 
 	/** constant for this edit policy role */
-	public final static String SPECIFIC_EXTENSION_NAME_POLICY = "SpecificExtensionNameEditPolicy"; //$NON-NLS-1$
+	public static final String SPECIFIC_EXTENSION_NAME_POLICY = "SpecificExtensionNameEditPolicy"; //$NON-NLS-1$
 
 	/**
 	 * the extension's name begins by this string
 	 */
-	final static public String EXTENSION = "Extension_"; //$NON-NLS-1$
+	public static final String EXTENSION = "Extension_"; //$NON-NLS-1$
 
 	/**
 	 * the property's name in the stereotype begins by base_
 	 */
-	final static public String BASE = "base_"; //$NON-NLS-1$
+	public static final String BASE = "base_"; //$NON-NLS-1$
 
 
 	/** the source position in Extension.getMembersEnds() */

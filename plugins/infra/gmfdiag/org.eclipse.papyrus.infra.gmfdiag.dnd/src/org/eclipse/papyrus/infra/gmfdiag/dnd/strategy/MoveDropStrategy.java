@@ -32,7 +32,7 @@ import org.eclipse.swt.graphics.Image;
 
 public abstract class MoveDropStrategy extends TransactionalDropStrategy {
 
-	// public final static String TARGET_FEATURE = "targetFeature";
+	// public static final String TARGET_FEATURE = "targetFeature";
 
 	protected EStructuralFeature feature;
 

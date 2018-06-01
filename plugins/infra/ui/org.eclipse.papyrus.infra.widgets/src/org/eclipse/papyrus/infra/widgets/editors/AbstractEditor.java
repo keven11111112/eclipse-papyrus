@@ -281,7 +281,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	 * Binds the Widget Observable to the Model observable property,
 	 * using the specified converters when available
 	 */
-	abstract protected void doBinding();
+	protected abstract void doBinding();
 
 	/**
 	 * @return the type of objects that this widget can edit

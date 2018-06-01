@@ -51,9 +51,9 @@ public class DeleteModelExplorerTest extends AbstractEditorTest {
 
 	public static final String PROJECT_NAME = "DeleteEditorTest"; //$NON-NLS-1$	
 
-	public final static String CLASS1_NAME = "Class1"; //$NON-NLS-1$
+	public static final String CLASS1_NAME = "Class1"; //$NON-NLS-1$
 
-	public final static String PRIMITIVE_BOOLEAN_NAME = "Boolean"; //$NON-NLS-1$ 
+	public static final String PRIMITIVE_BOOLEAN_NAME = "Boolean"; //$NON-NLS-1$ 
 	
 	@Before
 	public void initModelForCutTest() {

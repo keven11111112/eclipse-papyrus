@@ -30,7 +30,7 @@ public class WrappingLabelWithScalableIcons extends WrappingLabel {
 	/**
 	 * Width between icons (and between icons & text)
 	 */
-	public final static int GAP_WIDTH = 4;
+	public static final int GAP_WIDTH = 4;
 
 	@Override
 	public void paintFigure(Graphics graphics) {

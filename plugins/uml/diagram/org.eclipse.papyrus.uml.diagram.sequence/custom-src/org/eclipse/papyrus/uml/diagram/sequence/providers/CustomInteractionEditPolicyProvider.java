@@ -23,7 +23,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreat
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 
 /**
- * @author C�line JANSSENS
+ * @author Celine JANSSENS
  *
  */
 public class CustomInteractionEditPolicyProvider extends AbstractProvider implements IEditPolicyProvider {

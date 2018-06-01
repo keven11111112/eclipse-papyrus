@@ -17,7 +17,7 @@ import org.eclipse.papyrus.infra.types.core.Activator;
 public interface IElementTypeSetExtensionPoint {
 
 	/** ID of the extension point */
-	public final static String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".elementTypeSetConfiguration";
+	public static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".elementTypeSetConfiguration";
 
 	/** attribute: path to the model file in the bundle */
 	public static final String PATH = "path";
