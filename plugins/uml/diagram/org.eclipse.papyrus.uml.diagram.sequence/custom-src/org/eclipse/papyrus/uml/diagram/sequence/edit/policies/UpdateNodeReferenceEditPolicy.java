@@ -125,6 +125,9 @@ public class UpdateNodeReferenceEditPolicy extends GraphicalEditPolicy {
 		} else if (request instanceof ChangeBoundsRequest && (!org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_AUTOSIZE.equals(request.getType()))) {
 
 			final ChangeBoundsRequest initialChangeBoundsRequest = (ChangeBoundsRequest) request;
+			if(null == initialChangeBoundsRequest.getEditParts() || initialChangeBoundsRequest.getEditParts().isEmpty()) {
+				return UnexecutableCommand.INSTANCE;
+			}
 			final Iterator<?> editParts = initialChangeBoundsRequest.getEditParts().iterator();
 			
 			// The reparent of execution specification in another life line is not allowed
