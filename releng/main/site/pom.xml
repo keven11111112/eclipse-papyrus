@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project>
-	<modelVersion>4.0.0</modelVersion>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<artifactId>org.eclipse.papyrus.releng</artifactId>
@@ -34,13 +35,12 @@
 							<goal>generate-repository-facade</goal>
 						</goals>
 						<configuration>
-						
-						<!-- p2 update site transitive dependencies repositories -->
+						    <!-- do not generate the pesky web folder and index.html -->
+                            <skipWebContentGeneration>true</skipWebContentGeneration>
+                            <!-- p2 update site transitive dependencies repositories -->
 							<associateSites>
 								<!-- Oxygen orbit bundles for batik 1.6.0-->
 								<site>http://download.eclipse.org/tools/orbit/downloads/drops/R20180206163158/repository/</site>
-								<!-- Provide the latest runtime update until its in the releases aggregation -->
-								<site>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201806010809</site>
 							</associateSites>
 						</configuration>
 					</execution>

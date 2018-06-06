@@ -15,7 +15,7 @@
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.mylyn.docs</groupId>
-				<artifactId>org.eclipse.mylyn.wikitext.core.maven</artifactId>
+				<artifactId>org.eclipse.mylyn.wikitext.maven</artifactId>
 				<configuration>
 					<sourceFolder>site/mediawiki</sourceFolder>
 					<outputFolder>${project.build.directory}/generated-eclipse-help</outputFolder>
@@ -41,7 +41,7 @@
 				<dependencies>
 					<dependency>
 						<groupId>org.eclipse.mylyn.docs</groupId>
-						<artifactId>org.eclipse.mylyn.wikitext.mediawiki.core</artifactId>
+						<artifactId>org.eclipse.mylyn.wikitext.mediawiki</artifactId>
 						<version>${mylyn.wikitext.version}</version>
 					</dependency>
 				</dependencies>

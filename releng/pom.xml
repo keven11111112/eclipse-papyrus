@@ -10,28 +10,26 @@
 	<properties>
 		<tycho-version>1.2.0</tycho-version>
 		<tychoExtrasVersion>1.2.0</tychoExtrasVersion>
-		<tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/papyrus/org.eclipse.papyrus</tycho.scmUrl>
-		<jarSignerVersion>1.1.2</jarSignerVersion>
+		<jarSignerVersion>1.1.5</jarSignerVersion>
 		<findbugs.version>3.0.1</findbugs.version>
-		<xtext.version>2.11.0</xtext.version>
+		<xtext.version>2.14.0</xtext.version>
+		<maven.resources.version>3.0.2</maven.resources.version>
+		<maven.clean.version>3.0.0</maven.clean.version>
+		<mojo.execmaven.version>1.6.0</mojo.execmaven.version>
+		<jboss.utils.version>1.1.0</jboss.utils.version>
+        <maven.compiler.version>3.7.0</maven.compiler.version>
+		
+		<tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/papyrus/org.eclipse.papyrus.git</tycho.scmUrl>
 		<java.source.version>1.8</java.source.version>
 		<java.target.version>1.8</java.target.version>
-		<mylyn.wikitext.version>2.4.0-SNAPSHOT</mylyn.wikitext.version>
 		<skipAllTests>false</skipAllTests>
 		<skipInnerTests>true</skipInnerTests>
+		<!-- Set buildAll to true when building this pom directly (Rather than individual 
+            components). This will disable Papyrus Update Sites (Since they are being built by this POM). -->
+		<buildAll>false</buildAll> 
 
-		<!-- TODO: Is it possible to automatically detect that we are building 
-			this pom rather than a child pom? That would remove the need for this manual 
-			variable -->
-		<buildAll>false</buildAll> <!-- Set to true when building this pom directly (Rather than individual 
-			components). This will disable Papyrus Update Sites (Since they are being 
-			built by this POM). -->
-
-		<!-- Papyrus repositories. Used when we're building individual components 
-			(vs building the parent pom including everything) -->
+		<!-- Papyrus repositories. Used when we're building individual components (vs building the parent pom including everything) -->
 		<papyrus.eclipse.target>photon</papyrus.eclipse.target>
-		<eclipse.download>http://download.eclipse.org</eclipse.download> <!-- Deprecated; kept for Legacy. Can be set to file:/home/data/httpd/download.eclipse.org 
-			when building on HIPP -->
 		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/main</papyrus.repo.main>
 		<papyrus.repo.toolsmiths>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/toolsmiths</papyrus.repo.toolsmiths>
 	</properties>
@@ -43,6 +41,7 @@
 	</modules>
 
 	<pluginRepositories>
+		<!-- https://repo.maven.apache.org/maven2/ is being fetched by default -->
 		<pluginRepository>
 			<id>org.eclipse.cbi.maven.plugins</id>
 			<name>Eclipse CBI</name>
@@ -56,7 +55,6 @@
 		</pluginRepository>
 		<pluginRepository>
 			<id>eclipse.org-mylyn</id>
-			<!-- url>https://repo.eclipse.org/content/repositories/mylyn-releases/</url -->
 			<url>https://repo.eclipse.org/content/repositories/mylyn/</url>
 		</pluginRepository>
 		<pluginRepository>
@@ -68,11 +66,21 @@
 	<build>
 		<outputDirectory>bin</outputDirectory>
 		<pluginManagement>
+			<!-- redistributed plugin configurations -->
 			<plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.version}</version>
+                    <configuration>
+                        <source>${java.source.version}</source>
+                        <target>${java.target.version}</target>
+                    </configuration>
+                </plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.6</version>
+					<version>${maven.resources.version}</version>
 					<configuration>
 						<encoding>UTF-8</encoding>
 					</configuration>
@@ -80,18 +88,26 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.6</version>
+					<version>${maven.clean.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>exec-maven-plugin</artifactId>
-					<version>1.6.0</version>
+					<version>${mojo.execmaven.version}</version>
 				</plugin>
+				
 				<plugin>
 					<groupId>org.eclipse.xtend</groupId>
 					<artifactId>xtend-maven-plugin</artifactId>
 					<version>${xtext.version}</version>
 				</plugin>
+
+                <plugin>
+                    <groupId>org.jboss.tools.tycho-plugins</groupId>
+                    <artifactId>repository-utils</artifactId>
+                    <version>${jboss.utils.version}</version>
+                </plugin>
+				
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-maven-plugin</artifactId>
@@ -103,6 +119,19 @@
 					<artifactId>tycho-p2-repository-plugin</artifactId>
 					<version>${tycho-version}</version>
 				</plugin>
+                <plugin>
+                    <groupId>org.eclipse.tycho</groupId>
+                    <artifactId>tycho-compiler-plugin</artifactId>
+                    <version>${tycho-version}</version>
+                    <configuration>
+                        <source>${java.source.version}</source>
+                        <target>${java.target.version}</target>
+                        <optimize>true</optimize>
+                        <showWarnings>true</showWarnings>
+                        <!-- Tycho build using the project's JDT settings. -->
+                        <useProjectSettings>true</useProjectSettings>
+                    </configuration>
+                </plugin>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>target-platform-configuration</artifactId>
@@ -143,12 +172,6 @@
 							</artifact>
 						</target>
 					</configuration>
-				</plugin>
-
-				<plugin>
-					<groupId>org.jboss.tools.tycho-plugins</groupId>
-					<artifactId>repository-utils</artifactId>
-					<version>0.26.0</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>

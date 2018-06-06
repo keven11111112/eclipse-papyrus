@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project>
-	<modelVersion>4.0.0</modelVersion>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 	<artifactId>org.eclipse.papyrus.releng</artifactId>
 	<packaging>pom</packaging>
 	<parent>
@@ -8,6 +9,7 @@
 		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	
 	<modules>
 		<module>../../plugins</module>
 		<module>../../examples</module>
@@ -16,71 +18,29 @@
 		<module>targetPlatform</module>
 		<module>site</module>
 	</modules>
-
-	<repositories>
-		<!-- Bug 468668: Reinstate and update this when the TableCombo has a new 
-			release for Mars or later. <repository> <id>nebula-tablecombo</id> <layout>p2</layout> 
-			<url>http://download.eclipse.org/technology/nebula/archives/Q12015/release/</url> 
-			</repository> -->
-	</repositories>
 	
 	<properties>
+        <mojo.buildhelper.version>3.0.0</mojo.buildhelper.version>
+        <mylyn.wikitext.version>3.0.24</mylyn.wikitext.version>
+	
 		<target.platform>org.eclipse.papyrus.main.${target.suffix}.target</target.platform>
 	</properties>
 	
 	<build>
 		<pluginManagement>
+		<!-- redistributed plugins -->
 			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.2</version>
-					<configuration>
-						<source>${java.source.version}</source>
-						<target>${java.target.version}</target>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.6</version>
-				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>build-helper-maven-plugin</artifactId>
-					<version>1.9.1</version>
-				</plugin>
-				<plugin>
-					<groupId>org.eclipse.xtend</groupId>
-					<artifactId>xtend-maven-plugin</artifactId>
-					<version>${xtext.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.eclipse.tycho</groupId>
-					<artifactId>tycho-compiler-plugin</artifactId>
-					<version>${tycho-version}</version>
-					<configuration>
-						<optimize>true</optimize>
-						<showWarnings>true</showWarnings>
-						<!-- Tycho build using the project's JDT settings. -->
-						<useProjectSettings>true</useProjectSettings>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.eclipse.tycho</groupId>
-					<artifactId>tycho-maven-plugin</artifactId>
-					<version>${tycho-version}</version>
-					<extensions>true</extensions>
-				</plugin>
-				<plugin>
-					<groupId>org.eclipse.tycho</groupId>
-					<artifactId>target-platform-configuration</artifactId>
+					<version>${mojo.buildhelper.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.eclipse.mylyn.docs</groupId>
-					<artifactId>org.eclipse.mylyn.wikitext.core.maven</artifactId>
+					<artifactId>org.eclipse.mylyn.wikitext.maven</artifactId>
 					<version>${mylyn.wikitext.version}</version>
 				</plugin>
+				
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
@@ -96,7 +56,7 @@
 											org.eclipse.mylyn.docs
 										</groupId>
 										<artifactId>
-											org.eclipse.mylyn.wikitext.core.maven
+											org.eclipse.mylyn.wikitext.maven
 										</artifactId>
 										<versionRange>
 											[2.4.0-SNAPSHOT,)
@@ -115,7 +75,9 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		
 		<plugins>
+            <!-- local plugins -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -131,8 +93,8 @@
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-p2-repository-plugin</artifactId>
-				<version>${tycho-version}</version>
 			</plugin>
+			
 			<!-- Sources -->
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -187,9 +149,11 @@
 		only. Activation: SIGN=true pack: produce a simple update site (Packed). 
 		Used for nightly or feature branch builds. Activation: SIGN=false -->
 	<profiles>
-
 		<profile>
 			<id>defaultProfile</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -208,14 +172,16 @@
 					</plugin>
 				</plugins>
 			</build>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 		</profile>
 
 		<profile>
 			<id>buildAll</id>
-
+            <activation>
+                <property>
+                    <name>buildAll</name>
+                    <value>true</value>
+                </property>
+            </activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -234,20 +200,18 @@
 					</plugin>
 				</plugins>
 			</build>
-
-			<activation>
-				<property>
-					<name>buildAll</name>
-					<value>true</value>
-				</property>
-			</activation>
 		</profile>
-
-
 
 		<!-- nightly profile is useful for developers that want to link to nightly build -->
 		<profile>
 			<id>nightly</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>devnightly</value>
+                </property>
+                <activeByDefault>false</activeByDefault>
+            </activation>
 			<repositories>
 				<repository>
 					<id>papyrus-nightly</id>
@@ -266,19 +230,18 @@
 					</snapshots>
 				</repository>
 			</repositories>
-			<activation>
-				<property>
-					<name>env</name>
-					<value>devnightly</value>
-				</property>
-				<activeByDefault>false</activeByDefault>
-			</activation>
 		</profile>
 		
 		
 		<!-- Stable release profile. Takes +30min. Eclipse servers only -->
 		<profile>
 			<id>packAndSign</id> 
+            <activation>
+                <property>
+                    <name>SIGN</name>
+                    <value>true</value>
+                </property>
+            </activation>
 			<!-- Pack200 -->
 			<build>
 				<plugins>
@@ -340,18 +303,18 @@
 					</plugin>
 				</plugins>
 			</build>
-			<activation>
-				<property>
-					<name>SIGN</name>
-					<value>true</value>
-				</property>
-			</activation>
 		</profile>
 		
 
 		<!-- Nightly profile. Artifacts can be consumed, but are not signed -->
 		<profile>
 			<id>pack</id> 
+            <activation>
+                <property>
+                    <name>SIGN</name>
+                    <value>false</value>
+                </property>
+            </activation>
 			<build>
 				<plugins>
 					<!-- Pack200 -->
@@ -387,12 +350,6 @@
 					</plugin>
 				</plugins>
 			</build>
-			<activation>
-				<property>
-					<name>SIGN</name>
-					<value>false</value>
-				</property>
-			</activation>
 		</profile>
 	
 		
