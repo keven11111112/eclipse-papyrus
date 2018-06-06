@@ -6,7 +6,7 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 /*** Updates from the Simrel repository ***/
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/staging/v5.0.0.201805301535-rc2" {
+location egit "http://download.eclipse.org/egit/staging/v5.0.0.201806050710-rc3" {
 	org.eclipse.egit.feature.group
 }
 

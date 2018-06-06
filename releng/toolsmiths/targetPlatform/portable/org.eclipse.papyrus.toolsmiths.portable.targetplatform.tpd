@@ -28,11 +28,11 @@ location oomph "http://download.eclipse.org/oomph/drops/milestone/S20180530-0811
 
 //updateFrom("EGIT",0) 
 
-location egit "http://download.eclipse.org/egit/staging/v5.0.0.201805301535-rc2" // oomph
+location egit "http://download.eclipse.org/egit/staging/v5.0.0.201806050710-rc3" // oomph
 
 //updateFrom("m2e",0)
 
-location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180529-1731" // oomph
+location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180605-2030" // oomph
 
 //updateFrom("Mylyn",0)
 
