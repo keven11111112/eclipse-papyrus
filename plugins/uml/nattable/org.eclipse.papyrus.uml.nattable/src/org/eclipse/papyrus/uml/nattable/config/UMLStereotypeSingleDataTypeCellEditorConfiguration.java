@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2016, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 502533
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 535639
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.config;
@@ -35,6 +35,7 @@ import org.eclipse.uml2.uml.Type;
 
 /**
  * The cell editor for UML Single Datatype declared in the profile.
+ * 
  * @since 3.0
  */
 public class UMLStereotypeSingleDataTypeCellEditorConfiguration implements ICellAxisConfiguration {
@@ -89,9 +90,10 @@ public class UMLStereotypeSingleDataTypeCellEditorConfiguration implements ICell
 	 */
 	@Override
 	public void configureCellEditor(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
+		final Object axisElement = AxisUtils.getRepresentedElement(axis);
 		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new TextPainter(), DisplayMode.NORMAL, configLabel);
 
 		final INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new DatatypeDialogCellEditor(axis, modelManager.getTableAxisElementProvider()), DisplayMode.EDIT, configLabel);
+		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new DatatypeDialogCellEditor(axisElement, modelManager.getTableAxisElementProvider()), DisplayMode.EDIT, configLabel);
 	}
 }
