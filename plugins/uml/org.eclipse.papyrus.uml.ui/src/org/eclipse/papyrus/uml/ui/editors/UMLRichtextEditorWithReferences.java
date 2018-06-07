@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2018 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 535653
  *****************************************************************************/
 package org.eclipse.papyrus.uml.ui.editors;
 
@@ -34,7 +35,6 @@ import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
 import org.eclipse.papyrus.uml.tools.util.UMLProviderHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -115,10 +115,10 @@ public class UMLRichtextEditorWithReferences extends GenericRichTextEditor {
 	@Override
 	public void configureEdition(EObject editedElement, EStructuralFeature editedFeature) {
 		super.configureEdition(editedElement, editedFeature);
-		if (editedElement instanceof Element) {
-			setContentProvider(createContentProvider((Element) editedElement, editedFeature));
-			setTextReferencesHelper(createTextReferencesHelper((Element) editedElement));
-			setLabelProvider(createLabelProvider((Element) editedElement));
+		if (null != editedElement) {
+			setContentProvider(createContentProvider(editedElement, editedFeature));
+			setTextReferencesHelper(createTextReferencesHelper(editedElement));
+			setLabelProvider(createLabelProvider(editedElement));
 		}
 	}
 
@@ -219,7 +219,7 @@ public class UMLRichtextEditorWithReferences extends GenericRichTextEditor {
 	 * @return
 	 * 		the content provider to use for the richtext editor with reference
 	 */
-	private IStaticContentProvider createContentProvider(final Element editedElement, final EStructuralFeature editedFeature) {
+	private IStaticContentProvider createContentProvider(final EObject editedElement, final EStructuralFeature editedFeature) {
 		IStaticContentProvider provider = null;
 		if (editedElement != null && editedFeature != null) {
 			final Resource baseResource = editedElement.eResource();
@@ -245,7 +245,7 @@ public class UMLRichtextEditorWithReferences extends GenericRichTextEditor {
 	 * @return
 	 * 		the {@link TextReferencesHelper} to use
 	 */
-	private TextReferencesHelper createTextReferencesHelper(final Element editedElement) {
+	private TextReferencesHelper createTextReferencesHelper(final EObject editedElement) {
 		TextReferencesHelper helper = null;
 		if (editedElement != null && editedElement.eResource() != null) {
 			helper = new NameReferencesHelper(editedElement.eResource());
@@ -260,7 +260,7 @@ public class UMLRichtextEditorWithReferences extends GenericRichTextEditor {
 	 * @return
 	 * 		the label provider to use for this element
 	 */
-	private ILabelProvider createLabelProvider(final Element editedElement) {
+	private ILabelProvider createLabelProvider(final EObject editedElement) {
 		ILabelProvider labelProvider = null;
 		if (editedElement != null) {
 			LabelProviderService lpSvc = null;
