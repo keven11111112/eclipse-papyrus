@@ -21,7 +21,6 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -139,6 +138,7 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	 * (non-Javadoc)
 	 * @see org.eclipse.gef.tools.AbstractTool#handleButtonUp(int)
 	 */
+	@Override
 	protected boolean handleButtonUp(int button) {
 
 		boolean bExecuteDrag = isInState(STATE_DRAG_IN_PROGRESS) && shouldAllowDrag();
@@ -158,6 +158,7 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	 * (non-Javadoc)
 	 * @see org.eclipse.gef.tools.AbstractTool#handleDragInProgress()
 	 */
+	@Override
 	protected boolean handleDragInProgress() {
 		if (isInState(STATE_DRAG_IN_PROGRESS) && shouldAllowDrag()) {
 			updateSourceRequest();
@@ -179,6 +180,7 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	 * (non-Javadoc)
 	 * @see org.eclipse.gef.tools.AbstractTool#calculateCursor()
 	 */
+	@Override
 	protected Cursor calculateCursor() {
 		if (getType() == RequestConstants.REQ_MOVE_BENDPOINT) {
 			return Cursors.CURSOR_SEG_MOVE;
@@ -216,6 +218,7 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	/**
 	 * @see org.eclipse.gef.tools.AbstractTool#createOperationSet()
 	 */
+	@Override
 	protected List createOperationSet() {
 		List list = new ArrayList();
 		list.add(getConnectionEditPart());
@@ -237,7 +240,6 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 				locationRequest.setLocation(location);
 				editPart.showSourceFeedback(locationRequest);
 			}
-			//editPart.showSourceFeedback(getSourceRequest());
 		}
 		setShowingFeedback(true);
 	}
@@ -334,6 +336,7 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	 * (non-Javadoc)
 	 * @see org.eclipse.gef.tools.AbstractTool#getCommandName()
 	 */
+	@Override
 	protected String getCommandName() {
 		return getType().toString();
 	}
@@ -357,6 +360,7 @@ public class SelectSeveralLinksEditPartTracker extends SelectEditPartTracker {
 	 * (non-Javadoc)
 	 * @see org.eclipse.gef.tools.AbstractTool#getDebugName()
 	 */
+	@Override
 	protected String getDebugName() {
 		return "Bendpoint Handle Tracker " + getCommandName(); //$NON-NLS-1$
 	}

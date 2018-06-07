@@ -14,7 +14,6 @@ package org.eclipse.papyrus.infra.gmfdiag.common.service.palette;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
