@@ -8,7 +8,7 @@
            <category
         id="org.eclipse.papyrus.examples"
         name="%wizardCategoryExamples"
-        parentCategory="org.eclipse.ui.Examples/org.eclipse.papyrus.examples">
+        parentCategory="org.eclipse.papyrus.examples">
       </category>
       <wizard
             canFinishEarly="false"
