@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureListCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
-import org.eclipse.papyrus.infra.services.edit.internal.ElementEditService;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.tests.AbstractTestElementEditService;
 import org.junit.Before;

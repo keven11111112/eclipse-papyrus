@@ -18,7 +18,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.util.Collections;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -38,18 +37,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory;
-import org.eclipse.papyrus.infra.core.resource.EditingDomainServiceFactory;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.ModelsReader;
-import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
-import org.eclipse.papyrus.infra.core.services.ServiceDescriptor;
-import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
@@ -146,72 +135,6 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 				Assert.assertNotNull("element type should not be null", UMLElementTypes.CLASS);
 			}
 		});
-	}
-
-	/**
-	 * Create Models set from selected file.
-	 *
-	 * @return the model set
-	 */
-	private ModelSet initialiseModelSet(URI modelURI) {
-		ServicesRegistry service = null;
-
-		try {
-			service = new ExtensionServicesRegistry();
-		} catch (ServiceException e) {
-			fail(e.getMessage());
-		}
-
-		// Override service factory for Model Set
-		ServiceDescriptor descriptor = new ServiceDescriptor(ModelSet.class, ModelSetServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10);
-		descriptor.setServiceTypeKind(ServiceTypeKind.serviceFactory);
-		service.add(descriptor);
-
-		// Override factory for editing domain
-		descriptor = new ServiceDescriptor(TransactionalEditingDomain.class, EditingDomainServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10, Collections.singletonList(ModelSet.class.getName()));
-		descriptor.setServiceTypeKind(ServiceTypeKind.serviceFactory);
-		service.add(descriptor);
-
-		try {
-			service.startServicesByClassKeys(
-					ModelSet.class,
-					TransactionalEditingDomain.class);
-		} catch (ServiceException e) {
-			fail(e.getMessage());
-		}
-
-		ModelSet modelSet = null;
-		try {
-			modelSet = ServiceUtils.getInstance().getModelSet(service);
-		} catch (ServiceException e) {
-			// Ignore service exception
-		}
-
-		// Instantiate a Model set
-		if (modelSet == null) {
-			modelSet = new ModelSet();
-			try {
-				ModelSetServiceFactory.setServiceRegistry(modelSet, service);
-			} catch (ServiceException e) {
-				// Ignore service exception
-			}
-		}
-
-
-
-		// Read all Model from selected file
-		ModelsReader modelsReader = new ModelsReader();
-		modelsReader.readModel(modelSet);
-		try {
-			modelSet.loadModels(modelURI);
-		} catch (ModelMultiException e) {
-			fail(e.getMessage());
-		}
-
-		// Initialise an editing domain
-		modelSet.getTransactionalEditingDomain();
-
-		return modelSet;
 	}
 
 	/**

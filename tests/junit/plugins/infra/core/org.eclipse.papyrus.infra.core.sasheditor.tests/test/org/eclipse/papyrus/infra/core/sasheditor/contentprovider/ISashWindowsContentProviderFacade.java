@@ -16,11 +16,8 @@ package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
 
 import java.util.Map;
 
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IAbstractPanelModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.IModelExp;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.NotFoundException;
 import org.eclipse.papyrus.infra.core.sasheditor.pagesmodel.Page;
