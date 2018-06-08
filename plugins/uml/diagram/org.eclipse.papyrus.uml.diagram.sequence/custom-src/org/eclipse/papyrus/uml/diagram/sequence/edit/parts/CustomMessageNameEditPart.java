@@ -14,9 +14,11 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy.ICustomMessageLabel;
@@ -39,6 +41,17 @@ public class CustomMessageNameEditPart extends MessageSyncNameEditPart implement
 		super(view);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart#createDefaultEditPolicies()
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+	}
+	
 	@Override
 	public int getDirectEditionType() {
 		return IDirectEdition.DEFAULT_DIRECT_EDITOR;

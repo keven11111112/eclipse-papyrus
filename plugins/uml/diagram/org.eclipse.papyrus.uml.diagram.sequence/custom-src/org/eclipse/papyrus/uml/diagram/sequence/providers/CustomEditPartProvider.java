@@ -30,6 +30,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmen
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationObservationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomGeneralOrderingEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageName2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageName3EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageName4EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageName5EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageName6EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageName7EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationAppliedStereotypeEditPart;
@@ -40,6 +47,13 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractio
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
@@ -58,8 +72,8 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 		if (customEditPart != null) {
 			return customEditPart;
 		}
-		IGraphicalEditPart graphicalEditPart= super.createEditPart(view);
-		if( graphicalEditPart==null) {
+		IGraphicalEditPart graphicalEditPart = super.createEditPart(view);
+		if (graphicalEditPart == null) {
 			return new SilentEditpart(view);
 		}
 		return graphicalEditPart;
@@ -154,32 +168,32 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 		// return new CustomCombinedFragmentCombinedFragmentCompartmentEditPart(view);
 		// case MessageSyncEditPart.VISUAL_ID:
 		// return new CustomMessageSyncEditPart(view);
-		// case MessageSyncNameEditPart.VISUAL_ID:
-		// return new CustomMessageNameEditPart(view);
+		case MessageSyncNameEditPart.VISUAL_ID:
+			return new CustomMessageNameEditPart(view);
 		// case MessageAsyncEditPart.VISUAL_ID:
 		// return new CustomMessageAsyncEditPart(view);
-		// case MessageAsyncNameEditPart.VISUAL_ID:
-		// return new CustomMessageName2EditPart(view);
+		case MessageAsyncNameEditPart.VISUAL_ID:
+			return new CustomMessageName2EditPart(view);
 		// case MessageReplyEditPart.VISUAL_ID:
 		// return new CustomMessageReplyEditPart(view);
-		// case MessageReplyNameEditPart.VISUAL_ID:
-		// return new CustomMessageName3EditPart(view);
+		case MessageReplyNameEditPart.VISUAL_ID:
+			return new CustomMessageName3EditPart(view);
 		// case MessageCreateEditPart.VISUAL_ID:
 		// return new CustomMessageCreateEditPart(view);
-		// case MessageCreateNameEditPart.VISUAL_ID:
-		// return new CustomMessageName4EditPart(view);
+		case MessageCreateNameEditPart.VISUAL_ID:
+			return new CustomMessageName4EditPart(view);
 		// case MessageDeleteEditPart.VISUAL_ID:
 		// return new CustomMessageDeleteEditPart(view);
-		// case MessageDeleteNameEditPart.VISUAL_ID:
-		// return new CustomMessageName5EditPart(view);
+		case MessageDeleteNameEditPart.VISUAL_ID:
+			return new CustomMessageName5EditPart(view);
 		// case MessageLostEditPart.VISUAL_ID:
 		// return new CustomMessageLostEditPart(view);
-		// case MessageLostNameEditPart.VISUAL_ID:
-		// return new CustomMessageName6EditPart(view);
+		case MessageLostNameEditPart.VISUAL_ID:
+			return new CustomMessageName6EditPart(view);
 		// case MessageFoundEditPart.VISUAL_ID:
 		// return new CustomMessageFoundEditPart(view);
-		// case MessageFoundNameEditPart.VISUAL_ID:
-		// return new CustomMessageName7EditPart(view);
+		case MessageFoundNameEditPart.VISUAL_ID:
+			return new CustomMessageName7EditPart(view);
 		// case CommentAnnotatedElementEditPart.VISUAL_ID:
 		// return new CustomCommentAnnotatedElementEditPart(view);
 		case GeneralOrderingEditPart.VISUAL_ID:
