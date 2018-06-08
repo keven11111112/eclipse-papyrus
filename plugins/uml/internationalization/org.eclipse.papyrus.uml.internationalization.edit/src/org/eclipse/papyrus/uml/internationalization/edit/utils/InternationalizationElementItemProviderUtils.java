@@ -38,14 +38,14 @@ public class InternationalizationElementItemProviderUtils {
 	 * 
 	 * @param text The initial String buffer.
 	 * @param object The object.
-	 * @param souldTranslate The boolean shouldTranslate.
+	 * @param shouldTranslate The boolean shouldTranslate.
 	 * @return The modified {@link StringBuffer}.
 	 */
-	public static StringBuffer appendLabel(final StringBuffer text, final Object object, final boolean souldTranslate) {
+	public static StringBuffer appendLabel(final StringBuffer text, final Object object, final boolean shouldTranslate) {
 		 StringBuffer result = text;
 		if (object instanceof NamedElement) {
 			if (InternationalizationPreferencesUtils.getInternationalizationPreference((NamedElement) object)) {
-				result = appendString(text, UMLLabelInternationalization.getInstance().getLabel((NamedElement) object, souldTranslate));
+				result = appendString(text, UMLLabelInternationalization.getInstance().getLabel((NamedElement) object, shouldTranslate));
 			} else {
 				result = appendString(text, ((NamedElement) object).getName());
 			}

@@ -20,14 +20,18 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
 import org.eclipse.papyrus.uml.internationalization.edit.utils.InternationalizationElementItemProviderUtils;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.common.util.UML2Util;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
 import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -359,7 +363,7 @@ public class InternationalizationUMLItemProviderAdapterFactoryImpl extends UMLIt
 
 				public String getText(Object object) {
 					StringBuffer text = appendType(
-						appendKeywords(new StringBuffer(), object), "_UI_Property_type"); //$NON-NLS-1$
+							appendKeywords(new StringBuffer(), object), "_UI_Property_type"); //$NON-NLS-1$
 
 					final Property property = (Property) object;
 					final Type type = property.getType();
@@ -377,7 +381,7 @@ public class InternationalizationUMLItemProviderAdapterFactoryImpl extends UMLIt
 
 						if (!UML2Util.isEmpty(typeName)) {
 							appendString(text, Character.toLowerCase(typeName.charAt(0))
-								+ typeName.substring(1));
+									+ typeName.substring(1));
 						}
 					}
 
@@ -390,7 +394,7 @@ public class InternationalizationUMLItemProviderAdapterFactoryImpl extends UMLIt
 					}
 
 					return ExtendedMultiplicityElementItemProvider.appendMultiplicityString(text, object)
-						.toString();
+							.toString();
 				}
 
 				@Override
@@ -410,12 +414,13 @@ public class InternationalizationUMLItemProviderAdapterFactoryImpl extends UMLIt
 	/**
 	 * This allows to redefine the 'appendMultiplicity' method.
 	 */
-	public static class ExtendedMultiplicityElementItemProvider extends MultiplicityElementItemProvider{
+	public static class ExtendedMultiplicityElementItemProvider extends MultiplicityElementItemProvider {
 
 		/**
 		 * Constructor.
 		 *
-		 * @param adapterFactory The adapter factory
+		 * @param adapterFactory
+		 *            The adapter factory
 		 */
 		public ExtendedMultiplicityElementItemProvider(final AdapterFactory adapterFactory) {
 			super(adapterFactory);
@@ -424,8 +429,10 @@ public class InternationalizationUMLItemProviderAdapterFactoryImpl extends UMLIt
 		/**
 		 * This allows to append the multiplicity.
 		 *
-		 * @param text The existing string buffer.
-		 * @param object The multiplicity element.
+		 * @param text
+		 *            The existing string buffer.
+		 * @param object
+		 *            The multiplicity element.
 		 * @return The existing string buffer concat with multiplicity.
 		 */
 		public static StringBuffer appendMultiplicityString(final StringBuffer text, final Object object) {
@@ -794,6 +801,46 @@ public class InternationalizationUMLItemProviderAdapterFactoryImpl extends UMLIt
 				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
 				}
+
+				@Override
+				public String getText(Object object) {
+					StringBuffer text = appendType(
+							appendKeywords(new StringBuffer(), object), "_UI_Port_type"); //$NON-NLS-1$
+
+					Port port = (Port) object;
+					Type type = port.getType();
+
+					if (port.isDerived()) {
+						appendString(text, "/"); //$NON-NLS-1$
+					}
+
+					String label = null;
+					if (InternationalizationPreferencesUtils.getInternationalizationPreference(port)) {
+						label = UMLLabelInternationalization.getInstance().getLabel(port, shouldTranslate());
+					} else {
+						label = port.getName();
+					}
+
+					if (!UML2Util.isEmpty(label)) {
+						appendString(text, label);
+					} else if (port.getAssociation() != null && type != null) {
+						String typeName = type.getName();
+
+						if (!UML2Util.isEmpty(typeName)) {
+							appendString(text, Character.toLowerCase(typeName.charAt(0)) + typeName.substring(1));
+						}
+					}
+
+					if (type != null) {
+						String typeLabel = type.getLabel(shouldTranslate());
+
+						if (!UMLUtil.isEmpty(typeLabel)) {
+							appendString(text, (port.isConjugated() ? ": ~" : ": ") + typeLabel); //$NON-NLS-1$ //$NON-NLS-2$
+						}
+					}
+
+					return appendMultiplicity(text, object).toString();
+				}
 			};
 		}
 		return portItemProvider;
@@ -869,6 +916,64 @@ public class InternationalizationUMLItemProviderAdapterFactoryImpl extends UMLIt
 				@Override
 				protected StringBuffer appendKeywords(final StringBuffer text, final Object object) {
 					return InternationalizationElementItemProviderUtils.appendKeywords(text, object, shouldTranslate());
+				}
+
+				@Override
+				public String getText(Object object) {
+					StringBuffer text = appendType(appendKeywords(new StringBuffer(), object), "_UI_Association_type"); //$NON-NLS-1$
+
+					final Association association = (Association) object;
+
+					if (association.isDerived()) {
+						appendString(text, "/"); //$NON-NLS-1$
+					}
+
+					String label = null;
+					if (InternationalizationPreferencesUtils.getInternationalizationPreference(association)) {
+						label = UMLLabelInternationalization.getInstance().getLabel(association, shouldTranslate());
+					} else {
+						label = association.getName();
+					}
+
+					if (!UML2Util.isEmpty(label)) {
+						appendString(text, label);
+					} else {
+						EList<Property> memberEnds = association.getMemberEnds();
+
+						if (!memberEnds.isEmpty()) {
+							appendString(text, "A"); //$NON-NLS-1$
+
+							for (Property memberEnd : memberEnds) {
+								String memberEndName = memberEnd.getName();
+
+								text.append('_'); // $NON-NLS-1$
+
+								if (!UML2Util.isEmpty(memberEndName)) {
+									text.append(memberEndName);
+								} else {
+									Type type = memberEnd.getType();
+
+									if (type != null) {
+										String typeName = type.getName();
+
+										if (!UML2Util.isEmpty(typeName)) {
+											memberEndName = Character.toLowerCase(typeName.charAt(0)) + typeName.substring(1);
+										}
+									}
+
+									if (!UML2Util.isEmpty(memberEndName)) {
+										text.append(memberEndName);
+									} else {
+										text.append('<'); // $NON-NLS-1$
+										text.append(getTypeText(memberEnd));
+										text.append('>'); // $NON-NLS-1$
+									}
+								}
+							}
+						}
+					}
+
+					return text.toString();
 				}
 			};
 		}
