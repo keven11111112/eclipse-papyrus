@@ -8,7 +8,6 @@
  *
  * Contributors:
  *   Vincent LORENZO (CEA LIST) - Initial API and implementation
- *   Vincent LORENZO (CEA LIST) - Bug 535070
  *****************************************************************************/
 
 package org.eclipse.papyrus.emf.resources;
@@ -95,16 +94,5 @@ public abstract class AbstractEMFResource extends XMIResourceImpl {
 		}
 		return this.defaultLoadOptions;
 	}
-
-	/**
-	 * @see org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#assignIDsWhileLoading()
-	 *
-	 * @return
-	 */
-	@Override
-	protected boolean assignIDsWhileLoading() {
-		//bug 535070
-		return false; // overridden to avoid to assign XMI_ID to element of previous configuration which are stilling use position to be saved
-		
-	}
+	
 }
