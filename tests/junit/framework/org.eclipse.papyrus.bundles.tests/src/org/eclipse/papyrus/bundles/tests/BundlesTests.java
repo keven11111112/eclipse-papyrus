@@ -485,7 +485,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	/**
 	 * This test checks that nobody adds an unexpected dependency on the plugin org.eclipse.papyrus.emf
 	 * 
-	 * @since 1.3
+	 * @since 1.3.0
 	 */
 	@Test
 	public void checkPapyrusEMFPluginDependency() {
@@ -494,6 +494,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 		final Version undefinedVersion = new Version(null);
 		dependencies.put("org.eclipse.ui", undefinedVersion); //$NON-NLS-1$
 		dependencies.put("org.eclipse.core.runtime", undefinedVersion); //$NON-NLS-1$
+		dependencies.put("org.eclipse.core.resources", undefinedVersion); //$NON-NLS-1$
 		dependencies.put("org.eclipse.emf.ecore", undefinedVersion); //$NON-NLS-1$
 		dependencies.put("org.eclipse.emf.ecore.xmi", undefinedVersion); //$NON-NLS-1$
 
