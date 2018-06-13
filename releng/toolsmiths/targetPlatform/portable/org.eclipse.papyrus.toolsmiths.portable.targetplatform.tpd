@@ -7,7 +7,7 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //updateFrom("oomph",0) 
 
-location oomph "http://download.eclipse.org/oomph/drops/milestone/S20180530-081107-1.9.0-RC2" {
+location oomph "http://download.eclipse.org/oomph/drops/release/1.9.0" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
@@ -32,7 +32,7 @@ location egit "http://download.eclipse.org/egit/staging/v5.0.0.201806050710-rc3"
 
 //updateFrom("m2e",0)
 
-location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180605-2030" // oomph
+location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180606-2036" // oomph
 
 //updateFrom("Mylyn",0)
 

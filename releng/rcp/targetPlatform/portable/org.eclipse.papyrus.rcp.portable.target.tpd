@@ -12,7 +12,7 @@ location egit "http://download.eclipse.org/egit/staging/v5.0.0.201806050710-rc3"
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC3-201805310700/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC4a-201806110500/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group 
 	org.eclipse.equinox.executable.feature.group 
@@ -44,6 +44,6 @@ location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20180530-0803" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20180613-0111" {
 	org.eclipse.emf.cdo.epp.feature.group
 }

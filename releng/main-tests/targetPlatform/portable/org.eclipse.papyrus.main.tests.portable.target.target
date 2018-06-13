@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Tests" sequenceNumber="1528268596">
+<target name="Papyrus Tests" sequenceNumber="1528873353">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.8.0.v20180529-0850"/>
-      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201805290850"/>
+      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.8.0.v20180612-0940"/>
+      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201806120940"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xpand.sdk.feature.group" version="2.2.0.v201605260315"/>
@@ -17,13 +17,13 @@
       <repository id="uml" location="http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestones"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.8.0.v20180531-1055"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC3-201805310700/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.8.0.v20180611-0826"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC4a-201806110500/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.4.0.v20180604-1557"/>
-      <unit id="org.eclipse.ocl.examples.feature.group" version="6.4.0.v20180604-1557"/>
-      <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201806041557"/>
+      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.4.0.v20180611-1119"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="6.4.0.v20180611-1119"/>
+      <repository id="ocl" location="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201806111119"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="1.3.1.I20171018-2059"/>
@@ -43,7 +43,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="0.0.0"/>
-      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.10.0/S-3.10.0.RC2-20180524070951/repository/"/>
+      <repository id="webtools" location="http://download.eclipse.org/webtools/downloads/drops/R3.10.0/S-3.10.0.RC4-20180611164516/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.12.0.201806010809"/>

@@ -5,7 +5,7 @@ target "Papyrus Main" with requirements source
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201805290850" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.8.0/S201806120940" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -24,13 +24,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestone
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC3-201805310700/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC4a-201806110500/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201806041557" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.4.0/S201806111119" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -58,7 +58,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 
 //updateFrom("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/S-3.10.0.RC2-20180524070951/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.10.0/S-3.10.0.RC4-20180611164516/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
