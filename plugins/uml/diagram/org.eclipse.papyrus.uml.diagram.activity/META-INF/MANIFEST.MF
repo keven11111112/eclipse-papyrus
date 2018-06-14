@@ -85,10 +85,11 @@ Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibili
  org.eclipse.gef,
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.services.edit;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[2.0.0,4.0.0)"
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[2.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.properties;bundle-version="[4.0.0,5.0.0)"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 3.1.0.qualifier
+Bundle-Version: 3.2.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity; singleton:=true

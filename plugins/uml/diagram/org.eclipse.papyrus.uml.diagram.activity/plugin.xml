@@ -1433,18 +1433,6 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 
    </extension>
 
-   <extension
-         point="org.eclipse.ui.views.properties.tabbed.propertySections">
-      <propertySections
-            contributorId="TreeOutlinePage">
-         <propertySection
-               class="org.eclipse.papyrus.uml.diagram.activity.tabbedproperties.appearance.SwitchSegmentDirectionSection"
-               filter="org.eclipse.papyrus.uml.diagram.activity.tabbedproperties.appearance.SwitchSegmentDirectionSectionFilter"
-               id="org.eclipse.papyrus.tabbedproperties.appearance.switchSegmentDirectionSection"
-               tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
-         </propertySection>
-      </propertySections>
-   </extension>
    <!--
    <extension
          point="org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment"
@@ -2099,6 +2087,18 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 <extension point="org.eclipse.core.runtime.preferences">
 	<?gmfgen generated="false"?>
 	<initializer class="org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.preferences.AutomatedModelCompletionPreferencesInitializer"/>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.properties.environments">
+   <environment
+         environmentModel="model/Environment.xmi">
+   </environment>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.properties.contexts">
+   <context
+         contextModel="model/properties/activity.ctx">
+   </context>
 </extension>
 
 

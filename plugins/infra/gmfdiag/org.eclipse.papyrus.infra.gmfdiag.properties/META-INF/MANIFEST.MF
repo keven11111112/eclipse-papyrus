@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.gmfdiag.properties.extension,
+Export-Package: org.eclipse.papyrus.infra.gmfdiag.properties.constraint,
+ org.eclipse.papyrus.infra.gmfdiag.properties.extension,
  org.eclipse.papyrus.infra.gmfdiag.properties.modelelement
 Require-Bundle: org.eclipse.papyrus.infra.properties.ui;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.core.databinding.beans;bundle-version="[1.3.0,2.0.0)",
