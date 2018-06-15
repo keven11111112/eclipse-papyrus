@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2016 CEA LIST, Esterel Technologies SAS and others.
+ * Copyright (c) 2013, 2016, 2018 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Calin Glitia (Esterel Technologies SAS) - Bug 497654
- *
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 535935
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
@@ -43,7 +43,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisp
 public class TableHelper {
 
 	private TableHelper() {
-		// to prevent instanciation
+		// to prevent instantiation
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class TableHelper {
 	 * 		the table created from these parameters
 	 */
 	public static final Table createTable(final TableConfiguration configuration, final EObject context) {
-		return createTable(configuration, null, null);
+		return createTable(configuration, context, null);
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class TableHelper {
 	 * 		the table created from these parameters
 	 */
 	public static final Table createTable(final TableConfiguration configuration, final EObject context, final String name) {
-		return createTable(configuration, null, null, null);
+		return createTable(configuration, context, name, null);
 	}
 
 	/**
@@ -272,13 +272,14 @@ public class TableHelper {
 	 *         <code>true</code> if the table is a tree table displayed on multi column
 	 */
 	public static final boolean isMultiColumnTreeTable(Table table) {
-		TableDisplayStyle style = (TableDisplayStyle) table.getStyle(NattablestylePackage.eINSTANCE.getTableDisplayStyle());
-		if (style == null) {
-			style = (TableDisplayStyle) table.getTableConfiguration().getStyle(NattablestylePackage.eINSTANCE.getTableDisplayStyle());
-		}
-		if (style != null) {
-			final DisplayStyle displayStyle = style.getDisplayStyle();
-			return DisplayStyle.HIERARCHIC_MULTI_TREE_COLUMN.equals(displayStyle);
+		if (table != null) {
+			TableDisplayStyle style = (TableDisplayStyle) table.getStyle(NattablestylePackage.eINSTANCE.getTableDisplayStyle());
+			if (style == null) {
+				style = (TableDisplayStyle) table.getTableConfiguration().getStyle(NattablestylePackage.eINSTANCE.getTableDisplayStyle());
+			}
+			if (style != null) {
+				return DisplayStyle.HIERARCHIC_MULTI_TREE_COLUMN.equals(style.getDisplayStyle());
+			}
 		}
 		return false;
 	}
@@ -291,7 +292,7 @@ public class TableHelper {
 	 *         <code>true</code> if the tableManager manages a tree table displayed on multi column
 	 */
 	public static final boolean isMultiColumnTreeTable(final INattableModelManager tableManager) {
-		return tableManager != null ? isMultiColumnTreeTable(tableManager.getTable()) : false;
+		return tableManager != null && isMultiColumnTreeTable(tableManager.getTable());
 	}
 
 	/**
