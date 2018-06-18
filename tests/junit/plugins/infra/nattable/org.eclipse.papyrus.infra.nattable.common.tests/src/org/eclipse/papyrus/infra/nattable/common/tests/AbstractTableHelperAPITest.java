@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2018 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 535935
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.common.tests;
@@ -64,7 +64,7 @@ public abstract class AbstractTableHelperAPITest extends AbstractPapyrusTest {
 	protected void createTableEditor(final EObject tableContext, final EObject tableOwner, final String tableType, final boolean openEditorAfterCreation) throws NotFoundException, ServiceException {
 		final IPageManager pageManager = fixture.getPageManager();
 		final TransactionalEditingDomain domain = fixture.getEditingDomain();
-		TableEditorCreationHelper helper = new TableEditorCreationHelper(tableContext, "", "", true); //$NON-NLS-1$ //$NON-NLS-2$
+		TableEditorCreationHelper helper = new TableEditorCreationHelper(tableContext, "", "", openEditorAfterCreation); //$NON-NLS-1$ //$NON-NLS-2$
 		// 0. set the type of the table to create
 		helper.setTableType(tableType);
 
@@ -91,7 +91,7 @@ public abstract class AbstractTableHelperAPITest extends AbstractPapyrusTest {
 
 		// 5. check the created table
 		Assert.assertNotNull(createAssertMessage("The table has not been created", tableType), createdTable); //$NON-NLS-1$
-		checkTableCreation(createdTable, tableContext, tableOwner, tableType, tableName, tableDescription, nbPageBeforeCreation);
+		checkTableCreation(createdTable, tableContext, tableOwner, tableType, tableName, tableDescription, nbPageBeforeCreation, openEditorAfterCreation);
 
 		// 6. check undo table creation
 		domain.getCommandStack().undo();
@@ -101,7 +101,7 @@ public abstract class AbstractTableHelperAPITest extends AbstractPapyrusTest {
 		// 7. check redo table creation
 		domain.getCommandStack().redo();
 		fixture.flushDisplayEvents();
-		checkTableCreation(createdTable, tableContext, tableOwner, tableType, tableName, tableDescription, nbPageBeforeCreation);
+		checkTableCreation(createdTable, tableContext, tableOwner, tableType, tableName, tableDescription, nbPageBeforeCreation, openEditorAfterCreation);
 
 		// 8. destroy the table
 		int nbPagesBeforeDeletion = fixture.getPageManager().allPages().size();
@@ -116,7 +116,7 @@ public abstract class AbstractTableHelperAPITest extends AbstractPapyrusTest {
 		// 9. check undo deletion
 		domain.getCommandStack().undo();
 		fixture.flushDisplayEvents();
-		checkTableCreation(createdTable, tableContext, tableOwner, tableType, tableName, tableDescription, nbPageBeforeCreation);
+		checkTableCreation(createdTable, tableContext, tableOwner, tableType, tableName, tableDescription, nbPageBeforeCreation, openEditorAfterCreation);
 
 		// 10. check redo deletion
 		domain.getCommandStack().redo();
@@ -143,7 +143,10 @@ public abstract class AbstractTableHelperAPITest extends AbstractPapyrusTest {
 	 *            the number of pages available in the page manager before the creation of the table
 	 * @throws NotFoundException
 	 * @throws ServiceException
+	 * 
+	 * @deprecated since 5.1, we must use the same method, with an additional parameter
 	 */
+	@Deprecated
 	protected void checkTableCreation(final Table createdTable, final EObject context, final EObject owner, final String tableType, final String tableName, final String tableDescription, final int nbPageBeforeCreation)
 			throws NotFoundException, ServiceException {
 		Assert.assertEquals(createAssertMessage("the created table is not in the page manager", tableType), nbPageBeforeCreation + 1, fixture.getPageManager().allPages().size()); //$NON-NLS-1$
@@ -156,6 +159,42 @@ public abstract class AbstractTableHelperAPITest extends AbstractPapyrusTest {
 
 		// 3. we check if the table is opened
 		isOpened(createdTable, true, tableType);
+	}
+
+	/**
+	 * 
+	 * @param createdTable
+	 *            the created table, cannot be <code>null</code>
+	 * @param context
+	 *            the wanted context for the created table
+	 * @param owner
+	 *            the wanted owner for the created table
+	 * @param tableType
+	 *            the wanted type for the created table
+	 * @param tableName
+	 *            the wanted table for the created table
+	 * @param tableDescription
+	 *            the wanted description for the created table
+	 * @param nbPageBeforeCreation
+	 *            the number of pages available in the page manager before the creation of the table
+	 * @param mustBeOpen
+	 *            <code>true</code> if the table must be open after its creation
+	 * @throws NotFoundException
+	 * @throws ServiceException
+	 * @since 5.1
+	 */
+	protected void checkTableCreation(final Table createdTable, final EObject context, final EObject owner, final String tableType, final String tableName, final String tableDescription, final int nbPageBeforeCreation, boolean mustBeOpen)
+			throws NotFoundException, ServiceException {
+		Assert.assertEquals(createAssertMessage("the created table is not in the page manager", tableType), nbPageBeforeCreation + 1, fixture.getPageManager().allPages().size()); //$NON-NLS-1$
+
+		// 1. we check its creation
+		checkTable(createdTable, context, owner, tableType, tableName, tableDescription);
+
+		// 2. we try to found it
+		findTable(createdTable, context, owner, tableType, tableName);
+
+		// 3. we check if the table is opened
+		isOpened(createdTable, mustBeOpen, tableType);
 	}
 
 	/**
