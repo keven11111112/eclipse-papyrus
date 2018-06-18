@@ -46,8 +46,6 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestComponentDiagramConnector.class,
 		TestComponentDiagramPortLink.class,
 		TestPortLocation.class, 
-		TestGeoshapes.class
-		// End
 })
 public class AllCanonicalTests {
 
