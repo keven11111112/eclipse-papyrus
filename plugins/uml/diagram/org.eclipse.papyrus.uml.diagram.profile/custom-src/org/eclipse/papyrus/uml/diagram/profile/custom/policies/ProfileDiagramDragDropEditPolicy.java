@@ -19,18 +19,13 @@ package org.eclipse.papyrus.uml.diagram.profile.custom.policies;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -39,8 +34,6 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
@@ -49,7 +42,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
@@ -169,22 +161,6 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	/**
-	 * this method send a Command that create views for associationClass
-	 *
-	 * @param dropRequest
-	 *            the drop request
-	 * @param semanticLink
-	 *            the semantic link
-	 * @param nodeVISUALID
-	 *            the node visualid
-	 *
-	 * @return the command
-	 */
-	// protected Command dropAssociationClass(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
-	// AssociationClassHelper associationClassHelper = new AssociationClassHelper(getEditingDomain());
-	// return associationClassHelper.dropAssociationClass((AssociationClass)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
-	// }
 	/**
 	 * this method send a command to create views to display
 	 *
@@ -448,7 +424,6 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 				getDiagramPreferencesHint());
 		IAdaptable sourceAdapter = null;
 		IAdaptable targetAdapter = null;
-		EList<Adapter> e = source.eAdapters();
 		if (sourceEditPart == null) {
 			// creation of the node
 			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(source), Node.class, null, ViewUtil.APPEND, true, ((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
@@ -478,54 +453,5 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 		aLinkCommand.setElement(semanticLink);
 		cc.compose(aLinkCommand);
 		return cc;
-	}
-
-	/**
-	 * Check if the edit part type is the best one to represent an object of the given EClass type
-	 *
-	 * @param editPartClass
-	 *            the type of EditPart which may represent a semantic element
-	 * @param eClass
-	 *            the EClass type of the represented semantic element
-	 * @return true if an edit part of this type should be selected
-	 */
-	private boolean isEditPartTypeAdapted(java.lang.Class<? extends EditPart> editPartClass, EClass eClass) {
-		if (DiagramEditPart.class.isAssignableFrom(editPartClass) || CompartmentEditPart.class.isAssignableFrom(editPartClass)) {
-			// the edit part is disqualified, as a compartment or a diagram can not be dropped
-			return false;
-		} else if (GraphicalEditPart.class.isAssignableFrom(editPartClass)) {
-			// check the edit part type against advised ones
-			return isEditPartTypeSuitableForEClass(editPartClass.asSubclass(GraphicalEditPart.class), eClass);
-		} else {
-			// only a GraphicalEditPart must be selected
-			return false;
-		}
-	}
-
-	private Collection<EditPart> getTheFirstLevel(Element semanticLink) {
-		EObject linkContainer = semanticLink.eContainer();
-		EditPart currentEditPart = null;
-		Collection<EditPart> profileContents = new ArrayList<>();
-		Collection<EditPart> editPartSet = getHost().getViewer().getEditPartRegistry().values();
-		Iterator<EditPart> editPartIterator = editPartSet.iterator();
-		while (editPartIterator.hasNext()) {
-			currentEditPart = editPartIterator.next();
-			if (currentEditPart.getParent() != null) {
-				Object model = currentEditPart.getParent().getModel();
-				if (model instanceof Node) {
-					EObject parent = ((Node) model).getElement();
-					if (parent.equals(linkContainer)) {
-						profileContents.add(currentEditPart);
-					}
-				}
-				if (model instanceof Diagram) {
-					EObject parent = ((Diagram) model).getElement();
-					if (parent.equals(linkContainer)) {
-						profileContents.add(currentEditPart);
-					}
-				}
-			}
-		}
-		return profileContents;
 	}
 }

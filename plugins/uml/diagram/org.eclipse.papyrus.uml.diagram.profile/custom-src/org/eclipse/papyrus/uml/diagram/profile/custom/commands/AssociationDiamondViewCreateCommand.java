@@ -35,7 +35,7 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLViewProvider;
 
 /**
@@ -101,12 +101,6 @@ public class AssociationDiamondViewCreateCommand extends AbstractTransactionalCo
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		// / get the factory of the viewer
-		// Dependency2ViewFactory factory = new Dependency2ViewFactory();
-		// creation of the element
-		// this.node = factory.createView(semanticApdater, this.containerView,
-		// ((IHintedType) UMLElementTypes.Dependency_2014)
-		// .getSemanticHint(), -1, true, preferenceHint);
 		UMLViewProvider viewProvider = new UMLViewProvider();
 		node = viewProvider.createAssociation_Shape(((EObject) semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
 		// put to the good position
@@ -130,7 +124,7 @@ public class AssociationDiamondViewCreateCommand extends AbstractTransactionalCo
 				View view = (View) ((IGraphicalEditPart) editpart).getModel();
 				if (view != null) {
 					IFile f = WorkspaceSynchronizer.getFile(view.eResource());
-					return f != null ? Collections.singletonList(f) : Collections.EMPTY_LIST;
+					return f != null ? Collections.singletonList(f) : Collections.emptyList();
 				}
 			}
 		}

@@ -137,7 +137,7 @@ public class PaletteUtil {
 	 */
 	@SuppressWarnings("unchecked")
 	public static List<PaletteContainer> getDirectChildContainers(PaletteContainer container) {
-		List<PaletteContainer> containers = new ArrayList<PaletteContainer>();
+		List<PaletteContainer> containers = new ArrayList<>();
 		Iterator<PaletteEntry> it = container.getChildren().iterator();
 		while (it.hasNext()) {
 			PaletteEntry entry = it.next();
@@ -193,7 +193,7 @@ public class PaletteUtil {
 	 * @return the list of tool entries or an empty list
 	 */
 	public static List<ToolEntry> getAllToolEntries(PaletteContainer container) {
-		final List<ToolEntry> entries = new ArrayList<ToolEntry>();
+		final List<ToolEntry> entries = new ArrayList<>();
 		Iterator<PaletteEntry> it = container.getChildren().iterator();
 		while (it.hasNext()) {
 			PaletteEntry entry = it.next();
@@ -232,7 +232,7 @@ public class PaletteUtil {
 	 * @return the list of entries
 	 */
 	public static List<PaletteEntry> getAllEntries(PaletteContainer container) {
-		List<PaletteEntry> elements = new ArrayList<PaletteEntry>();
+		List<PaletteEntry> elements = new ArrayList<>();
 		for (Object object : container.getChildren()) {
 			if (object instanceof PaletteContainer) {
 				elements.add((PaletteContainer) object);
@@ -254,7 +254,7 @@ public class PaletteUtil {
 	 * @return the set of available entries
 	 */
 	public static Set<? extends PaletteEntry> getAvailableEntries(IEditorPart part, ProviderPriority priority) {
-		Set<? extends PaletteEntry> entries = new HashSet<PaletteEntry>();
+		Set<? extends PaletteEntry> entries = new HashSet<>();
 
 		// retrieve all provider for the given editor ID
 		PaletteRoot root = new PaletteRoot();
@@ -285,7 +285,7 @@ public class PaletteUtil {
 	 * @return the set of available entries
 	 */
 	public static Map<String, PaletteEntry> getAvailableEntriesSet(IEditorPart part, ProviderPriority priority) {
-		Map<String, PaletteEntry> entries = new HashMap<String, PaletteEntry>();
+		Map<String, PaletteEntry> entries = new HashMap<>();
 
 		// retrieve all provider for the given editor ID
 		PaletteRoot root = new PaletteRoot();
@@ -382,7 +382,7 @@ public class PaletteUtil {
 	 */
 	public static Set<String> getProfileSetFromString(String serializedForm) {
 		StringTokenizer tokenizer = new StringTokenizer(serializedForm, ","); //$NON-NLS-1$
-		Set<String> list = new HashSet<String>();
+		Set<String> list = new HashSet<>();
 		while (tokenizer.hasMoreElements()) {
 			list.add(tokenizer.nextToken());
 		}
@@ -464,7 +464,7 @@ public class PaletteUtil {
 				return false;
 			}
 			List<Profile> appliedProfiles = package_.getAllAppliedProfiles();
-			List<String> appliedProfilesNames = new ArrayList<String>();
+			List<String> appliedProfilesNames = new ArrayList<>();
 			for (Profile profile : appliedProfiles) {
 				appliedProfilesNames.add(profile.getQualifiedName());
 			}

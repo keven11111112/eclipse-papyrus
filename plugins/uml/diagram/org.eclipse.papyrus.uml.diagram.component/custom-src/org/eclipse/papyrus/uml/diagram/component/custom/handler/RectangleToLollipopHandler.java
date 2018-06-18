@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.component.custom.handler;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.component.custom.command.RectangleToLollipopCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
@@ -39,10 +39,7 @@ public class RectangleToLollipopHandler extends ChangeShapeHandler implements IH
 	@Override
 	public boolean isEnabled() {
 		GraphicalEditPart editPart = getSelectedGraphicalEditpart();
-		if ((editPart instanceof RectangleInterfaceEditPart) || (editPart instanceof RectangleInterfaceEditPartCN)) {
-			return true;
-		}
-		return false;
+		return (editPart instanceof RectangleInterfaceEditPart) || (editPart instanceof RectangleInterfaceEditPartCN);
 	}
 
 	@Override

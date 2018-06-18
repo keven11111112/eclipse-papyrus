@@ -49,7 +49,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeleteLinkDuringCreationCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.DependencyDiamondViewCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.custom.providers.CustomDeferredCreateConnectionViewCommand;
@@ -89,7 +89,7 @@ public class MultiDependencyHelper extends ElementHelper {
 			// end of the association end
 			NamedElement currentEnd = iteratorProp.next();
 			// look for if an editpart exist for this element
-			Collection<EditPart> editPartSet = new ArrayList<EditPart>();
+			Collection<EditPart> editPartSet = new ArrayList<>();
 			Collection<?> values = viewer.getEditPartRegistry().values();
 			for (Object object : values) {
 				if (object instanceof EditPart)
@@ -147,8 +147,8 @@ public class MultiDependencyHelper extends ElementHelper {
 	public Command dropMutliDependency(Dependency dependency, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
 		CompoundCommand command = new CompoundCommand();
 		// 0. Obtain list of property to display
-		ArrayList<NamedElement> endToDisplaySource = new ArrayList<NamedElement>(dependency.getClients());
-		ArrayList<NamedElement> endToDisplayTarget = new ArrayList<NamedElement>(dependency.getSuppliers());
+		ArrayList<NamedElement> endToDisplaySource = new ArrayList<>(dependency.getClients());
+		ArrayList<NamedElement> endToDisplayTarget = new ArrayList<>(dependency.getSuppliers());
 		// 1. creation of the diamond of the Dependency
 		DependencyDiamondViewCreateCommand nodeCreation = new DependencyDiamondViewCreateCommand(getEditingDomain(), containerView, viewer, diagramPreferencesHint, location, new SemanticAdapter(dependency, null));
 		command.add(new ICommandProxy(nodeCreation));

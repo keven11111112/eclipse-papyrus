@@ -224,7 +224,7 @@ public class LinkRepresentation {
 
 		switch (this.align) {
 		case PositionConstants.LEFT:
-			if (absolutePositionSource.preciseX < absolutePositionTarget.preciseX) {// the
+			if (absolutePositionSource.preciseX() < absolutePositionTarget.preciseX()) {// the
 																					// left
 																					// node
 																					// moves
@@ -234,7 +234,7 @@ public class LinkRepresentation {
 			}
 			break;
 		case PositionConstants.RIGHT:
-			if (absolutePositionSource.preciseX > absolutePositionTarget.preciseX) {// the
+			if (absolutePositionSource.preciseX() > absolutePositionTarget.preciseX()) {// the
 																					// right
 																					// node
 																					// moves
@@ -244,7 +244,7 @@ public class LinkRepresentation {
 			}
 			break;
 		case PositionConstants.TOP:
-			if (absolutePositionSource.preciseY < absolutePositionTarget.preciseY) {// the
+			if (absolutePositionSource.preciseY() < absolutePositionTarget.preciseY()) {// the
 																					// top
 																					// node
 																					// moves
@@ -254,7 +254,7 @@ public class LinkRepresentation {
 			}
 			break;
 		case PositionConstants.BOTTOM:
-			if (absolutePositionSource.preciseY > absolutePositionTarget.preciseY) {// the
+			if (absolutePositionSource.preciseY() > absolutePositionTarget.preciseY()) {// the
 																					// bottom
 																					// node
 																					// moves

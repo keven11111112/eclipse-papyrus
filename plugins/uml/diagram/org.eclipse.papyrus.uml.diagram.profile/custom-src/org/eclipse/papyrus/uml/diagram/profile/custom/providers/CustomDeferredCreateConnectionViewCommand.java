@@ -23,14 +23,13 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
-import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 
 /**
  * This class is used to create a connection view.
- *
+ * @deprecated in 3.0.100
  */
-
-public class CustomDeferredCreateConnectionViewCommand extends CommonDeferredCreateConnectionViewCommand {
+@Deprecated // No code 
+public class CustomDeferredCreateConnectionViewCommand extends org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand {
 
 	/**
 	 * {@inheritDoc}
@@ -52,17 +51,7 @@ public class CustomDeferredCreateConnectionViewCommand extends CommonDeferredCre
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-		CommandResult commandResult = null;
-		// if(command != null && command instanceof AssociationClassViewCreateCommand) {
-		// Map epRegistry = viewer.getEditPartRegistry();
-		// IGraphicalEditPart sourceEP = (IGraphicalEditPart)epRegistry.get(sourceViewAdapter.getAdapter(View.class));
-		// IGraphicalEditPart targetEP = (IGraphicalEditPart)epRegistry.get(((AssociationClassViewCreateCommand)command).getNode());
-		//
-		// commandResult = super.doExecuteWithResult(progressMonitor, info, sourceEP, targetEP);
-		// } else {
-		commandResult = super.doExecuteWithResult(progressMonitor, info);
-		// }
-		return commandResult;
+		return super.doExecuteWithResult(progressMonitor, info);
 	}
 
 }

@@ -49,7 +49,7 @@ public class PapyrusAnchorableWrappingLabel extends PapyrusWrappingLabel impleme
 	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure#getConnectionAnchor(java.lang.String)
 	 * Copied from @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#szAnchor()
 	 */
-	static public final String szAnchor = ""; //$NON-NLS-1$
+	public static final String szAnchor = ""; //$NON-NLS-1$
 
 	/*
 	 * (non-Javadoc)
@@ -186,7 +186,7 @@ public class PapyrusAnchorableWrappingLabel extends PapyrusWrappingLabel impleme
 	 * Copied from @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#isDefaultAnchorArea()
 	 */
 	protected boolean isDefaultAnchorArea(PrecisionPoint p) {
-		return p.preciseX >= getSlidableAnchorArea() / 2 && p.preciseX <= 1 - getSlidableAnchorArea() / 2 && p.preciseY >= getSlidableAnchorArea() / 2 && p.preciseY <= 1 - getSlidableAnchorArea() / 2;
+		return p.preciseX() >= getSlidableAnchorArea() / 2 && p.preciseX() <= 1 - getSlidableAnchorArea() / 2 && p.preciseY() >= getSlidableAnchorArea() / 2 && p.preciseY() <= 1 - getSlidableAnchorArea() / 2;
 	}
 
 	/*

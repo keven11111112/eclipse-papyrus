@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LayoutListener;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
@@ -166,8 +165,7 @@ public class AroundBorderItemEditPart extends RoundedBorderNamedElementEditPart 
 	}
 
 	protected NodeFigure createNodePlate() {
-		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(20, 20);
-		return result;
+		return new RoundedRectangleNodePlateFigure(20, 20);
 	}
 
 	/**
@@ -208,11 +206,11 @@ public class AroundBorderItemEditPart extends RoundedBorderNamedElementEditPart 
 	 * @generated
 	 */
 	public AffixedNamedElementFigure getPrimaryShape() {
-		return (AffixedNamedElementFigure)primaryShape;
+		return primaryShape;
 	}
 
 	@Override
 	public IBorderItemLocator getNewBorderItemLocator(IFigure mainFigure) {
-		return new PortPositionLocator(mainFigure, PositionConstants.NONE);
+		return new PortPositionLocator(mainFigure);
 	}
 }

@@ -94,23 +94,13 @@ public class TagsAdderParser implements ISemanticParser {
 
 	private String AddTagsToString(String string, IAdaptable adapter) {
 		// TODO: support more tags
-
-		String str = null;
-
-		Element element = (Element) adapter.getAdapter(Element.class);
-
+		Element element = adapter.getAdapter(Element.class);
 		List<String> stereotypesNames = getStereotypesNames(element);
-
-		str = StereotypesNamesListToString(stereotypesNames) + " " + string;
-
-		return str;
+		return StereotypesNamesListToString(stereotypesNames) + " " + string;
 	}
 
-	/**
-	 * @generated NOT
-	 */
 	protected List<String> getStereotypesNames(Element element) {
-		List<String> stereotypesNames = new java.util.LinkedList<String>();
+		List<String> stereotypesNames = new java.util.LinkedList<>();
 
 		List<Stereotype> stereotypes = element.getAppliedStereotypes();
 
@@ -126,9 +116,6 @@ public class TagsAdderParser implements ISemanticParser {
 		return stereotypesNames;
 	}
 
-	/**
-	 * @generated NOT
-	 */
 	protected String StereotypesNamesListToString(List<String> names) {
 		String str = "";
 
@@ -164,7 +151,7 @@ public class TagsAdderParser implements ISemanticParser {
 			return ((ISemanticParser) this.realParser).getSemanticElementsBeingParsed(arg0);
 		} else {
 
-			List<EObject> semanticElements = new ArrayList<EObject>();
+			List<EObject> semanticElements = new ArrayList<>();
 			semanticElements.add(arg0);
 			return semanticElements;
 		}

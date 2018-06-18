@@ -98,7 +98,7 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 	 * @return a list of eobject
 	 */
 	public ArrayList<EObject> getAllSemanticLink(GraphicalEditPart gmfpart) {
-		ArrayList<EObject> elementToDrop = new ArrayList<EObject>();
+		ArrayList<EObject> elementToDrop = new ArrayList<>();
 		Iterator linkIter = gmfpart.getNotationView().getSourceEdges().iterator();
 		while (linkIter.hasNext()) {
 			Edge edge = (Edge) linkIter.next();
@@ -134,7 +134,7 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 		while (iterDrop.hasNext()) {
 			EObject currentObject = iterDrop.next();
 			DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
-			ArrayList<EObject> list = new ArrayList<EObject>();
+			ArrayList<EObject> list = new ArrayList<>();
 			list.add(currentObject);
 			dropObjectsRequest.setObjects(list);
 			dropObjectsRequest.setLocation(new Point(0, 0));

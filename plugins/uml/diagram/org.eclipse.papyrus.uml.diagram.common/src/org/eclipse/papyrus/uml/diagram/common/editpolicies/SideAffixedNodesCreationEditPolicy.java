@@ -105,7 +105,7 @@ public class SideAffixedNodesCreationEditPolicy extends DefaultCreationEditPolic
 	}
 
 	protected ISideAffixedNodeBorderItemLocator getPositionLocator() {
-		return new PortPositionLocator(getHostFigure(), PositionConstants.NONE);
+		return new PortPositionLocator(getHostFigure());
 	}
 
 	/**

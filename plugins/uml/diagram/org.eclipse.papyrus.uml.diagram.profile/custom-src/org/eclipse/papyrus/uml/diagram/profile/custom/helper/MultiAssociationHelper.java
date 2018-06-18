@@ -50,7 +50,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeleteLinkDuringCreationCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.AssociationDiamondViewCreateCommand;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.PropertyCommandForAssociation;
@@ -116,7 +116,7 @@ public class MultiAssociationHelper extends ElementHelper {
 		Command command = new CompoundCommand();
 		// 0. Obtain list of property to display
 		Association association = (Association) associationNodeEditPart.resolveSemanticElement();
-		ArrayList<Property> endToDisplay = new ArrayList<Property>(association.getMemberEnds());
+		ArrayList<Property> endToDisplay = new ArrayList<>(association.getMemberEnds());
 		// 1. remove in the list all displayedElement.
 		Iterator<?> iter = associationNodeEditPart.getSourceConnections().iterator();
 		while (iter.hasNext()) {
@@ -137,7 +137,7 @@ public class MultiAssociationHelper extends ElementHelper {
 			Property currentEnd = iteratorProp.next();
 			// look for if an editpart exist for this element
 			Collection<?> values = associationNodeEditPart.getViewer().getEditPartRegistry().values();
-			Collection<EditPart> editPartSet = new ArrayList<EditPart>();
+			Collection<EditPart> editPartSet = new ArrayList<>();
 			for (Object object : values) {
 				if (object instanceof EditPart)
 				{
@@ -201,7 +201,7 @@ public class MultiAssociationHelper extends ElementHelper {
 	public Command dropMultiAssociation(Association association, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
 		Command command = new CompoundCommand();
 		// 0. Obtain list of property to display
-		ArrayList<Property> endToDisplay = new ArrayList<Property>(association.getMemberEnds());
+		ArrayList<Property> endToDisplay = new ArrayList<>(association.getMemberEnds());
 		// 1. creatiuon of the diamon of association
 		AssociationDiamondViewCreateCommand nodeCreation = new AssociationDiamondViewCreateCommand(getEditingDomain(), containerView, viewer, diagramPreferencesHint, location, new SemanticAdapter(association, null));
 		((CompoundCommand) command).add(new ICommandProxy(nodeCreation));
@@ -216,7 +216,7 @@ public class MultiAssociationHelper extends ElementHelper {
 			// end of the association end
 			Property currentEnd = iteratorProp.next();
 			// look for if an editpart exist for this element
-			Collection<EditPart> editPartSet = new ArrayList<EditPart>();
+			Collection<EditPart> editPartSet = new ArrayList<>();
 			Collection<?> values = viewer.getEditPartRegistry().values();
 			for (Object object : values) {
 				if (object instanceof EditPart)

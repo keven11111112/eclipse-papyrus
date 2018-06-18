@@ -152,9 +152,8 @@ public class UMLElementChooserDialog extends Dialog {
 					return myAdapterFctoryContentProvier.getChildren(modelResource);
 				} catch (WrappedException e) {
 					e.printStackTrace();
-					//
 				}
-				return Collections.EMPTY_LIST.toArray();
+				return Collections.emptyList().toArray();
 			}
 			return myAdapterFctoryContentProvier.getChildren(parentElement);
 		}
@@ -196,7 +195,7 @@ public class UMLElementChooserDialog extends Dialog {
 				return elements;
 			}
 			if (false == inputElement instanceof Resource) {
-				return Collections.EMPTY_LIST.toArray();
+				return Collections.emptyList().toArray();
 			}
 			Resource modelResource = (Resource) inputElement;
 			return myAdapterFctoryContentProvier.getChildren(modelResource);

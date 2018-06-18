@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLViewProvider;
@@ -58,7 +58,7 @@ public class LollipopToRectangleCommand extends AbstractTransactionalCommand {
 	 *            the wrapper that will store the result of the command
 	 */
 	public LollipopToRectangleCommand(TransactionalEditingDomain domain, GraphicalEditPart classView, SemanticAdapter semanticAdapter) {
-		super(domain, "change to Lollipop", Collections.EMPTY_LIST);
+		super(domain, "change to Lollipop", Collections.emptyList());
 		this.elementEditPart = classView;
 		this.semanticApdater = semanticAdapter;
 		setResult(CommandResult.newOKCommandResult(semanticAdapter));

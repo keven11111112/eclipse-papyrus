@@ -146,7 +146,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 			// creates the list of views associated to this parent and adds it
 			// to the additional parent to listen, with the key
 			// "semantic parent"
-			ArrayList<View> views = new ArrayList<View>();
+			ArrayList<View> views = new ArrayList<>();
 			views.add(childView);
 			additionalParentToListen.put(semanticParent, views);
 			getDiagramEventBroker().addNotificationListener(semanticParent, this);
@@ -453,9 +453,6 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 *            the new view to check
 	 */
 	protected void addListenerForView(View newView) {
-		// get semantic element attached to the host edit part
-		View hostView = (View) getHost().getModel();
-
 		// get the parent of the new view. if it is the same as current parent,
 		// does not add additional listeners
 		if (newView.getElement() != null) {
@@ -489,7 +486,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 
 				List<View> views = parentsToDelete.get(parent);
 				if (views == null) {
-					views = new ArrayList<View>();
+					views = new ArrayList<>();
 				}
 				views.add(oldView);
 				parentsToDelete.put(parent, views);
@@ -503,7 +500,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	protected void removeListeners(List<View> impactedViews) {
 		// create a temp list of elements to delete (iterator concurrent
 		// modification..)
-		Map<EObject, List<View>> parentsToDelete = new HashMap<EObject, List<View>>();
+		Map<EObject, List<View>> parentsToDelete = new HashMap<>();
 
 		// collect the elements to delete
 		for (View view : impactedViews) {
@@ -513,7 +510,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 
 					List<View> views = parentsToDelete.get(parent);
 					if (views == null) {
-						views = new ArrayList<View>();
+						views = new ArrayList<>();
 					}
 					views.add(view);
 					parentsToDelete.put(parent, views);
@@ -537,7 +534,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 *         itself
 	 */
 	public List<EObject> getElementHierarchy(EObject eObject) {
-		List<EObject> list = new ArrayList<EObject>();
+		List<EObject> list = new ArrayList<>();
 		EObject currentObject = eObject;
 		while (currentObject != null) {
 			list.add(currentObject);
@@ -563,11 +560,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 		// update listeners
 		removeListeners(orphaned);
 
-		// create a view for each remaining semantic element.
-		// FIXME why returning an empty list ?
-		List viewDescriptors = new ArrayList();
-
-		return viewDescriptors;
+		return Collections.emptyList(); // FIXME why returning an empty list ?
 	}
 
 	/**
@@ -579,7 +572,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	}
 
 	/**
-	 * Debug method. Displays the additionalParentToListen map correclty
+	 * Debug method. Displays the additionalParentToListen map correctly
 	 *
 	 * @param additionalParentToListen
 	 *            the map to display
