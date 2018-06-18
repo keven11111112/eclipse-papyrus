@@ -81,8 +81,6 @@ public abstract class AbstractCustomStyleListValueCommand extends AbstractComman
 		}
 
 		command = createCommand();
-
-		// return true;
 		return command.canExecute();
 	}
 

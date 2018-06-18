@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.releng.feature"
-      label="Papyrus Releng Tools (Incubation)"
+      label="Papyrus Releng Tools"
       version="1.0.0.qualifier"
       provider-name="Eclipse Modeling Project">
 
