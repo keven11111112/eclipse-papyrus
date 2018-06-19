@@ -99,18 +99,17 @@ public class AssistantUsage extends AbstractEditorTest {
 
 		// test the data structure that is interpreted by the framework
 		ChildrenListRepresentation childrenListRepresentation = diagramExpansionsRegistry.mapChildreen.get(CLASS_DIAGRAM_TYPE);
-		System.out.println(childrenListRepresentation);
 		Assert.assertNotNull("A usage contex has been defined for " + CLASS_DIAGRAM_TYPE, childrenListRepresentation);
 		Assert.assertNotNull("The class has been redefined", childrenListRepresentation.IDMap.get(CLASS_VISUALID));
 		Assert.assertNotNull("The compartment of class has been added", childrenListRepresentation.IDMap.get(IMPLEMENTED_INTERFACES_HINT));
-		List<String> the_class_shape_Children = childrenListRepresentation.parentChildrenRelation.get(CLASS_VISUALID);
-		Assert.assertEquals("class shape can have a new compartment", 1, the_class_shape_Children.size());
-		Assert.assertEquals("class shape has to contain " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, the_class_shape_Children.get(0));
+		List<String> theClassShapeChildren = childrenListRepresentation.parentChildrenRelation.get(CLASS_VISUALID);
+		Assert.assertEquals("class shape can have a new compartment", 1, theClassShapeChildren.size());
+		Assert.assertEquals("class shape has to contain " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, theClassShapeChildren.get(0));
 
 		Assert.assertNotNull("The Nested Interface has to be added", childrenListRepresentation.IDMap.get(NESTED_INTERFACE_LABEL));
-		List<String> the_IMPLEMENTED_INTERFACES_Children = childrenListRepresentation.parentChildrenRelation.get(IMPLEMENTED_INTERFACES_HINT);
-		Assert.assertEquals("Nested Interface can have a new compartment", 1, the_IMPLEMENTED_INTERFACES_Children.size());
-		Assert.assertEquals("Nested Interface has to contain " + NESTED_INTERFACE_LABEL, NESTED_INTERFACE_LABEL, the_IMPLEMENTED_INTERFACES_Children.get(0));
+		List<String> theImplementedInterfacesChildren = childrenListRepresentation.parentChildrenRelation.get(IMPLEMENTED_INTERFACES_HINT);
+		Assert.assertEquals("Nested Interface can have a new compartment", 1, theImplementedInterfacesChildren.size());
+		Assert.assertEquals("Nested Interface has to contain " + NESTED_INTERFACE_LABEL, NESTED_INTERFACE_LABEL, theImplementedInterfacesChildren.get(0));
 		// the model is valid
 		// now launch a class diagram
 
@@ -157,9 +156,6 @@ public class AssistantUsage extends AbstractEditorTest {
 			for (Object object : types) {
 				if (object instanceof ISpecializationType) {
 					ISpecializationType elementType = (ISpecializationType) object;
-					System.out.println(elementType);
-
-
 					if (("org.eclipse.papyrus.uml.diagram.testexpansion.Interface_Label".equals(elementType.getId()))) {
 
 						// find the good short cut
@@ -177,8 +173,6 @@ public class AssistantUsage extends AbstractEditorTest {
 				}
 			}
 			Assert.assertTrue("the assistant must contain the shortcut  of interface label ", founded);
-
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

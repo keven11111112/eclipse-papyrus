@@ -8,10 +8,10 @@
     ID="Add CompartmentText">
   <usages diagramType="Class Diagram"
       representations="//@usages.0/@gmftRepresentations.0"
-      name="Add acomparment on class of papyrus">
+      name="Add a compartment on class of Papyrus">
     <gmftRepresentations
         editPartQualifiedName="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart"
-        name="Reuse respresentation of class of the class diagram"
+        name="Reuse representation of class of the class diagram"
         viewFactory="org.eclipse.papyrus.infra.gmfdiag.common.utils.ClassifierViewFactory"
         inducedRepresentations="//@libraries.0/@representations.0"
         reusedID="Class_Shape"/>

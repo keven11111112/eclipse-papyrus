@@ -19,6 +19,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.tests.DefaultDiagramPas
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.tests.DefaultPasteCommandTest;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.tests.NotationLabelProviderTest;
 import org.eclipse.papyrus.infra.gmfdiag.common.sync.tests.SyncTests;
+import org.eclipse.papyrus.infra.gmfdiag.common.tests.resources.ModelValidationTest;
+import org.eclipse.papyrus.infra.gmfdiag.common.tests.resources.TestModelValidationTest;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafeTest;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runner.RunWith;
@@ -30,7 +32,6 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
-		// {oep.commands}
 		LoadExpansionModel.class,
 		ExpansionAddCompartment.class,
 		ExpansionAddChildLabel.class,
@@ -47,6 +48,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		DefaultPasteCommandTest.class,
 		DefaultDiagramCopyCommandTest.class,
 		DefaultDiagramPasteCommandTest.class,
+		ModelValidationTest.class,
+		TestModelValidationTest.class,
 })
 public class AllTests {
 

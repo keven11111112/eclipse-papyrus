@@ -24,15 +24,24 @@ import org.eclipse.papyrus.uml.modelexplorer.tests.paste.CutPasteModelExplorerTe
 import org.eclipse.papyrus.uml.modelexplorer.tests.paste.DiagramCopyPasteModelExplorerTest;
 import org.eclipse.papyrus.uml.modelexplorer.tests.paste.StereotypeCopyPasteModelExplorerTest;
 import org.eclipse.papyrus.uml.modelexplorer.tests.paste.TableCopyPasteModelExplorerTest;
+import org.eclipse.papyrus.uml.modelexplorer.tests.resources.ModelValidationTest;
 import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(ClassificationSuite.class)
-@SuiteClasses({ //
-DeleteModelExplorerTest.class, RenameHandlerTest.class, ModelExplorerViewTests.class, CutPasteModelExplorerTest.class, CopyPasteModelExplorerTest.class, //
-DiagramCopyPasteModelExplorerTest.class, TableCopyPasteModelExplorerTest.class, StereotypeCopyPasteModelExplorerTest.class, //
-AdvancedModeTest.class })
+@SuiteClasses({ 
+		DeleteModelExplorerTest.class,
+		RenameHandlerTest.class,
+		ModelExplorerViewTests.class,
+		CutPasteModelExplorerTest.class,
+		CopyPasteModelExplorerTest.class, 
+		DiagramCopyPasteModelExplorerTest.class,
+		TableCopyPasteModelExplorerTest.class,
+		StereotypeCopyPasteModelExplorerTest.class,
+		AdvancedModeTest.class,
+		ModelValidationTest.class
+		})
 public class AllTests {
 	// JUnit for test suite
 }

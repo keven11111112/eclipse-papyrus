@@ -31,18 +31,18 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNestedClassifierCom
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
 
 /**
- * 
  * extraction from class diagram UML view Provider
  *
  */
 public class ClassifierViewFactory implements ViewFactory {
 
+	@Override
 	public View createView(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
 			boolean persisted, PreferencesHint preferencesHint) {
-		return createClass_Shape((EObject) semanticAdapter.getAdapter(EObject.class), containerView, semanticHint, index, persisted, preferencesHint);
+		return createClassShape((EObject) semanticAdapter.getAdapter(EObject.class), containerView, semanticHint, index, persisted);
 	}
 
-	public Node createClass_Shape(EObject domainElement, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createClassShape(EObject domainElement, View containerView, String semanticHint, int index, boolean persisted) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(semanticHint);
@@ -50,15 +50,15 @@ public class ClassifierViewFactory implements ViewFactory {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 
-		Node classNamelabel = createLabel(node, ClassNameEditPart.VISUAL_ID);
+		createLabel(node, ClassNameEditPart.VISUAL_ID);
 		Node classFloatingNamelabel = createLabel(node, ClassFloatingNameEditPart.VISUAL_ID);
 		classFloatingNamelabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location classFloatingNameLabelLocation = (Location) classFloatingNamelabel.getLayoutConstraint();
 		classFloatingNameLabelLocation.setX(0);
 		classFloatingNameLabelLocation.setY(5);
-		createCompartment(node, ClassAttributeCompartmentEditPart.VISUAL_ID, true, true, true, true);
-		createCompartment(node, ClassOperationCompartmentEditPart.VISUAL_ID, true, true, true, true);
-		createCompartment(node, ClassNestedClassifierCompartmentEditPart.VISUAL_ID, true, true, true, true);
+		createCompartment(node, ClassAttributeCompartmentEditPart.VISUAL_ID, true, true, true);
+		createCompartment(node, ClassOperationCompartmentEditPart.VISUAL_ID, true, true, true);
+		createCompartment(node, ClassNestedClassifierCompartmentEditPart.VISUAL_ID, true, true, true);
 		return node;
 	}
 
@@ -69,10 +69,7 @@ public class ClassifierViewFactory implements ViewFactory {
 		return rv;
 	}
 
-	protected Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort, boolean canFilter) {
-		// SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
-		// rv.setShowTitle(showTitle);
-		// rv.setCollapsed(isCollapsed);
+	protected Node createCompartment(View owner, String hint, boolean hasTitle, boolean canSort, boolean canFilter) {
 		Node rv = NotationFactory.eINSTANCE.createBasicCompartment();
 
 		rv.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());

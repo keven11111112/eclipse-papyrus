@@ -113,7 +113,7 @@ public class ExpansionAddLink extends AbstractEditorTest {
 
 		Command command = myOtherclassEditPart.getCommand(createConnectionViewRequest(elementType_Dependency, myclassEditPart, myOtherclassEditPart, diagramEditPart));
 		assertNotNull("The command to create link must be not null", command);
-		assertTrue("The command to create link must be executable", command.canExecute() == true);
+		assertTrue("The command to create link must be executable", command.canExecute());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue("The edge must be created", (diagramEditPart.getDiagramView()).getEdges().size() == 1);
 		org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart linkEditPart = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) diagramEditPart.getConnections().get(0);
