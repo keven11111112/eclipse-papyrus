@@ -31,7 +31,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -49,18 +48,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ConnectorImpl;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
@@ -515,16 +510,6 @@ public class OccurrenceSpecificationMoveHelper {
 				// top and bottom may have been inverted during the move.
 				newBounds = new Rectangle(referencePoint2.x, Math.min(top, bottom), -1, Math.abs(bottom - top));
 			}
-		}
-		if (newBounds != null) {
-			TransactionalEditingDomain editingDomain = timePart.getEditingDomain();
-			if (timePart instanceof CustomDurationConstraintEditPart) {
-				CustomDurationConstraintEditPart dcep = (CustomDurationConstraintEditPart) timePart;
-				newBounds = dcep.updateMoveBounds(newBounds);
-			}
-			// return the resize command
-			ICommandProxy resize = new ICommandProxy(new SetResizeAndLocationCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View) timePart.getModel()), newBounds));
-			return resize;
 		}
 		return null;
 	}
@@ -1119,7 +1104,7 @@ public class OccurrenceSpecificationMoveHelper {
 		if (timeElement instanceof TimeObservation) {
 			NamedElement occurence = ((TimeObservation) timeElement).getEvent();
 			occurrences = Collections.singletonList(occurence);
-		} else if (timeElement instanceof TimeConstraint || timeElement instanceof DurationConstraint) {
+		} else if (timeElement instanceof TimeConstraint) {
 			occurrences = ((IntervalConstraint) timeElement).getConstrainedElements();
 		}
 		// check whether one of the time occurrences correspond to a DestructionEvent

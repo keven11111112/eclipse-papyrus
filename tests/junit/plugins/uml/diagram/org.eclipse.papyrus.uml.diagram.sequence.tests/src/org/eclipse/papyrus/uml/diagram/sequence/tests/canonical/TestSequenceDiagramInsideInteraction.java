@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2012 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -66,11 +66,11 @@ public class TestSequenceDiagramInsideInteraction extends AbstractTestSequenceCh
 				if (name.length() < ((ITextAwareEditPart) namedEditPart).getEditText().length()) {
 					Assert.assertEquals(" the name must contain the name of the metaclass", name, ((ITextAwareEditPart) namedEditPart).getEditText().substring(0, name.length())); //$NON-NLS-1$
 				} else {
-					
+
 					if(createdEditPart instanceof InteractionUseEditPart){
 						//this is a particularity of interactionUse
 						Assert.assertEquals(" the name must contain the name of the metaclass", "Ref", ((ITextAwareEditPart) namedEditPart).getEditText()); //$NON-NLS-1$
-						
+
 					}
 					else{
 						// not the same it sure but display the mistake is important
@@ -110,7 +110,7 @@ public class TestSequenceDiagramInsideInteraction extends AbstractTestSequenceCh
 
 	@Override
 	protected boolean isSemanticTest() {
-		
+
 		return false;
 	}
 
@@ -142,11 +142,6 @@ public class TestSequenceDiagramInsideInteraction extends AbstractTestSequenceCh
 		testToManageNode(UMLElementTypes.ConsiderIgnoreFragment_Shape, UMLPackage.eINSTANCE.getConsiderIgnoreFragment(),UMLElementTypes.Interaction_Shape, false);
 	}
 
-	@Test
-	public void testToManageDurationObservation() {
-	
-		testToManageNode(UMLElementTypes.DurationObservation_Shape,UMLPackage.eINSTANCE.getDurationObservation(),UMLElementTypes.Interaction_Shape	,false);
-	}
 	/**
 	 * Test to manage comment.
 	 */
@@ -159,7 +154,7 @@ public class TestSequenceDiagramInsideInteraction extends AbstractTestSequenceCh
 	public void testToManageInteractionUse() {
 		testToManageNode(UMLElementTypes.InteractionUse_Shape, UMLPackage.eINSTANCE.getInteractionUse(),UMLElementTypes.Interaction_Shape, false);
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractTestNode#testDrop(org.eclipse.gmf.runtime.emf.type.core.IElementType, org.eclipse.emf.ecore.EClass, int, int, int)
 	 *
@@ -175,7 +170,7 @@ public class TestSequenceDiagramInsideInteraction extends AbstractTestSequenceCh
 			// DROP
 			assertEquals(DROP + INITIALIZATION_TEST, expectedGraphicalChildren, getRootView().getChildren().size());
 			DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
-			ArrayList<Element> list = new ArrayList<Element>();
+			ArrayList<Element> list = new ArrayList<>();
 			for (Element element : getRootSemanticModel().getModel().getOwnedElements()) {
 				if (element != null && element.eClass().equals(eClass)) {
 					list.add(element);
@@ -201,7 +196,7 @@ public class TestSequenceDiagramInsideInteraction extends AbstractTestSequenceCh
 		super.testDrop(type, eClass, expectedGraphicalChildren, expectedSemanticChildren, addedGraphicalChildren);
 		}
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractTestNode#createViewRequestShapeContainer()
 	 *

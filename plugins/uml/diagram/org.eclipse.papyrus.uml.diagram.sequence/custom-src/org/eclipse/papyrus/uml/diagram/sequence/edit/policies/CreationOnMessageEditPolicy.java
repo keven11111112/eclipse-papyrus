@@ -118,21 +118,7 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 	 * @return true if creation on an occurrence specification
 	 */
 	private boolean isCreatedOnOccurrenceSpecification(String requestHint) {
-		return isTimeHint(requestHint) || isDurationHint(requestHint);
-	}
-
-	/**
-	 * Return true if hint is for creating a duration observation/constraint
-	 *
-	 * @param requestHint
-	 *            the hint of object to create
-	 * @return true if correct hint
-	 */
-	private boolean isDurationHint(String requestHint) {
-		String durCstOnLifelineHint = ((IHintedType) UMLElementTypes.DurationConstraint_Shape).getSemanticHint();
-		String durCstOnMessage = ((IHintedType) UMLElementTypes.DurationConstraint_Shape_CN).getSemanticHint();
-		String durObsOnMessage = ((IHintedType) UMLElementTypes.DurationObservation_Shape).getSemanticHint();
-		return durCstOnLifelineHint.equals(requestHint) /* || durCstOnMessage.equals(requestHint) */ || durObsOnMessage.equals(requestHint);
+		return isTimeHint(requestHint);
 	}
 
 	/**

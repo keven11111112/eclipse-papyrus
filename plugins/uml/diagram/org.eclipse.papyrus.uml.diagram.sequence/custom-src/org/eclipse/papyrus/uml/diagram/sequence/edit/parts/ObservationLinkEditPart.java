@@ -13,7 +13,6 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.TimeObservation;
 
 /**
@@ -55,9 +54,6 @@ public class ObservationLinkEditPart extends AnnotatedLinkEditPart {
 								if (source instanceof TimeObservationLabelEditPart) {
 									TimeObservation timeObservation = (TimeObservation) ((TimeObservationLabelEditPart) source).resolveSemanticElement();
 									timeObservation.setEvent(null);
-								} else if (source instanceof DurationObservationEditPart) {
-									DurationObservation durationObservation = (DurationObservation) ((DurationObservationEditPart) source).resolveSemanticElement();
-									durationObservation.getEvents().clear();
 								}
 								return CommandResult.newOKCommandResult();
 							}

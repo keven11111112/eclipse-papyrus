@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -15,7 +14,6 @@ import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -28,7 +26,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
@@ -44,18 +41,13 @@ import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.gmf.runtime.notation.impl.ConnectorImpl;
 import org.eclipse.papyrus.uml.diagram.sequence.ObservationLinkMetamodelType;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
-import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
-import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.TimeObservation;
 
@@ -145,11 +137,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 			if (timeObservationLabelEditPart.getSourceConnections().size() > 0) {
 				return null;
 			}
-		} else if (host instanceof DurationObservationEditPart) {
-			DurationObservationEditPart durationObservationEditPart = (DurationObservationEditPart) host;
-			if (durationObservationEditPart.getSourceConnections().size() > 0) {
-				return null;
-			}
 		} else {
 			return null;
 		}
@@ -168,8 +155,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 		EditPart sourceEditPart = request.getSourceEditPart();
 		if ((sourceEditPart instanceof TimeObservationLabelEditPart) && !(getHost() instanceof LifelineEditPart)) {
 			return null;
-		} else if (sourceEditPart instanceof DurationObservationEditPart && !(getHost() instanceof AbstractMessageEditPart)) {
-			return null;
 		}
 		ICommandProxy proxy = (ICommandProxy) request.getStartCommand();
 		if (proxy == null) {
@@ -178,12 +163,10 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 		CompositeCommand result = new CompositeCommand("Add observation link command");
 		if (sourceEditPart instanceof TimeObservationLabelEditPart) {
 			result.add(new UpdateTimeObservationLinkTargetElementCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), "Update semantic model", null, request, getHost()));
-		} else if (sourceEditPart instanceof DurationObservationEditPart) {
-			result.add(new UpdateDurationObservationLinkTargetElementCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), "Update semantic model", null, request, getHost()));
 		}
 		// 1:
 		CompositeCommand cc = (CompositeCommand) proxy.getICommand();
-		Iterator commandItr = cc.iterator();
+		Iterator<?> commandItr = cc.iterator();
 		CreateObservationLinkCommand createConnectorViewCommand = (CreateObservationLinkCommand) commandItr.next();
 		createConnectorViewCommand.setSourceEditPart(request.getSourceEditPart());
 		createConnectorViewCommand.setTargetEditPart(request.getTargetEditPart());
@@ -203,12 +186,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 				return null;
 			}
 			cc.add(new UpdateTimeObservationLinkSourceElementCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), "Update semantic model", null, request, getHost()));
-		} else if (request.getConnectionEditPart().getSource() instanceof DurationObservationEditPart && getHost() instanceof DurationObservationEditPart) {
-			DurationObservationEditPart durationObservationEditPart = (DurationObservationEditPart) getHost();
-			if (durationObservationEditPart.getSourceConnections().size() > 0) {
-				return null;
-			}
-			cc.add(new UpdateDurationObservationLinkSourceElementCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), "Update semantic model", null, request, getHost()));
 		}
 		return reconnectSourceCommand;
 	}
@@ -221,8 +198,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 		// update semantic model
 		if (request.getConnectionEditPart().getSource() instanceof TimeObservationLabelEditPart) {
 			cc.add(new UpdateTimeObservationLinkTargetElementCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), "Update semantic model", null, request, getHost()));
-		} else if (request.getConnectionEditPart().getSource() instanceof DurationObservationEditPart) {
-			cc.add(new UpdateDurationObservationLinkTargetElementCommand(((IGraphicalEditPart) getHost()).getEditingDomain(), "Update semantic model", null, request, getHost()));
 		}
 		return proxy;
 	}
@@ -270,108 +245,6 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 		if (SequenceUtil.OBSERVATION_LINK_REQUEST_START.equals(request.getType()) || SequenceUtil.OBSERVATION_LINK_REQUEST_END.equals(request.getType()) || SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_SOURCE.equals(request.getType())
 				|| SequenceUtil.OBSERVATION_LINK_REQUEST_RECONNECT_TARGET.equals(request.getType())) {
 			eraseTargetConnectionFeedback((DropRequest) request);
-		}
-	}
-
-	private class UpdateDurationObservationLinkSourceElementCommand extends AbstractTransactionalCommand {
-
-		private final ReconnectRequest request;
-
-		private EditPart hostPart;
-
-		private DurationObservationEditPart sourceTolEP;
-
-		List<OccurrenceSpecification> occList = Collections.emptyList();
-
-		public UpdateDurationObservationLinkSourceElementCommand(TransactionalEditingDomain domain, String label, List affectedFiles, ReconnectRequest request, EditPart hostPart) {
-			super(domain, label, affectedFiles);
-			this.request = request;
-			sourceTolEP = (DurationObservationEditPart) request.getConnectionEditPart().getSource();
-			this.hostPart = hostPart;
-		}
-
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			if (sourceTolEP == hostPart) {
-				return CommandResult.newCancelledCommandResult();
-			}
-			View sourceView = (View) sourceTolEP.getModel();
-			DurationObservation sourceDurationObservation = (DurationObservation) sourceView.getElement();
-			DurationObservationEditPart targetDoEP = (DurationObservationEditPart) hostPart;
-			View targetView = (View) targetDoEP.getModel();
-			DurationObservation targetDurationObservation = (DurationObservation) targetView.getElement();
-			targetDurationObservation.getEvents().addAll(sourceDurationObservation.getEvents());
-			sourceDurationObservation.getEvents().clear();
-			return CommandResult.newOKCommandResult();
-		}
-
-		@Override
-		public boolean canExecute() {
-			if (hostPart instanceof DurationObservationEditPart) {
-				return true;
-			}
-			return false;
-		}
-	}
-
-	public class UpdateDurationObservationLinkTargetElementCommand extends AbstractTransactionalCommand {
-
-		private final Request request;
-
-		private EditPart hostPart;
-
-		public UpdateDurationObservationLinkTargetElementCommand(TransactionalEditingDomain domain, String label, List affectedFiles, Request request, EditPart hostPart) {
-			super(domain, label, affectedFiles);
-			this.request = request;
-			this.hostPart = hostPart;
-		}
-
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			DurationObservationEditPart doEP = null;
-			if (request instanceof CreateConnectionRequest) {
-				doEP = (DurationObservationEditPart) (((CreateConnectionRequest) request).getSourceEditPart());
-			} else if (request instanceof ReconnectRequest) {
-				doEP = (DurationObservationEditPart) (((ReconnectRequest) request).getConnectionEditPart().getSource());
-			}
-			View view = (View) doEP.getModel();
-			DurationObservation durationObservation = (DurationObservation) view.getElement();
-			EList<NamedElement> events = durationObservation.getEvents();
-			// if is reconnect operation, first remove orginal message event of DurationObservation
-			if (request instanceof ReconnectRequest) {
-				events.clear();
-			}
-			Map<String, Object> extendedData = request.getExtendedData();
-			// assign the occurrence specification
-			Object paramOcc1 = extendedData.get(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-			Object paramOcc2 = extendedData.get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
-			if (paramOcc1 != null && paramOcc2 != null) {
-				events.add((OccurrenceSpecification) paramOcc1);
-				events.add((OccurrenceSpecification) paramOcc2);
-			}
-			return CommandResult.newOKCommandResult();
-		}
-
-		@Override
-		public boolean canExecute() {
-			if (hostPart instanceof ConnectionNodeEditPart) {
-				Map<String, Object> extendedData = request.getExtendedData();
-				if (hostPart instanceof AbstractMessageEditPart) {
-					AbstractMessageEditPart messageEP = (AbstractMessageEditPart) hostPart;
-					View view = (View) messageEP.getModel();
-					Message message = (Message) view.getElement();
-					if (message.getSendEvent() != null) {
-						extendedData.put(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, message.getSendEvent());
-					}
-					if (message.getReceiveEvent() != null) {
-						extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2, message.getReceiveEvent());
-					}
-				}
-				if (extendedData.containsKey(org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION) && extendedData.containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
-					return true;
-				}
-			}
-			return false;
 		}
 	}
 
@@ -424,7 +297,7 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 
 		List<OccurrenceSpecification> occList = Collections.emptyList();
 
-		public UpdateTimeObservationLinkTargetElementCommand(TransactionalEditingDomain domain, String label, List affectedFiles, Request request, EditPart hostPart) {
+		public UpdateTimeObservationLinkTargetElementCommand(TransactionalEditingDomain domain, String label, List<?> affectedFiles, Request request, EditPart hostPart) {
 			super(domain, label, affectedFiles);
 			this.request = request;
 			this.hostPart = hostPart;
@@ -534,7 +407,7 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 
 		private String newSourceTerminal;
 
-		public CreateObservationLinkCommand(TransactionalEditingDomain domain, String label, List affectedFiles) {
+		public CreateObservationLinkCommand(TransactionalEditingDomain domain, String label, List<?> affectedFiles) {
 			super(domain, label, affectedFiles);
 		}
 
@@ -615,7 +488,7 @@ public class ObservationLinkPolicy extends GraphicalNodeEditPolicy {
 					pointList.addPoint(sourceAnchor.getLocation(request.getLocation()));
 					pointList.addPoint(targetAnchor.getLocation(request.getLocation()));
 				}
-				List newBendpoints = new ArrayList();
+				List<RelativeBendpoint> newBendpoints = new ArrayList<>();
 				int numOfPoints = pointList.size();
 				for (short i = 0; i < numOfPoints; i++) {
 					Dimension s = pointList.getPoint(i).getDifference(sourceAnchor.getReferencePoint());

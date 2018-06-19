@@ -53,7 +53,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
@@ -219,13 +218,6 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 		} else if (hostSemanticElement instanceof TimeConstraint) {
 			return ((TimeConstraint) hostSemanticElement).getConstrainedElements().size() > 0;
 		}
-		// else if(hostSemanticElement instanceof DurationConstraint) {
-		// /*
-		// * Note that DurationConstraint may have only one ConstrainedElement.
-		// * But in such a case, we suppose it has not been created as one of the concerned edit parts.
-		// */
-		// return ((DurationConstraint)hostSemanticElement).getConstrainedElements().size() >= 2;
-		// }
 		return true;
 	}
 
@@ -255,22 +247,6 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 				}
 			}
 			return Collections.emptyList();
-		} else if (getHost() instanceof DurationConstraintEditPart && hostSemanticElement instanceof TimeConstraint) {
-			LifelineEditPart lifeline = SequenceUtil.getParentLifelinePart(getHost());
-			List<Element> occs = ((TimeConstraint) hostSemanticElement).getConstrainedElements();
-			if (occs.size() >= 2 && occs.get(0) instanceof OccurrenceSpecification && occs.get(1) instanceof OccurrenceSpecification) {
-				EditPart part1 = SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification) occs.get(0));
-				EditPart part2 = SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification) occs.get(1));
-				List<View> list = new ArrayList<>(2);
-				if (part1 != null) {
-					list.add((View) part1.getModel());
-				}
-				if (part2 != null) {
-					list.add((View) part2.getModel());
-				}
-				return list;
-			}
-			return Collections.emptyList();
 		}
 		// a label on a message always has its parent message
 		return Collections.emptyList();
@@ -297,15 +273,6 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 			}
 			return true;
 		}
-		// else if(getHost() instanceof DurationConstraintEditPart && hostSemanticElement instanceof DurationConstraint) {
-		// LifelineEditPart lifeline = SequenceUtil.getParentLifelinePart(getHost());
-		// List<Element> occs = ((DurationConstraint)hostSemanticElement).getConstrainedElements();
-		// if(occs.size() >= 2 && occs.get(0) instanceof OccurrenceSpecification && occs.get(1) instanceof OccurrenceSpecification) {
-		// return SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(0)) == null || SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(1)) == null;
-		// }
-		// return true;
-		// }
-		// a label on a message always has its parent message
 		return false;
 	}
 

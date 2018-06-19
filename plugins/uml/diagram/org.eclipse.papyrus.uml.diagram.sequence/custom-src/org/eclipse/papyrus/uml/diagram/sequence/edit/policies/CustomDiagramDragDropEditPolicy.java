@@ -24,7 +24,6 @@ import java.util.Set;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -34,18 +33,14 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
@@ -65,11 +60,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateLocatedConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateViewCommand;
-import org.eclipse.papyrus.uml.diagram.sequence.command.RestoreDurationConstraintLinkCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetResizeAndLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
@@ -85,9 +77,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrained
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
@@ -118,22 +107,17 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
-import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.InteractionOperand;
-import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
-import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
-import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeObservation;
 
@@ -176,7 +160,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(ConstraintConstrainedElementEditPart.VISUAL_ID);
 		elementsVisualId.add(TimeConstraintEditPart.VISUAL_ID);
 		elementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
-		elementsVisualId.add(DurationConstraintEditPart.VISUAL_ID);
 		elementsVisualId.add(SequenceDiagramEditPart.VISUAL_ID);
 		elementsVisualId.add(MessageSyncEditPart.VISUAL_ID);
 		elementsVisualId.add(MessageAsyncEditPart.VISUAL_ID);
@@ -191,10 +174,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(DestructionOccurrenceSpecificationEditPart.VISUAL_ID);
 		elementsVisualId.add(StateInvariantEditPart.VISUAL_ID);
 		elementsVisualId.add(TimeConstraintEditPart.VISUAL_ID);
-		elementsVisualId.add(DurationConstraintEditPart.VISUAL_ID);
-		elementsVisualId.add(DurationConstraintInMessageEditPart.VISUAL_ID);
 		elementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
-		elementsVisualId.add(DurationObservationEditPart.VISUAL_ID);
 		elementsVisualId.add(LifelineEditPart.VISUAL_ID);
 		// elementsVisualId.add(GateEditPart.VISUAL_ID);
 		// handle nodes on messages (no visual ID detected for them)
@@ -266,11 +246,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (semanticElement instanceof DurationObservation) {
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, semanticElement, dropRequest));
 		}
-		// handle specifically the case when node is on a message
-		Command cmd = handleNodeOnMessage(semanticElement, nodeVISUALID, linkVISUALID, location);
-		if (cmd != null) {
-			return cmd;
-		}
 		if (nodeVISUALID != null) {
 			switch (nodeVISUALID) {
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
@@ -282,15 +257,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case StateInvariantEditPart.VISUAL_ID:
 				return dropStateInvariant((StateInvariant) semanticElement, nodeVISUALID, location);
 			case TimeConstraintEditPart.VISUAL_ID:
-			case DurationConstraintEditPart.VISUAL_ID:
-				return dropIntervalConstraintInLifeline((IntervalConstraint) semanticElement, nodeVISUALID);
 			case TimeObservationEditPart.VISUAL_ID:
 				return dropTimeObservationInLifeline((TimeObservation) semanticElement, nodeVISUALID, location);
 			case CommentEditPart.VISUAL_ID:
 			case ConstraintEditPart.VISUAL_ID:
-				if (semanticElement instanceof DurationConstraint) {
-					return dropDurationConstraint((DurationConstraint) semanticElement, location);
-				}
+				return UnexecutableCommand.INSTANCE;
 			case Constraint2EditPart.VISUAL_ID:
 			case InteractionUseEditPart.VISUAL_ID:
 			case LifelineEditPart.VISUAL_ID:
@@ -503,317 +474,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
-	 * Get the drop command in case the element can be handled as a node on a message
-	 *
-	 * @param semanticElement
-	 *                            the element being dropped from the model
-	 * @param nodeVISUALID
-	 *                            node visual id or -1
-	 * @param linkVISUALID
-	 *                            link visual id or -1
-	 * @param location
-	 * @return the drop command if the element can be dropped as a message label node, or null otherwise
-	 */
-	private Command handleNodeOnMessage(Element semanticElement, String nodeVISUALID, String linkVISUALID, Point location) {
-		if (nodeVISUALID == null && linkVISUALID == null) {
-			// detect duration observation on a message
-			if (semanticElement instanceof DurationObservation) {
-				List<NamedElement> events = ((DurationObservation) semanticElement).getEvents();
-				if (events.size() >= 2) {
-					return dropMessageNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
-				}
-			}
-		}
-		if (isDurationConstraintHint(nodeVISUALID, linkVISUALID)) {
-			// detect duration constraint on a message
-			if (semanticElement instanceof DurationConstraint) {
-				return dropDurationConstraint((DurationConstraint) semanticElement, location);
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Drop DurationConstraint at given location. The constrained elements would also be restored if existed.
-	 *
-	 * @see dropDurationConstraint(Element durationConstraint, Element event1, Element event2, Point location)
-	 * @param durationConstraint
-	 * @param location
-	 */
-	protected Command dropDurationConstraint(DurationConstraint durationConstraint, Point location) {
-		List<Element> events = durationConstraint.getConstrainedElements();
-		Element event1 = null, event2 = null;
-		if (events.size() >= 2) {
-			event1 = events.get(0);
-			event2 = events.get(1);
-		} else if (events.size() == 1) {
-			event1 = event2 = events.get(0);
-		}
-		return dropDurationConstraint(durationConstraint, event1, event2, location);
-	}
-
-	/**
-	 * Drop DurationConstraint at given location. The constrained elements would also be restored if existed.
-	 *
-	 * @param durationConstraint
-	 * @param event1
-	 * @param event2
-	 * @param location
-	 * @return
-	 */
-	private Command dropDurationConstraint(Element durationConstraint, Element event1, Element event2, Point location) {
-		List<View> existingViews = DiagramEditPartsUtil.findViews(durationConstraint, getViewer());
-		// only allow one view instance of a single element by diagram
-		if (!existingViews.isEmpty()) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		IAdaptable elementAdapter = new EObjectAdapter(durationConstraint);
-		IHintedType elementType = (IHintedType) UMLElementTypes.getElementType(DurationConstraintEditPart.VISUAL_ID);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, elementType.getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
-		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
-		createViewRequest.setLocation(location);
-		// "ask" the host for a command associated with the
-		// CreateViewRequest
-		Command command = getHost().getCommand(createViewRequest);
-		if (command == null || !command.canExecute()) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		// restore links.
-		CompositeCommand result = new CompositeCommand(command.getLabel());
-		result.add(new CommandProxyWithResult(command, descriptor));
-		Point[] constraintLocations = getLocationForDurationConstraint((DurationConstraint) durationConstraint, event1, event2, location);
-		if (constraintLocations[0] != null && constraintLocations[1] != null) {
-			if (constraintLocations[0].y <= constraintLocations[1].y) {
-				result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), true, constraintLocations[0], getDiagramPreferencesHint()));
-				result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), false, constraintLocations[1], getDiagramPreferencesHint()));
-			} else if (constraintLocations[0].y > constraintLocations[1].y) {
-				result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), false, constraintLocations[0], getDiagramPreferencesHint()));
-				result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), true, constraintLocations[1], getDiagramPreferencesHint()));
-			}
-		} else if (constraintLocations[0] != null) {
-			result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), null, constraintLocations[0], getDiagramPreferencesHint()));
-		} else if (constraintLocations[1] != null) {
-			result.add(new RestoreDurationConstraintLinkCommand(getEditingDomain(), descriptor, getViewer(), null, constraintLocations[1], getDiagramPreferencesHint()));
-		}
-		// it then can be used as an adaptable to retrieve the View
-		return new ICommandProxy(result);
-	}
-
-	/**
-	 * Collect the locations of constrained elements.
-	 *
-	 * @param durationConstraint
-	 * @param event1
-	 * @param event2
-	 * @param location
-	 * @return
-	 */
-	private Point[] getLocationForDurationConstraint(DurationConstraint durationConstraint, Element event1, Element event2, Point location) {
-		Point[] constraintLocations = new Point[2];
-		if (event1 instanceof OccurrenceSpecification) {
-			constraintLocations[0] = getLocationForDurationConstraintOnEvent((OccurrenceSpecification) event1);
-		}
-		if (event2 instanceof OccurrenceSpecification) {
-			constraintLocations[1] = getLocationForDurationConstraintOnEvent((OccurrenceSpecification) event2);
-		}
-		if (constraintLocations[0] == null && event1 != null) {
-			EditPart editPart = lookForEditPart(event1);
-			if (editPart instanceof INodeEditPart) {
-				constraintLocations[0] = getLocationForDurationConstraintOnEditPart((INodeEditPart) editPart, location);
-			}
-		}
-		if (constraintLocations[1] == null && event2 != null) {
-			EditPart editPart = lookForEditPart(event2);
-			if (editPart instanceof INodeEditPart) {
-				constraintLocations[1] = getLocationForDurationConstraintOnEditPart((INodeEditPart) editPart, location.getTranslated(0, 40));
-			}
-		}
-		if (event1 != null && event1 == event2 && constraintLocations[0] != null && constraintLocations[0].equals(constraintLocations[1])) {
-			EditPart editPart = lookForEditPart(event1);
-			if (editPart instanceof IGraphicalEditPart) {
-				Rectangle rect = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart) editPart);
-				if (rect.contains(constraintLocations[0].getTranslated(0, 40))) {
-					constraintLocations[1] = constraintLocations[0].getTranslated(0, 40);
-				} else if (rect.contains(constraintLocations[0].getTranslated(0, -40))) {
-					constraintLocations[1] = constraintLocations[0].getTranslated(0, -40);
-				}
-			}
-		}
-		return constraintLocations;
-	}
-
-	/**
-	 * Get location from a INodeEditPart.
-	 *
-	 * @param nodeEditPart
-	 * @param reference
-	 * @return
-	 */
-	private Point getLocationForDurationConstraintOnEditPart(INodeEditPart nodeEditPart, Point reference) {
-		Rectangle rect = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart) nodeEditPart);
-		Point location = new Point();
-		if (reference.y < rect.y) {
-			location.y = rect.y + 1;
-		} else if (reference.y > rect.bottom()) {
-			location.y = rect.bottom() - 1;
-		} else {
-			location.y = reference.y;
-		}
-		for (int x = rect.x; x <= rect.right(); x++) {
-			CreateConnectionRequest request = new CreateConnectionRequest();
-			request.setType(REQ_CONNECTION_END);
-			request.setTargetEditPart(nodeEditPart);
-			location.x = x;
-			request.setLocation(location);
-			ConnectionAnchor targetAnchor = nodeEditPart.getTargetConnectionAnchor(request);
-			if (targetAnchor != null) {
-				location = targetAnchor.getLocation(reference);
-				break;
-			}
-		}
-		return location;
-	}
-
-	/**
-	 * Get location of OccurrenceSpecification.
-	 *
-	 * @param event
-	 * @return
-	 */
-	private Point getLocationForDurationConstraintOnEvent(OccurrenceSpecification event) {
-		Point targetLocation = null;
-		if (event instanceof MessageOccurrenceSpecification) {
-			Message message = ((MessageOccurrenceSpecification) event).getMessage();
-			if (message == null) {
-				return null;
-			}
-			ConnectionNodeEditPart MessageSyncEditPart = null;
-			DiagramEditPart diag = DiagramEditPartsUtil.getDiagramEditPart(getHost());
-			for (Object conn : diag.getConnections()) {
-				if (conn instanceof ConnectionNodeEditPart) {
-					EObject connElt = ((ConnectionNodeEditPart) conn).resolveSemanticElement();
-					if (message.equals(connElt)) {
-						MessageSyncEditPart = (ConnectionNodeEditPart) conn;
-						break;
-					}
-				}
-			}
-			if (MessageSyncEditPart == null) {
-				return null;
-			}
-			if (event == message.getSendEvent()) {
-				targetLocation = SequenceUtil.getAbsoluteEdgeExtremity(MessageSyncEditPart, true);
-			} else if (event == message.getReceiveEvent()) {
-				targetLocation = SequenceUtil.getAbsoluteEdgeExtremity(MessageSyncEditPart, false);
-			}
-		} else if (event instanceof ExecutionOccurrenceSpecification) {
-			ExecutionSpecification execution = ((ExecutionOccurrenceSpecification) event).getExecution();
-			if (execution != null) {
-				List<View> existingViews = DiagramEditPartsUtil.findViews(execution, getViewer());
-				for (View view : existingViews) {
-					if (CCombinedCompartmentEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(view)) || BehaviorExecutionSpecificationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(view))) {
-						Object object = getViewer().getEditPartRegistry().get(view);
-						if (object instanceof IGraphicalEditPart) {
-							Rectangle bounds = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart) object);
-							if (event == execution.getStart()) {
-								targetLocation = bounds.getTop();
-							} else if (event == execution.getFinish()) {
-								targetLocation = bounds.getBottom();
-							}
-						}
-					}
-				}
-			}
-		}
-		return targetLocation;
-	}
-
-	/**
-	 * Get the command to drop an element between two events in order to create a message label
-	 *
-	 * @param droppedElement
-	 *                           the dropped element
-	 * @param event1
-	 *                           first event (of type MessageOccurrenceSpecification)
-	 * @param event2
-	 *                           second event (of type MessageOccurrenceSpecification)
-	 * @param element
-	 * @return the command or false if the elements can not be dropped as message label
-	 */
-	private Command dropMessageNodeBetweenEvents(Element droppedElement, Element event1, Element event2) {
-		if (event1 instanceof MessageOccurrenceSpecification && event2 instanceof MessageOccurrenceSpecification) {
-			if (!event1.equals(event2)) {
-				boolean endsOfSameMessage = false;
-				String visualId = null;
-				if (droppedElement instanceof DurationConstraint) {
-					visualId = DurationConstraintInMessageEditPart.VISUAL_ID;
-					endsOfSameMessage = DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification) event1, (OccurrenceSpecification) event2);
-				} else if (droppedElement instanceof DurationObservation) {
-					visualId = DurationObservationEditPart.VISUAL_ID;
-					endsOfSameMessage = DurationObservationHelper.endsOfSameMessage((OccurrenceSpecification) event1, (OccurrenceSpecification) event2);
-				}
-				if (endsOfSameMessage) {
-					Message message = ((MessageOccurrenceSpecification) event1).getMessage();
-					// search a connection which matches the possessing message
-					DiagramEditPart diag = DiagramEditPartsUtil.getDiagramEditPart(getHost());
-					for (Object conn : diag.getConnections()) {
-						if (conn instanceof ConnectionNodeEditPart) {
-							EObject connElt = ((ConnectionNodeEditPart) conn).resolveSemanticElement();
-							if (message.equals(connElt)) {
-								// check that node isn't already represented, or dropping is impossible
-								for (Object child : ((ConnectionNodeEditPart) conn).getChildren()) {
-									if (child instanceof GraphicalEditPart) {
-										EObject childElt = ((GraphicalEditPart) child).resolveSemanticElement();
-										if (droppedElement.equals(childElt)) {
-											return null;
-										}
-									}
-								}
-								return dropNodeOnMessage((PackageableElement) droppedElement, (ConnectionNodeEditPart) conn, visualId);
-							}
-						}
-					}
-				}
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Test whether visual ids are compatible with a duration constraint element
-	 *
-	 * @param nodeVISUALID
-	 *                         the detected node visual id
-	 * @param linkVISUALID
-	 *                         the detected link visual id
-	 * @return true if element may be a duration constraint
-	 */
-	private boolean isDurationConstraintHint(String nodeVISUALID, String linkVISUALID) {
-		if (linkVISUALID != null) {
-			return false;
-		} else {
-			return nodeVISUALID == null || ConstraintEditPart.VISUAL_ID.equals(nodeVISUALID) || DurationConstraintEditPart.VISUAL_ID.equals(nodeVISUALID) || DurationConstraintInMessageEditPart.VISUAL_ID.equals(nodeVISUALID);
-		}
-	}
-
-	/**
-	 * Drop a duration observation or a duration constraint on a message edit part
-	 *
-	 * @param durationLabelElement
-	 *                                 the duration observation or duration constraint to display as message label
-	 * @param MessageSyncEditPart
-	 *                                 the containing message edit part
-	 * @param nodeVISUALID
-	 *                                 the label node visual id
-	 * @return the command or UnexecutableCommand
-	 */
-	private Command dropNodeOnMessage(PackageableElement durationLabelElement, ConnectionNodeEditPart MessageSyncEditPart, String nodeVISUALID) {
-		IAdaptable elementAdapter = new EObjectAdapter(durationLabelElement);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
-		return MessageSyncEditPart.getCommand(new CreateViewRequest(descriptor));
-	}
-
-	/**
 	 * Drop a time observation on a lifeline.
 	 *
 	 * @param observation
@@ -855,66 +515,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			ICommand setBoundsCommand = new SetResizeAndLocationCommand(getEditingDomain(), "move", descriptor, newBounds);
 			cc.add(new ICommandProxy(setBoundsCommand));
 			return cc;
-		}
-		return UnexecutableCommand.INSTANCE;
-	}
-
-	/**
-	 * Drop an interval constraint (duration or time) on a lifeline.
-	 *
-	 * @param constraint
-	 *                         the interval constraint
-	 * @param nodeVISUALID
-	 *                         the node visual id
-	 * @return the command if the lifeline is the correct one or UnexecutableCommand
-	 */
-	private Command dropIntervalConstraintInLifeline(IntervalConstraint constraint, String nodeVISUALID) {
-		CompoundCommand cc = new CompoundCommand("Drop");
-		IAdaptable elementAdapter = new EObjectAdapter(constraint);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
-		cc.add(getHost().getCommand(new CreateViewRequest(descriptor)));
-		LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(getHost());
-		if (lifelinePart != null && constraint.getConstrainedElements().size() >= 2) {
-			Element occ1 = constraint.getConstrainedElements().get(0);
-			Element occ2 = constraint.getConstrainedElements().get(1);
-			if (occ1 instanceof OccurrenceSpecification && occ2 instanceof OccurrenceSpecification) {
-				Point startPoint = SequenceUtil.findLocationOfEvent(lifelinePart, (OccurrenceSpecification) occ1);
-				Point endPoint = SequenceUtil.findLocationOfEvent(lifelinePart, (OccurrenceSpecification) occ2);
-				if (startPoint != null && endPoint != null) {
-					int height = endPoint.y - startPoint.y;
-					Rectangle newBounds = null;
-					if (height < 0) {
-						newBounds = new Rectangle(endPoint, new Dimension(-1, -height));
-					} else {
-						newBounds = new Rectangle(startPoint, new Dimension(-1, height));
-					}
-					lifelinePart.getFigure().translateToRelative(newBounds);
-					Point parentLoc = lifelinePart.getLocation();
-					newBounds.translate(parentLoc.getNegated());
-					ICommand setBoundsCommand = new SetResizeAndLocationCommand(getEditingDomain(), "move", descriptor, newBounds);
-					cc.add(new ICommandProxy(setBoundsCommand));
-					return cc;
-				}
-			}
-		} else if (lifelinePart != null && constraint.getConstrainedElements().size() == 1) {
-			Element occ1 = constraint.getConstrainedElements().get(0);
-			if (occ1 instanceof OccurrenceSpecification) {
-				Point middlePoint = SequenceUtil.findLocationOfEvent(lifelinePart, (OccurrenceSpecification) occ1);
-				if (middlePoint != null) {
-					int height = getDefaultDropHeight(nodeVISUALID);
-					Point startPoint = middlePoint.getCopy();
-					if (height > 0) {
-						startPoint.translate(0, -height / 2);
-					}
-					Rectangle newBounds = new Rectangle(startPoint, new Dimension(-1, height));
-					lifelinePart.getFigure().translateToRelative(newBounds);
-					Point parentLoc = lifelinePart.getLocation();
-					newBounds.translate(parentLoc.getNegated());
-					ICommand setBoundsCommand = new SetResizeAndLocationCommand(getEditingDomain(), "move", descriptor, newBounds);
-					cc.add(new ICommandProxy(setBoundsCommand));
-					return cc;
-				}
-			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
