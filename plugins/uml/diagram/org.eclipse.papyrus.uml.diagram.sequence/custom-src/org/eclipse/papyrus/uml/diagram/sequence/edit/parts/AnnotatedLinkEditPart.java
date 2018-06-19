@@ -155,7 +155,7 @@ public abstract class AnnotatedLinkEditPart extends org.eclipse.papyrus.infra.gm
 
 	@Override
 	protected void setLineWidth(int width) {
-		getPrimaryShape().setLineWidth(width);
+		getPrimaryShape().setLineWidth(width < 0 ? 1 : width);
 	}
 
 	@Override

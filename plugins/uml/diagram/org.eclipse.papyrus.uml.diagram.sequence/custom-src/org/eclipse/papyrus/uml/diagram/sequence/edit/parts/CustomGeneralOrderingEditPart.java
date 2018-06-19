@@ -63,7 +63,7 @@ public class CustomGeneralOrderingEditPart extends GeneralOrderingEditPart imple
 
 	@Override
 	protected void setLineWidth(int width) {
-		getPrimaryShape().setLineWidth(width);
+		getPrimaryShape().setLineWidth(width < 0 ? 1 : 0);
 	}
 
 	@Override

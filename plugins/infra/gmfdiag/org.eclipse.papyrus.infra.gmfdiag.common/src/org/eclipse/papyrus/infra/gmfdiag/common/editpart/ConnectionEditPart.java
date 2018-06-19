@@ -66,21 +66,21 @@ public abstract class ConnectionEditPart extends LinkLFConnectionNodeEditPart im
 
 	/**
 	 * CSS property for the source decoration
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	public static final String SOURCE_DECORATION = "sourceDecoration"; //$NON-NLS-1$
 
 	/**
 	 * CSS property for the target decoration
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	public static final String TARGET_DECORATION = "targetDecoration"; //$NON-NLS-1$
 
 	/**
 	 * Supported values of the CSS property targetDecoration
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	public static final String[] DECORATION_VALUES = { "default", "none" }; //$NON-NLS-1$ //$NON-NLS-2$
@@ -103,7 +103,7 @@ public abstract class ConnectionEditPart extends LinkLFConnectionNodeEditPart im
 
 	/**
 	 * The namedStyle Listener. Refresh the edit part when handle a change.
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	private IChangeListener namedStyleListener = new IChangeListener() {
@@ -149,7 +149,7 @@ public abstract class ConnectionEditPart extends LinkLFConnectionNodeEditPart im
 
 	/**
 	 * Refresh the connection arrow decoration.
-	 * 
+	 *
 	 * @param connector
 	 *            The notation connector
 	 * @param edge
@@ -213,31 +213,32 @@ public abstract class ConnectionEditPart extends LinkLFConnectionNodeEditPart im
 	 *            Length of the gap between dashes
 	 */
 	private void setupLineStyle(PapyrusEdgeFigure edge, String style, int originalWidth, int lineDashLength, int lineDashGap) {
+		int width = originalWidth < 0 ? 1 : originalWidth;
 		if ("hidden".equals(style)) {//$NON-NLS-1$
 			edge.setLineStyle(Graphics.LINE_SOLID);
 			edge.setLineWidth(0);
 			edge.setVisible(false);
 		} else if ("dotted".equals(style)) {//$NON-NLS-1$
 			edge.setLineStyle(Graphics.LINE_DOT);
-			edge.setLineWidth(originalWidth);
+			edge.setLineWidth(width);
 		} else if ("dashed".equals(style)) {//$NON-NLS-1$
 			edge.setLineStyle(Graphics.LINE_CUSTOM);
-			edge.setLineWidth(originalWidth);
+			edge.setLineWidth(width);
 			edge.setLineDash(new int[] { lineDashLength, lineDashGap });
 		} else if ("solid".equals(style)) {//$NON-NLS-1$
 			edge.setLineStyle(Graphics.LINE_SOLID);
-			edge.setLineWidth(originalWidth);
+			edge.setLineWidth(width);
 		} else if ("double".equals(style)) {//$NON-NLS-1$
-			edge.setLineWidth(originalWidth * 2);
+			edge.setLineWidth(width * 2);
 		} else if ("dash".equals(style)) {//$NON-NLS-1$
 			edge.setLineStyle(Graphics.LINE_DASH);
-			edge.setLineWidth(originalWidth);
+			edge.setLineWidth(width);
 		}
 	}
 
 	/**
 	 * Refresh the diagram when changing the label filters (Bug 491811: [CSS][Diagram] Connectors not refreshed after change of routing style (eg rectilinear->oblique))
-	 * 
+	 *
 	 * @since 2.0
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
 	 *
@@ -265,7 +266,7 @@ public abstract class ConnectionEditPart extends LinkLFConnectionNodeEditPart im
 
 	/**
 	 * Gets the connection decoration in {@link ConnectionDecorationRegistry} for a String.
-	 * 
+	 *
 	 * @param arrowType
 	 *            the arrow type
 	 * @return the {@link RotatableDecoration} use as connection decoration (null if not found)
@@ -333,7 +334,7 @@ public abstract class ConnectionEditPart extends LinkLFConnectionNodeEditPart im
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart#refreshVisuals()
 	 */
 	@Override
@@ -342,4 +343,5 @@ public abstract class ConnectionEditPart extends LinkLFConnectionNodeEditPart im
 		refreshLineWidth();
 		installRouter();
 	}
+
 }

@@ -29,7 +29,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceReferenceE
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectMessageToGridEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectPointToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifeLineGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelectMessagesEditPartTracker;
@@ -252,7 +251,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	public void setLineWidth(int width) {
 		if (getPrimaryShape() instanceof MessageFigure) {
 			MessageFigure edge = getPrimaryShape();
-			edge.setLineWidth(width);
+			edge.setLineWidth(width < 0 ? 1 : width);
 		}
 	}
 
