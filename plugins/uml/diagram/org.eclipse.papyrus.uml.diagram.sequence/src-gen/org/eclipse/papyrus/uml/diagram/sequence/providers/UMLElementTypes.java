@@ -35,9 +35,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
@@ -154,11 +151,6 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DurationConstraint_Shape"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
 	public static final IElementType DestructionOccurrenceSpecification_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.DestructionOccurrenceSpecification_Shape"); //$NON-NLS-1$
 	/**
@@ -171,16 +163,6 @@ public class UMLElementTypes {
 	 */
 	public static final IElementType Comment_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.Comment_Shape"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType DurationConstraint_Shape_CN = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DurationConstraint_Shape_CN"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType DurationObservation_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.DurationObservation_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -307,18 +289,12 @@ public class UMLElementTypes {
 
 			elements.put(TimeObservation_Shape, UMLPackage.eINSTANCE.getTimeObservation());
 
-			elements.put(DurationConstraint_Shape, UMLPackage.eINSTANCE.getDurationConstraint());
-
 			elements.put(DestructionOccurrenceSpecification_Shape,
 					UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification());
 
 			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
 
 			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
-
-			elements.put(DurationConstraint_Shape_CN, UMLPackage.eINSTANCE.getDurationConstraint());
-
-			elements.put(DurationObservation_Shape, UMLPackage.eINSTANCE.getDurationObservation());
 
 			elements.put(Gate_Shape, UMLPackage.eINSTANCE.getGate());
 
@@ -373,12 +349,9 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(StateInvariant_Shape);
 			KNOWN_ELEMENT_TYPES.add(TimeConstraint_Shape);
 			KNOWN_ELEMENT_TYPES.add(TimeObservation_Shape);
-			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Shape);
 			KNOWN_ELEMENT_TYPES.add(DestructionOccurrenceSpecification_Shape);
 			KNOWN_ELEMENT_TYPES.add(Constraint_Shape);
 			KNOWN_ELEMENT_TYPES.add(Comment_Shape);
-			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Shape_CN);
-			KNOWN_ELEMENT_TYPES.add(DurationObservation_Shape);
 			KNOWN_ELEMENT_TYPES.add(Gate_Shape);
 			KNOWN_ELEMENT_TYPES.add(Message_SynchEdge);
 			KNOWN_ELEMENT_TYPES.add(Message_AsynchEdge);
@@ -437,18 +410,12 @@ public class UMLElementTypes {
 				return TimeConstraint_Shape;
 			case TimeObservationEditPart.VISUAL_ID:
 				return TimeObservation_Shape;
-			case DurationConstraintEditPart.VISUAL_ID:
-				return DurationConstraint_Shape;
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 				return DestructionOccurrenceSpecification_Shape;
 			case ConstraintEditPart.VISUAL_ID:
 				return Constraint_Shape;
 			case CommentEditPart.VISUAL_ID:
 				return Comment_Shape;
-			case DurationConstraintInMessageEditPart.VISUAL_ID:
-				return DurationConstraint_Shape_CN;
-			case DurationObservationEditPart.VISUAL_ID:
-				return DurationObservation_Shape;
 			case GateEditPart.VISUAL_ID:
 				return Gate_Shape;
 			case MessageSyncEditPart.VISUAL_ID:

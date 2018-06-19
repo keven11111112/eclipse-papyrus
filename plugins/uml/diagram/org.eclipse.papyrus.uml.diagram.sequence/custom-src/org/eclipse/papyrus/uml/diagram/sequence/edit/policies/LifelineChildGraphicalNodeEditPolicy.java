@@ -19,8 +19,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.ConnectionRouter;
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -30,7 +28,6 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
-import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetConnectionEndsCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -40,7 +37,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
@@ -72,9 +68,6 @@ import org.eclipse.uml2.uml.MessageEnd;
  * This edit policy is intended to be installed on parts which represent a lifeline or which are contained within a lifeline part.
  */
 public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNodeEditPolicy {
-
-	/** the feedback for creating a duration constraint node */
-	private Polyline durationCreationFeedback = null;
 
 	/** the router to use for messages */
 	public static ConnectionRouter messageRouter = new MessageRouter();
@@ -171,7 +164,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 		} else {
 			// Get the start command for each individual request, this will
 			// update each request as required.
-			final List commands = new ArrayList();
+			final List<Command> commands = new ArrayList<>();
 			for (Iterator iter = request.getAllRequests().iterator(); iter.hasNext();) {
 				Request individualRequest = (Request) iter.next();
 				Command cmd = null;
@@ -268,62 +261,6 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 	}
 
 	/**
-	 * Show the feedback for creating a duration constraint from this edit part
-	 *
-	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#showSourceFeedback(org.eclipse.gef.Request)
-	 * @param request
-	 *            creation request
-	 */
-	@Override
-	public void showSourceFeedback(Request request) {
-		if (request instanceof CreateUnspecifiedTypeRequest) {
-			Object hintedType = ((CreateUnspecifiedTypeRequest) request).getElementTypes().get(0);
-			CreateRequest req = null;
-			if (UMLElementTypes.DurationConstraint_Shape.equals(hintedType)) {
-				req = ((CreateUnspecifiedTypeRequest) request).getRequestForType(UMLElementTypes.DurationConstraint_Shape);
-			} else if (UMLElementTypes.DurationObservation_Shape.equals(hintedType)) {
-				req = ((CreateUnspecifiedTypeRequest) request).getRequestForType(UMLElementTypes.DurationObservation_Shape);
-			}
-			if (req != null) {
-				Object initLocation = req.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
-				if (initLocation instanceof Point) {
-					Point startPoint = ((Point) initLocation).getCopy();
-					Point targetPoint = ((CreateUnspecifiedTypeRequest) request).getLocation().getCopy();
-					getFeedbackLayer().translateToRelative(startPoint);
-					getFeedbackLayer().translateToRelative(targetPoint);
-					if (durationCreationFeedback == null) {
-						durationCreationFeedback = new Polyline();
-						durationCreationFeedback.setLineWidth(1);
-						durationCreationFeedback.setLineStyle(Graphics.LINE_DASHDOT);
-						durationCreationFeedback.setForegroundColor(((IGraphicalEditPart) getHost()).getFigure().getLocalForegroundColor());
-						addFeedback(durationCreationFeedback);
-					}
-					durationCreationFeedback.setStart(startPoint);
-					durationCreationFeedback.setEnd(targetPoint);
-					return;
-				}
-			}
-		}
-		super.showSourceFeedback(request);
-	}
-
-	/**
-	 * Erase the feedback for creating a duration constraint from this edit part
-	 *
-	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#eraseSourceFeedback(org.eclipse.gef.Request)
-	 * @param request
-	 *            creation request
-	 */
-	@Override
-	public void eraseSourceFeedback(Request request) {
-		super.eraseSourceFeedback(request);
-		if (durationCreationFeedback != null) {
-			removeFeedback(durationCreationFeedback);
-		}
-		durationCreationFeedback = null;
-	}
-
-	/**
 	 * Get the replacing connection router for routing messages correctly
 	 *
 	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#getDummyConnectionRouter(org.eclipse.gef.requests.CreateConnectionRequest)
@@ -370,12 +307,12 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 						IAdaptable gateAdapter = new IAdaptable() {
 
 							@Override
-							public Object getAdapter(Class adapter) {
+							public <T> T getAdapter(Class<T> adapter) {
 								if (Gate.class == adapter) {
 									Message message = elementAdapter.getAdapter(Message.class);
 									MessageEnd sendEvent = message.getSendEvent();
 									if (sendEvent instanceof Gate) {
-										return sendEvent;
+										return adapter.cast(sendEvent);
 									}
 								}
 								return null;

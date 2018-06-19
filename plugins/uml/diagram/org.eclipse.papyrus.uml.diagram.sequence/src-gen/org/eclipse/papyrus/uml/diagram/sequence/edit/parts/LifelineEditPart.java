@@ -122,7 +122,6 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 					case StateInvariantEditPart.VISUAL_ID:
 					case TimeConstraintEditPart.VISUAL_ID:
 					case TimeObservationEditPart.VISUAL_ID:
-					case DurationConstraintEditPart.VISUAL_ID:
 					case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 						return new BorderItemResizableEditPolicy();
 					}
@@ -209,14 +208,6 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 
-		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
-		if (childEditPart instanceof DurationConstraintEditPart) {
-			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((DurationConstraintEditPart) childEditPart).getFigure(),
-					locator);
-			return true;
-		}
-
 		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
 		if (childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.SOUTH);
@@ -245,11 +236,6 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 		}
 		if (childEditPart instanceof TimeObservationEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(((TimeObservationEditPart) childEditPart).getFigure());
-			return true;
-		}
-		if (childEditPart instanceof DurationConstraintEditPart) {
-			getBorderedFigure().getBorderItemContainer()
-					.remove(((DurationConstraintEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {

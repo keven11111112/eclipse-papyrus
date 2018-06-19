@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
-import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.TimeConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.TimeObservationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
@@ -41,9 +40,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
@@ -71,8 +67,6 @@ import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
-import org.eclipse.uml2.uml.DurationConstraint;
-import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.GeneralOrdering;
@@ -299,10 +293,10 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public static List<UMLNodeDescriptor> getInteraction_Shape_SemanticChildren(View view) {
 		if (!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
 		Interaction modelElement = (Interaction) view.getElement();
-		List result = new LinkedList();
+		List<UMLNodeDescriptor> result = new LinkedList<>();
 		// remove fake children for messages (DurationConstraintInMessageEditPart/DurationObservationEditPart)
 		return result;
 	}
@@ -329,7 +323,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 
 	/**
 	 * @generated NOT (update at each lifeline modification) Added code for manage ExecutionSpecification, handle TimeConstraintEditPart and
-	 *            DurationConstraintEditPart children, handle TimeObservationEditPart children
+	 *            handle TimeObservationEditPart children
 	 */
 	public static List<UMLNodeDescriptor> getLifeline_Shape_SemanticChildren(View view) {
 		if (!view.isSetElement()) {
@@ -378,14 +372,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 					// block from generated code
 					String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 					if (TimeConstraintEditPart.VISUAL_ID.equals(visualID)) {
-						result.add(new UMLNodeDescriptor(childElement, visualID));
-						continue;
-					}
-				}
-				for (DurationConstraint childElement : DurationConstraintHelper.getDurationConstraintsOn(covering)) {
-					// block from generated code
-					String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-					if (DurationConstraintEditPart.VISUAL_ID.equals(visualID)) {
 						result.add(new UMLNodeDescriptor(childElement, visualID));
 						continue;
 					}
@@ -442,18 +428,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getTimeConstraint_Shape_ContainedLinks(view);
 			case TimeObservationEditPart.VISUAL_ID:
 				return getTimeObservation_Shape_ContainedLinks(view);
-			case DurationConstraintEditPart.VISUAL_ID:
-				return getDurationConstraint_Shape_ContainedLinks(view);
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 				return getDestructionOccurrenceSpecification_Shape_ContainedLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
 				return getConstraint_Shape_ContainedLinks(view);
 			case CommentEditPart.VISUAL_ID:
 				return getComment_Shape_ContainedLinks(view);
-			case DurationConstraintInMessageEditPart.VISUAL_ID:
-				return getDurationConstraint_Shape_CN_ContainedLinks(view);
-			case DurationObservationEditPart.VISUAL_ID:
-				return getDurationObservation_Shape_ContainedLinks(view);
 			case GateEditPart.VISUAL_ID:
 				return getGate_Shape_ContainedLinks(view);
 			case MessageSyncEditPart.VISUAL_ID:
@@ -509,18 +489,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getTimeConstraint_Shape_IncomingLinks(view);
 			case TimeObservationEditPart.VISUAL_ID:
 				return getTimeObservation_Shape_IncomingLinks(view);
-			case DurationConstraintEditPart.VISUAL_ID:
-				return getDurationConstraint_Shape_IncomingLinks(view);
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 				return getDestructionOccurrenceSpecification_Shape_IncomingLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
 				return getConstraint_Shape_IncomingLinks(view);
 			case CommentEditPart.VISUAL_ID:
 				return getComment_Shape_IncomingLinks(view);
-			case DurationConstraintInMessageEditPart.VISUAL_ID:
-				return getDurationConstraint_Shape_CN_IncomingLinks(view);
-			case DurationObservationEditPart.VISUAL_ID:
-				return getDurationObservation_Shape_IncomingLinks(view);
 			case GateEditPart.VISUAL_ID:
 				return getGate_Shape_IncomingLinks(view);
 			case MessageSyncEditPart.VISUAL_ID:
@@ -576,18 +550,12 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getTimeConstraint_Shape_OutgoingLinks(view);
 			case TimeObservationEditPart.VISUAL_ID:
 				return getTimeObservation_Shape_OutgoingLinks(view);
-			case DurationConstraintEditPart.VISUAL_ID:
-				return getDurationConstraint_Shape_OutgoingLinks(view);
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 				return getDestructionOccurrenceSpecification_Shape_OutgoingLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
 				return getConstraint_Shape_OutgoingLinks(view);
 			case CommentEditPart.VISUAL_ID:
 				return getComment_Shape_OutgoingLinks(view);
-			case DurationConstraintInMessageEditPart.VISUAL_ID:
-				return getDurationConstraint_Shape_CN_OutgoingLinks(view);
-			case DurationObservationEditPart.VISUAL_ID:
-				return getDurationObservation_Shape_OutgoingLinks(view);
 			case GateEditPart.VISUAL_ID:
 				return getGate_Shape_OutgoingLinks(view);
 			case MessageSyncEditPart.VISUAL_ID:
@@ -743,17 +711,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_Shape_ContainedLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint) view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_Shape_ContainedLinks(View view) {
 		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
@@ -780,24 +737,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_Shape_CN_ContainedLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint) view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getDurationObservation_Shape_ContainedLinks(View view) {
-		return Collections.emptyList();
 	}
 
 	/**
@@ -1120,27 +1059,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_Shape_IncomingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_Shape_IncomingLinks(View view) {
 		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
@@ -1186,48 +1104,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getComment_Shape_IncomingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_Shape_CN_IncomingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
-				.getCrossReferenceAdapter(view.eResource().getResourceSet());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
-		result.addAll(
-				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getDurationObservation_Shape_IncomingLinks(View view) {
-		DurationObservation modelElement = (DurationObservation) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
 				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
@@ -1630,24 +1506,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_Shape_OutgoingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint) view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_Shape_OutgoingLinks(View view) {
 		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
@@ -1694,40 +1552,6 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_Shape_CN_OutgoingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint) view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getDurationObservation_Shape_OutgoingLinks(View view) {
-		DurationObservation modelElement = (DurationObservation) view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 

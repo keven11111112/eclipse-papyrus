@@ -75,15 +75,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintInMessageLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingAppliedStereotypeEditPart;
@@ -266,13 +257,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					case StateInvariantEditPart.VISUAL_ID:
 					case TimeConstraintEditPart.VISUAL_ID:
 					case TimeObservationEditPart.VISUAL_ID:
-					case DurationConstraintEditPart.VISUAL_ID:
 					case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 					case ConstraintEditPart.VISUAL_ID:
 					case CommentEditPart.VISUAL_ID:
-					case DurationObservationEditPart.VISUAL_ID:
 					case GateEditPart.VISUAL_ID:
-					case DurationConstraintInMessageEditPart.VISUAL_ID:
 						if (domainElement == null || !visualID
 								.equals(UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
 							return false; // visual id in semantic hint should match visual id for domain element
@@ -368,8 +356,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				return createTimeConstraint_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case TimeObservationEditPart.VISUAL_ID:
 				return createTimeObservation_Shape(domainElement, containerView, index, persisted, preferencesHint);
-			case DurationConstraintEditPart.VISUAL_ID:
-				return createDurationConstraint_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 				return createDestructionOccurrenceSpecification_Shape(domainElement, containerView, index, persisted,
 						preferencesHint);
@@ -377,11 +363,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				return createConstraint_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case CommentEditPart.VISUAL_ID:
 				return createComment_Shape(domainElement, containerView, index, persisted, preferencesHint);
-			case DurationConstraintInMessageEditPart.VISUAL_ID:
-				return createDurationConstraint_Shape_CN(domainElement, containerView, index, persisted,
-						preferencesHint);
-			case DurationObservationEditPart.VISUAL_ID:
-				return createDurationObservation_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case GateEditPart.VISUAL_ID:
 				return createGate_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			}
@@ -692,36 +673,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	public Node createDurationConstraint_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(DurationConstraintEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint");
-		Node durationConstraint_BodyLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationConstraintLabelEditPart.VISUAL_ID));
-		durationConstraint_BodyLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location durationConstraint_BodyLabel_Location = (Location) durationConstraint_BodyLabel.getLayoutConstraint();
-		durationConstraint_BodyLabel_Location.setX(0);
-		durationConstraint_BodyLabel_Location.setY(15);
-		Node durationConstraint_StereotypeLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationConstraintAppliedStereotypeEditPart.VISUAL_ID));
-		durationConstraint_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location durationConstraint_StereotypeLabel_Location = (Location) durationConstraint_StereotypeLabel
-				.getLayoutConstraint();
-		durationConstraint_StereotypeLabel_Location.setX(0);
-		durationConstraint_StereotypeLabel_Location.setY(-22);
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
 	public Node createDestructionOccurrenceSpecification_Shape(EObject domainElement, View containerView, int index,
 			boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -771,58 +722,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Comment");
 		Node comment_BodyLabel = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createDurationConstraint_Shape_CN(EObject domainElement, View containerView, int index,
-			boolean persisted, PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(DurationConstraintInMessageEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationConstraint");
-		Node durationConstraint_BodyLabel_CN = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationConstraintInMessageLabelEditPart.VISUAL_ID));
-		Node durationConstraint_StereotypeLabel_CN = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID));
-		durationConstraint_StereotypeLabel_CN.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location durationConstraint_StereotypeLabel_CN_Location = (Location) durationConstraint_StereotypeLabel_CN
-				.getLayoutConstraint();
-		durationConstraint_StereotypeLabel_CN_Location.setX(0);
-		durationConstraint_StereotypeLabel_CN_Location.setY(-22);
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createDurationObservation_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(DurationObservationEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationObservation");
-		Node durationObservation_NameLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationObservationLabelEditPart.VISUAL_ID));
-		Node durationObservation_StereotypeLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(DurationObservationAppliedStereotypeEditPart.VISUAL_ID));
-		durationObservation_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location durationObservation_StereotypeLabel_Location = (Location) durationObservation_StereotypeLabel
-				.getLayoutConstraint();
-		durationObservation_StereotypeLabel_Location.setX(0);
-		durationObservation_StereotypeLabel_Location.setY(-22);
 		return node;
 	}
 

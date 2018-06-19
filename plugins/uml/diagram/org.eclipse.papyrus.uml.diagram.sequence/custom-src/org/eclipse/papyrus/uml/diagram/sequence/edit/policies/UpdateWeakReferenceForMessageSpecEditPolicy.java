@@ -147,7 +147,7 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 				}
 
 				for (Object editPart : connectionsAndChildren) {
-					if (editPart instanceof ConnectionEditPart) {
+					if (editPart instanceof AbstractMessageEditPart) {
 						EObject element = ((View) ((AbstractMessageEditPart) editPart).getAdapter(View.class)).getElement();
 						if (element instanceof Message && null != ((Message) element).getSendEvent() && ((Message) element).getSendEvent().equals(nextEvent)
 								|| element instanceof Message && null != ((Message) element).getReceiveEvent() && ((Message) element).getReceiveEvent().equals(nextEvent)) {

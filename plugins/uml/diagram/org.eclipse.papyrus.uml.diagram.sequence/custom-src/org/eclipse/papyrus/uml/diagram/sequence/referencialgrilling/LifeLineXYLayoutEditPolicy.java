@@ -60,7 +60,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceReferenceE
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.util.ExecutionSpecificationUtil;
-import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;

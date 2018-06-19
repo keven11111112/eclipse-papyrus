@@ -22,7 +22,6 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.commands.CommandStackListener;
-import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.palette.PaletteViewerProvider;
 import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
@@ -122,22 +121,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	@Override
 	protected String getContextID() {
 		return CONTEXT_ID;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
-		PaletteRoot paletteRoot;
-		if (existingPaletteRoot == null) {
-			paletteRoot = PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
-		} else {
-			PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
-			paletteRoot = existingPaletteRoot;
-		}
-		applyCustomizationsToPalette(paletteRoot);
-		return paletteRoot;
 	}
 
 	/**

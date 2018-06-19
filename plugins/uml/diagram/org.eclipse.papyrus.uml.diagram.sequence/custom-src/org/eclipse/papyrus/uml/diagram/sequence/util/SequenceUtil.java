@@ -83,7 +83,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -119,7 +118,6 @@ import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
-import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -823,32 +821,6 @@ public class SequenceUtil {
 		} else if (timeElement instanceof TimeConstraint) {
 			if (((TimeConstraint) timeElement).getConstrainedElements().contains(occSpec)) {
 				return PositionConstants.CENTER;
-			} else {
-				return PositionConstants.NONE;
-			}
-		} else if (timeElement instanceof DurationConstraint) {
-			if (((DurationConstraint) timeElement).getConstrainedElements().contains(occSpec)) {
-				List<Element> events = ((DurationConstraint) timeElement).getConstrainedElements();
-				LifelineEditPart lifelinePart = getParentLifelinePart(timeElementPart);
-				if (lifelinePart != null && events.size() >= 2) {
-					OccurrenceSpecification otherEvent = null;
-					if (!occSpec.equals(events.get(0)) && events.get(0) instanceof OccurrenceSpecification) {
-						otherEvent = (OccurrenceSpecification) events.get(0);
-					} else if (!occSpec.equals(events.get(1)) && events.get(1) instanceof OccurrenceSpecification) {
-						otherEvent = (OccurrenceSpecification) events.get(1);
-					}
-					if (otherEvent != null) {
-						Point otherLoc = findLocationOfEvent(lifelinePart, otherEvent);
-						Point thisLoc = findLocationOfEvent(lifelinePart, occSpec);
-						if (otherLoc != null && thisLoc != null) {
-							if (otherLoc.y > thisLoc.y) {
-								return PositionConstants.TOP;
-							} else {
-								return PositionConstants.BOTTOM;
-							}
-						}
-					}
-				}
 			} else {
 				return PositionConstants.NONE;
 			}
@@ -1727,9 +1699,6 @@ public class SequenceUtil {
 	public static void installObservationLinkPolicy(EditPart editPart) {
 		String editPolicy = "observationlink";
 		if (editPart instanceof LifelineEditPart || editPart instanceof TimeObservationLabelEditPart) {
-			editPart.installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
-		}
-		if (editPart instanceof DurationObservationEditPart) {
 			editPart.installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
 		}
 		if (editPart instanceof MessageSyncEditPart || editPart instanceof MessageAsyncEditPart || editPart instanceof MessageReplyEditPart || editPart instanceof MessageCreateEditPart || editPart instanceof MessageDeleteEditPart
