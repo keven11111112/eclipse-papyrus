@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   
+ *   Asma Smaoui (CEA) asma.smaoui@cea.fr - Bug 536172 
+ *    
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.internationalization.modelresource;
@@ -633,7 +634,7 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 
 		// Calculate the new URI with the correct name (depending to locale)
 		URI newBaseURI = newURIwithoutExtension.trimFileExtension();
-		if (null == locale || !locale.toString().isEmpty()) {
+		if (null != locale && !locale.toString().isEmpty()) {
 			String lastSegment = newBaseURI.lastSegment();
 			lastSegment = lastSegment + LocaleNameResolver.UNDERSCORE + locale.toString();
 			newBaseURI = newBaseURI.trimSegments(1);
@@ -645,9 +646,11 @@ public class InternationalizationModelResource extends AbstractModelWithSharedRe
 		resource.setURI(newBaseURI);
 
 		// Remove the old resource URI from map
-		propertiesByLocale.get(initialURI).remove(locale);
-		if (propertiesByLocale.get(initialURI).isEmpty()) {
-			propertiesByLocale.remove(initialURI);
+		if (locale != null) {
+			propertiesByLocale.get(initialURI).remove(locale);
+			if (propertiesByLocale.get(initialURI).isEmpty()) {
+				propertiesByLocale.remove(initialURI);
+			}
 		}
 
 		// Add the new resource URI from map
