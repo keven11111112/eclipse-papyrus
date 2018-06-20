@@ -38,12 +38,6 @@
         <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.InteractionOperand_Shape"/>
       </elementDescriptors>
     </ownedConfigurations>
-    <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="createContinuation7CreationTool" label="Continuation" description="Create Continuation" kind="CreationTool">
-      <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Continuation.gif"/>
-      <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
-        <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Continuation_Shape"/>
-      </elementDescriptors>
-    </ownedConfigurations>
     <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="createStateInvariant8CreationTool" label="StateInvariant" description="Create StateInvariant" kind="CreationTool">
       <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/StateInvariant.gif"/>
       <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
