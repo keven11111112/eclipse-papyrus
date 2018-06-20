@@ -8,11 +8,9 @@
 	  <artifactId>org.eclipse.papyrus.plugins.tests.releng</artifactId>
 	  <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>org.eclipse.papyrus.tests</groupId>
   <artifactId>org.eclipse.papyrus.uml.tests.releng</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-	<description>Tests for the core uml functions of Papyrus.</description>
+  <description>Tests for the core uml functions of Papyrus.</description>
   
   <modules>
   	<!-- Suites -->
@@ -38,6 +36,7 @@
 	<module>org.eclipse.papyrus.uml.modelrepair.tests</module>
 	<module>org.eclipse.papyrus.uml.service.types.tests</module>
 	<module>org.eclipse.papyrus.uml.service.types.ui.tests</module>
+	<module>org.eclipse.papyrus.uml.architecture.tests</module>
 		
   </modules>
   
