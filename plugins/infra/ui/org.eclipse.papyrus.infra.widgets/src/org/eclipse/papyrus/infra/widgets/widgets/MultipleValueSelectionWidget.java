@@ -741,7 +741,11 @@ public class MultipleValueSelectionWidget implements ISelectionChangedListener, 
 	}
 
 	public void setSelector(IElementSelector selector) {
+		if(null != this.selector) {
+			this.selector.removeElementSelectionListener(this);
+		}
 		this.selector = selector;
+		this.selector.addElementSelectionListener(this);
 	}
 
 	/**
@@ -808,7 +812,9 @@ public class MultipleValueSelectionWidget implements ISelectionChangedListener, 
 	 */
 	@Override
 	public void dispose() {
-		selector.removeElementSelectionListener(this);
+		if(null != this.selector) {
+			this.selector.removeElementSelectionListener(this);
+		}
 	}
 
 	/**
