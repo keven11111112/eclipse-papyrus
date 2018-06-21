@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - Support implicit enablement of prototypes of unavailable contexts (CDO)
  *  Christian W. Damus - bug 482930
  *  Christian W. Damus - bug 469188
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 527001
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.runtime;
 
@@ -951,7 +952,7 @@ public class ConfigurationManager implements IInternalConfigurationManager {
 			propertyEditorName = multiple ? "MultiBoolean" : "BooleanRadio"; //$NON-NLS-1$ //$NON-NLS-2$
 			break;
 		case ENUMERATION:
-			propertyEditorName = multiple ? "MultiEnum" : "EnumCombo"; //$NON-NLS-1$ //$NON-NLS-2$
+			propertyEditorName = multiple ? "MultiReference" : "EnumCombo"; //$NON-NLS-1$ //$NON-NLS-2$
 			break;
 		case INTEGER:
 			propertyEditorName = multiple ? "MultiInteger" : "IntegerEditor"; //$NON-NLS-1$ //$NON-NLS-2$
