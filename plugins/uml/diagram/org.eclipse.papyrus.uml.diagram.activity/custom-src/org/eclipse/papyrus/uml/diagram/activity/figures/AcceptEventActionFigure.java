@@ -27,44 +27,18 @@ import org.eclipse.swt.graphics.Image;
 
 public class AcceptEventActionFigure extends RoundedCompartmentFigure {
 
-	/**
-	 * this label is internal to the figure and represents the name of the acceptEventAction
-	 */
-	// private CenteredWrappedLabel fAcceptEventActionLabel;
-
-	// private final Insets marginTemplate;
 
 	/** The helper which handles stereotype aspects */
 	private StereotypeFigureHelper stereotypeHelper;
 
 	public AcceptEventActionFigure() {
-		// CenteredColumnLayout layoutThis = new CenteredColumnLayout();
-		// this.setLayoutManager(layoutThis);
-		// this.addPoint(new Point(0, 0));
-		// this.addPoint(new Point(200, 0));
-		// this.addPoint(new Point(200, 50));
-		// this.addPoint(new Point(0, 50));
-		// this.addPoint(new Point(50, 25));
-		// // add time template
-		// this.addTimePoint(new Point(0, 0));
-		// this.addTimePoint(new Point(100, 0));
-		// this.addTimePoint(new Point(50, 25));
-		// this.addTimePoint(new Point(100, 50));
-		// this.addTimePoint(new Point(0, 50));
-		// this.addTimePoint(new Point(50, 25));
-		// this.setFill(true);
-		// this.setLineWidth(1);
-		// make margin border relative
-		// marginTemplate = new Insets(0, 50, 0, 0);
-		// this.setBorder(new MarginBorder(marginTemplate));
 		createContents();
 		// use StereotypeFigureHelper
 		stereotypeHelper = new StereotypeFigureHelper(this) {
 
 			@Override
 			public Object getStereotypeRectangleConstraint() {
-				CenteredColumnConstraint constraintStereotypeRect0 = new CenteredColumnConstraint(false);
-				return constraintStereotypeRect0;
+				return new CenteredColumnConstraint(false);
 			}
 		};
 	}
@@ -73,33 +47,8 @@ public class AcceptEventActionFigure extends RoundedCompartmentFigure {
 	 * This method is used to create the content into the figure, in our case this is the label of the acceptEventAction
 	 */
 	private void createContents() {
-		// RectangleFigure labelRect0 = new RectangleFigure();
-		// labelRect0.setFill(false);
-		// labelRect0.setOutline(false);
-		// labelRect0.setLineWidth(1);
-		// // use CenteredColumnConstraint
-		// CenteredColumnConstraint constraintLabelRect0 = new CenteredColumnConstraint(true);
-		// this.add(labelRect0, constraintLabelRect0);
-		// CenterLayout layoutLabelRect0 = new CenterLayout();
-		// labelRect0.setLayoutManager(layoutLabelRect0);
-		// fAcceptEventActionLabel = new CenteredWrappedLabel();
-		// fAcceptEventActionLabel.setBorder(new MarginBorder(5, 5, 5, 5));
-		// this.add(fAcceptEventActionLabel);
 	}
 
-	//
-	//
-	// private final PointList myTemplate = new PointList();
-	//
-	//
-	// private Rectangle myTemplateBounds;
-
-	//
-	// @Override
-	// public void addPoint(Point point) {
-	// myTemplate.addPoint(point);
-	// myTemplateBounds = null;
-	// }
 
 	/**
 	 * Refresh the layout of the figure
@@ -171,27 +120,9 @@ public class AcceptEventActionFigure extends RoundedCompartmentFigure {
 		stereotypePropertiesInCompartment = stereotypeProperties;
 	}
 
-	/**
-	 * Gets the stereotype label.
-	 *
-	 * @return the stereotype label
-	 * @unused
-	 * @deprecated
-	 */
-	// @Override
-	// @Deprecated
-	// public Label getStereotypesLabel() {
-	// return null;// fActionStereotypeLabel;
-	// }
+	private final PointList myTempslateTime = new PointList();
 
-	/**
-	 * @generated
-	 */
-	private final PointList myTemplateTime = new PointList();
 
-	/**
-	 * @generated
-	 */
 	private boolean useTemplateTime = false;
 
 	/**
@@ -226,153 +157,4 @@ public class AcceptEventActionFigure extends RoundedCompartmentFigure {
 		return useTemplateTime;
 	}
 
-	// private Rectangle myTemplateTimeBounds;
-
-	// public void addTimePoint(Point point) {
-	// myTemplateTime.addPoint(point);
-	// myTemplateTimeBounds = null;
-	// }
-
-	//
-	// @Override
-	// protected void fillShape(Graphics graphics) {
-	// Rectangle bounds = getBounds();
-	// graphics.pushState();
-	// graphics.translate(bounds.x, bounds.y);
-	// graphics.fillPolygon(scalePointList());
-	// graphics.popState();
-	// // refresh relative margin
-	// Insets newInsets = scaleMargin();
-	// if (!newInsets.equals(getBorder().getInsets(this))) {
-	// this.setBorder(new MarginBorder(scaleMargin()));
-	// }
-	// }
-
-	// @Override
-	// protected void outlineShape(Graphics graphics) {
-	// Rectangle bounds = getBounds();
-	// graphics.pushState();
-	// graphics.translate(bounds.x, bounds.y);
-	// graphics.setLineWidth(Math.max(1, getLineWidth()));
-	// graphics.drawPolygon(scalePointList());
-	// graphics.popState();
-	// }
-
-	// private Insets scaleMargin() {
-	// Rectangle pointsBounds = getTemplateBounds();
-	// Rectangle actualBounds = getBounds();
-	// float xScale = ((float) actualBounds.width) / pointsBounds.width;
-	// float yScale = ((float) actualBounds.height) / pointsBounds.height;
-	// if (xScale == 1 && yScale == 1) {
-	// return marginTemplate;
-	// }
-	// Insets scaled = new Insets(marginTemplate);
-	// scaled.top = (int) Math.floor(scaled.top * yScale);
-	// scaled.left = (int) Math.floor(scaled.left * xScale);
-	// scaled.bottom = (int) Math.floor(scaled.bottom * yScale);
-	// scaled.right = (int) Math.floor(scaled.right * xScale);
-	// return scaled;
-	// }
-
-	// /**
-	// * switch between the two templates
-	// */
-	// private Rectangle getTemplateBounds() {
-	// if (myTemplateBounds == null) {
-	// myTemplateBounds = myTemplate.getBounds().getCopy().union(0, 0);
-	// // just safety -- we are going to use this as divider
-	// if (myTemplateBounds.width < 1) {
-	// myTemplateBounds.width = 1;
-	// }
-	// if (myTemplateBounds.height < 1) {
-	// myTemplateBounds.height = 1;
-	// }
-	// }
-	// // switch between the two templates : create the second template bounds
-	// if (myTemplateTimeBounds == null) {
-	// myTemplateTimeBounds = myTemplateTime.getBounds().getCopy().union(0, 0);
-	// // just safety -- we are going to use this as divider
-	// if (myTemplateTimeBounds.width < 1) {
-	// myTemplateTimeBounds.width = 1;
-	// }
-	// if (myTemplateTimeBounds.height < 1) {
-	// myTemplateTimeBounds.height = 1;
-	// }
-	// }
-	// // switch between the two templates : choose appropriate one
-	// if (useTemplateTime) {
-	// return myTemplateTimeBounds;
-	// } else {
-	// return myTemplateBounds;
-	// }
-	// }
-
-	// private int[] scalePointList() {
-	// Rectangle pointsBounds = getTemplateBounds();
-	// Rectangle actualBounds = getBounds();
-	// float xScale = ((float) actualBounds.width) / pointsBounds.width;
-	// float yScale = ((float) actualBounds.height) / pointsBounds.height;
-	// if (xScale == 1 && yScale == 1) {
-	// // switch between the two templates
-	// if (useTemplateTime) {
-	// return myTemplateTime.toIntArray();
-	// } else {
-	// return myTemplate.toIntArray();
-	// }
-	// }
-	// // switch between the two templates
-	// int[] scaled;
-	// if (useTemplateTime) {
-	// scaled = myTemplateTime.toIntArray().clone();
-	// } else {
-	// scaled = myTemplate.toIntArray().clone();
-	// }
-	// for (int i = 0; i < scaled.length; i += 2) {
-	// scaled[i] = (int) Math.floor(scaled[i] * xScale);
-	// scaled[i + 1] = (int) Math.floor(scaled[i + 1] * yScale);
-	// }
-	// return scaled;
-	// }
-
-	// /**
-	// * @generated
-	// */
-	// public CenteredWrappedLabel getAcceptEventActionLabel() {
-	// return fAcceptEventActionLabel;
-	// // return getNameLabel();
-	// }
-
-	// @Override
-	// public Color getBorderColor() {
-	// return null;
-	// }
-	//
-	// @Override
-	// public boolean isShadow() {
-	// return false;
-	// }
-	//
-	// @Override
-	// public void setBorderColor(Color borderColor) {
-	//
-	// }
-	//
-	// @Override
-	// public void setShadow(boolean shadow) {
-	//
-	// }
-	//
-	// @Override
-	// public void setTransparency(int transparency) {
-	//
-	// }
-	//
-	// @Override
-	// public void setGradientData(int gradientColor1, int gradientColor2, int gradientStyle) {
-	// }
-	//
-	// @Override
-	// public void setIsUsingGradient(boolean b) {
-	//
-	// }
 }

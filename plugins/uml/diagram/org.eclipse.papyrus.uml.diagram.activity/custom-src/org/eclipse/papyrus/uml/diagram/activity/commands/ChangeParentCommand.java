@@ -99,8 +99,8 @@ public class ChangeParentCommand extends AbstractTransactionalCommand {
 		/**
 		 * Change graphical parent
 		 */
-		View childView = (View) child.getAdapter(View.class);
-		View parentView = (View) parent.getAdapter(View.class);
+		View childView = child.getAdapter(View.class);
+		View parentView = parent.getAdapter(View.class);
 		EObject oldParent = childView.eContainer();
 		if (oldParent instanceof View) {
 			((View) oldParent).removeChild(childView);
@@ -111,10 +111,8 @@ public class ChangeParentCommand extends AbstractTransactionalCommand {
 			parentView.insertChildAt(childView, index);
 		}
 		/**
-		 * Change coordiante
+		 * Change coordinate
 		 */
-		Point childViewCoordinate = getLocation(childView);
-		Point parentViewCoordinate = getLocation(parentView);
 		ViewUtil.setStructuralFeatureValue(childView, NotationPackage.eINSTANCE.getLocation_X(), Integer.valueOf(110));
 		ViewUtil.setStructuralFeatureValue(childView, NotationPackage.eINSTANCE.getLocation_Y(), Integer.valueOf(110));
 		return CommandResult.newOKCommandResult();

@@ -17,10 +17,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
@@ -35,28 +32,6 @@ public class CustomActivityParameterNodeEditPart extends ActivityParameterNodeEd
 	 */
 	public CustomActivityParameterNodeEditPart(View view) {
 		super(view);
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalActionEditPart#createDefaultEditPolicies()
-	 *
-	 */
-	@Override
-	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		// installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalActionEditPart#createNodePlate()
-	 *
-	 * @return
-	 */
-	@Override
-	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new RoundedRectangleNodePlateFigure(-20, 40);
-		return super.createNodePlate();// result;
-
 	}
 
 	/**

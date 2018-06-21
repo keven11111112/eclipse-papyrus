@@ -19,14 +19,12 @@ import java.util.Iterator;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.papyrus.uml.diagram.communication.custom.helper.CommunicationRequestConstant;
@@ -66,15 +64,6 @@ public class CommunicationGraphicalNodeEditPolicy extends GraphicalNodeEditPolic
 			}
 		}
 		return command;
-	}
-
-	/**
-	 * used to obtain the transactional edit domain.
-	 *
-	 * @return the current transactional edit domain
-	 */
-	private TransactionalEditingDomain getEditingDomain() {
-		return ((IGraphicalEditPart) getHost()).getEditingDomain();
 	}
 
 	/**

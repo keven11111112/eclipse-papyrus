@@ -30,9 +30,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Pin;
 import org.eclipse.uml2.uml.PrimitiveType;
-import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.StructuredActivityNode;
-import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.Type;
 
 /**

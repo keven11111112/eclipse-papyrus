@@ -55,7 +55,7 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 
 	private static String diagramCreationMethodName = "createDiagram"; //$NON-NLS-1$
 
-	static protected class ClassToCreationMethodMap extends HashMap {
+	protected static class ClassToCreationMethodMap extends HashMap {
 
 		static final long serialVersionUID = 1;
 
@@ -280,11 +280,11 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 		if (semanticAdapter == null) {
 			return null;
 		}
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
+		EObject eObject = semanticAdapter.getAdapter(EObject.class);
 		if (eObject != null) {
 			return EMFCoreUtil.getProxyClass(eObject);
 		}
-		IElementType type = (IElementType) semanticAdapter.getAdapter(IElementType.class);
+		IElementType type = semanticAdapter.getAdapter(IElementType.class);
 		if (type != null) {
 			return type.getEClass();
 		}
@@ -318,7 +318,7 @@ public class AbstractViewProvider extends AbstractProvider implements IViewProvi
 		if (semanticAdapter == null) {
 			return null;
 		}
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
+		EObject eObject = semanticAdapter.getAdapter(EObject.class);
 		if (eObject != null) {
 			return EMFCoreUtil.resolve(domain, eObject);
 		}

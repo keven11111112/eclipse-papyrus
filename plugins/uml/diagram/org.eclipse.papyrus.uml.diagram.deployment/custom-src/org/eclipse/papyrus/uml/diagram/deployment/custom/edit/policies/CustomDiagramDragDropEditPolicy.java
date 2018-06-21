@@ -457,14 +457,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the command
 	 */
 	private Command dropChildNode(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID, String linkVISUALID) {
-
-		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
-		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
-		// if(graphicalParentObject instanceof org.eclipse.uml2.uml.Package) {
 		return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement));
-		// }
-
-		// return UnexecutableCommand.INSTANCE;
 	}
 
 	/**

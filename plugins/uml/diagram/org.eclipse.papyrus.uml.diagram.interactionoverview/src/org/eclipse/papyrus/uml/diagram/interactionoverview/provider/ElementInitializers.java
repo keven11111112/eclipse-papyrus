@@ -11,8 +11,8 @@
 package org.eclipse.papyrus.uml.diagram.interactionoverview.provider;
 
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
-import org.eclipse.papyrus.uml.diagram.common.actions.LabelHelper;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.Activator;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 
 
@@ -36,6 +36,6 @@ public class ElementInitializers extends org.eclipse.papyrus.uml.diagram.activit
 	}
 
 	private String name_CallBehaviorAction_InteractionShape(final CallBehaviorAction self) {
-		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+		return NamedElementUtil.getDefaultNameWithIncrementFromBase(self.eClass().getName(), self.eContainer().eContents());
 	}
 }

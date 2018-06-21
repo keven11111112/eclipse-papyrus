@@ -36,7 +36,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AutomaticCompartmentLayoutManager;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.SubCompartmentLayoutManager;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SubCompartmentLayoutManager;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Pattern;
@@ -174,11 +174,10 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	 *            the compartment figure
 	 */
 	protected void createContentPane(List<String> compartmentFigure) {
-		containerFigures = new HashMap<String, RectangleFigure>();
+		containerFigures = new HashMap<>();
 		for (String id : compartmentFigure) {
 			RectangleFigure newFigure = new RectangleFigure();
 			newFigure.setLayoutManager(new SubCompartmentLayoutManager());
-			// to debug graphically: newFigure.setFill(true);
 			newFigure.setFill(false);
 			newFigure.setBorder(null);
 			newFigure.setOutline(false);

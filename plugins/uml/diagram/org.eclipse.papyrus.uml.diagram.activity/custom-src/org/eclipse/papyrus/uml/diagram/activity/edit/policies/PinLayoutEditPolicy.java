@@ -19,7 +19,6 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * This edit policy replaces the GMF generated edit policy for Port.
@@ -31,8 +30,6 @@ public class PinLayoutEditPolicy extends LayoutEditPolicy {
 
 	@Override
 	protected EditPolicy createChildEditPolicy(EditPart child) {
-		View childView = (View) child.getModel();
-
 		return new ExternalLabelPrimaryDragRoleEditPolicy();
 	}
 

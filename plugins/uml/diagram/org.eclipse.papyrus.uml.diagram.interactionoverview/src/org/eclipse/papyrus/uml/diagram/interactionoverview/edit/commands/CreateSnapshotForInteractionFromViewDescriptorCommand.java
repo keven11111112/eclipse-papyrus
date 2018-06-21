@@ -215,7 +215,7 @@ public class CreateSnapshotForInteractionFromViewDescriptorCommand extends Abstr
 		if (dialog.open() == org.eclipse.jface.window.Window.OK) {
 			final Object[] result = dialog.getResult();
 			if (result != null && result.length > 0) {
-				return (Diagram) EMFHelper.getEObject(result[0]);// (Diagram)(((ModelElementItem)result[0]).getEObject());
+				return (Diagram) EMFHelper.getEObject(result[0]);
 			}
 		}
 

@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 
 /**
  * This class is used to create a connection view
@@ -58,7 +58,7 @@ public class CustomDeferredCreateConnectionViewCommand extends CommonDeferredCre
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		CommandResult commandResult = null;
-		if (command != null && command instanceof AssociationClassViewCreateCommand) {
+		if (command instanceof AssociationClassViewCreateCommand) {
 			Map<?, ?> epRegistry = viewer.getEditPartRegistry();
 			IGraphicalEditPart sourceEP = (IGraphicalEditPart) epRegistry.get(sourceViewAdapter.getAdapter(View.class));
 			IGraphicalEditPart targetEP = (IGraphicalEditPart) epRegistry.get(((AssociationClassViewCreateCommand) command).getNode());

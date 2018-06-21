@@ -35,7 +35,7 @@ import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternati
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.graphics.Image;

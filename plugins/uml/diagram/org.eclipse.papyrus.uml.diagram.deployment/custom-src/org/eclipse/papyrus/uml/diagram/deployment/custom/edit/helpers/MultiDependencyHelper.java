@@ -49,7 +49,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeleteLinkDuringCreationCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.command.CustomDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.command.DependencyDiamonViewCreateCommand;
