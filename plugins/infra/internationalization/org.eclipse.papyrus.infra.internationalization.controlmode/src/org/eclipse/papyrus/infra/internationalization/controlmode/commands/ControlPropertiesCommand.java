@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Asma Smaoui (CEA) asma.smaoui@cea.fr - Bug 536172
  *   
  *****************************************************************************/
 
@@ -131,10 +132,13 @@ public class ControlPropertiesCommand extends AbstractControlCommand {
 				}
 
 				final Resource oldPropertiesResource = getOldPropertiesResource(locale);
-				final InternationalizationLibrary oldLibrary = (InternationalizationLibrary) oldPropertiesResource
-						.getContents().get(0);
-
-				oldLibrary.getEntries().removeAll(entries);
+				
+				if (oldPropertiesResource != null && !oldPropertiesResource.getContents().isEmpty()) {
+					final InternationalizationLibrary oldLibrary = (InternationalizationLibrary) oldPropertiesResource
+							.getContents().get(0);
+	
+					oldLibrary.getEntries().removeAll(entries);
+				}
 			}
 
 			createdResources.add(newPropertiesResource);
