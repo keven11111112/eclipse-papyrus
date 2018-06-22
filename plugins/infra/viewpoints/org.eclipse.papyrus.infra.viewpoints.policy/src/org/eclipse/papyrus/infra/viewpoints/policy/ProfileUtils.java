@@ -84,14 +84,14 @@ public class ProfileUtils {
 		 * @see org.eclipse.papyrus.infra.viewpoints.policy.IProfileHelper#getAppliedProfiles(org.eclipse.emf.ecore.EObject)
 		 */
 		public Collection<EPackage> getAppliedProfiles(EObject model) {
-			return new ArrayList<EPackage>(0);
+			return new ArrayList<>(0);
 		}
 
 		/**
 		 * @see org.eclipse.papyrus.infra.viewpoints.policy.IProfileHelper#getAppliedStereotypes(org.eclipse.emf.ecore.EObject)
 		 */
 		public Collection<EClass> getAppliedStereotypes(EObject object) {
-			return new ArrayList<EClass>(0);
+			return new ArrayList<>(0);
 		}
 	}
 }

@@ -39,7 +39,7 @@ public class RuleConstraintManager {
 	public boolean matchRule(ModelRule rule, EObject element) {
 		// if no rule, return true
 		List<ConstraintDescriptor> constraintDescriptors = rule.getConstraints();
-		if (constraintDescriptors == null || constraintDescriptors.size() == 0) {
+		if (constraintDescriptors == null || constraintDescriptors.isEmpty()) {
 			return true;
 		}
 

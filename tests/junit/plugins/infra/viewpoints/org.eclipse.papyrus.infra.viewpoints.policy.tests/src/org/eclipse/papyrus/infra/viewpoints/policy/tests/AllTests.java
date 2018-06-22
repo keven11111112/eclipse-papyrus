@@ -22,8 +22,10 @@ import org.junit.runners.Suite.SuiteClasses;
  * The master test suite for the plug-in.
  */
 @RunWith(ClassificationSuite.class)
-@SuiteClasses(ViewPrototypeTest.class)
+@SuiteClasses({
+	ViewPrototypeTest.class,
+	PolicyCheckerTest.class
+	})
 @Headless
 public class AllTests {
-	// Nothing required
 }

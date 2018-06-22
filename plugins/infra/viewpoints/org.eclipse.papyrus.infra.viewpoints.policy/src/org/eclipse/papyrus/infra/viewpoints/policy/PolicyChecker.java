@@ -311,14 +311,9 @@ public class PolicyChecker {
 	 * @since 2.0
 	 */
 	public boolean isInViewpoint(PapyrusRepresentationKind kind) {
-		for (MergedArchitectureViewpoint viewpoint : getViewpoints()) {
-			for (RepresentationKind aKind : viewpoint.getRepresentationKinds()) {
-				if (aKind.getQualifiedName().equals(kind.getQualifiedName())) {
-					return true;
-				}
-			}
-		}
-		return false;
+		return kind!=null && getViewpoints().stream()
+				.flatMap(viewpoint -> viewpoint.getRepresentationKinds().stream())
+		        .anyMatch(representationKinds -> representationKinds.getQualifiedName().equals(kind.getQualifiedName()));
 	}
 
 	/**
@@ -327,7 +322,7 @@ public class PolicyChecker {
 	 * @return A collection of view prototypes
 	 */
 	public Collection<ViewPrototype> getAllPrototypes() {
-		Collection<ViewPrototype> result = new ArrayList<ViewPrototype>();
+		Collection<ViewPrototype> result = new ArrayList<>();
 		for (MergedArchitectureViewpoint viewpoint : getViewpoints()) {
 			for (RepresentationKind kind : viewpoint.getRepresentationKinds()) {
 				PapyrusRepresentationKind view = (PapyrusRepresentationKind) kind;
@@ -348,7 +343,7 @@ public class PolicyChecker {
 	 * @return A list of the prototypes that can be instantiated
 	 */
 	public Collection<ViewPrototype> getPrototypesFor(EObject element) {
-		Collection<ViewPrototype> result = new LinkedHashSet<ViewPrototype>();
+		Collection<ViewPrototype> result = new LinkedHashSet<>();
 		Collection<EPackage> profiles = profileHelper.getAppliedProfiles(element);
 		Collection<EClass> stereotypes = profileHelper.getAppliedStereotypes(element);
 		for (MergedArchitectureViewpoint viewpoint : getViewpoints()) {
@@ -397,8 +392,7 @@ public class PolicyChecker {
 	public OwningRule getOwningRuleFor(ViewPrototype prototype, EObject owner) {
 		Collection<EClass> stereotypes = profileHelper.getAppliedStereotypes(owner);
 		int count = prototype.getOwnedViewCount(owner);
-		OwningRule rule = matchesCreationOwner(prototype.representationKind, owner, stereotypes, count);
-		return rule;
+		return matchesCreationOwner(prototype.representationKind, owner, stereotypes, count);
 	}
 
 	/**

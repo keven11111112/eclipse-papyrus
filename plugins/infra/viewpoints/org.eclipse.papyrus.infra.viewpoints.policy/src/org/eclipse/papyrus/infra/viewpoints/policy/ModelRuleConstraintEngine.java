@@ -35,7 +35,7 @@ import org.eclipse.papyrus.infra.architecture.representation.ModelRule;
  */
 public class ModelRuleConstraintEngine extends DefaultConstraintEngine<ModelRule> {
 
-	protected final Map<ModelRule, List<Constraint>> modelRule2Constraints = new HashMap<ModelRule, List<Constraint>>();
+	protected final Map<ModelRule, List<Constraint>> modelRule2Constraints = new HashMap<>();
 
 	/** singleton instance */
 	private static ModelRuleConstraintEngine instance;
@@ -62,7 +62,7 @@ public class ModelRuleConstraintEngine extends DefaultConstraintEngine<ModelRule
 	public boolean matchesRule(ModelRule rule, EObject element) {
 		Collection<EObject> selection = Collections.singletonList(element);
 		List<Constraint> constraints = getConstraintsFor(rule);
-		if (constraints == null || constraints.size() == 0) {
+		if (constraints == null || constraints.isEmpty()) {
 			return true;
 		}
 		for (Constraint c : constraints) {
@@ -103,11 +103,11 @@ public class ModelRuleConstraintEngine extends DefaultConstraintEngine<ModelRule
 	 */
 	protected List<Constraint> initializeConstraints(ModelRule rule) {
 		List<ConstraintDescriptor> descriptors = rule.getConstraints();
-		if (descriptors == null || descriptors.size() == 0) {
+		if (descriptors == null || descriptors.isEmpty()) {
 			return Collections.emptyList();
 		}
 
-		List<Constraint> constraints = new ArrayList<Constraint>();
+		List<Constraint> constraints = new ArrayList<>();
 		for (ConstraintDescriptor descriptor : descriptors) {
 			try {
 				Constraint constraint = ConstraintFactory.getInstance().createFromModel(descriptor);

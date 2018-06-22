@@ -116,7 +116,7 @@ public class NotationUtils {
 		}
 		IAdaptable input = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getInput();
 		if (input != null) {
-			EObject obj = (EObject) input.getAdapter(EObject.class);
+			EObject obj = input.getAdapter(EObject.class);
 			return tryGetNotationResources(obj);
 		}
 		return null;
@@ -177,6 +177,7 @@ public class NotationUtils {
 			return result;
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}

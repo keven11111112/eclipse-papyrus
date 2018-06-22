@@ -33,7 +33,6 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDescriptionUtils;
-import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureFramework;
@@ -96,16 +95,12 @@ public class ViewpointExplorer extends ViewPart {
 		contentProvider = new AdapterFactoryContentProvider(adapterFactory);
 		labelProvider = new AdapterFactoryLabelProvider(adapterFactory);
 		editingDomain = new AdapterFactoryEditingDomain(adapterFactory, null, new HashMap<Resource, Boolean>()) {
-			  public boolean isReadOnly(Resource resource) {
+			    @Override
+				public boolean isReadOnly(Resource resource) {
 				  return true; // to make the editing domain non-editable
 			  }
 		};
 	}
-
-     @Override
-	public void init(IViewSite site) throws PartInitException {
-        super.init(site);
-    }
 	
 	/*
 	 * (non-Javadoc)
@@ -285,7 +280,7 @@ public class ViewpointExplorer extends ViewPart {
 	 * @since 3.0
 	 */
 	public Object[] getPropertySources(Object[] objects) {
-		ArrayList<Object> propertySources = new ArrayList<Object>();
+		ArrayList<Object> propertySources = new ArrayList<>();
 		for (Object object : objects) {
 			propertySources.add(getPropertySource(object));
 		}

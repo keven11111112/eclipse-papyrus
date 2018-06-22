@@ -81,7 +81,7 @@ public abstract class ViewPrototype {
 		// Sort by priority
 		Collections.sort(elements, helperConfigComparator());
 
-		Collection<IViewTypeHelper> result = new ArrayList<IViewTypeHelper>();
+		Collection<IViewTypeHelper> result = new ArrayList<>();
 		for (IConfigurationElement element : elements) {
 			try {
 				IViewTypeHelper instance = (IViewTypeHelper) element.createExecutableExtension("class");
@@ -371,7 +371,7 @@ public abstract class ViewPrototype {
 	 * @author Laurent Wouters
 	 */
 	public static class Comp implements Comparator<ViewPrototype> {
-		private static final Map<Class<? extends PapyrusRepresentationKind>, Integer> priorities = new HashMap<Class<? extends PapyrusRepresentationKind>, Integer>();
+		private static final Map<Class<? extends PapyrusRepresentationKind>, Integer> priorities = new HashMap<>();
 		{
 			priorities.put(PapyrusDiagram.class, 1);
 			priorities.put(PapyrusTable.class, 2);

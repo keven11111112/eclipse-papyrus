@@ -63,11 +63,7 @@ public class IsContainedByProfileQuery implements JavaQuery {
 		}
 
 		String eclassName = eclass.getName();
-		if ("Profile".equals(eclassName)) {
-			return true;
-		}
-		return false;
-
+		return "Profile".equals(eclassName);
 	}
 
 }

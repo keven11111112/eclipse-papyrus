@@ -75,7 +75,7 @@ public class ModelAddData {
 	public ModelAddData(boolean permit, EList<PathElement> insertionPath) {
 		this.permit = permit;
 		if (insertionPath != null && !insertionPath.isEmpty()) {
-			this.path = new ArrayList<EReference>(insertionPath.size());
+			this.path = new ArrayList<>(insertionPath.size());
 			for (int i = 0; i != insertionPath.size(); i++) {
 				path.add(insertionPath.get(i).getFeature());
 			}
