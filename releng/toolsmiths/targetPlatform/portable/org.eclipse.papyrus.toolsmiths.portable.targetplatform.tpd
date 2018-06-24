@@ -28,7 +28,7 @@ location oomph "http://download.eclipse.org/oomph/drops/release/1.9.0" {
 
 //updateFrom("EGIT",0) 
 
-location egit "http://download.eclipse.org/egit/staging/v5.0.0.201806050710-rc3" // oomph
+location egit "http://download.eclipse.org/egit/updates-5.0" // oomph
 
 //updateFrom("m2e",0)
 
@@ -36,7 +36,7 @@ location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180530-1844" // oomph
+location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180613-1723" // oomph
 
 //updateFrom("EMF COMPARE",0)
 
