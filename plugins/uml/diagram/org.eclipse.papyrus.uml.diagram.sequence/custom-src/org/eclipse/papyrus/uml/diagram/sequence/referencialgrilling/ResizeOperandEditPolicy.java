@@ -41,8 +41,8 @@ import org.eclipse.uml2.uml.InteractionOperand;
 
 
 /**
- * This class is used to allow the resize and adding of children of the combined Fragment
- *
+ * This class is used to allow the resize and adding of children of the combined Fragment.
+ * It is applied on the CombinedFragment
  */
 public class ResizeOperandEditPolicy extends GraphicalEditPolicy {
 

@@ -17,13 +17,13 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.EditPartListener;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionOperandResizePolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
 
 /**
@@ -73,15 +73,17 @@ public class CInteractionOperandEditPart extends InteractionOperandEditPart {
 		super.refresh();
 
 	}
+
 	/**
-	 * @see org.eclipse.gef.editparts.AbstractEditPart#removeEditPartListener(org.eclipse.gef.EditPartListener)
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart#createDefaultEditPolicies()
 	 *
-	 * @param listener
 	 */
 	@Override
-	public void removeEditPartListener(EditPartListener listener) {
-		super.removeEditPartListener(listener);
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(InteractionOperandResizePolicy.class.getSimpleName(), new InteractionOperandResizePolicy());
 	}
+
 	/**
 	 * this method method has been overloaded because of a mistake in the gmfgen.
 	 * so we has to implement addition of sub-figures inside the primary figure...
