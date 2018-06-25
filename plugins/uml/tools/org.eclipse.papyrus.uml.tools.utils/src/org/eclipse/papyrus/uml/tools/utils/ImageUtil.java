@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Added support for Image's name
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 536228
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.tools.utils;
@@ -37,7 +37,6 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Stereotype;
 
-// TODO: Auto-generated Javadoc
 /**
  * Utility class for <code>org.eclipse.uml2.uml.Image</code><BR>
  */
@@ -46,18 +45,18 @@ public class ImageUtil {
 	/**
 	 * ID of the EAnnotation where "expression" (used to select stereotype icon) is stored on image.
 	 */
-	public static final String IMAGE_PAPYRUS_EA = "image_papyrus";
+	public static final String IMAGE_PAPYRUS_EA = "image_papyrus"; //$NON-NLS-1$
 
 	/**
 	 * KEY of the EAnnotation where "expression" (used to select stereotype icon) is stored on
 	 * image.
 	 */
-	public static final String IMAGE_EXPR_KEY = "image_expr_key";
+	public static final String IMAGE_EXPR_KEY = "image_expr_key"; //$NON-NLS-1$
 
 	/**
 	 * KEY of the EAnnotation where "kind" (kind = icon/shape) is stored on image.
 	 */
-	public static final String IMAGE_KIND_KEY = "image_kind_key";
+	public static final String IMAGE_KIND_KEY = "image_kind_key"; //$NON-NLS-1$
 
 	/**
 	 * KEY of the EAnnotation where the image's name is stored
@@ -65,7 +64,10 @@ public class ImageUtil {
 	 * @see {@link #getName(Image)}
 	 * @see {@link #setName(Image, String)}
 	 */
-	public static final String IMAGE_NAME_KEY = "image_name_key";
+	public static final String IMAGE_NAME_KEY = "image_name_key"; //$NON-NLS-1$
+
+
+	private static final String SEPARATOR = "%"; //$NON-NLS-1$
 
 	/**
 	 * Set the content of an {@link Image} with a file (containing an image).
@@ -75,20 +77,20 @@ public class ImageUtil {
 	 * @param imageFile
 	 *            the icon
 	 */
-	// @unused
 	public static void setContent(Image image, File imageFile) {
 
 		try {
-			String rawImageData = "";
+			final String rawImageData;
 			if (imageFile != null) {
+				final StringBuilder builder = new StringBuilder();
 				byte[] byteFlow = getBytesFromFile(imageFile);
-
-				rawImageData = "";
 
 				// file reading
 				for (byte element : byteFlow) {
-					rawImageData = rawImageData + element + "%";
+					builder.append(element);
+					builder.append(SEPARATOR);
 				}
+				rawImageData = builder.toString();
 			} else {
 				rawImageData = null;
 			}
@@ -122,7 +124,7 @@ public class ImageUtil {
 
 		// else
 		String rawData = image.getContent();
-		StringTokenizer strToken = new StringTokenizer(rawData, "%");
+		StringTokenizer strToken = new StringTokenizer(rawData, SEPARATOR);
 		byte[] target = new byte[strToken.countTokens()];
 
 		// decoding image
@@ -152,12 +154,12 @@ public class ImageUtil {
 		// Try to instantiate an SWT image from the path stored
 		// in UML Image location property
 		String location = image.getLocation();
-		if ((location != null) && !("".equals(location))) {
+		if ((location != null) && !("".equals(location))) { //$NON-NLS-1$
 
 			URI iconURI = URI.createURI(location);
 			if (iconURI.isRelative()) {
-				String err_msg = "Incorrect implementation of relative location." + location;
-				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, err_msg, new Exception(err_msg)));
+				String err_msg = "Incorrect implementation of relative location." + location; //$NON-NLS-1$
+				Activator.log.warn(err_msg);
 				URI pluginURI = URI.createPlatformPluginURI(location, true); // <- TODO : fix this to retrieve the related plug-in URI
 				iconURI = iconURI.resolve(pluginURI);
 			}
@@ -167,7 +169,7 @@ public class ImageUtil {
 				swtImage = imageDescriptor.createImage();
 
 			} catch (Exception e) {
-				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Could not create image from location : " + location, e));
+				Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Could not create image from location : " + location, e)); //$NON-NLS-1$
 			}
 		}
 
@@ -198,7 +200,7 @@ public class ImageUtil {
 		// to ensure that file is not larger than Integer.MAX_VALUE.
 		if (length > Integer.MAX_VALUE) {
 			is.close();
-			throw new IOException("Image too big to encode");
+			throw new IOException("Image too big to encode"); //$NON-NLS-1$
 		}
 
 		// Create the byte array to hold the data
@@ -214,7 +216,7 @@ public class ImageUtil {
 		// Ensure all the bytes have been read in
 		if (offset < bytes.length) {
 			is.close();
-			throw new IOException("Could not completely read file " + file.getName());
+			throw new IOException("Could not completely read file " + file.getName()); //$NON-NLS-1$
 		}
 
 		// Close the input stream and return bytes
@@ -240,7 +242,7 @@ public class ImageUtil {
 		}
 
 		// If expression == "" remove the EAnnotation
-		if ("".equals(expression)) {
+		if ("".equals(expression)) { //$NON-NLS-1$
 			ea_Image.getDetails().removeKey(IMAGE_EXPR_KEY);
 		} else {
 			ea_Image.getDetails().put(ImageUtil.IMAGE_EXPR_KEY, expression);
@@ -287,7 +289,7 @@ public class ImageUtil {
 		}
 
 		// If expression == "" remove the EAnnotation
-		if ("".equals(name)) {
+		if ("".equals(name)) { //$NON-NLS-1$
 			ea_Image.getDetails().removeKey(IMAGE_NAME_KEY);
 		} else {
 			ea_Image.getDetails().put(ImageUtil.IMAGE_NAME_KEY, name);
@@ -340,7 +342,6 @@ public class ImageUtil {
 	 * @param kind
 	 *            of image (icon / shape)
 	 */
-	// @unused
 	public static void setKind(org.eclipse.uml2.uml.Image image, String kind) {
 
 		EAnnotation ea_Image = image.getEAnnotation(ImageUtil.IMAGE_PAPYRUS_EA);
@@ -350,7 +351,7 @@ public class ImageUtil {
 		}
 
 		// If expression == "" remove the EAnnotation
-		if ("".equals(kind)) {
+		if ("".equals(kind)) { //$NON-NLS-1$
 			ea_Image.getDetails().removeKey(IMAGE_KIND_KEY);
 		} else {
 			ea_Image.getDetails().put(ImageUtil.IMAGE_KIND_KEY, kind);
@@ -406,7 +407,7 @@ public class ImageUtil {
 		}
 
 		// Parse and test expression
-		StringTokenizer sToken = new StringTokenizer(expression.replace(" ", ""), "=");
+		StringTokenizer sToken = new StringTokenizer(expression.replace(" ", ""), "="); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		if (sToken.countTokens() == 2) {
 			propName = sToken.nextToken();
 			literal = sToken.nextToken();
@@ -467,12 +468,12 @@ public class ImageUtil {
 	 * @return the image id
 	 */
 	public static String getImageId(Image image) {
-		String id = "";
-
-		Stereotype owner = (Stereotype) image.getOwner();
-		id += owner.getQualifiedName() + "_img_" + owner.getIcons().indexOf(image);
-
-		return id;
+		final StringBuilder builder = new StringBuilder();
+		final Stereotype owner = (Stereotype) image.getOwner();
+		builder.append(owner.getQualifiedName());
+		builder.append("_img_"); //$NON-NLS-1$
+		builder.append(owner.getIcons().indexOf(image));
+		return builder.toString();
 
 	}
 }
