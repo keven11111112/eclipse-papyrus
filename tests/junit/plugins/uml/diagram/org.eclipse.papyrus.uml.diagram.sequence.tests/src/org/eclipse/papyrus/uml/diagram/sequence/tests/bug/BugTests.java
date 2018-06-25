@@ -38,6 +38,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		LifelineCoverageRegressionTest.class,
 		TestCFOperandsCoveredNodes.class,
 		TestCFOperandsSemanticCoverage.class,
+		TestCFOperandsReorder.class,
 })
 public class BugTests {
 
