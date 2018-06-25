@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 525369
- *   Christian W. Damus - bug 533679
+ *   Christian W. Damus - bugs 533679, 507479
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.diagram.sequence.validation.AsyncValidateCommand;
+import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -154,7 +155,14 @@ public class ComputeOwnerHelper implements IComputeOwnerHelper {
 				existedFragments.addAll(interactionOperand.getFragments());
 				grid.execute(new SetCommand(domain, interactionOperand, UMLPackage.eINSTANCE.getInteractionOperand_Fragment(), existedFragments));
 
-				AsyncValidateCommand.get(interactionOperand)
+				// Asynchronously re-validate the whole combined fragment in case of
+				// dependencies between operands and the check for consistency between
+				// lifeline coverage of the combined fragment as compared to the lifeline
+				// coverage of the fragments of its operands
+				Optional<CombinedFragment> cfrag = Optional.of(interactionOperand)
+						.map(Element::getOwner).filter(CombinedFragment.class::isInstance)
+						.map(CombinedFragment.class::cast);
+				cfrag.flatMap(AsyncValidateCommand::get)
 						.ifPresent(grid::execute);
 			}
 		}

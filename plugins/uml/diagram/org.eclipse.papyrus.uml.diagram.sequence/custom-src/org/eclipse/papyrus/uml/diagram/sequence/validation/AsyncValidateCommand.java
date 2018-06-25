@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -38,11 +39,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.command.AsynchronousCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
@@ -71,8 +72,15 @@ public class AsyncValidateCommand extends AsynchronousCommand implements INonDir
 		ValidateSubtreeCommand cmd = new UMLSwitch<ValidateSubtreeCommand>() {
 
 			@Override
+			public ValidateSubtreeCommand caseCombinedFragment(CombinedFragment cfrag) {
+				return new ValidateCombinedFragmentCommand(cfrag,
+						() -> Stream.concat(messages(cfrag), nonOwnedExecutions(cfrag)));
+			}
+
+			@Override
 			public ValidateSubtreeCommand caseInteractionOperand(InteractionOperand operand) {
-				return new ValidateOperandCommand(operand);
+				return new ValidateCombinedFragmentCommand(operand,
+						() -> Stream.concat(messages(operand), nonOwnedExecutions(operand)));
 			}
 
 			@Override
@@ -118,17 +126,27 @@ public class AsyncValidateCommand extends AsynchronousCommand implements INonDir
 				.orElseGet(() -> findExecutionWith(occurrence, false));
 	}
 
+	static Stream<Message> messages(CombinedFragment cfrag) {
+		return cfrag.getOperands().stream().flatMap(AsyncValidateCommand::messages)
+				.distinct();
+	}
+
+	static Stream<ExecutionSpecification> nonOwnedExecutions(CombinedFragment cfrag) {
+		return cfrag.getOperands().stream().flatMap(AsyncValidateCommand::nonOwnedExecutions)
+				.distinct();
+	}
+
 	//
 	// Nested types
 	//
 
-	private static class ValidateOperandCommand extends ValidateSubtreeCommand {
-		private final InteractionOperand operand;
+	private static class ValidateCombinedFragmentCommand extends ValidateSubtreeCommand {
+		private final Supplier<Stream<? extends EObject>> dependenciesSupplier;
 
-		ValidateOperandCommand(InteractionOperand operand) {
-			super(operand, new OperandDiagnostician());
+		ValidateCombinedFragmentCommand(EObject root, Supplier<Stream<? extends EObject>> dependenciesSupplier) {
+			super(root, new OperandDiagnostician());
 
-			this.operand = operand;
+			this.dependenciesSupplier = dependenciesSupplier;
 		}
 
 		@Override
@@ -139,12 +157,12 @@ public class AsyncValidateCommand extends AsynchronousCommand implements INonDir
 			// final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 			if (resource != null) {
 				if (validateElement != null) {
-					// In an interaction operand, we validate also the messages and execution
-					// specifications that are at least partially within it. We have to be
+					// In a combined fragment or an interaction operand, we validate also the
+					// messages and execution specifications (provided generically as "dependencies")
+					// that are at least partially within some operand in scope. We have to be
 					// careful about also removing existing markers for these related elements
 					// because the Diagnostician isn't responsible for that
-					List<NamedElement> others = Stream.concat(messages(operand), nonOwnedExecutions(operand))
-							.collect(Collectors.toList());
+					List<? extends EObject> others = dependenciesSupplier.get().collect(Collectors.toList());
 					int markersToCreate = diagnostic.getChildren().size();
 
 					SubMonitor sub = SubMonitor.convert(monitor, 1 + others.size() + markersToCreate);

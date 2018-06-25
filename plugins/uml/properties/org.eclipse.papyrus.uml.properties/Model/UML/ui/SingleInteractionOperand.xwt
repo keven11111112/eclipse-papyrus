@@ -30,6 +30,13 @@
 			<ppel:PropertiesLayout></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:MultiReference input="{Binding}"
+			property="UML:InteractionFragment:covered"></ppe:MultiReference>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
 			property="UML:InteractionOperand:fragment"></ppe:MultiReference>
 	</Composite>
 </Composite>

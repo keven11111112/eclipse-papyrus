@@ -20,6 +20,15 @@ context Element
 -- A helper operation that reports a problem as error severity instead of warning.
 def: asError(ok: Boolean): Boolean = if ok then ok else null endif
 
+-- Helper to render collections of strings as lists 
+def: asString(list : Collection(String)) : String =
+	list->iterate(i; l : String = '' |
+		i + (if l.size() > 0 then ', ' else '' endif) + l)
+
+-- Helper to put single quotes are strings in a collection 
+def: quote(list : Collection(String)) : Sequence(String) =
+	list->collect(i | '\'' + i + '\'')->asSequence()
+
 context Message
 
 --
@@ -40,5 +49,39 @@ context ExecutionSpecification
 inv crosses_no_boundaries('Execution specification crosses an interaction operand boundary.'):
 	let events = Set{start, finish}->excluding(null) in
 	asError(events->notEmpty() implies events.owner->asSet()->size() = 1)
+
+context CombinedFragment
+
+--
+-- An combined fragment covers all of the lifelines that are covered by the
+-- fragments of its operands.
+--
+inv lifeline_coverage:
+	let uncovered = operand.fragment.covered->asSet()->excludingAll(self.covered)->sortedBy(name) in
+	Tuple {
+		status = uncovered->isEmpty(),
+		message = if uncovered->size() = 1 then
+				'Lifeline \'' + uncovered.name->first() + '\' not covered that is covered by fragments of the operands.'
+			else
+				'Lifelines ' + asString(quote(uncovered.name)) + ' not covered that are covered by fragments of the operands.'
+			endif
+	}
+		
+context InteractionOperand
+
+--
+-- An interaction operand covers all of the lifelines that are covered by the
+-- fragments that it owns.
+--
+inv lifeline_coverage:
+	let uncovered = fragment.covered->asSet()->excludingAll(self.covered)->sortedBy(name) in
+	Tuple {
+		status = uncovered->isEmpty(),
+		message = if uncovered->size() = 1 then
+				'Lifeline \'' + uncovered.name->first() + '\' not covered that is covered by owned fragments.'
+			else
+				'Lifelines ' + asString(quote(uncovered.name)) + ' not covered that are covered by owned fragments.'
+			endif
+	}
 
 endpackage

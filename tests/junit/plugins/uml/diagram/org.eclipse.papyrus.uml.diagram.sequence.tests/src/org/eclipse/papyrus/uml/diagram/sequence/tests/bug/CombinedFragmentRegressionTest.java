@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
 
 import static org.eclipse.papyrus.junit.matchers.DiagramMatchers.hasErrorDecorationThat;
+import static org.eclipse.papyrus.junit.matchers.DiagramMatchers.hasWarningDecorationThat;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThan;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
@@ -51,6 +52,8 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IValidationListener;
 import org.eclipse.emf.validation.service.ModelValidationService;
@@ -69,6 +72,7 @@ import org.eclipse.papyrus.junit.matchers.DiagramMatchers;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.junit.utils.rules.PreferenceRule;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.preferences.CustomDiagramGeneralPreferencePage;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -84,13 +88,14 @@ import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.CustomTypeSafeMatcher;
 import org.hamcrest.Matcher;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
+import org.junit.rules.TestRule;
 
 /**
  * Regression tests specifically for {@link CombinedFragment}s in the sequence diagram
@@ -102,8 +107,21 @@ import org.junit.Test;
 @ActiveDiagram("sequence")
 public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 
+	// this needs to be a sequenceable rule so that it can be run before the editor
+	private final TestRule validationPreference = PreferenceRule.create(
+			UMLDiagramEditorPlugin.getInstance().getPreferenceStore(),
+			CustomDiagramGeneralPreferencePage.PREF_TRIGGER_ASYNC_VALIDATION,
+			true);
+
+	private final PapyrusEditorFixture editor = new PapyrusEditorFixture();
+
+	// Ensure intiialization of the validation preference before the editor
+	// because opening of the diagram needs to kick off validation via the
+	// initial owner updates computed by activation of the grid management
+	// edit policy
 	@Rule
-	public final PapyrusEditorFixture editor = new PapyrusEditorFixture();
+	public final RuleChain rules = RuleChain.outerRule(validationPreference)
+			.around(editor);
 
 	/**
 	 * Initializes me.
@@ -111,23 +129,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	public CombinedFragmentRegressionTest() {
 		super();
 	}
-	
-	/**
-	 * Before test initialization with preference initialization.
-	 */
-	@Before
-	public void init() {
-		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().setValue(CustomDiagramGeneralPreferencePage.PREF_TRIGGER_ASYNC_VALIDATION, true);
-	}
-	
-	/**
-	 * After test with preference modification.
-	 */
-	@After
-	public void finalize() {
-		UMLDiagramEditorPlugin.getInstance().getPreferenceStore().setValue(CustomDiagramGeneralPreferencePage.PREF_TRIGGER_ASYNC_VALIDATION, false);
-	}
-	
+
 	/**
 	 * Verify the creation and extent of a default interaction operand in a newly
 	 * created combined fragment.
@@ -674,7 +676,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	@Test
 	@PluginResource("resource/bugs/bug533676.di")
 	public void validateResizedInteractionOperand_533676() {
-		
+
 		GraphicalEditPart operandEP = (GraphicalEditPart) editor.findEditPart("opt", InteractionOperand.class);
 		InteractionOperand operand = (InteractionOperand) operandEP.getAdapter(EObject.class);
 		Interaction interaction = (Interaction) operand.eContainer().eContainer();
@@ -697,7 +699,7 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 	@Test
 	@PluginResource("resource/bugs/bug533676a.di")
 	public void validateCreatedInteractionOperand_533676() {
-		
+
 		EditPart interactionEP = editor.findEditPart("doIt", Interaction.class);
 		EditPart interactionCompartment = editor.getShapeCompartment(interactionEP);
 
@@ -757,6 +759,119 @@ public class CombinedFragmentRegressionTest extends AbstractPapyrusTest {
 		CombinedFragment cfrag = cfragEP.getAdapter(CombinedFragment.class);
 		InteractionOperand operand = cfrag.getOperands().get(0);
 		assertThat(operand.getFragments(), hasItems(fragments));
+	}
+
+	/**
+	 * Verify the validation of a combined fragment that has multiple lifelines
+	 * uncovered that are covered by fragments of its operands.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533676.di")
+	public void validateCFragCoverage_multipleUncovered() {
+		// It's validated on open of the diagram editor
+		EditPart cfragEP = editor.findEditPart("cfrag", CombinedFragment.class);
+
+		assertThat(cfragEP, hasWarningDecorationThat(startsWith("Lifelines 'a', 'b' not covered")));
+	}
+
+	/**
+	 * Verify the validation of a combined fragment that has a single lifeline
+	 * uncovered that is covered by fragments of its operands.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533676.di")
+	public void validateCFragCoverage_singleUncovered() {
+		EditPart cfragEP = editor.findEditPart("cfrag", CombinedFragment.class);
+		CombinedFragment cfrag = cfragEP.getAdapter(CombinedFragment.class);
+		Interaction interaction = cfrag.getEnclosingInteraction();
+		Lifeline a = interaction.getLifeline("a");
+
+		// Add lifeline 'a' to the coverage of the combined fragment
+		org.eclipse.emf.common.command.Command addCoverage = AddCommand.create(
+				editor.getEditingDomain(), cfrag, UMLPackage.Literals.INTERACTION_FRAGMENT__COVERED, a);
+		editor.execute(addCoverage);
+
+		assertThat(cfragEP, hasWarningDecorationThat(startsWith("Lifeline 'b' not covered")));
+	}
+
+	/**
+	 * Verify the validation of a combined fragment that has all lifelines
+	 * covered that are covered by fragments of its operands.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533676.di")
+	public void validateCFragCoverage_noneUncovered() {
+		EditPart cfragEP = editor.findEditPart("cfrag", CombinedFragment.class);
+		CombinedFragment cfrag = cfragEP.getAdapter(CombinedFragment.class);
+		Interaction interaction = cfrag.getEnclosingInteraction();
+		Lifeline a = interaction.getLifeline("a");
+		Lifeline b = interaction.getLifeline("b");
+
+		// Add the lifelines to the coverage of the combined fragment
+		org.eclipse.emf.common.command.Command addCoverage = AddCommand.create(
+				editor.getEditingDomain(), cfrag, UMLPackage.Literals.INTERACTION_FRAGMENT__COVERED,
+				Arrays.asList(a, b));
+		editor.execute(addCoverage);
+
+		assertThat(cfragEP, not(hasWarningDecorationThat(startsWith("Lifeline"))));
+	}
+
+	/**
+	 * Verify the validation of an interaction operand that has multiple lifelines
+	 * uncovered that are covered by fragments that it owns.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533676.di")
+	public void validateOperandCoverage_multipleUncovered() {
+		// It's validated on open of the diagram editor
+		EditPart operandEP = editor.findEditPart("opt", InteractionOperand.class);
+		InteractionOperand operand = operandEP.getAdapter(InteractionOperand.class);
+		CombinedFragment cfrag = (CombinedFragment) operand.getOwner();
+		Interaction interaction = cfrag.getEnclosingInteraction();
+		Lifeline a = interaction.getLifeline("a");
+		Lifeline b = interaction.getLifeline("b");
+
+		// Remove the lifelines from the coverage of the combined fragment
+		org.eclipse.emf.common.command.Command removeCoverage = RemoveCommand.create(
+				editor.getEditingDomain(), operand, UMLPackage.Literals.INTERACTION_FRAGMENT__COVERED,
+				Arrays.asList(a, b));
+		editor.execute(removeCoverage);
+
+		assertThat(operandEP, hasWarningDecorationThat(startsWith("Lifelines 'a', 'b' not covered")));
+	}
+
+	/**
+	 * Verify the validation of an interaction operand that has a single lifeline
+	 * uncovered that is covered by fragments that it owns.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533676.di")
+	public void validateOperandCoverage_singleUncovered() {
+		EditPart operandEP = editor.findEditPart("opt", InteractionOperand.class);
+		InteractionOperand operand = operandEP.getAdapter(InteractionOperand.class);
+		CombinedFragment cfrag = (CombinedFragment) operand.getOwner();
+		Interaction interaction = cfrag.getEnclosingInteraction();
+		Lifeline a = interaction.getLifeline("a");
+
+		// Remove lifeline 'a' from the coverage of the operand
+		org.eclipse.emf.common.command.Command removeCoverage = RemoveCommand.create(
+				editor.getEditingDomain(), operand, UMLPackage.Literals.INTERACTION_FRAGMENT__COVERED, a);
+		editor.execute(removeCoverage);
+
+		assertThat(operandEP, hasWarningDecorationThat(startsWith("Lifeline 'a' not covered")));
+	}
+
+	/**
+	 * Verify the validation of an interaction operand that has all lifelines
+	 * covered that are covered by fragments that it owns.
+	 */
+	@Test
+	@PluginResource("resource/bugs/bug533676.di")
+	public void validateOperandCoverage_noneUncovered() {
+		// It's validated on open of the diagram editor
+		EditPart operandEP = editor.findEditPart("opt", InteractionOperand.class);
+
+		assertThat(operandEP, not(hasWarningDecorationThat(startsWith("Lifeline"))));
 	}
 
 	//

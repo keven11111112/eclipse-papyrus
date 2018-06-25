@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 533673, 533676
+ *   Christian W. Damus - bugs 533673, 533676, 507479
  *
  */
 package org.eclipse.papyrus.junit.matchers;
@@ -161,6 +161,24 @@ public class DiagramMatchers {
 	 */
 	public static Matcher<EditPart> hasErrorDecorationThat(Matcher<? super String> messageMatcher) {
 		return hasDecorationThat(IPapyrusMarker.SEVERITY_ERROR, messageMatcher);
+	}
+
+	/**
+	 * Match an edit-part that has a {@linkplain IPapyrusMarker#SEVERITY_WARNING warning}
+	 * decoration having a message matching a given matcher.
+	 * 
+	 * @param messageMatcher
+	 *            matcher for the decoration message
+	 * 
+	 * @return the decoration matcher
+	 * 
+	 * @since 2.2
+	 * 
+	 * @see #hasDecorationThat(int, Matcher)
+	 * @see IPapyrusMarker#SEVERITY_WARNING
+	 */
+	public static Matcher<EditPart> hasWarningDecorationThat(Matcher<? super String> messageMatcher) {
+		return hasDecorationThat(IPapyrusMarker.SEVERITY_WARNING, messageMatcher);
 	}
 
 	/**

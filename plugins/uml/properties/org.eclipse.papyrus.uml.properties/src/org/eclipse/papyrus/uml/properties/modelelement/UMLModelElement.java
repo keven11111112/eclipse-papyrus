@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST and others.
+ * Copyright (c) 2011, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,14 +8,15 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 323802
- *  Christian W. Damus (CEA) - bug 440108
+ *  Christian W. Damus (CEA) - bugs 323802, 440108
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *  Christian W. Damus - bug 507479
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
+import static org.eclipse.emf.ecore.util.EcoreUtil.isAncestor;
 import static org.eclipse.uml2.uml.ParameterDirectionKind.INOUT_LITERAL;
 import static org.eclipse.uml2.uml.ParameterDirectionKind.IN_LITERAL;
 import static org.eclipse.uml2.uml.ParameterDirectionKind.OUT_LITERAL;
@@ -24,7 +25,9 @@ import static org.eclipse.uml2.uml.ParameterDirectionKind.RETURN_LITERAL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
@@ -38,6 +41,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
@@ -74,6 +78,8 @@ import org.eclipse.papyrus.uml.tools.utils.NameResolutionHelper;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
+import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
@@ -179,30 +185,35 @@ public class UMLModelElement extends EMFModelElement {
 
 		// Workaround: the standard ContentProvider does not correctly hide the selected elements in ReferenceSelector.
 		// With a ContainmentBasedBrowseStrategy, it works better (But we don't have the infinite tree in the selection dialog).
-		if (feature == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
+		if (feature == UMLPackage.Literals.CONSTRAINT__CONSTRAINED_ELEMENT) {
 			return new ConstrainedElementContentProvider(source, feature);
-		}
-		if (feature == UMLPackage.eINSTANCE.getMessage_Signature()) {
-			ResourceSet resourceSet = domain == null ? null : domain.getResourceSet();
-			return new UMLContentProvider(source, feature, null, resourceSet) {
-				/**
-				 * @see org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider#isValidValue(java.lang.Object)
-				 *
-				 * @param element
-				 * @return
-				 */
-				@Override
-				public boolean isValidValue(Object element) {
-					element = EMFHelper.getEObject(element);
-					// according to the UML norm 2.5, section 17.4.3.1
-					// The signature of a Message refers to either an Operation or a Signal. 
-					return element instanceof Operation || element instanceof Signal;
-				}
-			};
 		}
 
 		ResourceSet resourceSet = domain == null ? null : domain.getResourceSet();
-		return new UMLContentProvider(source, feature, null, resourceSet);
+		Optional<Predicate<EObject>> isValid = Optional.empty();
+
+		if (feature == UMLPackage.Literals.MESSAGE__SIGNATURE) {
+			// according to the UML norm 2.5, section 17.4.3.1
+			// The signature of a Message refers to either an Operation or a Signal.
+			isValid = Optional.of(element -> element instanceof Operation || element instanceof Signal);
+		} else if (feature == UMLPackage.Literals.INTERACTION_FRAGMENT__COVERED) {
+			// Can only cover a lifeline in the same interaction. So, allow any object in the same
+			// interaction or that contains the interaction (so that it may be reached in the tree)
+			InteractionFragment self = (InteractionFragment) this.source;
+			Interaction myInteraction = (Interaction) EMFCoreUtil.getContainer(self, UMLPackage.Literals.INTERACTION);
+			isValid = Optional.ofNullable(myInteraction)
+					.map(interaction -> element -> isAncestor(interaction, element));
+		}
+
+		return isValid.map(
+				valid -> new UMLContentProvider(source, feature, null, resourceSet) {
+					@Override
+					public boolean isValidValue(Object element) {
+						EObject eObject = EMFHelper.getEObject(element);
+						return valid.test(eObject) && super.isValidValue(element);
+					}
+				})
+				.orElseGet(() -> new UMLContentProvider(source, feature, null, resourceSet));
 	}
 
 	@Override
@@ -265,7 +276,7 @@ public class UMLModelElement extends EMFModelElement {
 				@Override
 				protected List<EClass> getAvailableEClasses() {
 					// according to the UML norm 2.5, section 17.4.3.1
-					// The signature of a Message refers to either an Operation or a Signal. 
+					// The signature of a Message refers to either an Operation or a Signal.
 					final List<EClass> eClasses = new ArrayList<EClass>();
 					eClasses.add(UMLPackage.eINSTANCE.getOperation());
 					eClasses.add(UMLPackage.eINSTANCE.getSignal());
