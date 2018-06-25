@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *  Christian W. Damus (CEA) - bug 435420
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 475369
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -74,7 +75,7 @@ public class ReferenceCombo extends AbstractValueEditor { // implements Selectio
 	 * Constructor.
 	 *
 	 * @param parent
-	 *            The Composite in which this editor is diplayed
+	 *            The Composite in which this editor is displayed
 	 * @param style
 	 *            The style for this editor's combo
 	 */
@@ -87,13 +88,31 @@ public class ReferenceCombo extends AbstractValueEditor { // implements Selectio
 	 * Constructor.
 	 *
 	 * @param parent
-	 *            The Composite in which this editor is diplayed
+	 *            The Composite in which this editor is displayed
 	 * @param style
 	 *            The style for this editor's combo
 	 * @param label
 	 *            The label for this editor
 	 */
 	public ReferenceCombo(Composite parent, int style, String label) {
+		this(parent, style, label, true);
+	}
+
+	/**
+	 *
+	 * Constructor.
+	 *
+	 * @param parent
+	 *            The Composite in which this editor is displayed.
+	 * @param style
+	 *            The style for this editor's combo.
+	 * @param label
+	 *            The label for this editor.
+	 * @param commitOnFocusLost
+	 *            Determinate if the focus lost ill commit the value or not.
+	 * @since 3.3
+	 */
+	public ReferenceCombo(Composite parent, int style, String label, boolean commitOnFocusLost) {
 		super(parent, label);
 
 		combo = factory.createCCombo(this, style | SWT.BORDER);
@@ -110,7 +129,9 @@ public class ReferenceCombo extends AbstractValueEditor { // implements Selectio
 
 		((GridLayout) getLayout()).numColumns++;
 
-		setCommitOnFocusLost(combo);
+		if (commitOnFocusLost) {
+			setCommitOnFocusLost(combo);
+		}
 		controlDecoration = new ControlDecoration(combo, SWT.TOP | SWT.LEFT);
 		GridData gridData = getDefaultLayoutData();
 		combo.setLayoutData(gridData);

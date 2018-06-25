@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 475369
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -52,4 +53,20 @@ public class EnumCombo extends ReferenceCombo {
 		super(parent, style, label);
 	}
 
+	/**
+	 * Constructor.
+	 *
+	 * @param parent
+	 *            The parent composite.
+	 * @param style
+	 *            The style used.
+	 * @param label
+	 *            The initial label.
+	 * @param commitOnFocusLost
+	 *            Determinate if the focus lost ill commit the value or not.
+	 * @since 3.3
+	 */
+	public EnumCombo(final Composite parent, final int style, final String label, final boolean commitOnFocusLost) {
+		super(parent, style, label, commitOnFocusLost);
+	}
 }

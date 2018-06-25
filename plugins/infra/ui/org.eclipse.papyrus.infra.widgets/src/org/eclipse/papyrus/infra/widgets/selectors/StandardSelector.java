@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 475369
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.selectors;
 
@@ -97,8 +98,8 @@ public class StandardSelector implements IElementSelector {
 	@Override
 	public void createControls(Composite parent) {
 		try {
-			Constructor<? extends AbstractValueEditor> construct = editorClass.getDeclaredConstructor(Composite.class, Integer.TYPE);
-			editor = construct.newInstance(parent, SWT.BORDER);
+			Constructor<? extends AbstractValueEditor> construct = editorClass.getDeclaredConstructor(Composite.class, Integer.TYPE, String.class, Boolean.TYPE);
+			editor = construct.newInstance(parent, SWT.BORDER, null, false);
 			editor.addCommitListener(new ICommitListener() {
 
 				@Override
