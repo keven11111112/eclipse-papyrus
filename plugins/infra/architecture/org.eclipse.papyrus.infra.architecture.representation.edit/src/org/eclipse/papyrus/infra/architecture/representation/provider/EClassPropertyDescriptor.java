@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.core.architecture.provider.SurrogateItemPropert
  * @author Laurent Wouters
  */
 public class EClassPropertyDescriptor extends SurrogateItemPropertyDescriptor {
-	private static final Collection<EObject> empty = new ArrayList<EObject>();
+	private static final Collection<EObject> empty = new ArrayList<>();
 
 	/**
 	 * Constructor.
@@ -58,7 +58,7 @@ public class EClassPropertyDescriptor extends SurrogateItemPropertyDescriptor {
 			return empty;
 		}
 		ArchitectureDescriptionLanguage conf = (ArchitectureDescriptionLanguage) current;
-		List<EClass> result = new ArrayList<EClass>();
+		List<EClass> result = new ArrayList<>();
 		EPackage p = conf.getMetamodel();
 		if (p == null) {
 			return result;

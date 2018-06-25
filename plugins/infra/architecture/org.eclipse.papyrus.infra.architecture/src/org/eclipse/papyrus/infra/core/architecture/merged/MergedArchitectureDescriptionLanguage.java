@@ -65,7 +65,7 @@ public class MergedArchitectureDescriptionLanguage extends MergedArchitectureCon
 	 * @return a collection of EPackages
 	 */
 	public Collection<EPackage> getProfiles() {
-		Set<EPackage> profiles = new LinkedHashSet<EPackage>();
+		Set<EPackage> profiles = new LinkedHashSet<>();
 		for (ADElement element : elements) {
 			ArchitectureDescriptionLanguage language = (ArchitectureDescriptionLanguage) element;
 			profiles.addAll(language.getProfiles());
@@ -79,7 +79,7 @@ public class MergedArchitectureDescriptionLanguage extends MergedArchitectureCon
 	 * @return a collection of representation kinds
 	 */
 	public Collection<RepresentationKind> getRepresentationKinds() {
-		Set<RepresentationKind> kinds = new LinkedHashSet<RepresentationKind>();
+		Set<RepresentationKind> kinds = new LinkedHashSet<>();
 		for (ADElement element : elements) {
 			ArchitectureDescriptionLanguage language = (ArchitectureDescriptionLanguage) element;
 			kinds.addAll(language.getRepresentationKinds());

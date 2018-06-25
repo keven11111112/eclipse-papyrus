@@ -99,7 +99,7 @@ public class ArchitectureDescriptionUtils {
 	 * @return a collection of architecture viewpoints
 	 */
 	public Collection<MergedArchitectureViewpoint> getArchitectureViewpoints() {
-		List<MergedArchitectureViewpoint> viewpoints = new ArrayList<MergedArchitectureViewpoint>();
+		List<MergedArchitectureViewpoint> viewpoints = new ArrayList<>();
 		for (String viewpointId : getArchitectureViewpointIds()) {
 			MergedArchitectureViewpoint viewpoint = manager.getArchitectureViewpointById(viewpointId);
 			if (viewpoint != null)
@@ -121,7 +121,7 @@ public class ArchitectureDescriptionUtils {
 		Collection<MergedArchitectureViewpoint> viewpoints = context.getDefaultViewpoints();
 		if (viewpoints.isEmpty())
 			viewpoints = context.getViewpoints();
-		Set<String> viewpointIds = new LinkedHashSet<String>();
+		Set<String> viewpointIds = new LinkedHashSet<>();
 		for (MergedArchitectureViewpoint viewpoint : viewpoints) {
 			viewpointIds.add(viewpoint.getId());
 		}

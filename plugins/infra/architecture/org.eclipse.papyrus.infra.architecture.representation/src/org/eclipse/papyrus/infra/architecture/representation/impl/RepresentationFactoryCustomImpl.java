@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.papyrus.infra.architecture.representation.ModelAutoCreate;
 import org.eclipse.papyrus.infra.architecture.representation.RepresentationFactory;
 import org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage;
-import org.eclipse.papyrus.infra.architecture.representation.impl.ModelAutoCreateImpl;
-import org.eclipse.papyrus.infra.architecture.representation.impl.RepresentationFactoryImpl;
 
 
 public class RepresentationFactoryCustomImpl extends RepresentationFactoryImpl implements RepresentationFactory {
@@ -37,11 +35,7 @@ public class RepresentationFactoryCustomImpl extends RepresentationFactoryImpl i
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * Creates an instance of the custom factory.
 	 */
 	public RepresentationFactoryCustomImpl() {
 		super();
@@ -49,8 +43,7 @@ public class RepresentationFactoryCustomImpl extends RepresentationFactoryImpl i
 
 	@Override
 	public ModelAutoCreate createModelAutoCreate() {
-		ModelAutoCreateImpl modelAutoCreate = new ModelAutoCreateCustomImpl();
-		return modelAutoCreate;
+		return new ModelAutoCreateCustomImpl();
 	}
 
 }

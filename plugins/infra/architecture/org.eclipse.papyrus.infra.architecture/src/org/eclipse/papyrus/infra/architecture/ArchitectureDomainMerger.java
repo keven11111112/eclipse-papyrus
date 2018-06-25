@@ -207,7 +207,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 */
 	void init() {
 		resourceSet = new ResourceSetImpl();
-		mergedDomains = new HashMap<String, MergedArchitectureDomain>();
+		mergedDomains = new HashMap<>();
 		if (extensionModels != null) {
 			for (URI model : extensionModels) {
 				ArchitectureDomain domain = loadDomain(resourceSet.createResource(model));
@@ -244,8 +244,9 @@ public class ArchitectureDomainMerger implements Cloneable {
 		EObject content = resource.getContents().get(0);
 		if (content instanceof ArchitectureDomain) {
 			return (ArchitectureDomain) content;
-		} else
+		} else {
 			Activator.log.warn("file "+resource.getURI()+ " is not an architecture model");
+		}
 		return null;
 	}
 	
@@ -264,7 +265,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 * builds a id to element cache for faster lookup
 	 */
 	private void buildCache() {
-		idCache = new HashMap<String, Object>();
+		idCache = new HashMap<>();
 		for (MergedArchitectureDomain domain : mergedDomains.values()) {
 			for (MergedArchitectureContext context : domain.getContexts()) {
 				idCache.put(context.getId(), context);

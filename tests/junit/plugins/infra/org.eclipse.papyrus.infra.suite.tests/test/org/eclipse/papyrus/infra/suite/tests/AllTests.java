@@ -73,7 +73,7 @@ public class AllTests {
 
 
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.viewpoints.policy.tests.AllTests.class));
-		
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.architecture.tests.AllTests.class));
 
 
 		// end

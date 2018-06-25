@@ -60,7 +60,7 @@ public class MergedArchitectureViewpoint extends MergedADElement {
 	 * @return a merged collection of concerns
 	 */
 	public Collection<Concern> getConcerns() {
-		Set<Concern> concerns = new LinkedHashSet<Concern>();
+		Set<Concern> concerns = new LinkedHashSet<>();
 		for (ADElement element : elements) {
 			ArchitectureViewpoint viewpoint = (ArchitectureViewpoint) element;
 			concerns.addAll(viewpoint.getConcerns());
@@ -74,7 +74,7 @@ public class MergedArchitectureViewpoint extends MergedADElement {
 	 * @return a merged collection of representation kinds
 	 */
 	public Collection<RepresentationKind> getRepresentationKinds() {
-		Set<RepresentationKind> kinds = new LinkedHashSet<RepresentationKind>();
+		Set<RepresentationKind> kinds = new LinkedHashSet<>();
 		for (ADElement element : elements) {
 			ArchitectureViewpoint viewpoint = (ArchitectureViewpoint) element;
 			kinds.addAll(viewpoint.getRepresentationKinds());

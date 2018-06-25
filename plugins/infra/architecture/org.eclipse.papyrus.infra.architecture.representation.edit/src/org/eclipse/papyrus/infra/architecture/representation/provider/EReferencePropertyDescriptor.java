@@ -17,10 +17,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.papyrus.infra.core.architecture.provider.SurrogateItemPropertyDescriptor;
 import org.eclipse.papyrus.infra.architecture.representation.ModelAutoCreate;
+import org.eclipse.papyrus.infra.core.architecture.provider.SurrogateItemPropertyDescriptor;
 
 /**
  * Represents a descriptor for properties of type EReference
@@ -28,7 +27,7 @@ import org.eclipse.papyrus.infra.architecture.representation.ModelAutoCreate;
  * @author Laurent Wouters
  */
 public class EReferencePropertyDescriptor extends SurrogateItemPropertyDescriptor {
-	private static final Collection<?> empty = new ArrayList<EReference>();
+	private static final Collection<?> empty = new ArrayList<>();
 
 	public EReferencePropertyDescriptor(IItemPropertyDescriptor inner) {
 		super(inner);

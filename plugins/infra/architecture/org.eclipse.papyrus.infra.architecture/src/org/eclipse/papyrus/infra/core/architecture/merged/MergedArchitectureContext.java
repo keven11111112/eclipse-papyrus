@@ -149,7 +149,7 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * @return a merged collection of element type set configurations
 	 */
 	public Collection<ElementTypeSetConfiguration> getElementTypes() {
-		Set<ElementTypeSetConfiguration> configurations = new LinkedHashSet<ElementTypeSetConfiguration>();
+		Set<ElementTypeSetConfiguration> configurations = new LinkedHashSet<>();
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
 			configurations.addAll(context.getElementTypes());
@@ -163,7 +163,7 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * @return a merged collection of viewpoints
 	 */
 	public Collection<MergedArchitectureViewpoint> getViewpoints() {
-		Map<String, MergedArchitectureViewpoint> viewpoints = new HashMap<String, MergedArchitectureViewpoint>();
+		Map<String, MergedArchitectureViewpoint> viewpoints = new HashMap<>();
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
 			for (ArchitectureViewpoint viewpoint : context.getViewpoints()) {
@@ -183,7 +183,7 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 * @return a merged collection of viewpoints
 	 */
 	public Collection<MergedArchitectureViewpoint> getDefaultViewpoints() {
-		Map<String, MergedArchitectureViewpoint> viewpoints = new HashMap<String, MergedArchitectureViewpoint>();
+		Map<String, MergedArchitectureViewpoint> viewpoints = new HashMap<>();
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
 			for (ArchitectureViewpoint viewpoint : context.getDefaultViewpoints()) {

@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.core.architecture.provider.SurrogateItemPropert
  * @author Laurent Wouters
  */
 public class StereotypePropertyDescriptor extends SurrogateItemPropertyDescriptor {
-	private static final Collection<EObject> empty = new ArrayList<EObject>();
+	private static final Collection<EObject> empty = new ArrayList<>();
 
 	public StereotypePropertyDescriptor(IItemPropertyDescriptor inner) {
 		super(inner);
@@ -55,7 +55,7 @@ public class StereotypePropertyDescriptor extends SurrogateItemPropertyDescripto
 			return empty;
 		}
 		ArchitectureDescriptionLanguage conf = (ArchitectureDescriptionLanguage) current;
-		List<EClass> result = new ArrayList<EClass>();
+		List<EClass> result = new ArrayList<>();
 		for (EPackage p : conf.getProfiles()) { 
 			result.addAll(getAllStereotypes(p));
 		}
@@ -69,7 +69,7 @@ public class StereotypePropertyDescriptor extends SurrogateItemPropertyDescripto
 	 * @return
 	 */
 	protected List<EClass> getAllStereotypes(EPackage ePackage) {
-		List<EClass> result = new ArrayList<EClass>();
+		List<EClass> result = new ArrayList<>();
 		for (EClassifier clazz : ePackage.getEClassifiers()) {
 			if (clazz instanceof EClass) {
 				result.add((EClass) clazz);

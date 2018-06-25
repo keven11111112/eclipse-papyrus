@@ -53,7 +53,7 @@ public class MergedArchitectureDomain extends MergedADElement {
 	 * @return a collection of stakeholders
 	 */
 	public Collection<Stakeholder> getStakeholders() {
-		Set<Stakeholder> stakeholders = new LinkedHashSet<Stakeholder>();
+		Set<Stakeholder> stakeholders = new LinkedHashSet<>();
 		for (ADElement element : elements) {
 			ArchitectureDomain domain = (ArchitectureDomain) element;
 			stakeholders.addAll(domain.getStakeholders());
@@ -67,7 +67,7 @@ public class MergedArchitectureDomain extends MergedADElement {
 	 * @return a collection of concerns
 	 */
 	public Collection<Concern> getConcerns() {
-		Set<Concern> concerns = new LinkedHashSet<Concern>();
+		Set<Concern> concerns = new LinkedHashSet<>();
 		for (ADElement element : elements) {
 			ArchitectureDomain domain = (ArchitectureDomain) element;
 			concerns.addAll(domain.getConcerns());
@@ -81,7 +81,7 @@ public class MergedArchitectureDomain extends MergedADElement {
 	 * @return a collection of contexts
 	 */
 	public Collection<MergedArchitectureContext> getContexts() {
-		Map<String, MergedArchitectureContext> contexts = new HashMap<String, MergedArchitectureContext>();
+		Map<String, MergedArchitectureContext> contexts = new HashMap<>();
 		for (ADElement element : elements) {
 			ArchitectureDomain domain = (ArchitectureDomain) element;
 			for (ArchitectureContext context : domain.getContexts()) {

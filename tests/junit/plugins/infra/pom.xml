@@ -31,11 +31,12 @@
 	<module>viewpoints</module>
 		
 	<!-- Standalone Plugins -->
+	<module>org.eclipse.papyrus.infra.architecture.tests</module>
 	<module>org.eclipse.papyrus.infra.filters.tests</module>
 	<module>org.eclipse.papyrus.infra.newchild.tests</module>
 	<module>org.eclipse.papyrus.infra.tools.tests</module>
 	<module>org.eclipse.papyrus.infra.ui.tests</module>		
-	
+		
   </modules>
   
 </project>

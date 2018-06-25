@@ -34,7 +34,7 @@ public class ModelCommandProviderRegistry implements IModelCommandProvider {
 	/**
 	 * The extension point id
 	 */
-	private final static String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".commandProviders";
+	private static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".commandProviders";
 
 	/**
 	 * The name of the class attribute
@@ -102,7 +102,7 @@ public class ModelCommandProviderRegistry implements IModelCommandProvider {
 	 * initializes the registry from extensions
 	 */
 	private void init() {
-		providers = new ArrayList<IModelCommandProvider>();
+		providers = new ArrayList<>();
 		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_POINT_ID);
 		for (IConfigurationElement configurationElement : elements) {
 			try {

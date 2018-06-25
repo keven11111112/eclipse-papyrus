@@ -51,7 +51,7 @@ public class MergedADElement {
 	 */
 	public MergedADElement(MergedADElement parent) {
 		this.parent = parent;
-		this.elements = new LinkedHashSet<ADElement>();
+		this.elements = new LinkedHashSet<>();
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class MergedADElement {
 		MergedADElement other = (MergedADElement) obj;
 		if (other.parent != this.parent)
 			return false;
-		Set<ADElement> copy = new HashSet<ADElement>(this.elements);
+		Set<ADElement> copy = new HashSet<>(this.elements);
 		copy.retainAll(other.elements);
 		return copy.size() == this.elements.size();
 	}

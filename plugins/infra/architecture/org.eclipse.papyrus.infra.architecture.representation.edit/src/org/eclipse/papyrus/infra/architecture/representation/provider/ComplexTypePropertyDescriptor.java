@@ -57,7 +57,7 @@ public class ComplexTypePropertyDescriptor extends SurrogateItemPropertyDescript
 		PapyrusRepresentationKind repKind = (PapyrusRepresentationKind) owningRule.eContainer();
 		ArchitectureDescriptionLanguage language = repKind.getLanguage();
 
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		IClientContext context = ClientContextManager.getInstance().getClientContext(language.getId());
 		IElementType[] types = ElementTypeRegistry.getInstance().getElementTypes(context);
 		if (types != null) {

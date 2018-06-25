@@ -32,7 +32,7 @@ public class ArchitectureDescriptionNotifier {
 	/**
 	 * The name of the extension point
 	 */
-	private final static String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".listeners";
+	private static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".listeners";
 
 	/**
 	 * The class property name
@@ -57,7 +57,7 @@ public class ArchitectureDescriptionNotifier {
 	public static synchronized ArchitectureDescriptionNotifier getInstance() {
 		if (notifier == null) {
 			notifier = new ArchitectureDescriptionNotifier();
-			listeners = new ArrayList<IArchitectureDescriptionListener>();
+			listeners = new ArrayList<>();
 			notifier.init();
 		}
 		return notifier;
