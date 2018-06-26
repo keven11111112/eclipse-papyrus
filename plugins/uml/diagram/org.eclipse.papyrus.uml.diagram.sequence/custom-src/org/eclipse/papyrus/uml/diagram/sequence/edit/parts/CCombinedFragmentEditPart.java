@@ -21,6 +21,9 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CombinedFragmentResizeEditPolicy;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
@@ -66,6 +69,7 @@ public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
 	protected void refreshVisuals() {
 		refreshLabel();
 		super.refreshVisuals();
+		refreshLabelSize();
 	}
 
 	/**
@@ -76,6 +80,16 @@ public class CCombinedFragmentEditPart extends CombinedFragmentEditPart {
 		if (semantic != null && semantic.getInteractionOperator() != null) {
 			getPrimaryShape().setName(semantic.getInteractionOperator().getLiteral());
 		}
+	}
+
+	/**
+	 * @since 5.1
+	 */
+	// Bug 535519
+	protected void refreshLabelSize() {
+		int labelWidth = NotationUtils.getIntValue(getNotationView(), NamedStyleProperties.LABEL_WIDTH, PapyrusWrappingLabel.AUTO_SIZE);
+		int labelHeight = NotationUtils.getIntValue(getNotationView(), NamedStyleProperties.LABEL_HEIGHT, PapyrusWrappingLabel.AUTO_SIZE);
+		getPrimaryShape().setLabelSize(labelWidth, labelHeight);
 	}
 
 	/**

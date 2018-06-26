@@ -92,7 +92,7 @@ Require-Bundle: org.eclipse.papyrus.extensionpoints.editors;bundle-version="[3.0
  org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.representation;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
-Bundle-Version: 3.2.0.qualifier
+Bundle-Version: 3.3.0.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.common.Activator
 Bundle-ManifestVersion: 2

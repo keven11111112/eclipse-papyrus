@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2018 EclipseSource and others.
+ * Copyright (c) 2018 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -69,12 +69,13 @@ public class TestCombinedFragmentOperandsLayout extends AbstractPapyrusTest {
 	 * The value is specified in Pixels.
 	 * </p>
 	 */
-	private static final int LAYOUT_TOLERANCE = 2; // FIXME: When Bug 535061 is fixed, we should be able to set this to 0.
+	// Bug 535519 now allows specifying label sizes in pixels. If tests specify it (e.g. via CSS), we don't need a Tolerance anymore
+	private static final int LAYOUT_TOLERANCE = 0;
 
 	/**
-	 * Size of the CF Label (It is fixed on all platforms, because we use a font explicitly shipped with Papyrus)
+	 * Size of the CF Label (It is fixed on all platforms, since it is set in the test stylesheet)
 	 */
-	private static final int CF_LABEL_HEIGHT = 19;
+	private static final int CF_LABEL_HEIGHT = 19; // 15 (Text, from CSS) + two 1px borders above and below
 	/**
 	 * Initial value for the CF Width
 	 */
@@ -426,9 +427,6 @@ public class TestCombinedFragmentOperandsLayout extends AbstractPapyrusTest {
 	private void assertSize(int width, int height, Dimension actual) {
 		Dimension expected = new Dimension(width, height);
 		String message = String.format("Expected %s (with a %spx tolerance); got %s", expected, LAYOUT_TOLERANCE, actual);
-		// Note: This test only works at 100% DPI Scaling. This is a general SeqD issue
-		// that needs to be solved properly. If you're using a 1440p or 4K screen, errors
-		// are expected.
 		Assert.assertTrue(message, getDelta(expected, actual) <= LAYOUT_TOLERANCE);
 	}
 

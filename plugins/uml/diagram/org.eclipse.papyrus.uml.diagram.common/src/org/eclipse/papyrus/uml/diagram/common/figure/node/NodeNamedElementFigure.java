@@ -1,5 +1,5 @@
 /*****************************************************************************
-< * Copyright (c) 2008 CEA LIST.
+< * Copyright (c) 2008, 2018 CEA LIST, EclipseSource and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Atos Origin - Enable extending with a composite figure, by adding overrideable methods.
  *  Mickael ADAM (ALL@TEC) mickael.adam@all4tec.net - bug 462448
+ *  EclipseSource - Bug 535519
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
@@ -1149,6 +1150,42 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 		// Set stereotype icon on figure
 		this.iconLabel.setIcon(image);
+	}
+
+
+
+	/**
+	 * Set the height of this Label, in pixels. Use {@linksetText #AUTO_SIZE} to
+	 * compute the best size based on the current font size.
+	 *
+	 * @param labelHeight
+	 * @since 3.3
+	 */
+	public void setLabelHeight(int labelHeight) {
+		this.nameLabel.setLabelHeight(labelHeight);
+	}
+
+	/**
+	 * Set the width of this Label, in pixels. Use {@link #AUTO_SIZE} to
+	 * compute the best size based on the current font size.
+	 *
+	 * @param labelWidthgetStringExtents
+	 * @since 3.3
+	 */
+	public void setLabelWidth(int labelWidth) {
+		this.nameLabel.setLabelWidth(labelWidth);
+	}
+
+	/**
+	 * Set the size (Width, Height) of this label, in pixels. Use {@link #AUTO_SIZE} to
+	 * compute the best size based on the current font size.
+	 *
+	 * @param height
+	 * @param width
+	 * @since 3.3
+	 */
+	public void setLabelSize(int width, int height) {
+		this.nameLabel.setLabelSize(width, height);
 	}
 
 }
