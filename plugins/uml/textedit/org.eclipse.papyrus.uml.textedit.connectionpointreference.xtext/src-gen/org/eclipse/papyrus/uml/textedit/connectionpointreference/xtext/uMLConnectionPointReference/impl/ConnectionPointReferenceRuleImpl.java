@@ -18,21 +18,20 @@ import org.eclipse.uml2.uml.Pseudostate;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl.ConnectionPointReferenceRuleImpl#getEntry <em>Entry</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl.ConnectionPointReferenceRuleImpl#getExit <em>Exit</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class ConnectionPointReferenceRuleImpl extends MinimalEObjectImpl.Container implements ConnectionPointReferenceRule
-{
+public class ConnectionPointReferenceRuleImpl extends MinimalEObjectImpl.Container implements ConnectionPointReferenceRule {
 	/**
 	 * The cached value of the '{@link #getEntry() <em>Entry</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getEntry()
 	 * @generated
 	 * @ordered
@@ -43,7 +42,7 @@ public class ConnectionPointReferenceRuleImpl extends MinimalEObjectImpl.Contain
 	 * The cached value of the '{@link #getExit() <em>Exit</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getExit()
 	 * @generated
 	 * @ordered
@@ -53,37 +52,32 @@ public class ConnectionPointReferenceRuleImpl extends MinimalEObjectImpl.Contain
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected ConnectionPointReferenceRuleImpl()
-	{
+	protected ConnectionPointReferenceRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UMLConnectionPointReferencePackage.Literals.CONNECTION_POINT_REFERENCE_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<Pseudostate> getEntry()
-	{
-		if (entry == null)
-		{
+	public EList<Pseudostate> getEntry() {
+		if (entry == null) {
 			entry = new EObjectResolvingEList<Pseudostate>(Pseudostate.class, this, UMLConnectionPointReferencePackage.CONNECTION_POINT_REFERENCE_RULE__ENTRY);
 		}
 		return entry;
@@ -92,14 +86,11 @@ public class ConnectionPointReferenceRuleImpl extends MinimalEObjectImpl.Contain
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<Pseudostate> getExit()
-	{
-		if (exit == null)
-		{
+	public EList<Pseudostate> getExit() {
+		if (exit == null) {
 			exit = new EObjectResolvingEList<Pseudostate>(Pseudostate.class, this, UMLConnectionPointReferencePackage.CONNECTION_POINT_REFERENCE_RULE__EXIT);
 		}
 		return exit;
@@ -108,14 +99,12 @@ public class ConnectionPointReferenceRuleImpl extends MinimalEObjectImpl.Contain
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UMLConnectionPointReferencePackage.CONNECTION_POINT_REFERENCE_RULE__ENTRY:
 			return getEntry();
 		case UMLConnectionPointReferencePackage.CONNECTION_POINT_REFERENCE_RULE__EXIT:
@@ -127,15 +116,13 @@ public class ConnectionPointReferenceRuleImpl extends MinimalEObjectImpl.Contain
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UMLConnectionPointReferencePackage.CONNECTION_POINT_REFERENCE_RULE__ENTRY:
 			getEntry().clear();
 			getEntry().addAll((Collection<? extends Pseudostate>) newValue);
@@ -151,14 +138,12 @@ public class ConnectionPointReferenceRuleImpl extends MinimalEObjectImpl.Contain
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UMLConnectionPointReferencePackage.CONNECTION_POINT_REFERENCE_RULE__ENTRY:
 			getEntry().clear();
 			return;
@@ -172,14 +157,12 @@ public class ConnectionPointReferenceRuleImpl extends MinimalEObjectImpl.Contain
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UMLConnectionPointReferencePackage.CONNECTION_POINT_REFERENCE_RULE__ENTRY:
 			return entry != null && !entry.isEmpty();
 		case UMLConnectionPointReferencePackage.CONNECTION_POINT_REFERENCE_RULE__EXIT:

@@ -9,7 +9,12 @@ Require-Bundle: org.eclipse.xtext.generator;bundle-version="[2.10.0,3.0.0)";reso
  org.eclipse.papyrus.uml.alf.common;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.xtext.xbase.lib;bundle-version="[2.10.0,3.0.0)"
+ org.eclipse.xtext.xbase.lib;bundle-version="[2.10.0,3.0.0)",
+ org.eclipse.xtext,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime
 Export-Package: org.eclipse.papyrus.uml.textedit.property.xtext,
  org.eclipse.papyrus.uml.textedit.property.xtext.formatting,
  org.eclipse.papyrus.uml.textedit.property.xtext.generator,
@@ -24,7 +29,7 @@ Export-Package: org.eclipse.papyrus.uml.textedit.property.xtext,
  org.eclipse.papyrus.uml.textedit.property.xtext.validation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

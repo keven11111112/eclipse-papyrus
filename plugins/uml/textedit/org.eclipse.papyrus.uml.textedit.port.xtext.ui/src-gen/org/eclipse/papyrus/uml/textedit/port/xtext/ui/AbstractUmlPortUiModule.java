@@ -11,12 +11,12 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  */
 @SuppressWarnings("all")
 public abstract class AbstractUmlPortUiModule extends org.eclipse.xtext.ui.DefaultUiModule {
-	
+
 	public AbstractUmlPortUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
-	
-	
+
+
 	// contributed by org.eclipse.xtext.ui.generator.ImplicitUiFragment
 	public com.google.inject.Provider<org.eclipse.xtext.resource.containers.IAllContainersState> provideIAllContainersState() {
 		return org.eclipse.xtext.ui.shared.Access.getJavaProjectsState();
@@ -29,7 +29,8 @@ public abstract class AbstractUmlPortUiModule extends org.eclipse.xtext.ui.Defau
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
 	public void configureHighlightingLexer(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.HIGHLIGHTING)).to(org.eclipse.papyrus.uml.textedit.port.xtext.parser.antlr.internal.InternalUmlPortLexer.class);
+		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.HIGHLIGHTING))
+				.to(org.eclipse.papyrus.uml.textedit.port.xtext.parser.antlr.internal.InternalUmlPortLexer.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
@@ -49,7 +50,8 @@ public abstract class AbstractUmlPortUiModule extends org.eclipse.xtext.ui.Defau
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
 	public void configureIResourceDescriptionsBuilderScope(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.NAMED_BUILDER_SCOPE)).to(org.eclipse.xtext.builder.clustering.CurrentDescriptions.ResourceSetAware.class);
+		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.NAMED_BUILDER_SCOPE))
+				.to(org.eclipse.xtext.builder.clustering.CurrentDescriptions.ResourceSetAware.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
@@ -58,8 +60,14 @@ public abstract class AbstractUmlPortUiModule extends org.eclipse.xtext.ui.Defau
 	}
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
+	public Class<? extends org.eclipse.xtext.generator.IContextualOutputConfigurationProvider> bindIContextualOutputConfigurationProvider() {
+		return org.eclipse.xtext.builder.EclipseOutputConfigurationProvider.class;
+	}
+
+	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
 	public void configureIResourceDescriptionsPersisted(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS)).to(org.eclipse.xtext.builder.builderState.IBuilderState.class);
+		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS))
+				.to(org.eclipse.xtext.builder.builderState.IBuilderState.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
@@ -79,7 +87,8 @@ public abstract class AbstractUmlPortUiModule extends org.eclipse.xtext.ui.Defau
 
 	// contributed by org.eclipse.xtext.generator.generator.GeneratorFragment
 	public void configureBuilderPreferenceStoreInitializer(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.ui.editor.preferences.IPreferenceStoreInitializer.class).annotatedWith(com.google.inject.name.Names.named("builderPreferenceInitializer")).to(org.eclipse.xtext.builder.preferences.BuilderPreferenceAccess.Initializer.class);
+		binder.bind(org.eclipse.xtext.ui.editor.preferences.IPreferenceStoreInitializer.class).annotatedWith(com.google.inject.name.Names.named("builderPreferenceInitializer"))
+				.to(org.eclipse.xtext.builder.preferences.BuilderPreferenceAccess.Initializer.class);
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
@@ -124,12 +133,14 @@ public abstract class AbstractUmlPortUiModule extends org.eclipse.xtext.ui.Defau
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrUiGeneratorFragment
 	public void configureContentAssistLexerProvider(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist.antlr.internal.InternalUmlPortLexer.class).toProvider(org.eclipse.xtext.parser.antlr.LexerProvider.create(org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist.antlr.internal.InternalUmlPortLexer.class));
+		binder.bind(org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist.antlr.internal.InternalUmlPortLexer.class)
+				.toProvider(org.eclipse.xtext.parser.antlr.LexerProvider.create(org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist.antlr.internal.InternalUmlPortLexer.class));
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrUiGeneratorFragment
 	public void configureContentAssistLexer(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.CONTENT_ASSIST)).to(org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist.antlr.internal.InternalUmlPortLexer.class);
+		binder.bind(org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.CONTENT_ASSIST))
+				.to(org.eclipse.papyrus.uml.textedit.port.xtext.ui.contentassist.antlr.internal.InternalUmlPortLexer.class);
 	}
 
 

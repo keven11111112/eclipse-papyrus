@@ -3,16 +3,15 @@
  */
 package org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui;
 
+import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.internal.UmlValueSpecificationActivator;
 import org.eclipse.xtext.ui.guice.AbstractGuiceAwareExecutableExtensionFactory;
 import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
-import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.internal.UmlValueSpecificationActivator;
-
 /**
  * This class was generated. Customizations should only happen in a newly
- * introduced subclass. 
+ * introduced subclass.
  */
 public class UmlValueSpecificationExecutableExtensionFactory extends AbstractGuiceAwareExecutableExtensionFactory {
 
@@ -20,10 +19,10 @@ public class UmlValueSpecificationExecutableExtensionFactory extends AbstractGui
 	protected Bundle getBundle() {
 		return UmlValueSpecificationActivator.getInstance().getBundle();
 	}
-	
+
 	@Override
 	protected Injector getInjector() {
 		return UmlValueSpecificationActivator.getInstance().getInjector(UmlValueSpecificationActivator.ORG_ECLIPSE_PAPYRUS_UML_TEXTEDIT_VALUESPECIFICATION_XTEXT_UMLVALUESPECIFICATION);
 	}
-	
+
 }

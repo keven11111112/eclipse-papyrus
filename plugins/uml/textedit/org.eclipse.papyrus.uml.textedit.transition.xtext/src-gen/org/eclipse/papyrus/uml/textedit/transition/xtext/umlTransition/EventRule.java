@@ -14,6 +14,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface EventRule extends EObject
-{
+public interface EventRule extends EObject {
 } // EventRule

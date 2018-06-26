@@ -13,20 +13,21 @@ import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationU
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUseFactory;
 import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUsePackage;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage;
+import org.eclipse.uml2.types.TypesPackage;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
-public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlCollaborationUsePackage
-{
+public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlCollaborationUsePackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass collaborationUseRuleEClass = null;
@@ -34,31 +35,36 @@ public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass typeRuleEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.UmlCollaborationUsePackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private UmlCollaborationUsePackageImpl()
-	{
+	private UmlCollaborationUsePackageImpl() {
 		super(eNS_URI, UmlCollaborationUseFactory.eINSTANCE);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -67,28 +73,32 @@ public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlC
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link UmlCollaborationUsePackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 *
+	 * This method is used to initialize {@link UmlCollaborationUsePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static UmlCollaborationUsePackage init()
-	{
-		if (isInited) {
+	public static UmlCollaborationUsePackage init() {
+		if (isInited)
 			return (UmlCollaborationUsePackage) EPackage.Registry.INSTANCE.getEPackage(UmlCollaborationUsePackage.eNS_URI);
-		}
 
 		// Obtain or create and register package
-		UmlCollaborationUsePackageImpl theUmlCollaborationUsePackage = (UmlCollaborationUsePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UmlCollaborationUsePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-				: new UmlCollaborationUsePackageImpl());
+		Object registeredUmlCollaborationUsePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		UmlCollaborationUsePackageImpl theUmlCollaborationUsePackage = registeredUmlCollaborationUsePackage instanceof UmlCollaborationUsePackageImpl ? (UmlCollaborationUsePackageImpl) registeredUmlCollaborationUsePackage
+				: new UmlCollaborationUsePackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		UmlCommonPackage.eINSTANCE.eClass();
+		UMLPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theUmlCollaborationUsePackage.createPackageContents();
@@ -99,7 +109,6 @@ public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlC
 		// Mark meta-data to indicate it can't be changed
 		theUmlCollaborationUsePackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(UmlCollaborationUsePackage.eNS_URI, theUmlCollaborationUsePackage);
 		return theUmlCollaborationUsePackage;
@@ -108,79 +117,67 @@ public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getCollaborationUseRule()
-	{
+	public EClass getCollaborationUseRule() {
 		return collaborationUseRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EAttribute getCollaborationUseRule_Visibility()
-	{
+	public EAttribute getCollaborationUseRule_Visibility() {
 		return (EAttribute) collaborationUseRuleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EAttribute getCollaborationUseRule_Name()
-	{
+	public EAttribute getCollaborationUseRule_Name() {
 		return (EAttribute) collaborationUseRuleEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EReference getCollaborationUseRule_Type()
-	{
+	public EReference getCollaborationUseRule_Type() {
 		return (EReference) collaborationUseRuleEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getTypeRule()
-	{
+	public EClass getTypeRule() {
 		return typeRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public UmlCollaborationUseFactory getUmlCollaborationUseFactory()
-	{
+	public UmlCollaborationUseFactory getUmlCollaborationUseFactory() {
 		return (UmlCollaborationUseFactory) getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -190,14 +187,12 @@ public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlC
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public void createPackageContents()
-	{
-		if (isCreated) {
+	public void createPackageContents() {
+		if (isCreated)
 			return;
-		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -212,7 +207,7 @@ public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -222,14 +217,12 @@ public class UmlCollaborationUsePackageImpl extends EPackageImpl implements UmlC
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public void initializePackageContents()
-	{
-		if (isInitialized) {
+	public void initializePackageContents() {
+		if (isInitialized)
 			return;
-		}
 		isInitialized = true;
 
 		// Initialize package

@@ -11,25 +11,25 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.GuardRule#getConstraint <em>Constraint</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionPackage#getGuardRule()
  * @model
  * @generated
  */
-public interface GuardRule extends EObject
-{
+public interface GuardRule extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Constraint</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Constraint</em>' attribute isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Constraint</em>' attribute isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Constraint</em>' attribute.
 	 * @see #setConstraint(String)
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionPackage#getGuardRule_Constraint()
@@ -42,7 +42,7 @@ public interface GuardRule extends EObject
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.GuardRule#getConstraint <em>Constraint</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Constraint</em>' attribute.
 	 * @see #getConstraint()

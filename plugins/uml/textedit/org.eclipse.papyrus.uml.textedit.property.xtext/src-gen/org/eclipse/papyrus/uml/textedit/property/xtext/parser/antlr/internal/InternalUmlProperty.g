@@ -91,7 +91,7 @@ rulePropertyRule returns [EObject current=null]
        			$current, 
        			"visibility",
         		lv_visibility_0_0, 
-        		"VisibilityRule");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.VisibilityRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -125,7 +125,7 @@ rulePropertyRule returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_2_0, 
-        		"ID");
+        		"org.eclipse.papyrus.uml.alf.Common.ID");
 	    }
 
 )
@@ -146,7 +146,7 @@ rulePropertyRule returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_4_0, 
-        		"TypeRule");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.TypeRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -180,7 +180,7 @@ rulePropertyRule returns [EObject current=null]
        			$current, 
        			"multiplicity",
         		lv_multiplicity_6_0, 
-        		"MultiplicityRule");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.MultiplicityRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -198,7 +198,7 @@ rulePropertyRule returns [EObject current=null]
        			$current, 
        			"modifiers",
         		lv_modifiers_7_0, 
-        		"ModifiersRule");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.ModifiersRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -216,7 +216,7 @@ rulePropertyRule returns [EObject current=null]
        			$current, 
        			"default",
         		lv_default_8_0, 
-        		"DefaultValueRule");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.DefaultValueRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -255,7 +255,7 @@ ruleVisibilityRule returns [EObject current=null]
        			$current, 
        			"visibility",
         		lv_visibility_0_0, 
-        		"VisibilityKind");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.VisibilityKind");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -294,7 +294,7 @@ ruleTypeRule returns [EObject current=null]
        			$current, 
        			"path",
         		lv_path_0_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -363,7 +363,7 @@ ruleQualifiedName returns [EObject current=null]
        			$current, 
        			"remaining",
         		lv_remaining_2_0, 
-        		"QualifiedName");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.QualifiedName");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -406,7 +406,7 @@ ruleMultiplicityRule returns [EObject current=null]
        			$current, 
        			"bounds",
         		lv_bounds_1_0, 
-        		"BoundSpecification");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.BoundSpecification");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -428,7 +428,7 @@ ruleMultiplicityRule returns [EObject current=null]
        			$current, 
        			"bounds",
         		lv_bounds_3_0, 
-        		"BoundSpecification");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.BoundSpecification");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -472,7 +472,7 @@ ruleBoundSpecification returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_0_1, 
-        		"UnlimitedLiteral");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.UnlimitedLiteral");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -487,7 +487,7 @@ ruleBoundSpecification returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_0_2, 
-        		"StringLiteral");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.StringLiteral");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -601,7 +601,7 @@ ruleModifiersRule returns [EObject current=null]
        			$current, 
        			"values",
         		lv_values_2_0, 
-        		"ModifierSpecification");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.ModifierSpecification");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -623,7 +623,7 @@ ruleModifiersRule returns [EObject current=null]
        			$current, 
        			"values",
         		lv_values_4_0, 
-        		"ModifierSpecification");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.ModifierSpecification");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -666,7 +666,7 @@ ruleModifierSpecification returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_0_0, 
-        		"ModifierKind");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.ModifierKind");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -685,7 +685,7 @@ ruleModifierSpecification returns [EObject current=null]
        			$current, 
        			"redefines",
         		lv_redefines_1_0, 
-        		"RedefinesRule");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.RedefinesRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -704,7 +704,7 @@ ruleModifierSpecification returns [EObject current=null]
        			$current, 
        			"subsets",
         		lv_subsets_2_0, 
-        		"SubsetsRule");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.SubsetsRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -823,7 +823,7 @@ ruleDefaultValueRule returns [EObject current=null]
        			$current, 
        			"default",
         		lv_default_1_0, 
-        		"Value");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.Value");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -943,7 +943,7 @@ ruleIntValue returns [EObject current=null]
        			$current, 
        			"literalInteger",
         		lv_literalInteger_0_0, 
-        		"INT");
+        		"org.eclipse.papyrus.uml.alf.Common.INT");
 	    }
 
 )
@@ -982,7 +982,7 @@ ruleStringValue returns [EObject current=null]
        			$current, 
        			"literalString",
         		lv_literalString_0_0, 
-        		"STRING");
+        		"org.eclipse.papyrus.uml.alf.Common.STRING");
 	    }
 
 )
@@ -1020,7 +1020,7 @@ ruleBooleanValue returns [EObject current=null]
        			$current, 
        			"literalBoolean",
         		lv_literalBoolean_0_0, 
-        		"BooleanLiterals");
+        		"org.eclipse.papyrus.uml.textedit.property.xtext.UmlProperty.BooleanLiterals");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1060,7 +1060,7 @@ ruleRealValue returns [EObject current=null]
        			$current, 
        			"integer",
         		lv_integer_0_0, 
-        		"INT");
+        		"org.eclipse.papyrus.uml.alf.Common.INT");
 	    }
 
 )
@@ -1087,7 +1087,7 @@ ruleRealValue returns [EObject current=null]
        			$current, 
        			"fraction",
         		lv_fraction_3_0, 
-        		"INT");
+        		"org.eclipse.papyrus.uml.alf.Common.INT");
 	    }
 
 )
@@ -1106,7 +1106,7 @@ ruleRealValue returns [EObject current=null]
        			$current, 
        			"integer",
         		lv_integer_4_0, 
-        		"INT");
+        		"org.eclipse.papyrus.uml.alf.Common.INT");
 	    }
 
 )
@@ -1128,7 +1128,7 @@ ruleRealValue returns [EObject current=null]
        			$current, 
        			"fraction",
         		lv_fraction_6_0, 
-        		"INT");
+        		"org.eclipse.papyrus.uml.alf.Common.INT");
 	    }
 
 )
@@ -1269,14 +1269,14 @@ ruleBooleanLiterals returns [Enumerator current=null]
     @after { leaveRule(); }:
 ((	enumLiteral_0='true' 
 	{
-        $current = grammarAccess.getBooleanLiteralsAccess().getTrueEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getBooleanLiteralsAccess().getTrueEnumLiteralDeclaration_0()); 
+        $current = grammarAccess.getBooleanLiteralsAccess().getTRUEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getBooleanLiteralsAccess().getTRUEEnumLiteralDeclaration_0()); 
     }
 )
     |(	enumLiteral_1='false' 
 	{
-        $current = grammarAccess.getBooleanLiteralsAccess().getFalseEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_1, grammarAccess.getBooleanLiteralsAccess().getFalseEnumLiteralDeclaration_1()); 
+        $current = grammarAccess.getBooleanLiteralsAccess().getFALSEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_1, grammarAccess.getBooleanLiteralsAccess().getFALSEEnumLiteralDeclaration_1()); 
     }
 ));
 

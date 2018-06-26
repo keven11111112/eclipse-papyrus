@@ -22,29 +22,24 @@ import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
-public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
-{
+public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public static UmlStateFactory init()
-	{
-		try
-		{
+	public static UmlStateFactory init() {
+		try {
 			UmlStateFactory theUmlStateFactory = (UmlStateFactory) EPackage.Registry.INSTANCE.getEFactory(UmlStatePackage.eNS_URI);
-			if (theUmlStateFactory != null)
-			{
+			if (theUmlStateFactory != null) {
 				return theUmlStateFactory;
 			}
-		} catch (Exception exception)
-		{
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new UmlStateFactoryImpl();
@@ -54,25 +49,22 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public UmlStateFactoryImpl()
-	{
+	public UmlStateFactoryImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass)
-	{
-		switch (eClass.getClassifierID())
-		{
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
 		case UmlStatePackage.STATE_RULE:
 			return createStateRule();
 		case UmlStatePackage.SUBMACHINE_RULE:
@@ -93,14 +85,12 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object createFromString(EDataType eDataType, String initialValue)
-	{
-		switch (eDataType.getClassifierID())
-		{
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
 		case UmlStatePackage.BEHAVIOR_KIND:
 			return createBehaviorKindFromString(eDataType, initialValue);
 		default:
@@ -111,14 +101,12 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue)
-	{
-		switch (eDataType.getClassifierID())
-		{
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
 		case UmlStatePackage.BEHAVIOR_KIND:
 			return convertBehaviorKindToString(eDataType, instanceValue);
 		default:
@@ -129,12 +117,10 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public StateRule createStateRule()
-	{
+	public StateRule createStateRule() {
 		StateRuleImpl stateRule = new StateRuleImpl();
 		return stateRule;
 	}
@@ -142,12 +128,10 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public SubmachineRule createSubmachineRule()
-	{
+	public SubmachineRule createSubmachineRule() {
 		SubmachineRuleImpl submachineRule = new SubmachineRuleImpl();
 		return submachineRule;
 	}
@@ -155,12 +139,10 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public QualifiedName createQualifiedName()
-	{
+	public QualifiedName createQualifiedName() {
 		QualifiedNameImpl qualifiedName = new QualifiedNameImpl();
 		return qualifiedName;
 	}
@@ -168,12 +150,10 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EntryRule createEntryRule()
-	{
+	public EntryRule createEntryRule() {
 		EntryRuleImpl entryRule = new EntryRuleImpl();
 		return entryRule;
 	}
@@ -181,12 +161,10 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public DoRule createDoRule()
-	{
+	public DoRule createDoRule() {
 		DoRuleImpl doRule = new DoRuleImpl();
 		return doRule;
 	}
@@ -194,12 +172,10 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public ExitRule createExitRule()
-	{
+	public ExitRule createExitRule() {
 		ExitRuleImpl exitRule = new ExitRuleImpl();
 		return exitRule;
 	}
@@ -207,51 +183,45 @@ public class UmlStateFactoryImpl extends EFactoryImpl implements UmlStateFactory
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public BehaviorKind createBehaviorKindFromString(EDataType eDataType, String initialValue)
-	{
+	public BehaviorKind createBehaviorKindFromString(EDataType eDataType, String initialValue) {
 		BehaviorKind result = BehaviorKind.get(initialValue);
-		if (result == null) {
+		if (result == null)
 			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		}
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public String convertBehaviorKindToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertBehaviorKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public UmlStatePackage getUmlStatePackage()
-	{
+	public UmlStatePackage getUmlStatePackage() {
 		return (UmlStatePackage) getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
 	@Deprecated
-	public static UmlStatePackage getPackage()
-	{
+	public static UmlStatePackage getPackage() {
 		return UmlStatePackage.eINSTANCE;
 	}
 

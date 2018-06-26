@@ -16,20 +16,19 @@ import org.eclipse.uml2.uml.NamedElement;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.impl.CallOrSignalEventRuleImpl#getOperationOrSignal <em>Operation Or Signal</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class CallOrSignalEventRuleImpl extends EventRuleImpl implements CallOrSignalEventRule
-{
+public class CallOrSignalEventRuleImpl extends EventRuleImpl implements CallOrSignalEventRule {
 	/**
 	 * The cached value of the '{@link #getOperationOrSignal() <em>Operation Or Signal</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getOperationOrSignal()
 	 * @generated
 	 * @ordered
@@ -39,44 +38,37 @@ public class CallOrSignalEventRuleImpl extends EventRuleImpl implements CallOrSi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected CallOrSignalEventRuleImpl()
-	{
+	protected CallOrSignalEventRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlTransitionPackage.Literals.CALL_OR_SIGNAL_EVENT_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public NamedElement getOperationOrSignal()
-	{
-		if (operationOrSignal != null && operationOrSignal.eIsProxy())
-		{
+	public NamedElement getOperationOrSignal() {
+		if (operationOrSignal != null && operationOrSignal.eIsProxy()) {
 			InternalEObject oldOperationOrSignal = (InternalEObject) operationOrSignal;
 			operationOrSignal = (NamedElement) eResolveProxy(oldOperationOrSignal);
-			if (operationOrSignal != oldOperationOrSignal)
-			{
-				if (eNotificationRequired()) {
+			if (operationOrSignal != oldOperationOrSignal) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UmlTransitionPackage.CALL_OR_SIGNAL_EVENT_RULE__OPERATION_OR_SIGNAL, oldOperationOrSignal, operationOrSignal));
-				}
 			}
 		}
 		return operationOrSignal;
@@ -85,45 +77,38 @@ public class CallOrSignalEventRuleImpl extends EventRuleImpl implements CallOrSi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NamedElement basicGetOperationOrSignal()
-	{
+	public NamedElement basicGetOperationOrSignal() {
 		return operationOrSignal;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setOperationOrSignal(NamedElement newOperationOrSignal)
-	{
+	public void setOperationOrSignal(NamedElement newOperationOrSignal) {
 		NamedElement oldOperationOrSignal = operationOrSignal;
 		operationOrSignal = newOperationOrSignal;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlTransitionPackage.CALL_OR_SIGNAL_EVENT_RULE__OPERATION_OR_SIGNAL, oldOperationOrSignal, operationOrSignal));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlTransitionPackage.CALL_OR_SIGNAL_EVENT_RULE__OPERATION_OR_SIGNAL:
-			if (resolve) {
+			if (resolve)
 				return getOperationOrSignal();
-			}
 			return basicGetOperationOrSignal();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -132,14 +117,12 @@ public class CallOrSignalEventRuleImpl extends EventRuleImpl implements CallOrSi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlTransitionPackage.CALL_OR_SIGNAL_EVENT_RULE__OPERATION_OR_SIGNAL:
 			setOperationOrSignal((NamedElement) newValue);
 			return;
@@ -150,14 +133,12 @@ public class CallOrSignalEventRuleImpl extends EventRuleImpl implements CallOrSi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.CALL_OR_SIGNAL_EVENT_RULE__OPERATION_OR_SIGNAL:
 			setOperationOrSignal((NamedElement) null);
 			return;
@@ -168,14 +149,12 @@ public class CallOrSignalEventRuleImpl extends EventRuleImpl implements CallOrSi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.CALL_OR_SIGNAL_EVENT_RULE__OPERATION_OR_SIGNAL:
 			return operationOrSignal != null;
 		}

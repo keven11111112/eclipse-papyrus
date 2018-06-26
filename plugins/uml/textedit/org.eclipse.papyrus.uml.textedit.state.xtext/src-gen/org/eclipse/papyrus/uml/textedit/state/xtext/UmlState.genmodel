@@ -4,11 +4,11 @@
     editDirectory="/org.eclipse.papyrus.uml.textedit.state.xtext.edit/src" editorDirectory="/org.eclipse.papyrus.uml.textedit.state.xtext.editor/src"
     modelPluginID="org.eclipse.papyrus.uml.textedit.state.xtext" forceOverwrite="true"
     modelName="UmlState" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.textedit.state.xtext.edit"
-    editorPluginID="org.eclipse.papyrus.uml.textedit.state.xtext.editor" runtimeVersion="2.9"
-    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../../../../../../../../org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    complianceLevel="6.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.textedit.state.xtext.edit"
+    editorPluginID="org.eclipse.papyrus.uml.textedit.state.xtext.editor" runtimeVersion="2.14"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <genPackages prefix="UmlState" basePackage="org.eclipse.papyrus.uml.textedit.state.xtext"
-      resource="XML" disposableProviderFactory="true" ecorePackage="UmlState.ecore#/">
+      disposableProviderFactory="true" ecorePackage="UmlState.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="UmlState.ecore#//BehaviorKind">
       <genEnumLiterals ecoreEnumLiteral="UmlState.ecore#//BehaviorKind/ACTIVITY"/>
       <genEnumLiterals ecoreEnumLiteral="UmlState.ecore#//BehaviorKind/STATE_MACHINE"/>

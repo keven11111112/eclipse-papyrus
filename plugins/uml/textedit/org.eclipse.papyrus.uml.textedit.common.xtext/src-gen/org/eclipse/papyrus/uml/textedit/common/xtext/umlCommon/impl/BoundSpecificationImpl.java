@@ -15,20 +15,19 @@ import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.impl.BoundSpecificationImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class BoundSpecificationImpl extends MinimalEObjectImpl.Container implements BoundSpecification
-{
+public class BoundSpecificationImpl extends MinimalEObjectImpl.Container implements BoundSpecification {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -39,7 +38,7 @@ public class BoundSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -49,65 +48,56 @@ public class BoundSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected BoundSpecificationImpl()
-	{
+	protected BoundSpecificationImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlCommonPackage.Literals.BOUND_SPECIFICATION;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public String getValue()
-	{
+	public String getValue() {
 		return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setValue(String newValue)
-	{
+	public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlCommonPackage.BOUND_SPECIFICATION__VALUE, oldValue, value));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlCommonPackage.BOUND_SPECIFICATION__VALUE:
 			return getValue();
 		}
@@ -117,14 +107,12 @@ public class BoundSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlCommonPackage.BOUND_SPECIFICATION__VALUE:
 			setValue((String) newValue);
 			return;
@@ -135,14 +123,12 @@ public class BoundSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlCommonPackage.BOUND_SPECIFICATION__VALUE:
 			setValue(VALUE_EDEFAULT);
 			return;
@@ -153,14 +139,12 @@ public class BoundSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlCommonPackage.BOUND_SPECIFICATION__VALUE:
 			return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
@@ -170,17 +154,15 @@ public class BoundSpecificationImpl extends MinimalEObjectImpl.Container impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) {
+	public String toString() {
+		if (eIsProxy())
 			return super.toString();
-		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (value: ");
 		result.append(value);
 		result.append(')');

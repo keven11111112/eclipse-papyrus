@@ -36,7 +36,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * The cached value of the '{@link #getSequenceTerm() <em>Sequence Term</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getSequenceTerm()
 	 * @generated
 	 * @ordered
@@ -47,7 +47,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -58,7 +58,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -68,7 +68,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected MessageRuleImpl() {
@@ -78,7 +78,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -89,10 +89,9 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public EList<SequenceTermRule> getSequenceTerm() {
 		if (sequenceTerm == null) {
 			sequenceTerm = new EObjectContainmentEList<SequenceTermRule>(SequenceTermRule.class, this, UmlMessagePackage.MESSAGE_RULE__SEQUENCE_TERM);
@@ -103,10 +102,9 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public String getName() {
 		return name;
 	}
@@ -114,22 +112,20 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlMessagePackage.MESSAGE_RULE__NAME, oldName, name));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -144,7 +140,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -161,7 +157,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -182,7 +178,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,7 +197,7 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,16 +214,15 @@ public class MessageRuleImpl extends MinimalEObjectImpl.Container implements Mes
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if (eIsProxy())
 			return super.toString();
-		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(')');

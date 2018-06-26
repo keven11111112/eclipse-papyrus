@@ -13,6 +13,5 @@ package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaboration
  * @model
  * @generated
  */
-public interface TypeRule extends org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule
-{
+public interface TypeRule extends org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule {
 } // TypeRule

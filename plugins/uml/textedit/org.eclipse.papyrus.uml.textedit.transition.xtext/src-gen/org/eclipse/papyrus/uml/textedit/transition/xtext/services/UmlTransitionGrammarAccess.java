@@ -18,6 +18,7 @@ import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
+import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
 import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -29,7 +30,7 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 
 
 	public class TransitionRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TransitionRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.TransitionRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Group cGroup_0 = (Group) cGroup.eContents().get(0);
 		private final Assignment cTriggersAssignment_0_0 = (Assignment) cGroup_0.eContents().get(0);
@@ -44,19 +45,18 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cEffectEffectRuleParserRuleCall_2_0 = (RuleCall) cEffectAssignment_2.eContents().get(0);
 
 		// TransitionRule:
-		//
-		// (triggers+=EventRule ("," triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?;
+		// (triggers+=EventRule (',' triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// (triggers+=EventRule ("," triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?
+		// (triggers+=EventRule (',' triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// (triggers+=EventRule ("," triggers+=EventRule)*)?
+		// (triggers+=EventRule (',' triggers+=EventRule)*)?
 		public Group getGroup_0() {
 			return cGroup_0;
 		}
@@ -71,12 +71,12 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 			return cTriggersEventRuleParserRuleCall_0_0_0;
 		}
 
-		// ("," triggers+=EventRule)*
+		// (',' triggers+=EventRule)*
 		public Group getGroup_0_1() {
 			return cGroup_0_1;
 		}
 
-		// ","
+		// ','
 		public Keyword getCommaKeyword_0_1_0() {
 			return cCommaKeyword_0_1_0;
 		}
@@ -113,18 +113,17 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class EventRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EventRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.EventRule");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final RuleCall cCallOrSignalEventRuleParserRuleCall_0 = (RuleCall) cAlternatives.eContents().get(0);
 		private final RuleCall cAnyReceiveEventRuleParserRuleCall_1 = (RuleCall) cAlternatives.eContents().get(1);
 		private final RuleCall cTimeEventRuleParserRuleCall_2 = (RuleCall) cAlternatives.eContents().get(2);
 		private final RuleCall cChangeEventRuleParserRuleCall_3 = (RuleCall) cAlternatives.eContents().get(3);
 
-		// //////////////////////
+		////////////////////////
 		// // EVENTS
 		// //////////////////////
 		// EventRule:
-		//
 		// CallOrSignalEventRule | AnyReceiveEventRule | TimeEventRule | ChangeEventRule;
 		@Override
 		public ParserRule getRule() {
@@ -158,13 +157,12 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class CallOrSignalEventRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CallOrSignalEventRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.CallOrSignalEventRule");
 		private final Assignment cOperationOrSignalAssignment = (Assignment) rule.eContents().get(1);
 		private final CrossReference cOperationOrSignalNamedElementCrossReference_0 = (CrossReference) cOperationOrSignalAssignment.eContents().get(0);
 		private final RuleCall cOperationOrSignalNamedElementIDTerminalRuleCall_0_1 = (RuleCall) cOperationOrSignalNamedElementCrossReference_0.eContents().get(1);
 
 		// CallOrSignalEventRule:
-		//
 		// operationOrSignal=[uml::NamedElement];
 		@Override
 		public ParserRule getRule() {
@@ -188,37 +186,35 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AnyReceiveEventRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AnyReceiveEventRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.AnyReceiveEventRule");
 		private final Assignment cIsAReceiveEventAssignment = (Assignment) rule.eContents().get(1);
 		private final Keyword cIsAReceiveEventAllKeyword_0 = (Keyword) cIsAReceiveEventAssignment.eContents().get(0);
 
 		// AnyReceiveEventRule:
-		//
-		// isAReceiveEvent="all";
+		// isAReceiveEvent='all';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// isAReceiveEvent="all"
+		// isAReceiveEvent='all'
 		public Assignment getIsAReceiveEventAssignment() {
 			return cIsAReceiveEventAssignment;
 		}
 
-		// "all"
+		// 'all'
 		public Keyword getIsAReceiveEventAllKeyword_0() {
 			return cIsAReceiveEventAllKeyword_0;
 		}
 	}
 
 	public class TimeEventRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TimeEventRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.TimeEventRule");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final RuleCall cRelativeTimeEventRuleParserRuleCall_0 = (RuleCall) cAlternatives.eContents().get(0);
 		private final RuleCall cAbsoluteTimeEventRuleParserRuleCall_1 = (RuleCall) cAlternatives.eContents().get(1);
 
 		// TimeEventRule:
-		//
 		// RelativeTimeEventRule | AbsoluteTimeEventRule;
 		@Override
 		public ParserRule getRule() {
@@ -242,26 +238,25 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class RelativeTimeEventRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RelativeTimeEventRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.RelativeTimeEventRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Keyword cAfterKeyword_0 = (Keyword) cGroup.eContents().get(0);
 		private final Assignment cExprAssignment_1 = (Assignment) cGroup.eContents().get(1);
 		private final RuleCall cExprSTRINGTerminalRuleCall_1_0 = (RuleCall) cExprAssignment_1.eContents().get(0);
 
 		// RelativeTimeEventRule:
-		//
-		// "after" expr=STRING;
+		// 'after' expr=STRING;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// "after" expr=STRING
+		// 'after' expr=STRING
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// "after"
+		// 'after'
 		public Keyword getAfterKeyword_0() {
 			return cAfterKeyword_0;
 		}
@@ -278,26 +273,25 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AbsoluteTimeEventRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AbsoluteTimeEventRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.AbsoluteTimeEventRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Keyword cAtKeyword_0 = (Keyword) cGroup.eContents().get(0);
 		private final Assignment cExprAssignment_1 = (Assignment) cGroup.eContents().get(1);
 		private final RuleCall cExprSTRINGTerminalRuleCall_1_0 = (RuleCall) cExprAssignment_1.eContents().get(0);
 
 		// AbsoluteTimeEventRule:
-		//
-		// "at" expr=STRING;
+		// 'at' expr=STRING;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// "at" expr=STRING
+		// 'at' expr=STRING
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// "at"
+		// 'at'
 		public Keyword getAtKeyword_0() {
 			return cAtKeyword_0;
 		}
@@ -314,26 +308,25 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ChangeEventRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ChangeEventRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.ChangeEventRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Keyword cWhenKeyword_0 = (Keyword) cGroup.eContents().get(0);
 		private final Assignment cExpAssignment_1 = (Assignment) cGroup.eContents().get(1);
 		private final RuleCall cExpSTRINGTerminalRuleCall_1_0 = (RuleCall) cExpAssignment_1.eContents().get(0);
 
 		// ChangeEventRule:
-		//
-		// "when" exp=STRING;
+		// 'when' exp=STRING;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// "when" exp=STRING
+		// 'when' exp=STRING
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// "when"
+		// 'when'
 		public Keyword getWhenKeyword_0() {
 			return cWhenKeyword_0;
 		}
@@ -350,30 +343,29 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class GuardRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "GuardRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.GuardRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword) cGroup.eContents().get(0);
 		private final Assignment cConstraintAssignment_1 = (Assignment) cGroup.eContents().get(1);
 		private final RuleCall cConstraintSTRINGTerminalRuleCall_1_0 = (RuleCall) cConstraintAssignment_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword) cGroup.eContents().get(2);
 
-		// ///////////////////////
+		/////////////////////////
 		// // GUARD
 		// ///////////////////////
 		// GuardRule:
-		//
-		// "[" constraint=STRING "]";
+		// '[' constraint=STRING ']';
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// "[" constraint=STRING "]"
+		// '[' constraint=STRING ']'
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// "["
+		// '['
 		public Keyword getLeftSquareBracketKeyword_0() {
 			return cLeftSquareBracketKeyword_0;
 		}
@@ -388,14 +380,14 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 			return cConstraintSTRINGTerminalRuleCall_1_0;
 		}
 
-		// "]"
+		// ']'
 		public Keyword getRightSquareBracketKeyword_2() {
 			return cRightSquareBracketKeyword_2;
 		}
 	}
 
 	public class EffectRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EffectRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.EffectRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Keyword cSolidusKeyword_0 = (Keyword) cGroup.eContents().get(0);
 		private final Assignment cKindAssignment_1 = (Assignment) cGroup.eContents().get(1);
@@ -403,23 +395,22 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cBehaviorNameAssignment_2 = (Assignment) cGroup.eContents().get(2);
 		private final RuleCall cBehaviorNameIDTerminalRuleCall_2_0 = (RuleCall) cBehaviorNameAssignment_2.eContents().get(0);
 
-		// ///////////////////////
+		/////////////////////////
 		// // EFFECT
 		// ///////////////////////
 		// EffectRule:
-		//
-		// "/" kind=BehaviorKind behaviorName=ID;
+		// '/' kind=BehaviorKind behaviorName=ID;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// "/" kind=BehaviorKind behaviorName=ID
+		// '/' kind=BehaviorKind behaviorName=ID
 		public Group getGroup() {
 			return cGroup;
 		}
 
-		// "/"
+		// '/'
 		public Keyword getSolidusKeyword_0() {
 			return cSolidusKeyword_0;
 		}
@@ -447,7 +438,7 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 
 
 	public class BehaviorKindElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "BehaviorKind");
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.transition.xtext.UmlTransition.BehaviorKind");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final EnumLiteralDeclaration cACTIVITYEnumLiteralDeclaration_0 = (EnumLiteralDeclaration) cAlternatives.eContents().get(0);
 		private final Keyword cACTIVITYActivityKeyword_0_0 = (Keyword) cACTIVITYEnumLiteralDeclaration_0.eContents().get(0);
@@ -457,9 +448,7 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOPAQUE_BEHAVIOROpaqueBehaviorKeyword_2_0 = (Keyword) cOPAQUE_BEHAVIOREnumLiteralDeclaration_2.eContents().get(0);
 
 		// enum BehaviorKind:
-		//
 		// ACTIVITY="Activity" | STATE_MACHINE="StateMachine" | OPAQUE_BEHAVIOR="OpaqueBehavior";
-		@Override
 		public EnumRule getRule() {
 			return rule;
 		}
@@ -500,27 +489,42 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 		}
 	}
 
-	private TransitionRuleElements pTransitionRule;
-	private EventRuleElements pEventRule;
-	private CallOrSignalEventRuleElements pCallOrSignalEventRule;
-	private AnyReceiveEventRuleElements pAnyReceiveEventRule;
-	private TimeEventRuleElements pTimeEventRule;
-	private RelativeTimeEventRuleElements pRelativeTimeEventRule;
-	private AbsoluteTimeEventRuleElements pAbsoluteTimeEventRule;
-	private ChangeEventRuleElements pChangeEventRule;
-	private GuardRuleElements pGuardRule;
-	private EffectRuleElements pEffectRule;
-	private BehaviorKindElements unknownRuleBehaviorKind;
+	private final TransitionRuleElements pTransitionRule;
+	private final EventRuleElements pEventRule;
+	private final CallOrSignalEventRuleElements pCallOrSignalEventRule;
+	private final AnyReceiveEventRuleElements pAnyReceiveEventRule;
+	private final TimeEventRuleElements pTimeEventRule;
+	private final RelativeTimeEventRuleElements pRelativeTimeEventRule;
+	private final AbsoluteTimeEventRuleElements pAbsoluteTimeEventRule;
+	private final ChangeEventRuleElements pChangeEventRule;
+	private final GuardRuleElements pGuardRule;
+	private final EffectRuleElements pEffectRule;
+	private final BehaviorKindElements eBehaviorKind;
 
 	private final Grammar grammar;
 
-	private CommonGrammarAccess gaCommon;
+	private final CommonGrammarAccess gaCommon;
+
+	private final TerminalsGrammarAccess gaTerminals;
 
 	@Inject
 	public UmlTransitionGrammarAccess(GrammarProvider grammarProvider,
-			CommonGrammarAccess gaCommon) {
+			CommonGrammarAccess gaCommon,
+			TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaCommon = gaCommon;
+		this.gaTerminals = gaTerminals;
+		this.pTransitionRule = new TransitionRuleElements();
+		this.pEventRule = new EventRuleElements();
+		this.pCallOrSignalEventRule = new CallOrSignalEventRuleElements();
+		this.pAnyReceiveEventRule = new AnyReceiveEventRuleElements();
+		this.pTimeEventRule = new TimeEventRuleElements();
+		this.pRelativeTimeEventRule = new RelativeTimeEventRuleElements();
+		this.pAbsoluteTimeEventRule = new AbsoluteTimeEventRuleElements();
+		this.pChangeEventRule = new ChangeEventRuleElements();
+		this.pGuardRule = new GuardRuleElements();
+		this.pEffectRule = new EffectRuleElements();
+		this.eBehaviorKind = new BehaviorKindElements();
 	}
 
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -539,7 +543,6 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 		return grammar;
 	}
 
-
 	@Override
 	public Grammar getGrammar() {
 		return grammar;
@@ -550,26 +553,28 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 		return gaCommon;
 	}
 
+	public TerminalsGrammarAccess getTerminalsGrammarAccess() {
+		return gaTerminals;
+	}
+
 
 	// TransitionRule:
-	//
-	// (triggers+=EventRule ("," triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?;
+	// (triggers+=EventRule (',' triggers+=EventRule)*)? guard=GuardRule? effect=EffectRule?;
 	public TransitionRuleElements getTransitionRuleAccess() {
-		return (pTransitionRule != null) ? pTransitionRule : (pTransitionRule = new TransitionRuleElements());
+		return pTransitionRule;
 	}
 
 	public ParserRule getTransitionRuleRule() {
 		return getTransitionRuleAccess().getRule();
 	}
 
-	// //////////////////////
+	////////////////////////
 	// // EVENTS
 	// //////////////////////
 	// EventRule:
-	//
 	// CallOrSignalEventRule | AnyReceiveEventRule | TimeEventRule | ChangeEventRule;
 	public EventRuleElements getEventRuleAccess() {
-		return (pEventRule != null) ? pEventRule : (pEventRule = new EventRuleElements());
+		return pEventRule;
 	}
 
 	public ParserRule getEventRuleRule() {
@@ -577,10 +582,9 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// CallOrSignalEventRule:
-	//
 	// operationOrSignal=[uml::NamedElement];
 	public CallOrSignalEventRuleElements getCallOrSignalEventRuleAccess() {
-		return (pCallOrSignalEventRule != null) ? pCallOrSignalEventRule : (pCallOrSignalEventRule = new CallOrSignalEventRuleElements());
+		return pCallOrSignalEventRule;
 	}
 
 	public ParserRule getCallOrSignalEventRuleRule() {
@@ -588,10 +592,9 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// AnyReceiveEventRule:
-	//
-	// isAReceiveEvent="all";
+	// isAReceiveEvent='all';
 	public AnyReceiveEventRuleElements getAnyReceiveEventRuleAccess() {
-		return (pAnyReceiveEventRule != null) ? pAnyReceiveEventRule : (pAnyReceiveEventRule = new AnyReceiveEventRuleElements());
+		return pAnyReceiveEventRule;
 	}
 
 	public ParserRule getAnyReceiveEventRuleRule() {
@@ -599,10 +602,9 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// TimeEventRule:
-	//
 	// RelativeTimeEventRule | AbsoluteTimeEventRule;
 	public TimeEventRuleElements getTimeEventRuleAccess() {
-		return (pTimeEventRule != null) ? pTimeEventRule : (pTimeEventRule = new TimeEventRuleElements());
+		return pTimeEventRule;
 	}
 
 	public ParserRule getTimeEventRuleRule() {
@@ -610,10 +612,9 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// RelativeTimeEventRule:
-	//
-	// "after" expr=STRING;
+	// 'after' expr=STRING;
 	public RelativeTimeEventRuleElements getRelativeTimeEventRuleAccess() {
-		return (pRelativeTimeEventRule != null) ? pRelativeTimeEventRule : (pRelativeTimeEventRule = new RelativeTimeEventRuleElements());
+		return pRelativeTimeEventRule;
 	}
 
 	public ParserRule getRelativeTimeEventRuleRule() {
@@ -621,10 +622,9 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// AbsoluteTimeEventRule:
-	//
-	// "at" expr=STRING;
+	// 'at' expr=STRING;
 	public AbsoluteTimeEventRuleElements getAbsoluteTimeEventRuleAccess() {
-		return (pAbsoluteTimeEventRule != null) ? pAbsoluteTimeEventRule : (pAbsoluteTimeEventRule = new AbsoluteTimeEventRuleElements());
+		return pAbsoluteTimeEventRule;
 	}
 
 	public ParserRule getAbsoluteTimeEventRuleRule() {
@@ -632,38 +632,35 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// ChangeEventRule:
-	//
-	// "when" exp=STRING;
+	// 'when' exp=STRING;
 	public ChangeEventRuleElements getChangeEventRuleAccess() {
-		return (pChangeEventRule != null) ? pChangeEventRule : (pChangeEventRule = new ChangeEventRuleElements());
+		return pChangeEventRule;
 	}
 
 	public ParserRule getChangeEventRuleRule() {
 		return getChangeEventRuleAccess().getRule();
 	}
 
-	// ///////////////////////
+	/////////////////////////
 	// // GUARD
 	// ///////////////////////
 	// GuardRule:
-	//
-	// "[" constraint=STRING "]";
+	// '[' constraint=STRING ']';
 	public GuardRuleElements getGuardRuleAccess() {
-		return (pGuardRule != null) ? pGuardRule : (pGuardRule = new GuardRuleElements());
+		return pGuardRule;
 	}
 
 	public ParserRule getGuardRuleRule() {
 		return getGuardRuleAccess().getRule();
 	}
 
-	// ///////////////////////
+	/////////////////////////
 	// // EFFECT
 	// ///////////////////////
 	// EffectRule:
-	//
-	// "/" kind=BehaviorKind behaviorName=ID;
+	// '/' kind=BehaviorKind behaviorName=ID;
 	public EffectRuleElements getEffectRuleAccess() {
-		return (pEffectRule != null) ? pEffectRule : (pEffectRule = new EffectRuleElements());
+		return pEffectRule;
 	}
 
 	public ParserRule getEffectRuleRule() {
@@ -671,91 +668,61 @@ public class UmlTransitionGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// enum BehaviorKind:
-	//
 	// ACTIVITY="Activity" | STATE_MACHINE="StateMachine" | OPAQUE_BEHAVIOR="OpaqueBehavior";
 	public BehaviorKindElements getBehaviorKindAccess() {
-		return (unknownRuleBehaviorKind != null) ? unknownRuleBehaviorKind : (unknownRuleBehaviorKind = new BehaviorKindElements());
+		return eBehaviorKind;
 	}
 
 	public EnumRule getBehaviorKindRule() {
 		return getBehaviorKindAccess().getRule();
 	}
 
-	// terminal INTEGER_VALUE:
-	//
-	// ("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL
-	//
-	// // BINARY
-	//
-	// // HEX
-	//
-	// // OCT
-	//
-	// | ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
-	//
-	// "A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
-	public TerminalRule getINTEGER_VALUERule() {
-		return gaCommon.getINTEGER_VALUERule();
-	}
-
 	// terminal ID:
-	//
-	// ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "\'"->"\'";
+	// ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')* | '\''->'\'';
 	public TerminalRule getIDRule() {
 		return gaCommon.getIDRule();
 	}
 
 	// terminal STRING:
-	//
-	// "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	// '"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\') | !('\\' | '"'))* '"';
 	public TerminalRule getSTRINGRule() {
 		return gaCommon.getSTRINGRule();
 	}
 
 	// terminal ML_COMMENT:
-	//
-	// "/ *" !"@"->"* /";
+	// '/*' !'@'->'*/';
 	public TerminalRule getML_COMMENTRule() {
 		return gaCommon.getML_COMMENTRule();
 	}
 
-	// //terminal DOUBLE_COLON : '::' ;
-	//
-	// //terminal IDENTIFIER : ID ;
-	//
-	// //terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* | ('\'' -> '\'') ;
-	//
-	// //terminal DOCUMENTATION_COMMENT : '/ *' -> '* /' ;
-	//
-	// //terminal ML_COMMENT : '/°' -> '°/';
-	//
-	// //terminal SL_COMMENT : '°°' !('\n'|'\r')* ('\r'? '\n')?;
-	//
-	// //terminal WS : (' '|'\t'|'\r'|'\n')+; terminal SL_COMMENT:
-	//
-	// "//" !("\n" | "\r" | "@")* ("\r"? "\n")?;
+	// terminal SL_COMMENT:
+	// '//' !('\n' | '\r' | '@')* ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaCommon.getSL_COMMENTRule();
 	}
 
 	// terminal INT returns ecore::EInt:
-	//
-	// "0".."9"+;
+	// '0'..'9'+;
 	public TerminalRule getINTRule() {
 		return gaCommon.getINTRule();
 	}
 
+	// terminal INTEGER_VALUE:
+	// ('0' | '1'..'9' ('_'? '0'..'9')*) | ('0b' | '0B') '0'..'1' ('_'? '0'..'1')* | ('0x' | '0X') ('0'..'9' | 'a'..'f' |
+	// 'A'..'F') ('_'? ('0'..'9' | 'a'..'f' | 'A'..'F'))* | '0' '_'? '0'..'7' ('_'? '0'..'7')*;
+	public TerminalRule getINTEGER_VALUERule() {
+		return gaCommon.getINTEGER_VALUERule();
+	}
+
 	// terminal WS:
-	//
-	// (" " | "\t" | "\r" | "\n")+;
+	// ' ' | '\t' | '\r' | '\n'+;
 	public TerminalRule getWSRule() {
-		return gaCommon.getWSRule();
+		return gaTerminals.getWSRule();
 	}
 
 	// terminal ANY_OTHER:
-	//
 	// .;
 	public TerminalRule getANY_OTHERRule() {
-		return gaCommon.getANY_OTHERRule();
+		return gaTerminals.getANY_OTHERRule();
 	}
 }

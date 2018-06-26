@@ -16,6 +16,7 @@ import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
+import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
 import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -27,7 +28,7 @@ public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarEle
 
 
 	public class ConnectionPointReferenceRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConnectionPointReferenceRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.UMLConnectionPointReference.ConnectionPointReferenceRule");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final Group cGroup_0 = (Group) cAlternatives.eContents().get(0);
 		private final Keyword cEntryKeyword_0_0 = (Keyword) cGroup_0.eContents().get(0);
@@ -51,28 +52,25 @@ public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarEle
 		private final RuleCall cExitPseudostateIDTerminalRuleCall_1_2_1_0_1 = (RuleCall) cExitPseudostateCrossReference_1_2_1_0.eContents().get(1);
 
 		// ConnectionPointReferenceRule:
-		//
-		// ("entry" entry+=[uml::Pseudostate] ("," entry+=[uml::Pseudostate])* | "exit" exit+=[uml::Pseudostate] (","
-		//
+		// ('entry' entry+=[uml::Pseudostate] (',' entry+=[uml::Pseudostate])* | 'exit' exit+=[uml::Pseudostate] (','
 		// exit+=[uml::Pseudostate])*)?;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// ("entry" entry+=[uml::Pseudostate] ("," entry+=[uml::Pseudostate])* | "exit" exit+=[uml::Pseudostate] (","
-		//
+		// ('entry' entry+=[uml::Pseudostate] (',' entry+=[uml::Pseudostate])* | 'exit' exit+=[uml::Pseudostate] (','
 		// exit+=[uml::Pseudostate])*)?
 		public Alternatives getAlternatives() {
 			return cAlternatives;
 		}
 
-		// "entry" entry+=[uml::Pseudostate] ("," entry+=[uml::Pseudostate])*
+		// 'entry' entry+=[uml::Pseudostate] (',' entry+=[uml::Pseudostate])*
 		public Group getGroup_0() {
 			return cGroup_0;
 		}
 
-		// "entry"
+		// 'entry'
 		public Keyword getEntryKeyword_0_0() {
 			return cEntryKeyword_0_0;
 		}
@@ -92,12 +90,12 @@ public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarEle
 			return cEntryPseudostateIDTerminalRuleCall_0_1_0_1;
 		}
 
-		// ("," entry+=[uml::Pseudostate])*
+		// (',' entry+=[uml::Pseudostate])*
 		public Group getGroup_0_2() {
 			return cGroup_0_2;
 		}
 
-		// ","
+		// ','
 		public Keyword getCommaKeyword_0_2_0() {
 			return cCommaKeyword_0_2_0;
 		}
@@ -117,12 +115,12 @@ public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarEle
 			return cEntryPseudostateIDTerminalRuleCall_0_2_1_0_1;
 		}
 
-		// "exit" exit+=[uml::Pseudostate] ("," exit+=[uml::Pseudostate])*
+		// 'exit' exit+=[uml::Pseudostate] (',' exit+=[uml::Pseudostate])*
 		public Group getGroup_1() {
 			return cGroup_1;
 		}
 
-		// "exit"
+		// 'exit'
 		public Keyword getExitKeyword_1_0() {
 			return cExitKeyword_1_0;
 		}
@@ -142,12 +140,12 @@ public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarEle
 			return cExitPseudostateIDTerminalRuleCall_1_1_0_1;
 		}
 
-		// ("," exit+=[uml::Pseudostate])*
+		// (',' exit+=[uml::Pseudostate])*
 		public Group getGroup_1_2() {
 			return cGroup_1_2;
 		}
 
-		// ","
+		// ','
 		public Keyword getCommaKeyword_1_2_0() {
 			return cCommaKeyword_1_2_0;
 		}
@@ -169,17 +167,22 @@ public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarEle
 	}
 
 
-	private ConnectionPointReferenceRuleElements pConnectionPointReferenceRule;
+	private final ConnectionPointReferenceRuleElements pConnectionPointReferenceRule;
 
 	private final Grammar grammar;
 
-	private CommonGrammarAccess gaCommon;
+	private final CommonGrammarAccess gaCommon;
+
+	private final TerminalsGrammarAccess gaTerminals;
 
 	@Inject
 	public UMLConnectionPointReferenceGrammarAccess(GrammarProvider grammarProvider,
-			CommonGrammarAccess gaCommon) {
+			CommonGrammarAccess gaCommon,
+			TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaCommon = gaCommon;
+		this.gaTerminals = gaTerminals;
+		this.pConnectionPointReferenceRule = new ConnectionPointReferenceRuleElements();
 	}
 
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -198,7 +201,6 @@ public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarEle
 		return grammar;
 	}
 
-
 	@Override
 	public Grammar getGrammar() {
 		return grammar;
@@ -209,95 +211,68 @@ public class UMLConnectionPointReferenceGrammarAccess extends AbstractGrammarEle
 		return gaCommon;
 	}
 
+	public TerminalsGrammarAccess getTerminalsGrammarAccess() {
+		return gaTerminals;
+	}
+
 
 	// ConnectionPointReferenceRule:
-	//
-	// ("entry" entry+=[uml::Pseudostate] ("," entry+=[uml::Pseudostate])* | "exit" exit+=[uml::Pseudostate] (","
-	//
+	// ('entry' entry+=[uml::Pseudostate] (',' entry+=[uml::Pseudostate])* | 'exit' exit+=[uml::Pseudostate] (','
 	// exit+=[uml::Pseudostate])*)?;
 	public ConnectionPointReferenceRuleElements getConnectionPointReferenceRuleAccess() {
-		return (pConnectionPointReferenceRule != null) ? pConnectionPointReferenceRule : (pConnectionPointReferenceRule = new ConnectionPointReferenceRuleElements());
+		return pConnectionPointReferenceRule;
 	}
 
 	public ParserRule getConnectionPointReferenceRuleRule() {
 		return getConnectionPointReferenceRuleAccess().getRule();
 	}
 
-	// terminal INTEGER_VALUE:
-	//
-	// ("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL
-	//
-	// // BINARY
-	//
-	// // HEX
-	//
-	// // OCT
-	//
-	// | ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
-	//
-	// "A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
-	public TerminalRule getINTEGER_VALUERule() {
-		return gaCommon.getINTEGER_VALUERule();
-	}
-
 	// terminal ID:
-	//
-	// ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "\'"->"\'";
+	// ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')* | '\''->'\'';
 	public TerminalRule getIDRule() {
 		return gaCommon.getIDRule();
 	}
 
 	// terminal STRING:
-	//
-	// "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	// '"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\') | !('\\' | '"'))* '"';
 	public TerminalRule getSTRINGRule() {
 		return gaCommon.getSTRINGRule();
 	}
 
 	// terminal ML_COMMENT:
-	//
-	// "/ *" !"@"->"* /";
+	// '/*' !'@'->'*/';
 	public TerminalRule getML_COMMENTRule() {
 		return gaCommon.getML_COMMENTRule();
 	}
 
-	// //terminal DOUBLE_COLON : '::' ;
-	//
-	// //terminal IDENTIFIER : ID ;
-	//
-	// //terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* | ('\'' -> '\'') ;
-	//
-	// //terminal DOCUMENTATION_COMMENT : '/ *' -> '* /' ;
-	//
-	// //terminal ML_COMMENT : '/°' -> '°/';
-	//
-	// //terminal SL_COMMENT : '°°' !('\n'|'\r')* ('\r'? '\n')?;
-	//
-	// //terminal WS : (' '|'\t'|'\r'|'\n')+; terminal SL_COMMENT:
-	//
-	// "//" !("\n" | "\r" | "@")* ("\r"? "\n")?;
+	// terminal SL_COMMENT:
+	// '//' !('\n' | '\r' | '@')* ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaCommon.getSL_COMMENTRule();
 	}
 
 	// terminal INT returns ecore::EInt:
-	//
-	// "0".."9"+;
+	// '0'..'9'+;
 	public TerminalRule getINTRule() {
 		return gaCommon.getINTRule();
 	}
 
+	// terminal INTEGER_VALUE:
+	// ('0' | '1'..'9' ('_'? '0'..'9')*) | ('0b' | '0B') '0'..'1' ('_'? '0'..'1')* | ('0x' | '0X') ('0'..'9' | 'a'..'f' |
+	// 'A'..'F') ('_'? ('0'..'9' | 'a'..'f' | 'A'..'F'))* | '0' '_'? '0'..'7' ('_'? '0'..'7')*;
+	public TerminalRule getINTEGER_VALUERule() {
+		return gaCommon.getINTEGER_VALUERule();
+	}
+
 	// terminal WS:
-	//
-	// (" " | "\t" | "\r" | "\n")+;
+	// ' ' | '\t' | '\r' | '\n'+;
 	public TerminalRule getWSRule() {
-		return gaCommon.getWSRule();
+		return gaTerminals.getWSRule();
 	}
 
 	// terminal ANY_OTHER:
-	//
 	// .;
 	public TerminalRule getANY_OTHERRule() {
-		return gaCommon.getANY_OTHERRule();
+		return gaTerminals.getANY_OTHERRule();
 	}
 }

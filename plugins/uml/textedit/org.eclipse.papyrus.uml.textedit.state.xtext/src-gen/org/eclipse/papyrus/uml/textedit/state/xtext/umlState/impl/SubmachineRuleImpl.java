@@ -19,21 +19,20 @@ import org.eclipse.uml2.uml.StateMachine;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.impl.SubmachineRuleImpl#getPath <em>Path</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.impl.SubmachineRuleImpl#getSubmachine <em>Submachine</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SubmachineRuleImpl extends MinimalEObjectImpl.Container implements SubmachineRule
-{
+public class SubmachineRuleImpl extends MinimalEObjectImpl.Container implements SubmachineRule {
 	/**
 	 * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getPath()
 	 * @generated
 	 * @ordered
@@ -44,7 +43,7 @@ public class SubmachineRuleImpl extends MinimalEObjectImpl.Container implements 
 	 * The cached value of the '{@link #getSubmachine() <em>Submachine</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getSubmachine()
 	 * @generated
 	 * @ordered
@@ -54,56 +53,49 @@ public class SubmachineRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected SubmachineRuleImpl()
-	{
+	protected SubmachineRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlStatePackage.Literals.SUBMACHINE_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public QualifiedName getPath()
-	{
+	public QualifiedName getPath() {
 		return path;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetPath(QualifiedName newPath, NotificationChain msgs)
-	{
+	public NotificationChain basicSetPath(QualifiedName newPath, NotificationChain msgs) {
 		QualifiedName oldPath = path;
 		path = newPath;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlStatePackage.SUBMACHINE_RULE__PATH, oldPath, newPath);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -111,49 +103,36 @@ public class SubmachineRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setPath(QualifiedName newPath)
-	{
-		if (newPath != path)
-		{
+	public void setPath(QualifiedName newPath) {
+		if (newPath != path) {
 			NotificationChain msgs = null;
-			if (path != null) {
+			if (path != null)
 				msgs = ((InternalEObject) path).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.SUBMACHINE_RULE__PATH, null, msgs);
-			}
-			if (newPath != null) {
+			if (newPath != null)
 				msgs = ((InternalEObject) newPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.SUBMACHINE_RULE__PATH, null, msgs);
-			}
 			msgs = basicSetPath(newPath, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.SUBMACHINE_RULE__PATH, newPath, newPath));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public StateMachine getSubmachine()
-	{
-		if (submachine != null && submachine.eIsProxy())
-		{
+	public StateMachine getSubmachine() {
+		if (submachine != null && submachine.eIsProxy()) {
 			InternalEObject oldSubmachine = (InternalEObject) submachine;
 			submachine = (StateMachine) eResolveProxy(oldSubmachine);
-			if (submachine != oldSubmachine)
-			{
-				if (eNotificationRequired()) {
+			if (submachine != oldSubmachine) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UmlStatePackage.SUBMACHINE_RULE__SUBMACHINE, oldSubmachine, submachine));
-				}
 			}
 		}
 		return submachine;
@@ -162,41 +141,35 @@ public class SubmachineRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public StateMachine basicGetSubmachine()
-	{
+	public StateMachine basicGetSubmachine() {
 		return submachine;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setSubmachine(StateMachine newSubmachine)
-	{
+	public void setSubmachine(StateMachine newSubmachine) {
 		StateMachine oldSubmachine = submachine;
 		submachine = newSubmachine;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.SUBMACHINE_RULE__SUBMACHINE, oldSubmachine, submachine));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case UmlStatePackage.SUBMACHINE_RULE__PATH:
 			return basicSetPath(null, msgs);
 		}
@@ -206,20 +179,17 @@ public class SubmachineRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlStatePackage.SUBMACHINE_RULE__PATH:
 			return getPath();
 		case UmlStatePackage.SUBMACHINE_RULE__SUBMACHINE:
-			if (resolve) {
+			if (resolve)
 				return getSubmachine();
-			}
 			return basicGetSubmachine();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -228,14 +198,12 @@ public class SubmachineRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlStatePackage.SUBMACHINE_RULE__PATH:
 			setPath((QualifiedName) newValue);
 			return;
@@ -249,14 +217,12 @@ public class SubmachineRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlStatePackage.SUBMACHINE_RULE__PATH:
 			setPath((QualifiedName) null);
 			return;
@@ -270,14 +236,12 @@ public class SubmachineRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlStatePackage.SUBMACHINE_RULE__PATH:
 			return path != null;
 		case UmlStatePackage.SUBMACHINE_RULE__SUBMACHINE:

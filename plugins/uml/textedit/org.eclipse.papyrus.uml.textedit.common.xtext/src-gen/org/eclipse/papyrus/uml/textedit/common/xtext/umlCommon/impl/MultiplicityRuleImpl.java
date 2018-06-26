@@ -21,20 +21,19 @@ import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.impl.MultiplicityRuleImpl#getBounds <em>Bounds</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class MultiplicityRuleImpl extends MinimalEObjectImpl.Container implements MultiplicityRule
-{
+public class MultiplicityRuleImpl extends MinimalEObjectImpl.Container implements MultiplicityRule {
 	/**
 	 * The cached value of the '{@link #getBounds() <em>Bounds</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getBounds()
 	 * @generated
 	 * @ordered
@@ -44,37 +43,32 @@ public class MultiplicityRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected MultiplicityRuleImpl()
-	{
+	protected MultiplicityRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlCommonPackage.Literals.MULTIPLICITY_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<BoundSpecification> getBounds()
-	{
-		if (bounds == null)
-		{
+	public EList<BoundSpecification> getBounds() {
+		if (bounds == null) {
 			bounds = new EObjectContainmentEList<BoundSpecification>(BoundSpecification.class, this, UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS);
 		}
 		return bounds;
@@ -83,14 +77,12 @@ public class MultiplicityRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
 			return ((InternalEList<?>) getBounds()).basicRemove(otherEnd, msgs);
 		}
@@ -100,14 +92,12 @@ public class MultiplicityRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
 			return getBounds();
 		}
@@ -117,15 +107,13 @@ public class MultiplicityRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
 			getBounds().clear();
 			getBounds().addAll((Collection<? extends BoundSpecification>) newValue);
@@ -137,14 +125,12 @@ public class MultiplicityRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
 			getBounds().clear();
 			return;
@@ -155,14 +141,12 @@ public class MultiplicityRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlCommonPackage.MULTIPLICITY_RULE__BOUNDS:
 			return bounds != null && !bounds.isEmpty();
 		}

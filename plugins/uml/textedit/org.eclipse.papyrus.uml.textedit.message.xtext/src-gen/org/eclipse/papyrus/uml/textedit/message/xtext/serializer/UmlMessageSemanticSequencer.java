@@ -3,11 +3,18 @@
  */
 package org.eclipse.papyrus.uml.textedit.message.xtext.serializer;
 
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.uml.textedit.message.xtext.services.UmlMessageGrammarAccess;
 import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.MessageRule;
 import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.SequenceTermRule;
 import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage;
+import org.eclipse.xtext.Action;
+import org.eclipse.xtext.Parameter;
+import org.eclipse.xtext.ParserRule;
+import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 
 import com.google.inject.Inject;
@@ -19,8 +26,12 @@ public class UmlMessageSemanticSequencer extends AbstractDelegatingSemanticSeque
 	private UmlMessageGrammarAccess grammarAccess;
 
 	@Override
-	public void createSequence(EObject context, EObject semanticObject) {
-		if (semanticObject.eClass().getEPackage() == UmlMessagePackage.eINSTANCE) {
+	public void sequence(ISerializationContext context, EObject semanticObject) {
+		EPackage epackage = semanticObject.eClass().getEPackage();
+		ParserRule rule = context.getParserRule();
+		Action action = context.getAssignedAction();
+		Set<Parameter> parameters = context.getEnabledBooleanParameters();
+		if (epackage == UmlMessagePackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case UmlMessagePackage.MESSAGE_RULE:
 				sequence_MessageRule(context, (MessageRule) semanticObject);
@@ -29,26 +40,32 @@ public class UmlMessageSemanticSequencer extends AbstractDelegatingSemanticSeque
 				sequence_SequenceTermRule(context, (SequenceTermRule) semanticObject);
 				return;
 			}
-		}
-		if (errorAcceptor != null) {
+		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
-		}
 	}
 
 	/**
+	 * Contexts:
+	 * MessageRule returns MessageRule
+	 *
 	 * Constraint:
 	 * (sequenceTerm+=SequenceTermRule sequenceTerm+=SequenceTermRule* name=NAME_RULE)
 	 */
-	protected void sequence_MessageRule(EObject context, MessageRule semanticObject) {
+	protected void sequence_MessageRule(ISerializationContext context, MessageRule semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 
 
 	/**
+	 * Contexts:
+	 * SequenceTermRule returns SequenceTermRule
+	 *
 	 * Constraint:
 	 * (sequencialOrder=INT sequenceName=ID? recurrence=RecurrenceRule?)
 	 */
-	protected void sequence_SequenceTermRule(EObject context, SequenceTermRule semanticObject) {
+	protected void sequence_SequenceTermRule(ISerializationContext context, SequenceTermRule semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
+
+
 }

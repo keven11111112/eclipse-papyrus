@@ -3,9 +3,7 @@
 package org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.UmlPortPackage;
 import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.Value;
 
@@ -16,27 +14,26 @@ import org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.Value;
  *
  * @generated
  */
-public class ValueImpl extends MinimalEObjectImpl.Container implements Value
-{
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ValueImpl()
-  {
-    super();
-  }
+public class ValueImpl extends MinimalEObjectImpl.Container implements Value {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ValueImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return UmlPortPackage.Literals.VALUE;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return UmlPortPackage.Literals.VALUE;
+	}
 
-} //ValueImpl
+} // ValueImpl

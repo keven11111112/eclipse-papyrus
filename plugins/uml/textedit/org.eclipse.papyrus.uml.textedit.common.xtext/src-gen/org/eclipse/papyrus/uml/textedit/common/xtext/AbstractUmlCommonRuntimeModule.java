@@ -6,7 +6,6 @@ package org.eclipse.papyrus.uml.textedit.common.xtext;
 import java.util.Properties;
 
 import org.eclipse.xtext.Constants;
-import org.eclipse.xtext.service.DefaultRuntimeModule;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -15,7 +14,7 @@ import com.google.inject.name.Names;
  * Manual modifications go to {org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommonRuntimeModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModule {
+public abstract class AbstractUmlCommonRuntimeModule extends org.eclipse.xtext.service.DefaultRuntimeModule {
 
 	protected Properties properties = null;
 
@@ -30,9 +29,8 @@ public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModul
 	}
 
 	public void configureFileExtensions(Binder binder) {
-		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null) {
+		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
 			binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("umlcommon");
-		}
 	}
 
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
@@ -46,7 +44,6 @@ public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModul
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.serializer.sequencer.ISemanticSequencer> bindISemanticSequencer() {
 		return org.eclipse.papyrus.uml.textedit.common.xtext.serializer.UmlCommonSemanticSequencer.class;
 	}
@@ -57,7 +54,6 @@ public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModul
 	}
 
 	// contributed by org.eclipse.xtext.generator.serializer.SerializerFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.serializer.ISerializer> bindISerializer() {
 		return org.eclipse.xtext.serializer.impl.Serializer.class;
 	}
@@ -68,7 +64,6 @@ public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModul
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.parser.ITokenToStringConverter> bindITokenToStringConverter() {
 		return org.eclipse.xtext.parser.antlr.AntlrTokenToStringConverter.class;
 	}
@@ -95,7 +90,6 @@ public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModul
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.parser.antlr.ITokenDefProvider> bindITokenDefProvider() {
 		return org.eclipse.xtext.parser.antlr.AntlrTokenDefProvider.class;
 	}
@@ -107,13 +101,11 @@ public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModul
 	}
 
 	// contributed by org.eclipse.xtext.generator.exporting.QualifiedNamesFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		return org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.resource.IContainer.Manager> bindIContainer$Manager() {
 		return org.eclipse.xtext.resource.containers.StateBasedContainerManager.class;
 	}
@@ -124,15 +116,13 @@ public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModul
 	}
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
-	@Override
 	public void configureIResourceDescriptions(com.google.inject.Binder binder) {
 		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
-	@Override
-	public void configureIResourceDescriptionsBuilderScope(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.NAMED_BUILDER_SCOPE))
+	public void configureIResourceDescriptionsPersisted(com.google.inject.Binder binder) {
+		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS))
 				.to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
 	}
 
@@ -142,7 +132,6 @@ public abstract class AbstractUmlCommonRuntimeModule extends DefaultRuntimeModul
 	}
 
 	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
 		return org.eclipse.papyrus.uml.textedit.common.xtext.formatting.UmlCommonFormatter.class;
 	}

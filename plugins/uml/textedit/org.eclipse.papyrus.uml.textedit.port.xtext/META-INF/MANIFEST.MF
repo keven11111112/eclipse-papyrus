@@ -21,10 +21,16 @@ Require-Bundle: org.eclipse.xtext.xbase;bundle-version="[2.10.0,3.0.0)";resoluti
  org.apache.log4j;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.uml.alf.common;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.xtext.xbase.lib;bundle-version="[2.10.0,3.0.0)"
+ org.eclipse.xtext.xbase.lib;bundle-version="[2.10.0,3.0.0)",
+ org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="[2.1.0,3.0.0)",
+ org.eclipse.xtext,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.3.0.qualifier
+Bundle-Version: 1.4.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2

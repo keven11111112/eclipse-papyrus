@@ -16,21 +16,20 @@ import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.impl.EntryRuleImpl#getKind <em>Kind</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.impl.EntryRuleImpl#getBehaviorName <em>Behavior Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class EntryRuleImpl extends MinimalEObjectImpl.Container implements EntryRule
-{
+public class EntryRuleImpl extends MinimalEObjectImpl.Container implements EntryRule {
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getKind()
 	 * @generated
 	 * @ordered
@@ -41,7 +40,7 @@ public class EntryRuleImpl extends MinimalEObjectImpl.Container implements Entry
 	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getKind()
 	 * @generated
 	 * @ordered
@@ -52,7 +51,7 @@ public class EntryRuleImpl extends MinimalEObjectImpl.Container implements Entry
 	 * The default value of the '{@link #getBehaviorName() <em>Behavior Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getBehaviorName()
 	 * @generated
 	 * @ordered
@@ -63,7 +62,7 @@ public class EntryRuleImpl extends MinimalEObjectImpl.Container implements Entry
 	 * The cached value of the '{@link #getBehaviorName() <em>Behavior Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getBehaviorName()
 	 * @generated
 	 * @ordered
@@ -73,93 +72,79 @@ public class EntryRuleImpl extends MinimalEObjectImpl.Container implements Entry
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected EntryRuleImpl()
-	{
+	protected EntryRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlStatePackage.Literals.ENTRY_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public BehaviorKind getKind()
-	{
+	public BehaviorKind getKind() {
 		return kind;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setKind(BehaviorKind newKind)
-	{
+	public void setKind(BehaviorKind newKind) {
 		BehaviorKind oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.ENTRY_RULE__KIND, oldKind, kind));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public String getBehaviorName()
-	{
+	public String getBehaviorName() {
 		return behaviorName;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setBehaviorName(String newBehaviorName)
-	{
+	public void setBehaviorName(String newBehaviorName) {
 		String oldBehaviorName = behaviorName;
 		behaviorName = newBehaviorName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.ENTRY_RULE__BEHAVIOR_NAME, oldBehaviorName, behaviorName));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlStatePackage.ENTRY_RULE__KIND:
 			return getKind();
 		case UmlStatePackage.ENTRY_RULE__BEHAVIOR_NAME:
@@ -171,14 +156,12 @@ public class EntryRuleImpl extends MinimalEObjectImpl.Container implements Entry
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlStatePackage.ENTRY_RULE__KIND:
 			setKind((BehaviorKind) newValue);
 			return;
@@ -192,14 +175,12 @@ public class EntryRuleImpl extends MinimalEObjectImpl.Container implements Entry
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlStatePackage.ENTRY_RULE__KIND:
 			setKind(KIND_EDEFAULT);
 			return;
@@ -213,14 +194,12 @@ public class EntryRuleImpl extends MinimalEObjectImpl.Container implements Entry
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlStatePackage.ENTRY_RULE__KIND:
 			return kind != KIND_EDEFAULT;
 		case UmlStatePackage.ENTRY_RULE__BEHAVIOR_NAME:
@@ -232,17 +211,15 @@ public class EntryRuleImpl extends MinimalEObjectImpl.Container implements Entry
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) {
+	public String toString() {
+		if (eIsProxy())
 			return super.toString();
-		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (kind: ");
 		result.append(kind);
 		result.append(", behaviorName: ");

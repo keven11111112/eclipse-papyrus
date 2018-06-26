@@ -13,6 +13,5 @@ package org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition;
  * @model
  * @generated
  */
-public interface RelativeTimeEventRule extends TimeEventRule
-{
+public interface RelativeTimeEventRule extends TimeEventRule {
 } // RelativeTimeEventRule

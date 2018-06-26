@@ -19,21 +19,20 @@ import org.eclipse.uml2.uml.Type;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.impl.TypeRuleImpl#getPath <em>Path</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.impl.TypeRuleImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class TypeRuleImpl extends MinimalEObjectImpl.Container implements TypeRule
-{
+public class TypeRuleImpl extends MinimalEObjectImpl.Container implements TypeRule {
 	/**
 	 * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getPath()
 	 * @generated
 	 * @ordered
@@ -44,7 +43,7 @@ public class TypeRuleImpl extends MinimalEObjectImpl.Container implements TypeRu
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -54,56 +53,49 @@ public class TypeRuleImpl extends MinimalEObjectImpl.Container implements TypeRu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected TypeRuleImpl()
-	{
+	protected TypeRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlCommonPackage.Literals.TYPE_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public QualifiedName getPath()
-	{
+	public QualifiedName getPath() {
 		return path;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetPath(QualifiedName newPath, NotificationChain msgs)
-	{
+	public NotificationChain basicSetPath(QualifiedName newPath, NotificationChain msgs) {
 		QualifiedName oldPath = path;
 		path = newPath;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlCommonPackage.TYPE_RULE__PATH, oldPath, newPath);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -111,49 +103,36 @@ public class TypeRuleImpl extends MinimalEObjectImpl.Container implements TypeRu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setPath(QualifiedName newPath)
-	{
-		if (newPath != path)
-		{
+	public void setPath(QualifiedName newPath) {
+		if (newPath != path) {
 			NotificationChain msgs = null;
-			if (path != null) {
+			if (path != null)
 				msgs = ((InternalEObject) path).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlCommonPackage.TYPE_RULE__PATH, null, msgs);
-			}
-			if (newPath != null) {
+			if (newPath != null)
 				msgs = ((InternalEObject) newPath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlCommonPackage.TYPE_RULE__PATH, null, msgs);
-			}
 			msgs = basicSetPath(newPath, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlCommonPackage.TYPE_RULE__PATH, newPath, newPath));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public Type getType()
-	{
-		if (type != null && type.eIsProxy())
-		{
+	public Type getType() {
+		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject) type;
 			type = (Type) eResolveProxy(oldType);
-			if (type != oldType)
-			{
-				if (eNotificationRequired()) {
+			if (type != oldType) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UmlCommonPackage.TYPE_RULE__TYPE, oldType, type));
-				}
 			}
 		}
 		return type;
@@ -162,41 +141,35 @@ public class TypeRuleImpl extends MinimalEObjectImpl.Container implements TypeRu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public Type basicGetType()
-	{
+	public Type basicGetType() {
 		return type;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setType(Type newType)
-	{
+	public void setType(Type newType) {
 		Type oldType = type;
 		type = newType;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlCommonPackage.TYPE_RULE__TYPE, oldType, type));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case UmlCommonPackage.TYPE_RULE__PATH:
 			return basicSetPath(null, msgs);
 		}
@@ -206,20 +179,17 @@ public class TypeRuleImpl extends MinimalEObjectImpl.Container implements TypeRu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlCommonPackage.TYPE_RULE__PATH:
 			return getPath();
 		case UmlCommonPackage.TYPE_RULE__TYPE:
-			if (resolve) {
+			if (resolve)
 				return getType();
-			}
 			return basicGetType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -228,14 +198,12 @@ public class TypeRuleImpl extends MinimalEObjectImpl.Container implements TypeRu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlCommonPackage.TYPE_RULE__PATH:
 			setPath((QualifiedName) newValue);
 			return;
@@ -249,14 +217,12 @@ public class TypeRuleImpl extends MinimalEObjectImpl.Container implements TypeRu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlCommonPackage.TYPE_RULE__PATH:
 			setPath((QualifiedName) null);
 			return;
@@ -270,14 +236,12 @@ public class TypeRuleImpl extends MinimalEObjectImpl.Container implements TypeRu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlCommonPackage.TYPE_RULE__PATH:
 			return path != null;
 		case UmlCommonPackage.TYPE_RULE__TYPE:

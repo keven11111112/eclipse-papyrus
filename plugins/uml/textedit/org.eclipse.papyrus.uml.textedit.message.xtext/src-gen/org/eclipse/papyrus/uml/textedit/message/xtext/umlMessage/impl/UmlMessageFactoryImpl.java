@@ -16,7 +16,7 @@ import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePacka
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFactory {
@@ -24,7 +24,7 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public static UmlMessageFactory init() {
@@ -43,7 +43,7 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public UmlMessageFactoryImpl() {
@@ -53,7 +53,7 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -71,10 +71,9 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public MessageRule createMessageRule() {
 		MessageRuleImpl messageRule = new MessageRuleImpl();
 		return messageRule;
@@ -83,10 +82,9 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public SequenceTermRule createSequenceTermRule() {
 		SequenceTermRuleImpl sequenceTermRule = new SequenceTermRuleImpl();
 		return sequenceTermRule;
@@ -95,10 +93,9 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public UmlMessagePackage getUmlMessagePackage() {
 		return (UmlMessagePackage) getEPackage();
 	}
@@ -106,7 +103,7 @@ public class UmlMessageFactoryImpl extends EFactoryImpl implements UmlMessageFac
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -5,6 +5,7 @@ package org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.services;
 
 import java.util.List;
 
+import org.eclipse.papyrus.uml.alf.services.CommonGrammarAccess;
 import org.eclipse.papyrus.uml.textedit.common.xtext.services.UmlCommonGrammarAccess;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
@@ -17,6 +18,7 @@ import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
+import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
 import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -28,7 +30,7 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 
 
 	public class CollaborationUseRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CollaborationUseRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.UmlCollaborationUse.CollaborationUseRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Assignment cVisibilityAssignment_0 = (Assignment) cGroup.eContents().get(0);
 		private final RuleCall cVisibilityVisibilityKindEnumRuleCall_0_0 = (RuleCall) cVisibilityAssignment_0.eContents().get(0);
@@ -41,14 +43,13 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 		private final Keyword cUndefinedKeyword_3_1 = (Keyword) cAlternatives_3.eContents().get(1);
 
 		// CollaborationUseRule:
-		//
-		// visibility=VisibilityKind name=ID ":" (type=TypeRule | "<Undefined>");
+		// visibility=VisibilityKind name=ID ':' (type=TypeRule | "<Undefined>");
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// visibility=VisibilityKind name=ID ":" (type=TypeRule | "<Undefined>")
+		// visibility=VisibilityKind name=ID ':' (type=TypeRule | "<Undefined>")
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -73,7 +74,7 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 			return cNameIDTerminalRuleCall_1_0;
 		}
 
-		// ":"
+		// ':'
 		public Keyword getColonKeyword_2() {
 			return cColonKeyword_2;
 		}
@@ -100,7 +101,7 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 	}
 
 	public class TypeRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypeRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.UmlCollaborationUse.TypeRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Assignment cPathAssignment_0 = (Assignment) cGroup.eContents().get(0);
 		private final RuleCall cPathQualifiedNameParserRuleCall_0_0 = (RuleCall) cPathAssignment_0.eContents().get(0);
@@ -109,7 +110,6 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 		private final RuleCall cTypeCollaborationIDTerminalRuleCall_1_0_1 = (RuleCall) cTypeCollaborationCrossReference_1_0.eContents().get(1);
 
 		// TypeRule:
-		//
 		// path=QualifiedName? type=[uml::Collaboration];
 		@Override
 		public ParserRule getRule() {
@@ -148,18 +148,28 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 	}
 
 
-	private CollaborationUseRuleElements pCollaborationUseRule;
-	private TypeRuleElements pTypeRule;
+	private final CollaborationUseRuleElements pCollaborationUseRule;
+	private final TypeRuleElements pTypeRule;
 
 	private final Grammar grammar;
 
-	private UmlCommonGrammarAccess gaUmlCommon;
+	private final UmlCommonGrammarAccess gaUmlCommon;
+
+	private final CommonGrammarAccess gaCommon;
+
+	private final TerminalsGrammarAccess gaTerminals;
 
 	@Inject
 	public UmlCollaborationUseGrammarAccess(GrammarProvider grammarProvider,
-			UmlCommonGrammarAccess gaUmlCommon) {
+			UmlCommonGrammarAccess gaUmlCommon,
+			CommonGrammarAccess gaCommon,
+			TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaUmlCommon = gaUmlCommon;
+		this.gaCommon = gaCommon;
+		this.gaTerminals = gaTerminals;
+		this.pCollaborationUseRule = new CollaborationUseRuleElements();
+		this.pTypeRule = new TypeRuleElements();
 	}
 
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -178,7 +188,6 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 		return grammar;
 	}
 
-
 	@Override
 	public Grammar getGrammar() {
 		return grammar;
@@ -189,12 +198,19 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 		return gaUmlCommon;
 	}
 
+	public CommonGrammarAccess getCommonGrammarAccess() {
+		return gaCommon;
+	}
+
+	public TerminalsGrammarAccess getTerminalsGrammarAccess() {
+		return gaTerminals;
+	}
+
 
 	// CollaborationUseRule:
-	//
-	// visibility=VisibilityKind name=ID ":" (type=TypeRule | "<Undefined>");
+	// visibility=VisibilityKind name=ID ':' (type=TypeRule | "<Undefined>");
 	public CollaborationUseRuleElements getCollaborationUseRuleAccess() {
-		return (pCollaborationUseRule != null) ? pCollaborationUseRule : (pCollaborationUseRule = new CollaborationUseRuleElements());
+		return pCollaborationUseRule;
 	}
 
 	public ParserRule getCollaborationUseRuleRule() {
@@ -202,10 +218,9 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 	}
 
 	// TypeRule:
-	//
 	// path=QualifiedName? type=[uml::Collaboration];
 	public TypeRuleElements getTypeRuleAccess() {
-		return (pTypeRule != null) ? pTypeRule : (pTypeRule = new TypeRuleElements());
+		return pTypeRule;
 	}
 
 	public ParserRule getTypeRuleRule() {
@@ -213,8 +228,7 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 	}
 
 	// QualifiedName:
-	//
-	// path=[uml::Namespace] "::" remaining=QualifiedName?;
+	// path=[uml::Namespace] '::' remaining=QualifiedName?;
 	public UmlCommonGrammarAccess.QualifiedNameElements getQualifiedNameAccess() {
 		return gaUmlCommon.getQualifiedNameAccess();
 	}
@@ -224,7 +238,6 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 	}
 
 	// enum VisibilityKind:
-	//
 	// public="+" | private="-" | protected="#" | package="~";
 	public UmlCommonGrammarAccess.VisibilityKindElements getVisibilityKindAccess() {
 		return gaUmlCommon.getVisibilityKindAccess();
@@ -235,8 +248,7 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 	}
 
 	// MultiplicityRule:
-	//
-	// "[" bounds+=BoundSpecification (".." bounds+=BoundSpecification)? "]";
+	// "[" bounds+=BoundSpecification ('..' bounds+=BoundSpecification)? "]";
 	public UmlCommonGrammarAccess.MultiplicityRuleElements getMultiplicityRuleAccess() {
 		return gaUmlCommon.getMultiplicityRuleAccess();
 	}
@@ -246,7 +258,6 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 	}
 
 	// BoundSpecification:
-	//
 	// value=UnlimitedLiteral;
 	public UmlCommonGrammarAccess.BoundSpecificationElements getBoundSpecificationAccess() {
 		return gaUmlCommon.getBoundSpecificationAccess();
@@ -256,8 +267,7 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 		return getBoundSpecificationAccess().getRule();
 	}
 
-	// UnlimitedLiteral returns ecore::EString:
-	//
+	// UnlimitedLiteral:
 	// INT | "*";
 	public UmlCommonGrammarAccess.UnlimitedLiteralElements getUnlimitedLiteralAccess() {
 		return gaUmlCommon.getUnlimitedLiteralAccess();
@@ -268,7 +278,6 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 	}
 
 	// enum Direction:
-	//
 	// IN="in" | OUT="out" | INOUT="inout" | RETURN="return";
 	public UmlCommonGrammarAccess.DirectionElements getDirectionAccess() {
 		return gaUmlCommon.getDirectionAccess();
@@ -278,81 +287,52 @@ public class UmlCollaborationUseGrammarAccess extends AbstractGrammarElementFind
 		return getDirectionAccess().getRule();
 	}
 
-	// terminal INTEGER_VALUE:
-	//
-	// ("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL
-	//
-	// // BINARY
-	//
-	// // HEX
-	//
-	// // OCT
-	//
-	// | ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
-	//
-	// "A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
-	public TerminalRule getINTEGER_VALUERule() {
-		return gaUmlCommon.getINTEGER_VALUERule();
-	}
-
 	// terminal ID:
-	//
-	// ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "\'"->"\'";
+	// ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')* | '\''->'\'';
 	public TerminalRule getIDRule() {
-		return gaUmlCommon.getIDRule();
+		return gaCommon.getIDRule();
 	}
 
 	// terminal STRING:
-	//
-	// "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	// '"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\') | !('\\' | '"'))* '"';
 	public TerminalRule getSTRINGRule() {
-		return gaUmlCommon.getSTRINGRule();
+		return gaCommon.getSTRINGRule();
 	}
 
 	// terminal ML_COMMENT:
-	//
-	// "/ *" !"@"->"* /";
+	// '/*' !'@'->'*/';
 	public TerminalRule getML_COMMENTRule() {
-		return gaUmlCommon.getML_COMMENTRule();
+		return gaCommon.getML_COMMENTRule();
 	}
 
-	// //terminal DOUBLE_COLON : '::' ;
-	//
-	// //terminal IDENTIFIER : ID ;
-	//
-	// //terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* | ('\'' -> '\'') ;
-	//
-	// //terminal DOCUMENTATION_COMMENT : '/ *' -> '* /' ;
-	//
-	// //terminal ML_COMMENT : '/°' -> '°/';
-	//
-	// //terminal SL_COMMENT : '°°' !('\n'|'\r')* ('\r'? '\n')?;
-	//
-	// //terminal WS : (' '|'\t'|'\r'|'\n')+; terminal SL_COMMENT:
-	//
-	// "//" !("\n" | "\r" | "@")* ("\r"? "\n")?;
+	// terminal SL_COMMENT:
+	// '//' !('\n' | '\r' | '@')* ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
-		return gaUmlCommon.getSL_COMMENTRule();
+		return gaCommon.getSL_COMMENTRule();
 	}
 
 	// terminal INT returns ecore::EInt:
-	//
-	// "0".."9"+;
+	// '0'..'9'+;
 	public TerminalRule getINTRule() {
-		return gaUmlCommon.getINTRule();
+		return gaCommon.getINTRule();
+	}
+
+	// terminal INTEGER_VALUE:
+	// ('0' | '1'..'9' ('_'? '0'..'9')*) | ('0b' | '0B') '0'..'1' ('_'? '0'..'1')* | ('0x' | '0X') ('0'..'9' | 'a'..'f' |
+	// 'A'..'F') ('_'? ('0'..'9' | 'a'..'f' | 'A'..'F'))* | '0' '_'? '0'..'7' ('_'? '0'..'7')*;
+	public TerminalRule getINTEGER_VALUERule() {
+		return gaCommon.getINTEGER_VALUERule();
 	}
 
 	// terminal WS:
-	//
-	// (" " | "\t" | "\r" | "\n")+;
+	// ' ' | '\t' | '\r' | '\n'+;
 	public TerminalRule getWSRule() {
-		return gaUmlCommon.getWSRule();
+		return gaTerminals.getWSRule();
 	}
 
 	// terminal ANY_OTHER:
-	//
 	// .;
 	public TerminalRule getANY_OTHERRule() {
-		return gaUmlCommon.getANY_OTHERRule();
+		return gaTerminals.getANY_OTHERRule();
 	}
 }

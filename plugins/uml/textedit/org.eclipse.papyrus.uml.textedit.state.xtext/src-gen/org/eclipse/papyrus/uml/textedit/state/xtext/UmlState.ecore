@@ -15,10 +15,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="SubmachineRule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="#//QualifiedName"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="submachine" eType="ecore:EClass ../../../../../../../../../org.eclipse.uml2.uml/model/UML.ecore#//StateMachine"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="submachine" eType="ecore:EClass platform:/resource/org.eclipse.uml2.uml/model/UML.ecore#//StateMachine"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QualifiedName">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass ../../../../../../../../../org.eclipse.uml2.uml/model/UML.ecore#//Namespace"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="path" eType="ecore:EClass platform:/resource/org.eclipse.uml2.uml/model/UML.ecore#//Namespace"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="remaining" eType="#//QualifiedName"
         containment="true"/>
   </eClassifiers>

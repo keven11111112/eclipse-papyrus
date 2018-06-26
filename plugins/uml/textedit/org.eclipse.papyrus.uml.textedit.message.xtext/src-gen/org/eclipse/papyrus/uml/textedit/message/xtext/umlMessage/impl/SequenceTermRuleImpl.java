@@ -29,7 +29,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * The default value of the '{@link #getSequencialOrder() <em>Sequencial Order</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getSequencialOrder()
 	 * @generated
 	 * @ordered
@@ -40,7 +40,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * The cached value of the '{@link #getSequencialOrder() <em>Sequencial Order</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getSequencialOrder()
 	 * @generated
 	 * @ordered
@@ -51,7 +51,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * The default value of the '{@link #getSequenceName() <em>Sequence Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getSequenceName()
 	 * @generated
 	 * @ordered
@@ -62,7 +62,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * The cached value of the '{@link #getSequenceName() <em>Sequence Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getSequenceName()
 	 * @generated
 	 * @ordered
@@ -73,7 +73,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * The default value of the '{@link #getRecurrence() <em>Recurrence</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getRecurrence()
 	 * @generated
 	 * @ordered
@@ -84,7 +84,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * The cached value of the '{@link #getRecurrence() <em>Recurrence</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getRecurrence()
 	 * @generated
 	 * @ordered
@@ -94,7 +94,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected SequenceTermRuleImpl() {
@@ -104,7 +104,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,10 +115,9 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public int getSequencialOrder() {
 		return sequencialOrder;
 	}
@@ -126,25 +125,22 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public void setSequencialOrder(int newSequencialOrder) {
 		int oldSequencialOrder = sequencialOrder;
 		sequencialOrder = newSequencialOrder;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlMessagePackage.SEQUENCE_TERM_RULE__SEQUENCIAL_ORDER, oldSequencialOrder, sequencialOrder));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public String getSequenceName() {
 		return sequenceName;
 	}
@@ -152,25 +148,22 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public void setSequenceName(String newSequenceName) {
 		String oldSequenceName = sequenceName;
 		sequenceName = newSequenceName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlMessagePackage.SEQUENCE_TERM_RULE__SEQUENCE_NAME, oldSequenceName, sequenceName));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public String getRecurrence() {
 		return recurrence;
 	}
@@ -178,22 +171,20 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	public void setRecurrence(String newRecurrence) {
 		String oldRecurrence = recurrence;
 		recurrence = newRecurrence;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlMessagePackage.SEQUENCE_TERM_RULE__RECURRENCE, oldRecurrence, recurrence));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -212,7 +203,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -234,7 +225,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -256,7 +247,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -275,16 +266,15 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if (eIsProxy())
 			return super.toString();
-		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (sequencialOrder: ");
 		result.append(sequencialOrder);
 		result.append(", sequenceName: ");

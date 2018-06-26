@@ -22,21 +22,21 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TimeEvent
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TransitionRule;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionFactory;
 import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionPackage;
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
-public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransitionPackage
-{
+public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransitionPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass transitionRuleEClass = null;
@@ -44,7 +44,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass eventRuleEClass = null;
@@ -52,7 +52,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass callOrSignalEventRuleEClass = null;
@@ -60,7 +60,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass anyReceiveEventRuleEClass = null;
@@ -68,7 +68,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass timeEventRuleEClass = null;
@@ -76,7 +76,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass relativeTimeEventRuleEClass = null;
@@ -84,7 +84,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass absoluteTimeEventRuleEClass = null;
@@ -92,7 +92,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass changeEventRuleEClass = null;
@@ -100,7 +100,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass guardRuleEClass = null;
@@ -108,7 +108,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EClass effectRuleEClass = null;
@@ -116,31 +116,36 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private EEnum behaviorKindEEnum = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private UmlTransitionPackageImpl()
-	{
+	private UmlTransitionPackageImpl() {
 		super(eNS_URI, UmlTransitionFactory.eINSTANCE);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -149,27 +154,30 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link UmlTransitionPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 *
+	 * This method is used to initialize {@link UmlTransitionPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static UmlTransitionPackage init()
-	{
-		if (isInited) {
+	public static UmlTransitionPackage init() {
+		if (isInited)
 			return (UmlTransitionPackage) EPackage.Registry.INSTANCE.getEPackage(UmlTransitionPackage.eNS_URI);
-		}
 
 		// Obtain or create and register package
-		UmlTransitionPackageImpl theUmlTransitionPackage = (UmlTransitionPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UmlTransitionPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new UmlTransitionPackageImpl());
+		Object registeredUmlTransitionPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		UmlTransitionPackageImpl theUmlTransitionPackage = registeredUmlTransitionPackage instanceof UmlTransitionPackageImpl ? (UmlTransitionPackageImpl) registeredUmlTransitionPackage : new UmlTransitionPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theUmlTransitionPackage.createPackageContents();
@@ -180,7 +188,6 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 		// Mark meta-data to indicate it can't be changed
 		theUmlTransitionPackage.freeze();
 
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(UmlTransitionPackage.eNS_URI, theUmlTransitionPackage);
 		return theUmlTransitionPackage;
@@ -189,271 +196,227 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getTransitionRule()
-	{
+	public EClass getTransitionRule() {
 		return transitionRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EReference getTransitionRule_Triggers()
-	{
+	public EReference getTransitionRule_Triggers() {
 		return (EReference) transitionRuleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EReference getTransitionRule_Guard()
-	{
+	public EReference getTransitionRule_Guard() {
 		return (EReference) transitionRuleEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EReference getTransitionRule_Effect()
-	{
+	public EReference getTransitionRule_Effect() {
 		return (EReference) transitionRuleEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getEventRule()
-	{
+	public EClass getEventRule() {
 		return eventRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getCallOrSignalEventRule()
-	{
+	public EClass getCallOrSignalEventRule() {
 		return callOrSignalEventRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EReference getCallOrSignalEventRule_OperationOrSignal()
-	{
+	public EReference getCallOrSignalEventRule_OperationOrSignal() {
 		return (EReference) callOrSignalEventRuleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getAnyReceiveEventRule()
-	{
+	public EClass getAnyReceiveEventRule() {
 		return anyReceiveEventRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EAttribute getAnyReceiveEventRule_IsAReceiveEvent()
-	{
+	public EAttribute getAnyReceiveEventRule_IsAReceiveEvent() {
 		return (EAttribute) anyReceiveEventRuleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getTimeEventRule()
-	{
+	public EClass getTimeEventRule() {
 		return timeEventRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EAttribute getTimeEventRule_Expr()
-	{
+	public EAttribute getTimeEventRule_Expr() {
 		return (EAttribute) timeEventRuleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getRelativeTimeEventRule()
-	{
+	public EClass getRelativeTimeEventRule() {
 		return relativeTimeEventRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getAbsoluteTimeEventRule()
-	{
+	public EClass getAbsoluteTimeEventRule() {
 		return absoluteTimeEventRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getChangeEventRule()
-	{
+	public EClass getChangeEventRule() {
 		return changeEventRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EAttribute getChangeEventRule_Exp()
-	{
+	public EAttribute getChangeEventRule_Exp() {
 		return (EAttribute) changeEventRuleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getGuardRule()
-	{
+	public EClass getGuardRule() {
 		return guardRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EAttribute getGuardRule_Constraint()
-	{
+	public EAttribute getGuardRule_Constraint() {
 		return (EAttribute) guardRuleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EClass getEffectRule()
-	{
+	public EClass getEffectRule() {
 		return effectRuleEClass;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EAttribute getEffectRule_Kind()
-	{
+	public EAttribute getEffectRule_Kind() {
 		return (EAttribute) effectRuleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EAttribute getEffectRule_BehaviorName()
-	{
+	public EAttribute getEffectRule_BehaviorName() {
 		return (EAttribute) effectRuleEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EEnum getBehaviorKind()
-	{
+	public EEnum getBehaviorKind() {
 		return behaviorKindEEnum;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public UmlTransitionFactory getUmlTransitionFactory()
-	{
+	public UmlTransitionFactory getUmlTransitionFactory() {
 		return (UmlTransitionFactory) getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
@@ -463,14 +426,12 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public void createPackageContents()
-	{
-		if (isCreated) {
+	public void createPackageContents() {
+		if (isCreated)
 			return;
-		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -511,7 +472,7 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
@@ -521,14 +482,12 @@ public class UmlTransitionPackageImpl extends EPackageImpl implements UmlTransit
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public void initializePackageContents()
-	{
-		if (isInitialized) {
+	public void initializePackageContents() {
+		if (isInitialized)
 			return;
-		}
 		isInitialized = true;
 
 		// Initialize package

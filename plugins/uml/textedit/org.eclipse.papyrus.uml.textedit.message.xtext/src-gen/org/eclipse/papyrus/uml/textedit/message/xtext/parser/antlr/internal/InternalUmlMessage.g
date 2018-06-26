@@ -90,7 +90,7 @@ ruleMessageRule returns [EObject current=null]
        			$current, 
        			"sequenceTerm",
         		lv_sequenceTerm_0_0, 
-        		"SequenceTermRule");
+        		"org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage.SequenceTermRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -112,7 +112,7 @@ ruleMessageRule returns [EObject current=null]
        			$current, 
        			"sequenceTerm",
         		lv_sequenceTerm_2_0, 
-        		"SequenceTermRule");
+        		"org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage.SequenceTermRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -135,7 +135,7 @@ ruleMessageRule returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_4_0, 
-        		"NAME_RULE");
+        		"org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage.NAME_RULE");
 	    }
 
 )
@@ -174,7 +174,7 @@ ruleSequenceTermRule returns [EObject current=null]
        			$current, 
        			"sequencialOrder",
         		lv_sequencialOrder_0_0, 
-        		"INT");
+        		"org.eclipse.papyrus.uml.alf.Common.INT");
 	    }
 
 )
@@ -192,7 +192,7 @@ ruleSequenceTermRule returns [EObject current=null]
        			$current, 
        			"sequenceName",
         		lv_sequenceName_1_0, 
-        		"ID");
+        		"org.eclipse.papyrus.uml.alf.Common.ID");
 	    }
 
 )
@@ -209,7 +209,7 @@ ruleSequenceTermRule returns [EObject current=null]
        			$current, 
        			"recurrence",
         		lv_recurrence_2_0, 
-        		"RecurrenceRule");
+        		"org.eclipse.papyrus.uml.textedit.message.xtext.UmlMessage.RecurrenceRule");
 	        afterParserOrEnumRuleCall();
 	    }
 

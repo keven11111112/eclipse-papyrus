@@ -4,10 +4,11 @@
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.antlr.runtime.RecognitionException;
+import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.services.AppliedStereotypePropertyGrammarAccess;
 import org.eclipse.xtext.AbstractElement;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.AbstractContentAssistParser;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.FollowElement;
@@ -15,22 +16,21 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternal
 
 import com.google.inject.Inject;
 
-import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.services.AppliedStereotypePropertyGrammarAccess;
-
 public class AppliedStereotypePropertyParser extends AbstractContentAssistParser {
-	
+
 	@Inject
 	private AppliedStereotypePropertyGrammarAccess grammarAccess;
-	
+
 	private Map<AbstractElement, String> nameMappings;
-	
+
 	@Override
 	protected org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr.internal.InternalAppliedStereotypePropertyParser createParser() {
-		org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr.internal.InternalAppliedStereotypePropertyParser result = new org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr.internal.InternalAppliedStereotypePropertyParser(null);
+		org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr.internal.InternalAppliedStereotypePropertyParser result = new org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr.internal.InternalAppliedStereotypePropertyParser(
+				null);
 		result.setGrammarAccess(grammarAccess);
 		return result;
 	}
-	
+
 	@Override
 	protected String getRuleName(AbstractElement element) {
 		if (nameMappings == null) {
@@ -688,27 +688,27 @@ public class AppliedStereotypePropertyParser extends AbstractContentAssistParser
 		}
 		return nameMappings.get(element);
 	}
-	
+
 	@Override
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr.internal.InternalAppliedStereotypePropertyParser typedParser = (org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui.contentassist.antlr.internal.InternalAppliedStereotypePropertyParser) parser;
 			typedParser.entryRuleAppliedStereotypePropertyRule();
 			return typedParser.getFollowElements();
-		} catch(RecognitionException ex) {
+		} catch (RecognitionException ex) {
 			throw new RuntimeException(ex);
-		}		
+		}
 	}
-	
+
 	@Override
 	protected String[] getInitialHiddenTokens() {
 		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
 	}
-	
+
 	public AppliedStereotypePropertyGrammarAccess getGrammarAccess() {
 		return this.grammarAccess;
 	}
-	
+
 	public void setGrammarAccess(AppliedStereotypePropertyGrammarAccess grammarAccess) {
 		this.grammarAccess = grammarAccess;
 	}

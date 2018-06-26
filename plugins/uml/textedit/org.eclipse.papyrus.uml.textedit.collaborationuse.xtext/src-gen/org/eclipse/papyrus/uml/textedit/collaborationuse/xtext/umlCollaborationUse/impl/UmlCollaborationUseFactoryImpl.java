@@ -16,29 +16,24 @@ import org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationU
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
-public class UmlCollaborationUseFactoryImpl extends EFactoryImpl implements UmlCollaborationUseFactory
-{
+public class UmlCollaborationUseFactoryImpl extends EFactoryImpl implements UmlCollaborationUseFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public static UmlCollaborationUseFactory init()
-	{
-		try
-		{
+	public static UmlCollaborationUseFactory init() {
+		try {
 			UmlCollaborationUseFactory theUmlCollaborationUseFactory = (UmlCollaborationUseFactory) EPackage.Registry.INSTANCE.getEFactory(UmlCollaborationUsePackage.eNS_URI);
-			if (theUmlCollaborationUseFactory != null)
-			{
+			if (theUmlCollaborationUseFactory != null) {
 				return theUmlCollaborationUseFactory;
 			}
-		} catch (Exception exception)
-		{
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new UmlCollaborationUseFactoryImpl();
@@ -48,25 +43,22 @@ public class UmlCollaborationUseFactoryImpl extends EFactoryImpl implements UmlC
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public UmlCollaborationUseFactoryImpl()
-	{
+	public UmlCollaborationUseFactoryImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass)
-	{
-		switch (eClass.getClassifierID())
-		{
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
 		case UmlCollaborationUsePackage.COLLABORATION_USE_RULE:
 			return createCollaborationUseRule();
 		case UmlCollaborationUsePackage.TYPE_RULE:
@@ -79,12 +71,10 @@ public class UmlCollaborationUseFactoryImpl extends EFactoryImpl implements UmlC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public CollaborationUseRule createCollaborationUseRule()
-	{
+	public CollaborationUseRule createCollaborationUseRule() {
 		CollaborationUseRuleImpl collaborationUseRule = new CollaborationUseRuleImpl();
 		return collaborationUseRule;
 	}
@@ -92,12 +82,10 @@ public class UmlCollaborationUseFactoryImpl extends EFactoryImpl implements UmlC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public TypeRule createTypeRule()
-	{
+	public TypeRule createTypeRule() {
 		TypeRuleImpl typeRule = new TypeRuleImpl();
 		return typeRule;
 	}
@@ -105,25 +93,22 @@ public class UmlCollaborationUseFactoryImpl extends EFactoryImpl implements UmlC
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public UmlCollaborationUsePackage getUmlCollaborationUsePackage()
-	{
+	public UmlCollaborationUsePackage getUmlCollaborationUsePackage() {
 		return (UmlCollaborationUsePackage) getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
 	@Deprecated
-	public static UmlCollaborationUsePackage getPackage()
-	{
+	public static UmlCollaborationUsePackage getPackage() {
 		return UmlCollaborationUsePackage.eINSTANCE;
 	}
 

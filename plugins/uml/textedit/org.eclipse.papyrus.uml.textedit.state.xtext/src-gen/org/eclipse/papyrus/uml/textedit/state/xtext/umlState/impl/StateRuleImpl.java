@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.impl.StateRuleImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.impl.StateRuleImpl#getSubmachine <em>Submachine</em>}</li>
@@ -28,17 +29,15 @@ import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage;
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.impl.StateRuleImpl#getDo <em>Do</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.impl.StateRuleImpl#getExit <em>Exit</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class StateRuleImpl extends MinimalEObjectImpl.Container implements StateRule
-{
+public class StateRuleImpl extends MinimalEObjectImpl.Container implements StateRule {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -49,7 +48,7 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -60,7 +59,7 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	 * The cached value of the '{@link #getSubmachine() <em>Submachine</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getSubmachine()
 	 * @generated
 	 * @ordered
@@ -71,7 +70,7 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	 * The cached value of the '{@link #getEntry() <em>Entry</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getEntry()
 	 * @generated
 	 * @ordered
@@ -82,7 +81,7 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	 * The cached value of the '{@link #getDo() <em>Do</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getDo()
 	 * @generated
 	 * @ordered
@@ -93,7 +92,7 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	 * The cached value of the '{@link #getExit() <em>Exit</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getExit()
 	 * @generated
 	 * @ordered
@@ -103,84 +102,72 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected StateRuleImpl()
-	{
+	protected StateRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlStatePackage.Literals.STATE_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__NAME, oldName, name));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public SubmachineRule getSubmachine()
-	{
+	public SubmachineRule getSubmachine() {
 		return submachine;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetSubmachine(SubmachineRule newSubmachine, NotificationChain msgs)
-	{
+	public NotificationChain basicSetSubmachine(SubmachineRule newSubmachine, NotificationChain msgs) {
 		SubmachineRule oldSubmachine = submachine;
 		submachine = newSubmachine;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__SUBMACHINE, oldSubmachine, newSubmachine);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -188,61 +175,48 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setSubmachine(SubmachineRule newSubmachine)
-	{
-		if (newSubmachine != submachine)
-		{
+	public void setSubmachine(SubmachineRule newSubmachine) {
+		if (newSubmachine != submachine) {
 			NotificationChain msgs = null;
-			if (submachine != null) {
+			if (submachine != null)
 				msgs = ((InternalEObject) submachine).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.STATE_RULE__SUBMACHINE, null, msgs);
-			}
-			if (newSubmachine != null) {
+			if (newSubmachine != null)
 				msgs = ((InternalEObject) newSubmachine).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.STATE_RULE__SUBMACHINE, null, msgs);
-			}
 			msgs = basicSetSubmachine(newSubmachine, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__SUBMACHINE, newSubmachine, newSubmachine));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EntryRule getEntry()
-	{
+	public EntryRule getEntry() {
 		return entry;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetEntry(EntryRule newEntry, NotificationChain msgs)
-	{
+	public NotificationChain basicSetEntry(EntryRule newEntry, NotificationChain msgs) {
 		EntryRule oldEntry = entry;
 		entry = newEntry;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__ENTRY, oldEntry, newEntry);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -250,61 +224,48 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setEntry(EntryRule newEntry)
-	{
-		if (newEntry != entry)
-		{
+	public void setEntry(EntryRule newEntry) {
+		if (newEntry != entry) {
 			NotificationChain msgs = null;
-			if (entry != null) {
+			if (entry != null)
 				msgs = ((InternalEObject) entry).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.STATE_RULE__ENTRY, null, msgs);
-			}
-			if (newEntry != null) {
+			if (newEntry != null)
 				msgs = ((InternalEObject) newEntry).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.STATE_RULE__ENTRY, null, msgs);
-			}
 			msgs = basicSetEntry(newEntry, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__ENTRY, newEntry, newEntry));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public DoRule getDo()
-	{
+	public DoRule getDo() {
 		return do_;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetDo(DoRule newDo, NotificationChain msgs)
-	{
+	public NotificationChain basicSetDo(DoRule newDo, NotificationChain msgs) {
 		DoRule oldDo = do_;
 		do_ = newDo;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__DO, oldDo, newDo);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -312,61 +273,48 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setDo(DoRule newDo)
-	{
-		if (newDo != do_)
-		{
+	public void setDo(DoRule newDo) {
+		if (newDo != do_) {
 			NotificationChain msgs = null;
-			if (do_ != null) {
+			if (do_ != null)
 				msgs = ((InternalEObject) do_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.STATE_RULE__DO, null, msgs);
-			}
-			if (newDo != null) {
+			if (newDo != null)
 				msgs = ((InternalEObject) newDo).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.STATE_RULE__DO, null, msgs);
-			}
 			msgs = basicSetDo(newDo, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__DO, newDo, newDo));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public ExitRule getExit()
-	{
+	public ExitRule getExit() {
 		return exit;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetExit(ExitRule newExit, NotificationChain msgs)
-	{
+	public NotificationChain basicSetExit(ExitRule newExit, NotificationChain msgs) {
 		ExitRule oldExit = exit;
 		exit = newExit;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__EXIT, oldExit, newExit);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -374,42 +322,32 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setExit(ExitRule newExit)
-	{
-		if (newExit != exit)
-		{
+	public void setExit(ExitRule newExit) {
+		if (newExit != exit) {
 			NotificationChain msgs = null;
-			if (exit != null) {
+			if (exit != null)
 				msgs = ((InternalEObject) exit).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.STATE_RULE__EXIT, null, msgs);
-			}
-			if (newExit != null) {
+			if (newExit != null)
 				msgs = ((InternalEObject) newExit).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.STATE_RULE__EXIT, null, msgs);
-			}
 			msgs = basicSetExit(newExit, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.STATE_RULE__EXIT, newExit, newExit));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case UmlStatePackage.STATE_RULE__SUBMACHINE:
 			return basicSetSubmachine(null, msgs);
 		case UmlStatePackage.STATE_RULE__ENTRY:
@@ -425,14 +363,12 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlStatePackage.STATE_RULE__NAME:
 			return getName();
 		case UmlStatePackage.STATE_RULE__SUBMACHINE:
@@ -450,14 +386,12 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlStatePackage.STATE_RULE__NAME:
 			setName((String) newValue);
 			return;
@@ -480,14 +414,12 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlStatePackage.STATE_RULE__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -510,14 +442,12 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlStatePackage.STATE_RULE__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case UmlStatePackage.STATE_RULE__SUBMACHINE:
@@ -535,17 +465,15 @@ public class StateRuleImpl extends MinimalEObjectImpl.Container implements State
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) {
+	public String toString() {
+		if (eIsProxy())
 			return super.toString();
-		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: ");
 		result.append(name);
 		result.append(')');

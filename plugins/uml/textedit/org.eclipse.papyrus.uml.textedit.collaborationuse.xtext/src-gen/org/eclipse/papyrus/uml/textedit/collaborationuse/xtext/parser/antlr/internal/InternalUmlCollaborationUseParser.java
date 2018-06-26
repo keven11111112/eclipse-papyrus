@@ -15,25 +15,25 @@ import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
 @SuppressWarnings("all")
 public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrParser {
 	public static final String[] tokenNames = new String[] {
-			"<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_INTEGER_VALUE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'<Undefined>'", "'::'", "'*'", "'+'", "'-'", "'#'", "'~'"
+			"<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_INTEGER_VALUE", "RULE_WS", "RULE_ANY_OTHER", "':'", "'<Undefined>'", "'::'", "'*'", "'+'", "'-'", "'#'", "'~'"
 	};
-	public static final int RULE_ID = 4;
-	public static final int RULE_ANY_OTHER = 11;
-	public static final int RULE_INTEGER_VALUE = 6;
-	public static final int EOF = -1;
-	public static final int RULE_SL_COMMENT = 9;
-	public static final int RULE_ML_COMMENT = 8;
+	public static final int RULE_STRING = 6;
+	public static final int RULE_SL_COMMENT = 8;
 	public static final int T__19 = 19;
-	public static final int RULE_STRING = 7;
-	public static final int T__16 = 16;
 	public static final int T__15 = 15;
-	public static final int T__18 = 18;
+	public static final int T__16 = 16;
 	public static final int T__17 = 17;
+	public static final int T__18 = 18;
 	public static final int T__12 = 12;
-	public static final int T__14 = 14;
 	public static final int T__13 = 13;
-	public static final int RULE_INT = 5;
+	public static final int T__14 = 14;
+	public static final int EOF = -1;
+	public static final int RULE_ID = 4;
 	public static final int RULE_WS = 10;
+	public static final int RULE_ANY_OTHER = 11;
+	public static final int RULE_INT = 5;
+	public static final int RULE_ML_COMMENT = 7;
+	public static final int RULE_INTEGER_VALUE = 9;
 
 	// delegates
 	// delegators
@@ -49,12 +49,10 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 	}
 
 
-	@Override
 	public String[] getTokenNames() {
 		return InternalUmlCollaborationUseParser.tokenNames;
 	}
 
-	@Override
 	public String getGrammarFileName() {
 		return "../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g";
 	}
@@ -82,8 +80,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 
 	// $ANTLR start "entryRuleCollaborationUseRule"
-	// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:68:1: entryRuleCollaborationUseRule returns [EObject current=null] :
-	// iv_ruleCollaborationUseRule= ruleCollaborationUseRule EOF ;
+	// InternalUmlCollaborationUse.g:68:1: entryRuleCollaborationUseRule returns [EObject current=null] : iv_ruleCollaborationUseRule= ruleCollaborationUseRule EOF ;
 	public final EObject entryRuleCollaborationUseRule() throws RecognitionException {
 		EObject current = null;
 
@@ -91,17 +88,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:69:2: (iv_ruleCollaborationUseRule= ruleCollaborationUseRule EOF )
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:70:2: iv_ruleCollaborationUseRule= ruleCollaborationUseRule EOF
+			// InternalUmlCollaborationUse.g:69:2: (iv_ruleCollaborationUseRule= ruleCollaborationUseRule EOF )
+			// InternalUmlCollaborationUse.g:70:2: iv_ruleCollaborationUseRule= ruleCollaborationUseRule EOF
 			{
 				newCompositeNode(grammarAccess.getCollaborationUseRuleRule());
-				pushFollow(FOLLOW_ruleCollaborationUseRule_in_entryRuleCollaborationUseRule75);
+				pushFollow(FOLLOW_1);
 				iv_ruleCollaborationUseRule = ruleCollaborationUseRule();
 
 				state._fsp--;
 
 				current = iv_ruleCollaborationUseRule;
-				match(input, EOF, FOLLOW_EOF_in_entryRuleCollaborationUseRule85);
+				match(input, EOF, FOLLOW_2);
 
 			}
 
@@ -114,13 +111,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleCollaborationUseRule"
 
 
 	// $ANTLR start "ruleCollaborationUseRule"
-	// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:77:1: ruleCollaborationUseRule returns [EObject current=null] : ( (
-	// (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4= '<Undefined>' ) ) ;
+	// InternalUmlCollaborationUse.g:77:1: ruleCollaborationUseRule returns [EObject current=null] : ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4= '<Undefined>' ) ) ;
 	public final EObject ruleCollaborationUseRule() throws RecognitionException {
 		EObject current = null;
 
@@ -135,26 +130,22 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:80:28: ( ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) (
-			// (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4= '<Undefined>' ) ) )
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:81:1: ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_name_1_0=
-			// RULE_ID ) ) otherlv_2= ':' ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4= '<Undefined>' ) )
+			// InternalUmlCollaborationUse.g:80:28: ( ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4= '<Undefined>' ) ) )
+			// InternalUmlCollaborationUse.g:81:1: ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4= '<Undefined>' ) )
 			{
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:81:1: ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) (
-				// (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4= '<Undefined>' ) )
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:81:2: ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_name_1_0=
-				// RULE_ID ) ) otherlv_2= ':' ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4= '<Undefined>' )
+				// InternalUmlCollaborationUse.g:81:1: ( ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4= '<Undefined>' ) )
+				// InternalUmlCollaborationUse.g:81:2: ( (lv_visibility_0_0= ruleVisibilityKind ) ) ( (lv_name_1_0= RULE_ID ) ) otherlv_2= ':' ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4= '<Undefined>' )
 				{
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:81:2: ( (lv_visibility_0_0= ruleVisibilityKind ) )
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:82:1: (lv_visibility_0_0= ruleVisibilityKind )
+					// InternalUmlCollaborationUse.g:81:2: ( (lv_visibility_0_0= ruleVisibilityKind ) )
+					// InternalUmlCollaborationUse.g:82:1: (lv_visibility_0_0= ruleVisibilityKind )
 					{
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:82:1: (lv_visibility_0_0= ruleVisibilityKind )
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:83:3: lv_visibility_0_0= ruleVisibilityKind
+						// InternalUmlCollaborationUse.g:82:1: (lv_visibility_0_0= ruleVisibilityKind )
+						// InternalUmlCollaborationUse.g:83:3: lv_visibility_0_0= ruleVisibilityKind
 						{
 
 							newCompositeNode(grammarAccess.getCollaborationUseRuleAccess().getVisibilityVisibilityKindEnumRuleCall_0_0());
 
-							pushFollow(FOLLOW_ruleVisibilityKind_in_ruleCollaborationUseRule131);
+							pushFollow(FOLLOW_3);
 							lv_visibility_0_0 = ruleVisibilityKind();
 
 							state._fsp--;
@@ -167,7 +158,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 									current,
 									"visibility",
 									lv_visibility_0_0,
-									"VisibilityKind");
+									"org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommon.VisibilityKind");
 							afterParserOrEnumRuleCall();
 
 
@@ -176,13 +167,13 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 					}
 
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:99:2: ( (lv_name_1_0= RULE_ID ) )
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:100:1: (lv_name_1_0= RULE_ID )
+					// InternalUmlCollaborationUse.g:99:2: ( (lv_name_1_0= RULE_ID ) )
+					// InternalUmlCollaborationUse.g:100:1: (lv_name_1_0= RULE_ID )
 					{
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:100:1: (lv_name_1_0= RULE_ID )
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:101:3: lv_name_1_0= RULE_ID
+						// InternalUmlCollaborationUse.g:100:1: (lv_name_1_0= RULE_ID )
+						// InternalUmlCollaborationUse.g:101:3: lv_name_1_0= RULE_ID
 						{
-							lv_name_1_0 = (Token) match(input, RULE_ID, FOLLOW_RULE_ID_in_ruleCollaborationUseRule148);
+							lv_name_1_0 = (Token) match(input, RULE_ID, FOLLOW_4);
 
 							newLeafNode(lv_name_1_0, grammarAccess.getCollaborationUseRuleAccess().getNameIDTerminalRuleCall_1_0());
 
@@ -194,7 +185,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 									current,
 									"name",
 									lv_name_1_0,
-									"ID");
+									"org.eclipse.papyrus.uml.alf.Common.ID");
 
 
 						}
@@ -202,41 +193,37 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 					}
 
-					otherlv_2 = (Token) match(input, 12, FOLLOW_12_in_ruleCollaborationUseRule165);
+					otherlv_2 = (Token) match(input, 12, FOLLOW_5);
 
 					newLeafNode(otherlv_2, grammarAccess.getCollaborationUseRuleAccess().getColonKeyword_2());
 
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:121:1: ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4=
-					// '<Undefined>' )
+					// InternalUmlCollaborationUse.g:121:1: ( ( (lv_type_3_0= ruleTypeRule ) ) | otherlv_4= '<Undefined>' )
 					int alt1 = 2;
 					int LA1_0 = input.LA(1);
 
 					if ((LA1_0 == RULE_ID)) {
 						alt1 = 1;
-					}
-					else if ((LA1_0 == 13)) {
+					} else if ((LA1_0 == 13)) {
 						alt1 = 2;
-					}
-					else {
-						NoViableAltException nvae =
-								new NoViableAltException("", 1, 0, input);
+					} else {
+						NoViableAltException nvae = new NoViableAltException("", 1, 0, input);
 
 						throw nvae;
 					}
 					switch (alt1) {
 					case 1:
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:121:2: ( (lv_type_3_0= ruleTypeRule ) )
+					// InternalUmlCollaborationUse.g:121:2: ( (lv_type_3_0= ruleTypeRule ) )
 					{
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:121:2: ( (lv_type_3_0= ruleTypeRule ) )
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:122:1: (lv_type_3_0= ruleTypeRule )
+						// InternalUmlCollaborationUse.g:121:2: ( (lv_type_3_0= ruleTypeRule ) )
+						// InternalUmlCollaborationUse.g:122:1: (lv_type_3_0= ruleTypeRule )
 						{
-							// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:122:1: (lv_type_3_0= ruleTypeRule )
-							// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:123:3: lv_type_3_0= ruleTypeRule
+							// InternalUmlCollaborationUse.g:122:1: (lv_type_3_0= ruleTypeRule )
+							// InternalUmlCollaborationUse.g:123:3: lv_type_3_0= ruleTypeRule
 							{
 
 								newCompositeNode(grammarAccess.getCollaborationUseRuleAccess().getTypeTypeRuleParserRuleCall_3_0_0());
 
-								pushFollow(FOLLOW_ruleTypeRule_in_ruleCollaborationUseRule187);
+								pushFollow(FOLLOW_2);
 								lv_type_3_0 = ruleTypeRule();
 
 								state._fsp--;
@@ -249,7 +236,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 										current,
 										"type",
 										lv_type_3_0,
-										"TypeRule");
+										"org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.UmlCollaborationUse.TypeRule");
 								afterParserOrEnumRuleCall();
 
 
@@ -262,9 +249,9 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 					}
 						break;
 					case 2:
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:140:7: otherlv_4= '<Undefined>'
+					// InternalUmlCollaborationUse.g:140:7: otherlv_4= '<Undefined>'
 					{
-						otherlv_4 = (Token) match(input, 13, FOLLOW_13_in_ruleCollaborationUseRule205);
+						otherlv_4 = (Token) match(input, 13, FOLLOW_2);
 
 						newLeafNode(otherlv_4, grammarAccess.getCollaborationUseRuleAccess().getUndefinedKeyword_3_1());
 
@@ -290,13 +277,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleCollaborationUseRule"
 
 
 	// $ANTLR start "entryRuleTypeRule"
-	// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:152:1: entryRuleTypeRule returns [EObject current=null] : iv_ruleTypeRule=
-	// ruleTypeRule EOF ;
+	// InternalUmlCollaborationUse.g:152:1: entryRuleTypeRule returns [EObject current=null] : iv_ruleTypeRule= ruleTypeRule EOF ;
 	public final EObject entryRuleTypeRule() throws RecognitionException {
 		EObject current = null;
 
@@ -304,17 +289,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:153:2: (iv_ruleTypeRule= ruleTypeRule EOF )
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:154:2: iv_ruleTypeRule= ruleTypeRule EOF
+			// InternalUmlCollaborationUse.g:153:2: (iv_ruleTypeRule= ruleTypeRule EOF )
+			// InternalUmlCollaborationUse.g:154:2: iv_ruleTypeRule= ruleTypeRule EOF
 			{
 				newCompositeNode(grammarAccess.getTypeRuleRule());
-				pushFollow(FOLLOW_ruleTypeRule_in_entryRuleTypeRule242);
+				pushFollow(FOLLOW_1);
 				iv_ruleTypeRule = ruleTypeRule();
 
 				state._fsp--;
 
 				current = iv_ruleTypeRule;
-				match(input, EOF, FOLLOW_EOF_in_entryRuleTypeRule252);
+				match(input, EOF, FOLLOW_2);
 
 			}
 
@@ -327,13 +312,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleTypeRule"
 
 
 	// $ANTLR start "ruleTypeRule"
-	// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:161:1: ruleTypeRule returns [EObject current=null] : ( ( (lv_path_0_0=
-	// ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) ;
+	// InternalUmlCollaborationUse.g:161:1: ruleTypeRule returns [EObject current=null] : ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) ;
 	public final EObject ruleTypeRule() throws RecognitionException {
 		EObject current = null;
 
@@ -344,17 +327,13 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:164:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1=
-			// RULE_ID ) ) ) )
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:165:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID
-			// ) ) )
+			// InternalUmlCollaborationUse.g:164:28: ( ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) ) )
+			// InternalUmlCollaborationUse.g:165:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
 			{
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:165:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1=
-				// RULE_ID ) ) )
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:165:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1=
-				// RULE_ID ) )
+				// InternalUmlCollaborationUse.g:165:1: ( ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) ) )
+				// InternalUmlCollaborationUse.g:165:2: ( (lv_path_0_0= ruleQualifiedName ) )? ( (otherlv_1= RULE_ID ) )
 				{
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:165:2: ( (lv_path_0_0= ruleQualifiedName ) )?
+					// InternalUmlCollaborationUse.g:165:2: ( (lv_path_0_0= ruleQualifiedName ) )?
 					int alt2 = 2;
 					int LA2_0 = input.LA(1);
 
@@ -367,15 +346,15 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 					}
 					switch (alt2) {
 					case 1:
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:166:1: (lv_path_0_0= ruleQualifiedName )
+					// InternalUmlCollaborationUse.g:166:1: (lv_path_0_0= ruleQualifiedName )
 					{
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:166:1: (lv_path_0_0= ruleQualifiedName )
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:167:3: lv_path_0_0= ruleQualifiedName
+						// InternalUmlCollaborationUse.g:166:1: (lv_path_0_0= ruleQualifiedName )
+						// InternalUmlCollaborationUse.g:167:3: lv_path_0_0= ruleQualifiedName
 						{
 
 							newCompositeNode(grammarAccess.getTypeRuleAccess().getPathQualifiedNameParserRuleCall_0_0());
 
-							pushFollow(FOLLOW_ruleQualifiedName_in_ruleTypeRule298);
+							pushFollow(FOLLOW_3);
 							lv_path_0_0 = ruleQualifiedName();
 
 							state._fsp--;
@@ -388,7 +367,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 									current,
 									"path",
 									lv_path_0_0,
-									"QualifiedName");
+									"org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommon.QualifiedName");
 							afterParserOrEnumRuleCall();
 
 
@@ -400,18 +379,18 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 					}
 
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:183:3: ( (otherlv_1= RULE_ID ) )
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:184:1: (otherlv_1= RULE_ID )
+					// InternalUmlCollaborationUse.g:183:3: ( (otherlv_1= RULE_ID ) )
+					// InternalUmlCollaborationUse.g:184:1: (otherlv_1= RULE_ID )
 					{
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:184:1: (otherlv_1= RULE_ID )
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:185:3: otherlv_1= RULE_ID
+						// InternalUmlCollaborationUse.g:184:1: (otherlv_1= RULE_ID )
+						// InternalUmlCollaborationUse.g:185:3: otherlv_1= RULE_ID
 						{
 
 							if (current == null) {
 								current = createModelElement(grammarAccess.getTypeRuleRule());
 							}
 
-							otherlv_1 = (Token) match(input, RULE_ID, FOLLOW_RULE_ID_in_ruleTypeRule319);
+							otherlv_1 = (Token) match(input, RULE_ID, FOLLOW_2);
 
 							newLeafNode(otherlv_1, grammarAccess.getTypeRuleAccess().getTypeCollaborationCrossReference_1_0());
 
@@ -437,13 +416,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleTypeRule"
 
 
 	// $ANTLR start "entryRuleQualifiedName"
-	// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:204:1: entryRuleQualifiedName returns [EObject current=null] :
-	// iv_ruleQualifiedName= ruleQualifiedName EOF ;
+	// InternalUmlCollaborationUse.g:204:1: entryRuleQualifiedName returns [EObject current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
 	public final EObject entryRuleQualifiedName() throws RecognitionException {
 		EObject current = null;
 
@@ -451,17 +428,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:205:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:206:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+			// InternalUmlCollaborationUse.g:205:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+			// InternalUmlCollaborationUse.g:206:2: iv_ruleQualifiedName= ruleQualifiedName EOF
 			{
 				newCompositeNode(grammarAccess.getQualifiedNameRule());
-				pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName355);
+				pushFollow(FOLLOW_1);
 				iv_ruleQualifiedName = ruleQualifiedName();
 
 				state._fsp--;
 
 				current = iv_ruleQualifiedName;
-				match(input, EOF, FOLLOW_EOF_in_entryRuleQualifiedName365);
+				match(input, EOF, FOLLOW_2);
 
 			}
 
@@ -474,13 +451,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleQualifiedName"
 
 
 	// $ANTLR start "ruleQualifiedName"
-	// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:213:1: ruleQualifiedName returns [EObject current=null] : ( ( (otherlv_0=
-	// RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) ;
+	// InternalUmlCollaborationUse.g:213:1: ruleQualifiedName returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) ;
 	public final EObject ruleQualifiedName() throws RecognitionException {
 		EObject current = null;
 
@@ -492,28 +467,24 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:216:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' (
-			// (lv_remaining_2_0= ruleQualifiedName ) )? ) )
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:217:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' (
-			// (lv_remaining_2_0= ruleQualifiedName ) )? )
+			// InternalUmlCollaborationUse.g:216:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? ) )
+			// InternalUmlCollaborationUse.g:217:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
 			{
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:217:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' (
-				// (lv_remaining_2_0= ruleQualifiedName ) )? )
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:217:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' (
-				// (lv_remaining_2_0= ruleQualifiedName ) )?
+				// InternalUmlCollaborationUse.g:217:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )? )
+				// InternalUmlCollaborationUse.g:217:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '::' ( (lv_remaining_2_0= ruleQualifiedName ) )?
 				{
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:217:2: ( (otherlv_0= RULE_ID ) )
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:218:1: (otherlv_0= RULE_ID )
+					// InternalUmlCollaborationUse.g:217:2: ( (otherlv_0= RULE_ID ) )
+					// InternalUmlCollaborationUse.g:218:1: (otherlv_0= RULE_ID )
 					{
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:218:1: (otherlv_0= RULE_ID )
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:219:3: otherlv_0= RULE_ID
+						// InternalUmlCollaborationUse.g:218:1: (otherlv_0= RULE_ID )
+						// InternalUmlCollaborationUse.g:219:3: otherlv_0= RULE_ID
 						{
 
 							if (current == null) {
 								current = createModelElement(grammarAccess.getQualifiedNameRule());
 							}
 
-							otherlv_0 = (Token) match(input, RULE_ID, FOLLOW_RULE_ID_in_ruleQualifiedName410);
+							otherlv_0 = (Token) match(input, RULE_ID, FOLLOW_6);
 
 							newLeafNode(otherlv_0, grammarAccess.getQualifiedNameAccess().getPathNamespaceCrossReference_0_0());
 
@@ -523,11 +494,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 					}
 
-					otherlv_1 = (Token) match(input, 14, FOLLOW_14_in_ruleQualifiedName422);
+					otherlv_1 = (Token) match(input, 14, FOLLOW_7);
 
 					newLeafNode(otherlv_1, grammarAccess.getQualifiedNameAccess().getColonColonKeyword_1());
 
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:234:1: ( (lv_remaining_2_0= ruleQualifiedName ) )?
+					// InternalUmlCollaborationUse.g:234:1: ( (lv_remaining_2_0= ruleQualifiedName ) )?
 					int alt3 = 2;
 					int LA3_0 = input.LA(1);
 
@@ -540,15 +511,15 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 					}
 					switch (alt3) {
 					case 1:
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:235:1: (lv_remaining_2_0= ruleQualifiedName )
+					// InternalUmlCollaborationUse.g:235:1: (lv_remaining_2_0= ruleQualifiedName )
 					{
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:235:1: (lv_remaining_2_0= ruleQualifiedName )
-						// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:236:3: lv_remaining_2_0= ruleQualifiedName
+						// InternalUmlCollaborationUse.g:235:1: (lv_remaining_2_0= ruleQualifiedName )
+						// InternalUmlCollaborationUse.g:236:3: lv_remaining_2_0= ruleQualifiedName
 						{
 
 							newCompositeNode(grammarAccess.getQualifiedNameAccess().getRemainingQualifiedNameParserRuleCall_2_0());
 
-							pushFollow(FOLLOW_ruleQualifiedName_in_ruleQualifiedName443);
+							pushFollow(FOLLOW_2);
 							lv_remaining_2_0 = ruleQualifiedName();
 
 							state._fsp--;
@@ -561,7 +532,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 									current,
 									"remaining",
 									lv_remaining_2_0,
-									"QualifiedName");
+									"org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommon.QualifiedName");
 							afterParserOrEnumRuleCall();
 
 
@@ -589,13 +560,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleQualifiedName"
 
 
 	// $ANTLR start "entryRuleBoundSpecification"
-	// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:262:1: entryRuleBoundSpecification returns [EObject current=null] :
-	// iv_ruleBoundSpecification= ruleBoundSpecification EOF ;
+	// InternalUmlCollaborationUse.g:262:1: entryRuleBoundSpecification returns [EObject current=null] : iv_ruleBoundSpecification= ruleBoundSpecification EOF ;
 	public final EObject entryRuleBoundSpecification() throws RecognitionException {
 		EObject current = null;
 
@@ -603,17 +572,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:263:2: (iv_ruleBoundSpecification= ruleBoundSpecification EOF )
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:264:2: iv_ruleBoundSpecification= ruleBoundSpecification EOF
+			// InternalUmlCollaborationUse.g:263:2: (iv_ruleBoundSpecification= ruleBoundSpecification EOF )
+			// InternalUmlCollaborationUse.g:264:2: iv_ruleBoundSpecification= ruleBoundSpecification EOF
 			{
 				newCompositeNode(grammarAccess.getBoundSpecificationRule());
-				pushFollow(FOLLOW_ruleBoundSpecification_in_entryRuleBoundSpecification482);
+				pushFollow(FOLLOW_1);
 				iv_ruleBoundSpecification = ruleBoundSpecification();
 
 				state._fsp--;
 
 				current = iv_ruleBoundSpecification;
-				match(input, EOF, FOLLOW_EOF_in_entryRuleBoundSpecification492);
+				match(input, EOF, FOLLOW_2);
 
 			}
 
@@ -626,13 +595,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleBoundSpecification"
 
 
 	// $ANTLR start "ruleBoundSpecification"
-	// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:271:1: ruleBoundSpecification returns [EObject current=null] : (
-	// (lv_value_0_0= ruleUnlimitedLiteral ) ) ;
+	// InternalUmlCollaborationUse.g:271:1: ruleBoundSpecification returns [EObject current=null] : ( (lv_value_0_0= ruleUnlimitedLiteral ) ) ;
 	public final EObject ruleBoundSpecification() throws RecognitionException {
 		EObject current = null;
 
@@ -642,19 +609,19 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:274:28: ( ( (lv_value_0_0= ruleUnlimitedLiteral ) ) )
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:275:1: ( (lv_value_0_0= ruleUnlimitedLiteral ) )
+			// InternalUmlCollaborationUse.g:274:28: ( ( (lv_value_0_0= ruleUnlimitedLiteral ) ) )
+			// InternalUmlCollaborationUse.g:275:1: ( (lv_value_0_0= ruleUnlimitedLiteral ) )
 			{
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:275:1: ( (lv_value_0_0= ruleUnlimitedLiteral ) )
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:276:1: (lv_value_0_0= ruleUnlimitedLiteral )
+				// InternalUmlCollaborationUse.g:275:1: ( (lv_value_0_0= ruleUnlimitedLiteral ) )
+				// InternalUmlCollaborationUse.g:276:1: (lv_value_0_0= ruleUnlimitedLiteral )
 				{
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:276:1: (lv_value_0_0= ruleUnlimitedLiteral )
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:277:3: lv_value_0_0= ruleUnlimitedLiteral
+					// InternalUmlCollaborationUse.g:276:1: (lv_value_0_0= ruleUnlimitedLiteral )
+					// InternalUmlCollaborationUse.g:277:3: lv_value_0_0= ruleUnlimitedLiteral
 					{
 
 						newCompositeNode(grammarAccess.getBoundSpecificationAccess().getValueUnlimitedLiteralParserRuleCall_0());
 
-						pushFollow(FOLLOW_ruleUnlimitedLiteral_in_ruleBoundSpecification537);
+						pushFollow(FOLLOW_2);
 						lv_value_0_0 = ruleUnlimitedLiteral();
 
 						state._fsp--;
@@ -667,7 +634,7 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 								current,
 								"value",
 								lv_value_0_0,
-								"UnlimitedLiteral");
+								"org.eclipse.papyrus.uml.textedit.common.xtext.UmlCommon.UnlimitedLiteral");
 						afterParserOrEnumRuleCall();
 
 
@@ -689,13 +656,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleBoundSpecification"
 
 
 	// $ANTLR start "entryRuleUnlimitedLiteral"
-	// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:301:1: entryRuleUnlimitedLiteral returns [String current=null] :
-	// iv_ruleUnlimitedLiteral= ruleUnlimitedLiteral EOF ;
+	// InternalUmlCollaborationUse.g:301:1: entryRuleUnlimitedLiteral returns [String current=null] : iv_ruleUnlimitedLiteral= ruleUnlimitedLiteral EOF ;
 	public final String entryRuleUnlimitedLiteral() throws RecognitionException {
 		String current = null;
 
@@ -703,17 +668,17 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:302:2: (iv_ruleUnlimitedLiteral= ruleUnlimitedLiteral EOF )
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:303:2: iv_ruleUnlimitedLiteral= ruleUnlimitedLiteral EOF
+			// InternalUmlCollaborationUse.g:302:2: (iv_ruleUnlimitedLiteral= ruleUnlimitedLiteral EOF )
+			// InternalUmlCollaborationUse.g:303:2: iv_ruleUnlimitedLiteral= ruleUnlimitedLiteral EOF
 			{
 				newCompositeNode(grammarAccess.getUnlimitedLiteralRule());
-				pushFollow(FOLLOW_ruleUnlimitedLiteral_in_entryRuleUnlimitedLiteral573);
+				pushFollow(FOLLOW_1);
 				iv_ruleUnlimitedLiteral = ruleUnlimitedLiteral();
 
 				state._fsp--;
 
 				current = iv_ruleUnlimitedLiteral.getText();
-				match(input, EOF, FOLLOW_EOF_in_entryRuleUnlimitedLiteral584);
+				match(input, EOF, FOLLOW_2);
 
 			}
 
@@ -726,13 +691,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		}
 		return current;
 	}
-
 	// $ANTLR end "entryRuleUnlimitedLiteral"
 
 
 	// $ANTLR start "ruleUnlimitedLiteral"
-	// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:310:1: ruleUnlimitedLiteral returns [AntlrDatatypeRuleToken current=new
-	// AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT | kw= '*' ) ;
+	// InternalUmlCollaborationUse.g:310:1: ruleUnlimitedLiteral returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INT_0= RULE_INT | kw= '*' ) ;
 	public final AntlrDatatypeRuleToken ruleUnlimitedLiteral() throws RecognitionException {
 		AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -742,30 +705,27 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		enterRule();
 
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:313:28: ( (this_INT_0= RULE_INT | kw= '*' ) )
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:314:1: (this_INT_0= RULE_INT | kw= '*' )
+			// InternalUmlCollaborationUse.g:313:28: ( (this_INT_0= RULE_INT | kw= '*' ) )
+			// InternalUmlCollaborationUse.g:314:1: (this_INT_0= RULE_INT | kw= '*' )
 			{
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:314:1: (this_INT_0= RULE_INT | kw= '*' )
+				// InternalUmlCollaborationUse.g:314:1: (this_INT_0= RULE_INT | kw= '*' )
 				int alt4 = 2;
 				int LA4_0 = input.LA(1);
 
 				if ((LA4_0 == RULE_INT)) {
 					alt4 = 1;
-				}
-				else if ((LA4_0 == 15)) {
+				} else if ((LA4_0 == 15)) {
 					alt4 = 2;
-				}
-				else {
-					NoViableAltException nvae =
-							new NoViableAltException("", 4, 0, input);
+				} else {
+					NoViableAltException nvae = new NoViableAltException("", 4, 0, input);
 
 					throw nvae;
 				}
 				switch (alt4) {
 				case 1:
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:314:6: this_INT_0= RULE_INT
+				// InternalUmlCollaborationUse.g:314:6: this_INT_0= RULE_INT
 				{
-					this_INT_0 = (Token) match(input, RULE_INT, FOLLOW_RULE_INT_in_ruleUnlimitedLiteral624);
+					this_INT_0 = (Token) match(input, RULE_INT, FOLLOW_2);
 
 					current.merge(this_INT_0);
 
@@ -776,9 +736,9 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:323:2: kw= '*'
+				// InternalUmlCollaborationUse.g:323:2: kw= '*'
 				{
-					kw = (Token) match(input, 15, FOLLOW_15_in_ruleUnlimitedLiteral648);
+					kw = (Token) match(input, 15, FOLLOW_2);
 
 					current.merge(kw);
 					newLeafNode(kw, grammarAccess.getUnlimitedLiteralAccess().getAsteriskKeyword_1());
@@ -802,13 +762,11 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleUnlimitedLiteral"
 
 
 	// $ANTLR start "ruleVisibilityKind"
-	// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:336:1: ruleVisibilityKind returns [Enumerator current=null] : (
-	// (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) ) ;
+	// InternalUmlCollaborationUse.g:336:1: ruleVisibilityKind returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) ) ;
 	public final Enumerator ruleVisibilityKind() throws RecognitionException {
 		Enumerator current = null;
 
@@ -819,13 +777,10 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 		enterRule();
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:338:28: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) |
-			// (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) ) )
-			// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:339:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) |
-			// (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) )
+			// InternalUmlCollaborationUse.g:338:28: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) ) )
+			// InternalUmlCollaborationUse.g:339:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) )
 			{
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:339:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) |
-				// (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) )
+				// InternalUmlCollaborationUse.g:339:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) | (enumLiteral_2= '#' ) | (enumLiteral_3= '~' ) )
 				int alt5 = 4;
 				switch (input.LA(1)) {
 				case 16: {
@@ -845,20 +800,19 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 				}
 					break;
 				default:
-					NoViableAltException nvae =
-							new NoViableAltException("", 5, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 5, 0, input);
 
 					throw nvae;
 				}
 
 				switch (alt5) {
 				case 1:
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:339:2: (enumLiteral_0= '+' )
+				// InternalUmlCollaborationUse.g:339:2: (enumLiteral_0= '+' )
 				{
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:339:2: (enumLiteral_0= '+' )
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:339:4: enumLiteral_0= '+'
+					// InternalUmlCollaborationUse.g:339:2: (enumLiteral_0= '+' )
+					// InternalUmlCollaborationUse.g:339:4: enumLiteral_0= '+'
 					{
-						enumLiteral_0 = (Token) match(input, 16, FOLLOW_16_in_ruleVisibilityKind702);
+						enumLiteral_0 = (Token) match(input, 16, FOLLOW_2);
 
 						current = grammarAccess.getVisibilityKindAccess().getPublicEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
 						newLeafNode(enumLiteral_0, grammarAccess.getVisibilityKindAccess().getPublicEnumLiteralDeclaration_0());
@@ -870,12 +824,12 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 				}
 					break;
 				case 2:
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:345:6: (enumLiteral_1= '-' )
+				// InternalUmlCollaborationUse.g:345:6: (enumLiteral_1= '-' )
 				{
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:345:6: (enumLiteral_1= '-' )
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:345:8: enumLiteral_1= '-'
+					// InternalUmlCollaborationUse.g:345:6: (enumLiteral_1= '-' )
+					// InternalUmlCollaborationUse.g:345:8: enumLiteral_1= '-'
 					{
-						enumLiteral_1 = (Token) match(input, 17, FOLLOW_17_in_ruleVisibilityKind719);
+						enumLiteral_1 = (Token) match(input, 17, FOLLOW_2);
 
 						current = grammarAccess.getVisibilityKindAccess().getPrivateEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
 						newLeafNode(enumLiteral_1, grammarAccess.getVisibilityKindAccess().getPrivateEnumLiteralDeclaration_1());
@@ -887,12 +841,12 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 				}
 					break;
 				case 3:
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:351:6: (enumLiteral_2= '#' )
+				// InternalUmlCollaborationUse.g:351:6: (enumLiteral_2= '#' )
 				{
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:351:6: (enumLiteral_2= '#' )
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:351:8: enumLiteral_2= '#'
+					// InternalUmlCollaborationUse.g:351:6: (enumLiteral_2= '#' )
+					// InternalUmlCollaborationUse.g:351:8: enumLiteral_2= '#'
 					{
-						enumLiteral_2 = (Token) match(input, 18, FOLLOW_18_in_ruleVisibilityKind736);
+						enumLiteral_2 = (Token) match(input, 18, FOLLOW_2);
 
 						current = grammarAccess.getVisibilityKindAccess().getProtectedEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
 						newLeafNode(enumLiteral_2, grammarAccess.getVisibilityKindAccess().getProtectedEnumLiteralDeclaration_2());
@@ -904,12 +858,12 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 				}
 					break;
 				case 4:
-				// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:357:6: (enumLiteral_3= '~' )
+				// InternalUmlCollaborationUse.g:357:6: (enumLiteral_3= '~' )
 				{
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:357:6: (enumLiteral_3= '~' )
-					// ../org.eclipse.papyrus.uml.textedit.collaborationuse.xtext/src-gen/org/eclipse/papyrus/uml/textedit/collaborationuse/xtext/parser/antlr/internal/InternalUmlCollaborationUse.g:357:8: enumLiteral_3= '~'
+					// InternalUmlCollaborationUse.g:357:6: (enumLiteral_3= '~' )
+					// InternalUmlCollaborationUse.g:357:8: enumLiteral_3= '~'
 					{
-						enumLiteral_3 = (Token) match(input, 19, FOLLOW_19_in_ruleVisibilityKind753);
+						enumLiteral_3 = (Token) match(input, 19, FOLLOW_2);
 
 						current = grammarAccess.getVisibilityKindAccess().getPackageEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
 						newLeafNode(enumLiteral_3, grammarAccess.getVisibilityKindAccess().getPackageEnumLiteralDeclaration_3());
@@ -936,7 +890,6 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 		}
 		return current;
 	}
-
 	// $ANTLR end "ruleVisibilityKind"
 
 	// Delegated rules
@@ -944,32 +897,12 @@ public class InternalUmlCollaborationUseParser extends AbstractInternalAntlrPars
 
 
 
-	public static final BitSet FOLLOW_ruleCollaborationUseRule_in_entryRuleCollaborationUseRule75 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleCollaborationUseRule85 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleVisibilityKind_in_ruleCollaborationUseRule131 = new BitSet(new long[] { 0x0000000000000010L });
-	public static final BitSet FOLLOW_RULE_ID_in_ruleCollaborationUseRule148 = new BitSet(new long[] { 0x0000000000001000L });
-	public static final BitSet FOLLOW_12_in_ruleCollaborationUseRule165 = new BitSet(new long[] { 0x0000000000002010L });
-	public static final BitSet FOLLOW_ruleTypeRule_in_ruleCollaborationUseRule187 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_13_in_ruleCollaborationUseRule205 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleTypeRule_in_entryRuleTypeRule242 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleTypeRule252 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleQualifiedName_in_ruleTypeRule298 = new BitSet(new long[] { 0x0000000000000010L });
-	public static final BitSet FOLLOW_RULE_ID_in_ruleTypeRule319 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName355 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName365 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName410 = new BitSet(new long[] { 0x0000000000004000L });
-	public static final BitSet FOLLOW_14_in_ruleQualifiedName422 = new BitSet(new long[] { 0x0000000000000012L });
-	public static final BitSet FOLLOW_ruleQualifiedName_in_ruleQualifiedName443 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleBoundSpecification_in_entryRuleBoundSpecification482 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleBoundSpecification492 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleUnlimitedLiteral_in_ruleBoundSpecification537 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_ruleUnlimitedLiteral_in_entryRuleUnlimitedLiteral573 = new BitSet(new long[] { 0x0000000000000000L });
-	public static final BitSet FOLLOW_EOF_in_entryRuleUnlimitedLiteral584 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_INT_in_ruleUnlimitedLiteral624 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_15_in_ruleUnlimitedLiteral648 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_16_in_ruleVisibilityKind702 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_17_in_ruleVisibilityKind719 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_18_in_ruleVisibilityKind736 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_19_in_ruleVisibilityKind753 = new BitSet(new long[] { 0x0000000000000002L });
+	public static final BitSet FOLLOW_1 = new BitSet(new long[] { 0x0000000000000000L });
+	public static final BitSet FOLLOW_2 = new BitSet(new long[] { 0x0000000000000002L });
+	public static final BitSet FOLLOW_3 = new BitSet(new long[] { 0x0000000000000010L });
+	public static final BitSet FOLLOW_4 = new BitSet(new long[] { 0x0000000000001000L });
+	public static final BitSet FOLLOW_5 = new BitSet(new long[] { 0x0000000000002010L });
+	public static final BitSet FOLLOW_6 = new BitSet(new long[] { 0x0000000000004000L });
+	public static final BitSet FOLLOW_7 = new BitSet(new long[] { 0x0000000000000012L });
 
 }

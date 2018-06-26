@@ -18,21 +18,20 @@ import org.eclipse.uml2.uml.Namespace;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.impl.QualifiedNameImpl#getPath <em>Path</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.impl.QualifiedNameImpl#getRemaining <em>Remaining</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class QualifiedNameImpl extends MinimalEObjectImpl.Container implements QualifiedName
-{
+public class QualifiedNameImpl extends MinimalEObjectImpl.Container implements QualifiedName {
 	/**
 	 * The cached value of the '{@link #getPath() <em>Path</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getPath()
 	 * @generated
 	 * @ordered
@@ -43,7 +42,7 @@ public class QualifiedNameImpl extends MinimalEObjectImpl.Container implements Q
 	 * The cached value of the '{@link #getRemaining() <em>Remaining</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getRemaining()
 	 * @generated
 	 * @ordered
@@ -53,44 +52,37 @@ public class QualifiedNameImpl extends MinimalEObjectImpl.Container implements Q
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected QualifiedNameImpl()
-	{
+	protected QualifiedNameImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlStatePackage.Literals.QUALIFIED_NAME;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public Namespace getPath()
-	{
-		if (path != null && path.eIsProxy())
-		{
+	public Namespace getPath() {
+		if (path != null && path.eIsProxy()) {
 			InternalEObject oldPath = (InternalEObject) path;
 			path = (Namespace) eResolveProxy(oldPath);
-			if (path != oldPath)
-			{
-				if (eNotificationRequired()) {
+			if (path != oldPath) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UmlStatePackage.QUALIFIED_NAME__PATH, oldPath, path));
-				}
 			}
 		}
 		return path;
@@ -99,60 +91,51 @@ public class QualifiedNameImpl extends MinimalEObjectImpl.Container implements Q
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public Namespace basicGetPath()
-	{
+	public Namespace basicGetPath() {
 		return path;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setPath(Namespace newPath)
-	{
+	public void setPath(Namespace newPath) {
 		Namespace oldPath = path;
 		path = newPath;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.QUALIFIED_NAME__PATH, oldPath, path));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public QualifiedName getRemaining()
-	{
+	public QualifiedName getRemaining() {
 		return remaining;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetRemaining(QualifiedName newRemaining, NotificationChain msgs)
-	{
+	public NotificationChain basicSetRemaining(QualifiedName newRemaining, NotificationChain msgs) {
 		QualifiedName oldRemaining = remaining;
 		remaining = newRemaining;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlStatePackage.QUALIFIED_NAME__REMAINING, oldRemaining, newRemaining);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -160,42 +143,32 @@ public class QualifiedNameImpl extends MinimalEObjectImpl.Container implements Q
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setRemaining(QualifiedName newRemaining)
-	{
-		if (newRemaining != remaining)
-		{
+	public void setRemaining(QualifiedName newRemaining) {
+		if (newRemaining != remaining) {
 			NotificationChain msgs = null;
-			if (remaining != null) {
+			if (remaining != null)
 				msgs = ((InternalEObject) remaining).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.QUALIFIED_NAME__REMAINING, null, msgs);
-			}
-			if (newRemaining != null) {
+			if (newRemaining != null)
 				msgs = ((InternalEObject) newRemaining).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlStatePackage.QUALIFIED_NAME__REMAINING, null, msgs);
-			}
 			msgs = basicSetRemaining(newRemaining, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlStatePackage.QUALIFIED_NAME__REMAINING, newRemaining, newRemaining));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case UmlStatePackage.QUALIFIED_NAME__REMAINING:
 			return basicSetRemaining(null, msgs);
 		}
@@ -205,18 +178,15 @@ public class QualifiedNameImpl extends MinimalEObjectImpl.Container implements Q
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlStatePackage.QUALIFIED_NAME__PATH:
-			if (resolve) {
+			if (resolve)
 				return getPath();
-			}
 			return basicGetPath();
 		case UmlStatePackage.QUALIFIED_NAME__REMAINING:
 			return getRemaining();
@@ -227,14 +197,12 @@ public class QualifiedNameImpl extends MinimalEObjectImpl.Container implements Q
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlStatePackage.QUALIFIED_NAME__PATH:
 			setPath((Namespace) newValue);
 			return;
@@ -248,14 +216,12 @@ public class QualifiedNameImpl extends MinimalEObjectImpl.Container implements Q
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlStatePackage.QUALIFIED_NAME__PATH:
 			setPath((Namespace) null);
 			return;
@@ -269,14 +235,12 @@ public class QualifiedNameImpl extends MinimalEObjectImpl.Container implements Q
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlStatePackage.QUALIFIED_NAME__PATH:
 			return path != null;
 		case UmlStatePackage.QUALIFIED_NAME__REMAINING:

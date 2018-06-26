@@ -60,6 +60,11 @@ public abstract class AbstractUmlMessageUiModule extends org.eclipse.xtext.ui.De
 	}
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
+	public Class<? extends org.eclipse.xtext.generator.IContextualOutputConfigurationProvider> bindIContextualOutputConfigurationProvider() {
+		return org.eclipse.xtext.builder.EclipseOutputConfigurationProvider.class;
+	}
+
+	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
 	public void configureIResourceDescriptionsPersisted(com.google.inject.Binder binder) {
 		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS))
 				.to(org.eclipse.xtext.builder.builderState.IBuilderState.class);
@@ -87,13 +92,11 @@ public abstract class AbstractUmlMessageUiModule extends org.eclipse.xtext.ui.De
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
-	@Override
 	public Class<? extends org.eclipse.jface.viewers.ILabelProvider> bindILabelProvider() {
 		return org.eclipse.papyrus.uml.textedit.message.xtext.ui.labeling.UmlMessageLabelProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
-	@Override
 	public void configureResourceUIServiceLabelProvider(com.google.inject.Binder binder) {
 		binder.bind(org.eclipse.jface.viewers.ILabelProvider.class).annotatedWith(org.eclipse.xtext.ui.resource.ResourceServiceDescriptionLabelProvider.class)
 				.to(org.eclipse.papyrus.uml.textedit.message.xtext.ui.labeling.UmlMessageDescriptionLabelProvider.class);
@@ -110,7 +113,6 @@ public abstract class AbstractUmlMessageUiModule extends org.eclipse.xtext.ui.De
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment
-	@Override
 	public Class<? extends org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider> bindIssueResolutionProvider() {
 		return org.eclipse.papyrus.uml.textedit.message.xtext.ui.quickfix.UmlMessageQuickfixProvider.class;
 	}

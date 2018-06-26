@@ -19,7 +19,7 @@ import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePacka
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- *
+ * 
  * @see org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage
  * @generated
  */
@@ -28,7 +28,7 @@ public class UmlMessageSwitch<T> extends Switch<T> {
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected static UmlMessagePackage modelPackage;
@@ -37,7 +37,7 @@ public class UmlMessageSwitch<T> extends Switch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public UmlMessageSwitch() {
@@ -50,7 +50,7 @@ public class UmlMessageSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param ePackage
 	 *            the package in question.
 	 * @return whether this is a switch for the given package.
@@ -65,7 +65,7 @@ public class UmlMessageSwitch<T> extends Switch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -75,17 +75,15 @@ public class UmlMessageSwitch<T> extends Switch<T> {
 		case UmlMessagePackage.MESSAGE_RULE: {
 			MessageRule messageRule = (MessageRule) theEObject;
 			T result = caseMessageRule(messageRule);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case UmlMessagePackage.SEQUENCE_TERM_RULE: {
 			SequenceTermRule sequenceTermRule = (SequenceTermRule) theEObject;
 			T result = caseSequenceTermRule(sequenceTermRule);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		default:
@@ -99,7 +97,7 @@ public class UmlMessageSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Message Rule</em>'.
@@ -116,7 +114,7 @@ public class UmlMessageSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Sequence Term Rule</em>'.
@@ -133,7 +131,7 @@ public class UmlMessageSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.

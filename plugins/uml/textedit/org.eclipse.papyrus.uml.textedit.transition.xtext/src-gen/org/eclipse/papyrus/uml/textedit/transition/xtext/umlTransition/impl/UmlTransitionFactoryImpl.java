@@ -26,29 +26,24 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransi
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
-public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransitionFactory
-{
+public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransitionFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public static UmlTransitionFactory init()
-	{
-		try
-		{
+	public static UmlTransitionFactory init() {
+		try {
 			UmlTransitionFactory theUmlTransitionFactory = (UmlTransitionFactory) EPackage.Registry.INSTANCE.getEFactory(UmlTransitionPackage.eNS_URI);
-			if (theUmlTransitionFactory != null)
-			{
+			if (theUmlTransitionFactory != null) {
 				return theUmlTransitionFactory;
 			}
-		} catch (Exception exception)
-		{
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new UmlTransitionFactoryImpl();
@@ -58,25 +53,22 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public UmlTransitionFactoryImpl()
-	{
+	public UmlTransitionFactoryImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass)
-	{
-		switch (eClass.getClassifierID())
-		{
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
 		case UmlTransitionPackage.TRANSITION_RULE:
 			return createTransitionRule();
 		case UmlTransitionPackage.EVENT_RULE:
@@ -105,14 +97,12 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object createFromString(EDataType eDataType, String initialValue)
-	{
-		switch (eDataType.getClassifierID())
-		{
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
 		case UmlTransitionPackage.BEHAVIOR_KIND:
 			return createBehaviorKindFromString(eDataType, initialValue);
 		default:
@@ -123,14 +113,12 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue)
-	{
-		switch (eDataType.getClassifierID())
-		{
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
 		case UmlTransitionPackage.BEHAVIOR_KIND:
 			return convertBehaviorKindToString(eDataType, instanceValue);
 		default:
@@ -141,12 +129,10 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public TransitionRule createTransitionRule()
-	{
+	public TransitionRule createTransitionRule() {
 		TransitionRuleImpl transitionRule = new TransitionRuleImpl();
 		return transitionRule;
 	}
@@ -154,12 +140,10 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EventRule createEventRule()
-	{
+	public EventRule createEventRule() {
 		EventRuleImpl eventRule = new EventRuleImpl();
 		return eventRule;
 	}
@@ -167,12 +151,10 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public CallOrSignalEventRule createCallOrSignalEventRule()
-	{
+	public CallOrSignalEventRule createCallOrSignalEventRule() {
 		CallOrSignalEventRuleImpl callOrSignalEventRule = new CallOrSignalEventRuleImpl();
 		return callOrSignalEventRule;
 	}
@@ -180,12 +162,10 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public AnyReceiveEventRule createAnyReceiveEventRule()
-	{
+	public AnyReceiveEventRule createAnyReceiveEventRule() {
 		AnyReceiveEventRuleImpl anyReceiveEventRule = new AnyReceiveEventRuleImpl();
 		return anyReceiveEventRule;
 	}
@@ -193,12 +173,10 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public TimeEventRule createTimeEventRule()
-	{
+	public TimeEventRule createTimeEventRule() {
 		TimeEventRuleImpl timeEventRule = new TimeEventRuleImpl();
 		return timeEventRule;
 	}
@@ -206,12 +184,10 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public RelativeTimeEventRule createRelativeTimeEventRule()
-	{
+	public RelativeTimeEventRule createRelativeTimeEventRule() {
 		RelativeTimeEventRuleImpl relativeTimeEventRule = new RelativeTimeEventRuleImpl();
 		return relativeTimeEventRule;
 	}
@@ -219,12 +195,10 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public AbsoluteTimeEventRule createAbsoluteTimeEventRule()
-	{
+	public AbsoluteTimeEventRule createAbsoluteTimeEventRule() {
 		AbsoluteTimeEventRuleImpl absoluteTimeEventRule = new AbsoluteTimeEventRuleImpl();
 		return absoluteTimeEventRule;
 	}
@@ -232,12 +206,10 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public ChangeEventRule createChangeEventRule()
-	{
+	public ChangeEventRule createChangeEventRule() {
 		ChangeEventRuleImpl changeEventRule = new ChangeEventRuleImpl();
 		return changeEventRule;
 	}
@@ -245,12 +217,10 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public GuardRule createGuardRule()
-	{
+	public GuardRule createGuardRule() {
 		GuardRuleImpl guardRule = new GuardRuleImpl();
 		return guardRule;
 	}
@@ -258,12 +228,10 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EffectRule createEffectRule()
-	{
+	public EffectRule createEffectRule() {
 		EffectRuleImpl effectRule = new EffectRuleImpl();
 		return effectRule;
 	}
@@ -271,51 +239,45 @@ public class UmlTransitionFactoryImpl extends EFactoryImpl implements UmlTransit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public BehaviorKind createBehaviorKindFromString(EDataType eDataType, String initialValue)
-	{
+	public BehaviorKind createBehaviorKindFromString(EDataType eDataType, String initialValue) {
 		BehaviorKind result = BehaviorKind.get(initialValue);
-		if (result == null) {
+		if (result == null)
 			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		}
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public String convertBehaviorKindToString(EDataType eDataType, Object instanceValue)
-	{
+	public String convertBehaviorKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public UmlTransitionPackage getUmlTransitionPackage()
-	{
+	public UmlTransitionPackage getUmlTransitionPackage() {
 		return (UmlTransitionPackage) getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
 	@Deprecated
-	public static UmlTransitionPackage getPackage()
-	{
+	public static UmlTransitionPackage getPackage() {
 		return UmlTransitionPackage.eINSTANCE;
 	}
 

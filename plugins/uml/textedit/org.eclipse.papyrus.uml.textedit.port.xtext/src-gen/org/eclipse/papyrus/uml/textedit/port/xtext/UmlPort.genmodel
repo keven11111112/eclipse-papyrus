@@ -5,8 +5,8 @@
     modelPluginID="org.eclipse.papyrus.uml.textedit.port.xtext" forceOverwrite="true"
     modelName="UmlPort" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.uml.textedit.port.xtext.edit"
-    editorPluginID="org.eclipse.papyrus.uml.textedit.port.xtext.editor" runtimeVersion="2.10"
-    usedGenPackages="platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+    editorPluginID="org.eclipse.papyrus.uml.textedit.port.xtext.editor" runtimeVersion="2.14"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/resource/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <genPackages prefix="UmlPort" basePackage="org.eclipse.papyrus.uml.textedit.port.xtext"
       disposableProviderFactory="true" ecorePackage="UmlPort.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="UmlPort.ecore#//VisibilityKind">
@@ -22,8 +22,8 @@
       <genEnumLiterals ecoreEnumLiteral="UmlPort.ecore#//ModifierKind/unique"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="UmlPort.ecore#//BooleanLiterals">
-      <genEnumLiterals ecoreEnumLiteral="UmlPort.ecore#//BooleanLiterals/true"/>
-      <genEnumLiterals ecoreEnumLiteral="UmlPort.ecore#//BooleanLiterals/false"/>
+      <genEnumLiterals ecoreEnumLiteral="UmlPort.ecore#//BooleanLiterals/TRUE"/>
+      <genEnumLiterals ecoreEnumLiteral="UmlPort.ecore#//BooleanLiterals/FALSE"/>
     </genEnums>
     <genClasses ecoreClass="UmlPort.ecore#//PortRule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlPort.ecore#//PortRule/visibility"/>

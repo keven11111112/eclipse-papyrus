@@ -19,22 +19,21 @@ import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.VisibilityKind;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.impl.CollaborationUseRuleImpl#getVisibility <em>Visibility</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.impl.CollaborationUseRuleImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.umlCollaborationUse.impl.CollaborationUseRuleImpl#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container implements CollaborationUseRule
-{
+public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container implements CollaborationUseRule {
 	/**
 	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -45,7 +44,7 @@ public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container imple
 	 * The cached value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getVisibility()
 	 * @generated
 	 * @ordered
@@ -56,7 +55,7 @@ public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container imple
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -67,7 +66,7 @@ public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container imple
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -78,7 +77,7 @@ public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container imple
 	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getType()
 	 * @generated
 	 * @ordered
@@ -88,112 +87,95 @@ public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected CollaborationUseRuleImpl()
-	{
+	protected CollaborationUseRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlCollaborationUsePackage.Literals.COLLABORATION_USE_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public VisibilityKind getVisibility()
-	{
+	public VisibilityKind getVisibility() {
 		return visibility;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setVisibility(VisibilityKind newVisibility)
-	{
+	public void setVisibility(VisibilityKind newVisibility) {
 		VisibilityKind oldVisibility = visibility;
 		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlCollaborationUsePackage.COLLABORATION_USE_RULE__VISIBILITY, oldVisibility, visibility));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setName(String newName)
-	{
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlCollaborationUsePackage.COLLABORATION_USE_RULE__NAME, oldName, name));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public TypeRule getType()
-	{
+	public TypeRule getType() {
 		return type;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetType(TypeRule newType, NotificationChain msgs)
-	{
+	public NotificationChain basicSetType(TypeRule newType, NotificationChain msgs) {
 		TypeRule oldType = type;
 		type = newType;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlCollaborationUsePackage.COLLABORATION_USE_RULE__TYPE, oldType, newType);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -201,42 +183,32 @@ public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setType(TypeRule newType)
-	{
-		if (newType != type)
-		{
+	public void setType(TypeRule newType) {
+		if (newType != type) {
 			NotificationChain msgs = null;
-			if (type != null) {
+			if (type != null)
 				msgs = ((InternalEObject) type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlCollaborationUsePackage.COLLABORATION_USE_RULE__TYPE, null, msgs);
-			}
-			if (newType != null) {
+			if (newType != null)
 				msgs = ((InternalEObject) newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlCollaborationUsePackage.COLLABORATION_USE_RULE__TYPE, null, msgs);
-			}
 			msgs = basicSetType(newType, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlCollaborationUsePackage.COLLABORATION_USE_RULE__TYPE, newType, newType));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case UmlCollaborationUsePackage.COLLABORATION_USE_RULE__TYPE:
 			return basicSetType(null, msgs);
 		}
@@ -246,14 +218,12 @@ public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlCollaborationUsePackage.COLLABORATION_USE_RULE__VISIBILITY:
 			return getVisibility();
 		case UmlCollaborationUsePackage.COLLABORATION_USE_RULE__NAME:
@@ -267,14 +237,12 @@ public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlCollaborationUsePackage.COLLABORATION_USE_RULE__VISIBILITY:
 			setVisibility((VisibilityKind) newValue);
 			return;
@@ -291,14 +259,12 @@ public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlCollaborationUsePackage.COLLABORATION_USE_RULE__VISIBILITY:
 			setVisibility(VISIBILITY_EDEFAULT);
 			return;
@@ -315,14 +281,12 @@ public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlCollaborationUsePackage.COLLABORATION_USE_RULE__VISIBILITY:
 			return visibility != VISIBILITY_EDEFAULT;
 		case UmlCollaborationUsePackage.COLLABORATION_USE_RULE__NAME:
@@ -336,17 +300,15 @@ public class CollaborationUseRuleImpl extends MinimalEObjectImpl.Container imple
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) {
+	public String toString() {
+		if (eIsProxy())
 			return super.toString();
-		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (visibility: ");
 		result.append(visibility);
 		result.append(", name: ");

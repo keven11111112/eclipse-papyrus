@@ -12,26 +12,26 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.MultiplicityRule#getBounds <em>Bounds</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage#getMultiplicityRule()
  * @model
  * @generated
  */
-public interface MultiplicityRule extends EObject
-{
+public interface MultiplicityRule extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Bounds</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.BoundSpecification}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Bounds</em>' containment reference list isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Bounds</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Bounds</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage#getMultiplicityRule_Bounds()
 	 * @model containment="true"

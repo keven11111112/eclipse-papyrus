@@ -14,20 +14,19 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransi
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.impl.AnyReceiveEventRuleImpl#getIsAReceiveEvent <em>Is AReceive Event</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class AnyReceiveEventRuleImpl extends EventRuleImpl implements AnyReceiveEventRule
-{
+public class AnyReceiveEventRuleImpl extends EventRuleImpl implements AnyReceiveEventRule {
 	/**
 	 * The default value of the '{@link #getIsAReceiveEvent() <em>Is AReceive Event</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getIsAReceiveEvent()
 	 * @generated
 	 * @ordered
@@ -38,7 +37,7 @@ public class AnyReceiveEventRuleImpl extends EventRuleImpl implements AnyReceive
 	 * The cached value of the '{@link #getIsAReceiveEvent() <em>Is AReceive Event</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getIsAReceiveEvent()
 	 * @generated
 	 * @ordered
@@ -48,65 +47,56 @@ public class AnyReceiveEventRuleImpl extends EventRuleImpl implements AnyReceive
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected AnyReceiveEventRuleImpl()
-	{
+	protected AnyReceiveEventRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlTransitionPackage.Literals.ANY_RECEIVE_EVENT_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public String getIsAReceiveEvent()
-	{
+	public String getIsAReceiveEvent() {
 		return isAReceiveEvent;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setIsAReceiveEvent(String newIsAReceiveEvent)
-	{
+	public void setIsAReceiveEvent(String newIsAReceiveEvent) {
 		String oldIsAReceiveEvent = isAReceiveEvent;
 		isAReceiveEvent = newIsAReceiveEvent;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlTransitionPackage.ANY_RECEIVE_EVENT_RULE__IS_ARECEIVE_EVENT, oldIsAReceiveEvent, isAReceiveEvent));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlTransitionPackage.ANY_RECEIVE_EVENT_RULE__IS_ARECEIVE_EVENT:
 			return getIsAReceiveEvent();
 		}
@@ -116,14 +106,12 @@ public class AnyReceiveEventRuleImpl extends EventRuleImpl implements AnyReceive
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlTransitionPackage.ANY_RECEIVE_EVENT_RULE__IS_ARECEIVE_EVENT:
 			setIsAReceiveEvent((String) newValue);
 			return;
@@ -134,14 +122,12 @@ public class AnyReceiveEventRuleImpl extends EventRuleImpl implements AnyReceive
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.ANY_RECEIVE_EVENT_RULE__IS_ARECEIVE_EVENT:
 			setIsAReceiveEvent(IS_ARECEIVE_EVENT_EDEFAULT);
 			return;
@@ -152,14 +138,12 @@ public class AnyReceiveEventRuleImpl extends EventRuleImpl implements AnyReceive
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.ANY_RECEIVE_EVENT_RULE__IS_ARECEIVE_EVENT:
 			return IS_ARECEIVE_EVENT_EDEFAULT == null ? isAReceiveEvent != null : !IS_ARECEIVE_EVENT_EDEFAULT.equals(isAReceiveEvent);
 		}
@@ -169,17 +153,15 @@ public class AnyReceiveEventRuleImpl extends EventRuleImpl implements AnyReceive
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) {
+	public String toString() {
+		if (eIsProxy())
 			return super.toString();
-		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (isAReceiveEvent: ");
 		result.append(isAReceiveEvent);
 		result.append(')');

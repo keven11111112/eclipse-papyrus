@@ -17,18 +17,17 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- *
+ * 
  * @see org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.UMLConnectionPointReferenceFactory
  * @model kind="package"
  * @generated
  */
-public interface UMLConnectionPointReferencePackage extends EPackage
-{
+public interface UMLConnectionPointReferencePackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	String eNAME = "uMLConnectionPointReference";
@@ -37,7 +36,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/uml/textedit/connectionpointreference/xtext/UMLConnectionPointReference";
@@ -46,7 +45,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "uMLConnectionPointReference";
@@ -55,7 +54,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	UMLConnectionPointReferencePackage eINSTANCE = org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl.UMLConnectionPointReferencePackageImpl.init();
@@ -64,7 +63,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl.ConnectionPointReferenceRuleImpl <em>Connection Point Reference Rule</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl.ConnectionPointReferenceRuleImpl
 	 * @see org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl.UMLConnectionPointReferencePackageImpl#getConnectionPointReferenceRule()
 	 * @generated
@@ -75,7 +74,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * The feature id for the '<em><b>Entry</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -85,7 +84,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * The feature id for the '<em><b>Exit</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -95,7 +94,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * The number of structural features of the '<em>Connection Point Reference Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -106,7 +105,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.ConnectionPointReferenceRule <em>Connection Point Reference Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the meta object for class '<em>Connection Point Reference Rule</em>'.
 	 * @see org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.ConnectionPointReferenceRule
 	 * @generated
@@ -117,7 +116,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.ConnectionPointReferenceRule#getEntry <em>Entry</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the meta object for the reference list '<em>Entry</em>'.
 	 * @see org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.ConnectionPointReferenceRule#getEntry()
 	 * @see #getConnectionPointReferenceRule()
@@ -129,7 +128,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.ConnectionPointReferenceRule#getExit <em>Exit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the meta object for the reference list '<em>Exit</em>'.
 	 * @see org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.ConnectionPointReferenceRule#getExit()
 	 * @see #getConnectionPointReferenceRule()
@@ -141,7 +140,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -157,16 +156,15 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	interface Literals
-	{
+	interface Literals {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl.ConnectionPointReferenceRuleImpl <em>Connection Point Reference Rule</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @see org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl.ConnectionPointReferenceRuleImpl
 		 * @see org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnectionPointReference.impl.UMLConnectionPointReferencePackageImpl#getConnectionPointReferenceRule()
 		 * @generated
@@ -177,7 +175,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 		 * The meta object literal for the '<em><b>Entry</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		EReference CONNECTION_POINT_REFERENCE_RULE__ENTRY = eINSTANCE.getConnectionPointReferenceRule_Entry();
@@ -186,7 +184,7 @@ public interface UMLConnectionPointReferencePackage extends EPackage
 		 * The meta object literal for the '<em><b>Exit</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		EReference CONNECTION_POINT_REFERENCE_RULE__EXIT = eINSTANCE.getConnectionPointReferenceRule_Exit();

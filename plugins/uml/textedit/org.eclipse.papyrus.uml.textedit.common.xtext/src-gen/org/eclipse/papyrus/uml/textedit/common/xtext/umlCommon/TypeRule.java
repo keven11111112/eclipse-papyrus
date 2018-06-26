@@ -12,26 +12,26 @@ import org.eclipse.uml2.uml.Type;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule#getPath <em>Path</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule#getType <em>Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage#getTypeRule()
  * @model
  * @generated
  */
-public interface TypeRule extends EObject
-{
+public interface TypeRule extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Path</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Path</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Path</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Path</em>' containment reference.
 	 * @see #setPath(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage#getTypeRule_Path()
@@ -44,7 +44,7 @@ public interface TypeRule extends EObject
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule#getPath <em>Path</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Path</em>' containment reference.
 	 * @see #getPath()
@@ -56,10 +56,11 @@ public interface TypeRule extends EObject
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Type</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(Type)
 	 * @see org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage#getTypeRule_Type()
@@ -72,7 +73,7 @@ public interface TypeRule extends EObject
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule#getType <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Type</em>' reference.
 	 * @see #getType()

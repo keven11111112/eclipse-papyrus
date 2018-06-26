@@ -13,6 +13,5 @@ package org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter;
  * @model
  * @generated
  */
-public interface NullValue extends Value
-{
+public interface NullValue extends Value {
 } // NullValue

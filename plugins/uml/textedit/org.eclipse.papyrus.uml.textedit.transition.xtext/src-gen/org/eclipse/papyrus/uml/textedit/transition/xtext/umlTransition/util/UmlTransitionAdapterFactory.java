@@ -23,17 +23,16 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransi
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- *
+ * 
  * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransitionPackage
  * @generated
  */
-public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
-{
+public class UmlTransitionAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected static UmlTransitionPackage modelPackage;
@@ -42,13 +41,11 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public UmlTransitionAdapterFactory()
-	{
-		if (modelPackage == null)
-		{
+	public UmlTransitionAdapterFactory() {
+		if (modelPackage == null) {
 			modelPackage = UmlTransitionPackage.eINSTANCE;
 		}
 	}
@@ -58,19 +55,16 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object)
-	{
-		if (object == modelPackage)
-		{
+	public boolean isFactoryForType(Object object) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -80,92 +74,78 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected UmlTransitionSwitch<Adapter> modelSwitch =
-			new UmlTransitionSwitch<Adapter>()
-			{
-				@Override
-				public Adapter caseTransitionRule(TransitionRule object)
-				{
-					return createTransitionRuleAdapter();
-				}
+	protected UmlTransitionSwitch<Adapter> modelSwitch = new UmlTransitionSwitch<Adapter>() {
+		@Override
+		public Adapter caseTransitionRule(TransitionRule object) {
+			return createTransitionRuleAdapter();
+		}
 
-				@Override
-				public Adapter caseEventRule(EventRule object)
-				{
-					return createEventRuleAdapter();
-				}
+		@Override
+		public Adapter caseEventRule(EventRule object) {
+			return createEventRuleAdapter();
+		}
 
-				@Override
-				public Adapter caseCallOrSignalEventRule(CallOrSignalEventRule object)
-				{
-					return createCallOrSignalEventRuleAdapter();
-				}
+		@Override
+		public Adapter caseCallOrSignalEventRule(CallOrSignalEventRule object) {
+			return createCallOrSignalEventRuleAdapter();
+		}
 
-				@Override
-				public Adapter caseAnyReceiveEventRule(AnyReceiveEventRule object)
-				{
-					return createAnyReceiveEventRuleAdapter();
-				}
+		@Override
+		public Adapter caseAnyReceiveEventRule(AnyReceiveEventRule object) {
+			return createAnyReceiveEventRuleAdapter();
+		}
 
-				@Override
-				public Adapter caseTimeEventRule(TimeEventRule object)
-				{
-					return createTimeEventRuleAdapter();
-				}
+		@Override
+		public Adapter caseTimeEventRule(TimeEventRule object) {
+			return createTimeEventRuleAdapter();
+		}
 
-				@Override
-				public Adapter caseRelativeTimeEventRule(RelativeTimeEventRule object)
-				{
-					return createRelativeTimeEventRuleAdapter();
-				}
+		@Override
+		public Adapter caseRelativeTimeEventRule(RelativeTimeEventRule object) {
+			return createRelativeTimeEventRuleAdapter();
+		}
 
-				@Override
-				public Adapter caseAbsoluteTimeEventRule(AbsoluteTimeEventRule object)
-				{
-					return createAbsoluteTimeEventRuleAdapter();
-				}
+		@Override
+		public Adapter caseAbsoluteTimeEventRule(AbsoluteTimeEventRule object) {
+			return createAbsoluteTimeEventRuleAdapter();
+		}
 
-				@Override
-				public Adapter caseChangeEventRule(ChangeEventRule object)
-				{
-					return createChangeEventRuleAdapter();
-				}
+		@Override
+		public Adapter caseChangeEventRule(ChangeEventRule object) {
+			return createChangeEventRuleAdapter();
+		}
 
-				@Override
-				public Adapter caseGuardRule(GuardRule object)
-				{
-					return createGuardRuleAdapter();
-				}
+		@Override
+		public Adapter caseGuardRule(GuardRule object) {
+			return createGuardRuleAdapter();
+		}
 
-				@Override
-				public Adapter caseEffectRule(EffectRule object)
-				{
-					return createEffectRuleAdapter();
-				}
+		@Override
+		public Adapter caseEffectRule(EffectRule object) {
+			return createEffectRuleAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object)
-				{
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param target
 	 *            the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target)
-	{
+	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
 
@@ -176,13 +156,12 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TransitionRule
 	 * @generated
 	 */
-	public Adapter createTransitionRuleAdapter()
-	{
+	public Adapter createTransitionRuleAdapter() {
 		return null;
 	}
 
@@ -192,13 +171,12 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EventRule
 	 * @generated
 	 */
-	public Adapter createEventRuleAdapter()
-	{
+	public Adapter createEventRuleAdapter() {
 		return null;
 	}
 
@@ -208,13 +186,12 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.CallOrSignalEventRule
 	 * @generated
 	 */
-	public Adapter createCallOrSignalEventRuleAdapter()
-	{
+	public Adapter createCallOrSignalEventRuleAdapter() {
 		return null;
 	}
 
@@ -224,13 +201,12 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.AnyReceiveEventRule
 	 * @generated
 	 */
-	public Adapter createAnyReceiveEventRuleAdapter()
-	{
+	public Adapter createAnyReceiveEventRuleAdapter() {
 		return null;
 	}
 
@@ -240,13 +216,12 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.TimeEventRule
 	 * @generated
 	 */
-	public Adapter createTimeEventRuleAdapter()
-	{
+	public Adapter createTimeEventRuleAdapter() {
 		return null;
 	}
 
@@ -256,13 +231,12 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.RelativeTimeEventRule
 	 * @generated
 	 */
-	public Adapter createRelativeTimeEventRuleAdapter()
-	{
+	public Adapter createRelativeTimeEventRuleAdapter() {
 		return null;
 	}
 
@@ -272,13 +246,12 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.AbsoluteTimeEventRule
 	 * @generated
 	 */
-	public Adapter createAbsoluteTimeEventRuleAdapter()
-	{
+	public Adapter createAbsoluteTimeEventRuleAdapter() {
 		return null;
 	}
 
@@ -288,13 +261,12 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.ChangeEventRule
 	 * @generated
 	 */
-	public Adapter createChangeEventRuleAdapter()
-	{
+	public Adapter createChangeEventRuleAdapter() {
 		return null;
 	}
 
@@ -304,13 +276,12 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.GuardRule
 	 * @generated
 	 */
-	public Adapter createGuardRuleAdapter()
-	{
+	public Adapter createGuardRuleAdapter() {
 		return null;
 	}
 
@@ -320,13 +291,12 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.EffectRule
 	 * @generated
 	 */
-	public Adapter createEffectRuleAdapter()
-	{
+	public Adapter createEffectRuleAdapter() {
 		return null;
 	}
 
@@ -335,12 +305,11 @@ public class UmlTransitionAdapterFactory extends AdapterFactoryImpl
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter()
-	{
+	public Adapter createEObjectAdapter() {
 		return null;
 	}
 

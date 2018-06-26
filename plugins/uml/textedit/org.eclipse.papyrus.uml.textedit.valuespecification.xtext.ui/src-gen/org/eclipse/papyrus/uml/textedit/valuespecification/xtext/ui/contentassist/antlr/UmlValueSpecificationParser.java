@@ -4,10 +4,11 @@
 package org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contentassist.antlr;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.antlr.runtime.RecognitionException;
+import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.services.UmlValueSpecificationGrammarAccess;
 import org.eclipse.xtext.AbstractElement;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.AbstractContentAssistParser;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.FollowElement;
@@ -15,22 +16,21 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternal
 
 import com.google.inject.Inject;
 
-import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.services.UmlValueSpecificationGrammarAccess;
-
 public class UmlValueSpecificationParser extends AbstractContentAssistParser {
-	
+
 	@Inject
 	private UmlValueSpecificationGrammarAccess grammarAccess;
-	
+
 	private Map<AbstractElement, String> nameMappings;
-	
+
 	@Override
 	protected org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contentassist.antlr.internal.InternalUmlValueSpecificationParser createParser() {
-		org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contentassist.antlr.internal.InternalUmlValueSpecificationParser result = new org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contentassist.antlr.internal.InternalUmlValueSpecificationParser(null);
+		org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contentassist.antlr.internal.InternalUmlValueSpecificationParser result = new org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contentassist.antlr.internal.InternalUmlValueSpecificationParser(
+				null);
 		result.setGrammarAccess(grammarAccess);
 		return result;
 	}
-	
+
 	@Override
 	protected String getRuleName(AbstractElement element) {
 		if (nameMappings == null) {
@@ -65,27 +65,27 @@ public class UmlValueSpecificationParser extends AbstractContentAssistParser {
 		}
 		return nameMappings.get(element);
 	}
-	
+
 	@Override
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contentassist.antlr.internal.InternalUmlValueSpecificationParser typedParser = (org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contentassist.antlr.internal.InternalUmlValueSpecificationParser) parser;
 			typedParser.entryRuleAbstractRule();
 			return typedParser.getFollowElements();
-		} catch(RecognitionException ex) {
+		} catch (RecognitionException ex) {
 			throw new RuntimeException(ex);
-		}		
+		}
 	}
-	
+
 	@Override
 	protected String[] getInitialHiddenTokens() {
 		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
 	}
-	
+
 	public UmlValueSpecificationGrammarAccess getGrammarAccess() {
 		return this.grammarAccess;
 	}
-	
+
 	public void setGrammarAccess(UmlValueSpecificationGrammarAccess grammarAccess) {
 		this.grammarAccess = grammarAccess;
 	}

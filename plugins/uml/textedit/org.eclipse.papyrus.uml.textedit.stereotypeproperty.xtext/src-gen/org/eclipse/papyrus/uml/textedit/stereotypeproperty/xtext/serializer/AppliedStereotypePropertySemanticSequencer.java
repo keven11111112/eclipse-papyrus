@@ -3,8 +3,8 @@
  */
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.serializer;
 
-import com.google.inject.Inject;
 import java.util.Set;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.uml.alf.AcceptBlock;
@@ -114,12 +114,14 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
+import com.google.inject.Inject;
+
 @SuppressWarnings("all")
 public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSequencer {
 
 	@Inject
 	private AppliedStereotypePropertyGrammarAccess grammarAccess;
-	
+
 	@Override
 	public void sequence(ISerializationContext context, EObject semanticObject) {
 		EPackage epackage = semanticObject.eClass().getEPackage();
@@ -130,242 +132,225 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 			switch (semanticObject.eClass().getClassifierID()) {
 			case AlfPackage.ACCEPT_BLOCK:
 				if (rule == grammarAccess.getAcceptBlockRule()) {
-					sequence_AcceptBlock_AcceptClause(context, (AcceptBlock) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getAcceptClauseRule()) {
-					sequence_AcceptClause(context, (AcceptBlock) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_AcceptBlock_AcceptClause(context, (AcceptBlock) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getAcceptClauseRule()) {
+					sequence_AcceptClause(context, (AcceptBlock) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.ACCEPT_STATEMENT:
-				sequence_AcceptStatement(context, (AcceptStatement) semanticObject); 
-				return; 
+				sequence_AcceptStatement(context, (AcceptStatement) semanticObject);
+				return;
 			case AlfPackage.ACTIVE_CLASS_DEFINITION:
 				if (rule == grammarAccess.getActiveClassDeclarationRule()) {
-					sequence_ActiveClassDeclaration(context, (ActiveClassDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+					sequence_ActiveClassDeclaration(context, (ActiveClassDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPackagedElementDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
 						|| rule == grammarAccess.getClassMemberDefinitionRule()
 						|| rule == grammarAccess.getActiveClassDefinitionOrStubRule()
 						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()) {
-					sequence_ActiveClassDeclaration_ActiveClassDefinitionOrStub(context, (ActiveClassDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+					sequence_ActiveClassDeclaration_ActiveClassDefinitionOrStub(context, (ActiveClassDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getNamespaceDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionRule()
 						|| rule == grammarAccess.getActiveClassDefinitionRule()) {
-					sequence_ActiveClassDeclaration_ActiveClassDefinition(context, (ActiveClassDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_ActiveClassDeclaration_ActiveClassDefinition(context, (ActiveClassDefinition) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.ACTIVITY_DEFINITION:
 				if (rule == grammarAccess.getActivityDeclarationRule()) {
-					sequence_ActivityDeclaration(context, (ActivityDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+					sequence_ActivityDeclaration(context, (ActivityDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPackagedElementDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
 						|| rule == grammarAccess.getClassMemberDefinitionRule()
 						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
 						|| rule == grammarAccess.getActivityDefinitionOrStubRule()) {
-					sequence_ActivityDeclaration_ActivityDefinitionOrStub(context, (ActivityDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+					sequence_ActivityDeclaration_ActivityDefinitionOrStub(context, (ActivityDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getNamespaceDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionRule()
 						|| rule == grammarAccess.getActivityDefinitionRule()) {
-					sequence_ActivityDeclaration_ActivityDefinition(context, (ActivityDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getBehaviorClauseRule()) {
-					sequence_BehaviorClause(context, (ActivityDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_ActivityDeclaration_ActivityDefinition(context, (ActivityDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getBehaviorClauseRule()) {
+					sequence_BehaviorClause(context, (ActivityDefinition) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.ANNOTATED_STATEMENT:
-				sequence_AnnotatedStatement(context, (AnnotatedStatement) semanticObject); 
-				return; 
+				sequence_AnnotatedStatement(context, (AnnotatedStatement) semanticObject);
+				return;
 			case AlfPackage.ARITHMETIC_EXPRESSION:
-				sequence_AdditiveExpression_MultiplicativeExpression(context, (ArithmeticExpression) semanticObject); 
-				return; 
+				sequence_AdditiveExpression_MultiplicativeExpression(context, (ArithmeticExpression) semanticObject);
+				return;
 			case AlfPackage.ASSIGNMENT_EXPRESSION:
-				sequence_AssignmentExpression(context, (AssignmentExpression) semanticObject); 
-				return; 
+				sequence_AssignmentExpression(context, (AssignmentExpression) semanticObject);
+				return;
 			case AlfPackage.ASSOCIATION_DEFINITION:
 				if (rule == grammarAccess.getAssociationDeclarationRule()) {
-					sequence_AssociationDeclaration(context, (AssociationDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+					sequence_AssociationDeclaration(context, (AssociationDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPackagedElementDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
 						|| rule == grammarAccess.getClassMemberDefinitionRule()
 						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
 						|| rule == grammarAccess.getAssociationDefinitionOrStubRule()) {
-					sequence_AssociationDeclaration_AssociationDefinitionOrStub(context, (AssociationDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+					sequence_AssociationDeclaration_AssociationDefinitionOrStub(context, (AssociationDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getNamespaceDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionRule()
 						|| rule == grammarAccess.getAssociationDefinitionRule()) {
-					sequence_AssociationDeclaration_AssociationDefinition(context, (AssociationDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_AssociationDeclaration_AssociationDefinition(context, (AssociationDefinition) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.BEHAVIOR_INVOCATION_EXPRESSION:
-				sequence_BehaviorInvocationExpression(context, (BehaviorInvocationExpression) semanticObject); 
-				return; 
+				sequence_BehaviorInvocationExpression(context, (BehaviorInvocationExpression) semanticObject);
+				return;
 			case AlfPackage.BIT_STRING_UNARY_EXPRESSION:
-				sequence_BitStringUnaryExpression(context, (BitStringUnaryExpression) semanticObject); 
-				return; 
+				sequence_BitStringUnaryExpression(context, (BitStringUnaryExpression) semanticObject);
+				return;
 			case AlfPackage.BLOCK:
 				if (rule == grammarAccess.getBlockRule()) {
-					sequence_Block(context, (Block) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getSwitchDefaultClauseRule()
+					sequence_Block(context, (Block) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getSwitchDefaultClauseRule()
 						|| rule == grammarAccess.getNonEmptyStatementSequenceRule()) {
-					sequence_NonEmptyStatementSequence(context, (Block) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getStatementSequenceRule()) {
-					sequence_StatementSequence(context, (Block) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_NonEmptyStatementSequence(context, (Block) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getStatementSequenceRule()) {
+					sequence_StatementSequence(context, (Block) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.BLOCK_STATEMENT:
-				sequence_BlockStatement(context, (BlockStatement) semanticObject); 
-				return; 
+				sequence_BlockStatement(context, (BlockStatement) semanticObject);
+				return;
 			case AlfPackage.BOOLEAN_LITERAL_EXPRESSION:
-				sequence_BooleanLiteralExpression(context, (BooleanLiteralExpression) semanticObject); 
-				return; 
+				sequence_BooleanLiteralExpression(context, (BooleanLiteralExpression) semanticObject);
+				return;
 			case AlfPackage.BOOLEAN_UNARY_EXPRESSION:
-				sequence_BooleanUnaryExpression(context, (BooleanUnaryExpression) semanticObject); 
-				return; 
+				sequence_BooleanUnaryExpression(context, (BooleanUnaryExpression) semanticObject);
+				return;
 			case AlfPackage.BREAK_STATEMENT:
-				sequence_BreakStatement(context, (BreakStatement) semanticObject); 
-				return; 
+				sequence_BreakStatement(context, (BreakStatement) semanticObject);
+				return;
 			case AlfPackage.CAST_EXPRESSION:
-				sequence_CastExpression(context, (CastExpression) semanticObject); 
-				return; 
+				sequence_CastExpression(context, (CastExpression) semanticObject);
+				return;
 			case AlfPackage.CLASS_DEFINITION:
 				if (rule == grammarAccess.getClassDeclarationRule()) {
-					sequence_ClassDeclaration(context, (ClassDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+					sequence_ClassDeclaration(context, (ClassDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPackagedElementDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
 						|| rule == grammarAccess.getClassDefinitionOrStubRule()
 						|| rule == grammarAccess.getClassMemberDefinitionRule()
 						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()) {
-					sequence_ClassDeclaration_ClassDefinitionOrStub(context, (ClassDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+					sequence_ClassDeclaration_ClassDefinitionOrStub(context, (ClassDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getNamespaceDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionRule()
 						|| rule == grammarAccess.getClassDefinitionRule()) {
-					sequence_ClassDeclaration_ClassDefinition(context, (ClassDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_ClassDeclaration_ClassDefinition(context, (ClassDefinition) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.CLASS_EXTENT_EXPRESSION:
-				sequence_ClassExtentExpression(context, (ClassExtentExpression) semanticObject); 
-				return; 
+				sequence_ClassExtentExpression(context, (ClassExtentExpression) semanticObject);
+				return;
 			case AlfPackage.CLASSIFICATION_EXPRESSION:
-				sequence_ClassificationExpression(context, (ClassificationExpression) semanticObject); 
-				return; 
+				sequence_ClassificationExpression(context, (ClassificationExpression) semanticObject);
+				return;
 			case AlfPackage.CLASSIFIER_DEFINITION:
-				sequence_ClassifierSignature(context, (ClassifierDefinition) semanticObject); 
-				return; 
+				sequence_ClassifierSignature(context, (ClassifierDefinition) semanticObject);
+				return;
 			case AlfPackage.CLASSIFIER_TEMPLATE_PARAMETER:
-				sequence_ClassifierTemplateParameterDefinition(context, (ClassifierTemplateParameter) semanticObject); 
-				return; 
+				sequence_ClassifierTemplateParameterDefinition(context, (ClassifierTemplateParameter) semanticObject);
+				return;
 			case AlfPackage.CLASSIFY_STATEMENT:
-				sequence_ClassifyStatement(context, (ClassifyStatement) semanticObject); 
-				return; 
+				sequence_ClassifyStatement(context, (ClassifyStatement) semanticObject);
+				return;
 			case AlfPackage.CONCURRENT_CLAUSES:
-				sequence_ConcurrentClauses(context, (ConcurrentClauses) semanticObject); 
-				return; 
+				sequence_ConcurrentClauses(context, (ConcurrentClauses) semanticObject);
+				return;
 			case AlfPackage.CONDITIONAL_LOGICAL_EXPRESSION:
-				sequence_ConditionalAndExpression_ConditionalOrExpression(context, (ConditionalLogicalExpression) semanticObject); 
-				return; 
+				sequence_ConditionalAndExpression_ConditionalOrExpression(context, (ConditionalLogicalExpression) semanticObject);
+				return;
 			case AlfPackage.CONDITIONAL_TEST_EXPRESSION:
-				sequence_ConditionalExpression(context, (ConditionalTestExpression) semanticObject); 
-				return; 
+				sequence_ConditionalExpression(context, (ConditionalTestExpression) semanticObject);
+				return;
 			case AlfPackage.DATA_TYPE_DEFINITION:
 				if (rule == grammarAccess.getDataTypeDeclarationRule()) {
-					sequence_DataTypeDeclaration(context, (DataTypeDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+					sequence_DataTypeDeclaration(context, (DataTypeDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPackagedElementDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
 						|| rule == grammarAccess.getClassMemberDefinitionRule()
 						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
 						|| rule == grammarAccess.getDataTypeDefinitionOrStubRule()) {
-					sequence_DataTypeDeclaration_DataTypeDefinitionOrStub(context, (DataTypeDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+					sequence_DataTypeDeclaration_DataTypeDefinitionOrStub(context, (DataTypeDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getNamespaceDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionRule()
 						|| rule == grammarAccess.getDataTypeDefinitionRule()) {
-					sequence_DataTypeDeclaration_DataTypeDefinition(context, (DataTypeDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_DataTypeDeclaration_DataTypeDefinition(context, (DataTypeDefinition) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.DO_STATEMENT:
-				sequence_DoStatement(context, (DoStatement) semanticObject); 
-				return; 
+				sequence_DoStatement(context, (DoStatement) semanticObject);
+				return;
 			case AlfPackage.ELEMENT_IMPORT_REFERENCE:
-				sequence_ElementImportReference(context, (ElementImportReference) semanticObject); 
-				return; 
+				sequence_ElementImportReference(context, (ElementImportReference) semanticObject);
+				return;
 			case AlfPackage.EMPTY_STATEMENT:
-				sequence_EmptyStatement(context, (EmptyStatement) semanticObject); 
-				return; 
+				sequence_EmptyStatement(context, (EmptyStatement) semanticObject);
+				return;
 			case AlfPackage.ENUMERATION_DEFINITION:
 				if (rule == grammarAccess.getEnumerationDeclarationRule()) {
-					sequence_EnumerationDeclaration(context, (EnumerationDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+					sequence_EnumerationDeclaration(context, (EnumerationDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPackagedElementDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
 						|| rule == grammarAccess.getClassMemberDefinitionRule()
 						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
 						|| rule == grammarAccess.getEnumerationDefinitionOrStubRule()) {
-					sequence_EnumerationDeclaration_EnumerationDefinitionOrStub(context, (EnumerationDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+					sequence_EnumerationDeclaration_EnumerationDefinitionOrStub(context, (EnumerationDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getNamespaceDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionRule()
 						|| rule == grammarAccess.getEnumerationDefinitionRule()) {
-					sequence_EnumerationDeclaration_EnumerationDefinition(context, (EnumerationDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_EnumerationDeclaration_EnumerationDefinition(context, (EnumerationDefinition) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.ENUMERATION_LITERAL_NAME:
-				sequence_EnumerationLiteralNameDefinition(context, (EnumerationLiteralName) semanticObject); 
-				return; 
+				sequence_EnumerationLiteralNameDefinition(context, (EnumerationLiteralName) semanticObject);
+				return;
 			case AlfPackage.EQUALITY_EXPRESSION:
-				sequence_EqualityExpression(context, (EqualityExpression) semanticObject); 
-				return; 
+				sequence_EqualityExpression(context, (EqualityExpression) semanticObject);
+				return;
 			case AlfPackage.EXPRESSION_STATEMENT:
-				sequence_ExpressionStatement(context, (ExpressionStatement) semanticObject); 
-				return; 
+				sequence_ExpressionStatement(context, (ExpressionStatement) semanticObject);
+				return;
 			case AlfPackage.EXTENT_OR_EXPRESSION:
 				if (action == grammarAccess.getPrimaryExpressionAccess().getSequenceOperationExpressionPrimaryAction_1_2_2_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceReductionExpressionPrimaryAction_1_2_2_1_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getSequenceExpansionExpressionPrimaryAction_1_2_2_2_0()) {
-					sequence_PrimaryExpression_SequenceExpansionExpression_1_2_2_2_0_SequenceOperationExpression_1_2_2_0_0_SequenceReductionExpression_1_2_2_1_0(context, (ExtentOrExpression) semanticObject); 
-					return; 
-				}
-				else if (action == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceOperationExpressionPrimaryAction_3_0_0()
+					sequence_PrimaryExpression_SequenceExpansionExpression_1_2_2_2_0_SequenceOperationExpression_1_2_2_0_0_SequenceReductionExpression_1_2_2_1_0(context, (ExtentOrExpression) semanticObject);
+					return;
+				} else if (action == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceOperationExpressionPrimaryAction_3_0_0()
 						|| action == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceReductionExpressionPrimaryAction_3_1_0()
 						|| action == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionAccess().getSequenceExpansionExpressionPrimaryAction_3_2_0()) {
-					sequence_SequenceOperationOrReductionOrExpansionExpression_SequenceExpansionExpression_3_2_0_SequenceOperationExpression_3_0_0_SequenceReductionExpression_3_1_0(context, (ExtentOrExpression) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_SequenceOperationOrReductionOrExpansionExpression_SequenceExpansionExpression_3_2_0_SequenceOperationExpression_3_0_0_SequenceReductionExpression_3_1_0(context, (ExtentOrExpression) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.FEATURE_INVOCATION_EXPRESSION:
 				if (rule == grammarAccess.getAttributeInitializerRule()
 						|| rule == grammarAccess.getExpressionRule()
@@ -407,42 +392,39 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
 						|| rule == grammarAccess.getInitializationExpressionRule()
 						|| rule == grammarAccess.getSwitchCaseRule()) {
-					sequence_PrimaryExpression_ThisExpression(context, (FeatureInvocationExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getThisExpressionRule()) {
-					sequence_ThisExpression(context, (FeatureInvocationExpression) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_PrimaryExpression_ThisExpression(context, (FeatureInvocationExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getThisExpressionRule()) {
+					sequence_ThisExpression(context, (FeatureInvocationExpression) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.FEATURE_LEFT_HAND_SIDE:
-				sequence_FeatureLeftHandSide(context, (FeatureLeftHandSide) semanticObject); 
-				return; 
+				sequence_FeatureLeftHandSide(context, (FeatureLeftHandSide) semanticObject);
+				return;
 			case AlfPackage.FEATURE_REFERENCE:
 				if (action == grammarAccess.getPrimaryExpressionAccess().getFeatureInvocationExpressionTargetAction_1_0_3()) {
-					sequence_PrimaryExpression_FeatureInvocationExpression_1_0_3(context, (FeatureReference) semanticObject); 
-					return; 
-				}
-				else if (action == grammarAccess.getPrimaryExpressionAccess().getPropertyAccessExpressionFeatureReferenceAction_1_1_3()) {
-					sequence_PrimaryExpression_PropertyAccessExpression_1_1_3(context, (FeatureReference) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_PrimaryExpression_FeatureInvocationExpression_1_0_3(context, (FeatureReference) semanticObject);
+					return;
+				} else if (action == grammarAccess.getPrimaryExpressionAccess().getPropertyAccessExpressionFeatureReferenceAction_1_1_3()) {
+					sequence_PrimaryExpression_PropertyAccessExpression_1_1_3(context, (FeatureReference) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.FOR_STATEMENT:
-				sequence_ForStatement(context, (ForStatement) semanticObject); 
-				return; 
+				sequence_ForStatement(context, (ForStatement) semanticObject);
+				return;
 			case AlfPackage.IF_STATEMENT:
-				sequence_IfStatement(context, (IfStatement) semanticObject); 
-				return; 
+				sequence_IfStatement(context, (IfStatement) semanticObject);
+				return;
 			case AlfPackage.IN_LINE_STATEMENT:
-				sequence_InLineStatement(context, (InLineStatement) semanticObject); 
-				return; 
+				sequence_InLineStatement(context, (InLineStatement) semanticObject);
+				return;
 			case AlfPackage.INCREMENT_OR_DECREMENT_EXPRESSION:
 				if (rule == grammarAccess.getPostfixExpressionRule()) {
-					sequence_PostfixExpression(context, (IncrementOrDecrementExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getAttributeInitializerRule()
+					sequence_PostfixExpression(context, (IncrementOrDecrementExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getAttributeInitializerRule()
 						|| rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getPrimaryExpressionRule()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
@@ -482,15 +464,14 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
 						|| rule == grammarAccess.getInitializationExpressionRule()
 						|| rule == grammarAccess.getSwitchCaseRule()) {
-					sequence_PostfixExpression_PrefixExpression(context, (IncrementOrDecrementExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPrefixExpressionRule()
+					sequence_PostfixExpression_PrefixExpression(context, (IncrementOrDecrementExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPrefixExpressionRule()
 						|| rule == grammarAccess.getNonPostfixNonCastUnaryExpressionRule()) {
-					sequence_PrefixExpression(context, (IncrementOrDecrementExpression) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_PrefixExpression(context, (IncrementOrDecrementExpression) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.INSTANCE_CREATION_EXPRESSION:
 				if (rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getPrimaryExpressionRule()
@@ -531,227 +512,206 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 						|| rule == grammarAccess.getConditionalExpressionRule()
 						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
 						|| rule == grammarAccess.getSwitchCaseRule()) {
-					sequence_InstanceCreationOrSequenceConstructionExpression(context, (InstanceCreationExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getAttributeInitializerRule()
+					sequence_InstanceCreationOrSequenceConstructionExpression(context, (InstanceCreationExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getAttributeInitializerRule()
 						|| rule == grammarAccess.getInitializationExpressionRule()) {
-					sequence_InstanceCreationOrSequenceConstructionExpression_InstanceInitializationExpression(context, (InstanceCreationExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getInstanceInitializationExpressionRule()) {
-					sequence_InstanceInitializationExpression(context, (InstanceCreationExpression) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_InstanceCreationOrSequenceConstructionExpression_InstanceInitializationExpression(context, (InstanceCreationExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getInstanceInitializationExpressionRule()) {
+					sequence_InstanceInitializationExpression(context, (InstanceCreationExpression) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.ISOLATION_EXPRESSION:
-				sequence_IsolationExpression(context, (IsolationExpression) semanticObject); 
-				return; 
+				sequence_IsolationExpression(context, (IsolationExpression) semanticObject);
+				return;
 			case AlfPackage.LINK_OPERATION_EXPRESSION:
-				sequence_LinkOperationExpression(context, (LinkOperationExpression) semanticObject); 
-				return; 
+				sequence_LinkOperationExpression(context, (LinkOperationExpression) semanticObject);
+				return;
 			case AlfPackage.LOCAL_NAME_DECLARATION_STATEMENT:
-				sequence_LocalNameDeclarationStatement(context, (LocalNameDeclarationStatement) semanticObject); 
-				return; 
+				sequence_LocalNameDeclarationStatement(context, (LocalNameDeclarationStatement) semanticObject);
+				return;
 			case AlfPackage.LOGICAL_EXPRESSION:
-				sequence_AndExpression_ExclusiveOrExpression_InclusiveOrExpression(context, (LogicalExpression) semanticObject); 
-				return; 
+				sequence_AndExpression_ExclusiveOrExpression_InclusiveOrExpression(context, (LogicalExpression) semanticObject);
+				return;
 			case AlfPackage.LOOP_VARIABLE_DEFINITION:
-				sequence_LoopVariableDefinition(context, (LoopVariableDefinition) semanticObject); 
-				return; 
+				sequence_LoopVariableDefinition(context, (LoopVariableDefinition) semanticObject);
+				return;
 			case AlfPackage.MEMBER:
 				if (rule == grammarAccess.getActiveClassMemberRule()) {
-					sequence_ActiveClassMember(context, (Member) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getClassMemberRule()) {
-					sequence_ClassMember(context, (Member) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getClassifierTemplateParameterRule()) {
-					sequence_ClassifierTemplateParameter(context, (Member) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getEnumerationLiteralNameRule()) {
-					sequence_EnumerationLiteralName(context, (Member) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getFormalParameterRule()) {
-					sequence_FormalParameter(context, (Member) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedElementRule()) {
-					sequence_PackagedElement(context, (Member) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getReturnParameterRule()) {
-					sequence_ReturnParameter(context, (Member) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getStructuredMemberRule()) {
-					sequence_StructuredMember(context, (Member) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_ActiveClassMember(context, (Member) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getClassMemberRule()) {
+					sequence_ClassMember(context, (Member) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getClassifierTemplateParameterRule()) {
+					sequence_ClassifierTemplateParameter(context, (Member) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getEnumerationLiteralNameRule()) {
+					sequence_EnumerationLiteralName(context, (Member) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getFormalParameterRule()) {
+					sequence_FormalParameter(context, (Member) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPackagedElementRule()) {
+					sequence_PackagedElement(context, (Member) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getReturnParameterRule()) {
+					sequence_ReturnParameter(context, (Member) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getStructuredMemberRule()) {
+					sequence_StructuredMember(context, (Member) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.NAME_BINDING:
-				sequence_NameBinding(context, (NameBinding) semanticObject); 
-				return; 
+				sequence_NameBinding(context, (NameBinding) semanticObject);
+				return;
 			case AlfPackage.NAME_EXPRESSION:
-				sequence_NameExpression(context, (NameExpression) semanticObject); 
-				return; 
+				sequence_NameExpression(context, (NameExpression) semanticObject);
+				return;
 			case AlfPackage.NAME_LEFT_HAND_SIDE:
-				sequence_NameLeftHandSide(context, (NameLeftHandSide) semanticObject); 
-				return; 
+				sequence_NameLeftHandSide(context, (NameLeftHandSide) semanticObject);
+				return;
 			case AlfPackage.NAMED_EXPRESSION:
 				if (rule == grammarAccess.getIndexedNamedExpressionRule()) {
-					sequence_IndexedNamedExpression(context, (NamedExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamedExpressionRule()) {
-					sequence_NamedExpression(context, (NamedExpression) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_IndexedNamedExpression(context, (NamedExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getNamedExpressionRule()) {
+					sequence_NamedExpression(context, (NamedExpression) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.NAMED_TEMPLATE_BINDING:
-				sequence_NamedTemplateBinding(context, (NamedTemplateBinding) semanticObject); 
-				return; 
+				sequence_NamedTemplateBinding(context, (NamedTemplateBinding) semanticObject);
+				return;
 			case AlfPackage.NAMED_TUPLE:
 				if (rule == grammarAccess.getLinkOperationTupleRule()
 						|| rule == grammarAccess.getIndexedNamedTupleExpressionListRule()) {
-					sequence_IndexedNamedTupleExpressionList(context, (NamedTuple) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getTupleRule()
+					sequence_IndexedNamedTupleExpressionList(context, (NamedTuple) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getTupleRule()
 						|| rule == grammarAccess.getNamedTupleExpressionListRule()) {
-					sequence_NamedTupleExpressionList(context, (NamedTuple) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_NamedTupleExpressionList(context, (NamedTuple) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.NATURAL_LITERAL_EXPRESSION:
-				sequence_NaturalLiteralExpression(context, (NaturalLiteralExpression) semanticObject); 
-				return; 
+				sequence_NaturalLiteralExpression(context, (NaturalLiteralExpression) semanticObject);
+				return;
 			case AlfPackage.NON_FINAL_CLAUSE:
-				sequence_NonFinalClause(context, (NonFinalClause) semanticObject); 
-				return; 
+				sequence_NonFinalClause(context, (NonFinalClause) semanticObject);
+				return;
 			case AlfPackage.NON_RETURN_PARAMETER:
-				sequence_FormalParameterDefinition(context, (NonReturnParameter) semanticObject); 
-				return; 
+				sequence_FormalParameterDefinition(context, (NonReturnParameter) semanticObject);
+				return;
 			case AlfPackage.NUMERIC_UNARY_EXPRESSION:
-				sequence_NumericUnaryExpression(context, (NumericUnaryExpression) semanticObject); 
-				return; 
+				sequence_NumericUnaryExpression(context, (NumericUnaryExpression) semanticObject);
+				return;
 			case AlfPackage.OPERATION_DEFINITION:
 				if (rule == grammarAccess.getOperationDeclarationRule()) {
-					sequence_OperationDeclaration(context, (OperationDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getClassMemberDefinitionRule()
+					sequence_OperationDeclaration(context, (OperationDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getClassMemberDefinitionRule()
 						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
 						|| rule == grammarAccess.getFeatureDefinitionOrStubRule()
 						|| rule == grammarAccess.getOperationDefinitionOrStubRule()) {
-					sequence_OperationDeclaration_OperationDefinitionOrStub(context, (OperationDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_OperationDeclaration_OperationDefinitionOrStub(context, (OperationDefinition) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.PACKAGE_DEFINITION:
 				if (rule == grammarAccess.getPackageDefinitionOrStubRule()
 						|| rule == grammarAccess.getPackagedElementDefinitionRule()) {
-					sequence_PackageDefinitionOrStub(context, (PackageDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+					sequence_PackageDefinitionOrStub(context, (PackageDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getNamespaceDefinitionRule()
 						|| rule == grammarAccess.getPackageDefinitionRule()) {
-					sequence_PackageDefinition(context, (PackageDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_PackageDefinition(context, (PackageDefinition) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.PACKAGE_IMPORT_REFERENCE:
-				sequence_PackageImportReference(context, (PackageImportReference) semanticObject); 
-				return; 
+				sequence_PackageImportReference(context, (PackageImportReference) semanticObject);
+				return;
 			case AlfPackage.POSITIONAL_TEMPLATE_BINDING:
-				sequence_PositionalTemplateBinding(context, (PositionalTemplateBinding) semanticObject); 
-				return; 
+				sequence_PositionalTemplateBinding(context, (PositionalTemplateBinding) semanticObject);
+				return;
 			case AlfPackage.POSITIONAL_TUPLE:
-				sequence_PositionalTupleExpressionList(context, (PositionalTuple) semanticObject); 
-				return; 
+				sequence_PositionalTupleExpressionList(context, (PositionalTuple) semanticObject);
+				return;
 			case AlfPackage.PROPERTY_ACCESS_EXPRESSION:
-				sequence_PrimaryExpression(context, (PropertyAccessExpression) semanticObject); 
-				return; 
+				sequence_PrimaryExpression(context, (PropertyAccessExpression) semanticObject);
+				return;
 			case AlfPackage.PROPERTY_DEFINITION:
 				if (rule == grammarAccess.getClassMemberDefinitionRule()
 						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
 						|| rule == grammarAccess.getFeatureDefinitionOrStubRule()
 						|| rule == grammarAccess.getAttributeDefinitionRule()) {
-					sequence_AttributeDefinition_PropertyDeclaration(context, (PropertyDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPropertyDefinitionRule()
+					sequence_AttributeDefinition_PropertyDeclaration(context, (PropertyDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPropertyDefinitionRule()
 						|| rule == grammarAccess.getPropertyDeclarationRule()) {
-					sequence_PropertyDeclaration(context, (PropertyDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_PropertyDeclaration(context, (PropertyDefinition) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.QUALIFIED_NAME:
 				if (rule == grammarAccess.getColonQualifiedNameRule()) {
-					sequence_ColonQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getDotQualifiedNameRule()) {
-					sequence_DotQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackageImportQualifiedNameRule()) {
-					sequence_PackageImportQualifiedName(context, (QualifiedName) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPotentiallyAmbiguousQualifiedNameRule()) {
-					sequence_PotentiallyAmbiguousQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamespaceDeclarationRule()
+					sequence_ColonQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getDotQualifiedNameRule()) {
+					sequence_DotQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPackageImportQualifiedNameRule()) {
+					sequence_PackageImportQualifiedName(context, (QualifiedName) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPotentiallyAmbiguousQualifiedNameRule()) {
+					sequence_PotentiallyAmbiguousQualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getNamespaceDeclarationRule()
 						|| rule == grammarAccess.getQualifiedNameRule()) {
-					sequence_QualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getUnqualifiedNameRule()) {
-					sequence_UnqualifiedName(context, (QualifiedName) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_QualifiedName_UnqualifiedName(context, (QualifiedName) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getUnqualifiedNameRule()) {
+					sequence_UnqualifiedName(context, (QualifiedName) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.QUALIFIED_NAME_LIST:
 				if (rule == grammarAccess.getSpecializationClauseRule()
 						|| rule == grammarAccess.getRedefinitionClauseRule()
 						|| rule == grammarAccess.getClassificationFromClauseRule()
 						|| rule == grammarAccess.getClassificationToClauseRule()
 						|| rule == grammarAccess.getQualifiedNameListRule()) {
-					sequence_QualifiedNameList(context, (QualifiedNameList) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getTemplateParameterConstraintRule()) {
-					sequence_TemplateParameterConstraint(context, (QualifiedNameList) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_QualifiedNameList(context, (QualifiedNameList) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getTemplateParameterConstraintRule()) {
+					sequence_TemplateParameterConstraint(context, (QualifiedNameList) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.RECEPTION_DEFINITION:
-				sequence_ReceptionDefinition(context, (ReceptionDefinition) semanticObject); 
-				return; 
+				sequence_ReceptionDefinition(context, (ReceptionDefinition) semanticObject);
+				return;
 			case AlfPackage.RELATIONAL_EXPRESSION:
-				sequence_RelationalExpression(context, (RelationalExpression) semanticObject); 
-				return; 
+				sequence_RelationalExpression(context, (RelationalExpression) semanticObject);
+				return;
 			case AlfPackage.RETURN_PARAMETER:
-				sequence_ReturnParameterDefinition(context, (ReturnParameter) semanticObject); 
-				return; 
+				sequence_ReturnParameterDefinition(context, (ReturnParameter) semanticObject);
+				return;
 			case AlfPackage.RETURN_STATEMENT:
-				sequence_ReturnStatement(context, (ReturnStatement) semanticObject); 
-				return; 
+				sequence_ReturnStatement(context, (ReturnStatement) semanticObject);
+				return;
 			case AlfPackage.SEQUENCE_ACCESS_EXPRESSION:
-				sequence_PrimaryExpression(context, (SequenceAccessExpression) semanticObject); 
-				return; 
+				sequence_PrimaryExpression(context, (SequenceAccessExpression) semanticObject);
+				return;
 			case AlfPackage.SEQUENCE_CONSTRUCTION_EXPRESSION:
 				if (rule == grammarAccess.getInstanceCreationOrSequenceConstructionExpressionRule()) {
-					sequence_InstanceCreationOrSequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getExpressionRule()
+					sequence_InstanceCreationOrSequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getExpressionRule()
 						|| rule == grammarAccess.getPrimaryExpressionRule()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_0_0()
 						|| action == grammarAccess.getPrimaryExpressionAccess().getFeatureReferenceExpressionAction_1_1_0()
@@ -788,24 +748,21 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 						|| rule == grammarAccess.getConditionalExpressionRule()
 						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
 						|| rule == grammarAccess.getSwitchCaseRule()) {
-					sequence_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getAttributeInitializerRule()
+					sequence_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getAttributeInitializerRule()
 						|| rule == grammarAccess.getSequenceElementRule()
 						|| rule == grammarAccess.getInitializationExpressionRule()) {
-					sequence_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression_SequenceInitializationExpression(context, (SequenceConstructionExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getSequenceConstructionExpressionRule()) {
-					sequence_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getSequenceInitializationExpressionRule()) {
-					sequence_SequenceInitializationExpression(context, (SequenceConstructionExpression) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression_SequenceInitializationExpression(context, (SequenceConstructionExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getSequenceConstructionExpressionRule()) {
+					sequence_SequenceConstructionExpression(context, (SequenceConstructionExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getSequenceInitializationExpressionRule()) {
+					sequence_SequenceInitializationExpression(context, (SequenceConstructionExpression) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.SEQUENCE_EXPANSION_EXPRESSION:
 				if (rule == grammarAccess.getAttributeInitializerRule()
 						|| rule == grammarAccess.getExpressionRule()
@@ -847,17 +804,16 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
 						|| rule == grammarAccess.getInitializationExpressionRule()
 						|| rule == grammarAccess.getSwitchCaseRule()) {
-					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceExpansionExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
-					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceExpansionExpression) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceExpansionExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
+					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceExpansionExpression) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.SEQUENCE_EXPRESSION_LIST:
-				sequence_SequenceExpressionList(context, (SequenceExpressionList) semanticObject); 
-				return; 
+				sequence_SequenceExpressionList(context, (SequenceExpressionList) semanticObject);
+				return;
 			case AlfPackage.SEQUENCE_OPERATION_EXPRESSION:
 				if (rule == grammarAccess.getAttributeInitializerRule()
 						|| rule == grammarAccess.getExpressionRule()
@@ -899,17 +855,16 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
 						|| rule == grammarAccess.getInitializationExpressionRule()
 						|| rule == grammarAccess.getSwitchCaseRule()) {
-					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceOperationExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
-					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceOperationExpression) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceOperationExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
+					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceOperationExpression) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.SEQUENCE_RANGE:
-				sequence_SequenceRange(context, (SequenceRange) semanticObject); 
-				return; 
+				sequence_SequenceRange(context, (SequenceRange) semanticObject);
+				return;
 			case AlfPackage.SEQUENCE_REDUCTION_EXPRESSION:
 				if (rule == grammarAccess.getAttributeInitializerRule()
 						|| rule == grammarAccess.getExpressionRule()
@@ -951,108 +906,104 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 						|| action == grammarAccess.getConditionalExpressionAccess().getConditionalTestExpressionOperand1Action_1_0()
 						|| rule == grammarAccess.getInitializationExpressionRule()
 						|| rule == grammarAccess.getSwitchCaseRule()) {
-					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceReductionExpression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
-					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceReductionExpression) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceReductionExpression) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getSequenceOperationOrReductionOrExpansionExpressionRule()) {
+					sequence_SequenceOperationOrReductionOrExpansionExpression(context, (SequenceReductionExpression) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.SHIFT_EXPRESSION:
-				sequence_ShiftExpression(context, (ShiftExpression) semanticObject); 
-				return; 
+				sequence_ShiftExpression(context, (ShiftExpression) semanticObject);
+				return;
 			case AlfPackage.SIGNAL_DEFINITION:
 				if (rule == grammarAccess.getSignalDeclarationRule()) {
-					sequence_SignalDeclaration(context, (SignalDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPackagedElementDefinitionRule()
+					sequence_SignalDeclaration(context, (SignalDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getPackagedElementDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionOrStubRule()
 						|| rule == grammarAccess.getClassMemberDefinitionRule()
 						|| rule == grammarAccess.getActiveClassMemberDefinitionRule()
 						|| rule == grammarAccess.getSignalDefinitionOrStubRule()) {
-					sequence_SignalDeclaration_SignalDefinitionOrStub(context, (SignalDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getNamespaceDefinitionRule()
+					sequence_SignalDeclaration_SignalDefinitionOrStub(context, (SignalDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getNamespaceDefinitionRule()
 						|| rule == grammarAccess.getClassifierDefinitionRule()
 						|| rule == grammarAccess.getSignalDefinitionRule()) {
-					sequence_SignalDeclaration_SignalDefinition(context, (SignalDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_SignalDeclaration_SignalDefinition(context, (SignalDefinition) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.SIGNAL_RECEPTION_DEFINITION:
 				if (rule == grammarAccess.getSignalReceptionDeclarationRule()) {
-					sequence_SignalReceptionDeclaration(context, (SignalReceptionDefinition) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getActiveClassMemberDefinitionRule()
+					sequence_SignalReceptionDeclaration(context, (SignalReceptionDefinition) semanticObject);
+					return;
+				} else if (rule == grammarAccess.getActiveClassMemberDefinitionRule()
 						|| rule == grammarAccess.getActiveFeatureDefinitionOrStubRule()
 						|| rule == grammarAccess.getSignalReceptionDefinitionOrStubRule()) {
-					sequence_SignalReceptionDeclaration_SignalReceptionDefinitionOrStub(context, (SignalReceptionDefinition) semanticObject); 
-					return; 
-				}
-				else break;
+					sequence_SignalReceptionDeclaration_SignalReceptionDefinitionOrStub(context, (SignalReceptionDefinition) semanticObject);
+					return;
+				} else
+					break;
 			case AlfPackage.STEREOTYPE_ANNOTATION:
-				sequence_StereotypeAnnotation(context, (StereotypeAnnotation) semanticObject); 
-				return; 
+				sequence_StereotypeAnnotation(context, (StereotypeAnnotation) semanticObject);
+				return;
 			case AlfPackage.STRING_LITERAL_EXPRESSION:
-				sequence_StringLiteralExpression(context, (StringLiteralExpression) semanticObject); 
-				return; 
+				sequence_StringLiteralExpression(context, (StringLiteralExpression) semanticObject);
+				return;
 			case AlfPackage.SUPER_INVOCATION_EXPRESSION:
-				sequence_SuperInvocationExpression(context, (SuperInvocationExpression) semanticObject); 
-				return; 
+				sequence_SuperInvocationExpression(context, (SuperInvocationExpression) semanticObject);
+				return;
 			case AlfPackage.SWITCH_CLAUSE:
-				sequence_SwitchClause(context, (SwitchClause) semanticObject); 
-				return; 
+				sequence_SwitchClause(context, (SwitchClause) semanticObject);
+				return;
 			case AlfPackage.SWITCH_STATEMENT:
-				sequence_SwitchStatement(context, (SwitchStatement) semanticObject); 
-				return; 
+				sequence_SwitchStatement(context, (SwitchStatement) semanticObject);
+				return;
 			case AlfPackage.TAGGED_VALUE:
-				sequence_TaggedValue(context, (TaggedValue) semanticObject); 
-				return; 
+				sequence_TaggedValue(context, (TaggedValue) semanticObject);
+				return;
 			case AlfPackage.TAGGED_VALUE_LIST:
-				sequence_TaggedValueList(context, (TaggedValueList) semanticObject); 
-				return; 
+				sequence_TaggedValueList(context, (TaggedValueList) semanticObject);
+				return;
 			case AlfPackage.TEMPLATE_PARAMETER_SUBSTITUTION:
-				sequence_TemplateParameterSubstitution(context, (TemplateParameterSubstitution) semanticObject); 
-				return; 
+				sequence_TemplateParameterSubstitution(context, (TemplateParameterSubstitution) semanticObject);
+				return;
 			case AlfPackage.THIS_EXPRESSION:
-				sequence_ThisExpression(context, (ThisExpression) semanticObject); 
-				return; 
+				sequence_ThisExpression(context, (ThisExpression) semanticObject);
+				return;
 			case AlfPackage.TYPED_ELEMENT_DEFINITION:
-				sequence_TypePart(context, (TypedElementDefinition) semanticObject); 
-				return; 
+				sequence_TypePart(context, (TypedElementDefinition) semanticObject);
+				return;
 			case AlfPackage.UNBOUNDED_LITERAL_EXPRESSION:
-				sequence_UnboundedLiteralExpression(context, (UnboundedLiteralExpression) semanticObject); 
-				return; 
+				sequence_UnboundedLiteralExpression(context, (UnboundedLiteralExpression) semanticObject);
+				return;
 			case AlfPackage.UNIT_DEFINITION:
-				sequence_UnitDefinition(context, (UnitDefinition) semanticObject); 
-				return; 
+				sequence_UnitDefinition(context, (UnitDefinition) semanticObject);
+				return;
 			case AlfPackage.WHILE_STATEMENT:
-				sequence_WhileStatement(context, (WhileStatement) semanticObject); 
-				return; 
+				sequence_WhileStatement(context, (WhileStatement) semanticObject);
+				return;
 			}
 		else if (epackage == AppliedStereotypePropertyPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case AppliedStereotypePropertyPackage.APPLIED_STEREOTYPE_PROPERTY_RULE:
-				sequence_AppliedStereotypePropertyRule(context, (AppliedStereotypePropertyRule) semanticObject); 
-				return; 
+				sequence_AppliedStereotypePropertyRule(context, (AppliedStereotypePropertyRule) semanticObject);
+				return;
 			case AppliedStereotypePropertyPackage.EXPRESSION_VALUE_RULE:
-				sequence_ExpressionValueRule(context, (ExpressionValueRule) semanticObject); 
-				return; 
+				sequence_ExpressionValueRule(context, (ExpressionValueRule) semanticObject);
+				return;
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
-	
+
 	/**
 	 * Contexts:
-	 *     AppliedStereotypePropertyRule returns AppliedStereotypePropertyRule
+	 * AppliedStereotypePropertyRule returns AppliedStereotypePropertyRule
 	 *
 	 * Constraint:
-	 *     value=ExpressionValueRule
+	 * value=ExpressionValueRule
 	 */
 	protected void sequence_AppliedStereotypePropertyRule(ISerializationContext context, AppliedStereotypePropertyRule semanticObject) {
 		if (errorAcceptor != null) {
@@ -1063,14 +1014,14 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 		feeder.accept(grammarAccess.getAppliedStereotypePropertyRuleAccess().getValueExpressionValueRuleParserRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
-	
-	
+
+
 	/**
 	 * Contexts:
-	 *     ExpressionValueRule returns ExpressionValueRule
+	 * ExpressionValueRule returns ExpressionValueRule
 	 *
 	 * Constraint:
-	 *     expression=SequenceElement
+	 * expression=SequenceElement
 	 */
 	protected void sequence_ExpressionValueRule(ISerializationContext context, ExpressionValueRule semanticObject) {
 		if (errorAcceptor != null) {
@@ -1081,6 +1032,6 @@ public class AppliedStereotypePropertySemanticSequencer extends AlfSemanticSeque
 		feeder.accept(grammarAccess.getExpressionValueRuleAccess().getExpressionSequenceElementParserRuleCall_1_0(), semanticObject.getExpression());
 		feeder.finish();
 	}
-	
-	
+
+
 }

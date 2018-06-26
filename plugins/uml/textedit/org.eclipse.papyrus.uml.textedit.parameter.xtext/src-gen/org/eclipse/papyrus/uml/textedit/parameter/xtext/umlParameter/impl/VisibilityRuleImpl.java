@@ -3,14 +3,10 @@
 package org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.VisibilityKind;
-
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.UmlParameterPackage;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.VisibilityRule;
 
@@ -20,10 +16,10 @@ import org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.VisibilityR
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.parameter.xtext.umlParameter.impl.VisibilityRuleImpl#getVisibility <em>Visibility</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -169,7 +165,7 @@ public class VisibilityRuleImpl extends MinimalEObjectImpl.Container implements 
   {
     if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
+    StringBuilder result = new StringBuilder(super.toString());
     result.append(" (visibility: ");
     result.append(visibility);
     result.append(')');

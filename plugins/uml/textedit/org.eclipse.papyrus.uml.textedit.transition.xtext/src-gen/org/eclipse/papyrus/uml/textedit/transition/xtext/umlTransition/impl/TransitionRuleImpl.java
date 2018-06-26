@@ -25,22 +25,21 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransi
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.impl.TransitionRuleImpl#getTriggers <em>Triggers</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.impl.TransitionRuleImpl#getGuard <em>Guard</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.impl.TransitionRuleImpl#getEffect <em>Effect</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements TransitionRule
-{
+public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements TransitionRule {
 	/**
 	 * The cached value of the '{@link #getTriggers() <em>Triggers</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getTriggers()
 	 * @generated
 	 * @ordered
@@ -51,7 +50,7 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
 	 * The cached value of the '{@link #getGuard() <em>Guard</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getGuard()
 	 * @generated
 	 * @ordered
@@ -62,7 +61,7 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
 	 * The cached value of the '{@link #getEffect() <em>Effect</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getEffect()
 	 * @generated
 	 * @ordered
@@ -72,37 +71,32 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected TransitionRuleImpl()
-	{
+	protected TransitionRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlTransitionPackage.Literals.TRANSITION_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<EventRule> getTriggers()
-	{
-		if (triggers == null)
-		{
+	public EList<EventRule> getTriggers() {
+		if (triggers == null) {
 			triggers = new EObjectContainmentEList<EventRule>(EventRule.class, this, UmlTransitionPackage.TRANSITION_RULE__TRIGGERS);
 		}
 		return triggers;
@@ -111,33 +105,28 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public GuardRule getGuard()
-	{
+	public GuardRule getGuard() {
 		return guard;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetGuard(GuardRule newGuard, NotificationChain msgs)
-	{
+	public NotificationChain basicSetGuard(GuardRule newGuard, NotificationChain msgs) {
 		GuardRule oldGuard = guard;
 		guard = newGuard;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlTransitionPackage.TRANSITION_RULE__GUARD, oldGuard, newGuard);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -145,61 +134,48 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setGuard(GuardRule newGuard)
-	{
-		if (newGuard != guard)
-		{
+	public void setGuard(GuardRule newGuard) {
+		if (newGuard != guard) {
 			NotificationChain msgs = null;
-			if (guard != null) {
+			if (guard != null)
 				msgs = ((InternalEObject) guard).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlTransitionPackage.TRANSITION_RULE__GUARD, null, msgs);
-			}
-			if (newGuard != null) {
+			if (newGuard != null)
 				msgs = ((InternalEObject) newGuard).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlTransitionPackage.TRANSITION_RULE__GUARD, null, msgs);
-			}
 			msgs = basicSetGuard(newGuard, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlTransitionPackage.TRANSITION_RULE__GUARD, newGuard, newGuard));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public EffectRule getEffect()
-	{
+	public EffectRule getEffect() {
 		return effect;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetEffect(EffectRule newEffect, NotificationChain msgs)
-	{
+	public NotificationChain basicSetEffect(EffectRule newEffect, NotificationChain msgs) {
 		EffectRule oldEffect = effect;
 		effect = newEffect;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UmlTransitionPackage.TRANSITION_RULE__EFFECT, oldEffect, newEffect);
-			if (msgs == null) {
+			if (msgs == null)
 				msgs = notification;
-			} else {
+			else
 				msgs.add(notification);
-			}
 		}
 		return msgs;
 	}
@@ -207,42 +183,32 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setEffect(EffectRule newEffect)
-	{
-		if (newEffect != effect)
-		{
+	public void setEffect(EffectRule newEffect) {
+		if (newEffect != effect) {
 			NotificationChain msgs = null;
-			if (effect != null) {
+			if (effect != null)
 				msgs = ((InternalEObject) effect).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UmlTransitionPackage.TRANSITION_RULE__EFFECT, null, msgs);
-			}
-			if (newEffect != null) {
+			if (newEffect != null)
 				msgs = ((InternalEObject) newEffect).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - UmlTransitionPackage.TRANSITION_RULE__EFFECT, null, msgs);
-			}
 			msgs = basicSetEffect(newEffect, msgs);
-			if (msgs != null) {
+			if (msgs != null)
 				msgs.dispatch();
-			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlTransitionPackage.TRANSITION_RULE__EFFECT, newEffect, newEffect));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
-		switch (featureID)
-		{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
 		case UmlTransitionPackage.TRANSITION_RULE__TRIGGERS:
 			return ((InternalEList<?>) getTriggers()).basicRemove(otherEnd, msgs);
 		case UmlTransitionPackage.TRANSITION_RULE__GUARD:
@@ -256,14 +222,12 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlTransitionPackage.TRANSITION_RULE__TRIGGERS:
 			return getTriggers();
 		case UmlTransitionPackage.TRANSITION_RULE__GUARD:
@@ -277,15 +241,13 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlTransitionPackage.TRANSITION_RULE__TRIGGERS:
 			getTriggers().clear();
 			getTriggers().addAll((Collection<? extends EventRule>) newValue);
@@ -303,14 +265,12 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.TRANSITION_RULE__TRIGGERS:
 			getTriggers().clear();
 			return;
@@ -327,14 +287,12 @@ public class TransitionRuleImpl extends MinimalEObjectImpl.Container implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.TRANSITION_RULE__TRIGGERS:
 			return triggers != null && !triggers.isEmpty();
 		case UmlTransitionPackage.TRANSITION_RULE__GUARD:

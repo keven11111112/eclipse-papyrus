@@ -15,29 +15,24 @@ import org.eclipse.papyrus.uml.textedit.connectionpointreference.xtext.uMLConnec
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
-public class UMLConnectionPointReferenceFactoryImpl extends EFactoryImpl implements UMLConnectionPointReferenceFactory
-{
+public class UMLConnectionPointReferenceFactoryImpl extends EFactoryImpl implements UMLConnectionPointReferenceFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public static UMLConnectionPointReferenceFactory init()
-	{
-		try
-		{
+	public static UMLConnectionPointReferenceFactory init() {
+		try {
 			UMLConnectionPointReferenceFactory theUMLConnectionPointReferenceFactory = (UMLConnectionPointReferenceFactory) EPackage.Registry.INSTANCE.getEFactory(UMLConnectionPointReferencePackage.eNS_URI);
-			if (theUMLConnectionPointReferenceFactory != null)
-			{
+			if (theUMLConnectionPointReferenceFactory != null) {
 				return theUMLConnectionPointReferenceFactory;
 			}
-		} catch (Exception exception)
-		{
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new UMLConnectionPointReferenceFactoryImpl();
@@ -47,25 +42,22 @@ public class UMLConnectionPointReferenceFactoryImpl extends EFactoryImpl impleme
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public UMLConnectionPointReferenceFactoryImpl()
-	{
+	public UMLConnectionPointReferenceFactoryImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass)
-	{
-		switch (eClass.getClassifierID())
-		{
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
 		case UMLConnectionPointReferencePackage.CONNECTION_POINT_REFERENCE_RULE:
 			return createConnectionPointReferenceRule();
 		default:
@@ -76,12 +68,10 @@ public class UMLConnectionPointReferenceFactoryImpl extends EFactoryImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public ConnectionPointReferenceRule createConnectionPointReferenceRule()
-	{
+	public ConnectionPointReferenceRule createConnectionPointReferenceRule() {
 		ConnectionPointReferenceRuleImpl connectionPointReferenceRule = new ConnectionPointReferenceRuleImpl();
 		return connectionPointReferenceRule;
 	}
@@ -89,25 +79,22 @@ public class UMLConnectionPointReferenceFactoryImpl extends EFactoryImpl impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public UMLConnectionPointReferencePackage getUMLConnectionPointReferencePackage()
-	{
+	public UMLConnectionPointReferencePackage getUMLConnectionPointReferencePackage() {
 		return (UMLConnectionPointReferencePackage) getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
 	@Deprecated
-	public static UMLConnectionPointReferencePackage getPackage()
-	{
+	public static UMLConnectionPointReferencePackage getPackage() {
 		return UMLConnectionPointReferencePackage.eINSTANCE;
 	}
 

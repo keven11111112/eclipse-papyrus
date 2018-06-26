@@ -14,20 +14,19 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransi
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.impl.TimeEventRuleImpl#getExpr <em>Expr</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class TimeEventRuleImpl extends EventRuleImpl implements TimeEventRule
-{
+public class TimeEventRuleImpl extends EventRuleImpl implements TimeEventRule {
 	/**
 	 * The default value of the '{@link #getExpr() <em>Expr</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getExpr()
 	 * @generated
 	 * @ordered
@@ -38,7 +37,7 @@ public class TimeEventRuleImpl extends EventRuleImpl implements TimeEventRule
 	 * The cached value of the '{@link #getExpr() <em>Expr</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getExpr()
 	 * @generated
 	 * @ordered
@@ -48,65 +47,56 @@ public class TimeEventRuleImpl extends EventRuleImpl implements TimeEventRule
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected TimeEventRuleImpl()
-	{
+	protected TimeEventRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlTransitionPackage.Literals.TIME_EVENT_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public String getExpr()
-	{
+	public String getExpr() {
 		return expr;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setExpr(String newExpr)
-	{
+	public void setExpr(String newExpr) {
 		String oldExpr = expr;
 		expr = newExpr;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlTransitionPackage.TIME_EVENT_RULE__EXPR, oldExpr, expr));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlTransitionPackage.TIME_EVENT_RULE__EXPR:
 			return getExpr();
 		}
@@ -116,14 +106,12 @@ public class TimeEventRuleImpl extends EventRuleImpl implements TimeEventRule
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlTransitionPackage.TIME_EVENT_RULE__EXPR:
 			setExpr((String) newValue);
 			return;
@@ -134,14 +122,12 @@ public class TimeEventRuleImpl extends EventRuleImpl implements TimeEventRule
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.TIME_EVENT_RULE__EXPR:
 			setExpr(EXPR_EDEFAULT);
 			return;
@@ -152,14 +138,12 @@ public class TimeEventRuleImpl extends EventRuleImpl implements TimeEventRule
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.TIME_EVENT_RULE__EXPR:
 			return EXPR_EDEFAULT == null ? expr != null : !EXPR_EDEFAULT.equals(expr);
 		}
@@ -169,17 +153,15 @@ public class TimeEventRuleImpl extends EventRuleImpl implements TimeEventRule
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) {
+	public String toString() {
+		if (eIsProxy())
 			return super.toString();
-		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (expr: ");
 		result.append(expr);
 		result.append(')');

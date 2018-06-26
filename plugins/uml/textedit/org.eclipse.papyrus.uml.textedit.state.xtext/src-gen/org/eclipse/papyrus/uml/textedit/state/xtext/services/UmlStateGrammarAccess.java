@@ -19,6 +19,7 @@ import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.UnorderedGroup;
+import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
 import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -30,7 +31,7 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 
 
 	public class StateRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StateRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.state.xtext.UmlState.StateRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment) cGroup.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall) cNameAssignment_0.eContents().get(0);
@@ -47,14 +48,13 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExitExitRuleParserRuleCall_2_2_0 = (RuleCall) cExitAssignment_2_2.eContents().get(0);
 
 		// StateRule:
-		//
-		// name=ID (":" submachine=SubmachineRule)? (entry=EntryRule? & do=DoRule? & exit=ExitRule?);
+		// name=ID (':' submachine=SubmachineRule)? (entry=EntryRule? & do=DoRule? & exit=ExitRule?);
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// name=ID (":" submachine=SubmachineRule)? (entry=EntryRule? & do=DoRule? & exit=ExitRule?)
+		// name=ID (':' submachine=SubmachineRule)? (entry=EntryRule? & do=DoRule? & exit=ExitRule?)
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -69,12 +69,12 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 			return cNameIDTerminalRuleCall_0_0;
 		}
 
-		// (":" submachine=SubmachineRule)?
+		// (':' submachine=SubmachineRule)?
 		public Group getGroup_1() {
 			return cGroup_1;
 		}
 
-		// ":"
+		// ':'
 		public Keyword getColonKeyword_1_0() {
 			return cColonKeyword_1_0;
 		}
@@ -126,7 +126,7 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SubmachineRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SubmachineRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.state.xtext.UmlState.SubmachineRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Assignment cPathAssignment_0 = (Assignment) cGroup.eContents().get(0);
 		private final RuleCall cPathQualifiedNameParserRuleCall_0_0 = (RuleCall) cPathAssignment_0.eContents().get(0);
@@ -135,7 +135,6 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSubmachineStateMachineIDTerminalRuleCall_1_0_1 = (RuleCall) cSubmachineStateMachineCrossReference_1_0.eContents().get(1);
 
 		// SubmachineRule:
-		//
 		// path=QualifiedName? submachine=[uml::StateMachine];
 		@Override
 		public ParserRule getRule() {
@@ -174,7 +173,7 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class QualifiedNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedName");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.state.xtext.UmlState.QualifiedName");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Assignment cPathAssignment_0 = (Assignment) cGroup.eContents().get(0);
 		private final CrossReference cPathNamespaceCrossReference_0_0 = (CrossReference) cPathAssignment_0.eContents().get(0);
@@ -184,14 +183,13 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRemainingQualifiedNameParserRuleCall_2_0 = (RuleCall) cRemainingAssignment_2.eContents().get(0);
 
 		// QualifiedName:
-		//
-		// path=[uml::Namespace] "::" remaining=QualifiedName?;
+		// path=[uml::Namespace] '::' remaining=QualifiedName?;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// path=[uml::Namespace] "::" remaining=QualifiedName?
+		// path=[uml::Namespace] '::' remaining=QualifiedName?
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -211,7 +209,7 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 			return cPathNamespaceIDTerminalRuleCall_0_0_1;
 		}
 
-		// "::"
+		// '::'
 		public Keyword getColonColonKeyword_1() {
 			return cColonColonKeyword_1;
 		}
@@ -228,7 +226,7 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class EntryRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EntryRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.state.xtext.UmlState.EntryRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Keyword cEntryKeyword_0 = (Keyword) cGroup.eContents().get(0);
 		private final Assignment cKindAssignment_1 = (Assignment) cGroup.eContents().get(1);
@@ -237,7 +235,6 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBehaviorNameIDTerminalRuleCall_2_0 = (RuleCall) cBehaviorNameAssignment_2.eContents().get(0);
 
 		// EntryRule:
-		//
 		// "entry" kind=BehaviorKind behaviorName=ID;
 		@Override
 		public ParserRule getRule() {
@@ -276,7 +273,7 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class DoRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DoRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.state.xtext.UmlState.DoRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Keyword cDoKeyword_0 = (Keyword) cGroup.eContents().get(0);
 		private final Assignment cKindAssignment_1 = (Assignment) cGroup.eContents().get(1);
@@ -285,7 +282,6 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBehaviorNameIDTerminalRuleCall_2_0 = (RuleCall) cBehaviorNameAssignment_2.eContents().get(0);
 
 		// DoRule:
-		//
 		// "do" kind=BehaviorKind behaviorName=ID;
 		@Override
 		public ParserRule getRule() {
@@ -324,7 +320,7 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ExitRuleElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExitRule");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.state.xtext.UmlState.ExitRule");
 		private final Group cGroup = (Group) rule.eContents().get(1);
 		private final Keyword cExitKeyword_0 = (Keyword) cGroup.eContents().get(0);
 		private final Assignment cKindAssignment_1 = (Assignment) cGroup.eContents().get(1);
@@ -333,7 +329,6 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBehaviorNameIDTerminalRuleCall_2_0 = (RuleCall) cBehaviorNameAssignment_2.eContents().get(0);
 
 		// ExitRule:
-		//
 		// "exit" kind=BehaviorKind behaviorName=ID;
 		@Override
 		public ParserRule getRule() {
@@ -373,7 +368,7 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 
 
 	public class BehaviorKindElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "BehaviorKind");
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.papyrus.uml.textedit.state.xtext.UmlState.BehaviorKind");
 		private final Alternatives cAlternatives = (Alternatives) rule.eContents().get(1);
 		private final EnumLiteralDeclaration cACTIVITYEnumLiteralDeclaration_0 = (EnumLiteralDeclaration) cAlternatives.eContents().get(0);
 		private final Keyword cACTIVITYActivityKeyword_0_0 = (Keyword) cACTIVITYEnumLiteralDeclaration_0.eContents().get(0);
@@ -383,9 +378,7 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOPAQUE_BEHAVIOROpaqueBehaviorKeyword_2_0 = (Keyword) cOPAQUE_BEHAVIOREnumLiteralDeclaration_2.eContents().get(0);
 
 		// enum BehaviorKind:
-		//
 		// ACTIVITY="Activity" | STATE_MACHINE="StateMachine" | OPAQUE_BEHAVIOR="OpaqueBehavior";
-		@Override
 		public EnumRule getRule() {
 			return rule;
 		}
@@ -426,23 +419,34 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 		}
 	}
 
-	private StateRuleElements pStateRule;
-	private SubmachineRuleElements pSubmachineRule;
-	private QualifiedNameElements pQualifiedName;
-	private EntryRuleElements pEntryRule;
-	private DoRuleElements pDoRule;
-	private ExitRuleElements pExitRule;
-	private BehaviorKindElements unknownRuleBehaviorKind;
+	private final StateRuleElements pStateRule;
+	private final SubmachineRuleElements pSubmachineRule;
+	private final QualifiedNameElements pQualifiedName;
+	private final EntryRuleElements pEntryRule;
+	private final DoRuleElements pDoRule;
+	private final ExitRuleElements pExitRule;
+	private final BehaviorKindElements eBehaviorKind;
 
 	private final Grammar grammar;
 
-	private CommonGrammarAccess gaCommon;
+	private final CommonGrammarAccess gaCommon;
+
+	private final TerminalsGrammarAccess gaTerminals;
 
 	@Inject
 	public UmlStateGrammarAccess(GrammarProvider grammarProvider,
-			CommonGrammarAccess gaCommon) {
+			CommonGrammarAccess gaCommon,
+			TerminalsGrammarAccess gaTerminals) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaCommon = gaCommon;
+		this.gaTerminals = gaTerminals;
+		this.pStateRule = new StateRuleElements();
+		this.pSubmachineRule = new SubmachineRuleElements();
+		this.pQualifiedName = new QualifiedNameElements();
+		this.pEntryRule = new EntryRuleElements();
+		this.pDoRule = new DoRuleElements();
+		this.pExitRule = new ExitRuleElements();
+		this.eBehaviorKind = new BehaviorKindElements();
 	}
 
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -461,7 +465,6 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 		return grammar;
 	}
 
-
 	@Override
 	public Grammar getGrammar() {
 		return grammar;
@@ -472,12 +475,15 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 		return gaCommon;
 	}
 
+	public TerminalsGrammarAccess getTerminalsGrammarAccess() {
+		return gaTerminals;
+	}
+
 
 	// StateRule:
-	//
-	// name=ID (":" submachine=SubmachineRule)? (entry=EntryRule? & do=DoRule? & exit=ExitRule?);
+	// name=ID (':' submachine=SubmachineRule)? (entry=EntryRule? & do=DoRule? & exit=ExitRule?);
 	public StateRuleElements getStateRuleAccess() {
-		return (pStateRule != null) ? pStateRule : (pStateRule = new StateRuleElements());
+		return pStateRule;
 	}
 
 	public ParserRule getStateRuleRule() {
@@ -485,10 +491,9 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// SubmachineRule:
-	//
 	// path=QualifiedName? submachine=[uml::StateMachine];
 	public SubmachineRuleElements getSubmachineRuleAccess() {
-		return (pSubmachineRule != null) ? pSubmachineRule : (pSubmachineRule = new SubmachineRuleElements());
+		return pSubmachineRule;
 	}
 
 	public ParserRule getSubmachineRuleRule() {
@@ -496,10 +501,9 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// QualifiedName:
-	//
-	// path=[uml::Namespace] "::" remaining=QualifiedName?;
+	// path=[uml::Namespace] '::' remaining=QualifiedName?;
 	public QualifiedNameElements getQualifiedNameAccess() {
-		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
+		return pQualifiedName;
 	}
 
 	public ParserRule getQualifiedNameRule() {
@@ -507,10 +511,9 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// EntryRule:
-	//
 	// "entry" kind=BehaviorKind behaviorName=ID;
 	public EntryRuleElements getEntryRuleAccess() {
-		return (pEntryRule != null) ? pEntryRule : (pEntryRule = new EntryRuleElements());
+		return pEntryRule;
 	}
 
 	public ParserRule getEntryRuleRule() {
@@ -518,10 +521,9 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// DoRule:
-	//
 	// "do" kind=BehaviorKind behaviorName=ID;
 	public DoRuleElements getDoRuleAccess() {
-		return (pDoRule != null) ? pDoRule : (pDoRule = new DoRuleElements());
+		return pDoRule;
 	}
 
 	public ParserRule getDoRuleRule() {
@@ -529,10 +531,9 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// ExitRule:
-	//
 	// "exit" kind=BehaviorKind behaviorName=ID;
 	public ExitRuleElements getExitRuleAccess() {
-		return (pExitRule != null) ? pExitRule : (pExitRule = new ExitRuleElements());
+		return pExitRule;
 	}
 
 	public ParserRule getExitRuleRule() {
@@ -540,91 +541,61 @@ public class UmlStateGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	// enum BehaviorKind:
-	//
 	// ACTIVITY="Activity" | STATE_MACHINE="StateMachine" | OPAQUE_BEHAVIOR="OpaqueBehavior";
 	public BehaviorKindElements getBehaviorKindAccess() {
-		return (unknownRuleBehaviorKind != null) ? unknownRuleBehaviorKind : (unknownRuleBehaviorKind = new BehaviorKindElements());
+		return eBehaviorKind;
 	}
 
 	public EnumRule getBehaviorKindRule() {
 		return getBehaviorKindAccess().getRule();
 	}
 
-	// terminal INTEGER_VALUE:
-	//
-	// ("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL
-	//
-	// // BINARY
-	//
-	// // HEX
-	//
-	// // OCT
-	//
-	// | ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
-	//
-	// "A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
-	public TerminalRule getINTEGER_VALUERule() {
-		return gaCommon.getINTEGER_VALUERule();
-	}
-
 	// terminal ID:
-	//
-	// ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "\'"->"\'";
+	// ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')* | '\''->'\'';
 	public TerminalRule getIDRule() {
 		return gaCommon.getIDRule();
 	}
 
 	// terminal STRING:
-	//
-	// "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	// '"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | '"' | "'" | '\\') | !('\\' | '"'))* '"';
 	public TerminalRule getSTRINGRule() {
 		return gaCommon.getSTRINGRule();
 	}
 
 	// terminal ML_COMMENT:
-	//
-	// "/ *" !"@"->"* /";
+	// '/*' !'@'->'*/';
 	public TerminalRule getML_COMMENTRule() {
 		return gaCommon.getML_COMMENTRule();
 	}
 
-	// //terminal DOUBLE_COLON : '::' ;
-	//
-	// //terminal IDENTIFIER : ID ;
-	//
-	// //terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* | ('\'' -> '\'') ;
-	//
-	// //terminal DOCUMENTATION_COMMENT : '/ *' -> '* /' ;
-	//
-	// //terminal ML_COMMENT : '/°' -> '°/';
-	//
-	// //terminal SL_COMMENT : '°°' !('\n'|'\r')* ('\r'? '\n')?;
-	//
-	// //terminal WS : (' '|'\t'|'\r'|'\n')+; terminal SL_COMMENT:
-	//
-	// "//" !("\n" | "\r" | "@")* ("\r"? "\n")?;
+	// terminal SL_COMMENT:
+	// '//' !('\n' | '\r' | '@')* ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaCommon.getSL_COMMENTRule();
 	}
 
 	// terminal INT returns ecore::EInt:
-	//
-	// "0".."9"+;
+	// '0'..'9'+;
 	public TerminalRule getINTRule() {
 		return gaCommon.getINTRule();
 	}
 
+	// terminal INTEGER_VALUE:
+	// ('0' | '1'..'9' ('_'? '0'..'9')*) | ('0b' | '0B') '0'..'1' ('_'? '0'..'1')* | ('0x' | '0X') ('0'..'9' | 'a'..'f' |
+	// 'A'..'F') ('_'? ('0'..'9' | 'a'..'f' | 'A'..'F'))* | '0' '_'? '0'..'7' ('_'? '0'..'7')*;
+	public TerminalRule getINTEGER_VALUERule() {
+		return gaCommon.getINTEGER_VALUERule();
+	}
+
 	// terminal WS:
-	//
-	// (" " | "\t" | "\r" | "\n")+;
+	// ' ' | '\t' | '\r' | '\n'+;
 	public TerminalRule getWSRule() {
-		return gaCommon.getWSRule();
+		return gaTerminals.getWSRule();
 	}
 
 	// terminal ANY_OTHER:
-	//
 	// .;
 	public TerminalRule getANY_OTHERRule() {
-		return gaCommon.getANY_OTHERRule();
+		return gaTerminals.getANY_OTHERRule();
 	}
 }

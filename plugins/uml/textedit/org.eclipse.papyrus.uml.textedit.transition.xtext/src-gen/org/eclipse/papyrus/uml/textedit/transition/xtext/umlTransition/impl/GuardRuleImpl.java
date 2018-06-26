@@ -15,20 +15,19 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransi
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.impl.GuardRuleImpl#getConstraint <em>Constraint</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class GuardRuleImpl extends MinimalEObjectImpl.Container implements GuardRule
-{
+public class GuardRuleImpl extends MinimalEObjectImpl.Container implements GuardRule {
 	/**
 	 * The default value of the '{@link #getConstraint() <em>Constraint</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getConstraint()
 	 * @generated
 	 * @ordered
@@ -39,7 +38,7 @@ public class GuardRuleImpl extends MinimalEObjectImpl.Container implements Guard
 	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getConstraint()
 	 * @generated
 	 * @ordered
@@ -49,65 +48,56 @@ public class GuardRuleImpl extends MinimalEObjectImpl.Container implements Guard
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected GuardRuleImpl()
-	{
+	protected GuardRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlTransitionPackage.Literals.GUARD_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public String getConstraint()
-	{
+	public String getConstraint() {
 		return constraint;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setConstraint(String newConstraint)
-	{
+	public void setConstraint(String newConstraint) {
 		String oldConstraint = constraint;
 		constraint = newConstraint;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlTransitionPackage.GUARD_RULE__CONSTRAINT, oldConstraint, constraint));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlTransitionPackage.GUARD_RULE__CONSTRAINT:
 			return getConstraint();
 		}
@@ -117,14 +107,12 @@ public class GuardRuleImpl extends MinimalEObjectImpl.Container implements Guard
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlTransitionPackage.GUARD_RULE__CONSTRAINT:
 			setConstraint((String) newValue);
 			return;
@@ -135,14 +123,12 @@ public class GuardRuleImpl extends MinimalEObjectImpl.Container implements Guard
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.GUARD_RULE__CONSTRAINT:
 			setConstraint(CONSTRAINT_EDEFAULT);
 			return;
@@ -153,14 +139,12 @@ public class GuardRuleImpl extends MinimalEObjectImpl.Container implements Guard
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.GUARD_RULE__CONSTRAINT:
 			return CONSTRAINT_EDEFAULT == null ? constraint != null : !CONSTRAINT_EDEFAULT.equals(constraint);
 		}
@@ -170,17 +154,15 @@ public class GuardRuleImpl extends MinimalEObjectImpl.Container implements Guard
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) {
+	public String toString() {
+		if (eIsProxy())
 			return super.toString();
-		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (constraint: ");
 		result.append(constraint);
 		result.append(')');

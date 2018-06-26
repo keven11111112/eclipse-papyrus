@@ -12,7 +12,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventRule"/>
   <eClassifiers xsi:type="ecore:EClass" name="CallOrSignalEventRule" eSuperTypes="#//EventRule">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operationOrSignal" eType="ecore:EClass ../../../../../../../../../org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operationOrSignal" eType="ecore:EClass platform:/resource/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnyReceiveEventRule" eSuperTypes="#//EventRule">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAReceiveEvent" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>

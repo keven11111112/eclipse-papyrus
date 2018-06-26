@@ -14,20 +14,19 @@ import org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.UmlTransi
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.transition.xtext.umlTransition.impl.ChangeEventRuleImpl#getExp <em>Exp</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class ChangeEventRuleImpl extends EventRuleImpl implements ChangeEventRule
-{
+public class ChangeEventRuleImpl extends EventRuleImpl implements ChangeEventRule {
 	/**
 	 * The default value of the '{@link #getExp() <em>Exp</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getExp()
 	 * @generated
 	 * @ordered
@@ -38,7 +37,7 @@ public class ChangeEventRuleImpl extends EventRuleImpl implements ChangeEventRul
 	 * The cached value of the '{@link #getExp() <em>Exp</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @see #getExp()
 	 * @generated
 	 * @ordered
@@ -48,65 +47,56 @@ public class ChangeEventRuleImpl extends EventRuleImpl implements ChangeEventRul
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	protected ChangeEventRuleImpl()
-	{
+	protected ChangeEventRuleImpl() {
 		super();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlTransitionPackage.Literals.CHANGE_EVENT_RULE;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public String getExp()
-	{
+	public String getExp() {
 		return exp;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
-	public void setExp(String newExp)
-	{
+	public void setExp(String newExp) {
 		String oldExp = exp;
 		exp = newExp;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UmlTransitionPackage.CHANGE_EVENT_RULE__EXP, oldExp, exp));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlTransitionPackage.CHANGE_EVENT_RULE__EXP:
 			return getExp();
 		}
@@ -116,14 +106,12 @@ public class ChangeEventRuleImpl extends EventRuleImpl implements ChangeEventRul
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlTransitionPackage.CHANGE_EVENT_RULE__EXP:
 			setExp((String) newValue);
 			return;
@@ -134,14 +122,12 @@ public class ChangeEventRuleImpl extends EventRuleImpl implements ChangeEventRul
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.CHANGE_EVENT_RULE__EXP:
 			setExp(EXP_EDEFAULT);
 			return;
@@ -152,14 +138,12 @@ public class ChangeEventRuleImpl extends EventRuleImpl implements ChangeEventRul
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlTransitionPackage.CHANGE_EVENT_RULE__EXP:
 			return EXP_EDEFAULT == null ? exp != null : !EXP_EDEFAULT.equals(exp);
 		}
@@ -169,17 +153,15 @@ public class ChangeEventRuleImpl extends EventRuleImpl implements ChangeEventRul
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
-		if (eIsProxy()) {
+	public String toString() {
+		if (eIsProxy())
 			return super.toString();
-		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (exp: ");
 		result.append(exp);
 		result.append(')');

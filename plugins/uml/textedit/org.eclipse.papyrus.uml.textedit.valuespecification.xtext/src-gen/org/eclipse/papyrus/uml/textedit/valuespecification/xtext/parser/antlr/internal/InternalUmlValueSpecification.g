@@ -90,7 +90,7 @@ ruleAbstractRule returns [EObject current=null]
        			$current, 
        			"visibility",
         		lv_visibility_0_0, 
-        		"VisibilityKind");
+        		"org.eclipse.papyrus.uml.textedit.valuespecification.xtext.UmlValueSpecification.VisibilityKind");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -109,7 +109,7 @@ ruleAbstractRule returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"VALUE_SPECIFICATION_ID");
+        		"org.eclipse.papyrus.uml.textedit.valuespecification.xtext.UmlValueSpecification.VALUE_SPECIFICATION_ID");
 	    }
 
 )
@@ -141,7 +141,7 @@ ruleAbstractRule returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_3_1, 
-        		"LiteralBooleanRule");
+        		"org.eclipse.papyrus.uml.textedit.valuespecification.xtext.UmlValueSpecification.LiteralBooleanRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -156,7 +156,7 @@ ruleAbstractRule returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_3_2, 
-        		"LiteralIntegerOrUnlimitedNaturalRule");
+        		"org.eclipse.papyrus.uml.textedit.valuespecification.xtext.UmlValueSpecification.LiteralIntegerOrUnlimitedNaturalRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -171,7 +171,7 @@ ruleAbstractRule returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_3_3, 
-        		"LiteralRealRule");
+        		"org.eclipse.papyrus.uml.textedit.valuespecification.xtext.UmlValueSpecification.LiteralRealRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -186,7 +186,7 @@ ruleAbstractRule returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_3_4, 
-        		"LiteralNullRule");
+        		"org.eclipse.papyrus.uml.textedit.valuespecification.xtext.UmlValueSpecification.LiteralNullRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -201,7 +201,7 @@ ruleAbstractRule returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_3_5, 
-        		"LiteralStringRule");
+        		"org.eclipse.papyrus.uml.textedit.valuespecification.xtext.UmlValueSpecification.LiteralStringRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -222,7 +222,7 @@ ruleAbstractRule returns [EObject current=null]
        			$current, 
        			"undefined",
         		lv_undefined_4_0, 
-        		"UndefinedRule");
+        		"org.eclipse.papyrus.uml.textedit.valuespecification.xtext.UmlValueSpecification.UndefinedRule");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -314,7 +314,7 @@ ruleLiteralIntegerOrUnlimitedNaturalRule returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_0_1, 
-        		"INT");
+        		"org.eclipse.xtext.common.Terminals.INT");
 	    }
 
     |		lv_value_0_2=RULE_VALUE_SPECIFICATION_NEGATIVE_INT
@@ -329,7 +329,7 @@ ruleLiteralIntegerOrUnlimitedNaturalRule returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_0_2, 
-        		"VALUE_SPECIFICATION_NEGATIVE_INT");
+        		"org.eclipse.papyrus.uml.textedit.valuespecification.xtext.UmlValueSpecification.VALUE_SPECIFICATION_NEGATIVE_INT");
 	    }
 
 )
@@ -386,7 +386,7 @@ ruleLiteralRealRule returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_0_0, 
-        		"VALUE_SPECIFICATION_DOUBLE");
+        		"org.eclipse.papyrus.uml.textedit.valuespecification.xtext.UmlValueSpecification.VALUE_SPECIFICATION_DOUBLE");
 	    }
 
 )
@@ -461,7 +461,7 @@ ruleLiteralStringRule returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_0_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )

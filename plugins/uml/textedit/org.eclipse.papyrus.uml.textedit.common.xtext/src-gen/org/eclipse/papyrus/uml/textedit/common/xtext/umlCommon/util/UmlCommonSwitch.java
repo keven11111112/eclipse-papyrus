@@ -14,23 +14,23 @@ import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage;
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
+ * to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object
  * and proceeding up the inheritance hierarchy
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- *
+ * 
  * @see org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.UmlCommonPackage
  * @generated
  */
-public class UmlCommonSwitch<T> extends Switch<T>
-{
+public class UmlCommonSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected static UmlCommonPackage modelPackage;
@@ -39,13 +39,11 @@ public class UmlCommonSwitch<T> extends Switch<T>
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
-	public UmlCommonSwitch()
-	{
-		if (modelPackage == null)
-		{
+	public UmlCommonSwitch() {
+		if (modelPackage == null) {
 			modelPackage = UmlCommonPackage.eINSTANCE;
 		}
 	}
@@ -54,14 +52,14 @@ public class UmlCommonSwitch<T> extends Switch<T>
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @parameter ePackage the package in question.
+	 * 
+	 * @param ePackage
+	 *            the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
 	@Override
-	protected boolean isSwitchFor(EPackage ePackage)
-	{
+	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
 
@@ -69,45 +67,39 @@ public class UmlCommonSwitch<T> extends Switch<T>
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
-	{
-		switch (classifierID)
-		{
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		switch (classifierID) {
 		case UmlCommonPackage.QUALIFIED_NAME: {
 			QualifiedName qualifiedName = (QualifiedName) theEObject;
 			T result = caseQualifiedName(qualifiedName);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case UmlCommonPackage.TYPE_RULE: {
 			TypeRule typeRule = (TypeRule) theEObject;
 			T result = caseTypeRule(typeRule);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case UmlCommonPackage.MULTIPLICITY_RULE: {
 			MultiplicityRule multiplicityRule = (MultiplicityRule) theEObject;
 			T result = caseMultiplicityRule(multiplicityRule);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		case UmlCommonPackage.BOUND_SPECIFICATION: {
 			BoundSpecification boundSpecification = (BoundSpecification) theEObject;
 			T result = caseBoundSpecification(boundSpecification);
-			if (result == null) {
+			if (result == null)
 				result = defaultCase(theEObject);
-			}
 			return result;
 		}
 		default:
@@ -121,15 +113,14 @@ public class UmlCommonSwitch<T> extends Switch<T>
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Qualified Name</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseQualifiedName(QualifiedName object)
-	{
+	public T caseQualifiedName(QualifiedName object) {
 		return null;
 	}
 
@@ -139,15 +130,14 @@ public class UmlCommonSwitch<T> extends Switch<T>
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Type Rule</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTypeRule(TypeRule object)
-	{
+	public T caseTypeRule(TypeRule object) {
 		return null;
 	}
 
@@ -157,15 +147,14 @@ public class UmlCommonSwitch<T> extends Switch<T>
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Multiplicity Rule</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMultiplicityRule(MultiplicityRule object)
-	{
+	public T caseMultiplicityRule(MultiplicityRule object) {
 		return null;
 	}
 
@@ -175,15 +164,14 @@ public class UmlCommonSwitch<T> extends Switch<T>
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Bound Specification</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBoundSpecification(BoundSpecification object)
-	{
+	public T caseBoundSpecification(BoundSpecification object) {
 		return null;
 	}
 
@@ -193,7 +181,7 @@ public class UmlCommonSwitch<T> extends Switch<T>
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param object
 	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
@@ -201,8 +189,7 @@ public class UmlCommonSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
-	{
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

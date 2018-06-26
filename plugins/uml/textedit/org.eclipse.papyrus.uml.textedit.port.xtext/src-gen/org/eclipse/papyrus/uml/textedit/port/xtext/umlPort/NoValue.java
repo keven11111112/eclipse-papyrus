@@ -13,6 +13,5 @@ package org.eclipse.papyrus.uml.textedit.port.xtext.umlPort;
  * @model
  * @generated
  */
-public interface NoValue extends Value
-{
+public interface NoValue extends Value {
 } // NoValue

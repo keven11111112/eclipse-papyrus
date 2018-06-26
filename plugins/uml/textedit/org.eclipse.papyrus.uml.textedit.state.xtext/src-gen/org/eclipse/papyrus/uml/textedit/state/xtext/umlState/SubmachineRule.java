@@ -12,26 +12,26 @@ import org.eclipse.uml2.uml.StateMachine;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule#getPath <em>Path</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule#getSubmachine <em>Submachine</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage#getSubmachineRule()
  * @model
  * @generated
  */
-public interface SubmachineRule extends EObject
-{
+public interface SubmachineRule extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Path</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Path</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Path</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Path</em>' containment reference.
 	 * @see #setPath(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage#getSubmachineRule_Path()
@@ -44,7 +44,7 @@ public interface SubmachineRule extends EObject
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule#getPath <em>Path</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Path</em>' containment reference.
 	 * @see #getPath()
@@ -56,10 +56,11 @@ public interface SubmachineRule extends EObject
 	 * Returns the value of the '<em><b>Submachine</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Submachine</em>' reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Submachine</em>' reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @return the value of the '<em>Submachine</em>' reference.
 	 * @see #setSubmachine(StateMachine)
 	 * @see org.eclipse.papyrus.uml.textedit.state.xtext.umlState.UmlStatePackage#getSubmachineRule_Submachine()
@@ -72,7 +73,7 @@ public interface SubmachineRule extends EObject
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule#getSubmachine <em>Submachine</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @param value
 	 *            the new value of the '<em>Submachine</em>' reference.
 	 * @see #getSubmachine()

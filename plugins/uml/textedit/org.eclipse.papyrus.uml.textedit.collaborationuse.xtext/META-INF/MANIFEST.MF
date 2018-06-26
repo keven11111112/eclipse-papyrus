@@ -18,12 +18,18 @@ Require-Bundle: org.eclipse.xtext.generator;bundle-version="[2.10.0,3.0.0)";reso
  com.ibm.icu;resolution:=optional,
  org.eclipse.uml2.codegen.ecore;bundle-version="[2.3.0,3.0.0)",
  org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.uml.textedit.common.xtext;bundle-version="[2.1.0,3.0.0)";visibility:=reexport,
  org.apache.log4j;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.uml.alf.common;bundle-version="[2.0.0,3.0.0)"
+ org.eclipse.papyrus.uml.alf.common;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.xtext,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.xtext.xbase.lib
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
