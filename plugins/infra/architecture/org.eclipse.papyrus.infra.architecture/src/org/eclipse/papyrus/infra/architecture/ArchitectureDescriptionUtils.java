@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017,2018 CEA LIST.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  
+ *  Benoit Maggi - Bug 535393
  * 
  */
 package org.eclipse.papyrus.infra.architecture;
@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -111,20 +110,25 @@ public class ArchitectureDescriptionUtils {
 	/**
 	 * Gets the architecture viewpoint ids set in the model set
 	 * 
-	 * @return a collection of architecture viewpoin ids
+	 * @return a collection of architecture viewpoint ids
 	 */
 	public Collection<String> getArchitectureViewpointIds() {
 		ArchitectureDescriptionPreferences preferences = SashModelUtils.getArchitectureDescriptionPreferences(modelSet);
-		if (preferences != null) 
+		if (preferences != null) {
 			return preferences.getViewpointIds();
-		MergedArchitectureContext context = getArchitectureContext();
-		Collection<MergedArchitectureViewpoint> viewpoints = context.getDefaultViewpoints();
-		if (viewpoints.isEmpty())
-			viewpoints = context.getViewpoints();
-		Set<String> viewpointIds = new LinkedHashSet<>();
-		for (MergedArchitectureViewpoint viewpoint : viewpoints) {
-			viewpointIds.add(viewpoint.getId());
 		}
+		Collection<String> viewpointIds = new LinkedHashSet<>();
+		MergedArchitectureContext context = getArchitectureContext();
+		if (context != null) {
+			Collection<MergedArchitectureViewpoint> viewpoints = context.getDefaultViewpoints();
+			if (viewpoints.isEmpty()) {
+				viewpoints = context.getViewpoints();
+			}
+			for (MergedArchitectureViewpoint viewpoint : viewpoints) {
+				viewpointIds.add(viewpoint.getId());
+			}
+		}
+
 		return viewpointIds;
 	}
 
