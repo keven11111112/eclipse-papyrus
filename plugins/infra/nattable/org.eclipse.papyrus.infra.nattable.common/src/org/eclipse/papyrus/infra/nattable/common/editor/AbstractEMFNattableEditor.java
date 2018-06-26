@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2017 CEA LIST, LIFL, and others.
+ * Copyright (c) 2009, 2017, 2018 CEA LIST, LIFL, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 437217
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220
+ *  Vincent Lorenzo (CEA) - bug 536300
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.editor;
 
@@ -23,12 +24,16 @@ import java.util.Collections;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.preference.PreferenceStore;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -50,7 +55,14 @@ import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.ui.editor.reload.IReloadContextProvider;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
@@ -83,18 +95,26 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	private PreferenceStore workspacePreferenceStore;
 
 	/**
+	 * the table we are loading in the editor
+	 */
+	private Table table;
+
+	/**
 	 * @param servicesRegistry
 	 * @param rawModel
 	 *
 	 */
 	public AbstractEMFNattableEditor(final ServicesRegistry servicesRegistry, final Table rawModel) {
 		this.servicesRegistry = servicesRegistry;
-		this.tableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(rawModel, new EObjectSelectionExtractor());
-		this.synchronizer = new PartNameSynchronizer(rawModel);
-		this.workspacePreferenceStore = getWorkspaceViewerPreferenceStore();
+		this.table = rawModel;
+		if (false == isTableConfigurationProxy()) {
+			this.tableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(rawModel, new EObjectSelectionExtractor());
+			this.synchronizer = new PartNameSynchronizer(rawModel);
+			this.workspacePreferenceStore = getWorkspaceViewerPreferenceStore();
 
-		// Need to manage the part label synchronizer for the table labels
-		LabelInternationalizationUtils.managePartLabelSynchronizer(rawModel, this);
+			// Need to manage the part label synchronizer for the table labels
+			LabelInternationalizationUtils.managePartLabelSynchronizer(rawModel, this);
+		}
 	}
 
 	/**
@@ -168,14 +188,14 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	 */
 	@Override
 	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
-		final TableEditorInput tableEditorInput = new TableEditorInput(this.tableManager.getTable(), getEditingDomain());
+		final TableEditorInput tableEditorInput = new TableEditorInput(this.table, getEditingDomain());
 		setSite(site);
 		setInput(tableEditorInput);
-		setPartName(LabelInternationalization.getInstance().getTableLabel(this.tableManager.getTable()));
+		setPartName(LabelInternationalization.getInstance().getTableLabel(this.table));
 	}
 
 	@Override
-    protected void setInput(IEditorInput input) {
+	protected void setInput(IEditorInput input) {
 		super.setInput(input);
 		if (getTable() != null && !TableVersioningUtils.isOfCurrentPapyrusVersion(getTable())) {
 			try {
@@ -184,8 +204,8 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 				Activator.log.error(e);
 			}
 		}
-    }
-    
+	}
+
 	/**
 	 *
 	 * @see org.eclipse.emf.facet.widgets.nattable.workbench.editor.NatTableEditor#getEditingDomain()
@@ -229,9 +249,16 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 		// nothing to do
 	}
 
+
 	@Override
 	public void createPartControl(final Composite parent) {
-		this.tableManager.createNattable(parent, SWT.NONE, getSite());
+		if (isTableConfigurationProxy()) {
+			final String errorMessage = NLS.bind("The table configuration file {0} can't be resolved in your current Papyrus installation. Please, check all required plugins are installed.",
+					((MinimalEObjectImpl) this.table.getTableConfiguration()).eProxyURI());
+			new StatusPart(parent, new Status(IStatus.ERROR, Activator.PLUGIN_ID, errorMessage));
+		} else {
+			this.tableManager.createNattable(parent, SWT.NONE, getSite());
+		}
 	}
 
 	@Override
@@ -239,8 +266,8 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 		if (adapter == INattableModelManager.class) {
 			return this.tableManager;
 		}
-		if(adapter == IMatrixTableWidgetManager.class) {
-			if(this.tableManager instanceof IMatrixTableWidgetManager) {
+		if (adapter == IMatrixTableWidgetManager.class) {
+			if (this.tableManager instanceof IMatrixTableWidgetManager) {
 				return this.tableManager;
 			}
 			return null;
@@ -306,8 +333,12 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	@Override
 	public void dispose() {
 		saveLocalPreferenceStoreValues();
-		this.tableManager.dispose();
-		this.synchronizer.dispose();
+		if (null != this.tableManager) { // null when the table configuration is a proxy
+			this.tableManager.dispose();
+		}
+		if (null != this.synchronizer) {// null when the table configuration is a proxy
+			this.synchronizer.dispose();
+		}
 		this.tableManager = null;
 		this.servicesRegistry = null;
 		this.synchronizer = null;
@@ -430,7 +461,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	 * 		the table model displayed by the editor
 	 */
 	public Table getTable() {
-		return tableManager.getTable();
+		return this.table;
 	}
 
 	/**
@@ -470,4 +501,96 @@ public abstract class AbstractEMFNattableEditor extends EditorPart implements Na
 	public void refreshEditorPart() {
 		// We don't need to refresh the editor part, the table is refreshed alone
 	}
+
+	/**
+	 * 
+	 * @return
+	 * 		<code>true</code> if the table Configuration can't be resolved (is a proxy)
+	 */
+	private boolean isTableConfigurationProxy() {
+		return this.table.getTableConfiguration().eIsProxy();
+	}
+
+
+	/**
+	 * 
+	 * Adapted from {@link StatusPart}
+	 * 
+	 * @author Vincent LORENZO
+	 *
+	 */
+	private class StatusPart {
+
+		private IStatus reason;
+
+		public StatusPart(final Composite parent, IStatus reason_) {
+			Color bgColor = parent.getDisplay().getSystemColor(SWT.COLOR_LIST_BACKGROUND);
+			Color fgColor = parent.getDisplay().getSystemColor(SWT.COLOR_LIST_FOREGROUND);
+
+			parent.setBackground(bgColor);
+			parent.setForeground(fgColor);
+
+			this.reason = reason_;
+			GridLayout layout = new GridLayout();
+
+			layout.numColumns = 3;
+
+			int spacing = 8;
+			int margins = 8;
+			layout.marginBottom = margins;
+			layout.marginTop = margins;
+			layout.marginLeft = margins;
+			layout.marginRight = margins;
+			layout.horizontalSpacing = spacing;
+			layout.verticalSpacing = spacing;
+			parent.setLayout(layout);
+
+			Label imageLabel = new Label(parent, SWT.NONE);
+			imageLabel.setBackground(bgColor);
+			Image image = getImage();
+			if (image != null) {
+				image.setBackground(bgColor);
+				imageLabel.setImage(image);
+				GridData gridData = new GridData(GridData.HORIZONTAL_ALIGN_CENTER | GridData.VERTICAL_ALIGN_BEGINNING);
+				imageLabel.setLayoutData(gridData);
+			}
+
+			Text text = new Text(parent, SWT.MULTI | SWT.READ_ONLY | SWT.WRAP);
+			text.setBackground(bgColor);
+			text.setForeground(fgColor);
+
+			text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+			text.setText(reason.getMessage());
+
+			Composite buttonParent = new Composite(parent, SWT.NONE);
+			buttonParent.setBackground(parent.getBackground());
+			GridLayout buttonsLayout = new GridLayout();
+			buttonsLayout.numColumns = 2;
+			buttonsLayout.marginHeight = 0;
+			buttonsLayout.marginWidth = 0;
+			buttonsLayout.horizontalSpacing = 0;
+			buttonParent.setLayout(buttonsLayout);
+
+			parent.layout(true);
+		}
+
+		/**
+		 * Return the image for the upper-left corner of this part
+		 *
+		 * @return the image
+		 */
+		private Image getImage() {
+			Display d = Display.getCurrent();
+
+			switch (reason.getSeverity()) {
+			case IStatus.ERROR:
+				return d.getSystemImage(SWT.ICON_ERROR);
+			case IStatus.WARNING:
+				return d.getSystemImage(SWT.ICON_WARNING);
+			default:
+				return d.getSystemImage(SWT.ICON_INFORMATION);
+			}
+		}
+	}
+
 }
