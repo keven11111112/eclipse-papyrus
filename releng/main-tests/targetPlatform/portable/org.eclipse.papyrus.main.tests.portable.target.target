@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Tests" sequenceNumber="1528873353">
+<target name="Papyrus Tests" sequenceNumber="1530006857">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.8.0.v20180612-0940"/>
