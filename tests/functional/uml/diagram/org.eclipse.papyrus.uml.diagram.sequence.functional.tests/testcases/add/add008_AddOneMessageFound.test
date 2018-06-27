@@ -1,25 +1,18 @@
 --- RCPTT testcase ---
 Format-Version: 1.0
-Contexts: _NHXLMAf_EeiHkPkpSqDhSg,_KWhwYAgBEeiHkPkpSqDhSg
 Element-Name: add008_AddOneMessageFound
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _yH8scDmYEeiGhrmLGgv4BA
-Runtime-Version: 2.3.0.201803252310
-Save-Time: 4/6/18 2:54 PM
+Runtime-Version: 2.3.0.201806262310
+Save-Time: 7/26/18 3:24 PM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Project Explorer" | get-tree | select "SequenceDiagramTest/SequenceDiagramTest" | double-click
-with [get-view "Model Explorer" | get-tree] {
-    get-item -path "SequenceDiagramTest/NewSequenceDiagram" | click
-    select "SequenceDiagramTest/NewSequenceDiagram" | double-click
-    get-item -path "SequenceDiagramTest/NewSequenceDiagram" | click
-}
 with [get-editor "SequenceDiagramTest.di"] {
     get-diagram -index 1 | get-edit-part -name Interaction1 | mouse-move 1881 169 -height 1000 -width 1892
     with [get-palette] {
@@ -48,7 +41,8 @@ with [get-editor "SequenceDiagramTest.di"] {
     }
     with [get-palette] {
         get-palette-entry "Interaction Operand" | mouse-move 43 31 -height 37 -width 125
-        get-palette-entry Continuation | mouse-move 43 12 -height 23 -width 125
+        // FIXME There is no Continuation tool in the palette
+        //get-palette-entry Continuation | mouse-move 43 12 -height 23 -width 125
         get-palette-entry StateInvariant | mouse-move 43 14 -height 23 -width 125
         get-palette-entry Comment | mouse-move 47 15 -height 23 -width 125
         get-palette-entry Constraint | mouse-move 52 22 -height 23 -width 125
@@ -117,13 +111,10 @@ with [get-editor "SequenceDiagramTest.di"] {
 get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | mouse-move 604 232 
     -height 738 -width 857
-with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
-    -text Interaction1 | get-edit-part -text Interaction1] {
-    get-property x | equals 1 | verify-true
-    get-property y | equals 3 | verify-true
-    get-property width | equals 857 | verify-true
-    get-property height | equals 15 | verify-true
-}
+get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
+	    -text Interaction1 | get-edit-part -text Interaction1
+    | assert-bounds 1  3 857 24
+
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1] {
     with [get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
         mouse-move 211 85 -height 738 -width 857
@@ -138,29 +129,19 @@ with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part
     }
     mouse-move 922 409 -height 1000 -width 1892
 }
+get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
+    	-text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-figure -path "1/0"
+    | assert-bounds 6 33 847 728
+
+get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
+    	-text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
+    	-name Lifeline1 | get-figure -path "0/0"
+    | assert-bounds 334 10 100 700
+
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
-    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-figure -path "1/0"] {
-    get-property x | equals 6 | verify-true
-    get-property y | equals 24 | verify-true
-    get-property width | equals 847 | verify-true
-    get-property height | equals 728 | verify-true
-}
-with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
-    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
-    -name Lifeline1 | get-figure -path "0/0"] {
-    get-property x | equals 334 | verify-true
-    get-property y | equals 10 | verify-true
-    get-property width | equals 100 | verify-true
-    get-property height | equals 700 | verify-true
-}
-with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
-    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
-    -name Lifeline1 | get-target-connection -path 0] {
-    get-property x | equals 82 | verify-true
-    get-property y | equals 67 | verify-true
-    get-property width | equals 322 | verify-true
-    get-property height | equals 53 | verify-true
-    get-property "sourceAnchor.id" | equals "(100.0,100.0)" | verify-true
-    get-property "targetAnchor.id" | equals "(0.5,0.09428571428571429)" | verify-true
+	    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
+	    -name Lifeline1 | get-target-connection -path 0] {
+    assert-message-source "100.0" "120.0" "2.0"
+    assert-message-target "0.5" "0.11"
 }
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

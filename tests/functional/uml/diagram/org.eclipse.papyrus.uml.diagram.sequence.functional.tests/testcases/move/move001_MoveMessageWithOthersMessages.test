@@ -1,13 +1,12 @@
 --- RCPTT testcase ---
 Format-Version: 1.0
-Contexts: _NHXLMAf_EeiHkPkpSqDhSg,_KWhwYAgBEeiHkPkpSqDhSg
 Element-Name: move001_MoveMessageWithOthersMessages
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _BqX60DDNEeiA_5cwf7Mpvw
-Runtime-Version: 2.3.0.201803252310
-Save-Time: 4/6/18 3:39 PM
+Runtime-Version: 2.3.0.201806262310
+Save-Time: 7/26/18 4:21 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -20,16 +19,8 @@ Move message on life lines
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Project Explorer" | get-tree | select "SequenceDiagramTest/SequenceDiagramTest" | double-click
-get-view "Model Explorer" | get-tree | select "SequenceDiagramTest/NewSequenceDiagram" | double-click
-get-preferences-menu | click
-with [get-window Preferences] {
-    get-tree | select "Papyrus/Diagrams/PapyrusUMLSequenceDiagram Diagram"
-    with [get-group "Automatic creations"] {
-        get-button Nothing | click
-    }
-    get-button "Apply and Close" | click
-}
+/* Automatically create nothing additional for synchronous messages. */
+auto-syncmsg-execspec n
 
 with [get-editor "SequenceDiagramTest.di"] {
     get-diagram -index 1 | get-edit-part -name Interaction1 | mouse-move 1861 127 -height 1000 -width 1892
@@ -137,9 +128,6 @@ with [get-editor "SequenceDiagramTest.di"] {
         -className CInteractionInteractionCompartmentEditPart] {
         mouse-move 604 397 -height 738 -width 857
         with [get-edit-part -name Lifeline1] {
-            mouse-move 48 52 -height 700 -width 100
-            mouse-hover 48 52 -height 700 -width 100
-            mouse-move 50 53 -height 700 -width 100
             mouse-hover 50 53 -height 700 -width 100
             mouse-move 50 53 button1 -height 700 -width 100
             mouse-press 50 53 button1 -height 700 -width 100
@@ -147,12 +135,10 @@ with [get-editor "SequenceDiagramTest.di"] {
         }
         mouse-move 278 66 -height 738 -width 857
         with [get-edit-part -name Lifeline2] {
-            mouse-move 46 47 -height 700 -width 100
-            mouse-hover 46 47 -height 700 -width 100
-            mouse-move 49 47 -height 700 -width 100
-            mouse-hover 49 47 -height 700 -width 100
-            mouse-move 49 47 button1 -height 700 -width 100
-            mouse-press 49 47 button1 -height 700 -width 100
+            mouse-hover 50 53 -height 700 -width 100
+            mouse-move 50 53 button1 -height 700 -width 100
+            mouse-press 50 53 button1 -height 700 -width 100
+            mouse-release 50 53 button1 -height 700 -width 100
         }
     }
     with [get-diagram -index 1] {
@@ -220,19 +206,19 @@ with [get-editor "SequenceDiagramTest.di"] {
     with [get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part -text Interaction1 | get-edit-part 
         -className CInteractionInteractionCompartmentEditPart] {
         with [get-edit-part -name Lifeline2] {
-            mouse-move 52 207 button1 -height 700 -width 100
-            mouse-press 52 207 button1 -height 700 -width 100
-            mouse-release 52 207 button1 524288 -height 700 -width 100
+            mouse-move 50 130 button1 -height 700 -width 100
+            mouse-press 50 130 button1 -height 700 -width 100
+            mouse-release 50 130 button1 524288 -height 700 -width 100
         }
-        with [get-edit-part -name Lifeline3] {
-            mouse-move 45 108 button1 -height 602 -width 100
-            mouse-press 45 108 button1 -height 602 -width 100
+  		with [get-edit-part -name Lifeline3] {
+            mouse-move 43 100 button1 524288 -height 700 -width 100
+            mouse-press 43 100 button1 524288 -height 700 -width 100
+            mouse-release 43 100 button1 524288 -height 700 -width 100
         }
     }
     with [get-diagram -index 1 | get-edit-part -name Interaction1] {
         with [get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart 
             | get-edit-part -name Lifeline3] {
-            mouse-release 45 108 button1 524288 -height 602 -width 100
             with [get-target-connection -path 1] {
                 get-edit-part -text Message11 | activate-direct-edit
                 get-figure -path 4 | mouse-move 12 6 -height 13 -width 17
@@ -240,6 +226,18 @@ with [get-editor "SequenceDiagramTest.di"] {
         }
         mouse-move 1887 567 -height 1000 -width 1892
     }
+    
+    
+//    with [get-diagram -index 1 | get-edit-part -name Interaction1] {
+//        with [get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart 
+//            | get-edit-part -name Lifeline3] {
+//            with [get-target-connection -path 1] {
+//                get-edit-part -text Message11 | activate-direct-edit
+//                get-figure -path 4 | mouse-move 12 6 -height 13 -width 17
+//            }
+//        }
+//        mouse-move 1887 567 -height 1000 -width 1892
+//    }
     get-palette | get-palette-entry "Message Create" | mouse-move 41 6 -height 23 -width 125
     get-diagram -index 1 | commit-direct-edit
     with [get-palette | get-palette-entry "Message Create"] {
@@ -255,14 +253,15 @@ with [get-editor "SequenceDiagramTest.di"] {
             mouse-release 51 328 button1 524288 -height 700 -width 100
         }
         with [get-edit-part -name Lifeline4] {
-            mouse-move 44 324 button1 -height 700 -width 100
-            mouse-press 44 324 button1 -height 700 -width 100
+            mouse-move 44 328 button1 -height 700 -width 100
+            mouse-press 44 328 button1 -height 700 -width 100
+            mouse-release 44 328 button1 524288 -height 700 -width 100
         }
     }
     with [get-diagram -index 1 | get-edit-part -name Interaction1] {
         with [get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart 
             | get-edit-part -name Lifeline4] {
-            mouse-release 44 324 button1 524288 -height 700 -width 100
+            
             get-target-connection -path 0 | get-edit-part -text Message14 | activate-direct-edit
         }
         mouse-move 1887 524 -height 1000 -width 1892
@@ -354,42 +353,27 @@ get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name
     -height 1000 -width 1892
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
-    with [get-edit-part -name Lifeline3 | get-figure -path "0/0"] {
-        get-property x | equals 494 | verify-true
-        get-property y | equals 107 | verify-true
-        get-property width | equals 100 | verify-true
-        get-property height | equals 109 | verify-true
-    }
-    with [get-edit-part -name Lifeline4 | get-figure -path "0/0"] {
-        get-property x | equals 734 | verify-true
-        get-property y | equals 327 | verify-true
-        get-property width | equals 100 | verify-true
-        get-property height | equals 382 | verify-true
-    }
+    get-edit-part -name Lifeline3 | get-figure -path "0/0"
+        | assert-bounds 494 74 100 73
+    
+    get-edit-part -name Lifeline4 | get-figure -path "0/0"
+        | assert-bounds 734 333 100 380
+    
     with [get-edit-part -name Lifeline3] {
-        with [get-target-connection -path 0] {
-            get-property "sourceAnchor.id" | equals "(0.5,0.15142857142857144)" | verify-true
-            get-property "targetAnchor.id" | equals "(0.5,0.08256880733944963)" | verify-true
-        }
-        with [get-target-connection -path 1] {
-            get-property "sourceAnchor.id" | equals "(0.5,0.29428571428571426)" | verify-true
-            get-property "targetAnchor.id" | equals "(0.5,1.0)" | verify-true
-        }
+        get-target-connection -path 0
+            | assert-message-anchors "0.5" "0.15" "0.5" "0.17"
+        get-target-connection -path 1
+            | assert-message-anchors "0.5" "0.19" "0.5" "1.0"
     }
     with [get-edit-part -name Lifeline4] {
-        with [get-target-connection -path 0] {
-            get-property "sourceAnchor.id" | equals "(0.5,0.4657142857142857)" | verify-true
-            get-property "targetAnchor.id" | equals "(0.5,0.023560209424083767)" | verify-true
-        }
-        with [get-target-connection -path 1] {
-            get-property "sourceAnchor.id" | equals "(0.5,0.58)" | verify-true
-            get-property "targetAnchor.id" | equals "(0.5,0.23298429319371727)" | verify-true
-        }
+        get-target-connection -path 0
+            | assert-message-anchors "0.5" "0.48" "0.5" "0.02"
+        get-target-connection -path 1
+            | assert-message-anchors "0.5" "0.58" "0.5" "0.23"
     }
-    with [get-edit-part -name Lifeline2 | get-target-connection -path 1] {
-        get-property "sourceAnchor.id" | equals "(0.5,0.4424083769633508)" | verify-true
-        get-property "targetAnchor.id" | equals "(0.5,0.6942857142857143)" | verify-true
-    }
+    get-edit-part -name Lifeline2
+    	| get-target-connection -path 1
+        	| assert-message-anchors "0.5" "0.44" "0.5" "0.69"
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1] {
     with [get-edit-part -name Interaction1] {
@@ -420,42 +404,24 @@ with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1] {
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
-    with [get-edit-part -name Lifeline3 | get-figure -path "0/0"] {
-        get-property x | equals 494 | verify-true
-        get-property y | equals 227 | verify-true
-        get-property width | equals 100 | verify-true
-        get-property height | equals 109 | verify-true
-    }
-    with [get-edit-part -name Lifeline4 | get-figure -path "0/0"] {
-        get-property x | equals 734 | verify-true
-        get-property y | equals 447 | verify-true
-        get-property width | equals 100 | verify-true
-        get-property height | equals 286 | verify-true
-    }
+    get-edit-part -name Lifeline3 | get-figure -path "0/0"
+        | assert-bounds 494 194 100 73
+    get-edit-part -name Lifeline4 | get-figure -path "0/0"
+        | assert-bounds 734 453 100 270
     with [get-edit-part -name Lifeline3] {
-        with [get-target-connection -path 0] {
-            get-property "sourceAnchor.id" | equals "(0.5,0.32285714285714284)" | verify-true
-            get-property "targetAnchor.id" | equals "(0.5,0.08256880733944955)" | verify-true
-        }
-        with [get-target-connection -path 1] {
-            get-property "sourceAnchor.id" | equals "(0.5,0.4657142857142857)" | verify-true
-            get-property "targetAnchor.id" | equals "(0.5,1.0)" | verify-true
-        }
+        get-target-connection -path 0
+            | assert-message-anchors "0.5" "0.32" "0.5" "0.17"
+        get-target-connection -path 1
+            | assert-message-anchors "0.5" "0.36" "0.5" "1.0"
     }
     with [get-edit-part -name Lifeline4] {
-        with [get-target-connection -path 0] {
-            get-property "sourceAnchor.id" | equals "(0.5,0.6371428571428571)" | verify-true
-            get-property "targetAnchor.id" | equals "(0.5,0.03146853146853147)" | verify-true
-        }
-        with [get-target-connection -path 1] {
-            get-property "sourceAnchor.id" | equals "(0.5,0.7514285714285714)" | verify-true
-            get-property "targetAnchor.id" | equals "(0.5,0.3111888111888112)" | verify-true
-        }
+        get-target-connection -path 0
+            | assert-message-anchors "0.5" "0.64" "0.5" "0.03"
+        get-target-connection -path 1
+            | assert-message-anchors "0.5" "0.76" "0.5" "0.34"
     }
-    with [get-edit-part -name Lifeline2 | get-target-connection -path 1] {
-        get-property "sourceAnchor.id" | equals "(0.5,0.5909090909090909)" | verify-true
-        get-property "targetAnchor.id" | equals "(0.5,0.8657142857142858)" | verify-true
-    }
+    get-edit-part -name Lifeline2 | get-target-connection -path 1
+        | assert-message-anchors "0.5" "0.64" "0.5" "0.88"
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1] {
     with [get-edit-part -name Interaction1] {
@@ -489,22 +455,12 @@ with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1] {
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
-    with [get-edit-part -name Lifeline3 | get-figure -path "0/0"] {
-        get-property x | equals 494 | verify-true
-        get-property y | equals 367 | verify-true
-        get-property width | equals 100 | verify-true
-        get-property height | equals 109 | verify-true
-    }
-    with [get-edit-part -name Lifeline4 | get-figure -path "0/0"] {
-        get-property x | equals 734 | verify-true
-        get-property y | equals 587 | verify-true
-        get-property width | equals 100 | verify-true
-        get-property height | equals 193 | verify-true
-    }
-    with [get-edit-part -name Lifeline3 | get-target-connection -path 0] {
-        get-property "sourceAnchor.id" | equals "(0.5,0.4906166219839142)" | verify-true
-        get-property "targetAnchor.id" | equals "(0.5,0.08256880733944955)" | verify-true
-    }
+    get-edit-part -name Lifeline3 | get-figure -path "0/0"
+        | assert-bounds 494 314 100 73
+    get-edit-part -name Lifeline4 | get-figure -path "0/0"
+       | assert-bounds 734 573 100 206
+    get-edit-part -name Lifeline3 | get-target-connection -path 0
+        | assert-message-anchors "0.5" "0.45" "0.5" "0.17"
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1] {
     with [get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
@@ -520,23 +476,17 @@ with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
-    with [get-edit-part -name Lifeline3 | get-target-connection -path 1] {
-        get-property "sourceAnchor.id" | equals "(0.5,0.6246648793565683)" | verify-true
-        get-property "targetAnchor.id" | equals "(0.5,1.0)" | verify-true
-    }
+    get-edit-part -name Lifeline3 | get-target-connection -path 1
+        | assert-message-anchors "0.5" "0.51" "0.5" "1.0"
     with [get-edit-part -name Lifeline4] {
-        with [get-target-connection -path 0] {
-            get-property "sourceAnchor.id" | equals "(0.5,0.7855227882037533)" | verify-true
-            get-property "targetAnchor.id" | equals "(0.5,0.046632124352331605)" | verify-true
-        }
-        with [get-target-connection -path 1] {
-            get-property "sourceAnchor.id" | equals "(0.5,0.8927613941018767)" | verify-true
-            get-property "targetAnchor.id" | equals "(0.5,0.46113989637305697)" | verify-true
-        }
+        get-target-connection -path 0
+            | assert-message-anchors "0.5" "0.78" "0.5" "0.06"
+        get-target-connection -path 1
+            | assert-message-anchors "0.5" "0.89" "0.5" "0.45"
     }
-    with [get-edit-part -name Lifeline2 | get-target-connection -path 1] {
-        get-property "sourceAnchor.id" | equals "(0.5,0.8756476683937824)" | verify-true
-        get-property "targetAnchor.id" | equals "(0.5,1.0)" | verify-true
-    }
+    get-edit-part -name Lifeline2
+    	| get-target-connection -path 1
+        	| assert-message-anchors "0.5" "0.83" "0.5" "1.0"
 }
+
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

@@ -1,13 +1,12 @@
 --- RCPTT testcase ---
 Format-Version: 1.0
-Contexts: _NHXLMAf_EeiHkPkpSqDhSg,_KWhwYAgBEeiHkPkpSqDhSg
 Element-Name: add006_AddOneMessageCreate
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _qbdN4DMhEei_49Y9iBceHC
-Runtime-Version: 2.3.0.201803252310
-Save-Time: 4/6/18 3:07 PM
+Runtime-Version: 2.3.0.201806262310
+Save-Time: 7/26/18 1:55 PM
 Testcase-Type: ecl
 
 ------=_.description-216f885c-d591-38ce-8ea2-e4f8cb4d6ffa
@@ -20,15 +19,9 @@ Add a MessageCreate when some messages are always on the lifelines. The availabl
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Project Explorer" | get-tree | select "SequenceDiagramTest/SequenceDiagramTest" | double-click
-get-view "Model Explorer" | get-tree | select "SequenceDiagramTest/NewSequenceDiagram" | double-click
-get-preferences-menu | click
-with [get-window Preferences] {
-    get-tree | select "Papyrus/Diagrams/PapyrusUMLSequenceDiagram Diagram"
-    get-group "Automatic creations" | get-button Nothing | click
-    get-button Apply | click
-    get-button "Apply and Close" | click
-}
+/* Automatically create nothing additional for synchronous messages. */
+auto-syncmsg-execspec n
+
 with [get-editor "SequenceDiagramTest.di"] {
     with [get-diagram -index 1 | get-edit-part -name Interaction1] {
         mouse-move 750 792 -height 1000 -width 1892
@@ -227,30 +220,24 @@ with [get-editor "SequenceDiagramTest.di"] {
 }
 get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | mouse-move 1255 110 
     -height 1000 -width 1892
-with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
-    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
-    -name Lifeline2 | get-figure -path "0/0"] {
-    get-property x | equals 434 | verify-true
-    get-property y | equals 87 | verify-true
-    get-property width | equals 100 | verify-true
-    get-property height | equals 622 | verify-true
-}
-with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
-    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
-    -name Lifeline2 | get-target-connection -path 0] {
-    get-property "sourceAnchor.id" | equals "(0.5,0.20857142857142857)" | verify-true
-    get-property "targetAnchor.id" | equals "(0.5,0.11093247588424439)" | verify-true
-}
-with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
-    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
-    -name Lifeline2 | get-target-connection -path 1] {
-    get-property "sourceAnchor.id" | equals "(0.5,0.29428571428571426)" | verify-true
-    get-property "targetAnchor.id" | equals "(0.5,0.20739549839228294)" | verify-true
-}
-with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
-    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
-    -name Lifeline2 | get-target-connection -path 2] {
-    get-property "sourceAnchor.id" | equals "(0.5,0.38)" | verify-true
-    get-property "targetAnchor.id" | equals "(0.5,0.30385852090032156)" | verify-true
-}
+get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
+	    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
+    	-name Lifeline2 | get-figure -path "0/0"
+    | assert-bounds 434 74 100 640
+
+get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
+	    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
+    	-name Lifeline2 | get-target-connection -path 0
+    | assert-message-anchors "0.5"  "0.21" "0.5" "0.11"
+
+get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
+	    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
+	    -name Lifeline2 | get-target-connection -path 1
+	| assert-message-anchors "0.5"  "0.3" "0.5" "0.21"
+
+get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
+	    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
+	    -name Lifeline2 | get-target-connection -path 2
+    | assert-message-anchors "0.5"  "0.38" "0.5" "0.33"
+
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--

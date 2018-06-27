@@ -1,20 +1,18 @@
 --- RCPTT testcase ---
 Format-Version: 1.0
-Contexts: _NHXLMAf_EeiHkPkpSqDhSg,_KWhwYAgBEeiHkPkpSqDhSg
 Element-Name: move003_MoveMessageCreateOverLifeLine
 Element-Type: testcase
 Element-Version: 3.0
 External-Reference: 
 Id: _8nbQsD72EeiwV4oloEiuHA
-Runtime-Version: 2.3.0.201803252310
-Save-Time: 4/13/18 1:33 PM
+Runtime-Version: 2.3.0.201806262310
+Save-Time: 7/26/18 4:31 PM
 Testcase-Type: ecl
 
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac
 Content-Type: text/ecl
 Entry-Name: .content
 
-get-view "Project Explorer" | get-tree | select "SequenceDiagramTest/SequenceDiagramTest" | double-click
 get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | mouse-move 67 724 
     -height 738 -width 857
@@ -109,30 +107,20 @@ with [get-editor "SequenceDiagramTest.di"] {
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
-    with [get-edit-part -name Lifeline1 | get-figure -path "0/0"] {
-        get-property x | equals 134 | verify-true
-        get-property y | equals 10 | verify-true
-        get-property width | equals 100 | verify-true
-        get-property height | equals 700 | verify-true
-    }
-    with [get-edit-part -name Lifeline2 | get-figure -path "0/0"] {
-        get-property x | equals 434 | verify-true
-        get-property y | equals 147 | verify-true
-        get-property width | equals 100 | verify-true
-        get-property height | equals 562 | verify-true
-    }
+    get-edit-part -name Lifeline1 | get-figure -path "0/0"
+        | assert-bounds 134 10 100 700
+    get-edit-part -name Lifeline2 | get-figure -path "0/0"
+        | assert-bounds 434 153 100 560
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1] {
     get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart 
         | mouse-move 384 165 -height 738 -width 857
     mouse-move 1217 188 -mask ALT -height 1000 -width 1892
 }
-with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
-    -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
-    -name Lifeline2 | get-target-connection -path 0] {
-    get-property "sourceAnchor.id" | equals "(0.5,0.20857142857142857)" | verify-true
-    get-property "targetAnchor.id" | equals "(0.5,0.016014234875444844)" | verify-true
-}
+get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
+    	-text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart | get-edit-part 
+    	-name Lifeline2 | get-target-connection -path 0
+    | assert-message-anchors "0.5" "0.21" "0.5" "0.01"
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1] {
     mouse-move 871 175 -height 1000 -width 1892
     with [get-edit-part -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
@@ -160,23 +148,13 @@ with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part
 }
 with [get-editor "SequenceDiagramTest.di" | get-diagram -index 1 | get-edit-part -name Interaction1 | get-edit-part 
     -text Interaction1 | get-edit-part -className CInteractionInteractionCompartmentEditPart] {
-    with [get-edit-part -name Lifeline1 | get-figure -path "0/0"] {
-        get-property x | equals 134 | verify-true
-        get-property y | equals 10 | verify-true
-        get-property width | equals 100 | verify-true
-        get-property height | equals 837 | verify-true
-    }
+    get-edit-part -name Lifeline1 | get-figure -path "0/0"
+        | assert-bounds 134 10 100 824
     with [get-edit-part -name Lifeline2] {
-        with [get-figure -path "0/0"] {
-            get-property x | equals 434 | verify-true
-            get-property y | equals 747 | verify-true
-            get-property width | equals 100 | verify-true
-            get-property height | equals 100 | verify-true
-        }
-        with [get-target-connection -path 0] {
-            get-property "sourceAnchor.id" | equals "(0.5,0.8912783751493429)" | verify-true
-            get-property "targetAnchor.id" | equals "(0.5,0.09)" | verify-true
-        }
+        get-figure -path "0/0"
+            | assert-bounds 434 734 100 100
+        get-target-connection -path 0
+            | assert-message-anchors "0.5" "0.89" "0.5" "0.13"
     }
 }
 ------=_.content-0a7243a0-75d3-3d5f-9791-539de0e5b7ac--
