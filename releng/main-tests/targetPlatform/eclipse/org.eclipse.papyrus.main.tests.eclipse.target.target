@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Tests" sequenceNumber="1522053914">
+<target name="Papyrus Tests" sequenceNumber="1530091424">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20170604-1316"/>
@@ -65,7 +65,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="3.9.2.v201801171858"/>
-      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.9.3/S-3.9.3RC4-20180302093744/repository/"/>
+      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.9.3/R-3.9.3-20180302093744/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.team.svn.feature.group" version="0.0.0"/>
@@ -101,16 +101,16 @@
       <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/S-builds/S20170804160030/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.3.2.201709090201"/>
+      <repository id="emfCompare" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201709090201"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.tooling.codegen.xtend2.feature.group" version="3.3.1.201509291144"/>
       <repository id="gmfTooling" location="file:/home/data/httpd/download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.upr.utp.feature.feature.group" version="0.9.0.20141027-1408-incubation"/>
       <repository id="upr" location="file:/home/data/httpd/download.eclipse.org/upr/0.9RC1/update/"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.3.2.201709090201"/>
-      <repository id="emfCompare" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/compare/updates/releases/3.3"/>
     </location>
   </locations>
 </target>

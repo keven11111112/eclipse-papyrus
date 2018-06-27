@@ -84,9 +84,10 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
-//updateFrom("WebTools",0) 
+//manualUpdate
+// until webtools aggregator file is up to date ("WebTools",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.3/S-3.9.3RC4-20180302093744/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.9.3/R-3.9.3-20180302093744/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group
 }
 
@@ -139,6 +140,6 @@ location orbit "http://download.eclipse.org/tools/orbit/S-builds/S20170804160030
 
 //updateFrom("EMF COMPARE",0)
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/releases/latest" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201709090201" {
 	org.eclipse.emf.compare.source.feature.group
 }
