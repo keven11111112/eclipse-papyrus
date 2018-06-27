@@ -161,18 +161,14 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouch
 	 *            a filename with the '/' as separation character
 	 * @return file for this element
 	 */
-	public IFile getFile(String filename) {
+	protected IFile getFile(String filename) {
 		String paths[] = filename.split(IPFileSystemAccess.SEP_CHAR);
-		IContainer packageContainer = getFolder(project, subFolderName);
 		try {
+			IContainer packageContainer = getFolder(project, subFolderName);
 			for (int i = 0; i < paths.length - 1; i++) {
 				String path = paths[i];
 				packageContainer = getFolder(packageContainer, path);
 				touched.put(packageContainer.getFullPath().toString(), true);
-				if (!packageContainer.exists()) {
-					// if packageContainer is a Project, it necessarily exists
-					((IFolder) packageContainer).create(false, true, null);
-				}
 			}
 			String last = paths[paths.length - 1];
 			return getFile(packageContainer, last);
@@ -188,18 +184,22 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouch
 	 *            a container (must be a project or a folder)
 	 * @param folderName
 	 *            the name of a sub-folder within the container. If null, original container is returned.
-	 * @return the sub-folder if it exists, null otherwise
+	 * @return the sub-folder, it will be created, if it does not exist
 	 */
-	public IContainer getFolder(IContainer container, String folderName) {
+	protected IContainer getFolder(IContainer container, String folderName) throws CoreException {
 		if (folderName == null) {
 			return container;
 		}
+		IFolder folder = null;
 		if (container instanceof IFolder) {
-			return ((IFolder) container).getFolder(folderName);
+			folder = ((IFolder) container).getFolder(folderName);
 		} else if (container instanceof IProject) {
-			return ((IProject) container).getFolder(folderName);
+			folder = ((IProject) container).getFolder(folderName);
 		}
-		return null;
+		if (folder != null && !folder.exists()) {
+			folder.create(false, true, null);
+		}
+		return folder;
 	}
 
 	/**
@@ -211,7 +211,7 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouch
 	 *            the name of a file within the container.
 	 * @return the file if it exists, null otherwise
 	 */
-	public IFile getFile(IContainer container, String fileName) {
+	protected IFile getFile(IContainer container, String fileName) {
 		if (container instanceof IFolder) {
 			return ((IFolder) container).getFile(fileName);
 		} else if (container instanceof IProject) {
@@ -229,12 +229,14 @@ public class ProjectBasedFileAccess implements IPFileSystemAccess, ICleanUntouch
 	 */
 	@Override
 	public void cleanUntouched(IFolder folder, IProgressMonitor monitor) throws CoreException {
-		for (IResource resource : folder.members()) {
-			if (resource instanceof IFolder) {
-				cleanUntouched((IFolder) resource, monitor);
-			}
-			if (!touched.containsKey(resource.getFullPath().toString())) {
-				resource.delete(false, monitor);
+		if (folder.exists()) {
+			for (IResource resource : folder.members()) {
+				if (resource instanceof IFolder) {
+					cleanUntouched((IFolder) resource, monitor);
+				}
+				if (!touched.containsKey(resource.getFullPath().toString())) {
+					resource.delete(false, monitor);
+				}
 			}
 		}
 	}
