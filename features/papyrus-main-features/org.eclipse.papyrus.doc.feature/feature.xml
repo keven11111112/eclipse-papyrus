@@ -79,6 +79,13 @@ released in the info center.
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+         
+   <plugin
+         id="org.eclipse.papyrus.infra.services.decoration.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
    <plugin
          id="org.eclipse.papyrus.infra.architecture.doc"
