@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Toolsmiths" sequenceNumber="1529861100">
+<target name="Papyrus Toolsmiths" sequenceNumber="1530111510">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.8.0.v20180612-0940"/>
@@ -18,7 +18,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.sdk.feature.group" version="4.8.0.v20180611-0826"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC4a-201806110500/"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.8/R-4.8-201806110500/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.4.0.v20180611-1119"/>

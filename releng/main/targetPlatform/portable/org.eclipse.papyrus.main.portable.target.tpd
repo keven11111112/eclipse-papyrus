@@ -22,9 +22,10 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestone
 	org.eclipse.uml2.sdk.feature.group
 }
 
-//updateFrom("Eclipse",0)
+//manualUpdate
+// Until it has been updated ("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.8milestones/S-4.8RC4a-201806110500/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.8/R-4.8-201806110500/" {
 	org.eclipse.sdk.feature.group
 }
 
