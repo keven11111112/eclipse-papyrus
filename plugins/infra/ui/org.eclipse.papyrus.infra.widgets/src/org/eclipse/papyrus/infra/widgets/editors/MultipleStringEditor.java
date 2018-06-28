@@ -256,7 +256,7 @@ public class MultipleStringEditor<T extends StringSelector> extends MultipleValu
 	}
 
 	public void setContentProvider(final IStaticContentProvider provider) {
-		StandardSelector selector = new StandardSelector(StringCombo.class) {
+		StandardSelector selector = new StandardSelector(StringCombo::new) {
 
 			@Override
 			public void createControls(Composite parent) {
