@@ -134,11 +134,6 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 						if (MinDistancetop > (currentSelectedConnectionPosition.y - currentConnectionPosition.y)) {
 							MinDistancetop = (currentSelectedConnectionPosition.y - currentConnectionPosition.y);
 						}
-					} else {
-						// selected Message is above the currentConnection
-						if (MinDistancebottom > (currentConnectionPosition.y - currentSelectedConnectionPosition.y)) {
-							MinDistancebottom = (currentConnectionPosition.y - currentSelectedConnectionPosition.y);
-						}
 					}
 				}
 
