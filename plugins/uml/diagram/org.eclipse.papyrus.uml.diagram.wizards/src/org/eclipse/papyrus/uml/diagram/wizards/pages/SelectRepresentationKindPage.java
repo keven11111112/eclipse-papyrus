@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2017 Obeo, Christian W. Damus, and others.
+ * Copyright (c) 2008, 2017, 2018 Obeo, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,7 @@
  *     Tatiana Fesenko(CEA) - improved look&feel
  *     Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
  *     Christian W. Damus - bug 471453
+ *     Pauline DEVILLE (CEA LIST) - Bug 493312 - [Wizard] Apply multiple profiles in new model wizard 
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
@@ -183,8 +184,22 @@ public class SelectRepresentationKindPage extends WizardPage {
 		});
 	}
 
+	/**
+	 * @deprecated Since 3.1 
+	 * Use getProfilesURI() instead
+	 */
 	public String getProfileURI() {
 		return profileChooserComposite.getProfileURI();
+	}
+
+	/**
+	 * Get choose profiles
+	 * @return the list of selected profiles
+	 * 
+	 * @since 3.1
+	 */
+	public List<String> getProfilesURI() {
+		return profileChooserComposite.getProfilesURI();
 	}
 
 	/**

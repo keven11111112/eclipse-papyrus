@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2017 Obeo, CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2008, 2017, 2018 Obeo, CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,8 @@
  *     Christian W. Damus (CEA) - create models by URI, not IFile (CDO)
  *     Christian W. Damus (CEA) - Support creating models in repositories (CDO)
  *     Christian W. Damus - bugs 490936, 471453
- *
+ *	   Pauline DEVILLE (CEA LIST) - Bug 493312 - [Wizard] Apply multiple profiles in new model wizard 
+ *   
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.wizards;
 
@@ -351,7 +352,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	private void initProfile(ModelSet modelSet) {
-		boolean isToApplyProfile = selectRepresentationKindPage.getProfileURI() != null;
+		boolean isToApplyProfile = !selectRepresentationKindPage.getProfilesURI().isEmpty();
 		boolean isProfileDefined = selectRepresentationKindPage.getProfileDefinitionStatus().isOK();
 		if (isToApplyProfile & isProfileDefined) {
 			applyProfile(modelSet);
@@ -543,15 +544,20 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	protected void applyProfile(ModelSet modelSet) {
-		String profilePath = selectRepresentationKindPage.getProfileURI();
-		Resource resource = modelSet.getResource(URI.createURI(profilePath), true);
-		Profile profileToApply = (Profile) resource.getContents().get(0);
+		List<String> profilePath = selectRepresentationKindPage.getProfilesURI();
+		CompoundCommand cc = new CompoundCommand();
+		for (String pp : profilePath) {
+			Resource resource = modelSet.getResource(URI.createURI(pp), true);
+			Profile profileToApply = (Profile) resource.getContents().get(0);
 
-		Resource myModelUMLResource = UmlUtils.getUmlResource(modelSet);
-		org.eclipse.uml2.uml.Package manipulatedModel = (org.eclipse.uml2.uml.Package) myModelUMLResource.getContents().get(0);
+			Resource myModelUMLResource = UmlUtils.getUmlResource(modelSet);
+			org.eclipse.uml2.uml.Package manipulatedModel = (org.eclipse.uml2.uml.Package) myModelUMLResource.getContents().get(0);
 
-		RecordingCommand applyProfileCommand = new ApplyProfileCommand(manipulatedModel, profileToApply, modelSet.getTransactionalEditingDomain());
-		getCommandStack(modelSet).execute(applyProfileCommand);
+			cc.append(new ApplyProfileCommand(manipulatedModel, profileToApply, modelSet.getTransactionalEditingDomain()));
+		}
+		if (cc.canExecute()) {
+			getCommandStack(modelSet).execute(cc);
+		}
 	}
 
 	protected void applyTemplateTransfo(ModelSet modelSet) {
