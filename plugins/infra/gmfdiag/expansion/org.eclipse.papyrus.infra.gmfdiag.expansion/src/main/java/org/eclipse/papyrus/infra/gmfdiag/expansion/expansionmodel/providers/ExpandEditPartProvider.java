@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,8 +8,8 @@
  *
  * Contributors:
  *
- *		CEA LIST - Initial API and implementation
- *
+ *	CEA LIST - Initial API and implementation
+ *  Benoit Maggi (CEA) - Bug 536581   
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.providers;
 
@@ -52,10 +52,10 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 	//	private static final boolean DEBUG_EXPANSION = "true".equalsIgnoreCase(Platform.getDebugOption(
 	//			"org.eclipse.papyrus.infra.gmfdiag.common/debug/expansion"));
 	/** Map containing node view types supported by this provider */
-	protected Map<String, Class<?>> nodeMap = new HashMap<String, Class<?>>();
+	protected Map<String, Class<?>> nodeMap = new HashMap<>();
 
 	/** Map containing edge view types supported by this provider */
-	protected Map<String, Class<?>> edgeMap = new HashMap<String, Class<?>>();
+	protected Map<String, Class<?>> edgeMap = new HashMap<>();
 
 	private DiagramExpansionsRegistry diagramExpansionRegistry=null;
 
@@ -67,14 +67,15 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 	}
 
 	protected String getDiagramType(View currentView) {
-		Diagram diagram=currentView.getDiagram();
 		String currentDiagramType=null;
-		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
-		if(viewPrototype!=null){
-			currentDiagramType=viewPrototype.getLabel();
-		}
-		else{
-			currentDiagramType=diagram.getType();
+		Diagram diagram=currentView.getDiagram();
+		if (diagram != null) {
+			ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
+			if(viewPrototype!=null){
+				currentDiagramType=viewPrototype.getLabel();
+			} else{
+				currentDiagramType=diagram.getType();
+			}		
 		}
 		return currentDiagramType;
 	}
@@ -123,8 +124,7 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 		if ((currentDiagramType == null) || (diagramExpansionRegistry.getUsage(currentDiagramType)==null)) {
 			return null;
 		}
-
-
+		
 		String graphicalType = view.getType();
 		Activator.log.trace(Activator.EXPANSION_TRACE,this.getClass().getName()+" view appears with the type "+graphicalType);//$NON-NLS-1$
 		EObject eObject= diagramExpansionRegistry.mapChildreen.get(currentDiagramType).IDMap.get(graphicalType);
@@ -178,7 +178,6 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 	private IGraphicalEditPart createNewGraphicEditPart(Class editpartClass, Object[] constructorParams) {
 		try {
 			Constructor constructor = getCreationConstructor(editpartClass);
-
 			return (constructor == null)? null : (IGraphicalEditPart) constructor.newInstance(constructorParams);
 		} 
 		catch (Throwable e) {

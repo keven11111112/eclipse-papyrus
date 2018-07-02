@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - bug 422257
  *  Christian W. Damus - bugs 463156, 493030
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 519409
+ *  Benoit Maggi (CEA) - Bug 536581   
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
 
@@ -75,30 +76,33 @@ public class PolicyChecker {
 	 * @since 2.0
 	 */
 	public static PolicyChecker getFor(EObject object) {
-		if (object.eResource() != null)
+		if (object!= null && object.eResource() != null) {
 			return getFor(object.eResource());
-		else
+		} else {
 			return getFor(ArchitectureDomainManager.getInstance().getDefaultArchitectureContext());
+		}
 	}
 
 	/**
 	 * @since 2.0
 	 */
 	public static PolicyChecker getFor(Resource resource) {
-		if (resource.getResourceSet() != null)
+		if (resource != null && resource.getResourceSet() != null) {
 			return getFor(resource.getResourceSet());
-		else
+		} else {
 			return getFor(ArchitectureDomainManager.getInstance().getDefaultArchitectureContext());
+		}
 	}
 
 	/**
 	 * @since 2.0
 	 */
 	public static PolicyChecker getFor(ResourceSet resourceSet) {
-		if (resourceSet instanceof ModelSet)
+		if (resourceSet instanceof ModelSet) {
 			return getFor((ModelSet) resourceSet);
-		else
+		} else {
 			return getFor(ArchitectureDomainManager.getInstance().getDefaultArchitectureContext());
+		}
 	}
 
 	/**
