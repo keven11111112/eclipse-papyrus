@@ -269,7 +269,7 @@
 		<feature name="org.eclipse.papyrus.uml.alf.feature" version="3.0.0"/>
 		<feature name="org.eclipse.papyrus.infra.discovery.feature" version="3.0.0"/>
 		<feature name="org.eclipse.papyrus.views.validation.feature" version="2.0.0"/>
-		<feature name="org.eclipse.papyrus.doc.feature" version="3.0.0"/>
+		<feature name="org.eclipse.papyrus.doc.feature" version="3.1.0"/>
 		<feature name="org.eclipse.papyrus.views.search.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.uml.search.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.uml.xtext.integration.feature" version="2.0.0"/>
