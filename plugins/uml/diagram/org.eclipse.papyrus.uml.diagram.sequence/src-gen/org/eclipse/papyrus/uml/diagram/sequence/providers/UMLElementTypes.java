@@ -35,6 +35,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
@@ -227,6 +229,18 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType DurationConstraint_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationConstraint_Edge"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DurationObservation_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationObservation_Edge"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		return elementTypeImages.getImageDescriptor(element);
 	}
@@ -319,6 +333,10 @@ public class UMLElementTypes {
 			elements.put(GeneralOrdering_Edge, UMLPackage.eINSTANCE.getGeneralOrdering());
 
 			elements.put(Constraint_ContextEdge, UMLPackage.eINSTANCE.getConstraint_Context());
+
+			elements.put(DurationConstraint_Edge, UMLPackage.eINSTANCE.getDurationConstraint());
+
+			elements.put(DurationObservation_Edge, UMLPackage.eINSTANCE.getDurationObservation());
 		}
 		return elements.get(type);
 	}
@@ -364,6 +382,8 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Constraint_ConstrainedElementEdge);
 			KNOWN_ELEMENT_TYPES.add(GeneralOrdering_Edge);
 			KNOWN_ELEMENT_TYPES.add(Constraint_ContextEdge);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Edge);
+			KNOWN_ELEMENT_TYPES.add(DurationObservation_Edge);
 		}
 
 		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
@@ -440,6 +460,10 @@ public class UMLElementTypes {
 				return GeneralOrdering_Edge;
 			case ContextLinkEditPart.VISUAL_ID:
 				return Constraint_ContextEdge;
+			case DurationConstraintLinkEditPart.VISUAL_ID:
+				return DurationConstraint_Edge;
+			case DurationObservationLinkEditPart.VISUAL_ID:
+				return DurationObservation_Edge;
 			}
 		}
 		return null;

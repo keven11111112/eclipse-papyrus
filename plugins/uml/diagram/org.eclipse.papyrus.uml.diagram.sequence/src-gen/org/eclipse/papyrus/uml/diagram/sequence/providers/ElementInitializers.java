@@ -26,7 +26,9 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Duration;
+import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationInterval;
+import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionUse;
@@ -288,6 +290,34 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_DurationConstraint_Edge(DurationConstraint instance) {
+		try {
+			Object value_0 = name_DurationConstraint_Edge(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_DurationObservation_Edge(DurationObservation instance) {
+		try {
+			Object value_0 = name_DurationObservation_Edge(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_Interaction_Shape(Interaction it) {
 		return getNamedElement(it, "", it.eClass().getName(), "");
 	}
@@ -373,6 +403,20 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_GeneralOrdering_Edge(GeneralOrdering it) {
+		return getNamedElement(it, "", it.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DurationConstraint_Edge(DurationConstraint it) {
+		return getNamedElement(it, "", it.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DurationObservation_Edge(DurationObservation it) {
 		return getNamedElement(it, "", it.eClass().getName(), "");
 	}
 

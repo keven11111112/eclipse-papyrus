@@ -211,6 +211,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConstraintContextAppliedStereotypeEditPart.VISUAL_ID:
 				return new ConstraintContextAppliedStereotypeEditPart(view);
 
+			case DurationConstraintLinkEditPart.VISUAL_ID:
+				return new DurationConstraintLinkEditPart(view);
+
+			case DurationObservationLinkEditPart.VISUAL_ID:
+				return new DurationObservationLinkEditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);

@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
- * 
+ * Copyright (c) 2017 - 2018 CEA LIST, EclipseSource and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,8 +9,8 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - bug 527259
+ *   EclipseSource - Bug 536488, 536489
  *****************************************************************************/
-
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -23,11 +23,12 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationInterval;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -40,7 +41,7 @@ public class DurationConstraintEditHelperAdvice extends AbstractEditHelperAdvice
 	/**
 	 * Add Duration value to the created Duration Interval
 	 * Set name with prefix
-	 * 
+	 *
 	 * @param durationInterval
 	 */
 	private void initDurationInterval(final DurationInterval durationInterval) {
@@ -63,47 +64,80 @@ public class DurationConstraintEditHelperAdvice extends AbstractEditHelperAdvice
 		maxDuration.setExpr(UMLFactory.eINSTANCE.createLiteralInteger());
 	}
 
-
 	/**
-	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterEditCommand(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
+	 * <p>
+	 * Configure the new DurationConstraint with
+	 * </p>
 	 *
-	 * @param request
 	 * @return
 	 */
 	@Override
-	public ICommand getAfterEditCommand(final IEditCommandRequest request) {
-
-		ICommand composite = new CompositeCommand("After Edit Command of DurationConstraint");// $NON-NLS-0$
-
-		if (null != super.getAfterEditCommand(request) && super.getAfterEditCommand(request).canExecute()) {
-			composite.compose(super.getAfterEditCommand(request));
+	protected ICommand getAfterConfigureCommand(ConfigureRequest request) {
+		ICommand composite = new CompositeCommand("After Configure Command of DurationConstraint");// $NON-NLS-0$
+		ICommand afterConfigureCommand = super.getAfterConfigureCommand(request);
+		if (null != afterConfigureCommand && afterConfigureCommand.canExecute()) {
+			composite.compose(afterConfigureCommand);
 		}
 
+		EObject toConfigure = request.getElementToConfigure();
+		if (false == toConfigure instanceof DurationConstraint) {
+			return composite;
+		}
+
+		DurationConstraint constraint = (DurationConstraint) toConfigure;
+
 		// Create the command to initialize Duration Interval in case of Duration Constraint
-		final ICommand command = new AbstractTransactionalCommand(request.getEditingDomain(), "Init DurationConstraint", null) {// $NON-NLS-0$
+		final ICommand initInterval = new AbstractTransactionalCommand(request.getEditingDomain(), "Init DurationConstraint Specification", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				if (request instanceof ConfigureRequest) {
-					ConfigureRequest configRequest = (ConfigureRequest) request;
-					EObject element = configRequest.getElementToConfigure();
-					if (element instanceof DurationConstraint) {
-						if (((DurationConstraint) element).getSpecification() instanceof DurationInterval) {
-							// initialize Duration Interval
-							initDurationInterval((DurationInterval) ((DurationConstraint) element).getSpecification());
-						}
-					}
+				if (constraint.getSpecification() instanceof DurationInterval) {
+					// initialize Duration Interval
+					initDurationInterval((DurationInterval) constraint.getSpecification());
 				}
 				return CommandResult.newOKCommandResult();
-
 			}
 		};
 
+		composite.compose(initInterval);
 
-		if (command.canExecute()) {
-			composite.compose(command);
+		// Create the command to initialize the ConstrainedElement (Multiplicity [1..2]
+		Element source = getSourceElement(request);
+		Element target = getTargetElement(request);
+
+		if (source != null && target != null) {
+			final ICommand initConstrainedElements = new AbstractTransactionalCommand(request.getEditingDomain(), "Init DurationConstraint constrained elements", null) {
+
+				@Override
+				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+					constraint.getConstrainedElements().add(0, source);
+					constraint.getConstrainedElements().add(1, target);
+					return CommandResult.newOKCommandResult();
+				}
+			};
+
+			composite.compose(initConstrainedElements);
 		}
+
 		return composite;
+	}
+
+	protected Element getSourceElement(ConfigureRequest request) {
+		Object paramObject = request.getParameter(CreateRelationshipRequest.SOURCE);
+		if (paramObject instanceof Element) {
+			return (Element) paramObject;
+		}
+
+		return null;
+	}
+
+	protected Element getTargetElement(ConfigureRequest request) {
+		Object paramObject = request.getParameter(CreateRelationshipRequest.TARGET);
+		if (paramObject instanceof Element) {
+			return (Element) paramObject;
+		}
+
+		return null;
 	}
 
 }
