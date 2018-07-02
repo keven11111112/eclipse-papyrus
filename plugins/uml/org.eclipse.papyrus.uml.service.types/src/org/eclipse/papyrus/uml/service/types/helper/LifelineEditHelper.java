@@ -60,7 +60,7 @@ public class LifelineEditHelper extends ElementEditHelper {
 
 			IElementType elementtype = createRequest.getElementType();
 
-			if (UMLPackage.eINSTANCE.getExecutionSpecification().isSuperTypeOf(elementtype.getEClass())) {
+			if (elementtype.getEClass() != null && UMLPackage.eINSTANCE.getExecutionSpecification().isSuperTypeOf(elementtype.getEClass())) {
 				Object containerParam = request.getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
 				if (containerParam instanceof Interaction || containerParam instanceof InteractionOperand) {
 

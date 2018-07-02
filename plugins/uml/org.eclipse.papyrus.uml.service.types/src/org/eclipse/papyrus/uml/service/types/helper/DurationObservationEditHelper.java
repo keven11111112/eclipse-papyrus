@@ -1,15 +1,13 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2018 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   EclipseSource - Initial API and implementation
  *
  *****************************************************************************/
 
@@ -21,23 +19,16 @@ import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateRelationshipCommandEx;
-import org.eclipse.uml2.uml.DurationConstraint;
+import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.ValueSpecification;
+import org.eclipse.uml2.uml.Package;
 
-public class DurationConstraintEditHelper extends ConstraintEditHelper {
-
-	@Override
-	protected ValueSpecification createSpecification() {
-		return UMLFactory.eINSTANCE.createDurationInterval();
-	}
+public class DurationObservationEditHelper extends ElementEditHelper {
 
 	/**
 	 * <p>
 	 * If the request is a {@link CreateRelationshipRequest}, configure it to indicate that
-	 * the {@link DurationConstraint} should be created as an {@link Interaction#getOwnedRules() ownedRule} in the {@link Interaction}.
+	 * the {@link DurationObservation} should be created as a {@link Package#getPackagedElements() packagedElement} in the nearest {@link Package}.
 	 * </p>
 	 */
 	@Override
@@ -48,10 +39,10 @@ public class DurationConstraintEditHelper extends ConstraintEditHelper {
 			CreateRelationshipRequest req = (CreateRelationshipRequest) request;
 			EObject container = req.getContainer();
 			if (req.getSource() != null && req.getTarget() != null) {
-				// Create in the interaction#ownedRules
-				Interaction interaction = findInteraction(req.getSource());
-				if (interaction != null) {
-					container = interaction;
+				// Create in the package#packagedElement
+				Package pkg = findPackage(req.getSource());
+				if (pkg != null) {
+					container = pkg;
 				}
 				req.setContainer(container);
 			}
@@ -60,24 +51,19 @@ public class DurationConstraintEditHelper extends ConstraintEditHelper {
 		super.configureRequest(request);
 	}
 
-	private Interaction findInteraction(EObject source) {
+	private Package findPackage(EObject source) {
 		if (source instanceof Element) {
 			Element element = (Element) source;
-			while (element != null) {
-				if (element instanceof Interaction) {
-					return (Interaction) element;
-				}
-				element = element.getOwner();
-			}
+			return element.getNearestPackage();
 		}
 		return null;
 	}
 
 	/**
 	 * <p>
-	 * Unlike other constraints, a DurationConstraint is a Constraint between two elements; so we support
+	 * A DurationObservation is an Observation between two named elements; so we support
 	 * creation as a Link. In the sequence diagram, this is currently (2018/07) the only supported way.
-	 * In the future, we may add support for DurationConstraints targetting a single element (The UML
+	 * In the future, we may add support for DurationObservations targetting a single named element (The UML
 	 * spec supports that; the multiplicity is [1..2]).
 	 * </p>
 	 */
