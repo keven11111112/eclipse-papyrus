@@ -12,7 +12,7 @@
 		<tychoExtrasVersion>1.2.0</tychoExtrasVersion>
 		<jarSignerVersion>1.1.5</jarSignerVersion>
 		<findbugs.version>3.0.1</findbugs.version>
-		<xtext.version>2.7.3</xtext.version>
+		<xtext.version>2.14.0</xtext.version>
 		<maven.resources.version>3.0.2</maven.resources.version>
 		<maven.clean.version>3.0.0</maven.clean.version>
 		<mojo.execmaven.version>1.6.0</mojo.execmaven.version>
@@ -100,6 +100,14 @@
 					<groupId>org.eclipse.xtend</groupId>
 					<artifactId>xtend-maven-plugin</artifactId>
 					<version>${xtext.version}</version>
+                                        <!-- patch to fix a signer issue - https://github.com/eclipse/xtext/issues/1231 -->
+					<dependencies>
+						<dependency>
+						    <groupId>org.eclipse.platform</groupId>
+						    <artifactId>org.eclipse.equinox.common</artifactId>
+						    <version>3.10.0</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 
                 <plugin>
