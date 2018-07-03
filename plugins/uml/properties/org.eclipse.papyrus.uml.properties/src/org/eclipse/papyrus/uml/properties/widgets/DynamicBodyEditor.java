@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea. fr - Bug 536594
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
@@ -132,7 +133,11 @@ public class DynamicBodyEditor extends AbstractValueEditor implements Listener {
 	}
 
 	private BodyEditor getEditor(String language) {
-		return LanguageRegistry.instance.getEditorFor(language);
+		final BodyEditor editor = LanguageRegistry.instance.getEditorFor(language);
+		if (editor instanceof LanguageBodyEditor && null != language) {
+			((LanguageBodyEditor) editor).setLanguage(language);
+		}
+		return editor;
 	}
 
 	private void disposeBodyEditor() {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2014, 2016 - 2018  CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -8,7 +8,8 @@
  *
  * SPDX-License-Identifier: EPL-2.0
  *
- *
+ * Contributors:
+ *  	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea. fr - Bug 536594
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.properties.xtext;
@@ -29,7 +30,7 @@ import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
 import org.eclipse.papyrus.infra.ui.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElement;
-import org.eclipse.papyrus.uml.properties.widgets.BodyEditor;
+import org.eclipse.papyrus.uml.properties.widgets.LanguageBodyEditor;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.StyledTextXtextAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
@@ -48,7 +49,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Listener;
 
-public class XtextLanguageEditor implements BodyEditor, IContextElementProvider {
+public class XtextLanguageEditor implements LanguageBodyEditor, IContextElementProvider {
 
 	protected StyledText textControl;
 
@@ -66,8 +67,15 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 
 	final private ContextElementAdapter contextElementAdapter = new ContextElementAdapter(this);
 
+	/**
+	 * the language of the current editor
+	 */
+	private String language = ""; //$NON-NLS-1$
+
+
+	@Override
 	public void createWidget(Composite parent, int style) {
-		undoRedoStack = new UndoRedoStack<ExtendedModifyEvent>();
+		undoRedoStack = new UndoRedoStack<>();
 		createTextControl(parent);
 	}
 
@@ -77,6 +85,7 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 
 		textControl.addFocusListener(new FocusListener() {
 
+			@Override
 			public void focusLost(FocusEvent e) {
 				IParser parser = getParser();
 				if (xtextAdapter == null) { // May happen under specific circumstances (See Bug 433647)
@@ -103,6 +112,7 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 				}
 			}
 
+			@Override
 			public void focusGained(FocusEvent e) {
 				// Nothing
 			}
@@ -114,6 +124,7 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 		// GridDataFactory.fillDefaults().grab(true, true).hint(parent.getSize()).applyTo(textControl);
 		textControl.addExtendedModifyListener(new ExtendedModifyListener() {
 
+			@Override
 			public void modifyText(ExtendedModifyEvent event) {
 				if (isUndo) {
 					undoRedoStack.pushRedo(event);
@@ -230,15 +241,27 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 	protected DefaultXtextDirectEditorConfiguration getConfigurationFromSelection() {
 		EObject semanticElement = getEObject();
 		if (semanticElement != null) {
+			String languagePreferred = this.language;
+			// check if we found a configuration
+			if (!languagePreferred.isEmpty()) {
+				IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticElement);
+				if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
+					DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) configuration;
+					xtextConfiguration.preEditAction(semanticElement);
+					return xtextConfiguration;
+				}
+				return null; // no configuration found for the current language
+			}
+
+			// no language defined, so we use the preference store
 			IPreferenceStore store = Activator.getDefault().getPreferenceStore();
 			String semanticClassName = semanticElement.eClass().getInstanceClassName();
 			String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticClassName;
-			String languagePreferred = store.getString(key);
+			languagePreferred = store.getString(key);
 
 			if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
 				IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticElement);
 				if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
-
 					DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) configuration;
 					xtextConfiguration.preEditAction(semanticElement);
 					return xtextConfiguration;
@@ -248,10 +271,12 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 		return null;
 	}
 
+	@Override
 	public EObject getContextObject() {
 		return getEObject();
 	}
 
+	@Override
 	public void setInput(String value) {
 		if (value != null) {
 			textControl.setText(value);
@@ -262,6 +287,7 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 		}
 	}
 
+	@Override
 	public void dispose() {
 		// dispose resources to avoid memory leaks
 		if (textControl != null) {
@@ -274,19 +300,24 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 		}
 	}
 
+	@Override
 	public void addChangeListener(Listener listener) {
 	}
 
+	@Override
 	public void removeChangeListener(Listener listener) {
 	}
 
+	@Override
 	public String getValue() {
 		return null;
 	}
 
+	@Override
 	public void setReadOnly(boolean readOnly) {
 	}
 
+	@Override
 	public void setContext(ModelElement context) {
 		if (context instanceof UMLModelElement) {
 			currentEObj = ((UMLModelElement) context).getSource();
@@ -299,5 +330,33 @@ public class XtextLanguageEditor implements BodyEditor, IContextElementProvider 
 	 */
 	protected EObject getEObject() {
 		return currentEObj;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.properties.widgets.LanguageBodyEditor#setLanguage(java.lang.String)
+	 *
+	 * @param language
+	 * @since 1.2.100
+	 */
+	@Override
+	public void setLanguage(final String language) {
+		if (null == this.language) {
+			this.language = ""; //$NON-NLS-1$
+		} else {
+			this.language = language;
+		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.properties.widgets.LanguageBodyEditor#getLanguage()
+	 *
+	 * @return
+	 *
+	 * @since 1.2.100
+	 *
+	 */
+	@Override
+	public String getLanguage() {
+		return this.language != null ? this.language : ""; //$NON-NLS-1$
 	}
 }
