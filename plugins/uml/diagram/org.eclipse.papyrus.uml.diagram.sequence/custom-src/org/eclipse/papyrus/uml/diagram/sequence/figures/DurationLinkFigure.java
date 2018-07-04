@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.PolylineDecoration;
@@ -189,7 +190,7 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	public boolean containsPoint(int x, int y) {
 		Rectangle topLine = new Rectangle(getStart(), getTopLineEnd());
 		topLine.expand(SELECTION_TOLERANCE, SELECTION_TOLERANCE);
-		if (topLine.contains(x, y)){
+		if (topLine.contains(x, y)) {
 			return true;
 		}
 
@@ -231,6 +232,11 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 			bounds.union(getBottomLineEnd());
 		}
 		return bounds;
+	}
+
+	@Override
+	public void setConnectionRouter(ConnectionRouter cr) {
+		// Skip; this figure doesn't support routers/bendpoints
 	}
 
 	/**

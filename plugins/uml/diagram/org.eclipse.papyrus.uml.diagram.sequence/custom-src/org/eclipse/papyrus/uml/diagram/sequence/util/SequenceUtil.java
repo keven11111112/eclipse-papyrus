@@ -534,6 +534,10 @@ public class SequenceUtil {
 				// get position from anchor id
 				String oldTerminal = ((IdentityAnchor) idAnchor).getId();
 				PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(oldTerminal);
+				if (pp == null) {
+					// Not a BaseSlidableAnchor
+					return null;
+				}
 				if (pp.preciseX() <= 1 && pp.preciseX() >= 0 && pp.preciseY() >= 0 && pp.preciseY() <= 1) {
 					int xPos = linkedPartBounds.x + delta.width + (int) Math.round(anchorOwningFigure.getBounds().width * pp.preciseX());
 					int yPos = linkedPartBounds.y + delta.height + (int) Math.round(anchorOwningFigure.getBounds().height * pp.preciseY());
