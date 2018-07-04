@@ -30,6 +30,7 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
@@ -55,6 +56,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.anchors.NodeBottomAnchor;
+import org.eclipse.papyrus.uml.diagram.sequence.anchors.NodeTopAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceReferenceEditPolicy;
@@ -76,6 +79,10 @@ import org.eclipse.swt.graphics.Color;
  */
 public abstract class AbstractExecutionSpecificationEditPart extends RoundedCompartmentEditPart {
 
+	/**
+	 * @deprecated since 5.1 this constant is not used anymore.
+	 */
+	@Deprecated
 	public static final String EXECUTION_FIX_ANCHOR_POSITION = "Execution Fix Anchor Position";
 	public static int DEFAUT_HEIGHT = 100;
 	public static int DEFAUT_WIDTH = 20;
@@ -232,15 +239,15 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	protected void moveExecutionSpecificationFeedback(ChangeBoundsRequest request, AbstractExecutionSpecificationEditPart movedPart, PrecisionRectangle rect, Rectangle originalBounds) {
 
 		// If this is a move to the top, the execution specification cannot be moved upper than the life line y position
-		if(request.getMoveDelta().y < 0) {
+		if (request.getMoveDelta().y < 0) {
 			EditPart parent = getParent();
-			if(parent instanceof CLifeLineEditPart) {
-				
+			if (parent instanceof CLifeLineEditPart) {
+
 				Point locationOnDiagram = CoordinateReferentialUtils.transformPointFromScreenToDiagramReferential(originalBounds.getCopy().getLocation(), (GraphicalViewer) movedPart.getViewer());
-				Bounds parentBounds = BoundForEditPart.getBounds((Node)((CLifeLineEditPart)parent).getModel());
-				
+				Bounds parentBounds = BoundForEditPart.getBounds((Node) ((CLifeLineEditPart) parent).getModel());
+
 				// This magic delta is needed to be at the bottom of the life line name
-				if((locationOnDiagram.y + request.getMoveDelta().y) < (parentBounds.getY() + 50)) {
+				if ((locationOnDiagram.y + request.getMoveDelta().y) < (parentBounds.getY() + 50)) {
 					Point loc = locationOnDiagram.getCopy();
 					loc.y = parentBounds.getY() + 50;
 					rect.setLocation(loc);
@@ -304,20 +311,18 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		Object fixPos = request.getExtendedData().get(EXECUTION_FIX_ANCHOR_POSITION);
-		if (fixPos != null && (fixPos.equals(PositionConstants.TOP) || fixPos.equals(PositionConstants.BOTTOM))) {
-			return new AnchorHelper.FixedAnchorEx(getFigure(), (Integer) fixPos);
-		}
 		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
-			for (Object obj : relationshipTypes) {
-				if (UMLElementTypes.Message_SynchEdge.equals(obj)) {
+			for (Object type : relationshipTypes) {
+				if (UMLElementTypes.Message_SynchEdge.equals(type)) {
 					// Sync Message
 					if (!createRequest.getTargetEditPart().equals(createRequest.getSourceEditPart())) {
 						return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
 					}
 					// otherwise, this is a recursive call, let destination free
+				} else if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
+					return isStart(createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 				}
 			}
 		} else if (request instanceof ReconnectRequest) {
@@ -338,8 +343,29 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 					return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
 				}
 			}
+			if (isDurationLink(createRequest)) {
+				return isStart(createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+			}
 		}
 		return super.getTargetConnectionAnchor(request);
+	}
+
+	/**
+	 * Test whether the given request is closer to the start (top) or to the finish (bottom) point of the execution specification
+	 *
+	 * @param createRequest
+	 *            The create request
+	 * @return
+	 * 		<code>true</code> if the given request is closer to the top of the figure; false if it is closer to the bottom
+	 */
+	private boolean isStart(CreateRequest createRequest) {
+		Point location = createRequest.getLocation();
+		Rectangle bounds = getFigure().getBounds().getCopy();
+		getFigure().translateToAbsolute(bounds);
+
+		double distanceToTop = location.getDistance(bounds.getTop());
+		double distanceToBottom = location.getDistance(bounds.getBottom());
+		return distanceToTop < distanceToBottom;
 	}
 
 	/**
@@ -392,17 +418,15 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		Object fixPos = request.getExtendedData().get(EXECUTION_FIX_ANCHOR_POSITION);
-		if (fixPos != null && (fixPos.equals(PositionConstants.TOP) || fixPos.equals(PositionConstants.BOTTOM))) {
-			return new AnchorHelper.FixedAnchorEx(getFigure(), (Integer) fixPos);
-		}
 		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
-			for (Object obj : relationshipTypes) {
-				if (UMLElementTypes.Message_ReplyEdge.equals(obj)) {
+			for (Object type : relationshipTypes) {
+				if (UMLElementTypes.Message_ReplyEdge.equals(type)) {
 					// Reply Message
 					return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.BOTTOM);
+				} else if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
+					return isStart(createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 				}
 			}
 		} else if (request instanceof ReconnectRequest) {
@@ -412,8 +436,27 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 				// Reply Message
 				return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.BOTTOM);
 			}
+		} else if (request instanceof CreateConnectionViewRequest) {
+			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
+			if (isDurationLink(createRequest)) {
+				return isStart(createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+			}
 		}
 		return super.getSourceConnectionAnchor(request);
+	}
+
+	/**
+	 * @param createRequest
+	 * @return
+	 */
+	private boolean isDurationLink(CreateConnectionViewRequest createRequest) {
+		String semanticHint = createRequest.getConnectionViewDescriptor().getSemanticHint();
+		switch (semanticHint) {
+		case DurationConstraintLinkEditPart.VISUAL_ID:
+		case DurationObservationLinkEditPart.VISUAL_ID:
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -518,4 +561,5 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		}
 		super.showTargetFeedback(request);
 	}
+
 }

@@ -21,21 +21,20 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @since 3.0
  *
  */
-public class DurationConstraintEditHelperAdvice extends AbstractEditHelperAdvice {
+public class DurationConstraintEditHelperAdvice extends AbstractDurationEditHelperAdvice {
 
 
 	/**
@@ -122,21 +121,25 @@ public class DurationConstraintEditHelperAdvice extends AbstractEditHelperAdvice
 		return composite;
 	}
 
-	protected Element getSourceElement(ConfigureRequest request) {
-		Object paramObject = request.getParameter(CreateRelationshipRequest.SOURCE);
-		if (paramObject instanceof Element) {
-			return (Element) paramObject;
-		}
-
-		return null;
+	/**
+	 * @see org.eclipse.papyrus.uml.service.types.helper.advice.AbstractDurationEditHelperAdvice#getDurationCreationContainer(org.eclipse.uml2.uml.Element)
+	 *
+	 * @param targetElement
+	 * @return
+	 */
+	@Override
+	protected Element getDurationCreationContainer(Element targetElement) {
+		return findInteraction(targetElement);
 	}
 
-	protected Element getTargetElement(ConfigureRequest request) {
-		Object paramObject = request.getParameter(CreateRelationshipRequest.TARGET);
-		if (paramObject instanceof Element) {
-			return (Element) paramObject;
+	protected Interaction findInteraction(Element source) {
+		Element element = source;
+		while (element != null) {
+			if (element instanceof Interaction) {
+				return (Interaction) element;
+			}
+			element = element.getOwner();
 		}
-
 		return null;
 	}
 

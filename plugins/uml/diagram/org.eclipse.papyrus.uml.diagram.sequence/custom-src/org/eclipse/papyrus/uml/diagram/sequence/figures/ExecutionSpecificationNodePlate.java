@@ -64,4 +64,14 @@ public class ExecutionSpecificationNodePlate extends LinkLFSVGNodePlateFigure im
 		}
 		return super.getConnectionAnchor(terminal);
 	}
+
+	@Override
+	public String getConnectionAnchorTerminal(ConnectionAnchor c) {
+		if (c instanceof NodeTopAnchor) {
+			return AnchorConstants.START_TERMINAL;
+		} else if (c instanceof NodeBottomAnchor) {
+			return AnchorConstants.END_TERMINAL;
+		}
+		return super.getConnectionAnchorTerminal(c);
+	}
 }
