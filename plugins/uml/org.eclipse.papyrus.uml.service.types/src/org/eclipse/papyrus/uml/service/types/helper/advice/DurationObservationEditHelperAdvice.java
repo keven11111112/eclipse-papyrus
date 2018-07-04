@@ -19,13 +19,13 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
+import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.uml2.uml.DurationObservation;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
-public class DurationObservationEditHelperAdvice extends AbstractEditHelperAdvice {
+public class DurationObservationEditHelperAdvice extends AbstractDurationEditHelperAdvice {
 
 	@Override
 	protected ICommand getAfterConfigureCommand(ConfigureRequest request) {
@@ -63,22 +63,21 @@ public class DurationObservationEditHelperAdvice extends AbstractEditHelperAdvic
 		return composite;
 	}
 
-	protected NamedElement getSourceElement(ConfigureRequest request) {
-		Object paramObject = request.getParameter(CreateRelationshipRequest.SOURCE);
-		if (paramObject instanceof NamedElement) {
-			return (NamedElement) paramObject;
-		}
-
-		return null;
+	@Override
+	protected NamedElement getSourceElement(AbstractEditCommandRequest request) {
+		Element source = super.getSourceElement(request);
+		return source instanceof NamedElement ? (NamedElement) source : null;
 	}
 
-	protected NamedElement getTargetElement(ConfigureRequest request) {
-		Object paramObject = request.getParameter(CreateRelationshipRequest.TARGET);
-		if (paramObject instanceof NamedElement) {
-			return (NamedElement) paramObject;
-		}
+	@Override
+	protected NamedElement getTargetElement(AbstractEditCommandRequest request) {
+		Element target = super.getTargetElement(request);
+		return target instanceof NamedElement ? (NamedElement) target : null;
+	}
 
-		return null;
+	@Override
+	protected Element getDurationCreationContainer(Element targetElement) {
+		return targetElement.getNearestPackage();
 	}
 
 }

@@ -17,10 +17,13 @@
 package org.eclipse.papyrus.uml.service.types.utils;
 
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * Constants used in the sequence diagram
- * 
+ *
  * @since 3.0
  */
 public interface SequenceRequestConstant {
@@ -33,7 +36,7 @@ public interface SequenceRequestConstant {
 
 	/**
 	 * Add in the request that a element cover another element.
-	 * 
+	 *
 	 * @deprecated Since version 3.1, use the {@link #COVERED_LIFELINES}, instead.
 	 * @see RequestParameterUtils#getCoveredLifelines(IEditCommandRequest)
 	 * @see RequestParameterUtils#setCoveredLifelines(IEditCommandRequest, Iterable)
@@ -43,7 +46,7 @@ public interface SequenceRequestConstant {
 
 	/**
 	 * Hint providing a collection of covered lifelines ({@code {@literal Collection<Lifeline>}}).
-	 * 
+	 *
 	 * @since 4.0
 	 * @see RequestParameterUtils#getCoveredLifelines(IEditCommandRequest)
 	 * @see RequestParameterUtils#setCoveredLifelines(IEditCommandRequest, Iterable)
@@ -62,5 +65,31 @@ public interface SequenceRequestConstant {
 	public static final String REPLACE_EXECUTION_SPECIFICATION_START = "REPLACE_EXECUTION_SPECIFICATION_START"; //$NON-NLS-1$
 	/** the finish of Execution specification can be replace by an event of a message */
 	public static final String REPLACE_EXECUTION_SPECIFICATION_FINISH = "REPLACE_EXECUTION_SPECIFICATION_FINISH"; //$NON-NLS-1$
+
+	/**
+	 * <p>
+	 * When creating a Relationship to an {@link ExecutionSpecification} or a {@link Message},
+	 * this parameter represents the target {@link OccurrenceSpecification}. It may be the start or finish
+	 * occurrence of an {@link ExecutionSpecification}, or the send or receive event of a {@link Message}.
+	 * </p>
+	 *
+	 * <p>
+	 * If this parameter is set, the source of the relationship should reference the {@link OccurrenceSpecification} rather than the original {@link Message} or {@link ExecutionSpecification}.
+	 * </p>
+	 */
+	public static final String SOURCE_OCCURRENCE = "Source Occurrence";
+
+	/**
+	 * <p>
+	 * When creating a Relationship to an {@link ExecutionSpecification} or a {@link Message},
+	 * this parameter represents the source {@link OccurrenceSpecification}. It may be the start or finish
+	 * occurrence of an {@link ExecutionSpecification}, or the send or receive event of a {@link Message}.
+	 * </p>
+	 *
+	 * <p>
+	 * If this parameter is set, the target of the relationship should reference the {@link OccurrenceSpecification} rather than the original {@link Message} or {@link ExecutionSpecification}.
+	 * </p>
+	 */
+	public static final String TARGET_OCCURRENCE = "Target Occurrence";
 
 }
