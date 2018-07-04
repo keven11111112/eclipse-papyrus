@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -21,6 +22,9 @@ import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.anchors.AnchorConstants;
+import org.eclipse.papyrus.uml.diagram.sequence.anchors.ConnectionSourceAnchor;
+import org.eclipse.papyrus.uml.diagram.sequence.anchors.ConnectionTargetAnchor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
@@ -177,5 +181,16 @@ public abstract class MessageFigure extends UMLEdgeFigure {
 	 */
 	public void setMapMode(IMapMode mapMode) {
 		this.mapMode = mapMode;
+	}
+
+
+	@Override
+	public ConnectionAnchor getConnectionAnchor(String terminal) {
+		if (AnchorConstants.START_TERMINAL.equals(terminal)) {
+			return new ConnectionSourceAnchor(this);
+		} else if (AnchorConstants.END_TERMINAL.equals(terminal)) {
+			return new ConnectionTargetAnchor(this);
+		}
+		return super.getConnectionAnchor(terminal);
 	}
 }

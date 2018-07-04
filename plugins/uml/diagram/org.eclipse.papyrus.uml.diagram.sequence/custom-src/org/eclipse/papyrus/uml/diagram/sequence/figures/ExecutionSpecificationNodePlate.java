@@ -18,6 +18,9 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.LinkLFSVGNodePlateFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.anchors.AnchorConstants;
+import org.eclipse.papyrus.uml.diagram.sequence.anchors.NodeBottomAnchor;
+import org.eclipse.papyrus.uml.diagram.sequence.anchors.NodeTopAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 
 /**
@@ -46,6 +49,12 @@ public class ExecutionSpecificationNodePlate extends LinkLFSVGNodePlateFigure im
 
 	@Override
 	public ConnectionAnchor getConnectionAnchor(String terminal) {
+		if (AnchorConstants.START_TERMINAL.equals(terminal)) {
+			return new NodeTopAnchor(this);
+		} else if (AnchorConstants.END_TERMINAL.equals(terminal)) {
+			return new NodeBottomAnchor(this);
+		}
+
 		// Use FixedAnchorEx for MessageSync, this will be invoked by mapConnectionAnchor(termial) operation.
 		if (terminal != null && terminal.indexOf("{") != -1 && terminal.indexOf("}") != -1) {
 			int position = AnchorHelper.FixedAnchorEx.parsePosition(terminal);
