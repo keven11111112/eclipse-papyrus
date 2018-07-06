@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2018 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.widgets.widgets;
@@ -56,7 +56,7 @@ import org.eclipse.ui.services.IDisposable;
 
 /**
  * The widget for the simple multi value (without selection widget).
- * 
+ *
  * @since 3.3
  */
 public class MultipleValueWidget implements ISelectionChangedListener, IDoubleClickListener, IElementSelectionListener, SelectionListener, IDisposable {
@@ -134,7 +134,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 	/**
 	 * The list of newly created objects.
 	 */
-	protected Set<Object> newObjects = new HashSet<Object>();
+	protected Set<Object> newObjects = new HashSet<>();
 
 
 	/**
@@ -197,7 +197,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 	public MultipleValueWidget(IElementSelector selector, boolean unique, boolean ordered, int upperBound) {
 		Assert.isNotNull(selector, "The element selector should be defined"); //$NON-NLS-1$
 		this.selector = selector;
-		allElements = unique ? new LinkedHashSet<Object>() : new LinkedList<Object>();
+		allElements = unique ? new LinkedHashSet<>() : new LinkedList<>();
 		this.unique = unique;
 		this.ordered = ordered;
 		this.upperBound = upperBound;
@@ -214,7 +214,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 
 	/**
 	 * Create the contents of the dialog
-	 * 
+	 *
 	 * @return
 	 * 		the the composite which encapsulate all the sub composite
 	 */
@@ -226,7 +226,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 
 	/**
 	 * Create the contents of the dialog
-	 * 
+	 *
 	 * @return
 	 * 		the the composite which encapsulate all the sub composite
 	 */
@@ -250,7 +250,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 
 	/**
 	 * This allows to create the sections of the dialog.
-	 * 
+	 *
 	 * @param parent
 	 *            The parent composite.
 	 */
@@ -308,7 +308,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.wizard.pages.MultipleValueSelectionWizard#createListSectionContentProvider()
 	 *
 	 * @return
@@ -401,7 +401,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 		IStructuredSelection selection = (IStructuredSelection) selectedElementsViewer.getSelection();
 
 		// We need a list to move objects. LinkedHashSet can't do that
-		java.util.List<Object> list = new LinkedList<Object>(allElements);
+		java.util.List<Object> list = new LinkedList<>(allElements);
 		for (Object o : selection.toArray()) {
 			int oldIndex = list.indexOf(o);
 			if (oldIndex > 0) {
@@ -424,7 +424,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 		IStructuredSelection selection = (IStructuredSelection) selectedElementsViewer.getSelection();
 
 		// We need a list to move objects. LinkedHashSet can't do that
-		java.util.List<Object> list = new LinkedList<Object>(allElements);
+		java.util.List<Object> list = new LinkedList<>(allElements);
 
 		int maxIndex = list.size() - 1;
 
@@ -525,7 +525,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 		ISelection selection = selectedElementsViewer.getSelection();
 		if (selection instanceof IStructuredSelection) {
 			final Iterator<?> selectedObjects = ((IStructuredSelection) selection).iterator();
-			List<Object> removedObjects = new ArrayList<Object>();
+			List<Object> removedObjects = new ArrayList<>();
 			while (selectedObjects.hasNext()) {
 				Object selectedObject = selectedObjects.next();
 				if (newObjects.contains(selectedObject)) {
@@ -570,7 +570,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 
 	public List<Object> getSelection() {
 		if (factory != null) {
-			java.util.List<Object> objectsToValidate = new LinkedList<Object>();
+			java.util.List<Object> objectsToValidate = new LinkedList<>();
 			for (Object object : newObjects) {
 				if (allElements.contains(object)) {
 					objectsToValidate.add(object);
@@ -579,7 +579,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 			factory.validateObjects(objectsToValidate);
 			selector.clearTemporaryElements();
 		}
-		return new LinkedList<Object>(allElements);
+		return new LinkedList<>(allElements);
 	}
 
 	@Override
@@ -622,7 +622,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 	}
 
 	/**
-	 * 
+	 *
 	 * @param up
 	 *            if <code>true</code> we try to move the element to the up, if <code>false</code> we try to move the element to the down
 	 * @return
@@ -633,7 +633,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		<code>true</code> if we can add elements
 	 */
@@ -655,7 +655,11 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 	}
 
 	public void setSelector(IElementSelector selector) {
+		if (null != this.selector) {
+			this.selector.removeElementSelectionListener(this);
+		}
 		this.selector = selector;
+		this.selector.addElementSelectionListener(this);
 	}
 
 	/**
@@ -698,7 +702,7 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		<code>true</code> if the selected elements can be removed (moved from right to left)
 	 */
@@ -722,11 +726,13 @@ public class MultipleValueWidget implements ISelectionChangedListener, IDoubleCl
 	 */
 	@Override
 	public void dispose() {
-		selector.removeElementSelectionListener(this);
+		if (null != this.selector) {
+			this.selector.removeElementSelectionListener(this);
+		}
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the initial selection
 	 */
