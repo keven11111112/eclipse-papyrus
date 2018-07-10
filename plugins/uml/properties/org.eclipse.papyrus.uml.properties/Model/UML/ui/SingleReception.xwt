@@ -42,5 +42,7 @@
 			property="UML:BehavioralFeature:method"></ppe:MultiReference>
 		<ppe:MultiReference input="{Binding}"
 			property="UML:BehavioralFeature:ownedParameter"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="UML:BehavioralFeature:raisedException"></ppe:MultiReference>
 	</Composite>
 </Composite>

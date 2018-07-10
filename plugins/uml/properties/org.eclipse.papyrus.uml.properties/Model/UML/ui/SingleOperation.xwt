@@ -45,5 +45,7 @@
 			property="UML:Operation:precondition"></ppe:MultiReference>
 		<ppe:MultiReference input="{Binding}"
 			property="UML:Operation:postcondition"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="UML:BehavioralFeature:raisedException"></ppe:MultiReference>
 	</Composite>
 </Composite>
