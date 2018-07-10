@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  CEA LIST - Bug 536876 - [Table] The menu "Select Stereotype Properties Column" make Eclipse (and Linux?!) freeze
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.menu;
@@ -21,6 +22,7 @@ import java.util.Map;
 
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypePropertyAxisManager;
+import org.eclipse.papyrus.uml.nattable.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -102,6 +104,12 @@ public class CreateColumnStereotypePropertyMenuFactory extends AbstractCreateSte
 			});
 		}
 
+		if (menu.getItemCount() == 0) {
+			// Bug 536876 - [Table] The menu "Select Stereotype Properties Column" make Eclipse (and Linux?!) freeze
+			final MenuItem menuItem = new MenuItem(menu, SWT.NONE);
+			menuItem.setText(Messages.CreateColumnAndRowStereotypePropertyMenuFactory_NoStereotypePropertyAvailable);
+			menuItem.setEnabled(false);
+		}
 		boolean enabled = menu.getItemCount() != 0;
 		menu.setEnabled(enabled);
 	}

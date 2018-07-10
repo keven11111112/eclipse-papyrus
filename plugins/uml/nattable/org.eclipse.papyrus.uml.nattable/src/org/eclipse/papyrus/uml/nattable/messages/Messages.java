@@ -20,6 +20,8 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.nattable.messages.messages"; //$NON-NLS-1$
 
+	public static String CreateColumnAndRowStereotypePropertyMenuFactory_NoStereotypePropertyAvailable;
+
 	public static String StereotypePropertyCellManager_SeveralStereotypesWithThisFeatureAreApplied;
 
 	public static String StereotypePropertyHeaderLabelProvider_RequiredProfileNotFound;
