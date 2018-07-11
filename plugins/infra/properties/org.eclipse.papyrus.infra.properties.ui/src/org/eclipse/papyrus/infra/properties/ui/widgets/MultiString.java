@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 527183
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
 
@@ -57,6 +58,30 @@ public class MultiString extends AbstractPropertyEditor {
 	 */
 	protected MultipleStringEditor createMultipleStringEditor(Composite parent, int style) {
 		return new MultipleStringEditor(parent, style);
+	}
+
+	/**
+	 * Set the direct creation on the TreeViewer.
+	 *
+	 * @param directCreationWithTreeViewer
+	 *
+	 * @since 3.3
+	 */
+	public void setDirectCreationWithTreeViewer(final boolean directCreationWithTreeViewer) {
+		if (null != editor) {
+			editor.setDirectCreationWithTreeViewer(directCreationWithTreeViewer);
+		}
+	}
+
+	/**
+	 * Returns the boolean for the direct creation on TreeViewer.
+	 *
+	 * @return the directCreation value.
+	 *
+	 * @since 3.3
+	 */
+	public boolean getDirectCreationWithTreeViewer() {
+		return null != editor ? editor.isDirectCreationWithTreeViewer() : false;
 	}
 
 	@Override
