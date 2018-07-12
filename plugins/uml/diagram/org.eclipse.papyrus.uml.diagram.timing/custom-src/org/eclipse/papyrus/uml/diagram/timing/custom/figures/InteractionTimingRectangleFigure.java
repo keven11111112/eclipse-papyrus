@@ -3,7 +3,9 @@
  *
  *
  * All rights reserved. This program and the accompanying materials
- * http://www.eclipse.org/legal/epl-v10.html
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
 *   Atos Origin - Initial API and implementation
