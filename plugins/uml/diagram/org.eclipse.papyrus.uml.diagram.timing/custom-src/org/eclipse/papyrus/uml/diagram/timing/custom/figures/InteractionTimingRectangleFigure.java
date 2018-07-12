@@ -1,15 +1,16 @@
 /*****************************************************************************
-* Copyright (c) 2016 CEA LIST.
- *
+ * Copyright (c) 2016 CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
+ * are made available unfer the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
-*   Atos Origin - Initial API and implementation
-*   Patrick Tessier (CEA LIST) - Initial API and implementation
+ * Atos Origin - Initial API and implementation
+ * Patrick Tessier (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.timing.custom.figures;
