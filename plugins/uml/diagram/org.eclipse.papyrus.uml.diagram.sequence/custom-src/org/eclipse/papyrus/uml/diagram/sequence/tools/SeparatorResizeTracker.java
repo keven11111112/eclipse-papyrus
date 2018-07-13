@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2018 EclipseSource and others.
+ * Copyright (c) 2018 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   EclipseSource - Initial API and implementation (Bug 533770)
+ *   EclipseSource - Initial API and implementation (Bug 533770, 537001)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tools;
@@ -30,7 +30,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.requests.MoveSeparatorRequest;
 public class SeparatorResizeTracker extends ResizeTracker {
 
 	private int separatorIndex;
-	private List<GraphicalEditPart> ownerChildren;
 
 	/**
 	 * Constructor.
@@ -40,7 +39,6 @@ public class SeparatorResizeTracker extends ResizeTracker {
 	 */
 	public SeparatorResizeTracker(GraphicalEditPart owner, int direction, int separatorIndex) {
 		super(owner, direction);
-		assert separatorIndex < ownerChildren.size() - 1; // Make sure the separator has at least one element above, and one below
 		this.separatorIndex = separatorIndex;
 	}
 
