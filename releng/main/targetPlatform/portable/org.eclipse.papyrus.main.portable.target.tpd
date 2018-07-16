@@ -129,7 +129,7 @@ location gef "http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.
 
 //manualUpdate (Needed by infra.tools, API Evolution Report generation and other plugins)
 
-location orbit "http://download.eclipse.org/tools/orbit/S-builds/S20170804160030/repository" {
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20180206163158/repository" {
 	com.google.guava 21.0.0
 	com.google.guava.source 21.0.0
 	com.google.gson 2.7.0

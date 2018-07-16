@@ -29,7 +29,6 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.23.1/v20170623-2012" {
 //updateFrom("EMF COMPARE",0) 
 
 location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201709090201" {
-	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
 
