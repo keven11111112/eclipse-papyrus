@@ -26,7 +26,6 @@ import java.util.WeakHashMap;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.e4.ui.css.core.impl.dom.CSSStyleRuleImpl;
 import org.eclipse.e4.ui.css.core.impl.sac.ExtendedSelector;
-import org.eclipse.e4.ui.css.xml.engine.CSSXMLEngineImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -37,6 +36,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.handler.IRefreshHandlerPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.handler.RefreshHandler;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.SVGPostProcessor;
+import org.eclipse.papyrus.internal.infra.gmfdiag.css.xml.engine.CSSXMLEngineImpl;
 import org.eclipse.ui.IEditorPart;
 import org.w3c.css.sac.SelectorList;
 import org.w3c.dom.Element;
@@ -97,11 +97,11 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 	 * Initializes this processor
 	 */
 	public CssSvgPostProcessor() {
-		engine = new CSSXMLEngineImpl();
-		relativePaths = new WeakHashMap<Resource, Map<String, URI>>();
-		loadedSheets = new ArrayList<URI>();
-		failedSheets = new ArrayList<URI>();
-		styledDocuments = new HashMap<SVGDocument, Map<Element, Map<String, String>>>();
+		engine = new CSSXMLEngineImpl(); // FIXME this has been cloned from the Platform_UI repository to fix a problem introduced by Bug 534764
+		relativePaths = new WeakHashMap<>();
+		loadedSheets = new ArrayList<>();
+		failedSheets = new ArrayList<>();
+		styledDocuments = new HashMap<>();
 		RefreshHandler.register(this);
 	}
 
@@ -202,7 +202,7 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 
 		Map<String, URI> resMap = relativePaths.get(model.eResource());
 		if (resMap == null) {
-			resMap = new HashMap<String, URI>();
+			resMap = new HashMap<>();
 			relativePaths.put(model.eResource(), resMap);
 		}
 		URI canonical = resMap.get(uri);
@@ -237,7 +237,7 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 		List<CSSStyleRule> rules = getAllRulesIn(engine.getDocumentCSS());
 		Map<Element, Map<String, String>> originals = styledDocuments.get(document);
 		if (originals == null) {
-			originals = new HashMap<Element, Map<String, String>>();
+			originals = new HashMap<>();
 			styledDocuments.put(document, originals);
 		}
 		applyStyles(document.getDocumentElement(), rules, originals);
@@ -268,7 +268,7 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 			style = getBaseStyle(element);
 			originals.put(element, style);
 		}
-		style = new HashMap<String, String>(style);
+		style = new HashMap<>(style);
 
 		// get the applicable CSS rules
 		List<CSSStyleRule> applicable = getApplicableRules(element, rules);
@@ -300,7 +300,7 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 	 * @return The CSS style rules
 	 */
 	private List<CSSStyleRule> getAllRulesIn(DocumentCSS css) {
-		List<CSSStyleRule> result = new ArrayList<CSSStyleRule>();
+		List<CSSStyleRule> result = new ArrayList<>();
 		for (int i = 0; i != css.getStyleSheets().getLength(); i++) {
 			StyleSheet ss = css.getStyleSheets().item(i);
 			if (ss instanceof CSSStyleSheet) {
@@ -326,7 +326,7 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 	 * @return The matching rules
 	 */
 	private List<CSSStyleRule> getApplicableRules(Element svgElement, List<CSSStyleRule> rules) {
-		List<CSSStyleRule> matching = new ArrayList<CSSStyleRule>();
+		List<CSSStyleRule> matching = new ArrayList<>();
 
 		// Matches the rules using the selectors
 		for (CSSStyleRule rule : rules) {
@@ -363,7 +363,7 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 				}
 			}
 		}
-		List<CSSStyleRule> result = new ArrayList<CSSStyleRule>();
+		List<CSSStyleRule> result = new ArrayList<>();
 		for (int i = 0; i != matching.size(); i++) {
 			if (available[i]) {
 				result.add(matching.get(i));
@@ -380,7 +380,7 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 	 * @return The styling properties in the DOM
 	 */
 	private Map<String, String> getBaseStyle(Element element) {
-		HashMap<String, String> result = new HashMap<String, String>();
+		HashMap<String, String> result = new HashMap<>();
 		String styleValue = element.getAttribute("style");
 		if (styleValue != null && !styleValue.isEmpty()) {
 			String[] props = styleValue.split(";");
