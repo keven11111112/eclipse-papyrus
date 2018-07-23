@@ -121,7 +121,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 			ExecutionSpecification exec = (ExecutionSpecification) ((AbstractExecutionSpecificationEditPart) getHost()).resolveSemanticElement();
 			// manage Strong references
 			fillStrongReferencesOfExecutionSpecification(exec);
-			
+
 			// manage weak references
 			// the weak reference is the next element associated to next event after the finish event.
 			if (exec.getCovereds().size() == 1) {
@@ -179,7 +179,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 			}
 		}
 	}
-	
+
 	/**
 	 * This method is used to add a weak reference from the next event after the given event
 	 *
@@ -194,9 +194,8 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 			if (nextEvent instanceof MessageOccurrenceSpecification && isOnlyMessageEnd((MessageOccurrenceSpecification) nextEvent)) {
 				addMessageIntoReferences((MessageEnd) nextEvent, weakReferences, NO_ROLE);
 			} else if (nextEvent instanceof OccurrenceSpecification) {
-				// TODO : To determinate
 				ExecutionSpecification subExecutionSpec = getExecutionSpecificationAssociatedToEvent((OccurrenceSpecification) nextEvent);
-				if(!subExecutionSpec.getFinish().equals(nextEvent)) {
+				if (null != subExecutionSpec && !subExecutionSpec.getFinish().equals(nextEvent)) {
 					addExecutionSpecIntoReferences((OccurrenceSpecification) nextEvent, weakReferences, NO_ROLE);
 				}
 			}
@@ -426,7 +425,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 	 * This allows to fill the string references of an execution specification with:
 	 * - The message end of start and/or finish
 	 * - Execution specifications defined between the start and the finish of the current execution specification
-	 * 
+	 *
 	 * @param exec
 	 *            The current execution specification.
 	 */
@@ -455,7 +454,7 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 					nextEvent = currentLifeline.getCoveredBys().get(index);
 					if (nextEvent instanceof OccurrenceSpecification) {
 						ExecutionSpecification subExecutionSpec = getExecutionSpecificationAssociatedToEvent((OccurrenceSpecification) nextEvent);
-						if(null != subExecutionSpec && null != subExecutionSpec.getStart() && !subExecutionSpec.equals(exec) && subExecutionSpec.getStart().equals(nextEvent)) {
+						if (null != subExecutionSpec && null != subExecutionSpec.getStart() && !subExecutionSpec.equals(exec) && subExecutionSpec.getStart().equals(nextEvent)) {
 							foundSubExecSpec = (OccurrenceSpecification) nextEvent;
 							addExecutionSpecIntoReferences(foundSubExecSpec, strongReferences, ROLE_START);
 						}
