@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.uml.alf/syntax-gen" modelPluginID="org.eclipse.papyrus.uml.alf"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=" Copyright (c) 2015 CEA LIST and others.&#xA;&#xA; All rights reserved. This program and the accompanying materials&#xA; are made available under the terms of the Eclipse Public License 2.0&#xA; which accompanies this distribution, and is available at&#xA; https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA; SPDX-License-Identifier: EPL-2.0&#xA;&#xA; Contributors:&#xA; CEA LIST - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.uml.alf/syntax-gen" modelPluginID="org.eclipse.papyrus.uml.alf"
     modelName="Alf" reflectiveDelegation="true" importerID="org.eclipse.emf.importer.ecore"
     featureDelegation="Reflective" complianceLevel="8.0" copyrightFields="false" operationReflection="true"
     importOrganizing="true">
@@ -161,6 +162,7 @@
       <genOperations ecoreOperation="alf.ecore#//ElementReference/ownedMembers"/>
       <genOperations ecoreOperation="alf.ecore#//ElementReference/members"/>
       <genOperations ecoreOperation="alf.ecore#//ElementReference/visibleMembers"/>
+      <genOperations ecoreOperation="alf.ecore#//ElementReference/nestedClassifiers"/>
       <genOperations ecoreOperation="alf.ecore#//ElementReference/properties"/>
       <genOperations ecoreOperation="alf.ecore#//ElementReference/associationEnds"/>
       <genOperations ecoreOperation="alf.ecore#//ElementReference/opposite"/>
@@ -185,6 +187,7 @@
       <genOperations ecoreOperation="alf.ecore#//ElementReference/parents"/>
       <genOperations ecoreOperation="alf.ecore#//ElementReference/allParents"/>
       <genOperations ecoreOperation="alf.ecore#//ElementReference/classifierBehavior"/>
+      <genOperations ecoreOperation="alf.ecore#//ElementReference/context"/>
       <genOperations ecoreOperation="alf.ecore#//ElementReference/appliedProfiles"/>
       <genOperations ecoreOperation="alf.ecore#//ElementReference/base"/>
       <genOperations ecoreOperation="alf.ecore#//ElementReference/reference"/>
@@ -298,6 +301,7 @@
       <genOperations ecoreOperation="alf.ecore#//InternalElementReference/visibility"/>
       <genOperations ecoreOperation="alf.ecore#//InternalElementReference/ownedMembers"/>
       <genOperations ecoreOperation="alf.ecore#//InternalElementReference/members"/>
+      <genOperations ecoreOperation="alf.ecore#//InternalElementReference/nestedClassifiers"/>
       <genOperations ecoreOperation="alf.ecore#//InternalElementReference/opposite"/>
       <genOperations ecoreOperation="alf.ecore#//InternalElementReference/signal"/>
       <genOperations ecoreOperation="alf.ecore#//InternalElementReference/parameters"/>
@@ -321,6 +325,7 @@
       <genOperations ecoreOperation="alf.ecore#//InternalElementReference/classifierBehavior"/>
       <genOperations ecoreOperation="alf.ecore#//InternalElementReference/appliedProfiles"/>
       <genOperations ecoreOperation="alf.ecore#//InternalElementReference/activeClass"/>
+      <genOperations ecoreOperation="alf.ecore#//InternalElementReference/context"/>
       <genOperations ecoreOperation="alf.ecore#//InternalElementReference/conformsTo">
         <genParameters ecoreParameter="alf.ecore#//InternalElementReference/conformsTo/other"/>
       </genOperations>
@@ -400,10 +405,9 @@
       <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/inherit">
         <genParameters ecoreParameter="alf.ecore#//ExternalElementReference/inherit/inheritableMembers"/>
       </genOperations>
+      <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/nestedClassifiers"/>
       <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/properties"/>
-      <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/memberEnds"/>
       <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/associationEnds"/>
-      <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/ownedEnds"/>
       <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/opposite"/>
       <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/signal"/>
       <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/namespace"/>
@@ -429,6 +433,7 @@
       <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/classifierBehavior"/>
       <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/appliedProfiles"/>
       <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/activeClass"/>
+      <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/context"/>
       <genOperations ecoreOperation="alf.ecore#//ExternalElementReference/conformsTo">
         <genParameters ecoreParameter="alf.ecore#//ExternalElementReference/conformsTo/other"/>
       </genOperations>
@@ -521,6 +526,9 @@
       <genOperations ecoreOperation="alf.ecore#//BoundElementReference/visibility"/>
       <genOperations ecoreOperation="alf.ecore#//BoundElementReference/ownedMembers"/>
       <genOperations ecoreOperation="alf.ecore#//BoundElementReference/members"/>
+      <genOperations ecoreOperation="alf.ecore#//BoundElementReference/nestedClassifiers"/>
+      <genOperations ecoreOperation="alf.ecore#//BoundElementReference/properties"/>
+      <genOperations ecoreOperation="alf.ecore#//BoundElementReference/associationEnds"/>
       <genOperations ecoreOperation="alf.ecore#//BoundElementReference/opposite"/>
       <genOperations ecoreOperation="alf.ecore#//BoundElementReference/signal"/>
       <genOperations ecoreOperation="alf.ecore#//BoundElementReference/parameters"/>
@@ -547,6 +555,7 @@
       <genOperations ecoreOperation="alf.ecore#//BoundElementReference/reference"/>
       <genOperations ecoreOperation="alf.ecore#//BoundElementReference/templateBinding"/>
       <genOperations ecoreOperation="alf.ecore#//BoundElementReference/activeClass"/>
+      <genOperations ecoreOperation="alf.ecore#//BoundElementReference/context"/>
       <genOperations ecoreOperation="alf.ecore#//BoundElementReference/isActiveBehavior"/>
       <genOperations ecoreOperation="alf.ecore#//BoundElementReference/conformsTo">
         <genParameters ecoreParameter="alf.ecore#//BoundElementReference/conformsTo/other"/>

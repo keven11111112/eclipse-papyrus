@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
-    modelDirectory="/org.eclipse.papyrus.infra.core.sashwindows.di/src-gen"
-    editDirectory="/org.eclipse.papyrus.infra.core.sashwindows.di.edit/src-gen" editorDirectory="/org.eclipse.papyrus.infra.core.sashwindows.di.editor/src-gen"
+    copyrightText=" Copyright (c) 2011 CEA LIST, LIFL, and others.&#xA;&#xA; All rights reserved. This program and the accompanying materials&#xA; are made available under the terms of the Eclipse Public License 2.0&#xA; which accompanies this distribution, and is available at&#xA; https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA; SPDX-License-Identifier: EPL-2.0&#xA;&#xA; Contributors:&#xA; LIFL - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.infra.core.sashwindows.di/src-gen" editDirectory="/org.eclipse.papyrus.infra.core.sashwindows.di.edit/src-gen"
+    editorDirectory="/org.eclipse.papyrus.infra.core.sashwindows.di.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.infra.core.sashwindows.di" modelName="Sashwindowsdi"
     codeFormatting="true" commentFormatting="true" testsDirectory="/org.eclipse.papyrus.infra.core.sashwindows.di.tests/src-gen"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="5.0" copyrightFields="false"

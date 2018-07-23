@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
-    copyrightText="Copyright (c) 2017 CEA LIST.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;&#x9;Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation"
+    copyrightText="Copyright (c) 2017 CEA LIST.&#xA;&#xA; All rights reserved. This program and the accompanying materials&#xA; are made available under the terms of the Eclipse Public License 2.0&#xA; which accompanies this distribution, and is available at&#xA; https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA; SPDX-License-Identifier: EPL-2.0&#xA;&#xA; Contributors:&#xA; Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation"
     modelDirectory="/org.eclipse.papyrus.uml.expressions/src-gen" creationIcons="false"
     creationSubmenus="true" editDirectory="/org.eclipse.papyrus.uml.expressions.edit/src-gen"
     editorDirectory="/org.eclipse.papyrus.uml.expressions.editor/src-gen" modelPluginID="org.eclipse.papyrus.uml.expressions"

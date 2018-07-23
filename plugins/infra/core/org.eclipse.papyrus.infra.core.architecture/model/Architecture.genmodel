@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2017 CEA LIST.&#xD;&#xA;&#xD;&#xA; All rights reserved. This program and the accompanying materials&#xD;&#xA; are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA; which accompanies this distribution, and is available at&#xD;&#xA; http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA; &#xD;&#xA; Contributors:&#xD;&#xA; Maged Elaasar - Initial API and implementation&#xD;&#xA; &#xD;&#xA;"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=" Copyright (c) 2017 CEA LIST and others.&#xA;&#xA; All rights reserved. This program and the accompanying materials&#xA; are made available under the terms of the Eclipse Public License 2.0&#xA; which accompanies this distribution, and is available at&#xA; https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA; SPDX-License-Identifier: EPL-2.0&#xA;&#xA; Contributors:&#xA; Maged Elaasar - Initial API and implementation"
     modelDirectory="/org.eclipse.papyrus.infra.core.architecture/src-gen" editDirectory="/org.eclipse.papyrus.infra.core.architecture.edit/src-gen"
     editorDirectory="/org.eclipse.papyrus.infra.core.architecture.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.infra.core.architecture" modelName="Architecture"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/org.eclipse.papyrus.infra.core.architecture.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types"
-    operationReflection="true" importOrganizing="true">
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>Architecture.ecore</foreignModel>
   <genPackages prefix="Architecture" basePackage="org.eclipse.papyrus.infra.core"
       disposableProviderFactory="true" extensibleProviderFactory="true" ecorePackage="Architecture.ecore#/">
