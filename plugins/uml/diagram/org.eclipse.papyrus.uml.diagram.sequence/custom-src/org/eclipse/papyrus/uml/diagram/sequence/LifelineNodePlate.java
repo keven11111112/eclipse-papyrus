@@ -78,7 +78,7 @@ public class LifelineNodePlate extends LinkLFSVGNodePlateFigure {
 			translateToRelative(temp);
 
 			// This allows to calculate the bounds corresponding to the node instead of the figure bounds
-			final Bounds bounds = BoundForEditPart.getBounds((Node)getGraphicalEditPart().getModel());
+			final Bounds bounds = BoundForEditPart.getBounds((Node) getGraphicalEditPart().getModel());
 			final Rectangle rectangle = new Rectangle(new Point(bounds.getX(), bounds.getY()), new Dimension(bounds.getWidth(), bounds.getHeight()));
 
 			PrecisionPoint pt = BaseSlidableAnchor.getAnchorRelativeLocation(temp, rectangle);
@@ -93,4 +93,13 @@ public class LifelineNodePlate extends LinkLFSVGNodePlateFigure {
 	protected boolean isDefaultAnchorArea(PrecisionPoint p) {
 		return false;
 	}
+
+	@Override
+	public boolean containsPoint(int x, int y) {
+		if (Math.abs(this.getBounds().x + this.getBounds().width / 2 - x) < 20) {
+			return super.containsPoint(x, y);
+		}
+		return false;
+	}
+
 }

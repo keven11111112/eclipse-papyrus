@@ -137,6 +137,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 	@Override
 	protected Request createTargetRequest() {
 		CreateAspectUnspecifiedTypeRequest request = new CreateAspectUnspecifiedTypeRequest(getElementTypes(), getPreferencesHint());
+		request.setLocation(getLocation());
 		return request;
 	}
 

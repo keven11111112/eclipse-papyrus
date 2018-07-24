@@ -24,6 +24,8 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -38,6 +40,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenc
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ILifelineInternalFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifeLineLayoutManager;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineNodeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.MessageCreateLifelineAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
@@ -61,6 +64,7 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	 * @since 4.0
 	 */
 	public static int MIN_HEIGHT = 100;
+	private EditPart activeCreateFeedbackEditPart;
 
 
 	/**
@@ -84,6 +88,11 @@ public class CLifeLineEditPart extends LifelineEditPart {
 			svgNodePlate.setDefaultNodePlate(createNodePlate());
 		}
 		return svgNodePlate;
+	}
+
+	@Override
+	protected NodeFigure createNodeFigure() {
+		return new LifelineNodeFigure(createMainFigureWithSVG());
 	}
 
 	/**
@@ -201,9 +210,66 @@ public class CLifeLineEditPart extends LifelineEditPart {
 				if (container != null) {
 					return container.getTargetEditPart(request);
 				}
+			} else if (UMLElementTypes.CombinedFragment_Shape.equals(req.getViewAndElementDescriptor().getElementAdapter().getAdapter(IElementType.class))
+					|| UMLElementTypes.InteractionUse_Shape.equals(req.getViewAndElementDescriptor().getElementAdapter().getAdapter(IElementType.class))) {
+				EditPart container = SequenceUtil.getInteractionCompartment(this);
+				if (container != null) {
+					return container.getTargetEditPart(request);
+				}
 			}
 		}
 
 		return super.getTargetEditPart(request);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void showTargetFeedback(Request request) {
+		if (request instanceof CreateUnspecifiedTypeRequest) {
+			((CreateUnspecifiedTypeRequest) request).getElementTypes().forEach(t -> {
+				CreateRequest req = ((CreateUnspecifiedTypeRequest) request).getRequestForType((IElementType) t);
+				EditPart targetEP = getTargetEditPart(req);
+				// as target EP may vary during time, moving along a lifeline, crossing several elements for example
+				// storing the target EP seems interesting.
+				if (activeCreateFeedbackEditPart != targetEP) {
+					// erase active feedback if any
+					if (activeCreateFeedbackEditPart != null) {
+						activeCreateFeedbackEditPart.eraseTargetFeedback(request);
+					}
+					activeCreateFeedbackEditPart = targetEP;
+				}
+				if (targetEP != this) {
+					targetEP.showTargetFeedback(request);
+				} else {
+					super.showTargetFeedback(request);
+				}
+			});
+			return;
+		}
+		super.showTargetFeedback(request);
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eraseTargetFeedback(Request request) {
+		if (request instanceof CreateUnspecifiedTypeRequest) {
+			((CreateUnspecifiedTypeRequest) request).getElementTypes().forEach(t -> {
+				CreateRequest req = ((CreateUnspecifiedTypeRequest) request).getRequestForType((IElementType) t);
+				EditPart targetEP = getTargetEditPart(req);
+				if (activeCreateFeedbackEditPart != null && activeCreateFeedbackEditPart != this) {
+					// erase active feedback from saved EP
+					activeCreateFeedbackEditPart.eraseTargetFeedback(request);
+					activeCreateFeedbackEditPart = null;
+				}
+				if (targetEP != this) {
+					targetEP.eraseTargetFeedback(request);
+				} else {
+					super.eraseTargetFeedback(request);
+				}
+			});
+			return;
+		}
+		super.eraseTargetFeedback(request);
 	}
 }

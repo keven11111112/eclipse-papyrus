@@ -28,7 +28,11 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateRequest;
@@ -39,9 +43,13 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CreateOrSelectElementCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -65,6 +73,28 @@ public class CustomInteractionOperandCreationEditPolicy extends DefaultCreationE
 		return super.getCommand(request);
 	}
 
+	@Override
+	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
+		// Used during the drop from the model explorer
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateViewAndElementRequest req = request;
+			ViewAndElementDescriptor descriptor = (req).getViewAndElementDescriptor();
+			IElementType elementType = descriptor.getElementAdapter().getAdapter(IElementType.class);
+			if (ElementUtil.isTypeOf(elementType, UMLDIElementTypes.COMBINED_FRAGMENT_SHAPE)) {
+				Rectangle boundsLifeline = getHostFigure().getBounds();
+				Point pointCombinedFragment = req.getLocation();
+
+				pointCombinedFragment.x = pointCombinedFragment.x + boundsLifeline.x;
+				pointCombinedFragment.y = pointCombinedFragment.y + boundsLifeline.y;
+
+				req.setLocation(pointCombinedFragment);
+
+				return SequenceUtil.getInteractionCompartment(getHost()).getCommand(req);
+			}
+		}
+		return super.getCreateElementAndViewCommand(request);
+	}
+
 	/**
 	 * When this is a {@link CreateUnspecifiedTypeRequest}, we need to check if the position needed by the user is on an ExecutionSpecification because this is not allowed by the UML Norm
 	 * but this will be possible graphically.
@@ -85,11 +115,6 @@ public class CustomInteractionOperandCreationEditPolicy extends DefaultCreationE
 			Request createRequest = request.getRequestForType(elementType);
 			if (createRequest != null) {
 				EditPart target = getHost().getTargetEditPart(createRequest);
-				// Don't re-target creation of an interaction fragment to a thing that
-				// cannot contain it
-				if (!UMLPackage.Literals.INTERACTION_FRAGMENT.isSuperTypeOf(elementType.getEClass())) {
-					target = SequenceUtil.getParentCombinedFragmentPart(target);
-				}
 				if (target == null) {
 					continue;
 				}
@@ -201,5 +226,14 @@ public class CustomInteractionOperandCreationEditPolicy extends DefaultCreationE
 
 			return new ICommandProxy(selectAndCreateViewCmd);
 		}
+	}
+
+	/**
+	 * Return the host's figure.
+	 * The super calls getFigure(). This is a problem when used with shapecompartments. Instead,
+	 * return getContextPane(). In shape comaprtments this will return the correct containing figure.
+	 */
+	protected IFigure getHostFigure() {
+		return ((GraphicalEditPart) getHost()).getContentPane();
 	}
 }
