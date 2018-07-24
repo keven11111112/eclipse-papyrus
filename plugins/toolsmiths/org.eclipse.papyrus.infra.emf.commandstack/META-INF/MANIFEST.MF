@@ -11,7 +11,7 @@ Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.emf.commandstack.Activator
-Bundle-Description: This plugin allows to show the command owned by the emf command stack
+Bundle-Description: This plugin allows to show the commands owned by the emf command stack
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.commandstack;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.eclipse.papyrus.infra.emf.commandstack

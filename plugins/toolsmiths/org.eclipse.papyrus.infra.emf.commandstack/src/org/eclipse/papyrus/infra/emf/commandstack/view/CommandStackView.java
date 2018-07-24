@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -51,9 +51,9 @@ public class CommandStackView extends AbstractTreeView {
 
 	private final IOperationHistory history;
 
-	private final List<IUndoableOperation> commandList = new ArrayList<IUndoableOperation>();
+	private final List<IUndoableOperation> commandList = new ArrayList<>();
 
-	private final Map<IUndoableOperation, String> dates = new HashMap<IUndoableOperation, String>();
+	private final Map<IUndoableOperation, String> dates = new HashMap<>();
 
 	private final IOperationHistoryListener historyListener;
 
@@ -69,7 +69,7 @@ public class CommandStackView extends AbstractTreeView {
 						dates.remove(removedOperation);
 					}
 					CommandStackView.this.commandList.add(0, event.getOperation());
-					final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+					final DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss"); //$NON-NLS-1$
 					final Calendar cal = Calendar.getInstance();
 					CommandStackView.this.dates.put(event.getOperation(), dateFormat.format(cal.getTime()));
 					refresh(true);
@@ -120,7 +120,7 @@ public class CommandStackView extends AbstractTreeView {
 
 			@Override
 			public String getText() {
-				return "Clear the view";
+				return "Clear the view"; //$NON-NLS-1$
 			}
 		});
 	}
@@ -133,7 +133,7 @@ public class CommandStackView extends AbstractTreeView {
 				return element.getClass().getName();
 			}
 		};
-		createColumn("Type", "TYPE_COLUMN_ID", 200, columnLabelProvider);
+		createColumn("Type", "TYPE_COLUMN_ID", 200, columnLabelProvider); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	protected void createNameColumn() {
@@ -144,7 +144,7 @@ public class CommandStackView extends AbstractTreeView {
 				return CommandUtils.getLabel(element);
 			}
 		};
-		createColumn("Name", "NAME_COLUMN_ID", 200, columnLabelProvider);
+		createColumn("Name", "NAME_COLUMN_ID", 200, columnLabelProvider); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	protected void createUndoContextColumn() {
@@ -155,10 +155,10 @@ public class CommandStackView extends AbstractTreeView {
 				if (element instanceof IUndoableOperation) {
 					return Boolean.toString(isValidUndoContext((IUndoableOperation) element));
 				}
-				return "?";
+				return "?"; //$NON-NLS-1$
 			}
 		};
-		createColumn("EMF Command Stack", "UNDO_CONTEXT_COLUMN_ID", 100, columnLabelProvider);
+		createColumn("EMF Command Stack", "UNDO_CONTEXT_COLUMN_ID", 100, columnLabelProvider); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	protected void createDescriptionColumn() {
@@ -169,10 +169,10 @@ public class CommandStackView extends AbstractTreeView {
 				if (element instanceof AbstractCommand) {
 					return ((AbstractCommand) element).getDescription();
 				}
-				return "no description";
+				return "no description"; //$NON-NLS-1$
 			}
 		};
-		createColumn("Description", "DESCRIPTION_COLUMN_ID", 150, columnLabelProvider);
+		createColumn("Description", "DESCRIPTION_COLUMN_ID", 150, columnLabelProvider); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	protected void createTimeColumn() {
@@ -183,10 +183,10 @@ public class CommandStackView extends AbstractTreeView {
 				if (CommandStackView.this.dates.containsKey(element)) {
 					return CommandStackView.this.dates.get(element);
 				}
-				return "";
+				return ""; //$NON-NLS-1$
 			}
 		};
-		createColumn("Time", "TIME_COLUMN_ID", 100, columnLabelProvider);
+		createColumn("Time", "TIME_COLUMN_ID", 100, columnLabelProvider); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Override
@@ -228,20 +228,20 @@ public class CommandStackView extends AbstractTreeView {
 				if (parentElement instanceof CompoundCommand) {
 					return ((CompoundCommand) parentElement).getCommandList().toArray();
 				} else if (parentElement instanceof CompositeCommand) {
-					final List<Object> children = new ArrayList<Object>();
+					final List<Object> children = new ArrayList<>();
 					final ListIterator<Object> iter = ((CompositeCommand) parentElement).listIterator();
 					while (iter.hasNext()) {
 						children.add(iter.next());
 					}
 					return children.toArray();
 				} else if (parentElement instanceof EMFCommandOperation) {
-					final List<Object> children = new ArrayList<Object>();
+					final List<Object> children = new ArrayList<>();
 					children.add(((EMFCommandOperation) parentElement).getCommand());
 					return children.toArray();
 				} else if (parentElement instanceof ICommandWrapper<?>) {
 					return new Object[] { ((ICommandWrapper<?>) parentElement).getWrappedCommand() };
 				} else if (CommandUtils.isCompound(parentElement)) {
-					final List<Object> children = new ArrayList<Object>();
+					final List<Object> children = new ArrayList<>();
 					for (Object next : CommandUtils.getChildren(parentElement)) {
 						children.add(next);
 					}
@@ -256,12 +256,12 @@ public class CommandStackView extends AbstractTreeView {
 
 	@Override
 	protected void openElement(final Object element) {
-		
+
 	}
 
 	@Override
 	protected String getRefreshMessage() {
-		return "Refresh CommandStack View";
+		return "Refresh CommandStack View"; //$NON-NLS-1$
 	}
 
 	private Object result[];// = new Object[1];
