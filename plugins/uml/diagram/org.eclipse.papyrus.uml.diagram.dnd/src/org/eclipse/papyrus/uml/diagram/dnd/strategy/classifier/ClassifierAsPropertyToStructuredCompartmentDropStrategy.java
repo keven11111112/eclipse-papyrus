@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.TransactionalDropStrategy;
+import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.composite.custom.helper.TypeHelper;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.dnd.Activator;
@@ -67,6 +68,10 @@ public class ClassifierAsPropertyToStructuredCompartmentDropStrategy extends Tra
 	}
 
 	protected boolean isStructuredClassifierEP(EditPart ep) {
+		String containerModelID = UMLVisualIDRegistry.getModelID((View) ep.getModel());
+		if (!CompositeStructureDiagramEditPart.MODEL_ID.equals(containerModelID)) {
+			return false;
+		}
 		if (false == ep instanceof GraphicalEditPart) {
 			return false;
 		}

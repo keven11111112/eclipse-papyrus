@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.component.test;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite.DynamicClasses;
 import org.eclipse.papyrus.uml.diagram.component.test.canonical.AllCanonicalTests;
+import org.eclipse.papyrus.uml.diagram.component.test.dnd.AllDropTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
@@ -26,7 +27,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		// canonical
 		AllCanonicalTests.class,
-		RoundedCompartmentTest.class
+		RoundedCompartmentTest.class,
+		AllDropTests.class
 
 		// load
 		// LoadTests.class,

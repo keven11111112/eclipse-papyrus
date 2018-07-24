@@ -64,6 +64,7 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Constraint;
@@ -196,6 +197,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case ComponentEditPartPCN.VISUAL_ID:
 			case InterfaceEditPartPCN.VISUAL_ID:
 				return dropChildNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+			case ComponentEditPartCN.VISUAL_ID:
+				return dropComponentToComponent(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			// Test ChildNode... End
 			// Test TopLevelNode... Start
 			case DependencyNodeEditPart.VISUAL_ID:
@@ -283,6 +286,28 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 		if (graphicalParentObject instanceof org.eclipse.uml2.uml.Package) {
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement));
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * Drop the component into another component.
+	 *
+	 * @param dropRequest
+	 *            the drop request
+	 * @param semanticElement
+	 *            the semantic element
+	 * @param nodeVISUALID
+	 *            the node visualid
+	 * @param linkVISUALID
+	 *            the link visualid
+	 * @return the command
+	 */
+	private Command dropComponentToComponent(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID, String linkVISUALID) {
+		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
+		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		if (graphicalParentObject instanceof Component) {
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement));
 		}
 		return UnexecutableCommand.INSTANCE;

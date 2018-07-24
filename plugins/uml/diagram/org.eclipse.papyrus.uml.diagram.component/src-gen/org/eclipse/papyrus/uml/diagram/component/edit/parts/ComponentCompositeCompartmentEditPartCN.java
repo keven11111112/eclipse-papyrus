@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEdit
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CompositeCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.part.Messages;
 
@@ -76,6 +77,7 @@ public class ComponentCompositeCompartmentEditPartCN extends LinkLFShapeCompartm
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CompositeCompartmentCreationEditPolicy());
 	}
 
 	/**
