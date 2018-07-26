@@ -75,8 +75,12 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLinkAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLinkNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLinkAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLinkNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingAppliedStereotypeEditPart;
@@ -1192,7 +1196,21 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
+		Node durationConstraint_NameLabel = createLabel(edge,
+				UMLVisualIDRegistry.getType(DurationConstraintLinkNameEditPart.VISUAL_ID));
+		durationConstraint_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location durationConstraint_NameLabel_Location = (Location) durationConstraint_NameLabel.getLayoutConstraint();
+		durationConstraint_NameLabel_Location.setX(1);
+		durationConstraint_NameLabel_Location.setY(-13);
+		Node durationConstraint_StereotypeLabel = createLabel(edge,
+				UMLVisualIDRegistry.getType(DurationConstraintLinkAppliedStereotypeEditPart.VISUAL_ID));
+		durationConstraint_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location durationConstraint_StereotypeLabel_Location = (Location) durationConstraint_StereotypeLabel
+				.getLayoutConstraint();
+		durationConstraint_StereotypeLabel_Location.setX(1);
+		durationConstraint_StereotypeLabel_Location.setY(-33);
 
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "DurationConstraint");
 		return edge;
 	}
 
@@ -1220,7 +1238,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
+		Node durationObservation_NameLabel = createLabel(edge,
+				UMLVisualIDRegistry.getType(DurationObservationLinkNameEditPart.VISUAL_ID));
+		durationObservation_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location durationObservation_NameLabel_Location = (Location) durationObservation_NameLabel
+				.getLayoutConstraint();
+		durationObservation_NameLabel_Location.setX(1);
+		durationObservation_NameLabel_Location.setY(-13);
+		Node durationObservation_StereotypeLabel = createLabel(edge,
+				UMLVisualIDRegistry.getType(DurationObservationLinkAppliedStereotypeEditPart.VISUAL_ID));
+		durationObservation_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location durationObservation_StereotypeLabel_Location = (Location) durationObservation_StereotypeLabel
+				.getLayoutConstraint();
+		durationObservation_StereotypeLabel_Location.setX(1);
+		durationObservation_StereotypeLabel_Location.setY(-33);
 
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "DurationObservation");
 		return edge;
 	}
 

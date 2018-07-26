@@ -37,7 +37,7 @@
             xsi:type="gmfgen:GenDomainElementTarget"
             contextSelector="/0/@audits/@clientContexts.0">
           <element
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction"/>
         </target>
       </rules>
       <rules
@@ -52,7 +52,7 @@
             xsi:type="gmfgen:GenDomainElementTarget"
             contextSelector="/0/@audits/@clientContexts.0">
           <element
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionOperand"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionOperand"/>
         </target>
       </rules>
       <rules
@@ -85,7 +85,7 @@
         validationDecorators="true"
         liveValidationUIFeedback="true">
       <diagramRunTimeClass
-          href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
+          href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
           uniqueIdentifier="org.eclipse.papyrus.umldi.Package_SequenceDiagram"
@@ -107,7 +107,7 @@
           key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
           editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceDiagramLayoutEditPolicy"/>
       <domainDiagramElement
-          href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
+          href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes
           visualID="3007"
           editPartClassName="ConsiderIgnoreFragmentEditPart"
@@ -118,7 +118,7 @@
           createCommandClassName="ConsiderIgnoreFragmentCreateCommand"
           containers="/0/@diagram/@compartments.0 /0/@diagram/@childNodes.2">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.ConsiderIgnoreFragment_Shape"
@@ -133,18 +133,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ConsiderIgnoreFragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ConsiderIgnoreFragment"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.1">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -161,7 +161,7 @@
           createCommandClassName="CombinedFragmentCreateCommand"
           containers="/0/@diagram/@childNodes.2 /0/@diagram/@compartments.0">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.CombinedFragment_Shape"
@@ -180,18 +180,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CombinedFragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CombinedFragment"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.2">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -207,7 +207,7 @@
           createCommandClassName="InteractionOperandCreateCommand"
           containers="/0/@diagram/@compartments.1">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.InteractionOperand_Shape"
@@ -234,11 +234,11 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectInteractionOperandToGridEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionOperand"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionOperand"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CombinedFragment/operand"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CombinedFragment/operand"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CombinedFragment/operand"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CombinedFragment/operand"/>
         </modelFacet>
       </childNodes>
       <childNodes
@@ -252,7 +252,7 @@
           createCommandClassName="InteractionUseCreateCommand"
           containers="/0/@diagram/@childNodes.2 /0/@diagram/@compartments.0">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.InteractionUse_Shape"
@@ -265,18 +265,18 @@
             xsi:type="gmfgen:OpenDiagramBehaviour"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionUse"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionUse"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.3">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -287,7 +287,7 @@
             notationViewFactoryClassName="InteractionUseNameViewFactory"
             readOnly="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getNameLabel"
@@ -299,7 +299,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -309,7 +309,7 @@
             notationViewFactoryClassName="InteractionUseNameViewFactory"
             readOnly="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getCenterLabel"
@@ -320,7 +320,7 @@
               viewPattern=""
               editorPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -335,7 +335,7 @@
           createCommandClassName="ContinuationCreateCommand"
           containers="/0/@diagram/@childNodes.2">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Continuation_Shape"
@@ -346,18 +346,18 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.ContinuationFigure"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Continuation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Continuation"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionOperand/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionOperand/fragment"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionOperand/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionOperand/fragment"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.4">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -368,7 +368,7 @@
             notationViewFactoryClassName="ContinuationNameViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getFigureContinuationNameLabel"
@@ -378,7 +378,7 @@
               parser="/0/@labelParsers/@implementations.1"
               viewPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -393,7 +393,7 @@
           createCommandClassName="LifelineCreateCommand"
           containers="/0/@diagram/@compartments.0">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Lifeline_Shape"
@@ -437,18 +437,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifeLineResizeAffixedNodeEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Lifeline"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Lifeline"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/lifeline"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/lifeline"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/lifeline"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/lifeline"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.5">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -458,7 +458,7 @@
             itemSemanticEditPolicyClassName="LifelineNameItemSemanticEditPolicy"
             notationViewFactoryClassName="LifelineNameViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getFigureLifelineLabelFigure"
@@ -470,7 +470,7 @@
               editorPattern="{0}"
               editPattern="{0}">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -484,7 +484,7 @@
           createCommandClassName="ActionExecutionSpecificationCreateCommand"
           containers="/0/@diagram/@childNodes.5">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.ActionExecutionSpecification_Shape"
@@ -511,11 +511,11 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationComponentEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionExecutionSpecification"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionExecutionSpecification"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
         </modelFacet>
       </childNodes>
       <childNodes
@@ -528,7 +528,7 @@
           createCommandClassName="BehaviorExecutionSpecificationCreateCommand"
           containers="/0/@diagram/@childNodes.5">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.BehaviorExecutionSpecification_Shape"
@@ -555,11 +555,11 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationComponentEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/BehaviorExecutionSpecification"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/BehaviorExecutionSpecification"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
         </modelFacet>
       </childNodes>
       <childNodes
@@ -573,7 +573,7 @@
           createCommandClassName="StateInvariantCreateCommand"
           containers="/0/@diagram/@childNodes.5">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.StateInvariant_Shape"
@@ -584,18 +584,18 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.ContinuationFigure"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StateInvariant"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StateInvariant"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.6">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -606,7 +606,7 @@
             notationViewFactoryClassName="StateInvariantNameViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getFigureContinuationNameLabel"
@@ -615,7 +615,7 @@
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.1">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -625,7 +625,7 @@
             notationViewFactoryClassName="StateInvariantLabelViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getInvariantFigure"
@@ -645,7 +645,7 @@
           createCommandClassName="TimeConstraintCreateCommand"
           containers="/0/@diagram/@childNodes.5">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.TimeConstraint_Shape"
@@ -656,33 +656,33 @@
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.TimeMarkElementFigure"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeConstraint"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeConstraint"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenReferenceNewElementSpec">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
               <newElementInitializers>
                 <initializers
                     xsi:type="gmfgen:GenFeatureValueSpec"
                     value="/0/@expressionProviders/@providers.0/@expressions.8">
                   <feature
-                      href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
                 </initializers>
                 <elementClass
-                    href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeInterval"/>
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeInterval"/>
               </newElementInitializers>
             </initializers>
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.9">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -693,7 +693,7 @@
             itemSemanticEditPolicyClassName="TimeConstraintLabelItemSemanticEditPolicy"
             notationViewFactoryClassName="TimeConstraintLabelViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.MultilineLabelFigure"/>
@@ -709,7 +709,7 @@
             readOnly="true"
             elementIcon="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
@@ -736,7 +736,7 @@
           createCommandClassName="TimeObservationCreateCommand"
           containers="/0/@diagram/@childNodes.5">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.TimeObservation_Shape"
@@ -751,18 +751,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DeleteTimeElementWithoutEventPolicy"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeObservation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeObservation"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.10">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -773,7 +773,7 @@
             itemSemanticEditPolicyClassName="TimeObservationLabelItemSemanticEditPolicy"
             notationViewFactoryClassName="TimeObservationLabelViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.MultilineLabelFigure"/>
@@ -789,7 +789,7 @@
             readOnly="true"
             elementIcon="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
@@ -817,7 +817,7 @@
           containers="/0/@diagram/@childNodes.5"
           preferredSideName="SOUTH">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.DestructionOccurrenceSpecification_Shape"
@@ -831,16 +831,16 @@
         </viewmap>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DestructionOccurrenceSpecification"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DestructionOccurrenceSpecification"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.13">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -855,7 +855,7 @@
           createCommandClassName="ConstraintCreateCommand"
           containers="/0/@diagram/@compartments.0">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_Shape"
@@ -870,26 +870,26 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenReferenceNewElementSpec">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
               <newElementInitializers>
                 <initializers
                     xsi:type="gmfgen:GenFeatureValueSpec"
                     value="/0/@expressionProviders/@providers.0/@expressions.14">
                   <feature
-                      href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LiteralString/value"/>
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LiteralString/value"/>
                 </initializers>
                 <elementClass
-                    href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LiteralString"/>
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LiteralString"/>
               </newElementInitializers>
             </initializers>
           </modelElementInitializer>
@@ -900,7 +900,7 @@
             itemSemanticEditPolicyClassName="ConstraintNameItemSemanticEditPolicy"
             notationViewFactoryClassName="ConstraintNameViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getNameLabel"
@@ -910,7 +910,7 @@
               parser="/0/@labelParsers/@implementations.1"
               editPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -919,7 +919,7 @@
             itemSemanticEditPolicyClassName="Constraint2ItemSemanticEditPolicy"
             notationViewFactoryClassName="ConstraintLabelViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getConstraintFigure"
@@ -938,7 +938,7 @@
           createCommandClassName="CommentCreateCommand"
           containers="/0/@diagram/@compartments.0">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Comment_Shape"
@@ -961,18 +961,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusReflowableShapeEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedComment"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.1/@expressions.0">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -982,7 +982,7 @@
             itemSemanticEditPolicyClassName="CommentBodyItemSemanticEditPolicy"
             notationViewFactoryClassName="CommentBodyViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getCornerBentFigure"
@@ -992,7 +992,7 @@
               parser="/0/@labelParsers/@implementations.5"
               editPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -1006,7 +1006,7 @@
           createCommandClassName="GateCreateCommand"
           containers="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.3 /0/@diagram/@topLevelNodes.0">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Gate_Shape"
@@ -1027,18 +1027,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.MaskManagedNodeEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Gate"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Gate"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/formalGate"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/formalGate"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/formalGate"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/formalGate"/>
         </modelFacet>
         <labels
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="5024"
             elementIcon="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel">
@@ -1051,7 +1051,7 @@
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.1">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </childNodes>
@@ -1066,7 +1066,7 @@
           graphicalNodeEditPolicyClassName="InteractionGraphicalNodeEditPolicy"
           createCommandClassName="InteractionCreateCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Interaction_Shape"
@@ -1094,18 +1094,18 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.0">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -1115,7 +1115,7 @@
             itemSemanticEditPolicyClassName="InteractionNameItemSemanticEditPolicy"
             notationViewFactoryClassName="InteractionNameViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getNameLabel"
@@ -1127,7 +1127,7 @@
               editorPattern="{0}"
               editPattern="{0}">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -1139,7 +1139,7 @@
           createCommandClassName="MessageSyncCreateCommand"
           reorientCommandClassName="MessageSyncReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Message_SynchEdge"
@@ -1164,15 +1164,15 @@
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.1">
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <sourceMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
         </modelFacet>
         <labels
             visualID="6001"
@@ -1180,7 +1180,7 @@
             itemSemanticEditPolicyClassName="MessageSyncNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getMessageLabelFigure"
@@ -1196,7 +1196,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1206,7 +1206,7 @@
             notationViewFactoryClassName="MessageLabelViewFactory"
             readOnly="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getAppliedStereotypeLabel"
@@ -1231,7 +1231,7 @@
           createCommandClassName="MessageAsyncCreateCommand"
           reorientCommandClassName="MessageAsyncReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Message_AsynchEdge"
@@ -1256,15 +1256,15 @@
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.4">
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <sourceMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
         </modelFacet>
         <labels
             visualID="6002"
@@ -1272,7 +1272,7 @@
             itemSemanticEditPolicyClassName="MessageAsyncNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getMessageLabelFigure"
@@ -1287,7 +1287,7 @@
               parser="/0/@labelParsers/@implementations.4"
               editPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1297,7 +1297,7 @@
             notationViewFactoryClassName="MessageLabelViewFactory"
             readOnly="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getAppliedStereotypeLabel"
@@ -1322,7 +1322,7 @@
           createCommandClassName="MessageReplyCreateCommand"
           reorientCommandClassName="MessageReplyReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Message_ReplyEdge"
@@ -1347,15 +1347,15 @@
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.7">
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <sourceMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
         </modelFacet>
         <labels
             visualID="6003"
@@ -1363,7 +1363,7 @@
             itemSemanticEditPolicyClassName="MessageReplyNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getMessageLabelFigure"
@@ -1378,7 +1378,7 @@
               parser="/0/@labelParsers/@implementations.4"
               editPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1388,7 +1388,7 @@
             notationViewFactoryClassName="MessageLabelViewFactory"
             readOnly="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getAppliedStereotypeLabel"
@@ -1413,7 +1413,7 @@
           createCommandClassName="MessageCreateCreateCommand"
           reorientCommandClassName="MessageCreateReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Message_CreateEdge"
@@ -1438,15 +1438,15 @@
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.10">
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <sourceMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
         </modelFacet>
         <labels
             visualID="6004"
@@ -1454,7 +1454,7 @@
             itemSemanticEditPolicyClassName="MessageCreateNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getMessageLabelFigure"
@@ -1470,7 +1470,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1480,7 +1480,7 @@
             notationViewFactoryClassName="MessageLabelViewFactory"
             readOnly="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getAppliedStereotypeLabel"
@@ -1505,7 +1505,7 @@
           createCommandClassName="MessageDeleteCreateCommand"
           reorientCommandClassName="MessageDeleteReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Message_DeleteEdge"
@@ -1530,15 +1530,15 @@
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.13">
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <sourceMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
         </modelFacet>
         <labels
             visualID="6005"
@@ -1546,7 +1546,7 @@
             itemSemanticEditPolicyClassName="MessageDeleteNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getMessageLabelFigure"
@@ -1561,7 +1561,7 @@
               parser="/0/@labelParsers/@implementations.4"
               editPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1571,7 +1571,7 @@
             notationViewFactoryClassName="MessageLabelViewFactory"
             readOnly="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getAppliedStereotypeLabel"
@@ -1596,7 +1596,7 @@
           createCommandClassName="MessageLostCreateCommand"
           reorientCommandClassName="MessageLostReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Message_LostEdge"
@@ -1621,15 +1621,15 @@
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.16">
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <sourceMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
         </modelFacet>
         <labels
             visualID="6006"
@@ -1637,7 +1637,7 @@
             itemSemanticEditPolicyClassName="MessageLostNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getMessageLabelFigure"
@@ -1653,7 +1653,7 @@
               editorPattern=""
               editPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1663,7 +1663,7 @@
             notationViewFactoryClassName="MessageLabelViewFactory"
             readOnly="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getAppliedStereotypeLabel"
@@ -1688,7 +1688,7 @@
           createCommandClassName="MessageFoundCreateCommand"
           reorientCommandClassName="MessageFoundReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Message_FoundEdge"
@@ -1713,15 +1713,15 @@
             xsi:type="gmfgen:TypeLinkModelFacet"
             modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.19">
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/message"/>
           <sourceMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/owner"/>
           <targetMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Element/ownedElement"/>
         </modelFacet>
         <labels
             visualID="6007"
@@ -1729,7 +1729,7 @@
             itemSemanticEditPolicyClassName="MessageFoundNameItemSemanticEditPolicy"
             notationViewFactoryClassName="MessageNameViewFactory">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getMessageLabelFigure"
@@ -1744,7 +1744,7 @@
               parser="/0/@labelParsers/@implementations.4"
               editPattern="">
             <metaFeatures
-                href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
         <labels
@@ -1754,7 +1754,7 @@
             notationViewFactoryClassName="MessageLabelViewFactory"
             readOnly="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getAppliedStereotypeLabel"
@@ -1779,7 +1779,7 @@
           createCommandClassName="CommentAnnotatedElementCreateCommand"
           reorientCommandClassName="CommentAnnotatedElementReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"
@@ -1790,7 +1790,7 @@
         <modelFacet
             xsi:type="gmfgen:FeatureLinkModelFacet">
           <metaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/annotatedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/annotatedElement"/>
         </modelFacet>
       </links>
       <links
@@ -1801,7 +1801,7 @@
           createCommandClassName="ConstraintConstrainedElementCreateCommand"
           reorientCommandClassName="ConstraintConstrainedElementReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"
@@ -1812,7 +1812,7 @@
         <modelFacet
             xsi:type="gmfgen:FeatureLinkModelFacet">
           <metaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
         </modelFacet>
       </links>
       <links
@@ -1823,7 +1823,7 @@
           createCommandClassName="GeneralOrderingCreateCommand"
           reorientCommandClassName="GeneralOrderingReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.GeneralOrdering_Edge"
@@ -1839,24 +1839,24 @@
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/GeneralOrdering"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/GeneralOrdering"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionFragment/generalOrdering"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionFragment/generalOrdering"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionFragment/generalOrdering"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InteractionFragment/generalOrdering"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.18">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <sourceMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/GeneralOrdering/before"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/GeneralOrdering/before"/>
           <targetMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/GeneralOrdering/after"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/GeneralOrdering/after"/>
         </modelFacet>
         <labels
             visualID="6015"
@@ -1866,7 +1866,7 @@
             readOnly="true"
             elementIcon="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getAppliedStereotypeLabel"
@@ -1887,7 +1887,7 @@
           createCommandClassName="ContextLinkCreateCommand"
           reorientCommandClassName="ContextLinkReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_ContextEdge"
@@ -1902,7 +1902,7 @@
         <modelFacet
             xsi:type="gmfgen:FeatureLinkModelFacet">
           <metaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/context"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/context"/>
         </modelFacet>
         <labels
             visualID="8501"
@@ -1910,7 +1910,7 @@
             itemSemanticEditPolicyClassName="ConstraintContextAppliedStereotypeItemSemanticEditPolicy"
             readOnly="true">
           <diagramRunTimeClass
-              href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getAppliedStereotypeLabel"
@@ -1934,7 +1934,7 @@
           createCommandClassName="DurationConstraintCreateCommand"
           reorientCommandClassName="DurationConstraintReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Connector"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Connector"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.DurationConstraint_Edge"
@@ -1944,28 +1944,77 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.DurationLinkFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationConstraint"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationConstraint"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.18">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <sourceMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
           <targetMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/constrainedElement"/>
         </modelFacet>
+        <labels
+            visualID="6020"
+            editPartClassName="DurationConstraintLinkNameEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintLinkItemSemanticEditPolicy"
+            notationViewFactoryClassName="MessageNameViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getDurationLabelFigure"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="1"
+                y="-13"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.9"
+              editorPattern=""
+              editPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="6021"
+            editPartClassName="DurationConstraintLinkAppliedStereotypeEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintLinkAppliedStereotypeItemSemanticEditPolicy"
+            notationViewFactoryClassName="MessageLabelViewFactory"
+            readOnly="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getAppliedStereotypeLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="1"
+                y="-33"/>
+          </viewmap>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.8"/>
+        </labels>
       </links>
       <links
           visualID="4014"
@@ -1974,7 +2023,7 @@
           createCommandClassName="DurationObservationCreateCommand"
           reorientCommandClassName="DurationObservationReorientCommand">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Connector"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Connector"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.umldi.DurationObservation_Edge"
@@ -1984,28 +2033,78 @@
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.DurationLinkFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet">
           <metaClass
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation"/>
           <containmentMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <childMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
                 value="/0/@expressionProviders/@providers.0/@expressions.18">
               <feature
-                  href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
           <sourceMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation/event"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation/event"/>
           <targetMetaFeature
-              href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation/event"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation/event"/>
         </modelFacet>
+        <labels
+            visualID="6022"
+            editPartClassName="DurationObservationLinkNameEditPart"
+            itemSemanticEditPolicyClassName="DurationObservationLinkItemSemanticEditPolicy"
+            notationViewFactoryClassName="MessageNameViewFactory"
+            elementIcon="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getDurationLabelFigure"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="1"
+                y="-13"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.10"
+              editorPattern=""
+              editPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            visualID="6023"
+            editPartClassName="DurationObservationLinkAppliedStereotypeEditPart"
+            itemSemanticEditPolicyClassName="DurationObservationLinkAppliedStereotypeItemSemanticEditPolicy"
+            notationViewFactoryClassName="MessageLabelViewFactory"
+            readOnly="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getAppliedStereotypeLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="1"
+                y="-33"/>
+          </viewmap>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.8"/>
+        </labels>
       </links>
       <compartments
           visualID="7001"
@@ -2020,7 +2119,7 @@
           node="/0/@diagram/@topLevelNodes.0"
           listLayout="false">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getCompartmentFigure"
@@ -2050,7 +2149,7 @@
           needsTitle="false"
           node="/0/@diagram/@childNodes.1">
         <diagramRunTimeClass
-            href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getCompartmentFigure"
@@ -2123,7 +2222,7 @@
       </tabs>
     </propertySheet>
     <domainGenModel
-        href="platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#/"/>
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#/"/>
     <expressionProviders>
       <providers
           xsi:type="gmfgen:GenJavaExpressionProvider"
@@ -2282,12 +2381,16 @@
           qualifiedName="org.eclipse.papyrus.uml.diagram.sequence.parser.custom.TimeObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.11/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@links.11/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.ConstraintParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@links.12/@labels.0/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.ObservationParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">
@@ -2403,20 +2506,25 @@
         comment="Name"
         role="Name"
         iconPathRole="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png"
-        linkLabels="/0/@diagram/@links.0/@labels.0 /0/@diagram/@links.1/@labels.0 /0/@diagram/@links.2/@labels.0 /0/@diagram/@links.3/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.6/@labels.0"
+        linkLabels="/0/@diagram/@links.0/@labels.0 /0/@diagram/@links.1/@labels.0 /0/@diagram/@links.2/@labels.0 /0/@diagram/@links.3/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.11/@labels.0 /0/@diagram/@links.12/@labels.0"
         externalNodeLabels="/0/@diagram/@childNodes.14/@labels.0"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
         comment="Stereotype"
         role="Stereotype"
         iconPathRole="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif"
-        linkLabels="/0/@diagram/@links.0/@labels.1 /0/@diagram/@links.1/@labels.1 /0/@diagram/@links.2/@labels.1 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.4/@labels.1 /0/@diagram/@links.5/@labels.1 /0/@diagram/@links.6/@labels.1 /0/@diagram/@links.9/@labels.0 /0/@diagram/@links.10/@labels.0"/>
+        linkLabels="/0/@diagram/@links.0/@labels.1 /0/@diagram/@links.1/@labels.1 /0/@diagram/@links.2/@labels.1 /0/@diagram/@links.3/@labels.1 /0/@diagram/@links.4/@labels.1 /0/@diagram/@links.5/@labels.1 /0/@diagram/@links.6/@labels.1 /0/@diagram/@links.9/@labels.0 /0/@diagram/@links.10/@labels.0 /0/@diagram/@links.11/@labels.1 /0/@diagram/@links.12/@labels.1"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="precise the super class of the GateEditPart"
         genView="/0/@diagram/@childNodes.14"
         name="GateEditPart superclass"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        genView="/0/@diagram/@links.11 /0/@diagram/@links.12"
+        name="Duration Links superclass"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
   <papyrusgmfgenextension:VisualIDOverride
       genView="/0/@diagram"
@@ -2624,9 +2732,23 @@
     </child>
     <child
         genView="/0/@diagram/@links.11"
-        visualID="DurationConstraint_Edge"/>
+        visualID="DurationConstraint_Edge">
+      <child
+          genView="/0/@diagram/@links.11/@labels.0"
+          visualID="DurationConstraint_NameLabel"/>
+      <child
+          genView="/0/@diagram/@links.11/@labels.1"
+          visualID="DurationConstraint_StereotypeLabel"/>
+    </child>
     <child
         genView="/0/@diagram/@links.12"
-        visualID="DurationObservation_Edge"/>
+        visualID="DurationObservation_Edge">
+      <child
+          genView="/0/@diagram/@links.12/@labels.0"
+          visualID="DurationObservation_NameLabel"/>
+      <child
+          genView="/0/@diagram/@links.12/@labels.1"
+          visualID="DurationObservation_StereotypeLabel"/>
+    </child>
   </papyrusgmfgenextension:VisualIDOverride>
 </xmi:XMI>

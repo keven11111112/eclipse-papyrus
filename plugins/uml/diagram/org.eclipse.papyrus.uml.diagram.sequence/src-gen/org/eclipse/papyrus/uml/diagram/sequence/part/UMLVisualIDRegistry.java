@@ -33,8 +33,12 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLinkAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLinkNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLinkAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLinkNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GateNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingAppliedStereotypeEditPart;
@@ -492,6 +496,22 @@ public class UMLVisualIDRegistry {
 				break;
 			case ContextLinkEditPart.VISUAL_ID:
 				if (ConstraintContextAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case DurationConstraintLinkEditPart.VISUAL_ID:
+				if (DurationConstraintLinkNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (DurationConstraintLinkAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case DurationObservationLinkEditPart.VISUAL_ID:
+				if (DurationObservationLinkNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (DurationObservationLinkAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;

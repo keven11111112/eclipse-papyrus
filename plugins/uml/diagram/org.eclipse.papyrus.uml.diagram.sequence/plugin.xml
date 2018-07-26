@@ -561,6 +561,22 @@
 				type="Constraint_KeywordLabel">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="DurationConstraint_NameLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="DurationConstraint_StereotypeLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="DurationObservation_NameLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="DurationObservation_StereotypeLabel">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="Gate_NameLabel">
 			</mapping>
