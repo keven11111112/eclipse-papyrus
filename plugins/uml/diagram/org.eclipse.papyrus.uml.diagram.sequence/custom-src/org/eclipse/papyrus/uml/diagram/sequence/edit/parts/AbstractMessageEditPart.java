@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2017 CEA LIST and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Celine Janssens (ALL4TEC) - Bug 507348
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.List;
@@ -26,19 +39,40 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPar
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceReferenceEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageDelete;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.MessageFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.IKeyPressState;
+import org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.KeyboardListener;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectMessageToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifeLineGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelectMessagesEditPartTracker;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.ui.PlatformUI;
 
-public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart {
+public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart implements IKeyPressState {
 
 	private List messageEventParts;
+
+	private boolean reorderMessages = false;
+
+	/**
+	 * The shift down key.
+	 *
+	 * @since 5.1
+	 */
+	protected KeyboardListener SHIFTDown = new KeyboardListener(this, SWT.SHIFT, true);
+
+	/**
+	 * The shift up key.
+	 *
+	 * @since 5.1
+	 */
+	protected KeyboardListener SHIFTUp = new KeyboardListener(this, SWT.SHIFT, false);
 
 	/**
 	 * Handle mouse move event to update cursors.
@@ -53,9 +87,43 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		super(view);
 	}
 
+	/**
+	 * {{@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.uml.diagram.sequence.keyboardlistener.IKeyPressState#setKeyPressState(java.lang.Boolean)
+	 *
+	 * @param isPressed
+	 * @since 5.1
+	 */
+	@Override
+	public void setKeyPressState(Boolean isPressed) {
+		reorderMessages = isPressed;
+	}
+
+	/**
+	 * Get the value of reorderMessages property. This is defined by the Shift pressed Key.
+	 *
+	 * @return true if the messages should be reordered in the Interaction and false if the move of a message move also the other message without reorder it.
+	 * @since 5.1
+	 */
+	public boolean mustReorderMessage() {
+		if (getFigure() instanceof MessageDelete) {
+			return false;
+		}
+		return reorderMessages;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart#activate()
+	 */
 	@Override
 	public void activate() {
 		super.activate();
+		// activate listeners
+		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, SHIFTDown);
+		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, SHIFTUp);
 		if (getTarget() == null || getSource() == null) {
 			getViewer().getControl().getDisplay().asyncExec(new Runnable() {
 
@@ -152,6 +220,8 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		if (mouseMoveListener != null) {
 			getViewer().getControl().removeMouseMoveListener(mouseMoveListener);
 		}
+		PlatformUI.getWorkbench().getDisplay().removeFilter(SWT.KeyDown, SHIFTDown);
+		PlatformUI.getWorkbench().getDisplay().removeFilter(SWT.KeyUp, SHIFTUp);
 		super.deactivate();
 	}
 
@@ -194,7 +264,6 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	}
 
 
-
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -202,7 +271,6 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		// Ordering Message Occurrence Specification. See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
 		installEditPolicy(ConnectRectangleToGridEditPolicy.CONNECT_TO_GRILLING_MANAGEMENT, new ConnectMessageToGridEditPolicy());
 		installEditPolicy(SequenceReferenceEditPolicy.SEQUENCE_REFERENCE, new SequenceReferenceEditPolicy());
-
 	}
 
 	@Override
@@ -292,78 +360,9 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	 */
 	@Override
 	protected void refreshRoutingStyles() {
+		// Do nothing
 	}
 
-	// public static class MessageFigure extends UMLEdgeFigure {
-	//
-	// private boolean selection;
-	//
-	// /**
-	// * Constructor.
-	// *
-	// */
-	// public MessageFigure() {
-	// }
-	//
-	// @Override
-	// public void setLineWidth(int w) {
-	// if(selection) {
-	// w = AbstractMessageEditPart.this.getLineWidth() * 2;
-	// }
-	// super.setLineWidth(w);
-	// if(getSourceDecoration() instanceof Shape) {
-	// ((Shape)getSourceDecoration()).setLineWidth(w);
-	// }
-	// if(getTargetDecoration() instanceof Shape) {
-	// ((Shape)getTargetDecoration()).setLineWidth(w);
-	// }
-	// }
-	//
-	// @Override
-	// public void setForegroundColor(Color c) {
-	// super.setForegroundColor(c);
-	// if(getSourceDecoration() instanceof Shape) {
-	// ((Shape)getSourceDecoration()).setForegroundColor(c);
-	// ((Shape)getSourceDecoration()).setBackgroundColor(c);
-	// }
-	// if(getTargetDecoration() instanceof Shape) {
-	// ((Shape)getTargetDecoration()).setForegroundColor(c);
-	// ((Shape)getTargetDecoration()).setBackgroundColor(c);
-	// }
-	// }
-	//
-	// @Override
-	// public Cursor getCursor() {
-	// Cursor customCursor = getCustomCursor();
-	// if(customCursor != null) {
-	// return customCursor;
-	// }
-	// return super.getCursor();
-	// }
-	//
-	// /**
-	// * @return the selection
-	// */
-	// public boolean getSelection() {
-	// return selection;
-	// }
-	//
-	// /**
-	// * @param selection
-	// * the selection to set
-	// */
-	// public void setSelection(boolean selection) {
-	// this.selection = selection;
-	// if(!selection) {
-	// setLineWidth(AbstractMessageEditPart.this.getLineWidth());
-	// }
-	// repaint();
-	// }
-	//
-	// protected IMapMode getMapMode() {
-	// return AbstractMessageEditPart.this.getMapMode();
-	// }
-	// }
 	static abstract class MessageLabelEditPart extends LabelEditPart {
 
 		public MessageLabelEditPart(View view) {

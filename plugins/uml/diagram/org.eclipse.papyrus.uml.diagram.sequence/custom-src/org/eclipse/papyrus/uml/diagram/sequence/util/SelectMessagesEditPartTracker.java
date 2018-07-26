@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Celine Janssens (ALL4TEC) - Bug 507348
  *
  *****************************************************************************/
 
@@ -26,11 +27,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.selection.SelectSeveralLinksEditPartTracker;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * @author Patrick Tessier
@@ -38,31 +36,29 @@ import org.eclipse.ui.PlatformUI;
  *
  */
 public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTracker {
-	protected Listener KeyDownListener = new Listener() {
 
-		@Override
-		public void handleEvent(Event event) {
-			// in case the SHIFT key is released, the creation mode goes back to normal
-			if (event.keyCode == SWT.SHIFT) {
-				allowReoder = true;
-			}
-		}
-
-	};
-	protected Listener KeyUPListener = new Listener() {
-
-		@Override
-		public void handleEvent(Event event) {
-			// in case the SHIFT key is released, the creation mode goes back to normal
-			if (event.keyCode == SWT.SHIFT) {
-				allowReoder = false;
-			}
-		}
-
-	};
 	protected int MinDistancetop = Integer.MAX_VALUE;
 	protected int MinDistancebottom = Integer.MAX_VALUE;
 	protected Dimension delta = null;
+
+	/**
+	 * This allows to determinate if this is a reorder or not.
+	 */
+	private boolean allowReorder;
+
+	private boolean isOneMessageDeleteSelected;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param owner
+	 * @param shiftDown
+	 */
+	public SelectMessagesEditPartTracker(ConnectionEditPart owner) {
+		super(owner);
+		this.allowReorder = ((AbstractMessageEditPart) owner).mustReorderMessage();
+		this.isOneMessageDeleteSelected = false;
+	}
 
 	/**
 	 * @see org.eclipse.gef.tools.AbstractTool#activate()
@@ -81,12 +77,13 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 	 */
 	@Override
 	protected boolean handleButtonDown(int button) {
-		Dimension delta = null;
 		MinDistancetop = Integer.MAX_VALUE;
 		MinDistancebottom = Integer.MAX_VALUE;
-		// 1. look for all Nodes connected by connections
-		// and find the MinDistancetop (maximum mouvment without reorder to the top) and the MinDistancebottom (maximum distance without reorder to the bottom)
 
+		this.isOneMessageDeleteSelected = false;
+
+		// 1. look for all Nodes connected by connections
+		// and find the MinDistancetop (maximum movement without reorder to the top) and the MinDistancebottom (maximum distance without reorder to the bottom)
 
 		ArrayList<GraphicalEditPart> nodeEditPart = new ArrayList<>();
 
@@ -97,7 +94,9 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 			if (currentEditPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) {
 				org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart currentConnectionEdiPart = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) currentEditPart;
 				nodeEditPart.add((GraphicalEditPart) currentConnectionEdiPart.getSource());
-
+				if (currentConnectionEdiPart instanceof MessageCreateEditPart) {
+					isOneMessageDeleteSelected = true;
+				}
 			}
 
 		}
@@ -134,6 +133,11 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 						if (MinDistancetop > (currentSelectedConnectionPosition.y - currentConnectionPosition.y)) {
 							MinDistancetop = (currentSelectedConnectionPosition.y - currentConnectionPosition.y);
 						}
+					} else if (isOneMessageDeleteSelected) {
+						// selected Message is above the currentConnection
+						if (MinDistancebottom > (currentConnectionPosition.y - currentSelectedConnectionPosition.y)) {
+							MinDistancebottom = (currentConnectionPosition.y - currentSelectedConnectionPosition.y);
+						}
 					}
 				}
 
@@ -143,39 +147,33 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 		return super.handleButtonDown(button);
 	}
 
-	/**
-	 * Constructor.
-	 *
-	 * @param owner
-	 */
-	public SelectMessagesEditPartTracker(ConnectionEditPart owner) {
-		super(owner);
-		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyDown, KeyDownListener);
-		PlatformUI.getWorkbench().getDisplay().addFilter(SWT.KeyUp, KeyUPListener);
-	}
-
-	private boolean allowReoder = false;
-
-
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.gef.Tool#deactivate()
-	 */
-	@Override
-	public void deactivate() {
-		PlatformUI.getWorkbench().getDisplay().removeFilter(SWT.KeyUp, KeyDownListener);
-		PlatformUI.getWorkbench().getDisplay().removeFilter(SWT.KeyUp, KeyUPListener);
-		super.deactivate();
-	}
 
 	/**
 	 * @see org.eclipse.gef.tools.SimpleDragTracker#updateSourceRequest()
 	 */
 	@Override
 	protected void updateSourceRequest() {
-		if (!allowReoder) {
+		// When the reorder is called and there is at least one MessageCreate selected, we need to hold the message create movement
+		if (isOneMessageDeleteSelected) {
+			if (allowReorder) {
+				Dimension computedDelta = getLocation().getDifference(getStartLocation());
+				delta = null;
+				if (computedDelta.height < 0) {
+					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_UTIL, "Move " + computedDelta.height + " MinDistancetop" + MinDistancetop);//$NON-NLS-1$
+					if (MinDistancetop + computedDelta.height < 0) {
+						computedDelta.height = -MinDistancetop;
+						delta = computedDelta.getCopy();
+					}
+				} else {
+					UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG_UTIL, "Move " + computedDelta.height + " MinDistancebottom" + MinDistancebottom);//$NON-NLS-1$
+					if (MinDistancebottom - computedDelta.height - 10 < 0) {
+						computedDelta.height = MinDistancebottom - 10;
+						delta = computedDelta.getCopy();
+					}
+
+				}
+			}
+		} else if (!allowReorder) {
 			Dimension computedDelta = getLocation().getDifference(getStartLocation());
 			delta = null;
 			if (computedDelta.height < 0) {
@@ -192,7 +190,6 @@ public class SelectMessagesEditPartTracker extends SelectSeveralLinksEditPartTra
 				}
 
 			}
-
 		}
 		super.updateSourceRequest();
 	}

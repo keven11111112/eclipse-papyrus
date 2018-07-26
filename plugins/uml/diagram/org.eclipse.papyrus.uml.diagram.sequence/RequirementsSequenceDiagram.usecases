@@ -35,6 +35,11 @@ Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/ecli
 - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/command/SetResizeCommand.java
 - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/command/SetResizeAndLocationCommand.java
 
+Requirement: ReqFunctional_Messages_SequenceDiagram_002: Messages can be re-ordered with 'SHIFT' key. In this case, the move of other messages does not work.
+Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/parts/AbstractMessageEditPart.java
+- org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/util/SelectMessagesEditPartTracker.java
+- org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/UpdateWeakReferenceForMessageSpecEditPolicy.java
+
 Requirement: ReqFunctional_Messages_SequenceDiagram_003: When a move of a message is done (with the preference to keep gaps between messages), all the messages and elements in the life lines must be moved down.
 Code instruction: - org.eclipse.papyrus.uml.diagram.sequence/custom-src/org/eclipse/papyrus/uml/diagram/sequence/edit/policies/UpdateWeakReferenceForMessageSpecEditPolicy.java
 
