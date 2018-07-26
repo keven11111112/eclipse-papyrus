@@ -13,13 +13,18 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
+import java.util.List;
+
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.DurationConstraint;
@@ -52,6 +57,7 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	private static final int ARROW_PADDING = 15;
 	private Orientation arrowOrientation = Orientation.VERTICAL; // TODO Orientation is not supported yet (Bug 536637)
 	private int arrowPositionDelta = 0;
+	private PapyrusWrappingLabel durationLabel;
 
 	/**
 	 * Thin lines may be difficult to select, so we add a tolerance area around it
@@ -202,7 +208,14 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 
 		Rectangle arrowLine = new Rectangle(getArrowTop(), getArrowBottom());
 		arrowLine.expand(SELECTION_TOLERANCE, SELECTION_TOLERANCE);
-		return arrowLine.contains(x, y);
+		if (arrowLine.contains(x, y)) {
+			return true;
+		}
+
+		// Child labels
+		@SuppressWarnings("unchecked")
+		List<IFigure> children = getChildren();
+		return children.stream().anyMatch(child -> child.containsPoint(x, y));
 	}
 
 	/**
@@ -258,4 +271,18 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	public static enum Orientation {
 		VERTICAL, HORIZONTAL;
 	}
+
+	public WrappingLabel getDurationLabelFigure() {
+		return this.durationLabel;
+	}
+
+
+	@Override
+	protected void createContents() {
+		super.createContents();
+		this.durationLabel = new PapyrusWrappingLabel();
+		this.durationLabel.setText(""); //$NON-NLS-1$
+		add(this.durationLabel);
+	}
+
 }
