@@ -15,13 +15,14 @@ package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.PolylineDecoration;
+import org.eclipse.draw2d.geometry.Geometry;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
@@ -51,11 +52,31 @@ import org.eclipse.uml2.uml.DurationObservation;
 public class DurationLinkFigure extends UMLEdgeFigure {
 
 	/**
-	 * The horizontal dashed line will be drawn slightly further
+	 * The orientation of the figure changes from the default value {@link Orientation#VERTICAL} to {@link Orientation#HORIZONTAL}
+	 * if the difference in pixels between end and start points are no more than this amount of pixels.
+	 */
+	private static final int ORIENTATION_SWITCH_DIFFERENCE = 30;
+
+	/**
+	 * When the arrow is in an {@link Orientation#HORIZONTAL} position, the start line is drawn as a 90° bent line, with
+	 * an horizontal segment connected to the start point and a vertical segment. This offset determines the length of
+	 * the horizontal segment, in pixels.
+	 */
+	private static final int HORIZOTAL_ARROW_START_LINE_OFFSET = 15;
+
+	/**
+	 * When the arrow is in an {@link Orientation#HORIZONTAL} position, the end line is drawn as a 90° bent line, with
+	 * an horizontal segment connected to the end point and a vertical segment. This offset determines the length of
+	 * the horizontal segment, in pixels.
+	 */
+	private static final int HORIZOTAL_ARROW_END_LINE_OFFSET = 15;
+
+	/**
+	 * The connecting end and start dashed lines will be drawn slightly further
 	 * than the arrow, by this amount of pixels.
 	 */
 	private static final int ARROW_PADDING = 15;
-	private Orientation arrowOrientation = Orientation.VERTICAL; // TODO Orientation is not supported yet (Bug 536637)
+	private Orientation arrowOrientation = Orientation.VERTICAL;
 	private int arrowPositionDelta = 0;
 	private PapyrusWrappingLabel durationLabel;
 
@@ -70,6 +91,7 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	@Override
 	protected void outlineShape(Graphics graphics) {
 		// Skip super; we're not drawing a polyline connection
+		arrowOrientation = computeOptimalOrientation();
 		paintStartLine(graphics);
 		paintEndLine(graphics);
 		paintArrow(graphics);
@@ -84,24 +106,72 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		graphics.pushState();
 		graphics.setLineStyle(SWT.LINE_DASH);
 		try {
-			Point startLineStart = getStart();
-			Point startLineEnd = getTopLineEnd();
-
-			graphics.drawLine(startLineStart, startLineEnd);
+			PointList startLinePoints = getStartLinePoints();
+			graphics.drawPolyline(startLinePoints);
 		} finally {
 			graphics.popState();
 		}
 	}
 
-	/**
-	 * @return
-	 */
-	private int getArrowLineX() {
+	/** Returns the points for the start line - the line connecting the start point to the arrow. */
+	protected PointList getStartLinePoints() {
+		if (arrowOrientation == Orientation.HORIZONTAL) {
+			return getStartLinePointsHorizontal();
+		}
+		// Orientation.VERTICAL and default case
+		return getStartLinePointsVertical();
+	}
+
+	private PointList getStartLinePointsHorizontal() {
+		PointList points = new PointList(3);
+
+		points.addPoint(getStart());
+
+		Point startOffsetEnd = getStart().getCopy();
+		startOffsetEnd.setX(startOffsetEnd.x() + HORIZOTAL_ARROW_START_LINE_OFFSET);
+		points.addPoint(startOffsetEnd);
+
+		int arrowYCoordinate = (getStart().y() + getEnd().y()) / 2;
+
+		// the vertical segment
+		Point startLineEnd = startOffsetEnd.getCopy();
+		if (arrowYCoordinate > startOffsetEnd.y) {
+			startLineEnd.setY(arrowYCoordinate + ARROW_PADDING);
+		} else {
+			startLineEnd.setY(arrowYCoordinate - ARROW_PADDING);
+		}
+		points.addPoint(startLineEnd);
+		return points;
+	}
+
+	private PointList getStartLinePointsVertical() {
+		PointList points = new PointList(2);
+
+		// start
+		points.addPoint(getStart());
+
+		// end
+		int arrowLinePosition = getArrowLineVerticalX();
+		Point startLineEnd = getStart().getCopy();
+		if (arrowLinePosition > getStart().x()) {
+			startLineEnd.setX(arrowLinePosition + ARROW_PADDING);
+		} else {
+			startLineEnd.setX(arrowLinePosition - ARROW_PADDING);
+		}
+		points.addPoint(startLineEnd);
+		return points;
+	}
+
+	private int getArrowLineVerticalX() {
 		if (getPoints().size() < 2) {
 			// The connection is not configured yet
 			return 0;
 		}
 		return (getStart().x() + getEnd().x()) / 2 + arrowPositionDelta;
+	}
+
+	private int getArrowLineVerticalY() {
+		return getEnd().y();
 	}
 
 	/**
@@ -113,13 +183,58 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		graphics.pushState();
 		graphics.setLineStyle(SWT.LINE_DASH);
 		try {
-			Point endLineStart = getEnd();
-			Point endLineEnd = getBottomLineEnd();
-
-			graphics.drawLine(endLineStart, endLineEnd);
+			PointList endLinePoints = getEndLinePoints();
+			graphics.drawPolyline(endLinePoints);
 		} finally {
 			graphics.popState();
 		}
+	}
+
+	/** Returns the points for the end line - the line connecting the end point to the arrow. */
+	protected PointList getEndLinePoints() {
+		if (arrowOrientation == Orientation.HORIZONTAL) {
+			return getEndLinePointsHorizontal();
+		}
+		// Orientation.VERTICAL and default case
+		return getEndLinePointsVertical();
+	}
+
+	private PointList getEndLinePointsHorizontal() {
+		PointList points = new PointList(2);
+
+		points.addPoint(getEnd());
+		Point endOffsetEnd = getEnd().getCopy();
+		endOffsetEnd.setX(endOffsetEnd.x() - HORIZOTAL_ARROW_END_LINE_OFFSET);
+		points.addPoint(endOffsetEnd);
+		int arrowYCoordinate = (getStart().y() + getEnd().y()) / 2;
+		// paint the end line
+		Point endLineEnd = endOffsetEnd.getCopy();
+		if (arrowYCoordinate < getEnd().y) {
+			endLineEnd.setY(arrowYCoordinate - HORIZOTAL_ARROW_END_LINE_OFFSET);
+		} else {
+			endLineEnd.setY(arrowYCoordinate + HORIZOTAL_ARROW_END_LINE_OFFSET);
+		}
+		points.addPoint(endLineEnd);
+
+		return points;
+	}
+
+	private PointList getEndLinePointsVertical() {
+		PointList points = new PointList(2);
+
+		// start
+		points.addPoint(getEnd());
+
+		// end
+		int arrowLinePosition = getArrowLineVerticalX();
+		Point endLineEnd = getEnd().getCopy();
+		if (arrowLinePosition < getEnd().x()) {
+			endLineEnd.setX(arrowLinePosition - ARROW_PADDING);
+		} else {
+			endLineEnd.setX(arrowLinePosition + ARROW_PADDING);
+		}
+		points.addPoint(endLineEnd);
+		return points;
 	}
 
 	/**
@@ -129,62 +244,59 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	 */
 	protected void paintArrow(Graphics graphics) {
 		PolylineConnection arrowLine = new PolylineConnection();
-
-		Point arrowStart = getStart().getCopy().setX(getArrowLineX());
-		Point arrowEnd = arrowStart.getCopy().setY(getEnd().y());
+		PointList arrowPoints = getArrowLinePoints();
+		Point arrowStart = arrowPoints.getFirstPoint();
+		Point arrowEnd = arrowPoints.getLastPoint();
 
 		arrowLine.setStart(arrowStart);
 		arrowLine.setEnd(arrowEnd);
 
-		// FIXME Decorations won't be painted?
-		PolylineDecoration source = new PolylineDecoration();
-		PolylineDecoration target = new PolylineDecoration();
-
-		source.setForegroundColor(ColorConstants.black);
-
-		source.setLineWidth(1);
-		target.setLineWidth(1);
-
-		arrowLine.setSourceDecoration(source);
-		arrowLine.setTargetDecoration(target);
-
+		decorateArrowLine(arrowLine, arrowStart, arrowEnd);
 		arrowLine.paint(graphics);
 	}
 
-	private Point getArrowTop() {
-		Rectangle defaultBounds = new Rectangle(getStart(), getEnd());
-		return defaultBounds.getTop().getCopy().setX(getArrowLineX());
-	}
-
-	private Point getArrowBottom() {
-		Rectangle defaultBounds = new Rectangle(getStart(), getEnd());
-		return defaultBounds.getBottom().getCopy().setX(getArrowLineX()).translate(0, -1);
-	}
-
-	private Point getTopLineEnd() {
-		int arrowLinePosition = getArrowLineX();
-
-		Point startLineEnd = getStart().getCopy();
-		if (arrowLinePosition > getStart().x()) {
-			startLineEnd.setX(arrowLinePosition + ARROW_PADDING);
+	/** Returns the points for the arrow line drawn between the and and start lines. */
+	protected PointList getArrowLinePoints() {
+		PointList points = new PointList(2);
+		Point arrowStart = null, arrowEnd = null;
+		if (arrowOrientation == Orientation.HORIZONTAL) {
+			int arrowYCoordinate = (getStart().y() + getEnd().y()) / 2;
+			arrowStart = getStart().getCopy().setX(getStart().x() + ARROW_PADDING).setY(arrowYCoordinate);
+			arrowEnd = getEnd().getCopy().setX(getEnd().x() - ARROW_PADDING).setY(arrowYCoordinate);
 		} else {
-			startLineEnd.setX(arrowLinePosition - ARROW_PADDING);
+			arrowStart = getStart().getCopy().setX(getArrowLineVerticalX());
+			arrowEnd = arrowStart.getCopy().setY(getArrowLineVerticalY());
 		}
-
-		return startLineEnd;
+		points.addPoint(arrowStart);
+		points.addPoint(arrowEnd);
+		return points;
 	}
 
-	private Point getBottomLineEnd() {
-		int arrowLinePosition = getArrowLineX();
-		Point endLineEnd = getEnd().getCopy();
-		if (arrowLinePosition < getEnd().x()) {
-			endLineEnd.setX(arrowLinePosition - ARROW_PADDING);
-		} else {
-			endLineEnd.setX(arrowLinePosition + ARROW_PADDING);
-		}
+	/** Adds decorations(e.g. arrow triangles) to the arrow line. */
+	protected void decorateArrowLine(PolylineConnection arrowLine, Point arrowStart, Point arrowEnd) {
+		// source
+		PolylineDecoration source = new PolylineDecoration();
+		source.setLocation(arrowStart);
+		source.setLineWidth(1);
+		source.setReferencePoint(arrowEnd);
+		arrowLine.setSourceDecoration(source);
 
-		return endLineEnd;
+		// target
+		PolylineDecoration target = new PolylineDecoration();
+		target.setLocation(arrowEnd);
+		target.setLineWidth(1);
+		target.setReferencePoint(arrowStart);
+		arrowLine.setTargetDecoration(target);
 	}
+
+
+	private Orientation computeOptimalOrientation() {
+		if (Math.abs(getStart().y - getEnd().y) < ORIENTATION_SWITCH_DIFFERENCE) {
+			return Orientation.HORIZONTAL;
+		}
+		return Orientation.VERTICAL;
+	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -194,21 +306,21 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	 */
 	@Override
 	public boolean containsPoint(int x, int y) {
-		Rectangle topLine = new Rectangle(getStart(), getTopLineEnd());
-		topLine.expand(SELECTION_TOLERANCE, SELECTION_TOLERANCE);
-		if (topLine.contains(x, y)) {
+		// START LINE
+		PointList startLinePoints = getStartLinePoints();
+		if (Geometry.polylineContainsPoint(startLinePoints, x, y, SELECTION_TOLERANCE)) {
 			return true;
 		}
 
-		Rectangle bottomLine = new Rectangle(getEnd(), getBottomLineEnd());
-		bottomLine.expand(SELECTION_TOLERANCE, SELECTION_TOLERANCE);
-		if (bottomLine.contains(x, y)) {
+		// END LINE
+		PointList endLinePoints = getEndLinePoints();
+		if (Geometry.polylineContainsPoint(endLinePoints, x, y, SELECTION_TOLERANCE)) {
 			return true;
 		}
 
-		Rectangle arrowLine = new Rectangle(getArrowTop(), getArrowBottom());
-		arrowLine.expand(SELECTION_TOLERANCE, SELECTION_TOLERANCE);
-		if (arrowLine.contains(x, y)) {
+		// ARROW
+		PointList arrowPoints = getArrowLinePoints();
+		if (Geometry.polylineContainsPoint(arrowPoints, x, y, SELECTION_TOLERANCE)) {
 			return true;
 		}
 
@@ -217,6 +329,7 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		List<IFigure> children = getChildren();
 		return children.stream().anyMatch(child -> child.containsPoint(x, y));
 	}
+
 
 	/**
 	 * <p>
@@ -241,8 +354,11 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		// In that case, we need to update the bounds, to make sure we can draw
 		// everything
 		if (getPoints().size() >= 2) {
-			bounds.union(getTopLineEnd());
-			bounds.union(getBottomLineEnd());
+			PointList allPoints = new PointList();
+			allPoints.addAll(getStartLinePoints());
+			allPoints.addAll(getEndLinePoints());
+			allPoints.addAll(getArrowLinePoints());
+			bounds.union(allPoints.getBounds());
 		}
 		return bounds;
 	}
@@ -252,23 +368,7 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		// Skip; this figure doesn't support routers/bendpoints
 	}
 
-	/**
-	 * <p>
-	 * Set the orientation of the arrow (Orientation#VERTICAL or Orientation#HORIZONTAL).
-	 * </p>
-	 * <p>
-	 * By default, the arrow is vertical.
-	 * </p>
-	 *
-	 * @param orientation
-	 */
-	// TODO Orientation is not supported yet (Bug 536637)
-	public void setArrowOrientation(Orientation orientation) {
-		this.arrowOrientation = orientation;
-	}
-
-	// TODO Orientation is not supported yet (Bug 536637)
-	public static enum Orientation {
+	/* package */ static enum Orientation {
 		VERTICAL, HORIZONTAL;
 	}
 
