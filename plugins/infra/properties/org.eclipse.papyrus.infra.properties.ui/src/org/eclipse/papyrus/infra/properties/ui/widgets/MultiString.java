@@ -10,16 +10,13 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 527183
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 527183, 512094
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
 
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleStringEditor;
-import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -90,20 +87,7 @@ public class MultiString extends AbstractPropertyEditor {
 	protected void doBinding() {
 		editor.setOrdered(input.isOrdered(propertyPath));
 		editor.setUnique(input.isUnique(propertyPath));
-		editor.setDirectCreation(input.getDirectCreation(propertyPath));
-		ReferenceValueFactory factory = input.getValueFactory(propertyPath);
-		if (factory != null) {
-			editor.setFactory(input.getValueFactory(propertyPath));
-		}
-
-		IStaticContentProvider provider = input.getContentProvider(propertyPath);
-		if (provider != null) {
-			editor.setContentProvider(provider);
-		}
-		ILabelProvider labelProvider = input.getLabelProvider(propertyPath);
-		if (labelProvider != null) {
-			editor.setLabelProvider(labelProvider);
-		}
+		// It's not needed to set the factory because the editor initialize automatically the StringEditionFactory as factory
 
 		if (getInputObservableList() instanceof ICommitListener) {
 			editor.addCommitListener((ICommitListener) getInputObservableList());
