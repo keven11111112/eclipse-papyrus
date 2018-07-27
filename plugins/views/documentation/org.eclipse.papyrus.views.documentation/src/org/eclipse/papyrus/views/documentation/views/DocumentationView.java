@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) - mickael.adam@all4tec.net -  Initial API and implementation
- *   
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 532838
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.views.documentation.views;
@@ -217,7 +218,7 @@ public class DocumentationView extends ViewPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
@@ -443,7 +444,7 @@ public class DocumentationView extends ViewPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.ui.part.ViewPart#init(org.eclipse.ui.IViewSite, org.eclipse.ui.IMemento)
 	 */
 	@Override
@@ -479,8 +480,8 @@ public class DocumentationView extends ViewPart {
 	private ISelectionListener createSelectionListener() {
 		return (part, selection) -> {
 			if (!(part instanceof DocumentationView)) {
-				lastSelection = selection;
-				if (linkingEnabled) {
+				if (linkingEnabled && (null == lastSelection || !lastSelection.equals(selection))) {
+					lastSelection = selection;
 					setSelectedElement(selection);
 				}
 			}
@@ -496,8 +497,8 @@ public class DocumentationView extends ViewPart {
 	private ISelectionChangedListener createSelectionChangedListener() {
 		return (event) -> {
 			ISelection selection = event.getSelection();
-			lastSelection = selection;
-			if (linkingEnabled) {
+			if (linkingEnabled && (null == lastSelection || !lastSelection.equals(selection))) {
+				lastSelection = selection;
 				setSelectedElement(selection);
 			}
 		};
@@ -627,7 +628,7 @@ public class DocumentationView extends ViewPart {
 	 */
 	@SuppressWarnings("unchecked")
 	protected void refreshResources() {
-		List<String> resources = new ArrayList<String>();
+		List<String> resources = new ArrayList<>();
 		if (null != resourceTableComposite) {
 			if (useDocumentationProfile && null != comment) {
 				Stereotype appliedStereotype = comment.getAppliedStereotype(DOCUMENT_PROFILE_QUALIFY_NAME);
@@ -645,7 +646,7 @@ public class DocumentationView extends ViewPart {
 
 	/**
 	 * Gets the comment used for the documentation;
-	 * 
+	 *
 	 * @param ownedComments
 	 *            The owned comments of an {@link Element}.
 	 */
@@ -748,7 +749,7 @@ public class DocumentationView extends ViewPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.ui.part.WorkbenchPart#setFocus()
 	 */
 	@Override
@@ -767,7 +768,7 @@ public class DocumentationView extends ViewPart {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.ui.part.WorkbenchPart#dispose()
 	 */
 	@Override
@@ -794,7 +795,7 @@ public class DocumentationView extends ViewPart {
 	private final class SaveAtPartFocusLostListener implements IPartListener {
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.ui.IPartListener#partOpened(org.eclipse.ui.IWorkbenchPart)
 		 */
 		@Override
@@ -805,7 +806,7 @@ public class DocumentationView extends ViewPart {
 		/**
 		 * {@inheritDoc}<br>
 		 * Override to save the text at focus lost.
-		 * 
+		 *
 		 * @see org.eclipse.ui.IPartListener#partDeactivated(org.eclipse.ui.IWorkbenchPart)
 		 */
 		@Override
@@ -817,7 +818,7 @@ public class DocumentationView extends ViewPart {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.ui.IPartListener#partClosed(org.eclipse.ui.IWorkbenchPart)
 		 */
 		@Override
@@ -827,7 +828,7 @@ public class DocumentationView extends ViewPart {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.ui.IPartListener#partBroughtToTop(org.eclipse.ui.IWorkbenchPart)
 		 */
 		@Override
@@ -837,7 +838,7 @@ public class DocumentationView extends ViewPart {
 
 		/**
 		 * {@inheritDoc}
-		 * 
+		 *
 		 * @see org.eclipse.ui.IPartListener#partActivated(org.eclipse.ui.IWorkbenchPart)
 		 */
 		@Override
