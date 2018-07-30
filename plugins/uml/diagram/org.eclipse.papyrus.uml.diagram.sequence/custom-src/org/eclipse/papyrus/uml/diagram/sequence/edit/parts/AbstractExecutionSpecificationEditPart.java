@@ -32,7 +32,6 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
@@ -71,6 +70,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEdit
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectExecutionToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectYCoordinateToGrillingEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CoordinateReferentialUtils;
+import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 import org.eclipse.swt.graphics.Color;
 
@@ -79,6 +79,7 @@ import org.eclipse.swt.graphics.Color;
  *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
+@SuppressWarnings("restriction")
 public abstract class AbstractExecutionSpecificationEditPart extends RoundedCompartmentEditPart {
 
 	/**
@@ -324,7 +325,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 					}
 					// otherwise, this is a recursive call, let destination free
 				} else if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return isStart(createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+					return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 				}
 			}
 		} else if (request instanceof ReconnectRequest) {
@@ -345,29 +346,11 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 					return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
 				}
 			}
-			if (isDurationLink(createRequest)) {
-				return isStart(createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+			if (DurationLinkUtil.isDurationLink(createRequest)) {
+				return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 			}
 		}
 		return super.getTargetConnectionAnchor(request);
-	}
-
-	/**
-	 * Test whether the given request is closer to the start (top) or to the finish (bottom) point of the execution specification
-	 *
-	 * @param createRequest
-	 *            The create request
-	 * @return
-	 * 		<code>true</code> if the given request is closer to the top of the figure; false if it is closer to the bottom
-	 */
-	private boolean isStart(CreateRequest createRequest) {
-		Point location = createRequest.getLocation();
-		Rectangle bounds = getFigure().getBounds().getCopy();
-		getFigure().translateToAbsolute(bounds);
-
-		double distanceToTop = location.getDistance(bounds.getTop());
-		double distanceToBottom = location.getDistance(bounds.getBottom());
-		return distanceToTop < distanceToBottom;
 	}
 
 	/**
@@ -386,7 +369,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		final org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart connection = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) connEditPart;
 		String t = null;
 		try {
-			t = (String) getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
+			t = (String) getEditingDomain().runExclusive(new RunnableWithResult.Impl<String>() {
 
 				@Override
 				public void run() {
@@ -428,7 +411,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 					// Reply Message
 					return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.BOTTOM);
 				} else if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return isStart(createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+					return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 				}
 			}
 		} else if (request instanceof ReconnectRequest) {
@@ -440,25 +423,11 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
-			if (isDurationLink(createRequest)) {
-				return isStart(createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+			if (DurationLinkUtil.isDurationLink(createRequest)) {
+				return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 			}
 		}
 		return super.getSourceConnectionAnchor(request);
-	}
-
-	/**
-	 * @param createRequest
-	 * @return
-	 */
-	private boolean isDurationLink(CreateConnectionViewRequest createRequest) {
-		String semanticHint = createRequest.getConnectionViewDescriptor().getSemanticHint();
-		switch (semanticHint) {
-		case DurationConstraintLinkEditPart.VISUAL_ID:
-		case DurationObservationLinkEditPart.VISUAL_ID:
-			return true;
-		}
-		return false;
 	}
 
 	/**
@@ -477,7 +446,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		final org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart connection = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) connEditPart;
 		String t = null;
 		try {
-			t = (String) getEditingDomain().runExclusive(new RunnableWithResult.Impl() {
+			t = (String) getEditingDomain().runExclusive(new RunnableWithResult.Impl<String>() {
 
 				@Override
 				public void run() {

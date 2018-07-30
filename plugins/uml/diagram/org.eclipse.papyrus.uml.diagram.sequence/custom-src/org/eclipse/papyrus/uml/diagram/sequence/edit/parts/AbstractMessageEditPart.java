@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2017, 2018 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -18,10 +18,8 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.List;
 
-import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Cursors;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.common.notify.Notification;
@@ -31,7 +29,6 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
@@ -59,6 +56,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectMessageToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifeLineGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelectMessagesEditPartTracker;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
 import org.eclipse.swt.SWT;
@@ -413,13 +411,13 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object type : relationshipTypes) {
 				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return isSource(createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+					return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 				}
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
-			if (isDurationLink(createRequest)) {
-				return isSource(createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+			if (DurationLinkUtil.isDurationLink(createRequest)) {
+				return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 			}
 		}
 		return super.getSourceConnectionAnchor(request);
@@ -432,57 +430,17 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object type : relationshipTypes) {
 				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return isSource(createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+					return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 				}
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
-			if (isDurationLink(createRequest)) {
-				return isSource(createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+			if (DurationLinkUtil.isDurationLink(createRequest)) {
+				return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 			}
 		}
 		return super.getTargetConnectionAnchor(request);
 	}
 
-	/**
-	 * Test whether the given request is closer to the source or to the target point of the message
-	 *
-	 * @param createRequest
-	 *            The create request
-	 * @return
-	 * 		<code>true</code> if the given request is closer to the source of the connection; false if it is closer to the target
-	 */
-	private boolean isSource(CreateRequest createRequest) {
-		Point location = createRequest.getLocation();
-		IFigure connection = getPrimaryShape();
-		if (connection != null) {
-			PointList points = ((Connection) connection).getPoints();
-			if (points.size() >= 2) {
-				Point source = points.getFirstPoint();
-				Point target = points.getLastPoint();
-				double distanceToSource = location.getDistance(source);
-				double distanceToTarget = location.getDistance(target);
-				return distanceToSource < distanceToTarget;
-			}
-		}
-
-		// Default; shouldn't happen, unless the Message figure is invalid,
-		// in which case we can't determine the source/target).
-		return true;
-	}
-
-	/**
-	 * @param createRequest
-	 * @return
-	 */
-	private boolean isDurationLink(CreateConnectionViewRequest createRequest) {
-		String semanticHint = createRequest.getConnectionViewDescriptor().getSemanticHint();
-		switch (semanticHint) {
-		case DurationConstraintLinkEditPart.VISUAL_ID:
-		case DurationObservationLinkEditPart.VISUAL_ID:
-			return true;
-		}
-		return false;
-	}
 
 }
