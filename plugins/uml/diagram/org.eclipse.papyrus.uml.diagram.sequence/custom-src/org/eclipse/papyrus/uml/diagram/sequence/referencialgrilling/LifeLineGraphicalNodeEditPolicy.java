@@ -519,7 +519,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 			getHostFigure().getParent().translateToRelative(relativeSnappedLocation);
 
 			if (false == request.getTargetEditPart() instanceof LifelineEditPart) {
-				System.out.println("TODO Handle this");
+				// TODO This may happen when creating e.g. a Context link
 				return null;
 			}
 			if (LifelineEditPartUtil.getNextEventsFromPosition(relativeSnappedLocation, (LifelineEditPart) request.getTargetEditPart()).isEmpty()) {
