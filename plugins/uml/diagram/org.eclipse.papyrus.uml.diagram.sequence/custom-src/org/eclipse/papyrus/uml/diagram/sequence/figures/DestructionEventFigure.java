@@ -11,7 +11,7 @@
  * 	Technologies), Jacques Lescot (Anyware Technologies), Thomas Friol (Anyware
  * 	Technologies), Nicolas Lalevee (Anyware Technologies) - initial API and
  * 	implementation
- * 	EclipseSource - Bug 536638
+ * 	EclipseSource - Bug 536638, Bug 536641
  ******************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
@@ -61,18 +61,20 @@ public class DestructionEventFigure extends DefaultSizeNodeFigure {
 		repaint();
 	}
 
-	/**
-	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#getConnectionAnchor(java.lang.String)
-	 *
-	 * @param terminal
-	 * @return
-	 */
 	@Override
 	public ConnectionAnchor getConnectionAnchor(String terminal) {
 		if (AnchorConstants.CENTER_TERMINAL.equals(terminal)) {
 			return new CenterAnchor(this);
 		}
 		return super.getConnectionAnchor(terminal);
+	}
+
+	@Override
+	public String getConnectionAnchorTerminal(ConnectionAnchor c) {
+		if (c instanceof CenterAnchor) {
+			return AnchorConstants.CENTER_TERMINAL;
+		}
+		return super.getConnectionAnchorTerminal(c);
 	}
 
 }

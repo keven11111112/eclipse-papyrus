@@ -110,7 +110,9 @@ public class DurationConstraintEditHelperAdvice extends AbstractDurationEditHelp
 				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					constraint.getConstrainedElements().add(0, source);
-					constraint.getConstrainedElements().add(1, target);
+					if (target != source) {
+						constraint.getConstrainedElements().add(1, target);
+					}
 					return CommandResult.newOKCommandResult();
 				}
 			};

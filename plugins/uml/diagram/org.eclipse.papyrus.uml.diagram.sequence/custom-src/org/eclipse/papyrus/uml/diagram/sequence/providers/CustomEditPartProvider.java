@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
- *
+ * Copyright (c) 2010, 2018 CEA List, EclipseSource and others
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   EclipseSource - Bug 536641
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.SilentEditpart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CCombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CDestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CInteractionOperandEditPart;
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageName7Edi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
@@ -138,8 +140,8 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 		// return new CustomTimeObservationAppliedStereotypeEditPart(view);
 		// case DurationConstraintAppliedStereotypeEditPart.VISUAL_ID:
 		// return new CustomDurationConstraintAppliedStereotypeEditPart(view);
-		// case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-		// return new CustomDestructionOccurrenceSpecificationEditPart(view);
+		case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+			return new CDestructionOccurrenceSpecificationEditPart(view);
 		// case ConstraintEditPart.VISUAL_ID:
 		// return new CustomConstraintEditPart(view);
 		// case Constraint2EditPart.VISUAL_ID:

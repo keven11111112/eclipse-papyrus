@@ -52,7 +52,9 @@ public class DurationObservationEditHelperAdvice extends AbstractDurationEditHel
 				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 					observation.getEvents().add(0, source);
-					observation.getEvents().add(1, target);
+					if (target != source) {
+						observation.getEvents().add(1, target);
+					}
 					return CommandResult.newOKCommandResult();
 				}
 			};
