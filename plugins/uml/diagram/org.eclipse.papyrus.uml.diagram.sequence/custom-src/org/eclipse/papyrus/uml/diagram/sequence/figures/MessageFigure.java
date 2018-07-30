@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
- *
+ * Copyright (c) 2010, 2018 CEA LIST, EclipseSource and others
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +10,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   EclipseSource - Bug 536641
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
@@ -194,5 +194,15 @@ public abstract class MessageFigure extends UMLEdgeFigure {
 			return new ConnectionTargetAnchor(this);
 		}
 		return super.getConnectionAnchor(terminal);
+	}
+
+	@Override
+	public String getConnectionAnchorTerminal(ConnectionAnchor c) {
+		if (c instanceof ConnectionSourceAnchor) {
+			return AnchorConstants.START_TERMINAL;
+		} else if (c instanceof ConnectionTargetAnchor) {
+			return AnchorConstants.END_TERMINAL;
+		}
+		return super.getConnectionAnchorTerminal(c);
 	}
 }

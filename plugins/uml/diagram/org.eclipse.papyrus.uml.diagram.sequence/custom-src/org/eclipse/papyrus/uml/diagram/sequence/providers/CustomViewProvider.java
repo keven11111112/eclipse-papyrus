@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
- *
+ * Copyright (c) 2010, 2018 CEA List, EclipseSource and others
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +10,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   EclipseSource - Bug 536641
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperatio
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Location;
@@ -78,7 +79,7 @@ public class CustomViewProvider extends UMLViewProvider {
 			PreferencesHint preferencesHint) {
 		Edge edge = super.createEdge(semanticAdapter, containerView,
 				semanticHint, index, persisted, preferencesHint);
-		if (edge != null) {
+		if (edge != null && false == edge instanceof Connector) {
 			edge.getStyles().add(NotationFactory.eINSTANCE.createLineStyle());
 			final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 					.getPreferenceStore();

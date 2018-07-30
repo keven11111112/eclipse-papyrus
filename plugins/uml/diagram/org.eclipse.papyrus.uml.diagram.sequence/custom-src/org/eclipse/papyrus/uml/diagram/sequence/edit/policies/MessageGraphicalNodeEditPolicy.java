@@ -15,79 +15,48 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 import java.util.List;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationLinkFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
-import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
-/**
- * <p>
- * A specialized {@link GraphicalNodeEditPolicy} for {@link ExecutionSpecification ExecutionSpecifications}, to handle
- * connection of DurationLinks to the Start/Finish Occurrences of the {@link ExecutionSpecification}
- * </p>
- */
-public class ExecutionSpecificationGraphicalNodeEditPolicy extends ElementCreationWithMessageEditPolicy {
-
+public class MessageGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	// Source (First half of the request)
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
 		if (isCreateDurationLink(request)) {
 			CreateRelationshipRequest createRequest = getCreateRelationshipRequest(request);
 			if (createRequest != null) {
-				OccurrenceSpecification sourceOccurrence;
-				ExecutionSpecification execSpec = getExecutionSpecification();
-				if (execSpec != null) {
-					if (isStart(request)) {
-						sourceOccurrence = execSpec.getStart();
-					} else {
-						sourceOccurrence = execSpec.getFinish();
+				MessageEnd sourceOccurrence;
+				Message message = getMessage();
+				if (message != null) {
+					sourceOccurrence = isSource(request) ? message.getSendEvent() : message.getReceiveEvent();
+					if (sourceOccurrence instanceof OccurrenceSpecification) {
+						request.getExtendedData().put(SequenceRequestConstant.SOURCE_OCCURRENCE, sourceOccurrence);
+						createRequest.setParameter(SequenceRequestConstant.SOURCE_OCCURRENCE, sourceOccurrence);
 					}
-					request.getExtendedData().put(SequenceRequestConstant.SOURCE_OCCURRENCE, sourceOccurrence);
-					createRequest.setParameter(SequenceRequestConstant.SOURCE_OCCURRENCE, sourceOccurrence);
 				}
 			}
 		}
 		return super.getConnectionCreateCommand(request);
-	}
-
-	private ExecutionSpecification getExecutionSpecification() {
-		Object model = getHost().getModel();
-		if (model instanceof View && ((View) model).getElement() instanceof ExecutionSpecification) {
-			return (ExecutionSpecification) ((View) model).getElement();
-		}
-		return null;
-	}
-
-	/**
-	 * Test whether the given request is closer to the start (top) or to the finish (bottom) point of the execution specification
-	 *
-	 * @param createRequest
-	 *            The create request
-	 * @return
-	 * 		<code>true</code> if the given request is closer to the top of the figure; false if it is closer to the bottom
-	 */
-	private boolean isStart(CreateRequest createRequest) {
-		Point location = createRequest.getLocation();
-		Rectangle bounds = getHostFigure().getBounds();
-
-		double distanceToTop = location.getDistance(bounds.getTop());
-		double distanceToBottom = location.getDistance(bounds.getBottom());
-		return distanceToTop < distanceToBottom;
 	}
 
 	// Target (Second half of the request)
@@ -96,20 +65,50 @@ public class ExecutionSpecificationGraphicalNodeEditPolicy extends ElementCreati
 		if (isCreateDurationLink(request)) {
 			CreateRelationshipRequest createRequest = getCreateRelationshipRequest(request);
 			if (createRequest != null) {
-				OccurrenceSpecification targetOccurrence;
-				ExecutionSpecification execSpec = getExecutionSpecification();
-				if (execSpec != null) {
-					if (isStart(request)) {
-						targetOccurrence = execSpec.getStart();
-					} else {
-						targetOccurrence = execSpec.getFinish();
+				MessageEnd targetOccurrence;
+				Message message = getMessage();
+				if (message != null) {
+					targetOccurrence = isSource(request) ? message.getSendEvent() : message.getReceiveEvent();
+					if (targetOccurrence instanceof OccurrenceSpecification) {
+						request.getExtendedData().put(SequenceRequestConstant.TARGET_OCCURRENCE, targetOccurrence);
+						createRequest.setParameter(SequenceRequestConstant.TARGET_OCCURRENCE, targetOccurrence);
 					}
-					request.getExtendedData().put(SequenceRequestConstant.TARGET_OCCURRENCE, targetOccurrence);
-					createRequest.setParameter(SequenceRequestConstant.TARGET_OCCURRENCE, targetOccurrence);
 				}
 			}
 		}
 		return super.getConnectionAndRelationshipCompleteCommand(request);
+	}
+
+	/**
+	 * Test whether the given request is closer to the source or to the target point of the message
+	 *
+	 * @param createRequest
+	 *            The create request
+	 * @return
+	 * 		<code>true</code> if the given request is closer to the source of the connection; false if it is closer to the target
+	 */
+	private boolean isSource(CreateRequest createRequest) {
+		Point location = createRequest.getLocation();
+		IFigure connection = getHostFigure();
+		if (connection instanceof Connection) {
+			PointList points = ((Connection) connection).getPoints();
+			if (points.size() >= 2) {
+				Point source = points.getFirstPoint();
+				Point target = points.getLastPoint();
+				double distanceToSource = location.getDistance(source);
+				double distanceToTarget = location.getDistance(target);
+				return distanceToSource < distanceToTarget;
+			}
+		}
+
+		// Default; shouldn't happen, unless the Message figure is invalid,
+		// in which case we can't determine the source/target).
+		return true;
+	}
+
+	private Message getMessage() {
+		EObject model = EMFHelper.getEObject(getHost());
+		return model instanceof Message ? (Message) model : null;
 	}
 
 	private boolean isCreateDurationLink(CreateConnectionRequest request) {
@@ -150,5 +149,4 @@ public class ExecutionSpecificationGraphicalNodeEditPolicy extends ElementCreati
 		}
 		return new PolylineConnection();
 	}
-
 }
