@@ -25,6 +25,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.anchors.CenterAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionOccurrenceGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventNodePlate;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
 
 public class CDestructionOccurrenceSpecificationEditPart extends DestructionOccurrenceSpecificationEditPart {
 
@@ -50,7 +51,7 @@ public class CDestructionOccurrenceSpecificationEditPart extends DestructionOccu
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
-			if (isDurationLink(createRequest)) {
+			if (DurationLinkUtil.isDurationLink(createRequest)) {
 				return new CenterAnchor(getFigure());
 			}
 		}
@@ -69,7 +70,7 @@ public class CDestructionOccurrenceSpecificationEditPart extends DestructionOccu
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
-			if (isDurationLink(createRequest)) {
+			if (DurationLinkUtil.isDurationLink(createRequest)) {
 				return new CenterAnchor(getFigure());
 			}
 		}
@@ -83,13 +84,4 @@ public class CDestructionOccurrenceSpecificationEditPart extends DestructionOccu
 		return nodePlate;
 	}
 
-	private boolean isDurationLink(CreateConnectionViewRequest createRequest) {
-		String semanticHint = createRequest.getConnectionViewDescriptor().getSemanticHint();
-		switch (semanticHint) {
-		case DurationConstraintLinkEditPart.VISUAL_ID:
-		case DurationObservationLinkEditPart.VISUAL_ID:
-			return true;
-		}
-		return false;
-	}
 }
