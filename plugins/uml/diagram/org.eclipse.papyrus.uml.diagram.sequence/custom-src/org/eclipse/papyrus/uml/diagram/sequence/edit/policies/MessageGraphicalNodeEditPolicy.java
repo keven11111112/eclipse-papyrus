@@ -12,12 +12,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
+import java.util.Map;
+
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -41,7 +45,9 @@ public class MessageGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				if (message != null) {
 					sourceOccurrence = DurationLinkUtil.isSource(getHostFigure(), request) ? message.getSendEvent() : message.getReceiveEvent();
 					if (sourceOccurrence instanceof OccurrenceSpecification) {
-						request.getExtendedData().put(SequenceRequestConstant.SOURCE_OCCURRENCE, sourceOccurrence);
+						@SuppressWarnings("unchecked")
+						Map<Object, Object> extendedData = request.getExtendedData();
+						extendedData.put(SequenceRequestConstant.SOURCE_OCCURRENCE, sourceOccurrence);
 						createRequest.setParameter(SequenceRequestConstant.SOURCE_OCCURRENCE, sourceOccurrence);
 					}
 				}
@@ -61,13 +67,33 @@ public class MessageGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				if (message != null) {
 					targetOccurrence = DurationLinkUtil.isSource(getHostFigure(), request) ? message.getSendEvent() : message.getReceiveEvent();
 					if (targetOccurrence instanceof OccurrenceSpecification) {
-						request.getExtendedData().put(SequenceRequestConstant.TARGET_OCCURRENCE, targetOccurrence);
+						@SuppressWarnings("unchecked")
+						Map<Object, Object> extendedData = request.getExtendedData();
+						extendedData.put(SequenceRequestConstant.TARGET_OCCURRENCE, targetOccurrence);
 						createRequest.setParameter(SequenceRequestConstant.TARGET_OCCURRENCE, targetOccurrence);
 					}
 				}
 			}
 		}
 		return super.getConnectionAndRelationshipCompleteCommand(request);
+	}
+
+	@Override
+	protected Command getReconnectSourceCommand(ReconnectRequest request) {
+		if (DurationLinkUtil.isDurationLink(request)) {
+			// Bug 536639: Forbid reconnect on Duration edit parts
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.getReconnectSourceCommand(request);
+	}
+
+	@Override
+	protected Command getReconnectTargetCommand(ReconnectRequest request) {
+		if (DurationLinkUtil.isDurationLink(request)) {
+			// Bug 536639: Forbid reconnect on Duration edit parts
+			return UnexecutableCommand.INSTANCE;
+		}
+		return super.getReconnectTargetCommand(request);
 	}
 
 	private Message getMessage() {

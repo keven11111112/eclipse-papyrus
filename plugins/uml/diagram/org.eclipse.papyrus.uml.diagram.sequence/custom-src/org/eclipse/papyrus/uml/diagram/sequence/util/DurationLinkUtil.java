@@ -23,6 +23,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
@@ -148,6 +149,23 @@ public class DurationLinkUtil {
 		// Default; shouldn't happen, unless the Message figure is invalid,
 		// in which case we can't determine the source/target).
 		return true;
+	}
+
+
+	/**
+	 * <p>
+	 * Test if this request is trying to reconnect a DurationLink edit part
+	 * </p>
+	 *
+	 * @param request
+	 * @return
+	 *
+	 * @see DurationConstraintLinkEditPart
+	 * @see DurationObservationLinkEditPart
+	 */
+	public static boolean isDurationLink(ReconnectRequest request) {
+		return request.getConnectionEditPart() instanceof DurationConstraintLinkEditPart ||
+				request.getConnectionEditPart() instanceof DurationObservationLinkEditPart;
 	}
 
 }
