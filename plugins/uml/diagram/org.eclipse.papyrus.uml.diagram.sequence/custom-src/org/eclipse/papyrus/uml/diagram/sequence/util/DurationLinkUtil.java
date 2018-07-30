@@ -20,6 +20,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
@@ -30,10 +31,21 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.gmf.runtime.notation.Connector;
+import org.eclipse.gmf.runtime.notation.IdentityAnchor;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
+import org.eclipse.papyrus.uml.diagram.sequence.anchors.AnchorConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.DurationConstraint;
+import org.eclipse.uml2.uml.DurationObservation;
+import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * <p>
@@ -166,6 +178,106 @@ public class DurationLinkUtil {
 	public static boolean isDurationLink(ReconnectRequest request) {
 		return request.getConnectionEditPart() instanceof DurationConstraintLinkEditPart ||
 				request.getConnectionEditPart() instanceof DurationObservationLinkEditPart;
+	}
+
+	/**
+	 * <p>
+	 * Test if the connector view is consistent with a new value. If the new value is not a List,
+	 * this method always returns true. Otherwise, the list items will be compared with the
+	 * semantic source/target of the given connector.
+	 * </p>
+	 *
+	 * @param connector
+	 *            A connector representing a DurationLink (Constraint or Observation) in the Sequence Diagram
+	 * @param setRequest
+	 *            A {@link SetRequest} modifying a duration link source/target (for {@link DurationConstraint#getConstrainedElements()}
+	 *            or {@link DurationObservation#getEvents()},
+	 * @return
+	 * 		<code>true</code> if the Connector is consistent with the new proposed value, <code>false</code> if the connector
+	 *         is no longer consistent. If the result is <code>false</code>, actions should be taken to preserve the diagram
+	 *         consistency.
+	 */
+	public static boolean isConsistent(Connector connector, SetRequest setRequest) {
+		Object newValue = setRequest.getValue();
+		if (false == newValue instanceof List) {
+			// Not supported; do nothing. Probably shouldn't happen anyway.
+			return true;
+		}
+
+		List<?> values = (List<?>) newValue;
+		if (values.isEmpty()) {
+			// FIXME Workaround for the Properties View. When using the multi-reference editor's dialog,
+			// the editor will first send a clear() request, then a addAll() request; so we'd always
+			// destroy the connector, even if it's actually still valid. To be safe, we ignore this case
+			// Keeping an invalid connector in the diagram is better than destroying a valid one.
+			return true;
+		}
+
+		View sourceView = connector.getSource();
+		String sourceAnchor = connector.getSourceAnchor() instanceof IdentityAnchor ? ((IdentityAnchor) connector.getSourceAnchor()).getId() : "";
+
+		View targetView = connector.getTarget();
+		String targetAnchor = connector.getSourceAnchor() instanceof IdentityAnchor ? ((IdentityAnchor) connector.getTargetAnchor()).getId() : "";
+
+		if (sourceView == null || targetView == null) {
+			return false;
+		}
+
+		if (values.isEmpty()) {
+			return false;
+		}
+
+		Object sourceEvent = values.get(0);
+		if (sourceEvent != DurationLinkUtil.findSemanticOccurrence(sourceView, sourceAnchor)) {
+			return false;
+		}
+
+		if (values.size() > 1) { // source != target
+			Object targetEvent = values.get(1);
+			return targetEvent == DurationLinkUtil.findSemanticOccurrence(targetView, targetAnchor);
+		} else { // source == target
+			return sourceEvent == DurationLinkUtil.findSemanticOccurrence(targetView, targetAnchor);
+		}
+	}
+
+	/**
+	 * Find the semantic {@link OccurrenceSpecification} represented by the given <code>connectorEnd</code>.
+	 * The connector should be the source or target of a DurationLink connector.
+	 *
+	 * @param connectorEnd
+	 *            the source or target of a DurationLink connector
+	 * @param anchorTerminal
+	 *            The connection anchor corresponding to the given connector end.
+	 * @return
+	 * 		The semantic occurrence specification represented by the given connector end (View), or null
+	 *         if the view doesn't represent a valid {@link OccurrenceSpecification}.
+	 */
+	public static OccurrenceSpecification findSemanticOccurrence(View connectorEnd, String anchorTerminal) {
+		EObject semantic = connectorEnd.getElement();
+		if (semantic instanceof OccurrenceSpecification) {
+			return (OccurrenceSpecification) semantic;
+		} else if (semantic instanceof ExecutionSpecification) {
+			switch (anchorTerminal) {
+			case AnchorConstants.START_TERMINAL:
+				return ((ExecutionSpecification) semantic).getStart();
+			case AnchorConstants.END_TERMINAL:
+				return ((ExecutionSpecification) semantic).getFinish();
+			default:
+				return null;
+			}
+		} else if (semantic instanceof Message) {
+			switch (anchorTerminal) {
+			case AnchorConstants.START_TERMINAL:
+				MessageEnd sendEvent = ((Message) semantic).getSendEvent();
+				return sendEvent instanceof OccurrenceSpecification ? (OccurrenceSpecification) sendEvent : null;
+			case AnchorConstants.END_TERMINAL:
+				MessageEnd receiveEvent = ((Message) semantic).getReceiveEvent();
+				return receiveEvent instanceof OccurrenceSpecification ? (OccurrenceSpecification) receiveEvent : null;
+			default:
+				return null;
+			}
+		}
+		return null;
 	}
 
 }
