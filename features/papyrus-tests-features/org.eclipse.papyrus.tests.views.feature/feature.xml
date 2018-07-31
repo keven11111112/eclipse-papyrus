@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.tests.views.feature" label="PapyrusView Modelexplorer Feature" provider-name="Eclipse Modeling Project" version="1.2.0.qualifier">
-
-   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2011 CEA LIST
-All rights reserved.   This program and the accompanying materials
-are made available under the terms of the Eclipse Public License
-v1.0
-which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<feature 
+      id="org.eclipse.papyrus.tests.views.feature" 
+      version="1.2.0.qualifier"
+      label="%featureName"
+      provider-name="%providerName" 
+      license-feature="org.eclipse.license"
+      license-feature-version="2.0.0">
+      
+   <copyright>
+      %copyright
    </copyright>
 
    <license url="%licenseURL">
@@ -14,11 +16,21 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
    
    <description url="https://eclipse.org/papyrus/">
-   	Tests on the Papyrus Model Explorer View.
+   	  %description
    </description>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.views.modelexplorer.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.views.modelexplorer.tests" 
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0"
+         unpack="false"/>
    
-   <plugin download-size="0" id="org.eclipse.papyrus.views.documentation.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.views.documentation.tests" 
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

@@ -1,44 +1,105 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.tests.uml.diagram.feature" label="Tests UML Diagram Feature" provider-name="Eclipse Modeling Project" version="1.2.0.qualifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.tests.uml.diagram.feature"
+      version="1.2.0.qualifier"
+      label="%featureName"
+      provider-name="%providerName"
+      license-feature="org.eclipse.license"
+      license-feature-version="2.0.0">
 
-   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2011, 2014 CEA LIST and others
-All rights reserved.   This program and the accompanying materials
-are made available under the terms of the Eclipse Public License
-v1.0
-which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
+   <description url="https://eclipse.org/papyrus/">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
    </copyright>
 
    <license url="%licenseURL">
       %license
    </license>
-   
-   <description url="https://eclipse.org/papyrus/">
-   	Tests on the Papyrus UML Diagram plug-ins.
-   </description>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.clazz.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.clazz.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.activity.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.activity.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.usecase.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.usecase.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.deployment.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.deployment.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.component.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.component.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.timing.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.timing.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.sequence.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.sequence.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.composite.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.composite.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.wizards.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.profile.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.profile.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.common.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.diagram.common.tests" install-size="0" version="0.0.0"/>
-  
+   <plugin
+         id="org.eclipse.papyrus.uml.diagram.wizards.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

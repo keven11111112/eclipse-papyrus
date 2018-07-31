@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.sdk.feature"
-      label="Papyrus for UML"
       version="4.1.0.qualifier"
-      provider-name="Eclipse Modeling Project"
-      plugin="org.eclipse.papyrus.sdk">
+      label="%featureName"
+      provider-name="%providerName"
+      plugin="org.eclipse.papyrus.sdk" 
+      license-feature="org.eclipse.license"
+      license-feature-version="2.0.0">
 
    <description url="https://eclipse.org/papyrus/">
-      Papyrus for UML provides a UML 2 modeling environment that conforms to the OMG specification.
-Papyrus for UML notably features diagram editors for UML 2 diagrams, rich model editing facilities, and the glue required to integrate with other model-based tools. 
-It also offers a very advanced support of UML profiles that enables users to define UML-based domain-specific modeling languages. 
-To complement the UML profiles support, Papyrus provides very powerful customization mechanisms which can be leveraged to create user-defined Papyrus perspectives and give it the same look and feel as a native DSL editor.
+      %description
    </description>
 
-   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others
-All rights reserved.   This program and the accompanying materials
-are made available under the terms of the Eclipse Public License v1.0
-which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
+   <copyright>
+      %copyright
    </copyright>
 
    <license url="%licenseURL">
@@ -61,16 +56,16 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin
          id="com.google.guava"
+         version="21.0.0.v20170206-1425"
          download-size="0"
          install-size="0"
-         version="21.0.0.v20170206-1425"
          unpack="false"/>
 
    <plugin
          id="com.google.gson"
+         version="2.7.0.v20170129-0911"
          download-size="0"
          install-size="0"
-         version="2.7.0.v20170129-0911"
          unpack="false"/>
 
 

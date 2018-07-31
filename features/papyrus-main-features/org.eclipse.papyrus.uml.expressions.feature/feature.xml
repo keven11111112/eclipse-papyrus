@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.uml.expressions.feature"
-      label="%featureName"
       version="1.0.0.qualifier"
-      provider-name="%providerName">
+      label="%featureName"
+      provider-name="%providerName" 
+      license-feature="org.eclipse.license"
+      license-feature-version="2.0.0">
 
    <description url="https://eclipse.org/papyrus/">
-      Papyrus UML Expressions is an extension of Papyrus EMF Expressions dedicated to UML Elements. This feature provides particularly expressions to adress stereotypes applications.
+      %description
    </description>
 
-   <copyright url="epl-v10.html">
-      Copyright (c) 2017 CEA LIST
-All rights reserved.   This program and the accompanying materials
-are made available under the terms of the Eclipse Public License
-v1.0
-which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
+   <copyright>
+      %copyright
    </copyright>
 
    <license url="%licenseURL">

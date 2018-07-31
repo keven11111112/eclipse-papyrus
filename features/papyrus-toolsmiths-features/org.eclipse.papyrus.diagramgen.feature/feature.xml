@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.diagramgen.feature"
-      label="Papyrus Diagram Generation Tools"
       version="1.0.0.qualifier"
-      provider-name="Eclipse Modeling Project">
+      label="%featureName"
+      provider-name="%providerName"
+      license-feature="org.eclipse.license"
+      license-feature-version="2.0.0">
 
    <description url="https://eclipse.org/papyrus/">
-      Diagram Generation framework for Papyrus.
+      %description
    </description>
 
-   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2018 CEA LIST, Christian W. Damus, and others.
-All rights reserved.   This program and the accompanying materials
-are made available under the terms of the Eclipse Public License v1.0
-which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
+   <copyright>
+      %copyright
    </copyright>
 
    <license url="%licenseURL">

@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.tests.uml.feature" label="Tests UML Feature" provider-name="Eclipse Modeling Project" version="1.2.0.qualifier">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<feature 
+      id="org.eclipse.papyrus.tests.uml.feature" 
+      version="1.2.0.qualifier"
+      label="%featureName" 
+      provider-name="%providerName" 
+      license-feature="org.eclipse.license"
+      license-feature-version="2.0.0">
 
-   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2012, 2015 CEA LIST, Atos Origin, Conselleria de
-Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana,
-Christian W. Damus, and others.
-All rights reserved.   This program and the accompanying materials
-are made available under the terms of the Eclipse Public License v1.0
-which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
+   <copyright>
+      %copyright
    </copyright>
 
    <license url="%licenseURL">
@@ -15,26 +16,71 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
    
    <description url="https://eclipse.org/papyrus/">
-   	Feature regrouping basic UML element and profile creation and manipulation tests
+   	  %description
    </description>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.modelexplorer.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.uml.modelexplorer.tests" 
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.modelrepair.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.uml.modelrepair.tests" 
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.properties.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.uml.properties.tests" 
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.service.types.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.uml.service.types.tests" 
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.service.types.ui.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.uml.service.types.ui.tests" 
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.profile.drafter.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.uml.profile.drafter.tests" 
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.filters.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.uml.filters.tests" 
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.profile.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.uml.profile.tests" 
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0"
+         unpack="false"/>
    
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.dynamic.profile.tests" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.uml.dynamic.profile.tests" 
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0"
+         unpack="false"/>
    
 
 </feature>

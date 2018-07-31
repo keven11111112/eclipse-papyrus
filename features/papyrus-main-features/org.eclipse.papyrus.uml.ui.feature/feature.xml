@@ -1,21 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.uml.ui.feature" label="%featureName" provider-name="%providerName" version="1.2.0.qualifier">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<feature 
+      id="org.eclipse.papyrus.uml.ui.feature" 
+      version="1.2.0.qualifier" 
+      label="%featureName" 
+      provider-name="%providerName" 
+      license-feature="org.eclipse.license"
+      license-feature-version="2.0.0">
+   
+   <description url="https://eclipse.org/papyrus/">
+   	  %description
+   </description>
 
-   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2016 Christian W. Damus and others.
-All rights reserved.   This program and the accompanying materials
-are made available under the terms of the Eclipse Public License v1.0
-which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
+   <copyright>
+      %copyright
    </copyright>
 
    <license url="%licenseURL">
       %license
    </license>
-   
-   <description url="https://eclipse.org/papyrus/">
-   	Feature regrouping the plugins used to customize the UML UI in Papyrus.
-   </description>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.uml.ui" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin 
+         id="org.eclipse.papyrus.uml.ui"
+         download-size="0" 
+         install-size="0" 
+         version="0.0.0" 
+         unpack="false" />
 
 </feature>
