@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @since 3.0
  *
  */
-public class DurationConstraintEditHelperAdvice extends AbstractDurationEditHelperAdvice {
+public class DurationConstraintEditHelperAdvice extends AbstractOccurrenceLinkEditHelperAdvice {
 
 
 	/**
@@ -124,13 +124,13 @@ public class DurationConstraintEditHelperAdvice extends AbstractDurationEditHelp
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.service.types.helper.advice.AbstractDurationEditHelperAdvice#getDurationCreationContainer(org.eclipse.uml2.uml.Element)
+	 * @see org.eclipse.papyrus.uml.service.types.helper.advice.AbstractDurationEditHelperAdvice#getCreationContainer(org.eclipse.uml2.uml.Element)
 	 *
 	 * @param targetElement
 	 * @return
 	 */
 	@Override
-	protected Element getDurationCreationContainer(Element targetElement) {
+	protected Element getCreationContainer(Element targetElement) {
 		return findInteraction(targetElement);
 	}
 

@@ -28,6 +28,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationLinkFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GeneralOrderingUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationUtil;
 import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -37,13 +39,13 @@ public class MessageGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	// Source (First half of the request)
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
-		if (DurationLinkUtil.isCreateDurationLink(request)) {
-			CreateRelationshipRequest createRequest = DurationLinkUtil.getCreateRelationshipRequest(request);
+		if (DurationLinkUtil.isCreateDurationLink(request) || GeneralOrderingUtil.isCreateGeneralOrderingLink(request)) {
+			CreateRelationshipRequest createRequest = OccurrenceSpecificationUtil.getCreateRelationshipRequest(request);
 			if (createRequest != null) {
 				MessageEnd sourceOccurrence;
 				Message message = getMessage();
 				if (message != null) {
-					sourceOccurrence = DurationLinkUtil.isSource(getHostFigure(), request) ? message.getSendEvent() : message.getReceiveEvent();
+					sourceOccurrence = OccurrenceSpecificationUtil.isSource(getHostFigure(), request) ? message.getSendEvent() : message.getReceiveEvent();
 					if (sourceOccurrence instanceof OccurrenceSpecification) {
 						@SuppressWarnings("unchecked")
 						Map<Object, Object> extendedData = request.getExtendedData();
@@ -59,13 +61,13 @@ public class MessageGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	// Target (Second half of the request)
 	@Override
 	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
-		if (DurationLinkUtil.isCreateDurationLink(request)) {
-			CreateRelationshipRequest createRequest = DurationLinkUtil.getCreateRelationshipRequest(request);
+		if (DurationLinkUtil.isCreateDurationLink(request) || GeneralOrderingUtil.isCreateGeneralOrderingLink(request)) {
+			CreateRelationshipRequest createRequest = OccurrenceSpecificationUtil.getCreateRelationshipRequest(request);
 			if (createRequest != null) {
 				MessageEnd targetOccurrence;
 				Message message = getMessage();
 				if (message != null) {
-					targetOccurrence = DurationLinkUtil.isSource(getHostFigure(), request) ? message.getSendEvent() : message.getReceiveEvent();
+					targetOccurrence = OccurrenceSpecificationUtil.isSource(getHostFigure(), request) ? message.getSendEvent() : message.getReceiveEvent();
 					if (targetOccurrence instanceof OccurrenceSpecification) {
 						@SuppressWarnings("unchecked")
 						Map<Object, Object> extendedData = request.getExtendedData();

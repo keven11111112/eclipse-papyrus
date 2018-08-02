@@ -27,14 +27,17 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationLinkFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GeneralOrderingUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationUtil;
 import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
 import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * <p>
  * A specialized {@link GraphicalNodeEditPolicy} for {@link ExecutionSpecification ExecutionSpecifications}, to handle
- * connection of DurationLinks to the Start/Finish Occurrences of the {@link ExecutionSpecification}
+ * connection of DurationLinks or {@link GeneralOrdering} links to the Start/Finish Occurrences of the {@link ExecutionSpecification}
  * </p>
  */
 public class ExecutionSpecificationGraphicalNodeEditPolicy extends ElementCreationWithMessageEditPolicy {
@@ -42,13 +45,13 @@ public class ExecutionSpecificationGraphicalNodeEditPolicy extends ElementCreati
 	// Source (First half of the request)
 	@Override
 	protected Command getConnectionCreateCommand(CreateConnectionRequest request) {
-		if (DurationLinkUtil.isCreateDurationLink(request)) {
+		if (DurationLinkUtil.isCreateDurationLink(request) || GeneralOrderingUtil.isCreateGeneralOrderingLink(request)) {
 			CreateRelationshipRequest createRequest = DurationLinkUtil.getCreateRelationshipRequest(request);
 			if (createRequest != null) {
 				OccurrenceSpecification sourceOccurrence;
 				ExecutionSpecification execSpec = getExecutionSpecification();
 				if (execSpec != null) {
-					if (DurationLinkUtil.isStart(getHostFigure(), request)) {
+					if (OccurrenceSpecificationUtil.isStart(getHostFigure(), request)) {
 						sourceOccurrence = execSpec.getStart();
 					} else {
 						sourceOccurrence = execSpec.getFinish();
@@ -74,13 +77,13 @@ public class ExecutionSpecificationGraphicalNodeEditPolicy extends ElementCreati
 	// Target (Second half of the request)
 	@Override
 	protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
-		if (DurationLinkUtil.isCreateDurationLink(request)) {
-			CreateRelationshipRequest createRequest = DurationLinkUtil.getCreateRelationshipRequest(request);
+		if (DurationLinkUtil.isCreateDurationLink(request) || GeneralOrderingUtil.isCreateGeneralOrderingLink(request)) {
+			CreateRelationshipRequest createRequest = OccurrenceSpecificationUtil.getCreateRelationshipRequest(request);
 			if (createRequest != null) {
 				OccurrenceSpecification targetOccurrence;
 				ExecutionSpecification execSpec = getExecutionSpecification();
 				if (execSpec != null) {
-					if (DurationLinkUtil.isStart(getHostFigure(), request)) {
+					if (OccurrenceSpecificationUtil.isStart(getHostFigure(), request)) {
 						targetOccurrence = execSpec.getStart();
 					} else {
 						targetOccurrence = execSpec.getFinish();

@@ -69,6 +69,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectExecu
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectYCoordinateToGrillingEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CoordinateReferentialUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GeneralOrderingUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationUtil;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 import org.eclipse.swt.graphics.Color;
 
@@ -322,8 +324,8 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 						return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
 					}
 					// otherwise, this is a recursive call, let destination free
-				} else if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+				} else if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type) || UMLElementTypes.GeneralOrdering_Edge.equals(type)) {
+					return OccurrenceSpecificationUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 				}
 			}
 		} else if (request instanceof ReconnectRequest) {
@@ -344,8 +346,8 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 					return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
 				}
 			}
-			if (DurationLinkUtil.isDurationLink(createRequest)) {
-				return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+			if (DurationLinkUtil.isDurationLink(createRequest) || GeneralOrderingUtil.isGeneralOrderingLink(createRequest)) {
+				return OccurrenceSpecificationUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 			}
 		}
 		return super.getTargetConnectionAnchor(request);
@@ -408,8 +410,8 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 				if (UMLElementTypes.Message_ReplyEdge.equals(type)) {
 					// Reply Message
 					return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.BOTTOM);
-				} else if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+				} else if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type) || UMLElementTypes.GeneralOrdering_Edge.equals(type)) {
+					return OccurrenceSpecificationUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 				}
 			}
 		} else if (request instanceof ReconnectRequest) {
@@ -421,8 +423,8 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
-			if (DurationLinkUtil.isDurationLink(createRequest)) {
-				return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+			if (DurationLinkUtil.isDurationLink(createRequest) || GeneralOrderingUtil.isGeneralOrderingLink(createRequest)) {
+				return OccurrenceSpecificationUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 			}
 		}
 		return super.getSourceConnectionAnchor(request);
