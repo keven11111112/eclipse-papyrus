@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionOccurre
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventNodePlate;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GeneralOrderingUtil;
 
 public class CDestructionOccurrenceSpecificationEditPart extends DestructionOccurrenceSpecificationEditPart {
 
@@ -45,13 +46,13 @@ public class CDestructionOccurrenceSpecificationEditPart extends DestructionOccu
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object type : relationshipTypes) {
-				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
+				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type) || UMLElementTypes.GeneralOrdering_Edge.equals(type)) {
 					return new CenterAnchor(getFigure());
 				}
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
-			if (DurationLinkUtil.isDurationLink(createRequest)) {
+			if (DurationLinkUtil.isDurationLink(createRequest) || GeneralOrderingUtil.isGeneralOrderingLink(createRequest)) {
 				return new CenterAnchor(getFigure());
 			}
 		}
@@ -64,13 +65,13 @@ public class CDestructionOccurrenceSpecificationEditPart extends DestructionOccu
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object type : relationshipTypes) {
-				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
+				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type) || UMLElementTypes.GeneralOrdering_Edge.equals(type)) {
 					return new CenterAnchor(getFigure());
 				}
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
-			if (DurationLinkUtil.isDurationLink(createRequest)) {
+			if (DurationLinkUtil.isDurationLink(createRequest) || GeneralOrderingUtil.isGeneralOrderingLink(createRequest)) {
 				return new CenterAnchor(getFigure());
 			}
 		}

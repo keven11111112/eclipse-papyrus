@@ -25,7 +25,7 @@ import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
-public class DurationObservationEditHelperAdvice extends AbstractDurationEditHelperAdvice {
+public class DurationObservationEditHelperAdvice extends AbstractOccurrenceLinkEditHelperAdvice {
 
 	@Override
 	protected ICommand getAfterConfigureCommand(ConfigureRequest request) {
@@ -78,7 +78,7 @@ public class DurationObservationEditHelperAdvice extends AbstractDurationEditHel
 	}
 
 	@Override
-	protected Element getDurationCreationContainer(Element targetElement) {
+	protected Element getCreationContainer(Element targetElement) {
 		return targetElement.getNearestPackage();
 	}
 

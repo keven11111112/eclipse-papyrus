@@ -26,15 +26,17 @@ import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * <p>
- * Abstract advice for Durations ({@link DurationConstraint} or {@link DurationObservation})
+ * Abstract advice for links connecting {@link OccurrenceSpecification}
+ * ({@link DurationConstraint}, {@link DurationObservation}, {@link GeneralOrdering})
  * </p>
  */
-public abstract class AbstractDurationEditHelperAdvice extends AbstractEditHelperAdvice {
+public abstract class AbstractOccurrenceLinkEditHelperAdvice extends AbstractEditHelperAdvice {
 
 	/**
 	 * <p>
@@ -44,7 +46,7 @@ public abstract class AbstractDurationEditHelperAdvice extends AbstractEditHelpe
 	 *
 	 * <p>
 	 * The source element may correspond to the element on which the relationship is created,
-	 * or a specific occurrence specification (For example, when creating a Duration link on an {@link ExecutionSpecification},
+	 * or a specific occurrence specification (For example, when creating a link on an {@link ExecutionSpecification},
 	 * this method may return the specific start or finish {@link OccurrenceSpecification} instead of the {@link ExecutionSpecification}).
 	 * </p>
 	 *
@@ -68,7 +70,7 @@ public abstract class AbstractDurationEditHelperAdvice extends AbstractEditHelpe
 	 *
 	 * <p>
 	 * The target element may correspond to the element on which the relationship is created,
-	 * or a specific occurrence specification (For example, when creating a Duration link on an {@link ExecutionSpecification},
+	 * or a specific occurrence specification (For example, when creating a link on an {@link ExecutionSpecification},
 	 * this method may return the specific start or finish {@link OccurrenceSpecification} instead of the {@link ExecutionSpecification}).
 	 * </p>
 	 *
@@ -91,7 +93,7 @@ public abstract class AbstractDurationEditHelperAdvice extends AbstractEditHelpe
 	 *
 	 * <p>
 	 * The source element may correspond to the element on which the relationship is created,
-	 * or a specific occurrence specification (For example, when creating a Duration link on an {@link ExecutionSpecification},
+	 * or a specific occurrence specification (For example, when creating a link on an {@link ExecutionSpecification},
 	 * this method may return the specific start or finish {@link OccurrenceSpecification} instead of the {@link ExecutionSpecification}).
 	 * </p>
 	 *
@@ -111,7 +113,7 @@ public abstract class AbstractDurationEditHelperAdvice extends AbstractEditHelpe
 	 *
 	 * <p>
 	 * The target element may correspond to the element on which the relationship is created,
-	 * or a specific occurrence specification (For example, when creating a Duration link on an {@link ExecutionSpecification},
+	 * or a specific occurrence specification (For example, when creating a link on an {@link ExecutionSpecification},
 	 * this method may return the specific start or finish {@link OccurrenceSpecification} instead of the {@link ExecutionSpecification}).
 	 * </p>
 	 *
@@ -126,27 +128,27 @@ public abstract class AbstractDurationEditHelperAdvice extends AbstractEditHelpe
 
 	/**
 	 * <p>
-	 * For Duration Links, the {@link CreateRelationshipRequest} will typically contain two distinct parameters
+	 * For Links connecting {@link OccurrenceSpecification}s, the {@link CreateRelationshipRequest} will typically contain two distinct parameters
 	 * for their source, and two for their target. The first one will represent the source/target visual element,
 	 * and the second will represent the real event ({@link OccurrenceSpecification}); typically the start/finish
 	 * {@link OccurrenceSpecification} of the graphical element.
 	 * </p>
 	 * <p>
 	 * This method will take these two values (Which may or may not be valid {@link Element} or {@link OccurrenceSpecification},
-	 * thus the {@link Object} type), and will return the one that should be used as the source/target of the new Duration Link
+	 * thus the {@link Object} type), and will return the one that should be used as the source/target of the new Link
 	 * </p>
 	 *
 	 * @param rawElement
 	 *            The element that is the source or target of a {@link CreateRelationshipRequest}. (Typically the UML Element
 	 *            represented in a Diagram, i.e. an {@link ExecutionSpecification} or a {@link Message}. It may also be
-	 *            an {@link OccurrenceSpecification}, e.g. if the Duration Link is created directly from the Model Explorer).
+	 *            an {@link OccurrenceSpecification}, e.g. if the Link is created directly from the Model Explorer).
 	 * @param occurrenceParam
 	 *            The specific {@link OccurrenceSpecification} referenced by the {@link CreateRelationshipRequest}. Typical values
 	 *            may be <code>null</code> (The request doesn't specify which event should be used), an {@link OccurrenceSpecification}
 	 *            referenced by the <code>rawElement</code> (Start/Finish occurrence, or Send/Receive event), or the same object as
 	 *            <code>rawElement</code>.
 	 * @return
-	 * 		The source or target semantic element for a DurationLink (Which may be different from
+	 * 		The source or target semantic element for a Link (Which may be different from
 	 *         the graphical element, since {@link OccurrenceSpecification} are not displayed on diagrams)
 	 *
 	 * @see CreateRelationshipRequest#getSource()
@@ -206,13 +208,12 @@ public abstract class AbstractDurationEditHelperAdvice extends AbstractEditHelpe
 				return UnexecutableCommand.INSTANCE;
 			}
 			if (source != null && target != null) {
-				// Always create DurationConstraints in the Interaction
 				Object editContext = request.getEditContext();
 				if (editContext instanceof Element) {
-					Element durationCreationContainer = getDurationCreationContainer((Element) editContext);
-					if (durationCreationContainer != null) {
+					Element creationContainer = getCreationContainer((Element) editContext);
+					if (creationContainer != null) {
 						GetEditContextCommand command = new GetEditContextCommand(request);
-						command.setEditContext(durationCreationContainer);
+						command.setEditContext(creationContainer);
 						return command;
 					}
 				}
@@ -225,6 +226,6 @@ public abstract class AbstractDurationEditHelperAdvice extends AbstractEditHelpe
 		return sourceOrTarget instanceof OccurrenceSpecification;
 	}
 
-	protected abstract Element getDurationCreationContainer(Element targetElement);
+	protected abstract Element getCreationContainer(Element targetElement);
 
 }

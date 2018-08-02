@@ -57,6 +57,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectMessa
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectRectangleToGridEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.LifeLineGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GeneralOrderingUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelectMessagesEditPartTracker;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SelfMessageHelper;
 import org.eclipse.swt.SWT;
@@ -65,8 +67,6 @@ import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.ui.PlatformUI;
 
 public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart implements IKeyPressState {
-
-	private List messageEventParts;
 
 	private boolean reorderMessages = false;
 
@@ -199,7 +199,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 		if (points.size() <= 1) {
 			return;
 		}
-		List lineSegments = PointListUtilities.getLineSegments(points);
+		List<?> lineSegments = PointListUtilities.getLineSegments(points);
 		LineSeg nearestSegment = PointListUtilities.getNearestSegment(lineSegments, p.x, p.y);
 		if (points.size() > 3 && (p.getDistance(points.getPoint(1)) < 5 || p.getDistance(points.getPoint(2)) < 5)) {
 			myCursor = Cursors.SIZEALL;
@@ -258,7 +258,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	}
 
 	public View findChildByModel(EObject model) {
-		List list = getModelChildren();
+		List<?> list = getModelChildren();
 		if (list != null && list.size() > 0) {
 			for (Object o : list) {
 				if (!(o instanceof View)) {
@@ -287,7 +287,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
+			List<?> types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
 			if (types.contains(UMLElementTypes.Message_FoundEdge) || types.contains(UMLElementTypes.Message_LostEdge)) {
 				return null;
 			}
@@ -410,14 +410,14 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object type : relationshipTypes) {
-				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type) || UMLElementTypes.GeneralOrdering_Edge.equals(type)) {
+					return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 				}
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
-			if (DurationLinkUtil.isDurationLink(createRequest)) {
-				return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+			if (DurationLinkUtil.isDurationLink(createRequest) || GeneralOrderingUtil.isGeneralOrderingLink(createRequest)) {
+				return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 			}
 		}
 		return super.getSourceConnectionAnchor(request);
@@ -429,14 +429,14 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object type : relationshipTypes) {
-				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type) || UMLElementTypes.GeneralOrdering_Edge.equals(type)) {
+					return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 				}
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
-			if (DurationLinkUtil.isDurationLink(createRequest)) {
-				return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+			if (DurationLinkUtil.isDurationLink(createRequest) || GeneralOrderingUtil.isGeneralOrderingLink(createRequest)) {
+				return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 			}
 		}
 		return super.getTargetConnectionAnchor(request);

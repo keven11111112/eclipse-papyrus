@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DurationLinkFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.GeneralOrderingUtil;
 
 /**
  * An extended {@link DefaultGraphicalNodeEditPolicy} which supports creation of DurationLinks
@@ -34,7 +35,7 @@ public class DestructionOccurrenceGraphicalNodeEditPolicy extends DefaultGraphic
 
 	@Override
 	protected ICommand getAfterConnectionCompleteCommand(CreateConnectionViewAndElementRequest request, final TransactionalEditingDomain editingDomain) {
-		if (DurationLinkUtil.isCreateDurationLink(request)) {
+		if (DurationLinkUtil.isCreateDurationLink(request) || GeneralOrderingUtil.isCreateGeneralOrderingLink(request)) {
 			return null; // Prevent the superclass from "Fixing" the anchors
 		}
 		return super.getAfterConnectionCompleteCommand(request, editingDomain);
