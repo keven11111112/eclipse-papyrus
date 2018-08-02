@@ -61,8 +61,8 @@ IFacetSetSelectionDialogFactory.DEFAULT.openFacetSetSelectionDialog(registeredFa
 </pre><p>If the user confirms their choice in your pre-commit dialog, then you must call <code>IDialogCallback#committed</code> on the callback that you received in <code>IDialogCallbackWithPreCommit#openPrecommitDialog</code>.</p><h3 id="Hierarchical_FacetSets_2">Hierarchical FacetSets</h3><p>This screenshot shows how hierarchical FacetSets are represented: the <b>org.eclipse.papyrus.emf.facet.efacet.examples.library.core.facet</b> FacetSet contains two FacetSets: <b>writer</b> and <b>book</b>:</p><p><img border="0" src="../img/SelectFacetSetsDialog_withHierarchicalFacetSets.png"/></p><p>This dialog uses the method <b>org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet.getFacetSets()</b> to get the "subFacetSets". This method can be overridden to tune the behavior of the facet set containment. The aggregate's implementation is based on the override of <b>FacetSet.getFacetSets()</b>.</p><p><font size="-2">
 Copyright &#169; 2012 Mia-Software.
 All rights reserved. This program and the accompanying materials
-are made available under the terms of the Eclipse Public License v1.0
+are made available under the terms of the Eclipse Public License 2.0
 which accompanies this distribution, and is available at
-<a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>.
+<a href="https://www.eclipse.org/legal/epl-2.0/">https://www.eclipse.org/legal/epl-2.0/</a>.
 Contributors: Nicolas Bros (Mia-Software)
 </font></p></body></html>
