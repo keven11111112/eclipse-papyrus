@@ -53,14 +53,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.DurationObservation;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeObservation;
 
@@ -227,53 +220,8 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 	 * @return list of views
 	 */
 	protected List<View> getLinkedViews() {
-		if (getHost() instanceof TimeObservationEditPart && hostSemanticElement instanceof TimeObservation) {
-			LifelineEditPart lifeline = SequenceUtil.getParentLifelinePart(getHost());
-			NamedElement occ = ((TimeObservation) hostSemanticElement).getEvent();
-			if (occ instanceof OccurrenceSpecification) {
-				EditPart part = SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification) occ);
-				if (part != null) {
-					return Collections.singletonList((View) part.getModel());
-				}
-			}
-			return Collections.emptyList();
-		} else if (getHost() instanceof TimeConstraintEditPart && hostSemanticElement instanceof TimeConstraint) {
-			LifelineEditPart lifeline = SequenceUtil.getParentLifelinePart(getHost());
-			List<Element> occs = ((TimeConstraint) hostSemanticElement).getConstrainedElements();
-			if (occs.size() > 0 && occs.get(0) instanceof OccurrenceSpecification) {
-				EditPart part = SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification) occs.get(0));
-				if (part != null) {
-					return Collections.singletonList((View) part.getModel());
-				}
-			}
-			return Collections.emptyList();
-		}
 		// a label on a message always has its parent message
 		return Collections.emptyList();
-	}
-
-	/**
-	 * Check if time element has required other figures
-	 *
-	 * @return true if the time element figure miss one of the figure representing its ends.
-	 */
-	protected boolean timeElementMissAnEventFigure() {
-		if (getHost() instanceof TimeObservationEditPart && hostSemanticElement instanceof TimeObservation) {
-			LifelineEditPart lifeline = SequenceUtil.getParentLifelinePart(getHost());
-			NamedElement occ = ((TimeObservation) hostSemanticElement).getEvent();
-			if (occ instanceof OccurrenceSpecification) {
-				return SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification) occ) == null;
-			}
-			return true;
-		} else if (getHost() instanceof TimeConstraintEditPart && hostSemanticElement instanceof TimeConstraint) {
-			LifelineEditPart lifeline = SequenceUtil.getParentLifelinePart(getHost());
-			List<Element> occs = ((TimeConstraint) hostSemanticElement).getConstrainedElements();
-			if (occs.size() > 0 && occs.get(0) instanceof OccurrenceSpecification) {
-				return SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification) occs.get(0)) == null;
-			}
-			return true;
-		}
-		return false;
 	}
 
 	/**
@@ -402,10 +350,6 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 		if (!isTimeElementDefined()) {
 			// delete the time element
 			deleteTimeElement();
-		}
-		if (timeElementMissAnEventFigure()) {
-			// delete the view
-			deleteTimeView();
 		}
 	}
 

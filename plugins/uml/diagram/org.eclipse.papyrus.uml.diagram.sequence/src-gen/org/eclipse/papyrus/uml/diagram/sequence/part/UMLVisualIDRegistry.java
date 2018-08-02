@@ -79,12 +79,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Package;
@@ -228,12 +222,6 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getStateInvariant().isSuperTypeOf(domainElement.eClass())) {
 					return StateInvariantEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
-					return TimeConstraintEditPart.VISUAL_ID;
-				}
-				if (UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())) {
-					return TimeObservationEditPart.VISUAL_ID;
-				}
 				if (UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification()
 						.isSuperTypeOf(domainElement.eClass())) {
 					return DestructionOccurrenceSpecificationEditPart.VISUAL_ID;
@@ -358,12 +346,6 @@ public class UMLVisualIDRegistry {
 				if (StateInvariantEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (TimeConstraintEditPart.VISUAL_ID.equals(nodeVisualID)) {
-					return true;
-				}
-				if (TimeObservationEditPart.VISUAL_ID.equals(nodeVisualID)) {
-					return true;
-				}
 				if (DestructionOccurrenceSpecificationEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
@@ -373,22 +355,6 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				if (StateInvariantLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
-					return true;
-				}
-				break;
-			case TimeConstraintEditPart.VISUAL_ID:
-				if (TimeConstraintLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
-					return true;
-				}
-				if (TimeConstraintAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
-					return true;
-				}
-				break;
-			case TimeObservationEditPart.VISUAL_ID:
-				if (TimeObservationLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
-					return true;
-				}
-				if (TimeObservationAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -680,8 +646,6 @@ public class UMLVisualIDRegistry {
 			case CommentEditPart.VISUAL_ID:
 			case ContinuationEditPart.VISUAL_ID:
 			case StateInvariantEditPart.VISUAL_ID:
-			case TimeConstraintEditPart.VISUAL_ID:
-			case TimeObservationEditPart.VISUAL_ID:
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 			case GateEditPart.VISUAL_ID:
 				return true;

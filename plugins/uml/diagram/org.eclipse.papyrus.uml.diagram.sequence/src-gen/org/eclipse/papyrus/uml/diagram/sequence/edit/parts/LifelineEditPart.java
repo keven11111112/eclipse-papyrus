@@ -123,8 +123,6 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 				if (vid != null) {
 					switch (vid) {
 					case StateInvariantEditPart.VISUAL_ID:
-					case TimeConstraintEditPart.VISUAL_ID:
-					case TimeObservationEditPart.VISUAL_ID:
 					case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 						return new BorderItemResizableEditPolicy();
 					}
@@ -200,23 +198,6 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 
 
 
-		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
-		if (childEditPart instanceof TimeConstraintEditPart) {
-			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((TimeConstraintEditPart) childEditPart).getFigure(), locator);
-			return true;
-		}
-
-
-
-
-		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
-		if (childEditPart instanceof TimeObservationEditPart) {
-			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((TimeObservationEditPart) childEditPart).getFigure(), locator);
-			return true;
-		}
-
 		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
 		if (childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.SOUTH);
@@ -237,14 +218,6 @@ public class LifelineEditPart extends RoundedCompartmentEditPart {
 		}
 		if (childEditPart instanceof StateInvariantEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(((StateInvariantEditPart) childEditPart).getFigure());
-			return true;
-		}
-		if (childEditPart instanceof TimeConstraintEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((TimeConstraintEditPart) childEditPart).getFigure());
-			return true;
-		}
-		if (childEditPart instanceof TimeObservationEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((TimeObservationEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {

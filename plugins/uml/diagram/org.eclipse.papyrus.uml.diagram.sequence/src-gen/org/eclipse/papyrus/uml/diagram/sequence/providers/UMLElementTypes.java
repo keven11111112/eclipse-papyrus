@@ -54,8 +54,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -142,16 +140,6 @@ public class UMLElementTypes {
 	 */
 	public static final IElementType StateInvariant_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.StateInvariant_Shape"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType TimeConstraint_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.TimeConstraint_Shape"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId(
-			"org.eclipse.papyrus.umldi.TimeObservation_Shape"); //$NON-NLS-1$
 	/**
 	 * @generated
 	 */
@@ -301,10 +289,6 @@ public class UMLElementTypes {
 
 			elements.put(StateInvariant_Shape, UMLPackage.eINSTANCE.getStateInvariant());
 
-			elements.put(TimeConstraint_Shape, UMLPackage.eINSTANCE.getTimeConstraint());
-
-			elements.put(TimeObservation_Shape, UMLPackage.eINSTANCE.getTimeObservation());
-
 			elements.put(DestructionOccurrenceSpecification_Shape,
 					UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification());
 
@@ -367,8 +351,6 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ActionExecutionSpecification_Shape);
 			KNOWN_ELEMENT_TYPES.add(BehaviorExecutionSpecification_Shape);
 			KNOWN_ELEMENT_TYPES.add(StateInvariant_Shape);
-			KNOWN_ELEMENT_TYPES.add(TimeConstraint_Shape);
-			KNOWN_ELEMENT_TYPES.add(TimeObservation_Shape);
 			KNOWN_ELEMENT_TYPES.add(DestructionOccurrenceSpecification_Shape);
 			KNOWN_ELEMENT_TYPES.add(Constraint_Shape);
 			KNOWN_ELEMENT_TYPES.add(Comment_Shape);
@@ -428,10 +410,6 @@ public class UMLElementTypes {
 				return BehaviorExecutionSpecification_Shape;
 			case StateInvariantEditPart.VISUAL_ID:
 				return StateInvariant_Shape;
-			case TimeConstraintEditPart.VISUAL_ID:
-				return TimeConstraint_Shape;
-			case TimeObservationEditPart.VISUAL_ID:
-				return TimeObservation_Shape;
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 				return DestructionOccurrenceSpecification_Shape;
 			case ConstraintEditPart.VISUAL_ID:

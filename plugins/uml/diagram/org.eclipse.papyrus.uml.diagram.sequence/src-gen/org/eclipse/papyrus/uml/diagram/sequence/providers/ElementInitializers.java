@@ -39,10 +39,8 @@ import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.StateInvariant;
-import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.TimeInterval;
-import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -145,38 +143,6 @@ public class ElementInitializers {
 	public void init_StateInvariant_Shape(StateInvariant instance) {
 		try {
 			Object value_0 = name_StateInvariant_Shape(instance);
-			if (value_0 != null) {
-				instance.setName((String) value_0);
-			}
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated NOT init Time Interval
-	 */
-	public void init_TimeConstraint_Shape(TimeConstraint instance) {
-		try {
-			TimeInterval newInstance_0_0 = UMLFactory.eINSTANCE.createTimeInterval();
-			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = name_specification_TimeConstraint_Shape(newInstance_0_0);
-			newInstance_0_0.setName((String) value_0_0_0);
-			// init Time Interval
-			init_TimeInterval(newInstance_0_0);
-			Object value_1 = name_TimeConstraint_Shape(instance);
-			instance.setName((String) value_1);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init_TimeObservation_Shape(TimeObservation instance) {
-		try {
-			Object value_0 = name_TimeObservation_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -364,27 +330,6 @@ public class ElementInitializers {
 	 */
 	private String name_StateInvariant_Shape(StateInvariant it) {
 		return getNamedElement(it, "", it.eClass().getName(), "");
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_TimeConstraint_Shape(TimeConstraint it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_specification_TimeConstraint_Shape(TimeInterval it) {
-		return getNamedElement(it, "", it.eClass().getName(), "");
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_TimeObservation_Shape(TimeObservation it) {
-		return getNamedElement(it, "", "t", "");
 	}
 
 	/**

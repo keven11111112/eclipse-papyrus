@@ -61,15 +61,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncAppliedSte
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.parser.custom.InteractionUseCustomParsers;
 import org.eclipse.papyrus.uml.diagram.sequence.parser.custom.LifelineCustomParsers;
 import org.eclipse.papyrus.uml.diagram.sequence.parser.custom.MessageCustomParser;
-import org.eclipse.papyrus.uml.diagram.sequence.parser.custom.TimeConstraintParser;
-import org.eclipse.papyrus.uml.diagram.sequence.parser.custom.TimeObservationParser;
 import org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -196,66 +190,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			stateInvariant_ConstraintLabel_Parser = new ConstraintParser();
 		}
 		return stateInvariant_ConstraintLabel_Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private TimeConstraintParser timeConstraint_ConstraintLabel_Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getTimeConstraint_ConstraintLabel_Parser() {
-		if (timeConstraint_ConstraintLabel_Parser == null) {
-			timeConstraint_ConstraintLabel_Parser = new TimeConstraintParser();
-		}
-		return timeConstraint_ConstraintLabel_Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private AppliedStereotypeParser timeConstraint_StereotypeLabel_Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getTimeConstraint_StereotypeLabel_Parser() {
-		if (timeConstraint_StereotypeLabel_Parser == null) {
-			timeConstraint_StereotypeLabel_Parser = new AppliedStereotypeParser();
-		}
-		return timeConstraint_StereotypeLabel_Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private TimeObservationParser timeObservation_NameLabel_Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getTimeObservation_NameLabel_Parser() {
-		if (timeObservation_NameLabel_Parser == null) {
-			timeObservation_NameLabel_Parser = new TimeObservationParser();
-		}
-		return timeObservation_NameLabel_Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private AppliedStereotypeParser timeObservation_StereotypeLabel_Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getTimeObservation_StereotypeLabel_Parser() {
-		if (timeObservation_StereotypeLabel_Parser == null) {
-			timeObservation_StereotypeLabel_Parser = new AppliedStereotypeParser();
-		}
-		return timeObservation_StereotypeLabel_Parser;
 	}
 
 	/**
@@ -631,16 +565,6 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getStateInvariant_NameLabel_Parser();
 			case StateInvariantLabelEditPart.VISUAL_ID:
 				return getStateInvariant_ConstraintLabel_Parser();
-
-			case TimeConstraintLabelEditPart.VISUAL_ID:
-				return getTimeConstraint_ConstraintLabel_Parser();
-			case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:
-				return getTimeConstraint_StereotypeLabel_Parser();
-
-			case TimeObservationLabelEditPart.VISUAL_ID:
-				return getTimeObservation_NameLabel_Parser();
-			case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
-				return getTimeObservation_StereotypeLabel_Parser();
 
 			case ConstraintNameEditPart.VISUAL_ID:
 				return getConstraint_NameLabel_Parser();

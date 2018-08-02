@@ -92,8 +92,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -158,8 +156,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(ConstraintEditPart.VISUAL_ID);
 		elementsVisualId.add(Constraint2EditPart.VISUAL_ID);
 		elementsVisualId.add(ConstraintConstrainedElementEditPart.VISUAL_ID);
-		elementsVisualId.add(TimeConstraintEditPart.VISUAL_ID);
-		elementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
 		elementsVisualId.add(SequenceDiagramEditPart.VISUAL_ID);
 		elementsVisualId.add(MessageSyncEditPart.VISUAL_ID);
 		elementsVisualId.add(MessageAsyncEditPart.VISUAL_ID);
@@ -173,8 +169,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(GeneralOrderingEditPart.VISUAL_ID);
 		elementsVisualId.add(DestructionOccurrenceSpecificationEditPart.VISUAL_ID);
 		elementsVisualId.add(StateInvariantEditPart.VISUAL_ID);
-		elementsVisualId.add(TimeConstraintEditPart.VISUAL_ID);
-		elementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
 		elementsVisualId.add(LifelineEditPart.VISUAL_ID);
 		// elementsVisualId.add(GateEditPart.VISUAL_ID);
 		// handle nodes on messages (no visual ID detected for them)
@@ -256,9 +250,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				return dropDestructionOccurrence((DestructionOccurrenceSpecification) semanticElement, nodeVISUALID, location);
 			case StateInvariantEditPart.VISUAL_ID:
 				return dropStateInvariant((StateInvariant) semanticElement, nodeVISUALID, location);
-			case TimeConstraintEditPart.VISUAL_ID:
-			case TimeObservationEditPart.VISUAL_ID:
-				return dropTimeObservationInLifeline((TimeObservation) semanticElement, nodeVISUALID, location);
 			case CommentEditPart.VISUAL_ID:
 			case ConstraintEditPart.VISUAL_ID:
 				return UnexecutableCommand.INSTANCE;
@@ -295,9 +286,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the drop command for the Element
 	 *
 	 * @param element
-	 *                         the Element
+	 *            the Element
 	 * @param nodeVISUALID
-	 *                         the node visual id
+	 *            the node visual id
 	 * @return the drop command if the Element can be dropped
 	 */
 	private Command dropNodeElement(Element element, String nodeVISUALID, Point location) {
@@ -335,9 +326,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the drop command for the Element
 	 *
 	 * @param element
-	 *                         the Element
+	 *            the Element
 	 * @param nodeVISUALID
-	 *                         the node visual id
+	 *            the node visual id
 	 * @return the drop command if the element can be dropped
 	 */
 	private Command dropCombinedFragment(CombinedFragment combinedFragment, String nodeVISUALID, Point location) {
@@ -477,9 +468,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Drop a time observation on a lifeline.
 	 *
 	 * @param observation
-	 *                         the time constraint
+	 *            the time constraint
 	 * @param nodeVISUALID
-	 *                         the node visual id
+	 *            the node visual id
 	 * @param dropLocation
 	 * @return the command if the lifeline is the correct one or UnexecutableCommand
 	 */
@@ -523,13 +514,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the default height to set to a drop object. This method is useful for dropped objects which must be positioned relatively to their center.
 	 *
 	 * @param nodeVISUALID
-	 *                         the node visual id
+	 *            the node visual id
 	 * @return arbitrary default height for the node visual id (eventually -1)
 	 */
 	private int getDefaultDropHeight(String nodeVISUALID) {
-		if (TimeConstraintEditPart.VISUAL_ID.equals(nodeVISUALID) || TimeObservationEditPart.VISUAL_ID.equals(nodeVISUALID)) {
-			return 2;
-		}
 		return -1;
 	}
 
@@ -547,7 +535,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get lifelines element which contains these existingViews
 	 *
 	 * @param existingViews
-	 *                          the existing views.
+	 *            the existing views.
 	 * @return the list of lifeline.
 	 */
 	private List<Lifeline> getLifelines(List<View> existingViews) {
@@ -598,9 +586,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Drop a destructionEvent on a lifeline
 	 *
 	 * @param destructionOccurence
-	 *                                 the destructionEvent to drop
+	 *            the destructionEvent to drop
 	 * @param nodeVISUALID
-	 *                                 the node visualID
+	 *            the node visualID
 	 * @return the command to drop the destructionEvent on a lifeline if allowed.
 	 */
 	private Command dropDestructionOccurrence(DestructionOccurrenceSpecification destructionOccurence, String nodeVISUALID, Point location) {
@@ -628,11 +616,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the command to drop an execution specification node
 	 *
 	 * @param es
-	 *                         execution specification
+	 *            execution specification
 	 * @param nodeVISUALID
-	 *                         the execution specification's visual id
+	 *            the execution specification's visual id
 	 * @param location
-	 *                         the location of the drop request
+	 *            the location of the drop request
 	 * @return the drop command
 	 */
 	private Command dropExecutionSpecification(ExecutionSpecification es, String nodeVISUALID, Point location) {
@@ -681,11 +669,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the command to drop a message link
 	 *
 	 * @param dropRequest
-	 *                         request to drop
+	 *            request to drop
 	 * @param semanticLink
-	 *                         message link
+	 *            message link
 	 * @param linkVISUALID
-	 *                         the message's visual id
+	 *            the message's visual id
 	 * @return the drop command
 	 */
 	private Command dropMessage(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
@@ -712,20 +700,20 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * This implementation is very similar to {@link CommonDiagramDragDropEditPolicy#dropBinaryLink(CompositeCommand, Element, Element, int, Point, Element)}.
 	 *
 	 * @param dropRequest
-	 *                         the drop request
+	 *            the drop request
 	 * @param cc
-	 *                         the composite command that will contain the set of command to create the binary
-	 *                         link
+	 *            the composite command that will contain the set of command to create the binary
+	 *            link
 	 * @param source
-	 *                         the element source of the link
+	 *            the element source of the link
 	 * @param target
-	 *                         the element target of the link
+	 *            the element target of the link
 	 * @param linkVISUALID
-	 *                         the link VISUALID used to create the view
+	 *            the link VISUALID used to create the view
 	 * @param location
-	 *                         the location the location where the view will be be created
+	 *            the location the location where the view will be be created
 	 * @param semanticLink
-	 *                         the semantic link that will be attached to the view
+	 *            the semantic link that will be attached to the view
 	 *
 	 * @return the composite command
 	 */
@@ -776,13 +764,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the source and target recommended points for creating the link
 	 *
 	 * @param semanticLink
-	 *                           link to create
+	 *            link to create
 	 * @param sourceEditPart
-	 *                           edit part source of the link
+	 *            edit part source of the link
 	 * @param targetEditPart
-	 *                           edit part target of the link
+	 *            edit part target of the link
 	 * @param dropLocation
-	 *                           default location if NOT found.
+	 *            default location if NOT found.
 	 * @return a point array of size 2, with eventually null values (when no point constraint). Index 0 : source location, 1 : target location
 	 */
 	private Point[] getLinkSourceAndTargetLocations(Element semanticLink, GraphicalEditPart sourceEditPart, GraphicalEditPart targetEditPart, Point dropLocation) {
@@ -925,11 +913,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Get the command to drop a general ordering link
 	 *
 	 * @param dropRequest
-	 *                         request to drop
+	 *            request to drop
 	 * @param semanticLink
-	 *                         general ordering link
+	 *            general ordering link
 	 * @param linkVISUALID
-	 *                         the link's visual id
+	 *            the link's visual id
 	 * @return the drop command
 	 */
 	private Command dropGeneralOrdering(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {

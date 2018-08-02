@@ -91,31 +91,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractio
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageAsyncNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ObservationLinkPolicy;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -1625,50 +1602,6 @@ public class SequenceUtil {
 	}
 
 	/**
-	 * Find Time Observations editpart which are related to specific OccurenceSpecification
-	 *
-	 * @param lifelinePart
-	 * @param oss
-	 * @return List<TimeObservationLabelEditPart>
-	 */
-	public static List<TimeObservationLabelEditPart> findOccurenceSpecificationRelatedTimeObservationPart(LifelineEditPart lifelinePart, List<OccurrenceSpecification> oss) {
-		List<TimeObservationLabelEditPart> list = new ArrayList<>();
-		if (oss == null || oss.size() == 0) {
-			return list;
-		}
-		if (lifelinePart != null && lifelinePart.getTargetConnections().size() > 0) {
-			for (Object targetConnection : lifelinePart.getTargetConnections()) {
-				if (targetConnection instanceof ObservationLinkEditPart) {
-					ObservationLinkEditPart observationLinkEditPart = (ObservationLinkEditPart) targetConnection;
-					if (observationLinkEditPart.getSource() instanceof TimeObservationLabelEditPart) {
-						TimeObservationLabelEditPart source = (TimeObservationLabelEditPart) observationLinkEditPart.getSource();
-						EObject timeElement = source.resolveSemanticElement();
-						if (timeElement instanceof TimeObservation) {
-							if (oss.contains(((TimeObservation) timeElement).getEvent())) {
-								list.add(source);
-							}
-						}
-					}
-				}
-			}
-		}
-		return list;
-	}
-
-	/**
-	 * Find Time Observations editpart which are related to specific OccurenceSpecification
-	 *
-	 * @param lifelinePart
-	 * @param os
-	 * @return List<TimeObservationLabelEditPart>
-	 */
-	public static List<TimeObservationLabelEditPart> findOccurenceSpecificationRelatedTimeObservationPart(LifelineEditPart lifelinePart, OccurrenceSpecification os) {
-		List<OccurrenceSpecification> oss = new ArrayList<>();
-		oss.add(os);
-		return findOccurenceSpecificationRelatedTimeObservationPart(lifelinePart, oss);
-	}
-
-	/**
 	 * Find specific editpart by semantic model
 	 *
 	 * @param editPart
@@ -1696,29 +1629,6 @@ public class SequenceUtil {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * Intall observation link policy to specific editpart
-	 *
-	 * @param editPart
-	 */
-	public static void installObservationLinkPolicy(EditPart editPart) {
-		String editPolicy = "observationlink";
-		if (editPart instanceof LifelineEditPart || editPart instanceof TimeObservationLabelEditPart) {
-			editPart.installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
-		}
-		if (editPart instanceof MessageSyncEditPart || editPart instanceof MessageAsyncEditPart || editPart instanceof MessageReplyEditPart || editPart instanceof MessageCreateEditPart || editPart instanceof MessageDeleteEditPart
-				|| editPart instanceof MessageLostEditPart
-				|| editPart instanceof MessageFoundEditPart) {
-			editPart.installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
-		} else if (editPart instanceof MessageSyncNameEditPart || editPart instanceof MessageAsyncNameEditPart || editPart instanceof MessageReplyNameEditPart || editPart instanceof MessageCreateNameEditPart || editPart instanceof MessageDeleteNameEditPart
-				|| editPart instanceof MessageLostNameEditPart || editPart instanceof MessageFoundNameEditPart) {
-			editPart.getParent().installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
-		} else if (editPart instanceof MessageSyncAppliedStereotypeEditPart || editPart instanceof MessageAsyncAppliedStereotypeEditPart || editPart instanceof MessageReplyAppliedStereotypeEditPart || editPart instanceof MessageCreateAppliedStereotypeEditPart
-				|| editPart instanceof MessageDeleteAppliedStereotypeEditPart || editPart instanceof MessageLostAppliedStereotypeEditPart || editPart instanceof MessageFoundAppliedStereotypeEditPart) {
-			editPart.getParent().installEditPolicy(editPolicy, new ObservationLinkPolicy(editPart));
-		}
 	}
 
 	/**

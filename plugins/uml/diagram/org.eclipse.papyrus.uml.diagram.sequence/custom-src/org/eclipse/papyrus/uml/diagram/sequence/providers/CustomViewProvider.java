@@ -43,9 +43,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditP
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -87,47 +84,6 @@ public class CustomViewProvider extends UMLViewProvider {
 					prefStore, "Message");
 		}
 		return edge;
-	}
-
-	@Override
-	public Node createTimeObservation_Shape(EObject domainElement,
-			View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry
-				.getType(TimeObservationEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
-				.getPreferenceStore();
-		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node,
-				prefStore, "TimeObservation");
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node,
-				prefStore, "TimeObservation");
-		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
-				prefStore, "TimeObservation");
-		Node timeObservation_NameLabel = createLabel(node,
-				UMLVisualIDRegistry
-						.getType(TimeObservationLabelEditPart.VISUAL_ID),
-				true);
-		timeObservation_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location timeObservation_NameLabel_Location = (Location) timeObservation_NameLabel.getLayoutConstraint();
-		timeObservation_NameLabel_Location.setX(0);
-		timeObservation_NameLabel_Location.setY(0);
-		Node timeObservation_StereotypeLabel = createLabel(
-				node,
-				UMLVisualIDRegistry
-						.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID),
-				true);
-		timeObservation_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-		Location timeObservation_StereotypeLabel_Location = (Location) timeObservation_StereotypeLabel.getLayoutConstraint();
-		timeObservation_StereotypeLabel_Location.setX(0);
-		timeObservation_StereotypeLabel_Location.setY(0);
-		return node;
 	}
 
 	protected Node createLabel(View owner, String hint,
