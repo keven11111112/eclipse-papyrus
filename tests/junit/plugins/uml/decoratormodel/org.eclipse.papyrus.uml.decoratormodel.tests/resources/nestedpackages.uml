@@ -23,7 +23,7 @@
         <eAnnotations xmi:id="_QfKKEbPJEeSSD9qlFZY_Xw" source="PapyrusVersion">
           <details xmi:id="_QfKKErPJEeSSD9qlFZY_Xw" key="Version" value="0.0.1"/>
           <details xmi:id="_QfKKE7PJEeSSD9qlFZY_Xw" key="Comment" value=""/>
-          <details xmi:id="_QfKKFLPJEeSSD9qlFZY_Xw" key="Copyright" value="Copyright (c) 2014 Christian W. Damus and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;  Christian W. Damus - Initial API and implementation"/>
+          <details xmi:id="_QfKKFLPJEeSSD9qlFZY_Xw" key="Copyright" value="Copyright (c) 2014 Christian W. Damus and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA;  Christian W. Damus - Initial API and implementation"/>
           <details xmi:id="_QfKKFbPJEeSSD9qlFZY_Xw" key="Date" value="2014-09-30"/>
           <details xmi:id="_QfKKFrPJEeSSD9qlFZY_Xw" key="Author" value="Christian W. Damus"/>
         </eAnnotations>
@@ -43,7 +43,7 @@
       <eAnnotations xmi:id="_RpdP0EimEeSYXMOYgqfvhA" source="PapyrusVersion">
         <details xmi:id="_RpdP0UimEeSYXMOYgqfvhA" key="Version" value="0.0.1"/>
         <details xmi:id="_RpdP0kimEeSYXMOYgqfvhA" key="Comment" value=""/>
-        <details xmi:id="_RpdP00imEeSYXMOYgqfvhA" key="Copyright" value="Copyright (c) 2014 Christian W. Damus and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;  Christian W. Damus - Initial API and implementation"/>
+        <details xmi:id="_RpdP00imEeSYXMOYgqfvhA" key="Copyright" value="Copyright (c) 2014 Christian W. Damus and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA;  Christian W. Damus - Initial API and implementation"/>
         <details xmi:id="_RpdP1EimEeSYXMOYgqfvhA" key="Date" value="2014-09-30"/>
         <details xmi:id="_RpdP1UimEeSYXMOYgqfvhA" key="Author" value="Christian W. Damus"/>
       </eAnnotations>

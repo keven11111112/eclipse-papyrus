@@ -11,7 +11,7 @@
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yz0RIOhCEeSqZs7o0maBIQ" source="PapyrusVersion">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yz0RIehCEeSqZs7o0maBIQ" key="Version" value="0.0.1"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yz0RIuhCEeSqZs7o0maBIQ" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yz0RI-hCEeSqZs7o0maBIQ" key="Copyright" value="Copyright (c) 2015 Christian W. Damus and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;  Christian W. Damus - Initial API and implementation"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yz0RI-hCEeSqZs7o0maBIQ" key="Copyright" value="Copyright (c) 2015 Christian W. Damus and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA;  Christian W. Damus - Initial API and implementation"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yz0RJOhCEeSqZs7o0maBIQ" key="Date" value="2015-04-21"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yz0RJehCEeSqZs7o0maBIQ" key="Author" value="Christian W. Damus"/>
       </eAnnotations>
