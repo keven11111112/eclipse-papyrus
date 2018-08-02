@@ -119,12 +119,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
@@ -261,8 +255,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					case ActionExecutionSpecificationEditPart.VISUAL_ID:
 					case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 					case StateInvariantEditPart.VISUAL_ID:
-					case TimeConstraintEditPart.VISUAL_ID:
-					case TimeObservationEditPart.VISUAL_ID:
 					case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 					case ConstraintEditPart.VISUAL_ID:
 					case CommentEditPart.VISUAL_ID:
@@ -358,10 +350,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 						preferencesHint);
 			case StateInvariantEditPart.VISUAL_ID:
 				return createStateInvariant_Shape(domainElement, containerView, index, persisted, preferencesHint);
-			case TimeConstraintEditPart.VISUAL_ID:
-				return createTimeConstraint_Shape(domainElement, containerView, index, persisted, preferencesHint);
-			case TimeObservationEditPart.VISUAL_ID:
-				return createTimeObservation_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 				return createDestructionOccurrenceSpecification_Shape(domainElement, containerView, index, persisted,
 						preferencesHint);
@@ -618,67 +606,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				UMLVisualIDRegistry.getType(StateInvariantNameEditPart.VISUAL_ID));
 		Node stateInvariant_ConstraintLabel = createLabel(node,
 				UMLVisualIDRegistry.getType(StateInvariantLabelEditPart.VISUAL_ID));
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createTimeConstraint_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(TimeConstraintEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeConstraint");
-		Node timeConstraint_ConstraintLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(TimeConstraintLabelEditPart.VISUAL_ID));
-		timeConstraint_ConstraintLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location timeConstraint_ConstraintLabel_Location = (Location) timeConstraint_ConstraintLabel
-				.getLayoutConstraint();
-		timeConstraint_ConstraintLabel_Location.setX(0);
-		timeConstraint_ConstraintLabel_Location.setY(15);
-		Node timeConstraint_StereotypeLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(TimeConstraintAppliedStereotypeEditPart.VISUAL_ID));
-		timeConstraint_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location timeConstraint_StereotypeLabel_Location = (Location) timeConstraint_StereotypeLabel
-				.getLayoutConstraint();
-		timeConstraint_StereotypeLabel_Location.setX(0);
-		timeConstraint_StereotypeLabel_Location.setY(-22);
-		return node;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Node createTimeObservation_Shape(EObject domainElement, View containerView, int index, boolean persisted,
-			PreferencesHint preferencesHint) {
-		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(TimeObservationEditPart.VISUAL_ID));
-		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeObservation");
-		Node timeObservation_NameLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
-		timeObservation_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location timeObservation_NameLabel_Location = (Location) timeObservation_NameLabel.getLayoutConstraint();
-		timeObservation_NameLabel_Location.setX(0);
-		timeObservation_NameLabel_Location.setY(15);
-		Node timeObservation_StereotypeLabel = createLabel(node,
-				UMLVisualIDRegistry.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID));
-		timeObservation_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location timeObservation_StereotypeLabel_Location = (Location) timeObservation_StereotypeLabel
-				.getLayoutConstraint();
-		timeObservation_StereotypeLabel_Location.setX(0);
-		timeObservation_StereotypeLabel_Location.setY(-22);
 		return node;
 	}
 

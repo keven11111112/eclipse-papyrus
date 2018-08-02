@@ -77,10 +77,10 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 		testToManageChildNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifelineProvider);
 	}
 
-//	@Test
-//	public void testToManageDestructionOccurrence() {
-//		testToManageChildNode(UMLElementTypes.DestructionOccurrenceSpecification_Shape, lifelineProvider);
-//	}
+	// @Test
+	// public void testToManageDestructionOccurrence() {
+	// testToManageChildNode(UMLElementTypes.DestructionOccurrenceSpecification_Shape, lifelineProvider);
+	// }
 
 
 
@@ -91,15 +91,6 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 		semanticChild = true;
 	}
 
-
-	@Test
-	public void testToManageTimeConstraint() {
-		createChildNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifelineProvider);
-		semanticChild = false;
-		testToManageChildNode(UMLElementTypes.TimeConstraint_Shape, executionProvider);
-		semanticChild = true;
-	}
-
 	@Test
 	public void testToManageDurationConstraint() {
 		createChildNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifelineProvider);
@@ -107,7 +98,7 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 
 		testToCreateChildNode(UMLElementTypes.ActionExecutionSpecification_Shape, executionProvider);
 		{
-			//DESTROY SEMANTIC+ VIEW
+			// DESTROY SEMANTIC+ VIEW
 			IChildTestProvider provider = executionProvider;
 			assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, provider.getEditPartChildrenSize() == 1);
 			assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 1);
@@ -140,34 +131,42 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 
 	IChildTestProvider executionProvider = new IChildTestProvider() {
 
+		@Override
 		public int getEditPartChildrenSize() {
 			return TestSequenceDiagramChildNode.this.lifelineProvider.getEditPartChildrenSize() - 1; // ignore ActionExecution
 		}
 
+		@Override
 		public int getSemanticChildrenSize() {
 			return TestSequenceDiagramChildNode.this.lifelineProvider.getSemanticChildrenSize() - 1;
 		}
 
+		@Override
 		public int getViewChildrenSize() {
 			return TestSequenceDiagramChildNode.this.lifelineProvider.getViewChildrenSize() - 1;
 		}
 
+		@Override
 		public Element getDropElement() {
 			return null;
 		}
 
+		@Override
 		public GraphicalEditPart getParentEditPart() {
 			return TestSequenceDiagramChildNode.this.lifelineProvider.getParentEditPart();
 		}
 
+		@Override
 		public GraphicalEditPart getDestroyEditPart() {
-			return (GraphicalEditPart)getParentEditPart().getChildren().get(2);
+			return (GraphicalEditPart) getParentEditPart().getChildren().get(2);
 		}
 
+		@Override
 		public boolean hasSemanticChild() {
 			return semanticChild;
 		}
 
+		@Override
 		public Point getChildLocation(GraphicalEditPart parentEditPart) {
 			return TestSequenceDiagramChildNode.this.lifelineProvider.getChildLocation(parentEditPart);
 		}
@@ -175,15 +174,17 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 
 	IChildTestProvider lifelineProvider = new IChildTestProvider() {
 
+		@Override
 		public int getEditPartChildrenSize() {
 			return getParentEditPart().getChildren().size() - 1; // ignore LifelineNameEditPart
 		}
 
+		@Override
 		public int getSemanticChildrenSize() {
-			Lifeline lifeline = ((Lifeline)getParentEditPart().getNotationView().getElement());
+			Lifeline lifeline = ((Lifeline) getParentEditPart().getNotationView().getElement());
 			int count = 0;
-			for(InteractionFragment f : lifeline.getCoveredBys()) {
-				if(f instanceof DestructionOccurrenceSpecification || f instanceof ActionExecutionSpecification || f instanceof BehaviorExecutionSpecification) {
+			for (InteractionFragment f : lifeline.getCoveredBys()) {
+				if (f instanceof DestructionOccurrenceSpecification || f instanceof ActionExecutionSpecification || f instanceof BehaviorExecutionSpecification) {
 					count++;
 				}
 			}
@@ -191,41 +192,47 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 			return count;
 		}
 
+		@Override
 		public int getViewChildrenSize() {
 			int count = 0;
-			Lifeline lifeline = ((Lifeline)getParentEditPart().getNotationView().getElement());
+			Lifeline lifeline = ((Lifeline) getParentEditPart().getNotationView().getElement());
 			EList children = getParentEditPart().getNotationView().getChildren();
-			for(Object object : children) {
-				View view = (View)object;
-				if(lifeline != ViewUtil.resolveSemanticElement(view)) {
+			for (Object object : children) {
+				View view = (View) object;
+				if (lifeline != ViewUtil.resolveSemanticElement(view)) {
 					count++;
 				}
 			}
 			return count;
 		}
 
+		@Override
 		public Element getDropElement() {
 			return null;
 		}
 
+		@Override
 		public GraphicalEditPart getParentEditPart() {
-			if(containerEditPart == null) {
-				GraphicalEditPart ep = (GraphicalEditPart)getRootEditPart().getChildren().get(0);
+			if (containerEditPart == null) {
+				GraphicalEditPart ep = (GraphicalEditPart) getRootEditPart().getChildren().get(0);
 				containerEditPart = ep;
 			}
 			return containerEditPart;
 		}
 
+		@Override
 		public GraphicalEditPart getDestroyEditPart() {
-			return (GraphicalEditPart)getParentEditPart().getChildren().get(1);
+			return (GraphicalEditPart) getParentEditPart().getChildren().get(1);
 		}
 
+		@Override
 		public boolean hasSemanticChild() {
 			return semanticChild;
 		}
 
+		@Override
 		public Point getChildLocation(GraphicalEditPart parentEditPart) {
-			IFigure LifelineFigure = ((LifelineEditPart)parentEditPart).getPrimaryShape();
+			IFigure LifelineFigure = ((LifelineEditPart) parentEditPart).getPrimaryShape();
 			DisplayUtils.flushEventLoop();
 			Rectangle b = LifelineFigure.getBounds().getCopy();
 			LifelineFigure.translateToAbsolute(b);

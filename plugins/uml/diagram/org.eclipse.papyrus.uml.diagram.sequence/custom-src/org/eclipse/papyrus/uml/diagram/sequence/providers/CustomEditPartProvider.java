@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.SilentEditpart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationBehaviorEditPart;
@@ -52,12 +51,10 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageFoundNameEditP
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageLostNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingEditpart;
-import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -82,11 +79,6 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 			return new InteractionOperandGuardEditPart(view);
 		} else if (BehaviorExecutionSpecificationBehaviorEditPart.BEHAVIOR_TYPE.equals(view.getType())) {
 			return new BehaviorExecutionSpecificationBehaviorEditPart(view);
-		}
-		if (view instanceof Connector) {
-			if (((Connector) view).getType().equals(SequenceUtil.OBSERVATION_LINK_TYPE)) {
-				return new ObservationLinkEditPart(view);
-			}
 		}
 		switch (UMLVisualIDRegistry.getVisualID(view)) {
 		// case SequenceDiagramEditPart.VISUAL_ID:
