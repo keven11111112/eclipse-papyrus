@@ -1,15 +1,19 @@
-/*
+/*****************************************************************************
  * Copyright (c) 2008 Atos Origin
- * 
+ *
+ *    
  * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *    Thibault Landre (Atos Origin) - initial API and implementation
- * modified by Patrick Tessier(CEA LIST)
- */
+ * Thibault Landre (Atos Origin) - initial API and implementation
+ * Patrick Tessier(CEA LIST)
+ * 
+ *****************************************************************************/
 package utils
 
 import com.google.inject.Singleton

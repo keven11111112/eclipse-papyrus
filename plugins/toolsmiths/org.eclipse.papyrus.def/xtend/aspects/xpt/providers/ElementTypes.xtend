@@ -1,17 +1,20 @@
-/**
+/*****************************************************************************
  * Copyright (c) 2006, 2014 Borland Software Corporation, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Christian W. Damus - bug 451230
- *    Benoit Maggi (CEA LIST) -#510281 change dependency to replace gmft-runtime
- */
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Christian W. Damus - bug 451230
+ * Benoit Maggi (CEA LIST) -#510281 change dependency to replace gmft-runtime
+ * 
+ *****************************************************************************/
 package aspects.xpt.providers
 
 import aspects.xpt.CodeStyle

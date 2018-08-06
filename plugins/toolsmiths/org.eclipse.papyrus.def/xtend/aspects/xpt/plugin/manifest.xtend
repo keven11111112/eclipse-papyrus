@@ -1,17 +1,20 @@
-/*
+/*****************************************************************************
  * Copyright (c) 2007, 2015 Borland Software Corporation, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *    Dmitry Stadnik (Borland) - initial API and implementation
- * 	  Thibault Landre (Atos Origin) - add Papyrus dependencies to Papyrus GMF diagram*
- *	  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr : add the dependencyorg.eclipse.papyrus.infra.services.edit
- *    Christian W. Damus - bug 477384
- */
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Thibault Landre (Atos Origin) - add Papyrus dependencies to Papyrus GMF diagram*
+ * Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr : add the dependencyorg.eclipse.papyrus.infra.services.edit
+ * Christian W. Damus - bug 477384
+ * 
+ *****************************************************************************/
 package aspects.xpt.plugin
 
 import com.google.inject.Inject

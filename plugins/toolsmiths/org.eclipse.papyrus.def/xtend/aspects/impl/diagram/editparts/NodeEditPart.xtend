@@ -1,20 +1,23 @@
-/**
+/*****************************************************************************
  * Copyright (c) 2006, 2014 Borland Software Corporation, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *    Dmitry Stadnik (Borland) - initial API and implementation
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Patrick Tessier (CEA) - initial API and implementation
- *    Thibault Landre (Atos Origin) - initial API and implementation
- *    Vincent Lorenzo (CEA-LIST) - Bug 335987 [General][Enhancement] Show/Hide Connectors Labels and External Nodes Labels
- *    Christian W. Damus - bug 451230
- */
+ * Dmitry Stadnik (Borland) - initial API and implementation
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Patrick Tessier (CEA) - initial API and implementation
+ * Thibault Landre (Atos Origin) - initial API and implementation
+ * Vincent Lorenzo (CEA-LIST) - Bug 335987 [General][Enhancement] Show/Hide Connectors Labels and External Nodes Labels
+ * Christian W. Damus - bug 451230
+ * 
+ *****************************************************************************/
 package aspects.impl.diagram.editparts
 
 import aspects.xpt.editor.VisualIDRegistry

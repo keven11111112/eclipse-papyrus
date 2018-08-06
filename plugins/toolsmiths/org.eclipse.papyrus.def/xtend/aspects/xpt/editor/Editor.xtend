@@ -1,19 +1,23 @@
-/**
+/*****************************************************************************
  * Copyright (c) 2006, 2017 Borland Software Corporation, CEA, and others
  * 
  * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *    Alexander Shatalin (Borland) - initial API and implementation
- *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
- *    Emilien Perico (Atos Origin) - add code to refactor some classes
- *    Christian W. Damus (CEA) - bug 430648
- *    Christian W. Damus (CEA) - bug 431023
- *    Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 512343
- */
+ * Alexander Shatalin (Borland) - initial API and implementation
+ * Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ * Emilien Perico (Atos Origin) - add code to refactor some classes
+ * Christian W. Damus (CEA) - bug 430648
+ * Christian W. Damus (CEA) - bug 431023
+ * Micka¿l ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 512343
+ * 
+ *****************************************************************************/
+
 package aspects.xpt.editor
 
 import aspects.xpt.navigator.NavigatorLinkHelper

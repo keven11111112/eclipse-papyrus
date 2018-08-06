@@ -1,16 +1,19 @@
-/**
+/*****************************************************************************
  * Copyright (c) 2007-2013 Borland Software Corporation && others
  * 
  * All rights reserved. This program && the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, && is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *    Alexander Shatalin (Borland) - initial API && implementation
- *    Michael Golubev (Borland) - [243151] explicit source/target for links
- *  							- #386838 - migrate to Xtend2
- */
+ * Alexander Shatalin (Borland) - initial API && implementation
+ * Michael Golubev (Borland) - [243151] explicit source/target for links
+ *                           - #386838 - migrate to Xtend2
+ * 
+ *****************************************************************************/
 package aspects.xpt.diagram.editpolicies
 
 import com.google.inject.Singleton
