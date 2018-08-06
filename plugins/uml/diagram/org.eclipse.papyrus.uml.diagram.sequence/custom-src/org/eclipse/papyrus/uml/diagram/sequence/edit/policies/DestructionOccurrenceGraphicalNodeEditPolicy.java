@@ -18,7 +18,6 @@ import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -43,19 +42,19 @@ public class DestructionOccurrenceGraphicalNodeEditPolicy extends DefaultGraphic
 
 	@Override
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
-		if (DurationLinkUtil.isDurationLink(request)) {
-			// Bug 536639: Forbid reconnect on Duration edit parts
-			return UnexecutableCommand.INSTANCE;
-		}
+		// if (DurationLinkUtil.isDurationLink(request)) {
+		// // Bug 536639: Forbid reconnect on Duration edit parts
+		// return UnexecutableCommand.INSTANCE;
+		// }
 		return super.getReconnectSourceCommand(request);
 	}
 
 	@Override
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
-		if (DurationLinkUtil.isDurationLink(request)) {
-			// Bug 536639: Forbid reconnect on Duration edit parts
-			return UnexecutableCommand.INSTANCE;
-		}
+		// if (DurationLinkUtil.isDurationLink(request)) {
+		// // Bug 536639: Forbid reconnect on Duration edit parts
+		// return UnexecutableCommand.INSTANCE;
+		// }
 		return super.getReconnectTargetCommand(request);
 	}
 
