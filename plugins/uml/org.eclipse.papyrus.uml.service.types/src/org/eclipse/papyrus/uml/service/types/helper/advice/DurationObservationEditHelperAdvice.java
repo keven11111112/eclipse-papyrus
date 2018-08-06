@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -19,11 +22,16 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.UMLPackage.Literals;
 
 public class DurationObservationEditHelperAdvice extends AbstractOccurrenceLinkEditHelperAdvice {
 
@@ -63,6 +71,44 @@ public class DurationObservationEditHelperAdvice extends AbstractOccurrenceLinkE
 		}
 
 		return composite;
+	}
+
+	@Override
+	protected ICommand getAfterReorientRelationshipCommand(ReorientRelationshipRequest request) {
+		EObject relationship = request.getRelationship();
+		if (relationship instanceof DurationObservation) {
+			DurationObservation observation = (DurationObservation) relationship;
+			EObject newEnd = request.getNewRelationshipEnd();
+			if (newEnd instanceof OccurrenceSpecification) {
+				OccurrenceSpecification newOccurrence = (OccurrenceSpecification) newEnd;
+				List<Element> values = new ArrayList<>(observation.getEvents());
+				if (request.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
+					if (values.isEmpty()) {
+						values.add(newOccurrence);
+					} else if (values.size() == 1) {
+						values.add(0, newOccurrence);
+					} else if (values.get(0) == newOccurrence) {
+						return null;
+					} else {
+						values.set(0, newOccurrence);
+					}
+				} else { // Reorient Target
+					if (values.isEmpty()) {
+						values.add(newOccurrence);
+					} else if (values.size() == 1) {
+						values.add(newOccurrence);
+					} else if (values.get(1) == newOccurrence) {
+						return null;
+					} else {
+						values.set(1, newOccurrence);
+					}
+				}
+
+				SetRequest setRequest = new SetRequest(observation, Literals.DURATION_OBSERVATION__EVENT, values);
+				return new SetValueCommand(setRequest);
+			}
+		}
+		return super.getAfterReorientRelationshipCommand(request);
 	}
 
 	@Override

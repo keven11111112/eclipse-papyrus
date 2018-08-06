@@ -23,11 +23,17 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Anchor;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.anchors.AnchorConstants;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
@@ -39,9 +45,24 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  * Util class related to the manipulation of Links targetting {@link OccurrenceSpecification}s,
  * typically used by {@link GraphicalNodeEditPolicy} or {@link EditPart}.
  * </p>
+ * <p>
+ * Most methods are meant to be used with Edges connecting some {@link OccurrenceSpecification}
+ * that are not necessarily displayed on the Diagram.
+ * </p>
+ * <p>
+ * To identify the right {@link OccurrenceSpecification}, the methods may rely either on the
+ * {@link IFigure} that is under the mouse cursor, by determining if the mouse is closer to
+ * the start or finish (Or source/target for edges) point representing an {@link OccurrenceSpecification}.
+ * </p>
+ * <p>
+ * When only the {@link Edge} view is available, the methods will rely on the current {@link Edge#getSourceAnchor()}
+ * and {@link Edge#getTargetAnchor()}. Anchors are expected to match one of the values defined in {@link AnchorConstants}.
+ * </p>
  *
  * @see DurationLinkUtil
  * @see GeneralOrderingUtil
+ * @see AnchorConstants#START_TERMINAL
+ * @see AnchorConstants#END_TERMINAL
  */
 public class OccurrenceSpecificationUtil {
 
@@ -139,10 +160,10 @@ public class OccurrenceSpecificationUtil {
 
 	/**
 	 * Find the semantic {@link OccurrenceSpecification} represented by the given <code>connectorEnd</code>.
-	 * The connector should be the source or target of a DurationLink connector.
+	 * The connector should be the source or target of a connector (e.g. DurationLink or GeneralOrdering).
 	 *
 	 * @param connectorEnd
-	 *            the source or target of a DurationLink connector
+	 *            the source or target of a connector
 	 * @param anchorTerminal
 	 *            The connection anchor corresponding to the given connector end.
 	 * @return
@@ -176,4 +197,70 @@ public class OccurrenceSpecificationUtil {
 		}
 		return null;
 	}
+
+	/**
+	 * <p>
+	 * Return the target {@link OccurrenceSpecification} represented by this {@link ReconnectRequest}.
+	 * </p>
+	 * <p>
+	 * If there is no {@link OccurrenceSpecification} at this request's location, the default EObject
+	 * represented by {@link ReconnectRequest#getTarget()} is returned.
+	 * </p>
+	 *
+	 * @param request
+	 * @return
+	 */
+	public static EObject getOccurrence(ReconnectRequest request) {
+		EObject element = EMFHelper.getEObject(request.getTarget());
+		IFigure targetFigure = ((IGraphicalEditPart) request.getTarget()).getFigure();
+		if (element instanceof Message) {
+			if (OccurrenceSpecificationUtil.isSource(targetFigure, request.getLocation())) {
+				return ((Message) element).getSendEvent();
+			} else {
+				return ((Message) element).getReceiveEvent();
+			}
+		} else if (element instanceof ExecutionSpecification) {
+			if (OccurrenceSpecificationUtil.isStart(targetFigure, request.getLocation())) {
+				return ((ExecutionSpecification) element).getStart();
+			} else {
+				return ((ExecutionSpecification) element).getFinish();
+			}
+		}
+		return element;
+	}
+
+	/**
+	 * <p>
+	 * Return the {@link OccurrenceSpecification} that is the {@link Edge#getSource() Source}
+	 * of this Edge.
+	 * </p>
+	 *
+	 * @param connection
+	 * @return
+	 */
+	public static EObject getSourceOccurrence(Edge connection) {
+		Anchor sourceAnchor = connection.getSourceAnchor();
+		if (sourceAnchor instanceof IdentityAnchor) {
+			return findSemanticOccurrence(connection.getSource(), ((IdentityAnchor) sourceAnchor).getId());
+		}
+		return connection.getSource().getElement();
+	}
+
+	/**
+	 * <p>
+	 * Return the {@link OccurrenceSpecification} that is the {@link Edge#getTarget() Target}
+	 * of this Edge.
+	 * </p>
+	 *
+	 * @param connection
+	 * @return
+	 */
+	public static EObject getTargetOccurrence(Edge connection) {
+		Anchor targetAnchor = connection.getTargetAnchor();
+		if (targetAnchor instanceof IdentityAnchor) {
+			return findSemanticOccurrence(connection.getTarget(), ((IdentityAnchor) targetAnchor).getId());
+		}
+		return connection.getTarget().getElement();
+	}
+
 }
