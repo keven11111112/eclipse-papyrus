@@ -334,6 +334,8 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 			if (connectionEditPart instanceof MessageSyncEditPart) {
 				// Sync Message
 				return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
+			} else if (DurationLinkUtil.isDurationLink(reconnectRequest) || GeneralOrderingUtil.isGeneralOrderingLink(reconnectRequest)) {
+				return OccurrenceSpecificationUtil.isStart(getFigure(), reconnectRequest.getLocation()) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 			}
 		}
 		// Fixed bug about computing target anchor when creating message sync.
@@ -420,6 +422,8 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 			if (connectionEditPart instanceof MessageReplyEditPart) {
 				// Reply Message
 				return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.BOTTOM);
+			} else if (DurationLinkUtil.isDurationLink(reconnectRequest) || GeneralOrderingUtil.isGeneralOrderingLink(reconnectRequest)) {
+				return OccurrenceSpecificationUtil.isStart(getFigure(), reconnectRequest.getLocation()) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;

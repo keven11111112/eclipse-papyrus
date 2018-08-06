@@ -699,7 +699,7 @@ public class LifeLineGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPol
 
 		// Check if the target is lower than the source
 		Point sourceLocation = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) request.getConnectionEditPart(), true);
-		if (!isTargetLowerThanSource(sourceLocation, request.getLocation().getCopy())) {
+		if (sourceLocation != null && !isTargetLowerThanSource(sourceLocation, request.getLocation().getCopy())) {
 			Object object = request.getExtendedData().get(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY);
 			if (!(object instanceof Boolean) || ((object instanceof Boolean) && !((Boolean) object))) {// If not HorizontalMove parameter true
 				return UnexecutableCommand.INSTANCE;

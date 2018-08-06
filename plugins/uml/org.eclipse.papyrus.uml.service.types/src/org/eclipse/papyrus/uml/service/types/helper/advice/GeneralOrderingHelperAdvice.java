@@ -22,11 +22,15 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.UMLPackage.Literals;
 
 /**
  * @since 3.0
@@ -72,6 +76,26 @@ public class GeneralOrderingHelperAdvice extends AbstractOccurrenceLinkEditHelpe
 	@Override
 	protected Element getCreationContainer(Element targetElement) {
 		return findInteraction(targetElement);
+	}
+
+	@Override
+	protected ICommand getAfterReorientRelationshipCommand(ReorientRelationshipRequest request) {
+		EObject relationship = request.getRelationship();
+		if (relationship instanceof GeneralOrdering) {
+			GeneralOrdering ordering = (GeneralOrdering) relationship;
+			EObject newEnd = request.getNewRelationshipEnd();
+			if (newEnd instanceof OccurrenceSpecification) {
+				SetRequest setRequest;
+				if (request.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
+					setRequest = new SetRequest(ordering, Literals.GENERAL_ORDERING__BEFORE, newEnd);
+				} else {
+					setRequest = new SetRequest(ordering, Literals.GENERAL_ORDERING__AFTER, newEnd);
+				}
+
+				return new SetValueCommand(setRequest);
+			}
+		}
+		return super.getAfterReorientRelationshipCommand(request);
 	}
 
 	protected Interaction findInteraction(Element source) {

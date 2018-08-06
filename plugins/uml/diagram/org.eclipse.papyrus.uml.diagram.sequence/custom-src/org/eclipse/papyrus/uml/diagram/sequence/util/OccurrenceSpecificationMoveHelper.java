@@ -127,91 +127,11 @@ public class OccurrenceSpecificationMoveHelper {
 		if (command != null) {
 			globalCmd.add(command);
 		}
-		// reconnect the corresponding general ordering(s) if necessary
-		command = getReconnectGeneralOrderingCommand(movedOccurrenceSpecification1, yLocation1, lifelinePart, notToMoveEditParts);
-		if (command != null) {
-			globalCmd.add(command);
-		}
-		if (movedOccurrenceSpecification2 != null) {
-			command = getReconnectGeneralOrderingCommand(movedOccurrenceSpecification2, yLocation2, lifelinePart, notToMoveEditParts);
-			if (command != null) {
-				globalCmd.add(command);
-			}
-		}
 		// return null rather than an empty non executable command
 		if (globalCmd.isEmpty()) {
 			return null;
 		}
 		return globalCmd;
-	}
-
-	/**
-	 * Get the command to reconnect general ordering attached to a moved occurrence specification
-	 *
-	 * @param movedOccurrenceSpecification
-	 *            moving occurrence specification
-	 * @param yLocation
-	 *            y location where occurrence specification is moved
-	 * @param lifelinePart
-	 *            lifeline edit part containing the moved element
-	 * @param notToMoveEditParts
-	 *            list of edit parts which must not be moved in the created command
-	 * @return command to reconnect general ordering edit parts linked to the occurrence specification or null
-	 */
-	private static Command getReconnectGeneralOrderingCommand(OccurrenceSpecification movedOccurrenceSpecification, int yLocation, LifelineEditPart lifelinePart, List<EditPart> notToMoveEditParts) {
-		// the global command which shall be completed and returned
-		CompoundCommand command = new CompoundCommand();
-		Point referencePoint = getReferencePoint(lifelinePart, movedOccurrenceSpecification, yLocation);
-		EditPart childToReconnectTo = SequenceUtil.findPartToReconnectTo(lifelinePart, referencePoint);
-		// if referencePoint is on a moved part, it must be translated with the location delta of this part
-		if (!notToMoveEditParts.isEmpty() && childToReconnectTo != lifelinePart) {
-			Point oldLoc = SequenceUtil.findLocationOfEvent(lifelinePart, movedOccurrenceSpecification);
-			if (oldLoc == null) {
-				return null;
-			}
-			referencePoint.y = oldLoc.y;
-		}
-		// reconnect general ordering from the event
-		for (GeneralOrdering go : movedOccurrenceSpecification.getToAfters()) {
-			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(go);
-			for (Setting ref : settings) {
-				if (NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
-					View view = (View) ref.getEObject();
-					EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
-					// the general ordering part must start or finish on the lifeline (with the event)
-					if (part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
-						Request reconnectRequest = makeReconnectRequest((ConnectionEditPart) part, true, referencePoint, childToReconnectTo);
-						Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
-						if (reconnect.canExecute()) {
-							command.add(reconnect);
-						}
-					}
-				}
-			}
-		}
-		// reconnect general ordering to the event
-		for (GeneralOrdering go : movedOccurrenceSpecification.getToBefores()) {
-			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(go);
-			for (Setting ref : settings) {
-				if (NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
-					View view = (View) ref.getEObject();
-					EditPart part = DiagramEditPartsUtil.getEditPartFromView(view, lifelinePart);
-					// the general ordering part must start or finish on the lifeline (with the event)
-					if (part instanceof ConnectionEditPart && !notToMoveEditParts.contains(part)) {
-						Request reconnectRequest = makeReconnectRequest((ConnectionEditPart) part, false, referencePoint, childToReconnectTo);
-						Command reconnect = childToReconnectTo.getCommand(reconnectRequest);
-						if (reconnect.canExecute()) {
-							command.add(reconnect);
-						}
-					}
-				}
-			}
-		}
-		// return null rather than an empty non executable command
-		if (command.isEmpty()) {
-			return null;
-		}
-		return command;
 	}
 
 	/**
