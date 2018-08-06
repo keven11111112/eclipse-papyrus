@@ -16,10 +16,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Cursors;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.common.notify.Notification;
@@ -43,6 +48,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.anchors.ConnectionSourceAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.anchors.ConnectionTargetAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.MessageGraphicalNodeEditPolicy;
@@ -296,9 +302,134 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			if (con instanceof MessageLostEditPart || con instanceof MessageFoundEditPart) {
 				return null;
 			}
+			// Workaround for Bug 537724: GMF does not support reconnection of links if link.source == link.target and
+			// the source/target is a link.
+			// We need to copy all inherited implementations, except the problematic GMF one... To be safe, only do
+			// that for DurationLinks and GeneralOrderings, since that's the case we want to support
+			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+			if (DurationLinkUtil.isDurationLink(reconnectRequest) || GeneralOrderingUtil.isGeneralOrderingLink(reconnectRequest)) {
+				return doGetTargetEditPart(reconnectRequest);
+			}
 		}
 		return super.getTargetEditPart(request);
 	}
+
+	/**
+	 * Workaround for Bug 537724: GMF's implementation of cyclic dependency is incorrect,
+	 * and we need to bypass it. Unfortunately, that means we need to copy all inherited
+	 * implementations.
+	 *
+	 * @param reconnectRequest
+	 * @return
+	 */
+	protected EditPart doGetTargetEditPart(ReconnectRequest reconnectRequest) {
+		// From UMLConnectionNodeEditPart
+		if (ApplyStereotypeRequest.APPLY_STEREOTYPE_REQUEST.equals(reconnectRequest.getType())) {
+			return this;
+		}
+
+		// From GEF's AbstractEditPart
+		EditPolicyIterator i = getEditPolicyIterator();
+		EditPart targetEditPart = null;
+		while (i.hasNext()) {
+			targetEditPart = i.next().getTargetEditPart(reconnectRequest);
+			if (targetEditPart != null) {
+				break;
+			}
+		}
+
+		// From GMF's ConnectionNodeEditPart (The buggy part)
+
+		if (reconnectRequest.isMovingStartAnchor()) {
+			if (reconnectRequest.getConnectionEditPart().getSource() == targetEditPart) {
+				return targetEditPart;
+			}
+		} else if (reconnectRequest.getConnectionEditPart().getTarget() == targetEditPart) {
+			return targetEditPart;
+		}
+
+		// If source anchor is moved, the connection's source edit part
+		// should not be taken into account for a cyclic dependency
+		// check so as to avoid false checks. Same goes for the target
+		// anchor. See bugzilla# 155243 -- we do not want to target a
+		// connection that is already connected to us so that we do not
+		// introduce a cyclic connection
+		if (isCyclicConnectionRequest((org.eclipse.gef.ConnectionEditPart) targetEditPart,
+				reconnectRequest.getConnectionEditPart(), false, reconnectRequest.isMovingStartAnchor())) {
+			return null;
+		}
+
+		return targetEditPart;
+	}
+
+	// Custom implementation of the parent method, which is buggy
+	// This is a workaround for Bug 537724
+	// TODO This implementation should be properly tested... It allows more cases than
+	// the parent one, and may potentially allow cycles
+	private boolean isCyclicConnectionRequest(org.eclipse.gef.ConnectionEditPart targetCEP,
+			org.eclipse.gef.ConnectionEditPart sourceCEP,
+			boolean checkSourceAndTargetEditParts, boolean doNotCheckSourceEditPart) {
+		if (targetCEP == null || sourceCEP == null) {
+			return false;
+		}
+
+		// first, do a cyclic check on source and target connections
+		// of the source connection itself.
+		// (as every connection is also a node).
+
+		Set<IFigure> set = new HashSet<>();
+		getSourceAndTargetConnections(set, sourceCEP);
+		if (set.contains(targetCEP.getFigure())) {
+			return true;
+		}
+
+		// now do the cyclic check on the source and target of the source connection...
+		EditPart sourceEP = sourceCEP.getSource(),
+				targetEP = sourceCEP.getTarget();
+
+		if (!checkSourceAndTargetEditParts && doNotCheckSourceEditPart) {
+			// .
+		} else if (sourceEP instanceof org.eclipse.gef.ConnectionEditPart &&
+				isCyclicConnectionRequest(targetCEP,
+						(org.eclipse.gef.ConnectionEditPart) sourceEP,
+						true, doNotCheckSourceEditPart)) {
+			return true;
+		}
+
+		if (!checkSourceAndTargetEditParts && !doNotCheckSourceEditPart) {
+			// .
+		} else if (targetEP instanceof org.eclipse.gef.ConnectionEditPart &&
+				isCyclicConnectionRequest(targetCEP,
+						(org.eclipse.gef.ConnectionEditPart) targetEP,
+						true, doNotCheckSourceEditPart)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private void getSourceAndTargetConnections(Set<IFigure> set,
+			org.eclipse.gef.ConnectionEditPart connectionEditPart) {
+
+		if (connectionEditPart == null || set == null) {
+			return;
+		}
+
+		for (Iterator<?> i = connectionEditPart.getSourceConnections().iterator(); i.hasNext();) {
+			org.eclipse.gef.ConnectionEditPart next = (org.eclipse.gef.ConnectionEditPart) i.next();
+			Connection sourceConnection = (Connection) next.getFigure();
+			set.add(sourceConnection);
+			getSourceAndTargetConnections(set, next);
+		}
+
+		for (Iterator<?> i = connectionEditPart.getTargetConnections().iterator(); i.hasNext();) {
+			org.eclipse.gef.ConnectionEditPart next = (org.eclipse.gef.ConnectionEditPart) i.next();
+			Connection targetConnection = (Connection) next.getFigure();
+			set.add(targetConnection);
+			getSourceAndTargetConnections(set, next);
+		}
+	}
+
 
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
