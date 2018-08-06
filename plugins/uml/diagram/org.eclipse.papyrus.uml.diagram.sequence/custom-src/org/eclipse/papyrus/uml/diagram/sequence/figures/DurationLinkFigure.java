@@ -244,6 +244,11 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	 */
 	protected void paintArrow(Graphics graphics) {
 		PolylineConnection arrowLine = new PolylineConnection();
+		arrowLine.setForegroundColor(getForegroundColor());
+		arrowLine.setBackgroundColor(getBackgroundColor());
+		arrowLine.setLineStyle(getLineStyle());
+		arrowLine.setLineWidth(getLineWidth());
+
 		PointList arrowPoints = getArrowLinePoints();
 		Point arrowStart = arrowPoints.getFirstPoint();
 		Point arrowEnd = arrowPoints.getLastPoint();
@@ -276,15 +281,17 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	protected void decorateArrowLine(PolylineConnection arrowLine, Point arrowStart, Point arrowEnd) {
 		// source
 		PolylineDecoration source = new PolylineDecoration();
+		source.setScale(7 * getLineWidth(), 3 * getLineWidth());
+		source.setLineWidth(getLineWidth());
 		source.setLocation(arrowStart);
-		source.setLineWidth(1);
 		source.setReferencePoint(arrowEnd);
 		arrowLine.setSourceDecoration(source);
 
 		// target
 		PolylineDecoration target = new PolylineDecoration();
+		target.setScale(7 * getLineWidth(), 3 * getLineWidth());
+		target.setLineWidth(getLineWidth());
 		target.setLocation(arrowEnd);
-		target.setLineWidth(1);
 		target.setReferencePoint(arrowStart);
 		arrowLine.setTargetDecoration(target);
 	}
