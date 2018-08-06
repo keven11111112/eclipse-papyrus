@@ -54,6 +54,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionFragmentEditPart;
@@ -427,7 +428,7 @@ public class OLDSequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 		}
 		Command command = super.getReconnectSourceCommand(request);
 		// //Ordering message occurrence specifications after message reconnected, See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
-		if (command != null && command.canExecute()) {
+		if (command != null && command.canExecute() && request.getConnectionEditPart() instanceof AbstractMessageEditPart) {
 			command = command.chain(FragmentsOrdererHelper.createOrderingFragmentsCommand(getHost(), request));
 		}
 		return command;
@@ -462,7 +463,7 @@ public class OLDSequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy 
 		// }
 		Command command = super.getReconnectTargetCommand(request);
 		// Ordering message occurrence specifications after message reconnected, See https://bugs.eclipse.org/bugs/show_bug.cgi?id=403233
-		if (command != null && command.canExecute()) {
+		if (command != null && command.canExecute() && request.getConnectionEditPart() instanceof AbstractMessageEditPart) {
 			command = command.chain(FragmentsOrdererHelper.createOrderingFragmentsCommand(getHost(), request));
 		}
 		return command;
