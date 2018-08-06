@@ -419,6 +419,11 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			if (DurationLinkUtil.isDurationLink(createRequest) || GeneralOrderingUtil.isGeneralOrderingLink(createRequest)) {
 				return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 			}
+		} else if (request instanceof ReconnectRequest) {
+			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+			if (DurationLinkUtil.isDurationLink(reconnectRequest) || GeneralOrderingUtil.isGeneralOrderingLink(reconnectRequest)) {
+				return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), reconnectRequest.getLocation()) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+			}
 		}
 		return super.getSourceConnectionAnchor(request);
 	}
@@ -437,6 +442,11 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
 			if (DurationLinkUtil.isDurationLink(createRequest) || GeneralOrderingUtil.isGeneralOrderingLink(createRequest)) {
 				return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+			}
+		} else if (request instanceof ReconnectRequest) {
+			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+			if (DurationLinkUtil.isDurationLink(reconnectRequest) || GeneralOrderingUtil.isGeneralOrderingLink(reconnectRequest)) {
+				return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), reconnectRequest.getLocation()) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 			}
 		}
 		return super.getTargetConnectionAnchor(request);

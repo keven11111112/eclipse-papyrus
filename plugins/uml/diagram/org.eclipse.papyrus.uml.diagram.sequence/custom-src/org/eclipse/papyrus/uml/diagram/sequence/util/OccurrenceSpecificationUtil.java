@@ -20,6 +20,7 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
@@ -73,12 +74,23 @@ public class OccurrenceSpecificationUtil {
 	 * 		<code>true</code> if the given request is closer to the top of the figure; false if it is closer to the bottom
 	 */
 	public static boolean isStart(IFigure targetFigure, CreateRequest createRequest) {
-		Point location = createRequest.getLocation();
+		return isStart(targetFigure, createRequest.getLocation());
+	}
+
+	/**
+	 * Test whether the given request is closer to the start (top) or to the finish (bottom) point of the execution specification
+	 *
+	 * @param Point
+	 *            The current request location
+	 * @return
+	 * 		<code>true</code> if the given request is closer to the top of the figure; false if it is closer to the bottom
+	 */
+	public static boolean isStart(IFigure targetFigure, Point requestLocation) {
 		Rectangle bounds = targetFigure.getBounds().getCopy();
 		targetFigure.translateToAbsolute(bounds);
 
-		double distanceToTop = location.getDistance(bounds.getTop());
-		double distanceToBottom = location.getDistance(bounds.getBottom());
+		double distanceToTop = requestLocation.getDistance(bounds.getTop());
+		double distanceToBottom = requestLocation.getDistance(bounds.getBottom());
 		return distanceToTop < distanceToBottom;
 	}
 
@@ -93,15 +105,28 @@ public class OccurrenceSpecificationUtil {
 	 * 		<code>true</code> if the given request is closer to the source of the connection; false if it is closer to the target
 	 */
 	public static boolean isSource(IFigure targetFigure, CreateRequest createRequest) {
-		Point location = createRequest.getLocation();
+		return isSource(targetFigure, createRequest.getLocation());
+	}
+
+	/**
+	 * Test whether the given request is closer to the source or to the target point of the message
+	 *
+	 * @param targetFigure
+	 *            The connection figure representing the message
+	 * @param requestLocation
+	 *            The mouse location for the current {@link Request}
+	 * @return
+	 * 		<code>true</code> if the given request is closer to the source of the connection; false if it is closer to the target
+	 */
+	public static boolean isSource(IFigure targetFigure, Point requestLocation) {
 		IFigure connection = targetFigure;
 		if (connection instanceof Connection) {
 			PointList points = ((Connection) connection).getPoints();
 			if (points.size() >= 2) {
 				Point source = points.getFirstPoint();
 				Point target = points.getLastPoint();
-				double distanceToSource = location.getDistance(source);
-				double distanceToTarget = location.getDistance(target);
+				double distanceToSource = requestLocation.getDistance(source);
+				double distanceToTarget = requestLocation.getDistance(target);
 				return distanceToSource < distanceToTarget;
 			}
 		}
@@ -110,7 +135,6 @@ public class OccurrenceSpecificationUtil {
 		// in which case we can't determine the source/target).
 		return true;
 	}
-
 
 
 	/**
