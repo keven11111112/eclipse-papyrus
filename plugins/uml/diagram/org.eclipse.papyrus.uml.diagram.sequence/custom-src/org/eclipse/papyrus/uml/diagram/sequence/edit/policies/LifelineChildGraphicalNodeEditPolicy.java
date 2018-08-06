@@ -45,6 +45,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.OLDCreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageCreateEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageDeleteEditPart;
@@ -214,7 +215,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 			}
 		}
 		Command command = super.getReconnectSourceCommand(request);
-		if (command != null) {
+		if (command != null && request.getConnectionEditPart() instanceof AbstractMessageEditPart) {
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
 			if (request.getConnectionEditPart() instanceof MessageCreateEditPart && request.getTarget() instanceof LifelineEditPart) {
 				LifelineEditPart newSource = (LifelineEditPart) request.getTarget();
@@ -250,7 +251,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends OLDSequenceGraphicalNo
 		}
 
 		Command command = super.getReconnectTargetCommand(request);
-		if (command != null) {
+		if (command != null && request.getConnectionEditPart() instanceof AbstractMessageEditPart) {
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
 			if (request.getConnectionEditPart() instanceof MessageCreateEditPart && request.getTarget() instanceof LifelineEditPart) {
 				command = LifelineMessageCreateHelper.reconnectMessageCreateTarget(request, command);
