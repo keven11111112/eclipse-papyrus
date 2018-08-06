@@ -13,7 +13,6 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
@@ -24,13 +23,10 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.Anchor;
 import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.anchors.AnchorConstants;
+import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GeneralOrderingUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationUtil;
 import org.eclipse.uml2.uml.ExecutionSpecification;
@@ -80,20 +76,36 @@ public class OccurenceSemanticEditPolicy extends DefaultSemanticEditPolicy {
 	}
 
 	protected boolean relationshipSourceHasChanged(ReconnectRequest request) {
-		return getSourceOccurrence((Edge) request.getConnectionEditPart().getModel()) != getOccurrence(request);
+		if (!request.getConnectionEditPart().getSource().equals(request.getTarget())) {
+			// Connecting different edit parts
+			return true;
+		} else if (request.getConnectionEditPart().getModel() instanceof Edge) {
+			// Connecting different occurrences on the same edit part (Source vs Target, Start vs Finish...)
+			Edge edge = (Edge) request.getConnectionEditPart().getModel();
+			return OccurrenceSpecificationUtil.getSourceOccurrence(edge) != OccurrenceSpecificationUtil.getOccurrence(request);
+		}
+		return false;
 	}
 
 	protected boolean relationshipTargetHasChanged(ReconnectRequest request) {
-		return getTargetOccurrence((Edge) request.getConnectionEditPart().getModel()) != getOccurrence(request);
+		if (!request.getConnectionEditPart().getTarget().equals(request.getTarget())) {
+			// Connecting different edit parts
+			return true;
+		} else if (request.getConnectionEditPart().getModel() instanceof Edge) {
+			// Connecting different occurrences on the same edit part (Source vs Target, Start vs Finish...)
+			Edge edge = (Edge) request.getConnectionEditPart().getModel();
+			return OccurrenceSpecificationUtil.getTargetOccurrence(edge) != OccurrenceSpecificationUtil.getOccurrence(request);
+		}
+		return false;
 	}
 
 	@Override
 	protected Command getReorientRelationshipSourceCommand(ReconnectRequest request) {
-		if (GeneralOrderingUtil.isGeneralOrderingLink(request)) {
+		if (GeneralOrderingUtil.isGeneralOrderingLink(request) || DurationLinkUtil.isDurationLink(request)) {
 			EObject connectionSemElement = ViewUtil.resolveSemanticElement(((View) request.getConnectionEditPart()
 					.getModel()));
-			EObject targetSemElement = getOccurrence(request);
-			EObject oldSemElement = getSourceOccurrence((Edge) request.getConnectionEditPart().getModel());
+			EObject targetSemElement = OccurrenceSpecificationUtil.getOccurrence(request);
+			EObject oldSemElement = OccurrenceSpecificationUtil.getSourceOccurrence((Edge) request.getConnectionEditPart().getModel());
 
 			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
 					.getEditingDomain();
@@ -111,10 +123,10 @@ public class OccurenceSemanticEditPolicy extends DefaultSemanticEditPolicy {
 
 	@Override
 	protected Command getReorientRelationshipTargetCommand(ReconnectRequest request) {
-		if (GeneralOrderingUtil.isGeneralOrderingLink(request)) {
+		if (GeneralOrderingUtil.isGeneralOrderingLink(request) || DurationLinkUtil.isDurationLink(request)) {
 			EObject connectionSemElement = ViewUtil.resolveSemanticElement((View) request.getConnectionEditPart().getModel());
-			EObject targetSemElement = getOccurrence(request);
-			EObject oldSemElement = getTargetOccurrence((Edge) request.getConnectionEditPart().getModel());
+			EObject targetSemElement = OccurrenceSpecificationUtil.getOccurrence(request);
+			EObject oldSemElement = OccurrenceSpecificationUtil.getTargetOccurrence((Edge) request.getConnectionEditPart().getModel());
 
 			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
 					.getEditingDomain();
@@ -128,52 +140,6 @@ public class OccurenceSemanticEditPolicy extends DefaultSemanticEditPolicy {
 		}
 
 		return super.getReorientRelationshipTargetCommand(request);
-	}
-
-	private EObject getOccurrence(ReconnectRequest request) {
-		EObject element = EMFHelper.getEObject(request.getTarget());
-		IFigure targetFigure = ((IGraphicalEditPart) request.getTarget()).getFigure();
-		if (element instanceof Message) {
-			if (OccurrenceSpecificationUtil.isSource(targetFigure, request.getLocation())) {
-				return ((Message) element).getSendEvent();
-			} else {
-				return ((Message) element).getReceiveEvent();
-			}
-		} else if (element instanceof ExecutionSpecification) {
-			if (OccurrenceSpecificationUtil.isStart(targetFigure, request.getLocation())) {
-				return ((ExecutionSpecification) element).getStart();
-			} else {
-				return ((ExecutionSpecification) element).getFinish();
-			}
-		}
-		return element;
-	}
-
-	private EObject getTargetOccurrence(Edge connection) {
-		return getOccurrence(connection.getTargetAnchor(), connection.getTarget());
-	}
-
-	private EObject getSourceOccurrence(Edge connection) {
-		return getOccurrence(connection.getSourceAnchor(), connection.getSource());
-	}
-
-	private EObject getOccurrence(Anchor anchor, View targetElement) {
-		String anchorId = ((IdentityAnchor) anchor).getId();
-		EObject element = targetElement.getElement();
-		if (AnchorConstants.END_TERMINAL.equals(anchorId)) {
-			if (element instanceof Message) {
-				return ((Message) element).getReceiveEvent();
-			} else if (element instanceof ExecutionSpecification) {
-				return ((ExecutionSpecification) element).getFinish();
-			}
-		} else if (AnchorConstants.START_TERMINAL.equals(anchorId)) {
-			if (element instanceof Message) {
-				return ((Message) element).getSendEvent();
-			} else if (element instanceof ExecutionSpecification) {
-				return ((ExecutionSpecification) element).getStart();
-			}
-		}
-		return null;
 	}
 
 }
