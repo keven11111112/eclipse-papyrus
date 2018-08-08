@@ -39,6 +39,12 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestCFOperandsCoveredNodes.class,
 		TestCFOperandsSemanticCoverage.class,
 		TestCFOperandsReorder.class,
+		TestDurationConstraintDisplay.class,
+		TestDurationObservationDisplay.class,
+		TestGeneralOrderingDisplay.class,
+		DurationConstraintCreationTest.class,
+		DurationObservationCreationTest.class,
+		GeneralOrderingCreationTest.class,
 })
 public class BugTests {
 

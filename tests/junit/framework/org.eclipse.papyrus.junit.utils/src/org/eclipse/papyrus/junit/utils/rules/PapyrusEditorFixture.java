@@ -10,6 +10,7 @@
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673, 533682, 533676, 533679
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 521550
+ *   EclipseSource - Bug 536631
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils.rules;
 
@@ -24,6 +25,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -68,7 +70,11 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.RootEditPart;
+import org.eclipse.gef.Tool;
+import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -77,6 +83,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
@@ -98,7 +105,10 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PaletteUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.nattable.common.editor.AbstractEMFNattableEditor;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
@@ -136,6 +146,7 @@ import org.eclipse.ui.part.IPage;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.Assert;
 import org.junit.runner.Description;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
@@ -202,7 +213,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 * normal Papyrus run-time environment.
 	 *
 	 * @param ensureOperationHistoryIntegrity
-	 * 
+	 *
 	 * @since 2.0
 	 */
 	public PapyrusEditorFixture(boolean ensureOperationHistoryIntegrity) {
@@ -513,7 +524,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 * {@link #open() opening} the test model again would actually re-initialize it from
 	 * the deployed test resources, potentially replacing any changes in the model files
 	 * that may be significant to the test.
-	 * 
+	 *
 	 * @return the re-opened editor
 	 * @since 2.0
 	 */
@@ -960,11 +971,11 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	/**
 	 * Get the shape compartment of an edit-part. Fails if the edit-part has no
 	 * shape compartment.
-	 * 
+	 *
 	 * @param shapeEditPart
 	 *            a shape edit part
 	 * @return its shape compartment
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public EditPart getShapeCompartment(EditPart shapeEditPart) {
@@ -976,7 +987,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	/**
 	 * Obtain a typed stream over a raw-typed collection from a legacy pre-generics API
 	 * such as GEF.
-	 * 
+	 *
 	 * @param rawCollection
 	 *            a raw-typed collection
 	 * @param type
@@ -991,7 +1002,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	/**
 	 * Obtain a fake supplier that just fails the test with the given {@code message}
 	 * instead of supplying a result.
-	 * 
+	 *
 	 * @param message
 	 *            the failure message
 	 * @return the fake supplier
@@ -1052,12 +1063,12 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	/**
 	 * Find an edit-part for a model element in a particular {@code scope}.
-	 * 
+	 *
 	 * @param scope
 	 *            an edit part in which to search (its children) for an edit-part
 	 * @param modelElement
 	 *            the model element visualized by the edit-part to search for
-	 * 
+	 *
 	 * @return the matching edit-part, or {@code null} if none is found in the {@code scope}
 	 */
 	public EditPart findEditPart(EditPart scope, EObject modelElement) {
@@ -1092,14 +1103,14 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	/**
 	 * Require an edit-part for a model element in a particular {@code scope}.
-	 * 
+	 *
 	 * @param scope
 	 *            an edit part in which to search (its children) for an edit-part
 	 * @param modelElement
 	 *            the model element visualized by the edit-part to search for
-	 * 
+	 *
 	 * @return the matching edit-part
-	 * 
+	 *
 	 * @throws AssertionError
 	 *             if the required edit-part is found in the {@code scope}
 	 */
@@ -1506,7 +1517,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	/**
 	 * Create a new shape in the {@code parent}. Fails if the shape cannot be created or
 	 * cannot be found in the diagram after creation.
-	 * 
+	 *
 	 * @param parent
 	 *            the parent edit-part in which to create a shape
 	 * @param type
@@ -1517,7 +1528,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 *            the size of the shape to create, or {@code null} for the default size as
 	 *            would be created when just clicking in the diagram
 	 * @return the newly created shape edit-part
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public IGraphicalEditPart createShape(EditPart parent, IElementType type, Point location, Dimension size) {
@@ -1546,7 +1557,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	/**
 	 * Create a new shape in the current diagram by automating the creation tool.
 	 * Fails if the shape cannot be created or cannot be found in the diagram after creation.
-	 * 
+	 *
 	 * @param type
 	 *            the type of shape to create
 	 * @param location
@@ -1555,7 +1566,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 *            the size of the shape to create, or {@code null} for the default size as
 	 *            would be created when just clicking in the diagram
 	 * @return the newly created shape edit-part
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public IGraphicalEditPart createShape(IElementType type, Point location, Dimension size) {
@@ -1633,13 +1644,13 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	/**
 	 * Create a point location (useful as a static import for test readability).
-	 * 
+	 *
 	 * @param x
 	 *            the x coördinate
 	 * @param y
 	 *            the y coördinate
 	 * @return the point
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public static Point at(int x, int y) {
@@ -1651,7 +1662,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 * current viewport (taking zoom and scroll into account). This can be used to get
 	 * a "Mouse Location" to configure requests. Useful as a static import for test
 	 * readability
-	 * 
+	 *
 	 * @param x
 	 *            the relative x coördinate
 	 * @param y
@@ -1660,7 +1671,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 *            the edit-part in which coördinate space the {@code x} and {@code y}
 	 *            are specified
 	 * @return the point in absolute mouse-pointer coördinates
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public static Point at(int x, int y, IGraphicalEditPart relativeTo) {
@@ -1678,13 +1689,13 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	/**
 	 * Create a size dimension (useful as a static import for test readability).
-	 * 
+	 *
 	 * @param width
 	 *            the size width
 	 * @param height
 	 *            the the size height
 	 * @return the size
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public static Dimension sized(int width, int height) {
@@ -1693,12 +1704,12 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	/**
 	 * Delete one or more edit-parts from the diagram.
-	 * 
+	 *
 	 * @param editPart
 	 *            the edit-parts to delete
-	 * 
+	 *
 	 * @since 2.2
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             if no edit-parts are specified
 	 */
@@ -1710,5 +1721,101 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 				.orElseThrow(IllegalArgumentException::new);
 
 		execute(delete);
+	}
+
+
+	/**
+	 * <p>
+	 * Return the Papyrus {@link CreateRequest} associated with the given palette tool.
+	 * </p>
+	 * <p>
+	 * Note that this method is designed to work exclusively with Papyrus' AspectUnspecified tools and requests
+	 * </p>
+	 *
+	 * @param tool
+	 * @return
+	 * @throws Exception
+	 *
+	 * @see AspectUnspecifiedTypeCreationTool
+	 * @see AspectUnspecifiedTypeConnectionTool
+	 * @see AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest
+	 * @see AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest
+	 */
+	public Request getAspectUnspecifiedCreateRequest(final Tool tool) throws Exception {
+		final IDiagramGraphicalViewer viewer = getActiveDiagramEditor().getDiagramGraphicalViewer();
+
+		AtomicReference<Exception> exception = new AtomicReference<>();
+		Display.getDefault().syncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					tool.setViewer(viewer);
+				} catch (Exception ex) {
+					exception.set(ex);
+				}
+			}
+		});
+		if (exception.get() != null) {
+			throw exception.get();
+		}
+
+		if (tool instanceof AspectUnspecifiedTypeCreationTool) {
+			AspectUnspecifiedTypeCreationTool creationTool = (AspectUnspecifiedTypeCreationTool) tool;
+			return creationTool.createCreateRequest();
+		} else if (tool instanceof AspectUnspecifiedTypeConnectionTool) {
+			AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool) tool;
+			return connectionTool.new CreateAspectUnspecifiedTypeConnectionRequest(connectionTool.getElementTypes(), false, getPreferencesHint());
+		}
+
+		throw new Exception("Unexpected kind of creation tool.");
+	}
+
+	/**
+	 * <p>
+	 * Return the Palette Tool with the given toolId from the current active diagram editor
+	 * </p>
+	 *
+	 * @param paletteToolId
+	 * @return
+	 */
+	public Tool getPaletteTool(String paletteToolId) {
+		PaletteRoot paletteRoot = getActiveDiagramEditor().getDiagramGraphicalViewer().getEditDomain().getPaletteViewer().getPaletteRoot();
+		List<ToolEntry> allToolEntries = PaletteUtil.getAllToolEntries(paletteRoot);
+		return allToolEntries.stream().filter(entry -> entry.getId().equals(paletteToolId)).findAny().map(ToolEntry::createTool).orElse(null);
+	}
+
+	/**
+	 * Create a Link, using the given PaletteToolID (Which should match an {@link AspectUnspecifiedTypeConnectionTool}),
+	 * from the given source to the given target edit part.
+	 *
+	 * @param paletteToolId
+	 *            The ID of the palette tool to use to create a new link. It should correspond to an {@link AspectUnspecifiedTypeConnectionTool}.
+	 * @param sourceEditPart
+	 *            The edit part that is the source for the new link
+	 * @param targetEditPart
+	 *            The edit part that is the target for the new link
+	 * @param sourceLocation
+	 *            The location at which the connection source is created
+	 * @param targetLocation
+	 *            The location at which the connection target is created
+	 */
+	public void createLink(String paletteToolId, EditPart sourceEditPart, EditPart targetEditPart, Point sourceLocation, Point targetLocation) throws Exception {
+		Tool tool = getPaletteTool(paletteToolId);
+		Assert.assertNotNull("The requested tool (" + paletteToolId + ")wasn't found in the current active diagram", tool);
+		CreateAspectUnspecifiedTypeConnectionRequest request = (CreateAspectUnspecifiedTypeConnectionRequest) getAspectUnspecifiedCreateRequest(tool);
+
+		request.setLocation(sourceLocation);
+		request.setSourceEditPart(sourceEditPart);
+		request.setType(RequestConstants.REQ_CONNECTION_START);
+		org.eclipse.gef.commands.Command sourceCommand = sourceEditPart.getCommand(request); // Initialize the source
+		Assert.assertTrue("Impossible to create the requested connection (" + paletteToolId + ") on the requested source (" + sourceEditPart + ")", sourceCommand != null && sourceCommand.canExecute());
+
+		request.setTargetEditPart(targetEditPart);
+		request.setType(RequestConstants.REQ_CONNECTION_END);
+		request.setLocation(targetLocation);
+
+		org.eclipse.gef.commands.Command completeCommand = targetEditPart.getCommand(request);
+		execute(completeCommand);
 	}
 }
