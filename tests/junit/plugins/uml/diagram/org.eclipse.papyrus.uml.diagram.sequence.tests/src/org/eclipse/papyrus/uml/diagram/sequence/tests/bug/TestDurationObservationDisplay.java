@@ -70,4 +70,14 @@ public class TestDurationObservationDisplay extends AbstractOccurrenceLinkTest<D
 		editor.execute(provider.getEditCommand(request));
 	}
 
+	@Override
+	protected Element getSourceElement(DurationObservation link) {
+		return link.getEvents().get(0);
+	}
+
+	@Override
+	protected Element getTargetElement(DurationObservation link) {
+		return link.getEvents().size() == 1 ? link.getEvents().get(0) : link.getEvents().get(1);
+	}
+
 }

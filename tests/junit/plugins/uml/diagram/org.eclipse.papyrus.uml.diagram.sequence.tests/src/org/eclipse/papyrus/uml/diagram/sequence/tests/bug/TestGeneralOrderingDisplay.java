@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.GeneralOrderingDescriptor;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.GeneralOrdering;
 import org.eclipse.uml2.uml.UMLPackage.Literals;
 
@@ -60,6 +61,16 @@ public class TestGeneralOrderingDisplay extends AbstractOccurrenceLinkTest<Gener
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(linkToChange);
 		SetRequest request = new SetRequest(linkToChange, Literals.GENERAL_ORDERING__AFTER, ordering2.getAfter());
 		editor.execute(provider.getEditCommand(request));
+	}
+
+	@Override
+	protected Element getSourceElement(GeneralOrdering link) {
+		return link.getBefore();
+	}
+
+	@Override
+	protected Element getTargetElement(GeneralOrdering link) {
+		return link.getAfter();
 	}
 
 }

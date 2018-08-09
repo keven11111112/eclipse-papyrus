@@ -39,6 +39,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.anchors.NodeTopAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceForExecSpecEditPolicy;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.NamedElement;
@@ -220,21 +221,6 @@ public abstract class AbstractOccurrenceLinkTest<T extends NamedElement> extends
 		checkDeleted(links[0]);
 	}
 
-	/**
-	 * Execute a semantic change on the given link that doesn't affect
-	 * its source or target
-	 *
-	 * @param linkToChange
-	 */
-	protected abstract void doUnrelatedChange(T linkToChange);
-
-	/**
-	 * Execute a semantic change on the given link that modifies its target
-	 *
-	 * @param linkToChange
-	 */
-	protected abstract void doChangeTarget(T linkToChange);
-
 	@Test
 	public void testLinkDisappearOnAnchorageChange() {
 		editor.delete(message1);
@@ -251,6 +237,36 @@ public abstract class AbstractOccurrenceLinkTest<T extends NamedElement> extends
 		// Other durations are still present & active
 		Assert.assertTrue(linkNames[0] + " should still be active", links[0].isActive());
 		Assert.assertTrue(linkNames[6] + " should still be active", links[6].isActive());
+	}
+
+	// Link deletion shouldn't deleted linked events
+	@Test
+	public void testLinkDeletion() {
+		Message umlMessage1 = (Message) EMFHelper.getEObject(message1);
+		Assert.assertNotNull(umlMessage1.eResource());
+
+		for (ConnectionNodeEditPart linkPart : links) {
+			@SuppressWarnings("unchecked")
+			T link = (T) EMFHelper.getEObject(linkPart);
+			Element source = getSourceElement(link);
+			Element target = getTargetElement(link);
+
+			Assert.assertNotNull(source);
+			Assert.assertNotNull(target);
+
+			editor.delete(linkPart);
+
+			// Check that source/target events are still present in the UML Model
+			Assert.assertEquals(umlMessage1.eResource(), source.eResource());
+			Assert.assertEquals(umlMessage1.eResource(), target.eResource());
+		}
+
+		// Check that the Message/Exec/Destruction edit parts are unaffected
+		Assert.assertTrue(message1.isActive());
+		Assert.assertTrue(message4.isActive());
+		Assert.assertTrue(exec1.isActive());
+		Assert.assertTrue(exec3.isActive());
+		Assert.assertTrue(destruction.isActive());
 	}
 
 	private static void checkDeleted(EditPart editPart) {
@@ -282,4 +298,23 @@ public abstract class AbstractOccurrenceLinkTest<T extends NamedElement> extends
 		Assert.assertThat("Invalid source anchor for " + connectionName, connection.getConnectionFigure().getSourceAnchor(), IsInstanceOf.instanceOf(sourceAnchor));
 		Assert.assertThat("Invalid target anchor for " + connectionName, connection.getConnectionFigure().getTargetAnchor(), IsInstanceOf.instanceOf(targetAnchor));
 	}
+
+	/**
+	 * Execute a semantic change on the given link that doesn't affect
+	 * its source or target
+	 *
+	 * @param linkToChange
+	 */
+	protected abstract void doUnrelatedChange(T linkToChange);
+
+	/**
+	 * Execute a semantic change on the given link that modifies its target
+	 *
+	 * @param linkToChange
+	 */
+	protected abstract void doChangeTarget(T linkToChange);
+
+	protected abstract Element getSourceElement(T link);
+
+	protected abstract Element getTargetElement(T link);
 }
