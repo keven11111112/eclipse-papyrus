@@ -69,4 +69,14 @@ public class TestDurationConstraintDisplay extends AbstractOccurrenceLinkTest<Du
 		editor.execute(provider.getEditCommand(request));
 	}
 
+	@Override
+	protected Element getSourceElement(DurationConstraint link) {
+		return link.getConstrainedElements().get(0);
+	}
+
+	@Override
+	protected Element getTargetElement(DurationConstraint link) {
+		return link.getConstrainedElements().size() == 1 ? link.getConstrainedElements().get(0) : link.getConstrainedElements().get(1);
+	}
+
 }
