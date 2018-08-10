@@ -119,6 +119,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintBorderNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
@@ -259,6 +262,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					case ConstraintEditPart.VISUAL_ID:
 					case CommentEditPart.VISUAL_ID:
 					case GateEditPart.VISUAL_ID:
+					case TimeConstraintBorderNodeEditPart.VISUAL_ID:
 						if (domainElement == null || !visualID
 								.equals(UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
 							return false; // visual id in semantic hint should match visual id for domain element
@@ -359,6 +363,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				return createComment_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case GateEditPart.VISUAL_ID:
 				return createGate_Shape(domainElement, containerView, index, persisted, preferencesHint);
+			case TimeConstraintBorderNodeEditPart.VISUAL_ID:
+				return createTimeConstraint_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			}
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
@@ -684,6 +690,36 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		gate_NameLabel_Location.setX(25);
 		gate_NameLabel_Location.setY(3);
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Gate");
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createTimeConstraint_Shape(EObject domainElement, View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(TimeConstraintBorderNodeEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeConstraint");
+		Node timeConstraint_NameLabel = createLabel(node,
+				UMLVisualIDRegistry.getType(TimeConstraintNameEditPart.VISUAL_ID));
+		timeConstraint_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location timeConstraint_NameLabel_Location = (Location) timeConstraint_NameLabel.getLayoutConstraint();
+		timeConstraint_NameLabel_Location.setX(25);
+		timeConstraint_NameLabel_Location.setY(3);
+		Node timeConstraint_StereotypeLabel = createLabel(node,
+				UMLVisualIDRegistry.getType(TimeConstraintAppliedStereotypeEditPart.VISUAL_ID));
+		timeConstraint_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location timeConstraint_StereotypeLabel_Location = (Location) timeConstraint_StereotypeLabel
+				.getLayoutConstraint();
+		timeConstraint_StereotypeLabel_Location.setX(0);
+		timeConstraint_StereotypeLabel_Location.setY(-22);
 		return node;
 	}
 

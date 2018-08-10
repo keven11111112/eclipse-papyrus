@@ -29,13 +29,18 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -50,6 +55,34 @@ import com.google.common.collect.Iterables;
  * Helper advice for all {@link ExecutionSpecification} elements.
  */
 public class ExecutionSpecificationHelperAdvice extends InteractionFragmentEditHelperAdvice {
+
+	@Override
+	public void configureRequest(IEditCommandRequest request) {
+		super.configureRequest(request);
+
+		if (request instanceof CreateElementRequest) {
+			configureCreate((CreateElementRequest) request);
+		}
+	}
+
+	private void configureCreate(CreateElementRequest request) {
+		if (ElementUtil.isTypeOf(request.getElementType(), UMLElementTypes.TIME_CONSTRAINT)
+				&& (request.getContainer() instanceof ExecutionSpecification)) {
+
+			ExecutionSpecification executionSpecification = (ExecutionSpecification) request.getContainer();
+			Interaction interaction = executionSpecification.getEnclosingInteraction();
+			if (interaction != null) {
+				request.setContainer(interaction);
+			} else {
+				InteractionOperand operand = executionSpecification.getEnclosingOperand();
+				if (operand != null) {
+					request.setContainer(operand);
+				}
+			}
+		}
+	}
+
+
 
 	/**
 	 * Create an execution Occurrence
@@ -70,11 +103,11 @@ public class ExecutionSpecificationHelperAdvice extends InteractionFragmentEditH
 	/**
 	 * <pre>
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * Complete the {@link Association} creation by:
 	 * 		adding its {@link Property} ends in the model
 	 * 		adding the UML Nature on the {@link Association}.
-	 * 
+	 *
 	 * </pre>
 	 */
 	@Override
@@ -119,19 +152,19 @@ public class ExecutionSpecificationHelperAdvice extends InteractionFragmentEditH
 			}
 
 		};
-		
+
 		return (superResult != null) ? superResult.compose(result) : result;
 	}
 
 	/**
 	 * <pre>
 	 * Add a command to associated {@link OccurrenceSpecification} and {@link Message}.
-	 * This command is only added if the start - finish referenced {@link OccurrenceSpecification} is not 
+	 * This command is only added if the start - finish referenced {@link OccurrenceSpecification} is not
 	 * referenced by another element or the start/finish references are of type {@link ExecutionOccurrenceSpecification}.
 	 * </pre>
-	 * 
+	 *
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeDestroyDependentsCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest)
-	 * 
+	 *
 	 * @param request
 	 *            the request
 	 * @return the command to execute before the edit helper work is done
@@ -139,50 +172,50 @@ public class ExecutionSpecificationHelperAdvice extends InteractionFragmentEditH
 	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 
-		List<EObject> dependentsToDestroy = new ArrayList<EObject>();
+		List<EObject> dependentsToDestroy = new ArrayList<>();
 
 		ExecutionSpecification es = (ExecutionSpecification) request.getElementToDestroy();
 
 		// Check whether start - finish referenced OccurrenceSpecification should be added to the dependents list
 		OccurrenceSpecification osStart = es.getStart();
-		if (shouldDestroyOccurrenceSpecification(es, osStart)&& (!(osStart instanceof MessageEnd))) {
+		if (shouldDestroyOccurrenceSpecification(es, osStart) && (!(osStart instanceof MessageEnd))) {
 			dependentsToDestroy.add(osStart);
 		}
 
 		OccurrenceSpecification osFinish = es.getFinish();
-		if (shouldDestroyOccurrenceSpecification(es, osFinish)&& (!(osFinish instanceof MessageEnd))) {
+		if (shouldDestroyOccurrenceSpecification(es, osFinish) && (!(osFinish instanceof MessageEnd))) {
 			dependentsToDestroy.add(osFinish);
 		}
 
-		Set<Lifeline> coveredLifelines = new HashSet<Lifeline>(es.getCovereds());
+		Set<Lifeline> coveredLifelines = new HashSet<>(es.getCovereds());
 
 		// find initiating MOS of a synch message
-//		InteractionFragment previousIft = InteractionFragmentHelper.findPreviousFragment(osStart, es.getOwner());
-//		while (previousIft != null) {
-//			// keep the first ift with the same lifelines, and check it
-//			if (coveredLifelines.equals(new HashSet<Lifeline>(previousIft.getCovereds()))) {
-//				if (previousIft instanceof MessageOccurrenceSpecification) {
-//					Message msg = ((MessageOccurrenceSpecification) previousIft).getMessage();
-//					if (msg != null && MessageSort.SYNCH_CALL_LITERAL.equals(msg.getMessageSort())) {
-//						dependentsToDestroy.add(previousIft);
-//					}
-//				}
-//				break;
-//			}
-//			previousIft = InteractionFragmentHelper.findPreviousFragment(previousIft, es.getOwner());
-//		}
-//
-//		// find MOS between the start and finish
-//		InteractionFragment fragment = osStart;
-//		while (fragment != null && !fragment.equals(osFinish)) {
-//			// remove MOS if it have the same covered lifelines as the ES
-//			if (fragment instanceof MessageOccurrenceSpecification && coveredLifelines.equals(new HashSet<Lifeline>(fragment.getCovereds()))) {
-//				dependentsToDestroy.add(fragment);
-//			}
-//
-//			fragment = InteractionFragmentHelper.findNextFragment(fragment, es.getOwner());
-//		}
-//
+		// InteractionFragment previousIft = InteractionFragmentHelper.findPreviousFragment(osStart, es.getOwner());
+		// while (previousIft != null) {
+		// // keep the first ift with the same lifelines, and check it
+		// if (coveredLifelines.equals(new HashSet<Lifeline>(previousIft.getCovereds()))) {
+		// if (previousIft instanceof MessageOccurrenceSpecification) {
+		// Message msg = ((MessageOccurrenceSpecification) previousIft).getMessage();
+		// if (msg != null && MessageSort.SYNCH_CALL_LITERAL.equals(msg.getMessageSort())) {
+		// dependentsToDestroy.add(previousIft);
+		// }
+		// }
+		// break;
+		// }
+		// previousIft = InteractionFragmentHelper.findPreviousFragment(previousIft, es.getOwner());
+		// }
+		//
+		// // find MOS between the start and finish
+		// InteractionFragment fragment = osStart;
+		// while (fragment != null && !fragment.equals(osFinish)) {
+		// // remove MOS if it have the same covered lifelines as the ES
+		// if (fragment instanceof MessageOccurrenceSpecification && coveredLifelines.equals(new HashSet<Lifeline>(fragment.getCovereds()))) {
+		// dependentsToDestroy.add(fragment);
+		// }
+		//
+		// fragment = InteractionFragmentHelper.findNextFragment(fragment, es.getOwner());
+		// }
+		//
 		// return command to destroy dependents
 		if (!dependentsToDestroy.isEmpty()) {
 			return request.getDestroyDependentsCommand(dependentsToDestroy);
@@ -195,12 +228,12 @@ public class ExecutionSpecificationHelperAdvice extends InteractionFragmentEditH
 	 * <pre>
 	 * Check that given {@link OccurrenceSpecification} should be destroyed along with {@link ExecutionSpecification} which references it.
 	 * It should be destroyed in case:
-	 * It is of type {@link ExecutionOccurrenceSpecification} (since the opposite reference 
+	 * It is of type {@link ExecutionOccurrenceSpecification} (since the opposite reference
 	 *   'ExecutionOccurrenceSpecification::execution[1]' which designates given {@link ExecutionSpecification} is mandatory).
 	 *   or
 	 * It is not used by another element.
 	 * </pre>
-	 * 
+	 *
 	 * @param es
 	 *            {@link ExecutionSpecification} which references {@link OccurrenceSpecification} (by means of #start/#finish references)
 	 * @param os

@@ -30,9 +30,11 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
@@ -55,14 +57,17 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.anchors.NodeBottomAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.anchors.NodeTopAnchor;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AppliedStereotypeCommentCreationEditPolicyEx;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionSpecificationAffixedChildAlignmentPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceReferenceEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateConnectionReferenceEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceForExecSpecEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ExecutionSpecificationNodePlate;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.TimeElementLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.ConnectExecutionToGridEditPolicy;
@@ -84,7 +89,6 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 	 * @deprecated since 5.1 this constant is not used anymore.
 	 */
 	@Deprecated
-	public static final String EXECUTION_FIX_ANCHOR_POSITION = "Execution Fix Anchor Position";
 	public static int DEFAUT_HEIGHT = 100;
 	public static int DEFAUT_WIDTH = 20;
 
@@ -154,7 +158,26 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 				feedback.setBounds(rect);
 			}
 		});
+		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new ExecutionSpecificationAffixedChildAlignmentPolicy());
+	}
 
+	@Override
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if (TimeConstraintBorderNodeEditPart.class.isInstance(borderItemEditPart)) {
+			borderItemContainer.add(borderItemEditPart.getFigure(),
+					new TimeElementLocator(getMainFigure()));
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
+		}
+	}
+
+
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		if (request instanceof CreateRequest) {
+			return super.getTargetEditPart(request);
+		}
+		return super.getTargetEditPart(request);
 	}
 
 	@Override
@@ -323,7 +346,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 					}
 					// otherwise, this is a recursive call, let destination free
 				} else if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+					return DurationLinkUtil.isStart(getFigure(), createRequest.getLocation()) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 				}
 			}
 		} else if (request instanceof ReconnectRequest) {
@@ -345,7 +368,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 				}
 			}
 			if (DurationLinkUtil.isDurationLink(createRequest)) {
-				return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+				return DurationLinkUtil.isStart(getFigure(), createRequest.getLocation()) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 			}
 		}
 		return super.getTargetConnectionAnchor(request);
@@ -409,7 +432,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 					// Reply Message
 					return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.BOTTOM);
 				} else if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+					return DurationLinkUtil.isStart(getFigure(), createRequest.getLocation()) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 				}
 			}
 		} else if (request instanceof ReconnectRequest) {
@@ -422,7 +445,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
 			if (DurationLinkUtil.isDurationLink(createRequest)) {
-				return DurationLinkUtil.isStart(getFigure(), createRequest) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+				return DurationLinkUtil.isStart(getFigure(), createRequest.getLocation()) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 			}
 		}
 		return super.getSourceConnectionAnchor(request);

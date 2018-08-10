@@ -43,7 +43,7 @@ public class MessageGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				MessageEnd sourceOccurrence;
 				Message message = getMessage();
 				if (message != null) {
-					sourceOccurrence = DurationLinkUtil.isSource(getHostFigure(), request) ? message.getSendEvent() : message.getReceiveEvent();
+					sourceOccurrence = DurationLinkUtil.isSource(getHostFigure(), request.getLocation()) ? message.getSendEvent() : message.getReceiveEvent();
 					if (sourceOccurrence instanceof OccurrenceSpecification) {
 						@SuppressWarnings("unchecked")
 						Map<Object, Object> extendedData = request.getExtendedData();
@@ -65,7 +65,7 @@ public class MessageGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				MessageEnd targetOccurrence;
 				Message message = getMessage();
 				if (message != null) {
-					targetOccurrence = DurationLinkUtil.isSource(getHostFigure(), request) ? message.getSendEvent() : message.getReceiveEvent();
+					targetOccurrence = DurationLinkUtil.isSource(getHostFigure(), request.getLocation()) ? message.getSendEvent() : message.getReceiveEvent();
 					if (targetOccurrence instanceof OccurrenceSpecification) {
 						@SuppressWarnings("unchecked")
 						Map<Object, Object> extendedData = request.getExtendedData();

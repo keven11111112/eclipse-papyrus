@@ -409,13 +409,13 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object type : relationshipTypes) {
 				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+					return DurationLinkUtil.isSource(getConnectionFigure(), createRequest.getLocation()) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 				}
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
 			if (DurationLinkUtil.isDurationLink(createRequest)) {
-				return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+				return DurationLinkUtil.isSource(getConnectionFigure(), createRequest.getLocation()) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 			}
 		}
 		return super.getSourceConnectionAnchor(request);
@@ -428,13 +428,13 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object type : relationshipTypes) {
 				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type)) {
-					return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+					return DurationLinkUtil.isSource(getConnectionFigure(), createRequest.getLocation()) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 				}
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
 			if (DurationLinkUtil.isDurationLink(createRequest)) {
-				return DurationLinkUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+				return DurationLinkUtil.isSource(getConnectionFigure(), createRequest.getLocation()) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 			}
 		}
 		return super.getTargetConnectionAnchor(request);

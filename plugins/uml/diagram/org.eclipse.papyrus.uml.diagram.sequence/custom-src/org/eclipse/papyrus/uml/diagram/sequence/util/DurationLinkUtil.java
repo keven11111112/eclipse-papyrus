@@ -23,7 +23,6 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.requests.CreateConnectionRequest;
-import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
@@ -124,8 +123,7 @@ public class DurationLinkUtil {
 	 * @return
 	 * 		<code>true</code> if the given request is closer to the top of the figure; false if it is closer to the bottom
 	 */
-	public static boolean isStart(IFigure targetFigure, CreateRequest createRequest) {
-		Point location = createRequest.getLocation();
+	public static boolean isStart(IFigure targetFigure, Point location) {
 		Rectangle bounds = targetFigure.getBounds().getCopy();
 		targetFigure.translateToAbsolute(bounds);
 
@@ -144,8 +142,7 @@ public class DurationLinkUtil {
 	 * @return
 	 * 		<code>true</code> if the given request is closer to the source of the connection; false if it is closer to the target
 	 */
-	public static boolean isSource(IFigure targetFigure, CreateRequest createRequest) {
-		Point location = createRequest.getLocation();
+	public static boolean isSource(IFigure targetFigure, Point location) {
 		IFigure connection = targetFigure;
 		if (connection instanceof Connection) {
 			PointList points = ((Connection) connection).getPoints();

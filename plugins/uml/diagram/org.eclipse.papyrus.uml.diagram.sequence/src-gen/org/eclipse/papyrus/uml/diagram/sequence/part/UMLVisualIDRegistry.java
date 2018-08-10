@@ -77,6 +77,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPa
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintBorderNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Package;
@@ -225,6 +228,16 @@ public class UMLVisualIDRegistry {
 					return DestructionOccurrenceSpecificationEditPart.VISUAL_ID;
 				}
 				break;
+			case ActionExecutionSpecificationEditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
+					return TimeConstraintBorderNodeEditPart.VISUAL_ID;
+				}
+				break;
+			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())) {
+					return TimeConstraintBorderNodeEditPart.VISUAL_ID;
+				}
+				break;
 			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
 				if (UMLPackage.eINSTANCE.getConsiderIgnoreFragment().isSuperTypeOf(domainElement.eClass())) {
 					return ConsiderIgnoreFragmentEditPart.VISUAL_ID;
@@ -348,6 +361,16 @@ public class UMLVisualIDRegistry {
 					return true;
 				}
 				break;
+			case ActionExecutionSpecificationEditPart.VISUAL_ID:
+				if (TimeConstraintBorderNodeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
+				if (TimeConstraintBorderNodeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
 			case StateInvariantEditPart.VISUAL_ID:
 				if (StateInvariantNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
@@ -371,6 +394,14 @@ public class UMLVisualIDRegistry {
 				break;
 			case GateEditPart.VISUAL_ID:
 				if (GateNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case TimeConstraintBorderNodeEditPart.VISUAL_ID:
+				if (TimeConstraintNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if (TimeConstraintAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -637,13 +668,12 @@ public class UMLVisualIDRegistry {
 			switch (visualID) {
 			case SequenceDiagramEditPart.VISUAL_ID:
 				return false;
-			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
-			case ActionExecutionSpecificationEditPart.VISUAL_ID:
 			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
 			case ConstraintEditPart.VISUAL_ID:
 			case CommentEditPart.VISUAL_ID:
 			case ContinuationEditPart.VISUAL_ID:
 			case StateInvariantEditPart.VISUAL_ID:
+			case TimeConstraintBorderNodeEditPart.VISUAL_ID:
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 			case GateEditPart.VISUAL_ID:
 				return true;
