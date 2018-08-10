@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- * 
+ *
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
@@ -38,7 +38,8 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.TimeConstraint;
 
 /**
- * This advice add automatically the constrained element (occurrence specification) for a time constraint 
+ * This advice add automatically the constrained element (occurrence specification) for a time constraint
+ *
  * @since 3.0
  */
 public class TimeConstraintHelperAdvice extends AbstractEditHelperAdvice {
@@ -50,14 +51,15 @@ public class TimeConstraintHelperAdvice extends AbstractEditHelperAdvice {
 	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
 		return new ConfigureElementCommand(request) {
 
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-				NamedElement element = (NamedElement)request.getElementToConfigure();
+				NamedElement element = (NamedElement) request.getElementToConfigure();
 
-				TimeConstraint newElement = (TimeConstraint)request.getElementToConfigure();
+				TimeConstraint newElement = (TimeConstraint) request.getElementToConfigure();
 				// assign the occurrence specification
 				Object paramOccurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-				List<OccurrenceSpecification> occList =getAsOccSpecList(paramOccurrence);
+				List<OccurrenceSpecification> occList = getAsOccSpecList(paramOccurrence);
 				if (!occList.isEmpty()) {
 					for (OccurrenceSpecification occurrence : occList) {
 						if (occurrence instanceof MessageOccurrenceSpecification) {
@@ -76,7 +78,7 @@ public class TimeConstraintHelperAdvice extends AbstractEditHelperAdvice {
 			}
 		};
 	}
-	
+
 	/**
 	 * Get the object safely casted as a list of OccurrenceSpecification
 	 *
@@ -87,7 +89,7 @@ public class TimeConstraintHelperAdvice extends AbstractEditHelperAdvice {
 		if (occurrenceSpecificationList instanceof List<?>) {
 			List<?> list = (List<?>) occurrenceSpecificationList;
 			if (!list.isEmpty()) {
-				List<OccurrenceSpecification> newList = new ArrayList<OccurrenceSpecification>(list.size());
+				List<OccurrenceSpecification> newList = new ArrayList<>(list.size());
 				for (Object elt : list) {
 					if (elt instanceof OccurrenceSpecification) {
 						newList.add((OccurrenceSpecification) elt);
@@ -98,4 +100,5 @@ public class TimeConstraintHelperAdvice extends AbstractEditHelperAdvice {
 		}
 		return Collections.emptyList();
 	}
+
 }

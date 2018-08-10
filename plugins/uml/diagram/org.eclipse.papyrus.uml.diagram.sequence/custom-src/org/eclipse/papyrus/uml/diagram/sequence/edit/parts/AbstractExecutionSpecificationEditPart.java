@@ -350,7 +350,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 					}
 					// otherwise, this is a recursive call, let destination free
 				} else if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type) || UMLElementTypes.GeneralOrdering_Edge.equals(type)) {
-					return OccurrenceSpecificationUtil.isStart(getFigure(), createRequestgetLocation()) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
+					return OccurrenceSpecificationUtil.isStart(getFigure(), createRequest.getLocation()) ? new NodeTopAnchor(getFigure()) : new NodeBottomAnchor(getFigure());
 				}
 			}
 		} else if (request instanceof ReconnectRequest) {
