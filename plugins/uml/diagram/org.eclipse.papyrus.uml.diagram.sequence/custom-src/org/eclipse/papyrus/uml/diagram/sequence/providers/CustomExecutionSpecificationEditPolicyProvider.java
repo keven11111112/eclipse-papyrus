@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomExecutionSpecificationSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.CustomExecutionSpecificationCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.CustomExecutionSpecificationXYLayoutEditPolicy;
 
@@ -56,6 +57,7 @@ public class CustomExecutionSpecificationEditPolicyProvider extends AbstractProv
 	public void createEditPolicies(final EditPart editPart) {
 		editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomExecutionSpecificationCreationEditPolicy());
 		editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomExecutionSpecificationXYLayoutEditPolicy());
+		editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomExecutionSpecificationSemanticEditPolicy());
 	}
 
 }
