@@ -50,7 +50,7 @@ public class ExecutionSpecificationGraphicalNodeEditPolicy extends ElementCreati
 				OccurrenceSpecification sourceOccurrence;
 				ExecutionSpecification execSpec = getExecutionSpecification();
 				if (execSpec != null) {
-					if (OccurrenceSpecificationUtil.isStart(getHostFigure(), request)) {
+					if (OccurrenceSpecificationUtil.isStart(getHostFigure(), request.getLocation())) {
 						sourceOccurrence = execSpec.getStart();
 					} else {
 						sourceOccurrence = execSpec.getFinish();
@@ -82,7 +82,7 @@ public class ExecutionSpecificationGraphicalNodeEditPolicy extends ElementCreati
 				OccurrenceSpecification targetOccurrence;
 				ExecutionSpecification execSpec = getExecutionSpecification();
 				if (execSpec != null) {
-					if (OccurrenceSpecificationUtil.isStart(getHostFigure(), request)) {
+					if (OccurrenceSpecificationUtil.isStart(getHostFigure(), request.getLocation())) {
 						targetOccurrence = execSpec.getStart();
 					} else {
 						targetOccurrence = execSpec.getFinish();

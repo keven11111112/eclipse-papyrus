@@ -542,13 +542,13 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object type : relationshipTypes) {
 				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type) || UMLElementTypes.GeneralOrdering_Edge.equals(type)) {
-					return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+					return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest.getLocation()) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 				}
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
 			if (DurationLinkUtil.isDurationLink(createRequest) || GeneralOrderingUtil.isGeneralOrderingLink(createRequest)) {
-				return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+				return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest.getLocation()) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 			}
 		} else if (request instanceof ReconnectRequest) {
 			ReconnectRequest reconnectRequest = (ReconnectRequest) request;
@@ -566,13 +566,13 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object type : relationshipTypes) {
 				if (UMLElementTypes.DurationConstraint_Edge.equals(type) || UMLElementTypes.DurationObservation_Edge.equals(type) || UMLElementTypes.GeneralOrdering_Edge.equals(type)) {
-					return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+					return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest.getLocation()) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 				}
 			}
 		} else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
 			if (DurationLinkUtil.isDurationLink(createRequest) || GeneralOrderingUtil.isGeneralOrderingLink(createRequest)) {
-				return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
+				return OccurrenceSpecificationUtil.isSource(getConnectionFigure(), createRequest.getLocation()) ? new ConnectionSourceAnchor(getPrimaryShape()) : new ConnectionTargetAnchor(getPrimaryShape());
 			}
 		} else if (request instanceof ReconnectRequest) {
 			ReconnectRequest reconnectRequest = (ReconnectRequest) request;

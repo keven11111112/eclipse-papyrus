@@ -43,6 +43,14 @@ import org.eclipse.gmf.runtime.notation.View;
  */
 public class BorderItemResizableEditPolicy extends ResizableShapeEditPolicy {
 
+	/**
+	 * Constructor.
+	 *
+	 */
+	public BorderItemResizableEditPolicy() {
+		super();
+	}
+
 	@Override
 	public void eraseSourceFeedback(Request request) {
 		if ((REQ_MOVE.equals(request.getType()) && isDragAllowed()) || REQ_CLONE.equals(request.getType()) || REQ_ADD.equals(request.getType()) || RequestConstants.REQ_DROP.equals(request.getType()) || REQ_RESIZE.equals(request.getType())) {

@@ -61,6 +61,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncAppliedSte
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.parser.custom.InteractionUseCustomParsers;
 import org.eclipse.papyrus.uml.diagram.sequence.parser.custom.LifelineCustomParsers;
 import org.eclipse.papyrus.uml.diagram.sequence.parser.custom.MessageCustomParser;
@@ -254,6 +256,36 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			gate_NameLabel_Parser = parser;
 		}
 		return gate_NameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser timeConstraint_NameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeConstraint_NameLabel_Parser() {
+		if (timeConstraint_NameLabel_Parser == null) {
+			timeConstraint_NameLabel_Parser = new ConstraintParser();
+		}
+		return timeConstraint_NameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser timeConstraint_StereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeConstraint_StereotypeLabel_Parser() {
+		if (timeConstraint_StereotypeLabel_Parser == null) {
+			timeConstraint_StereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return timeConstraint_StereotypeLabel_Parser;
 	}
 
 	/**
@@ -576,6 +608,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 			case GateNameEditPart.VISUAL_ID:
 				return getGate_NameLabel_Parser();
+
+			case TimeConstraintNameEditPart.VISUAL_ID:
+				return getTimeConstraint_NameLabel_Parser();
+			case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:
+				return getTimeConstraint_StereotypeLabel_Parser();
 
 			case MessageSyncNameEditPart.VISUAL_ID:
 				return getMessage_SynchNameLabel_Parser();

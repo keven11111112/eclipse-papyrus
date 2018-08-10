@@ -39,6 +39,7 @@ import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.StateInvariant;
+import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -196,6 +197,20 @@ public class ElementInitializers {
 	}
 
 	/**
+	 * @generated
+	 */
+	public void init_TimeConstraint_Shape(TimeConstraint instance) {
+		try {
+			Object value_0 = name_TimeConstraint_Shape(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
 	 * Initialize a time interval
 	 *
 	 * @param instance
@@ -344,6 +359,13 @@ public class ElementInitializers {
 	 */
 	private String value_specification_Constraint_Shape(LiteralString it) {
 		return "";
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_TimeConstraint_Shape(TimeConstraint it) {
+		return getNamedElement(it, "", it.eClass().getName(), "");
 	}
 
 	/**

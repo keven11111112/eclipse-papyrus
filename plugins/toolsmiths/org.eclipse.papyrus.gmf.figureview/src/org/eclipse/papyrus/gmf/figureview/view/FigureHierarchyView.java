@@ -97,7 +97,7 @@ public class FigureHierarchyView extends ViewPart {
 					Object selectedobject = ((IStructuredSelection) selection).getFirstElement();
 					if (selectedobject instanceof GraphicalEditPart) {
 						GraphicalEditPart graphicalEP = ((GraphicalEditPart) selectedobject);
-						IFigure figure = graphicalEP.getContentPane();
+						IFigure figure = graphicalEP.getFigure();
 
 						if (viewer != null) {
 							viewer.setInput(new Object[] { figure });
