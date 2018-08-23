@@ -16,6 +16,7 @@
  *  Christian W. Damus - bug 474610
  *  Calin Glitia (Esterel Technologies SAS) - bug 497699
  *  Camille Letavernier (EclipseSource) - bug 530156
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 538193
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -258,6 +259,44 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 	}
 
 	/**
+	 * This allows to the profile of the packages if there is only one profile.
+	 *
+	 * @param packages
+	 *            The collection of packages to check.
+	 * @return The profile if there is only one profile, otherwise <code>null</code>.
+	 */
+	public static Profile getTheOnlyOneProfile(final Collection<Package> packages) {
+		int numberOfProfiles = 0;
+		Profile onlyOneProfile = null;
+
+		// Loop on all packages
+		final List<Package> allPackages = new ArrayList<>(packages);
+		int index = 0;
+		while (index < allPackages.size() && numberOfProfiles <= 1) {
+			final Package currentPackage = allPackages.get(index);
+
+			// If this is a profile, save and count it
+			if (currentPackage instanceof Profile) {
+				numberOfProfiles++;
+				onlyOneProfile = (Profile) currentPackage;
+			}
+
+			if (numberOfProfiles <= 1) {
+				for (final PackageableElement packagesElement : currentPackage.getPackagedElements()) {
+					if (packagesElement instanceof Package) {
+						allPackages.add((Package) packagesElement);
+					}
+				}
+			}
+
+			index++;
+		}
+
+		// If there is more than one profile, return null
+		return numberOfProfiles == 1 ? onlyOneProfile : null;
+	}
+
+	/**
 	 * Finds the profile application, if any, in the context of an {@code element} that supplies the given
 	 * stereotype Ecore definition.
 	 *
@@ -266,7 +305,7 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 	 * @param stereotypeDefinition
 	 *            the Ecore definition of a stereotype
 	 * @param stereotype
-	 * 			  The stereotype from which the stereotypeDefinition was derived
+	 *            The stereotype from which the stereotypeDefinition was derived
 	 *
 	 * @return the providing profile application, or {@code null} if none can be determined
 	 * @since 3.4
@@ -275,7 +314,7 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 		if (stereotype == null) {
 			NamedElement umlDefinition = getNamedElement(stereotypeDefinition, element);
 			if (umlDefinition instanceof Stereotype) {
-				stereotype = (Stereotype)umlDefinition;
+				stereotype = (Stereotype) umlDefinition;
 			} else {
 				return null;
 			}
@@ -301,7 +340,7 @@ public class ProfileUtil extends org.eclipse.uml2.uml.util.UMLUtil {
 	 *
 	 * @return the providing profile application, or {@code null} if none can be determined
 	 * @deprecated since 3.4 Use {@link #getProfileApplication(Element, EClass, Stereotype)} instead,
-	 * which is more efficient.
+	 *             which is more efficient.
 	 */
 	@Deprecated
 	public static ProfileApplication getProfileApplication(Element element, EClass stereotypeDefinition) {

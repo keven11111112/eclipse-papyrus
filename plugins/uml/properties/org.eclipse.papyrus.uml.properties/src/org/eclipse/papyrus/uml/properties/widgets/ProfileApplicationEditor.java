@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2014, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
  *  Christian W. Damus - bug 399859
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 538193
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
@@ -234,6 +235,7 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		reapplyProfile = createButton(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("/icons/refresh.gif"), "Reapply profile");
 		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
+			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				updateControls();
 			}
@@ -255,7 +257,7 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		// ResourceSelectionDialog dialog =
 		// new ResourceSelectionDialog(getShell(), ResourcesPlugin.getWorkspace().getRoot(), "Apply Profiles");
 
-		Map<String, String> extensionFilters = new LinkedHashMap<String, String>();
+		Map<String, String> extensionFilters = new LinkedHashMap<>();
 		extensionFilters.put("*.profile.uml", "UML Profiles (*.profile.uml)");
 		extensionFilters.put("*.uml", "UML (*.uml)");
 		extensionFilters.put("*", "All (*)");
@@ -268,21 +270,27 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		}
 
 		if (packages.size() > 0) {
-			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), packages);
+			final Collection<Profile> profilesToApply = new LinkedList<>();
+			final Profile onlyOneProfile = ProfileUtil.getTheOnlyOneProfile(packages);
+			if (null == onlyOneProfile) {
 
-			if (profileDialog.open() != Window.OK) {
-				return;
-			}
+				ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), packages);
 
-			if (profileDialog.getResult().isEmpty()) {
-				return;
-			}
+				if (profileDialog.open() != Window.OK) {
+					return;
+				}
 
-			Collection<ImportSpec<Profile>> profilesImportToApply = profileDialog.getResult();
+				if (profileDialog.getResult().isEmpty()) {
+					return;
+				}
 
-			Collection<Profile> profilesToApply = new LinkedList<Profile>();
-			for (ImportSpec<Profile> importProfile : profilesImportToApply) {
-				profilesToApply.add(importProfile.getElement());
+				Collection<ImportSpec<Profile>> profilesImportToApply = profileDialog.getResult();
+
+				for (ImportSpec<Profile> importProfile : profilesImportToApply) {
+					profilesToApply.add(importProfile.getElement());
+				}
+			} else {
+				profilesToApply.add(onlyOneProfile);
 			}
 
 			if (!ProfileValidationHelper.checkApplicableProfiles(getShell(), profilesToApply)) {
@@ -316,7 +324,7 @@ public class ProfileApplicationEditor extends MultipleReferenceEditor {
 		ISelection selectedElements = treeViewer.getSelection();
 
 		// Filter profiles
-		List<Profile> profilesToRefresh = new LinkedList<Profile>();
+		List<Profile> profilesToRefresh = new LinkedList<>();
 		if (!selectedElements.isEmpty() && selectedElements instanceof IStructuredSelection) {
 			IStructuredSelection selection = (IStructuredSelection) selectedElements;
 			Iterator<?> iterator = selection.iterator();

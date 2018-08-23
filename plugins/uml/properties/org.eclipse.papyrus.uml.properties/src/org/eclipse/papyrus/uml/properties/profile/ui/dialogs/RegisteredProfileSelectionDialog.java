@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014 CEA LIST and others.
+ * Copyright (c) 2008, 2014, 2018 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -14,12 +14,14 @@
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
  *  Christian W. Damus (CEA) - bug 422257
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 538193
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.dialogs;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,6 +36,7 @@ import org.eclipse.papyrus.uml.extensionpoints.standard.FilteredRegisteredElemen
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ElementImportTreeSelectionDialog.ImportSpec;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ProfileTreeSelectionDialog;
+import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
@@ -55,7 +58,7 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 	 * @param parent
 	 */
 	public RegisteredProfileSelectionDialog(Composite parent, Package umlPackage) {
-		super(parent.getShell(), true, Registry.getRegisteredProfiles().toArray(new IRegisteredProfile[0]), new ArrayList<Object>(), "Apply profiles from Papyrus repository :", "");
+		super(parent.getShell(), true, Registry.getRegisteredProfiles().toArray(new IRegisteredProfile[0]), new ArrayList<>(), "Apply profiles from Papyrus repository :", "");
 		currentPackage = umlPackage;
 	}
 
@@ -79,7 +82,7 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 		// dialog.open();
 		this.open();
 
-		List<Profile> result = new LinkedList<Profile>();
+		List<Profile> result = new LinkedList<>();
 		ResourceSet resourceSet = Util.createTemporaryResourceSet();
 
 		try {
@@ -106,16 +109,16 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 		Object[] selection = this.getResult();
 
 		if (selection == null) { // Cancel was selected
-			return new ArrayList<Profile>();
+			return new ArrayList<>();
 		}
 
 		// This first list (listOfProfileToApply) contain every selected profile
 		// which owns sub-profiles (it is possible to select a set of sub-profiles)
 		// The list is used to build a profile selection tree
-		List<Package> listOfProfileToApply = new ArrayList<Package>();
+		List<Package> listOfProfileToApply = new ArrayList<>();
 		// try to parse the qualified names
 
-		List<String> subprofilesList = new ArrayList<String>();
+		List<String> subprofilesList = new ArrayList<>();
 		for (int i = 0; i < selection.length; i++) {
 
 			IRegisteredProfile currentProfile = (IRegisteredProfile) (selection[i]);
@@ -150,22 +153,28 @@ public class RegisteredProfileSelectionDialog extends FilteredRegisteredElements
 		}
 
 		if (!listOfProfileToApply.isEmpty()) {
-			// Open package/profile selection tree selection
-			ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), listOfProfileToApply, subprofilesList);
-			int returnValue = profileDialog.open();
+			final Profile onlyOneProfile = ProfileUtil.getTheOnlyOneProfile(listOfProfileToApply);
+			if (null == onlyOneProfile) {
 
-			// Apply selected profile if ok was selected
-			if (Window.OK == returnValue) {
-				Collection<ImportSpec<Profile>> dlgResult = profileDialog.getResult();
-				List<Profile> result = new java.util.ArrayList<Profile>(dlgResult.size());
-				for (ImportSpec<Profile> next : dlgResult) {
-					result.add(next.getElement());
+				// Open package/profile selection tree selection
+				ProfileTreeSelectionDialog profileDialog = new ProfileTreeSelectionDialog(getShell(), listOfProfileToApply, subprofilesList);
+				int returnValue = profileDialog.open();
+
+				// Apply selected profile if ok was selected
+				if (Window.OK == returnValue) {
+					Collection<ImportSpec<Profile>> dlgResult = profileDialog.getResult();
+					List<Profile> result = new java.util.ArrayList<>(dlgResult.size());
+					for (ImportSpec<Profile> next : dlgResult) {
+						result.add(next.getElement());
+					}
+					return result;
+				} else {
+					return new ArrayList<Profile>();
 				}
-				return result;
 			} else {
-				new ArrayList<Profile>();
+				return Collections.singletonList(onlyOneProfile);
 			}
 		}
-		return new ArrayList<Profile>();
+		return new ArrayList<>();
 	}
 }
