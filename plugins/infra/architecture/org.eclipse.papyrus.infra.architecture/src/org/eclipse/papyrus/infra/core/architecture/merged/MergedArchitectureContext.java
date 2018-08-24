@@ -1,17 +1,17 @@
 /**
  * Copyright (c) 2017 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
  *  which accompanies this distribution, and is available at
  *  https://www.eclipse.org/legal/epl-2.0/
  *
  *  SPDX-License-Identifier: EPL-2.0
- *  
+ *
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  
- * 
+ *
+ *
  */
 package org.eclipse.papyrus.infra.core.architecture.merged;
 
@@ -22,22 +22,20 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
-import org.osgi.framework.Bundle;
 
 /**
  * An element that represents a merged collection of {@link org.eclipse.papyrus.infra.core.
- * architecture.ArchitectureContext}s. This allows the definition of architecture contexts 
- * to be split across several architectural models (*.architecture). 
- * 
+ * architecture.ArchitectureContext}s. This allows the definition of architecture contexts
+ * to be split across several architectural models (*.architecture).
+ *
  * This class is a subclass of {@link org.eclipse.papyrus.infra.core.architecture.merged.
  * MergedADElement}s
- *  
+ *
  * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext
  * @since 1.0
  */
@@ -46,7 +44,8 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	/**
 	 * Create a new '<em><b>Merged Architecture Context</b></em>'.
 	 *
-	 * @param domain the merged parent domain of this context
+	 * @param domain
+	 *            the merged parent domain of this context
 	 */
 	public MergedArchitectureContext(MergedArchitectureDomain domain) {
 		super(domain);
@@ -54,33 +53,29 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 
 	/**
 	 * Gets the context's extension prefix
-	 * 
+	 *
 	 * @return an extension prefix
 	 */
 	public String getExtensionPrefix() {
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getExtensionPrefix() != null)
+			if (context.getExtensionPrefix() != null) {
 				return context.getExtensionPrefix();
+			}
 		}
 		return null;
 	}
 
 	/**
 	 * Gets the context's creation command class
-	 * 
+	 *
 	 * @return a creation command class
 	 */
 	public Class<?> getCreationCommandClass() throws ClassNotFoundException {
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
 			if (context.getCreationCommandClass() != null) {
-				URI uri = context.eResource().getURI();
-				if (uri.isPlatformPlugin()) {
-					String bundleName = uri.segment(1);
-					Bundle bundle = Platform.getBundle(bundleName);
-					return bundle.loadClass(context.getCreationCommandClass());
-				}
+				return ClassLoaderHelper.loadClass(context.getCreationCommandClass());
 			}
 		}
 		return null;
@@ -88,19 +83,14 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 
 	/**
 	 * Gets the context's conversion command class
-	 * 
+	 *
 	 * @return a conversion command class
 	 */
 	public Class<?> getConversionCommandClass() throws ClassNotFoundException {
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
 			if (context.getConversionCommandClass() != null) {
-				URI uri = context.eResource().getURI();
-				if (uri.isPlatformPlugin()) {
-					String bundleName = uri.segment(1);
-					Bundle bundle = Platform.getBundle(bundleName);
-					return bundle.loadClass(context.getConversionCommandClass());
-				}
+				return ClassLoaderHelper.loadClass(context.getConversionCommandClass());
 			}
 		}
 		return null;
@@ -108,37 +98,39 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 
 	/**
 	 * Gets the context's creation command class name
-	 * 
+	 *
 	 * @return a creation command class name
 	 * @since 2.0
 	 */
 	public String getCreationCommandClassName() {
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getCreationCommandClass() != null) 
+			if (context.getCreationCommandClass() != null) {
 				return context.getCreationCommandClass();
+			}
 		}
 		return null;
 	}
 
 	/**
 	 * Gets the context's conversion command class name
-	 * 
+	 *
 	 * @return a conversion command class name
 	 * @since 2.0
 	 */
 	public String getConversionCommandClassName() {
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
-			if (context.getConversionCommandClass() != null)
+			if (context.getConversionCommandClass() != null) {
 				return context.getConversionCommandClass();
+			}
 		}
 		return null;
 	}
 
 	/**
 	 * Gets the context's parent domain
-	 * 
+	 *
 	 * @return the parent domain
 	 */
 	public MergedArchitectureDomain getDomain() {
@@ -147,7 +139,7 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 
 	/**
 	 * Gets the context's element type set configurations
-	 * 
+	 *
 	 * @return a merged collection of element type set configurations
 	 */
 	public Collection<ElementTypeSetConfiguration> getElementTypes() {
@@ -161,7 +153,7 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 
 	/**
 	 * Gets the context's viewpoints
-	 * 
+	 *
 	 * @return a merged collection of viewpoints
 	 */
 	public Collection<MergedArchitectureViewpoint> getViewpoints() {
@@ -181,7 +173,7 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 
 	/**
 	 * Gets the context's default viewpoints
-	 * 
+	 *
 	 * @return a merged collection of viewpoints
 	 */
 	public Collection<MergedArchitectureViewpoint> getDefaultViewpoints() {
