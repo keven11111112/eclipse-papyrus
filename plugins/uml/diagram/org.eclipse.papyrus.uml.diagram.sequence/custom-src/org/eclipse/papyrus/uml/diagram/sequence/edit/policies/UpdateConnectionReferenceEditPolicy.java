@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (nicolas.fauvergue@cea.fr) - Bug 538256
  *
  *****************************************************************************/
 
@@ -67,9 +68,11 @@ public class UpdateConnectionReferenceEditPolicy extends GraphicalEditPolicy {
 		if (request instanceof ChangeBoundsRequest && (!org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_AUTOSIZE.equals(request.getType()))) {
 			Point nextLocation = ((ChangeBoundsRequest) request).getLocation();
 			UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+ MOVE at " + nextLocation + " of " + getHost());//$NON-NLS-1$ //$NON-NLS-2$
-			Rectangle locationAndSize = new PrecisionRectangle(getHostFigure().getBounds());
+			Rectangle initialLocationAndSize = new PrecisionRectangle(getHostFigure().getBounds());
+			Rectangle locationAndSize = new Rectangle(initialLocationAndSize);
 
 			if (getHost() instanceof AbstractExecutionSpecificationEditPart) {
+				getHostFigure().translateToAbsolute(initialLocationAndSize);
 				getHostFigure().translateToAbsolute(locationAndSize);
 				locationAndSize = ((ChangeBoundsRequest) request).getTransformedRectangle(locationAndSize);
 			}
@@ -84,20 +87,25 @@ public class UpdateConnectionReferenceEditPolicy extends GraphicalEditPolicy {
 							if (editPart instanceof ConnectionEditPart) {
 								ConnectionEditPart connectionEditPart = (ConnectionEditPart) editPart;
 								ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
-								
+
 								// Calculate the target position if the message is not vertical
+								final Rectangle startLocation = new Rectangle(locationAndSize);
 								final Rectangle endLocation = new Rectangle(locationAndSize);
-								if(connectionEditPart instanceof ConnectionNodeEditPart) {
+								if (connectionEditPart instanceof ConnectionNodeEditPart) {
 									final Point startPoint = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) connectionEditPart, true);
 									final Point endPoint = SequenceUtil.getAbsoluteEdgeExtremity((ConnectionNodeEditPart) connectionEditPart, false);
-									
-									if(endPoint.y() != startPoint.y()) {
-										endLocation.setY(endLocation.y() + (endPoint.y() - startPoint.y()));
+
+									if (endPoint.y() != startPoint.y()) {
+										if (endPoint.y() <= initialLocationAndSize.y()) {
+											startLocation.setY(locationAndSize.y() - (endPoint.y() - startPoint.y()));
+										} else {
+											endLocation.setY(locationAndSize.y() + (endPoint.y() - startPoint.y()));
+										}
 									}
 								}
-								
+
 								// create the request
-								ReconnectRequest reconnectSourceRequest = createReconnectRequest(connectionEditPart, locationAndSize, senderList, RequestConstants.REQ_RECONNECT_SOURCE, references);
+								ReconnectRequest reconnectSourceRequest = createReconnectRequest(connectionEditPart, startLocation, senderList, RequestConstants.REQ_RECONNECT_SOURCE, references);
 								reconnectSourceRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
 								ReconnectRequest reconnectTargetRequest = createReconnectRequest(connectionEditPart, endLocation, senderList, RequestConstants.REQ_RECONNECT_TARGET, references);
 								reconnectTargetRequest.getExtendedData().put(SequenceUtil.DO_NOT_CHECK_HORIZONTALITY, true);
