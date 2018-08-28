@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -155,6 +155,7 @@ public class MarkerDeletionAdviceTest extends AbstractPapyrusTest {
 		MarkerAssertion markers = new MarkerAssertion().add(markerIs("subsetting property '<Property> employee : Person \\Q[0..*]\\E'", IMarker.SEVERITY_WARNING));
 
 		Association association = findElement(Association.class, "A_employer_employee");
+		editor.openDiagram("classes");
 		EditPart editPart = editor.activateDiagram("classes").findEditPart(association);
 
 		execute(new CommandProxy(editPart.getCommand(new EditCommandRequestWrapper(new DestroyElementRequest(false)))));

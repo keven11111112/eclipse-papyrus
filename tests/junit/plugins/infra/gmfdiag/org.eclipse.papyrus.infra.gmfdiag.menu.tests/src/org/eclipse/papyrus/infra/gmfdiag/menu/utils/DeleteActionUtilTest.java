@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -19,7 +19,6 @@ import java.util.List;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.papyrus.infra.gmfdiag.menu.utils.DeleteActionUtil;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
@@ -57,6 +56,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testDeleteTextNode() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart noteNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart(NOTE_NOTATION_TYPE);
 		Assert.assertFalse(DeleteActionUtil.isSemanticDeletion((IGraphicalEditPart) noteNode));
 	}
@@ -67,6 +67,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testDeleteOrphan() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart orphanNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart();
 
 		Assert.assertFalse(DeleteActionUtil.isSemanticDeletion((IGraphicalEditPart) orphanNode));
@@ -78,6 +79,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testDeleteNotOrphanElement() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart semanticNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findEditPart(SEMANTIC_ELEMENT_NAME, org.eclipse.uml2.uml.Class.class);
 		Assert.assertTrue(DeleteActionUtil.isSemanticDeletion((IGraphicalEditPart) semanticNode));
 	}
@@ -88,6 +90,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testIsCanonicalWithNote() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart orphanNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart(NOTE_NOTATION_TYPE);
 		Assert.assertFalse(DeleteActionUtil.isCanonicalEditPart((IGraphicalEditPart) orphanNode));
 	}
@@ -98,6 +101,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testIsCanonicalWithConnection() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart connectionNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findEditPart(CONNECTION_ELEMENT_LABEL, org.eclipse.uml2.uml.Dependency.class);
 		Assert.assertFalse(DeleteActionUtil.isCanonicalEditPart((IGraphicalEditPart) connectionNode));
 	}
@@ -108,6 +112,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testIsCanonicalWithOrphan() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart orphanNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart();
 		Assert.assertFalse(DeleteActionUtil.isCanonicalEditPart((IGraphicalEditPart) orphanNode));
 	}
@@ -118,6 +123,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testIsCanonicalWithNotOrphan() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart semanticNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findEditPart(SEMANTIC_ELEMENT_NAME, org.eclipse.uml2.uml.Class.class);
 		Assert.assertFalse(DeleteActionUtil.isCanonicalEditPart((IGraphicalEditPart) semanticNode));
 	}
@@ -128,6 +134,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testIsSupportViewWithOrphan() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart orphanNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart();
 		Assert.assertTrue(DeleteActionUtil.isSupportView((IGraphicalEditPart) orphanNode));
 	}
@@ -138,6 +145,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testIsSupportViewWithNotOrphan() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart semanticNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findEditPart(SEMANTIC_ELEMENT_NAME, org.eclipse.uml2.uml.Class.class);
 		Assert.assertTrue(DeleteActionUtil.isSupportView((IGraphicalEditPart) semanticNode));
 	}
@@ -148,6 +156,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testIsSupportViewWithNote() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart noteNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart(NOTE_NOTATION_TYPE);
 		Assert.assertTrue(DeleteActionUtil.isSupportView((IGraphicalEditPart) noteNode));
 	}
@@ -158,6 +167,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testIsCanonicalViewWithOrphan() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart orphanNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart();
 		Assert.assertTrue(DeleteActionUtil.isCanonicalView((IGraphicalEditPart) orphanNode));
 	}
@@ -168,6 +178,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testIsCanonicalViewWithNotOrphan() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart semanticNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findEditPart(SEMANTIC_ELEMENT_NAME, org.eclipse.uml2.uml.Class.class);
 		Assert.assertTrue(DeleteActionUtil.isCanonicalView((IGraphicalEditPart) semanticNode));
 	}
@@ -178,6 +189,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	@Test
 	public void testIsCanonicalViewWithNote() {
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		EditPart noteNode = editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart(NOTE_NOTATION_TYPE);
 		Assert.assertTrue(DeleteActionUtil.isCanonicalView((IGraphicalEditPart) noteNode));
 	}
@@ -189,6 +201,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	public void testIsSupportViews() {
 
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		IGraphicalEditPart semanticNode = (IGraphicalEditPart) editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findEditPart(SEMANTIC_ELEMENT_NAME, org.eclipse.uml2.uml.Class.class);
 		IGraphicalEditPart noteNode = (IGraphicalEditPart) editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart(NOTE_NOTATION_TYPE);
 		IGraphicalEditPart orphanNode = (IGraphicalEditPart) editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart();
@@ -205,6 +218,7 @@ public class DeleteActionUtilTest extends AbstractPapyrusTest {
 	public void testIsCanonical() {
 
 		editorFixture.open();
+		editorFixture.openDiagram(CLASS_DIAGRAM_TITLE);
 		IGraphicalEditPart semanticNode = (IGraphicalEditPart) editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findEditPart(SEMANTIC_ELEMENT_NAME, org.eclipse.uml2.uml.Class.class);
 		IGraphicalEditPart noteNode = (IGraphicalEditPart) editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart(NOTE_NOTATION_TYPE);
 		IGraphicalEditPart orphanNode = (IGraphicalEditPart) editorFixture.activateDiagram(CLASS_DIAGRAM_TITLE).findOrphanEditPart();

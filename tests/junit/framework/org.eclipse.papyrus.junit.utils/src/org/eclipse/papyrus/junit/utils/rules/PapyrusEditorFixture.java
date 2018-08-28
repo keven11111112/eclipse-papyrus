@@ -204,7 +204,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 * normal Papyrus run-time environment.
 	 *
 	 * @param ensureOperationHistoryIntegrity
-	 * 
+	 *
 	 * @since 2.0
 	 */
 	public PapyrusEditorFixture(boolean ensureOperationHistoryIntegrity) {
@@ -515,7 +515,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 * {@link #open() opening} the test model again would actually re-initialize it from
 	 * the deployed test resources, potentially replacing any changes in the model files
 	 * that may be significant to the test.
-	 * 
+	 *
 	 * @return the re-opened editor
 	 * @since 2.0
 	 */
@@ -546,8 +546,10 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	}
 
 	public void close(IEditorPart editor) {
-		editor.getSite().getPage().closeEditor(editor, false);
-		flushDisplayEvents();
+		if(null != editor.getSite() && null != editor.getSite().getPage()) {
+			editor.getSite().getPage().closeEditor(editor, false);
+			flushDisplayEvents();
+		}
 	}
 
 	public ModelExplorerView getModelExplorerView() {
@@ -962,11 +964,11 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	/**
 	 * Get the shape compartment of an edit-part. Fails if the edit-part has no
 	 * shape compartment.
-	 * 
+	 *
 	 * @param shapeEditPart
 	 *            a shape edit part
 	 * @return its shape compartment
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public EditPart getShapeCompartment(EditPart shapeEditPart) {
@@ -978,7 +980,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	/**
 	 * Obtain a typed stream over a raw-typed collection from a legacy pre-generics API
 	 * such as GEF.
-	 * 
+	 *
 	 * @param rawCollection
 	 *            a raw-typed collection
 	 * @param type
@@ -993,7 +995,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	/**
 	 * Obtain a fake supplier that just fails the test with the given {@code message}
 	 * instead of supplying a result.
-	 * 
+	 *
 	 * @param message
 	 *            the failure message
 	 * @return the fake supplier
@@ -1054,12 +1056,12 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	/**
 	 * Find an edit-part for a model element in a particular {@code scope}.
-	 * 
+	 *
 	 * @param scope
 	 *            an edit part in which to search (its children) for an edit-part
 	 * @param modelElement
 	 *            the model element visualized by the edit-part to search for
-	 * 
+	 *
 	 * @return the matching edit-part, or {@code null} if none is found in the {@code scope}
 	 */
 	public EditPart findEditPart(EditPart scope, EObject modelElement) {
@@ -1094,14 +1096,14 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	/**
 	 * Require an edit-part for a model element in a particular {@code scope}.
-	 * 
+	 *
 	 * @param scope
 	 *            an edit part in which to search (its children) for an edit-part
 	 * @param modelElement
 	 *            the model element visualized by the edit-part to search for
-	 * 
+	 *
 	 * @return the matching edit-part
-	 * 
+	 *
 	 * @throws AssertionError
 	 *             if the required edit-part is found in the {@code scope}
 	 */
@@ -1508,7 +1510,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	/**
 	 * Create a new shape in the {@code parent}. Fails if the shape cannot be created or
 	 * cannot be found in the diagram after creation.
-	 * 
+	 *
 	 * @param parent
 	 *            the parent edit-part in which to create a shape
 	 * @param type
@@ -1519,7 +1521,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 *            the size of the shape to create, or {@code null} for the default size as
 	 *            would be created when just clicking in the diagram
 	 * @return the newly created shape edit-part
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public IGraphicalEditPart createShape(EditPart parent, IElementType type, Point location, Dimension size) {
@@ -1548,7 +1550,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	/**
 	 * Create a new shape in the current diagram by automating the creation tool.
 	 * Fails if the shape cannot be created or cannot be found in the diagram after creation.
-	 * 
+	 *
 	 * @param type
 	 *            the type of shape to create
 	 * @param location
@@ -1557,7 +1559,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 *            the size of the shape to create, or {@code null} for the default size as
 	 *            would be created when just clicking in the diagram
 	 * @return the newly created shape edit-part
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public IGraphicalEditPart createShape(IElementType type, Point location, Dimension size) {
@@ -1635,13 +1637,13 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	/**
 	 * Create a point location (useful as a static import for test readability).
-	 * 
+	 *
 	 * @param x
 	 *            the x coördinate
 	 * @param y
 	 *            the y coördinate
 	 * @return the point
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public static Point at(int x, int y) {
@@ -1653,7 +1655,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 * current viewport (taking zoom and scroll into account). This can be used to get
 	 * a "Mouse Location" to configure requests. Useful as a static import for test
 	 * readability
-	 * 
+	 *
 	 * @param x
 	 *            the relative x coördinate
 	 * @param y
@@ -1662,7 +1664,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 *            the edit-part in which coördinate space the {@code x} and {@code y}
 	 *            are specified
 	 * @return the point in absolute mouse-pointer coördinates
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public static Point at(int x, int y, IGraphicalEditPart relativeTo) {
@@ -1680,13 +1682,13 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	/**
 	 * Create a size dimension (useful as a static import for test readability).
-	 * 
+	 *
 	 * @param width
 	 *            the size width
 	 * @param height
 	 *            the the size height
 	 * @return the size
-	 * 
+	 *
 	 * @since 2.2
 	 */
 	public static Dimension sized(int width, int height) {
@@ -1695,12 +1697,12 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	/**
 	 * Delete one or more edit-parts from the diagram.
-	 * 
+	 *
 	 * @param editPart
 	 *            the edit-parts to delete
-	 * 
+	 *
 	 * @since 2.2
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             if no edit-parts are specified
 	 */
