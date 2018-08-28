@@ -11,7 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.test.legacy;
 
@@ -65,7 +65,7 @@ public class PackageDiagramLegacyTest extends AbstractPapyrusTest {
 
 		Diagram diagram1 = getDiagram("Diagram1");
 		Assert.assertEquals("PapyrusUMLClassDiagram", diagram1.getType());
-		pageManager.selectPage(diagram1);
+		pageManager.openPage(diagram1);
 
 		IEditorPart diagram1Editor = editor.getActiveEditor();
 		Assert.assertTrue(diagram1Editor instanceof UmlClassDiagramForMultiEditor);

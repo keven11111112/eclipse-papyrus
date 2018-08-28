@@ -8,7 +8,7 @@
             <emfPageIdentifier href="many_diagrams.notation#_B7-GwJ0TEeWdwKZ41HcqWg"/>
           </children>
           <children>
-            <emfPageIdentifier href="many_diagrams.notation#_Fq2zUJ0TEeWdwKZ41HcqWg"/>
+            <emfPageIdentifier href="many_diagrams.notation#_Q3ImcKq_EeicWvEzWuwy8g"/>
           </children>
           <children>
             <emfPageIdentifier href="many_diagrams.notation#_gyar8J0SEeWdwKZ41HcqWg"/>
@@ -19,7 +19,7 @@
             <emfPageIdentifier href="many_diagrams.notation#_D_gEwJ0TEeWdwKZ41HcqWg"/>
           </children>
           <children>
-            <emfPageIdentifier href="many_diagrams.notation#_HjS7oJ0TEeWdwKZ41HcqWg"/>
+            <emfPageIdentifier href="many_diagrams.notation#_S9QlcKq_EeicWvEzWuwy8g"/>
           </children>
           <children>
             <emfPageIdentifier href="many_diagrams.notation#_KKAfMJ0TEeWdwKZ41HcqWg"/>

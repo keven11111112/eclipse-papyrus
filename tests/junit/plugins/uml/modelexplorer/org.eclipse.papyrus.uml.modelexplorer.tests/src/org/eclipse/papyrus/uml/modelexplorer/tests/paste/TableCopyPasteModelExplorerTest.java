@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -37,7 +37,7 @@ import org.junit.Test;
 
 /**
  * Sample test for copy of table in model explorer
- * 
+ *
  * @author bmaggi
  */
 public class TableCopyPasteModelExplorerTest extends AbstractEditorTest {
@@ -59,7 +59,7 @@ public class TableCopyPasteModelExplorerTest extends AbstractEditorTest {
 	@Before
 	public void initModelForCutTest() {
 		try {
-			initModel(PROJECT_NAME, MODEL_NAME, Activator.getDefault().getBundle()); //$NON-NLS-1$ //$NON-NLS-2$
+			initModel(PROJECT_NAME, MODEL_NAME, Activator.getDefault().getBundle());
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
@@ -77,19 +77,19 @@ public class TableCopyPasteModelExplorerTest extends AbstractEditorTest {
 	@Test
 	public void copyPasteTableTest() throws Exception {
 
-		//get the rootModel
+		// get the rootModel
 		Assert.assertNotNull("RootModel is null", getRootUMLModel()); //$NON-NLS-1$
 
 		Collection<Table> allNotationTable = TableUtils.getAllNotationTable(getModelSet(), VIEW_TABLE_NAME);
 		Assert.assertNotNull("No Tables for copy", allNotationTable); //$NON-NLS-1$
-		Assert.assertEquals("Table to copy is missing", 1, allNotationTable.size()); //$NON-NLS-1$		
+		Assert.assertEquals("Table to copy is missing", 1, allNotationTable.size()); //$NON-NLS-1$
 
 
-		//get all semantic elment that will handled
-		Model model = (Model)getRootUMLModel();
-		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class)model.getPackagedElement(CLASS1_NAME);
+		// get all semantic elment that will handled
+		Model model = (Model) getRootUMLModel();
+		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class) model.getPackagedElement(CLASS1_NAME);
 		Table notationFirstTable = TableUtils.getNotationFirstTable(getModelSet(), VIEW_TABLE_NAME);
-		Assert.assertEquals("Wrong Table selected", VIEW_TABLE_NAME, notationFirstTable.getName()); //$NON-NLS-1$		
+		Assert.assertEquals("Wrong Table selected", VIEW_TABLE_NAME, notationFirstTable.getName()); //$NON-NLS-1$
 
 		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
@@ -100,24 +100,23 @@ public class TableCopyPasteModelExplorerTest extends AbstractEditorTest {
 		modelExplorerView.revealSemanticElement(elements);
 
 
-		//getItem for model
-		Object modelTreeObject = ((IStructuredSelection)selectionService.getSelection()).getFirstElement();
+		// getItem for model
+		Object modelTreeObject = ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
 		Assert.assertNotNull("Model TreeElement is null", modelTreeObject); //$NON-NLS-1$
 
-		// FIXME : this is required otherwise Table1TreeObject is empty (something wrong in the revealSemantic on Tables)
-		//get Item for class1
+		// get Item for class1
 		elements.clear();
 		elements.add(class1);
 		modelExplorerView.revealSemanticElement(elements);
-		Object class1TreeObject = ((IStructuredSelection)selectionService.getSelection()).getFirstElement();
+		Object class1TreeObject = ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
 		Assert.assertNotNull("Class1 TreeElement is null", class1TreeObject); //$NON-NLS-1$
 
 
-		//get Item for Table1
+		// get Item for Table1
 		elements.clear();
 		elements.add(notationFirstTable);
 		modelExplorerView.revealSemanticElement(elements);
-		Object tableTreeObject = ((IStructuredSelection)selectionService.getSelection()).getFirstElement();
+		Object tableTreeObject = ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
 		Assert.assertNotNull("TableOfViews0 TreeElement is null", tableTreeObject); //$NON-NLS-1$
 
 		IHandler copyHandler = HandlerUtils.getActiveHandlerFor(COPY_COMMAND_ID);

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.eclipse.project.editors.tests;
@@ -162,7 +162,7 @@ public class FeatureProjectEditorTest {
 	@WithResource("feature_project/feature.xml")
 	@Test
 	public void getCopyrightURL() {
-		assertThat(fixture.getEditor().getCopyrightURL(), is("https://www.eclipse.org/legal/epl-2.0/"));
+		assertThat(fixture.getEditor().getCopyrightURL(), is("http://www.eclipse.org/legal/epl-2.0"));
 	}
 
 	@WithResource("feature_project/feature.xml")
@@ -343,10 +343,10 @@ public class FeatureProjectEditorTest {
 
 	/**
 	 * Obtains a stream over the depth-first element tree of the given {@code root}.
-	 * 
+	 *
 	 * @param root
 	 *            the root of a tree to traverse
-	 * 
+	 *
 	 * @return the elements of {@code root}, starting with it
 	 */
 	Stream<Element> allOf(Element root) {
