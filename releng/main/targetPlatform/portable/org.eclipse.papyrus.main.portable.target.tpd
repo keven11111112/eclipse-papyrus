@@ -5,7 +5,7 @@ target "Papyrus Main" with requirements source
 
 //updateFrom("QVT Operational",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.0/S201807171158" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.0/S201808280645" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -24,13 +24,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestone
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.9milestones/S-4.9M2-201808012000/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.9milestones/S-4.9M3-201808230450/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.5.0/S201807161317" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.5.0/S201808270709" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -76,7 +76,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201808030618" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201808230519" {
 	org.eclipse.emf.sdk.feature.group
 }
 
