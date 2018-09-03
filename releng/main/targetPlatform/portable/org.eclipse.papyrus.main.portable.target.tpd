@@ -24,7 +24,7 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestone
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.9milestones/S-4.9M3-201808230450/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.9milestones/S-4.9RC1-201808301030/" {
 	org.eclipse.sdk.feature.group
 }
 

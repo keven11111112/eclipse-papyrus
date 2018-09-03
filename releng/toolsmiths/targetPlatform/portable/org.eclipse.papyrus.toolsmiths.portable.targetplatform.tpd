@@ -3,11 +3,37 @@ target "Papyrus Toolsmiths" with requirements source
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
 
+/*** Manual referencing ***/
+
+//manualUpdate
+// This will need to be changed as soon as the new build is available @see Bug 538414
+location tpd "https://dl.bintray.com/mbarbero/fr.obeo.releng.targetplatform/latest/" {
+    fr.obeo.releng.targetplatform-feature.feature.group
+}
+
+//manualUpdate 
+
+location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4.8/" {
+    org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group lazy
+    org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group lazy
+    org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
+}
+
+//manualUpdate
+
+location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" {
+    org.eclipse.gmf.codegen
+    org.eclipse.gmf.codegen.ui
+    org.eclipse.gmf.codegen.xtend
+    org.eclipse.gmf.codegen.xtend.ui
+}
+
+
 /*** Updates from the Simrel repository ***/
 
 //updateFrom("oomph",0) 
 
-location oomph "http://download.eclipse.org/oomph/drops/milestone/S20180807-142759-1.10.0-M1" {
+location oomph "http://download.eclipse.org/oomph/drops/milestone/S20180829-063443-1.10.0-M2" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
@@ -28,11 +54,11 @@ location oomph "http://download.eclipse.org/oomph/drops/milestone/S20180807-1427
 
 //updateFrom("EGIT",0) 
 
-location egit "http://download.eclipse.org/egit/updates-5.0" // oomph
+location egit "http://download.eclipse.org/egit/staging/v5.1.0.201808281540-m3" // oomph
 
 //updateFrom("m2e",0)
 
-location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.1.20180823-0040" // oomph
+location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.1.20180829-1411" // oomph
 
 //updateFrom("Mylyn",0)
 
@@ -40,32 +66,7 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180613-1723" /
 
 //updateFrom("EMF COMPARE",0)
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201805161152/" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201806221350/" {
 	org.eclipse.emf.compare.ide.ui.feature.group lazy
 	org.eclipse.emf.compare.source.feature.group
-}
-
-/*** Manual referencing ***/
-
-//manualUpdate
-
-location tpd "http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/" {
-	fr.obeo.releng.targetplatform-feature.feature.group
-}
-
-//manualUpdate 
-
-location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4.8/" {
-	org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group lazy
-	org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group lazy
-	org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
-}
-
-//manualUpdate
-
-location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a" {
-	org.eclipse.gmf.codegen
-	org.eclipse.gmf.codegen.ui
-	org.eclipse.gmf.codegen.xtend
-	org.eclipse.gmf.codegen.xtend.ui
 }

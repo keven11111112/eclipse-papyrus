@@ -6,13 +6,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 /*** Updates from the Simrel repository ***/
 
 //updateFrom("EGIT",0)
-location egit "http://download.eclipse.org/egit/updates-5.0" {
+location egit "http://download.eclipse.org/egit/staging/v5.1.0.201808281540-m3" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.9milestones/S-4.9M3-201808230450/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.9milestones/S-4.9RC1-201808301030/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group 
 	org.eclipse.equinox.executable.feature.group 
@@ -31,7 +31,7 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180613-1723" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201805161152/" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201806221350/" {
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
