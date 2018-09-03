@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Dev" sequenceNumber="1531726156">
+<target name="Papyrus Dev" sequenceNumber="1535963594">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.7.0.v20170604-1316"/>
@@ -102,13 +102,23 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="fr.obeo.releng.targetplatform-feature.feature.group" version="2.1.1.201410251450"/>
-      <repository id="tpd" location="http://mbarbero.github.io/fr.obeo.releng.targetplatform/p2/"/>
+      <repository id="tpd" location="https://dl.bintray.com/mbarbero/fr.obeo.releng.targetplatform/latest"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group" version="0.0.0"/>
       <repository id="cbiAggregator" location="file:/home/data/httpd/download.eclipse.org/cbi/updates/aggregator/ide/4.6/"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.gmf.tooling.feature.group" version="3.3.1.201509291144"/>
+      <unit id="org.eclipse.gmf.tooling.runtime.feature.group" version="3.3.1.201509291144"/>
+      <unit id="org.eclipse.gmf.tooling.codegen.xtend2.feature.group" version="3.3.1.201509291144"/>
+      <repository id="gmfTooling" location="file:/home/data/httpd/download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
+    </location>
+    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.upr.utp.feature.feature.group" version="0.9.0.20141027-1408-incubation"/>
+      <repository id="upr" location="file:/home/data/httpd/download.eclipse.org/upr/0.9RC1/update/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.compare.ide.ui.feature.group" version="0.0.0"/>
@@ -133,16 +143,6 @@
       <unit id="org.eclipse.oomph.setup.feature.group" version="1.8.0.v20170531-0903"/>
       <unit id="org.eclipse.oomph.preferences.feature.group" version="1.8.0.v20170327-1117"/>
       <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/release/1.8.0"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.gmf.tooling.feature.group" version="3.3.1.201509291144"/>
-      <unit id="org.eclipse.gmf.tooling.runtime.feature.group" version="3.3.1.201509291144"/>
-      <unit id="org.eclipse.gmf.tooling.codegen.xtend2.feature.group" version="3.3.1.201509291144"/>
-      <repository id="gmfTooling" location="file:/home/data/httpd/download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.upr.utp.feature.feature.group" version="0.9.0.20141027-1408-incubation"/>
-      <repository id="upr" location="file:/home/data/httpd/download.eclipse.org/upr/0.9RC1/update/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-4.9.2"/>
