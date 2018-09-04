@@ -13,8 +13,10 @@
 
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.Bendpoint;
 import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
@@ -390,6 +392,17 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		this.durationLabel = new PapyrusWrappingLabel();
 		this.durationLabel.setText(""); //$NON-NLS-1$
 		add(this.durationLabel);
+	}
+
+	@Override
+	public Object getRoutingConstraint() {
+		// Bendpoints should at least contain the start and end points; otherwise the
+		// bendpoint policy will crash. We don't support bendpoints, so just return
+		// a new list everytime.
+		List<Bendpoint> list = new ArrayList<>();
+		list.add(this::getStart);
+		list.add(this::getEnd);
+		return list;
 	}
 
 }
