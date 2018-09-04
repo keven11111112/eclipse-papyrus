@@ -135,14 +135,16 @@ public class OccurrenceSpecificationUtil {
 	 * @param targetFigure
 	 *            The connection figure representing the message
 	 * @param requestLocation
-	 *            The mouse location for the current {@link Request}
+	 *            The mouse location for the current {@link Request}, in Viewer coordinates
 	 * @return
 	 * 		<code>true</code> if the given request is closer to the source of the connection; false if it is closer to the target
 	 */
 	public static boolean isSource(IFigure targetFigure, Point requestLocation) {
+		requestLocation = requestLocation.getCopy();
 		IFigure connection = targetFigure;
 		if (connection instanceof Connection) {
 			PointList points = ((Connection) connection).getPoints();
+			connection.translateToRelative(requestLocation);
 			if (points.size() >= 2) {
 				Point source = points.getFirstPoint();
 				Point target = points.getLastPoint();
