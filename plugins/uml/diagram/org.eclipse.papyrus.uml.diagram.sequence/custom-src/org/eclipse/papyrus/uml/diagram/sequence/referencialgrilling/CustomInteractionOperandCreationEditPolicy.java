@@ -49,11 +49,12 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
+import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLDIElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This allows to define the creation edit policy for the interaction operand.
@@ -68,6 +69,14 @@ public class CustomInteractionOperandCreationEditPolicy extends DefaultCreationE
 	@Override
 	public Command getCommand(Request request) {
 		if (understandsRequest(request)) {
+			EditPart combinedFragmentCompartment = getHost().getParent();
+			if (combinedFragmentCompartment != null && REQ_CREATE.equals(request.getType()) && request instanceof CreateUnspecifiedTypeRequest) {
+				if (UMLElementTypes.InteractionOperand_Shape.equals(((CreateUnspecifiedTypeRequest) request).getElementTypes().get(0))) {
+					Map<? super String, Object> extendedData = request.getExtendedData();
+					int hostIndex = combinedFragmentCompartment.getChildren().indexOf(getHost());
+					extendedData.put(RequestParameterConstants.INSERT_AT, hostIndex + 1); // Insert after the target
+				}
+			}
 			if (request instanceof CreateUnspecifiedTypeRequest) {
 				return getUnspecifiedTypeCreateCommand((CreateUnspecifiedTypeRequest) request);
 			}

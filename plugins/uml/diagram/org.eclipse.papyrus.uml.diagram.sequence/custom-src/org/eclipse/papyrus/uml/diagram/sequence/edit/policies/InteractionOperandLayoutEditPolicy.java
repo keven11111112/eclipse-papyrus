@@ -16,7 +16,6 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
@@ -30,12 +29,9 @@ import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
-import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 
 /**
  * The custom LayoutEditPolicy for InteractionOperandEditPart.
@@ -59,6 +55,8 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 	/**
 	 * Handle create InteractionOperand hover InteractionOperand {@inheritDoc}
 	 */
+	// FIXME This is a layout policy; it shouldn't be responsible for any semantic
+	// operation. At best, it may handle a CreateViewRequest (e.g. during D&D of an existing Operand)
 	@Override
 	public Command getCommand(Request request) {
 		EditPart combinedFragmentCompartment = getHost().getParent();
@@ -67,19 +65,7 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 		}
 		EditPart combinedFragment = combinedFragmentCompartment.getParent();
 		EditPart interactionCompartment = combinedFragment.getParent();
-		if (REQ_CREATE.equals(request.getType()) && request instanceof CreateUnspecifiedTypeRequest) {
-			if (UMLElementTypes.InteractionOperand_Shape.equals(((CreateUnspecifiedTypeRequest) request).getElementTypes().get(0))) {
-				Map<? super String, Object> extendedData = request.getExtendedData();
-				int hostIndex = combinedFragmentCompartment.getChildren().indexOf(getHost());
-				extendedData.put(RequestParameterConstants.INSERT_AT, hostIndex + 1); // Insert after the target
-				return combinedFragmentCompartment.getCommand(request);
-			} else if (UMLElementTypes.CombinedFragment_Shape.equals(((CreateUnspecifiedTypeRequest) request).getElementTypes().get(0))) {
-				// Fixed bug about creating on InteractionOperand. (executed Twice).
-				// return interactionCompartment.getCommand(request);
-			} else if (UMLElementTypes.Lifeline_Shape.equals(((CreateUnspecifiedTypeRequest) request).getElementTypes().get(0))) {
-				return interactionCompartment.getCommand(request);
-			}
-		} else if (request instanceof CreateConnectionViewAndElementRequest) {
+		if (request instanceof CreateConnectionViewAndElementRequest) {
 			CreateConnectionRequest createConnectionRequest = (CreateConnectionRequest) request;
 			if (getHost().equals(createConnectionRequest.getSourceEditPart())) {
 				createConnectionRequest.setSourceEditPart(combinedFragment);
@@ -131,7 +117,7 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 	protected Command getOrphanChildrenCommand(Request request) {
 		// Do NOT allow orphan Guard.
 		if (request instanceof GroupRequest) {
-			List editParts = ((GroupRequest) request).getEditParts();
+			List<?> editParts = ((GroupRequest) request).getEditParts();
 			for (Object object : editParts) {
 				if (object instanceof InteractionOperandGuardEditPart) {
 					return UnexecutableCommand.INSTANCE;
