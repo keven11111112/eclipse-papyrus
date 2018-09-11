@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Initial API and implementation
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 538928
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.profilemigration;
@@ -18,13 +19,16 @@ package org.eclipse.papyrus.toolsmiths.profilemigration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.compare.Comparison;
 import org.eclipse.emf.compare.EMFCompare;
 import org.eclipse.emf.compare.scope.DefaultComparisonScope;
@@ -108,7 +112,7 @@ public class MigratorProfileApplication {
 
 	/**
 	 * Reapply the profile on the package_
-	 * 
+	 *
 	 * @param package_
 	 *            package owning the stereotype application
 	 * @param profile
@@ -120,11 +124,16 @@ public class MigratorProfileApplication {
 
 		String path = getFileName(profile, profileAfterResource);
 		if (path != null) {
-			URI uri = URI.createFileURI(path);
-			ResourceSet profileBeforeResourceSet = new ResourceSetImpl();
-			Resource profileBeforeResource = profileBeforeResourceSet.getResource(uri, true);
-
-			migrateNewAppliedProfile(package_, profile, profileBeforeResource, profileAfterResource);
+			try {
+				URI uri = URI.createFileURI(path);
+				ResourceSet profileBeforeResourceSet = new ResourceSetImpl();
+				Resource profileBeforeResource = profileBeforeResourceSet.getResource(uri, true);
+				migrateNewAppliedProfile(package_, profile, profileBeforeResource, profileAfterResource);
+			} catch (WrappedException e) {
+				// File is not found so restart reapply profile with asking the user
+				removeFilePathFromCached(path);
+				reapplyProfile(package_, profile);
+			}
 		} else {
 			MessageDialog message = new MessageDialog(Display.getDefault().getActiveShell(), "Incorect file", null, "The selected path is incorect so the profile will just be reapply.", MessageDialog.INFORMATION, new String[] { "OK" }, 0); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			message.open();
@@ -135,7 +144,7 @@ public class MigratorProfileApplication {
 
 	/**
 	 * Migrate package_ to the new version of profile
-	 * 
+	 *
 	 * @param package_
 	 *            the package to migrate
 	 * @param profile
@@ -193,7 +202,7 @@ public class MigratorProfileApplication {
 
 	/**
 	 * This method migrate to model to the new version of the profile
-	 * 
+	 *
 	 * @param model
 	 *            the profiled model to migrate
 	 * @param treeNode
@@ -321,5 +330,19 @@ public class MigratorProfileApplication {
 			}
 		}
 		return path;
+	}
+
+	/**
+	 * Remove every reference to the given path in the cacheProfileToFile
+	 */
+	private void removeFilePathFromCached(String path) {
+		Iterator<Entry<String, String>> it = cacheProfileToFile.entrySet().iterator();
+		while (it.hasNext()) {
+			Entry<String, String> entry = it.next();
+			if (entry.getValue().equals(path)) {
+				ProfileMigrationPreferencePage.getCachedFiles().remove(path);
+				it.remove();
+			}
+		}
 	}
 }

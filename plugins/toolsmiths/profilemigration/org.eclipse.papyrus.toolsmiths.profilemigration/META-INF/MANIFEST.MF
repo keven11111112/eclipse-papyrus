@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.toolsmiths.profilemigration;singleton:=true
-Bundle-Version: 0.7.102.qualifier
+Bundle-Version: 0.7.103.qualifier
 Bundle-ClassPath: .
 Require-Bundle: org.eclipse.ui,
  com.google.guava;bundle-version="21.0.0",
