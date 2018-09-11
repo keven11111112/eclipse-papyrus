@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Initial API and implementation
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 538914
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.profilemigration.internal.migrators.atomic.property;
@@ -82,7 +83,7 @@ public class ChangeUpperMultiplicityFromPropertyMigrator extends AbstractMigrato
 	 * 2] the treeNode is a added node
 	 * 2.1] the added element is a LiteralUnlimitedNatural
 	 * 2.3] the structural feature referencing this added element is the upperValue of a Property
-	 * 
+	 *
 	 * @param treeNode
 	 * @return true if the treeNode represent the current change
 	 */
@@ -110,10 +111,13 @@ public class ChangeUpperMultiplicityFromPropertyMigrator extends AbstractMigrato
 		} else if (TreeNodeUtils.isAddType(treeNode, MigratorProfileApplication.appliedProfile)) { // on first modification of the multiplicity, the lieteralInteget is add
 			EObject element = TreeNodeUtils.getAddedElement(treeNode);
 			if (element instanceof LiteralUnlimitedNatural) {
-				EStructuralFeature structuralFeature = TreeNodeUtils.getAddedStructuralFeature(treeNode);
-				if (structuralFeature == UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue()) {
-					if (!(TreeNodeUtils.isAddType(treeNode.getParent(), MigratorProfileApplication.appliedProfile) && TreeNodeUtils.getAddedElement(treeNode.getParent()) instanceof Property)) { // when it is not an newly add property
-						return true;
+				Element property = ((LiteralUnlimitedNatural) element).getOwner();
+				if (property instanceof Property) {
+					EStructuralFeature structuralFeature = TreeNodeUtils.getAddedStructuralFeature(treeNode);
+					if (structuralFeature == UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue()) {
+						if (!(TreeNodeUtils.isAddType(treeNode.getParent(), MigratorProfileApplication.appliedProfile) && TreeNodeUtils.getAddedElement(treeNode.getParent()) instanceof Property)) { // when it is not an newly add property
+							return true;
+						}
 					}
 				}
 			}
@@ -209,7 +213,7 @@ public class ChangeUpperMultiplicityFromPropertyMigrator extends AbstractMigrato
 
 	/**
 	 * Get the value of the preference for the specific dialog
-	 * 
+	 *
 	 * @return true if the dialog should be display
 	 */
 	private boolean isDisplayDialogPreference() {
@@ -249,7 +253,7 @@ public class ChangeUpperMultiplicityFromPropertyMigrator extends AbstractMigrato
 
 	/**
 	 * Get the changed element
-	 * 
+	 *
 	 * @return the changed element
 	 */
 	@Override
@@ -259,7 +263,7 @@ public class ChangeUpperMultiplicityFromPropertyMigrator extends AbstractMigrato
 
 	/**
 	 * Get the new value of the feature
-	 * 
+	 *
 	 * @return the new value of the feature
 	 */
 	@Override
@@ -269,7 +273,7 @@ public class ChangeUpperMultiplicityFromPropertyMigrator extends AbstractMigrato
 
 	/**
 	 * Get the structural feature which is modified
-	 * 
+	 *
 	 * @return the structural feature which is modified
 	 */
 	@Override
