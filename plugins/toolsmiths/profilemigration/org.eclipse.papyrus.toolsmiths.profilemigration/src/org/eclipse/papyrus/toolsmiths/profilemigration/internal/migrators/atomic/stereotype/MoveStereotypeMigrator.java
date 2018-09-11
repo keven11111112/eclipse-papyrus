@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Initial API and implementation
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 538912
  *
  *****************************************************************************/
 
@@ -73,7 +74,7 @@ public class MoveStereotypeMigrator extends AbstractMigrator implements IMoveSte
 	 * 1] the treeNode is a moved node
 	 * 2] the moved element is a Stereotype
 	 * 3] the new container is in the currently profile use for the migration
-	 * 
+	 *
 	 * @param node
 	 * @return true if the treeNode represent the current change
 	 */
@@ -111,14 +112,14 @@ public class MoveStereotypeMigrator extends AbstractMigrator implements IMoveSte
 			if (newContainer instanceof Package) {
 				Profile nearestProfile = getNearestProfile((Package) newContainer);
 				Profile profile = getAppliedProfile(nearestProfile);
-				if (profile == null) { // the new container is in a profile which is not applied yet
+				List<StereotypeApplicationDescriptor> list = StereotypeApplicationRegistry.getStereotypeApplicationDescriptors(stereotype);
+				if (profile == null && !list.isEmpty()) { // the new container is in a profile which is not applied yet
 					MoveStereotypeDialog dialog = new MoveStereotypeDialog(Display.getDefault().getActiveShell(), stereotype, nearestProfile);
 					dialog.open();
 					if (dialog.isReapply()) { // the answer is yes: apply profile
 						MigratorProfileApplication.profiledModel.applyProfile(nearestProfile);
 						MigratorProfileApplication.newAppliedProfile.add(nearestProfile);
 					} else { // the answer is no: delete stereotype application
-						List<StereotypeApplicationDescriptor> list = StereotypeApplicationRegistry.getStereotypeApplicationDescriptors(stereotype);
 						for (StereotypeApplicationDescriptor descriptor : list) {
 							descriptor.getOwner().unapplyStereotype(descriptor.getStereotype());
 						}
@@ -170,7 +171,7 @@ public class MoveStereotypeMigrator extends AbstractMigrator implements IMoveSte
 
 	/**
 	 * Get the value of the preference for the specific dialog
-	 * 
+	 *
 	 * @return true if the dialog should be display
 	 */
 	private boolean isDisplayDialogPreference() {
@@ -201,7 +202,7 @@ public class MoveStereotypeMigrator extends AbstractMigrator implements IMoveSte
 
 	/**
 	 * Get the new container of the element
-	 * 
+	 *
 	 * @return the new container of the element
 	 */
 	@Override
@@ -211,7 +212,7 @@ public class MoveStereotypeMigrator extends AbstractMigrator implements IMoveSte
 
 	/**
 	 * Get the old container of the element (before the move)
-	 * 
+	 *
 	 * @return the old container of the element
 	 */
 	@Override
@@ -221,7 +222,7 @@ public class MoveStereotypeMigrator extends AbstractMigrator implements IMoveSte
 
 	/**
 	 * Get the moved element
-	 * 
+	 *
 	 * @return the moved element
 	 */
 	@Override
