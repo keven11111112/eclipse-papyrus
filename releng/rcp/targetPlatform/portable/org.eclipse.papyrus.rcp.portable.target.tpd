@@ -7,13 +7,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //updateFrom("EGIT",0)
 
-location egit "http://download.eclipse.org/egit/staging/v5.1.0.201808281540-m3" {
+location egit "http://download.eclipse.org/egit/staging/v5.1.0.201809051400-rc1" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.9milestones/S-4.9RC1-201808301030/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.9milestones/S-4.9RC2-201809060745/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group 
 	org.eclipse.equinox.executable.feature.group 
@@ -21,7 +21,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.9milestones/S-4
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.24.0/v20180613-1723" {
+location mylyn "http://download.eclipse.org/mylyn/drops/3.24.2/v20180905-2014" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group
@@ -39,7 +39,7 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/mi
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201808230519" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.15" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
