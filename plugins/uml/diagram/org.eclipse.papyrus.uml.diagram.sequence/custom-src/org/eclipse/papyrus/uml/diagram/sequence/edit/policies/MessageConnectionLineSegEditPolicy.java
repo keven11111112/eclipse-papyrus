@@ -196,7 +196,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					// for each weak reference move it
 					for (Iterator<EditPart> iterator = weakReferences.iterator(); iterator.hasNext();) {
 						EditPart editPart = iterator.next();
-						if (!SenderRequestUtils.isASender(request, editPart)) {// avoid loop
+						if (!hostConnectionEditPart.equals(editPart) && !SenderRequestUtils.isASender(request, editPart)) {// avoid loop
 							UMLDiagramEditorPlugin.log.trace(LogOptions.SEQUENCE_DEBUG, "+--> try to Move " + editPart);//$NON-NLS-1$
 							ArrayList<EditPart> senderList = SenderRequestUtils.getSenders(request);
 							if (editPart instanceof ConnectionEditPart) {
@@ -242,7 +242,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 			// Get the life lines
 			final EditPart source = messageEditPart.getSource();
 			final EditPart target = messageEditPart.getTarget();
-			final Collection<EditPart> editParts = new HashSet<EditPart>(2);
+			final Collection<EditPart> editParts = new HashSet<>(2);
 			editParts.add(source);
 			editParts.add(target);
 
@@ -446,7 +446,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 	/**
 	 * This allows to updates life lines height if necessary.
-	 * 
+	 *
 	 * @param request
 	 *            The initial request.
 	 * @param hostConnectionEditPart
@@ -468,7 +468,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 				if (!SenderRequestUtils.isASender(request, getHost())) {
 
 					// Gets weak references
-					final List<EditPart> weakAndStrongReferences = new ArrayList<EditPart>();
+					final List<EditPart> weakAndStrongReferences = new ArrayList<>();
 					weakAndStrongReferences.addAll(references.getWeakReferences().keySet());
 					weakAndStrongReferences.addAll(references.getStrongReferences().keySet());
 
@@ -478,7 +478,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					final Point initialSourcePosition = polyline.getSourceAnchor().getReferencePoint();
 					final Point initialTargetPosition = polyline.getTargetAnchor().getReferencePoint();
 
-					final Set<LifelineEditPart> lifelineEditParts = new HashSet<LifelineEditPart>();
+					final Set<LifelineEditPart> lifelineEditParts = new HashSet<>();
 					if (hostConnectionEditPart.getSource() instanceof LifelineEditPart) {
 						lifelineEditParts.add((LifelineEditPart) hostConnectionEditPart.getSource());
 					}
@@ -681,7 +681,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 	/**
 	 * This allows to get the command for bounds of life lines corresponding to the initial request when only one message create is modifying life lines.
-	 * 
+	 *
 	 * @param request
 	 *            The initial request.
 	 * @param hostConnectionEditPart
@@ -709,7 +709,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					newDimension.height = LIFELINE_MIN_HEIGHT;
 					final int maxY = newLocation.y + newDimension.height;
 
-					final Collection<LifelineEditPart> lifeLineEditPartsToSkip = new HashSet<LifelineEditPart>(1);
+					final Collection<LifelineEditPart> lifeLineEditPartsToSkip = new HashSet<>(1);
 					lifeLineEditPartsToSkip.add(targetLifeLine);
 					LifelineEditPartUtil.resizeAllLifeLines(compoundCommand, hostConnectionEditPart, maxY, lifeLineEditPartsToSkip);
 				}
@@ -726,7 +726,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 
 	/**
 	 * This allows to get the command for bounds of life lines corresponding to the initial request when only one message delete is modifying life lines.
-	 * 
+	 *
 	 * @param request
 	 *            The initial request.
 	 * @param hostConnectionEditPart
@@ -751,7 +751,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 					final int maxY = bounds.getY() + newDimension.height();
 
 					// We need to check if this is needed to resize other life lines
-					final Collection<LifelineEditPart> lifeLineEditPartsToSkip = new HashSet<LifelineEditPart>(1);
+					final Collection<LifelineEditPart> lifeLineEditPartsToSkip = new HashSet<>(1);
 					lifeLineEditPartsToSkip.add(targetLifeLine);
 					LifelineEditPartUtil.resizeAllLifeLines(compoundCommand, hostConnectionEditPart, maxY, lifeLineEditPartsToSkip);
 				}
@@ -875,7 +875,7 @@ public class MessageConnectionLineSegEditPolicy extends ConnectionBendpointEditP
 	@SuppressWarnings("unchecked")
 	protected void showMoveLineSegFeedback(BendpointRequest request) {
 		RouterKind kind = RouterKind.getKind(getConnection(), getConnection().getPoints());
-		if (((getHost() instanceof MessageSyncEditPart || getHost() instanceof MessageAsyncEditPart || getHost() instanceof MessageDeleteEditPart) && kind == RouterKind.SELF) || kind == RouterKind.OBLIQUE){
+		if (((getHost() instanceof MessageSyncEditPart || getHost() instanceof MessageAsyncEditPart || getHost() instanceof MessageDeleteEditPart) && kind == RouterKind.SELF) || kind == RouterKind.OBLIQUE) {
 			if (router == null) {
 				router = getConnection().getConnectionRouter();
 				getConnection().setConnectionRouter(new DummyRouter());
