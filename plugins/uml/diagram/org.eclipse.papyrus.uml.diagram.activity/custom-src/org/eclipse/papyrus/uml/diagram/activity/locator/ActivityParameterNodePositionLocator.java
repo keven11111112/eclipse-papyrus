@@ -20,7 +20,6 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.AdvancedBorderItemLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.ISideAffixedNodeBorderItemLocator;
 
@@ -68,30 +67,6 @@ public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLoca
 		Point newTopLeft = locateOnBorder(realLocation.getTopLeft(), side, 0, borderItem);
 		realLocation.setLocation(newTopLeft);
 		return realLocation;
-	}
-
-	/**
-	 * Find the closest side when x,y is inside parent.
-	 *
-	 * @param proposedLocation
-	 * @param parentBorder
-	 * @return draw constant
-	 */
-	public static int findClosestSideOfParent(Rectangle proposedLocation, Rectangle parentBorder) {
-
-		int side = BorderItemLocator.findClosestSideOfParent(proposedLocation, parentBorder);
-
-		// relocate side for North
-		if (side == PositionConstants.NORTH) {
-			Point parentCenter = parentBorder.getCenter();
-			Point childCenter = proposedLocation.getCenter();
-			if (childCenter.x < parentCenter.x) {
-				return PositionConstants.WEST;
-			} else {
-				return PositionConstants.EAST;
-			}
-		}
-		return side;
 	}
 
 	/**
