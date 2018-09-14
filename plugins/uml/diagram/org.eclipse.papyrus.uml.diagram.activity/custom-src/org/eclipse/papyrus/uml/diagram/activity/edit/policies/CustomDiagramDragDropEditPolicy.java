@@ -53,20 +53,66 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AddStructuralFeatureValueActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AddVariableValueActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallOperationActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CentralBufferNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ClearAssociationActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ClearStructuralFeatureActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateLinkActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateLinkObjectActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateObjectActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DecisionInputEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DecisionInputFlowEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DecisionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DestroyLinkActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DestroyObjectActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionRegionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.FlowFinalNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ForkNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InitialNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InterruptibleActivityRegionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.JoinNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.JoinSpecEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.LoopNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OpaqueActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadExtentActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadIsClassifiedObjectActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadLinkActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadSelfActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadStructuralFeatureActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadVariableActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReclassifyObjectActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReduceActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SendObjectActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SendSignalActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SequenceNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StartClassifierBehaviorActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StartObjectBehavoiurActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TestIdentityActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.UnmarshallActionEditPart;
@@ -112,10 +158,60 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	@Override
 	protected Set<String> getDroppableElementVisualId() {
-		Set<String> droppableElementsVisualID = new HashSet<String>();
+		Set<String> droppableElementsVisualID = new HashSet<>();
+		droppableElementsVisualID.add(InitialNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ActivityFinalNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(FlowFinalNodeEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(OpaqueActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(CallBehaviorActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(CallOperationActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(DecisionNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(DecisionInputEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(MergeNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ForkNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(JoinNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(JoinSpecEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(DataStoreNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(SendObjectActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(SendSignalActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ActivityParameterNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(AcceptEventActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ValueSpecificationActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ConditionalNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ExpansionRegionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(LoopNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(SequenceNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(StructuredActivityNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ActivityPartitionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(InterruptibleActivityRegionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(CommentEditPartCN.VISUAL_ID);
+		droppableElementsVisualID.add(ReadSelfActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(CreateObjectActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ReadStructuralFeatureActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(AddStructuralFeatureValueActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(DestroyObjectActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ReadVariableActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(AddVariableValueActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(BroadcastSignalActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(CentralBufferNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(StartObjectBehavoiurActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(TestIdentityActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ClearStructuralFeatureActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(CreateLinkActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ReadLinkActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(DestroyLinkActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ClearAssociationActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ReadExtentActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ReclassifyObjectActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ReadIsClassifiedObjectActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ReduceActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(StartClassifierBehaviorActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(CreateLinkObjectActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ObjectFlowEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(DecisionInputFlowEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ControlFlowEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ExceptionHandlerEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(CommentLinkEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(DurationConstraintAsLocalPrecondEditPart.VISUAL_ID);
@@ -124,10 +220,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		droppableElementsVisualID.add(IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ConstraintAsLocalPrecondEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ConstraintAsLocalPostcondEditPart.VISUAL_ID);
-		droppableElementsVisualID.add(ObjectFlowEditPart.VISUAL_ID);
-		droppableElementsVisualID.add(ControlFlowEditPart.VISUAL_ID);
-		droppableElementsVisualID.add(ValueSpecificationActionEditPart.VISUAL_ID);
-		droppableElementsVisualID.add(ReadSelfActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(UnmarshallActionEditPart.VISUAL_ID);
 		return droppableElementsVisualID;
 	}
@@ -163,11 +255,59 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID, String linkVISUALID) {
 		if (nodeVISUALID != null) {
 			switch (nodeVISUALID) {
+			case InitialNodeEditPart.VISUAL_ID:
+			case ActivityFinalNodeEditPart.VISUAL_ID:
+			case FlowFinalNodeEditPart.VISUAL_ID:
 			case OpaqueActionEditPart.VISUAL_ID:
 			case CallBehaviorActionEditPart.VISUAL_ID:
 			case CallOperationActionEditPart.VISUAL_ID:
+			case DecisionNodeEditPart.VISUAL_ID:
+			case DecisionInputEditPart.VISUAL_ID:
+			case MergeNodeEditPart.VISUAL_ID:
+			case ForkNodeEditPart.VISUAL_ID:
+			case JoinNodeEditPart.VISUAL_ID:
+			case JoinSpecEditPart.VISUAL_ID:
+			case DataStoreNodeEditPart.VISUAL_ID:
+			case SendObjectActionEditPart.VISUAL_ID:
+			case SendSignalActionEditPart.VISUAL_ID:
+			case ActivityParameterNodeEditPart.VISUAL_ID:
+			case AcceptEventActionEditPart.VISUAL_ID:
 			case ValueSpecificationActionEditPart.VISUAL_ID:
+			case ConditionalNodeEditPart.VISUAL_ID:
+			case ExpansionRegionEditPart.VISUAL_ID:
+			case LoopNodeEditPart.VISUAL_ID:
+			case SequenceNodeEditPart.VISUAL_ID:
+			case StructuredActivityNodeEditPart.VISUAL_ID:
+			case ActivityPartitionEditPart.VISUAL_ID:
+			case InterruptibleActivityRegionEditPart.VISUAL_ID:
+			case CommentEditPartCN.VISUAL_ID:
 			case ReadSelfActionEditPart.VISUAL_ID:
+			case CreateObjectActionEditPart.VISUAL_ID:
+			case ReadStructuralFeatureActionEditPart.VISUAL_ID:
+			case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
+			case DestroyObjectActionEditPart.VISUAL_ID:
+			case ReadVariableActionEditPart.VISUAL_ID:
+			case AddVariableValueActionEditPart.VISUAL_ID:
+			case BroadcastSignalActionEditPart.VISUAL_ID:
+			case CentralBufferNodeEditPart.VISUAL_ID:
+			case StartObjectBehavoiurActionEditPart.VISUAL_ID:
+			case TestIdentityActionEditPart.VISUAL_ID:
+			case ClearStructuralFeatureActionEditPart.VISUAL_ID:
+			case CreateLinkActionEditPart.VISUAL_ID:
+			case ReadLinkActionEditPart.VISUAL_ID:
+			case DestroyLinkActionEditPart.VISUAL_ID:
+			case ClearAssociationActionEditPart.VISUAL_ID:
+			case ReadExtentActionEditPart.VISUAL_ID:
+			case ReclassifyObjectActionEditPart.VISUAL_ID:
+			case ReadIsClassifiedObjectActionEditPart.VISUAL_ID:
+			case ReduceActionEditPart.VISUAL_ID:
+			case StartClassifierBehaviorActionEditPart.VISUAL_ID:
+			case CreateLinkObjectActionEditPart.VISUAL_ID:
+			case ObjectFlowEditPart.VISUAL_ID:
+			case DecisionInputFlowEditPart.VISUAL_ID:
+			case ControlFlowEditPart.VISUAL_ID:
+			case ExceptionHandlerEditPart.VISUAL_ID:
+			case CommentLinkEditPart.VISUAL_ID:
 			case UnmarshallActionEditPart.VISUAL_ID:
 				return dropAction(dropRequest, semanticElement, nodeVISUALID);
 			case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
@@ -493,7 +633,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		private Element droppedAction;
 
 		/** The command which have been executed (known at execution time) */
-		private List<Command> executedCommands = new LinkedList<Command>();
+		private List<Command> executedCommands = new LinkedList<>();
 
 		/**
 		 * Constructor.
