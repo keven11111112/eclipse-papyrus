@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Initial API and implementation
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 539160
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.profilemigration.internal.migrators.atomic.packages;
@@ -39,7 +40,7 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * 
+ *
  * If a package is moved to another profile then the migration tool shall focus
  * on the preservation of the stereotype applications available at the profiled model.
  *
@@ -50,7 +51,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * profiled model then the migration tool asks the designer if the profile should
  * be applied. If the designer answers 'yes' every stereotype application shall remain
  * conversely if the answer is 'no' then every stereotype application shall be deleted.
- * 
+ *
  */
 public class MovePackageMigrator extends AbstractMigrator implements IMovePackageMigrator {
 
@@ -75,6 +76,7 @@ public class MovePackageMigrator extends AbstractMigrator implements IMovePackag
 	 * 1] the treeNode is a moved node
 	 * 2] the moved element is a Package and not a Profile
 	 * 3] the new container is in the currently profile use for the migration
+	 * 4] the new container is different to the current container
 	 *
 	 * @param treeNode
 	 * @return true if the treeNode represent the current change
@@ -82,8 +84,9 @@ public class MovePackageMigrator extends AbstractMigrator implements IMovePackag
 	public static boolean isValid(TreeNode treeNode) {
 		if (TreeNodeUtils.isMoveChange(treeNode)) {
 			Object element = TreeNodeUtils.getMovedElement(treeNode);
-			if (element instanceof Package && !(element instanceof Profile)) {
-				if (TreeNodeUtils.getMovedSourceContainer(treeNode, MigratorProfileApplication.comparison) == MigratorProfileApplication.appliedProfile) {
+			EObject oldContainer = TreeNodeUtils.getMovedSourceContainer(treeNode, MigratorProfileApplication.comparison);
+			if (element instanceof Package && !(element instanceof Profile) && oldContainer != ((Package) element).getOwner()) {
+				if (oldContainer == MigratorProfileApplication.appliedProfile) {
 					return true;
 				}
 			}
@@ -178,7 +181,7 @@ public class MovePackageMigrator extends AbstractMigrator implements IMovePackag
 
 	/**
 	 * Get the value of the preference for the specific dialog
-	 * 
+	 *
 	 * @return true if the dialog should be display
 	 */
 	private boolean isDisplayDialogPreference() {
@@ -188,7 +191,7 @@ public class MovePackageMigrator extends AbstractMigrator implements IMovePackag
 
 	/**
 	 * Get the moved package
-	 * 
+	 *
 	 * @return the movedPackage
 	 */
 	@Override
@@ -198,7 +201,7 @@ public class MovePackageMigrator extends AbstractMigrator implements IMovePackag
 
 	/**
 	 * Get the new container
-	 * 
+	 *
 	 * @return the newContainer
 	 */
 	@Override
@@ -208,7 +211,7 @@ public class MovePackageMigrator extends AbstractMigrator implements IMovePackag
 
 	/**
 	 * Get the new container of the element
-	 * 
+	 *
 	 * @return the new container of the element
 	 */
 	@Override
@@ -218,7 +221,7 @@ public class MovePackageMigrator extends AbstractMigrator implements IMovePackag
 
 	/**
 	 * Get the old container of the element (before the move)
-	 * 
+	 *
 	 * @return the old container of the element
 	 */
 	@Override
@@ -228,7 +231,7 @@ public class MovePackageMigrator extends AbstractMigrator implements IMovePackag
 
 	/**
 	 * Get the moved element
-	 * 
+	 *
 	 * @return the moved element
 	 */
 	@Override

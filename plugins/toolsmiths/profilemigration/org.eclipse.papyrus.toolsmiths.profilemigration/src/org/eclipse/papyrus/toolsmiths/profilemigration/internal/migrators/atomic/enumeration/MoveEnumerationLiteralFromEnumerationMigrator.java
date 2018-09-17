@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Initial API and implementation
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 539160
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.profilemigration.internal.migrators.atomic.enumeration;
@@ -50,6 +51,7 @@ public class MoveEnumerationLiteralFromEnumerationMigrator extends DeleteEnumera
 	 * 1] the treeNode is a moved node
 	 * 2] the moved element is a EnumerationLiteral
 	 * 3] the new container is in the currently profile use for the migration
+	 * 4] the new container is different to the current container
 	 *
 	 * @param treeNode
 	 * @return true if the treeNode represent the current change
@@ -58,7 +60,7 @@ public class MoveEnumerationLiteralFromEnumerationMigrator extends DeleteEnumera
 		if (TreeNodeUtils.isMoveChange(treeNode)) {
 			Object element = TreeNodeUtils.getMovedElement(treeNode);
 			EObject oldContainer = TreeNodeUtils.getMovedSourceContainer(treeNode, MigratorProfileApplication.comparison);
-			if (element instanceof EnumerationLiteral && oldContainer != null && oldContainer instanceof Enumeration) {
+			if (element instanceof EnumerationLiteral && oldContainer != null && oldContainer instanceof Enumeration && oldContainer != ((EnumerationLiteral) element).getOwner()) {
 				if (TreeNodeUtils.getNearestProfile(treeNode) == MigratorProfileApplication.appliedProfile) {
 					return true;
 				}
@@ -80,7 +82,7 @@ public class MoveEnumerationLiteralFromEnumerationMigrator extends DeleteEnumera
 
 	/**
 	 * Get the new container of the element
-	 * 
+	 *
 	 * @return the new container of the element
 	 */
 	@Override
@@ -90,7 +92,7 @@ public class MoveEnumerationLiteralFromEnumerationMigrator extends DeleteEnumera
 
 	/**
 	 * Get the old container of the element (before the move)
-	 * 
+	 *
 	 * @return the old container of the element
 	 */
 	@Override
@@ -111,7 +113,7 @@ public class MoveEnumerationLiteralFromEnumerationMigrator extends DeleteEnumera
 
 	/**
 	 * Get the moved element
-	 * 
+	 *
 	 * @return the moved element
 	 */
 	@Override

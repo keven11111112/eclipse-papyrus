@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Initial API and implementation
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 539160
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.profilemigration.internal.migrators.atomic.profile;
@@ -18,6 +19,7 @@ package org.eclipse.papyrus.toolsmiths.profilemigration.internal.migrators.atomi
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.tree.TreeNode;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.toolsmiths.profilemigration.MigratorProfileApplication;
@@ -39,10 +41,10 @@ import org.eclipse.uml2.uml.Stereotype;
 /**
  * If a profile is moved to another profile then the migration tool shall focus
  * on the preservation of the stereotype applications available at the profiled model.
- * 
+ *
  * If the profile was moved in a profile that is already applied on the profiled
  * model then the migration is trivial and every stereotype application shall remain.
- * 
+ *
  * If the profile was moved in a profile that is not already applied on the profiled model
  * then the migration tool asks the designer if the moved profile should be reapplied.
  * If the designer answers 'yes' every stereotype application shall remain conversely if
@@ -71,6 +73,7 @@ public class MoveProfileMigrator extends AbstractMigrator implements IMoveProfil
 	 * 1] the treeNode is a moved node
 	 * 2] the moved element is a Profile
 	 * 3] the moved profile is the currently profile use for the migration
+	 * 4] the new container is different to the current container
 	 *
 	 * @param treeNode
 	 * @return true if the treeNode represent the current change
@@ -78,7 +81,8 @@ public class MoveProfileMigrator extends AbstractMigrator implements IMoveProfil
 	public static boolean isValid(TreeNode treeNode) {
 		if (TreeNodeUtils.isMoveChange(treeNode)) {
 			Object element = TreeNodeUtils.getMovedElement(treeNode);
-			if (element instanceof Profile) {
+			EObject oldContainer = TreeNodeUtils.getMovedSourceContainer(treeNode, MigratorProfileApplication.comparison);
+			if (element instanceof Profile && oldContainer != ((Profile) element).getOwner()) {
 				if (element == MigratorProfileApplication.appliedProfile) {
 					return true;
 				}
@@ -152,7 +156,7 @@ public class MoveProfileMigrator extends AbstractMigrator implements IMoveProfil
 
 	/**
 	 * Get the value of the preference for the specific dialog
-	 * 
+	 *
 	 * @return true if the dialog should be display
 	 */
 	private boolean isDisplayDialogPreference() {
@@ -162,17 +166,17 @@ public class MoveProfileMigrator extends AbstractMigrator implements IMoveProfil
 
 	/**
 	 * Get the new container of the element
-	 * 
+	 *
 	 * @return the new container of the element
 	 */
 	@Override
 	public Element getTargetContainer() {
-		return (Element) newContainer;
+		return newContainer;
 	}
 
 	/**
 	 * Get the old container of the element (before the move)
-	 * 
+	 *
 	 * @return the old container of the element
 	 */
 	@Override
@@ -182,7 +186,7 @@ public class MoveProfileMigrator extends AbstractMigrator implements IMoveProfil
 
 	/**
 	 * Get the moved element
-	 * 
+	 *
 	 * @return the moved element
 	 */
 	@Override
@@ -192,7 +196,7 @@ public class MoveProfileMigrator extends AbstractMigrator implements IMoveProfil
 
 	/**
 	 * Get the moved profile
-	 * 
+	 *
 	 * @return the moved profile
 	 */
 	@Override
