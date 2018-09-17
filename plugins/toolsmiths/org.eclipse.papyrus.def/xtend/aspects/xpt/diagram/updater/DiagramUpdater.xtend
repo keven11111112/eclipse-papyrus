@@ -53,280 +53,280 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenFeature
 	@Inject MetaModel xptMetaModel;
 
 	def diagramUpdaterInstanceToUse(GenDiagramUpdater it) '''
-		«IF it.eResource.allContents.filter(typeof(CustomDiagramUpdaterSingleton)).filter[v|v.singletonPath != null].size ==
-			1»
-			«it.eResource.allContents.filter(typeof(CustomDiagramUpdaterSingleton)).filter[v|v.singletonPath != null].head.
-			singletonPath»
-		«ELSE»
-			«diagramUpdaterQualifiedClassName».INSTANCE
-		«ENDIF»
+		Â«IF it.eResource.allContents.filter(typeof(CustomDiagramUpdaterSingleton)).filter[v|v.singletonPath != null].size ==
+			1Â»
+			Â«it.eResource.allContents.filter(typeof(CustomDiagramUpdaterSingleton)).filter[v|v.singletonPath != null].head.
+			singletonPathÂ»
+		Â«ELSEÂ»
+			Â«diagramUpdaterQualifiedClassNameÂ».INSTANCE
+		Â«ENDIFÂ»
 	'''
 
 	protected def typeOfCrossReferenceAdapter() '''org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter'''
 
-	override getSemanticChildrenMethodCall(GenContainerBase it) '''«diagramUpdaterInstanceToUse(it.diagramUpdater)».«getSemanticChildrenMethodName(
-		it)»'''
+	override getSemanticChildrenMethodCall(GenContainerBase it) '''Â«diagramUpdaterInstanceToUse(it.diagramUpdater)Â».Â«getSemanticChildrenMethodName(
+		it)Â»'''
 
-	override doGetSomeLinksMethodCall(GenCommonBase it, UpdaterLinkType linkType) '''«diagramUpdaterInstanceToUse(
-		it.getDiagram().diagramUpdater)».«linkGetterName(linkType)»'''
+	override doGetSomeLinksMethodCall(GenCommonBase it, UpdaterLinkType linkType) '''Â«diagramUpdaterInstanceToUse(
+		it.getDiagram().diagramUpdater)Â».Â«linkGetterName(linkType)Â»'''
 
 	//	override runtimeTypedInstanceName(GenDiagramUpdater it) '''INSTANCE'''
 	//
-	//	override runtimeTypedInstanceCall(GenDiagramUpdater it) '''«qualifiedClassName(it)».«runtimeTypedInstanceName(it)»'''
+	//	override runtimeTypedInstanceCall(GenDiagramUpdater it) '''Â«qualifiedClassName(it)Â».Â«runtimeTypedInstanceName(it)Â»'''
 	//protected constructor to allow overriding	
 	def _constructor(GenDiagramUpdater it) '''
-		«generatedMemberComment()»
-		protected «diagramUpdaterClassName»(){
+		Â«generatedMemberComment()Â»
+		protected Â«diagramUpdaterClassNameÂ»(){
 			//to prevent instantiation allowing the override
 		}
 	'''
 
 	//create the singleton using custom class defined in GMFGen
 	public def classSingleton(GenDiagramUpdater it) '''
-		«««we create the singleton only in the case where there is no custom diagram updater
-	«IF it.eResource.allContents.filter(typeof(CustomDiagramUpdaterSingleton)).filter[v|v.singletonPath != null].size != 1»
-			«generatedMemberComment()»
-			public static final  «diagramUpdaterQualifiedClassName» INSTANCE = new «diagramUpdaterClassName»();
-		«ENDIF»
+		Â«Â«Â«we create the singleton only in the case where there is no custom diagram updater
+	Â«IF it.eResource.allContents.filter(typeof(CustomDiagramUpdaterSingleton)).filter[v|v.singletonPath != null].size != 1Â»
+			Â«generatedMemberComment()Â»
+			public static final  Â«diagramUpdaterQualifiedClassNameÂ» INSTANCE = new Â«diagramUpdaterClassNameÂ»();
+		Â«ENDIFÂ»
 	'''
 
 	override DiagramUpdater(GenDiagramUpdater it) '''
-			«copyright(editorGen)»
-			package «packageName(it)»;
+			Â«copyright(editorGen)Â»
+			package Â«packageName(it)Â»;
 			
-			«generatedClassComment»
-			public class «className(it)» implements  org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater {
-			«classSingleton(it)»
-			«_constructor(it)»
-			«isShortcutOrphaned(it)»
-			«var semanticContainers = it.editorGen.diagram.allContainers.filter[container|hasSemanticChildren(container)]»
-			«getGenericSemanticChildrenOfView(it, semanticContainers)»
-			«FOR next : semanticContainers»
-			«getSemanticChildrenOfView(next)»
-			«ENDFOR»
+			Â«generatedClassCommentÂ»
+			public class Â«className(it)Â» implements  org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater {
+			Â«classSingleton(it)Â»
+			Â«_constructor(it)Â»
+			Â«isShortcutOrphaned(it)Â»
+			Â«var semanticContainers = it.editorGen.diagram.allContainers.filter[container|hasSemanticChildren(container)]Â»
+			Â«getGenericSemanticChildrenOfView(it, semanticContainers)Â»
+			Â«FOR next : semanticContainersÂ»
+			Â«getSemanticChildrenOfView(next)Â»
+			Â«ENDFORÂ»
 			
-			«getPhantomNodesIterator(it)»
+			Â«getPhantomNodesIterator(it)Â»
 			
-			«getGenericConnectedLinks(it, getAllSemanticElements(editorGen.diagram), UpdaterLinkType::CONTAINED)»
+			Â«getGenericConnectedLinks(it, getAllSemanticElements(editorGen.diagram), UpdaterLinkType::CONTAINED)Â»
 			
-			«getGenericConnectedLinks(it, getAllSemanticDiagramElements(editorGen.diagram), UpdaterLinkType::INCOMING)»
+			Â«getGenericConnectedLinks(it, getAllSemanticDiagramElements(editorGen.diagram), UpdaterLinkType::INCOMING)Â»
 			
-			«getGenericConnectedLinks(it, getAllSemanticDiagramElements(editorGen.diagram), UpdaterLinkType::OUTGOING)»
-			«FOR e : getAllSemanticElements(editorGen.diagram)»
-			«getContainedLinks(e)»
-			«ENDFOR»
-			«FOR e : getAllSemanticDiagramElements(editorGen.diagram)»
-			«getIncomingLinks(e)»
-			«ENDFOR»
-			«FOR e : getAllSemanticDiagramElements(editorGen.diagram)»
-			«getOutgoingLinks(e)»
-			«ENDFOR»
-			«FOR link : getAllContainedLinks(editorGen.diagram)»
-			«getContainedLinksByTypeMethod(link)»
-			«ENDFOR»
-			«FOR link : getAllIncomingLinks(editorGen.diagram)»
-			«getIncomingLinksByTypeMethod(link)»
-			«ENDFOR»
-			«FOR link : getAllOutgoingLinks(editorGen.diagram)»
-			«getOutgoingLinksByTypeMethod(link)»
-			«ENDFOR»
+			Â«getGenericConnectedLinks(it, getAllSemanticDiagramElements(editorGen.diagram), UpdaterLinkType::OUTGOING)Â»
+			Â«FOR e : getAllSemanticElements(editorGen.diagram)Â»
+			Â«getContainedLinks(e)Â»
+			Â«ENDFORÂ»
+			Â«FOR e : getAllSemanticDiagramElements(editorGen.diagram)Â»
+			Â«getIncomingLinks(e)Â»
+			Â«ENDFORÂ»
+			Â«FOR e : getAllSemanticDiagramElements(editorGen.diagram)Â»
+			Â«getOutgoingLinks(e)Â»
+			Â«ENDFORÂ»
+			Â«FOR link : getAllContainedLinks(editorGen.diagram)Â»
+			Â«getContainedLinksByTypeMethod(link)Â»
+			Â«ENDFORÂ»
+			Â«FOR link : getAllIncomingLinks(editorGen.diagram)Â»
+			Â«getIncomingLinksByTypeMethod(link)Â»
+			Â«ENDFORÂ»
+			Â«FOR link : getAllOutgoingLinks(editorGen.diagram)Â»
+			Â«getOutgoingLinksByTypeMethod(link)Â»
+			Â«ENDFORÂ»
 			
-			«runtimeTypedInstance(it)»
+			Â«runtimeTypedInstance(it)Â»
 			
-			«additions(it)»
+			Â«additions(it)Â»
 		}
 	'''
 
 	override def getConnectedLinks(GenCommonBase it, Iterable<GenLink> genLinks, UpdaterLinkType linkType,
 		boolean needCrossReferencer) '''
 		
-		«generatedMemberComment»
-		«««remove static modifier
-		public «listOfLinkDescriptors(it)» «linkGetterName(it, linkType)»(org.eclipse.gmf.runtime.notation.View view) {
-		«IF genLinks.notEmpty»
-			«xptMetaModel.DeclareAndAssign(it.metaClass, 'modelElement', 'view.getElement()')»
-			«IF needCrossReferencer»
-				«typeOfCrossReferenceAdapter» crossReferencer = «typeOfCrossReferenceAdapter».getCrossReferenceAdapter(view.eResource().getResourceSet());
-			«ENDIF»
-			«newLinkedListOfLinkDescriptors(it.diagramUpdater, 'result')»();
-			«FOR link : genLinks»
-				«colectConnectedLinks(link, linkType, needCrossReferencer, isExternalInterface(it.metaClass))»
-			«ENDFOR»
+		Â«generatedMemberCommentÂ»
+		Â«Â«Â«remove static modifier
+		public Â«listOfLinkDescriptors(it)Â» Â«linkGetterName(it, linkType)Â»(org.eclipse.gmf.runtime.notation.View view) {
+		Â«IF genLinks.notEmptyÂ»
+			Â«xptMetaModel.DeclareAndAssign(it.metaClass, 'modelElement', 'view.getElement()')Â»
+			Â«IF needCrossReferencerÂ»
+				Â«typeOfCrossReferenceAdapterÂ» crossReferencer = Â«typeOfCrossReferenceAdapterÂ».getCrossReferenceAdapter(view.eResource().getResourceSet());
+			Â«ENDIFÂ»
+			Â«newLinkedListOfLinkDescriptors(it.diagramUpdater, 'result')Â»();
+			Â«FOR link : genLinksÂ»
+				Â«colectConnectedLinks(link, linkType, needCrossReferencer, isExternalInterface(it.metaClass))Â»
+			Â«ENDFORÂ»
 			return result;
-		«ELSE»
-			return «newEmptyList()»;
-		«ENDIF»
+		Â«ELSEÂ»
+			return Â«newEmptyList()Â»;
+		Â«ENDIFÂ»
 		}
 	'''
 
 	override def colectConnectedLinks(GenLink it, UpdaterLinkType linkType, boolean needCrossReferencer,
 		boolean isExternalInterface) '''
-		«IF it.modelFacet != null»
-			«IF isExternalInterface && !it.modelFacet.oclIsKindOf(typeof(FeatureLinkModelFacet))»
-				if («xptMetaModel.IsInstance(it.modelFacet.getLinkEndType(linkType), 'modelElement')») {
-			«ENDIF»
-			result.addAll(«chooseConnectedLinksByTypeMethodName(it.modelFacet, linkType, it)»(« //
-		IF isExternalInterface && !it.modelFacet.oclIsKindOf(typeof(FeatureLinkModelFacet))»«xptMetaModel.
-			CastEObject(it.modelFacet.getLinkEndType(linkType), 'modelElement')»«ELSE»modelElement«ENDIF»«IF needCrossReferencer», crossReferencer«ENDIF»));  
-			«IF isExternalInterface && !it.modelFacet.oclIsKindOf(typeof(FeatureLinkModelFacet))»
+		Â«IF it.modelFacet != nullÂ»
+			Â«IF isExternalInterface && !it.modelFacet.oclIsKindOf(typeof(FeatureLinkModelFacet))Â»
+				if (Â«xptMetaModel.IsInstance(it.modelFacet.getLinkEndType(linkType), 'modelElement')Â») {
+			Â«ENDIFÂ»
+			result.addAll(Â«chooseConnectedLinksByTypeMethodName(it.modelFacet, linkType, it)Â»(Â« //
+		IF isExternalInterface && !it.modelFacet.oclIsKindOf(typeof(FeatureLinkModelFacet))Â»Â«xptMetaModel.
+			CastEObject(it.modelFacet.getLinkEndType(linkType), 'modelElement')Â»Â«ELSEÂ»modelElementÂ«ENDIFÂ»Â«IF needCrossReferencerÂ», crossReferencerÂ«ENDIFÂ»));  
+			Â«IF isExternalInterface && !it.modelFacet.oclIsKindOf(typeof(FeatureLinkModelFacet))Â»
 				}
-			«ENDIF»
-		«ENDIF»
+			Â«ENDIFÂ»
+		Â«ENDIFÂ»
 	'''
 
 	override def getIncomingLinksByTypeMethod(GenLink it) '''
-		   «generatedMemberComment»
-		   «««remove static modifier + private->protected
-		protected java.util.Collection<«linkDescriptor.qualifiedClassName(it.diagramUpdater)»> «getConnectedLinksByTypeMethodName(
-			UpdaterLinkType::INCOMING)»(«xptMetaModel.QualifiedClassName(it.modelFacet.targetType)» target, «typeOfCrossReferenceAdapter» crossReferencer) {
-		 «newLinkedListOfLinkDescriptors(it.diagramUpdater, 'result')»();
+		   Â«generatedMemberCommentÂ»
+		   Â«Â«Â«remove static modifier + private->protected
+		protected java.util.Collection<Â«linkDescriptor.qualifiedClassName(it.diagramUpdater)Â»> Â«getConnectedLinksByTypeMethodName(
+			UpdaterLinkType::INCOMING)Â»(Â«xptMetaModel.QualifiedClassName(it.modelFacet.targetType)Â» target, Â«typeOfCrossReferenceAdapterÂ» crossReferencer) {
+		 Â«newLinkedListOfLinkDescriptors(it.diagramUpdater, 'result')Â»();
 		 java.util.Collection<org.eclipse.emf.ecore.EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		 for (org.eclipse.emf.ecore.EStructuralFeature.Setting setting : settings) {
-		    «getIncomingLinksByTypeMethodBody(it.modelFacet, it)»
+		    Â«getIncomingLinksByTypeMethodBody(it.modelFacet, it)Â»
 		 }
 		 return result;  
 		}
 	'''
 
-	def CharSequence getICustomDiagramUpdater(GenContainerBase it) '''org.eclipse.papyrus.uml.diagram.common.part.ICustomDiagramUpdater<«nodeDescriptor.
-		qualifiedClassName(it.diagramUpdater)»>'''
+	def CharSequence getICustomDiagramUpdater(GenContainerBase it) '''org.eclipse.papyrus.uml.diagram.common.part.ICustomDiagramUpdater<Â«nodeDescriptor.
+		qualifiedClassName(it.diagramUpdater)Â»>'''
 
 	override getSemanticChildrenOfView(GenContainerBase it) '''
-		«««remove static modifier
-		«IF it.eResource.allContents.filter(typeof(SpecificDiagramUpdater)).filter[v|v.genNode == it && v.classpath != null].
-			size != 0»
-			«generatedMemberComment»
-			«FOR updater : it.eResource.allContents.filter(typeof(SpecificDiagramUpdater)).filter[v|
-			v.genNode == it && v.classpath != null].toIterable»
-				public  «listOfNodeDescriptors» «getSemanticChildrenMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
-					«getICustomDiagramUpdater(it)» customUpdater = new «updater.classpath»();
+		Â«Â«Â«remove static modifier
+		Â«IF it.eResource.allContents.filter(typeof(SpecificDiagramUpdater)).filter[v|v.genNode == it && v.classpath != null].
+			size != 0Â»
+			Â«generatedMemberCommentÂ»
+			Â«FOR updater : it.eResource.allContents.filter(typeof(SpecificDiagramUpdater)).filter[v|
+			v.genNode == it && v.classpath != null].toIterableÂ»
+				public  Â«listOfNodeDescriptorsÂ» Â«getSemanticChildrenMethodName(it)Â»(org.eclipse.gmf.runtime.notation.View view) {
+					Â«getICustomDiagramUpdater(it)Â» customUpdater = new Â«updater.classpathÂ»();
 					return customUpdater.getSemanticChildren(view);
 				}
-			«ENDFOR»	
-			«ELSE»
-			«generatedMemberComment»
-			public  «listOfNodeDescriptors» «getSemanticChildrenMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
-				«IF getSemanticChildrenChildFeatures(it).notEmpty || it.getPhantomNodes().notEmpty»
-					«defineModelElement(it)»
-					«newLinkedListOfNodeDescriptors(it.diagramUpdater, 'result')»();
-					«/* childMetaFeature can be null here! */FOR childMetaFeature : getSemanticChildrenChildFeatures(it)»
-						«IF null == childMetaFeature»
+			Â«ENDFORÂ»	
+			Â«ELSEÂ»
+			Â«generatedMemberCommentÂ»
+			public  Â«listOfNodeDescriptorsÂ» Â«getSemanticChildrenMethodName(it)Â»(org.eclipse.gmf.runtime.notation.View view) {
+				Â«IF getSemanticChildrenChildFeatures(it).notEmpty || it.getPhantomNodes().notEmptyÂ»
+					Â«defineModelElement(it)Â»
+					Â«newLinkedListOfNodeDescriptors(it.diagramUpdater, 'result')Â»();
+					Â«/* childMetaFeature can be null here! */FOR childMetaFeature : getSemanticChildrenChildFeatures(it)Â»
+						Â«IF null == childMetaFeatureÂ»
 							{ 	/*FIXME no containment/child feature found in the genmodel, toolsmith need to specify Class here manually*/ childElement = 
 								/*FIXME no containment/child feature found in the genmodel, toolsmith need to specify correct one here manually*/;
-						«ELSEIF childMetaFeature.listType»
-							for (java.util.Iterator<?> it = «xptMetaModel.getFeatureValue(childMetaFeature, 'modelElement', it.getModelElementType())».iterator(); it.hasNext();) {
-							«xptMetaModel.DeclareAndAssign(childMetaFeature.typeGenClass, 'childElement', 'it.next()', true)»
-						«ELSE»
-							{ «xptMetaModel.DeclareAndAssign(childMetaFeature.typeGenClass, 'childElement', 'modelElement',
-			it.getModelElementType(), childMetaFeature)»
-						«ENDIF»
-						String visualID = «xptVisualIDRegistry.getNodeVisualIDMethodCall(it.diagram)»(view, «xptMetaModel.
-			DowncastToEObject(childMetaFeature.typeGenClass, 'childElement')»);
-						«FOR next : getSemanticChildren(it, childMetaFeature)»
-							«checkChildElementVisualID(next, null != childMetaFeature && childMetaFeature.listType)»
-						«ENDFOR»
+						Â«ELSEIF childMetaFeature.listTypeÂ»
+							for (java.util.Iterator<?> it = Â«xptMetaModel.getFeatureValue(childMetaFeature, 'modelElement', it.getModelElementType())Â».iterator(); it.hasNext();) {
+							Â«xptMetaModel.DeclareAndAssign(childMetaFeature.typeGenClass, 'childElement', 'it.next()', true)Â»
+						Â«ELSEÂ»
+							{ Â«xptMetaModel.DeclareAndAssign(childMetaFeature.typeGenClass, 'childElement', 'modelElement',
+			it.getModelElementType(), childMetaFeature)Â»
+						Â«ENDIFÂ»
+						String visualID = Â«xptVisualIDRegistry.getNodeVisualIDMethodCall(it.diagram)Â»(view, Â«xptMetaModel.
+			DowncastToEObject(childMetaFeature.typeGenClass, 'childElement')Â»);
+						Â«FOR next : getSemanticChildren(it, childMetaFeature)Â»
+							Â«checkChildElementVisualID(next, null != childMetaFeature && childMetaFeature.listType)Â»
+						Â«ENDFORÂ»
 						}
-					«ENDFOR»
-					«IF it.getPhantomNodes.notEmpty»
+					Â«ENDFORÂ»
+					Â«IF it.getPhantomNodes.notEmptyÂ»
 						org.eclipse.emf.ecore.resource.Resource resource = modelElement.eResource();
 						for (java.util.Iterator<org.eclipse.emf.ecore.EObject> it = getPhantomNodesIterator(resource); it.hasNext();) {
 							org.eclipse.emf.ecore.EObject childElement = it.next();
 							if (childElement == modelElement) {
 								continue;
 							}
-							«FOR phantom : it.phantomNodes»
-								«addNextIfPhantom(phantom)»
-							«ENDFOR»
+							Â«FOR phantom : it.phantomNodesÂ»
+								Â«addNextIfPhantom(phantom)Â»
+							Â«ENDFORÂ»
 						}
-					«ENDIF»		
+					Â«ENDIFÂ»		
 					return result;
-				«ELSE»
-					return «newEmptyList()»;
-				«ENDIF»
+				Â«ELSEÂ»
+					return Â«newEmptyList()Â»;
+				Â«ENDIFÂ»
 			}
-			«ENDIF»	
+			Â«ENDIFÂ»	
 	'''
 	
 	
 	override defineLinkSource(TypeLinkModelFacet it, boolean inLoop) '''
-		«IF sourceMetaFeature.listType»
-			java.util.List<?> sources = «xptMetaModel.getFeatureValue(sourceMetaFeature, 'link', metaClass)»;
+		Â«IF sourceMetaFeature.listTypeÂ»
+			java.util.List<?> sources = Â«xptMetaModel.getFeatureValue(sourceMetaFeature, 'link', metaClass)Â»;
 			Object theSource = sources.size() == 1 ? sources.get(0) : null;
-			if («xptMetaModel.NotInstance(it.sourceType, 'theSource')») {
-				«stopLinkProcessing(inLoop)»
+			if (Â«xptMetaModel.NotInstance(it.sourceType, 'theSource')Â») {
+				Â«stopLinkProcessing(inLoop)Â»
 			}
-			«xptMetaModel.DeclareAndAssign(it.sourceType, 'src', 'theSource', true)»
-		«ELSE»
-			«xptMetaModel.DeclareAndAssign(it.sourceType, 'src', 'link', metaClass, sourceMetaFeature)»
-		«ENDIF»
+			Â«xptMetaModel.DeclareAndAssign(it.sourceType, 'src', 'theSource', true)Â»
+		Â«ELSEÂ»
+			Â«xptMetaModel.DeclareAndAssign(it.sourceType, 'src', 'link', metaClass, sourceMetaFeature)Â»
+		Â«ENDIFÂ»
 	'''
 
 	def isDiagram(GenDiagram it) ''''''
 
 	override defineLinkDestination(TypeLinkModelFacet it, Boolean inLoop) '''
-		«IF targetMetaFeature.listType»
-			java.util.List<?> targets = «xptMetaModel.getFeatureValue(it.targetMetaFeature, 'link', metaClass)»;
+		Â«IF targetMetaFeature.listTypeÂ»
+			java.util.List<?> targets = Â«xptMetaModel.getFeatureValue(it.targetMetaFeature, 'link', metaClass)Â»;
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if («xptMetaModel.NotInstance(it.targetType, 'theTarget')») {
-				«stopLinkProcessing(inLoop)»
+			if (Â«xptMetaModel.NotInstance(it.targetType, 'theTarget')Â») {
+				Â«stopLinkProcessing(inLoop)Â»
 			}
-			«xptMetaModel.DeclareAndAssign(it.targetType, 'dst', 'theTarget', true)»
-		«ELSE»
-			«xptMetaModel.DeclareAndAssign(it.targetType, 'dst', 'link', metaClass, targetMetaFeature)»
-		«ENDIF»
+			Â«xptMetaModel.DeclareAndAssign(it.targetType, 'dst', 'theTarget', true)Â»
+		Â«ELSEÂ»
+			Â«xptMetaModel.DeclareAndAssign(it.targetType, 'dst', 'link', metaClass, targetMetaFeature)Â»
+		Â«ENDIFÂ»
 	'''
 
 	//remove static modifier + private->protected
-	override getOutgoingLinksByTypeMethodSignature(GenLink it) '''protected java.util.Collection<«linkDescriptor.
-		qualifiedClassName(it.diagramUpdater)»> «getConnectedLinksByTypeMethodName(UpdaterLinkType::OUTGOING)»(«xptMetaModel.
-		QualifiedClassName(it.modelFacet.sourceType)» source)'''
+	override getOutgoingLinksByTypeMethodSignature(GenLink it) '''protected java.util.Collection<Â«linkDescriptor.
+		qualifiedClassName(it.diagramUpdater)Â»> Â«getConnectedLinksByTypeMethodName(UpdaterLinkType::OUTGOING)Â»(Â«xptMetaModel.
+		QualifiedClassName(it.modelFacet.sourceType)Â» source)'''
 
 	override getGenericSemanticChildrenOfView(GenDiagramUpdater it, Iterable<GenContainerBase> semanticContainers) '''
 		
-			«generatedMemberComment»
-			««« remove static modifier
-	public «listOfNodeDescriptors» getSemanticChildren(org.eclipse.gmf.runtime.notation.View view) {
-			«IF semanticContainers.notEmpty»
-				String vid = «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»(view);
+			Â«generatedMemberCommentÂ»
+			Â«Â«Â« remove static modifier
+	public Â«listOfNodeDescriptorsÂ» getSemanticChildren(org.eclipse.gmf.runtime.notation.View view) {
+			Â«IF semanticContainers.notEmptyÂ»
+				String vid = Â«xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)Â»(view);
 				if (vid != null) {
 					switch (vid) {
-						«FOR next : semanticContainers»
-							«getSemanticChildrenCase(next)»
-						«ENDFOR»
+						Â«FOR next : semanticContainersÂ»
+							Â«getSemanticChildrenCase(next)Â»
+						Â«ENDFORÂ»
 					}
 				}
-			«ENDIF»
-			return «newEmptyList()»;
+			Â«ENDIFÂ»
+			return Â«newEmptyList()Â»;
 		}
 	'''
 
 	override dispatch getContainedLinksByTypeMethod(TypeLinkModelFacet it, GenLink genLink) '''
 		
-		«generatedMemberComment»
-		««« remove static modifier + private->protected
-	protected java.util.Collection<«linkDescriptor.qualifiedClassName(genLink.diagramUpdater)»> «getConnectedLinksByTypeMethodName(
-			genLink, UpdaterLinkType::CONTAINED)»(«xptMetaModel.QualifiedClassName(childMetaFeature.genClass)» container) {
-			«getContainedLinksByTypeMethodBody(it, genLink, false)»
+		Â«generatedMemberCommentÂ»
+		Â«Â«Â« remove static modifier + private->protected
+	protected java.util.Collection<Â«linkDescriptor.qualifiedClassName(genLink.diagramUpdater)Â»> Â«getConnectedLinksByTypeMethodName(
+			genLink, UpdaterLinkType::CONTAINED)Â»(Â«xptMetaModel.QualifiedClassName(childMetaFeature.genClass)Â» container) {
+			Â«getContainedLinksByTypeMethodBody(it, genLink, false)Â»
 		}
 	'''
 
 	override getGenericConnectedLinks(GenDiagramUpdater it, Iterable<? extends GenCommonBase> linkContainers,
 		UpdaterLinkType linkType) '''
 		
-		«generatedMemberComment»
-		««« remove static modifier
-	public «listOfLinkDescriptors» get«linkType.linkMethodSuffix»Links(org.eclipse.gmf.runtime.notation.View view) {
-			«IF linkContainers.notEmpty»
-				String vid = «xptVisualIDRegistry.getVisualIDMethodCall(it.editorGen.diagram)»(view);
+		Â«generatedMemberCommentÂ»
+		Â«Â«Â« remove static modifier
+	public Â«listOfLinkDescriptorsÂ» getÂ«linkType.linkMethodSuffixÂ»Links(org.eclipse.gmf.runtime.notation.View view) {
+			Â«IF linkContainers.notEmptyÂ»
+				String vid = Â«xptVisualIDRegistry.getVisualIDMethodCall(it.editorGen.diagram)Â»(view);
 				if (vid != null) {
 					switch (vid) {
-						«FOR next : linkContainers»
-							«getContainedLinksCase(next, linkType)»
-						«ENDFOR»
+						Â«FOR next : linkContainersÂ»
+							Â«getContainedLinksCase(next, linkType)Â»
+						Â«ENDFORÂ»
 					}
 				}
-			«ENDIF»
-			return «newEmptyList»;
+			Â«ENDIFÂ»
+			return Â«newEmptyListÂ»;
 		}
 	'''
 
@@ -338,25 +338,25 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenFeature
 	 * Need to check with case when it.modelFacet.childMetaFeature == null    
 	 */
 	override def checkChildElementVisualID(GenNode it, Boolean inLoop) '''
-	if («VisualIDRegistry::visualID(it)».equals(visualID)) {
-		result.add(new «nodeDescriptor.qualifiedClassName(it.getDiagram().diagramUpdater)»(«IF null != modelFacet.childMetaFeature»«xptMetaModel.DowncastToEObject(modelFacet.childMetaFeature.typeGenClass, 'childElement')», «ENDIF»visualID));
-	«IF inLoop»
+	if (Â«VisualIDRegistry::visualID(it)Â».equals(visualID)) {
+		result.add(new Â«nodeDescriptor.qualifiedClassName(it.getDiagram().diagramUpdater)Â»(Â«IF null != modelFacet.childMetaFeatureÂ»Â«xptMetaModel.DowncastToEObject(modelFacet.childMetaFeature.typeGenClass, 'childElement')Â», Â«ENDIFÂ»visualID));
+	Â«IF inLoopÂ»
 		continue;
-	«ENDIF»
+	Â«ENDIFÂ»
 	}
 	'''
 
 	override def checkLinkVisualID(TypeLinkModelFacet it, GenLink genLink, boolean inLoop) '''
-	if (!«VisualIDRegistry::visualID(genLink)».equals(«xptVisualIDRegistry.getLinkWithClassVisualIDMethodCall(genLink.diagram)»(«xptMetaModel.DowncastToEObject(metaClass, 'link')»))) {
-		«stopLinkProcessing(inLoop)»
+	if (!Â«VisualIDRegistry::visualID(genLink)Â».equals(Â«xptVisualIDRegistry.getLinkWithClassVisualIDMethodCall(genLink.diagram)Â»(Â«xptMetaModel.DowncastToEObject(metaClass, 'link')Â»))) {
+		Â«stopLinkProcessing(inLoop)Â»
 	}
 	'''
 
-	override def getSemanticChildrenMethodName(GenContainerBase it) '''get«stringUniqueIdentifier()»_SemanticChildren'''
+	override def getSemanticChildrenMethodName(GenContainerBase it) '''getÂ«stringUniqueIdentifier()Â»_SemanticChildren'''
 	
-	override protected def linkGetterName(GenCommonBase it, UpdaterLinkType linkType) '''get«stringUniqueIdentifier()»_«linkType.linkMethodSuffix»Links'''
+	override protected def linkGetterName(GenCommonBase it, UpdaterLinkType linkType) '''getÂ«stringUniqueIdentifier()Â»_Â«linkType.linkMethodSuffixÂ»Links'''
 	
-	override def getConnectedLinksByTypeMethodName(GenLink it, UpdaterLinkType linkType) '''get«linkType.linkMethodSuffix»«getConnectedLinksByTypeMethodFragment(modelFacet)»_«stringVisualID»'''
+	override def getConnectedLinksByTypeMethodName(GenLink it, UpdaterLinkType linkType) '''getÂ«linkType.linkMethodSuffixÂ»Â«getConnectedLinksByTypeMethodFragment(modelFacet)Â»_Â«stringVisualIDÂ»'''
 	
 	override def dispatch getConnectedLinksByTypeMethodFragment(TypeLinkModelFacet it) '''TypeModelFacetLinks'''
 	

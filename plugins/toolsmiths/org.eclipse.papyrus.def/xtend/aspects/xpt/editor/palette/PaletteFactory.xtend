@@ -33,59 +33,59 @@ import xpt.providers.ElementTypes
 
 
 	override PaletteFactory(Palette it) '''
-		«copyright(diagram.editorGen)»
-		package «packageName»;
+		Â«copyright(diagram.editorGen)Â»
+		package Â«packageNameÂ»;
 		
-		«generatedClassComment»
-		public class «factoryClassName» extends org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory.Adapter {
+		Â«generatedClassCommentÂ»
+		public class Â«factoryClassNameÂ» extends org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory.Adapter {
 			//RS: New Palette generation
 		
 		//Generates the ID for the tool elements
 		//Generate the tool factory (if(ID) createtool...)
-		«FOR tool : collectTools(it)»
-			«generateIDAttribute(tool)»
-		«ENDFOR»
+		Â«FOR tool : collectTools(it)Â»
+			Â«generateIDAttribute(tool)Â»
+		Â«ENDFORÂ»
 		
-		«««Generates the default constructor
-		«generatedMemberComment»
-			public «factoryClassName»() {
+		Â«Â«Â«Generates the default constructor
+		Â«generatedMemberCommentÂ»
+			public Â«factoryClassNameÂ»() {
 			
 			}
 			
-		«««Generates the main method to create tool
-		«generateCreateTool(it)»
+		Â«Â«Â«Generates the main method to create tool
+		Â«generateCreateTool(it)Â»
 		
-		«««Generates the main method to create template
-		«generateGetTemplate(it)»
+		Â«Â«Â«Generates the main method to create template
+		Â«generateGetTemplate(it)Â»
 		
-		«««Generates each method for tool creation
+		Â«Â«Â«Generates each method for tool creation
 		
-		«FOR tool : collectTools(it)»
-			«createTool(tool)»
-		«ENDFOR»
+		Â«FOR tool : collectTools(it)Â»
+			Â«createTool(tool)Â»
+		Â«ENDFORÂ»
 		
 		}
 	'''
 
 	def generateCreateTool(Palette it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 			public org.eclipse.gef.Tool createTool(String toolId) {
-				«FOR tool : collectTools(it)»
-					«checkToolID(tool)»
-			«ENDFOR»
+				Â«FOR tool : collectTools(it)Â»
+					Â«checkToolID(tool)Â»
+			Â«ENDFORÂ»
 			// default return: null
 			return null;
 			}
 	'''
 
 	def checkToolID(AbstractToolEntry it) '''
-		if (toolId.equals(«getConstantIDName(id)»)) {
-			return «createMethodName»();
+		if (toolId.equals(Â«getConstantIDName(id)Â»)) {
+			return Â«createMethodNameÂ»();
 		}
 	'''
 
 	def generateGetTemplate(Palette it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 			public Object getTemplate(String templateId) {
 				
 				// default return: null
@@ -94,29 +94,29 @@ import xpt.providers.ElementTypes
 	'''
 
 	def generateIDAttribute(AbstractToolEntry it) '''
-		«generatedMemberComment»
-		private final static String «getConstantIDName(id)» = «id»;«IF isQuoted(id,'"')»«nonNLS»«ENDIF»
+		Â«generatedMemberCommentÂ»
+		private final static String Â«getConstantIDName(id)Â» = Â«idÂ»;Â«IF isQuoted(id,'"')Â»Â«nonNLSÂ»Â«ENDIFÂ»
 	'''
 
 	def createTool(AbstractToolEntry it) '''
-		«generatedMemberComment»
-		private org.eclipse.gef.Tool «createMethodName»() {
-			«newTool(it as ToolEntry, 'entry')»
+		Â«generatedMemberCommentÂ»
+		private org.eclipse.gef.Tool Â«createMethodNameÂ»() {
+			Â«newTool(it as ToolEntry, 'entry')Â»
 		}
 	'''
 
 	def newTool(ToolEntry it, String toolVarName) '''
-		«IF elements.isEmpty()»
-			«ERROR('no elements for tool generation (Palette)')»
-		«ELSE»
-			java.util.List<org.eclipse.gmf.runtime.emf.type.core.IElementType> types = new java.util.ArrayList<org.eclipse.gmf.runtime.emf.type.core.IElementType>(«elements.size»);
-				«FOR e : elements»
-					types.add(«xptElementTypes.accessElementType(e)»);
-				«ENDFOR»
-				«««	RS: modified tool creation to have stereotypes-aware tools
-		org.eclipse.gef.Tool tool = new org.eclipse.papyrus.uml.diagram.common.service.«IF it.genNodes.isEmpty()»AspectUnspecifiedTypeConnectionTool«ELSE»AspectUnspecifiedTypeCreationTool«ENDIF»(types);
+		Â«IF elements.isEmpty()Â»
+			Â«ERROR('no elements for tool generation (Palette)')Â»
+		Â«ELSEÂ»
+			java.util.List<org.eclipse.gmf.runtime.emf.type.core.IElementType> types = new java.util.ArrayList<org.eclipse.gmf.runtime.emf.type.core.IElementType>(Â«elements.sizeÂ»);
+				Â«FOR e : elementsÂ»
+					types.add(Â«xptElementTypes.accessElementType(e)Â»);
+				Â«ENDFORÂ»
+				Â«Â«Â«	RS: modified tool creation to have stereotypes-aware tools
+		org.eclipse.gef.Tool tool = new org.eclipse.papyrus.uml.diagram.common.service.Â«IF it.genNodes.isEmpty()Â»AspectUnspecifiedTypeConnectionToolÂ«ELSEÂ»AspectUnspecifiedTypeCreationToolÂ«ENDIFÂ»(types);
 			return tool;
-		«ENDIF»
+		Â«ENDIFÂ»
 	'''
 
 }

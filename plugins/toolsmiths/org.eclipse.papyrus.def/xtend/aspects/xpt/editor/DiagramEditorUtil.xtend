@@ -35,59 +35,59 @@ import com.google.inject.Singleton
 	@Inject MetaModel xptMetaModel
 
 	override def getUniqueFileNameMethod(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public static String getUniqueFileName(org.eclipse.core.runtime.IPath containerFullPath, String fileName, String extension) {
-			return org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath, fileName, extension, «»
-				org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil.«IF editorGen.application == null»EXISTS_IN_WORKSPACE«ELSE»EXISTS_AS_IO_FILE«ENDIF»);
+			return org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil.getUniqueFileName(containerFullPath, fileName, extension, Â«Â»
+				org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.part.DefaultDiagramEditorUtil.Â«IF editorGen.application == nullÂ»EXISTS_IN_WORKSPACEÂ«ELSEÂ»EXISTS_AS_IO_FILEÂ«ENDIFÂ»);
 		}
 	'''
 	
 	override createDiagramMethod(GenDiagram it) '''
-		«generatedMemberComment(
-			(if(editorGen.application == null) 'This method should be called within a workspace modify operation since it creates resources.' else ''))»
-		public static org.eclipse.emf.ecore.resource.Resource createDiagram(org.eclipse.emf.common.util.URI diagramURI,«IF standaloneDomainModel(
-			it)» org.eclipse.emf.common.util.URI modelURI,«ENDIF» org.eclipse.core.runtime.IProgressMonitor progressMonitor) {
+		Â«generatedMemberComment(
+			(if(editorGen.application == null) 'This method should be called within a workspace modify operation since it creates resources.' else ''))Â»
+		public static org.eclipse.emf.ecore.resource.Resource createDiagram(org.eclipse.emf.common.util.URI diagramURI,Â«IF standaloneDomainModel(
+			it)Â» org.eclipse.emf.common.util.URI modelURI,Â«ENDIFÂ» org.eclipse.core.runtime.IProgressMonitor progressMonitor) {
 			org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain = org.eclipse.emf.workspace.WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
-			progressMonitor.beginTask(«xptExternalizer.accessorCall(editorGen, i18nKeyForCreateDiagramProgressTask(it))», 3);
+			progressMonitor.beginTask(Â«xptExternalizer.accessorCall(editorGen, i18nKeyForCreateDiagramProgressTask(it))Â», 3);
 			final org.eclipse.emf.ecore.resource.Resource diagramResource = editingDomain.getResourceSet().createResource(diagramURI);
-			«IF standaloneDomainModel(it)»
+			Â«IF standaloneDomainModel(it)Â»
 				final org.eclipse.emf.ecore.resource.Resource modelResource = editingDomain.getResourceSet().createResource(modelURI);
-			«ELSEIF domainDiagramElement != null && hasDocumentRoot(it)/*for standalone models, we assume its resourcefactory would be able to set extendedMetaData option*/»
+			Â«ELSEIF domainDiagramElement != null && hasDocumentRoot(it)/*for standalone models, we assume its resourcefactory would be able to set extendedMetaData option*/Â»
 				((org.eclipse.emf.ecore.xmi.XMLResource) diagramResource).getDefaultSaveOptions().put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
 				((org.eclipse.emf.ecore.xmi.XMLResource) diagramResource).getDefaultLoadOptions().put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
-			«ENDIF»
+			Â«ENDIFÂ»
 			final String diagramName = diagramURI.lastSegment();
-			org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand command = new org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand(editingDomain, «xptExternalizer.
-			accessorCall(editorGen, i18nKeyForCreateDiagramCommandLabel(it))», java.util.Collections.EMPTY_LIST) {
-				«overrideC»
+			org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand command = new org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand(editingDomain, Â«xptExternalizer.
+			accessorCall(editorGen, i18nKeyForCreateDiagramCommandLabel(it))Â», java.util.Collections.EMPTY_LIST) {
+				Â«overrideCÂ»
 				protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
-					«IF domainDiagramElement != null»
-						«xptMetaModel.QualifiedClassName(domainDiagramElement)» model = createInitialModel();
-						attachModelToResource(model, «IF standaloneDomainModel(it)»model«ELSE»diagram«ENDIF»Resource);
-					«ENDIF»
-					«extraLineBreak»
+					Â«IF domainDiagramElement != nullÂ»
+						Â«xptMetaModel.QualifiedClassName(domainDiagramElement)Â» model = createInitialModel();
+						attachModelToResource(model, Â«IF standaloneDomainModel(it)Â»modelÂ«ELSEÂ»diagramÂ«ENDIFÂ»Resource);
+					Â«ENDIFÂ»
+					Â«extraLineBreakÂ»
 					org.eclipse.gmf.runtime.notation.Diagram diagram = org.eclipse.gmf.runtime.diagram.core.services.ViewService.createDiagram(
-						«IF domainDiagramElement != null»
-							«xptMetaModel.DowncastToEObject(domainDiagramElement, 'model')», 
-						«ENDIF»
-						«VisualIDRegistry::modelID(it)», «xptActivator.preferenceHintAccess(editorGen)»);
+						Â«IF domainDiagramElement != nullÂ»
+							Â«xptMetaModel.DowncastToEObject(domainDiagramElement, 'model')Â», 
+						Â«ENDIFÂ»
+						Â«VisualIDRegistry::modelID(it)Â», Â«xptActivator.preferenceHintAccess(editorGen)Â»);
 					if (diagram != null) {
 						diagramResource.getContents().add(diagram);
 						diagram.setName(diagramName);
-						«IF domainDiagramElement != null»
-							diagram.setElement(«xptMetaModel.DowncastToEObject(domainDiagramElement, 'model')»);
-						«ENDIF»
+						Â«IF domainDiagramElement != nullÂ»
+							diagram.setElement(Â«xptMetaModel.DowncastToEObject(domainDiagramElement, 'model')Â»);
+						Â«ENDIFÂ»
 					}
 					
 					try {
-						«IF standaloneDomainModel(it)»modelResource.save(«callGetSaveOptions(it)»);«ENDIF»
-						diagramResource.save(«callGetSaveOptions(it)»);
+						Â«IF standaloneDomainModel(it)Â»modelResource.save(Â«callGetSaveOptions(it)Â»);Â«ENDIFÂ»
+						diagramResource.save(Â«callGetSaveOptions(it)Â»);
 					} catch (java.io.IOException e) {
-						«/* 
+						Â«/* 
 						 * TODO CommandResult.newErrorCommandResult(e) would be better? Or even throw ExecutionEx?
 						 * */
-						extraLineBreak»
-						«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Unable to store model and diagram resources", e);  «nonNLS(1)»
+						extraLineBreakÂ»
+						Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».getInstance().logError("Unable to store model and diagram resources", e);  Â«nonNLS(1)Â»
 					}
 					return org.eclipse.gmf.runtime.common.core.command.CommandResult.newOKCommandResult();
 				}
@@ -95,13 +95,13 @@ import com.google.inject.Singleton
 			try {
 				org.eclipse.core.commands.operations.OperationHistoryFactory.getOperationHistory().execute(command, new org.eclipse.core.runtime.SubProgressMonitor(progressMonitor, 1), null);
 			} catch (org.eclipse.core.commands.ExecutionException e) {
-				«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Unable to create model and diagram", e);  «nonNLS(
-			1)»
+				Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».getInstance().logError("Unable to create model and diagram", e);  Â«nonNLS(
+			1)Â»
 			}
-			«IF editorGen.application == null»
-				«IF standaloneDomainModel(it)»setCharset(org.eclipse.emf.workspace.util.WorkspaceSynchronizer.getFile(modelResource));«ENDIF»
+			Â«IF editorGen.application == nullÂ»
+				Â«IF standaloneDomainModel(it)Â»setCharset(org.eclipse.emf.workspace.util.WorkspaceSynchronizer.getFile(modelResource));Â«ENDIFÂ»
 				setCharset(org.eclipse.emf.workspace.util.WorkspaceSynchronizer.getFile(diagramResource));
-			«ENDIF»
+			Â«ENDIFÂ»
 			return diagramResource;
 		}
 	'''

@@ -29,12 +29,12 @@ import xpt.Common
 	@Inject DomainNavigatorItem xptDomainNavigatorItem;
 
 	override def wrapEObjects(GenNavigator it) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		public Object[] wrapEObjects(Object[] objects, Object parentElement) {
-			java.util.Collection<«xptDomainNavigatorItem.qualifiedClassName(it)»> result = new java.util.ArrayList<«xptDomainNavigatorItem.qualifiedClassName(it)»>();
+			java.util.Collection<Â«xptDomainNavigatorItem.qualifiedClassName(it)Â»> result = new java.util.ArrayList<Â«xptDomainNavigatorItem.qualifiedClassName(it)Â»>();
 			for (int i = 0; i < objects.length; i++) {
 				if (objects[i] instanceof org.eclipse.emf.ecore.EObject) {
-					result.add(new «xptDomainNavigatorItem.qualifiedClassName(it)»((org.eclipse.emf.ecore.EObject) objects[i], parentElement, myAdapterFctoryContentProvier));
+					result.add(new Â«xptDomainNavigatorItem.qualifiedClassName(it)Â»((org.eclipse.emf.ecore.EObject) objects[i], parentElement, myAdapterFctoryContentProvier));
 				}
 			}
 			return result.toArray();

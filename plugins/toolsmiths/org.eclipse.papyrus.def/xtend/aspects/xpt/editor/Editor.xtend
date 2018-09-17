@@ -14,7 +14,7 @@
  * Emilien Perico (Atos Origin) - add code to refactor some classes
  * Christian W. Damus (CEA) - bug 430648
  * Christian W. Damus (CEA) - bug 431023
- * Micka¿l ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 512343
+ * MickaÂ¿l ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 512343
  * 
  *****************************************************************************/
 
@@ -39,41 +39,41 @@ import xpt.CodeStyle
 	override extendsList(GenEditorView it) '''extends org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor'''
 
 	override attributes(GenEditorView it) '''
-	«generatedMemberComment»
-	public static final String ID = "«ID»"; «nonNLS»
+	Â«generatedMemberCommentÂ»
+	public static final String ID = "Â«IDÂ»"; Â«nonNLSÂ»
 	
-	«generatedMemberComment»
-public static final String CONTEXT_ID = "«contextID»"; «nonNLS»
+	Â«generatedMemberCommentÂ»
+public static final String CONTEXT_ID = "Â«contextIDÂ»"; Â«nonNLSÂ»
 
 	
-	«««	Documentation. adds listener for papyrus editors
-	«generatedMemberComment»
+	Â«Â«Â«	Documentation. adds listener for papyrus editors
+	Â«generatedMemberCommentÂ»
 	private org.eclipse.gef.KeyHandler paletteKeyHandler = null;
 
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	private org.eclipse.swt.events.MouseListener paletteMouseListener = null;
 
-	«««	Helps to handle correctly the dirty state
-	«generatedMemberComment»
+	Â«Â«Â«	Helps to handle correctly the dirty state
+	Â«generatedMemberCommentÂ»
 	private org.eclipse.papyrus.commands.util.OperationHistoryDirtyState dirtyState;
 	
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	private org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain;
 
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
     private org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider documentProvider;
 	'''
 	
 	override constructor(GenEditorView it) '''
-		«generatedMemberComment»
-		public «className»(org.eclipse.papyrus.infra.core.services.ServicesRegistry servicesRegistry, org.eclipse.gmf.runtime.notation.Diagram diagram) throws org.eclipse.papyrus.infra.core.services.ServiceException{
+		Â«generatedMemberCommentÂ»
+		public Â«classNameÂ»(org.eclipse.papyrus.infra.core.services.ServicesRegistry servicesRegistry, org.eclipse.gmf.runtime.notation.Diagram diagram) throws org.eclipse.papyrus.infra.core.services.ServiceException{
 		super(servicesRegistry, diagram);
 
-		«««	Documentation. adds listener for papyrus palette service
+		Â«Â«Â«	Documentation. adds listener for papyrus palette service
 		// adds a listener to the palette service, which reacts to palette customizations
 		org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.getInstance().addProviderChangeListener(this);
 		
-		«««Share the same editing domain
+		Â«Â«Â«Share the same editing domain
 		// Share the same editing provider
 		editingDomain = servicesRegistry.getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class);
 		documentProvider = new org.eclipse.papyrus.infra.gmfdiag.common.GmfMultiDiagramDocumentProvider(editingDomain);
@@ -81,23 +81,23 @@ public static final String CONTEXT_ID = "«contextID»"; «nonNLS»
 		// overrides editing domain created by super constructor
 		setDocumentProvider(documentProvider);
 		
-		«««end of listeners addition
+		Â«Â«Â«end of listeners addition
 		}
 	'''
 	
 		override getNavigatorSelection(GenNavigator it) '''
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.jface.viewers.ISelection getNavigatorSelection() {
-			«IF getDiagramTopReference(it) !=null»
+			Â«IF getDiagramTopReference(it) !=nullÂ»
 			org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument document = getDiagramDocument();
-			«ENDIF»
-			«xptNavigatorLinkHelper.findSelectionBody(it)»
+			Â«ENDIFÂ»
+			Â«xptNavigatorLinkHelper.findSelectionBody(it)Â»
 		}
 	'''
 
 override createPaletteRoot (Palette it)'''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	protected org.eclipse.gef.palette.PaletteRoot createPaletteRoot(org.eclipse.gef.palette.PaletteRoot existingPaletteRoot) {
 		org.eclipse.gef.palette.PaletteRoot paletteRoot;
 		if (existingPaletteRoot == null) {
@@ -112,7 +112,7 @@ override createPaletteRoot (Palette it)'''
 '''
 
 def createPaletteCustomizer (GenEditorView it)'''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	protected org.eclipse.gef.ui.palette.PaletteCustomizer createPaletteCustomizer() {
 		return new org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteCustomizer(getPreferenceStore());
 	}
@@ -120,42 +120,42 @@ def createPaletteCustomizer (GenEditorView it)'''
 
 override additions (GenEditorView it)'''
 	
-	«createEditingDomain(it)»
+	Â«createEditingDomain(it)Â»
 	
-	« configureDiagramEditDomain(it)»
+	Â« configureDiagramEditDomain(it)Â»
 	
-	« doSave(it)»
+	Â« doSave(it)Â»
 	
-	« getDirtyState(it)»
+	Â« getDirtyState(it)Â»
 	
-	« setUndoContext(it)»
+	Â« setUndoContext(it)Â»
 	
-	« isDirty(it)»
+	Â« isDirty(it)Â»
 	
-	«««Documentation. adds method to handle palette changes
-	« handlePaletteChange(it)»
+	Â«Â«Â«Documentation. adds method to handle palette changes
+	Â« handlePaletteChange(it)Â»
 	
-	« dispose(it)»
+	Â« dispose(it)Â»
 	
-	« getPaletteViewer(it)»
+	Â« getPaletteViewer(it)Â»
 	
-	«««	Documentation: (RS) advanced customization abilities
-	«««	« createPaletteCustomizer»
+	Â«Â«Â«	Documentation: (RS) advanced customization abilities
+	Â«Â«Â«	Â« createPaletteCustomizerÂ»
 	
 	
-	« constructPaletteViewer(it)»
+	Â« constructPaletteViewer(it)Â»
 	
-	« createPaletteviewerProvider(it)»
+	Â« createPaletteviewerProvider(it)Â»
 	
-	«getGraphicalViewer(it)»
+	Â«getGraphicalViewer(it)Â»
 	
-	«initializeGraphicalViewer(it)»
+	Â«initializeGraphicalViewer(it)Â»
 	
-	«selectionChanged(it)»
+	Â«selectionChanged(it)Â»
 '''
 
 def handlePaletteChange (GenEditorView it) '''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	public void providerChanged(org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent event) {
 		// update the palette if the palette service has changed
 		if (org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteService.getInstance().equals(event.getSource())) {
@@ -166,14 +166,14 @@ def handlePaletteChange (GenEditorView it) '''
 '''
 
 def constructPaletteViewer (GenEditorView it) '''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	protected org.eclipse.gef.ui.palette.PaletteViewer constructPaletteViewer() {
 		return new org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PapyrusPaletteViewer();
 	}
 '''
 
 override dispose(GenEditorView it)'''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	public void dispose() {
 		// remove palette service listener
 		// remove preference listener
@@ -189,7 +189,7 @@ override dispose(GenEditorView it)'''
 '''
 
 def getPaletteViewer (GenEditorView it)'''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	protected org.eclipse.gef.ui.palette.PaletteViewer getPaletteViewer() {
 		return getEditDomain().getPaletteViewer();
 	}
@@ -197,17 +197,17 @@ def getPaletteViewer (GenEditorView it)'''
 	
 override implementsList(Iterable<String> it)'''
  implements org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener
-	«IF  ! it.isEmpty», 
-		«FOR string : it  SEPARATOR ', '»
-			«implementsListEntry(string)»
-		«ENDFOR»
-	«ENDIF»
+	Â«IF  ! it.isEmptyÂ», 
+		Â«FOR string : it  SEPARATOR ', 'Â»
+			Â«implementsListEntry(string)Â»
+		Â«ENDFORÂ»
+	Â«ENDIFÂ»
 '''
 
-def implementsListEntry (String it)'''«it»'''
+def implementsListEntry (String it)'''Â«itÂ»'''
 
 def createPaletteviewerProvider (GenEditorView it)'''
-«generatedMemberComment»
+Â«generatedMemberCommentÂ»
 protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerProvider() {
 		getEditDomain().setPaletteRoot(createPaletteRoot(null));
 		return new org.eclipse.gef.ui.palette.PaletteViewerProvider(getEditDomain()) {
@@ -219,7 +219,7 @@ protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerPr
 			 * with a defaultTool that is the SelectToolEx that undestands how to handle the enter
 			 * key which will result in the creation of the shape also.
 			 */
-			«overrideC(it.editorGen.diagram)»
+			Â«overrideC(it.editorGen.diagram)Â»
 			protected void configurePaletteViewer(org.eclipse.gef.ui.palette.PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
 
@@ -237,7 +237,7 @@ protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerPr
 				viewer.setCustomizer(createPaletteCustomizer());
 			}
 
-			«overrideC(it.editorGen.diagram)»
+			Â«overrideC(it.editorGen.diagram)Â»
 			public org.eclipse.gef.ui.palette.PaletteViewer createPaletteViewer(org.eclipse.swt.widgets.Composite parent) {
 				org.eclipse.gef.ui.palette.PaletteViewer pViewer = constructPaletteViewer();
 				pViewer.createControl(parent);
@@ -265,7 +265,7 @@ protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerPr
 						 *            the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
-						«overrideC(it.editorGen.diagram)»
+						Â«overrideC(it.editorGen.diagram)Â»
 						public boolean keyReleased(org.eclipse.swt.events.KeyEvent event) {
 
 							if (event.keyCode == org.eclipse.swt.SWT.Selection) {
@@ -313,7 +313,7 @@ protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerPr
 						 * 
 						 * @see org.eclipse.swt.events.MouseListener#mouseDoubleClick(org.eclipse.swt.events.MouseEvent)
 						 */
-						«overrideI(it.editorGen.diagram)»
+						Â«overrideI(it.editorGen.diagram)Â»
 						public void mouseDoubleClick(org.eclipse.swt.events.MouseEvent e) {
 							org.eclipse.gef.Tool tool = getPaletteViewer().getActiveTool().createTool();
 
@@ -331,12 +331,12 @@ protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerPr
 							}
 						}
 
-						«overrideI(it.editorGen.diagram)»
+						Â«overrideI(it.editorGen.diagram)Â»
 						public void mouseDown(org.eclipse.swt.events.MouseEvent e) {
 							// do nothing
 						}
 
-						«overrideI(it.editorGen.diagram)»
+						Â«overrideI(it.editorGen.diagram)Â»
 						public void mouseUp(org.eclipse.swt.events.MouseEvent e) {
 							// Deactivate current active tool here if a
 							// double-click was handled.
@@ -358,7 +358,7 @@ protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerPr
 
 //Not used
 override performSaveAs (GenEditorView it)'''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressMonitor) {
   // Nothing
 }
@@ -366,14 +366,14 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 
 //Share the same editing domain
 override getEditingDomain (GenEditorView it)'''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	public org.eclipse.emf.transaction.TransactionalEditingDomain getEditingDomain() {
 		return editingDomain;
 	}	
 '''
 
 def createEditingDomain (GenEditorView it)'''
-«generatedMemberComment»
+Â«generatedMemberCommentÂ»
 	protected org.eclipse.emf.transaction.TransactionalEditingDomain createEditingDomain() {
 		// Already configured
 		return editingDomain;
@@ -382,12 +382,12 @@ def createEditingDomain (GenEditorView it)'''
 
 
 def configureDiagramEditDomain (GenEditorView it)'''
-«generatedMemberComment»
+Â«generatedMemberCommentÂ»
 	protected void configureDiagramEditDomain() {
 		super.configureDiagramEditDomain();
 		getDiagramEditDomain().getDiagramCommandStack().addCommandStackListener(new org.eclipse.gef.commands.CommandStackListener() {
 
-			«overrideI(it.editorGen.diagram)»
+			Â«overrideI(it.editorGen.diagram)Â»
 			public void commandStackChanged(java.util.EventObject event) {
 				if (org.eclipse.swt.widgets.Display.getCurrent() == null) { 
 					org.eclipse.swt.widgets.Display.getDefault().asyncExec(new Runnable() {
@@ -406,7 +406,7 @@ def configureDiagramEditDomain (GenEditorView it)'''
 '''
 
 def doSave (GenEditorView it)'''
-«generatedMemberComment»
+Â«generatedMemberCommentÂ»
 	public void doSave(org.eclipse.core.runtime.IProgressMonitor progressMonitor) {
 		// The saving of the resource is done by the CoreMultiDiagramEditor
 		getDirtyState().saved();
@@ -414,7 +414,7 @@ def doSave (GenEditorView it)'''
 '''
 
 def getDirtyState (GenEditorView it)'''
-«generatedMemberComment»
+Â«generatedMemberCommentÂ»
     protected org.eclipse.papyrus.commands.util.OperationHistoryDirtyState getDirtyState() {
         if(dirtyState == null) {
             dirtyState = org.eclipse.papyrus.commands.util.OperationHistoryDirtyState.newInstance(getUndoContext(), getOperationHistory());
@@ -424,7 +424,7 @@ def getDirtyState (GenEditorView it)'''
 '''
 
 def setUndoContext (GenEditorView it)'''
-«generatedMemberComment»
+Â«generatedMemberCommentÂ»
     protected void setUndoContext(org.eclipse.core.commands.operations.IUndoContext context) {
         if(dirtyState != null) {
             dirtyState.dispose();
@@ -437,7 +437,7 @@ def setUndoContext (GenEditorView it)'''
 
 //Fix the dirty state
 def isDirty (GenEditorView it)'''
-«generatedMemberComment»
+Â«generatedMemberCommentÂ»
 	public boolean isDirty() {
 		return getDirtyState().isDirty();
 	}
@@ -445,21 +445,21 @@ def isDirty (GenEditorView it)'''
 
 //Code refactoring moved in UMLDiagramEditor
 override getDocumentProvider (GenEditorView it)'''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	protected final org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider getDocumentProvider(org.eclipse.ui.IEditorInput input) {
 		return documentProvider;
 	}
 '''
 
 override setDocumentProvider (GenEditorView it)'''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	protected final void setDocumentProvider(org.eclipse.ui.IEditorInput input) {
 		// Already set in the constructor
 	}
 '''
 
 def getGraphicalViewer (GenEditorView it)'''
-«generatedMemberComment»
+Â«generatedMemberCommentÂ»
 	@Override
 	public org.eclipse.gef.GraphicalViewer getGraphicalViewer() {
 		return super.getGraphicalViewer();
@@ -468,7 +468,7 @@ def getGraphicalViewer (GenEditorView it)'''
 
 
 override initializeGraphicalViewer (GenEditorView it)'''
-«generatedMemberComment»
+Â«generatedMemberCommentÂ»
 	@Override
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
@@ -493,7 +493,7 @@ override initializeGraphicalViewer (GenEditorView it)'''
 '''
 
 def selectionChanged (GenEditorView it)'''
-«generatedMemberComment»
+Â«generatedMemberCommentÂ»
 	@Override
 	public void selectionChanged(org.eclipse.ui.IWorkbenchPart part, org.eclipse.jface.viewers.ISelection selection) {
 		if (getSite().getPage().getActiveEditor() instanceof org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor) {
@@ -518,37 +518,37 @@ def selectionChanged (GenEditorView it)'''
 '''
 
 override getContextID (GenEditorView it)'''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 protected String getContextID() {
 	return CONTEXT_ID;
 }
 '''
 
 	override getAdapter(GenEditorView it) '''
-		«IF !hasPropertySheet(it) || hasNavigator(it)»
+		Â«IF !hasPropertySheet(it) || hasNavigator(it)Â»
 			
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Class type) {
-				«IF !hasPropertySheet(it)»
+				Â«IF !hasPropertySheet(it)Â»
 					if (type == org.eclipse.ui.views.properties.IPropertySheetPage.class) {
 						return null;
 					}
-				«ENDIF»
-				«IF hasNavigator(it)»
+				Â«ENDIFÂ»
+				Â«IF hasNavigator(it)Â»
 					if (type == org.eclipse.ui.part.IShowInTargetList.class) {
 						return new org.eclipse.ui.part.IShowInTargetList() {
 							
-							«overrideI(it.editorGen.diagram)»
+							Â«overrideI(it.editorGen.diagram)Â»
 							public String[] getShowInTargetIds() {
 								return new String[] { org.eclipse.ui.navigator.resources.ProjectExplorer.VIEW_ID };
 							}
 						};
 					}
-				«ENDIF»
+				Â«ENDIFÂ»
 				return super.getAdapter(type);
 			}
-		«ENDIF»
+		Â«ENDIFÂ»
 	'''
 
 }

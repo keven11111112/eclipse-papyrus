@@ -34,7 +34,7 @@ import xpt.providers.ValidationProvider
 
 	override runNonUIValidation(GenDiagram it) '''
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public static void runNonUIValidation(org.eclipse.gmf.runtime.notation.View view) {
 			org.eclipse.swt.widgets.Shell shell = org.eclipse.swt.widgets.Display.getCurrent().getActiveShell();
 			if (shell == null) {
@@ -50,10 +50,10 @@ import xpt.providers.ValidationProvider
 
 	override createMarkersForStatus(GenDiagram it) '''
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private static void createMarkers(
-				«IF editorGen.application == null»org.eclipse.core.resources.IFile
-				«ELSE»org.eclipse.gmf.runtime.notation.View«ENDIF» target,
+				Â«IF editorGen.application == nullÂ»org.eclipse.core.resources.IFile
+				Â«ELSEÂ»org.eclipse.gmf.runtime.notation.ViewÂ«ENDIFÂ» target,
 				org.eclipse.core.runtime.IStatus validationStatus,
 				org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart diagramEditPart) {
 			if (validationStatus.isOK()) {
@@ -61,14 +61,14 @@ import xpt.providers.ValidationProvider
 			}
 			final org.eclipse.core.runtime.IStatus rootStatus = validationStatus;
 			java.util.List allStatuses = new java.util.ArrayList();
-			«xptDiagramEditorUtil.qualifiedClassName(it)».LazyElement2ViewMap element2ViewMap = new «xptDiagramEditorUtil.
-			qualifiedClassName(it)».LazyElement2ViewMap(
+			Â«xptDiagramEditorUtil.qualifiedClassName(it)Â».LazyElement2ViewMap element2ViewMap = new Â«xptDiagramEditorUtil.
+			qualifiedClassName(it)Â».LazyElement2ViewMap(
 			diagramEditPart.getDiagramView(),
 			collectTargetElements(rootStatus, new java.util.HashSet<org.eclipse.emf.ecore.EObject>(), allStatuses));
 			for (java.util.Iterator it = allStatuses.iterator(); it.hasNext();) {
 			org.eclipse.emf.validation.model.IConstraintStatus nextStatus =
 			(org.eclipse.emf.validation.model.IConstraintStatus) it.next();
-			org.eclipse.gmf.runtime.notation.View view = «xptDiagramEditorUtil.qualifiedClassName(it)».findView(
+			org.eclipse.gmf.runtime.notation.View view = Â«xptDiagramEditorUtil.qualifiedClassName(it)Â».findView(
 			diagramEditPart, nextStatus.getTarget(), element2ViewMap);			
 			addMarker(diagramEditPart.getViewer(), target, view.eResource().getURIFragment(view), 
 			org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil.getQualifiedName(nextStatus.getTarget(), true), 
@@ -79,10 +79,10 @@ import xpt.providers.ValidationProvider
 	
 	override createMarkersForDiagnostic(GenDiagram it) '''
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private static void createMarkers(
-				«IF editorGen.application == null»org.eclipse.core.resources.IFile
-				«ELSE»org.eclipse.gmf.runtime.notation.View«ENDIF» target,
+				Â«IF editorGen.application == nullÂ»org.eclipse.core.resources.IFile
+				Â«ELSEÂ»org.eclipse.gmf.runtime.notation.ViewÂ«ENDIFÂ» target,
 				org.eclipse.emf.common.util.Diagnostic emfValidationStatus,
 				org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart diagramEditPart) {
 			if (emfValidationStatus.getSeverity() == org.eclipse.emf.common.util.Diagnostic.OK) {
@@ -90,8 +90,8 @@ import xpt.providers.ValidationProvider
 			}
 			final org.eclipse.emf.common.util.Diagnostic rootStatus = emfValidationStatus;
 			java.util.List<org.eclipse.emf.common.util.Diagnostic> allDiagnostics = new java.util.ArrayList<org.eclipse.emf.common.util.Diagnostic>();
-			«xptDiagramEditorUtil.qualifiedClassName(it)».LazyElement2ViewMap element2ViewMap =
-			new «xptDiagramEditorUtil.qualifiedClassName(it)».LazyElement2ViewMap(
+			Â«xptDiagramEditorUtil.qualifiedClassName(it)Â».LazyElement2ViewMap element2ViewMap =
+			new Â«xptDiagramEditorUtil.qualifiedClassName(it)Â».LazyElement2ViewMap(
 				diagramEditPart.getDiagramView(),
 				collectTargetElements(rootStatus, new java.util.HashSet<org.eclipse.emf.ecore.EObject>(), allDiagnostics));
 			for (java.util.Iterator<org.eclipse.emf.common.util.Diagnostic> it = emfValidationStatus.getChildren().iterator(); it.hasNext();) {
@@ -99,7 +99,7 @@ import xpt.providers.ValidationProvider
 			java.util.List<?> data = nextDiagnostic.getData();
 			if (data != null && !data.isEmpty() && data.get(0) instanceof org.eclipse.emf.ecore.EObject) {
 			org.eclipse.emf.ecore.EObject element = (org.eclipse.emf.ecore.EObject) data.get(0);
-			org.eclipse.gmf.runtime.notation.View view = «xptDiagramEditorUtil.qualifiedClassName(it)».findView(
+			org.eclipse.gmf.runtime.notation.View view = Â«xptDiagramEditorUtil.qualifiedClassName(it)Â».findView(
 				diagramEditPart, element, element2ViewMap);
 			addMarker(diagramEditPart.getViewer(), target, view.eResource().getURIFragment(view),
 				org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil.getQualifiedName(element, true),
@@ -111,7 +111,7 @@ import xpt.providers.ValidationProvider
 	
 	override collectTargetElementsFromStatus(GenDiagram it) '''
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private static java.util.Set<org.eclipse.emf.ecore.EObject> collectTargetElements(org.eclipse.core.runtime.IStatus status,
 				java.util.Set<org.eclipse.emf.ecore.EObject> targetElementCollector, java.util.List<org.eclipse.emf.validation.model.IConstraintStatus> allConstraintStatuses) {
 			if (status instanceof org.eclipse.emf.validation.model.IConstraintStatus) {
@@ -130,7 +130,7 @@ import xpt.providers.ValidationProvider
 	
 	override collectTargetElementsFromDiagnostic(GenDiagram it) '''
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private static java.util.Set<org.eclipse.emf.ecore.EObject> collectTargetElements(org.eclipse.emf.common.util.Diagnostic diagnostic,
 				java.util.Set<org.eclipse.emf.ecore.EObject> targetElementCollector, java.util.List<org.eclipse.emf.common.util.Diagnostic> allDiagnostics) {
 			java.util.List<?> data = diagnostic.getData();
@@ -151,29 +151,29 @@ import xpt.providers.ValidationProvider
 
 	override run(GenDiagram it) '''
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public void run() {
 			org.eclipse.ui.IWorkbenchPart workbenchPart = page.getActivePart();
 			if (workbenchPart instanceof org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart) {
 				final org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart part =	(org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart) workbenchPart;
 				try {
-					«IF editorGen.application == null»
+					Â«IF editorGen.application == nullÂ»
 					new org.eclipse.ui.actions.WorkspaceModifyDelegatingOperation(
-					«ENDIF»
+					Â«ENDIFÂ»
 					new org.eclipse.jface.operation.IRunnableWithProgress() {
 		
-						«overrideI»
+						Â«overrideIÂ»
 						public void run(org.eclipse.core.runtime.IProgressMonitor monitor)
 							throws InterruptedException, java.lang.reflect.InvocationTargetException {
 							runValidation(part.getDiagramEditPart(), part.getDiagram());
 						}
 					}
-					«IF editorGen.application == null»
+					Â«IF editorGen.application == nullÂ»
 					)
-					«ENDIF»
+					Â«ENDIFÂ»
 					.run(new org.eclipse.core.runtime.NullProgressMonitor());			
 				} catch (Exception e) {
-					«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Validation action failed", e); «nonNLS(1)»
+					Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».getInstance().logError("Validation action failed", e); Â«nonNLS(1)Â»
 				}
 			}
 		}
@@ -181,14 +181,14 @@ import xpt.providers.ValidationProvider
 	
 	override runValidationWithEP(GenDiagram it) '''
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public static void runValidation(org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart diagramEditPart, org.eclipse.gmf.runtime.notation.View view) {
 			final org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart fpart = diagramEditPart;
 			final org.eclipse.gmf.runtime.notation.View fview = view;
 			org.eclipse.emf.transaction.TransactionalEditingDomain txDomain = org.eclipse.emf.transaction.util.TransactionUtil.getEditingDomain(view);
-			«xptValidationProvider.qualifiedClassName(it)».runWithConstraints(txDomain, new Runnable() {
+			Â«xptValidationProvider.qualifiedClassName(it)Â».runWithConstraints(txDomain, new Runnable() {
 		
-			«overrideI»
+			Â«overrideIÂ»
 			public void run() {
 				validate(fpart, fview);
 			}
@@ -198,13 +198,13 @@ import xpt.providers.ValidationProvider
 	
 	override runEMFValidator(GenDiagram it) '''
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private static org.eclipse.emf.common.util.Diagnostic runEMFValidator(
 				org.eclipse.gmf.runtime.notation.View target) {
 			if (target.isSetElement() && target.getElement() != null) {
 			return new org.eclipse.emf.ecore.util.Diagnostician() {
 		
-			«overrideC»
+			Â«overrideCÂ»
 			public String getObjectLabel(org.eclipse.emf.ecore.EObject eObject) {
 				return org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil.getQualifiedName(eObject, true);
 			}

@@ -40,57 +40,57 @@ import xpt.CodeStyle
 	@Inject xpt.editor.VisualIDRegistry xptVisualIDRegistry
 
 	override i18nValues(GenDiagram it) '''
-		«xptExternalizer.messageEntry(nameKey(i18nKeyForNewDiagramFileWizardCreationPage(it)), 'Initialize new diagram file')»
-		«xptExternalizer.messageEntry(titleKey(i18nKeyForNewDiagramFileWizardCreationPage(it)), 'Diagram file')»
-		«xptExternalizer.messageEntry(descriptionKey(i18nKeyForNewDiagramFileWizardCreationPage(it)),
-			'Create new diagram based on {0} model content')»
-		«xptExternalizer.messageEntry(nameKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)),
-			'Select diagram root element')»
-		«xptExternalizer.messageEntry(titleKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)), 'Diagram root element')»
-		«xptExternalizer.messageEntry(descriptionKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)),
-			'Select semantic model element to be depicted on diagram')»
-		«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardRootSelectionPageSelectionTitle(it),
-			'Select diagram root element:')»
-		«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardRootSelectionPageNoSelectionMessage(it),
-			'Diagram root element is not selected')»
-		«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardRootSelectionPageInvalidSelectionMessage(it),
-			'Invalid diagram root element is selected')»
-		«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardInitDiagramCommand(it), 'Initializing diagram contents')»
-		«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardIncorrectRootError(it),
-			'Incorrect model object stored as a root resource object')»
+		Â«xptExternalizer.messageEntry(nameKey(i18nKeyForNewDiagramFileWizardCreationPage(it)), 'Initialize new diagram file')Â»
+		Â«xptExternalizer.messageEntry(titleKey(i18nKeyForNewDiagramFileWizardCreationPage(it)), 'Diagram file')Â»
+		Â«xptExternalizer.messageEntry(descriptionKey(i18nKeyForNewDiagramFileWizardCreationPage(it)),
+			'Create new diagram based on {0} model content')Â»
+		Â«xptExternalizer.messageEntry(nameKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)),
+			'Select diagram root element')Â»
+		Â«xptExternalizer.messageEntry(titleKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)), 'Diagram root element')Â»
+		Â«xptExternalizer.messageEntry(descriptionKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)),
+			'Select semantic model element to be depicted on diagram')Â»
+		Â«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardRootSelectionPageSelectionTitle(it),
+			'Select diagram root element:')Â»
+		Â«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardRootSelectionPageNoSelectionMessage(it),
+			'Diagram root element is not selected')Â»
+		Â«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardRootSelectionPageInvalidSelectionMessage(it),
+			'Invalid diagram root element is selected')Â»
+		Â«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardInitDiagramCommand(it), 'Initializing diagram contents')Â»
+		Â«xptExternalizer.messageEntry(i18nKeyForNewDiagramFileWizardIncorrectRootError(it),
+			'Incorrect model object stored as a root resource object')Â»
 	'''
 
 	override NewDiagramFileWizard(GenDiagram it) '''
-	«copyright(editorGen)»
-	package «packageName(it)»;
+	Â«copyright(editorGen)Â»
+	package Â«packageName(it)Â»;
 	
-	«generatedClassComment»
-	public class «className(it)» extends org.eclipse.jface.wizard.Wizard {
+	Â«generatedClassCommentÂ»
+	public class Â«className(it)Â» extends org.eclipse.jface.wizard.Wizard {
 	
-		«generatedMemberComment»
-		private «creationPage(it)» myFileCreationPage;
+		Â«generatedMemberCommentÂ»
+		private Â«creationPage(it)Â» myFileCreationPage;
 	
-		«generatedMemberComment»
-		private «xptModelElementSelectionPage.qualifiedClassName(it)» diagramRootElementSelectionPage;
+		Â«generatedMemberCommentÂ»
+		private Â«xptModelElementSelectionPage.qualifiedClassName(it)Â» diagramRootElementSelectionPage;
 	
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.emf.transaction.TransactionalEditingDomain myEditingDomain;
 	
-		«generatedMemberComment»
-		public «className(it)»(org.eclipse.emf.common.util.URI domainModelURI,
+		Â«generatedMemberCommentÂ»
+		public Â«className(it)Â»(org.eclipse.emf.common.util.URI domainModelURI,
 				org.eclipse.emf.ecore.EObject diagramRoot,
 				org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain) {
-			«_assert('domainModelURI != null : \"Domain model uri must be specified\"')»
-		    «_assert('diagramRoot != null : \"Doagram root element must be specified\"')»
-		    «_assert('editingDomain != null : \"Editing domain must be specified\"')»
+			Â«_assert('domainModelURI != null : \"Domain model uri must be specified\"')Â»
+		    Â«_assert('diagramRoot != null : \"Doagram root element must be specified\"')Â»
+		    Â«_assert('editingDomain != null : \"Editing domain must be specified\"')Â»
 	
-			myFileCreationPage = new «creationPage(it)»(«xptExternalizer.accessorCall(editorGen,
-			nameKey(i18nKeyForNewDiagramFileWizardCreationPage(it)))», org.eclipse.jface.viewers.StructuredSelection.EMPTY);
-			myFileCreationPage.setTitle(«xptExternalizer.accessorCall(editorGen,
-			titleKey(i18nKeyForNewDiagramFileWizardCreationPage(it)))»);
+			myFileCreationPage = new Â«creationPage(it)Â»(Â«xptExternalizer.accessorCall(editorGen,
+			nameKey(i18nKeyForNewDiagramFileWizardCreationPage(it)))Â», org.eclipse.jface.viewers.StructuredSelection.EMPTY);
+			myFileCreationPage.setTitle(Â«xptExternalizer.accessorCall(editorGen,
+			titleKey(i18nKeyForNewDiagramFileWizardCreationPage(it)))Â»);
 			myFileCreationPage.setDescription(org.eclipse.osgi.util.NLS.bind(
-					«xptExternalizer.accessorCall(editorGen, descriptionKey(i18nKeyForNewDiagramFileWizardCreationPage(it)))», 
-					«VisualIDRegistry::modelID(it)»));
+					Â«xptExternalizer.accessorCall(editorGen, descriptionKey(i18nKeyForNewDiagramFileWizardCreationPage(it)))Â», 
+					Â«VisualIDRegistry::modelID(it)Â»));
 			org.eclipse.core.runtime.IPath filePath;
 			String fileName = org.eclipse.emf.common.util.URI.decode(domainModelURI.trimFileExtension().lastSegment());
 			if (domainModelURI.isPlatformResource()) {
@@ -99,114 +99,114 @@ import xpt.CodeStyle
 				filePath = new org.eclipse.core.runtime.Path(domainModelURI.trimSegments(1).toFileString());
 			} else {
 				// TODO : use some default path
-				throw new IllegalArgumentException("Unsupported URI: " + domainModelURI); «nonNLS(1)»
+				throw new IllegalArgumentException("Unsupported URI: " + domainModelURI); Â«nonNLS(1)Â»
 			}
 			myFileCreationPage.setContainerFullPath(filePath);
-			myFileCreationPage.setFileName(«xptDiagramEditorUtil.qualifiedClassName(it)».getUniqueFileName(
-					filePath, fileName, "«editorGen.diagramFileExtension»")); «nonNLS(1)»
+			myFileCreationPage.setFileName(Â«xptDiagramEditorUtil.qualifiedClassName(it)Â».getUniqueFileName(
+					filePath, fileName, "Â«editorGen.diagramFileExtensionÂ»")); Â«nonNLS(1)Â»
 	
-			diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(«xptExternalizer.accessorCall(editorGen,
-			nameKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)))»);
-			diagramRootElementSelectionPage.setTitle(«xptExternalizer.accessorCall(editorGen,
-			titleKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)))»);
-			diagramRootElementSelectionPage.setDescription(«xptExternalizer.accessorCall(editorGen,
-			descriptionKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)))»);
+			diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(Â«xptExternalizer.accessorCall(editorGen,
+			nameKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)))Â»);
+			diagramRootElementSelectionPage.setTitle(Â«xptExternalizer.accessorCall(editorGen,
+			titleKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)))Â»);
+			diagramRootElementSelectionPage.setDescription(Â«xptExternalizer.accessorCall(editorGen,
+			descriptionKey(i18nKeyForNewDiagramFileWizardRootSelectionPage(it)))Â»);
 			diagramRootElementSelectionPage.setModelElement(diagramRoot);
 	
 		   	myEditingDomain = editingDomain;
 		}
 	
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public void addPages() {
 			addPage(myFileCreationPage);
 			addPage(diagramRootElementSelectionPage);
 		}
 	
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public boolean performFinish() {
 			java.util.LinkedList<org.eclipse.core.resources.IFile> affectedFiles = new java.util.LinkedList<org.eclipse.core.resources.IFile>(); 
-			«IF null == editorGen.application»
+			Â«IF null == editorGen.applicationÂ»
 			org.eclipse.core.resources.IFile diagramFile = myFileCreationPage.createNewFile();
-			«xptDiagramEditorUtil.callSetCharset(it, 'diagramFile')»
+			Â«xptDiagramEditorUtil.callSetCharset(it, 'diagramFile')Â»
 			affectedFiles.add(diagramFile);
 			org.eclipse.emf.common.util.URI diagramModelURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(diagramFile.getFullPath().toString(), true);
-			«ELSE»
+			Â«ELSEÂ»
 			org.eclipse.core.runtime.IPath diagramModelPath = myFileCreationPage.getContainerFullPath().append(myFileCreationPage.getFileName());
 			org.eclipse.emf.common.util.URI diagramModelURI = org.eclipse.emf.common.util.URI.createFileURI(diagramModelPath.toString());
-			«ENDIF»
+			Â«ENDIFÂ»
 			org.eclipse.emf.ecore.resource.ResourceSet resourceSet = myEditingDomain.getResourceSet();
 			final org.eclipse.emf.ecore.resource.Resource diagramResource = resourceSet.createResource(diagramModelURI);
 			org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand command =
 				new org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand(
-					myEditingDomain, «xptExternalizer.accessorCall(editorGen, i18nKeyForNewDiagramFileWizardInitDiagramCommand(it))», affectedFiles) {
+					myEditingDomain, Â«xptExternalizer.accessorCall(editorGen, i18nKeyForNewDiagramFileWizardInitDiagramCommand(it))Â», affectedFiles) {
 	
-				«overrideC»
+				Â«overrideCÂ»
 				protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(
 						org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info)
 							throws org.eclipse.core.commands.ExecutionException {
-					String diagramVID = «xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(diagramRootElementSelectionPage.getModelElement());
-					if (diagramVID.equals(«VisualIDRegistry::visualID(it)»)) {
+					String diagramVID = Â«xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)Â»(diagramRootElementSelectionPage.getModelElement());
+					if (diagramVID.equals(Â«VisualIDRegistry::visualID(it)Â»)) {
 						return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult(
-							«xptExternalizer.accessorCall(editorGen, i18nKeyForNewDiagramFileWizardIncorrectRootError(it))»);
+							Â«xptExternalizer.accessorCall(editorGen, i18nKeyForNewDiagramFileWizardIncorrectRootError(it))Â»);
 					}
 					org.eclipse.gmf.runtime.notation.Diagram diagram =
 						org.eclipse.gmf.runtime.diagram.core.services.ViewService.createDiagram(
-							diagramRootElementSelectionPage.getModelElement(), «VisualIDRegistry::modelID(it)»,
-							«xptActivator.preferenceHintAccess(editorGen)»);
+							diagramRootElementSelectionPage.getModelElement(), Â«VisualIDRegistry::modelID(it)Â»,
+							Â«xptActivator.preferenceHintAccess(editorGen)Â»);
 					diagramResource.getContents().add(diagram);
-					«IF editorGen.sameFileForDiagramAndModel»
+					Â«IF editorGen.sameFileForDiagramAndModelÂ»
 					diagramResource.getContents().add(diagram.getElement());
-					«ENDIF»
-					«IF !it.synchronized»
-					new «xptDiagramContentInitializer.qualifiedClassName(it)»().initDiagramContent(diagram);			
-					«ENDIF»
+					Â«ENDIFÂ»
+					Â«IF !it.synchronizedÂ»
+					new Â«xptDiagramContentInitializer.qualifiedClassName(it)Â»().initDiagramContent(diagram);			
+					Â«ENDIFÂ»
 					return org.eclipse.gmf.runtime.common.core.command.CommandResult.newOKCommandResult();
 				}
 			};
 			try {
 				org.eclipse.core.commands.operations.OperationHistoryFactory.getOperationHistory().execute(
 					command, new org.eclipse.core.runtime.NullProgressMonitor(), null);
-				diagramResource.save(«xptDiagramEditorUtil.callGetSaveOptions(it)»);
-				«xptDiagramEditorUtil.qualifiedClassName(it)».openDiagram(diagramResource);
+				diagramResource.save(Â«xptDiagramEditorUtil.callGetSaveOptions(it)Â»);
+				Â«xptDiagramEditorUtil.qualifiedClassName(it)Â».openDiagram(diagramResource);
 			} catch (org.eclipse.core.commands.ExecutionException e) {
-				«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError(
-					"Unable to create model and diagram", e); «nonNLS(1)»
+				Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».getInstance().logError(
+					"Unable to create model and diagram", e); Â«nonNLS(1)Â»
 			} catch (java.io.IOException ex) {
-				«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError(
-					"Save operation failed for: " + diagramModelURI, ex); «nonNLS(1)»
+				Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».getInstance().logError(
+					"Save operation failed for: " + diagramModelURI, ex); Â«nonNLS(1)Â»
 			} catch (org.eclipse.ui.PartInitException ex) {
-				«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError(
-					"Unable to open editor", ex); «nonNLS(1)»
+				Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».getInstance().logError(
+					"Unable to open editor", ex); Â«nonNLS(1)Â»
 			}			
 			return true;
 		}
 	
-		«generatedClassComment»
-		private static class DiagramRootElementSelectionPage extends «xptModelElementSelectionPage.qualifiedClassName(it)» {
+		Â«generatedClassCommentÂ»
+		private static class DiagramRootElementSelectionPage extends Â«xptModelElementSelectionPage.qualifiedClassName(it)Â» {
 	
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			protected DiagramRootElementSelectionPage(String pageName) {
 				super(pageName);
 			}
 	
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			protected String getSelectionTitle() {
-				return «xptExternalizer.accessorCall(editorGen, i18nKeyForNewDiagramFileWizardRootSelectionPageSelectionTitle(it))»;
+				return Â«xptExternalizer.accessorCall(editorGen, i18nKeyForNewDiagramFileWizardRootSelectionPageSelectionTitle(it))Â»;
 			}
 	
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			protected boolean validatePage() {
 				if (getModelElement() == null) {
-					setErrorMessage(«xptExternalizer.accessorCall(editorGen,
-			i18nKeyForNewDiagramFileWizardRootSelectionPageNoSelectionMessage(it))»);
+					setErrorMessage(Â«xptExternalizer.accessorCall(editorGen,
+			i18nKeyForNewDiagramFileWizardRootSelectionPageNoSelectionMessage(it))Â»);
 					return false;
 				}
 				boolean result = org.eclipse.gmf.runtime.diagram.core.services.ViewService.getInstance().provides(
 					new org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation(
 						new org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter(getModelElement()),
-						«VisualIDRegistry::modelID(it)», «xptActivator.preferenceHintAccess(editorGen)»));
-				setErrorMessage(result ? null : «xptExternalizer.accessorCall(editorGen,
-			i18nKeyForNewDiagramFileWizardRootSelectionPageInvalidSelectionMessage(it))»);
+						Â«VisualIDRegistry::modelID(it)Â», Â«xptActivator.preferenceHintAccess(editorGen)Â»));
+				setErrorMessage(result ? null : Â«xptExternalizer.accessorCall(editorGen,
+			i18nKeyForNewDiagramFileWizardRootSelectionPageInvalidSelectionMessage(it))Â»);
 				return result;
 			}
 		}

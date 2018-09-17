@@ -35,81 +35,81 @@ import xpt.diagram.editparts.Utils_qvto
 
 	
 	override Main(GenNode it) '''
-	«copyright(diagram.editorGen)»
-	package «xptNodeEditPartImpl.packageName(it)»;
+	Â«copyright(diagram.editorGen)Â»
+	package Â«xptNodeEditPartImpl.packageName(it)Â»;
 	
-	«generatedClassComment»
-	public class «xptNodeEditPartImpl.className(it)» «extendsList(it)» «implementsList(it)» {
+	Â«generatedClassCommentÂ»
+	public class Â«xptNodeEditPartImpl.className(it)Â» Â«extendsList(it)Â» Â«implementsList(it)Â» {
 	
-		«attributes(it)»
+		Â«attributes(it)Â»
 		
-		«xptNodeEditPartImpl.constructor(it)»
+		Â«xptNodeEditPartImpl.constructor(it)Â»
 		
-		«createDefaultEditPolicies(it)»
+		Â«createDefaultEditPolicies(it)Â»
 		
-		«xptNodeEditPartImpl.createLayoutEditPolicy(it)»
+		Â«xptNodeEditPartImpl.createLayoutEditPolicy(it)Â»
 		
-«««	BEGIN: PapyrusGenCode
-«««	call tamplate to paste code for refresh figure by taking account event
-	«aspectsNodeEditPartImpl.specificHandleNotificationEvent(it)»
-«««	END: PapyrusGenCode
+Â«Â«Â«	BEGIN: PapyrusGenCode
+Â«Â«Â«	call tamplate to paste code for refresh figure by taking account event
+	Â«aspectsNodeEditPartImpl.specificHandleNotificationEvent(it)Â»
+Â«Â«Â«	END: PapyrusGenCode
 		
-		«xptNodeEditPartImpl.createNodeShape(it.viewmap, it)»
+		Â«xptNodeEditPartImpl.createNodeShape(it.viewmap, it)Â»
 		
-	«IF hasFixedChildren(it)»
-		«xptNodeEditPartImpl.addFixedChild(it)»
+	Â«IF hasFixedChildren(it)Â»
+		Â«xptNodeEditPartImpl.addFixedChild(it)Â»
 	
-		«xptNodeEditPartImpl.removeFixedChild(it)»
+		Â«xptNodeEditPartImpl.removeFixedChild(it)Â»
 	
-		«xptNodeEditPartImpl.addChildVisual(it)»
+		Â«xptNodeEditPartImpl.addChildVisual(it)Â»
 	
-		«xptNodeEditPartImpl.removeChildVisual(it)»
+		Â«xptNodeEditPartImpl.removeChildVisual(it)Â»
 	
-		«xptNodeEditPartImpl.getContentPaneFor(it)»
-	«ENDIF»
+		Â«xptNodeEditPartImpl.getContentPaneFor(it)Â»
+	Â«ENDIFÂ»
 	
-		«xptNodeEditPartImpl.addBorderItem(it)»
+		Â«xptNodeEditPartImpl.addBorderItem(it)Â»
 		
-		«xptNodeEditPartImpl.createNodePlate(it)»
+		Â«xptNodeEditPartImpl.createNodePlate(it)Â»
 		
-		«xptNodeEditPartImpl.getPrimaryDragEditPolicy(it)»
+		Â«xptNodeEditPartImpl.getPrimaryDragEditPolicy(it)Â»
 		
-		«xptNodeEditPartImpl.createFigure(it)»
+		Â«xptNodeEditPartImpl.createFigure(it)Â»
 		
-		«xptNodeEditPartImpl.setupContentPane(it)»
+		Â«xptNodeEditPartImpl.setupContentPane(it)Â»
 		
-		«xptNodeEditPartImpl.getContentPane(it)»
+		Â«xptNodeEditPartImpl.getContentPane(it)Â»
 	
-		«xptNodeEditPartImpl.setForegroundColor(it)»
+		Â«xptNodeEditPartImpl.setForegroundColor(it)Â»
 	
-«««		«xptNodeEditPartImpl.setBackgroundColor(it)»
+Â«Â«Â«		Â«xptNodeEditPartImpl.setBackgroundColor(it)Â»
 	
-		«xptNodeEditPartImpl.setLineWidth(it)»
+		Â«xptNodeEditPartImpl.setLineWidth(it)Â»
 	
-		«xptNodeEditPartImpl.setLineStyle(it)»
+		Â«xptNodeEditPartImpl.setLineStyle(it)Â»
 	
-		«xptNodeEditPartImpl.getPrimaryChildEditPart(it)»
+		Â«xptNodeEditPartImpl.getPrimaryChildEditPart(it)Â»
 		
 
 	
-	«IF hasChildrenInListCompartments(it)»
-		«xptNodeEditPartImpl.getTargetEditPartMethod(it)»
-	«ENDIF»
+	Â«IF hasChildrenInListCompartments(it)Â»
+		Â«xptNodeEditPartImpl.getTargetEditPartMethod(it)Â»
+	Â«ENDIFÂ»
 	
-		«handleNotificationEvent(it)»
+		Â«handleNotificationEvent(it)Â»
 	
-		«xptNodeEditPartImpl.innerClassDeclaration(viewmap)»
+		Â«xptNodeEditPartImpl.innerClassDeclaration(viewmap)Â»
 		
-		«additions(it)»
+		Â«additions(it)Â»
 	}
 	'''
 
 	//BEGIN: PapyrusGenCode
 	//patches the super type of the node edit part in case the controlled object represents a UML element
-	override extendsList (GenNode it)''' extends «aspectsNodeEditPartImpl.extendsListContents(it)»'''
+	override extendsList (GenNode it)''' extends Â«aspectsNodeEditPartImpl.extendsListContents(it)Â»'''
 	//END: PapyrusGenCode
 
 	//	override additions(GenNode it) '''
-	//	«aspectsNodeEditPartImpl.genPreferredValue(it)»
+	//	Â«aspectsNodeEditPartImpl.genPreferredValue(it)Â»
 	//	'''
 }

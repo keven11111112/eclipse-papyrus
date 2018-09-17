@@ -26,9 +26,9 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 
 	override def getCompartment(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.gmf.runtime.notation.Node getCompartment(org.eclipse.gmf.runtime.notation.View node, String visualID) {
-			String type = «xptVisualIDRegistry.typeMethodCall(it, 'visualID')»;
+			String type = Â«xptVisualIDRegistry.typeMethodCall(it, 'visualID')Â»;
 			for (java.util.Iterator it = node.getChildren().iterator(); it.hasNext();) {
 				org.eclipse.gmf.runtime.notation.View nextView = (org.eclipse.gmf.runtime.notation.View) it.next();
 				if (nextView instanceof org.eclipse.gmf.runtime.notation.Node && type.equals(nextView.getType())) {
@@ -39,6 +39,6 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 		}
 	'''
 
-	override def createChildrenMethodName(GenContainerBase it) '''create«it.stringUniqueIdentifier»_Children'''
+	override def createChildrenMethodName(GenContainerBase it) '''createÂ«it.stringUniqueIdentifierÂ»_Children'''
 
 }

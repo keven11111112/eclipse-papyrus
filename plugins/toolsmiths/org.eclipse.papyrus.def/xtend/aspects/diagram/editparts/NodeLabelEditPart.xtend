@@ -36,33 +36,33 @@ override extendsList (GenNodeLabel it) '''extends org.eclipse.papyrus.infra.gmfd
 //END: PapyrusGenCode
 
 	override handleNotificationEvent(GenNodeLabel it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification event) {
 			refreshLabel();
-			«xptNodeLabelEditPart.handleNotificationEventBody(it)»
+			Â«xptNodeLabelEditPart.handleNotificationEventBody(it)Â»
 		}
 	'''
 	
 	override additions(GenNodeLabel it) '''
-	«««	Code to refresh icon
+	Â«Â«Â«	Code to refresh icon
 	
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 	
 		
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 		public void activate() {
 			super.activate();
 			addOwnerElementListeners();
 		}
 	
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected void addOwnerElementListeners() {
 			addListenerFilter(ADD_PARENT_MODEL, this, ((org.eclipse.gmf.runtime.notation.View) getParent().getModel()));
 	
 		}
 	
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public void deactivate() {
 			removeOwnerElementListeners();
 			super.deactivate();
@@ -70,12 +70,12 @@ override extendsList (GenNodeLabel it) '''extends org.eclipse.papyrus.infra.gmfd
 		}
 	
 	
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected void removeOwnerElementListeners() {
 			removeListenerFilter(ADD_PARENT_MODEL);
 	
 		}
 	
-	«««END: PapyrusGenCode
+	Â«Â«Â«END: PapyrusGenCode
 	'''
 }

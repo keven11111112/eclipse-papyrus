@@ -32,21 +32,21 @@ import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
 
 		override createDefaultEditPoliciesBody(GenCompartment it) '''
 		super.createDefaultEditPolicies();
-		«IF canCollapse»
+		Â«IF canCollapseÂ»
 			installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy());
-		«ENDIF»
-		«xptEditpartsCommon.installSemanticEditPolicy(it)»
-		«IF ! childNodes.empty»
+		Â«ENDIFÂ»
+		Â«xptEditpartsCommon.installSemanticEditPolicy(it)Â»
+		Â«IF ! childNodes.emptyÂ»
 			installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy());
 			installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy());
 			installEditPolicy(org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy.PASTE_ROLE, new org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy());
-		«ENDIF»
-		«xptEditpartsCommon.installCanonicalEditPolicy(it)»
-		«xptEditpartsCommon.behaviour(it)»
+		Â«ENDIFÂ»
+		Â«xptEditpartsCommon.installCanonicalEditPolicy(it)Â»
+		Â«xptEditpartsCommon.behaviour(it)Â»
 	'''
 	
 		override getTargetEditPartMethod(GenCompartment it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public org.eclipse.gef.EditPart getTargetEditPart(org.eclipse.gef.Request request) {
 
 			return super.getTargetEditPart(request);

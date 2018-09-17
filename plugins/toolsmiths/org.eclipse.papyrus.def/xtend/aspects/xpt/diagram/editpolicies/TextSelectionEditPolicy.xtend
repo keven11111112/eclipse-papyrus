@@ -29,11 +29,11 @@ import xpt.CodeStyle
 	override TextSelectionEditPolicy_implementsClause(GenDiagram it) '''implements org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy'''
 	
 	override textFeedback_createFocusFeedbackFigure(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected org.eclipse.draw2d.IFigure createFocusFeedbackFigure() {
 			return new org.eclipse.draw2d.Figure() {
 		
-			«overrideC»
+			Â«overrideCÂ»
 			protected void paintFigure(org.eclipse.draw2d.Graphics graphics) {
 				graphics.drawFocus(getBounds().getResized(-1, -1));
 			}
@@ -42,11 +42,11 @@ import xpt.CodeStyle
 	'''
 	
 	override textFeedback_getHostPositionListener(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.draw2d.FigureListener getHostPositionListener() {
 			if (hostPositionListener == null) {
 				hostPositionListener = new org.eclipse.draw2d.FigureListener() {
-					«overrideI»
+					Â«overrideIÂ»
 					public void figureMoved(org.eclipse.draw2d.IFigure source) {
 						refreshFeedback();
 					}

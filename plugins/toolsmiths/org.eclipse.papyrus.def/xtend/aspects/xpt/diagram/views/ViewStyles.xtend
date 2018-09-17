@@ -36,22 +36,22 @@ import xpt.diagram.ViewmapAttributesUtils_qvto
 
 
 	override dispatch offset(GenExternalNodeLabel it, String viewVar) '''
-		«IF labelOffsetX(viewmap, 0) != 0 || labelOffsetY(viewmap, 0) != 0»
-			«offset(it,viewVar, labelOffsetX(viewmap, 0), labelOffsetY(viewmap, 0))»
-		«ELSE»
-			«offset(it,viewVar, 0, 15)»
-		«ENDIF»
+		Â«IF labelOffsetX(viewmap, 0) != 0 || labelOffsetY(viewmap, 0) != 0Â»
+			Â«offset(it,viewVar, labelOffsetX(viewmap, 0), labelOffsetY(viewmap, 0))Â»
+		Â«ELSEÂ»
+			Â«offset(it,viewVar, 0, 15)Â»
+		Â«ENDIFÂ»
 	'''
 
 	override def offset(GenLabel it, String viewVar, int x, int y) '''
-		«val location = stringUniqueIdentifier.toFirstLower+'_Location'»
-		org.eclipse.gmf.runtime.notation.Location «location» = (org.eclipse.gmf.runtime.notation.Location) «viewVar».getLayoutConstraint();
-		«IF it.getDiagram().isPixelMapMode()»
-			«location».setX(«x»);
-			«location».setY(«y»);
-		«ELSE»
-			«location».setX(org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper.getMapMode(«viewVar».getDiagram().getMeasurementUnit()).DPtoLP(«x»));
-			«location».setY(org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper.getMapMode(«viewVar».getDiagram().getMeasurementUnit()).DPtoLP(«y»));
-		«ENDIF»
+		Â«val location = stringUniqueIdentifier.toFirstLower+'_Location'Â»
+		org.eclipse.gmf.runtime.notation.Location Â«locationÂ» = (org.eclipse.gmf.runtime.notation.Location) Â«viewVarÂ».getLayoutConstraint();
+		Â«IF it.getDiagram().isPixelMapMode()Â»
+			Â«locationÂ».setX(Â«xÂ»);
+			Â«locationÂ».setY(Â«yÂ»);
+		Â«ELSEÂ»
+			Â«locationÂ».setX(org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper.getMapMode(Â«viewVarÂ».getDiagram().getMeasurementUnit()).DPtoLP(Â«xÂ»));
+			Â«locationÂ».setY(org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper.getMapMode(Â«viewVarÂ».getDiagram().getMeasurementUnit()).DPtoLP(Â«yÂ»));
+		Â«ENDIFÂ»
 	'''
 }

@@ -32,55 +32,55 @@ import xpt.Commonimport xpt.CodeStyle
 
 
 	override DiagramEditorContextMenuProvider(GenDiagram it) '''
-		«copyright(editorGen)»
-		package «packageName(it)»;
+		Â«copyright(editorGen)Â»
+		package Â«packageName(it)Â»;
 		
-		«generatedClassComment»
-		public class «className(it)» extends org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider {
+		Â«generatedClassCommentÂ»
+		public class Â«className(it)Â» extends org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider {
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			private org.eclipse.ui.IWorkbenchPart part;
 		
-		«««			«generatedMemberComment»
-		«««			private «xptDeleteElementAction.qualifiedClassName(it)» deleteAction;
+		Â«Â«Â«			Â«generatedMemberCommentÂ»
+		Â«Â«Â«			private Â«xptDeleteElementAction.qualifiedClassName(it)Â» deleteAction;
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public DiagramEditorContextMenuProvider(org.eclipse.ui.IWorkbenchPart part, org.eclipse.gef.EditPartViewer viewer) {
 				super(part, viewer);
 				this.part = part;
-				«««				deleteAction = new «xptDeleteElementAction.qualifiedClassName(it)»(part);
-				«««				deleteAction.init();
+				Â«Â«Â«				deleteAction = new Â«xptDeleteElementAction.qualifiedClassName(it)Â»(part);
+				Â«Â«Â«				deleteAction.init();
 			}
 		
-		«««			«generatedMemberComment»
-		«««			public void dispose() {
-		«««				if (deleteAction != null) {
-		«««					deleteAction.dispose();
-		«««					deleteAction = null;
-		«««				}
-		«««				super.dispose();
-		«««			}
+		Â«Â«Â«			Â«generatedMemberCommentÂ»
+		Â«Â«Â«			public void dispose() {
+		Â«Â«Â«				if (deleteAction != null) {
+		Â«Â«Â«					deleteAction.dispose();
+		Â«Â«Â«					deleteAction = null;
+		Â«Â«Â«				}
+		Â«Â«Â«				super.dispose();
+		Â«Â«Â«			}
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public void buildContextMenu(final org.eclipse.jface.action.IMenuManager menu) {
 				getViewer().flush();
 				try {
 					org.eclipse.emf.transaction.util.TransactionUtil.getEditingDomain(
 							(org.eclipse.emf.ecore.EObject) getViewer().getContents().getModel()).runExclusive(new Runnable() {
 		
-						«overrideI(it.editorGen.diagram)»
+						Â«overrideI(it.editorGen.diagram)Â»
 						public void run() {
 							org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.ContributionItemService.getInstance().contributeToPopupMenu(
 									DiagramEditorContextMenuProvider.this, part);
 							menu.remove(org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds.ACTION_DELETE_FROM_MODEL);
-		«««							menu.appendToGroup("editGroup", deleteAction);
+		Â«Â«Â«							menu.appendToGroup("editGroup", deleteAction);
 						}
 					});
 				} catch (Exception e) {
-			«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Error building context menu", e);
+			Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».getInstance().logError("Error building context menu", e);
 			}
 			}
-			«additions(it)»
+			Â«additions(it)Â»
 		}
 	'''
 }

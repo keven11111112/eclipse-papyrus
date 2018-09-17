@@ -12,7 +12,7 @@
 	<packaging>eclipse-plugin</packaging>
 	
 	<properties>
-		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	
 	<build>
@@ -52,7 +52,7 @@
 				<configuration>
 					<outputDirectory>xtend-gen</outputDirectory>
 					<testOutputDirectory>${project.build.directory}/xtend-gen/test</testOutputDirectory>
-					<encoding>ISO-8859-1</encoding>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 		</plugins>

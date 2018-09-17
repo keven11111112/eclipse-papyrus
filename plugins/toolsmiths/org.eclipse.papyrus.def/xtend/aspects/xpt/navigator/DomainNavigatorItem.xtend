@@ -25,17 +25,17 @@ import xpt.CodeStyle
 	@Inject extension CodeStyle
 
 	override def registerAdapterFactory(GenNavigator it) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		static {
 			@SuppressWarnings("rawtypes")
 			final Class[] supportedTypes = new Class[] { org.eclipse.emf.ecore.EObject.class, org.eclipse.ui.views.properties.IPropertySource.class };
 			org.eclipse.core.runtime.Platform.getAdapterManager().registerAdapters(new org.eclipse.core.runtime.IAdapterFactory() {
 				
-				«overrideI(it.editorGen.diagram)»
+				Â«overrideI(it.editorGen.diagram)Â»
 				@SuppressWarnings("rawtypes")
 				public Object getAdapter(Object adaptableObject, Class adapterType) {
-					if (adaptableObject instanceof «qualifiedClassName(it)») {
-						«qualifiedClassName(it)» domainNavigatorItem = («qualifiedClassName(it)») adaptableObject;
+					if (adaptableObject instanceof Â«qualifiedClassName(it)Â») {
+						Â«qualifiedClassName(it)Â» domainNavigatorItem = (Â«qualifiedClassName(it)Â») adaptableObject;
 						org.eclipse.emf.ecore.EObject eObject = domainNavigatorItem.getEObject();
 						if (adapterType == org.eclipse.emf.ecore.EObject.class) {
 							return eObject;
@@ -48,12 +48,12 @@ import xpt.CodeStyle
 					return null;
 				}
 		
-				«overrideI(it.editorGen.diagram)»
+				Â«overrideI(it.editorGen.diagram)Â»
 				@SuppressWarnings("rawtypes")
 				public Class[] getAdapterList() {
 					return supportedTypes;
 				}
-			}, «qualifiedClassName(it)».class);
+			}, Â«qualifiedClassName(it)Â».class);
 		}
 	'''
 

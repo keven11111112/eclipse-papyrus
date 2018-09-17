@@ -34,85 +34,85 @@ import xpt.Common
 	//BEGIN: PapyrusGenCode
 	//computes super type of the link edit part in case the edit part manages a representation of a UML element
 	def extendsListContents(GenLink it)'''
-	«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |(v.genView.contains(it) && v.superOwnedEditPart!=null)].size != 0»
-	«FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |(v.genView.contains(it) && v.superOwnedEditPart!=null)].toIterable»
-	«specifyInheritance(extendedObject)»
-	«ENDFOR»
-	«ELSE»
+	Â«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |(v.genView.contains(it) && v.superOwnedEditPart!=null)].size != 0Â»
+	Â«FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |(v.genView.contains(it) && v.superOwnedEditPart!=null)].toIterableÂ»
+	Â«specifyInheritance(extendedObject)Â»
+	Â«ENDFORÂ»
+	Â«ELSEÂ»
 	org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart
-	«ENDIF»
+	Â«ENDIFÂ»
 	'''
 	//END: BEGIN: PapyrusGenCode
 	
 	//BEGIN: PapyrusGenCode
 	//definition of the inheritance
-	def specifyInheritance (ExtendedGenView it)'''«superOwnedEditPart»'''
+	def specifyInheritance (ExtendedGenView it)'''Â«superOwnedEditPartÂ»'''
 	//END: PapyrusGenCode
 
 	override addFixedChild (GenLink it)'''
-	«IF labels.size > 0»
-		«generatedMemberComment»
+	Â«IF labels.size > 0Â»
+		Â«generatedMemberCommentÂ»
 		protected boolean addFixedChild(org.eclipse.gef.EditPart childEditPart) {
-			«FOR label : labels»
-				«addLabel(label.viewmap,label)»
-			«ENDFOR»
+			Â«FOR label : labelsÂ»
+				Â«addLabel(label.viewmap,label)Â»
+			Â«ENDFORÂ»
 			return false;
 		}
-	«ENDIF»
+	Â«ENDIFÂ»
 '''
 
 	override removeFixedChild(GenLink it) '''
-	«IF ! labels.empty»
-		«generatedMemberComment»
+	Â«IF ! labels.emptyÂ»
+		Â«generatedMemberCommentÂ»
 		protected boolean removeFixedChild(org.eclipse.gef.EditPart childEditPart) {
-			«FOR label : labels»
-				«removeLabel(label.viewmap, label)»
-			«ENDFOR»
+			Â«FOR label : labelsÂ»
+				Â«removeLabel(label.viewmap, label)Â»
+			Â«ENDFORÂ»
 			return false;
 		}
-	«ENDIF»
+	Â«ENDIFÂ»
 	'''
 
 	override addChildVisual(GenLink it) '''
-	«IF ! labels.empty»
-		«generatedMemberComment»
+	Â«IF ! labels.emptyÂ»
+		Â«generatedMemberCommentÂ»
 		protected void addChildVisual(org.eclipse.gef.EditPart childEditPart, int index) {
 			if (addFixedChild(childEditPart)) {
 				return;
 			}
 			super.addChildVisual(childEditPart, -1);
 		}
-	«ENDIF»
+	Â«ENDIFÂ»
 	'''
 
 	override removeChildVisual(GenLink it) '''
-	«IF ! labels.empty»
-		«generatedMemberComment»
+	Â«IF ! labels.emptyÂ»
+		Â«generatedMemberCommentÂ»
 		protected void removeChildVisual(org.eclipse.gef.EditPart childEditPart) {
 			if (removeFixedChild(childEditPart)) {
 				return;
 			}
 			super.removeChildVisual(childEditPart);
 		}
-	«ENDIF»
+	Â«ENDIFÂ»
 	'''
 	
 	override dispatch createLinkFigure(ModeledViewmap it, GenLink link) '''
-«««		«generatedMemberComment»
-«««		protected org.eclipse.draw2d.Connection createConnectionFigure() {
-«««			return new «modeledViewmapFigureFQN(it)»();
-«««		}
-«««		
-«««		«generatedMemberComment»
-«««		public «modeledViewmapFigureFQN(it)» getPrimaryShape() {
-«««			return («modeledViewmapFigureFQN(it)») getFigure();
-«««		}
-«««		
-«««		«xptModeledViewmapProducer.viewmapClassBody(it)»
+Â«Â«Â«		Â«generatedMemberCommentÂ»
+Â«Â«Â«		protected org.eclipse.draw2d.Connection createConnectionFigure() {
+Â«Â«Â«			return new Â«modeledViewmapFigureFQN(it)Â»();
+Â«Â«Â«		}
+Â«Â«Â«		
+Â«Â«Â«		Â«generatedMemberCommentÂ»
+Â«Â«Â«		public Â«modeledViewmapFigureFQN(it)Â» getPrimaryShape() {
+Â«Â«Â«			return (Â«modeledViewmapFigureFQN(it)Â») getFigure();
+Â«Â«Â«		}
+Â«Â«Â«		
+Â«Â«Â«		Â«xptModeledViewmapProducer.viewmapClassBody(it)Â»
 	'''
 	
 	override modeledViewmapFigureFQN(ModeledViewmap it) '''
-«««	«xptModeledViewmapProducer.viewmapFigureFQN(it)»
+Â«Â«Â«	Â«xptModeledViewmapProducer.viewmapFigureFQN(it)Â»
 	'''
 
 }

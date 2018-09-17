@@ -27,31 +27,31 @@ import xpt.Common
 
 	override extendsList(GenCompartment it) '''
 
-«««BEGIN: PapyrusGenCode
-«««Add own extension
-«IF it.eResource.allContents.filter(typeof(ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].size != 0»
-	extends «FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].toIterable»
-	«specifyInheritance(extendedObject as ExtendedGenView)»
-«ENDFOR»
-«««END: BEGIN: PapyrusGenCode
-«ELSE»
-  extends «IF listLayout»org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart«ELSE»org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompartmentEditPart«ENDIF»
-«ENDIF»
+Â«Â«Â«BEGIN: PapyrusGenCode
+Â«Â«Â«Add own extension
+Â«IF it.eResource.allContents.filter(typeof(ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].size != 0Â»
+	extends Â«FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].toIterableÂ»
+	Â«specifyInheritance(extendedObject as ExtendedGenView)Â»
+Â«ENDFORÂ»
+Â«Â«Â«END: BEGIN: PapyrusGenCode
+Â«ELSEÂ»
+  extends Â«IF listLayoutÂ»org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPartÂ«ELSEÂ»org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.linklf.LinkLFShapeCompartmentEditPartÂ«ENDIFÂ»
+Â«ENDIFÂ»
 	'''
 
 	//BEGIN: PapyrusGenCode
 	//definition of the inheritance
-	def specifyInheritance(ExtendedGenView it) '''«superOwnedEditPart»'''
+	def specifyInheritance(ExtendedGenView it) '''Â«superOwnedEditPartÂ»'''
 
 	//END: PapyrusGenCode
 	override additions(GenCompartment it) '''
-		«handleSize(it)»
-		«refreshbound(it)»
-		«refreshvisual(it)»
+		Â«handleSize(it)Â»
+		Â«refreshbound(it)Â»
+		Â«refreshvisual(it)Â»
 	'''
 
 	def handleSize(GenCompartment it) '''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notification notification) {
 		Object feature = notification.getFeature();
 		if (org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Width().equals(feature)
@@ -65,7 +65,7 @@ protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notificatio
 '''
 
 	def refreshbound(GenCompartment it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected void refreshBounds() {
 			int width = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Width())).intValue();
 			int height = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getSize_Height())).intValue();
@@ -81,7 +81,7 @@ protected void handleNotificationEvent(org.eclipse.emf.common.notify.Notificatio
 	'''
 
 	def refreshvisual(GenCompartment it) '''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();

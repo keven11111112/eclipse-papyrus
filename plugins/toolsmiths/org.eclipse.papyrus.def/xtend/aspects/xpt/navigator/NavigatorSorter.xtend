@@ -28,16 +28,16 @@ import xpt.editor.VisualIDRegistry
 	@Inject NavigatorItem xptNavigatorItem;
 	
 	override def category(GenNavigator it) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		public int category(Object element) {
-			if (element instanceof «xptNavigatorItem.qualifiedClassName(it)») {
-				«xptNavigatorItem.qualifiedClassName(it)» item = («xptNavigatorItem.qualifiedClassName(it)») element;
-			«IF editorGen.diagram.generateCreateShortcutAction()»
-				if (item.getView().getEAnnotation("Shortcut") != null) {  «nonNLS(1)»
+			if (element instanceof Â«xptNavigatorItem.qualifiedClassName(it)Â») {
+				Â«xptNavigatorItem.qualifiedClassName(it)Â» item = (Â«xptNavigatorItem.qualifiedClassName(it)Â») element;
+			Â«IF editorGen.diagram.generateCreateShortcutAction()Â»
+				if (item.getView().getEAnnotation("Shortcut") != null) {  Â«nonNLS(1)Â»
 					return SHORTCUTS_CATEGORY;
 				}
-			«ENDIF»
-			return «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»(item.getView()).hashCode();
+			Â«ENDIFÂ»
+			return Â«xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)Â»(item.getView()).hashCode();
 			}
 			return GROUP_CATEGORY;
 		}

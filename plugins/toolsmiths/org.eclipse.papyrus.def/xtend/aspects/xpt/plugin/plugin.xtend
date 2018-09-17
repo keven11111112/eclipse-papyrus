@@ -55,29 +55,29 @@ import java.io.File
 	override plugin(GenPlugin it) '''
 		<?xml version="1.0" encoding="UTF-8"?>
 		<?eclipse version="3.0"?>
-		«xcopyright(it.editorGen)»
+		Â«xcopyright(it.editorGen)Â»
 		<plugin>
-		««««fileTypes()»
-		««««extension_parser()»
-		«xptEditorExtension.extensions(it.editorGen)»
-		«««global actions handled in the diagram.common plugin
-		««««pluginMenu()»
-		«validation(it.editorGen.diagram)»
-		«IF it.editorGen.metrics != null»«metrics(it.editorGen.metrics)»«ENDIF»
-		«««RS: redefine palette generation
-«««		«palettePredefinedEntries(editorGen)»
-«««		«paletteEntries(editorGen)»
-		«xptPreferencesExtension.extensions(it.editorGen.diagram)»
-		«IF it.editorGen.propertySheet != null»«xptPropsheetExtension.extensions(it.editorGen.propertySheet)»«ENDIF»
-		«xptProvidersExtension.extensions(it.editorGen.diagram)»
-		«IF it.editorGen.navigator != null»«xptNavigatorExtension.extensions(it.editorGen.navigator)»«ENDIF»
-		«IF it.editorGen.application != null»«xptApplicationExtension.extensions(it.editorGen.application)»«ENDIF»
-		«extensionsConstraintProviders(it.editorGen)»
-		«xptUpdaterExtension.extensions(it.editorGen.diagramUpdater)»
-		«xptActionExtension.Main(it.editorGen)»
-		«additions(it)»
-		«notationTypesMap(editorGen)»
-«««		«paletteConfiguration(editorGen)»
+		Â«Â«Â«Â«fileTypes()Â»
+		Â«Â«Â«Â«extension_parser()Â»
+		Â«xptEditorExtension.extensions(it.editorGen)Â»
+		Â«Â«Â«global actions handled in the diagram.common plugin
+		Â«Â«Â«Â«pluginMenu()Â»
+		Â«validation(it.editorGen.diagram)Â»
+		Â«IF it.editorGen.metrics != nullÂ»Â«metrics(it.editorGen.metrics)Â»Â«ENDIFÂ»
+		Â«Â«Â«RS: redefine palette generation
+Â«Â«Â«		Â«palettePredefinedEntries(editorGen)Â»
+Â«Â«Â«		Â«paletteEntries(editorGen)Â»
+		Â«xptPreferencesExtension.extensions(it.editorGen.diagram)Â»
+		Â«IF it.editorGen.propertySheet != nullÂ»Â«xptPropsheetExtension.extensions(it.editorGen.propertySheet)Â»Â«ENDIFÂ»
+		Â«xptProvidersExtension.extensions(it.editorGen.diagram)Â»
+		Â«IF it.editorGen.navigator != nullÂ»Â«xptNavigatorExtension.extensions(it.editorGen.navigator)Â»Â«ENDIFÂ»
+		Â«IF it.editorGen.application != nullÂ»Â«xptApplicationExtension.extensions(it.editorGen.application)Â»Â«ENDIFÂ»
+		Â«extensionsConstraintProviders(it.editorGen)Â»
+		Â«xptUpdaterExtension.extensions(it.editorGen.diagramUpdater)Â»
+		Â«xptActionExtension.Main(it.editorGen)Â»
+		Â«additions(it)Â»
+		Â«notationTypesMap(editorGen)Â»
+Â«Â«Â«		Â«paletteConfiguration(editorGen)Â»
 		</plugin>
 	'''
 	
@@ -87,19 +87,19 @@ import java.io.File
 	 */
 	def paletteConfiguration(GenEditorGenerator it) '''
 <extension point="org.eclipse.papyrus.infra.gmfdiag.common.paletteDefinition">
-	«xmlGeneratedTag»
+	Â«xmlGeneratedTagÂ»
 	<paletteDefinition
-		ID="«plugin.ID».paletteconfiguration"
+		ID="Â«plugin.IDÂ».paletteconfiguration"
 		class="org.eclipse.papyrus.infra.gmfdiag.common.service.palette.ExtendedPluginPaletteProvider"
-		name="«plugin.name» Palette"
-		path="«relativePath»/«modelID».paletteconfiguration"
+		name="Â«plugin.nameÂ» Palette"
+		path="Â«relativePathÂ»/Â«modelIDÂ».paletteconfiguration"
 		provider="Eclipse Modeling Project">
 		<Priority
 			name="Lowest">
 		</Priority>
 		<!-- Specify diagram to which this palette tool relates -->
 		<editor
-			id="«plugin.ID»">
+			id="Â«plugin.IDÂ»">
 		</editor>
 	</paletteDefinition>
 </extension>
@@ -107,28 +107,28 @@ import java.io.File
 
 	override additions(GenPlugin it) ''''''
 
-	//	def category(GenDiagram it) '''«getDiagramPreferencePageCategory()».«editorGen.modelID»'''
+	//	def category(GenDiagram it) '''Â«getDiagramPreferencePageCategory()Â».Â«editorGen.modelIDÂ»'''
 
 	//RS: redefine palette generation, using predefined entries
 	def palettePredefinedEntries(GenEditorGenerator it) '''
-		«xmlGeneratedTag»
+		Â«xmlGeneratedTagÂ»
 		<extension
-			id="«plugin.name».palettedefinition"
-			name="«plugin.name» Predefined Entries"
+			id="Â«plugin.nameÂ».palettedefinition"
+			name="Â«plugin.nameÂ» Predefined Entries"
 			point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
 			
-			«xmlGeneratedTag»	
+			Â«xmlGeneratedTagÂ»	
 			<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 				<Priority name="Lowest"/>
 				   		<contribution
-				   		    	factoryClass="«it.diagram.palette.packageName».«it.diagram.palette.factoryClassName»">
+				   		    	factoryClass="Â«it.diagram.palette.packageNameÂ».Â«it.diagram.palette.factoryClassNameÂ»">
 				   		<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 				
-				«FOR tool : collectTools(diagram.palette)»
-					«predefinedEntryDefinition(tool)»
-				«ENDFOR»
+				Â«FOR tool : collectTools(diagram.palette)Â»
+					Â«predefinedEntryDefinition(tool)Â»
+				Â«ENDFORÂ»
 				
 				</contribution>
 			</paletteProvider>	
@@ -138,26 +138,26 @@ import java.io.File
 
 	//RS: redefine palette generation, using predefined entries
 	def paletteEntries(GenEditorGenerator it) '''
-		«xmlGeneratedTag»
+		Â«xmlGeneratedTagÂ»
 		<extension
-			id="«plugin.name».standard"
-			name="«plugin.name» Standard Palette"
+			id="Â«plugin.nameÂ».standard"
+			name="Â«plugin.nameÂ» Standard Palette"
 			point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
 			
-			«xmlGeneratedTag»	
+			Â«xmlGeneratedTagÂ»	
 			<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
 				<Priority name="Low"/>
 				   		<contribution
-				   		    	factoryClass="«it.diagram.palette.packageName».«it.diagram.palette.factoryClassName»">
+				   		    	factoryClass="Â«it.diagram.palette.packageNameÂ».Â«it.diagram.palette.factoryClassNameÂ»">
 				   		<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 				
-				«FOR tool : diagram.palette.groups»
-					«groupUsage(tool)»
-				«ENDFOR»
+				Â«FOR tool : diagram.palette.groupsÂ»
+					Â«groupUsage(tool)Â»
+				Â«ENDFORÂ»
 				</contribution>
-				<editor id="«plugin.ID»"/>
+				<editor id="Â«plugin.IDÂ»"/>
 			</paletteProvider>	
 				
 		</extension>
@@ -165,24 +165,24 @@ import java.io.File
 
 	def groupUsage(ToolGroup it) '''
 		<entry
-		      description="«it.description»"
-		      id=«IF isQuoted(id,'"')»«id»«ELSE»"«id»"«ENDIF»
-		      kind="«IF it.stack && it.toolsOnly»stack«ELSE»drawer«ENDIF»"
-		      label="«it.title»"
-		      large_icon="«largeIconPath»"
-		      path="«getPath(it)»"
-		      small_icon="«smallIconPath»">
+		      description="Â«it.descriptionÂ»"
+		      id=Â«IF isQuoted(id,'"')Â»Â«idÂ»Â«ELSEÂ»"Â«idÂ»"Â«ENDIFÂ»
+		      kind="Â«IF it.stack && it.toolsOnlyÂ»stackÂ«ELSEÂ»drawerÂ«ENDIFÂ»"
+		      label="Â«it.titleÂ»"
+		      large_icon="Â«largeIconPathÂ»"
+		      path="Â«getPath(it)Â»"
+		      small_icon="Â«smallIconPathÂ»">
 		   <expand
 		         force="true">
 		   </expand>
 		</entry>
-		««« TODO: call sub entries... 
-		«FOR entry : it.entries.filter[e| e instanceof ToolEntry]»
-			«toolUsage(entry, it)»
-		«ENDFOR»
-		«FOR entry : it.entries.filter[e| e instanceof ToolGroup]»
-			«toolUsage(entry, it)»
-		«ENDFOR»
+		Â«Â«Â« TODO: call sub entries... 
+		Â«FOR entry : it.entries.filter[e| e instanceof ToolEntry]Â»
+			Â«toolUsage(entry, it)Â»
+		Â«ENDFORÂ»
+		Â«FOR entry : it.entries.filter[e| e instanceof ToolGroup]Â»
+			Â«toolUsage(entry, it)Â»
+		Â«ENDFORÂ»
 	'''
 
 	private def getPath(ToolEntry it) {
@@ -205,91 +205,91 @@ import java.io.File
 	
 	def dispatch toolUsage(ToolEntry it, ToolGroup group) '''
  		<predefinedEntry
- 		        id=«IF isQuoted(id,'"')»«id»«ELSE»"«id»"«ENDIF»
- 				path="«getPath(it)»">
+ 		        id=Â«IF isQuoted(id,'"')Â»Â«idÂ»Â«ELSEÂ»"Â«idÂ»"Â«ENDIFÂ»
+ 				path="Â«getPath(it)Â»">
  		  </predefinedEntry>
  	'''
 
 	def dispatch toolUsage(ToolGroup it, ToolGroup group) '''
-		«groupUsage(it)»
+		Â«groupUsage(it)Â»
 	'''
 
 	def predefinedEntryDefinition(AbstractToolEntry it) '''
 		<entry
 		      defineOnly="true"
-		      description="«it.description»"
-		      id=«IF isQuoted(id,'"')»«id»«ELSE»"«id»"«ENDIF»
+		      description="Â«it.descriptionÂ»"
+		      id=Â«IF isQuoted(id,'"')Â»Â«idÂ»Â«ELSEÂ»"Â«idÂ»"Â«ENDIFÂ»
 		      kind="tool"
-		      label="«it.title»"
-		      large_icon="«largeIconPath»"
+		      label="Â«it.titleÂ»"
+		      large_icon="Â«largeIconPathÂ»"
 		      path=""
-		      small_icon="«smallIconPath»">
+		      small_icon="Â«smallIconPathÂ»">
 		</entry>
 	'''
 	
 	//	set notation type mapping extension point
 	def notationTypesMap(GenEditorGenerator it) '''	
-«tripleSpace(0)»<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
-«tripleSpace(1)»«xmlGeneratedTag»
-«tripleSpace(1)»<diagramMappings diagramID="«modelID»">
-«tripleSpace(1)»	<mapping type="«modelID»" humanReadableType="«modelID.replaceAll('Papyrus|UML|Diagram', '')»Diagram"/>
-			«FOR compartment : diagram.compartments»
-				«compartmentToTypeMap(compartment)»
-			«ENDFOR»
-			«FOR link : diagram.links»
-				«linksToTypeMap(link)»
-			«ENDFOR»
-			«FOR externalLabel : diagram.eResource.allContents.filter(typeof (GenExternalNodeLabel)).toIterable»
-				«floatingLabelToTypeMap(externalLabel)»
-				«externalNodeLabelToTypeMap(externalLabel)»
-			«ENDFOR»
-«tripleSpace(1)»</diagramMappings>
-«tripleSpace(0)»</extension>
+Â«tripleSpace(0)Â»<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
+Â«tripleSpace(1)Â»Â«xmlGeneratedTagÂ»
+Â«tripleSpace(1)Â»<diagramMappings diagramID="Â«modelIDÂ»">
+Â«tripleSpace(1)Â»	<mapping type="Â«modelIDÂ»" humanReadableType="Â«modelID.replaceAll('Papyrus|UML|Diagram', '')Â»Diagram"/>
+			Â«FOR compartment : diagram.compartmentsÂ»
+				Â«compartmentToTypeMap(compartment)Â»
+			Â«ENDFORÂ»
+			Â«FOR link : diagram.linksÂ»
+				Â«linksToTypeMap(link)Â»
+			Â«ENDFORÂ»
+			Â«FOR externalLabel : diagram.eResource.allContents.filter(typeof (GenExternalNodeLabel)).toIterableÂ»
+				Â«floatingLabelToTypeMap(externalLabel)Â»
+				Â«externalNodeLabelToTypeMap(externalLabel)Â»
+			Â«ENDFORÂ»
+Â«tripleSpace(1)Â»</diagramMappings>
+Â«tripleSpace(0)Â»</extension>
 	'''
 	def compartmentToTypeMap(GenCompartment it) '''
 		<mapping
-			humanReadableType="«title.replaceAll('Compartment', '')»"
-			type="«stringVisualID»">
+			humanReadableType="Â«title.replaceAll('Compartment', '')Â»"
+			type="Â«stringVisualIDÂ»">
 		</mapping>
 	'''
 
 	def linksToTypeMap(GenLink it) '''
-		«FOR label : labels»
-			«linkLabelToTypeMap(label)»
-		«ENDFOR»
+		Â«FOR label : labelsÂ»
+			Â«linkLabelToTypeMap(label)Â»
+		Â«ENDFORÂ»
 	'''
 	
 	def linkLabelToTypeMap(GenLinkLabel it)'''
-	«««	it is used on a LabelVisibilityPreference...
-		«LabelVisibilityPreferenceToTypeMap(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.linkLabels != null && v.linkLabels.contains(it) && v.role != null], stringVisualID)»	
+	Â«Â«Â«	it is used on a LabelVisibilityPreference...
+		Â«LabelVisibilityPreferenceToTypeMap(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.linkLabels != null && v.linkLabels.contains(it) && v.role != null], stringVisualID)Â»	
 	'''
 	
 	def externalNodeLabelToTypeMap(GenExternalNodeLabel it)'''
-		«LabelVisibilityPreferenceToTypeMap(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.externalNodeLabels != null && v.externalNodeLabels.contains(it) && v.role != null],stringVisualID)»	
+		Â«LabelVisibilityPreferenceToTypeMap(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.externalNodeLabels != null && v.externalNodeLabels.contains(it) && v.role != null],stringVisualID)Â»	
 	'''
 	
 	def LabelVisibilityPreferenceToTypeMap(Iterator<LabelVisibilityPreference> it, String visualID)'''
-	«var List<LabelVisibilityPreference> links = it.toList»
-	«IF links.size != 0»
+	Â«var List<LabelVisibilityPreference> links = it.toListÂ»
+	Â«IF links.size != 0Â»
 		<mapping
-			humanReadableType="«links.get(0).role»"
-			type="«visualID»">
+			humanReadableType="Â«links.get(0).roleÂ»"
+			type="Â«visualIDÂ»">
 		</mapping>
-	«ENDIF»	
+	Â«ENDIFÂ»	
 	'''
 		
 	def floatingLabelToTypeMap(GenExternalNodeLabel it)'''
-	«««	it is used on a ExtensionGenView...
-	«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v | v.genView.contains(it) && v.superOwnedEditPart != null].size != 0»
-	«FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].toIterable»
-				«««...to be extended as floatingLabel			
-				«IF "FloatingLabelEditPart".equals(extendedObject.name) »
+	Â«Â«Â«	it is used on a ExtensionGenView...
+	Â«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v | v.genView.contains(it) && v.superOwnedEditPart != null].size != 0Â»
+	Â«FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].toIterableÂ»
+				Â«Â«Â«...to be extended as floatingLabel			
+				Â«IF "FloatingLabelEditPart".equals(extendedObject.name) Â»
 					<mapping
 						humanReadableType="Floating Label"
-						type="«stringVisualID»">
+						type="Â«stringVisualIDÂ»">
 					</mapping>
-				«ENDIF»
-	«ENDFOR»
-	«ENDIF»	
+				Â«ENDIFÂ»
+	Â«ENDFORÂ»
+	Â«ENDIFÂ»	
 	'''
 }

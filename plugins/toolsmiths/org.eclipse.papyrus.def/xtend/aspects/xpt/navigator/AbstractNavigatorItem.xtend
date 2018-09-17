@@ -25,33 +25,33 @@ import xpt.Commonimport xpt.CodeStyle
 	@Inject extension CodeStyle
 
 	override def registerAdapterFactory(GenNavigator it) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		static {
 			@SuppressWarnings("rawtypes")
 			final Class[] supportedTypes = new Class[] { org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor.class };
 			final org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor propertySheetPageContributor = new org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor() {
-				«overrideI(it.editorGen.diagram)»
+				Â«overrideI(it.editorGen.diagram)Â»
 				public String getContributorId() {
-					return "«editorGen.plugin.ID»";  «nonNLS(1)»
+					return "Â«editorGen.plugin.IDÂ»";  Â«nonNLS(1)Â»
 				}
 			};
 			org.eclipse.core.runtime.Platform.getAdapterManager().registerAdapters(new org.eclipse.core.runtime.IAdapterFactory() {
 				
-				«overrideI(it.editorGen.diagram)»
+				Â«overrideI(it.editorGen.diagram)Â»
 				@SuppressWarnings("rawtypes")
 				public Object getAdapter(Object adaptableObject, Class adapterType) {
-					if (adaptableObject instanceof «qualifiedClassName(it)» && adapterType == org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor.class) {
+					if (adaptableObject instanceof Â«qualifiedClassName(it)Â» && adapterType == org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor.class) {
 						return propertySheetPageContributor;				
 					}
 					return null;
 				}
 		
-				«overrideI(it.editorGen.diagram)»
+				Â«overrideI(it.editorGen.diagram)Â»
 				@SuppressWarnings("rawtypes")
 				public Class[] getAdapterList() {
 					return supportedTypes;
 				}
-			}, «qualifiedClassName(it)».class);
+			}, Â«qualifiedClassName(it)Â».class);
 		}
 	'''
 

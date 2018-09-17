@@ -38,16 +38,16 @@ import xpt.Common_qvto
 	 */
 	def PaletteConfiguration(GenEditorGenerator it) '''
 <?xml version="1.0" encoding="ASCII"?>
-«xmlGeneratedTag»
+Â«xmlGeneratedTagÂ»
 <paletteconfiguration:PaletteConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.8"
 	xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2"
-	id="«plugin.ID».paletteconfiguration"
-	label="«plugin.name» Palette"
-	description="This is the palette of «plugin.name»">
-	«FOR tool : diagram.palette.groups»
-	«addDrawerConfigurations(tool)»
-	«ENDFOR»
+	id="Â«plugin.IDÂ».paletteconfiguration"
+	label="Â«plugin.nameÂ» Palette"
+	description="This is the palette of Â«plugin.nameÂ»">
+	Â«FOR tool : diagram.palette.groupsÂ»
+	Â«addDrawerConfigurations(tool)Â»
+	Â«ENDFORÂ»
 </paletteconfiguration:PaletteConfiguration>
 	'''
 	
@@ -56,18 +56,18 @@ import xpt.Common_qvto
 	 */
 	def addDrawerConfigurations(ToolGroup it) '''
 <drawerConfigurations
-	id=«IF isQuoted(id,'"')»«id»«ELSE»"«id»"«ENDIF»
-	label="«it.title»"
-	description="«description»">
-	<icon pluginID="«retrieveBundleId(smallIconPath,palette.diagram.editorGen.plugin.ID)»" iconPath="«retrieveLocalPath(smallIconPath)»"/>
-	«FOR entry : entries»
-		«IF entry instanceof ToolEntry  && isValidTool(entry as AbstractToolEntry)»
-			«addToolConfiguration(entry as ToolEntry)»
-		«ENDIF»
-		«IF entry instanceof ToolGroup»
-			«addStackConfiguration(entry as ToolGroup)»
-		«ENDIF»
-	«ENDFOR»
+	id=Â«IF isQuoted(id,'"')Â»Â«idÂ»Â«ELSEÂ»"Â«idÂ»"Â«ENDIFÂ»
+	label="Â«it.titleÂ»"
+	description="Â«descriptionÂ»">
+	<icon pluginID="Â«retrieveBundleId(smallIconPath,palette.diagram.editorGen.plugin.ID)Â»" iconPath="Â«retrieveLocalPath(smallIconPath)Â»"/>
+	Â«FOR entry : entriesÂ»
+		Â«IF entry instanceof ToolEntry  && isValidTool(entry as AbstractToolEntry)Â»
+			Â«addToolConfiguration(entry as ToolEntry)Â»
+		Â«ENDIFÂ»
+		Â«IF entry instanceof ToolGroupÂ»
+			Â«addStackConfiguration(entry as ToolGroup)Â»
+		Â«ENDIFÂ»
+	Â«ENDFORÂ»
 </drawerConfigurations>
 '''
 	
@@ -76,28 +76,28 @@ import xpt.Common_qvto
 	 */
 	def addToolConfiguration(ToolEntry it) '''
 <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration"
-	id=«IF isQuoted(id,'"')»«id»«ELSE»"«id»"«ENDIF» 
-	label="«title»"
-	«IF null!=qualifiedToolName && !qualifiedToolName.empty»
-		toolClassName="«qualifiedToolName»"
-	«ENDIF»
-	description="«description»"«IF genNodes.empty && !genLinks.empty» kind="ConnectionTool"«ENDIF»>
-	<icon pluginID="«retrieveBundleId(smallIconPath,group.palette.diagram.editorGen.plugin.ID)»" iconPath="«retrieveLocalPath(smallIconPath)»"/>
-	«IF elements.empty && (null==qualifiedToolName || qualifiedToolName.empty)»
-		«ERROR('No elements for tool generation (Palette):'+title)»
-	«ENDIF»
-	«FOR e : elements»
-		«val href = getElementTypeConfHRef(e.elementType.uniqueIdentifier,eResource as XMLResource)»
-		«IF null!=href && !href.empty»
+	id=Â«IF isQuoted(id,'"')Â»Â«idÂ»Â«ELSEÂ»"Â«idÂ»"Â«ENDIFÂ» 
+	label="Â«titleÂ»"
+	Â«IF null!=qualifiedToolName && !qualifiedToolName.emptyÂ»
+		toolClassName="Â«qualifiedToolNameÂ»"
+	Â«ENDIFÂ»
+	description="Â«descriptionÂ»"Â«IF genNodes.empty && !genLinks.emptyÂ» kind="ConnectionTool"Â«ENDIFÂ»>
+	<icon pluginID="Â«retrieveBundleId(smallIconPath,group.palette.diagram.editorGen.plugin.ID)Â»" iconPath="Â«retrieveLocalPath(smallIconPath)Â»"/>
+	Â«IF elements.empty && (null==qualifiedToolName || qualifiedToolName.empty)Â»
+		Â«ERROR('No elements for tool generation (Palette):'+title)Â»
+	Â«ENDIFÂ»
+	Â«FOR e : elementsÂ»
+		Â«val href = getElementTypeConfHRef(e.elementType.uniqueIdentifier,eResource as XMLResource)Â»
+		Â«IF null!=href && !href.emptyÂ»
 			<elementDescriptors>
 				<elementType
-					xsi:type="«getConfigurationXsiType(e.elementType.uniqueIdentifier,eResource as XMLResource)»"
-					href="«href»"/>
+					xsi:type="Â«getConfigurationXsiType(e.elementType.uniqueIdentifier,eResource as XMLResource)Â»"
+					href="Â«hrefÂ»"/>
 			</elementDescriptors>
-		«ELSEIF null==qualifiedToolName || qualifiedToolName.empty»
-			«ERROR('No element type configuration or classToolName for tool generation (Palette):' + title)»
-		«ENDIF»
-	«ENDFOR»
+		Â«ELSEIF null==qualifiedToolName || qualifiedToolName.emptyÂ»
+			Â«ERROR('No element type configuration or classToolName for tool generation (Palette):' + title)Â»
+		Â«ENDIFÂ»
+	Â«ENDFORÂ»
 </ownedConfigurations>
  	'''
  	
@@ -105,12 +105,12 @@ import xpt.Common_qvto
  	 * Add stack configuration.
  	 */
  	def addStackConfiguration(ToolGroup it) '''
-<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id=«IF isQuoted(id,'"')»«id»«ELSE»"«id»"«ENDIF» label="«title»">
-	«FOR entry : entries»
-		«IF entry instanceof ToolEntry && isValidTool(entry as AbstractToolEntry)»
-			«addToolConfiguration(entry as ToolEntry)»
-		«ENDIF»
-	«ENDFOR»
+<ownedConfigurations xsi:type="paletteconfiguration:StackConfiguration" id=Â«IF isQuoted(id,'"')Â»Â«idÂ»Â«ELSEÂ»"Â«idÂ»"Â«ENDIFÂ» label="Â«titleÂ»">
+	Â«FOR entry : entriesÂ»
+		Â«IF entry instanceof ToolEntry && isValidTool(entry as AbstractToolEntry)Â»
+			Â«addToolConfiguration(entry as ToolEntry)Â»
+		Â«ENDIFÂ»
+	Â«ENDFORÂ»
 </ownedConfigurations>
 	'''
 }

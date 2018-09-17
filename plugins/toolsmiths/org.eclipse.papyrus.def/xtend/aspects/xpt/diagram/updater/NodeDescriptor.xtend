@@ -28,8 +28,8 @@ import xpt.Common
 	override def extendsList(GenDiagramUpdater it) '''extends org.eclipse.papyrus.infra.gmfdiag.common.updater.UpdaterNodeDescriptor'''
 	
 	override def constructor(GenDiagramUpdater it) '''
-		«generatedMemberComment»
-		public «className(it)»(org.eclipse.emf.ecore.EObject modelElement, String visualID) {
+		Â«generatedMemberCommentÂ»
+		public Â«className(it)Â»(org.eclipse.emf.ecore.EObject modelElement, String visualID) {
 			super(modelElement, visualID);
 		}
 	'''

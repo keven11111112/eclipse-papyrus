@@ -23,18 +23,18 @@ import xpt.Common
 	@Inject extension Common;
 
 	override def attributes(GenNavigator it) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		private String myGroupName;
 			
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		private String myIcon;
 			
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		private java.util.Collection<java.lang.Object> myChildren = new java.util.LinkedList<java.lang.Object>();
 	'''
 	
 	override def addChildren(GenNavigator it) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		public void addChildren(java.util.Collection<java.lang.Object> children) {
 			myChildren.addAll(children);
 		}

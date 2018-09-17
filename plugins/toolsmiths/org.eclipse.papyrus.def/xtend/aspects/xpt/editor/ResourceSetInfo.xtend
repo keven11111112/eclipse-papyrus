@@ -26,11 +26,11 @@ import com.google.inject.Singleton
 	@Inject extension CodeStyle
 	
 	override handleResourceChangedSD(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public boolean handleResourceChanged(final org.eclipse.emf.ecore.resource.Resource resource) {
-			«updateSynchStateSD(it)»
+			Â«updateSynchStateSD(it)Â»
 			org.eclipse.swt.widgets.Display.getDefault().asyncExec(new java.lang.Runnable() {
-				«overrideI»
+				Â«overrideIÂ»
 				public void run() {
 					handleElementChanged(ResourceSetInfo.this, resource, null);
 				}
@@ -40,11 +40,11 @@ import com.google.inject.Singleton
 	'''
 
 	override handleResourceDeletedSD(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public boolean handleResourceDeleted(org.eclipse.emf.ecore.resource.Resource resource) {
-			«updateSynchStateSD(it)»
+			Â«updateSynchStateSD(it)Â»
 			org.eclipse.swt.widgets.Display.getDefault().asyncExec(new java.lang.Runnable() {
-				«overrideI»
+				Â«overrideIÂ»
 				public void run() {
 					fireElementDeleted(ResourceSetInfo.this.getEditorInput());
 				}
@@ -54,12 +54,12 @@ import com.google.inject.Singleton
 	'''
 
 	override handleResourceMovedSD(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public boolean handleResourceMoved(org.eclipse.emf.ecore.resource.Resource resource, final org.eclipse.emf.common.util.URI newURI) {
-			«updateSynchStateSD(it)»
+			Â«updateSynchStateSD(it)Â»
 			if (myDocument.getDiagram().eResource() == resource) {
 				org.eclipse.swt.widgets.Display.getDefault().asyncExec(new java.lang.Runnable() {
-					«overrideI»
+					Â«overrideIÂ»
 					public void run() {
 						handleElementMoved(ResourceSetInfo.this.getEditorInput(), newURI);
 					}

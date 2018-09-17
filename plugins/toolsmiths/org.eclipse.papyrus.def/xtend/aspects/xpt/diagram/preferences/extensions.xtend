@@ -34,40 +34,40 @@ import xpt.diagram.Utils_qvto
 
 	override extensions(GenDiagram it) '''
 		
-		«tripleSpace(1)»<extension point="org.eclipse.core.runtime.preferences" id="prefs">
-		«tripleSpace(2)»«xmlGeneratedTag»
-		«tripleSpace(2)»<initializer class="«xptPreferenceInitializer.qualifiedClassName(it)»"/>
-		«tripleSpace(1)»</extension>
+		Â«tripleSpace(1)Â»<extension point="org.eclipse.core.runtime.preferences" id="prefs">
+		Â«tripleSpace(2)Â»Â«xmlGeneratedTagÂ»
+		Â«tripleSpace(2)Â»<initializer class="Â«xptPreferenceInitializer.qualifiedClassName(it)Â»"/>
+		Â«tripleSpace(1)Â»</extension>
 		
-		«IF ! it.preferencePages.empty»
-			«tripleSpace(1)»<extension point="org.eclipse.ui.preferencePages" id="prefpages">
-			«tripleSpace(2)»«xmlGeneratedTag»
-			      «FOR pref : allPreferencePages(it)»
-			      	«IF pref instanceof GenStandardPreferencePage»
-					«papyrusPreferencePage(pref as GenStandardPreferencePage)»
-				«ENDIF»
-			«ENDFOR»
-			«tripleSpace(1)»</extension>
-		«ENDIF»
+		Â«IF ! it.preferencePages.emptyÂ»
+			Â«tripleSpace(1)Â»<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+			Â«tripleSpace(2)Â»Â«xmlGeneratedTagÂ»
+			      Â«FOR pref : allPreferencePages(it)Â»
+			      	Â«IF pref instanceof GenStandardPreferencePageÂ»
+					Â«papyrusPreferencePage(pref as GenStandardPreferencePage)Â»
+				Â«ENDIFÂ»
+			Â«ENDFORÂ»
+			Â«tripleSpace(1)Â»</extension>
+		Â«ENDIFÂ»
 	'''
 
 	def papyrusPreferencePage(GenStandardPreferencePage it) '''
-		«IF StandardPreferencePages.GENERAL_LITERAL == kind»
+		Â«IF StandardPreferencePages.GENERAL_LITERAL == kindÂ»
 		      <page
-		            id="«getDiagramPreferencePageCategory()».«getDiagram().editorGen.modelID»"
-		            name="«getDiagram().editorGen.modelID» Diagram"
-		            category="«getDiagramPreferencePageCategory()»"
-		            class="«getQualifiedClassName()»">
+		            id="Â«getDiagramPreferencePageCategory()Â».Â«getDiagram().editorGen.modelIDÂ»"
+		            name="Â«getDiagram().editorGen.modelIDÂ» Diagram"
+		            category="Â«getDiagramPreferencePageCategory()Â»"
+		            class="Â«getQualifiedClassName()Â»">
 		      </page>
-		      «ELSEIF StandardPreferencePages.PRINTING_LITERAL == kind ||
-				StandardPreferencePages.RULERS_AND_GRID_LITERAL == kind»
+		      Â«ELSEIF StandardPreferencePages.PRINTING_LITERAL == kind ||
+				StandardPreferencePages.RULERS_AND_GRID_LITERAL == kindÂ»
 		      <page
-		            id="«getQualifiedClassName()»"
-		            name="%prefpage.«ID»"
-		            category="«getDiagramPreferencePageCategory()».«getDiagram().editorGen.modelID»"
-		            class="«getQualifiedClassName()»">
+		            id="Â«getQualifiedClassName()Â»"
+		            name="%prefpage.Â«IDÂ»"
+		            category="Â«getDiagramPreferencePageCategory()Â».Â«getDiagram().editorGen.modelIDÂ»"
+		            class="Â«getQualifiedClassName()Â»">
 		      </page>
-		«ENDIF»
+		Â«ENDIFÂ»
 	'''
 
 }

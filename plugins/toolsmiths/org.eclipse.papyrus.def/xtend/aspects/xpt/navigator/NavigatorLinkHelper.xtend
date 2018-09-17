@@ -27,19 +27,19 @@ import xpt.navigator.Utils_qvto
 
 	
 	override findSelection(GenNavigator it) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		public org.eclipse.jface.viewers.IStructuredSelection findSelection(org.eclipse.ui.IEditorInput anInput) {
-			«IF getDiagramTopReference(it) !=null»
-			«defineDiagramDocument(editorGen.plugin)»
-			«ENDIF»
-			«findSelectionBody(it)»
+			Â«IF getDiagramTopReference(it) !=nullÂ»
+			Â«defineDiagramDocument(editorGen.plugin)Â»
+			Â«ENDIFÂ»
+			Â«findSelectionBody(it)Â»
 		}
 	'''
 	
 	override findSelectionBody(GenNavigator it) '''
-		«IF getDiagramTopReference(it) !=null»
-		«getDiagramSelection(getDiagramTopReference(it))»
-		«ENDIF»
+		Â«IF getDiagramTopReference(it) !=nullÂ»
+		Â«getDiagramSelection(getDiagramTopReference(it))Â»
+		Â«ENDIFÂ»
 		return org.eclipse.jface.viewers.StructuredSelection.EMPTY;
 	'''
 }

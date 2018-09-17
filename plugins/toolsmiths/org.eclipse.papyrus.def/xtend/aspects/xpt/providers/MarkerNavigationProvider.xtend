@@ -24,18 +24,18 @@ import xpt.Common
 	@Inject extension Common;
 
 	override def MarkerNavigationProvider(GenDiagram it) '''
-		«copyright(editorGen)»
-		package «packageName(it)»;
+		Â«copyright(editorGen)Â»
+		package Â«packageName(it)Â»;
 		
-		«generatedClassComment»
-		public class «className(it)»
+		Â«generatedClassCommentÂ»
+		public class Â«className(it)Â»
 				extends org.eclipse.gmf.runtime.emf.ui.providers.marker.AbstractModelMarkerNavigationProvider {
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public static final String MARKER_TYPE =
-				«editorGen.plugin.activatorQualifiedClassName».ID + ".«getValidationDiagnosticMarkerType()»"; «nonNLS(1)»
+				Â«editorGen.plugin.activatorQualifiedClassNameÂ».ID + ".Â«getValidationDiagnosticMarkerType()Â»"; Â«nonNLS(1)Â»
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			protected void doGotoMarker(org.eclipse.core.resources.IMarker marker) {
 				String elementId = marker.getAttribute(org.eclipse.gmf.runtime.common.core.resources.IMarker.ELEMENT_ID, null);
 				if (elementId == null || !(getEditor() instanceof org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor)) {
@@ -50,22 +50,22 @@ import xpt.Common
 				}
 				org.eclipse.gef.EditPart targetEditPart = (org.eclipse.gef.EditPart) editPartRegistry.get(targetView);
 				if (targetEditPart != null) {
-					«getDiagramEditorUtilQualifiedClassName()».selectElementsInDiagram(
+					Â«getDiagramEditorUtilQualifiedClassName()Â».selectElementsInDiagram(
 							editor, java.util.Arrays.asList(new org.eclipse.gef.EditPart[] { targetEditPart }));
 				}
 			}
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public static void deleteMarkers(org.eclipse.core.resources.IResource resource) {
 				try {
 					resource.deleteMarkers(MARKER_TYPE, true, org.eclipse.core.resources.IResource.DEPTH_ZERO);
 				} catch (org.eclipse.core.runtime.CoreException e) {
-					«editorGen.plugin.activatorQualifiedClassName».getInstance().logError(
-							"Failed to delete validation markers", e); «nonNLS(1)»
+					Â«editorGen.plugin.activatorQualifiedClassNameÂ».getInstance().logError(
+							"Failed to delete validation markers", e); Â«nonNLS(1)Â»
 				}
 			}
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public static org.eclipse.core.resources.IMarker addMarker(org.eclipse.core.resources.IFile file,
 					String elementId, String location, String message, int statusSeverity) {
 			org.eclipse.core.resources.IMarker marker = null;
@@ -83,12 +83,12 @@ import xpt.Common
 				}
 				marker.setAttribute(org.eclipse.core.resources.IMarker.SEVERITY, markerSeverity);
 			} catch (org.eclipse.core.runtime.CoreException e) {
-				«editorGen.plugin.activatorQualifiedClassName».getInstance().logError(
-						"Failed to create validation marker", e); «nonNLS(1)»
+				Â«editorGen.plugin.activatorQualifiedClassNameÂ».getInstance().logError(
+						"Failed to create validation marker", e); Â«nonNLS(1)Â»
 			}
 			return marker;		
 			}	
-			«additions(it)»
+			Â«additions(it)Â»
 		}
 	'''
 

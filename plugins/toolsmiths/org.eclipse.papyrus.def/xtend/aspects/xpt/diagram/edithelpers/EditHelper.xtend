@@ -28,12 +28,12 @@ public class EditHelper extends xpt.diagram.edithelpers.EditHelper {
 
 
 	override EditHelper(MetamodelType it) '''
-		«copyright(diagramElement.diagram.editorGen)»
-		package «packageName(it)»;
+		Â«copyright(diagramElement.diagram.editorGen)Â»
+		package Â«packageName(it)Â»;
 		
-		«generatedClassComment»
-		public class «editHelperClassName» extends «getBaseEditHelperFullName(diagramElement.getDiagram())» {
-		«additions(it)»
+		Â«generatedClassCommentÂ»
+		public class Â«editHelperClassNameÂ» extends Â«getBaseEditHelperFullName(diagramElement.getDiagram())Â» {
+		Â«additions(it)Â»
 		}
 	'''
 

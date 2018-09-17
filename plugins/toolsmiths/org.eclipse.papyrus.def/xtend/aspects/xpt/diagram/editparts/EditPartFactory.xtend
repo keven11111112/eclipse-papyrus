@@ -27,7 +27,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 
 
 	override getTextCellEditorLocator(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public static org.eclipse.gef.tools.CellEditorLocator getTextCellEditorLocator(
 				org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart source) {
 				      if (source.getFigure() instanceof org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure){
@@ -41,23 +41,23 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 		   }
 		   
 		   
-		   «generatedClassComment»
+		   Â«generatedClassCommentÂ»
 		   static private class MultilineCellEditorLocator implements org.eclipse.gef.tools.CellEditorLocator {
 		
-			«generatedClassComment»
+			Â«generatedClassCommentÂ»
 			private org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure multilineEditableFigure;
 		
-			«generatedClassComment»
+			Â«generatedClassCommentÂ»
 			public MultilineCellEditorLocator(org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure figure) {
 			this.multilineEditableFigure = figure;
 			}
 		
-			«generatedClassComment»
+			Â«generatedClassCommentÂ»
 			public org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure getMultilineEditableFigure() {
 			return multilineEditableFigure;
 			}
 		
-			«generatedClassComment»
+			Â«generatedClassCommentÂ»
 			public void relocate(org.eclipse.jface.viewers.CellEditor celleditor) {
 			org.eclipse.swt.widgets.Text text = (org.eclipse.swt.widgets.Text) celleditor.getControl();
 			org.eclipse.draw2d.geometry.Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();

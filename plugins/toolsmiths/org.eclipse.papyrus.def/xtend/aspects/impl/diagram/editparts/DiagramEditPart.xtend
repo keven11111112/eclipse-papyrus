@@ -50,10 +50,10 @@ override createDefaultEditPoliciesBody(GenDiagram it) '''
 	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy());
 	installEditPolicy(org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy.PASTE_ROLE, new org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy());
 	
-	«xptEditpartsCommon.installSemanticEditPolicy(it)»
-	«xptEditpartsCommon.installCanonicalEditPolicy(it)»
-	«««	«xptEditpartsCommon.installCreationEditPolicy(it)»
-	«IF generateCreateShortcutAction() && null == editorGen.application»
+	Â«xptEditpartsCommon.installSemanticEditPolicy(it)Â»
+	Â«xptEditpartsCommon.installCanonicalEditPolicy(it)Â»
+	Â«Â«Â«	Â«xptEditpartsCommon.installCreationEditPolicy(it)Â»
+	Â«IF generateCreateShortcutAction() && null == editorGen.applicationÂ»
 		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy() {
 			public org.eclipse.gef.commands.Command getDropObjectsCommand(org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest dropRequest) {
 				java.util.List<org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor> viewDescriptors = new java.util.ArrayList<org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor>();
@@ -70,13 +70,13 @@ override createDefaultEditPoliciesBody(GenDiagram it) '''
 			private org.eclipse.gef.commands.Command createShortcutsCommand(org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest dropRequest, java.util.List<org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor> viewDescriptors) {
 				org.eclipse.gef.commands.Command command = createViewsAndArrangeCommand(dropRequest, viewDescriptors);
 				if (command != null) {
-					return command.chain(new org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy(new «createShoutrtcutDecorationCommand.qualifiedClassName(it)»(getEditingDomain(), (org.eclipse.gmf.runtime.notation.View) getModel(), viewDescriptors)));
+					return command.chain(new org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy(new Â«createShoutrtcutDecorationCommand.qualifiedClassName(it)Â»(getEditingDomain(), (org.eclipse.gmf.runtime.notation.View) getModel(), viewDescriptors)));
 				}
 				return null;
 			}
 		});
-	«ENDIF»
-	«IF shouldGenerateDiagramViewmap(it)»
+	Â«ENDIFÂ»
+	Â«IF shouldGenerateDiagramViewmap(it)Â»
 		// diagram figure does layout; need to install child editpolicy to show selection feedback
 		installEditPolicy(org.eclipse.gef.EditPolicy.LAYOUT_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 			protected org.eclipse.gef.EditPolicy createChildEditPolicy(org.eclipse.gef.EditPart child) {
@@ -91,14 +91,14 @@ override createDefaultEditPoliciesBody(GenDiagram it) '''
 				return null;
 			}
 		});
-	«ENDIF»
-	«xptEditpartsCommon.behaviour(it)»
+	Â«ENDIFÂ»
+	Â«xptEditpartsCommon.behaviour(it)Â»
 	// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 '''
 
 def featureForMetaclass (GenNode it)'''
-		if (« MetaClass(modelFacet.metaClass)».equals(class1)) {
-			return «MetaFeature(modelFacet.containmentMetaFeature)»;
+		if (Â« MetaClass(modelFacet.metaClass)Â».equals(class1)) {
+			return Â«MetaFeature(modelFacet.containmentMetaFeature)Â»;
 		}
 '''
 

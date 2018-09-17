@@ -36,61 +36,61 @@ import xpt.diagram.editpolicies.childContainerCreateCommand
 
 
 	override CompartmentItemSemanticEditPolicy(GenCompartment it) '''
-		«copyright(getDiagram().editorGen)»
-		package «packageName(it)»;
+		Â«copyright(getDiagram().editorGen)Â»
+		package Â«packageName(it)Â»;
 		
-		«generatedClassComment()»
-		public class «className(it)» extends «xptBaseItemSemanticEditPolicy.qualifiedClassName(getDiagram())» {
+		Â«generatedClassComment()Â»
+		public class Â«className(it)Â» extends Â«xptBaseItemSemanticEditPolicy.qualifiedClassName(getDiagram())Â» {
 		
-		«_constructor(it)»
+		Â«_constructor(it)Â»
 	
-		«xptChildContainerCreateCommand.childContainerCreateCommand( it.childNodes)»
+		Â«xptChildContainerCreateCommand.childContainerCreateCommand( it.childNodes)Â»
 		
-		«additions(it)»
+		Â«additions(it)Â»
 		
-		««« Papyrus REM : 
-		««« Test if this compartment edit policy should used a referenced constraint for the move command.
+		Â«Â«Â« Papyrus REM : 
+		Â«Â«Â« Test if this compartment edit policy should used a referenced constraint for the move command.
 
-		«IF it.eResource.allContents.filter(typeof (ConstrainedByReferenceCompartmentItemSemanticEditPolicy)).filter[v | v.genView.contains(it)].size != 0»
-		«getChildNodeReference(childNodes)»
+		Â«IF it.eResource.allContents.filter(typeof (ConstrainedByReferenceCompartmentItemSemanticEditPolicy)).filter[v | v.genView.contains(it)].size != 0Â»
+		Â«getChildNodeReference(childNodes)Â»
 			
-			«isCorrectCompartment(it)»
+			Â«isCorrectCompartment(it)Â»
 			
-			«constraintedMoveCommand(it)»
+			Â«constraintedMoveCommand(it)Â»
 		
-		«ENDIF»
+		Â«ENDIFÂ»
 		}
 	'''
 
 def getChildNodeReference (EList<GenChildNode> it) '''
-	«IF !(it.isEmpty)»
-	«generatedMemberComment»
+	Â«IF !(it.isEmpty)Â»
+	Â«generatedMemberCommentÂ»
 	private static Set<EReference> compartmentReferences;
 	
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	static {
-		«««	compartmentReferences = new HashSet<EReference>(«it.modelFacet->size()»);
+		Â«Â«Â«	compartmentReferences = new HashSet<EReference>(Â«it.modelFacet->size()Â»);
 		compartmentReferences = new HashSet<EReference>();
 		
-		«FOR n : it»
-				«childRef(n.modelFacet,n)»
-		«ENDFOR»
+		Â«FOR n : itÂ»
+				Â«childRef(n.modelFacet,n)Â»
+		Â«ENDFORÂ»
 	}
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	protected Iterable<EReference> getCompartmentReferences() {
 		return compartmentReferences;
 	}
-«ENDIF»
+Â«ENDIFÂ»
 
 '''
 
 def childRef(TypeModelFacet it ,GenNode node) '''
-	compartmentReferences.add(«MetaFeature (node.modelFacet.containmentMetaFeature)»);
+	compartmentReferences.add(Â«MetaFeature (node.modelFacet.containmentMetaFeature)Â»);
 '''
 
 
 def  isCorrectCompartment (GenCompartment it)'''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	protected boolean isMovedIntoCorrectCompartment(MoveRequest req){
 		for(Object entry : req.getElementsToMove().entrySet()) {
 			if(entry instanceof Map.Entry<?, ?>) {
@@ -120,7 +120,7 @@ def  isCorrectCompartment (GenCompartment it)'''
 '''
 
 def  constraintedMoveCommand (GenCompartment it)'''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	@Override
 	protected Command getMoveCommand(MoveRequest req) {
 		if (isMovedIntoCorrectCompartment(req)){			

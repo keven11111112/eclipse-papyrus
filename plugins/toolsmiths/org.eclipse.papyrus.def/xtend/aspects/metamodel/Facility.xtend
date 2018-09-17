@@ -29,17 +29,17 @@ import xpt.Common
 
 
 override getMethod(GenPackage it, DynamicModelAccess dma)'''
-	«generatedMemberComment('@throws IllegalStateException if no EPackage with given URI is registered.')»
-	public static «className(dma)» get«getNameToken(it)»() {
-		if («fieldName(it)» == null) {
-			org.eclipse.emf.ecore.EPackage pkg = getRegistry().getEPackage("«getEcorePackage().nsURI»");
+	Â«generatedMemberComment('@throws IllegalStateException if no EPackage with given URI is registered.')Â»
+	public static Â«className(dma)Â» getÂ«getNameToken(it)Â»() {
+		if (Â«fieldName(it)Â» == null) {
+			org.eclipse.emf.ecore.EPackage pkg = getRegistry().getEPackage("Â«getEcorePackage().nsURIÂ»");
 			if (pkg == null) {
-				throw new IllegalStateException("Package «getEcorePackage().name»(«getEcorePackage().nsURI») not found");
+				throw new IllegalStateException("Package Â«getEcorePackage().nameÂ»(Â«getEcorePackage().nsURIÂ») not found");
 			}
-			«fieldName(it)» = new «className(dma)»(pkg);
-			«fieldName(it)».init«getNameToken(it)»();
+			Â«fieldName(it)Â» = new Â«className(dma)Â»(pkg);
+			Â«fieldName(it)Â».initÂ«getNameToken(it)Â»();
 		}
-		return «fieldName(it)»;
+		return Â«fieldName(it)Â»;
 	}
 '''
 

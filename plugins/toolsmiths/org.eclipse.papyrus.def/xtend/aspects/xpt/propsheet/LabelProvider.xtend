@@ -29,7 +29,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenPropertySheet
 	@Inject VisualIDRegistry visualId;
 
 	override def unwrapMethods(GenPropertySheet it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private Object unwrap(Object element) {
 		if (element instanceof org.eclipse.jface.viewers.IStructuredSelection) {
 		return ((org.eclipse.jface.viewers.IStructuredSelection) element).getFirstElement();
@@ -37,7 +37,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenPropertySheet
 		return element;
 		}
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.gmf.runtime.notation.View getView(Object element) {
 			if (element instanceof org.eclipse.gmf.runtime.notation.View) {
 				return (org.eclipse.gmf.runtime.notation.View) element;
@@ -49,13 +49,13 @@ import org.eclipse.gmf.codegen.gmfgen.GenPropertySheet
 			return null;
 		}
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.gmf.runtime.emf.type.core.IElementType getElementType(org.eclipse.gmf.runtime.notation.View view) {
 			// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
 			while (view != null) {
-				String vid = «visualId.qualifiedClassName(editorGen.diagram)».getVisualID(view);
+				String vid = Â«visualId.qualifiedClassName(editorGen.diagram)Â».getVisualID(view);
 				org.eclipse.gmf.runtime.emf.type.core.IElementType etype =
-						«xptElementTypes.qualifiedClassName(editorGen.diagram)».getElementType(vid);
+						Â«xptElementTypes.qualifiedClassName(editorGen.diagram)Â».getElementType(vid);
 				if (etype != null) {
 					return etype;
 				}

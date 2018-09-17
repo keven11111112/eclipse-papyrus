@@ -30,15 +30,15 @@ import xpt.diagram.editparts.Common
 
 	override handleNotificationEventBody(GenLinkLabel it) '''
 		Object feature = event.getFeature();
-		«handleText (it)»
+		Â«handleText (it)Â»
 		
-		«««	START Papyrus Code
-		«IF elementIcon»
+		Â«Â«Â«	START Papyrus Code
+		Â«IF elementIconÂ»
 			if(event.getNewValue() instanceof org.eclipse.emf.ecore.EAnnotation && org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((org.eclipse.emf.ecore.EAnnotation)event.getNewValue()).getSource())){	
 				refreshLabel();
 			}
-		«ENDIF»
-		«««	End Papyrus Code
+		Â«ENDIFÂ»
+		Â«Â«Â«	End Papyrus Code
 		super.handleNotificationEvent(event);
 	'''
 	

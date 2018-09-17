@@ -39,54 +39,54 @@ import xpt.CodeStyle
 
 
 	override selectors(GenAuditRoot it) '''
-	«IF it !=null»
-	«IF it.clientContexts !=null»
-	«FOR ctx : it.clientContexts»
-		«generatedMemberComment»
-		public static class «ctx.className» implements org.eclipse.emf.validation.model.IClientSelector {
+	Â«IF it !=nullÂ»
+	Â«IF it.clientContexts !=nullÂ»
+	Â«FOR ctx : it.clientContextsÂ»
+		Â«generatedMemberCommentÂ»
+		public static class Â«ctx.classNameÂ» implements org.eclipse.emf.validation.model.IClientSelector {
 			
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public boolean selects(Object object) {
-			«IF ctx.ruleTargets.filter(typeof(GenDiagramElementTarget)).notEmpty»
+			Â«IF ctx.ruleTargets.filter(typeof(GenDiagramElementTarget)).notEmptyÂ»
 				if (isInDefaultEditorContext(object) && object instanceof org.eclipse.gmf.runtime.notation.View) {
-					final String id = «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»((org.eclipse.gmf.runtime.notation.View) object);
+					final String id = Â«xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)Â»((org.eclipse.gmf.runtime.notation.View) object);
 					boolean result = false;
-				«FOR e : getTargetDiagramElements(ctx)»
-					result = result || «VisualIDRegistry::visualID(e)».equals(id);
-				«ENDFOR»
+				Â«FOR e : getTargetDiagramElements(ctx)Â»
+					result = result || Â«VisualIDRegistry::visualID(e)Â».equals(id);
+				Â«ENDFORÂ»
 					return result;
 				}
 				return false;
-			«ELSE»
+			Â«ELSEÂ»
 				return isInDefaultEditorContext(object);
-			«ENDIF»
+			Â«ENDIFÂ»
 			}
 		}
-	«ENDFOR»
-	«ENDIF»
-	«ENDIF»
+	Â«ENDFORÂ»
+	Â«ENDIFÂ»
+	Â«ENDIFÂ»
 	'''
 
 	override constraintAdapters(GenAuditRoot it, GenDiagram diagram) '''
-		«IF it !=null»
-		«IF diagram.editorGen.expressionProviders != null»
-		«FOR next : it.rules.filter[a | a.requiresConstraintAdapter]»
-			«constraintAdapter(next, diagram.editorGen.expressionProviders)»
-		«ENDFOR»
+		Â«IF it !=nullÂ»
+		Â«IF diagram.editorGen.expressionProviders != nullÂ»
+		Â«FOR next : it.rules.filter[a | a.requiresConstraintAdapter]Â»
+			Â«constraintAdapter(next, diagram.editorGen.expressionProviders)Â»
+		Â«ENDFORÂ»
 		
-		«IF it.rules.exists[a | a.requiresConstraintAdapter]»
-		«constraintAdapters_formatMethod(it)»
-		«ENDIF»
-		«ENDIF»
-		«ENDIF»
+		Â«IF it.rules.exists[a | a.requiresConstraintAdapter]Â»
+		Â«constraintAdapters_formatMethod(it)Â»
+		Â«ENDIFÂ»
+		Â«ENDIFÂ»
+		Â«ENDIFÂ»
 	'''
 	
 	override runWithActiveConstraints(GenDiagram it) '''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	public static void runWithConstraints(org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
-			«overrideI»
+			Â«overrideIÂ»
 			public void run() {
 				try {
 					constraintsActive = true;
@@ -100,7 +100,7 @@ import xpt.CodeStyle
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {
-				«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError("Validation failed", e); «nonNLS(1)»
+				Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».getInstance().logError("Validation failed", e); Â«nonNLS(1)Â»
 			}
 		} else {
 			task.run();
@@ -109,55 +109,55 @@ import xpt.CodeStyle
 	'''
 
 	override def strategy_support(GenDiagram it) '''
-	«IF hasDiagramElementTargetRule(editorGen.audits)»
-	«generatedMemberComment»
+	Â«IF hasDiagramElementTargetRule(editorGen.audits)Â»
+	Â«generatedMemberCommentÂ»
 	public static org.eclipse.emf.validation.service.ITraversalStrategy getNotationTraversalStrategy(
 			org.eclipse.emf.validation.service.IBatchValidator validator) {
 		return new CtxSwitchStrategy(validator);
 	}
 
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	private static class CtxSwitchStrategy implements org.eclipse.emf.validation.service.ITraversalStrategy {
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.emf.validation.service.ITraversalStrategy defaultStrategy;
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private String currentSemanticCtxId;
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private boolean ctxChanged = true;
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.emf.ecore.EObject currentTarget;
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.emf.ecore.EObject preFetchedNextTarget;
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private final String[] contextSwitchingIdentifiers;
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		CtxSwitchStrategy(org.eclipse.emf.validation.service.IBatchValidator validator) {
 			this.defaultStrategy = validator.getDefaultTraversalStrategy();
 			this.contextSwitchingIdentifiers = new String[] {
-				«FOR e : getAllTargetDiagramElements(editorGen.audits) SEPARATOR ','»«VisualIDRegistry::visualID(e)»«ENDFOR»
+				Â«FOR e : getAllTargetDiagramElements(editorGen.audits) SEPARATOR ','Â»Â«VisualIDRegistry::visualID(e)Â»Â«ENDFORÂ»
 			};
 			java.util.Arrays.sort(this.contextSwitchingIdentifiers);
 		}
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public void elementValidated(org.eclipse.emf.ecore.EObject element,
 				org.eclipse.core.runtime.IStatus status) {
 			defaultStrategy.elementValidated(element, status);
 		}
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public boolean hasNext() {
 			return defaultStrategy.hasNext();
 		}
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public boolean isClientContextChanged() {
 			if (preFetchedNextTarget == null) {
 				preFetchedNextTarget = next();
@@ -166,7 +166,7 @@ import xpt.CodeStyle
 			return ctxChanged;
 		}
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public org.eclipse.emf.ecore.EObject next() {
 			org.eclipse.emf.ecore.EObject nextTarget = preFetchedNextTarget;
 			if (nextTarget == null) {
@@ -176,21 +176,21 @@ import xpt.CodeStyle
 			return this.currentTarget = nextTarget;
 		}
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public void startTraversal(java.util.Collection traversalRoots,	org.eclipse.core.runtime.IProgressMonitor monitor) {
 			defaultStrategy.startTraversal(traversalRoots, monitor);
 		}
 
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private void prepareNextClientContext(org.eclipse.emf.ecore.EObject nextTarget) { 
 			if (nextTarget != null && currentTarget != null) {
 				if (nextTarget instanceof org.eclipse.gmf.runtime.notation.View) {
-					final String id = «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»((org.eclipse.gmf.runtime.notation.View) nextTarget);
+					final String id = Â«xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)Â»((org.eclipse.gmf.runtime.notation.View) nextTarget);
 					String nextSemanticId = (id != null && java.util.Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0) ? id : null;
 					if ((currentSemanticCtxId != null && currentSemanticCtxId != nextSemanticId)
 							|| (nextSemanticId != null && nextSemanticId != currentSemanticCtxId)) {
 						this.ctxChanged = true;
-					}«/*[artem] not sure why not ctxChanged = <expr>, is it intentional not to reset ctxChanged if condition did not match? I doubt. FIXME?*/»
+					}Â«/*[artem] not sure why not ctxChanged = <expr>, is it intentional not to reset ctxChanged if condition did not match? I doubt. FIXME?*/Â»
 					currentSemanticCtxId = nextSemanticId;
 				} else {
 					// context of domain model
@@ -202,6 +202,6 @@ import xpt.CodeStyle
 			}
 		}
 	}
-	«ENDIF»
+	Â«ENDIFÂ»
 	'''
 }

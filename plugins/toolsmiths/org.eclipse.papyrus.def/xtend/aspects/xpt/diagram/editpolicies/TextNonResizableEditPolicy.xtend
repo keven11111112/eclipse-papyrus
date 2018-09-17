@@ -29,7 +29,7 @@ import xpt.Common
 	override TextNonResizableEditPolicy_implementsClause(GenDiagram it) '''implements org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.labels.IRefreshableFeedbackEditPolicy'''
 
 	override def TextNonResizableEditPolicy_createSelectionHandles(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected java.util.List<?> createSelectionHandles() {
 			org.eclipse.gef.handles.MoveHandle moveHandle =
 				new org.eclipse.gef.handles.MoveHandle((org.eclipse.gef.GraphicalEditPart) getHost());

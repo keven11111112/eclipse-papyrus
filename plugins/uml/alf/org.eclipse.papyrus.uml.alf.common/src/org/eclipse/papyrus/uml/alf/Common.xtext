@@ -38,6 +38,6 @@ terminal INTEGER_VALUE :
 //terminal IDENTIFIER : ID  ;
 //terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*  | ('\'' -> '\'')  ;
 //terminal DOCUMENTATION_COMMENT : '/*' -> '*/' ;
-//terminal ML_COMMENT	: '/�' -> '�/';
-//terminal SL_COMMENT 	: '같' !('\n'|'\r')* ('\r'? '\n')?;
+//terminal ML_COMMENT	: '/째' -> '째/';
+//terminal SL_COMMENT 	: '째째' !('\n'|'\r')* ('\r'? '\n')?;
 //terminal WS			: (' '|'\t'|'\r'|'\n')+;

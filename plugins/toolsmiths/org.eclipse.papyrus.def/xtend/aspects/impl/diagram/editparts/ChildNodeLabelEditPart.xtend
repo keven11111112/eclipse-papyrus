@@ -30,12 +30,12 @@ import xpt.diagram.editparts.Common
 
 	override handleNotificationEventBody(GenChildLabelNode it) '''
 			Object feature = event.getFeature();
-	«handleText(it)»
-	«IF labelElementIcon»
+	Â«handleText(it)Â»
+	Â«IF labelElementIconÂ»
 		if(event.getNewValue() instanceof org.eclipse.emf.ecore.EAnnotation && org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((org.eclipse.emf.ecore.EAnnotation)event.getNewValue()).getSource())){	
 			refreshLabel();
 		}
-	«ENDIF»
+	Â«ENDIFÂ»
 	if (org.eclipse.uml2.uml.UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)) {
 			refreshUnderline();
 	}

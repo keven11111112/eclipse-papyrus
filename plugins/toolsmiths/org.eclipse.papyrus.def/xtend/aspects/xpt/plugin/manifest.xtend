@@ -30,15 +30,15 @@ import xpt.Common
 
 override requireBundle(GenPlugin it)'''
 Require-Bundle: org.eclipse.core.runtime,
-«IF editorGen.application == null» org.eclipse.core.resources,
-«ENDIF»
-«IF editorGen.diagram.generateShortcutIcon() || (editorGen.navigator != null && editorGen.navigator.generateDomainModelNavigator)» org.eclipse.core.expressions,
-«ENDIF» org.eclipse.jface,
-«IF editorGen.application == null» org.eclipse.ui.ide,
-«ENDIF» org.eclipse.ui.views,
-«IF editorGen.navigator != null» org.eclipse.ui.navigator,
+Â«IF editorGen.application == nullÂ» org.eclipse.core.resources,
+Â«ENDIFÂ»
+Â«IF editorGen.diagram.generateShortcutIcon() || (editorGen.navigator != null && editorGen.navigator.generateDomainModelNavigator)Â» org.eclipse.core.expressions,
+Â«ENDIFÂ» org.eclipse.jface,
+Â«IF editorGen.application == nullÂ» org.eclipse.ui.ide,
+Â«ENDIFÂ» org.eclipse.ui.views,
+Â«IF editorGen.navigator != nullÂ» org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources,
-«ENDIF» org.eclipse.emf.ecore,
+Â«ENDIFÂ» org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit.ui,
  org.eclipse.gmf.runtime.emf.core,
@@ -51,29 +51,29 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.widgets,
  org.eclipse.papyrus.infra.ui,
  org.eclipse.papyrus.infra.core.sashwindows.di,
-«IF printingEnabled» org.eclipse.gmf.runtime.diagram.ui.printing,
+Â«IF printingEnabledÂ» org.eclipse.gmf.runtime.diagram.ui.printing,
  org.eclipse.gmf.runtime.diagram.ui.printing.render,
-«ENDIF»
-«IF editorGen.propertySheet != null» org.eclipse.gmf.runtime.diagram.ui.properties,
-«ENDIF» org.eclipse.gmf.runtime.diagram.ui.providers,
-«IF editorGen.application == null» org.eclipse.gmf.runtime.diagram.ui.providers.ide,
-«ENDIF» org.eclipse.gmf.runtime.diagram.ui.render,
+Â«ENDIFÂ»
+Â«IF editorGen.propertySheet != nullÂ» org.eclipse.gmf.runtime.diagram.ui.properties,
+Â«ENDIFÂ» org.eclipse.gmf.runtime.diagram.ui.providers,
+Â«IF editorGen.application == nullÂ» org.eclipse.gmf.runtime.diagram.ui.providers.ide,
+Â«ENDIFÂ» org.eclipse.gmf.runtime.diagram.ui.render,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
-«IF editorGen.application == null» org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
-«ENDIF»
-«var reqPlugins = getAllRequiredPlugins()»
-«IF !reqPlugins.contains('org.eclipse.papyrus.infra.gmfdiag.tooling.runtime')»
-«var notUsetBooleanVar = reqPlugins.add('org.eclipse.papyrus.infra.gmfdiag.tooling.runtime')»
-«ENDIF»
-«FOR reqId : reqPlugins» «reqId»;visibility:=reexport,«extraLineBreak»
-«ENDFOR» org.eclipse.gef,
+Â«IF editorGen.application == nullÂ» org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,
+Â«ENDIFÂ»
+Â«var reqPlugins = getAllRequiredPlugins()Â»
+Â«IF !reqPlugins.contains('org.eclipse.papyrus.infra.gmfdiag.tooling.runtime')Â»
+Â«var notUsetBooleanVar = reqPlugins.add('org.eclipse.papyrus.infra.gmfdiag.tooling.runtime')Â»
+Â«ENDIFÂ»
+Â«FOR reqId : reqPluginsÂ» Â«reqIdÂ»;visibility:=reexport,Â«extraLineBreakÂ»
+Â«ENDFORÂ» org.eclipse.gef,
  org.eclipse.papyrus.infra.gmfdiag.preferences,
- «IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).size != 0 || it.eResource.allContents.filter(typeof (EditPartUsingReorientService)).size != 0»
+ Â«IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).size != 0 || it.eResource.allContents.filter(typeof (EditPartUsingReorientService)).size != 0Â»
  org.eclipse.papyrus.extensionpoints.editors,
  org.eclipse.papyrus.infra.services.edit
- «ELSE»
+ Â«ELSEÂ»
  org.eclipse.papyrus.extensionpoints.editors
-«ENDIF»
+Â«ENDIFÂ»
 '''
 
 	override def executionEnvironment(GenPlugin it) '''

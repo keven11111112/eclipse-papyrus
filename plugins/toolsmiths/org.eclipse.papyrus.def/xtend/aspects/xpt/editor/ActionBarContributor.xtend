@@ -25,24 +25,24 @@ import xpt.Common
 	@Inject Editor xptEditor;
 
 	override def ActionBarContributor(GenEditorView it) '''
-		«copyright(editorGen)»
-		package «packageName(it)»;
+		Â«copyright(editorGen)Â»
+		package Â«packageName(it)Â»;
 		
-		«generatedClassComment»
-		public class «className(it)» «extendsList(it)» {
+		Â«generatedClassCommentÂ»
+		public class Â«className(it)Â» Â«extendsList(it)Â» {
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			
-			protected Class<«xptEditor.qualifiedClassName(it)»> getEditorClass() {
-				return «xptEditor.qualifiedClassName(it)».class;
+			protected Class<Â«xptEditor.qualifiedClassName(it)Â»> getEditorClass() {
+				return Â«xptEditor.qualifiedClassName(it)Â».class;
 			}
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			protected String getEditorId() {
-				return «xptEditor.qualifiedClassName(it)».ID;
+				return Â«xptEditor.qualifiedClassName(it)Â».ID;
 			}
-			«initMethod(it)»
-			«additions(it)»
+			Â«initMethod(it)Â»
+			Â«additions(it)Â»
 		}
 	'''
 

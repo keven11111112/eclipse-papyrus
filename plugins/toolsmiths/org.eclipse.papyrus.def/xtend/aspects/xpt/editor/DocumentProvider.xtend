@@ -35,16 +35,16 @@ import xpt.editor.DiagramEditorUtil
 	
 
 	override setDocumentContent(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected void setDocumentContent(org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument document, org.eclipse.ui.IEditorInput element) throws org.eclipse.core.runtime.CoreException {
 			org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument diagramDocument = (org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument) document;
 			org.eclipse.emf.transaction.TransactionalEditingDomain domain = diagramDocument.getEditingDomain();
-			«IF null == it.editorGen.application»if (element instanceof «fileEditorInputClassFQName(it)») {
-				org.eclipse.core.resources.IStorage storage = ((«fileEditorInputClassFQName(it)») element).getStorage();
+			Â«IF null == it.editorGen.applicationÂ»if (element instanceof Â«fileEditorInputClassFQName(it)Â») {
+				org.eclipse.core.resources.IStorage storage = ((Â«fileEditorInputClassFQName(it)Â») element).getStorage();
 				org.eclipse.gmf.runtime.notation.Diagram diagram = org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.util.DiagramIOUtil.load(domain, storage, true, getProgressMonitor());
 				document.setContent(diagram);
-			} else «ENDIF»if(element instanceof «uriEditorInputClassFQName(it)») {
-				org.eclipse.emf.common.util.URI uri = ((«uriEditorInputClassFQName(it)») element).getURI();
+			} else Â«ENDIFÂ»if(element instanceof Â«uriEditorInputClassFQName(it)Â») {
+				org.eclipse.emf.common.util.URI uri = ((Â«uriEditorInputClassFQName(it)Â») element).getURI();
 				org.eclipse.emf.ecore.resource.Resource resource = null;
 				try {
 					resource = domain.getResourceSet().getResource(uri.trimFragment(), false);
@@ -78,45 +78,45 @@ import xpt.editor.DiagramEditorUtil
 							}
 						}
 					}
-					throw new RuntimeException(«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentProviderNoDiagramInResourceError(it))»);
+					throw new RuntimeException(Â«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentProviderNoDiagramInResourceError(it))Â»);
 				} catch (Exception e) {
 					org.eclipse.core.runtime.CoreException thrownExcp = null;
 					if (e instanceof org.eclipse.core.runtime.CoreException) {
 						thrownExcp = (org.eclipse.core.runtime.CoreException) e;
 					} else {
 						String msg = e.getLocalizedMessage();
-						thrownExcp = new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, «xptActivator.qualifiedClassName(it.editorGen.plugin)».ID, 0, 
-						msg != null ? msg : «xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentProviderDiagramLoadingError(it))», e));
+						thrownExcp = new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, Â«xptActivator.qualifiedClassName(it.editorGen.plugin)Â».ID, 0, 
+						msg != null ? msg : Â«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentProviderDiagramLoadingError(it))Â», e));
 					}
 					throw thrownExcp;
 				}
 			} else {
-			«throwIncorrectInputException(it)»
+			Â«throwIncorrectInputException(it)Â»
 			}	
 		}
 	'''
 	
 	override createEditingDomain(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.emf.transaction.TransactionalEditingDomain createEditingDomain() {
 			org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain = org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory.getInstance().createEditingDomain();
-			editingDomain.setID("«editingDomainID»"); «nonNLS(1)»
+			editingDomain.setID("Â«editingDomainIDÂ»"); Â«nonNLS(1)Â»
 			final org.eclipse.emf.transaction.NotificationFilter diagramResourceModifiedFilter = org.eclipse.emf.transaction.NotificationFilter.createNotifierFilter(editingDomain.getResourceSet()).and(org.eclipse.emf.transaction.NotificationFilter.createEventTypeFilter(org.eclipse.emf.common.notify.Notification.ADD)).and(org.eclipse.emf.transaction.NotificationFilter.createFeatureFilter(org.eclipse.emf.ecore.resource.ResourceSet.class, org.eclipse.emf.ecore.resource.ResourceSet.RESOURCE_SET__RESOURCES));
 			editingDomain.getResourceSet().eAdapters().add(new org.eclipse.emf.common.notify.Adapter() {
 		
 				private org.eclipse.emf.common.notify.Notifier myTarger;
 		
-				«overrideI»
+				Â«overrideIÂ»
 				public org.eclipse.emf.common.notify.Notifier getTarget() {
 					return myTarger;
 				}
 		
-				«overrideI»
+				Â«overrideIÂ»
 				public boolean isAdapterForType(Object type) {
 					return false;
 				}
 		
-				«overrideI»
+				Â«overrideIÂ»
 				public void notifyChanged(org.eclipse.emf.common.notify.Notification notification) {
 					if (diagramResourceModifiedFilter.matches(notification)) {
 						Object value = notification.getNewValue();
@@ -126,7 +126,7 @@ import xpt.editor.DiagramEditorUtil
 					}
 				}
 		
-				«overrideI»
+				Â«overrideIÂ»
 				public void setTarget(org.eclipse.emf.common.notify.Notifier newTarget) {
 					myTarger = newTarget;
 				}
@@ -138,33 +138,33 @@ import xpt.editor.DiagramEditorUtil
 	'''
 	
 	override doSaveDocument(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected void doSaveDocument(org.eclipse.core.runtime.IProgressMonitor monitor, Object element, org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument document, boolean overwrite) throws org.eclipse.core.runtime.CoreException {
 			ResourceSetInfo info = getResourceSetInfo(element);
 			if (info != null) {
 				if (!overwrite && !info.isSynchronized()) {
-					throw new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, «xptActivator.qualifiedClassName(editorGen.plugin)».ID, 
-						«IF null == editorGen.application»org.eclipse.core.resources.IResourceStatus.OUT_OF_SYNC_LOCAL«ELSE»org.eclipse.core.runtime.IStatus.ERROR«ENDIF», 
-						«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentUnsynchronizedFileSaveError(it))», 
+					throw new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».ID, 
+						Â«IF null == editorGen.applicationÂ»org.eclipse.core.resources.IResourceStatus.OUT_OF_SYNC_LOCALÂ«ELSEÂ»org.eclipse.core.runtime.IStatus.ERRORÂ«ENDIFÂ», 
+						Â«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentUnsynchronizedFileSaveError(it))Â», 
 						null));
 				}
-			«IF null == editorGen.application»
+			Â«IF null == editorGen.applicationÂ»
 				info.stopResourceListening();
-			«ENDIF»
+			Â«ENDIFÂ»
 				fireElementStateChanging(element);
 				try {
-					monitor.beginTask(«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentSaveDiagramTask(it))», info.getResourceSet().getResources().size() + 1); //"Saving diagram"
+					monitor.beginTask(Â«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentSaveDiagramTask(it))Â», info.getResourceSet().getResources().size() + 1); //"Saving diagram"
 					for (java.util.Iterator<org.eclipse.emf.ecore.resource.Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 						org.eclipse.emf.ecore.resource.Resource nextResource = it.next();
 						monitor.setTaskName(org.eclipse.osgi.util.NLS.bind(
-								«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentSaveNextResourceTask(it))», 
+								Â«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentSaveNextResourceTask(it))Â», 
 								nextResource.getURI()));
 						if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
 							try {
-								nextResource.save(«xptDiagramEditorUtil.callGetSaveOptions(it)»);
+								nextResource.save(Â«xptDiagramEditorUtil.callGetSaveOptions(it)Â»);
 							} catch (java.io.IOException e) {
 								fireElementStateChangeFailed(element);
-								throw new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, «xptActivator.qualifiedClassName(editorGen.plugin)».ID, org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
+								throw new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».ID, org.eclipse.gmf.runtime.diagram.ui.resources.editor.internal.EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
 							}
 						}
 						monitor.worked(1);
@@ -174,45 +174,45 @@ import xpt.editor.DiagramEditorUtil
 				} catch (RuntimeException x) {
 					fireElementStateChangeFailed(element);
 					throw x;
-				} «IF null == editorGen.application» finally {
+				} Â«IF null == editorGen.applicationÂ» finally {
 					info.startResourceListening();
-				} «ENDIF»
+				} Â«ENDIFÂ»
 			} else {
 				org.eclipse.emf.common.util.URI newResoruceURI;
 				java.util.List<org.eclipse.core.resources.IFile> affectedFiles = null;
-				«IF null == editorGen.application»if (element instanceof «fileEditorInputClassFQName(it)») {
-					org.eclipse.core.resources.IFile newFile = ((«fileEditorInputClassFQName(it)») element).getFile();
+				Â«IF null == editorGen.applicationÂ»if (element instanceof Â«fileEditorInputClassFQName(it)Â») {
+					org.eclipse.core.resources.IFile newFile = ((Â«fileEditorInputClassFQName(it)Â») element).getFile();
 					affectedFiles = java.util.Collections.singletonList(newFile);
 					newResoruceURI = org.eclipse.emf.common.util.URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
-				} else «ENDIF»if(element instanceof «uriEditorInputClassFQName(it)») {
-					newResoruceURI = ((«uriEditorInputClassFQName(it)») element).getURI();
+				} else Â«ENDIFÂ»if(element instanceof Â«uriEditorInputClassFQName(it)Â») {
+					newResoruceURI = ((Â«uriEditorInputClassFQName(it)Â») element).getURI();
 				} else {
 					fireElementStateChangeFailed(element);
-					«throwIncorrectInputException(it)»
+					Â«throwIncorrectInputException(it)Â»
 				}
 				if (false == document instanceof org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument) {
 					fireElementStateChangeFailed(element);
-					throw new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, «xptActivator.qualifiedClassName(editorGen.plugin)».ID, 0,
-					"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); «nonNLS(1)» «nonNLS(2)»
+					throw new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».ID, 0,
+					"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); Â«nonNLS(1)Â» Â«nonNLS(2)Â»
 				}
 				org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument diagramDocument = (org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument) document;
 				final org.eclipse.emf.ecore.resource.Resource newResource = diagramDocument.getEditingDomain().getResourceSet().createResource(newResoruceURI);
 				final org.eclipse.gmf.runtime.notation.Diagram diagramCopy = org.eclipse.emf.ecore.util.EcoreUtil.copy(diagramDocument.getDiagram());
 				try {
-					new org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand(diagramDocument.getEditingDomain(), org.eclipse.osgi.util.NLS.bind(«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentSaveAs(it))», diagramCopy.getName()), affectedFiles) {
-						«overrideC»
+					new org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand(diagramDocument.getEditingDomain(), org.eclipse.osgi.util.NLS.bind(Â«xptExternalizer.accessorCall(editorGen, i18nKeyForDocumentSaveAs(it))Â», diagramCopy.getName()), affectedFiles) {
+						Â«overrideCÂ»
 						protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
 							newResource.getContents().add(diagramCopy);					
 							return org.eclipse.gmf.runtime.common.core.command.CommandResult.newOKCommandResult();
 						}
 					}.execute(monitor, null);
-					newResource.save(«xptDiagramEditorUtil.callGetSaveOptions(it)»);
+					newResource.save(Â«xptDiagramEditorUtil.callGetSaveOptions(it)Â»);
 				} catch (org.eclipse.core.commands.ExecutionException e) {
 					fireElementStateChangeFailed(element);
-					throw new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, «xptActivator.qualifiedClassName(editorGen.plugin)».ID, 0, e.getLocalizedMessage(), null));
+					throw new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».ID, 0, e.getLocalizedMessage(), null));
 				} catch (java.io.IOException e) {
 					fireElementStateChangeFailed(element);
-					throw new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, «xptActivator.qualifiedClassName(editorGen.plugin)».ID, 0, e.getLocalizedMessage(), null));
+					throw new org.eclipse.core.runtime.CoreException(new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.IStatus.ERROR, Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».ID, 0, e.getLocalizedMessage(), null));
 				}
 				newResource.unload();
 			}
@@ -220,13 +220,13 @@ import xpt.editor.DiagramEditorUtil
 	'''
 	
 	override computeSchedulingRule(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.core.runtime.jobs.ISchedulingRule computeSchedulingRule(org.eclipse.core.resources.IResource toCreateOrModify) {
 			if (toCreateOrModify.exists()) {
 				return org.eclipse.core.resources.ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
 			}
 			org.eclipse.core.resources.IResource parent = toCreateOrModify;
-			do {«/*FIXME [MG] the bug is closed long ago, still need? */»
+			do {Â«/*FIXME [MG] the bug is closed long ago, still need? */Â»
 				/*
 				 * XXX This is a workaround for
 				 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=67601
@@ -242,7 +242,7 @@ import xpt.editor.DiagramEditorUtil
 	'''
 	
 	override doValidateState(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected void doValidateState(Object element, Object computationContext) throws org.eclipse.core.runtime.CoreException {
 			ResourceSetInfo info = getResourceSetInfo(element);
 			if (info != null) {
@@ -262,7 +262,7 @@ import xpt.editor.DiagramEditorUtil
 	'''
 	
 	override getResetRule(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected org.eclipse.core.runtime.jobs.ISchedulingRule getResetRule(Object element) {
 			ResourceSetInfo info = getResourceSetInfo(element);
 			if (info != null) {
@@ -281,7 +281,7 @@ import xpt.editor.DiagramEditorUtil
 	'''
 	
 	override getSaveRule(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected org.eclipse.core.runtime.jobs.ISchedulingRule getSaveRule(Object element) {
 			ResourceSetInfo info = getResourceSetInfo(element);
 			if (info != null) {
@@ -300,7 +300,7 @@ import xpt.editor.DiagramEditorUtil
 	'''
 	
 	override getSynchronizeRule(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected org.eclipse.core.runtime.jobs.ISchedulingRule getSynchronizeRule(Object element) {
 			ResourceSetInfo info = getResourceSetInfo(element);
 			if (info != null) {
@@ -319,10 +319,10 @@ import xpt.editor.DiagramEditorUtil
 	'''
 	
 	override getValidateStateRule(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected org.eclipse.core.runtime.jobs.ISchedulingRule getValidateStateRule(Object element) {
 			ResourceSetInfo info = getResourceSetInfo(element);
-			if (info != null) {«/*FIXME: [MG] bad copy paste here, files should be <IFile>, its a miracle that it does not fail in runtime at toArray stage */»
+			if (info != null) {Â«/*FIXME: [MG] bad copy paste here, files should be <IFile>, its a miracle that it does not fail in runtime at toArray stage */Â»
 				java.util.LinkedList<org.eclipse.core.runtime.jobs.ISchedulingRule> files = new java.util.LinkedList<org.eclipse.core.runtime.jobs.ISchedulingRule>();
 				for (java.util.Iterator<org.eclipse.emf.ecore.resource.Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 					org.eclipse.emf.ecore.resource.Resource nextResource = it.next();

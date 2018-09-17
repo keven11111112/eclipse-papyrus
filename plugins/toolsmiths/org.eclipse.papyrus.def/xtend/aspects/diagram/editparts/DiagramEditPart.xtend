@@ -26,6 +26,6 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 
 	//BEGIN: PapyrusGenCode
 	//patches the super type of the diagram edit part in case the controlled object represents a UML element
-	override extendsList(GenDiagram it) '''extends «aspectDiagramEditPart.extendsListContents(it)»'''
+	override extendsList(GenDiagram it) '''extends Â«aspectDiagramEditPart.extendsListContents(it)Â»'''
 	//END: PapyrusGenCode
 }

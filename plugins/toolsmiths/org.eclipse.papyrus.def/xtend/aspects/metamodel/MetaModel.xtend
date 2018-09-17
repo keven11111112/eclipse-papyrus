@@ -25,6 +25,6 @@ import com.google.inject.Singleton
 	@Inject extension MetaModel_qvto;
 	
 	override DeclareAndAssign2(GenClass it, String assignee, String src, GenClass srcMetaClass, GenFeature srcFeature, String srcExt, boolean needCast) //
-		'''«getQualifiedInterfaceName(it)» «assignee» = «getFeatureValue(srcFeature, src, srcMetaClass)».«srcExt»;'''
+		'''Â«getQualifiedInterfaceName(it)Â» Â«assigneeÂ» = Â«getFeatureValue(srcFeature, src, srcMetaClass)Â».Â«srcExtÂ»;'''
 	
 }

@@ -34,51 +34,51 @@ import xpt.diagram.Utils_qvto
 	 *	Fields of command that creates link.
 	 */
 	override dispatch fields(LinkModelFacet it) '''
-		«extraLineBreak»
-			«generatedMemberComment()» 
+		Â«extraLineBreakÂ»
+			Â«generatedMemberComment()Â» 
 			protected final org.eclipse.emf.ecore.EObject source;
 		
-			«generatedMemberComment()» 
+			Â«generatedMemberComment()Â» 
 			protected final org.eclipse.emf.ecore.EObject target;
 	'''
 
 	override dispatch fields(TypeLinkModelFacet it) ''' 
-		«extraLineBreak»
-			«generatedMemberComment()» 
+		Â«extraLineBreakÂ»
+			Â«generatedMemberComment()Â» 
 			protected final org.eclipse.emf.ecore.EObject source;
 		
-			«generatedMemberComment()» 
+			Â«generatedMemberComment()Â» 
 			protected final org.eclipse.emf.ecore.EObject target;
-		«IF hasContainerOtherThanSource(it)»
+		Â«IF hasContainerOtherThanSource(it)Â»
 			
-			«generatedMemberComment()» 
-			protected «xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)» container;
-		«ENDIF»
+			Â«generatedMemberComment()Â» 
+			protected Â«xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)Â» container;
+		Â«ENDIFÂ»
 	'''
 
 	override dispatch containerAccessor(TypeLinkModelFacet it) ''' 
-		«IF hasContainerOtherThanSource(it)»
+		Â«IF hasContainerOtherThanSource(it)Â»
 			
-				«generatedMemberComment()» 
-				public «xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)» getContainer() {
+				Â«generatedMemberComment()Â» 
+				public Â«xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)Â» getContainer() {
 					return container;
 				}
 			
-				«generatedMemberComment(
+				Â«generatedMemberComment(
 			'Default approach is to traverse ancestors of the source to find instance of container.\n' + 'Modify with appropriate logic.'
-		)»
-				protected «xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)» deduceContainer(org.eclipse.emf.ecore.EObject source, org.eclipse.emf.ecore.EObject target) {
+		)Â»
+				protected Â«xptMetaModel.QualifiedClassName(it.containmentMetaFeature.genClass)Â» deduceContainer(org.eclipse.emf.ecore.EObject source, org.eclipse.emf.ecore.EObject target) {
 					// Find container element for the new link.
 					// Climb up by containment hierarchy starting from the source
 					// and return the first element that is instance of the container class.
 					for (org.eclipse.emf.ecore.EObject element = source; element != null; element = element.eContainer()) {
-						if («xptMetaModel.IsInstance(containmentMetaFeature.genClass, 'element')») {
-							return «xptMetaModel.CastEObject(it.containmentMetaFeature.genClass, 'element')»;
+						if (Â«xptMetaModel.IsInstance(containmentMetaFeature.genClass, 'element')Â») {
+							return Â«xptMetaModel.CastEObject(it.containmentMetaFeature.genClass, 'element')Â»;
 						}
 					}
 					return null;
 				}
-		«ENDIF»
+		Â«ENDIFÂ»
 		
 	'''
 

@@ -62,18 +62,18 @@ import xpt.providers.ElementTypes
 
 	override createLinkCommands(GenLinkEnd it) '''
 		
-		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size <1»
+		Â«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size <1Â»
 
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(
 				org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest req) {
 			org.eclipse.gef.commands.Command command = req.getTarget() == null ?
 			getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 			return command != null ? command : super.getCreateRelationshipCommand(req);
 		}
-		«ENDIF»
+		Â«ENDIFÂ»
 		
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		protected org.eclipse.gef.commands.Command getStartCreateRelationshipCommand(
 				org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest req) {
 			org.eclipse.gmf.runtime.emf.type.core.IElementType requestElementType = req.getElementType();
@@ -82,13 +82,13 @@ import xpt.providers.ElementTypes
 			}
 			org.eclipse.gmf.runtime.emf.type.core.IElementType baseElementType = requestElementType;
 			
-			«FOR l : getAllPotentialLinks(it)»
-			«startLinkCommands(l, it)»
-			«ENDFOR»
+			Â«FOR l : getAllPotentialLinks(it)Â»
+			Â«startLinkCommands(l, it)Â»
+			Â«ENDFORÂ»
 			return null;
 		}
 		
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		protected org.eclipse.gef.commands.Command getCompleteCreateRelationshipCommand(
 				org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest req) {
 			org.eclipse.gmf.runtime.emf.type.core.IElementType requestElementType = req.getElementType();
@@ -97,63 +97,63 @@ import xpt.providers.ElementTypes
 			}
 			org.eclipse.gmf.runtime.emf.type.core.IElementType baseElementType = requestElementType;
 
-			«FOR l : getAllPotentialLinks(it)»
-			«completeLinkCommands(l, it)»
-			«ENDFOR»
+			Â«FOR l : getAllPotentialLinks(it)Â»
+			Â«completeLinkCommands(l, it)Â»
+			Â«ENDFORÂ»
 			return null;
 		}
 	'''
 	
 		override startLinkCommands(GenLink it, GenLinkEnd linkEnd) '''
-		if («xptElementTypes.accessElementType(it)» == baseElementType) {
-		«IF createStartLinkCommand(it, linkEnd)»
+		if (Â«xptElementTypes.accessElementType(it)Â» == baseElementType) {
+		Â«IF createStartLinkCommand(it, linkEnd)Â»
 
-				return getGEFWrapper(new «xptCreateLinkCommand.qualifiedClassName(it)»(req,
-					«IF createStartIncomingLinkCommand(it, linkEnd)»
+				return getGEFWrapper(new Â«xptCreateLinkCommand.qualifiedClassName(it)Â»(req,
+					Â«IF createStartIncomingLinkCommand(it, linkEnd)Â»
 						req.getTarget(), req.getSource()
-					«ELSE»
+					Â«ELSEÂ»
 						req.getSource(), req.getTarget()
-					«ENDIF»
+					Â«ENDIFÂ»
 				));
-			«ELSE»
+			Â«ELSEÂ»
 				return null;
-			«ENDIF»
+			Â«ENDIFÂ»
 	'''
 	
 		override completeLinkCommands(GenLink it, GenLinkEnd linkEnd) '''
-		if («xptElementTypes.accessElementType(it)» == baseElementType) {
-			«IF createCompleteLinkCommand(it, linkEnd)»
+		if (Â«xptElementTypes.accessElementType(it)Â» == baseElementType) {
+			Â«IF createCompleteLinkCommand(it, linkEnd)Â»
 
-				return getGEFWrapper(new «xptCreateLinkCommand.qualifiedClassName(it)»(req,
-					«IF createCompleteOutgoingLinkCommand(it, linkEnd)»
+				return getGEFWrapper(new Â«xptCreateLinkCommand.qualifiedClassName(it)Â»(req,
+					Â«IF createCompleteOutgoingLinkCommand(it, linkEnd)Â»
 						req.getTarget(), req.getSource()
-					«ELSE»
+					Â«ELSEÂ»
 						req.getSource(), req.getTarget()
-					«ENDIF»
+					Â«ENDIFÂ»
 				));
-			«ELSE»
+			Â«ELSEÂ»
 				return null;
-			«ENDIF»
+			Â«ENDIFÂ»
 	'''
 	
 
 	//	We overwrite the reorientTypeLinkCommands to manages the links which use the ReorientCommand provided by the EditService
 	override reorientTypeLinkCommands(GenLinkEnd it) '''
-		«generatedMemberComment(
+		Â«generatedMemberComment(
 			'Returns command to reorient EClass based link. New link target or source\n' + 'should be the domain model element associated with this node.\n'
-		)»
+		)Â»
 			protected org.eclipse.gef.commands.Command getReorientRelationshipCommand(
 					org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest req) {
 				String vid = getVisualID(req);
 				if (vid != null) { 
 					switch (vid) {
-						«FOR link : getReroutableTypeLinks(it)»
-						«reorientLinkCommandWithService(link) »
-						«ENDFOR»
-						«callReorientCommand(it)»
-						«FOR link : getReroutableTypeLinks(it)»
-						«reorientLinkCommandWithoutService(link) »
-						«ENDFOR»
+						Â«FOR link : getReroutableTypeLinks(it)Â»
+						Â«reorientLinkCommandWithService(link) Â»
+						Â«ENDFORÂ»
+						Â«callReorientCommand(it)Â»
+						Â«FOR link : getReroutableTypeLinks(it)Â»
+						Â«reorientLinkCommandWithoutService(link) Â»
+						Â«ENDFORÂ»
 					}
 				}
 				return super.getReorientRelationshipCommand(req);
@@ -163,16 +163,16 @@ import xpt.providers.ElementTypes
 	//This function writes only  : "case myLinkEditPart.VISUAL_ID:" 
 	//for the link which uses the ReorientCommand provided by the EditService 
 	def reorientLinkCommandWithService(GenLink it) '''
-		«IF it.eResource.allContents.filter(typeof(EditPartUsingReorientService)).filter[v| v.genView.contains(it)].size != 0»
-			«xptVisualIDRegistry.caseVisualID(it)»
-		«ENDIF»
+		Â«IF it.eResource.allContents.filter(typeof(EditPartUsingReorientService)).filter[v| v.genView.contains(it)].size != 0Â»
+			Â«xptVisualIDRegistry.caseVisualID(it)Â»
+		Â«ENDIFÂ»
 	'''
 
 	// This function writes the code to call the ReorientCommand provided by the ReorientService
 	def callReorientCommand(GenLinkEnd it) '''
-		«var  rServiceNodes = it.eResource.allContents.filter(typeof (EditPartUsingReorientService))»
-		«IF !rServiceNodes.empty»
-			«IF !rServiceNodes.filter[rServiceNode|(!(rServiceNode.genView.filter[view|getReroutableTypeLinks(it).toList.contains(view)].empty))].empty»
+		Â«var  rServiceNodes = it.eResource.allContents.filter(typeof (EditPartUsingReorientService))Â»
+		Â«IF !rServiceNodes.emptyÂ»
+			Â«IF !rServiceNodes.filter[rServiceNode|(!(rServiceNode.genView.filter[view|getReroutableTypeLinks(it).toList.contains(view)].empty))].emptyÂ»
 				org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider =org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 				 if(provider == null) {
 				           return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
@@ -183,15 +183,15 @@ import xpt.providers.ElementTypes
 				           return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
 				          }
 				 return getGEFWrapper(reorientCommand.reduce());
-			«ENDIF»
-		«ENDIF»
+			Â«ENDIFÂ»
+		Â«ENDIFÂ»
 	'''
 
 	// This function writes the code for the Links which uses their own ReorientCommand (the initial code)
 	def reorientLinkCommandWithoutService(GenLink it) '''
-		«IF it.eResource.allContents.filter(EditPartUsingReorientService).filter[v|v.genView.contains(it)].size == 0»
-			«reorientLinkCommand(it)» 
-		«ENDIF»
+		Â«IF it.eResource.allContents.filter(EditPartUsingReorientService).filter[v|v.genView.contains(it)].size == 0Â»
+			Â«reorientLinkCommand(it)Â» 
+		Â«ENDIFÂ»
 	'''
 
 }

@@ -32,14 +32,14 @@ import xpt.Common
 	@Inject extension UtilsItemSemanticEditPolicy
 
 	override dispatch getDestroySemanticCommand(TypeLinkModelFacet it, GenLink genLink) '''
-		««« Test to know which delete command should be used in the generated code : "Traditional Delete Command" or the Delete Service
+		Â«Â«Â« Test to know which delete command should be used in the generated code : "Traditional Delete Command" or the Delete Service
 
-		«IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).filter[v | v.genView.contains(genLink)].size !=0 »
+		Â«IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).filter[v | v.genView.contains(genLink)].size !=0 Â»
 		
-			«generatedMemberComment»
-			«getDestroyElementCommandByService(it)»
-		«ELSE»
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
+			Â«getDestroyElementCommandByService(it)Â»
+		Â«ELSEÂ»
+			Â«generatedMemberCommentÂ»
 			protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
 				org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand cmd = new org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand(getEditingDomain(), null);
 				cmd.setTransactionNestingEnabled(true);
@@ -48,9 +48,9 @@ import xpt.Common
 				//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 				cmd.add(new org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy )));
 				return getGEFWrapper(cmd.reduce());
-				//return getGEFWrapper(«newDeleteLinkWithClassCommand(it,genLink, 'req')»);
+				//return getGEFWrapper(Â«newDeleteLinkWithClassCommand(it,genLink, 'req')Â»);
 			}
-		«ENDIF»	
+		Â«ENDIFÂ»	
 	'''
 
 

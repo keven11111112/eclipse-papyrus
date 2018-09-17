@@ -56,21 +56,21 @@ import xpt.providers.ParserUtils_qvto
 	@Inject Activator xptActivator;
 
 	override def HintAdapterClass(GenParsers it) '''
-			«generatedMemberComment()»
+			Â«generatedMemberComment()Â»
 			private static class HintAdapter extends org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter {
 		
-				«generatedMemberComment()»
+				Â«generatedMemberComment()Â»
 				private final org.eclipse.gmf.runtime.emf.type.core.IElementType elementType;
 		
-				«generatedMemberComment()»
+				Â«generatedMemberComment()Â»
 				public HintAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType type,
 						org.eclipse.emf.ecore.EObject object, String parserHint) {
 				super(object, parserHint);
-				«_assert('type != null')»
+				Â«_assert('type != null')Â»
 				elementType = type;
 				}
 		
-				«generatedMemberComment()»
+				Â«generatedMemberComment()Â»
 				public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 					if (org.eclipse.gmf.runtime.emf.type.core.IElementType.class.equals(adapter)) {
 						return elementType;
@@ -81,61 +81,61 @@ import xpt.providers.ParserUtils_qvto
 	'''
 
 	override dispatch dispatch_parsers(GenNode it) ''' 
-		«FOR label : it.labels»
-			«IF label.modelFacet != null»
-				«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)»
-			«ENDIF»
-		«ENDFOR»
+		Â«FOR label : it.labelsÂ»
+			Â«IF label.modelFacet != nullÂ»
+				Â«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)Â»
+			Â«ENDIFÂ»
+		Â«ENDFORÂ»
 	'''
 
 	override dispatch dispatch_parsers(GenLink it) '''
-		«FOR label : it.labels»
-			«IF label.modelFacet != null»
-				«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)»
-			«ENDIF»
-		«ENDFOR»
+		Â«FOR label : it.labelsÂ»
+			Â«IF label.modelFacet != nullÂ»
+				Â«dispatch_parser(label.modelFacet.parser, label.modelFacet, label)Â»
+			Â«ENDIFÂ»
+		Â«ENDFORÂ»
 	'''
 
 	override dispatch dispatch_getParsers(GenNode it) // 
 	'''
-		«FOR label : it.labels»
-			«IF label.modelFacet != null»
-				«doGetParser(label.modelFacet.parser, label)»
-			«ENDIF»
-		«ENDFOR»
+		Â«FOR label : it.labelsÂ»
+			Â«IF label.modelFacet != nullÂ»
+				Â«doGetParser(label.modelFacet.parser, label)Â»
+			Â«ENDIFÂ»
+		Â«ENDFORÂ»
 		
 	'''
 
 	override dispatch dispatch_getParsers(GenLink it) // 
 	'''
-		«FOR label : it.labels»
-			«IF label.modelFacet != null»
-				«doGetParser(label.modelFacet.parser, label)»
-			«ENDIF»
-		«ENDFOR»
+		Â«FOR label : it.labelsÂ»
+			Â«IF label.modelFacet != nullÂ»
+				Â«doGetParser(label.modelFacet.parser, label)Â»
+			Â«ENDIFÂ»
+		Â«ENDFORÂ»
 		
 	'''
 
 	override dispatch dispatch_getParsers(GenChildLabelNode it) '''
-		«IF it.modelFacet != null»
-			«doGetParser(it.labelModelFacet.parser, it)»
-		«ENDIF»
+		Â«IF it.modelFacet != nullÂ»
+			Â«doGetParser(it.labelModelFacet.parser, it)Â»
+		Â«ENDIFÂ»
 	'''
 
 	override def getParserByVisualIdMethod(GenParsers it) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		protected org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser(String visualID) {
 			if (visualID != null) {
 				switch (visualID) {
-					«FOR node : editorGen.diagram.topLevelNodes»
-						«dispatch_getParsers(node)»
-					«ENDFOR»
-					«FOR node : editorGen.diagram.childNodes»
-						«dispatch_getParsers(node)»
-					«ENDFOR»
-					«FOR link : editorGen.diagram.links»
-						«dispatch_getParsers(link)»
-					«ENDFOR»
+					Â«FOR node : editorGen.diagram.topLevelNodesÂ»
+						Â«dispatch_getParsers(node)Â»
+					Â«ENDFORÂ»
+					Â«FOR node : editorGen.diagram.childNodesÂ»
+						Â«dispatch_getParsers(node)Â»
+					Â«ENDFORÂ»
+					Â«FOR link : editorGen.diagram.linksÂ»
+						Â«dispatch_getParsers(link)Â»
+					Â«ENDFORÂ»
 				}
 			}
 			return null;
@@ -143,12 +143,12 @@ import xpt.providers.ParserUtils_qvto
 	'''
 
 	override def provider_providesMethod(GenParsers it) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		public boolean provides(org.eclipse.gmf.runtime.common.core.service.IOperation operation) {
 			if (operation instanceof org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation) {
 				org.eclipse.core.runtime.IAdaptable hint =
 						((org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation) operation).getHint();
-				if («xptElementTypes.qualifiedClassName(editorGen.diagram)».getElement(hint) == null) {
+				if (Â«xptElementTypes.qualifiedClassName(editorGen.diagram)Â».getElement(hint) == null) {
 					return false;
 				}
 				return getParser(hint) != null;

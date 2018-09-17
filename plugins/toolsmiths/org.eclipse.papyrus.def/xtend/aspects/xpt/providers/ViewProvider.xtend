@@ -58,18 +58,18 @@ import xpt.editor.VisualIDRegistry
 	@Inject ViewStyles xptViewStyles;
 
 	override ViewProvider(GenDiagram it) '''
-		«copyright(editorGen)»
-		package «packageName(it)»;
+		Â«copyright(editorGen)Â»
+		package Â«packageName(it)Â»;
 		
-		«generatedClassComment»
-		public class «className(it)» «extendsList(it)»«implementsList(it)» {
+		Â«generatedClassCommentÂ»
+		public class Â«className(it)Â» Â«extendsList(it)Â»Â«implementsList(it)Â» {
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public final boolean provides(org.eclipse.gmf.runtime.common.core.service.IOperation operation) {
 				if (operation instanceof org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation) {
 					return provides((org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation) operation);
 				}
-				«_assert('operation instanceof org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewOperation')»
+				Â«_assert('operation instanceof org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewOperation')Â»
 				
 				/* we check this view provider is the good one for the currently edited diagram */
 				if (operation instanceof org.eclipse.gmf.runtime.diagram.core.services.view.CreateChildViewOperation) {
@@ -90,7 +90,7 @@ import xpt.editor.VisualIDRegistry
 				return false;
 			}
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			protected boolean provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation op) {
 		/*
 				if (op.getViewKind() == Node.class)
@@ -100,20 +100,20 @@ import xpt.editor.VisualIDRegistry
 		*/
 		
 		      // check Diagram Type should be the class diagram
-		         String modelID = «getModelIDMethodCall(it)»(op.getContainerView());
+		         String modelID = Â«getModelIDMethodCall(it)Â»(op.getContainerView());
 		         if(!getDiagramProvidedId().equals(modelID)) {
 		               return false;
 		         }
 		         
-		         String visualID = «getVisualIDMethodCall(it)»(op.getSemanticHint());
+		         String visualID = Â«getVisualIDMethodCall(it)Â»(op.getSemanticHint());
 		         if(org.eclipse.gmf.runtime.notation.Node.class.isAssignableFrom(op.getViewKind())) {
-		               return «canCreateNodeMethodCall(it)»(op.getContainerView(), visualID);
+		               return Â«canCreateNodeMethodCall(it)Â»(op.getContainerView(), visualID);
 		         }
 		
 				return true;
 			}
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		     protected String getDiagramProvidedId() {
 		     /*
 		     * Indicates for which diagram this provider works for.
@@ -123,15 +123,15 @@ import xpt.editor.VisualIDRegistry
 		     * 
 		      * @return the unique identifier of the diagram for which views are provided.
 		     */
-		           return «VisualIDRegistry::modelID(it)»;
+		           return Â«VisualIDRegistry::modelID(it)Â»;
 		     }
 		
-			«generatedMemberComment»«/* When diagram domain element is null only diagram kind is checked */»
+			Â«generatedMemberCommentÂ»Â«/* When diagram domain element is null only diagram kind is checked */Â»
 			protected boolean provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation op) {
-				return «VisualIDRegistry::modelID(it)».equals(op.getSemanticHint())«IF domainDiagramElement != null» && «xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(getSemanticElement(op.getSemanticAdapter())) != null && !«xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(getSemanticElement(op.getSemanticAdapter())).isEmpty()«ENDIF»;
+				return Â«VisualIDRegistry::modelID(it)Â».equals(op.getSemanticHint())Â«IF domainDiagramElement != nullÂ» && Â«xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)Â»(getSemanticElement(op.getSemanticAdapter())) != null && !Â«xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)Â»(getSemanticElement(op.getSemanticAdapter())).isEmpty()Â«ENDIFÂ»;
 			}
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			protected boolean provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation op) {
 				if (op.getContainerView() == null) {
 					return false;
@@ -143,19 +143,19 @@ import xpt.editor.VisualIDRegistry
 					// Semantic hint is not specified. Can be a result of call from CanonicalEditPolicy.
 					// In this situation there should be NO elementType, visualID will be determined
 					// by VisualIDRegistry.getNodeVisualID() for domainElement.
-					if (elementType != null || domainElement == null) {«/* XXX Perhaps, better to fix CanonicalEP instead of this hack? */»
+					if (elementType != null || domainElement == null) {Â«/* XXX Perhaps, better to fix CanonicalEP instead of this hack? */Â»
 						return false;
 					}
-					visualID = «xptVisualIDRegistry.getNodeVisualIDMethodCall(it)»(op.getContainerView(), domainElement);
+					visualID = Â«xptVisualIDRegistry.getNodeVisualIDMethodCall(it)Â»(op.getContainerView(), domainElement);
 				} else {
-					visualID = «xptVisualIDRegistry.getVisualIDMethodCall(it)»(op.getSemanticHint());
-					if (elementType != null) {«/*
+					visualID = Â«xptVisualIDRegistry.getVisualIDMethodCall(it)Â»(op.getSemanticHint());
+					if (elementType != null) {Â«/*
 					Semantic hint is specified together with element type.
 					Both parameters should describe exactly the same diagram element.
 					In addition we check that visualID returned by VisualIDRegistry.getNodeVisualID() for
-					domainElement (if specified) is the same as in element type. */»
+					domainElement (if specified) is the same as in element type. */Â»
 				
-					if (!«getElementTypesQualifiedClassName()».isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
+					if (!Â«getElementTypesQualifiedClassName()Â».isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
 						return false; // foreign element type
 					}
 				
@@ -163,56 +163,56 @@ import xpt.editor.VisualIDRegistry
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in element type
 				}
-				//if (domainElement != null && !visualID.equals(«getNodeVisualIDMethodCall(it)»(op.getContainerView(), domainElement))) {
+				//if (domainElement != null && !visualID.equals(Â«getNodeVisualIDMethodCall(it)Â»(op.getContainerView(), domainElement))) {
 				//	return false; // visual id for node EClass should match visual id from element type
 				//}
-			} else {«/*
+			} else {Â«/*
 					Element type is not specified. Domain element should be present (except pure design elements).
 					 This method is called with EObjectAdapter as parameter from:
 					   - ViewService.createNode(View container, EObject eObject, String type, PreferencesHint preferencesHint) 
-					   - generated ViewFactory.decorateView() for parent element */»
-				«IF ! getAllTypedElements(it).filter[e|e.elementType != null].empty»
-					if (!«VisualIDRegistry::modelID(it)».equals(«xptVisualIDRegistry.getModelIDMethodCall(it)»(op.getContainerView()))) {
+					   - generated ViewFactory.decorateView() for parent element */Â»
+				Â«IF ! getAllTypedElements(it).filter[e|e.elementType != null].emptyÂ»
+					if (!Â«VisualIDRegistry::modelID(it)Â».equals(Â«xptVisualIDRegistry.getModelIDMethodCall(it)Â»(op.getContainerView()))) {
 						return false; // foreign diagram
 					}
 					if (visualID != null) {
 						switch (visualID) {
-						«IF getAllNodes().exists[e|e.elementType instanceof NotationType]»
-							«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(NotationType))»
-								«localCaseVisualID(e)»
-							«ENDFOR»
+						Â«IF getAllNodes().exists[e|e.elementType instanceof NotationType]Â»
+							Â«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(NotationType))Â»
+								Â«localCaseVisualID(e)Â»
+							Â«ENDFORÂ»
 							break; // pure design element
-						«ENDIF»
-						«IF getAllNodes().exists[e|e.elementType instanceof MetamodelType || e.elementType instanceof SpecializationType]»
-							«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(MetamodelType))»
-								«localCaseVisualID(e)»
-							«ENDFOR»
-							«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(SpecializationType))»
-								«localCaseVisualID(e)»
-							«ENDFOR»
-							if (domainElement == null || !visualID.equals(«xptVisualIDRegistry.getNodeVisualIDMethodCall(it)»(op.getContainerView(), domainElement))) {
+						Â«ENDIFÂ»
+						Â«IF getAllNodes().exists[e|e.elementType instanceof MetamodelType || e.elementType instanceof SpecializationType]Â»
+							Â«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(MetamodelType))Â»
+								Â«localCaseVisualID(e)Â»
+							Â«ENDFORÂ»
+							Â«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(SpecializationType))Â»
+								Â«localCaseVisualID(e)Â»
+							Â«ENDFORÂ»
+							if (domainElement == null || !visualID.equals(Â«xptVisualIDRegistry.getNodeVisualIDMethodCall(it)Â»(op.getContainerView(), domainElement))) {
 								return false; // visual id in semantic hint should match visual id for domain element
 							}
-							break;«/*FIXME: Perhaps, can return true or false right away, without any further check?*/»
-						«ENDIF»
+							break;Â«/*FIXME: Perhaps, can return true or false right away, without any further check?*/Â»
+						Â«ENDIFÂ»
 						default:
 							return false;
 						}
 					}
-				«ELSE»
+				Â«ELSEÂ»
 					return false;
-				«ENDIF»
+				Â«ENDIFÂ»
 				}
 				}
 				
-					return «canCreateNodeMethodCall(it)»(op.getContainerView(), visualID);
+					return Â«canCreateNodeMethodCall(it)Â»(op.getContainerView(), visualID);
 			}
 		
-			«generatedMemberComment»«/* XXX: unlike createNode, we don't check op.containerView() for null here. On purpose? */»
+			Â«generatedMemberCommentÂ»Â«/* XXX: unlike createNode, we don't check op.containerView() for null here. On purpose? */Â»
 	protected boolean provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation op) {
 		org.eclipse.gmf.runtime.emf.type.core.IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
 		
-		if (!«getElementTypesQualifiedClassName()».isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
+		if (!Â«getElementTypesQualifiedClassName()Â».isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
 			return false; // foreign element type
 		}
 		
@@ -220,101 +220,101 @@ import xpt.editor.VisualIDRegistry
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
-		//String visualID = «getVisualIDMethodCall(it)»(elementTypeHint);
+		//String visualID = Â«getVisualIDMethodCall(it)Â»(elementTypeHint);
 		//org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		//if (domainElement != null && !visualID.equals(«getLinkWithClassVisualIDMethodCall(it)»(domainElement))) {
+		//if (domainElement != null && !visualID.equals(Â«getLinkWithClassVisualIDMethodCall(it)Â»(domainElement))) {
 		//	return false; // visual id for link EClass should match visual id from element type
 		//}
-		return true; «««Does it make sense to check visualID here, like we did for nodes?
+		return true; Â«Â«Â«Does it make sense to check visualID here, like we did for nodes?
 	}
 
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			@SuppressWarnings("unchecked")
 			public org.eclipse.gmf.runtime.notation.Diagram createDiagram(org.eclipse.core.runtime.IAdaptable semanticAdapter, String diagramKind, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
-				org.eclipse.gmf.runtime.notation.Diagram diagram = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDiagram();«/* FIXME instantiate diagramRunTimeClass instead */»
-				org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils.stampCurrentVersion(diagram);«/* Papyrus specific diagram versioning */»
+				org.eclipse.gmf.runtime.notation.Diagram diagram = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDiagram();Â«/* FIXME instantiate diagramRunTimeClass instead */Â»
+				org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils.stampCurrentVersion(diagram);Â«/* Papyrus specific diagram versioning */Â»
 				diagram.getStyles().add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDiagramStyle());
-				«xptViewStyles.addCustomStyles(it, 'diagram.getStyles()')»
-				diagram.setType(«VisualIDRegistry::modelID(it)»);
-				diagram.setElement(«IF domainDiagramElement != null»getSemanticElement(semanticAdapter)«ELSE»null«ENDIF»);
-			«IF units != null»
-				diagram.setMeasurementUnit(org.eclipse.gmf.runtime.notation.MeasurementUnit.«units.toUpperCase»_LITERAL);
-			«ENDIF»
-			«IF ! styles.empty»
+				Â«xptViewStyles.addCustomStyles(it, 'diagram.getStyles()')Â»
+				diagram.setType(Â«VisualIDRegistry::modelID(it)Â»);
+				diagram.setElement(Â«IF domainDiagramElement != nullÂ»getSemanticElement(semanticAdapter)Â«ELSEÂ»nullÂ«ENDIFÂ»);
+			Â«IF units != nullÂ»
+				diagram.setMeasurementUnit(org.eclipse.gmf.runtime.notation.MeasurementUnit.Â«units.toUpperCaseÂ»_LITERAL);
+			Â«ENDIFÂ»
+			Â«IF ! styles.emptyÂ»
 				// initializeFromPreferences
 				org.eclipse.jface.preferences.IPreferenceStore store = (org.eclipse.jface.preferences.IPreferenceStore) preferencesHint.getPreferenceStore();
-				«initializeStyles(it, 'diagram', 'store', false, false, false)»
-			«ENDIF»
+				Â«initializeStyles(it, 'diagram', 'store', false, false, false)Â»
+			Â«ENDIFÂ»
 			return diagram;
 			}
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public org.eclipse.gmf.runtime.notation.Node createNode(org.eclipse.core.runtime.IAdaptable semanticAdapter, org.eclipse.gmf.runtime.notation.View containerView, String semanticHint, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
 				final org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(semanticAdapter);
 				final String visualID;
 				if (semanticHint == null) {
-					visualID = «xptVisualIDRegistry.getNodeVisualIDMethodCall(it)»(containerView, domainElement);
+					visualID = Â«xptVisualIDRegistry.getNodeVisualIDMethodCall(it)Â»(containerView, domainElement);
 				} else {
-					visualID = «xptVisualIDRegistry.getVisualIDMethodCall(it)»(semanticHint);
+					visualID = Â«xptVisualIDRegistry.getVisualIDMethodCall(it)Â»(semanticHint);
 				}
 				if (visualID != null) {
 					switch(visualID) {
-					«FOR n : getAllNodes()»
-						«xptVisualIDRegistry.caseVisualID(n)»
-							return create«n.stringUniqueIdentifier»(domainElement, containerView, index, persisted, preferencesHint);
-					«ENDFOR»
+					Â«FOR n : getAllNodes()Â»
+						Â«xptVisualIDRegistry.caseVisualID(n)Â»
+							return createÂ«n.stringUniqueIdentifierÂ»(domainElement, containerView, index, persisted, preferencesHint);
+					Â«ENDFORÂ»
 					}
 				}
 				// can't happen, provided #provides(CreateNodeViewOperation) is correct
 				return null;
 			}
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public org.eclipse.gmf.runtime.notation.Edge createEdge(org.eclipse.core.runtime.IAdaptable semanticAdapter, org.eclipse.gmf.runtime.notation.View containerView, String semanticHint, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
 				org.eclipse.gmf.runtime.emf.type.core.IElementType elementType = getSemanticElementType(semanticAdapter);
 				String elementTypeHint = ((org.eclipse.gmf.runtime.emf.type.core.IHintedType) elementType).getSemanticHint();
-				String vid = «xptVisualIDRegistry.getVisualIDMethodCall(it)»(elementTypeHint);
+				String vid = Â«xptVisualIDRegistry.getVisualIDMethodCall(it)Â»(elementTypeHint);
 				if (vid != null) {
 					switch (vid) {
-					«FOR link : links»
-						«xptVisualIDRegistry.caseVisualID(link)»
-							return create«link.stringUniqueIdentifier»(«IF isTypeLink(link)» getSemanticElement(semanticAdapter), «ENDIF»containerView, index, persisted, preferencesHint);
-					«ENDFOR»
+					Â«FOR link : linksÂ»
+						Â«xptVisualIDRegistry.caseVisualID(link)Â»
+							return createÂ«link.stringUniqueIdentifierÂ»(Â«IF isTypeLink(link)Â» getSemanticElement(semanticAdapter), Â«ENDIFÂ»containerView, index, persisted, preferencesHint);
+					Â«ENDFORÂ»
 					}
 				}
 				// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 				return null;
 			}
 		
-			«FOR next : getAllNodes()»
-				«createNodeMethod(next)»
-			«ENDFOR»
-			«FOR next : links»
-				«createEdgeMethod(next)»
-			«ENDFOR»
+			Â«FOR next : getAllNodes()Â»
+				Â«createNodeMethod(next)Â»
+			Â«ENDFORÂ»
+			Â«FOR next : linksÂ»
+				Â«createEdgeMethod(next)Â»
+			Â«ENDFORÂ»
 		
-			«IF ! topLevelNodes.empty»
-				«generatedMemberComment»
+			Â«IF ! topLevelNodes.emptyÂ»
+				Â«generatedMemberCommentÂ»
 				protected void stampShortcut(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.gmf.runtime.notation.Node target) {
-					if (!«VisualIDRegistry::modelID(it)».equals(«xptVisualIDRegistry.getModelIDMethodCall(it)»(containerView))) {
-						«addShortcutAnnotation(it, 'target')»
+					if (!Â«VisualIDRegistry::modelID(it)Â».equals(Â«xptVisualIDRegistry.getModelIDMethodCall(it)Â»(containerView))) {
+						Â«addShortcutAnnotation(it, 'target')Â»
 					}
 				}
-			«ENDIF»
+			Â«ENDIFÂ»
 		
-			«IF links.map[l|l.labels].flatten.notEmpty || topLevelNodes.map[n|n.labels].flatten.notEmpty || childNodes.map[n|n.labels].flatten.notEmpty»
-				«generatedMemberComment»
+			Â«IF links.map[l|l.labels].flatten.notEmpty || topLevelNodes.map[n|n.labels].flatten.notEmpty || childNodes.map[n|n.labels].flatten.notEmptyÂ»
+				Â«generatedMemberCommentÂ»
 				protected org.eclipse.gmf.runtime.notation.Node createLabel(org.eclipse.gmf.runtime.notation.View owner, String hint) {
 					org.eclipse.gmf.runtime.notation.DecorationNode rv = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDecorationNode();
 					rv.setType(hint);
 					org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.insertChildView(owner, rv, org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.APPEND, true);
 					return rv;
 				}
-			«ENDIF»
+			Â«ENDIFÂ»
 		
-			«IF getAllNodes().map[n|n.compartments].flatten.notEmpty»
-				«generatedMemberComment»
+			Â«IF getAllNodes().map[n|n.compartments].flatten.notEmptyÂ»
+				Â«generatedMemberCommentÂ»
 				protected org.eclipse.gmf.runtime.notation.Node createCompartment(org.eclipse.gmf.runtime.notation.View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort, boolean canFilter) {
 					//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
 					//rv.setShowTitle(showTitle);
@@ -337,86 +337,86 @@ import xpt.editor.VisualIDRegistry
 					org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.insertChildView(owner, rv, org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.APPEND, true);
 					return rv;
 				}
-			«ENDIF»
+			Â«ENDIFÂ»
 		
-			«getSemanticElementMethod(it)»
-			«getSemanticElementTypeMethod(it)»
-			«additions(it)»
+			Â«getSemanticElementMethod(it)Â»
+			Â«getSemanticElementTypeMethod(it)Â»
+			Â«additions(it)Â»
 		}
 	'''
 	
 
 	
 	override dispatch createNodeMethod(GenNode it) '''
-		«generatedMemberComment»
-		public org.eclipse.gmf.runtime.notation.Node create«stringUniqueIdentifier»(org.eclipse.emf.ecore.EObject domainElement, org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
-			«IF canUseShapeStyle(viewmap)»
+		Â«generatedMemberCommentÂ»
+		public org.eclipse.gmf.runtime.notation.Node createÂ«stringUniqueIdentifierÂ»(org.eclipse.emf.ecore.EObject domainElement, org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
+			Â«IF canUseShapeStyle(viewmap)Â»
 			org.eclipse.gmf.runtime.notation.Shape node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShape();
-			«ELSE»
+			Â«ELSEÂ»
 			org.eclipse.gmf.runtime.notation.Node node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createNode();
-			node.getStyles().add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDescriptionStyle());«/* FIXME Contionally add this style, whether toolsmith needs Notes or not */»
-			«xptViewStyles.addFontLineFillStylesConditionally(it.viewmap, 'node.getStyles()')»
-			«ENDIF»
-			«xptViewStyles.addLinkedDiagramStyle(it, 'node.getStyles()')»
-			«xptViewStyles.addCustomStyles(it, 'node.getStyles()')»
+			node.getStyles().add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDescriptionStyle());Â«/* FIXME Contionally add this style, whether toolsmith needs Notes or not */Â»
+			Â«xptViewStyles.addFontLineFillStylesConditionally(it.viewmap, 'node.getStyles()')Â»
+			Â«ENDIFÂ»
+			Â«xptViewStyles.addLinkedDiagramStyle(it, 'node.getStyles()')Â»
+			Â«xptViewStyles.addCustomStyles(it, 'node.getStyles()')Â»
 			node.setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createBounds());
-			node.setType(«xptVisualIDRegistry.typeMethodCall(it)»);
+			node.setType(Â«xptVisualIDRegistry.typeMethodCall(it)Â»);
 			org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.insertChildView(containerView, node, index, persisted);
 			node.setElement(domainElement);
-			«IF it instanceof GenTopLevelNode»
+			Â«IF it instanceof GenTopLevelNodeÂ»
 			stampShortcut(containerView, node);
-			«ENDIF»
-			// initializeFromPreferences «/* XXX Perhaps, do init only once, for complete figure? */»
+			Â«ENDIFÂ»
+			// initializeFromPreferences Â«/* XXX Perhaps, do init only once, for complete figure? */Â»
 			final org.eclipse.jface.preference.IPreferenceStore prefStore = (org.eclipse.jface.preference.IPreferenceStore) preferencesHint.getPreferenceStore();
-			«initializeStyles(it, 'node', 'prefStore', !isFixedForeground(viewmap), !isFixedBackground(viewmap), !isFixedFont(viewmap))»
-			«FOR label : it.labels»
-			«initLabel(label, 'node', 'prefStore')»
-			«ENDFOR»
-			«FOR comp : it.compartments»
-			«initCompartment(comp, 'node', 'prefStore')»
-			«ENDFOR»
-			«««	BEGIN Papyrus Modification
-			«IF compartments.size != 0»
-				org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(«'node'», «'prefStore'», "«elementType.displayName»");
-			«ENDIF»
-			«««	END Papyrus Modification
-			«initLabelVisibility(it,'node', 'prefStore')»
+			Â«initializeStyles(it, 'node', 'prefStore', !isFixedForeground(viewmap), !isFixedBackground(viewmap), !isFixedFont(viewmap))Â»
+			Â«FOR label : it.labelsÂ»
+			Â«initLabel(label, 'node', 'prefStore')Â»
+			Â«ENDFORÂ»
+			Â«FOR comp : it.compartmentsÂ»
+			Â«initCompartment(comp, 'node', 'prefStore')Â»
+			Â«ENDFORÂ»
+			Â«Â«Â«	BEGIN Papyrus Modification
+			Â«IF compartments.size != 0Â»
+				org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(Â«'node'Â», Â«'prefStore'Â», "Â«elementType.displayNameÂ»");
+			Â«ENDIFÂ»
+			Â«Â«Â«	END Papyrus Modification
+			Â«initLabelVisibility(it,'node', 'prefStore')Â»
 			return node;
 		}
 	'''
 	
 		// Location as layoutConstraint, no children
 	override dispatch createNodeMethod(GenChildLabelNode it) '''
-		«generatedMemberComment»
-		public org.eclipse.gmf.runtime.notation.Node create«stringUniqueIdentifier»(org.eclipse.emf.ecore.EObject domainElement, org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
+		Â«generatedMemberCommentÂ»
+		public org.eclipse.gmf.runtime.notation.Node createÂ«stringUniqueIdentifierÂ»(org.eclipse.emf.ecore.EObject domainElement, org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
 			org.eclipse.gmf.runtime.notation.Node node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShape();
-			node.setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createLocation());«/* [artem] XXX not sure, why LabelNode needs location */»
-			«xptViewStyles.addLinkedDiagramStyle(it, 'node.getStyles()')»
-			«xptViewStyles.addCustomStyles(it, 'node.getStyles()')»
-			node.setType(«xptVisualIDRegistry.typeMethodCall(it)»);
+			node.setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createLocation());Â«/* [artem] XXX not sure, why LabelNode needs location */Â»
+			Â«xptViewStyles.addLinkedDiagramStyle(it, 'node.getStyles()')Â»
+			Â«xptViewStyles.addCustomStyles(it, 'node.getStyles()')Â»
+			node.setType(Â«xptVisualIDRegistry.typeMethodCall(it)Â»);
 			org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.insertChildView(containerView, node, index, persisted);
 			node.setElement(domainElement);
 			
 			final org.eclipse.jface.preference.IPreferenceStore prefStore = (org.eclipse.jface.preference.IPreferenceStore) preferencesHint.getPreferenceStore();
-			«initFontFromPrefs(it,'node', 'prefStore')»
-			«initForegroundFromPrefs(it,'node', 'prefStore')»
+			Â«initFontFromPrefs(it,'node', 'prefStore')Â»
+			Â«initForegroundFromPrefs(it,'node', 'prefStore')Â»
 			return node;
 		}
 	'''
 	
 		override createEdgeMethod(GenLink it) '''
-	«generatedMemberComment»
-	public org.eclipse.gmf.runtime.notation.Edge create«stringUniqueIdentifier»(«IF isTypeLink(it)»org.eclipse.emf.ecore.EObject domainElement, «ENDIF»org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
-	«IF isFixedForeground(viewmap)»
+	Â«generatedMemberCommentÂ»
+	public org.eclipse.gmf.runtime.notation.Edge createÂ«stringUniqueIdentifierÂ»(Â«IF isTypeLink(it)Â»org.eclipse.emf.ecore.EObject domainElement, Â«ENDIFÂ»org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
+	Â«IF isFixedForeground(viewmap)Â»
 		org.eclipse.gmf.runtime.notation.Edge edge = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createEdge();
 		edge.getStyles().add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createRoutingStyle());
-	«ELSE»
+	Â«ELSEÂ»
 		org.eclipse.gmf.runtime.notation.Connector edge = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createConnector();
-	«ENDIF»
-	«IF !isFixedFont(viewmap)»
+	Â«ENDIFÂ»
+	Â«IF !isFixedFont(viewmap)Â»
 		edge.getStyles().add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createFontStyle());
-	«ENDIF»
-		«xptViewStyles.addCustomStyles(it, 'edge.getStyles()')»
+	Â«ENDIFÂ»
+		Â«xptViewStyles.addCustomStyles(it, 'edge.getStyles()')Â»
 		org.eclipse.gmf.runtime.notation.RelativeBendpoints bendpoints = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createRelativeBendpoints();
 		java.util.List<org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint> points = new java.util.ArrayList<org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint>(2); 
 		points.add(new org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint());
@@ -424,26 +424,26 @@ import xpt.editor.VisualIDRegistry
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.insertChildView(containerView, edge, index, persisted);
-		edge.setType(«xptVisualIDRegistry.typeMethodCall(it)»);
-		edge.setElement(«IF isTypeLink(it)»domainElement«ELSE»null«ENDIF»);
+		edge.setType(Â«xptVisualIDRegistry.typeMethodCall(it)Â»);
+		edge.setElement(Â«IF isTypeLink(it)Â»domainElementÂ«ELSEÂ»nullÂ«ENDIFÂ»);
 		// initializePreferences
 		final org.eclipse.jface.preference.IPreferenceStore prefStore = (org.eclipse.jface.preference.IPreferenceStore) preferencesHint.getPreferenceStore();
-		«initializeStyles(it, 'edge', 'prefStore', !isFixedForeground(viewmap), false, !isFixedFont(viewmap))»
+		Â«initializeStyles(it, 'edge', 'prefStore', !isFixedForeground(viewmap), false, !isFixedFont(viewmap))Â»
 		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
 		//if (routing != null) {
 		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		//}
-		«initRountingFromPrefs(it,'edge', 'prefStore')»
-		«FOR label : it.labels»
-			«initLabel(label, 'edge', 'prefStore')»
-		«ENDFOR»
-		«initLabelVisibility(it,'edge', 'prefStore')»
+		Â«initRountingFromPrefs(it,'edge', 'prefStore')Â»
+		Â«FOR label : it.labelsÂ»
+			Â«initLabel(label, 'edge', 'prefStore')Â»
+		Â«ENDFORÂ»
+		Â«initLabelVisibility(it,'edge', 'prefStore')Â»
 		return edge;
 	}
 	'''
 	
 	override getSemanticElementMethod(GenDiagram it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected org.eclipse.emf.ecore.EObject getSemanticElement(org.eclipse.core.runtime.IAdaptable semanticAdapter) {
 			if (semanticAdapter == null) {
 				return null;
@@ -457,7 +457,7 @@ import xpt.editor.VisualIDRegistry
 	'''
 
 	override getSemanticElementTypeMethod(GenDiagram it) '''
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	protected org.eclipse.gmf.runtime.emf.type.core.IElementType getSemanticElementType(org.eclipse.core.runtime.IAdaptable semanticAdapter) {
 		if (semanticAdapter == null) {
 			return null;
@@ -466,39 +466,39 @@ import xpt.editor.VisualIDRegistry
 	}
 	'''
 	override initLabel(GenLabel it, String nodeVar, String prefStoreVar) '''
-		«var String labelVar = it.stringUniqueIdentifier.toFirstLower»
-		org.eclipse.gmf.runtime.notation.Node «labelVar» = createLabel(«nodeVar», «xptVisualIDRegistry.typeMethodCall(it)»);
-		«IF it.modelFacet !=null»
-		«xptViewStyles.addTextStyle(it.modelFacet, labelVar + '.getStyles()')»
-		«ENDIF»
-		«xptViewStyles.addCustomStyles(it, labelVar + '.getStyles()')»
-		«IF it.oclIsKindOf(typeof(GenExternalNodeLabel)) || it.oclIsKindOf(typeof(GenLinkLabel))»
-			«labelVar».setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createLocation());
-			«xptViewStyles.offset(it, labelVar)»
-		«ENDIF»
-		«initializeStyles(it, labelVar, prefStoreVar, false, false, false)»
+		Â«var String labelVar = it.stringUniqueIdentifier.toFirstLowerÂ»
+		org.eclipse.gmf.runtime.notation.Node Â«labelVarÂ» = createLabel(Â«nodeVarÂ», Â«xptVisualIDRegistry.typeMethodCall(it)Â»);
+		Â«IF it.modelFacet !=nullÂ»
+		Â«xptViewStyles.addTextStyle(it.modelFacet, labelVar + '.getStyles()')Â»
+		Â«ENDIFÂ»
+		Â«xptViewStyles.addCustomStyles(it, labelVar + '.getStyles()')Â»
+		Â«IF it.oclIsKindOf(typeof(GenExternalNodeLabel)) || it.oclIsKindOf(typeof(GenLinkLabel))Â»
+			Â«labelVarÂ».setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createLocation());
+			Â«xptViewStyles.offset(it, labelVar)Â»
+		Â«ENDIFÂ»
+		Â«initializeStyles(it, labelVar, prefStoreVar, false, false, false)Â»
 	'''
 
 	override def initCompartment(GenCompartment it, String nodeVar, String prefStoreVar) '''
-		«var String compartmentVar= it.stringUniqueIdentifier.toFirstLower»
-		«IF it.styles.notEmpty || isStoringChildPositions(it.layoutType)»org.eclipse.gmf.runtime.notation.Node «compartmentVar» = «ENDIF»createCompartment(«nodeVar», «xptVisualIDRegistry.typeMethodCall(it)», «canCollapse», «needsTitle», «listLayout», «listLayout»);
-		«xptViewStyles.addCustomStyles(it, compartmentVar + '.getStyles()')»
-		«IF isStoringChildPositions(it.layoutType)»
-			«IF viewmap.canUseShapeStyle()»
-				«compartmentVar».add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShapeStyle());
-			«ELSE /* Intentionally not adding Description style, as it deemed to be useless for compartments (can't avoid for ShapeStyle - benefits of a single style overwheight drawbacks of Description presence) */»
-				«xptViewStyles.addFontLineFillStylesConditionally(it.viewmap, compartmentVar + '.getStyles()')»
-			«ENDIF»
-			«compartmentVar».setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createBounds());
-			«initializeStyles(it, compartmentVar, prefStoreVar, !viewmap.isFixedForeground(), !viewmap.isFixedBackground(), !viewmap.isFixedFont())»
-		«ELSE»
-			«initializeStyles(it, compartmentVar, prefStoreVar, false, false, false)»
-		«ENDIF»
+		Â«var String compartmentVar= it.stringUniqueIdentifier.toFirstLowerÂ»
+		Â«IF it.styles.notEmpty || isStoringChildPositions(it.layoutType)Â»org.eclipse.gmf.runtime.notation.Node Â«compartmentVarÂ» = Â«ENDIFÂ»createCompartment(Â«nodeVarÂ», Â«xptVisualIDRegistry.typeMethodCall(it)Â», Â«canCollapseÂ», Â«needsTitleÂ», Â«listLayoutÂ», Â«listLayoutÂ»);
+		Â«xptViewStyles.addCustomStyles(it, compartmentVar + '.getStyles()')Â»
+		Â«IF isStoringChildPositions(it.layoutType)Â»
+			Â«IF viewmap.canUseShapeStyle()Â»
+				Â«compartmentVarÂ».add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShapeStyle());
+			Â«ELSE /* Intentionally not adding Description style, as it deemed to be useless for compartments (can't avoid for ShapeStyle - benefits of a single style overwheight drawbacks of Description presence) */Â»
+				Â«xptViewStyles.addFontLineFillStylesConditionally(it.viewmap, compartmentVar + '.getStyles()')Â»
+			Â«ENDIFÂ»
+			Â«compartmentVarÂ».setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createBounds());
+			Â«initializeStyles(it, compartmentVar, prefStoreVar, !viewmap.isFixedForeground(), !viewmap.isFixedBackground(), !viewmap.isFixedFont())Â»
+		Â«ELSEÂ»
+			Â«initializeStyles(it, compartmentVar, prefStoreVar, false, false, false)Â»
+		Â«ENDIFÂ»
 	'''
 	 
 override additions(GenDiagram it)'''
 
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	private void initFontStyleFromPrefs(org.eclipse.gmf.runtime.notation.View view, final org.eclipse.jface.preference.IPreferenceStore store, String elementName)
 	{
 		String fontConstant = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.FONT);
@@ -518,7 +518,7 @@ override additions(GenDiagram it)'''
 		}
 	}
 	
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	private void initForegroundFromPrefs(org.eclipse.gmf.runtime.notation.View view, final org.eclipse.jface.preference.IPreferenceStore store, String elementName)
 	{
 		String lineColorConstant = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_LINE);
@@ -526,7 +526,7 @@ override additions(GenDiagram it)'''
 		org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(view, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLineStyle_LineColor(), org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities.RGBToInteger(lineRGB));
 	}
 	
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	private void initBackgroundFromPrefs(org.eclipse.gmf.runtime.notation.View view, final org.eclipse.jface.preference.IPreferenceStore store, String elementName)
 	{
 		String fillColorConstant = org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.getElementConstant(elementName, org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper.COLOR_FILL);
@@ -557,56 +557,56 @@ override additions(GenDiagram it)'''
 '''
 
 override initFontFromPrefs(GenCommonBase it,String viewVar, String prefStoreVar)'''
-	«specificInitFontFromPrefs(it,viewVar, prefStoreVar)»
+	Â«specificInitFontFromPrefs(it,viewVar, prefStoreVar)Â»
 '''
 
 
 def specificInitFontFromPrefs(GenNode it,String viewVar, String prefStoreVar)'''
-	«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitFontFromPrefs(GenChildNode it,String viewVar, String prefStoreVar) '''
-«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitFontFromPrefs(GenLink it,String viewVar, String prefStoreVar) '''
-	«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitFontFromPrefs(GenCommonBase it,String viewVar, String prefStoreVar) '''
-«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 
 
 override initForegroundFromPrefs(GenCommonBase it,String viewVar, String prefStoreVar) '''
-	«specificInitForegroundFromPrefs(it,viewVar, prefStoreVar)»
+	Â«specificInitForegroundFromPrefs(it,viewVar, prefStoreVar)Â»
 '''
 
 def specificInitForegroundFromPrefs(GenNode it,String viewVar, String prefStoreVar)'''
-	«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initForegroundFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitForegroundFromPrefs(GenChildNode it,String viewVar, String prefStoreVar) '''
-	«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initForegroundFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitForegroundFromPrefs(GenLink it,String viewVar, String prefStoreVar) '''
-	«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initForegroundFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitForegroundFromPrefs(GenCommonBase it,String viewVar, String prefStoreVar) '''
@@ -617,25 +617,25 @@ def specificInitForegroundFromPrefs(GenCommonBase it,String viewVar, String pref
 
 	
 override initBackgroundFromPrefs(GenCommonBase it,String viewVar, String prefStoreVar) '''
- 	« specificInitBackgroundFromPrefs(it,viewVar, prefStoreVar) »
+ 	Â« specificInitBackgroundFromPrefs(it,viewVar, prefStoreVar) Â»
 '''
 
 def specificInitBackgroundFromPrefs(GenNode it,String viewVar, String prefStoreVar) '''
-	«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-	org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+	org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initBackgroundFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitBackgroundFromPrefs(GenChildNode it,String viewVar, String prefStoreVar) '''
-	«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initBackgroundFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitBackgroundFromPrefs(GenLink it, String viewVar, String prefStoreVar) '''
-	«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initBackgroundFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitBackgroundFromPrefs(GenCommonBase it,String viewVar, String prefStoreVar) '''
@@ -643,25 +643,25 @@ def specificInitBackgroundFromPrefs(GenCommonBase it,String viewVar, String pref
 
 
 def initRountingFromPrefs(GenCommonBase it,String viewVar, String prefStoreVar) '''
- 	« specificInitRountingFromPrefs(it,viewVar, prefStoreVar)»
+ 	Â« specificInitRountingFromPrefs(it,viewVar, prefStoreVar)Â»
 '''
 
 def specificInitRountingFromPrefs(GenNode it,String viewVar, String prefStoreVar) '''
-	«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-	org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initRountingFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+	org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initRountingFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitRountingFromPrefs(GenChildNode it,String viewVar, String prefStoreVar) '''
-	«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initRountingFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initRountingFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitRountingFromPrefs(GenLink it, String viewVar, String prefStoreVar) '''
-	«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())»
-		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initRountingFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF !"UNDEFINED".equals(elementType.displayName.toUpperCase())Â»
+		org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initRountingFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 def specificInitRountingFromPrefs(GenCommonBase it,String viewVar, String prefStoreVar) '''
@@ -670,18 +670,18 @@ def specificInitRountingFromPrefs(GenCommonBase it,String viewVar, String prefSt
 //write the line to initialize the property isVisible for the label of the link
 def initLabelVisibility(GenLink it,String viewVar, String prefStoreVar) '''
 
-	«IF it.labels.filter(typeof (GenLinkLabel)).exists[lbl  | 
-		(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[label | label.linkLabels.contains(lbl)]).size !=0]»
-	 org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF it.labels.filter(typeof (GenLinkLabel)).exists[lbl  | 
+		(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[label | label.linkLabels.contains(lbl)]).size !=0]Â»
+	 org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 //write the line to initialize the property isVisible for the label of the link
 def initLabelVisibility(GenNode it,String viewVar, String prefStoreVar) '''
-	«IF it.labels.filter(typeof (GenExternalNodeLabel)).exists[lbl  | 
-		(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[label | label.externalNodeLabels.contains(lbl)]).size !=0]»
-	 org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
-	«ENDIF»
+	Â«IF it.labels.filter(typeof (GenExternalNodeLabel)).exists[lbl  | 
+		(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[label | label.externalNodeLabels.contains(lbl)]).size !=0]Â»
+	 org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(Â«viewVarÂ», Â«prefStoreVarÂ», "Â«elementType.displayNameÂ»");
+	Â«ENDIFÂ»
 '''
 
 }

@@ -27,7 +27,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenLink
 
 //BEGIN: PapyrusGenCode
 //patches the super type of the link edit part in case the controlled object represents a UML element
-override extendsList(GenLink it) '''extends «aspectsLinkEditPart.extendsListContents(it)»'''
+override extendsList(GenLink it) '''extends Â«aspectsLinkEditPart.extendsListContents(it)Â»'''
 //END: PapyrusGenCode
 	
 }

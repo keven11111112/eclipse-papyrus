@@ -35,71 +35,71 @@ import xpt.diagram.Utils_qvto
 	@Inject MetaModel xptMetaModel;
 	
 		override CreateNodeCommand(GenNode it) '''
-		«copyright(it.diagram.editorGen)»
-		package «packageName(it)»;
+		Â«copyright(it.diagram.editorGen)Â»
+		package Â«packageName(it)Â»;
 		
 		
 		
-		«generatedClassComment()»
-		public class «className(it)» extends org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand {
+		Â«generatedClassComment()Â»
+		public class Â«className(it)Â» extends org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand {
 			
-			«IF ! it.modelFacet.isPhantomElement()»
-				«generatedMemberComment()»
+			Â«IF ! it.modelFacet.isPhantomElement()Â»
+				Â«generatedMemberComment()Â»
 				private org.eclipse.gmf.runtime.notation.Diagram diagram = null;
-			«ENDIF»
+			Â«ENDIFÂ»
 		
-			«_constructor(it)»
+			Â«_constructor(it)Â»
 		
-			«getElementToEdit(it)»
+			Â«getElementToEdit(it)Â»
 		
-			«canExecuteMethod(it)»
+			Â«canExecuteMethod(it)Â»
 		
-			«doExecuteWithResultMethod(it)»
+			Â«doExecuteWithResultMethod(it)Â»
 		
-			«doConfigureMethod(it)»
+			Â«doConfigureMethod(it)Â»
 			
-			«additions(it)»	
+			Â«additions(it)Â»	
 		}
 	'''
 	
 	override _constructor(GenNode it) '''
-		«generatedMemberComment()»
-		public «className(it)»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.gmf.runtime.notation.Diagram diagram) {
+		Â«generatedMemberComment()Â»
+		public Â«className(it)Â»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.gmf.runtime.notation.Diagram diagram) {
 			super(req.getLabel(), null, req);
-			«IF ! it.modelFacet.isPhantomElement()»
+			Â«IF ! it.modelFacet.isPhantomElement()Â»
 			this.diagram = diagram;
-			«ENDIF»
+			Â«ENDIFÂ»
 		}
 	'''
 
 //	override CreateNodeCommand(TypeModelFacet it) '''
-//		«copyright(ownerGenNode(it).diagram.editorGen)»
-//		package «packageName(it)»;
+//		Â«copyright(ownerGenNode(it).diagram.editorGen)Â»
+//		package Â«packageName(it)Â»;
 //		
-//		«generatedClassComment()»
-//		public class «className(it)» extends org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand {
-//«««	Mutating canvas auxiliary
-//	«generatedMemberComment»
+//		Â«generatedClassComment()Â»
+//		public class Â«className(it)Â» extends org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand {
+//Â«Â«Â«	Mutating canvas auxiliary
+//	Â«generatedMemberCommentÂ»
 //	private org.eclipse.emf.ecore.EClass eClass = null;
-//	«generatedMemberComment»
+//	Â«generatedMemberCommentÂ»
 //	private org.eclipse.emf.ecore.EObject eObject = null;
-//	«««	Mutating canvas auxiliary constructor
-//	«generatedMemberComment»
-//	public «ownerGenNode(it).createCommandClassName»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.emf.ecore.EObject eObject) {
+//	Â«Â«Â«	Mutating canvas auxiliary constructor
+//	Â«generatedMemberCommentÂ»
+//	public Â«ownerGenNode(it).createCommandClassNameÂ»(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.emf.ecore.EObject eObject) {
 //		super(req.getLabel(), null, req);
 //		this.eObject = eObject;
 //		this.eClass = eObject != null ? eObject.eClass() : null;
 //	}
-//	«««	Mutating canvas auxiliary builder	
-//	«generatedMemberComment»
-//	public static «ownerGenNode(it).createCommandClassName» create(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.emf.ecore.EObject eObject) {
-//		return new «ownerGenNode(it).createCommandClassName»(req, eObject);
+//	Â«Â«Â«	Mutating canvas auxiliary builder	
+//	Â«generatedMemberCommentÂ»
+//	public static Â«ownerGenNode(it).createCommandClassNameÂ» create(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req, org.eclipse.emf.ecore.EObject eObject) {
+//		return new Â«ownerGenNode(it).createCommandClassNameÂ»(req, eObject);
 //	}
-//	« _constructor(it)»
-//	« getElementToEdit(it)»
-//	« canExecuteMethod(it)»
-//	« doExecuteWithResultMethod(it)»
-//	« doConfigureMethod(it)»	
+//	Â« _constructor(it)Â»
+//	Â« getElementToEdit(it)Â»
+//	Â« canExecuteMethod(it)Â»
+//	Â« doExecuteWithResultMethod(it)Â»
+//	Â« doConfigureMethod(it)Â»	
 //		}
 //	'''
 //
@@ -109,10 +109,10 @@ import xpt.diagram.Utils_qvto
 //	 * TODO: either use setElementToEdit, or generate downcasted version (which may be troublesome if containment and child features point to a different parent) 
 //	 */
 //	override getElementToEdit(TypeModelFacet it) '''
-//			«generatedMemberComment('FIXME: replace with setElementToEdit()')»
+//			Â«generatedMemberComment('FIXME: replace with setElementToEdit()')Â»
 //		protected org.eclipse.emf.ecore.EObject getElementToEdit() {
 //
-//		«««	Mutating canvas helper
+//		Â«Â«Â«	Mutating canvas helper
 //		org.eclipse.emf.ecore.EObject container =
 //				((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).getContainer();
 //		if (container instanceof org.eclipse.gmf.runtime.notation.View) {
@@ -128,101 +128,101 @@ import xpt.diagram.Utils_qvto
 
 	//	[AbstractElement] Modified for Abstract domain element
 	override doExecuteWithResultMethod(GenNode it) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
-		«««	[AbstractElement] START	
+		Â«Â«Â«	[AbstractElement] START	
  				
- 		«IF it.modelFacet.metaClass.ecoreClass.abstract != true»
-		««« [AbstractElement] END
-			«IF it.modelFacet.isPhantomElement()»
-				«phantomElementCreation(it.modelFacet, it, 'newElement')»
-			«ELSE»
-				«normalElementCreation(it.modelFacet, it, 'newElement')»
-			«ENDIF»
-			«extraLineBreak»
-			«initialize(it.modelFacet, it, 'newElement')»
-			«IF true/*FIXME boolean needsExternalConfiguration*/»
-				«extraLineBreak»
+ 		Â«IF it.modelFacet.metaClass.ecoreClass.abstract != trueÂ»
+		Â«Â«Â« [AbstractElement] END
+			Â«IF it.modelFacet.isPhantomElement()Â»
+				Â«phantomElementCreation(it.modelFacet, it, 'newElement')Â»
+			Â«ELSEÂ»
+				Â«normalElementCreation(it.modelFacet, it, 'newElement')Â»
+			Â«ENDIFÂ»
+			Â«extraLineBreakÂ»
+			Â«initialize(it.modelFacet, it, 'newElement')Â»
+			Â«IF true/*FIXME boolean needsExternalConfiguration*/Â»
+				Â«extraLineBreakÂ»
 				doConfigure(newElement, monitor, info);
-				«extraLineBreak»
-			«ENDIF»
-				((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).setNewElement(«xptMetaModel.
-				DowncastToEObject(it.modelFacet.metaClass, 'newElement')»);
+				Â«extraLineBreakÂ»
+			Â«ENDIFÂ»
+				((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).setNewElement(Â«xptMetaModel.
+				DowncastToEObject(it.modelFacet.metaClass, 'newElement')Â»);
 				return org.eclipse.gmf.runtime.common.core.command.CommandResult.newOKCommandResult(newElement);
 			}
-		«««  [AbstractElement] START	
-		«ELSE»
+		Â«Â«Â«  [AbstractElement] START	
+		Â«ELSEÂ»
 				throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
 			}
-		«ENDIF»
-		««« [AbstractElement] END	
+		Â«ENDIFÂ»
+		Â«Â«Â« [AbstractElement] END	
 	'''
 
 
 	override canExecute_Normal(TypeModelFacet it) '''
-	«IF containmentMetaFeature != null»
-		«IF  containmentMetaFeature.ecoreFeature != null»
-			«IF ! isUnbounded(containmentMetaFeature.ecoreFeature) || (childMetaFeature != containmentMetaFeature && ! isUnbounded(childMetaFeature.ecoreFeature))»
-				«IF ! isUnbounded(containmentMetaFeature.ecoreFeature)»
-				«DeclareAndAssign(containmentMetaFeature.genClass,'container', 'getElementToEdit()') »
-						«IF isSingleValued(containmentMetaFeature.ecoreFeature)»
-						if («getFeatureValue(containmentMetaFeature,'container', containmentMetaFeature.genClass) » != null) {
-							«ELSE»
-						if (« getFeatureValue(containmentMetaFeature,'container', containmentMetaFeature.genClass)».size() >= «containmentMetaFeature.ecoreFeature.upperBound») {
-							«ENDIF»
+	Â«IF containmentMetaFeature != nullÂ»
+		Â«IF  containmentMetaFeature.ecoreFeature != nullÂ»
+			Â«IF ! isUnbounded(containmentMetaFeature.ecoreFeature) || (childMetaFeature != containmentMetaFeature && ! isUnbounded(childMetaFeature.ecoreFeature))Â»
+				Â«IF ! isUnbounded(containmentMetaFeature.ecoreFeature)Â»
+				Â«DeclareAndAssign(containmentMetaFeature.genClass,'container', 'getElementToEdit()') Â»
+						Â«IF isSingleValued(containmentMetaFeature.ecoreFeature)Â»
+						if (Â«getFeatureValue(containmentMetaFeature,'container', containmentMetaFeature.genClass) Â» != null) {
+							Â«ELSEÂ»
+						if (Â« getFeatureValue(containmentMetaFeature,'container', containmentMetaFeature.genClass)Â».size() >= Â«containmentMetaFeature.ecoreFeature.upperBoundÂ») {
+							Â«ENDIFÂ»
 							return false;
 						}
-						«ENDIF»
-						«IF childMetaFeature != containmentMetaFeature && ! isUnbounded(childMetaFeature.ecoreFeature)»
-						«IF isSingleValued(childMetaFeature.ecoreFeature)»
-							if («getFeatureValue(childMetaFeature,'container', containmentMetaFeature.genClass)  » != null) {
-								«ELSE»
-								if («getFeatureValue(childMetaFeature,'container', containmentMetaFeature.genClass)  ».size() >= «childMetaFeature.ecoreFeature.upperBound») {
-								«ENDIF»
+						Â«ENDIFÂ»
+						Â«IF childMetaFeature != containmentMetaFeature && ! isUnbounded(childMetaFeature.ecoreFeature)Â»
+						Â«IF isSingleValued(childMetaFeature.ecoreFeature)Â»
+							if (Â«getFeatureValue(childMetaFeature,'container', containmentMetaFeature.genClass)  Â» != null) {
+								Â«ELSEÂ»
+								if (Â«getFeatureValue(childMetaFeature,'container', containmentMetaFeature.genClass)  Â».size() >= Â«childMetaFeature.ecoreFeature.upperBoundÂ») {
+								Â«ENDIFÂ»
 								return false;
 							}
-						«ENDIF»
-			«ENDIF»
-		«ENDIF»
-	«ENDIF»
+						Â«ENDIFÂ»
+			Â«ENDIFÂ»
+		Â«ENDIFÂ»
+	Â«ENDIFÂ»
 	
 	org.eclipse.emf.ecore.EObject target = getElementToEdit();
-	org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getFor(target).getChildAddData(diagram, target.eClass(), «MetaClass(metaClass)»);
+	org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getFor(target).getChildAddData(diagram, target.eClass(), Â«MetaClass(metaClass)Â»);
 	return data.isPermitted();
 
 	'''
 
 
 	override normalElementCreation(TypeModelFacet it, GenNode node, String varName) '''
-		«xptMetaModel.NewInstance(it.metaClass, varName)»
+		Â«xptMetaModel.NewInstance(it.metaClass, varName)Â»
 		
 		org.eclipse.emf.ecore.EObject target = getElementToEdit();
-				org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getFor(target).getChildAddData(diagram, target, «varName»);
+				org.eclipse.papyrus.infra.viewpoints.policy.ModelAddData data = org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker.getFor(target).getChildAddData(diagram, target, Â«varNameÂ»);
 				if (data.isPermitted()) {
 					if (data.isPathDefined()) {
-						if (!data.execute(target, «varName»)) {
+						if (!data.execute(target, Â«varNameÂ»)) {
 							return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult("Failed to follow the policy-specified for the insertion of the new element");
 						}
 					} else {
-		«extraLineBreak»
-		«IF containmentMetaFeature != null»
-			«xptMetaModel.DeclareAndAssign(it.containmentMetaFeature.genClass, 'qualifiedTarget', 'target')»
-			«xptMetaModel.modifyFeature(containmentMetaFeature, 'qualifiedTarget', containmentMetaFeature.genClass, varName)»
-		«ELSE»
+		Â«extraLineBreakÂ»
+		Â«IF containmentMetaFeature != nullÂ»
+			Â«xptMetaModel.DeclareAndAssign(it.containmentMetaFeature.genClass, 'qualifiedTarget', 'target')Â»
+			Â«xptMetaModel.modifyFeature(containmentMetaFeature, 'qualifiedTarget', containmentMetaFeature.genClass, varName)Â»
+		Â«ELSEÂ»
 			//
-			// FIXME no containment feature found in the genmodel, toolsmith need to manually write code here to add «varName» to a parent
+			// FIXME no containment feature found in the genmodel, toolsmith need to manually write code here to add Â«varNameÂ» to a parent
 			//
-		«ENDIF»
+		Â«ENDIFÂ»
 		
 					}
 				} else {
 					return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
 				}
 
-		«IF hasExplicitChildFeature(it)»
-			«xptMetaModel.DeclareAndAssign(it.childMetaFeature.genClass, 'childHolder', 'getElementToEdit()')»
-			«xptMetaModel.modifyFeature(it.childMetaFeature, 'childHolder', childMetaFeature.genClass, varName)»
-		«ENDIF»
+		Â«IF hasExplicitChildFeature(it)Â»
+			Â«xptMetaModel.DeclareAndAssign(it.childMetaFeature.genClass, 'childHolder', 'getElementToEdit()')Â»
+			Â«xptMetaModel.modifyFeature(it.childMetaFeature, 'childHolder', childMetaFeature.genClass, varName)Â»
+		Â«ENDIFÂ»
 	'''
 
 

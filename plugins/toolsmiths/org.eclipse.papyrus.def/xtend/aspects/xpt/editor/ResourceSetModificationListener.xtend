@@ -26,7 +26,7 @@ import xpt.Common
 	
 
 	override notifyChanged(GenDiagram it) '''
-		«generatedMemberComment»	
+		Â«generatedMemberCommentÂ»	
 		public void notifyChanged(org.eclipse.emf.common.notify.Notification notification) {
 			if (notification.getNotifier() instanceof org.eclipse.emf.ecore.resource.ResourceSet) {
 				super.notifyChanged(notification);
@@ -48,11 +48,11 @@ import xpt.Common
 								myInfo.fCanBeSaved = modified;
 								dirtyStateChanged = true;
 							}
-							«IF null == editorGen.application»
+							Â«IF null == editorGen.applicationÂ»
 							if (!resource.isModified()) {
 								myInfo.setSynchronized(resource);
 							}
-							«ENDIF»
+							Â«ENDIFÂ»
 						}
 						if (dirtyStateChanged) {
 							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);

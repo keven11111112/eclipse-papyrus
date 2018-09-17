@@ -32,18 +32,18 @@ import com.google.inject.Singleton
 	@Inject Externalizer xptExternalizer 
 	
 	override classBody_PDE(GenDiagram it) '''
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 		private org.eclipse.ui.IWorkbenchPart targetPart;
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.emf.common.util.URI domainModelURI;
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public void setActivePart(org.eclipse.jface.action.IAction action, org.eclipse.ui.IWorkbenchPart targetPart) {
 			this.targetPart = targetPart;
 		}
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public void selectionChanged(org.eclipse.jface.action.IAction action, org.eclipse.jface.viewers.ISelection selection) {
 			domainModelURI = null;
 			action.setEnabled(false);
@@ -56,40 +56,40 @@ import com.google.inject.Singleton
 			action.setEnabled(true);
 		}
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		private org.eclipse.swt.widgets.Shell getShell() {
 			return targetPart.getSite().getShell();
 		}
 		
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		public void run(org.eclipse.jface.action.IAction action) {
 			org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain =
 				org.eclipse.emf.workspace.WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
-			«IF editorGen.sameFileForDiagramAndModel»
+			Â«IF editorGen.sameFileForDiagramAndModelÂ»
 				org.eclipse.emf.ecore.resource.ResourceSet resourceSet = new org.eclipse.emf.ecore.resource.impl.ResourceSetImpl();
-			«ELSE»
+			Â«ELSEÂ»
 				org.eclipse.emf.ecore.resource.ResourceSet resourceSet = editingDomain.getResourceSet();
-			«ENDIF»
+			Â«ENDIFÂ»
 			org.eclipse.emf.ecore.EObject diagramRoot = null;
 			try {
 				org.eclipse.emf.ecore.resource.Resource resource = resourceSet.getResource(domainModelURI, true);
 				diagramRoot = resource.getContents().get(0);
 			} catch (org.eclipse.emf.common.util.WrappedException ex) {
-				«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError(
-					"Unable to load resource: " + domainModelURI, ex); «nonNLS(1)»
+				Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».getInstance().logError(
+					"Unable to load resource: " + domainModelURI, ex); Â«nonNLS(1)Â»
 			}
 			if (diagramRoot == null) {
 				org.eclipse.jface.dialogs.MessageDialog.openError(getShell(), 
-				             «xptExternalizer.accessorCall(editorGen, titleKey(i18nKeyForInitDiagramFileResourceErrorDialog()))»,
-				             «xptExternalizer.accessorCall(editorGen, messageKey(i18nKeyForInitDiagramFileResourceErrorDialog()))»);
+				             Â«xptExternalizer.accessorCall(editorGen, titleKey(i18nKeyForInitDiagramFileResourceErrorDialog()))Â»,
+				             Â«xptExternalizer.accessorCall(editorGen, messageKey(i18nKeyForInitDiagramFileResourceErrorDialog()))Â»);
 				return;
 			}
-			org.eclipse.jface.wizard.Wizard wizard = new «editorGen.diagram.getNewDiagramFileWizardQualifiedClassName()»(domainModelURI, diagramRoot, editingDomain);
+			org.eclipse.jface.wizard.Wizard wizard = new Â«editorGen.diagram.getNewDiagramFileWizardQualifiedClassName()Â»(domainModelURI, diagramRoot, editingDomain);
 			wizard.setWindowTitle(org.eclipse.osgi.util.NLS.bind(
-					    «xptExternalizer.accessorCall(editorGen, i18nKeyForInitDiagramFileWizardTitle())»,
-					    «VisualIDRegistry::modelID(editorGen.diagram)»));
-			«xptDiagramEditorUtil.qualifiedClassName(editorGen.diagram)».runWizard(getShell(), wizard, "InitDiagramFile"); «nonNLS(
-			1)»
+					    Â«xptExternalizer.accessorCall(editorGen, i18nKeyForInitDiagramFileWizardTitle())Â»,
+					    Â«VisualIDRegistry::modelID(editorGen.diagram)Â»));
+			Â«xptDiagramEditorUtil.qualifiedClassName(editorGen.diagram)Â».runWizard(getShell(), wizard, "InitDiagramFile"); Â«nonNLS(
+			1)Â»
 		}
 	'''
 }

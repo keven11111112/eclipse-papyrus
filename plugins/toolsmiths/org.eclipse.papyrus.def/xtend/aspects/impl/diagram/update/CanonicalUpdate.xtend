@@ -39,48 +39,48 @@ import xpt.editor.VisualIDRegistry
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 
 	override def getFeaturesToSynchronizeMethod(GenContainerBase it) '''
-		«IF getSemanticChildrenChildFeatures(it).size == 1»
+		Â«IF getSemanticChildrenChildFeatures(it).size == 1Â»
 			
-				«generatedMemberComment»
+				Â«generatedMemberCommentÂ»
 				protected org.eclipse.emf.ecore.EStructuralFeature getFeatureToSynchronize() {
-					return «xptMetaModel.MetaFeature(getSemanticChildrenContainmentFeatures(it).head)»;
+					return Â«xptMetaModel.MetaFeature(getSemanticChildrenContainmentFeatures(it).head)Â»;
 				}
-		«ELSEIF getSemanticChildrenChildFeatures(it).size > 1»
+		Â«ELSEIF getSemanticChildrenChildFeatures(it).size > 1Â»
 			
-				«generatedMemberComment»
+				Â«generatedMemberCommentÂ»
 				protected java.util.Set<org.eclipse.emf.ecore.EStructuralFeature> getFeaturesToSynchronize() {
 					if (myFeaturesToSynchronize == null) {
 						myFeaturesToSynchronize = new java.util.HashSet<org.eclipse.emf.ecore.EStructuralFeature>();
-						«FOR f : getSemanticChildrenContainmentFeatures(it)»
-							«addContainmentFeature(f)»
-						«ENDFOR»
+						Â«FOR f : getSemanticChildrenContainmentFeatures(it)Â»
+							Â«addContainmentFeature(f)Â»
+						Â«ENDFORÂ»
 					}
 					return myFeaturesToSynchronize;
 				}
-		«ENDIF»
+		Â«ENDIFÂ»
 	'''
 
 	override def getSemanticChildrenListMethod(GenContainerBase it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected java.util.List<org.eclipse.emf.ecore.EObject> getSemanticChildrenList() {
-			«IF hasSemanticChildren(it)/*REVISIT: is there real need for this check - Generator seems to consult needsCanonicalEP, which in turns ensures there are semantic children?*/»
+			Â«IF hasSemanticChildren(it)/*REVISIT: is there real need for this check - Generator seems to consult needsCanonicalEP, which in turns ensures there are semantic children?*/Â»
 				org.eclipse.gmf.runtime.notation.View viewObject = (org.eclipse.gmf.runtime.notation.View) getHost().getModel();
 				java.util.LinkedList<org.eclipse.emf.ecore.EObject> result = new java.util.LinkedList<org.eclipse.emf.ecore.EObject>();
-				java.util.List<«nodeDescriptor.qualifiedClassName(it.diagram.editorGen.diagramUpdater)»> childDescriptors = «xptDiagramUpdater.
-			getSemanticChildrenMethodCall(it)»(viewObject);
-				for («nodeDescriptor.qualifiedClassName(it.diagram.editorGen.diagramUpdater)» d : childDescriptors) {
+				java.util.List<Â«nodeDescriptor.qualifiedClassName(it.diagram.editorGen.diagramUpdater)Â»> childDescriptors = Â«xptDiagramUpdater.
+			getSemanticChildrenMethodCall(it)Â»(viewObject);
+				for (Â«nodeDescriptor.qualifiedClassName(it.diagram.editorGen.diagramUpdater)Â» d : childDescriptors) {
 					result.add(d.getModelElement());
 				}
 				return result;
-			«ELSE»
+			Â«ELSEÂ»
 				return java.util.Collections.EMPTY_LIST;
-			«ENDIF»
+			Â«ENDIFÂ»
 		}
 	'''
 
 	override def refreshConnectionsBody(GenDiagram it) '''
-		«Domain2Notation(it)» domain2NotationMap = new «Domain2Notation(it)»();
-		java.util.Collection<«linkDescriptor.qualifiedClassName(editorGen.diagramUpdater)»> linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);
+		Â«Domain2Notation(it)Â» domain2NotationMap = new Â«Domain2Notation(it)Â»();
+		java.util.Collection<Â«linkDescriptor.qualifiedClassName(editorGen.diagramUpdater)Â»> linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);
 		java.util.List<org.eclipse.gmf.runtime.notation.View> edges = new java.util.ArrayList<org.eclipse.gmf.runtime.notation.View>();
 		for (Object edge : getDiagram().getEdges())
 		{
@@ -92,8 +92,8 @@ import xpt.editor.VisualIDRegistry
 		java.util.Collection<org.eclipse.gmf.runtime.notation.View> existingLinks = new java.util.LinkedList<org.eclipse.gmf.runtime.notation.View>(edges);
 		for (java.util.Iterator<org.eclipse.gmf.runtime.notation.View> linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			org.eclipse.gmf.runtime.notation.Edge nextDiagramLink = (org.eclipse.gmf.runtime.notation.Edge) linksIterator.next();
-			int diagramLinkVisualID = «xptVisualIDRegistry.getVisualIDMethodCall(it)»(nextDiagramLink);
-			if (diagramLinkVisualID == -1«FOR link : links.filter[gl|gl.modelFacet == null]»«compareLinkVisualID(link)»«ENDFOR») {
+			int diagramLinkVisualID = Â«xptVisualIDRegistry.getVisualIDMethodCall(it)Â»(nextDiagramLink);
+			if (diagramLinkVisualID == -1Â«FOR link : links.filter[gl|gl.modelFacet == null]Â»Â«compareLinkVisualID(link)Â»Â«ENDFORÂ») {
 				if (nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
 				}
@@ -102,8 +102,8 @@ import xpt.editor.VisualIDRegistry
 			org.eclipse.emf.ecore.EObject diagramLinkObject = nextDiagramLink.getElement();
 			org.eclipse.emf.ecore.EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
 			org.eclipse.emf.ecore.EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
-			for (java.util.Iterator<«it.editorGen.diagramUpdater.linkDescriptorQualifiedClassName»> linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator.hasNext();) {
-				«linkDescriptor.qualifiedClassName(it.editorGen.diagramUpdater)» nextLinkDescriptor = linkDescriptorsIterator.next();
+			for (java.util.Iterator<Â«it.editorGen.diagramUpdater.linkDescriptorQualifiedClassNameÂ»> linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator.hasNext();) {
+				Â«linkDescriptor.qualifiedClassName(it.editorGen.diagramUpdater)Â» nextLinkDescriptor = linkDescriptorsIterator.next();
 				if (diagramLinkObject == nextLinkDescriptor.getModelElement() && diagramLinkSrc == nextLinkDescriptor.getSource() && diagramLinkDst == nextLinkDescriptor.getDestination() && diagramLinkVisualID == nextLinkDescriptor.getVisualID()) {
 					linksIterator.remove();
 					linkDescriptorsIterator.remove();
@@ -116,20 +116,20 @@ import xpt.editor.VisualIDRegistry
 	'''
 
 	override def collectAllLinksMethod(GenDiagram it) '''
-		«generatedMemberComment»
-		private java.util.Collection<«linkDescriptor.qualifiedClassName(it.editorGen.diagramUpdater)»> collectAllLinks(org.eclipse.gmf.runtime.notation.View view, «Domain2Notation(
-				it)» domain2NotationMap) {
-			if (!«VisualIDRegistry::modelID(it)».equals(«xptVisualIDRegistry.getModelIDMethodCall(it)»(view))) {
+		Â«generatedMemberCommentÂ»
+		private java.util.Collection<Â«linkDescriptor.qualifiedClassName(it.editorGen.diagramUpdater)Â»> collectAllLinks(org.eclipse.gmf.runtime.notation.View view, Â«Domain2Notation(
+				it)Â» domain2NotationMap) {
+			if (!Â«VisualIDRegistry::modelID(it)Â».equals(Â«xptVisualIDRegistry.getModelIDMethodCall(it)Â»(view))) {
 				return java.util.Collections.emptyList();
 			}
-			java.util.LinkedList<«linkDescriptor.qualifiedClassName(it.editorGen.diagramUpdater)»> result = new java.util.LinkedList<«linkDescriptor.
-				qualifiedClassName(it.editorGen.diagramUpdater)»>();
-			String vid = «xptVisualIDRegistry.getVisualIDMethodCall(it)»(view);
+			java.util.LinkedList<Â«linkDescriptor.qualifiedClassName(it.editorGen.diagramUpdater)Â»> result = new java.util.LinkedList<Â«linkDescriptor.
+				qualifiedClassName(it.editorGen.diagramUpdater)Â»>();
+			String vid = Â«xptVisualIDRegistry.getVisualIDMethodCall(it)Â»(view);
 			if (vid != null) {
 				switch (vid) {
-					«FOR se : it.allSemanticElements»
-					«caseSemanticElement(se)»
-					«ENDFOR»
+					Â«FOR se : it.allSemanticElementsÂ»
+					Â«caseSemanticElement(se)Â»
+					Â«ENDFORÂ»
 				}
 			}
 			for (java.util.Iterator<?> children = view.getChildren().iterator(); children.hasNext();) {
@@ -143,8 +143,8 @@ import xpt.editor.VisualIDRegistry
 		'''
 
 		override getEditPartMethod(GenDiagram it) '''
-			«generatedMemberComment»
-			private org.eclipse.gef.EditPart getEditPart(org.eclipse.emf.ecore.EObject domainModelElement, «Domain2Notation(it)» domain2NotationMap) {
+			Â«generatedMemberCommentÂ»
+			private org.eclipse.gef.EditPart getEditPart(org.eclipse.emf.ecore.EObject domainModelElement, Â«Domain2Notation(it)Â» domain2NotationMap) {
 				org.eclipse.gmf.runtime.notation.View view = domain2NotationMap.get(domainModelElement);
 				if (view != null) {
 					return (org.eclipse.gef.EditPart) getHost().getViewer().getEditPartRegistry().get(view);
@@ -154,9 +154,9 @@ import xpt.editor.VisualIDRegistry
 		'''
 
 		override getHintedEditPartMethod(GenDiagram it) '''
-			«generatedMemberComment»
-			protected final org.eclipse.gef.EditPart getHintedEditPart(org.eclipse.emf.ecore.EObject domainModelElement, «Domain2Notation(it)» domain2NotationMap, int hintVisualId) { 
-				org.eclipse.gmf.runtime.notation.View view = domain2NotationMap.getHinted(domainModelElement, «xptVisualIDRegistry.typeMethodCall(it, 'hintVisualId')»);
+			Â«generatedMemberCommentÂ»
+			protected final org.eclipse.gef.EditPart getHintedEditPart(org.eclipse.emf.ecore.EObject domainModelElement, Â«Domain2Notation(it)Â» domain2NotationMap, int hintVisualId) { 
+				org.eclipse.gmf.runtime.notation.View view = domain2NotationMap.getHinted(domainModelElement, Â«xptVisualIDRegistry.typeMethodCall(it, 'hintVisualId')Â»);
 				if (view != null) {
 					return (org.eclipse.gef.EditPart) getHost().getViewer().getEditPartRegistry().get(view);
 				}

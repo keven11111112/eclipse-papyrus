@@ -35,17 +35,17 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 
 	override handleNotificationEventBody(GenNodeLabel it) '''
 		Object feature = event.getFeature();
-		«IF isStoringChildPositions(node)»
-			«xptEditpartsCommon.handleBounds(it)»
-		«ENDIF»
-		«xptEditpartsCommon.handleText(it)»
-		«««	START Papyrus Code
-		«IF elementIcon»
+		Â«IF isStoringChildPositions(node)Â»
+			Â«xptEditpartsCommon.handleBounds(it)Â»
+		Â«ENDIFÂ»
+		Â«xptEditpartsCommon.handleText(it)Â»
+		Â«Â«Â«	START Papyrus Code
+		Â«IF elementIconÂ»
 			if(event.getNewValue() instanceof org.eclipse.emf.ecore.EAnnotation && org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((org.eclipse.emf.ecore.EAnnotation)event.getNewValue()).getSource())){	
 				refreshLabel();
 			}
-		«ENDIF»
-		«««	End Papyrus Code
+		Â«ENDIFÂ»
+		Â«Â«Â«	End Papyrus Code
 		super.handleNotificationEvent(event);
 	'''
 

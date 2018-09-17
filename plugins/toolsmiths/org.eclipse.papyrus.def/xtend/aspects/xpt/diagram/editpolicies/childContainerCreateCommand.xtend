@@ -34,9 +34,9 @@ import xpt.providers.ElementTypes
 
  
  	override CharSequence childContainerCreateCommand(Iterable<? extends GenNode> nodes) '''
-	«IF ! nodes.empty»
+	Â«IF ! nodes.emptyÂ»
 
-	«generatedMemberComment()»
+	Â«generatedMemberComment()Â»
 	protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
 				org.eclipse.gmf.runtime.emf.type.core.IElementType requestElementType = req.getElementType();
 		if(requestElementType == null) {
@@ -44,29 +44,29 @@ import xpt.providers.ElementTypes
 		}
 
 
-	«FOR n : nodes»
-		«IF !n.sansDomain»
-			«childNodeCreateCommand(n.modelFacet, n)»
-		«ENDIF»
-	«ENDFOR»
+	Â«FOR n : nodesÂ»
+		Â«IF !n.sansDomainÂ»
+			Â«childNodeCreateCommand(n.modelFacet, n)Â»
+		Â«ENDIFÂ»
+	Â«ENDFORÂ»
 		return super.getCreateCommand(req);
 	}
-	«ENDIF»
+	Â«ENDIFÂ»
 	'''
 
 	def childNodeCreateCommand(TypeModelFacet it,GenNode node)'''
-	if («accessElementType(node)» == requestElementType) {
-		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0»
+	if (Â«accessElementType(node)Â» == requestElementType) {
+		Â«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0Â»
 		// adjust the containment feature
-		org.eclipse.emf.ecore.EReference containmentFeature = «MetaFeature(it.childMetaFeature)»;
+		org.eclipse.emf.ecore.EReference containmentFeature = Â«MetaFeature(it.childMetaFeature)Â»;
 		req.setContainmentFeature(containmentFeature);
-		«ENDIF»
+		Â«ENDIFÂ»
 
-		«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0»
+		Â«IF it.eResource.allContents.filter(typeof (GenerateUsingElementTypeCreationCommand)).size>0Â»
 		return getGEFWrapper(getSemanticCreationCommand(req));
-		«ELSE»
-		return getGEFWrapper(new «node.getCreateCommandQualifiedClassName()»(req, org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getDiagramFrom(getHost())));
-		«ENDIF»
+		Â«ELSEÂ»
+		return getGEFWrapper(new Â«node.getCreateCommandQualifiedClassName()Â»(req, org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getDiagramFrom(getHost())));
+		Â«ENDIFÂ»
 		
 	}
 	'''

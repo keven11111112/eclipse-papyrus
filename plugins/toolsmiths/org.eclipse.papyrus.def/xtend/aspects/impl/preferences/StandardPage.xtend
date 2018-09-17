@@ -29,33 +29,33 @@ import xpt.Common
 
 
 	override Main(GenStandardPreferencePage it) '''
-		«copyright(it.diagram.editorGen)»
-		package «packageName(it)»;
+		Â«copyright(it.diagram.editorGen)Â»
+		package Â«packageName(it)Â»;
 		
-		«generatedClassComment»
-		public class «className(it)» «extendsList(it)» «implementsList(it)» {
+		Â«generatedClassCommentÂ»
+		public class Â«className(it)Â» Â«extendsList(it)Â» Â«implementsList(it)Â» {
 		
-			«generatedMemberComment»
-			public «className(it)»() {
-				setPreferenceStore(«getDiagram().editorGen.plugin.activatorQualifiedClassName».getInstance().getPreferenceStore());
-				«IF StandardPreferencePages.GENERAL_LITERAL == kind»
-					setPreferenceKey(«getDiagram().editPartsPackageName».«getDiagram().editPartClassName».MODEL_ID);
-				«ENDIF»
+			Â«generatedMemberCommentÂ»
+			public Â«className(it)Â»() {
+				setPreferenceStore(Â«getDiagram().editorGen.plugin.activatorQualifiedClassNameÂ».getInstance().getPreferenceStore());
+				Â«IF StandardPreferencePages.GENERAL_LITERAL == kindÂ»
+					setPreferenceKey(Â«getDiagram().editPartsPackageNameÂ».Â«getDiagram().editPartClassNameÂ».MODEL_ID);
+				Â«ENDIFÂ»
 			}
 		}
 	'''
 
 	override extendsList(GenStandardPreferencePage it) '''
-		«IF kind == StandardPreferencePages::GENERAL_LITERAL»
-			extends org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage«»
-		«ELSEIF kind == StandardPreferencePages::APPEARANCE_LITERAL»
-			extends org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage«»
-		«ELSEIF kind == StandardPreferencePages::CONNECTIONS_LITERAL»
-			extends org.eclipse.gmf.runtime.diagram.ui.preferences.ConnectionsPreferencePage«»
-		«ELSEIF kind == StandardPreferencePages::PRINTING_LITERAL»
-			extends org.eclipse.gmf.runtime.diagram.ui.preferences.PrintingPreferencePage«»
-		«ELSEIF kind == StandardPreferencePages::RULERS_AND_GRID_LITERAL»
-			extends org.eclipse.gmf.runtime.diagram.ui.preferences.RulerGridPreferencePage«»
-		«ENDIF»
+		Â«IF kind == StandardPreferencePages::GENERAL_LITERALÂ»
+			extends org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePageÂ«Â»
+		Â«ELSEIF kind == StandardPreferencePages::APPEARANCE_LITERALÂ»
+			extends org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePageÂ«Â»
+		Â«ELSEIF kind == StandardPreferencePages::CONNECTIONS_LITERALÂ»
+			extends org.eclipse.gmf.runtime.diagram.ui.preferences.ConnectionsPreferencePageÂ«Â»
+		Â«ELSEIF kind == StandardPreferencePages::PRINTING_LITERALÂ»
+			extends org.eclipse.gmf.runtime.diagram.ui.preferences.PrintingPreferencePageÂ«Â»
+		Â«ELSEIF kind == StandardPreferencePages::RULERS_AND_GRID_LITERALÂ»
+			extends org.eclipse.gmf.runtime.diagram.ui.preferences.RulerGridPreferencePageÂ«Â»
+		Â«ENDIFÂ»
 	'''
 }

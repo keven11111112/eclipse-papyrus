@@ -30,14 +30,14 @@ import xpt.editor.DiagramEditorUtil
 
 
 	override openCommandClass_intializeNewDiagram(OpenDiagramBehaviour it) '''
-		«generatedMemberComment»
+		Â«generatedMemberCommentÂ»
 		protected org.eclipse.gmf.runtime.notation.Diagram intializeNewDiagram() throws org.eclipse.core.commands.ExecutionException {
 			org.eclipse.gmf.runtime.notation.Diagram d = org.eclipse.gmf.runtime.diagram.core.services.ViewService.createDiagram(getDiagramDomainElement(), getDiagramKind(), getPreferencesHint());
 			if (d == null) {
 				throw new org.eclipse.core.commands.ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind");
 			}
 			diagramFacet.setDiagramLink(d);
-			«_assert('diagramFacet.eResource() != null')»
+			Â«_assert('diagramFacet.eResource() != null')Â»
 			diagramFacet.eResource().getContents().add(d);
 			org.eclipse.emf.ecore.EObject container = diagramFacet.eContainer();
 			while (container instanceof org.eclipse.gmf.runtime.notation.View) {
@@ -45,18 +45,18 @@ import xpt.editor.DiagramEditorUtil
 				container = container.eContainer();
 			}
 			try {
-			«IF null == subject.diagram.editorGen.application»
+			Â«IF null == subject.diagram.editorGen.applicationÂ»
 				new org.eclipse.ui.actions.WorkspaceModifyOperation() {
 					protected void execute(org.eclipse.core.runtime.IProgressMonitor monitor) throws org.eclipse.core.runtime.CoreException, java.lang.reflect.InvocationTargetException, InterruptedException {
 						try {
-			«ENDIF»
+			Â«ENDIFÂ»
 			for (java.util.Iterator<?> it = diagramFacet.eResource().getResourceSet().getResources().iterator(); it.hasNext();) {
 				org.eclipse.emf.ecore.resource.Resource nextResource = (org.eclipse.emf.ecore.resource.Resource) it.next();
 				if (nextResource.isLoaded() && !getEditingDomain().isReadOnly(nextResource)) {
-					nextResource.save(«xptDiagramEditorUtil.qualifiedClassName(subject.diagram)».getSaveOptions());
+					nextResource.save(Â«xptDiagramEditorUtil.qualifiedClassName(subject.diagram)Â».getSaveOptions());
 				}
 			}
-			«IF null == subject.diagram.editorGen.application»
+			Â«IF null == subject.diagram.editorGen.applicationÂ»
 				} catch (java.io.IOException ex) {
 					throw new java.lang.reflect.InvocationTargetException(ex, "Save operation failed");
 				}		
@@ -67,11 +67,11 @@ import xpt.editor.DiagramEditorUtil
 				} catch (InterruptedException e) {
 					throw new org.eclipse.core.commands.ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind", e);
 				}
-			«ELSE»
+			Â«ELSEÂ»
 				} catch (java.io.IOException ex) {
 					throw new org.eclipse.core.commands.ExecutionException("Can't create diagram of '" + getDiagramKind() + "' kind", ex);
 				}
-			«ENDIF»
+			Â«ENDIFÂ»
 			return d;
 		}
 	'''

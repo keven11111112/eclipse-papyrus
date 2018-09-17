@@ -25,9 +25,9 @@ import com.google.inject.Singleton
 	@Inject extension Common
 	
 	override canReorient(LinkModelFacet it, GenLink link) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		public boolean canExecute() {
-			«checkLinkValidity(it)»
+			Â«checkLinkValidity(it)Â»
 			if (reorientDirection == org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest.REORIENT_SOURCE) {
 				return canReorientSource();
 			}
@@ -37,25 +37,25 @@ import com.google.inject.Singleton
 			return false;
 		}
 		
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		protected boolean canReorientSource() {
-			«checkSourceRequestValidity(it, link)»
+			Â«checkSourceRequestValidity(it, link)Â»
 		}
 		
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		protected boolean canReorientTarget() {
-			«checkTargetRequestValidity(it, link)»
+			Â«checkTargetRequestValidity(it, link)Â»
 		}
 	'''
 	
 	override reorient(LinkModelFacet it) '''
 		
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(
 				org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info)
 				throws org.eclipse.core.commands.ExecutionException {
 			if (!canExecute()) {
-			throw new org.eclipse.core.commands.ExecutionException("Invalid arguments in reorient link command"); «nonNLS()»
+			throw new org.eclipse.core.commands.ExecutionException("Invalid arguments in reorient link command"); Â«nonNLS()Â»
 			}
 			if (reorientDirection == org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -66,14 +66,14 @@ import com.google.inject.Singleton
 			throw new IllegalStateException();
 		}
 		
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		protected org.eclipse.gmf.runtime.common.core.command.CommandResult reorientSource() throws org.eclipse.core.commands.ExecutionException {
-			«reorientSource(it)»
+			Â«reorientSource(it)Â»
 		}
 		
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		protected org.eclipse.gmf.runtime.common.core.command.CommandResult reorientTarget() throws org.eclipse.core.commands.ExecutionException {
-			«reorientTarget(it)»
+			Â«reorientTarget(it)Â»
 		}
 	'''
 }

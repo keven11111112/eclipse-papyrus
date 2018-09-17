@@ -34,27 +34,27 @@ import xpt.providers.ElementTypes
 	@Inject VisualIDRegistry visualIDs
 	@Inject ElementTypes elementTypes
 	
-	def packageName(GenDiagram it) '''«it.providersPackageName»'''
+	def packageName(GenDiagram it) '''Â«it.providersPackageNameÂ»'''
 	
-	def className(GenDiagram it) '''«GenVisualTypeProvider.getClassName(it)»'''
+	def className(GenDiagram it) '''Â«GenVisualTypeProvider.getClassName(it)Â»'''
 	
-	def qualifiedClassName(GenDiagram it) '''«packageName(it)».«className(it)»'''
+	def qualifiedClassName(GenDiagram it) '''Â«packageName(it)Â».Â«className(it)Â»'''
 	
 	protected def constructor(GenDiagram it) '''
-		«generatedMemberComment»
-		public «it.className»() {
+		Â«generatedMemberCommentÂ»
+		public Â«it.classNameÂ»() {
 			super();
 		}
 	'''
 
 	protected def getElementType_(GenDiagram it) '''
-		«generatedMemberComment»
-		«overrideI»
+		Â«generatedMemberCommentÂ»
+		Â«overrideIÂ»
 		public org.eclipse.gmf.runtime.emf.type.core.IElementType getElementType(org.eclipse.gmf.runtime.notation.Diagram diagram, String viewType) {
 			org.eclipse.gmf.runtime.emf.type.core.IElementType result = null;
 			
 			try {
-				result = «elementTypes.qualifiedClassName(it)».getElementType(viewType);
+				result = Â«elementTypes.qualifiedClassName(it)Â».getElementType(viewType);
 			} catch (NumberFormatException e) {
 				// Not supported by this diagram
 			}
@@ -64,35 +64,35 @@ import xpt.providers.ElementTypes
 	'''
 
 	protected def getNodeType(GenDiagram it) '''
-		«generatedMemberComment»
-		«overrideI»
+		Â«generatedMemberCommentÂ»
+		Â«overrideIÂ»
 		public String getNodeType(org.eclipse.gmf.runtime.notation.View parentView, org.eclipse.emf.ecore.EObject element) {
-			return «visualIDs.getNodeVisualIDMethodCall(it)»(parentView, element);
+			return Â«visualIDs.getNodeVisualIDMethodCall(it)Â»(parentView, element);
 		}
 	'''
 
 	protected def getLinkType(GenDiagram it) '''
-		«generatedMemberComment»
-		«overrideI»
+		Â«generatedMemberCommentÂ»
+		Â«overrideIÂ»
 		public String getLinkType(org.eclipse.gmf.runtime.notation.Diagram diagram, org.eclipse.emf.ecore.EObject element) {
-			return «visualIDs.getLinkWithClassVisualIDMethodCall(it)»(element);
+			return Â«visualIDs.getLinkWithClassVisualIDMethodCall(it)Â»(element);
 		}
 	'''
 
 	public def VisualTypeProvider(GenDiagram it) '''
-		«editorGen.copyright»
-		package «packageName»;
+		Â«editorGen.copyrightÂ»
+		package Â«packageNameÂ»;
 		
-		«generatedClassComment»
-		public class «className» extends org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.AbstractVisualTypeProvider {
+		Â«generatedClassCommentÂ»
+		public class Â«classNameÂ» extends org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.AbstractVisualTypeProvider {
 		
-			«constructor»
+			Â«constructorÂ»
 			
-			«getElementType_»
+			Â«getElementType_Â»
 			
-			«getNodeType»
+			Â«getNodeTypeÂ»
 			
-			«getLinkType»
+			Â«getLinkTypeÂ»
 			
 		}
 	'''

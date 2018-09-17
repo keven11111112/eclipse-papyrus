@@ -27,46 +27,46 @@ import xpt.Common
 	@Inject extension Common;
 
 	override extendsList(GenExternalNodeLabel it) '''
-		«««BEGIN: PapyrusGenCode
-	«««specify a java super class for external nodes
-	«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v | v.genView.contains(it) && v.superOwnedEditPart != null].size != 0»
-			extends «FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].toIterable»
-				«specifyInheritance(extendedObject as ExtendedGenView)»
-			«ENDFOR»
-		«««END: PapyrusGenCode
-	«ELSE»
+		Â«Â«Â«BEGIN: PapyrusGenCode
+	Â«Â«Â«specify a java super class for external nodes
+	Â«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v | v.genView.contains(it) && v.superOwnedEditPart != null].size != 0Â»
+			extends Â«FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].toIterableÂ»
+				Â«specifyInheritance(extendedObject as ExtendedGenView)Â»
+			Â«ENDFORÂ»
+		Â«Â«Â«END: PapyrusGenCode
+	Â«ELSEÂ»
 			extends org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart
-		«ENDIF»
+		Â«ENDIFÂ»
 	'''
 
 	//we add the interface ILabelRoleProvider
 	override implementsList(GenExternalNodeLabel it) '''
 	implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart
-	«««	BEGIN: PapyrusGenCode
-	«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].size != 0»
+	Â«Â«Â«	BEGIN: PapyrusGenCode
+	Â«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].size != 0Â»
 		, org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider
-	«ENDIF»
-	«««	END: PapyrusGenCode
+	Â«ENDIFÂ»
+	Â«Â«Â«	END: PapyrusGenCode
 	'''
 
 	override additions(GenExternalNodeLabel it) '''
-	«««	BEGIN: PapyrusGenCode
-	«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].size != 0»
-		«generatedClassComment»
+	Â«Â«Â«	BEGIN: PapyrusGenCode
+	Â«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].size != 0Â»
+		Â«generatedClassCommentÂ»
 		public String getLabelRole(){
-		return "«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].head.role»";//$NON-NLS-1$
+		return "Â«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].head.roleÂ»";//$NON-NLS-1$
 		}
 		
-		«generatedClassComment»
+		Â«generatedClassCommentÂ»
 		public String getIconPathRole(){
-		return "«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].head.iconPathRole»";//$NON-NLS-1$
+		return "Â«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.externalNodeLabels.contains(it)].head.iconPathRoleÂ»";//$NON-NLS-1$
 		}
-	«ENDIF»
-	«««	END: PapyrusGenCode
+	Â«ENDIFÂ»
+	Â«Â«Â«	END: PapyrusGenCode
 	'''
 
 	def refreshBounds(GenExternalNodeLabel it) '''
-		«««	BEGIN: PapyrusGenCode
+		Â«Â«Â«	BEGIN: PapyrusGenCode
 		public void refreshBounds() {
 			int x = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_X())).intValue();
 			int y = ((Integer) getStructuralFeatureValue(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -75,12 +75,12 @@ import xpt.Common
 			getBorderItemLocator().setConstraint(new org.eclipse.draw2d.geometry.Rectangle(x, y, width, height));
 			getBorderItemLocator().relocate(getFigure());
 		}
-    «««	END: PapyrusGenCode
+    Â«Â«Â«	END: PapyrusGenCode
 	'''
 
 	//BEGIN: PapyrusGenCode
 	//definition of the inheritance 
-	def specifyInheritance(ExtendedGenView it) '''«superOwnedEditPart»'''
+	def specifyInheritance(ExtendedGenView it) '''Â«superOwnedEditPartÂ»'''
 
 //END: PapyrusGenCode
 }

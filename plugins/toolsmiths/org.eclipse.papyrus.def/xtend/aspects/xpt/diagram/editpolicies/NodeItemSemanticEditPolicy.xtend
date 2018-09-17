@@ -49,55 +49,55 @@ import xpt.editor.VisualIDRegistry
 
 	
 	override NodeItemSemanticEditPolicy(GenNode it) '''
-	«copyright(getDiagram().editorGen)»
-	package «packageName(it)»;
+	Â«copyright(getDiagram().editorGen)Â»
+	package Â«packageName(it)Â»;
 	
-	«generatedClassComment()»
-	public class «className(it)» extends «xptBaseItemSemanticEditPolicy.qualifiedClassName(getDiagram())» {
+	Â«generatedClassComment()Â»
+	public class Â«className(it)Â» extends Â«xptBaseItemSemanticEditPolicy.qualifiedClassName(getDiagram())Â» {
 	
-		«xptBaseItemSemanticEditPolicy.defaultConstructor(it)»
+		Â«xptBaseItemSemanticEditPolicy.defaultConstructor(it)Â»
 	
-		«xptChildContainerCreateCommand.childContainerCreateCommand(it.childNodes)»
+		Â«xptChildContainerCreateCommand.childContainerCreateCommand(it.childNodes)Â»
 	
-	«««	Papyrus REM : 
-	«««	Test to know how the delete of this EditPart is done : we used the DeleteService or the "Traditional method"
+	Â«Â«Â«	Papyrus REM : 
+	Â«Â«Â«	Test to know how the delete of this EditPart is done : we used the DeleteService or the "Traditional method"
 	
-	«IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).filter[v | v.genView.contains(it)].size != 0»
-		«generatedMemberComment»
-		«getDestroyElementCommandByService(it)»
-	«ELSE»
-		«getDestroyElementCommand(it)»
-		«IF hasChildrenOrCompartments(it)»
-			«addDestroyChildNodesCommand(it)»
-		«ENDIF»
-	«ENDIF»	
+	Â«IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).filter[v | v.genView.contains(it)].size != 0Â»
+		Â«generatedMemberCommentÂ»
+		Â«getDestroyElementCommandByService(it)Â»
+	Â«ELSEÂ»
+		Â«getDestroyElementCommand(it)Â»
+		Â«IF hasChildrenOrCompartments(it)Â»
+			Â«addDestroyChildNodesCommand(it)Â»
+		Â«ENDIFÂ»
+	Â«ENDIFÂ»	
 	
-		«xptLinkCommands.linkCommands(it)»
+		Â«xptLinkCommands.linkCommands(it)Â»
 	
-		«additions(it)»
+		Â«additions(it)Â»
 	}
 	'''
 
 	override getDestroyElementCommand(GenNode it) '''
-	«generatedMemberComment()»
+	Â«generatedMemberComment()Â»
 protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
  	org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) getHost().getModel();
 	org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand cmd = new org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand(getEditingDomain(), null);
 	cmd.setTransactionNestingEnabled(true);
-	«««	«destroyEdges('view')»
-	org.eclipse.emf.ecore.EAnnotation annotation = view.getEAnnotation("Shortcut");«nonNLS»
+	Â«Â«Â«	Â«destroyEdges('view')Â»
+	org.eclipse.emf.ecore.EAnnotation annotation = view.getEAnnotation("Shortcut");Â«nonNLSÂ»
 	if (annotation == null) {
-		// there are indirectly referenced children, need extra commands: «it.childNodes.union(compartments.map(c | c.childNodes).flatten).exists[GenChildNode gcn | !isDirectlyOwned(gcn, it)]»
-	«IF hasChildrenOrCompartments(it)»
+		// there are indirectly referenced children, need extra commands: Â«it.childNodes.union(compartments.map(c | c.childNodes).flatten).exists[GenChildNode gcn | !isDirectlyOwned(gcn, it)]Â»
+	Â«IF hasChildrenOrCompartments(it)Â»
 			addDestroyChildNodesCommand(cmd);
-	«ENDIF»
+	Â«ENDIFÂ»
 		addDestroyShortcutsCommand(cmd, view);
 		// delete host element
 		java.util.List<org.eclipse.emf.ecore.EObject> todestroy=new java.util.ArrayList<org.eclipse.emf.ecore.EObject>();
 		todestroy.add(req.getElementToDestroy());
 		//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 		cmd.add(new org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy )));
-	} else {«««Here, we may play smart and don't generate else for non-toplevel nodes(which can't be shortcuts). Is it worth doing?
+	} else {Â«Â«Â«Here, we may play smart and don't generate else for non-toplevel nodes(which can't be shortcuts). Is it worth doing?
 		cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), view));
 	}
 	return getGEFWrapper(cmd.reduce());
@@ -105,32 +105,32 @@ protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.
 	'''
 
 	override addDestroyChildNodesCommand(GenNode it) '''
-	«generatedMemberComment()»
+	Â«generatedMemberComment()Â»
 	protected void addDestroyChildNodesCommand(org.eclipse.gmf.runtime.common.core.command.ICompositeCommand cmd) {
 		org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) getHost().getModel();
 		for (java.util.Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
 			org.eclipse.gmf.runtime.notation.Node node = (org.eclipse.gmf.runtime.notation.Node) nit.next();
-			String vid = «xptVisualIDRegistry.getVisualIDMethodCall(it.diagram)»(node);
+			String vid = Â«xptVisualIDRegistry.getVisualIDMethodCall(it.diagram)Â»(node);
 			if (vid != null) {
 				switch (vid) {
-				«FOR cn : it.childNodes»
-					«destroyChildNodes(cn, 'node', it)» 
-				«ENDFOR»
-				«FOR compartment : it.compartments»
-				«xptVisualIDRegistry.caseVisualID(compartment)»
+				Â«FOR cn : it.childNodesÂ»
+					Â«destroyChildNodes(cn, 'node', it)Â» 
+				Â«ENDFORÂ»
+				Â«FOR compartment : it.compartmentsÂ»
+				Â«xptVisualIDRegistry.caseVisualID(compartment)Â»
 					for (java.util.Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 						org.eclipse.gmf.runtime.notation.Node cnode = (org.eclipse.gmf.runtime.notation.Node) cit.next();
-						String cvid = «xptVisualIDRegistry.getVisualIDMethodCall(it.diagram)»(cnode);
+						String cvid = Â«xptVisualIDRegistry.getVisualIDMethodCall(it.diagram)Â»(cnode);
 						if (cvid != null) {
 							switch (cvid) {
-							«FOR cn : compartment.childNodes»	
-								«destroyChildNodes(cn, 'cnode', it)»
-							«ENDFOR»
+							Â«FOR cn : compartment.childNodesÂ»	
+								Â«destroyChildNodes(cn, 'cnode', it)Â»
+							Â«ENDFORÂ»
 							}
 						}
 					}
 					break;
-				«ENDFOR»
+				Â«ENDFORÂ»
 				}
 			}
 		}
@@ -144,104 +144,104 @@ protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.
 	*/
 	override destroyEdges(GenNode it, String view) '''
 
-«««	XXX: Though semantic editpolicy is supposed to create commands that operate with semantic elements only,
-«««	old code used to delegate child/link deletion to respective editparts, which in turn led to semantic commands
-«««	being combined with notational commands (BaseItemSemanticEditPolicy#addDeleteViewCommand()).
-«««	---
-«««	Use DiagramUpdater.get[Incoming|Outgoing]View instead, to clean links that are not present on a diagram
-«««	(but don't forget to clean corresponding Edge, if any)
+Â«Â«Â«	XXX: Though semantic editpolicy is supposed to create commands that operate with semantic elements only,
+Â«Â«Â«	old code used to delegate child/link deletion to respective editparts, which in turn led to semantic commands
+Â«Â«Â«	being combined with notational commands (BaseItemSemanticEditPolicy#addDeleteViewCommand()).
+Â«Â«Â«	---
+Â«Â«Â«	Use DiagramUpdater.get[Incoming|Outgoing]View instead, to clean links that are not present on a diagram
+Â«Â«Â«	(but don't forget to clean corresponding Edge, if any)
 
 
-«««// This part is commented for Papyrus
-«««// Some Papyrus diagrams with lots of elements are reaching the 65K Java limit for method size.
-«««// The following change is not supposed to modify the method behavior, just propose a slight more 
-«««// compact code to avoid size limit.
-«««
-««««IF genIncomingLinks->notEmpty()-»
-«««	for («EXPAND CodeStyle::G('java.util.Iterator', '?' /*FIXME Refactor once Notation model is Java5*/)» it = «view».getTargetEdges().iterator(); it.hasNext();) {
-«««		org.eclipse.gmf.runtime.notation.Edge incomingLink = (org.eclipse.gmf.runtime.notation.Edge) it.next();
-««««FOREACH genIncomingLinks AS il-»
-«««		if («EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall FOR getDiagram()»(incomingLink) == «EXPAND xpt::editor::VisualIDRegistry::visualID FOR il») {
-«««			«EXPAND impl::diagram::commands::DeleteLinkCommand::newRequest('r', 'incomingLink') FOR il-»
-«««			cmd.add(«EXPAND impl::diagram::commands::DeleteLinkCommand::newInstance('r') FOR il»);
-«««			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
-«««			continue;
-«««		}
-««««ENDFOREACH-»
-«««	}
-««««ENDIF-»
-««««IF genOutgoingLinks->notEmpty()-»
-«««	for («EXPAND CodeStyle::G('java.util.Iterator', '?' /*FIXME Refactor once Notation model is Java5*/)» it = «view».getSourceEdges().iterator(); it.hasNext();) {
-«««		org.eclipse.gmf.runtime.notation.Edge outgoingLink = (org.eclipse.gmf.runtime.notation.Edge) it.next();
-««««FOREACH genOutgoingLinks AS ol-»
-«««		if («EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall FOR getDiagram()»(outgoingLink) == «EXPAND xpt::editor::VisualIDRegistry::visualID FOR ol») {
-«««			«EXPAND impl::diagram::commands::DeleteLinkCommand::newRequest('r', 'outgoingLink') FOR ol-»
-«««			cmd.add(«EXPAND impl::diagram::commands::DeleteLinkCommand::newInstance('r') FOR ol»);
-«««			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
-«««			continue;
-«««		}
-««««ENDFOREACH-»
-«««	}
-««««ENDIF-»
+Â«Â«Â«// This part is commented for Papyrus
+Â«Â«Â«// Some Papyrus diagrams with lots of elements are reaching the 65K Java limit for method size.
+Â«Â«Â«// The following change is not supposed to modify the method behavior, just propose a slight more 
+Â«Â«Â«// compact code to avoid size limit.
+Â«Â«Â«
+Â«Â«Â«Â«IF genIncomingLinks->notEmpty()-Â»
+Â«Â«Â«	for (Â«EXPAND CodeStyle::G('java.util.Iterator', '?' /*FIXME Refactor once Notation model is Java5*/)Â» it = Â«viewÂ».getTargetEdges().iterator(); it.hasNext();) {
+Â«Â«Â«		org.eclipse.gmf.runtime.notation.Edge incomingLink = (org.eclipse.gmf.runtime.notation.Edge) it.next();
+Â«Â«Â«Â«FOREACH genIncomingLinks AS il-Â»
+Â«Â«Â«		if (Â«EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall FOR getDiagram()Â»(incomingLink) == Â«EXPAND xpt::editor::VisualIDRegistry::visualID FOR ilÂ») {
+Â«Â«Â«			Â«EXPAND impl::diagram::commands::DeleteLinkCommand::newRequest('r', 'incomingLink') FOR il-Â»
+Â«Â«Â«			cmd.add(Â«EXPAND impl::diagram::commands::DeleteLinkCommand::newInstance('r') FOR ilÂ»);
+Â«Â«Â«			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
+Â«Â«Â«			continue;
+Â«Â«Â«		}
+Â«Â«Â«Â«ENDFOREACH-Â»
+Â«Â«Â«	}
+Â«Â«Â«Â«ENDIF-Â»
+Â«Â«Â«Â«IF genOutgoingLinks->notEmpty()-Â»
+Â«Â«Â«	for (Â«EXPAND CodeStyle::G('java.util.Iterator', '?' /*FIXME Refactor once Notation model is Java5*/)Â» it = Â«viewÂ».getSourceEdges().iterator(); it.hasNext();) {
+Â«Â«Â«		org.eclipse.gmf.runtime.notation.Edge outgoingLink = (org.eclipse.gmf.runtime.notation.Edge) it.next();
+Â«Â«Â«Â«FOREACH genOutgoingLinks AS ol-Â»
+Â«Â«Â«		if (Â«EXPAND xpt::editor::VisualIDRegistry::getVisualIDMethodCall FOR getDiagram()Â»(outgoingLink) == Â«EXPAND xpt::editor::VisualIDRegistry::visualID FOR olÂ») {
+Â«Â«Â«			Â«EXPAND impl::diagram::commands::DeleteLinkCommand::newRequest('r', 'outgoingLink') FOR ol-Â»
+Â«Â«Â«			cmd.add(Â«EXPAND impl::diagram::commands::DeleteLinkCommand::newInstance('r') FOR olÂ»);
+Â«Â«Â«			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
+Â«Â«Â«			continue;
+Â«Â«Â«		}
+Â«Â«Â«Â«ENDFOREACH-Â»
+Â«Â«Â«	}
+Â«Â«Â«Â«ENDIF-Â»
 
 
-«IF !genIncomingLinks.isEmpty()»
-	for (java.util.Iterator<?> it = «view».getTargetEdges().iterator(); it.hasNext();) {
+Â«IF !genIncomingLinks.isEmpty()Â»
+	for (java.util.Iterator<?> it = Â«viewÂ».getTargetEdges().iterator(); it.hasNext();) {
 		org.eclipse.gmf.runtime.notation.Edge incomingLink = (org.eclipse.gmf.runtime.notation.Edge) it.next();
-		String vid = «xptVisualIDRegistry.getVisualIDMethodCall(getDiagram())»(incomingLink);
+		String vid = Â«xptVisualIDRegistry.getVisualIDMethodCall(getDiagram())Â»(incomingLink);
 		if (vid != null) {
 			switch(vid) {
-«IF !genIncomingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet].empty»		
-«FOR il : genIncomingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet]»
-				case «VisualIDRegistry.visualID(il)»:
-«ENDFOR»		
+Â«IF !genIncomingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet].emptyÂ»		
+Â«FOR il : genIncomingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet]Â»
+				case Â«VisualIDRegistry.visualID(il)Â»:
+Â«ENDFORÂ»		
 					org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest destroyRefReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 					cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand(destroyRefReq));
 					cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
 					break;
-«ENDIF»
-«IF !genIncomingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet].empty»	
-«FOR il : genIncomingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet]»
-				case «VisualIDRegistry.visualID(il)»:
-«ENDFOR»		
+Â«ENDIFÂ»
+Â«IF !genIncomingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet].emptyÂ»	
+Â«FOR il : genIncomingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet]Â»
+				case Â«VisualIDRegistry.visualID(il)Â»:
+Â«ENDFORÂ»		
 					org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest destroyEltReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest(incomingLink.getElement(), false);
 					cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(destroyEltReq));
 					cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
 					break;
-«ENDIF»				
+Â«ENDIFÂ»				
 			}
 		}
 	}
-«ENDIF»
+Â«ENDIFÂ»
 
-«IF genOutgoingLinks.isEmpty()»
-	for (java.util.Iterator<?> it = «view».getSourceEdges().iterator(); it.hasNext();) {
+Â«IF genOutgoingLinks.isEmpty()Â»
+	for (java.util.Iterator<?> it = Â«viewÂ».getSourceEdges().iterator(); it.hasNext();) {
 		org.eclipse.gmf.runtime.notation.Edge outgoingLink = (org.eclipse.gmf.runtime.notation.Edge) it.next();
-		String vid = «xptVisualIDRegistry.getVisualIDMethodCall(getDiagram())»(outgoingLink);
+		String vid = Â«xptVisualIDRegistry.getVisualIDMethodCall(getDiagram())Â»(outgoingLink);
 		if (vid != null) {
 			switch(vid) {
-«IF !genOutgoingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet].empty»		
-«FOR ol : genOutgoingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet]»
-				case «VisualIDRegistry.visualID(ol)»:
-«ENDFOR»		
+Â«IF !genOutgoingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet].emptyÂ»		
+Â«FOR ol : genOutgoingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet]Â»
+				case Â«VisualIDRegistry.visualID(ol)Â»:
+Â«ENDFORÂ»		
 					org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest destroyRefReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
 					cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand(destroyRefReq));
 					cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
 					break;
-«ENDIF»
-«IF !genOutgoingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet].empty»	
-«FOR ol : genOutgoingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet]»
-				case «VisualIDRegistry.visualID(ol)»:
-«ENDFOR»		
+Â«ENDIFÂ»
+Â«IF !genOutgoingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet].emptyÂ»	
+Â«FOR ol : genOutgoingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet]Â»
+				case Â«VisualIDRegistry.visualID(ol)Â»:
+Â«ENDFORÂ»		
 					org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest destroyEltReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest(outgoingLink.getElement(), false);
 					cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(destroyEltReq));
 					cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
 					break;
-«ENDIF»				
+Â«ENDIFÂ»				
 			}
 		}
 	}
-«ENDIF»
+Â«ENDIFÂ»
 	'''
 
 

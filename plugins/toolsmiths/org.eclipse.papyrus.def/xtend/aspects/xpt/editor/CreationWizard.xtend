@@ -39,127 +39,127 @@ import com.google.inject.Singleton
 	@Inject Externalizer xptExternalizer
 	
 	override CreationWizard(GenDiagram it) '''
-		«copyright(editorGen)»
-		package «packageName(it)»;
+		Â«copyright(editorGen)Â»
+		package Â«packageName(it)Â»;
 		
-		«generatedClassComment»
-		public class «className(it)»
-				«extendsList(it)» «implementsList(it)» {
+		Â«generatedClassCommentÂ»
+		public class Â«className(it)Â»
+				Â«extendsList(it)Â» Â«implementsList(it)Â» {
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			private org.eclipse.ui.IWorkbench workbench;
 			
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			   protected org.eclipse.jface.viewers.IStructuredSelection selection;
 			   
-			«generatedMemberComment»
-			protected «xptCreationWizardPage.qualifiedClassName(it)» diagramModelFilePage;
+			Â«generatedMemberCommentÂ»
+			protected Â«xptCreationWizardPage.qualifiedClassName(it)Â» diagramModelFilePage;
 			
-			«IF standaloneDomainModel(it)»
-				«generatedMemberComment»
-				protected «xptCreationWizardPage.qualifiedClassName(it)» domainModelFilePage;
-			«ENDIF»
+			Â«IF standaloneDomainModel(it)Â»
+				Â«generatedMemberCommentÂ»
+				protected Â«xptCreationWizardPage.qualifiedClassName(it)Â» domainModelFilePage;
+			Â«ENDIFÂ»
 			
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			protected org.eclipse.emf.ecore.resource.Resource diagram;
 			
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			private boolean openNewlyCreatedDiagramEditor = true;
 			
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			   public org.eclipse.ui.IWorkbench getWorkbench() {
 			       return workbench;
 			   }
 			   
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public org.eclipse.jface.viewers.IStructuredSelection getSelection() {
 			       return selection;
 			}
 			
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public final org.eclipse.emf.ecore.resource.Resource getDiagram() {
 				return diagram;
 			}
 			
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public final boolean isOpenNewlyCreatedDiagramEditor() {
 				return openNewlyCreatedDiagramEditor;
 			}
 			
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public void setOpenNewlyCreatedDiagramEditor(boolean openNewlyCreatedDiagramEditor) {
 				this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
 			}
 			
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public void init(org.eclipse.ui.IWorkbench workbench, org.eclipse.jface.viewers.IStructuredSelection selection) {
 			       this.workbench = workbench;
 			       this.selection = selection;
-			setWindowTitle(«xptExternalizer.accessorCall(editorGen, titleKey(i18nKeyForCreationWizard(it)))»);
-			setDefaultPageImageDescriptor(«xptActivator.qualifiedClassName(editorGen.plugin)».getBundledImageDescriptor(
-					"icons/wizban/New«IF domainDiagramElement != null»«domainDiagramElement.genPackage.prefix»«ENDIF»Wizard.gif")); //$NON-NLS-1$
+			setWindowTitle(Â«xptExternalizer.accessorCall(editorGen, titleKey(i18nKeyForCreationWizard(it)))Â»);
+			setDefaultPageImageDescriptor(Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».getBundledImageDescriptor(
+					"icons/wizban/NewÂ«IF domainDiagramElement != nullÂ»Â«domainDiagramElement.genPackage.prefixÂ»Â«ENDIFÂ»Wizard.gif")); //$NON-NLS-1$
 			setNeedsProgressMonitor(true);
 			}
 			
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public void addPages() {
-				diagramModelFilePage = new «xptCreationWizardPage.qualifiedClassName(it)»(
-						"DiagramModelFile", getSelection(), "«editorGen.diagramFileExtension»"); //$NON-NLS-1$ //$NON-NLS-2$
-				diagramModelFilePage.setTitle(«xptExternalizer.accessorCall(editorGen,
-			titleKey(i18nKeyForCreationWizardDiagramPage(it)))»);
-				diagramModelFilePage.setDescription(«xptExternalizer.accessorCall(editorGen,
-			descriptionKey(i18nKeyForCreationWizardDiagramPage(it)))»);
+				diagramModelFilePage = new Â«xptCreationWizardPage.qualifiedClassName(it)Â»(
+						"DiagramModelFile", getSelection(), "Â«editorGen.diagramFileExtensionÂ»"); //$NON-NLS-1$ //$NON-NLS-2$
+				diagramModelFilePage.setTitle(Â«xptExternalizer.accessorCall(editorGen,
+			titleKey(i18nKeyForCreationWizardDiagramPage(it)))Â»);
+				diagramModelFilePage.setDescription(Â«xptExternalizer.accessorCall(editorGen,
+			descriptionKey(i18nKeyForCreationWizardDiagramPage(it)))Â»);
 				addPage(diagramModelFilePage);
-			«IF standaloneDomainModel(it)»
+			Â«IF standaloneDomainModel(it)Â»
 				
-					domainModelFilePage = new «xptCreationWizardPage.qualifiedClassName(it)»(
-							"DomainModelFile", getSelection(), "«editorGen.domainFileExtension»") { //$NON-NLS-1$ //$NON-NLS-2$
+					domainModelFilePage = new Â«xptCreationWizardPage.qualifiedClassName(it)Â»(
+							"DomainModelFile", getSelection(), "Â«editorGen.domainFileExtensionÂ»") { //$NON-NLS-1$ //$NON-NLS-2$
 							
-					«overrideC»
+					Â«overrideCÂ»
 					public void setVisible(boolean visible) {
 						if (visible) {
 							String fileName = diagramModelFilePage.getFileName();
-							fileName = fileName.substring(0, fileName.length() - ".«editorGen.diagramFileExtension»".length()); //$NON-NLS-1$
-							setFileName(«xptDiagramEditorUtil.qualifiedClassName(it)».getUniqueFileName(
-									getContainerFullPath(), fileName, "«editorGen.domainFileExtension»")); //$NON-NLS-1$
+							fileName = fileName.substring(0, fileName.length() - ".Â«editorGen.diagramFileExtensionÂ»".length()); //$NON-NLS-1$
+							setFileName(Â«xptDiagramEditorUtil.qualifiedClassName(it)Â».getUniqueFileName(
+									getContainerFullPath(), fileName, "Â«editorGen.domainFileExtensionÂ»")); //$NON-NLS-1$
 						}
 						super.setVisible(visible);
 					}
 					};
-					domainModelFilePage.setTitle(«xptExternalizer.accessorCall(editorGen,
-			titleKey(i18nKeyForCreationWizardDomainPage(it)))»);
-					domainModelFilePage.setDescription(«xptExternalizer.accessorCall(editorGen,
-			descriptionKey(i18nKeyForCreationWizardDomainPage(it)))»);
+					domainModelFilePage.setTitle(Â«xptExternalizer.accessorCall(editorGen,
+			titleKey(i18nKeyForCreationWizardDomainPage(it)))Â»);
+					domainModelFilePage.setDescription(Â«xptExternalizer.accessorCall(editorGen,
+			descriptionKey(i18nKeyForCreationWizardDomainPage(it)))Â»);
 					addPage(domainModelFilePage);
-			«ENDIF»
+			Â«ENDIFÂ»
 			}
 		
-			«generatedMemberComment»
+			Â«generatedMemberCommentÂ»
 			public boolean performFinish() {
 				org.eclipse.jface.operation.IRunnableWithProgress op =
-			«IF editorGen.application == null»
+			Â«IF editorGen.application == nullÂ»
 				new org.eclipse.ui.actions.WorkspaceModifyOperation(null) {
 					
-					«overrideC»
+					Â«overrideCÂ»
 					protected void execute(org.eclipse.core.runtime.IProgressMonitor monitor)
 						throws org.eclipse.core.runtime.CoreException, InterruptedException {
-			«ELSE»
+			Â«ELSEÂ»
 				new org.eclipse.jface.operation.IRunnableWithProgress() {
 					
 					public void run(org.eclipse.core.runtime.IProgressMonitor monitor)
 						throws InvocationTargetException, InterruptedException {
-			«ENDIF»
-			diagram = «xptDiagramEditorUtil.qualifiedClassName(it)».createDiagram(diagramModelFilePage.getURI(),
-			«IF standaloneDomainModel(it)»
+			Â«ENDIFÂ»
+			diagram = Â«xptDiagramEditorUtil.qualifiedClassName(it)Â».createDiagram(diagramModelFilePage.getURI(),
+			Â«IF standaloneDomainModel(it)Â»
 				domainModelFilePage.getURI(),
-			«ENDIF»
+			Â«ENDIFÂ»
 			monitor);
 			if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 				try {
-					«xptDiagramEditorUtil.qualifiedClassName(it)».openDiagram(diagram);
+					Â«xptDiagramEditorUtil.qualifiedClassName(it)Â».openDiagram(diagram);
 				} catch (org.eclipse.ui.PartInitException e) {
 					org.eclipse.jface.dialogs.ErrorDialog.openError(getContainer().getShell(),
-							«xptExternalizer.accessorCall(editorGen, i18nKeyForCreationWizardOpenEditorError(it))», null, e.getStatus());
+							Â«xptExternalizer.accessorCall(editorGen, i18nKeyForCreationWizardOpenEditorError(it))Â», null, e.getStatus());
 				}
 			}
 			}
@@ -171,17 +171,17 @@ import com.google.inject.Singleton
 			} catch (java.lang.reflect.InvocationTargetException e) {
 				if (e.getTargetException() instanceof org.eclipse.core.runtime.CoreException) {
 					org.eclipse.jface.dialogs.ErrorDialog.openError(getContainer().getShell(),
-							«xptExternalizer.accessorCall(editorGen, i18nKeyForCreationWizardCreationError(it))», null,
+							Â«xptExternalizer.accessorCall(editorGen, i18nKeyForCreationWizardCreationError(it))Â», null,
 							((org.eclipse.core.runtime.CoreException) e.getTargetException()).getStatus());
 				} else {
-					«xptActivator.qualifiedClassName(editorGen.plugin)».getInstance().logError(
+					Â«xptActivator.qualifiedClassName(editorGen.plugin)Â».getInstance().logError(
 							"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 				}
 				return false;
 			}
 			return diagram != null;
 			}
-			«additions(it)»
+			Â«additions(it)Â»
 		}
 	'''
 	

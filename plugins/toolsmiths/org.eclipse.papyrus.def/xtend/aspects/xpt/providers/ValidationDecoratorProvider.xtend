@@ -25,7 +25,7 @@ import xpt.editor.VisualIDRegistry
 
 /**
  * FIXME: [MG] monolithic template with most of the code "same-generated".
- * Unfortunately, a lot of the logic is based around «IF editorGen.application == null» and we don't have a good ways to deal with taht in GMFT-runtimw
+ * Unfortunately, a lot of the logic is based around Â«IF editorGen.application == nullÂ» and we don't have a good ways to deal with taht in GMFT-runtimw
  */
 @Singleton class ValidationDecoratorProvider extends xpt.providers.ValidationDecoratorProvider{
 	@Inject extension Common;
@@ -37,15 +37,15 @@ import xpt.editor.VisualIDRegistry
 
 
 override ValidationDecoratorProvider(GenDiagram it) '''
-«copyright(editorGen)»
-package «packageName(it)»;
+Â«copyright(editorGen)Â»
+package Â«packageName(it)Â»;
 
-«generatedClassComment»
-public class «className(it)»
+Â«generatedClassCommentÂ»
+public class Â«className(it)Â»
 		extends org.eclipse.papyrus.uml.diagram.common.providers.ValidationDecoratorProvider
 		implements org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider {
 
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	public void createDecorators(org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget decoratorTarget) {
 		org.eclipse.gef.EditPart editPart = (org.eclipse.gef.EditPart) decoratorTarget.getAdapter(org.eclipse.gef.EditPart.class);
 		if (editPart instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart ||
@@ -62,13 +62,13 @@ public class «className(it)»
 				return;
 			}
 			if (((org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain) ed).getEditorPart() instanceof
-					«xptEditor.qualifiedClassName(editorGen.editor)») {
+					Â«xptEditor.qualifiedClassName(editorGen.editor)Â») {
 				decoratorTarget.installDecorator(KEY, new StatusDecorator(decoratorTarget));
 			}
 		}
 	}
 
-	«generatedMemberComment»
+	Â«generatedMemberCommentÂ»
 	public boolean provides(org.eclipse.gmf.runtime.common.core.service.IOperation operation) {
 		if (!(operation instanceof org.eclipse.gmf.runtime.diagram.ui.services.decorator.CreateDecoratorsOperation)) {
 			return false;
@@ -77,11 +77,11 @@ public class «className(it)»
 				((org.eclipse.gmf.runtime.diagram.ui.services.decorator.CreateDecoratorsOperation) operation).getDecoratorTarget();
 		org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) decoratorTarget.getAdapter(
 				org.eclipse.gmf.runtime.notation.View.class);
-		return view != null && «VisualIDRegistry::modelID(it)».equals(«xptVisualIDRegistry.getModelIDMethodCall(it)»(view));
+		return view != null && Â«VisualIDRegistry::modelID(it)Â».equals(Â«xptVisualIDRegistry.getModelIDMethodCall(it)Â»(view));
 	}
 
 
-	«additions(it)»
+	Â«additions(it)Â»
 }
 '''
 

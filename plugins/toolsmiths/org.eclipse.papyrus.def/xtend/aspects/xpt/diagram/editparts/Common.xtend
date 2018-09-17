@@ -31,14 +31,14 @@ import org.eclipse.gmf.codegen.gmfgen.GenContainerBase
 	@Inject QualifiedClassNameProvider qualifiedClassNameProvider;
 
 	override installCanonicalEditPolicy(GenContainerBase it) '''
-	«IF it.needsCanonicalEditPolicy»
-		«««	BEGIN: PapyrusGenCode
-		«««	Used to remove at each time canonical editpolicies
+	Â«IF it.needsCanonicalEditPolicyÂ»
+		Â«Â«Â«	BEGIN: PapyrusGenCode
+		Â«Â«Â«	Used to remove at each time canonical editpolicies
 		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new «getCanonicalEditPolicyQualifiedClassName()»());
-		«««	END: PapyrusGenCode
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new Â«getCanonicalEditPolicyQualifiedClassName()Â»());
+		Â«Â«Â«	END: PapyrusGenCode
 	
-	«ENDIF»
+	Â«ENDIFÂ»
 	'''
 
 	override creationEditPolicyNewInstance(GenCommonBase it) 
@@ -46,16 +46,16 @@ import org.eclipse.gmf.codegen.gmfgen.GenContainerBase
 
 
 	override installSemanticEditPolicy(GenCommonBase it) '''
-	«IF sansDomain»
+	Â«IF sansDomainÂ»
 	removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE);
-	«ELSE»
-	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE, new «qualifiedClassNameProvider.getItemSemanticEditPolicyQualifiedClassName(it)»());
-	«ENDIF»
+	Â«ELSEÂ»
+	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE, new Â«qualifiedClassNameProvider.getItemSemanticEditPolicyQualifiedClassName(it)Â»());
+	Â«ENDIFÂ»
 	'''
 
 	override def visualIDConstant(GenCommonBase it) '''
-		«generatedMemberComment»
-		public static final String VISUAL_ID = "«stringVisualID»";
+		Â«generatedMemberCommentÂ»
+		public static final String VISUAL_ID = "Â«stringVisualIDÂ»";
 	'''
 
 }

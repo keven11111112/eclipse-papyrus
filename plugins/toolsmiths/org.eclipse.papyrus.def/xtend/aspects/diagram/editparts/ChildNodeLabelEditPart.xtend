@@ -25,21 +25,21 @@ import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
 
 
 	override extendsList(GenChildLabelNode it) '''
-«««BEGIN: PapyrusGenCode
-«««Add own extension
-«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].size != 0»
-extends «FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].toIterable»
-«specifyInheritance(extendedObject as ExtendedGenView)»
-«ENDFOR»
-«««END: PapyrusGenCode
-«ELSE»
+Â«Â«Â«BEGIN: PapyrusGenCode
+Â«Â«Â«Add own extension
+Â«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].size != 0Â»
+extends Â«FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v |v.genView.contains(it) && v.superOwnedEditPart!=null].toIterableÂ»
+Â«specifyInheritance(extendedObject as ExtendedGenView)Â»
+Â«ENDFORÂ»
+Â«Â«Â«END: PapyrusGenCode
+Â«ELSEÂ»
   extends org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart
-«ENDIF»
+Â«ENDIFÂ»
 '''
 
 //BEGIN: PapyrusGenCode
 //definition of the inheritance
-def specifyInheritance (ExtendedGenView it)'''«superOwnedEditPart»'''
+def specifyInheritance (ExtendedGenView it)'''Â«superOwnedEditPartÂ»'''
 //END: PapyrusGenCode
 
 override implementsList(GenChildLabelNode it) '''implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit'''

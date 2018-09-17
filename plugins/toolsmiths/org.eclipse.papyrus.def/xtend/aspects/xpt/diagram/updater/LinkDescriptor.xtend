@@ -28,15 +28,15 @@ import xpt.Common
 	override def extendsList(GenDiagramUpdater it) '''extends org.eclipse.papyrus.infra.gmfdiag.common.updater.UpdaterLinkDescriptor'''
 	
 	override def refOnlyLinkConstructor(GenDiagramUpdater it) '''
-		«generatedMemberComment»
-		public «className(it)»(org.eclipse.emf.ecore.EObject source, org.eclipse.emf.ecore.EObject destination, org.eclipse.gmf.runtime.emf.type.core.IElementType elementType, String linkVID) {
+		Â«generatedMemberCommentÂ»
+		public Â«className(it)Â»(org.eclipse.emf.ecore.EObject source, org.eclipse.emf.ecore.EObject destination, org.eclipse.gmf.runtime.emf.type.core.IElementType elementType, String linkVID) {
 			super(source, destination, elementType, linkVID);
 		}
 	'''
 
 	override def typeLinkConstructor(GenDiagramUpdater it) '''
-		«generatedMemberComment»
-		public «className(it)»(org.eclipse.emf.ecore.EObject source, org.eclipse.emf.ecore.EObject destination, org.eclipse.emf.ecore.EObject linkElement, org.eclipse.gmf.runtime.emf.type.core.IElementType elementType, String linkVID) {
+		Â«generatedMemberCommentÂ»
+		public Â«className(it)Â»(org.eclipse.emf.ecore.EObject source, org.eclipse.emf.ecore.EObject destination, org.eclipse.emf.ecore.EObject linkElement, org.eclipse.gmf.runtime.emf.type.core.IElementType elementType, String linkVID) {
 			super(source, destination, linkElement, elementType, linkVID);
 		}
 	'''

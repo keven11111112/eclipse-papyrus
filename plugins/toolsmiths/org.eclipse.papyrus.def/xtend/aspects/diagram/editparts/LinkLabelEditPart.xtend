@@ -29,28 +29,28 @@ import xpt.Common
 
 	override implementsList(GenLinkLabel it) '''
 	implements org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart, org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit
-	«««	BEGIN: PapyrusGenCode
-	«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v |v.linkLabels.contains(it)].size != 0»
+	Â«Â«Â«	BEGIN: PapyrusGenCode
+	Â«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v |v.linkLabels.contains(it)].size != 0Â»
 	, org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider
-	«ENDIF»
-	«««	END: PapyrusGenCode
+	Â«ENDIFÂ»
+	Â«Â«Â«	END: PapyrusGenCode
 	'''
 
 
 	override additions(GenLinkLabel it) '''
-	«««	BEGIN: PapyrusGenCode
-	«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.linkLabels.contains(it)].size != 0»
-		«generatedClassComment»
+	Â«Â«Â«	BEGIN: PapyrusGenCode
+	Â«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.linkLabels.contains(it)].size != 0Â»
+		Â«generatedClassCommentÂ»
 		public String getLabelRole(){
-		return "«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v |v.linkLabels.contains(it)].head.role»";//$NON-NLS-1$
+		return "Â«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v |v.linkLabels.contains(it)].head.roleÂ»";//$NON-NLS-1$
 		}
 		
-		«generatedClassComment»
+		Â«generatedClassCommentÂ»
 		public String getIconPathRole(){
-		return "«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v |v.linkLabels.contains(it)].head.iconPathRole»";//$NON-NLS-1$
+		return "Â«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v |v.linkLabels.contains(it)].head.iconPathRoleÂ»";//$NON-NLS-1$
 		}
-	«ENDIF»
-	«««	END: PapyrusGenCode
+	Â«ENDIFÂ»
+	Â«Â«Â«	END: PapyrusGenCode
 	'''
 	
 	override extendsList(GenLinkLabel it) '''extends org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart'''
@@ -63,14 +63,14 @@ import xpt.Common
 	protected void createDefaultEditPolicies() {	
 		super.createDefaultEditPolicies();
 		installEditPolicy(org.eclipse.gef.EditPolicy.DIRECT_EDIT_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy());
-		installEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE, new «diagram.getTextSelectionEditPolicyQualifiedClassName()»());
-		«««	BEGIN: PapyrusGenCode
+		installEditPolicy(org.eclipse.gef.EditPolicy.SELECTION_FEEDBACK_ROLE, new Â«diagram.getTextSelectionEditPolicyQualifiedClassName()Â»());
+		Â«Â«Â«	BEGIN: PapyrusGenCode
 		installEditPolicy(org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE, new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDragPolicy());
-		«««	END: PapyrusGenCode
-		«««	Get the added custom behavoir
-		«FOR CustomBehaviour:it.behaviour.filter(typeof (CustomBehaviour))»
-		installEditPolicy(«CustomBehaviour.key», new «CustomBehaviour.editPolicyQualifiedClassName»());
-		«ENDFOR»
+		Â«Â«Â«	END: PapyrusGenCode
+		Â«Â«Â«	Get the added custom behavoir
+		Â«FOR CustomBehaviour:it.behaviour.filter(typeof (CustomBehaviour))Â»
+		installEditPolicy(Â«CustomBehaviour.keyÂ», new Â«CustomBehaviour.editPolicyQualifiedClassNameÂ»());
+		Â«ENDFORÂ»
 	}
 	'''
 }

@@ -24,8 +24,8 @@ import com.google.inject.Singleton
 	@Inject extension Common
 	
 	override performCast(GenDiagram it) '''
-		«generatedMemberComment(
-			'Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected')»
+		Â«generatedMemberComment(
+			'Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected')Â»
 		public static Object performCast(Object value, org.eclipse.emf.ecore.EDataType targetType) {
 			if (targetType instanceof org.eclipse.emf.ecore.EEnum) {
 				if (value instanceof org.eclipse.emf.ecore.EEnumLiteral) {

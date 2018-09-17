@@ -23,11 +23,11 @@ import org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride
 @Singleton class Common extends xpt.Common {
 	override copyright(GenEditorGenerator it) 
 	'''
-	«IF copyrightText != null»
+	Â«IF copyrightText != nullÂ»
 	/**
-	 * «copyrightText.replaceAll('\n', '\n * ')»
+	 * Â«copyrightText.replaceAll('\n', '\n * ')Â»
 	 */
- 	«ENDIF»
+ 	Â«ENDIFÂ»
 	'''
 
 	def String stringVisualID(GenCommonBase it) {

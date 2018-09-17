@@ -36,30 +36,30 @@ import xpt.navigator.Utils_qvto
 	@Inject ParserProvider xptParserProvider;
 	@Inject MetaModel xptMetaModel;
 
-	override def getTextMethodName(GenCommonBase it) '''get«stringUniqueIdentifier»Text'''
+	override def getTextMethodName(GenCommonBase it) '''getÂ«stringUniqueIdentifierÂ»Text'''
 
 	override def CharSequence getDiagramLabelText(GenCommonBase it, GenCommonBase elementTypeHolder, LabelModelFacet labelModelFacet) '''
-		org.eclipse.gmf.runtime.common.ui.services.parser.IParser parser = «xptParserProvider.accessorCall(it, elementTypeHolder, labelModelFacet, 'view.getElement() != null ? view.getElement() : view')»;
+		org.eclipse.gmf.runtime.common.ui.services.parser.IParser parser = Â«xptParserProvider.accessorCall(it, elementTypeHolder, labelModelFacet, 'view.getElement() != null ? view.getElement() : view')Â»;
 		if (parser != null) {
 			return parser.getPrintString(new org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter(view.getElement() != null ? view.getElement() : view), org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions.NONE.intValue());
 		} else {
-			«xptActivator.qualifiedClassName(getDiagram().editorGen.plugin)».getInstance().logError("Parser was not found for label «stringVisualID»"); «nonNLS(1)»
-			«returnEmptyString()»
+			Â«xptActivator.qualifiedClassName(getDiagram().editorGen.plugin)Â».getInstance().logError("Parser was not found for label Â«stringVisualIDÂ»"); Â«nonNLS(1)Â»
+			Â«returnEmptyString()Â»
 		}
 	'''
 
 	override def getLabelFeatureText(GenCommonBase it, GenClass genClass) '''
-		«IF null != genClass && null != genClass.labelFeature»
-			«xptMetaModel.DeclareAndAssign(genClass, 'domainModelElement', 'view.getElement()')»
+		Â«IF null != genClass && null != genClass.labelFeatureÂ»
+			Â«xptMetaModel.DeclareAndAssign(genClass, 'domainModelElement', 'view.getElement()')Â»
 			if (domainModelElement != null) {
-				return «IF !isStringFeature(genClass.labelFeature)»String.valueOf(«ENDIF»UMLLabelInternationalization.getInstance().getLabel(domainModelElement)«IF !isStringFeature(genClass.labelFeature)»)«ENDIF»;
+				return Â«IF !isStringFeature(genClass.labelFeature)Â»String.valueOf(Â«ENDIFÂ»UMLLabelInternationalization.getInstance().getLabel(domainModelElement)Â«IF !isStringFeature(genClass.labelFeature)Â»)Â«ENDIFÂ»;
 			} else {
-				«xptActivator.qualifiedClassName(getDiagram().editorGen.plugin)».getInstance().logError("No domain element for view with visualID = «stringVisualID»");  «nonNLS(1)»
-					«returnEmptyString()»
+				Â«xptActivator.qualifiedClassName(getDiagram().editorGen.plugin)Â».getInstance().logError("No domain element for view with visualID = Â«stringVisualIDÂ»");  Â«nonNLS(1)Â»
+					Â«returnEmptyString()Â»
 			}
-		«ELSE»
-			«returnEmptyString()»
-		«ENDIF»
+		Â«ELSEÂ»
+			Â«returnEmptyString()Â»
+		Â«ENDIFÂ»
 	'''
 	
 	

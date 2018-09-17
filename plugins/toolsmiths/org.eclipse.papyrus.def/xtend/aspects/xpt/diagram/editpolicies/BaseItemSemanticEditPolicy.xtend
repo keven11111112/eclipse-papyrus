@@ -43,26 +43,26 @@ import xpt.providers.ElementTypes
 	@Inject MetaModel xptMetaModel;
 
 	override BaseItemSemanticEditPolicy(GenDiagram it) '''
-«copyright(editorGen)»
-package «packageName(it)»;
+Â«copyright(editorGen)Â»
+package Â«packageName(it)Â»;
 
-«generatedClassComment()»
-public class «className(it)» extends org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy {
+Â«generatedClassComment()Â»
+public class Â«className(it)Â» extends org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy {
 
-	«attributes(it)»
+	Â«attributes(it)Â»
 	
-	«constructor(it)»
+	Â«constructor(it)Â»
 
-	«generatedMemberComment(
+	Â«generatedMemberComment(
 		'Extended request data key to hold editpart visual id.\n' + 'Add visual id of edited editpart to extended data of the request\n' + 'so command switch can decide what kind of diagram element is being edited.\n' + 'It is done in those cases when it\'s not possible to deduce diagram\n' + 'element kind from domain element.\n' + 'Add the reoriented view to the request extended data so that the view\n ' + 'currently edited can be distinguished from other views of the same element\n ' +
 			'and these latter possibly removed if they become inconsistent after reconnect\n'
-	)»
+	)Â»
 	@SuppressWarnings("unchecked")
 	public org.eclipse.gef.commands.Command getCommand(org.eclipse.gef.Request request) {
 		if (request instanceof org.eclipse.gef.requests.ReconnectRequest) {
 			Object view = ((org.eclipse.gef.requests.ReconnectRequest) request).getConnectionEditPart().getModel();
 			if (view instanceof org.eclipse.gmf.runtime.notation.View) {
-				String id = «getVisualIDMethodCall(it)»((org.eclipse.gmf.runtime.notation.View) view);
+				String id = Â«getVisualIDMethodCall(it)Â»((org.eclipse.gmf.runtime.notation.View) view);
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
 				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, view);
 			}
@@ -70,35 +70,35 @@ public class «className(it)» extends org.eclipse.gmf.runtime.diagram.ui.editpoli
 		return super.getCommand(request);
 	}
 	
-	«generatedMemberComment('Returns visual id from request parameters.')»
+	Â«generatedMemberComment('Returns visual id from request parameters.')Â»
 	protected String getVisualID(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest request) {
 		return (String) request.getParameter(VISUAL_ID_KEY);
 	}
 
-	«semanticPart(it)»
+	Â«semanticPart(it)Â»
 
-	«generatedMemberComment('Returns editing domain from the host edit part.')»
+	Â«generatedMemberComment('Returns editing domain from the host edit part.')Â»
 	protected org.eclipse.emf.transaction.TransactionalEditingDomain getEditingDomain() {
 		return ((org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) getHost()).getEditingDomain();
 	}
 
-	«addDestroyShortcutsCommand(it)»
+	Â«addDestroyShortcutsCommand(it)Â»
 
-«IF links.exists(link|!link.sansDomain)»
-	«linkConstraints(it)»
-«ENDIF»
+Â«IF links.exists(link|!link.sansDomain)Â»
+	Â«linkConstraints(it)Â»
+Â«ENDIFÂ»
 
-	«additions(it)»
+	Â«additions(it)Â»
 }
 '''
 
 override def addDestroyShortcutsCommand(GenDiagram it) '''
-	«generatedMemberComment('Clean all shortcuts to the host element from the same diagram')»
+	Â«generatedMemberComment('Clean all shortcuts to the host element from the same diagram')Â»
 	protected void addDestroyShortcutsCommand(org.eclipse.gmf.runtime.common.core.command.ICompositeCommand cmd, org.eclipse.gmf.runtime.notation.View view) {
-		«_assert('view.getEAnnotation(\"Shortcut\") == null')»
+		Â«_assert('view.getEAnnotation(\"Shortcut\") == null')Â»
 		for (java.util.Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			org.eclipse.gmf.runtime.notation.View nextView = (org.eclipse.gmf.runtime.notation.View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { «nonNLS()»
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { Â«nonNLS()Â»
 				continue;
 			}
 			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), nextView));
@@ -107,67 +107,67 @@ override def addDestroyShortcutsCommand(GenDiagram it) '''
 '''
 
 	override attributes(GenDiagram it) '''
-		«generatedMemberComment('Extended request data key to hold editpart visual id.')»
-		public static final String VISUAL_ID_KEY = "visual_id"; «nonNLS()»
-		«generatedMemberComment('Extended request data key to hold the edge view during a reconnect request.')»
-		public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; «nonNLS»
-		«generatedMemberComment()»
+		Â«generatedMemberComment('Extended request data key to hold editpart visual id.')Â»
+		public static final String VISUAL_ID_KEY = "visual_id"; Â«nonNLS()Â»
+		Â«generatedMemberComment('Extended request data key to hold the edge view during a reconnect request.')Â»
+		public static final String GRAPHICAL_RECONNECTED_EDGE = "graphical_edge"; Â«nonNLSÂ»
+		Â«generatedMemberComment()Â»
 		private final org.eclipse.gmf.runtime.emf.type.core.IElementType myElementType;
 	'''
 
 	override semanticPart(GenDiagram it) '''
-		«getSemanticCommand(it)»
+		Â«getSemanticCommand(it)Â»
 		
-		«addDeleteViewCommand(it)»
+		Â«addDeleteViewCommand(it)Â»
 		
-		«getEditHelperCommand(it)»
+		Â«getEditHelperCommand(it)Â»
 		
-		«getContextElementType(it)»
+		Â«getContextElementType(it)Â»
 		
-		«getSemanticCommandSwitch(it)»
+		Â«getSemanticCommandSwitch(it)Â»
 		
-		«getConfigureCommand(it)»
+		Â«getConfigureCommand(it)Â»
 		
-		«getCreateRelationshipCommand(it)»
+		Â«getCreateRelationshipCommand(it)Â»
 		
-		«getCreateCommand(it)»
+		Â«getCreateCommand(it)Â»
 		
-		«getCreateSemanticServiceEditCommand(it)»
+		Â«getCreateSemanticServiceEditCommand(it)Â»
 		
-		«getSetCommand(it)»
+		Â«getSetCommand(it)Â»
 		
-		«getEditContextCommand(it)»
+		Â«getEditContextCommand(it)Â»
 		
-		«getDestroyElementCommand(it)»
+		Â«getDestroyElementCommand(it)Â»
 		
-		«getDestroyReferenceCommand(it)»
+		Â«getDestroyReferenceCommand(it)Â»
 		
-		«getDuplicateCommand(it)»
+		Â«getDuplicateCommand(it)Â»
 		
-		«getMoveCommand(it)»
+		Â«getMoveCommand(it)Â»
 		
-		«getReorientReferenceRelationshipCommand(it)»
+		Â«getReorientReferenceRelationshipCommand(it)Â»
 		
-		«getReorientRelationshipCommand(it)»
+		Â«getReorientRelationshipCommand(it)Â»
 		
-		«getGEFWrapper(it)»
+		Â«getGEFWrapper(it)Â»
 	'''
 
 	override getContextElementType(GenDiagram it) '''
-		«generatedMemberComment()»
+		Â«generatedMemberComment()Â»
 		protected org.eclipse.gmf.runtime.emf.type.core.IElementType getContextElementType(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest request) {
-			org.eclipse.gmf.runtime.emf.type.core.IElementType requestContextElementType = «xptElementTypes.qualifiedClassName(it)».getElementType(getVisualID(request));
+			org.eclipse.gmf.runtime.emf.type.core.IElementType requestContextElementType = Â«xptElementTypes.qualifiedClassName(it)Â».getElementType(getVisualID(request));
 			return requestContextElementType != null ? requestContextElementType : myElementType;
 		}
 	'''
 
 	override getCreateRelationshipCommand(GenDiagram it) '''
-«generatedMemberComment()»
+Â«generatedMemberComment()Â»
 protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest req) {
-	«IF it.eResource.allContents.filter(typeof(GenerateUsingElementTypeCreationCommand)).size < 1»
+	Â«IF it.eResource.allContents.filter(typeof(GenerateUsingElementTypeCreationCommand)).size < 1Â»
 	return null;
-	«ENDIF»
-	«IF it.eResource.allContents.filter(typeof(GenerateUsingElementTypeCreationCommand)).size() > 0»
+	Â«ENDIFÂ»
+	Â«IF it.eResource.allContents.filter(typeof(GenerateUsingElementTypeCreationCommand)).size() > 0Â»
 	org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(((org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)getHost()).resolveSemanticElement());
 	if(req.getElementType() != null) {
 		commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getElementType(), req.getClientContext());
@@ -183,12 +183,12 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.ecli
 		return getGEFWrapper(semanticCommand);
 	} 
 	return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
-	«ENDIF»
+	Â«ENDIFÂ»
 }
 '''
 
 	override getCreateCommand(GenDiagram it) '''
-«generatedMemberComment()»
+Â«generatedMemberComment()Â»
 	protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
 		org.eclipse.gmf.runtime.emf.type.core.IElementType requestElementType = req.getElementType();
 		if (requestElementType instanceof org.eclipse.gmf.runtime.emf.type.core.IElementType) {
@@ -206,10 +206,10 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.ecli
 
 
 	override getMoveCommand(GenDiagram it) '''
-«generatedMemberComment()»
+Â«generatedMemberComment()Â»
 protected org.eclipse.gef.commands.Command getMoveCommand(org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest req) {
-	«««	BEGIN: PapyrusGenCode
-	«««	add move command
+	Â«Â«Â«	BEGIN: PapyrusGenCode
+	Â«Â«Â«	add move command
 		org.eclipse.emf.ecore.EObject targetCEObject = req.getTargetContainer();
 		if(targetCEObject != null) {
 			org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(targetCEObject);
@@ -223,7 +223,7 @@ protected org.eclipse.gef.commands.Command getMoveCommand(org.eclipse.gmf.runtim
 		} else {
 			return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.MoveElementsCommand(req));
 		}
-	««« END: PapyrusGenCode
+	Â«Â«Â« END: PapyrusGenCode
 	
 }
 '''
@@ -237,30 +237,30 @@ protected org.eclipse.gef.commands.Command getMoveCommand(org.eclipse.gmf.runtim
  */
 	override linkConstraints(GenDiagram it) '''
 
-	«generatedMemberComment()»
-	public static «getLinkCreationConstraintsClassName()» getLinkConstraints() {
-		«getLinkCreationConstraintsClassName()» cached = «xptPluginActivator.instanceAccess(it.editorGen)».getLinkConstraints();
+	Â«generatedMemberComment()Â»
+	public static Â«getLinkCreationConstraintsClassName()Â» getLinkConstraints() {
+		Â«getLinkCreationConstraintsClassName()Â» cached = Â«xptPluginActivator.instanceAccess(it.editorGen)Â».getLinkConstraints();
 		if (cached == null) {
-			«xptPluginActivator.instanceAccess(it.editorGen)».setLinkConstraints(cached = new «getLinkCreationConstraintsClassName()»());
+			Â«xptPluginActivator.instanceAccess(it.editorGen)Â».setLinkConstraints(cached = new Â«getLinkCreationConstraintsClassName()Â»());
 		}
 		return cached;
 	}
 
-«generatedClassComment()»
-public static class «getLinkCreationConstraintsClassName()» {
+Â«generatedClassComment()Â»
+public static class Â«getLinkCreationConstraintsClassName()Â» {
 
-	«generatedMemberComment»
-	public «getLinkCreationConstraintsClassName()»() {«««package-local for the BaseItemSemanticEditPolicy to instantiate. Perhaps, protected is better (i.e. if someone subclasses it?)
+	Â«generatedMemberCommentÂ»
+	public Â«getLinkCreationConstraintsClassName()Â»() {Â«Â«Â«package-local for the BaseItemSemanticEditPolicy to instantiate. Perhaps, protected is better (i.e. if someone subclasses it?)
 		// use static method #getLinkConstraints() to access instance
 	}
 
-	«FOR nextLink : it.links»
-	«canCreate(nextLink)»
-	«ENDFOR»
+	Â«FOR nextLink : it.linksÂ»
+	Â«canCreate(nextLink)Â»
+	Â«ENDFORÂ»
 
-	«FOR nextLink : it.links»
-	«canExist(nextLink)»
-	«ENDFOR»
+	Â«FOR nextLink : it.linksÂ»
+	Â«canExist(nextLink)Â»
+	Â«ENDFORÂ»
 }
 '''
 
@@ -272,70 +272,70 @@ public static class «getLinkCreationConstraintsClassName()» {
 	}
 
 	def checkEMFConstraints(TypeLinkModelFacet it) '''
-«IF containmentMetaFeature.ecoreFeature != null»
-		«IF ! isUnbounded(containmentMetaFeature.ecoreFeature) || checkChildFeatureBounds(it)»
-			if («getContainerVariable(it)» != null) {
-						«checkEMFConstraints(containmentMetaFeature, it)»
-						«IF checkChildFeatureBounds(it)»
-							«checkEMFConstraints(childMetaFeature, it)»
-						«ENDIF»
+Â«IF containmentMetaFeature.ecoreFeature != nullÂ»
+		Â«IF ! isUnbounded(containmentMetaFeature.ecoreFeature) || checkChildFeatureBounds(it)Â»
+			if (Â«getContainerVariable(it)Â» != null) {
+						Â«checkEMFConstraints(containmentMetaFeature, it)Â»
+						Â«IF checkChildFeatureBounds(it)Â»
+							Â«checkEMFConstraints(childMetaFeature, it)Â»
+						Â«ENDIFÂ»
 			}
-		«ENDIF»
-«ENDIF»
+		Â«ENDIFÂ»
+Â«ENDIFÂ»
 '''
 
 	override checkEMFConstraints(GenFeature it, TypeLinkModelFacet modelFacet) '''
-«IF modelFacet.containmentMetaFeature.ecoreFeature != null»
-«IF ! isUnbounded(ecoreFeature)»
-if («featureBoundComparator(it, getContainerVariable(modelFacet), modelFacet.getSourceType())») {
+Â«IF modelFacet.containmentMetaFeature.ecoreFeature != nullÂ»
+Â«IF ! isUnbounded(ecoreFeature)Â»
+if (Â«featureBoundComparator(it, getContainerVariable(modelFacet), modelFacet.getSourceType())Â») {
 	return false;
 }
-«ENDIF»
-«ENDIF»
+Â«ENDIFÂ»
+Â«ENDIFÂ»
 '''
 
 	override canCreate(GenLink it) '''
-«generatedMemberComment()»
-public boolean canCreate«stringUniqueIdentifier()»(
-«IF !it.sansDomain»
-«canCreateParameters(it.modelFacet)»
-«ENDIF»
+Â«generatedMemberComment()Â»
+public boolean canCreateÂ«stringUniqueIdentifier()Â»(
+Â«IF !it.sansDomainÂ»
+Â«canCreateParameters(it.modelFacet)Â»
+Â«ENDIFÂ»
 ) {
-	«IF !it.sansDomain»
-	«checkEMFConstraints(it.modelFacet)»
-	«ENDIF»
-	return canExist«stringUniqueIdentifier()»(
-	«IF !it.sansDomain»
-	«canCreateValues(it.modelFacet)»
-	«ENDIF»
+	Â«IF !it.sansDomainÂ»
+	Â«checkEMFConstraints(it.modelFacet)Â»
+	Â«ENDIFÂ»
+	return canExistÂ«stringUniqueIdentifier()Â»(
+	Â«IF !it.sansDomainÂ»
+	Â«canCreateValues(it.modelFacet)Â»
+	Â«ENDIFÂ»
 	);
 }
 '''
 
 	override featureBoundsConditionClause(GenFeature it, String targetVar, GenClass targetType) '''
-«««Checking upper bounds if was specified in MM
-«IF ecoreFeature != null»
-	«IF ! isUnbounded(ecoreFeature)»«featureBoundComparator(it, targetVar, targetType)»«ENDIF»
-	«««	Checking uniqueness in addition if upper bounds != 1
-	«IF ! isSingleValued(ecoreFeature) && ! isUnbounded(ecoreFeature)» || «ENDIF»
-	«««	Checking uniqueness in if upper bounds !- 1
-	«IF ! isSingleValued(ecoreFeature)»«featureUniquenessComparator(it, targetVar, targetType)»«ENDIF»
-«ENDIF»
+Â«Â«Â«Checking upper bounds if was specified in MM
+Â«IF ecoreFeature != nullÂ»
+	Â«IF ! isUnbounded(ecoreFeature)Â»Â«featureBoundComparator(it, targetVar, targetType)Â»Â«ENDIFÂ»
+	Â«Â«Â«	Checking uniqueness in addition if upper bounds != 1
+	Â«IF ! isSingleValued(ecoreFeature) && ! isUnbounded(ecoreFeature)Â» || Â«ENDIFÂ»
+	Â«Â«Â«	Checking uniqueness in if upper bounds !- 1
+	Â«IF ! isSingleValued(ecoreFeature)Â»Â«featureUniquenessComparator(it, targetVar, targetType)Â»Â«ENDIFÂ»
+Â«ENDIFÂ»
 '''
 
 	override featureBoundComparator(GenFeature it, String featureVar, GenClass featureVarGenClass) '''
-		«xptMetaModel.getFeatureValue(it, featureVar, featureVarGenClass)»
-		«IF ecoreFeature.upperBound == 1»
+		Â«xptMetaModel.getFeatureValue(it, featureVar, featureVarGenClass)Â»
+		Â«IF ecoreFeature.upperBound == 1Â»
 			!= null
-		«ELSE»
-			.size() >= «ecoreFeature.upperBound»
-		«ENDIF»
+		Â«ELSEÂ»
+			.size() >= Â«ecoreFeature.upperBoundÂ»
+		Â«ENDIFÂ»
 	'''
 
 	// Generate generic method if using semantic creation command based on element types framework.
 	def getCreateSemanticServiceEditCommand(GenDiagram it) '''
-«IF it.eResource.allContents.filter(typeof(GenerateUsingElementTypeCreationCommand)).size > 0»
-	«generatedMemberComment»
+Â«IF it.eResource.allContents.filter(typeof(GenerateUsingElementTypeCreationCommand)).size > 0Â»
+	Â«generatedMemberCommentÂ»
 	protected org.eclipse.gmf.runtime.common.core.command.ICommand getSemanticCreationCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
 		org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandService = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
 		if(commandService == null) {
@@ -343,7 +343,7 @@ public boolean canCreate«stringUniqueIdentifier()»(
 		}
 		return commandService.getEditCommand(req);
 	}
-«ENDIF»	
+Â«ENDIFÂ»	
 '''
 
 	/**
@@ -355,33 +355,33 @@ public boolean canCreate«stringUniqueIdentifier()»(
  *			to check source and target separately. Otherwize, do it inplace.
 */
 	override canExist(GenLink it) '''
-		«generatedMemberComment()»
-			public boolean canExist«stringUniqueIdentifier()»(
-		«IF !it.sansDomain»
-			«canExistParameters(it.modelFacet)»
-		«ENDIF»
+		Â«generatedMemberComment()Â»
+			public boolean canExistÂ«stringUniqueIdentifier()Â»(
+		Â«IF !it.sansDomainÂ»
+			Â«canExistParameters(it.modelFacet)Â»
+		Â«ENDIFÂ»
 		) {
-		«IF creationConstraints != null && creationConstraints.isValid() && it.diagram.editorGen.expressionProviders != null»
+		Â«IF creationConstraints != null && creationConstraints.isValid() && it.diagram.editorGen.expressionProviders != nullÂ»
 			try {
-			«IF creationConstraints.sourceEnd != null»
-				«checkAdditionalConstraint(creationConstraints.sourceEnd.provider, creationConstraints.sourceEnd, 'source', 'target', creationConstraints.getSourceEndContextClass(), creationConstraints.getTargetEndContextClass())»
-			«ENDIF»
-			«IF creationConstraints.targetEnd != null»
-				«checkAdditionalConstraint(creationConstraints.targetEnd.provider, creationConstraints.targetEnd, 'target', 'source', creationConstraints.getTargetEndContextClass(), creationConstraints.getSourceEndContextClass())»
-			«ENDIF»
+			Â«IF creationConstraints.sourceEnd != nullÂ»
+				Â«checkAdditionalConstraint(creationConstraints.sourceEnd.provider, creationConstraints.sourceEnd, 'source', 'target', creationConstraints.getSourceEndContextClass(), creationConstraints.getTargetEndContextClass())Â»
+			Â«ENDIFÂ»
+			Â«IF creationConstraints.targetEnd != nullÂ»
+				Â«checkAdditionalConstraint(creationConstraints.targetEnd.provider, creationConstraints.targetEnd, 'target', 'source', creationConstraints.getTargetEndContextClass(), creationConstraints.getSourceEndContextClass())Â»
+			Â«ENDIFÂ»
 			return true;
 			} catch(Exception e) {	
-				«xptPluginActivator.instanceAccess(it.diagram.editorGen)».logError("Link constraint evaluation error", e); «nonNLS()»
+				Â«xptPluginActivator.instanceAccess(it.diagram.editorGen)Â».logError("Link constraint evaluation error", e); Â«nonNLS()Â»
 				return false;
 			}
-		«ELSE»
+		Â«ELSEÂ»
 			return true;
-		«ENDIF»
+		Â«ENDIFÂ»
 		}
 	'''
 
     override def getGEFWrapper(GenDiagram it) '''
-        «generatedMemberComment()»
+        Â«generatedMemberComment()Â»
         protected final org.eclipse.gef.commands.Command getGEFWrapper(org.eclipse.gmf.runtime.common.core.command.ICommand cmd) {
             return (cmd == null) ? org.eclipse.gef.commands.UnexecutableCommand.INSTANCE : new org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy(cmd);
         }
