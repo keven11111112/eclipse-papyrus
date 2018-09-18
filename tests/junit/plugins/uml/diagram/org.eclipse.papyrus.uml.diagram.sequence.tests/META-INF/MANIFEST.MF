@@ -22,7 +22,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.gmfdiag.preferences,
  org.eclipse.ui.workbench,
  org.eclipse.papyrus.uml.services.decoration;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.uml.oclconstraintevaluation;bundle-version="[1.2.0,2.0.0)"
+ org.eclipse.papyrus.uml.oclconstraintevaluation;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.types.core;bundle-version="[4.0.0,5.0.0)"
 Export-Package: org.eclipse.papyrus.uml.diagram.sequence.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy

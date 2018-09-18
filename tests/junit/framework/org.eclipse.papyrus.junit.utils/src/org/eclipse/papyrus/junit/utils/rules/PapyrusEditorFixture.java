@@ -10,8 +10,9 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673, 533682, 533676, 533679
+ *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673, 533682, 533676, 533679, 536486
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 521550
+ *   EclipseSource - Bug 536631
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils.rules;
 
@@ -26,6 +27,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -70,8 +72,13 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.RootEditPart;
+import org.eclipse.gef.Tool;
+import org.eclipse.gef.palette.PaletteRoot;
+import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.ui.palette.PaletteViewer;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IDiagramPreferenceSupport;
@@ -79,12 +86,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
@@ -100,7 +109,10 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.palette.PaletteUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.nattable.common.editor.AbstractEMFNattableEditor;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
@@ -138,6 +150,7 @@ import org.eclipse.ui.part.IPage;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.junit.Assert;
 import org.junit.runner.Description;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
@@ -546,7 +559,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	}
 
 	public void close(IEditorPart editor) {
-		if(null != editor.getSite() && null != editor.getSite().getPage()) {
+		if (null != editor.getSite() && null != editor.getSite().getPage()) {
 			editor.getSite().getPage().closeEditor(editor, false);
 			flushDisplayEvents();
 		}
@@ -1530,6 +1543,15 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		request.setLocation(location);
 		request.setSize(size);
 
+		// Some edit-parts in some diagrams depend on the creation tool setting this
+		CreateElementRequest semanticRequest = null;
+		if (!request.getViewDescriptors().isEmpty()) {
+			semanticRequest = (CreateElementRequest) ((CreateElementRequestAdapter) request.getViewDescriptors().get(0).getElementAdapter()).getAdapter(CreateElementRequest.class);
+			if (semanticRequest != null) {
+				semanticRequest.setParameter(AspectUnspecifiedTypeCreationTool.INITIAL_MOUSE_LOCATION_FOR_CREATION, location.getCopy());
+			}
+		}
+
 		EditPart target = parent.getTargetEditPart(request);
 		assertThat("No target edit part", target, notNullValue());
 		org.eclipse.gef.commands.Command command = target.getCommand(request);
@@ -1714,5 +1736,101 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 				.orElseThrow(IllegalArgumentException::new);
 
 		execute(delete);
+	}
+
+
+	/**
+	 * <p>
+	 * Return the Papyrus {@link CreateRequest} associated with the given palette tool.
+	 * </p>
+	 * <p>
+	 * Note that this method is designed to work exclusively with Papyrus' AspectUnspecified tools and requests
+	 * </p>
+	 *
+	 * @param tool
+	 * @return
+	 * @throws Exception
+	 *
+	 * @see AspectUnspecifiedTypeCreationTool
+	 * @see AspectUnspecifiedTypeConnectionTool
+	 * @see AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest
+	 * @see AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest
+	 */
+	public Request getAspectUnspecifiedCreateRequest(final Tool tool) throws Exception {
+		final IDiagramGraphicalViewer viewer = getActiveDiagramEditor().getDiagramGraphicalViewer();
+
+		AtomicReference<Exception> exception = new AtomicReference<>();
+		Display.getDefault().syncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					tool.setViewer(viewer);
+				} catch (Exception ex) {
+					exception.set(ex);
+				}
+			}
+		});
+		if (exception.get() != null) {
+			throw exception.get();
+		}
+
+		if (tool instanceof AspectUnspecifiedTypeCreationTool) {
+			AspectUnspecifiedTypeCreationTool creationTool = (AspectUnspecifiedTypeCreationTool) tool;
+			return creationTool.createCreateRequest();
+		} else if (tool instanceof AspectUnspecifiedTypeConnectionTool) {
+			AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool) tool;
+			return connectionTool.new CreateAspectUnspecifiedTypeConnectionRequest(connectionTool.getElementTypes(), false, getPreferencesHint());
+		}
+
+		throw new Exception("Unexpected kind of creation tool.");
+	}
+
+	/**
+	 * <p>
+	 * Return the Palette Tool with the given toolId from the current active diagram editor
+	 * </p>
+	 *
+	 * @param paletteToolId
+	 * @return
+	 */
+	public Tool getPaletteTool(String paletteToolId) {
+		PaletteRoot paletteRoot = getActiveDiagramEditor().getDiagramGraphicalViewer().getEditDomain().getPaletteViewer().getPaletteRoot();
+		List<ToolEntry> allToolEntries = PaletteUtil.getAllToolEntries(paletteRoot);
+		return allToolEntries.stream().filter(entry -> entry.getId().equals(paletteToolId)).findAny().map(ToolEntry::createTool).orElse(null);
+	}
+
+	/**
+	 * Create a Link, using the given PaletteToolID (Which should match an {@link AspectUnspecifiedTypeConnectionTool}),
+	 * from the given source to the given target edit part.
+	 *
+	 * @param paletteToolId
+	 *            The ID of the palette tool to use to create a new link. It should correspond to an {@link AspectUnspecifiedTypeConnectionTool}.
+	 * @param sourceEditPart
+	 *            The edit part that is the source for the new link
+	 * @param targetEditPart
+	 *            The edit part that is the target for the new link
+	 * @param sourceLocation
+	 *            The location at which the connection source is created
+	 * @param targetLocation
+	 *            The location at which the connection target is created
+	 */
+	public void createLink(String paletteToolId, EditPart sourceEditPart, EditPart targetEditPart, Point sourceLocation, Point targetLocation) throws Exception {
+		Tool tool = getPaletteTool(paletteToolId);
+		Assert.assertNotNull("The requested tool (" + paletteToolId + ")wasn't found in the current active diagram", tool);
+		CreateAspectUnspecifiedTypeConnectionRequest request = (CreateAspectUnspecifiedTypeConnectionRequest) getAspectUnspecifiedCreateRequest(tool);
+
+		request.setLocation(sourceLocation);
+		request.setSourceEditPart(sourceEditPart);
+		request.setType(RequestConstants.REQ_CONNECTION_START);
+		org.eclipse.gef.commands.Command sourceCommand = sourceEditPart.getCommand(request); // Initialize the source
+		Assert.assertTrue("Impossible to create the requested connection (" + paletteToolId + ") on the requested source (" + sourceEditPart + ")", sourceCommand != null && sourceCommand.canExecute());
+
+		request.setTargetEditPart(targetEditPart);
+		request.setType(RequestConstants.REQ_CONNECTION_END);
+		request.setLocation(targetLocation);
+
+		org.eclipse.gef.commands.Command completeCommand = targetEditPart.getCommand(request);
+		execute(completeCommand);
 	}
 }

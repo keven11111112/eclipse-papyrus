@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Christian W. Damus - bugs 533673, 530201
+ *   Christian W. Damus - bugs 533673, 530201, 536486
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
@@ -41,6 +41,14 @@ import org.junit.runners.Suite.SuiteClasses;
 		TestCFOperandsCoveredNodes.class,
 		TestCFOperandsSemanticCoverage.class,
 		TestCFOperandsReorder.class,
+		TestDurationConstraintDisplay.class,
+		TestDurationObservationDisplay.class,
+		TestGeneralOrderingDisplay.class,
+		DurationConstraintCreationTest.class,
+		DurationObservationCreationTest.class,
+		GeneralOrderingCreationTest.class,
+		TimeElementCreationTest.class,
+		TimeElementMoveTest.class,
 })
 public class BugTests {
 
