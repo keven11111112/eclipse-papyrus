@@ -29,6 +29,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CLifeLineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomGeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageName2EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageName3EditPart;
@@ -40,6 +42,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageNameEdit
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
@@ -190,6 +194,10 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 		// return new MessageEndEditPart(view);
 		case StateInvariantLabelEditPart.VISUAL_ID:
 			return new CustomStateInvariantLabelEditPart(view);
+		case DurationConstraintLinkEditPart.VISUAL_ID:
+			return new CustomDurationConstraintLinkEditPart(view);
+		case DurationObservationLinkEditPart.VISUAL_ID:
+			return new CustomDurationObservationLinkEditPart(view);
 		}
 		return null;
 	}

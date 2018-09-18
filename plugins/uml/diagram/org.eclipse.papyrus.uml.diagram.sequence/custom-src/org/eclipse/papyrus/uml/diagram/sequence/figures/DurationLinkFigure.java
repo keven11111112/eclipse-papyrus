@@ -94,6 +94,7 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	protected void outlineShape(Graphics graphics) {
 		// Skip super; we're not drawing a polyline connection
 		arrowOrientation = computeOptimalOrientation();
+
 		paintStartLine(graphics);
 		paintEndLine(graphics);
 		paintArrow(graphics);
@@ -116,7 +117,7 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	}
 
 	/** Returns the points for the start line - the line connecting the start point to the arrow. */
-	protected PointList getStartLinePoints() {
+	public PointList getStartLinePoints() {
 		if (arrowOrientation == Orientation.HORIZONTAL) {
 			return getStartLinePointsHorizontal();
 		}
@@ -133,7 +134,7 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		startOffsetEnd.setX(startOffsetEnd.x() + HORIZOTAL_ARROW_START_LINE_OFFSET);
 		points.addPoint(startOffsetEnd);
 
-		int arrowYCoordinate = (getStart().y() + getEnd().y()) / 2;
+		int arrowYCoordinate = getArrowLineHorizontalY();
 
 		// the vertical segment
 		Point startLineEnd = startOffsetEnd.getCopy();
@@ -165,7 +166,7 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	}
 
 	private int getArrowLineVerticalX() {
-		if (getPoints().size() < 2) {
+		if (super.getPoints().size() < 2) {
 			// The connection is not configured yet
 			return 0;
 		}
@@ -193,7 +194,7 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	}
 
 	/** Returns the points for the end line - the line connecting the end point to the arrow. */
-	protected PointList getEndLinePoints() {
+	public PointList getEndLinePoints() {
 		if (arrowOrientation == Orientation.HORIZONTAL) {
 			return getEndLinePointsHorizontal();
 		}
@@ -208,7 +209,7 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		Point endOffsetEnd = getEnd().getCopy();
 		endOffsetEnd.setX(endOffsetEnd.x() - HORIZOTAL_ARROW_END_LINE_OFFSET);
 		points.addPoint(endOffsetEnd);
-		int arrowYCoordinate = (getStart().y() + getEnd().y()) / 2;
+		int arrowYCoordinate = getArrowLineHorizontalY();
 		// paint the end line
 		Point endLineEnd = endOffsetEnd.getCopy();
 		if (arrowYCoordinate < getEnd().y) {
@@ -263,13 +264,13 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	}
 
 	/** Returns the points for the arrow line drawn between the and and start lines. */
-	protected PointList getArrowLinePoints() {
+	public PointList getArrowLinePoints() {
 		PointList points = new PointList(2);
 		Point arrowStart = null, arrowEnd = null;
 		if (arrowOrientation == Orientation.HORIZONTAL) {
-			int arrowYCoordinate = (getStart().y() + getEnd().y()) / 2;
-			arrowStart = getStart().getCopy().setX(getStart().x() + ARROW_PADDING).setY(arrowYCoordinate);
-			arrowEnd = getEnd().getCopy().setX(getEnd().x() - ARROW_PADDING).setY(arrowYCoordinate);
+
+			arrowStart = getStart().getCopy().setX(getStart().x() + ARROW_PADDING).setY(getArrowLineHorizontalY());
+			arrowEnd = getEnd().getCopy().setX(getEnd().x() - ARROW_PADDING).setY(getArrowLineHorizontalY());
 		} else {
 			arrowStart = getStart().getCopy().setX(getArrowLineVerticalX());
 			arrowEnd = arrowStart.getCopy().setY(getArrowLineVerticalY());
@@ -277,6 +278,14 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		points.addPoint(arrowStart);
 		points.addPoint(arrowEnd);
 		return points;
+	}
+
+	private int getArrowLineHorizontalY() {
+		if (super.getPoints().size() < 2) {
+			// The connection is not configured yet
+			return 0;
+		}
+		return (getStart().y() + getEnd().y()) / 2 + arrowPositionDelta;
 	}
 
 	/** Adds decorations(e.g. arrow triangles) to the arrow line. */
@@ -377,7 +386,14 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		// Skip; this figure doesn't support routers/bendpoints
 	}
 
-	/* package */ static enum Orientation {
+	/**
+	 * @return the arrowOrientation
+	 */
+	public Orientation getArrowOrientation() {
+		return arrowOrientation;
+	}
+
+	public static enum Orientation {
 		VERTICAL, HORIZONTAL;
 	}
 
@@ -404,5 +420,4 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		list.add(this::getEnd);
 		return list;
 	}
-
 }
