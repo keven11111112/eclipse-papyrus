@@ -12,6 +12,7 @@
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Initial API and implementation
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 538928
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 539181
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.profilemigration;
@@ -38,8 +39,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.tree.TreeNode;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.osgi.util.NLS;
+import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.toolsmiths.profilemigration.factory.IMigratorFactory;
 import org.eclipse.papyrus.toolsmiths.profilemigration.factory.MigratorFactory;
 import org.eclipse.papyrus.toolsmiths.profilemigration.internal.data.structure.StereotypeApplicationRegistry;
@@ -48,10 +48,9 @@ import org.eclipse.papyrus.toolsmiths.profilemigration.internal.utils.AtomicMigr
 import org.eclipse.papyrus.toolsmiths.profilemigration.internal.utils.DifferenceTreeBuilder;
 import org.eclipse.papyrus.toolsmiths.profilemigration.migrators.ICompositeMigrator;
 import org.eclipse.papyrus.toolsmiths.profilemigration.migrators.atomic.IAtomicMigrator;
+import org.eclipse.papyrus.toolsmiths.profilemigration.ui.dialogs.ProfileMigrationToolConfigurationDialog;
 import org.eclipse.papyrus.toolsmiths.profilemigration.ui.preferences.ProfileMigrationPreferencePage;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
@@ -122,23 +121,45 @@ public class MigratorProfileApplication {
 	public List<EObject> reapplyProfile(Package package_, Profile profile) {
 		Resource profileAfterResource = profile.eResource();
 
-		String path = getFileName(profile, profileAfterResource);
-		if (path != null) {
+		String path = null;
+		Resource profileBeforeResource = null;
+
+		if (!isAlreadyInCached(profile, profileAfterResource)) {
+			ProfileMigrationToolConfigurationDialog dialog = new ProfileMigrationToolConfigurationDialog(getActiveShell(), profile.getQualifiedName());
+			int dialogResult = dialog.open();
+			switch (dialogResult) {
+			case Window.OK:
+				path = dialog.getFilePath();
+				if (path != null && path != "") { //$NON-NLS-1$
+					URI uri = URI.createFileURI(path);
+					ResourceSet profileBeforeResourceSet = new ResourceSetImpl();
+					profileBeforeResource = profileBeforeResourceSet.getResource(uri, true);
+					saveNewFileInCache(path, profileBeforeResource);
+				}
+				break;
+			case ProfileMigrationToolConfigurationDialog.SKIP:
+				package_.applyProfile(profile);
+				return newStereotypeApplication;
+			case Window.CANCEL:
+			default:
+				return newStereotypeApplication;
+			}
+		} else {
 			try {
+				path = cacheProfileToFile.get(((XMIResource) profileAfterResource).getID(profile));
 				URI uri = URI.createFileURI(path);
 				ResourceSet profileBeforeResourceSet = new ResourceSetImpl();
-				Resource profileBeforeResource = profileBeforeResourceSet.getResource(uri, true);
-				migrateNewAppliedProfile(package_, profile, profileBeforeResource, profileAfterResource);
+				profileBeforeResource = profileBeforeResourceSet.getResource(uri, true);
 			} catch (WrappedException e) {
 				// File is not found so restart reapply profile with asking the user
 				removeFilePathFromCached(path);
 				reapplyProfile(package_, profile);
 			}
-		} else {
-			MessageDialog message = new MessageDialog(Display.getDefault().getActiveShell(), "Incorect file", null, "The selected path is incorect so the profile will just be reapply.", MessageDialog.INFORMATION, new String[] { "OK" }, 0); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-			message.open();
-			package_.applyProfile(profile);
 		}
+		if (path != null && profileBeforeResource != null) {
+			migrateNewAppliedProfile(package_, profile, profileBeforeResource, profileAfterResource);
+		}
+
 		return newStereotypeApplication;
 	}
 
@@ -293,43 +314,49 @@ public class MigratorProfileApplication {
 		return result;
 	}
 
-	private String getFileName(Profile profile, Resource profileAfterResource) {
+	/**
+	 * Check if there is already the registered file for this profile and update cacheProfileToFile property accordingly
+	 *
+	 * @param profile
+	 *            the migrated profile
+	 * @param profileAfterResource
+	 *            the resource associate to tjis migrated profile
+	 * @return true if the profile has already an associated file in the cache
+	 */
+	private boolean isAlreadyInCached(Profile profile, Resource profileAfterResource) {
 		if (cacheProfileToFile.containsKey(((XMIResource) profileAfterResource).getID(profile))) {
 			String path = cacheProfileToFile.get(((XMIResource) profileAfterResource).getID(profile));
 			if (ProfileMigrationPreferencePage.getCachedFiles().contains(path)) {
-				return path;
+				return true;
 			} else {
 				cacheProfileToFile.remove(((XMIResource) profileAfterResource).getID(profile));
+				return false;
 			}
 		}
+		return false;
+	}
 
-		FileDialog dialog = new FileDialog(getActiveShell(), SWT.OPEN);
-		dialog.setText(NLS.bind(Messages.MigratorProfileApplicationDelegate_SelectFileDialogTitle, profile.getName()));
-		dialog.setFilterExtensions(new String[] { "*.profile.uml", "*" }); //$NON-NLS-1$ //$NON-NLS-2$
-		dialog.setFilterNames(new String[] { "Profiles", "All" }); //$NON-NLS-1$ //$NON-NLS-2$
-		String path = dialog.open();
-
-		if (path != null) {
-			// add all profile to the cache
-			URI uri = URI.createFileURI(path);
-			ResourceSet profileBeforeResourceSet = new ResourceSetImpl();
-			Resource profileBeforeResource = profileBeforeResourceSet.getResource(uri, true);
-			TreeIterator<EObject> iter = profileBeforeResource.getAllContents();
-			while (iter.hasNext()) {
-				EObject object = iter.next();
-				if (object instanceof Package) {
-					if (object instanceof Profile) {
-						cacheProfileToFile.put(((XMIResource) profileBeforeResource).getID(object), path);
-						if (!ProfileMigrationPreferencePage.getCachedFiles().contains(path)) {
-							ProfileMigrationPreferencePage.addFile(path);
-						}
+	/**
+	 * Add all profiles contain by the file to the cache
+	 *
+	 * @param path
+	 *            the filePath
+	 */
+	private void saveNewFileInCache(String path, Resource profileBeforeResource) {
+		TreeIterator<EObject> iter = profileBeforeResource.getAllContents();
+		while (iter.hasNext()) {
+			EObject object = iter.next();
+			if (object instanceof Package) {
+				if (object instanceof Profile) {
+					cacheProfileToFile.put(((XMIResource) profileBeforeResource).getID(object), path);
+					if (!ProfileMigrationPreferencePage.getCachedFiles().contains(path)) {
+						ProfileMigrationPreferencePage.addFile(path);
 					}
-				} else {
-					iter.prune();
 				}
+			} else {
+				iter.prune();
 			}
 		}
-		return path;
 	}
 
 	/**

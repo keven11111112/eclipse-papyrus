@@ -53,8 +53,17 @@ public class Messages extends NLS {
 	public static String ProfileMigrationPreferenceConstants_ProfileMove;
 	public static String ProfileMigrationPreferenceConstants_StereotypeMove;
 	public static String ProfileMigrationPreferenceConstants_SuperStereotypeBecomingAbstract;
+	public static String ProfileMigrationPreferencePage_deleteCachedFileTooptip;
 	public static String ProfileMigrationPreferencePage_FileInCached;
 	public static String ProfileMigrationPreferencePage_ShowDialogs;
+	public static String ProfileMigrationToolConfigurationDialog_FileSelectionSelectionDescription;
+	public static String ProfileMigrationToolConfigurationDialog_FileSelection;
+	public static String ProfileMigrationToolConfigurationDialog_FileSelectionSelectionTitle;
+	public static String ProfileMigrationToolConfigurationDialog_ImportButtonName;
+	public static String ProfileMigrationToolConfigurationDialog_ImportButtonTooltip;
+	public static String ProfileMigrationToolConfigurationDialog_SkipButtonName;
+	public static String ProfileMigrationToolConfigurationDialog_SkipButtonTooltip;
+	public static String ProfileMigrationToolConfigurationDialog_Title;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

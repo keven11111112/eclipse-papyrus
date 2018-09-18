@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Initial API and implementation
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 539181
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.profilemigration.ui.preferences;
@@ -46,12 +47,12 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * Define the preference page for configuring the Profile migration tool
- * 
+ *
  * ----------------------
  * list of check button to activate or not pop-up
  * ----------------------
  * list of cached file with a remove button
- * 
+ *
  */
 public class ProfileMigrationPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
@@ -63,6 +64,9 @@ public class ProfileMigrationPreferencePage extends FieldEditorPreferencePage im
 
 	/** The list of files in cache */
 	private static List<String> cachedFiles = new ArrayList<>();
+
+	/** The original list of files in cache */
+	private static List<String> originalcachedFiles = new ArrayList<>();
 
 	/** The list of booleanFieldEditor one for each dialog type */
 	private List<BooleanFieldEditor> booleanFieldEditor;
@@ -84,6 +88,7 @@ public class ProfileMigrationPreferencePage extends FieldEditorPreferencePage im
 	@Override
 	public void init(IWorkbench workbench) {
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
+		originalcachedFiles = new ArrayList<>(cachedFiles);
 	}
 
 	@Override
@@ -93,6 +98,7 @@ public class ProfileMigrationPreferencePage extends FieldEditorPreferencePage im
 
 		Group group = new Group(mainContainer, SWT.SCROLL_PAGE);
 		group.setLayout(new GridLayout());
+		group.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 		group.setText(Messages.ProfileMigrationPreferencePage_FileInCached);
 		createTreeActionButtons(group);
 		createCachedFilesPart(group);
@@ -109,6 +115,7 @@ public class ProfileMigrationPreferencePage extends FieldEditorPreferencePage im
 	protected void createFieldEditors() {
 		Group group = new Group(mainContainer, SWT.SCROLL_PAGE);
 		group.setLayout(new GridLayout());
+		group.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 		group.setText(Messages.ProfileMigrationPreferencePage_ShowDialogs);
 		for (Entry<String, String> entry : ProfileMigrationPreferenceConstants.mapPrefConstToLabel.entrySet()) {
 			BooleanFieldEditor editor = new BooleanFieldEditor(entry.getKey(), entry.getValue(), group);
@@ -118,6 +125,29 @@ public class ProfileMigrationPreferencePage extends FieldEditorPreferencePage im
 		}
 	}
 
+	/**
+	 * @see org.eclipse.jface.preference.PreferencePage#performCancel()
+	 *
+	 * @return
+	 */
+	@Override
+	public boolean performCancel() {
+		// set the original list of files
+		cachedFiles.clear();
+		cachedFiles.addAll(originalcachedFiles);
+		return super.performCancel();
+	}
+
+	/**
+	 * @see org.eclipse.jface.preference.PreferencePage#performApply()
+	 *
+	 */
+	@Override
+	protected void performApply() {
+		// the new list of files is validate so the original list become the new one
+		originalcachedFiles = new ArrayList<>(cachedFiles);
+		super.performApply();
+	}
 
 	/**
 	 * Create actions associate to tree viewer.
@@ -136,7 +166,7 @@ public class ProfileMigrationPreferencePage extends FieldEditorPreferencePage im
 
 	/**
 	 * Create cached file list
-	 * 
+	 *
 	 * @param parent
 	 *            Composite where the treeViewer will be added
 	 */
@@ -155,7 +185,7 @@ public class ProfileMigrationPreferencePage extends FieldEditorPreferencePage im
 
 	/**
 	 * Method to create a button with an icon and no label.
-	 * 
+	 *
 	 * @param parent
 	 *            the composite parent
 	 * @param id
@@ -171,6 +201,7 @@ public class ProfileMigrationPreferencePage extends FieldEditorPreferencePage im
 		Button button = new Button(parent, SWT.PUSH);
 		button.setFont(JFaceResources.getDialogFont());
 		button.setData(new Integer(id));
+		button.setToolTipText(Messages.ProfileMigrationPreferencePage_deleteCachedFileTooptip);
 		button.addSelectionListener(new SelectionAdapter() {
 
 			@Override
@@ -227,7 +258,7 @@ public class ProfileMigrationPreferencePage extends FieldEditorPreferencePage im
 
 	/**
 	 * Add file to the cache
-	 * 
+	 *
 	 * @param fileName
 	 */
 	public static void addFile(String fileName) {
@@ -236,7 +267,7 @@ public class ProfileMigrationPreferencePage extends FieldEditorPreferencePage im
 
 	/**
 	 * Get the cache file list
-	 * 
+	 *
 	 * @return the cache file list
 	 */
 	public static List<String> getCachedFiles() {

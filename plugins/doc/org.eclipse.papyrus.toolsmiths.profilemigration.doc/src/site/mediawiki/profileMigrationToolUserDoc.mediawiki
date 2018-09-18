@@ -3,11 +3,13 @@ This tool is providing a way to migrate profiled model from a profile version V1
 
 =How to use it=
 ==Run the migration==
-To run the migration, you just have to '''open the profiled model''' which have to be migrated. The following pop-up will appear, then you just have to select one or many profiles you want to migrate and click on "OK".
+If the Profile migration tool is selected in preferences (see [[#Configuration]], to run the migration, you just have to '''open the profiled model''' which have to be migrated. The following pop-up will appear, then you just have to select one or many profiles you want to migrate and click on "OK".
 
 [[File:images/userDoc/Papyrus_SomeProfilesHaveChanged.png|frame|none|Pop-up asking which profile the user want to migrate]]
 
-Since the tool is base on the comparison of the old version of the model and the new one, the tool will ask you to select the file corresponding to the profile before modifications. Then the tool will start the migration and if necessary ask you to make some choice.
+Since the tool is base on the comparison of the old version of the model and the new one, the tool will ask you to select the file corresponding to the profile before modifications (pop-up in the following image). Then the tool will start the migration and if necessary ask you to make some choice.
+
+[[File:images/userDoc/Papyrus_SelectOldProfile.png|frame|none|Pop-up asking which profile the user want to migrate]]
 
 ==Migration actions==
 The tool will determine some actions of migration according to differences between the two version of the profile. Some of this actions will be manage automatically for example: when the ''isUnique'' feature of a property is set to true then the Profile Migration Tool will delete every duplicated values in each slot corresponding to this property. However, some action can't be done without choices of the user.
@@ -39,7 +41,6 @@ In the following lines you will see each case where the tool will ask you to do 
 [[File:images/userDoc/Papyrus_LowerMultiplicity.png|frame|none|Pop-up add or remove values to match with the new multiplicity]]
 
 '''Note''': note that for each pop-up display you free to tick the box ''"do not show this pop-up again"''. You can still display it again by using preferences (see [[#Configuration]])
-
 =Configuration=
 To configure the profile migration tool there is two interesting preference pages. 
 
