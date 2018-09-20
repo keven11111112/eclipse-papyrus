@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,7 +12,7 @@
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Ansgar Radermacher (CEA) ansgar.radermacher@cea.fr - Extension to validation test suite
- *
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Bug 539293
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.validation;
 
@@ -33,7 +33,7 @@ public abstract class AbstractOCLRegistration implements IValidationHook {
 
 	/**
 	 * @return The URI of the OCL file that should be added to the resource set. Must be implemented by subclasses
-	 * 
+	 *
 	 */
 	protected abstract URI getOCLFileURI();
 
@@ -64,6 +64,9 @@ public abstract class AbstractOCLRegistration implements IValidationHook {
 	}
 
 	public void addOCLResource(EObject element) {
+		if (null == element || null == element.eResource() || null == element.eResource().getResourceSet()) {
+			return;
+		}
 
 		URI oclURI = getOCLFileURI();
 		ResourceSet modelResources = element.eResource().getResourceSet();
@@ -77,7 +80,7 @@ public abstract class AbstractOCLRegistration implements IValidationHook {
 		CompleteOCLLoader helper = new CompleteOCLLoader(oclAdapter.getEnvironmentFactory()) {
 			@Override
 			protected boolean error(String primaryMessage, String detailMessage) {
-				Activator.debug("Can not get environment factory");
+				Activator.debug("Can not get environment factory"); //$NON-NLS-1$
 				return false;
 			}
 		};

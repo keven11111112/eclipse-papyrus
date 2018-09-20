@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,18 +9,21 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- * Andreas Muelder - muelder@itemis.de -  Initial API and implementation
+ * 	Andreas Muelder - muelder@itemis.de -  Initial API and implementation
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Bug 539293
  *****************************************************************************/
 package org.eclipse.papyrus.uml.xtext.integration;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.tools.DirectEditManager;
@@ -51,8 +54,13 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.parser.IParseResult;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.util.StringInputStream;
+import org.eclipse.xtext.validation.CheckMode;
+import org.eclipse.xtext.validation.IResourceValidator;
+import org.eclipse.xtext.validation.Issue;
 
 import com.google.inject.Injector;
 import com.google.inject.Key;
@@ -61,6 +69,13 @@ import com.google.inject.name.Names;
 /**
  *
  * abstract base implementation of {@link ICustomDirectEditorConfiguration}
+ * This class is used to configure and use the XText editors:
+ * <ul>
+ * <li>usage in Property View, Diagram and Table, as DirectEditor or CellEditor</li>
+ * <li>manage the string parsing and provide final edition command</li>
+ * <li>create a comment stereotyped in case of parsing error</li>
+ * </ul>
+ *
  *
  * @author andreas muelder - Initial contribution and API
  *         Ansgar Radermacher - Added possibility to configure context provider
@@ -103,6 +118,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 	public IContextElementProvider getContextProvider() {
 		return new IContextElementProvider() {
 
+			@Override
 			public EObject getContextObject() {
 				if (objectToEdit instanceof EObject) {
 					return (EObject) objectToEdit;
@@ -112,6 +128,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 		};
 	}
 
+	@Override
 	public DirectEditManager createDirectEditManager(final ITextAwareEditPart host) {
 		return new XtextDirectEditManager(host, getInjector(), getStyle(), this);
 	}
@@ -119,39 +136,50 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 	/**
 	 * Adapts {@link IDirectEditorConfiguration} to gmfs {@link IParser} interface for reuse in GMF direct editing infrastructure.
 	 */
+	@Override
 	public IParser createParser(final EObject semanticObject) {
 		if (objectToEdit == null) {
 			objectToEdit = semanticObject;
 		}
 		return new IParser() {
 
+			@Override
 			public String getEditString(IAdaptable element, int flags) {
 				return DefaultXtextDirectEditorConfiguration.this.getTextToEditInternal(semanticObject);
 			}
 
+			@Override
 			public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 				CompositeCommand result = new CompositeCommand("validation"); //$NON-NLS-1$
 				IContextElementProvider provider = getContextProvider();
 
 				XtextFakeResourceContext context = new XtextFakeResourceContext(getInjector());
-				context.getFakeResource().eAdapters().add(new ContextElementAdapter(provider));
+				final XtextResource xtextResource = context.getFakeResource();
+				xtextResource.eAdapters().add(new ContextElementAdapter(provider));
+
 				try {
-					context.getFakeResource().load(new StringInputStream(newString), Collections.EMPTY_MAP);
+					xtextResource.load(new StringInputStream(newString), Collections.EMPTY_MAP);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				if (provider instanceof IContextElementProviderWithInit) {
 					((IContextElementProviderWithInit) provider).initResource(context.getFakeResource());
 				}
-				EcoreUtil2.resolveLazyCrossReferences(context.getFakeResource(), CancelIndicator.NullImpl);
-				if (!context.getFakeResource().getParseResult().hasSyntaxErrors() && context.getFakeResource().getErrors().size() == 0) {
-					EObject xtextObject = context.getFakeResource().getParseResult().getRootASTElement();
+				EcoreUtil2.resolveLazyCrossReferences(xtextResource, CancelIndicator.NullImpl);
+
+				final IResourceValidator resVal = xtextResource.getResourceServiceProvider().getResourceValidator();
+				final List<Issue> issues = resVal.validate(xtextResource, CheckMode.ALL, CancelIndicator.NullImpl);
+				final IParseResult parseResult = xtextResource.getParseResult();
+				final List<Diagnostic> errors = context.getFakeResource().getErrors();
+
+				if (!parseResult.hasSyntaxErrors() && errors.size() == 0 && issues.size() == 0) {
+					EObject xtextObject = xtextResource.getParseResult().getRootASTElement();
 					ICommand cmd = DefaultXtextDirectEditorConfiguration.this.getParseCommand(semanticObject, xtextObject);
 					if (cmd != null) {
 						result.add(cmd);
 					}
 				} else {
-					result.add(createInvalidStringCommand(newString, semanticObject));
+					result.add(createInvalidStringCommand(newString, semanticObject, parseResult, errors, issues));
 				}
 				AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(semanticObject);
 				validationCommand.disableUIFeedback();
@@ -159,19 +187,23 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 				return result;
 			}
 
+			@Override
 			public String getPrintString(IAdaptable element, int flags) {
 				return DefaultXtextDirectEditorConfiguration.this.getTextToEdit(semanticObject);
 			}
 
+			@Override
 			public boolean isAffectingEvent(Object event, int flags) {
 				return false;
 			}
 
+			@Override
 			public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 				// Not used
 				return null;
 			}
 
+			@Override
 			public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 				// Not used
 				return null;
@@ -192,7 +224,38 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 		return getTextToEdit(semanticObject);
 	}
 
-	protected ICommand createInvalidStringCommand(final String newString, EObject semanticElement) {
+	/**
+	 *
+	 * @param invalidString
+	 *            the invalid string we tried to set in the UML model
+	 * @param semanticElement
+	 *            the edited element
+	 * @return
+	 * 		the command saving the invalid string in a stereotyped comment
+	 * @deprecated since 2.1
+	 */
+	@Deprecated
+	protected ICommand createInvalidStringCommand(final String invalidString, final EObject semanticElement) {
+		return createInvalidStringCommand(invalidString, semanticElement, null, Collections.<Diagnostic> emptyList(), Collections.<Issue> emptyList());
+	}
+
+	/**
+	 *
+	 * @param invalidString
+	 *            the invalid string we tried to set in the UML model
+	 * @param semanticElement
+	 *            the edited element
+	 * @param parseResult
+	 *            the parse result of the string
+	 * @param diagnostics
+	 *            the diagnostic given by the resource
+	 * @param issues
+	 *            the issues found by the resource validator
+	 * @return
+	 * 		the command saving the invalid string in a stereotyped comment. The command result contains contains a {@link XTextStringValidationResult} owning informations about the invalid string
+	 * @since 2.1
+	 */
+	protected ICommand createInvalidStringCommand(final String invalidString, final EObject semanticElement, final IParseResult parseResult, final List<Diagnostic> diagnostics, final List<Issue> issues) {
 		if (semanticElement instanceof Element) {
 			registerInvalidStringAdapter(semanticElement);
 			final Element element = (Element) semanticElement;
@@ -205,8 +268,8 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 					if (comment == null) {
 						comment = InvalidStringUtil.createTextualRepresentationComment(element, languageName);
 					}
-					comment.setBody(newString);
-					return CommandResult.newOKCommandResult();
+					comment.setBody(invalidString);
+					return CommandResult.newOKCommandResult(new XTextStringValidationResult(comment, invalidString, diagnostics, issues, parseResult));
 				}
 			};
 
@@ -221,6 +284,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 		}
 	}
 
+	@Override
 	public CellEditor createCellEditor(Composite parent, final EObject semanticObject) {
 		IContextElementProvider provider = getContextProvider();
 		XtextStyledTextCellEditorEx cellEditor = new XtextStyledTextCellEditorEx(SWT.MULTI | SWT.BORDER, getInjector(), provider) {
@@ -235,6 +299,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 				StyledText text = super.createStyledText(parent);
 				text.addListener(3005, new Listener() {
 
+					@Override
 					public void handleEvent(Event event) {
 						if (event.character == SWT.CR && !completionProposalAdapter.isProposalPopupOpen()) {
 							focusLost();
