@@ -54,11 +54,11 @@ location oomph "http://download.eclipse.org/oomph/drops/release/1.10.0" {
 
 //updateFrom("EGIT",0) 
 
-location egit "http://download.eclipse.org/egit/staging/v5.1.0.201809051400-rc1" // oomph
+location egit "http://download.eclipse.org/egit/updates-5.1" // oomph
 
 //updateFrom("m2e",0)
 
-location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.1.20180906-0204" // oomph
+location m2e "http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.1.20180912-1601" // oomph
 
 //updateFrom("Mylyn",0)
 

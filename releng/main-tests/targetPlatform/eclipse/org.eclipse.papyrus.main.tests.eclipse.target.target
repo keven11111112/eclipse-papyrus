@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Tests" sequenceNumber="1536740131">
+<target name="Papyrus Tests" sequenceNumber="1537449508">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -55,11 +55,11 @@
       <repository id="xwt" location="file:/home/data/httpd/download.eclipse.org/xwt/updates"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.15.0.v20180904-1101"/>
-      <unit id="org.eclipse.xtend.sdk.feature.group" version="2.15.0.v20180904-1101"/>
-      <unit id="org.eclipse.xtext.redist.feature.group" version="2.15.0.v20180904-1101"/>
-      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.15.0.v20180904-1101"/>
-      <unit id="org.eclipse.xtext.ui.feature.group" version="2.15.0.v20180904-1101"/>
+      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.15.0.v20180916-1232"/>
+      <unit id="org.eclipse.xtend.sdk.feature.group" version="2.15.0.v20180916-1232"/>
+      <unit id="org.eclipse.xtext.redist.feature.group" version="2.15.0.v20180916-1232"/>
+      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.15.0.v20180916-1232"/>
+      <unit id="org.eclipse.xtext.ui.feature.group" version="2.15.0.v20180916-1232"/>
       <repository id="xtext" location="file:/home/data/httpd/download.eclipse.org/modeling/tmf/xtext/updates/releases/2.15.0"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">

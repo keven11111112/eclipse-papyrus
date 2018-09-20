@@ -7,7 +7,7 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //updateFrom("EGIT",0)
 
-location egit "http://download.eclipse.org/egit/staging/v5.1.0.201809051400-rc1" {
+location egit "http://download.eclipse.org/egit/updates-5.1" {
 	org.eclipse.egit.feature.group
 }
 
