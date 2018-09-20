@@ -18,7 +18,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.DurationLinkUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
@@ -29,7 +28,7 @@ import org.eclipse.uml2.uml.TimeConstraint;
 /**
  * Specific policy to set the contrained element for {@link TimeConstraint}.
  */
-public class CustomExecutionSpecificationSemanticEditPolicy extends DefaultSemanticEditPolicy {
+public class CustomExecutionSpecificationSemanticEditPolicy extends OccurenceSemanticEditPolicy {
 
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {

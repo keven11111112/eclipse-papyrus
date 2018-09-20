@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.OccurenceSemanticEditPolicy;
 import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
@@ -47,7 +46,10 @@ public class SemanticOccurrenceEditPolicyProvider extends AbstractProvider imple
 
 		CreateEditPoliciesOperation op = (CreateEditPoliciesOperation) operation;
 		EditPart editPart = op.getEditPart();
-		return editPart instanceof AbstractExecutionSpecificationEditPart || editPart instanceof AbstractMessageEditPart;
+
+		// Only install this on Message EditParts. We also need that policy for ExecSpecs,
+		// but CustomExecutionSpecificationEditPolicyProvider already takes care of that
+		return editPart instanceof AbstractMessageEditPart;
 	}
 
 	@Override
