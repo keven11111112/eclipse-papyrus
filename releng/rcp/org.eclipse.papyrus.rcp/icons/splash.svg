@@ -6,10 +6,34 @@
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg2"
    height="350"
    width="460"
-   version="1.2">
+   version="1.2"
+   sodipodi:docname="splash.svg"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1380"
+     inkscape:window-height="898"
+     id="namedview334"
+     showgrid="false"
+     inkscape:zoom="0.953584"
+     inkscape:cx="44.365474"
+     inkscape:cy="80.855544"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
   <defs
      id="defs4">
     <linearGradient
@@ -1360,7 +1384,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1749,11 +1773,11 @@
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.86258364px;line-height:0%;font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower';letter-spacing:0px;word-spacing:0px;fill:#0099ba;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1"
-     x="203.48167"
+     x="197.48167"
      y="240.93285"
      id="text4834"><tspan
        id="tspan4832"
-       x="203.48167"
+       x="197.48167"
        y="240.93285"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.49736595px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1">2018-12</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.49736595px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1">2018-12N</tspan></text>
 </svg>
