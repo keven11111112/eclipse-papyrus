@@ -30,8 +30,8 @@
 
 		<!-- Papyrus repositories. Used when we're building individual components (vs building the parent pom including everything) -->
 		<papyrus.eclipse.target>photon</papyrus.eclipse.target>
-		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/main</papyrus.repo.main>
-		<papyrus.repo.toolsmiths>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/toolsmiths</papyrus.repo.toolsmiths>
+		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2018-09/4.1.0/main</papyrus.repo.main>
+		<papyrus.repo.toolsmiths>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2018-09/4.1.0/toolsmiths</papyrus.repo.toolsmiths>
 	</properties>
 
 	<modules>
