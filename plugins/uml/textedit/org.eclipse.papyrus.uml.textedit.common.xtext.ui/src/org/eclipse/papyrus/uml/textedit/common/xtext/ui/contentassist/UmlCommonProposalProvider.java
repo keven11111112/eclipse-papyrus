@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Bug 533527
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 539319
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.textedit.common.xtext.ui.contentassist;
@@ -32,12 +32,14 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.papyrus.uml.textedit.common.xtext.ui.internal.UmlCommonActivator;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.MultiplicityRule;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.common.xtext.umlCommon.TypeRule;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.part.IShowInSource;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
@@ -80,7 +82,7 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	 * Getter for {@link #model}
 	 *
 	 * @return
-	 *         {@link #model}
+	 * 		{@link #model}
 	 */
 	protected Namespace getModel() {
 		return this.model;
@@ -90,7 +92,7 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	 * Getter for {@link #contextElement}
 	 *
 	 * @return
-	 *         {@link #contextElement}
+	 * 		{@link #contextElement}
 	 */
 	protected Element getContextElement() {
 		return this.contextElement;
@@ -104,36 +106,62 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	protected void initModel() {
 		// get selection from active editor, this assures that suitable selection is obtained if triggered
 		// from property view (fix for bug 533527)
-		IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		ISelection mySelection = activeEditor.getEditorSite().getSelectionProvider().getSelection();
+		final IEditorPart activeEditor = EditorHelper.getCurrentEditor();
+		ISelection mySelection = null;
 
-		if (mySelection instanceof IStructuredSelection) {
-			EObject first = EMFHelper.getEObject(((IStructuredSelection) mySelection).getFirstElement());
+		if (null != activeEditor) {// papyrus editor is opened with a selection in the current diagram/table
+			mySelection = activeEditor.getEditorSite().getSelectionProvider().getSelection();
+		}
 
-			if (first instanceof Element) {
-				Element element = (Element) first;
-				this.contextElement = element;
-				if (element != null) {
-					List<Namespace> namespaces = element.getNearestPackage().allNamespaces();
-					if (namespaces.size() == 0) {
-						this.model = element.getNearestPackage();
-					} else {
-						this.model = namespaces.get(namespaces.size() - 1);
-					}
 
+		if (mySelection.isEmpty()) {
+			/*
+			 * handle the two following use case, if diagrams/tables are closed, only the Welcome page is displayed:
+			 * 1. we are in the modelexplorer and we are displaying a property view.
+			 * --Example: selecting the OpaqueExpression, used as specification of a Constraint
+			 * 2. we already are in the Property View and we want to open a dialog embedding Xtext
+			 * --Example: We want to edit the Constraint's specification represented by an OpaqueExpression from the Property View
+			 */
+			final IWorkbenchPart part = EditorHelper.getActivePart();
+			final IShowInSource source = part.getAdapter(IShowInSource.class);
+			if (null != source && null != source.getShowInContext()) {
+				mySelection = source.getShowInContext().getSelection();
+			}
+		}
+
+		EObject first = null;
+		if (!mySelection.isEmpty() && mySelection instanceof IStructuredSelection) {
+			first = EMFHelper.getEObject(((IStructuredSelection) mySelection).getFirstElement());
+		}
+
+		if (first instanceof Element) {
+			this.contextElement = (Element) first;
+		}
+
+		if (null != this.contextElement) {
+			if (this.contextElement != null) {
+				List<Namespace> namespaces = this.contextElement.getNearestPackage().allNamespaces();
+				if (namespaces.size() == 0) {
+					this.model = this.contextElement.getNearestPackage();
+				} else {
+					this.model = namespaces.get(namespaces.size() - 1);
 				}
 			}
 		}
 
-		try {
-			labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, model).getLabelProvider();
-		} catch (ServiceException ex) {
-			Logger.getLogger(UmlCommonActivator.class).error(ex);
-			labelProvider = new LabelProvider();
+
+		if (null != this.model) {
+			try {
+				this.labelProvider = ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, this.model).getLabelProvider();
+			} catch (ServiceException ex) {
+				Logger.getLogger(UmlCommonActivator.class).error(ex);
+				this.labelProvider = new LabelProvider();
+			}
 		}
 
-		Assert.isNotNull(contextElement, "I can't find the edited element"); //$NON-NLS-1$
+		Assert.isNotNull(this.contextElement, "I can't find the edited element"); //$NON-NLS-1$
 		Assert.isNotNull(this.model, "I can't find the model owning the edited element"); //$NON-NLS-1$
+
 	}
 
 	/**
@@ -453,7 +481,7 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	 * @return the list of classifiers that are directly or indirectly owned by the namespaces imported by the context namespace
 	 */
 	protected List<Type> getRecursivelyImportedType(Namespace context) {
-		List<Type> recursivelyImportedTypes = new ArrayList<Type>();
+		List<Type> recursivelyImportedTypes = new ArrayList<>();
 
 		EList<org.eclipse.uml2.uml.Package> importedPackages = context.getImportedPackages();
 		for (Package p : importedPackages) {
@@ -473,7 +501,7 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	 * @return the list of classifiers that are directly or indirectly owned by the context namespace
 	 */
 	protected List<Type> getRecursivelyOwnedType(Namespace context) {
-		List<Type> recursivelyOwnedTypes = new ArrayList<Type>();
+		List<Type> recursivelyOwnedTypes = new ArrayList<>();
 
 		List<Element> allOwnedElements = context.getOwnedElements();
 		for (Element e : allOwnedElements) {
@@ -496,7 +524,7 @@ public class UmlCommonProposalProvider extends AbstractUmlCommonProposalProvider
 	 * @param e
 	 *            the element to test
 	 * @return
-	 *         <code>true</code> is the element is an instance of the wanted type
+	 * 		<code>true</code> is the element is an instance of the wanted type
 	 */
 	protected boolean isWantedType(Element e) {
 		return this.wantedType.isInstance(e);
