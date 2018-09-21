@@ -50,7 +50,7 @@ import org.eclipse.ui.PlatformUI;
 public class ActiveEditorTracker implements IPageListener, IPartListener,
 		IWindowListener {
 
-	private static final String SINGLETON_MSG = "This class is a singleton and may only be instantiated once!";
+	private static final String SINGLETON_MSG = "This class is a singleton and may only be instantiated once!"; //$NON-NLS-1$
 
 	private IWorkbenchWindow workbenchWindow;
 
@@ -175,7 +175,7 @@ public class ActiveEditorTracker implements IPageListener, IPartListener,
 
 	public void pageOpened(IWorkbenchPage page) {
 		// do nothing
-		System.out.println("PAGE OPENED: " + page);
+		System.out.println("PAGE OPENED: " + page); //$NON-NLS-1$
 	}
 
 	public void partActivated(IWorkbenchPart part) {
@@ -277,7 +277,7 @@ public class ActiveEditorTracker implements IPageListener, IPartListener,
 		}
 		final IWorkbenchPartReference reference = activePage.getReference(part);
 		if (reference == null) {
-			throw new IllegalStateException("Impossible?!");
+			throw new IllegalStateException("Impossible?!"); //$NON-NLS-1$
 		}
 		lastActiveEditorId = reference.getId();
 		activeEditors.put(lastActiveEditorId, part);

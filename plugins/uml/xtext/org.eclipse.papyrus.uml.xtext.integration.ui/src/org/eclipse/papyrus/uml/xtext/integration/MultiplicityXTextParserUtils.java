@@ -35,12 +35,12 @@ public class MultiplicityXTextParserUtils {
 	/**
 	 * The character representing the unlimited number
 	 */
-	private static final String UNLIMITED_KEYWORD = "*";
+	private static final String UNLIMITED_KEYWORD = "*"; //$NON-NLS-1$
 
 	/**
 	 * The quote character.
 	 */
-	private static final String QUOTE = "\"";
+	private static final String QUOTE = "\""; //$NON-NLS-1$
 
 	/**
 	 * This allow to create the command for one bound of multiplicity and add it in the composite command.
@@ -54,7 +54,7 @@ public class MultiplicityXTextParserUtils {
 	 * @return The command to update the multiplicity.
 	 */
 	public static ICommand updateOneMultiplicityCommand(final IElementEditService provider, final EObject eObject, final String bound) {
-		final CompositeCommand compositeCommand = new CompositeCommand("Multiplicity update");
+		final CompositeCommand compositeCommand = new CompositeCommand("Multiplicity update"); //$NON-NLS-1$
 		CompositeCommand updateLower, updateUpper;
 		if (UNLIMITED_KEYWORD.equals(bound)) {
 			// The bound filled is the '*' character
@@ -93,7 +93,7 @@ public class MultiplicityXTextParserUtils {
 	 * @return The command to update the multiplicity.
 	 */
 	public static ICommand updateTwoMultiplicityCommand(final IElementEditService provider, final EObject eObject, final String lowerBound, final String upperBound) {
-		final CompositeCommand compositeCommand = new CompositeCommand("Multiplicity update");
+		final CompositeCommand compositeCommand = new CompositeCommand("Multiplicity update"); //$NON-NLS-1$
 		
 		CompositeCommand updateLower = updateLowerValueSpecificationMultiplicityCommand(provider, eObject, lowerBound);
 		if (!updateLower.isEmpty()) {
@@ -130,7 +130,7 @@ public class MultiplicityXTextParserUtils {
 	 * @return The command to update the lower multiplicity.
 	 */
 	private static CompositeCommand updateLowerValueSpecificationMultiplicityCommand(final IElementEditService provider, final EObject eObject, final String bound) {
-		final CompositeCommand compositeCommand = new CompositeCommand("Lower Multiplicity update");
+		final CompositeCommand compositeCommand = new CompositeCommand("Lower Multiplicity update"); //$NON-NLS-1$
 		
 		ValueSpecification newLowerValueSpecification = (ValueSpecification) eObject.eGet(UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue());
 
@@ -170,7 +170,7 @@ public class MultiplicityXTextParserUtils {
 	 * @return The command to update the upper multiplicity.
 	 */
 	private static CompositeCommand updateUpperValueSpecificationMultiplicityCommand(final IElementEditService provider, final EObject eObject, final String bound) {
-		final CompositeCommand compositeCommand = new CompositeCommand("Upper Multiplicity update");
+		final CompositeCommand compositeCommand = new CompositeCommand("Upper Multiplicity update"); //$NON-NLS-1$
 		
 		ValueSpecification newUpperValueSpecification = (ValueSpecification) eObject.eGet(UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue());
 
@@ -216,7 +216,7 @@ public class MultiplicityXTextParserUtils {
 	 */
 	private static ICommand updateLiteralStringMultiplicityCommand(final IElementEditService provider, final EObject eObject, final ValueSpecification initialValueSpecification, final EStructuralFeature feature,
 			final String bound) {
-		final CompositeCommand compositeCommand = new CompositeCommand("String Multiplicity update");
+		final CompositeCommand compositeCommand = new CompositeCommand("String Multiplicity update"); //$NON-NLS-1$
 		
 		ValueSpecification newValueSpecification = initialValueSpecification;
 

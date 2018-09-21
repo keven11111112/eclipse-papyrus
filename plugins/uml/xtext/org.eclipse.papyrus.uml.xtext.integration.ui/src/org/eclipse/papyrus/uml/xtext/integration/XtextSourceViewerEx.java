@@ -103,7 +103,7 @@ class XtextSourceViewerEx extends XtextSourceViewer {
 		Field declaredField;
 		try {
 			declaredField = TextSourceViewerConfiguration.class
-					.getDeclaredField("fPreferenceStore");
+					.getDeclaredField("fPreferenceStore"); //$NON-NLS-1$
 			declaredField.setAccessible(true);
 			declaredField.set(configuration, preferenceStore);
 		} catch (Exception e) {
@@ -121,7 +121,7 @@ class XtextSourceViewerEx extends XtextSourceViewer {
 	private void setPrivateHandleProjectionChangesField(boolean value) {
 		try {
 			Field declaredField = ProjectionViewer.class
-					.getDeclaredField("fHandleProjectionChanges");
+					.getDeclaredField("fHandleProjectionChanges"); //$NON-NLS-1$
 			declaredField.setAccessible(true);
 			declaredField.set(this, value);
 		} catch (Exception e) {

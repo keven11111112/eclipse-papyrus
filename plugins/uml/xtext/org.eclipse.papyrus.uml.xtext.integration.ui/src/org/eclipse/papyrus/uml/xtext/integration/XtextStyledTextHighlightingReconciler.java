@@ -1,3 +1,18 @@
+/*****************************************************************************
+ * Copyright (c) 2013 CEA LIST and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.uml.xtext.integration;
 
 import java.util.ArrayList;
@@ -106,10 +121,9 @@ class XtextStyledTextHighlightingReconciler implements
 	 * @param highlighting
 	 *            The highlighting
 	 */
+	@Override
 	public void addPosition(int offset, int length, String... ids) {
-		TextAttribute highlighting = ids.length == 1 ? attributeProvider
-				.getAttribute(ids[0]) : attributeProvider
-				.getMergedAttributes(ids);
+		TextAttribute highlighting = ids.length == 1 ? attributeProvider.getAttribute(ids[0]) : attributeProvider.getMergedAttributes(ids);
 		boolean isExisting = false;
 		// TODO: use binary search
 		for (int i = 0, n = removedPositions.size(); i < n; i++) {
@@ -216,6 +230,7 @@ class XtextStyledTextHighlightingReconciler implements
 	 * org.eclipse.jface.text.ITextInputListener#inputDocumentAboutToBeChanged
 	 * (org.eclipse.jface.text.IDocument, org.eclipse.jface.text.IDocument)
 	 */
+	@Override
 	public void inputDocumentAboutToBeChanged(IDocument oldInput,
 			IDocument newInput) {
 		if (oldInput != null) {
@@ -228,6 +243,7 @@ class XtextStyledTextHighlightingReconciler implements
 	 * org.eclipse.jface.text.ITextInputListener#inputDocumentChanged(org.eclipse
 	 * .jface.text.IDocument, org.eclipse.jface.text.IDocument)
 	 */
+	@Override
 	public void inputDocumentChanged(IDocument oldInput, IDocument newInput) {
 		if (newInput != null) {
 			refresh();
@@ -254,6 +270,7 @@ class XtextStyledTextHighlightingReconciler implements
 		}
 	}
 
+	@Override
 	public void modelChanged(XtextResource resource) {
 		// ensure at most one thread can be reconciling at any time
 		synchronized (fReconcileLock) {

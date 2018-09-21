@@ -132,7 +132,7 @@ public class StyledTextXtextAdapter {
 		// connect Xtext document to fake resource
 		initXtextDocument(fakeResourceContext);
 		try {
-			fakeResourceContext.getFakeResource().load(new StringInputStream(""), Collections.EMPTY_MAP);
+			fakeResourceContext.getFakeResource().load(new StringInputStream(""), Collections.EMPTY_MAP); //$NON-NLS-1$
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -191,10 +191,10 @@ public class StyledTextXtextAdapter {
 		decoration.setShowHover(true);
 		decoration.setShowOnlyOnFocus(true);
 
-		final Image image = ImageDescriptor.createFromFile(XtextStyledTextCellEditor.class, "content_assist_cue.gif")
+		final Image image = ImageDescriptor.createFromFile(XtextStyledTextCellEditor.class, "content_assist_cue.gif") //$NON-NLS-1$
 				.createImage();
 		decoration.setImage(image);
-		decoration.setDescriptionText("Content Assist Available (CTRL + Space)");
+		decoration.setDescriptionText("Content Assist Available (CTRL + Space)"); //$NON-NLS-1$
 		decoration.setMarginWidth(2);
 		styledText.addDisposeListener(new DisposeListener() {
 			public void widgetDisposed(DisposeEvent e) {

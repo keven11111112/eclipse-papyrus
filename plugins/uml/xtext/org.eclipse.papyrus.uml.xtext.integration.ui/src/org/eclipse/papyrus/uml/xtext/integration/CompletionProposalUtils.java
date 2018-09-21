@@ -54,14 +54,14 @@ public class CompletionProposalUtils {
 			String completionString,
 			String displayString,
 			ContentAssistContext context) {
-		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')';
+		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')'; //$NON-NLS-1$ //$NON-NLS-2$
 
 		CustomCompletionProposal completionProposal = new CustomCompletionProposal(completionString, // String to be inserted
 				context.getOffset(), // Offset
 				context.getSelectedText().length(), // Replacement length
 				completionString.length(), // cursorPosition
 				labelProvider.getImage(namedElement), // image
-				" " + displayString, // displayString
+				" " + displayString, // displayString //$NON-NLS-1$
 				null, // contextInformation
 				additionalProposalInfo, // additionalProposalInfo
 				context);
@@ -85,14 +85,14 @@ public class CompletionProposalUtils {
 			String completionString,
 			String displayString,
 			ContentAssistContext context) {
-		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')';
+		String additionalProposalInfo = "" + namedElement.getQualifiedName() + "\n" + '(' + namedElement.eClass().getName() + ')'; //$NON-NLS-1$ //$NON-NLS-2$
 
 		CustomCompletionProposal completionProposal = new CustomCompletionProposal(completionString, // String to be inserted
 				context.getOffset() - context.getPrefix().length(), // Offset
 				context.getPrefix().length(), // Replacement length
 				completionString.length(), // cursorPosition
 				labelProvider.getImage(namedElement), // image
-				" " + displayString, // displayString
+				" " + displayString, // displayString //$NON-NLS-1$
 				null, // contextInformation
 				additionalProposalInfo, // additionalProposalInfo
 				context);
@@ -119,7 +119,7 @@ public class CompletionProposalUtils {
 				context.getSelectedText().length(), // Replacement length
 				completionString.length(), // cursorPosition
 				null, // image
-				" " + displayString, // displayString
+				" " + displayString, // displayString //$NON-NLS-1$
 				null, // contextInformation
 				null, // additionalProposalInfo
 				context);

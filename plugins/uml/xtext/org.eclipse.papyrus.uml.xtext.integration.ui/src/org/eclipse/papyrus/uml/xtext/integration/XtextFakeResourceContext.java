@@ -83,7 +83,7 @@ public class XtextFakeResourceContext {
 		IProject activeProject = getActiveProject();
 		// fallback to avoid dependency on open editor
 		String activeProjectName = activeProject != null ? activeProject
-				.getName() : "fakeResource";
+				.getName() : "fakeResource"; //$NON-NLS-1$
 		fakeResource.setURI(createFakeResourceUri(activeProjectName));
 	}
 
@@ -92,7 +92,7 @@ public class XtextFakeResourceContext {
 	}
 
 	private URI createFakeResourceBaseFragment(String activeProject) {
-		return URI.createPlatformResourceURI(activeProject + "/embedded", true);
+		return URI.createPlatformResourceURI(activeProject + "/embedded", true); //$NON-NLS-1$
 	}
 
 	private URI createFakeResourceUri(String activeProject) {

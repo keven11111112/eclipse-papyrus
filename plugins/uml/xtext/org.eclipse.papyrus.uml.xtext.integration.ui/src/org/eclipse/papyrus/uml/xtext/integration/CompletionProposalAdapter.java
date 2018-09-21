@@ -604,7 +604,7 @@ public class CompletionProposalAdapter implements ICompletionListener {
 					return (Boolean) result;
 				} else {
 					throw new IllegalStateException(
-							"Method is expected to return boolean!");
+							"Method is expected to return boolean!"); //$NON-NLS-1$
 				}
 			} catch (InvocationTargetException e) {
 				throw e.getCause(); // cause was thrown by method m.

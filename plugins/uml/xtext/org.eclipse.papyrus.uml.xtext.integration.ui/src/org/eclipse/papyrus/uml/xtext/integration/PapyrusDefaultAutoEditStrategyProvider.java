@@ -32,8 +32,8 @@ public class PapyrusDefaultAutoEditStrategyProvider extends DefaultAutoEditStrat
 	 */
 	@Override
 	protected void configureStringLiteral(final IEditStrategyAcceptor acceptor) {
-		acceptor.accept(partitionInsert.newInstance("\"", "\""), IDocument.DEFAULT_CONTENT_TYPE);
-		acceptor.accept(partitionInsert.newInstance("'", "'"), IDocument.DEFAULT_CONTENT_TYPE);
+		acceptor.accept(partitionInsert.newInstance("\"", "\""), IDocument.DEFAULT_CONTENT_TYPE); //$NON-NLS-1$ //$NON-NLS-2$
+		acceptor.accept(partitionInsert.newInstance("'", "'"), IDocument.DEFAULT_CONTENT_TYPE); //$NON-NLS-1$ //$NON-NLS-2$
 		// Don't add the partition deletion for the ' and " characters
 		acceptor.accept(partitionEndSkippingEditStrategy.get(), TerminalsTokenTypeToPartitionMapper.STRING_LITERAL_PARTITION);
 	}
