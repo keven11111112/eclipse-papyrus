@@ -13,7 +13,7 @@
  *  Christian W. Damus (CEA) - bug 444092
  *  Christian W. Damus - bug 433206
  *  Christian W. Damus - bug 473148
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
@@ -127,7 +127,7 @@ public class UMLUtil {
 	/**
 	 * Search the given stereotype (by name) on the given UML Element.
 	 * If the search is not strict, the name may be the qualified name of a
-	 * super-stereotype of some applied stereotype
+	 * super-stereotype of some applied stereotype.
 	 *
 	 * @param umlElement
 	 *            The UML Element on which the stereotype is applied
@@ -151,30 +151,29 @@ public class UMLUtil {
 			return stereotype;
 		}
 
-		// The parent stereotype is not always applicable...
-		// stereotype = umlElement.getApplicableStereotype(stereotypeName);
-
-		List<Stereotype> subStereotypes = findSubstereotypes(umlElement, stereotypeName);
-
-		for (Stereotype subStereotype : subStereotypes) {
-			if (umlElement.getAppliedStereotypes().contains(subStereotype)) {
-				return subStereotype;
+		// now check whether one of the applied stereotypes has the requested super stereotype
+		for (Stereotype subStereotype : umlElement.getAppliedStereotypes()) {
+			for (Stereotype superStereotype : getAllSuperStereotypes(subStereotype)) {
+				if (superStereotype.getQualifiedName().equals(stereotypeName)) {
+					// return applied stereotype whose super-stereotype matches given name
+					return subStereotype;
+				}
 			}
 		}
-
 		return null;
 	}
 
 	/**
 	 * Obtains the possibly implicitly applied (by virtue of some sub-stereotype of it being applied) stereotype
-	 * of the specified name on a UML element.
+	 * of the specified name on a UML element. The difference to getAppliedStereotype is that it returns potentially
+	 * a super-stereotype instead of the one that is actually applied.
 	 *
 	 * @param umlElement
 	 *            The UML Element on which the stereotype is (possibly pseudo-) applied
 	 * @param stereotypeName
 	 *            The qualified name of the stereotype
 	 * @return
-	 * 		The stereotype of the given name that either is applied or has some substereotype that is applied to the element
+	 * 		The stereotype of the given name that either is applied or has some sub-stereotype that is applied to the element
 	 */
 	public static Stereotype getAppliedSuperstereotype(Element umlElement, String stereotypeName) {
 		if (umlElement == null) {
@@ -187,10 +186,13 @@ public class UMLUtil {
 		// Simplest case
 		Stereotype result = umlElement.getAppliedStereotype(stereotypeName);
 		if (result == null) {
-			for (Stereotype sub : findSubstereotypes(umlElement, stereotypeName)) {
-				if (umlElement.isStereotypeApplied(sub)) {
-					result = getSuperstereotype(sub, stereotypeName);
-					break;
+			// now check whether one of the applied stereotypes has the requested super stereotype
+			for (Stereotype subStereotype : umlElement.getAppliedStereotypes()) {
+				for (Stereotype superStereotype : getAllSuperStereotypes(subStereotype)) {
+					if (superStereotype.getQualifiedName().equals(stereotypeName)) {
+						// return superStereotype (that is actually not applied and may even not be applicable)
+						return superStereotype;
+					}
 				}
 			}
 		}
@@ -225,12 +227,11 @@ public class UMLUtil {
 
 		Stereotype result = umlElement.getApplicableStereotype(stereotypeName);
 		if ((result == null) && !strict) {
-			List<Stereotype> subStereotypes = findSubstereotypes(umlElement, stereotypeName);
-
-			for (Stereotype subStereotype : subStereotypes) {
-				if (umlElement.isStereotypeApplicable(subStereotype)) {
-					result = subStereotype;
-					break;
+			for (Stereotype applicableSt : umlElement.getApplicableStereotypes()) {
+				for (Stereotype superStereotype : getAllSuperStereotypes(applicableSt)) {
+					if (superStereotype.getQualifiedName().equals(stereotypeName)) {
+						return applicableSt;
+					}
 				}
 			}
 		}
@@ -240,12 +241,12 @@ public class UMLUtil {
 
 	/**
 	 * Gets the first stereotype conforming to the given {@code stereotype} that is applied to the specified UML element.
-	 * 
+	 *
 	 * @param umlElement
 	 *            an UML element. Must not be {@code null}
 	 * @param stereotype
 	 *            a stereotype that may or may not be applied to the element. Must not be {@code null}
-	 * 
+	 *
 	 * @return the {@code stereotype} if it is applied to the element, or some subtype of it that is applied,
 	 *         if any sub-type of the {@code stereotype} is applied to the element
 	 */
@@ -299,20 +300,24 @@ public class UMLUtil {
 	}
 
 	/**
-	 * Returns all stereotypes matching the given qualified stereotype name, and their substereotypes
+	 * Returns all stereotypes matching the given qualified stereotype name, and their sub-stereotypes
 	 * The search is performed in the context of the given UML Element, i.e. the profiles applied
 	 * on the Element's nearest package
+	 * 
+	 * @deprecated: The performance of this function is bad, if multiple profiles / sub-profiles are
+	 *              applied, e.g. MARTE and SysML.
 	 *
 	 * @param umlElement
 	 * @param stereotypeName
-	 * @return
+	 * @return the list of stereotypes
 	 */
+	@Deprecated
 	public static List<Stereotype> findSubstereotypes(Element umlElement, String stereotypeName) {
 		if (umlElement == null || stereotypeName == null) {
 			return null;
 		}
 
-		Set<Stereotype> stereotypes = new HashSet<Stereotype>();
+		Set<Stereotype> stereotypes = new HashSet<>();
 		org.eclipse.uml2.uml.Package umlPackage = umlElement.getNearestPackage();
 
 		if (umlPackage == null) {
@@ -333,19 +338,19 @@ public class UMLUtil {
 			}
 		}
 
-		return new LinkedList<Stereotype>(stereotypes);
+		return new LinkedList<>(stereotypes);
 	}
 
 
 
 	/**
 	 * Get all stereotyped contained in a profile and its nested package
-	 * 
+	 *
 	 * @param pck
 	 * @return
 	 */
 	public static Set<Stereotype> getAllStereotypes(Package pck) {
-		Set<Stereotype> stereotypes = new HashSet<Stereotype>();
+		Set<Stereotype> stereotypes = new HashSet<>();
 		stereotypes.addAll(pck.getOwnedStereotypes());
 		for (Package nestedPackage : pck.getNestedPackages()) {
 			stereotypes.addAll(getAllStereotypes(nestedPackage));
@@ -382,7 +387,7 @@ public class UMLUtil {
 	 * 		A collection of all super stereotypes
 	 */
 	public static Collection<Stereotype> getAllSuperStereotypes(Stereotype stereotype) {
-		Set<Stereotype> result = new HashSet<Stereotype>();
+		Set<Stereotype> result = new HashSet<>();
 		if (stereotype != null) {
 			getAllSuperStereotypes(stereotype, result);
 		}
@@ -494,7 +499,7 @@ public class UMLUtil {
 	 *            a list of elements
 	 */
 	public static void destroyElements(EList<? extends Element> list) {
-		BasicEList<Element> listCopy = new BasicEList<Element>();
+		BasicEList<Element> listCopy = new BasicEList<>();
 		// loop on copy in order to avoid iterator exception
 		listCopy.addAll(list);
 		for (Element element : listCopy) {
@@ -505,7 +510,7 @@ public class UMLUtil {
 	/**
 	 * Queries whether an {@code element} is a UML {@link Relationship} or something like a relationship
 	 * (e.g., a {@link Connector} or a {@link Transition}).
-	 * 
+	 *
 	 * @param element
 	 *            an element
 	 * @return whether it is a relationship-like element, that usually would be visualized as a connection on a diagram
@@ -525,13 +530,14 @@ public class UMLUtil {
 
 	/**
 	 * Obtains an {@linkplain #isRelationship(Element) is-relationship} predicate.
-	 * 
+	 *
 	 * @return the predicate
-	 * 
+	 *
 	 * @see #isRelationship(Element)
 	 */
 	public static Predicate<Element> isRelationship() {
 		return new Predicate<Element>() {
+			@Override
 			public boolean apply(Element input) {
 				return isRelationship(input);
 			}
@@ -540,11 +546,12 @@ public class UMLUtil {
 
 	/**
 	 * A predicate matching association-end {@link Property} elements.
-	 * 
+	 *
 	 * @return an is-association-end predicate
 	 */
 	public static <T> Predicate<T> isAssociationEnd() {
 		return new Predicate<T>() {
+			@Override
 			public boolean apply(T input) {
 				boolean result = false;
 
