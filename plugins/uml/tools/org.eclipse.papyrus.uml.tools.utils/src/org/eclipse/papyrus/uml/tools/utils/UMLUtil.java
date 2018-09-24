@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2015, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 444092
  *  Christian W. Damus - bug 433206
  *  Christian W. Damus - bug 473148
+ *  Ansgar Radermacher - bug 538895
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -303,9 +304,9 @@ public class UMLUtil {
 	 * Returns all stereotypes matching the given qualified stereotype name, and their sub-stereotypes
 	 * The search is performed in the context of the given UML Element, i.e. the profiles applied
 	 * on the Element's nearest package
-	 * 
-	 * @deprecated: The performance of this function is bad, if multiple profiles / sub-profiles are
-	 *              applied, e.g. MARTE and SysML.
+	 *
+	 * @deprecated since 3.4.100: The performance of this function is bad, if multiple
+	 *                       profiles / sub-profiles are applied, e.g. MARTE and SysML
 	 *
 	 * @param umlElement
 	 * @param stereotypeName
@@ -338,7 +339,7 @@ public class UMLUtil {
 			}
 		}
 
-		return new LinkedList<>(stereotypes);
+		return new LinkedList<Stereotype>(stereotypes);
 	}
 
 
@@ -387,7 +388,7 @@ public class UMLUtil {
 	 * 		A collection of all super stereotypes
 	 */
 	public static Collection<Stereotype> getAllSuperStereotypes(Stereotype stereotype) {
-		Set<Stereotype> result = new HashSet<>();
+		Set<Stereotype> result = new HashSet<Stereotype>();
 		if (stereotype != null) {
 			getAllSuperStereotypes(stereotype, result);
 		}
