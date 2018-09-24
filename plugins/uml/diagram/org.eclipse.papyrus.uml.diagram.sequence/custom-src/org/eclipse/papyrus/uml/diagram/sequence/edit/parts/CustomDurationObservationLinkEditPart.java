@@ -44,29 +44,35 @@ public class CustomDurationObservationLinkEditPart extends DurationObservationLi
 
 	@Override
 	protected void refreshVisuals() {
+		refreshArrowDelta();
+		super.refreshVisuals();
+	}
+
+	protected void refreshArrowDelta() {
 		Connector connector = (Connector) getNotationView();
 		NamedStyle namedStyle = connector.getNamedStyle(NotationPackage.Literals.INT_VALUE_STYLE, "delta");
 		if (namedStyle instanceof IntValueStyle) {
-			refreshArrowDelta((IntValueStyle) namedStyle);
+			int delta = ((IntValueStyle) namedStyle).getIntValue();
+			((DurationLinkFigure) getFigure()).setArrowPositionDelta(delta);
+		} else {
+			// no style - reset value
+			((DurationLinkFigure) getFigure()).setArrowPositionDelta(0);
 		}
-		super.refreshVisuals();
 	}
 
 	@Override
 	protected void handleNotificationEvent(Notification event) {
-		if (event.getNotifier() instanceof IntValueStyle
-				&& "delta".equals(((IntValueStyle) event.getNotifier()).getName())) {
-			refreshArrowDelta((IntValueStyle) event.getNotifier());
-		} else if (event.getNotifier() == getNotationView()
-				&& event.getFeature() == NotationPackage.Literals.VIEW__STYLES) {
-			refreshVisuals();
+		if (isDeltaIntValueStyle(event.getNotifier()) ||
+				(event.getNotifier() == getNotationView()
+						&& event.getFeature() == NotationPackage.Literals.VIEW__STYLES &&
+						(isDeltaIntValueStyle(event.getNewValue()) ||
+								(event.getNewValue() == null && isDeltaIntValueStyle(event.getOldValue()))))) {
+			refreshArrowDelta();
 		}
 		super.handleNotificationEvent(event);
 	}
 
-	private void refreshArrowDelta(IntValueStyle deltaStyle) {
-		int delta = deltaStyle.getIntValue();
-		((DurationLinkFigure) getFigure()).setArrowPositionDelta(delta);
+	private boolean isDeltaIntValueStyle(Object object) {
+		return object instanceof IntValueStyle && "delta".equals(((IntValueStyle) object).getName());
 	}
-
 }
