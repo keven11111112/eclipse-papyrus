@@ -24,7 +24,7 @@ import org.osgi.framework.BundleContext;
 public class Activator implements BundleActivator {
 
 	/**
-	 * this method is overloaded in order to launch the validator
+	 * 
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
 	 *
 	 * @param arg0
