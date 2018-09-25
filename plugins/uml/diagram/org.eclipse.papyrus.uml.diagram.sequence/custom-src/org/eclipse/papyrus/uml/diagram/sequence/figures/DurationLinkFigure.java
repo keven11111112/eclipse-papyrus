@@ -90,6 +90,8 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 	 */
 	private static final int SELECTION_TOLERANCE = 3;
 
+	public static final String DELTA_VIEW_STYLE = "delta"; //$NON-NLS-1$
+
 	@Override
 	protected void outlineShape(Graphics graphics) {
 		// Skip super; we're not drawing a polyline connection

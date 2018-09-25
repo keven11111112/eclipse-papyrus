@@ -50,13 +50,13 @@ public class CustomDurationObservationLinkEditPart extends DurationObservationLi
 
 	protected void refreshArrowDelta() {
 		Connector connector = (Connector) getNotationView();
-		NamedStyle namedStyle = connector.getNamedStyle(NotationPackage.Literals.INT_VALUE_STYLE, "delta");
+		NamedStyle namedStyle = connector.getNamedStyle(NotationPackage.Literals.INT_VALUE_STYLE, DurationLinkFigure.DELTA_VIEW_STYLE);
 		if (namedStyle instanceof IntValueStyle) {
 			int delta = ((IntValueStyle) namedStyle).getIntValue();
-			((DurationLinkFigure) getFigure()).setArrowPositionDelta(delta);
+			getPrimaryShape().setArrowPositionDelta(delta);
 		} else {
 			// no style - reset value
-			((DurationLinkFigure) getFigure()).setArrowPositionDelta(0);
+			getPrimaryShape().setArrowPositionDelta(0);
 		}
 	}
 
@@ -73,6 +73,6 @@ public class CustomDurationObservationLinkEditPart extends DurationObservationLi
 	}
 
 	private boolean isDeltaIntValueStyle(Object object) {
-		return object instanceof IntValueStyle && "delta".equals(((IntValueStyle) object).getName());
+		return object instanceof IntValueStyle && DurationLinkFigure.DELTA_VIEW_STYLE.equals(((IntValueStyle) object).getName());
 	}
 }

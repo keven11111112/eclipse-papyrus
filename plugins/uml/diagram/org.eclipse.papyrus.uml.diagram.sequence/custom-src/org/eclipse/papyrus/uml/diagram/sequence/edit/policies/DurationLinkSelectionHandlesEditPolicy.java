@@ -212,19 +212,29 @@ public class DurationLinkSelectionHandlesEditPolicy extends PapyrusConnectionEnd
 						Connector connector = (Connector) durationLinkEditPart.getNotationView();
 
 						@SuppressWarnings("unchecked")
-						Optional<IntValueStyle> deltaOptional = connector.getStyles().stream().filter(IntValueStyle.class::isInstance).filter(style -> "delta".equals(((IntValueStyle) style).getName())).findFirst();
+						Optional<IntValueStyle> deltaOptional = connector.getStyles().stream().filter(IntValueStyle.class::isInstance).filter(style -> DurationLinkFigure.DELTA_VIEW_STYLE.equals(((IntValueStyle) style).getName())).findFirst();
 						IntValueStyle deltaStyle = deltaOptional.orElseGet(() -> {
 							IntValueStyle style = (IntValueStyle) connector.createStyle(NotationPackage.eINSTANCE.getIntValueStyle());
-							style.setName("delta");
+							style.setName(DurationLinkFigure.DELTA_VIEW_STYLE);
 							return style;
 						});
-						Point moveDelta = ((MoveArrowRequest) request).getMoveDelta();
+
+						DurationLinkFigure figure = ((DurationLinkFigure) durationLinkEditPart.getFigure());
+						PointList arrowLinePoints = figure.getArrowLinePoints();
+						Point arrowPoint = arrowLinePoints.getMidpoint().getCopy();
+
+						figure.translateToAbsolute(arrowPoint);
+						arrowPoint.translate(((MoveArrowRequest) request).getMoveDelta());
+						figure.translateToRelative(arrowPoint);
+
+						Dimension moveDelta = arrowPoint.getDifference(arrowLinePoints.getMidpoint());
+
 						Orientation arrowOrientation = ((MoveArrowRequest) request).getArrowOrientation();
 						if (arrowOrientation == Orientation.VERTICAL) {
-							deltaStyle.setIntValue(deltaStyle.getIntValue() + moveDelta.x);
+							deltaStyle.setIntValue(deltaStyle.getIntValue() + moveDelta.width);
 						} else {
 							// horizontal
-							deltaStyle.setIntValue(deltaStyle.getIntValue() + moveDelta.y);
+							deltaStyle.setIntValue(deltaStyle.getIntValue() + moveDelta.height);
 						}
 						return CommandResult.newOKCommandResult();
 					}
