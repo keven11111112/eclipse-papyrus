@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,15 +10,19 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 539373
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.TreeSearch;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.LinkLFSVGNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.anchors.AnchorConstants;
 import org.eclipse.papyrus.uml.diagram.sequence.anchors.NodeBottomAnchor;
@@ -75,5 +79,27 @@ public class ExecutionSpecificationNodePlate extends LinkLFSVGNodePlateFigure im
 			return AnchorConstants.END_TERMINAL;
 		}
 		return super.getConnectionAnchorTerminal(c);
+	}
+
+	@Override
+	public boolean containsPoint(int x, int y) {
+		boolean result = super.containsPoint(x, y);
+		if (!result) {
+			// Hit test my border items
+			BorderedNodeFigure parent = (BorderedNodeFigure) getParent();
+			result = parent.getBorderItemContainer().containsPoint(x, y);
+		}
+		return result;
+	}
+
+	@Override
+	public final IFigure findFigureAt(int x, int y, TreeSearch search) {
+		IFigure result = super.findFigureAt(x, y, search);
+		if (result == null) {
+			// Search my border items
+			BorderedNodeFigure parent = (BorderedNodeFigure) getParent();
+			result = parent.getBorderItemContainer().findFigureAt(x, y, search);
+		}
+		return result;
 	}
 }
