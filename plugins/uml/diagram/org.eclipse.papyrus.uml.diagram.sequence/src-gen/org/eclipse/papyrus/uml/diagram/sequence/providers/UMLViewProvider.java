@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009, 2018 Atos Origin, Christian W. Damus, CEA LIST, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *   Vincent Lorenzo - vincent.lorenzo@cea.fr - CEA - LIST
+ *   Christian W. Damus - bug 536486
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
 
@@ -124,6 +125,9 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEdi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintBorderNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationBorderNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
@@ -196,7 +200,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		 * <p>
 		 * This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
 		 * </p>
-		 *
+		 * 
 		 * @return the unique identifier of the diagram for which views are provided.
 		 */
 		return SequenceDiagramEditPart.MODEL_ID;
@@ -265,6 +269,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 					case CommentEditPart.VISUAL_ID:
 					case GateEditPart.VISUAL_ID:
 					case TimeConstraintBorderNodeEditPart.VISUAL_ID:
+					case TimeObservationBorderNodeEditPart.VISUAL_ID:
 						if (domainElement == null || !visualID
 								.equals(UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
 							return false; // visual id in semantic hint should match visual id for domain element
@@ -367,6 +372,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				return createGate_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			case TimeConstraintBorderNodeEditPart.VISUAL_ID:
 				return createTimeConstraint_Shape(domainElement, containerView, index, persisted, preferencesHint);
+			case TimeObservationBorderNodeEditPart.VISUAL_ID:
+				return createTimeObservation_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			}
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
@@ -722,6 +729,36 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				.getLayoutConstraint();
 		timeConstraint_StereotypeLabel_Location.setX(0);
 		timeConstraint_StereotypeLabel_Location.setY(-22);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createTimeObservation_Shape(EObject domainElement, View containerView, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(TimeObservationBorderNodeEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeObservation");
+		Node timeObservation_NameLabel = createLabel(node,
+				UMLVisualIDRegistry.getType(TimeObservationNameEditPart.VISUAL_ID));
+		timeObservation_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location timeObservation_NameLabel_Location = (Location) timeObservation_NameLabel.getLayoutConstraint();
+		timeObservation_NameLabel_Location.setX(25);
+		timeObservation_NameLabel_Location.setY(3);
+		Node timeObservation_StereotypeLabel = createLabel(node,
+				UMLVisualIDRegistry.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID));
+		timeObservation_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location timeObservation_StereotypeLabel_Location = (Location) timeObservation_StereotypeLabel
+				.getLayoutConstraint();
+		timeObservation_StereotypeLabel_Location.setX(0);
+		timeObservation_StereotypeLabel_Location.setY(-22);
 		return node;
 	}
 

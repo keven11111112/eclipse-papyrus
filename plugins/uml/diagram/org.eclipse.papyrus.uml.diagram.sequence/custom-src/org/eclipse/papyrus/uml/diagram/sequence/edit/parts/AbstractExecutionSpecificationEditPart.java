@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST and others.
+ * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,10 +11,12 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 526079
+ *   Christian W. Damus - bug 536486
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.DelegatingLayout;
@@ -38,6 +40,7 @@ import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
@@ -69,6 +72,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.SequenceReferenceE
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateConnectionReferenceEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UpdateWeakReferenceForExecSpecEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.ExecutionSpecificationNodePlate;
+import org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.TimeElementLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.BoundForEditPart;
@@ -80,6 +84,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.GeneralOrderingUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationUtil;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.uml2.uml.MessageEnd;
 
 /**
  * Add implementing IPapyrusEditPart to displaying Stereotypes.
@@ -167,14 +172,49 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (TimeConstraintBorderNodeEditPart.class.isInstance(borderItemEditPart)) {
-			borderItemContainer.add(borderItemEditPart.getFigure(),
-					new TimeElementLocator(getMainFigure()));
+		if (borderItemEditPart instanceof TimeConstraintBorderNodeEditPart ||
+				borderItemEditPart instanceof TimeObservationBorderNodeEditPart) {
+			Optional<MessageEnd> messageEnd = Optional.of(borderItemEditPart)
+					.filter(ITimeElementBorderNodeEditPart.class::isInstance)
+					.map(ITimeElementBorderNodeEditPart.class::cast)
+					.flatMap(ITimeElementBorderNodeEditPart::getMessageEnd);
+
+			IBorderItemLocator locator = messageEnd
+					// It needs to remain anchored to the message end
+					.map(__ -> new CenterLocator(getMainFigure(), PositionConstants.NONE))
+					.map(IBorderItemLocator.class::cast)
+					.orElseGet(() -> new TimeElementLocator(getMainFigure(),
+							constraint -> findNearestSide(getMainFigure(), constraint)));
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
 
+	/**
+	 * Given a {@code constraint} proposed for a border item (usually a time element)
+	 * on an execution figure, compute the side to which it should be attached.
+	 *
+	 * @param execFig
+	 *            an execution specification figure
+	 * @param constraint
+	 *            a proposed time element border item bounds
+	 *
+	 * @return a {@link PositionConstants} side
+	 */
+	public static int findNearestSide(IFigure execFig, Rectangle constraint) {
+		Rectangle figBounds = execFig.getBounds().getCopy();
+		Point where = constraint.getTopLeft();
+		where.setX((figBounds.width() - constraint.width()) / 2);
+
+		if (DurationLinkUtil.isStart(execFig, where)) {
+			// Pin it to the top of the execution
+			return PositionConstants.NORTH;
+		} else {
+			// Pin it to the bottome
+			return PositionConstants.SOUTH;
+		}
+	}
 
 	@Override
 	public EditPart getTargetEditPart(Request request) {

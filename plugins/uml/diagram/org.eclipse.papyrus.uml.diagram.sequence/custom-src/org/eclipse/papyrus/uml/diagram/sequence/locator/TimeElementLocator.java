@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2018 CEA LIST and others.
+ * Copyright (c) 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,18 +8,28 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 536486
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.locator;
+
+import java.util.Optional;
+import java.util.function.ToIntFunction;
+import java.util.stream.Stream;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventNodePlate;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeObservation;
 
@@ -28,11 +38,30 @@ import org.eclipse.uml2.uml.TimeObservation;
  */
 public class TimeElementLocator implements IBorderItemLocator {
 
+	private final IBorderItemLocator centeringDelegate;
+
 	private IFigure parentFigure;
 	private Rectangle constraint;
+	private ToIntFunction<? super Rectangle> sideFunction;
 
-	public TimeElementLocator(IFigure parentFigure) {
+	/**
+	 * Initializes me with my parent figure and a function that computes the side on
+	 * which to place the time element based on a proposed locating rectangle.
+	 *
+	 * @param parentFigure
+	 *            the parent figure
+	 * @param sideFunction
+	 *            the proposed rectangle to side function. Valid outputs of the
+	 *            side function are the NSEW and {@link PositionConstants#CENTER CENTER}
+	 *            values of the {@link PositionConstants}
+	 */
+	public TimeElementLocator(IFigure parentFigure, ToIntFunction<? super Rectangle> sideFunction) {
+		super();
+
 		this.setParentFigure(parentFigure);
+		this.sideFunction = sideFunction;
+
+		this.centeringDelegate = new CenterLocator(parentFigure, PositionConstants.NONE);
 	}
 
 	@Override
@@ -71,17 +100,54 @@ public class TimeElementLocator implements IBorderItemLocator {
 	}
 
 	protected Point locateOnBorder(Rectangle rectSuggested, IFigure borderItem) {
-		int relativeItemLeft = rectSuggested.x;
+		Point relativeItem = rectSuggested.getTopLeft();
+		Rectangle parentBounds = getParentFigure().getBounds();
+		Rectangle itemBounds = borderItem.getBounds();
 
-		int relativeItemTop = 0;
-
-		if (getConstraint().getTopLeft().y() > 0) {
-			relativeItemTop = getParentFigure().getBounds().height;
-		} else {
-			relativeItemTop = 0;
+		// On which side?
+		int side = sideFunction.applyAsInt(rectSuggested);
+		switch (side) {
+		case PositionConstants.WEST: // Applied on the lifeline head
+			relativeItem.setLocation(-(itemBounds.width() / 2),
+					getLifelineHead().height() / 2);
+			break;
+		case PositionConstants.EAST: // Applied on the lifeline head
+			relativeItem.setLocation(parentBounds.width() - (itemBounds.width() / 2),
+					getLifelineHead().height() / 2);
+			break;
+		case PositionConstants.NORTH: // Applied on an execution specification
+			relativeItem.setLocation((parentBounds.width() - rectSuggested.width()) / 2, 0);
+			break;
+		case PositionConstants.SOUTH: // Applied on an execution specification
+			relativeItem.setLocation((parentBounds.width() - rectSuggested.width()) / 2,
+					parentBounds.height());
+			break;
+		case PositionConstants.CENTER: // Applied on a destruction occurrence and lifeline
+			if (isOnDestructionOccurrence()) {
+				// Center vertically, also
+				relativeItem.setLocation((parentBounds.width() - itemBounds.width()) / 2,
+						parentBounds.height() / 2);
+			} else {
+				return centeringDelegate.getValidLocation(rectSuggested, borderItem)
+						.getLocation();
+			}
+			break;
+		default:
+			throw new IllegalArgumentException("unsupported side: " + side);
 		}
-		Point pt = getAbsoluteToBorder(new Point(relativeItemLeft, relativeItemTop));
-		return pt;
+
+		Point result = getAbsoluteToBorder(relativeItem);
+		return result;
+	}
+
+	protected boolean isOnDestructionOccurrence() {
+		return getParentFigure() instanceof DestructionEventNodePlate;
+	}
+
+	protected Rectangle getLifelineHead() {
+		// The first (and only) child of the lifeline node plate is the lifeline figure
+		LifelineFigure lifeline = (LifelineFigure) getParentFigure().getChildren().get(0);
+		return lifeline.getHeaderFigure().getBounds();
 	}
 
 	protected IFigure getParentFigure() {
@@ -138,6 +204,26 @@ public class TimeElementLocator implements IBorderItemLocator {
 					.getCopy();
 		}
 		return bounds;
+	}
+
+	public static <T extends NamedElement> Optional<T> getTimedElement(EditPart timeElementEP, Class<T> type) {
+		return Optional.ofNullable(timeElementEP.getAdapter(EObject.class))
+				.filter(NamedElement.class::isInstance).map(NamedElement.class::cast)
+				.flatMap(named -> getTimedElement(named, type));
+	}
+
+	public static <T extends NamedElement> Optional<T> getTimedElement(NamedElement timeElement, Class<T> type) {
+		Stream<T> timed = Stream.empty();
+
+		if (timeElement instanceof TimeConstraint) {
+			TimeConstraint constraint = (TimeConstraint) timeElement;
+			timed = constraint.getConstrainedElements().stream().filter(type::isInstance).map(type::cast);
+		} else if (timeElement instanceof TimeObservation) {
+			TimeObservation observation = (TimeObservation) timeElement;
+			timed = Stream.of(observation.getEvent()).filter(type::isInstance).map(type::cast);
+		}
+
+		return timed.findFirst();
 	}
 
 }

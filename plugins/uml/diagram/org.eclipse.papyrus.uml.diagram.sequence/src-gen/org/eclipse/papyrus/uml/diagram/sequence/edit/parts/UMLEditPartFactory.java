@@ -115,6 +115,15 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:
 				return new TimeConstraintAppliedStereotypeEditPart(view);
 
+			case TimeObservationBorderNodeEditPart.VISUAL_ID:
+				return new TimeObservationBorderNodeEditPart(view);
+
+			case TimeObservationNameEditPart.VISUAL_ID:
+				return new TimeObservationNameEditPart(view);
+
+			case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
+				return new TimeObservationAppliedStereotypeEditPart(view);
+
 			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
 				return new InteractionInteractionCompartmentEditPart(view);
 

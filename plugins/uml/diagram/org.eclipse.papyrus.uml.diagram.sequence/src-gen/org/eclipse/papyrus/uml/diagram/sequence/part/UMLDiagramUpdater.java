@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 Atos Origin, CEA, and others.
+ * Copyright (c) 2009, 2018 Atos Origin, CEA, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  * Contributors:
  *   Atos Origin - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 410909
+ *   Christian W. Damus - bug 536486
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.part;
@@ -59,6 +60,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintBorderNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationBorderNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
@@ -86,6 +88,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeConstraint;
+import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -129,6 +132,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getActionExecutionSpecification_Shape_SemanticChildren(view);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				return getBehaviorExecutionSpecification_Shape_SemanticChildren(view);
+			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+				return getDestructionOccurrenceSpecification_Shape_SemanticChildren(view);
 			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
 				return getInteraction_SubfragmentCompartment_SemanticChildren(view);
 			case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
@@ -417,6 +422,33 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	public List<UMLNodeDescriptor> getDestructionOccurrenceSpecification_Shape_SemanticChildren(View view) {
+		if (!view.isSetElement()) {
+			return Collections.emptyList();
+		}
+		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification) view.getElement();
+		Interaction interaction = modelElement.getEnclosingInteraction();
+		if (interaction == null) {
+			return Collections.emptyList();
+		}
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<>();
+		for (Iterator<?> it = interaction.getOwnedRules().iterator(); it.hasNext();) {
+			Constraint childElement = (Constraint) it.next();
+			// Does it constrain this destruction occurrence?
+			if (childElement.getConstrainedElements().contains(modelElement)) {
+				String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+				if (TimeConstraintBorderNodeEditPart.VISUAL_ID.equals(visualID)) {
+					result.add(new UMLNodeDescriptor(childElement, visualID));
+					continue;
+				}
+			}
+		}
+		return result;
+	}
+
+	/**
 	 * @generated
 	 */
 	@Override
@@ -456,6 +488,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getGate_Shape_ContainedLinks(view);
 			case TimeConstraintBorderNodeEditPart.VISUAL_ID:
 				return getTimeConstraint_Shape_ContainedLinks(view);
+			case TimeObservationBorderNodeEditPart.VISUAL_ID:
+				return getTimeObservation_Shape_ContainedLinks(view);
 			case MessageSyncEditPart.VISUAL_ID:
 				return getMessage_SynchEdge_ContainedLinks(view);
 			case MessageAsyncEditPart.VISUAL_ID:
@@ -519,6 +553,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getGate_Shape_IncomingLinks(view);
 			case TimeConstraintBorderNodeEditPart.VISUAL_ID:
 				return getTimeConstraint_Shape_IncomingLinks(view);
+			case TimeObservationBorderNodeEditPart.VISUAL_ID:
+				return getTimeObservation_Shape_IncomingLinks(view);
 			case MessageSyncEditPart.VISUAL_ID:
 				return getMessage_SynchEdge_IncomingLinks(view);
 			case MessageAsyncEditPart.VISUAL_ID:
@@ -582,6 +618,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				return getGate_Shape_OutgoingLinks(view);
 			case TimeConstraintBorderNodeEditPart.VISUAL_ID:
 				return getTimeConstraint_Shape_OutgoingLinks(view);
+			case TimeObservationBorderNodeEditPart.VISUAL_ID:
+				return getTimeObservation_Shape_OutgoingLinks(view);
 			case MessageSyncEditPart.VISUAL_ID:
 				return getMessage_SynchEdge_OutgoingLinks(view);
 			case MessageAsyncEditPart.VISUAL_ID:
@@ -771,6 +809,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getTimeObservation_Shape_ContainedLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
@@ -1176,6 +1221,29 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getTimeConstraint_Shape_IncomingLinks(View view) {
 		TimeConstraint modelElement = (TimeConstraint) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_DurationConstraint_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_DurationObservation_Edge(modelElement, crossReferencer));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getTimeObservation_Shape_IncomingLinks(View view) {
+		TimeObservation modelElement = (TimeObservation) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
 				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
@@ -1694,6 +1762,24 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_DurationConstraint_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_DurationObservation_Edge(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getTimeObservation_Shape_OutgoingLinks(View view) {
+		TimeObservation modelElement = (TimeObservation) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_DurationConstraint_Edge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_DurationObservation_Edge(modelElement));
 		return result;

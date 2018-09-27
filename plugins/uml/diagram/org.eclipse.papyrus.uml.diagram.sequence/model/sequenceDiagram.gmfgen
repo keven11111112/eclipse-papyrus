@@ -11,7 +11,7 @@
       domainFileExtension="PapyrusUMLSequence"
       dynamicTemplates="true"
       templateDirectory="/org.eclipse.papyrus.def/xtend/"
-      copyrightText="Copyright (c) 2016 CEA LIST.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-2.0&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA; CEA LIST - Initial API and implementation"
+      copyrightText="Copyright (c) 2018 CEA LIST.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-2.0&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA; CEA LIST - Initial API and implementation"
       pluginDirectory="/org.eclipse.papyrus.uml.diagram.sequence/src-gen">
     <audits>
       <categories
@@ -388,7 +388,7 @@
           itemSemanticEditPolicyClassName="LifelineItemSemanticEditPolicy"
           notationViewFactoryClassName="LifelineViewFactory"
           canonicalEditPolicyClassName="LifelineCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9"
+          childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14"
           graphicalNodeEditPolicyClassName="LifelineGraphicalNodeEditPolicy"
           createCommandClassName="LifelineCreateCommand"
           containers="/0/@diagram/@compartments.0">
@@ -484,7 +484,7 @@
           itemSemanticEditPolicyClassName="ActionExecutionSpecificationItemSemanticEditPolicy"
           notationViewFactoryClassName="ActionExecutionSpecificationViewFactory"
           canonicalEditPolicyClassName="ActionExecutionSpecificationCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.13"
+          childNodes="/0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14"
           graphicalNodeEditPolicyClassName="ActionExecutionSpecificationGraphicalNodeEditPolicy"
           createCommandClassName="ActionExecutionSpecificationCreateCommand"
           containers="/0/@diagram/@childNodes.5">
@@ -529,7 +529,7 @@
           itemSemanticEditPolicyClassName="BehaviorExecutionSpecificationItemSemanticEditPolicy"
           notationViewFactoryClassName="BehaviorExecutionSpecificationViewFactory"
           canonicalEditPolicyClassName="BehaviorExecutionSpecificationCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.13"
+          childNodes="/0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14"
           graphicalNodeEditPolicyClassName="BehaviorExecutionSpecificationGraphicalNodeEditPolicy"
           createCommandClassName="BehaviorExecutionSpecificationCreateCommand"
           containers="/0/@diagram/@childNodes.5">
@@ -647,6 +647,7 @@
           itemSemanticEditPolicyClassName="DestructionOccurrenceSpecificationItemSemanticEditPolicy"
           notationViewFactoryClassName="DestructionEventViewFactory"
           canonicalEditPolicyClassName="DestructionOccurrenceSpecificationCanonicalEditPolicy"
+          childNodes="/0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14"
           graphicalNodeEditPolicyClassName="DestructionOccurrenceSpecificationGraphicalNodeEditPolicy"
           createCommandClassName="DestructionOccurrenceSpecificationCreateCommand"
           containers="/0/@diagram/@childNodes.5"
@@ -898,7 +899,7 @@
           canonicalEditPolicyClassName="TimeConstraintBorderNodeCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="TimeConstraintBorderNodeGraphicalNodeEditPolicy"
           createCommandClassName="TimeConstraintBorderNodeCreateCommand"
-          containers="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7">
+          containers="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.5">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -958,6 +959,93 @@
             editPartClassName="TimeConstraintAppliedStereotypeEditPart"
             itemSemanticEditPolicyClassName="TimeConstraintAppliedStereotypeItemSemanticEditPolicy"
             notationViewFactoryClassName="TimeConstraintLabelViewFactory"
+            readOnly="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="-22"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
+        </labels>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
+          visualID="3020"
+          editPartClassName="TimeObservationBorderNodeEditPart"
+          itemSemanticEditPolicyClassName="TimeObservationBorderNodeItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="TimeObservationBorderNodeCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="TimeObservationBorderNodeGraphicalNodeEditPolicy"
+          createCommandClassName="TimeObservationBorderNodeCreateCommand"
+          containers="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.5">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.TimeObservation_Shape"
+            displayName="TimeObservation"
+            definedExternally="true"
+            editHelperClassName="TimeObservationEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.TimeObservationFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              height="1"/>
+        </viewmap>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeObservation"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.18">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5010"
+            editPartClassName="TimeObservationNameEditPart"
+            itemSemanticEditPolicyClassName="TimeObservationNameItemSemanticEditPolicy"
+            elementIcon="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="3"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.8">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5014"
+            editPartClassName="TimeObservationAppliedStereotypeEditPart"
+            itemSemanticEditPolicyClassName="TimeObservationAppliedStereotypeItemSemanticEditPolicy"
             readOnly="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -2268,7 +2356,7 @@
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.CommentParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.11/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.11/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.1/@modelFacet /0/@diagram/@childNodes.14/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -2276,7 +2364,7 @@
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.ConstraintParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.12/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.ObservationParser"/>
     </labelParsers>
     <contextMenus
@@ -2314,7 +2402,7 @@
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Specific locator for the itemBorder of the lifeline."
         classpath="org.eclipse.papyrus.uml.diagram.sequence.locator.CenterLocator"
-        genChildSideAffixedNode="/0/@diagram/@childNodes.9 /0/@diagram/@childNodes.8"/>
+        genChildSideAffixedNode="/0/@diagram/@childNodes.9 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="this is an extension to manage the comment"
@@ -2411,6 +2499,12 @@
         comment="precise the super class of the TimeConstraintEditPart"
         genView="/0/@diagram/@childNodes.13"
         name="TimeConstraint  Super EditPart"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.BorderNodeEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Customization of the edit-part implementation for TimeObservations"
+        genView="/0/@diagram/@childNodes.14"
+        name="TimeObservation"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.BorderNodeEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
   <papyrusgmfgenextension:VisualIDOverride
@@ -2626,6 +2720,16 @@
       <child
           genView="/0/@diagram/@childNodes.13/@labels.1"
           visualID="TimeConstraint_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.14"
+        visualID="TimeObservation_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.14/@labels.0"
+          visualID="TimeObservation_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.14/@labels.1"
+          visualID="TimeObservation_StereotypeLabel"/>
     </child>
   </papyrusgmfgenextension:VisualIDOverride>
 </xmi:XMI>

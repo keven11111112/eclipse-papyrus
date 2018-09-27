@@ -55,6 +55,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.SequenceDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintBorderNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationBorderNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -166,6 +167,12 @@ public class UMLElementTypes {
 	 */
 	public static final IElementType TimeConstraint_Shape = getElementTypeByUniqueId(
 			"org.eclipse.papyrus.umldi.TimeConstraint_Shape"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeObservation_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -307,6 +314,8 @@ public class UMLElementTypes {
 
 			elements.put(TimeConstraint_Shape, UMLPackage.eINSTANCE.getTimeConstraint());
 
+			elements.put(TimeObservation_Shape, UMLPackage.eINSTANCE.getTimeObservation());
+
 			elements.put(Message_SynchEdge, UMLPackage.eINSTANCE.getMessage());
 
 			elements.put(Message_AsynchEdge, UMLPackage.eINSTANCE.getMessage());
@@ -365,6 +374,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Comment_Shape);
 			KNOWN_ELEMENT_TYPES.add(Gate_Shape);
 			KNOWN_ELEMENT_TYPES.add(TimeConstraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(TimeObservation_Shape);
 			KNOWN_ELEMENT_TYPES.add(Message_SynchEdge);
 			KNOWN_ELEMENT_TYPES.add(Message_AsynchEdge);
 			KNOWN_ELEMENT_TYPES.add(Message_ReplyEdge);
@@ -430,6 +440,8 @@ public class UMLElementTypes {
 				return Gate_Shape;
 			case TimeConstraintBorderNodeEditPart.VISUAL_ID:
 				return TimeConstraint_Shape;
+			case TimeObservationBorderNodeEditPart.VISUAL_ID:
+				return TimeObservation_Shape;
 			case MessageSyncEditPart.VISUAL_ID:
 				return Message_SynchEdge;
 			case MessageAsyncEditPart.VISUAL_ID:

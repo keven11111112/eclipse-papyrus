@@ -1,55 +1,62 @@
 /**
- * Copyright (c) 2016, 2018 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2018 Christian W. Damus, CEA LIST, and others.
   *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
-  * https://www.eclipse.org/legal/epl-2.0/
+  * http://www.eclipse.org/legal/epl-2.0
   *
   * SPDX-License-Identifier: EPL-2.0
   *
   * Contributors:
-  *  CEA LIST - Initial API and implementation
-  *  Christian W. Damus - bug 536486
+  *  Christian W. Damus - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
+
+import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.editpolicies.ResizableEditPolicy;
+import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
-import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
+import org.eclipse.papyrus.uml.diagram.common.editparts.BorderNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.figures.TimeObservationFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
 
 /**
  * @generated
  */
-public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderItemEditPart {
+public class TimeObservationBorderNodeEditPart extends BorderNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "DestructionOccurrenceSpecification_Shape";
+	public static final String VISUAL_ID = "TimeObservation_Shape";
 
 	/**
 	 * @generated
@@ -64,7 +71,7 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 	/**
 	 * @generated
 	 */
-	public DestructionOccurrenceSpecificationEditPart(View view) {
+	public TimeObservationBorderNodeEditPart(View view) {
 		super(view);
 	}
 
@@ -73,16 +80,11 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionOccurrenceSpecificationCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -101,9 +103,17 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 				String vid = UMLVisualIDRegistry.getVisualID(childView);
 				if (vid != null) {
 					switch (vid) {
-					case TimeConstraintBorderNodeEditPart.VISUAL_ID:
-					case TimeObservationBorderNodeEditPart.VISUAL_ID:
-						return new BorderItemResizableEditPolicy();
+					case TimeObservationNameEditPart.VISUAL_ID:
+					case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
+
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
 					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -127,39 +137,66 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 	}
 
 	/**
+	 * Papyrus codeGen
+	 *
+	 * @generated
+	 **/
+	@Override
+	protected void handleNotificationEvent(Notification event) {
+		/*
+		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 */
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+			Object notifier = event.getNotifier();
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if (modelChildren.contains(event.getNotifier())) {
+					return;
+				}
+			}
+		}
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new DestructionEventFigure();
+		return primaryShape = new TimeObservationFigure();
 	}
 
 	/**
-	 * org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure
+	 * org.eclipse.papyrus.uml.diagram.sequence.figures.TimeObservationFigure
 	 *
 	 * @generated
 	 */
-	public DestructionEventFigure getPrimaryShape() {
-		return (DestructionEventFigure) primaryShape;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected NodeFigure createNodePlate() {
-		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
-		return result;
+	@Override
+	public TimeObservationFigure getPrimaryShape() {
+		return (TimeObservationFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	public EditPolicy getPrimaryDragEditPolicy() {
-		EditPolicy result = super.getPrimaryDragEditPolicy();
-		if (result instanceof ResizableEditPolicy) {
-			ResizableEditPolicy ep = (ResizableEditPolicy) result;
-			ep.setResizeDirections(PositionConstants.NONE);
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if (borderItemEditPart instanceof TimeObservationNameEditPart
+				|| borderItemEditPart instanceof TimeObservationAppliedStereotypeEditPart) {
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
+			locator.setBorderItemOffset(new Dimension(-20, -20));
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected NodeFigure createNodePlate() {
+		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 1);
 		return result;
 	}
 
@@ -191,11 +228,6 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
-			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-			layout.setSpacing(5);
-			nodeShape.setLayoutManager(layout);
-		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -236,6 +268,14 @@ public class DestructionOccurrenceSpecificationEditPart extends BorderedBorderIt
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeObservationNameEditPart.VISUAL_ID));
 	}
 
 }

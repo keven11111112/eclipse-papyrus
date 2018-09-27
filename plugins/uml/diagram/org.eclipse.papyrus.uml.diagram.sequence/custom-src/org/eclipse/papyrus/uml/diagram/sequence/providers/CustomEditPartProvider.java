@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2018 CEA List, EclipseSource and others
+ * Copyright (c) 2010, 2018 CEA List, EclipseSource, Christian W. Damus, and others
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *   Soyatec - Initial API and implementation
  *   EclipseSource - Bug 536641
+ *   Christian W. Damus - bug 536486
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
@@ -41,6 +42,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageName7Edi
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomMessageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomStateInvariantLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomTimeConstraintBorderNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomTimeObservationBorderNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationObservationLinkEditPart;
@@ -59,6 +62,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageReplyNameEditP
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.MessageSyncNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintBorderNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationBorderNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling.GrillingEditpart;
 
@@ -124,14 +129,14 @@ public class CustomEditPartProvider extends UMLEditPartProvider {
 			return new CustomStateInvariantEditPart(view);
 		// case CombinedFragment2EditPart.VISUAL_ID:
 		// return new CustomCombinedFragment2EditPart(view);
-		// case TimeConstraintEditPart.VISUAL_ID:
-		// return new CustomTimeConstraintEditPart(view);
+		case TimeConstraintBorderNodeEditPart.VISUAL_ID:
+			return new CustomTimeConstraintBorderNodeEditPart(view);
 		// case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:
 		// return new CustomTimeConstraintAppliedStereotypeEditPart(view);
 		// case TimeConstraintLabelEditPart.VISUAL_ID:
 		// return new CustomTimeConstraintLabelEditPart(view);
-		// case TimeObservationEditPart.VISUAL_ID:
-		// return new CustomTimeObservationEditPart(view);
+		case TimeObservationBorderNodeEditPart.VISUAL_ID:
+			return new CustomTimeObservationBorderNodeEditPart(view);
 		// case TimeObservationLabelEditPart.VISUAL_ID:
 		// return new CustomTimeObservationLabelEditPart(view);
 		// case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:

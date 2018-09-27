@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2016, 2018 CEA LIST, Christian W. Damus, and others.
   *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
   *
   * Contributors:
   *  CEA LIST - Initial API and implementation
+  *  Christian W. Damus - bug 536486
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -43,12 +44,17 @@ public class DurationObservationLinkEditPart extends UMLConnectionNodeEditPart i
 	/**
 	 * @generated
 	 */
-	@Override
-	protected void createDefaultEditPolicies() {
+	protected void createDefaultEditPoliciesGen() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
 				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+	}
+
+	@Override
+	protected void createDefaultEditPolicies() {
+		createDefaultEditPoliciesGen();
+
 		removeEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE);
 	}
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016 CEA LIST.
+ * Copyright (c) 2016, 2018 CEA LIST, Christian W. Damus, and others.
   *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
   *
   * Contributors:
   *  CEA LIST - Initial API and implementation
+  *  Christian W. Damus - bug 536486
  */
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
 
@@ -21,7 +22,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.CustomContextLinkFigure;
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2018 CEA LIST and others.
+ * Copyright (c) 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   EclipseSource France - Initial API and implementation
+ *   Christian W. Damus - bug 536486
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -32,7 +33,9 @@ public class CustomExecutionSpecificationSemanticEditPolicy extends OccurenceSem
 
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (ElementUtil.isTypeOf(req.getElementType(), UMLElementTypes.TIME_CONSTRAINT)) {
+		if (ElementUtil.isTypeOf(req.getElementType(), UMLElementTypes.TIME_CONSTRAINT)
+				|| ElementUtil.isTypeOf(req.getElementType(), UMLElementTypes.TIME_OBSERVATION)) {
+
 			Object loc = req.getParameter("initialMouseLocationForCreation");
 			// evaluate parameters
 			if (!Point.class.isInstance(loc)

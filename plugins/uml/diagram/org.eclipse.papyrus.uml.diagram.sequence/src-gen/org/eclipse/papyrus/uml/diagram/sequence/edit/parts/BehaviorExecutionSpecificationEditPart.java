@@ -104,6 +104,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 				if (vid != null) {
 					switch (vid) {
 					case TimeConstraintBorderNodeEditPart.VISUAL_ID:
+					case TimeObservationBorderNodeEditPart.VISUAL_ID:
 						return new BorderItemResizableEditPolicy();
 					}
 				}

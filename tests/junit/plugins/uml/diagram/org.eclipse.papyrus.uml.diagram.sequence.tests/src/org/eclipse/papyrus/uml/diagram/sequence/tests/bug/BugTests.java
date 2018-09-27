@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   Christian W. Damus - bugs 533673, 530201
+ *   Christian W. Damus - bugs 533673, 530201, 536486
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
@@ -47,6 +47,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		DurationConstraintCreationTest.class,
 		DurationObservationCreationTest.class,
 		GeneralOrderingCreationTest.class,
+		TimeElementCreationTest.class,
 })
 public class BugTests {
 

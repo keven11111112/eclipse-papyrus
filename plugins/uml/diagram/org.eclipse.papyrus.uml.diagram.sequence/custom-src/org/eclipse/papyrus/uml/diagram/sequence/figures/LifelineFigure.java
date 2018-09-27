@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 - 2018 CEA
+ * Copyright (c) 2010 - 2018 CEA, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -13,7 +13,7 @@
  *   Soyatec - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 519408
  *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 531520
- *   Christian W. Damus - bug 539373
+ *   Christian W. Damus - bugs 539373, 536486
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
@@ -508,6 +508,10 @@ public class LifelineFigure extends RoundedCompartmentFigure {
 	private void createContents() {
 		lifelineHeaderBoundsFigure = new LifelineHeaderFigure();
 		this.add(lifelineHeaderBoundsFigure);
+	}
+
+	public IFigure getHeaderFigure() {
+		return lifelineHeaderBoundsFigure;
 	}
 
 	protected IMapMode getMapMode() {

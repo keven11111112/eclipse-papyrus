@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009, 2018 Atos Origin, Christian W. Damus, CEA LIST, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Christian W. Damus - bug 536486
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
@@ -63,6 +64,8 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantLabelEd
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeConstraintNameEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.parser.custom.InteractionUseCustomParsers;
 import org.eclipse.papyrus.uml.diagram.sequence.parser.custom.LifelineCustomParsers;
 import org.eclipse.papyrus.uml.diagram.sequence.parser.custom.MessageCustomParser;
@@ -286,6 +289,36 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			timeConstraint_StereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
 		return timeConstraint_StereotypeLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ObservationParser timeObservation_NameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeObservation_NameLabel_Parser() {
+		if (timeObservation_NameLabel_Parser == null) {
+			timeObservation_NameLabel_Parser = new ObservationParser();
+		}
+		return timeObservation_NameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser timeObservation_StereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeObservation_StereotypeLabel_Parser() {
+		if (timeObservation_StereotypeLabel_Parser == null) {
+			timeObservation_StereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return timeObservation_StereotypeLabel_Parser;
 	}
 
 	/**
@@ -613,6 +646,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 				return getTimeConstraint_NameLabel_Parser();
 			case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:
 				return getTimeConstraint_StereotypeLabel_Parser();
+
+			case TimeObservationNameEditPart.VISUAL_ID:
+				return getTimeObservation_NameLabel_Parser();
+			case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
+				return getTimeObservation_StereotypeLabel_Parser();
 
 			case MessageSyncNameEditPart.VISUAL_ID:
 				return getMessage_SynchNameLabel_Parser();

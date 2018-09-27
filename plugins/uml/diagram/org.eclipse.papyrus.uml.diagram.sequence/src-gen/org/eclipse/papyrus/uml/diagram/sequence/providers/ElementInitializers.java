@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009, 2018 Atos Origin, Christian W. Damus, CEA LIST, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Christian W. Damus - bug 536486
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.providers;
@@ -42,6 +43,7 @@ import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.TimeInterval;
+import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -211,6 +213,20 @@ public class ElementInitializers {
 	}
 
 	/**
+	 * @generated
+	 */
+	public void init_TimeObservation_Shape(TimeObservation instance) {
+		try {
+			Object value_0 = name_TimeObservation_Shape(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
 	 * Initialize a time interval
 	 *
 	 * @param instance
@@ -365,6 +381,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_TimeConstraint_Shape(TimeConstraint it) {
+		return getNamedElement(it, "", it.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_TimeObservation_Shape(TimeObservation it) {
 		return getNamedElement(it, "", it.eClass().getName(), "");
 	}
 

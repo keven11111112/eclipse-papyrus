@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673, 533682, 533676, 533679
+ *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673, 533682, 533676, 533679, 536486
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 521550
  *   EclipseSource - Bug 536631
  *****************************************************************************/
@@ -78,6 +78,7 @@ import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.ui.palette.PaletteViewer;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IDiagramPreferenceSupport;
@@ -92,6 +93,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
@@ -557,7 +559,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	}
 
 	public void close(IEditorPart editor) {
-		if(null != editor.getSite() && null != editor.getSite().getPage()) {
+		if (null != editor.getSite() && null != editor.getSite().getPage()) {
 			editor.getSite().getPage().closeEditor(editor, false);
 			flushDisplayEvents();
 		}
@@ -1540,6 +1542,15 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 		request.setLocation(location);
 		request.setSize(size);
+
+		// Some edit-parts in some diagrams depend on the creation tool setting this
+		CreateElementRequest semanticRequest = null;
+		if (!request.getViewDescriptors().isEmpty()) {
+			semanticRequest = (CreateElementRequest) ((CreateElementRequestAdapter) request.getViewDescriptors().get(0).getElementAdapter()).getAdapter(CreateElementRequest.class);
+			if (semanticRequest != null) {
+				semanticRequest.setParameter(AspectUnspecifiedTypeCreationTool.INITIAL_MOUSE_LOCATION_FOR_CREATION, location.getCopy());
+			}
+		}
 
 		EditPart target = parent.getTargetEditPart(request);
 		assertThat("No target edit part", target, notNullValue());
