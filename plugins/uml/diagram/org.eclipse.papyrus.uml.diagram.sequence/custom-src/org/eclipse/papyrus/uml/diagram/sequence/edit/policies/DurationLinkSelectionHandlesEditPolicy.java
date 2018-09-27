@@ -65,6 +65,7 @@ import org.eclipse.swt.graphics.Cursor;
 public class DurationLinkSelectionHandlesEditPolicy extends PapyrusConnectionEndEditPolicy implements PropertyChangeListener {
 	private UMLConnectionNodeEditPart durationLinkEditPart;
 	private TransactionalEditingDomain editingDomain;
+	private Integer arrowPositionDelta;
 
 	public DurationLinkSelectionHandlesEditPolicy(UMLConnectionNodeEditPart durationLinkEditPart, TransactionalEditingDomain editingDomain) {
 		this.durationLinkEditPart = durationLinkEditPart;
@@ -101,6 +102,50 @@ public class DurationLinkSelectionHandlesEditPolicy extends PapyrusConnectionEnd
 		};
 
 		list.add(moveHandle);
+	}
+
+	@Override
+	public void showSourceFeedback(Request request) {
+		if (MoveArrowRequest.REQ_MOVE_ARROW.equals(request.getType())) {
+			showArrowMoveFeedback((MoveArrowRequest) request);
+		}
+		super.showSourceFeedback(request);
+	}
+
+	@Override
+	public void eraseSourceFeedback(Request request) {
+		if (MoveArrowRequest.REQ_MOVE_ARROW.equals(request.getType())) {
+			eraseArrowMoveFeedback((MoveArrowRequest) request);
+		}
+		super.eraseSourceFeedback(request);
+	}
+
+	private void eraseArrowMoveFeedback(MoveArrowRequest request) {
+		arrowPositionDelta = null;
+		getHost().refresh();
+	}
+
+	protected void showArrowMoveFeedback(MoveArrowRequest request) {
+		DurationLinkFigure figure = (DurationLinkFigure) durationLinkEditPart.getFigure();
+		if (arrowPositionDelta == null) {
+			arrowPositionDelta = figure.getArrowPositionDelta();
+		}
+		PointList arrowLinePoints = figure.getArrowLinePoints();
+		Point arrowPoint = arrowLinePoints.getMidpoint().getCopy();
+
+		figure.translateToAbsolute(arrowPoint);
+		arrowPoint.translate(request.getMoveDelta());
+		figure.translateToRelative(arrowPoint);
+
+		Dimension moveDelta = arrowPoint.getDifference(arrowLinePoints.getMidpoint());
+
+		Orientation arrowOrientation = request.getArrowOrientation();
+		if (arrowOrientation == Orientation.VERTICAL) {
+			figure.setArrowPositionDelta(arrowPositionDelta + moveDelta.width);
+		} else {
+			// horizontal
+			figure.setArrowPositionDelta(arrowPositionDelta + moveDelta.height);
+		}
 	}
 
 	private Cursor getCursor(DurationLinkFigure figure) {

@@ -270,7 +270,6 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 		PointList points = new PointList(2);
 		Point arrowStart = null, arrowEnd = null;
 		if (arrowOrientation == Orientation.HORIZONTAL) {
-
 			arrowStart = getStart().getCopy().setX(getStart().x() + ARROW_PADDING).setY(getArrowLineHorizontalY());
 			arrowEnd = getEnd().getCopy().setX(getEnd().x() - ARROW_PADDING).setY(getArrowLineHorizontalY());
 		} else {
@@ -364,6 +363,15 @@ public class DurationLinkFigure extends UMLEdgeFigure {
 			this.arrowPositionDelta = delta;
 			revalidate();
 		}
+	}
+
+	/** Returns the arrow position delta.
+	 * <p>
+	 * By default, the arrow is centered between its start and end point (delta = 0). The position
+	 * delta can be used to move it to the right (delta > 0) or to the left (delta < 0).
+	 * </p>*/
+	public int getArrowPositionDelta() {
+		return arrowPositionDelta;
 	}
 
 	@Override
