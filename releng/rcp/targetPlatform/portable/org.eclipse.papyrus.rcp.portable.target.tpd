@@ -11,9 +11,9 @@ location egit "http://download.eclipse.org/egit/updates-5.1" {
 	org.eclipse.egit.feature.group
 }
 
-//updateFrom("Eclipse",0)
+//manualUpdate("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.9milestones/S-4.9RC2-201809060745/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.9/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group 
 	org.eclipse.equinox.executable.feature.group 
