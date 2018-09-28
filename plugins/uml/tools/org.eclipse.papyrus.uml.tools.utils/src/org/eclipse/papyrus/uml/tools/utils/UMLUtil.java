@@ -155,7 +155,7 @@ public class UMLUtil {
 		// now check whether one of the applied stereotypes has the requested super stereotype
 		for (Stereotype subStereotype : umlElement.getAppliedStereotypes()) {
 			for (Stereotype superStereotype : getAllSuperStereotypes(subStereotype)) {
-				if (superStereotype.getQualifiedName().equals(stereotypeName)) {
+				if (stereotypeName.equals(superStereotype.getQualifiedName())) {
 					// return applied stereotype whose super-stereotype matches given name
 					return subStereotype;
 				}
@@ -190,7 +190,7 @@ public class UMLUtil {
 			// now check whether one of the applied stereotypes has the requested super stereotype
 			for (Stereotype subStereotype : umlElement.getAppliedStereotypes()) {
 				for (Stereotype superStereotype : getAllSuperStereotypes(subStereotype)) {
-					if (superStereotype.getQualifiedName().equals(stereotypeName)) {
+					if (stereotypeName.equals(superStereotype.getQualifiedName())) {
 						// return superStereotype (that is actually not applied and may even not be applicable)
 						return superStereotype;
 					}
@@ -230,7 +230,7 @@ public class UMLUtil {
 		if ((result == null) && !strict) {
 			for (Stereotype applicableSt : umlElement.getApplicableStereotypes()) {
 				for (Stereotype superStereotype : getAllSuperStereotypes(applicableSt)) {
-					if (superStereotype.getQualifiedName().equals(stereotypeName)) {
+					if (stereotypeName.equals(superStereotype.getQualifiedName())) {
 						return applicableSt;
 					}
 				}
@@ -306,7 +306,7 @@ public class UMLUtil {
 	 * on the Element's nearest package
 	 *
 	 * @deprecated since 3.4.100: The performance of this function is bad, if multiple
-	 *                       profiles / sub-profiles are applied, e.g. MARTE and SysML
+	 *             profiles / sub-profiles are applied, e.g. MARTE and SysML
 	 *
 	 * @param umlElement
 	 * @param stereotypeName
@@ -318,7 +318,7 @@ public class UMLUtil {
 			return null;
 		}
 
-		Set<Stereotype> stereotypes = new HashSet<>();
+		Set<Stereotype> stereotypes = new HashSet<Stereotype>();
 		org.eclipse.uml2.uml.Package umlPackage = umlElement.getNearestPackage();
 
 		if (umlPackage == null) {
@@ -351,7 +351,7 @@ public class UMLUtil {
 	 * @return
 	 */
 	public static Set<Stereotype> getAllStereotypes(Package pck) {
-		Set<Stereotype> stereotypes = new HashSet<>();
+		Set<Stereotype> stereotypes = new HashSet<Stereotype>();
 		stereotypes.addAll(pck.getOwnedStereotypes());
 		for (Package nestedPackage : pck.getNestedPackages()) {
 			stereotypes.addAll(getAllStereotypes(nestedPackage));
@@ -500,7 +500,7 @@ public class UMLUtil {
 	 *            a list of elements
 	 */
 	public static void destroyElements(EList<? extends Element> list) {
-		BasicEList<Element> listCopy = new BasicEList<>();
+		BasicEList<Element> listCopy = new BasicEList<Element>();
 		// loop on copy in order to avoid iterator exception
 		listCopy.addAll(list);
 		for (Element element : listCopy) {
