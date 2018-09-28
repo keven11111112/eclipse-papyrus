@@ -252,7 +252,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				return dropStateInvariant((StateInvariant) semanticElement, nodeVISUALID, location);
 			case CommentEditPart.VISUAL_ID:
 			case ConstraintEditPart.VISUAL_ID:
-				return UnexecutableCommand.INSTANCE;
 			case Constraint2EditPart.VISUAL_ID:
 			case InteractionUseEditPart.VISUAL_ID:
 			case LifelineEditPart.VISUAL_ID:
