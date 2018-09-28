@@ -294,15 +294,13 @@ public class CLifeLineEditPart extends LifelineEditPart {
 				.filter(MessageEnd::isReceive)
 				.filter(end -> end.getMessage().getMessageSort() == MessageSort.CREATE_MESSAGE_LITERAL);
 
-		return createEnd.map(this::getCreateMessageIncomingSide)
-				.filter(OptionalInt::isPresent)
-				.map(side -> {
-					getBorderedFigure().getBorderItemContainer()
-							.add(((IGraphicalEditPart) childEditPart).getFigure(),
-									new TimeElementLocator(getMainFigure(), this::getTimeElementSide));
+		return createEnd.map(__ -> {
+			getBorderedFigure().getBorderItemContainer()
+					.add(((IGraphicalEditPart) childEditPart).getFigure(),
+							new TimeElementLocator(getMainFigure(), this::getTimeElementSide));
 
-					return true;
-				}).orElseGet(() -> super.addFixedChild(childEditPart));
+			return true;
+		}).orElseGet(() -> super.addFixedChild(childEditPart));
 	}
 
 	public OptionalInt getCreateMessageIncomingSide(Point where) {
@@ -350,10 +348,11 @@ public class CLifeLineEditPart extends LifelineEditPart {
 	}
 
 	int getTimeElementSide(Rectangle proposedBounds) {
-		int incoming = getCreateMessageIncomingSide(proposedBounds.getTopLeft())
-				.orElse(PositionConstants.WEST);
-
-		// Put the time element on the side opposite to the incoming create message
-		return PositionConstants.EAST_WEST ^ incoming;
+		OptionalInt incoming = getCreateMessageIncomingSide(proposedBounds.getTopLeft());
+		return incoming.isPresent()
+				// Put the time element on the side opposite to the incoming create message
+				? PositionConstants.EAST_WEST ^ incoming.getAsInt()
+				// Center it on the lifeline
+				: PositionConstants.CENTER;
 	}
 }

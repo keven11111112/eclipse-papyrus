@@ -48,6 +48,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		DurationObservationCreationTest.class,
 		GeneralOrderingCreationTest.class,
 		TimeElementCreationTest.class,
+		TimeElementMoveTest.class,
 })
 public class BugTests {
 

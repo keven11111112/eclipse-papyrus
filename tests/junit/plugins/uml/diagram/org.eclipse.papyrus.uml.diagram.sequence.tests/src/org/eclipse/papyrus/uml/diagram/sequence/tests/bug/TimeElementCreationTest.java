@@ -225,7 +225,6 @@ public class TimeElementCreationTest extends AbstractPapyrusTest {
 	@Test
 	public void createOnLifelineCreationLeftToRightCreateMessage() {
 		EditPart lifelineEP = editor.findEditPart("thing", Lifeline.class);
-		EditPart messageEP = editor.findEditPart("create1", Message.class);
 		Point llTop = getGeometry(lifelineEP, Rectangle.class).getTop();
 
 		EditPart timeEP = editor.createShape(lifelineEP, what.getElementType(),
@@ -250,7 +249,6 @@ public class TimeElementCreationTest extends AbstractPapyrusTest {
 	@Test
 	public void createOnLifelineCreationRightToLeftCreateMessage() {
 		EditPart lifelineEP = editor.findEditPart("whatsit", Lifeline.class);
-		EditPart messageEP = editor.findEditPart("create2", Message.class);
 		Point llTop = getGeometry(lifelineEP, Rectangle.class).getTop();
 
 		EditPart timeEP = editor.createShape(lifelineEP, what.getElementType(),
@@ -381,7 +379,7 @@ public class TimeElementCreationTest extends AbstractPapyrusTest {
 	 * @throws IllegalArgumentException
 	 *             if the geometry {@link type} is not recognized
 	 */
-	<T extends Translatable> T getGeometry(EditPart editPart, Class<T> type) {
+	static <T extends Translatable> T getGeometry(EditPart editPart, Class<T> type) {
 		if (!Rectangle.class.isAssignableFrom(type) && !PointList.class.isAssignableFrom(type)) {
 			throw new IllegalArgumentException("unrecognized geometry type: " + type.getName());
 		}
