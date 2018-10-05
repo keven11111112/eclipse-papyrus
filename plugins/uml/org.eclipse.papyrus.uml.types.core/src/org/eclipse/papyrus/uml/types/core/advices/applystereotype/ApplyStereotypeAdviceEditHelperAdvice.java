@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.uml.types.core.advices.applystereotype;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -104,18 +103,21 @@ public class ApplyStereotypeAdviceEditHelperAdvice extends AbstractEditHelperAdv
 	@Override
 	public void configureRequest(final IEditCommandRequest request) {
 		super.configureRequest(request);
-		StereotypeToApply namingStereotype = null;
-		final Iterator<StereotypeToApply> iter = this.configuration.getStereotypesToApply().iterator();
+		// we go through this method 5 times by stereotyped elements (tested with SysML Block):
+		// 4 time with a GetEditContextRequest and 1 time with a ConfigureRequest
+		if (false == request instanceof ConfigureRequest) {
+			return;
+		}
+
+		final List<StereotypeToApply> stereotypes = this.configuration.getStereotypesToApply();
 		// we take the last stereotype for the name, to preserving the previous implementation
 		// we assume that the naming stereotype is applicable to the future created object
-		while (iter.hasNext()) {
-			final StereotypeToApply current = iter.next();
+		for (int i = stereotypes.size() - 1; i >= 0; i--) {
+			final StereotypeToApply current = stereotypes.get(i);
 			if (current.isUpdateName()) {
-				namingStereotype = current;
+				request.setParameter(RequestParameterConstants.BASE_NAME_TO_SET, NamedElementUtil.getNameFromQualifiedName(current.getStereotypeQualifiedName()));
+				break;
 			}
-		}
-		if (null != namingStereotype) {
-			request.setParameter(RequestParameterConstants.BASE_NAME_TO_SET, NamedElementUtil.getNameFromQualifiedName(namingStereotype.getStereotypeQualifiedName()));
 		}
 	}
 
@@ -213,7 +215,7 @@ public class ApplyStereotypeAdviceEditHelperAdvice extends AbstractEditHelperAdv
 		}
 		Object value = getStereotypeValue(elementToConfigure, stereotype, typedElement.getType(), featureValue);
 
-		return service.getEditCommand(new SetStereotypeValueRequest(configureRequest.getEditingDomain(), stereotype, (Element) elementToConfigure, name, value));
+		return service.getEditCommand(new SetStereotypeValueRequest(configureRequest.getEditingDomain(), stereotype, elementToConfigure, name, value));
 	}
 
 
