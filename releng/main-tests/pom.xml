@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.eclipse.papyrus</groupId>
 		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
@@ -11,24 +12,25 @@
 	<artifactId>org.eclipse.papyrus.tests.releng</artifactId>
 	<version>1.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
+
 	<properties>
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
 		<testSuiteClass>org.eclipse.papyrus.tests.AllTests</testSuiteClass>
 		<jacoco.version>0.7.9</jacoco.version>
-		<!-- Separate property for test argLine seems to be required when running Jacoco + Surefire -->
+		<!-- Separate property for test argLine seems to be required when running 
+			Jacoco + Surefire -->
 		<test.argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100</test.argLine>
 		<target.platform>org.eclipse.papyrus.main.tests.${target.suffix}.target</target.platform>
 	</properties>
-	
+
 	<modules>
-		<!--  Features -->
+		<!-- Features -->
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.core.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.emf.expressions.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.nattable.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.services.feature</module>		
+		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.services.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.assistants.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.decoratormodel.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.diagram.feature</module>
@@ -40,13 +42,13 @@
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.uml.textedit.tests.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.uml.alf.tests.feature</module>
 		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.toolsmiths.feature</module>
-			
+
 		<!-- Plugins -->
 		<module>../../tests/junit/plugins</module>
-	
+
 		<module>targetPlatform</module>
 	</modules>
-	
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -57,13 +59,13 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-compiler-plugin</artifactId>
@@ -80,23 +82,24 @@
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-p2-repository-plugin</artifactId>
 			</plugin>
-            <plugin>
-                <groupId>org.eclipse.tycho</groupId>
-                <artifactId>tycho-surefire-plugin</artifactId>
-                <version>${tycho-version}</version>
-                <configuration>
-                    <failIfNoTests>false</failIfNoTests>
-                    <useUIHarness>true</useUIHarness>
-                    <useUIThread>true</useUIThread>
-                    <testFailureIgnore>true</testFailureIgnore>
-                    <!-- ${tycho.testArgLine} is populated by JaCoCo and is required to enable code coverage -->
-                    <argLine>${tycho.testArgLine} ${test.argLine}</argLine>
-                    <appArgLine>-testConfig=${testConfig}</appArgLine>
-                    <product>org.eclipse.sdk.ide</product>
-                    <skipTests>${skipInnerTests}</skipTests>
-                </configuration>
-            </plugin>
-			
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<failIfNoTests>false</failIfNoTests>
+					<useUIHarness>true</useUIHarness>
+					<useUIThread>true</useUIThread>
+					<testFailureIgnore>true</testFailureIgnore>
+					<!-- ${tycho.testArgLine} is populated by JaCoCo and is required to 
+						enable code coverage -->
+					<argLine>${tycho.testArgLine} ${test.argLine}</argLine>
+					<appArgLine>-testConfig=${testConfig}</appArgLine>
+					<product>org.eclipse.sdk.ide</product>
+					<skipTests>${skipInnerTests}</skipTests>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -126,13 +129,13 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>defaultProfile</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<repositories>
 				<repository>
 					<id>papyrus-main</id>
@@ -146,7 +149,7 @@
 				</repository>
 			</repositories>
 		</profile>
-		
+
 		<profile>
 			<id>mac-tests</id>
 			<activation>
@@ -155,20 +158,22 @@
 				</os>
 			</activation>
 			<properties>
-				<test.argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100 -XstartOnFirstThread</test.argLine>
+				<test.argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100
+					-XstartOnFirstThread</test.argLine>
 			</properties>
-		</profile>		
-		
+		</profile>
+
 		<profile>
 			<id>buildAll</id>
-            <activation>
-                <property>
-                    <name>buildAll</name>
-                    <value>true</value>
-                </property>
-            </activation>
-			<!-- Papyrus Update sites not included (They are included in the same build) -->
-			
+			<activation>
+				<property>
+					<name>buildAll</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<!-- Papyrus Update sites not included (They are included in the same 
+				build) -->
+
 			<build>
 				<plugins>
 					<plugin>

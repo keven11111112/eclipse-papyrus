@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<artifactId>org.eclipse.papyrus.releng</artifactId>
 	<packaging>pom</packaging>
 	<parent>
@@ -9,7 +10,7 @@
 		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
+
 	<modules>
 		<module>../../plugins</module>
 		<module>../../examples</module>
@@ -18,17 +19,17 @@
 		<module>targetPlatform</module>
 		<module>site</module>
 	</modules>
-	
+
 	<properties>
-        <mojo.buildhelper.version>3.0.0</mojo.buildhelper.version>
-        <mylyn.wikitext.version>3.0.24</mylyn.wikitext.version>
-	
+		<mojo.buildhelper.version>3.0.0</mojo.buildhelper.version>
+		<mylyn.wikitext.version>3.0.24</mylyn.wikitext.version>
+
 		<target.platform>org.eclipse.papyrus.main.${target.suffix}.target</target.platform>
 	</properties>
-	
+
 	<build>
 		<pluginManagement>
-		<!-- redistributed plugins -->
+			<!-- redistributed plugins -->
 			<plugins>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
@@ -40,7 +41,7 @@
 					<artifactId>org.eclipse.mylyn.wikitext.maven</artifactId>
 					<version>${mylyn.wikitext.version}</version>
 				</plugin>
-				
+
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
@@ -75,9 +76,9 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		
+
 		<plugins>
-            <!-- local plugins -->
+			<!-- local plugins -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -94,7 +95,7 @@
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-p2-repository-plugin</artifactId>
 			</plugin>
-			
+
 			<!-- Sources -->
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -151,9 +152,9 @@
 	<profiles>
 		<profile>
 			<id>defaultProfile</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -176,12 +177,12 @@
 
 		<profile>
 			<id>buildAll</id>
-            <activation>
-                <property>
-                    <name>buildAll</name>
-                    <value>true</value>
-                </property>
-            </activation>
+			<activation>
+				<property>
+					<name>buildAll</name>
+					<value>true</value>
+				</property>
+			</activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -202,16 +203,17 @@
 			</build>
 		</profile>
 
-		<!-- nightly profile is useful for developers that want to link to nightly build -->
+		<!-- nightly profile is useful for developers that want to link to nightly 
+			build -->
 		<profile>
 			<id>nightly</id>
-            <activation>
-                <property>
-                    <name>env</name>
-                    <value>devnightly</value>
-                </property>
-                <activeByDefault>false</activeByDefault>
-            </activation>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>devnightly</value>
+				</property>
+				<activeByDefault>false</activeByDefault>
+			</activation>
 			<repositories>
 				<repository>
 					<id>papyrus-nightly</id>
@@ -231,17 +233,17 @@
 				</repository>
 			</repositories>
 		</profile>
-		
-		
+
+
 		<!-- Stable release profile. Takes +30min. Eclipse servers only -->
 		<profile>
-			<id>packAndSign</id> 
-            <activation>
-                <property>
-                    <name>SIGN</name>
-                    <value>true</value>
-                </property>
-            </activation>
+			<id>packAndSign</id>
+			<activation>
+				<property>
+					<name>SIGN</name>
+					<value>true</value>
+				</property>
+			</activation>
 			<!-- Pack200 -->
 			<build>
 				<plugins>
@@ -304,17 +306,17 @@
 				</plugins>
 			</build>
 		</profile>
-		
+
 
 		<!-- Nightly profile. Artifacts can be consumed, but are not signed -->
 		<profile>
-			<id>pack</id> 
-            <activation>
-                <property>
-                    <name>SIGN</name>
-                    <value>false</value>
-                </property>
-            </activation>
+			<id>pack</id>
+			<activation>
+				<property>
+					<name>SIGN</name>
+					<value>false</value>
+				</property>
+			</activation>
 			<build>
 				<plugins>
 					<!-- Pack200 -->
@@ -351,11 +353,11 @@
 				</plugins>
 			</build>
 		</profile>
-	
-		
+
+
 		<!-- Analysis profile. Takes +1h -->
 		<profile>
-			<id>findBugs</id> 
+			<id>findBugs</id>
 			<build>
 				<plugins>
 					<plugin>

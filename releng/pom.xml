@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.eclipse.papyrus</groupId>
@@ -17,18 +18,20 @@
 		<maven.clean.version>3.0.0</maven.clean.version>
 		<mojo.execmaven.version>1.6.0</mojo.execmaven.version>
 		<jboss.utils.version>1.1.0</jboss.utils.version>
-        <maven.compiler.version>3.7.0</maven.compiler.version>
-		
+		<maven.compiler.version>3.7.0</maven.compiler.version>
+
 		<tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/papyrus/org.eclipse.papyrus.git</tycho.scmUrl>
 		<java.source.version>1.8</java.source.version>
 		<java.target.version>1.8</java.target.version>
 		<skipAllTests>false</skipAllTests>
 		<skipInnerTests>true</skipInnerTests>
-		<!-- Set buildAll to true when building this pom directly (Rather than individual 
-            components). This will disable Papyrus Update Sites (Since they are being built by this POM). -->
-		<buildAll>false</buildAll> 
+		<!-- Set buildAll to true when building this pom directly (Rather than 
+			individual components). This will disable Papyrus Update Sites (Since they 
+			are being built by this POM). -->
+		<buildAll>false</buildAll>
 
-		<!-- Papyrus repositories. Used when we're building individual components (vs building the parent pom including everything) -->
+		<!-- Papyrus repositories. Used when we're building individual components 
+			(vs building the parent pom including everything) -->
 		<papyrus.eclipse.target>master</papyrus.eclipse.target>
 		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/main</papyrus.repo.main>
 		<papyrus.repo.toolsmiths>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/toolsmiths</papyrus.repo.toolsmiths>
@@ -62,13 +65,13 @@
 			<url>https://repository.jboss.org/</url>
 		</pluginRepository>
 	</pluginRepositories>
-	
+
 	<repositories>
-        <repository>
-            <id>license-feature</id>
-            <url>http://download.eclipse.org/cbi/updates/license/</url>
-            <layout>p2</layout>
-        </repository>
+		<repository>
+			<id>license-feature</id>
+			<url>http://download.eclipse.org/cbi/updates/license/</url>
+			<layout>p2</layout>
+		</repository>
 	</repositories>
 
 	<build>
@@ -76,15 +79,15 @@
 		<pluginManagement>
 			<!-- redistributed plugin configurations -->
 			<plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven.compiler.version}</version>
-                    <configuration>
-                        <source>${java.source.version}</source>
-                        <target>${java.target.version}</target>
-                    </configuration>
-                </plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.version}</version>
+					<configuration>
+						<source>${java.source.version}</source>
+						<target>${java.target.version}</target>
+					</configuration>
+				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
@@ -103,27 +106,27 @@
 					<artifactId>exec-maven-plugin</artifactId>
 					<version>${mojo.execmaven.version}</version>
 				</plugin>
-				
+
 				<plugin>
 					<groupId>org.eclipse.xtend</groupId>
 					<artifactId>xtend-maven-plugin</artifactId>
 					<version>${xtext.version}</version>
-                                        <!-- patch to fix a signer issue - https://github.com/eclipse/xtext/issues/1231 -->
+					<!-- patch to fix a signer issue - https://github.com/eclipse/xtext/issues/1231 -->
 					<dependencies>
 						<dependency>
-						    <groupId>org.eclipse.platform</groupId>
-						    <artifactId>org.eclipse.equinox.common</artifactId>
-						    <version>3.10.0</version>
+							<groupId>org.eclipse.platform</groupId>
+							<artifactId>org.eclipse.equinox.common</artifactId>
+							<version>3.10.0</version>
 						</dependency>
 					</dependencies>
 				</plugin>
 
-                <plugin>
-                    <groupId>org.jboss.tools.tycho-plugins</groupId>
-                    <artifactId>repository-utils</artifactId>
-                    <version>${jboss.utils.version}</version>
-                </plugin>
-				
+				<plugin>
+					<groupId>org.jboss.tools.tycho-plugins</groupId>
+					<artifactId>repository-utils</artifactId>
+					<version>${jboss.utils.version}</version>
+				</plugin>
+
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-maven-plugin</artifactId>
@@ -135,19 +138,19 @@
 					<artifactId>tycho-p2-repository-plugin</artifactId>
 					<version>${tycho-version}</version>
 				</plugin>
-                <plugin>
-                    <groupId>org.eclipse.tycho</groupId>
-                    <artifactId>tycho-compiler-plugin</artifactId>
-                    <version>${tycho-version}</version>
-                    <configuration>
-                        <source>${java.source.version}</source>
-                        <target>${java.target.version}</target>
-                        <optimize>true</optimize>
-                        <showWarnings>true</showWarnings>
-                        <!-- Tycho build using the project's JDT settings. -->
-                        <useProjectSettings>true</useProjectSettings>
-                    </configuration>
-                </plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-compiler-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<source>${java.source.version}</source>
+						<target>${java.target.version}</target>
+						<optimize>true</optimize>
+						<showWarnings>true</showWarnings>
+						<!-- Tycho build using the project's JDT settings. -->
+						<useProjectSettings>true</useProjectSettings>
+					</configuration>
+				</plugin>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>target-platform-configuration</artifactId>
@@ -193,7 +196,7 @@
 		</pluginManagement>
 	</build>
 
-	<profiles>	
+	<profiles>
 		<profile>
 			<id>eclipsehippIntegration</id>
 			<activation>
