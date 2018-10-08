@@ -20,6 +20,10 @@
    </license>
    
    
+   <requires>
+        <import feature="fr.obeo.releng.targetplatform-feature" version="2.1.1" match="compatible"/>
+   </requires>
+   
    <plugin
          id="org.eclipse.papyrus.releng.tools"
          download-size="0"
