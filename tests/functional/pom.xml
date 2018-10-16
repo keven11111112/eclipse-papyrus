@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-	    <groupId>org.eclipse.papyrus</groupId>
-	    <artifactId>org.eclipse.papyrus.toolsmiths.releng</artifactId>
-	    <version>1.0.0-SNAPSHOT</version>
-	    <relativePath>../../releng/toolsmiths/pom.xml</relativePath>
-    </parent>
-  	<groupId>org.eclipse.papyrus.tests</groupId>
-  	<artifactId>org.eclipse.papyrus.tests.functional</artifactId>
-  	<version>0.0.1-SNAPSHOT</version>
+		<groupId>org.eclipse.papyrus</groupId>
+		<artifactId>org.eclipse.papyrus.toolsmiths.releng</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../../releng/toolsmiths/pom.xml</relativePath>
+	</parent>
+	<groupId>org.eclipse.papyrus.tests</groupId>
+	<artifactId>org.eclipse.papyrus.tests.functional</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<description>Parent of the RCPTT-based functional test modules.</description>
 
 	<properties>
-		<!-- Current release snapshot is required to test milestones of current
-		     Eclipse platform because the RCPTT launching framework hard-codes
-		     knowledge of each specific SWT bundle minor release (e.g., 3.107.0) -->
+		<!-- Current release snapshot is required to test milestones of current 
+			Eclipse platform because the RCPTT launching framework hard-codes knowledge 
+			of each specific SWT bundle minor release (e.g., 3.107.0) -->
 		<rcptt-version>2.3.0-SNAPSHOT</rcptt-version>
 		<rcptt-runner-version>2.3.0-SNAPSHOT</rcptt-runner-version>
 		<papyrus-aut>../../../../Papyrus-Master-Rcp/lastSuccessful/archive/products/papyrus-linux-64.tar.gz</papyrus-aut>
 	</properties>
-	
-	<modules>	
+
+	<modules>
 		<module>uml/diagram/org.eclipse.papyrus.uml.diagram.sequence.functional.tests</module>
 	</modules>
 
@@ -65,13 +68,13 @@
 						<execTimeout>900</execTimeout>
 						<testExecTimeout>1800</testExecTimeout>
 					</testOptions>
-					
+
 					<skipTags>
-							<skipTag>ignore</skipTag> 
+						<skipTag>ignore</skipTag>
 					</skipTags>
-					
+
 				</configuration>
 			</plugin>
-		</plugins>			
+		</plugins>
 	</build>
 </project>
