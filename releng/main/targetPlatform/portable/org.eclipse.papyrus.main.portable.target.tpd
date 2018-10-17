@@ -39,9 +39,9 @@ location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/S2018101
 
 /*** Updates from the Simrel repository ***/
 
-//updateFrom("QVT Operational",0)
+//updateFrom("QVT Operational for 2018-12",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/releases/3.9.0" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.1/S201810130521" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -60,13 +60,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestone
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.9/R-4.9-201809060745/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.10milestones/S-4.10M1-201810101800/" {
 	org.eclipse.sdk.feature.group
 }
 
-//updateFrom("OCL",0) 
+//updateFrom("OCL for 2018-12",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.5.0" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.5.1/S201810121545" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -79,7 +79,7 @@ location xwt "http://download.eclipse.org/xwt/updates" {
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.15.0" {
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201810150206" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -93,9 +93,9 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
-//updateFrom("WebTools",0) 
+//updateFrom("WebTools 3.12 for Simrel 2018-12",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.11.0/S-3.11.0.RC1-20180910170749/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.12.0/S-3.12.0.M1-20181011033659/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
