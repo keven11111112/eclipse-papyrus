@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo - vincent.lorenzo@cea.fr - bug 540218
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.contentprovider.singlefolder;
 
@@ -93,7 +93,7 @@ public class SingleFolderModel implements ITabFolderModel {
 	 */
 	public IPageModel removeTab(int index) {
 		IPageModel removed = itemModels.remove(index);
-		contentProvider.firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, removed));
+		contentProvider.firePropertyChanged(new ContentEvent(ContentEvent.REMOVED, this, removed));
 		return removed;
 
 	}
@@ -105,7 +105,7 @@ public class SingleFolderModel implements ITabFolderModel {
 	 */
 	public void removeTab(IPageModel tabItem) {
 		itemModels.remove(tabItem);
-		contentProvider.firePropertyChanged(new ContentEvent(ContentEvent.ADDED, this, tabItem));
+		contentProvider.firePropertyChanged(new ContentEvent(ContentEvent.REMOVED, this, tabItem));
 	}
 
 	/**

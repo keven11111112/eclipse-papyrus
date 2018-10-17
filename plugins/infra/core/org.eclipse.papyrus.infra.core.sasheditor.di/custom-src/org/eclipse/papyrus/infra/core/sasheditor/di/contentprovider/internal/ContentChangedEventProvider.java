@@ -1,6 +1,18 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2011, 2018 CEA LIST, LIFL
  *
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Vincent Lorenzo - vincent.lorenzo@cea.fr - bug 540218
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
 import java.util.ArrayList;
@@ -11,6 +23,7 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedProvider;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.NotificationContentEvent;
 import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPanel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
@@ -198,17 +211,17 @@ public class ContentChangedEventProvider implements IContentChangedProvider {
 			if (msg.getEventType() == Notification.RESOLVE) {
 				return;
 			}
-			
+
 			// Filter out notification of type SET
 			// We don't need to be notified
-			if(msg.getEventType() == Notification.SET) {
+			if (msg.getEventType() == Notification.SET) {
 				return;
 			}
 
 			// W
 			Object sender = msg.getNotifier();
 			if (sender instanceof AbstractPanel || sender instanceof Window || sender instanceof PageRef) {
-				fireContentChanged(new ContentEvent(msg.getEventType(), sender, null));
+				fireContentChanged(new NotificationContentEvent(msg, msg.getEventType(), sender, null));
 			}
 		}
 	}
