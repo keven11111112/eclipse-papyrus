@@ -82,7 +82,7 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 		}
 
 		if (Activator.log.isDebugEnabled()) {
-			Activator.log.debug("setActivePage(" + activeEditor + " " + ")");
+			Activator.log.debug("setActivePage(" + activeEditor + " " + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 
 		activeNestedEditor = activeEditor;
@@ -112,7 +112,7 @@ public class ComposedActionBarContributor extends MultiPageEditorActionBarContri
 	@Override
 	public void setActiveEditor(IEditorPart part) {
 		if (Activator.log.isDebugEnabled()) {
-			Activator.log.debug("setActiveEditor(" + part + " " + ")");
+			Activator.log.debug("setActiveEditor(" + part + " " + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 
 		// Switch the editor and activeContributor.

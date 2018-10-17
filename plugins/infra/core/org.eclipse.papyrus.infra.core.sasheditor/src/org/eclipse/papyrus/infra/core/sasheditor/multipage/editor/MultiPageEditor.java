@@ -186,7 +186,7 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 		} catch (PartInitException e) {
 			ErrorDialog.openError(
 					getSite().getShell(),
-					"Error creating nested text editor",
+					"Error creating nested text editor", //$NON-NLS-1$
 					null,
 					e.getStatus());
 			return -1;
@@ -373,7 +373,7 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 		// Check if an editor already exists
 		if (tabExistsFor(tabItem)) {
 			if (Activator.log.isDebugEnabled()) {
-				Activator.log.debug("Editor already exists for '" + tabItem + "'");
+				Activator.log.debug("Editor already exists for '" + tabItem + "'"); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 			return;
 		}
@@ -384,7 +384,7 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 		} else if (tabItem instanceof IComponentModel) {
 			editorIndex = addPage((IComponentModel) tabItem);
 		} else {
-			System.err.println("Can't create page for model '" + tabItem + "'. Skipp it.");
+			System.err.println("Can't create page for model '" + tabItem + "'. Skipp it."); //$NON-NLS-1$ //$NON-NLS-2$
 			return;
 		}
 

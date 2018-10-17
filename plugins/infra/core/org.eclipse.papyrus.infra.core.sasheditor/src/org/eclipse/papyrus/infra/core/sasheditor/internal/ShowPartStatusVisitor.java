@@ -52,10 +52,10 @@ public class ShowPartStatusVisitor extends PartVisitor {
 		}
 
 		for (int i = 0; i < level - 1; i++) {
-			System.out.print("|   ");
+			System.out.print("|   "); //$NON-NLS-1$
 		}
 		// last segment
-		System.out.print("+ ");
+		System.out.print("+ "); //$NON-NLS-1$
 	}
 
 	/**

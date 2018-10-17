@@ -38,7 +38,7 @@ public class ActivePageHistoryTracker implements IPageLifeCycleEventsListener {
 	 */
 	@Override
 	public void pageChanged(IPage newPage) {
-		System.out.println("pageChanged - " + newPage.getPageTitle());
+		System.out.println("pageChanged - " + newPage.getPageTitle()); //$NON-NLS-1$
 	}
 
 	/**

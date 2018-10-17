@@ -160,7 +160,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 
 		// Not found !!
 		// The tile contains the position, but the type is not found.
-		throw new UnsupportedOperationException("Tile match the expected position '" + toFind + "' but there is no Tile of requested type '" + expectedTileType.getClass().getName() + "'");
+		throw new UnsupportedOperationException("Tile match the expected position '" + toFind + "' but there is no Tile of requested type '" + expectedTileType.getClass().getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	/**
@@ -296,7 +296,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	 * Show item status.
 	 */
 	protected void showStatus() {
-		System.out.printf("ComponentPart: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, getPageTitle(), this);
+		System.out.printf("ComponentPart: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, getPageTitle(), this); //$NON-NLS-1$
 	}
 
 	/**
@@ -308,7 +308,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 			return partModel.getTabTitle();
 		} catch (Exception ex) {
 			Activator.log.error(ex);
-			return "Error";
+			return "Error"; //$NON-NLS-1$
 		}
 	}
 

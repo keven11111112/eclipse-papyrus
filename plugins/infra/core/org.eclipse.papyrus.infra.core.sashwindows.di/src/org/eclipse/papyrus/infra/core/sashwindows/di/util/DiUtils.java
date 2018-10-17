@@ -197,18 +197,18 @@ public class DiUtils {
 
 		// Check parameters
 		if (pageRef == null || pageRef.getPageIdentifier() == null) {
-			throw new SashEditorException("Unable to add the page to the tab folder: parameters are null");
+			throw new SashEditorException("Unable to add the page to the tab folder: parameters are null"); //$NON-NLS-1$
 		}
 
 		SashModel sashModel = windowsMngr.getSashModel();
 		if (sashModel == null) {
-			throw new SashEditorException("Unable to add the page to the tab folder: can't find SashModel");
+			throw new SashEditorException("Unable to add the page to the tab folder: can't find SashModel"); //$NON-NLS-1$
 		}
 
 		// Get the currently active folder in order to add the page.
 		TabFolder tabFolder = sashModel.getCurrentSelection();
 		if (tabFolder == null) {
-			throw new SashEditorException("Unable to add the page to the tab folder: No active folder");
+			throw new SashEditorException("Unable to add the page to the tab folder: No active folder"); //$NON-NLS-1$
 		}
 
 		tabFolder.addPage(pageRef.getPageIdentifier());

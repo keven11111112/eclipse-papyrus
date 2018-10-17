@@ -73,7 +73,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	public DiContentProvider(SashModel diSashModel, IPageModelFactory pageModelFactory, ContentChangedEventProvider contentChangedEventProvider) throws IllegalArgumentException {
 
 		if (pageModelFactory == null) {
-			throw new IllegalArgumentException("A IPageModelFactory should be provided.");
+			throw new IllegalArgumentException("A IPageModelFactory should be provided."); //$NON-NLS-1$
 		}
 
 		this.diSashModel = diSashModel;
@@ -152,7 +152,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	@Override
 	public void addPage(Object page, int index) {
 
-		throw new UnsupportedOperationException("Not yet implemented.");
+		throw new UnsupportedOperationException("Not yet implemented."); //$NON-NLS-1$
 	}
 
 	/**
@@ -241,7 +241,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 		} else if (root instanceof TabFolder) {
 			return new TabFolderModel((TabFolder) root, pageModelFactory);
 		} else {
-			throw new IllegalArgumentException("Can't create IPanelModel from raw model '" + root + "'.");
+			throw new IllegalArgumentException("Can't create IPanelModel from raw model '" + root + "'."); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -305,7 +305,7 @@ public class DiContentProvider implements ISashWindowsContentProvider {
 	 */
 	@Override
 	public void removePage(Object page) {
-		throw new UnsupportedOperationException("Not yet implemented.");
+		throw new UnsupportedOperationException("Not yet implemented."); //$NON-NLS-1$
 
 	}
 

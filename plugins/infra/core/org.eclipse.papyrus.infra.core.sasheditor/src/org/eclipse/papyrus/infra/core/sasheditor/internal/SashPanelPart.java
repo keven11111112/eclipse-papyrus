@@ -136,9 +136,9 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 			createdPart = new SashPanelPart(this, (ISashPanelModel) model, rawModel);
 		} else {
 			// error
-			throw new IllegalArgumentException("Can't create child part for model of type '"
+			throw new IllegalArgumentException("Can't create child part for model of type '" //$NON-NLS-1$
 					+ model.getClass().getName()
-					+ "'");
+					+ "'"); //$NON-NLS-1$
 			// TODO: Return an error Part showing the exception instead of throwing it ?
 		}
 
@@ -266,7 +266,7 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 			return currentChildParts[1].findPart(toFind);
 		}
 
-		throw new NotFoundException("Can't find a part at '" + toFind + "'");
+		throw new NotFoundException("Can't find a part at '" + toFind + "'"); //$NON-NLS-1$ //$NON-NLS-2$
 
 
 	}
@@ -495,11 +495,11 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	 * Used for debug purpose
 	 */
 	protected void showStatus() {
-		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("sash[" + currentChildParts.length + "]:"
-				+ ", disposed=" + container.isDisposed()
-				+ ", visible=" + container.isVisible()
-				+ ", garbState=" + garbageState
-				+ ", " + this);
+		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("sash[" + currentChildParts.length + "]:" //$NON-NLS-1$ //$NON-NLS-2$
+				+ ", disposed=" + container.isDisposed() //$NON-NLS-1$
+				+ ", visible=" + container.isVisible() //$NON-NLS-1$
+				+ ", garbState=" + garbageState //$NON-NLS-1$
+				+ ", " + this); //$NON-NLS-1$
 	}
 
 }

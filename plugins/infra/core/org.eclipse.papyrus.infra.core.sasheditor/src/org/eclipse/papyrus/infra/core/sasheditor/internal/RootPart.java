@@ -105,9 +105,9 @@ public class RootPart extends AbstractPart implements IPanelParent {
 			createdPart = new SashPanelPart(this, (ISashPanelModel) model, rawModel);
 		} else {
 			// error
-			throw new IllegalArgumentException("Can't create child part for model of type '"
+			throw new IllegalArgumentException("Can't create child part for model of type '" //$NON-NLS-1$
 					+ model.getClass().getName()
-					+ "'");
+					+ "'"); //$NON-NLS-1$
 			// TODO: Return an error Part showing the exception instead of throwing it ?
 		}
 
@@ -307,10 +307,10 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	 * Show tile status.
 	 */
 	protected void showStatus() {
-		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("rootPart (1)"
-				+ ", disposed=" + container.isDisposed()
-				+ ", visible=" + container.isVisible()
-				+ ", " + this);
+		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("rootPart (1)" //$NON-NLS-1$
+				+ ", disposed=" + container.isDisposed() //$NON-NLS-1$
+				+ ", visible=" + container.isVisible() //$NON-NLS-1$
+				+ ", " + this); //$NON-NLS-1$
 	}
 
 

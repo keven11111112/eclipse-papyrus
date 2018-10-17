@@ -35,7 +35,7 @@ public interface IPageModelFactory {
 	 * 
 	 * @since 2.0
 	 */
-	String DEFAULT_EDITOR = IPageManager.class.getCanonicalName() + ".Default";
+	String DEFAULT_EDITOR = IPageManager.class.getCanonicalName() + ".Default"; //$NON-NLS-1$
 
 	/**
 	 * Create the IPageModel for the pageIdentifier. The pageIdentifier is the object passed to
@@ -77,6 +77,6 @@ public interface IPageModelFactory {
 	 * @since 2.0
 	 */
 	default Map<String, String> getEditorIDsFor(Object pageIdentifier) {
-		return Collections.singletonMap(DEFAULT_EDITOR, "Default editor");
+		return Collections.singletonMap(DEFAULT_EDITOR, "Default editor"); //$NON-NLS-1$
 	}
 }

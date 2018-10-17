@@ -25,7 +25,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/** Plugin ID */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.core.sasheditor";
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.core.sasheditor"; //$NON-NLS-1$
 
 	/** shared instance of the plugin */
 	private static Activator plugin;

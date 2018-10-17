@@ -208,7 +208,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		assert (contentProvider != null);
 		// Double check for development
 		if (contentProvider == null) {
-			throw new IllegalStateException("ContentProvider should be set before calling any method requiring it.");
+			throw new IllegalStateException("ContentProvider should be set before calling any method requiring it."); //$NON-NLS-1$
 		}
 
 		return contentProvider;
@@ -510,7 +510,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		if (partModel instanceof IEditorModel) {
 			// Check if we can use IEditorModel
 			if (multiEditorManager == null) {
-				throw new IllegalArgumentException("Container can't accept IEditorModel as no IMultiEditorManager is set. Please set a IMultiEditorManager.");
+				throw new IllegalArgumentException("Container can't accept IEditorModel as no IMultiEditorManager is set. Please set a IMultiEditorManager."); //$NON-NLS-1$
 			}
 
 			return new EditorPart(parent, (IEditorModel) partModel, rawModel, multiEditorManager);
@@ -521,7 +521,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		}
 
 		// TODO return a default part showing an error instead.
-		throw new IllegalArgumentException("No Part found for the model '" + rawModel + "'");
+		throw new IllegalArgumentException("No Part found for the model '" + rawModel + "'"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -711,7 +711,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 				isRefreshing.set(false);
 			}
 		} else {
-			log.warn("refresh inside refresh !");
+			log.warn("refresh inside refresh !"); //$NON-NLS-1$
 		}
 
 	}

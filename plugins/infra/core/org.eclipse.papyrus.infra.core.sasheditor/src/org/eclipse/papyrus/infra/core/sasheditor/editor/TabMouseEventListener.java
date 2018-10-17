@@ -33,7 +33,7 @@ import org.eclipse.ui.handlers.IHandlerService;
  */
 public class TabMouseEventListener implements ITabMouseEventsListener {
 
-	private static final String RENAME_COMMAND_ID = "org.eclipse.papyrus.infra.core.sasheditor.command.tabdoubleclick";
+	private static final String RENAME_COMMAND_ID = "org.eclipse.papyrus.infra.core.sasheditor.command.tabdoubleclick"; //$NON-NLS-1$
 
 	/**
 	 * Site of the editor.

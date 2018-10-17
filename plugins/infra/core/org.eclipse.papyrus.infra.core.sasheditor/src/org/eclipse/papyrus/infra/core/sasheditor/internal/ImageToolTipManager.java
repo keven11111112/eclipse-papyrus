@@ -217,7 +217,7 @@ public class ImageToolTipManager {
 			x = mousePos.x;
 			y = relatedControlBounds.y + (relatedControlBounds.height + offsetY);
 		} else {
-			throw new UnsupportedOperationException("Not yet implemented for this alignement.");
+			throw new UnsupportedOperationException("Not yet implemented for this alignement."); //$NON-NLS-1$
 		}
 		return new Point(x, y);
 	}

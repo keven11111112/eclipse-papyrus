@@ -1,3 +1,18 @@
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST, LIFL.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.editor;
 
 import java.util.List;
@@ -39,14 +54,14 @@ public interface ISashWindowsContainer {
 	 * @return
 	 */
 	public List<IPage> getVisiblePages();
-	
+
 	/**
 	 * Get the next IPage in the tabs list.
 	 *
 	 * @return
 	 */
 	public IPage getNextPage();
-	
+
 	/**
 	 * Get the next IPage in the tabs list.
 	 *

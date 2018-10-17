@@ -1109,7 +1109,7 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 	 */
 	private PagePart createErrorPage() {
 		// Handle invalid tab case. Improve robustness.
-		Activator.log.warn("Error: the SashWindowContainer returned an invalid tab");
+		Activator.log.warn("Error: the SashWindowContainer returned an invalid tab"); //$NON-NLS-1$
 		return new ErrorComponentPart(this);
 	}
 
@@ -1120,33 +1120,33 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 	 * @param msg
 	 */
 	private void showTabs(String msg) {
-		System.out.println("------- " + msg);
+		System.out.println("------- " + msg); //$NON-NLS-1$
 		// Show items
 		CTabFolder folder = getTabFolder();
 		CTabItem items[] = folder.getItems();
-		System.out.printf("sel.index %2d :\n", folder.getSelectionIndex());
-		System.out.printf("items %2d :", folder.getItemCount());
+		System.out.printf("sel.index %2d :\n", folder.getSelectionIndex()); //$NON-NLS-1$
+		System.out.printf("items %2d :", folder.getItemCount()); //$NON-NLS-1$
 		for (CTabItem item : items) {
-			System.out.printf("%10s |", item.getControl());
+			System.out.printf("%10s |", item.getControl()); //$NON-NLS-1$
 		}
 		System.out.println();
 
-		System.out.printf("it.dispose:");
+		System.out.printf("it.dispose:"); //$NON-NLS-1$
 		for (CTabItem item : items) {
-			System.out.printf("%10b |", item.getControl().isDisposed());
+			System.out.printf("%10b |", item.getControl().isDisposed()); //$NON-NLS-1$
 		}
 		System.out.println();
 
-		System.out.printf("it.ctrl.vis:");
+		System.out.printf("it.ctrl.vis:"); //$NON-NLS-1$
 		for (CTabItem item : items) {
-			System.out.printf("%10s |", item.getControl().isVisible());
+			System.out.printf("%10s |", item.getControl().isVisible()); //$NON-NLS-1$
 		}
 		System.out.println();
 
 		//
-		System.out.printf("it.ctrl   :");
+		System.out.printf("it.ctrl   :"); //$NON-NLS-1$
 		for (CTabItem item : items) {
-			System.out.printf("%10s |", item.getControl());
+			System.out.printf("%10s |", item.getControl()); //$NON-NLS-1$
 		}
 		System.out.println();
 
@@ -1167,9 +1167,9 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 		// System.out.println();
 
 		//
-		System.out.printf("tabs %2d :", currentTabItems.size());
+		System.out.printf("tabs %2d :", currentTabItems.size()); //$NON-NLS-1$
 		for (TabItemPart tab : currentTabItems) {
-			System.out.printf("%10s |", tab);
+			System.out.printf("%10s |", tab); //$NON-NLS-1$
 		}
 		System.out.println();
 
@@ -1186,7 +1186,7 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 		// + ", " + this);
 
 		CTabFolder ctrl = getTabFolder();
-		System.out.printf("tabfolder[%2d]: disposed=%-5b, visible=%-5b, garbState=%-10s, %s\n", currentTabItems.size(), ctrl.isDisposed(), (ctrl.isDisposed() ? false : getTabFolder().isVisible()), garbageState, this);
+		System.out.printf("tabfolder[%2d]: disposed=%-5b, visible=%-5b, garbState=%-10s, %s\n", currentTabItems.size(), ctrl.isDisposed(), (ctrl.isDisposed() ? false : getTabFolder().isVisible()), garbageState, this); //$NON-NLS-1$
 	}
 
 	/**

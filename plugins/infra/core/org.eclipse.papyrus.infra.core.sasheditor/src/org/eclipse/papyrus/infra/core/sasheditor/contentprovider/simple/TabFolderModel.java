@@ -217,7 +217,7 @@ public class TabFolderModel extends AbstractPanelModel implements ITabFolderMode
 	 */
 	@Override
 	public void replaceChild(AbstractPanelModel oldChild, AbstractPanelModel newChild) {
-		throw new UnsupportedOperationException("This method should not be called on this class.");
+		throw new UnsupportedOperationException("This method should not be called on this class."); //$NON-NLS-1$
 	}
 
 	/**

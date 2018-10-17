@@ -500,7 +500,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 
 		// Not found !!
 		// The tile contains the position, but the type is not found.
-		throw new UnsupportedOperationException("Tile match the expected position '" + toFind + "' but there is no Tile of requested type '" + expectedTileType.getClass().getName() + "'");
+		throw new UnsupportedOperationException("Tile match the expected position '" + toFind + "' but there is no Tile of requested type '" + expectedTileType.getClass().getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	/**
@@ -599,7 +599,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 		} else {
 			// Bad state, this is an internal error
 			// TODO : log a warning ?
-			throw new IllegalStateException("Try to change state from " + garbageState.toString() + " to REPARENTED. This is forbidden.");
+			throw new IllegalStateException("Try to change state from " + garbageState.toString() + " to REPARENTED. This is forbidden."); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 	}
@@ -679,8 +679,8 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * Show item status.
 	 */
 	protected void showStatus() {
-		String title = (editorPart != null ? editorPart.getTitle() : "no editorPart");
-		System.out.printf("EditorTile: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, title, this);
+		String title = (editorPart != null ? editorPart.getTitle() : "no editorPart"); //$NON-NLS-1$
+		System.out.printf("EditorTile: disposed=%-5b, visible=%-5b, garbState=%-10s, %s, %s\n", editorControl.isDisposed(), (editorControl.isDisposed() ? false : editorControl.isVisible()), garbageState, title, this); //$NON-NLS-1$
 
 	}
 
@@ -693,7 +693,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 			return editorModel.getTabTitle();
 		} catch (Exception ex) {
 			Activator.log.error(ex);
-			return "Error";
+			return "Error"; //$NON-NLS-1$
 		}
 	}
 

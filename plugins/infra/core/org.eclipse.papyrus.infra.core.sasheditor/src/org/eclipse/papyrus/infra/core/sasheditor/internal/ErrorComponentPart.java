@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IComponentModel;
+import org.eclipse.papyrus.infra.core.sasheditor.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -50,7 +51,7 @@ public class ErrorComponentPart extends ComponentPart {
 
 			@Override
 			public String getTabTitle() {
-				return "Invalid tab";
+				return Messages.ErrorComponentPart_InvalidTab;
 			}
 
 			@Override
@@ -81,7 +82,7 @@ public class ErrorComponentPart extends ComponentPart {
 
 				Label label = new Label(tabComposite, SWT.NONE);
 				label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-				label.setText("Invalid tab");
+				label.setText(Messages.ErrorComponentPart_InvalidTab);
 
 				return tabComposite;
 			}

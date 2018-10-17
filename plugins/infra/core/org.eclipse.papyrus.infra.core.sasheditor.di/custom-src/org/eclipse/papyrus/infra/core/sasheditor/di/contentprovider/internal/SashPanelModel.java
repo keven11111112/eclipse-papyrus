@@ -72,7 +72,7 @@ public class SashPanelModel implements IAbstractPanelModel, ISashPanelModel {
 		} else if (child instanceof TabFolder) {
 			return new TabFolderModel((TabFolder) child, pageModelFactory);
 		} else {
-			throw new IllegalArgumentException("Can't create IPanelModel from raw model '" + child + "'.");
+			throw new IllegalArgumentException("Can't create IPanelModel from raw model '" + child + "'."); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

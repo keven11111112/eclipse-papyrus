@@ -224,7 +224,7 @@ public class TabItemPart {
 	 */
 	private void setTabText(String title) {
 		if (title == null) {
-			title = "";
+			title = ""; //$NON-NLS-1$
 		}
 		control.setText(title);
 		control.setToolTipText(title);

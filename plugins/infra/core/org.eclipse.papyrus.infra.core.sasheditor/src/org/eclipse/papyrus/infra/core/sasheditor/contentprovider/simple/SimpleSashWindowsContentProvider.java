@@ -132,7 +132,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 */
 	@Override
 	public void movePage(ITabFolderModel folderModel, int oldIndex, int newIndex) {
-		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("movePage()");
+		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("movePage()"); //$NON-NLS-1$
 		((TabFolderModel) folderModel).moveTab(oldIndex, newIndex);
 
 	}
@@ -144,7 +144,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	@Override
 	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel, int targetIndex) {
 		// This implementation use (TabFolderModel), so we can cast safely
-		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("movePage()");
+		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("movePage()"); //$NON-NLS-1$
 		if (sourceIndex == -1) {
 			moveAllPages(srcFolderModel, targetFolderModel);
 			return;
@@ -192,7 +192,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 */
 	@Override
 	public void createFolder(ITabFolderModel sourceFolder, int tabIndex, ITabFolderModel referenceFolder, int side) {
-		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("createFolder()");
+		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("createFolder()"); //$NON-NLS-1$
 
 		doCreateFolder((TabFolderModel) sourceFolder, tabIndex, (TabFolderModel) referenceFolder, side);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.CHANGED, this, sourceFolder));
@@ -211,7 +211,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 *            The side to which the created folder is inserted. Can be SWT.TOP, DOWN, LEFT, RIGHT.
 	 */
 	public ITabFolderModel createFolder(ITabFolderModel referenceFolder, int side) {
-		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("createFolder()");
+		org.eclipse.papyrus.infra.core.sasheditor.Activator.log.debug("createFolder()"); //$NON-NLS-1$
 
 		ITabFolderModel newFolder = doCreateFolder((TabFolderModel) referenceFolder, side);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.CHANGED, this, referenceFolder));
