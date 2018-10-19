@@ -45,6 +45,17 @@
 
 	<pluginRepositories>
 		<!-- https://repo.maven.apache.org/maven2/ is being fetched by default -->
+        <!-- pluginRepository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository -->
 		<pluginRepository>
             <id>tycho-snapshots</id>
             <url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</url>
@@ -63,10 +74,6 @@
 		<pluginRepository>
 			<id>eclipse.org-mylyn</id>
 			<url>https://repo.eclipse.org/content/repositories/mylyn/</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>org.jboss.tools.tycho-plugins</id>
-			<url>https://repository.jboss.org/</url>
 		</pluginRepository>
 	</pluginRepositories>
 
@@ -123,12 +130,6 @@
 							<version>3.10.0</version>
 						</dependency>
 					</dependencies>
-				</plugin>
-
-				<plugin>
-					<groupId>org.jboss.tools.tycho-plugins</groupId>
-					<artifactId>repository-utils</artifactId>
-					<version>${jboss.utils.version}</version>
 				</plugin>
 
 				<plugin>
