@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="modelFactory" name="Model Factory" schema="schema/modelFactory.exsd"/>
+   <extension-point id="diViewFilter" name="Di View Filter" schema="schema/diViewFilter.exsd"/>
    
    <extension
          point="org.eclipse.core.runtime.adapters">
@@ -41,6 +42,13 @@
             instance="org.eclipse.papyrus.infra.onefile.model.impl.PapyrusModelFactory"
             priority="1">
       </factory>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.onefile.diViewFilter">
+      <filter
+            instance="org.eclipse.papyrus.infra.onefile.model.impl.PapyrusDiViewFilter"
+            priority="1">
+      </filter>
    </extension>
  
 </plugin>
