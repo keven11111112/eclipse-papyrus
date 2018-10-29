@@ -13,9 +13,9 @@
  *     Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
  *     Christian W. Damus (CEA) - create models by URI, not IFile (CDO)
  *     Christian W. Damus (CEA) - Support creating models in repositories (CDO)
- *     Christian W. Damus - bugs 490936, 471453
- *	   Pauline DEVILLE (CEA LIST) - Bug 493312 - [Wizard] Apply multiple profiles in new model wizard 
- *   
+ *     Christian W. Damus - bugs 490936, 471453, 540584
+ *	   Pauline DEVILLE (CEA LIST) - Bug 493312 - [Wizard] Apply multiple profiles in new model wizard
+ *
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.wizards;
 
@@ -122,7 +122,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/**
 	 * The select architecture context page.
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	protected SelectArchitectureContextPage selectArchitectureContextPage;
@@ -134,9 +134,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	private INewModelStorageProvider selectedStorageProvider;
 
-	private Map<INewModelStorageProvider, List<IWizardPage>> providerPages = new java.util.HashMap<INewModelStorageProvider, List<IWizardPage>>();
+	private Map<INewModelStorageProvider, List<IWizardPage>> providerPages = new java.util.HashMap<>();
 
-	private Map<IWizardPage, INewModelStorageProvider> providersByPage = new java.util.HashMap<IWizardPage, INewModelStorageProvider>();
+	private Map<IWizardPage, INewModelStorageProvider> providersByPage = new java.util.HashMap<>();
 
 	private int startProviderPageIndex; // index of last page before provider pages
 
@@ -167,8 +167,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	@Override
 	public void addPages() {
 		// ModelCreation: the selectDiagramCategoryPage exists
-		if (selectedStorageProvider.getArchitectureContextPage() != null) {
-			addPageIfNotNull(selectedStorageProvider.getArchitectureContextPage());
+		if (getSelectedStorageProvider().getArchitectureContextPage() != null) {
+			addPageIfNotNull(getSelectedStorageProvider().getArchitectureContextPage());
 		} else {
 			addPageIfNotNull(selectArchitectureContextPage);
 		}
@@ -180,12 +180,12 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		startProviderPageIndex = getPageCount() - 1;
 		for (INewModelStorageProvider next : getStorageProviders()) {
-			List<IWizardPage> pageList = new java.util.ArrayList<IWizardPage>(3);
+			List<IWizardPage> pageList = new java.util.ArrayList<>(3);
 			for (IWizardPage page : next.createPages()) {
 				if (page != null) {
 					pageList.add(page);
 					providersByPage.put(page, next);
-					if (!page.equals(selectedStorageProvider.getArchitectureContextPage())) {
+					if (!page.equals(getSelectedStorageProvider().getArchitectureContextPage())) {
 						addPage(page);
 					}
 				}
@@ -439,7 +439,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	protected String[] getSelectedViewpoints(String contextId) {
 		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
 		MergedArchitectureContext context = manager.getArchitectureContextById(contextId);
-		List<String> availableViewpoints = new ArrayList<String>();
+		List<String> availableViewpoints = new ArrayList<>();
 		for (MergedArchitectureViewpoint viewpoint : context.getViewpoints()) {
 			availableViewpoints.add(viewpoint.getId());
 		}
@@ -451,8 +451,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	private SelectArchitectureContextPage getSelectArchitectureContextPage() {
 		return (selectArchitectureContextPage != null)
 				? selectArchitectureContextPage
-				: (selectedStorageProvider != null)
-						? selectedStorageProvider.getArchitectureContextPage()
+				: (getSelectedStorageProvider() != null)
+						? getSelectedStorageProvider().getArchitectureContextPage()
 						: null;
 	}
 
@@ -620,10 +620,10 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		CompoundCommand cc = new CompoundCommand();
 		// Add the main command to create the model from a template
 		cc.append(new InitFromTemplateCommand(
-				modelSet.getTransactionalEditingDomain(), 
-				modelSet, 
-				selectRepresentationKindPage.getTemplatePluginId(), 
-				selectRepresentationKindPage.getTemplatePath(), 
+				modelSet.getTransactionalEditingDomain(),
+				modelSet,
+				selectRepresentationKindPage.getTemplatePluginId(),
+				selectRepresentationKindPage.getTemplatePath(),
 				selectRepresentationKindPage.getNotationTemplatePath(),
 				selectRepresentationKindPage.getDiTemplatePath()));
 		// Add a command to switch the model to the new context id
@@ -855,7 +855,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		// if we are creating a project, then it is in the workspace
 		if (isCreateProjectWizard()) {
-			this.selectedStorageProvider = new WorkspaceNewModelStorageProvider();
+			setSelectedStorageProvider(new WorkspaceNewModelStorageProvider());
 		} else {
 			// look for a pre-determined selection
 			INewModelStorageProvider firstProvider = null;
@@ -867,14 +867,14 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 				// don't match on empty selections because there is
 				// then no context to match against
 				if (!selection.isEmpty() && next.canHandle(selection)) {
-					this.selectedStorageProvider = next;
+					setSelectedStorageProvider(next);
 					break;
 				}
 			}
 
 			// if the choice is pre-determined, don't show the selection page
-			if (this.selectedStorageProvider == null) {
-				this.selectedStorageProvider = firstProvider;
+			if (getSelectedStorageProvider() == null) {
+				setSelectedStorageProvider(firstProvider);
 
 				// don't need the selection page if only one choice
 				if (registry.size() > 1) {
@@ -906,8 +906,8 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		if (storageProviderRegistry != null) {
 			result = storageProviderRegistry;
-		} else if (selectedStorageProvider != null) {
-			result = Collections.singletonList(selectedStorageProvider);
+		} else if (getSelectedStorageProvider() != null) {
+			result = Collections.singletonList(getSelectedStorageProvider());
 		} else {
 			result = Collections.emptyList();
 		}
@@ -919,11 +919,20 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return selectedStorageProvider;
 	}
 
-	private void setSelectedStorageProvider(INewModelStorageProvider provider) {
+	/**
+	 * Set what is the storage {@code provider} selected implicitly or explicitly by the user.
+	 *
+	 * @param provider
+	 *            the selected storage provider
+	 * @since 3.2
+	 */
+	protected void setSelectedStorageProvider(INewModelStorageProvider provider) {
 		this.selectedStorageProvider = provider;
 
-		// recompute next/previous buttons
-		getContainer().updateButtons();
+		if (getContainer() != null) {
+			// recompute next/previous buttons
+			getContainer().updateButtons();
+		}
 	}
 
 	@Override
@@ -1013,7 +1022,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
 
 		if (result) {
-			for (IWizardPage next : providerPages.get(selectedStorageProvider)) {
+			for (IWizardPage next : providerPages.get(getSelectedStorageProvider())) {
 				if (!next.isPageComplete()) {
 					result = false;
 					break;

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2017, 2018 Obeo, Christian W. Damus, and others.
+ * Copyright (c) 2008, 2018 Obeo, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,15 +11,17 @@
  *     Obeo - initial API and implementation
  *     Tatiana Fesenko(CEA) - improved look&feel
  *     Saadia Dhouib (CEA LIST) - Implementation of loading diagrams from template files  (.uml, .di , .notation)
- *     Christian W. Damus - bug 471453
- *     Pauline DEVILLE (CEA LIST) - Bug 493312 - [Wizard] Apply multiple profiles in new model wizard 
+ *     Christian W. Damus - bugs 471453, 540584
+ *     Pauline DEVILLE (CEA LIST) - Bug 493312 - [Wizard] Apply multiple profiles in new model wizard
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -27,6 +29,7 @@ import org.eclipse.core.databinding.observable.value.IValueChangeListener;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -78,12 +81,18 @@ public class SelectRepresentationKindPage extends WizardPage {
 	private boolean nameTextModified;
 
 	/** The select template composite. */
-	private SelectModelTemplateComposite selectTemplateComposite;
+	private Optional<SelectModelTemplateComposite> selectTemplateComposite;
+	/** Whether to show a template composite. */
+	private boolean showTemplateChooser = true;
 
 	/** the select diagram Kind composite */
-	private RepresentationKindComposite representationKindComposite;
+	private Optional<RepresentationKindComposite> representationKindComposite;
+	/** Whether to show a representation kinds composite. */
+	private boolean showRepresentationKinds = true;
 
-	private ProfileChooserComposite profileChooserComposite;
+	private Optional<ProfileChooserComposite> profileChooserComposite;
+	/** Whether to show a profile chooser composite. */
+	private boolean showProfileChooser = true;
 
 	/** The my context provider. */
 	private final ContextProvider myContextProvider;
@@ -143,40 +152,54 @@ public class SelectRepresentationKindPage extends WizardPage {
 		pageComposite.setLayout(new GridLayout());
 		pageComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		Composite nameFormComposite = new Composite(pageComposite, SWT.NONE);
-		nameFormComposite.setLayout(new GridLayout());
-		nameFormComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		createNameForm(nameFormComposite);
+		Composite nameFormParent = new Composite(pageComposite, SWT.NONE);
+		nameFormParent.setLayout(new GridLayout());
+		nameFormParent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		nameText = createNameForm(nameFormParent);
 
-		Composite representationKindComposite = new Composite(pageComposite, SWT.NONE);
-		representationKindComposite.setLayout(new GridLayout());
-		representationKindComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		createPresentationKindForm(representationKindComposite);
+		if (isShowRepresentationKinds()) {
+			Composite representationKindParent = new Composite(pageComposite, SWT.NONE);
+			representationKindParent.setLayout(new GridLayout());
+			representationKindParent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+			representationKindComposite = Optional.of(createPresentationKindForm(representationKindParent));
+		} else {
+			representationKindComposite = Optional.empty();
+		}
 
-		Composite modelTemplateComposite = new Composite(pageComposite, SWT.NONE);
-		modelTemplateComposite.setLayout(new GridLayout());
-		modelTemplateComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		createModelTemplateComposite(modelTemplateComposite);
+		if (isShowTemplateChooser()) {
+			Composite modelTemplateParent = new Composite(pageComposite, SWT.NONE);
+			modelTemplateParent.setLayout(new GridLayout());
+			modelTemplateParent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+			selectTemplateComposite = Optional.of(createModelTemplateComposite(modelTemplateParent));
+		} else {
+			selectTemplateComposite = Optional.empty();
+		}
 
-		fillInTables(getContexts(), getViewpoints());
-
-		Composite profileChooserComposite = new Composite(pageComposite, SWT.NONE);
-		profileChooserComposite.setLayout(new GridLayout());
-		profileChooserComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		createProfileFileChooser(profileChooserComposite);
+		if (isShowProfileChooser()) {
+			Composite profileChooserParent = new Composite(pageComposite, SWT.NONE);
+			profileChooserParent.setLayout(new GridLayout());
+			profileChooserParent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+			profileChooserComposite = Optional.of(createProfileFileChooser(profileChooserParent));
+		} else {
+			profileChooserComposite = Optional.empty();
+		}
 
 		setControl(pageComposite);
+
+		fillInTables(getContexts(), getViewpoints());
 	}
 
 	/**
-	 * Create the filechooser composite
+	 * Create the profile chooser composite.
 	 *
 	 * @param parent
+	 *            the parent composite in which to create the profile chooser
+	 * @return the profile chooser, or {@code null} if it is not needed in the host wizard
 	 */
-	private void createProfileFileChooser(Composite parent) {
+	private ProfileChooserComposite createProfileFileChooser(Composite parent) {
 		Group group = createGroup(parent, Messages.SelectRepresentationKindPage_0);
-		profileChooserComposite = new ProfileChooserComposite(group);
-		profileChooserComposite.getTextField().addModifyListener(new ModifyListener() {
+		ProfileChooserComposite result = new ProfileChooserComposite(group);
+		result.getTextField().addModifyListener(new ModifyListener() {
 
 			@Override
 			public void modifyText(ModifyEvent ev) {
@@ -184,34 +207,59 @@ public class SelectRepresentationKindPage extends WizardPage {
 			}
 
 		});
+		return result;
 	}
 
 	/**
-	 * @deprecated Since 3.1 
-	 * Use getProfilesURI() instead
+	 * Queries whether I present the profile chooser controls. By default, I do.
+	 *
+	 * @return whether I show the profile chooser controls
+	 *
+	 * @since 3.2
 	 */
-	public String getProfileURI() {
-		return profileChooserComposite.getProfileURI();
+	public boolean isShowProfileChooser() {
+		return showProfileChooser;
 	}
 
 	/**
-	 * Get choose profiles
+	 * Sets whether I present the profile chooser controls.
+	 *
+	 * @param showProfileChooser
+	 *            whether I show the profile chooser
+	 *
+	 * @since 3.2
+	 */
+	public void setShowProfileChooser(boolean showProfileChooser) {
+		this.showProfileChooser = showProfileChooser;
+	}
+
+	/**
+	 * @deprecated Since 3.1, use {@link #getProfilesURI()} instead
+	 */
+	@Deprecated
+	public String getProfileURI() {
+		return profileChooserComposite.map(ProfileChooserComposite::getProfileURI).orElse(null);
+	}
+
+	/**
+	 * Get the chosen profiles.
+	 *
 	 * @return the list of selected profiles
-	 * 
+	 *
 	 * @since 3.1
 	 */
 	public List<String> getProfilesURI() {
-		return profileChooserComposite.getProfilesURI();
+		return profileChooserComposite.map(ProfileChooserComposite::getProfilesURI).orElse(Collections.emptyList());
 	}
 
 	/**
-	 * Check that the provided path matches against a known Profile and that it is defined
-	 * 
+	 * Check that the provided path matches against a known Profile and that it is defined.
+	 *
 	 * @return
 	 * 		true if the retrieved profile is correctly defined, false otherwise
 	 */
 	public IStatus getProfileDefinitionStatus() {
-		return profileChooserComposite.getProfileDefinitionStatus();
+		return profileChooserComposite.map(ProfileChooserComposite::getProfileDefinitionStatus).orElse(Status.OK_STATUS);
 	}
 
 	/**
@@ -227,17 +275,20 @@ public class SelectRepresentationKindPage extends WizardPage {
 		if (visible) {
 			fillInTables(getContexts(), getViewpoints());
 			validatePage();
-			// Deactivates the viewer if its contained list is empty
-			Combo templateCombo = selectTemplateComposite.getTemplateCombo();
-			if (templateCombo.getItemCount() == 0) {
-				templateCombo.setEnabled(false);
-			} else {
-				templateCombo.setEnabled(true);
-			}
 
-			if (!allowTemplates) {
-				selectTemplateComposite.disable();
-			}
+			selectTemplateComposite.ifPresent(stc -> {
+				// Deactivates the viewer if its contained list is empty
+				Combo templateCombo = stc.getTemplateCombo();
+				if (templateCombo.getItemCount() == 0) {
+					templateCombo.setEnabled(false);
+				} else {
+					templateCombo.setEnabled(true);
+				}
+
+				if (!allowTemplates) {
+					stc.disable();
+				}
+			});
 		}
 	}
 
@@ -251,8 +302,8 @@ public class SelectRepresentationKindPage extends WizardPage {
 		if (viewpoints == null || contexts == null) {
 			return;
 		}
-		representationKindComposite.setInput(viewpoints);
-		selectTemplateComposite.setInput(contexts);
+		representationKindComposite.ifPresent(rkc -> rkc.setInput(viewpoints));
+		selectTemplateComposite.ifPresent(stc -> stc.setInput(contexts));
 	}
 
 
@@ -262,7 +313,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 	 * @return the template path
 	 */
 	public String getTemplatePath() {
-		return selectTemplateComposite.getTemplatePath();
+		return selectTemplateComposite.map(SelectModelTemplateComposite::getTemplatePath).orElse(null);
 	}
 
 	/**
@@ -271,7 +322,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 	 * @return the notation template path
 	 */
 	public String getNotationTemplatePath() {
-		return selectTemplateComposite.getNotationTemplatePath();
+		return selectTemplateComposite.map(SelectModelTemplateComposite::getNotationTemplatePath).orElse(null);
 	}
 
 	/**
@@ -280,7 +331,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 	 * @return the di template path
 	 */
 	public String getDiTemplatePath() {
-		return selectTemplateComposite.getDiTemplatePath();
+		return selectTemplateComposite.map(SelectModelTemplateComposite::getDiTemplatePath).orElse(null);
 	}
 
 	/**
@@ -289,7 +340,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 	 * @return the template plugin id
 	 */
 	public String getTemplatePluginId() {
-		return selectTemplateComposite.getTemplatePluginId();
+		return selectTemplateComposite.map(SelectModelTemplateComposite::getTemplatePluginId).orElse(null);
 	}
 
 	/**
@@ -317,7 +368,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 	 * @return the new diagram name
 	 */
 	public List<String> getDiagramName() {
-		return representationKindComposite.getDiagramName();
+		return representationKindComposite.map(RepresentationKindComposite::getDiagramName).orElse(Collections.emptyList());
 	}
 
 	public String getRootElementName() {
@@ -325,12 +376,15 @@ public class SelectRepresentationKindPage extends WizardPage {
 	}
 
 	/**
-	 * Templates enabled.
+	 * Query whether template selection is enabled. This implies that I
+	 * {@linkplain #isShowTemplateChooser() show the template composite} in the first
+	 * place. Sometimes it is useful to show the template selection but disable it
+	 * for workflows where template selection is conditional.
 	 *
-	 * @return true, if successful
+	 * @return whether the application of templates is enabled
 	 */
 	public boolean templatesEnabled() {
-		return allowTemplates;
+		return allowTemplates && selectTemplateComposite.isPresent();
 	}
 
 	/**
@@ -342,13 +396,15 @@ public class SelectRepresentationKindPage extends WizardPage {
 	 */
 	public List<RepresentationKind> getSelectedRepresentationKinds(String contextId) {
 		MergedArchitectureContext context = ArchitectureDomainManager.getInstance().getArchitectureContextById(contextId);
-		Set<RepresentationKind> allowedKinds = new HashSet<RepresentationKind>();
-		for (MergedArchitectureViewpoint viewpoint : context.getViewpoints())
+		Set<RepresentationKind> allowedKinds = new HashSet<>();
+		for (MergedArchitectureViewpoint viewpoint : context.getViewpoints()) {
 			allowedKinds.addAll(viewpoint.getRepresentationKinds());
-		List<RepresentationKind> selectedKinds = new ArrayList<RepresentationKind>();
+		}
+		List<RepresentationKind> selectedKinds = new ArrayList<>();
 		for (RepresentationKind kind : getSelectedRepresentationKinds()) {
-			if (allowedKinds.contains(kind))
+			if (allowedKinds.contains(kind)) {
 				selectedKinds.add(kind);
+			}
 		}
 		return selectedKinds;
 	}
@@ -356,23 +412,72 @@ public class SelectRepresentationKindPage extends WizardPage {
 	/**
 	 * Creates the model template composite.
 	 *
-	 * @param composite
-	 *            the composite
+	 * @param parent
+	 *            the parent composite in which to create the model template composite
+	 * @return the model templates composite, or {@code null} if it is not needed in the host wizard
 	 */
-	private void createModelTemplateComposite(Composite composite) {
-		Group group = createGroup(composite, Messages.SelectRepresentationKindPage_load_template_group);
-		selectTemplateComposite = new SelectModelTemplateComposite(group);
+	private SelectModelTemplateComposite createModelTemplateComposite(Composite parent) {
+		Group group = createGroup(parent, Messages.SelectRepresentationKindPage_load_template_group);
+		return new SelectModelTemplateComposite(group);
+	}
+
+	/**
+	 * Queries whether I present the template selection controls. By default, I do.
+	 *
+	 * @return whether I show the template selection controls
+	 *
+	 * @see #templatesEnabled()
+	 * @since 3.2
+	 */
+	public boolean isShowTemplateChooser() {
+		return showTemplateChooser;
+	}
+
+	/**
+	 * Sets whether I present the template chooser controls.
+	 *
+	 * @param showTemplateChooser
+	 *            whether to show the template chooser controls
+	 *
+	 * @since 3.2
+	 */
+	public void setShowTemplateChooser(boolean showTemplateChooser) {
+		this.showTemplateChooser = showTemplateChooser;
 	}
 
 	/**
 	 * Creates the diagram kind form.
 	 *
-	 * @param composite
-	 *            the composite
+	 * @param parent
+	 *            the parent composite in which to create the diagram kind form
+	 * @return the representation kinds form, or {@code null} if it is not needed in the host wizard
 	 */
-	private void createPresentationKindForm(Composite composite) {
-		Group group = createGroup(composite, Messages.SelectRepresentationKindPage_select_kind_group);
-		representationKindComposite = new RepresentationKindComposite(group);
+	private RepresentationKindComposite createPresentationKindForm(Composite parent) {
+		Group group = createGroup(parent, Messages.SelectRepresentationKindPage_select_kind_group);
+		return new RepresentationKindComposite(group);
+	}
+
+	/**
+	 * Queries whether I present the representation kinds. By default, I do.
+	 *
+	 * @return whether I show the representation kinds controls
+	 *
+	 * @since 3.2
+	 */
+	public boolean isShowRepresentationKinds() {
+		return showRepresentationKinds;
+	}
+
+	/**
+	 * Sets whether I present the representation kinds.
+	 *
+	 * @param showRepresentationKinds
+	 *            whether I show the representation kinds controls
+	 *
+	 * @since 3.2
+	 */
+	public void setShowRepresentationKinds(boolean showRepresentationKinds) {
+		this.showRepresentationKinds = showRepresentationKinds;
 	}
 
 	/**
@@ -409,14 +514,15 @@ public class SelectRepresentationKindPage extends WizardPage {
 	/**
 	 * Creates the name form.
 	 *
-	 * @param composite
-	 *            the composite
+	 * @param parent
+	 *            the parent composite in which to create the name form
+	 * @return the name form. It is required, must never be {@code null}
 	 */
-	private void createNameForm(Composite composite) {
-		Group group = createGroup(composite, Messages.SelectRepresentationKindPage_diagram_name_group);
-		nameText = new Text(group, SWT.BORDER);
-		nameText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		nameText.setText(getDefaultModelName().getValue());
+	private Text createNameForm(Composite parent) {
+		Group group = createGroup(parent, Messages.SelectRepresentationKindPage_diagram_name_group);
+		Text result = new Text(group, SWT.BORDER);
+		result.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		result.setText(getDefaultModelName().getValue());
 
 		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
 		if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() > 0) {
@@ -435,7 +541,9 @@ public class SelectRepresentationKindPage extends WizardPage {
 							modelRoot = resource.getContents().get(0);
 							if (modelRoot instanceof NamedElement) {
 								NamedElement element = (NamedElement) modelRoot;
-								nameText.setText(element.getName());
+								if (element.getName() != null) {
+									result.setText(element.getName());
+								}
 							} else {
 								modelRoot = null;
 							}
@@ -448,13 +556,15 @@ public class SelectRepresentationKindPage extends WizardPage {
 			}
 		}
 
-		nameText.addModifyListener(new ModifyListener() {
+		result.addModifyListener(new ModifyListener() {
 
 			@Override
 			public void modifyText(ModifyEvent e) {
 				validatePage();
 			}
 		});
+
+		return result;
 	}
 
 	public static EObject getModelRoot() {
@@ -471,7 +581,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 			nameTextModified = true;
 		}
 
-		IStatus profileStatus = profileChooserComposite.getProfileDefinitionStatus();
+		IStatus profileStatus = getProfileDefinitionStatus();
 		if (!profileStatus.isOK()) {
 			this.setErrorMessage(profileStatus.getMessage());
 			return false;
@@ -500,7 +610,8 @@ public class SelectRepresentationKindPage extends WizardPage {
 	 * @return the selected diagram kind descriptors
 	 */
 	protected RepresentationKind[] getSelectedRepresentationKinds() {
-		List<RepresentationKind> checked = representationKindComposite.getCheckElement();
+		List<RepresentationKind> checked = representationKindComposite.map(RepresentationKindComposite::getCheckElement)
+				.orElseGet(ArrayList::new);
 		RepresentationKind[] result = checked.toArray(new RepresentationKind[checked.size()]);
 		return result;
 	}
@@ -536,7 +647,7 @@ public class SelectRepresentationKindPage extends WizardPage {
 	}
 
 	public List<ModelTemplateDescription> getTemplateTransfo() {
-		return selectTemplateComposite.getTemplateTransfoPath();
+		return selectTemplateComposite.map(SelectModelTemplateComposite::getTemplateTransfoPath).orElse(Collections.emptyList());
 	}
 
 	@Override
