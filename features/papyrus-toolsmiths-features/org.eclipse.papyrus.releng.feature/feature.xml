@@ -21,7 +21,7 @@
    
    
    <requires>
-        <import feature="fr.obeo.releng.targetplatform-feature" version="2.1.1" match="compatible"/>
+        <import feature="org.eclipse.cbi.targetplatform-feature" version="3.0.0" match="compatible"/>
    </requires>
    
    <plugin

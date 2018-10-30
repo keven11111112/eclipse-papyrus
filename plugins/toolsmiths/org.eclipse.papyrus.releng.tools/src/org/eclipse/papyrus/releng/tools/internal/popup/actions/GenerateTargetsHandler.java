@@ -26,6 +26,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.cbi.targetplatform.pde.Converter;
+import org.eclipse.cbi.targetplatform.ui.internal.TargetplatformActivator;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -56,8 +58,6 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 import com.google.inject.Injector;
 
-import fr.obeo.releng.targetplatform.TargetPlatformBundleActivator;
-import fr.obeo.releng.targetplatform.pde.Converter;
 
 /**
  * A global handler, enabled on a set of IResources (Project/Folder/File), which recursively:
@@ -236,7 +236,7 @@ public class GenerateTargetsHandler extends AbstractHandler {
 
 		Converter converter = new Converter();
 
-		Injector injector = TargetPlatformBundleActivator.getInstance().getInjector(TargetPlatformBundleActivator.TARGET_PLATFORM_LANGUAGE_NAME);
+		Injector injector = TargetplatformActivator.getInstance().getInjector(TargetplatformActivator.ORG_ECLIPSE_CBI_TARGETPLATFORM_TARGETPLATFORM);
 		injector.injectMembers(converter);
 
 		Job job = new Job("Generate Target Platform for " + file.getLocation().lastSegment()) {

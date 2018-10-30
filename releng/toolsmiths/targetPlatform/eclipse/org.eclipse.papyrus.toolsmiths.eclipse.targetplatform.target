@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
-<!-- generated with https://github.com/mbarbero/fr.obeo.releng.targetplatform -->
-<target name="Papyrus Toolsmiths" sequenceNumber="1539797124">
+<!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
+<target name="Papyrus Toolsmiths" sequenceNumber="1540909019">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -99,8 +99,8 @@
       <repository id="gef" location="file:/home/data/httpd/download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="fr.obeo.releng.targetplatform-feature.feature.group" version="2.1.1.201410251450"/>
-      <repository id="tpd" location="https://dl.bintray.com/mbarbero/fr.obeo.releng.targetplatform/latest/"/>
+      <unit id="org.eclipse.cbi.targetplatform-feature.feature.group" version="3.0.0.201809052136"/>
+      <repository id="tpd" location="file:/home/data/httpd/download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group" version="0.0.0"/>

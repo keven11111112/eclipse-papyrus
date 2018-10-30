@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.cbi.targetplatform.model.Location;
+import org.eclipse.cbi.targetplatform.model.TargetPlatform;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
@@ -30,9 +32,6 @@ import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
-
-import fr.obeo.releng.targetplatform.Location;
-import fr.obeo.releng.targetplatform.TargetPlatform;
 
 /**
  * @author Camille Letavernier

@@ -7,8 +7,8 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //manualUpdate
 // This will need to be changed as soon as the new build is available @see Bug 538414
-location tpd "https://dl.bintray.com/mbarbero/fr.obeo.releng.targetplatform/latest/" {
-    fr.obeo.releng.targetplatform-feature.feature.group
+location tpd "http://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT" {
+    org.eclipse.cbi.targetplatform-feature.feature.group
 }
 
 //manualUpdate 
