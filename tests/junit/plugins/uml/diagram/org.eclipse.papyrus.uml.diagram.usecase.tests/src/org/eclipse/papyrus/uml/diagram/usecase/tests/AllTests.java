@@ -1,7 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2009, 2018 CEA LIST, Christian W. Damus, and others.
  *
- *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +10,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 464647
+ *  Christian W. Damus - bugs 464647, 535696
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.tests;
@@ -30,7 +29,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		// canonical
 		AllCanonicalTests.class,
 		RoundedCompartmentTest.class,
-
+		UsecaseToSubjectinUsecaseDiagramDropStrategyTest.class,
 })
 @DynamicClasses("org.eclipse.papyrus.uml.diagram.usecase.test.AllGenTests")
 public class AllTests {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2018 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,8 +10,11 @@
  *
  * Contributors:
  *  Francois Le Fevre (CEA LIST)  - Initial API and implementation
+ *  Christian W. Damus - bug 535696
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.dnd.strategy;
+
+import static org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.getChildByEObject;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +24,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
@@ -43,28 +50,34 @@ import org.eclipse.uml2.uml.UseCase;
 
 /**
  * A strategy to drop a usecase on a subject into a usecase diagram.
+ *
  * @author Francois Le Fevre
  */
 public class UsecaseToSubjectinUsecaseDiagramDropStrategy extends GraphicalTransactionalDropStrategy {
 
 	protected EStructuralFeature feature;
 
+	@Override
 	public String getLabel() {
 		return Messages.UsecaseToSubjectinUsecaseDiagramDropStrategy_LABEL;
 	}
 
+	@Override
 	public String getID() {
 		return UMLDiagramEditorPlugin.ID + ".usecase2SubjectInUsecaseDiagram"; //$NON-NLS-1$
 	}
 
+	@Override
 	public String getDescription() {
 		return Messages.UsecaseToSubjectinUsecaseDiagramDropStrategy_DESCRIPTION;
 	}
 
+	@Override
 	public Image getImage() {
 		return null;
 	}
 
+	@Override
 	public int getPriority() {
 		return 0;
 	}
@@ -89,24 +102,30 @@ public class UsecaseToSubjectinUsecaseDiagramDropStrategy extends GraphicalTrans
 		EObject sourceElement = sourceElements.get(0);
 		if (sourceElement instanceof UseCase) {
 			sourceUsecase = (UseCase) sourceElement;
-		}
-		else{
+		} else {
 			return null;
 		}
 
-		if(targetEditPart instanceof SubjectComponentUsecasesEditPart ){ //$NON-NLS-1$
-			Classifier targetElement = (Classifier)getTargetSemanticElement(targetEditPart);
-			if(targetElement==null){
+		if (targetEditPart instanceof SubjectComponentUsecasesEditPart) {
+			SubjectComponentUsecasesEditPart subjectEditPart = (SubjectComponentUsecasesEditPart) targetEditPart;
+
+			// Don't create more than one view of a use case within the subject
+			if (getChildByEObject(sourceUsecase, subjectEditPart, false) != null) {
+				return null;
+			}
+
+			Classifier targetElement = (Classifier) getTargetSemanticElement(targetEditPart);
+			if (targetElement == null) {
 				return null;
 			}
 
 			subject = targetElement;
 
-			if(sourceUsecase.getSubjects().contains(subject)
+			if (sourceUsecase.getSubjects().contains(subject)
 					&& subject.getUseCases().contains(sourceUsecase)
-					&& sourceUsecase.getOwner().equals(subject)){
+					&& sourceUsecase.getOwner().equals(subject)) {
 
-				//just display usecase in the object
+				// just display usecase in the object
 				CompositeCommand cc = new CompositeCommand(getLabel());
 
 				Command graphicalCommand = getGraphicalCommand(request, targetEditPart);
@@ -115,12 +134,11 @@ public class UsecaseToSubjectinUsecaseDiagramDropStrategy extends GraphicalTrans
 				}
 				return cc.canExecute() ? new ICommandProxy(cc.reduce()) : null;
 
-			}
-			else{
-				//dialog box
+			} else {
+				// dialog box
 				CompositeCommand cc = new CompositeCommand(getLabel());
 
-				ICommand editSlotsCommand = getEditSlotsCommand(sourceUsecase,subject);
+				ICommand editSlotsCommand = getEditSlotsCommand(sourceUsecase, subject);
 				if (editSlotsCommand != null) {
 					cc.add(editSlotsCommand);
 				}
@@ -138,7 +156,7 @@ public class UsecaseToSubjectinUsecaseDiagramDropStrategy extends GraphicalTrans
 	}
 
 	protected ICommand getEditSlotsCommand(UseCase sourceUsecase, Classifier subject) {
-		return new UsecaseCommand(sourceUsecase,subject);
+		return new UsecaseCommand(sourceUsecase, subject);
 	}
 
 	public String getCategoryID() {
@@ -158,13 +176,35 @@ public class UsecaseToSubjectinUsecaseDiagramDropStrategy extends GraphicalTrans
 	 */
 	@Override
 	protected List<ViewDescriptor> getViewDescriptors(DropObjectsRequest dropRequest, EditPart targetEditPart) {
-		List<CreateViewRequest.ViewDescriptor> viewDescriptors = new LinkedList<CreateViewRequest.ViewDescriptor>();
+		List<CreateViewRequest.ViewDescriptor> viewDescriptors = new LinkedList<>();
 
 		for (EObject eObject : getSourceEObjects(dropRequest)) {
-			if(eObject instanceof org.eclipse.uml2.uml.UseCase){
+			if (eObject instanceof org.eclipse.uml2.uml.UseCase) {
 				viewDescriptors.add(new CreateViewRequest.ViewDescriptor(new EObjectAdapter(eObject), Node.class, UseCaseInComponentEditPart.VISUAL_ID, ((IGraphicalEditPart) targetEditPart).getDiagramPreferencesHint()));
 			}
 		}
 		return viewDescriptors;
+	}
+
+	@Override
+	protected Command getGraphicalCommand(Request request, EditPart targetEditPart) {
+		Command result = super.getGraphicalCommand(request, targetEditPart);
+
+		// Are we moving an existing use case view into this subject? If so, destroy that view
+		// because we're creating a new one
+		if (request instanceof ChangeBoundsRequest) {
+			// Note that we wouldn't get this far with zero or multiple edit-parts
+			EditPart original = (EditPart) ((ChangeBoundsRequest) request).getEditParts().get(0);
+			GroupRequest deleteReq = new GroupRequest(RequestConstants.REQ_DELETE);
+			deleteReq.setEditParts(original);
+			Command deleteCommand = original.getCommand(deleteReq);
+			if (deleteCommand == null) {
+				// If we can't delete this, then block the whole operation
+				deleteCommand = UnexecutableCommand.INSTANCE;
+			}
+			result = result.chain(deleteCommand);
+		}
+
+		return result;
 	}
 }

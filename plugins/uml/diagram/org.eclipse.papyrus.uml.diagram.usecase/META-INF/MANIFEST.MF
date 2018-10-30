@@ -4,6 +4,7 @@ Export-Package: org.eclipse.papyrus.uml.diagram.usecase,
  org.eclipse.papyrus.uml.diagram.usecase.custom.edit.parts,
  org.eclipse.papyrus.uml.diagram.usecase.custom.factory,
  org.eclipse.papyrus.uml.diagram.usecase.custom.providers,
+ org.eclipse.papyrus.uml.diagram.usecase.dnd.strategy;x-internal:=true,
  org.eclipse.papyrus.uml.diagram.usecase.edit.helpers,
  org.eclipse.papyrus.uml.diagram.usecase.edit.parts,
  org.eclipse.papyrus.uml.diagram.usecase.edit.policies,
@@ -72,7 +73,7 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.providers.ide;bundle-version=
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[2.0.0,4.0.0)"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 4.0.0.qualifier
+Bundle-Version: 4.1.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.usecase; singleton:=true
