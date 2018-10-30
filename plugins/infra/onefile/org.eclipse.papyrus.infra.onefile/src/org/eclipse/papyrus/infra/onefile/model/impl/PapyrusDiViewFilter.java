@@ -20,6 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
 import org.eclipse.papyrus.infra.onefile.model.IDiViewFilter;
 
@@ -38,9 +39,9 @@ public class PapyrusDiViewFilter implements IDiViewFilter {
 	/**
 	 * {@inheritDoc}
 	 *
-	 * @see org.eclipse.papyrus.infra.onefile.model.IDiViewFilter#getFileNameForDi(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.onefile.model.IDiViewFilter#getFileNameForDi(java.lang.String, org.eclipse.core.resources.IContainer)
 	 */
-	public String getFileNameForDi(final String fileName) {
+	public String getFileNameForDi(final String fileName, final IContainer parent) {
 		String result = fileName;
 		if (fileName.indexOf(POINT) > 0) {
 			// Manage the properties files which contains languages

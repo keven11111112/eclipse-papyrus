@@ -58,7 +58,7 @@ public class OneFileUtils {
 		if (parent == null || parent.getType() == IResource.ROOT) {
 			return null;
 		}
-		final String substring = getFileNameForDi(fileName);
+		final String substring = getFileNameForDi(fileName, parent);
 		IFile file = parent.getFile(new Path(substring + "." + DiModel.DI_FILE_EXTENSION));
 		if (file.exists()) {
 			return file;
@@ -73,9 +73,23 @@ public class OneFileUtils {
 	 *            The initial file name.
 	 * @return The base of the di to search in the parent container.
 	 * @since 2.1
+	 * @deprecated since 2.2
 	 */
+	@Deprecated
 	protected static String getFileNameForDi(final String fileName) {
-		return DiViewFilterHelper.getInstance().getPapyrusDiViewFilter().getFileNameForDi(fileName);
+		return DiViewFilterHelper.getInstance().getPapyrusDiViewFilter().getFileNameForDi(fileName, null);
+	}
+
+	/**
+	 * The file name for di search in parent container.
+	 *
+	 * @param fileName
+	 *            The initial file name.
+	 * @return The base of the di to search in the parent container.
+	 * @since 2.2
+	 */
+	protected static String getFileNameForDi(final String fileName, final IContainer parent) {
+		return DiViewFilterHelper.getInstance().getPapyrusDiViewFilter().getFileNameForDi(fileName, parent);
 	}
 
 	/**

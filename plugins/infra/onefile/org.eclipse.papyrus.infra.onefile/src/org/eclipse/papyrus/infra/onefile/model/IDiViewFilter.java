@@ -15,6 +15,8 @@
 
 package org.eclipse.papyrus.infra.onefile.model;
 
+import org.eclipse.core.resources.IContainer;
+
 /**
  * The Di view filter needed to get its Di parent container
  *
@@ -27,9 +29,11 @@ public interface IDiViewFilter {
 	 *
 	 * @param fileName
 	 *            The initial file name.
+	 * @param parentn
+	 *            The parent container.
 	 * @return The base of the di to search in the parent container.
 	 * @since 2.2
 	 */
-	public String getFileNameForDi(final String fileName);
+	public String getFileNameForDi(final String fileName, final IContainer parent);
 
 }
