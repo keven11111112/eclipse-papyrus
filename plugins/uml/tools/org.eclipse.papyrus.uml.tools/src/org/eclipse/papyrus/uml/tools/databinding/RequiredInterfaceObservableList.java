@@ -94,7 +94,7 @@ public class RequiredInterfaceObservableList extends PapyrusObservableList {
 				if (!requiredInterfacesList.contains(current)) {
 
 					// Added interface
-					IEditCommandRequest request = new CreateRelationshipRequest(port.getType().eContainer(), port.getType(), (EObject) current, ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.Usage"));
+					IEditCommandRequest request = new CreateRelationshipRequest(port.getType().eContainer(), port.getType(), (EObject) current, ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.Usage")); //$NON-NLS-1$
 					requests.add(request);
 				} else {
 

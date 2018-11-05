@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 Cedric Dumoulin.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -16,7 +16,10 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.utils;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -27,6 +30,7 @@ import org.junit.Test;
  * @author cedric dumoulin
  *
  */
+@SuppressWarnings("nls")
 public class ObservableListTest {
 
 	/**
@@ -59,9 +63,9 @@ public class ObservableListTest {
 	public void testAddListener() {
 		ObservableList<String> list = new ObservableList<String>();
 		assertNotNull("list created", list);
-		
-		FakeObservableListener<String> listener =  new FakeObservableListener<String>();
-		
+
+		FakeObservableListener<String> listener = new FakeObservableListener<String>();
+
 		// add a listener
 		list.addListener(listener);
 		// Check if added
@@ -75,9 +79,9 @@ public class ObservableListTest {
 	public void testRemoveListener() {
 		ObservableList<String> list = new ObservableList<String>();
 		assertNotNull("list created", list);
-		
-		FakeObservableListener<String> listener =  new FakeObservableListener<String>();
-		
+
+		FakeObservableListener<String> listener = new FakeObservableListener<String>();
+
 		// add a listener
 		list.addListener(listener);
 		// Check if added
@@ -95,16 +99,16 @@ public class ObservableListTest {
 	public void testFireElementAddedEvent() {
 		ObservableList<String> list = new ObservableList<String>();
 		assertNotNull("list created", list);
-		
-		FakeObservableListener<String> listener =  new FakeObservableListener<String>();
-		
+
+		FakeObservableListener<String> listener = new FakeObservableListener<String>();
+
 		// add a listener
 		list.addListener(listener);
 		// Check event
-		
+
 		list.fireElementAddedEvent("string1");
-		assertEquals( "event fired", "string1", listener.getLastAddEvents() );
-		
+		assertEquals("event fired", "string1", listener.getLastAddEvents());
+
 	}
 
 	/**
@@ -114,15 +118,15 @@ public class ObservableListTest {
 	public void testFireElementRemovedEvent() {
 		ObservableList<String> list = new ObservableList<String>();
 		assertNotNull("list created", list);
-		
-		FakeObservableListener<String> listener =  new FakeObservableListener<String>();
-		
+
+		FakeObservableListener<String> listener = new FakeObservableListener<String>();
+
 		// add a listener
 		list.addListener(listener);
 		// Check event
 		String element = "string1";
 		list.fireElementRemovedEvent(element);
-		assertEquals( "event fired", element, listener.getLastRemoveEvents() );
+		assertEquals("event fired", element, listener.getLastRemoveEvents());
 	}
 
 	/**
@@ -132,19 +136,19 @@ public class ObservableListTest {
 	public void testAdd() {
 		ObservableList<String> list = new ObservableList<String>();
 		assertNotNull("list created", list);
-		
-		FakeObservableListener<String> listener =  new FakeObservableListener<String>();
-		
+
+		FakeObservableListener<String> listener = new FakeObservableListener<String>();
+
 		// add a listener
 		list.addListener(listener);
 		// Check event
-		
+
 		String element = "string1";
 
 		list.add(element);
-		assertEquals( "event fired", element, listener.getLastAddEvents() );
-		assertEquals( "element added to list", element, list.get(list.size()-1) );
-		
+		assertEquals("event fired", element, listener.getLastAddEvents());
+		assertEquals("element added to list", element, list.get(list.size() - 1));
+
 	}
 
 	/**
@@ -154,21 +158,21 @@ public class ObservableListTest {
 	public void testRemove() {
 		ObservableList<String> list = new ObservableList<String>();
 		assertNotNull("list created", list);
-		
-		FakeObservableListener<String> listener =  new FakeObservableListener<String>();
-		
+
+		FakeObservableListener<String> listener = new FakeObservableListener<String>();
+
 		// add a listener
 		list.addListener(listener);
 		// Check event
-		
+
 		String element = "string1";
 		list.add(element);
-		assertEquals( "element added to list", element, list.get(list.size()-1) );
+		assertEquals("element added to list", element, list.get(list.size() - 1));
 
 		list.remove(element);
-		assertFalse( "element removed from list", list.contains(element) );
-		assertEquals( "event fired", element, listener.getLastRemoveEvents() );
-		
+		assertFalse("element removed from list", list.contains(element));
+		assertEquals("event fired", element, listener.getLastRemoveEvents());
+
 	}
 
 

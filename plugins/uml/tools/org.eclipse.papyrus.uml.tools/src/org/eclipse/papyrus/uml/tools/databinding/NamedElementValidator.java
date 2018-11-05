@@ -69,7 +69,7 @@ public class NamedElementValidator extends AbstractUMLValidator {
 					EList<NamedElement> listElement = ns.getMembers();
 					for (NamedElement namedElement : listElement) {
 						if ((self != namedElement) && !self.isDistinguishableFrom(namedElement, ns)) {
-							return warning("Name is indistinguishable from another element in the Namespace");
+							return warning("Name is indistinguishable from another element in the Namespace"); //$NON-NLS-1$
 						}
 					}
 				} finally {

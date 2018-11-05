@@ -127,7 +127,7 @@ public class GenericAttributeObservable extends AbstractObservableValue {
 		EObject attribute = findAttribute();
 		EList<? extends EObject> collection = (EList<? extends EObject>) source.eGet(createIn);
 
-		CompoundCommand command = new CompoundCommand(String.format("Set %s value", propertyPath)) {
+		CompoundCommand command = new CompoundCommand(String.format("Set %s value", propertyPath)) { //$NON-NLS-1$
 
 			@Override
 			public boolean prepare() {

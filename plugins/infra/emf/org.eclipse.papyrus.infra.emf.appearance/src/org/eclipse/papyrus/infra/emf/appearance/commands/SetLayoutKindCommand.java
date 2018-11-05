@@ -41,7 +41,7 @@ public class SetLayoutKindCommand extends CreateEAnnotationCommand {
 	 */
 	public SetLayoutKindCommand(TransactionalEditingDomain domain, EModelElement object, String layoutKind) {
 		super(domain, object, VisualInformationPapyrusConstants.LAYOUTFIGURE);
-		this.layoutKind = "" + layoutKind;
+		this.layoutKind = layoutKind;
 	}
 
 	/**

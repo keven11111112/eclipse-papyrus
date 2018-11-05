@@ -68,7 +68,7 @@ public class ExtensionRequiredObservableValue extends AbstractObservableValue im
 		Boolean required = (Boolean) value;
 
 		if (extension.getOwnedEnds().isEmpty()) {
-			Activator.log.warn("Unable to change the extension \"isRequired\" property");
+			Activator.log.warn("Unable to change the extension \"isRequired\" property"); //$NON-NLS-1$
 		}
 
 		observable.setValue(required ? MultiplicityParser.ONE : MultiplicityParser.OPTIONAL);

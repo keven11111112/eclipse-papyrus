@@ -166,7 +166,7 @@ public class OwnerObservableValue extends ReferenceCountedObservable.Value imple
 				this.currentValue = owner;
 				return new GMFtoEMFCommandWrapper(command);
 			} else {
-				Activator.log.warn("Cannot modify the memberEnd owner");
+				Activator.log.warn("Cannot modify the memberEnd owner"); //$NON-NLS-1$
 			}
 		}
 

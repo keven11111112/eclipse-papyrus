@@ -41,7 +41,7 @@ public class SetQualifiedNameDepthCommand extends CreateEAnnotationCommand {
 	 */
 	public SetQualifiedNameDepthCommand(TransactionalEditingDomain domain, EModelElement object, int depth) {
 		super(domain, object, VisualInformationPapyrusConstants.QUALIFIED_NAME);
-		this.qualifiedNamedepth = "" + depth;
+		this.qualifiedNamedepth = String.valueOf(depth);
 	}
 
 	/**

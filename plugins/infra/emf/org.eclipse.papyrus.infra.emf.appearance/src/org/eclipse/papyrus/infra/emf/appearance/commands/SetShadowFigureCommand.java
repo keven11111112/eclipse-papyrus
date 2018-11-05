@@ -41,7 +41,7 @@ public class SetShadowFigureCommand extends CreateEAnnotationCommand {
 	 */
 	public SetShadowFigureCommand(TransactionalEditingDomain domain, EModelElement object, boolean shadow) {
 		super(domain, object, VisualInformationPapyrusConstants.SHADOWFIGURE);
-		this.shadowFigure = "" + shadow;
+		this.shadowFigure = String.valueOf(shadow);
 	}
 
 	/**

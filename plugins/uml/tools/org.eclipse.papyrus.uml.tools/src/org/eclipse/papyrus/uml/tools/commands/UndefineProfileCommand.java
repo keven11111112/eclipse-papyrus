@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Gabriel Pascual  (ALL4TEC) gabriel.pascual@all4tec.net  - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.tools.commands;
@@ -35,17 +35,15 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Removed all Profile Definitions of all Profile model.
- * 
+ *
  * @author Gabriel Pascual
+ * @since 4.1
  *
  */
 public class UndefineProfileCommand extends RecordingCommand {
 
-	/** The Constant DECORATION_PROFILE_SERVICE_ERROR. */
-	private static final String DECORATION_PROFILE_SERVICE_ERROR = "Impossible to display decoration warning for Profile"; //$NON-NLS-1$
-
 	/** The Constant COMMAND_TITLE. */
-	private static final String COMMAND_TITLE = "Undefine Profile";
+	private static final String COMMAND_TITLE = "Undefine Profile"; //$NON-NLS-1$
 
 	/** The profile definition. */
 	private final PapyrusDefinitionAnnotation profileDefinition;
@@ -70,7 +68,7 @@ public class UndefineProfileCommand extends RecordingCommand {
 		super(editingDomain, COMMAND_TITLE, null);
 		this.rootProfile = rootProfile;
 		this.profileDefinition = annotation;
-		profilesStack = new LinkedList<Profile>(Collections.singleton(rootProfile));
+		profilesStack = new LinkedList<>(Collections.singleton(rootProfile));
 	}
 
 	/**

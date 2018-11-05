@@ -278,7 +278,7 @@ public class ProfileApplicationObservableList extends WritableList implements IC
 			if (element instanceof Profile) {
 				profiles.add(EMFHelper.reloadIntoContext((Profile) element, umlSource));
 			} else {
-				throw new IllegalArgumentException("The new value should only contain profiles");
+				throw new IllegalArgumentException("The new value should only contain profiles"); //$NON-NLS-1$
 			}
 		}
 		Command command = new ApplyProfileCommand(umlSource, profiles, (TransactionalEditingDomain) domain);

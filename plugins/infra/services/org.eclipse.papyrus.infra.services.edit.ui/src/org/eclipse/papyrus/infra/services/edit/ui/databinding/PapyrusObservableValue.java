@@ -117,7 +117,7 @@ public class PapyrusObservableValue extends EMFObservableValue implements Aggreg
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider((EObject)getObserved());
 
 			if (provider != null) {
-				CompositeCommand cc = new CompositeCommand("Edit value");
+				CompositeCommand cc = new CompositeCommand("Edit value"); //$NON-NLS-1$
 
 				if (oldValue instanceof EObject && eStructuralFeature instanceof EReference && ((EReference) eStructuralFeature).isContainment()) {
 					cc.add(provider.getEditCommand(new DestroyElementRequest((TransactionalEditingDomain) domain, (EObject) oldValue, false)));

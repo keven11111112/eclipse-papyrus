@@ -41,7 +41,7 @@ public class SetNameLabelIconCommand extends CreateEAnnotationCommand {
 	 */
 	public SetNameLabelIconCommand(TransactionalEditingDomain domain, EModelElement object, boolean displayIcon) {
 		super(domain, object, VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON);
-		this.displayIcon = "" + displayIcon;
+		this.displayIcon = String.valueOf(displayIcon);
 	}
 
 	/**

@@ -84,7 +84,7 @@ public class PapyrusObservableList extends EMFObservableList {
 			return new GMFtoEMFCommandWrapper(provider.getEditCommand(requests.iterator().next()));
 		}
 
-		CompositeCommand cc = new CompositeCommand("Edit list");
+		CompositeCommand cc = new CompositeCommand("Edit list"); //$NON-NLS-1$
 
 		for (IEditCommandRequest request : requests) {
 			ICommand cmd = provider.getEditCommand(request);
