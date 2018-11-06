@@ -22,10 +22,7 @@
     <requirement name="org.eclipse.mylyn.wikitext_feature.feature.group"/>
     <requirement name="org.eclipse.egit.feature.group"/>
     <requirement name="org.eclipse.egit.mylyn.feature.group"/>
-    <requirement name="org.eclipse.swtbot.ide.feature.group"/>
-    <requirement name="org.eclipse.swtbot.generator.feature.feature.group"/>
     <requirement name="org.eclipse.m2e.feature.feature.group"/>
-    <repository url="http://download.eclipse.org/technology/swtbot/snapshots"/>
     <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases/"/>
   </setupTask>
   <setupTask xsi:type="setup.p2:P2Task" label="Releng Tools">
@@ -34,7 +31,7 @@
     <requirement name="org.eclipse.oomph.workingsets.feature.group"/>
     <requirement name="org.eclipse.oomph.version.feature.group"/>
     <requirement name="org.sonatype.tycho.m2e.feature.feature.group"/>
-    <repository url="http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.8.0/N/LATEST/"/>
+    <repository url="http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.9.0/N/LATEST/"/>
   </setupTask>
   <setupTask xsi:type="setup.p2:P2Task" label="Code Quality Tools">
     <requirement name="com.mountainminds.eclemma.feature.feature.group" optional="true"/>
@@ -58,7 +55,7 @@
     </setupTask>
   </setupTask>
   <setupTask xsi:type="setup:VariableTask" name="git.checkout.branch" value="${scope.project.stream.name}"/>
-  <setupTask xsi:type="setup:VariableTask" name="eclipse.target.platform" defaultValue="Oxygen" storageURI="scope://Workspace"/>
+  <setupTask xsi:type="setup:VariableTask" name="eclipse.target.platform" defaultValue="2018-12" storageURI="scope://Workspace"/>
   <setupTask xsi:type="git:GitCloneTask" id="papyrus.git.clone" remoteURI="papyrus/org.eclipse.papyrus" pushURI="" checkoutBranch="${git.checkout.branch}">
     <description>Papyrus</description>
     <annotation source="http://www.eclipse.org/oomph/setup/InducedChoices">
@@ -80,23 +77,23 @@
       <requirement name="org.eclipse.emf.sdk.feature.group"/>
       <requirement name="org.apache.xerces"/>
       <requirement name="org.eclipse.wst.xml.core"/>
-      <repositoryList name="Photon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.9milestones/S-4.9M3-201808230450/">
+      <repositoryList name="2018-12">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.10-I-builds/I20181031-1800/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201808230519">
+        <repository url="http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201811020629">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF (Core)</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201706061339"/>
-        <repository url="http://download.eclipse.org/modeling/emf/validation/updates/releases/R201706061352"/>
+        <repository url="http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201805140824"/>
+        <repository url="http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201805030717"/>
         <repository url="http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
@@ -111,7 +108,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201706061354"/>
+        <repository url="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201805221301"/>
         <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.1/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
@@ -119,24 +116,24 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.0/S201808280645">
+        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.1/S201810130521">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
-              <value>QVT Operational</value>
+              <value>QVT Operational for 2018-12</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.7/S201802240723">
+        <repository url="http://download.eclipse.org/acceleo/updates/releases/3.7/R201809121017">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T ACCELEO</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.5.0/S201808270709">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.5.1/S201811050817">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
-              <value>OCL</value>
+              <value>OCL for 2018-12</value>
             </detail>
           </annotation>
         </repository>
@@ -154,24 +151,24 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.14.0">
+        <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201810150206">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Xtext, Xtend</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201805161152/">
+        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201806221350/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF COMPARE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.11.0/I-latest/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.12.0/S-3.12.0.M2-20181101035339/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
-              <value>WebTools</value>
+              <value>WebTools 3.12 for Simrel 2018-12</value>
             </detail>
           </annotation>
         </repository>
@@ -185,10 +182,10 @@
         <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
         <repository url="http://download.eclipse.org/nattable/releases/1.5.0/repository/"/>
         <repository url="http://download.eclipse.org/nebula/releases/1.2.0/"/>
-        <repository url="http://download.eclipse.org/tools/orbit/downloads/drops/S20180504181223/repository"/>
+        <repository url="http://download.eclipse.org/tools/orbit/downloads/drops/S20181010170940/repository"/>
       </repositoryList>
       <repositoryList name="Oxygen">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.7/R-4.7-201706120950/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.7/R-4.7.3-201803010715/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -251,21 +248,21 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.7/S201705121344">
+        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.7/S201708211328">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T ACCELEO</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.3.0/S201706120522">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.3.0">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse OCL 6.3</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.3milestones">
+        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.3">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT UML2</value>
@@ -286,21 +283,21 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201706130827">
+        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201709090201">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF COMPARE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.0/R-3.9.0-20170613094504/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.9.5/R-3.9.5-20180409100740/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/xwt/updates">
+        <repository url="http://download.eclipse.org/xwt/updates/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>XWT</value>
@@ -310,382 +307,7 @@
         <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
         <repository url="http://download.eclipse.org/nattable/releases/1.5.0/repository/"/>
         <repository url="http://download.eclipse.org/nebula/releases/1.2.0/"/>
-        <repository url="http://download.eclipse.org/tools/orbit/downloads/drops/R20170516192513/repository"/>
-      </repositoryList>
-      <repositoryList name="Neon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.6/R-4.6.1-201609071200/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>Eclipse</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.12/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF (Core)</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/transaction/updates/releases">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF TRANSACTION</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/validation/updates/releases">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF VALIDATION</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GEF</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GMF Runtime</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GMF Notation</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.0/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMFT MWE</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/mmt/qvto/updates/releases/3.6.0">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>QVT Operational</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201608301456">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>M2T ACCELEO</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.1/S201608201313">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>MDT OCL 6.0</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.2">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>MDT UML2</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>M2T XPAND</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.10.0/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>Xtext, Xtend</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201608311750">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF COMPARE</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.1/R-3.8.1-20160912100321/repository/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>WebTools</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/xwt/release-1.2.0">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>XWT</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
-        <repository url="http://download.eclipse.org/nattable/releases/1.4.0/repository/"/>
-        <repository url="http://download.eclipse.org/nebula/releases/1.0.0/"/>
-        <repository url="http://download.eclipse.org/tools/orbit/downloads/drops/R20150519210750/repository"/>
-      </repositoryList>
-      <repositoryList name="Mars">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.5-M-builds/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>Eclipse</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.11.x/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF (Core)</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201506010221">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF TRANSACTION</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/validation/updates/releases/R201505312255">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF VALIDATION</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/tools/gef/updates/releases">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GEF</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201506060219">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GMF Runtime</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201505312221">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GMF Notation</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.2/R201511170833/mwe">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMFT MWE</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.2/R201511170842/mwe2lang/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMFT MWE:1</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/mmt/qvto/updates/releases/3.5.0">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>QVT Operational</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201601191321">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>M2T ACCELEO</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.2/S201601311318">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>MDT OCL 6.0.2</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.1.x">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>MDT UML2</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201505260349/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>M2T XPAND</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.8.4/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>Xtext, Xtend</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.1/S201509120604">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF COMPARE</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.7.2/S-3.7.2RC1-20160118020043/repository/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>WebTools</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/xwt/release-1.1.0">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>XWT</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3.1/RC2"/>
-        <repository url="http://download.eclipse.org/nattable/releases/1.2.0/repository/"/>
-        <repository url="http://download.eclipse.org/nebula/releases/1.0.0/"/>
-        <repository url="http://download.eclipse.org/tools/orbit/downloads/drops/R20150519210750/repository"/>
-      </repositoryList>
-      <repositoryList name="Luna">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.4/R-4.4.2-201502041700/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>Eclipse</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/emf/updates/2.10.x/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF (Core)</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201405281451/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF TRANSACTION</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/validation/updates/releases/R201405281429/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF VALIDATION</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/tools/gef/updates/milestones">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GEF</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201408201453/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GMF Runtime</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201405281433/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>GMF Notation</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.2.2.RC4"/>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/R201409021027/mwe">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMFT MWE</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.4.1/S201502011444">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>QVT Operational</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.5/S201409021433">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>M2T ACCELEO</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/releases/5.0.4">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>MDT OCL 5.0</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.0">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>MDT UML2</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201406030414/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>M2T XPAND</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/maintenance/R201411190455/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>Xtext, Xtend</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.0/S201501201328">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>EMF COMPARE</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.6.3/R-3.6.3-20150216091848/repository/">
-          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-            <detail key="updateFrom">
-              <value>WebTools</value>
-            </detail>
-          </annotation>
-        </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/query/updates/releases/R201405281426"/>
-        <repository url="http://download.eclipse.org/nattable/releases/1.2.0/repository/"/>
-        <repository url="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository"/>
+        <repository url="http://download.eclipse.org/tools/orbit/downloads/drops/R20180330011457/repository"/>
       </repositoryList>
     </targlet>
     <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Test Dependencies">
@@ -693,56 +315,61 @@
       <requirement name="org.eclipse.emf.compare" versionRange="[3.3.0,4.0.0)"/>
       <requirement name="org.eclipse.gmf.tooling.feature.group"/>
       <requirement name="org.eclipse.m2m.qvt.oml.feature.group" versionRange="[3.6.0,4.0.0)"/>
-      <repositoryList name="Photon">
-        <repository url="http://download.eclipse.org/technology/swtbot/snapshots"/>
-      </repositoryList>
-      <repositoryList name="Oxygen">
-        <repository url="http://download.eclipse.org/technology/swtbot/snapshots"/>
-      </repositoryList>
-      <repositoryList name="Neon">
-        <repository url="http://download.eclipse.org/technology/swtbot/snapshots"/>
-      </repositoryList>
-      <repositoryList name="Mars">
-        <repository url="http://download.eclipse.org/technology/swtbot/snapshots"/>
-      </repositoryList>
-      <repositoryList name="Luna">
-        <repository url="http://download.eclipse.org/technology/swtbot/snapshots"/>
-      </repositoryList>
+      <repositoryList name="2018-12"/>
+      <repositoryList name="Oxygen"/>
     </targlet>
     <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Main Plug-ins">
       <requirement name="org.eclipse.papyrus.sdk.feature.feature.group"/>
-      <repositoryList name="Photon">
-        <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/photon"/>
+      <repositoryList name="2018-12">
+        <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/master"/>
       </repositoryList>
       <repositoryList name="Oxygen">
-        <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/oxygen"/>
-      </repositoryList>
-      <repositoryList name="Neon">
-        <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/neon/main"/>
-      </repositoryList>
-      <repositoryList name="Mars">
-        <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/mars/main"/>
-      </repositoryList>
-      <repositoryList name="Luna">
-        <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/luna"/>
+        <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/oxygen"/>
       </repositoryList>
     </targlet>
-    <targlet activeRepositoryList="${eclipse.target.platform}" includeSources="false" name="Diagnostic/Debug Tools">
-      <requirement name="org.eclipse.swt.tools" optional="true"/>
-      <repositoryList name="Photon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.7"/>
-      </repositoryList>
-      <repositoryList name="Oxygen">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.7"/>
-      </repositoryList>
-      <repositoryList name="Neon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.6"/>
-      </repositoryList>
-      <repositoryList name="Mars">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.5"/>
-      </repositoryList>
-      <repositoryList name="Luna">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.4"/>
+    <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Toolsmiths Dependencies">
+      <requirement name="org.eclipse.gmf.tooling.feature.group"/>
+      <requirement name="org.eclipse.emf.compare" versionRange="[3.3.0,4.0.0)"/>
+      <repositoryList name="2018-12">
+        <repository url="http://download.eclipse.org/oomph/drops/milestone/S20181107-083923-1.11.0-M1">
+          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
+            <detail key="updateFrom">
+              <value>oomph</value>
+            </detail>
+          </annotation>
+        </repository>
+        <repository url="http://download.eclipse.org/egit/updates-5.1">
+          <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
+            <detail key="updateFrom">
+              <value>EGIT</value>
+            </detail>
+          </annotation>
+        </repository>
+        <repository url="http://download.eclipse.org/technology/m2e/milestones/1.9/1.9.0.20180313-2237">
+          <annotation source="dependencytools">
+            <detail key="updateFrom">
+              <value>m2e</value>
+            </detail>
+          </annotation>
+        </repository>
+        <repository url="http://download.eclipse.org/mylyn/drops/3.24.2/v20180905-2014">
+          <annotation source="dependencytools">
+            <detail key="updateFrom">
+              <value>Mylyn</value>
+            </detail>
+          </annotation>
+        </repository>
+        <repository url="http://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT/"/>
+        <repository url="http://download.eclipse.org/cbi/updates/aggregator/ide/4.8/"/>
+        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/releases/latest">
+          <annotation source="dependencytools">
+            <detail key="updateFrom">
+              <value>EMF COMPARE</value>
+            </detail>
+          </annotation>
+        </repository>
+        <repository url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a"/>
+        <repository url="${oomph.update.url}"/>
       </repositoryList>
     </targlet>
   </setupTask>
@@ -767,23 +394,19 @@
       <buildPlan name="Papyrus-Master-Full"/>
       <buildPlan name="Papyrus-Master"/>
       <buildPlan name="Papyrus-Master-Tests"/>
-      <buildPlan name="Papyrus-Master-Extra"/>
-      <buildPlan name="Papyrus-Master-Extra-Tests"/>
     </setupTask>
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzver.luna" value="version=1.0.0&amp;version=1.0.1&amp;version=1.0.2"/>
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzver.mars" value="version=${papyrus.bugzver.luna}&amp;version=1.1.0&amp;version=1.1.1&amp;version=1.1.2&amp;version=1.1.3&amp;version=1.1.4&amp;version=1.1.5"/>
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzver.neon" value="version=${papyrus.bugzver.mars}&amp;2.0.0&amp;version=2.0.1&amp;version=2.0.2"/>
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzver.oxygen" value="version=${papyrus.bugzver.neon}&amp;version=3.0.0&amp;version=3.1.0"/>
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzver.master" value="version=${papyrus.bugzver.oxygen}&amp;version=4.0.0"/>
+    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzver.201812" value="version=${papyrus.bugzver.201809}&amp;version=4.2.0"/>
+    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzver.201809" value="version=${papyrus.bugzver.photon}&amp;version=4.1.0"/>
+    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzver.photon" value="version=${papyrus.bugzver.oxygen}&amp;version=4.0.0"/>
+    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzver.oxygen" value="version=3.0.0&amp;version=3.1.0&amp;version=3.2.0&amp;version=3.3.0&amp;version=3.4.0"/>
   </setupTask>
   <setupTask xsi:type="projects:ProjectsImportTask">
-    <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins}">
+    <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/framework}">
       <predicate xsi:type="predicates:OrPredicate">
         <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.junit\.framework"/>
         <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.junit\.utils"/>
       </predicate>
     </sourceLocator>
-    <sourceLocator rootFolder="${papyrus.git.clone.location/tests/framework}"/>
   </setupTask>
   <project label="Main" name="main">
     <project label="Infra" name="infra">
@@ -869,7 +492,7 @@
             <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
             <operand xsi:type="predicates:OrPredicate">
               <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.infra(\..+)?\.tests"/>
-              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.editor\.integration\.tests"/>
+              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.editor(\..+)?\.tests"/>
             </operand>
           </predicate>
         </workingSet>
@@ -887,8 +510,8 @@
           <requirement name="org.eclipse.emf.mwe2.launcher.feature.group"/>
         </targlet>
       </setupTask>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
         <setupTask xsi:type="setup.targlets:TargletTask">
           <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Master Dependencies">
             <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
@@ -902,25 +525,6 @@
             <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
           </targlet>
         </setupTask>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-        <setupTask xsi:type="setup.targlets:TargletTask">
-          <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Neon Dependencies">
-            <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
-          </targlet>
-        </setupTask>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-        <setupTask xsi:type="setup.targlets:TargletTask">
-          <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Mars Dependencies">
-            <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
-          </targlet>
-        </setupTask>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
       </stream>
     </project>
     <project label="Views" name="views">
@@ -955,42 +559,11 @@
           </predicate>
         </workingSet>
       </setupTask>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
       </stream>
       <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-        <setupTask xsi:type="projects:ProjectsImportTask">
-          <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/xwt}"/>
-          <sourceLocator rootFolder="${papyrus.git.clone.location/features}">
-            <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.(tests\.)?xwt($|\..+)"/>
-          </sourceLocator>
-        </setupTask>
-        <setupTask xsi:type="setup.workingsets:WorkingSetTask">
-          <workingSet id="papyrus-xwt" name="Papyrus XWT">
-            <predicate xsi:type="predicates:AndPredicate">
-              <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.views.properties"/>
-              <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
-              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.xwt($|\..+)"/>
-            </predicate>
-          </workingSet>
-          <workingSet id="papyrus-xwt-features" name="Papyrus XWT Features">
-            <predicate xsi:type="predicates:AndPredicate">
-              <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.views.properties.feature"/>
-              <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.FeatureNature"/>
-              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.(tests\.)?xwt($|\..+)"/>
-            </predicate>
-          </workingSet>
-        </setupTask>
       </stream>
     </project>
     <project label="UML" name="uml">
@@ -1077,20 +650,11 @@
       <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
       </stream>
       <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
       </stream>
     </project>
     <project label="UML ALF" name="uml-alf">
@@ -1111,6 +675,14 @@
             <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.uml.alf.common"/>
             <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
             <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.uml\.alf($|\..+)"/>
+            <operand xsi:type="workingsets:ExclusionPredicate" excludedWorkingSet="//@projects[name='main']/@projects[name='uml-alf']/@setupTasks.1/@workingSets.1"/>
+          </predicate>
+        </workingSet>
+        <workingSet id="papyrus-uml-alf-tests" name="Papyrus UML ALF Tests">
+          <predicate xsi:type="predicates:AndPredicate">
+            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.uml.alf.tests"/>
+            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
+            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.uml\.alf(\..+)?\.tests"/>
           </predicate>
         </workingSet>
         <workingSet id="papyrus-uml-alf-features" name="Papyrus UML ALF Features">
@@ -1130,20 +702,11 @@
           <requirement name="org.eclipse.m2m.qvt.oml.runtime.feature.group"/>
         </targlet>
       </setupTask>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
       </stream>
       <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
       </stream>
     </project>
     <project label="UML Text Editors" name="uml-text">
@@ -1164,6 +727,14 @@
             <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.uml.textedit.common.xtext"/>
             <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
             <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.uml\.(textedit|xtext)($|\..+)"/>
+            <operand xsi:type="workingsets:ExclusionPredicate" excludedWorkingSet="//@projects[name='main']/@projects[name='uml-text']/@setupTasks.1/@workingSets.1"/>
+          </predicate>
+        </workingSet>
+        <workingSet id="papyrus-uml-text-tests" name="Papyrus UML Text Editors Tests">
+          <predicate xsi:type="predicates:AndPredicate">
+            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.uml.textedit.parameter.tests"/>
+            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
+            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.uml\.textedit(\..+)?\.tests"/>
           </predicate>
         </workingSet>
         <workingSet id="papyrus-uml-text-features" name="Papyrus UML Text Editors Features">
@@ -1177,83 +748,11 @@
       <setupTask xsi:type="setup.p2:P2Task">
         <requirement name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
       </stream>
       <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-    </project>
-    <project label="SysML" name="sysml">
-      <setupTask xsi:type="projects:ProjectsImportTask">
-        <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/sysml}"/>
-        <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins/sysml}"/>
-        <sourceLocator rootFolder="${papyrus.git.clone.location/features}">
-          <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.(tests\.)?sysml($|\..+)"/>
-          </predicate>
-        </sourceLocator>
-      </setupTask>
-      <setupTask xsi:type="setup.workingsets:WorkingSetTask">
-        <workingSet id="papyrus-sysml" name="Papyrus SysML">
-          <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.sysml"/>
-            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
-            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.sysml($|\..+)"/>
-            <operand xsi:type="workingsets:ExclusionPredicate" excludedWorkingSet="//@projects[name='main']/@projects[name='sysml']/@setupTasks.1/@workingSets.1 //@projects[name='main']/@projects[name='sysml']/@setupTasks.1/@workingSets.2 //@projects[name='main']/@projects[name='sysml']/@setupTasks.1/@workingSets.3"/>
-          </predicate>
-        </workingSet>
-        <workingSet id="papyrus-sysml-diagram" name="Papyrus SysML Diagrams">
-          <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.sysml.diagram.common"/>
-            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
-            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.sysml\.diagram($|\..+)"/>
-            <operand xsi:type="workingsets:ExclusionPredicate" excludedWorkingSet="//@projects[name='main']/@projects[name='sysml']/@setupTasks.1/@workingSets.3"/>
-          </predicate>
-        </workingSet>
-        <workingSet id="papyrus-sysml-table" name="Papyrus SysML Tables">
-          <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.sysml.nattable"/>
-            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
-            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.sysml\.nattable($|\..+)"/>
-            <operand xsi:type="workingsets:ExclusionPredicate" excludedWorkingSet="//@projects[name='main']/@projects[name='sysml']/@setupTasks.1/@workingSets.3"/>
-          </predicate>
-        </workingSet>
-        <workingSet id="papyrus-sysml-tests" name="Papyrus SysML Tests">
-          <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.sysml.tests"/>
-            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
-            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.sysml(\..+)?\.tests"/>
-          </predicate>
-        </workingSet>
-        <workingSet id="papyrus-sysml-features" name="Papyrus SysML Features">
-          <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.sysml.feature"/>
-            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.FeatureNature"/>
-            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus(\.tests)?\.sysml($|\..+)"/>
-          </predicate>
-        </workingSet>
-      </setupTask>
-      <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
       </stream>
     </project>
     <project label="EMF Facet" name="emffacet">
@@ -1283,62 +782,11 @@
           </predicate>
         </workingSet>
       </setupTask>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
       </stream>
       <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-    </project>
-    <project label="Toolsmiths" name="toolsmiths">
-      <setupTask xsi:type="setup.p2:P2Task">
-        <requirement name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
-      </setupTask>
-      <setupTask xsi:type="projects:ProjectsImportTask">
-        <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/customization}"/>
-        <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins/customization}"/>
-        <sourceLocator rootFolder="${papyrus.git.clone.location/features/papyrus-toolsmiths-features}"/>
-      </setupTask>
-      <setupTask xsi:type="setup.workingsets:WorkingSetTask">
-        <workingSet id="papyrus-toolsmiths" name="Papyrus Toolsmiths">
-          <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
-            <operand xsi:type="predicates:OrPredicate">
-              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.customization(?:$|\..+)"/>
-            </operand>
-          </predicate>
-        </workingSet>
-        <workingSet id="papyrus-toolsmiths-features" name="Papyrus Toolsmiths Features">
-          <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.toolsmiths.feature"/>
-            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.FeatureNature"/>
-            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.toolsmiths(?:$|\..+)"/>
-          </predicate>
-        </workingSet>
-      </setupTask>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
-      <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
       </stream>
     </project>
     <project label="Documentation" name="doc">
@@ -1366,20 +814,11 @@
           </predicate>
         </workingSet>
       </setupTask>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
       </stream>
       <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
       </stream>
     </project>
     <project label="All Tests" name="alltests">
@@ -1395,24 +834,18 @@
         </sourceLocator>
       </setupTask>
       <setupTask xsi:type="setup.workingsets:WorkingSetTask">
-        <workingSet id="papyrus-alltests" name="Papyrus All Main Tests">
+        <workingSet id="papyrus-alltests" name="Papyrus All Tests">
           <predicate xsi:type="predicates:AndPredicate">
             <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.tests"/>
             <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
             <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus(\..+)?\.tests"/>
-            <operand xsi:type="predicates:NotPredicate">
-              <operand xsi:type="predicates:NamePredicate" pattern=".*\.extra\..*"/>
-            </operand>
           </predicate>
         </workingSet>
-        <workingSet id="papyrus-alltests-features" name="Papyrus Main Test Features">
+        <workingSet id="papyrus-alltests-features" name="Papyrus All Test Features">
           <predicate xsi:type="predicates:AndPredicate">
             <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.tests.feature"/>
             <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.FeatureNature"/>
             <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.tests($|\..+)"/>
-            <operand xsi:type="predicates:NotPredicate">
-              <operand xsi:type="predicates:NamePredicate" pattern=".*\.extra\..*"/>
-            </operand>
           </predicate>
         </workingSet>
       </setupTask>
@@ -1423,421 +856,120 @@
           <requirement name="org.eclipse.xtext.junit4"/>
         </targlet>
       </setupTask>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
       </stream>
       <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
       </stream>
     </project>
     <project label="Others" name="misc">
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
       </stream>
       <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
       </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-        <setupTask xsi:type="projects:ProjectsImportTask">
-          <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/team}"/>
-          <sourceLocator rootFolder="${papyrus.git.clone.location/features}">
-            <predicate xsi:type="predicates:AndPredicate">
-              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.team($|\..+)"/>
-            </predicate>
-          </sourceLocator>
-        </setupTask>
-        <setupTask xsi:type="setup.targlets:TargletTask">
-          <description>&#xD;
-            Additional dependencies, e.g. for Subversive (SVN team integration), including&#xD;    &#xD;
-            an SVN connector from Polarion to prevent the connector dialog appearing at&#xD;    &#xD;
-            run-time, especially as it interferes with JUnit test execution.&#xD;    &#xD;
-          </description>
-          <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Other Dependencies">
-            <requirement name="org.eclipse.team.svn.feature.group"/>
-            <requirement name="org.polarion.eclipse.team.svn.connector.svnkit18.feature.group"/>
-            <repositoryList name="Luna">
-              <repository url="http://download.eclipse.org/technology/subversive/2.0/luna-site/"/>
-              <repository url="http://community.polarion.com/projects/subversive/download/eclipse/4.0/update-site/"/>
-            </repositoryList>
-          </targlet>
-        </setupTask>
-      </stream>
     </project>
-    <project label="Releng" name="releng">
+    <project label="Toolsmiths" name="toolsmiths">
+      <setupTask xsi:type="setup.targlets:TargletTask">
+        <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Releng Tools Dependencies">
+          <requirement name="org.eclipse.oomph.setup.workingsets.feature.group" optional="true"/>
+          <requirement name="org.eclipse.oomph.setup.targlets.feature.group" optional="true"/>
+          <requirement name="org.eclipse.oomph.setup.feature.group" optional="true"/>
+          <requirement name="org.eclipse.cbi.p2repo.aggregator.engine.feature.feature.group"/>
+          <repositoryList name="2018-12">
+            <repository url="${oomph.update.url}"/>
+            <repository url="http://download.eclipse.org/cbi/updates/aggregator/ide/4.8/"/>
+          </repositoryList>
+        </targlet>
+      </setupTask>
+      <setupTask xsi:type="setup.p2:P2Task">
+        <requirement name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
+        <requirement name="org.eclipse.xtend.sdk.feature.group"/>
+        <requirement name="org.eclipse.acceleo.feature.group"/>
+        <requirement name="org.eclipse.gmf.tooling.codegen.xtend2.feature.group"/>
+      </setupTask>
       <setupTask xsi:type="projects:ProjectsImportTask">
-        <sourceLocator locateNestedProjects="true" rootFolder="${papyrus.git.clone.location/releng}">
-          <excludedPath>emfgen</excludedPath>
-        </sourceLocator>
+        <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/customization}"/>
+        <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins/customization}"/>
+        <sourceLocator rootFolder="${papyrus.git.clone.location/features/papyrus-toolsmiths-features}"/>
+      </setupTask>
+      <setupTask xsi:type="projects:ProjectsImportTask">
+        <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/toolsmiths}"/>
+        <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/framework}"/>
+        <sourceLocator rootFolder="${papyrus.git.clone.location/features/papyrus-toolsmiths-features}"/>
+        <sourceLocator rootFolder="${papyrus.git.clone.location/releng}"/>
       </setupTask>
       <setupTask xsi:type="setup.workingsets:WorkingSetTask">
-        <workingSet id="papyrus-releng" name="Papyrus Releng">
+        <workingSet id="papyrus-toolsmiths" name="Papyrus Toolsmiths">
           <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:RepositoryPredicate" project="releng"/>
-            <operand xsi:type="predicates:NamePredicate" pattern=".*\.releng.*|.*\.oomph.*|releng"/>
+            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.toolsmiths"/>
+            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
+            <operand xsi:type="workingsets:ExclusionPredicate" excludedWorkingSet="//@projects[name='dev']/@projects[name='releng']/@setupTasks.3/@workingSets.0"/>
+            <operand xsi:type="predicates:OrPredicate">
+              <operand xsi:type="predicates:LocationPredicate" pattern="\Q${papyrus.git.clone.location|plugins/toolsmiths/}\E"/>
+              <operand xsi:type="predicates:NamePredicate" pattern=".*\.codegen.*|.*\.def.*|.*\.mwe2.*|.*\.toolsmiths.*|.*\.junit.*"/>
+              <operand xsi:type="predicates:NamePredicate" pattern=".*\.uml.profile.assistants.*|.*\.uml.profile.newchildmenu.*|.*\.uml.profile.types.*"/>
+              <operand xsi:type="predicates:NamePredicate" pattern=".*\.customization.nattableconfiguration.*"/>
+              <operand xsi:type="predicates:NamePredicate" pattern=".*\.qvto.tests.*|.*\.papyrus.gmf.*|.*\.emf.commandstack.*|.*\.css.debug"/>
+            </operand>
+            <operand xsi:type="predicates:NotPredicate">
+              <operand xsi:type="predicates:NamePredicate" pattern=".*\.tests|.*\.test|.*\.doc"/>
+            </operand>
+          </predicate>
+          <predicate xsi:type="predicates:AndPredicate">
+            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
+            <operand xsi:type="predicates:OrPredicate">
+              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.customization(?:$|\..+)"/>
+            </operand>
+          </predicate>
+        </workingSet>
+        <workingSet id="papyrus-toolsmiths-features" name="Papyrus Toolsmiths Features">
+          <predicate xsi:type="predicates:AndPredicate">
+            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.toolsmiths.feature"/>
+            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.FeatureNature"/>
+            <operand xsi:type="workingsets:ExclusionPredicate" excludedWorkingSet="//@projects[name='dev']/@projects[name='releng']/@setupTasks.3/@workingSets.1"/>
+            <operand xsi:type="predicates:OrPredicate">
+              <operand xsi:type="predicates:LocationPredicate" pattern="\Q${papyrus.git.clone.location/plugins/papyrus-toolsmiths-features/}\E.+"/>
+              <operand xsi:type="predicates:NamePredicate" pattern=".*\.debug.*|.*\.diagramgen.*|.*\.junit.*|.*\.toolsmiths.*|.*\.assistants.*|.*\.qvto.*"/>
+            </operand>
+            <operand xsi:type="predicates:NotPredicate">
+              <operand xsi:type="predicates:NamePredicate" pattern=".*\.tests|.*\.test|.*\.tests.*"/>
+            </operand>
+          </predicate>
+          <predicate xsi:type="predicates:AndPredicate">
+            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.toolsmiths.feature"/>
+            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.FeatureNature"/>
+            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.toolsmiths(?:$|\..+)"/>
+          </predicate>
+        </workingSet>
+        <workingSet id="papyrus-toolsmiths-tests" name="Papyrus Toolsmiths Tests">
+          <predicate xsi:type="predicates:AndPredicate">
+            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.tests"/>
+            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
+            <operand xsi:type="predicates:OrPredicate">
+              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus.bundles.tests"/>
+              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus(\..+)?\.editors(\..+)?\.tests|org\.eclipse\.papyrus(\..+)?\.toolsmiths(\..+)?\.tests"/>
+            </operand>
+          </predicate>
+          <predicate xsi:type="predicates:AndPredicate">
+            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.tests.feature"/>
+            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.FeatureNature"/>
+            <operand xsi:type="predicates:OrPredicate">
+              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.tests\.toolsmiths\.feature"/>
+            </operand>
           </predicate>
         </workingSet>
       </setupTask>
-      <project label="Maven Plug-ins" name="maven">
-        <setupTask xsi:type="projects:ProjectsImportTask">
-          <sourceLocator locateNestedProjects="true" rootFolder="${papyrus.git.clone.location/releng/emfgen}"/>
-        </setupTask>
-        <stream label="master (Oxygen/3.0)" name="master">
-          <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-        </stream>
-        <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-          <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-        </stream>
-        <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-          <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-        </stream>
-        <description>Sources of Maven plug-ins for Papyrus custom build behaviours</description>
-      </project>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
       </stream>
       <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
       </stream>
     </project>
     <description>Tools, dependencies, and sources for development of the main Papyrus components.  Required for any Papyrus development.</description>
-  </project>
-  <project label="Extras" name="extras">
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.extratests.folder" value="${papyrus.extraplugins.folder}"/>
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.extrafeature" value="extra.${papyrus.extraplugins.folder}"/>
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.extratestsfeature" value="tests.${papyrus.extrafeature}"/>
-    <setupTask xsi:type="setup.targlets:TargletTask">
-      <targlet activeRepositoryList="${eclipse.target.platform}" name="${scope.project.label} Plug-ins">
-        <requirement name="org.eclipse.papyrus.${papyrus.extrafeature}.feature.feature.group" optional="true"/>
-        <repositoryList name="Neon">
-          <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/neon/extra"/>
-        </repositoryList>
-        <repositoryList name="Mars">
-          <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/mars/extra"/>
-        </repositoryList>
-        <repositoryList name="Luna">
-          <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/luna"/>
-        </repositoryList>
-      </targlet>
-    </setupTask>
-    <setupTask xsi:type="projects:ProjectsImportTask">
-      <sourceLocator rootFolder="${papyrus.git.clone.location/extraplugins}/${papyrus.extraplugins.folder}"/>
-      <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/extraplugins}/${papyrus.extratests.folder}"/>
-      <sourceLocator rootFolder="${papyrus.git.clone.location/features/papyrus-extra-features}">
-        <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.${papyrus.extrafeature}\.feature"/>
-      </sourceLocator>
-      <sourceLocator rootFolder="${papyrus.git.clone.location/features/papyrus-tests-extra-features}">
-        <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.${papyrus.extratestsfeature}\.feature"/>
-      </sourceLocator>
-    </setupTask>
-    <setupTask xsi:type="setup.workingsets:WorkingSetTask">
-      <workingSet name="Papyrus ${scope.project.label}">
-        <predicate xsi:type="predicates:OrPredicate">
-          <operand xsi:type="predicates:LocationPredicate" pattern="\Q${papyrus.git.clone.location/extraplugins}\E[\\/]\Q${papyrus.extraplugins.folder}\E"/>
-          <operand xsi:type="predicates:LocationPredicate" pattern="\Q${papyrus.git.clone.location/extraplugins}\E[\\/]\Q${papyrus.extraplugins.folder}\E[\\/].*"/>
-          <operand xsi:type="predicates:LocationPredicate" pattern="\Q${papyrus.git.clone.location/tests/junit/extraplugins}\E[\\/]\Q${papyrus.extratests.folder}\E[\\/].*"/>
-          <operand xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.FeatureNature"/>
-            <operand xsi:type="predicates:OrPredicate">
-              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.${papyrus.extrafeature}($|\..*)"/>
-              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.${papyrus.extratestsfeature}($|\..*)"/>
-            </operand>
-          </operand>
-        </predicate>
-      </workingSet>
-    </setupTask>
-    <project label="BPMN" name="bpmn">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="bpmn"/>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <description>Papyrus BPMN</description>
-    </project>
-    <project label="CDO Integration" name="cdo">
-      <setupTask xsi:type="setup.targlets:TargletTask">
-        <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus CDO Dependencies">
-          <requirement name="org.eclipse.emf.cdo.sdk.feature.group"/>
-          <repositoryList name="Neon">
-            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/R20160607-1209">
-              <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-                <detail key="updateFrom">
-                  <value>EMF CDO</value>
-                </detail>
-              </annotation>
-            </repository>
-          </repositoryList>
-          <repositoryList name="Mars">
-            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/R20150916-0434">
-              <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-                <detail key="updateFrom">
-                  <value>EMF CDO</value>
-                </detail>
-              </annotation>
-            </repository>
-          </repositoryList>
-          <repositoryList name="Luna">
-            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/R20140610-0212"/>
-          </repositoryList>
-        </targlet>
-      </setupTask>
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="cdo"/>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-    </project>
-    <project label="ELK Integration" name="elk">
-      <setupTask xsi:type="setup.targlets:TargletTask">
-        <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus ELK Dependencies">
-          <requirement name="org.eclipse.elk.feature.feature.group"/>
-          <requirement name="org.eclipse.elk.ui.feature.feature.group"/>
-          <requirement name="org.eclipse.elk.gmf.feature.feature.group"/>
-          <repositoryList name="Neon">
-            <repository url="http://download.eclipse.org/elk/updates/releases/0.1.0/"/>
-          </repositoryList>
-        </targlet>
-      </setupTask>
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="elk"/>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-    </project>
-    <project label="Diagram Template" name="diagramtemplate">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="diagramtemplate"/>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="DSML Validation" name="dsml.validation">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="dsml.validation"/>
-      <setupTask xsi:type="projects:ProjectsImportTask">
-        <sourceLocator rootFolder="${papyrus.git.clone.location/plugins}/infra/core">
-          <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.infra\.tools"/>
-        </sourceLocator>
-      </setupTask>
-      <setupTask xsi:type="setup.p2:P2Task">
-        <requirement name="org.eclipse.xtend.sdk.feature.group"/>
-      </setupTask>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="East-ADL" name="eastadl">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="eastadl"/>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="Layers" name="layers">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="layers"/>
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extrafeature" value="layers"/>
-      <setupTask xsi:type="setup.workingsets:WorkingSetTask">
-        <description>Projects related to Papyrus Layers.</description>
-        <workingSet name="Papyrus Layers">
-          <predicate xsi:type="predicates:AndPredicate">
-            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.layers.stackmodel"/>
-            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
-            <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.layers\..*"/>
-          </predicate>
-        </workingSet>
-      </setupTask>
-      <setupTask xsi:type="projects:ProjectsImportTask">
-        <description>Import plugin requested by Layers</description>
-        <sourceLocator rootFolder="${papyrus.git.clone.location/tests/integration/plugins}/org.eclipse.papyrus.integrationtests.editor"/>
-      </setupTask>
-      <setupTask xsi:type="setup.targlets:TargletTask">
-        <targlet activeRepositoryList="${eclipse.target.platform}" name="Layers dependencies">
-          <requirement name="org.eclipse.emf.query.sdk.feature.group"/>
-          <repositoryList name="Neon">
-            <repository url="http://download.eclipse.org/modeling/emf/query/updates/releases/"/>
-          </repositoryList>
-          <repositoryList name="Mars">
-            <repository url="http://download.eclipse.org/modeling/emf/query/updates/releases/"/>
-          </repositoryList>
-        </targlet>
-      </setupTask>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="Manufacturing" name="manufacturing">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="manufacturing"/>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <description>Papyrus4Manufacturing</description>
-    </project>
-    <project label="MARTE" name="marte">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="marte"/>
-      <setupTask xsi:type="setup.p2:P2Task">
-        <requirement name="org.eclipse.xtend.sdk.feature.group"/>
-      </setupTask>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="Model Migration" name="migration">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="migration"/>
-      <setupTask xsi:type="setup.p2:P2Task" label="Migration Development Tools">
-        <requirement name="org.eclipse.m2m.qvt.oml.sdk.feature.group"/>
-      </setupTask>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="Moka" name="moka">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="moka"/>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="SysML 1.4" name="sysml14">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="sysml14"/>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="Table Migration" name="tablemigration">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="tablemigration"/>
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extrafeature" value="tablemigration"/>
-      <stream label="master (Oxygen/3.0)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="UML Compare" name="umlcompare">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="uml/compare"/>
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extrafeature" value="extra.uml.compare"/>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="UML Export" name="umlexport">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="uml/org.eclipse.papyrus.uml.export"/>
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extrafeature" value="uml.export"/>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <project label="UML-RT" name="umlrt">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.extraplugins.folder" value="umlrt"/>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-      </stream>
-      <description/>
-    </project>
-    <description>Select sub-projects to import dependencies and sources for Papyrus extra components.</description>
   </project>
   <project label="Developer" name="dev">
     <setupTask xsi:type="projects:ProjectsImportTask">
@@ -1854,23 +986,18 @@
       <sourceLocator rootFolder="${papyrus.git.clone.location/features/papyrus-dev-features}"/>
       <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins/developer}"/>
     </setupTask>
-    <setupTask xsi:type="setup.workingsets:WorkingSetTask">
-      <workingSet id="papyrus-dev" name="Papyrus Developer Tools">
-        <predicate xsi:type="predicates:AndPredicate">
-          <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.codegen"/>
-          <operand xsi:type="predicates:OrPredicate">
-            <operand xsi:type="predicates:LocationPredicate" pattern="\Q${papyrus.git.clone.location/plugins/developer/}\E.+"/>
-            <operand xsi:type="predicates:LocationPredicate" pattern="\Q${papyrus.git.clone.location/features/papyrus-dev-features/}\E.*"/>
-            <operand xsi:type="predicates:LocationPredicate" pattern="\Q${papyrus.git.clone.location/tests/junit/plugins/developer/}\E.+"/>
-          </operand>
-        </predicate>
-      </workingSet>
+    <setupTask xsi:type="projects:ProjectsImportTask">
+      <sourceLocator rootFolder="${papyrus.git.clone.location/plugins/toolsmiths}"/>
+      <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/framework}"/>
+      <sourceLocator rootFolder="${papyrus.git.clone.location/features/papyrus-toolsmiths-features}"/>
+      <sourceLocator rootFolder="${papyrus.git.clone.location/releng}"/>
     </setupTask>
     <setupTask xsi:type="setup.targlets:TargletTask">
       <targlet name="Papyrus Developer Tools Dependencies">
         <requirement name="org.eclipse.gmf.tooling.codegen.xtend2.feature.group"/>
         <requirement name="org.eclipse.acceleo.feature.group"/>
         <requirement name="org.eclipse.gmf.tooling.feature.group"/>
+        <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
       </targlet>
     </setupTask>
     <setupTask xsi:type="setup.p2:P2Task">
@@ -1879,32 +1006,20 @@
     </setupTask>
     <project label="Oomph Setup" name="Oomph">
       <setupTask xsi:type="setup:EclipseIniTask" option="-Doomph.redirection.papyrussetups" value="=http://git.eclipse.org/c/papyrus/org.eclipse.papyrus.git/plain/releng/org.eclipse.papyrus.oomph/setups/->${papyrus.git.clone.location|uri}/releng/org.eclipse.papyrus.oomph/setups/" vm="true"/>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-        <setupTask xsi:type="setup.targlets:TargletTask">
-          <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Neon Dependencies">
-            <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
-          </targlet>
-        </setupTask>
-        <description/>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
       </stream>
       <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
         <setupTask xsi:type="setup.targlets:TargletTask">
-          <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Neon Dependencies">
+          <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Oxygen Dependencies">
             <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
           </targlet>
         </setupTask>
       </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-      </stream>
       <description>Additional configuration for developing and testing the Oomph setup model.</description>
     </project>
-    <project label="Releng Tools" name="relengtools">
+    <project label="Releng" name="releng">
       <setupTask xsi:type="setup.targlets:TargletTask">
         <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Releng Tools Dependencies">
           <requirement name="org.eclipse.oomph.setup.workingsets.feature.group" optional="true"/>
@@ -1915,135 +1030,70 @@
             <repository url="${oomph.update.url}"/>
             <repository url="http://download.eclipse.org/cbi/updates/aggregator/ide/4.6/"/>
           </repositoryList>
-          <repositoryList name="Neon">
-            <repository url="${oomph.update.url}"/>
-            <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.4/"/>
-          </repositoryList>
-          <repositoryList name="Mars">
-            <repository url="${oomph.update.url}"/>
-            <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.3/"/>
-          </repositoryList>
         </targlet>
       </setupTask>
       <setupTask xsi:type="projects:ProjectsImportTask">
         <sourceLocator locateNestedProjects="true" rootFolder="${papyrus.git.clone.location/plugins/developer}">
           <predicate xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.releng\.tools"/>
         </sourceLocator>
+        <sourceLocator locateNestedProjects="true" rootFolder="${papyrus.git.clone.location/releng}">
+          <excludedPath>emfgen</excludedPath>
+        </sourceLocator>
       </setupTask>
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-        <setupTask xsi:type="setup.targlets:TargletTask">
-          <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Neon Dependencies">
-            <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
-          </targlet>
-        </setupTask>
+      <setupTask xsi:type="projects:ProjectsImportTask">
+        <sourceLocator rootFolder="${papyrus.git.clone.location/tests/junit/plugins/customization}"/>
+        <sourceLocator rootFolder="${papyrus.git.clone.location/features/papyrus-toolsmiths-features}"/>
+      </setupTask>
+      <setupTask xsi:type="setup.workingsets:WorkingSetTask">
+        <workingSet id="papyrus-releng" name="Papyrus Releng">
+          <predicate xsi:type="predicates:AndPredicate">
+            <operand xsi:type="predicates:RepositoryPredicate" project="releng"/>
+            <operand xsi:type="predicates:NamePredicate" pattern=".*\.releng.*|.*\.oomph.*|releng"/>
+          </predicate>
+          <predicate xsi:type="predicates:AndPredicate">
+            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.toolsmiths"/>
+            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.PluginNature"/>
+            <operand xsi:type="predicates:OrPredicate">
+              <operand xsi:type="predicates:LocationPredicate" pattern="\Q${papyrus.git.clone.location/plugins/toolsmiths/}\E.+"/>
+              <operand xsi:type="predicates:NamePredicate" pattern=".*\.dev.*|.*\.releng.*"/>
+              <operand xsi:type="predicates:NamePredicate" pattern=".*\.oomph.*|releng"/>
+            </operand>
+          </predicate>
+        </workingSet>
+        <workingSet id="papyrus-releng-features" name="Papyrus Releng Features">
+          <predicate xsi:type="predicates:AndPredicate">
+            <operand xsi:type="predicates:RepositoryPredicate" project="org.eclipse.papyrus.releng.feature"/>
+            <operand xsi:type="predicates:NaturePredicate" nature="org.eclipse.pde.FeatureNature"/>
+            <operand xsi:type="predicates:OrPredicate">
+              <operand xsi:type="predicates:LocationPredicate" pattern="\Q${papyrus.git.clone.location/plugins/papyrus-toolsmiths-features/}\E.+"/>
+              <operand xsi:type="predicates:NamePredicate" pattern="org\.eclipse\.papyrus\.releng(?:$|\..+)"/>
+            </operand>
+          </predicate>
+        </workingSet>
+      </setupTask>
+      <stream label="master (2018-12/4.2)" name="master">
+        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
       </stream>
       <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
         <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
         <setupTask xsi:type="setup.targlets:TargletTask">
-          <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Neon Dependencies">
+          <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Oxygen Dependencies">
             <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
           </targlet>
         </setupTask>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
       </stream>
       <description>Release engineering tools, including the POM and Oomph Setup dependencies updater actions.</description>
     </project>
-    <project label="Developer Tools" name="devtools">
-      <stream label="master (Photon/4.x)" name="master">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-        <setupTask xsi:type="setup.targlets:TargletTask">
-          <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Neon Dependencies">
-            <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
-          </targlet>
-        </setupTask>
-        <description/>
-      </stream>
-      <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-        <setupTask xsi:type="setup.targlets:TargletTask">
-          <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Neon Dependencies">
-            <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
-          </targlet>
-        </setupTask>
-      </stream>
-      <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-        <setupTask xsi:type="setup.p2:P2Task">
-          <requirement name="org.eclipse.papyrus.dev.feature.feature.group"/>
-          <requirement name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
-          <repository url="https://hudson.eclipse.org/papyrus/job/Papyrus-Neon-Developer/lastSuccessfulBuild/artifact/repository/"/>
-          <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/neon/main"/>
-          <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.4/"/>
-          <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.10.0/">
-            <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-              <detail key="updateFrom">
-                <value>Xtext, Xtend</value>
-              </detail>
-            </annotation>
-          </repository>
-        </setupTask>
-      </stream>
-      <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-        <setupTask xsi:type="setup.p2:P2Task">
-          <requirement name="org.eclipse.papyrus.dev.feature.feature.group"/>
-          <requirement name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
-          <repository url="https://hudson.eclipse.org/papyrus/job/Papyrus-Mars-Developer/lastSuccessfulBuild/artifact/releng/dev/target/repository/"/>
-          <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/mars/main"/>
-          <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.3/"/>
-        </setupTask>
-      </stream>
-      <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-        <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-        <setupTask xsi:type="setup.p2:P2Task">
-          <requirement name="org.eclipse.papyrus.dev.feature.feature.group"/>
-          <requirement name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
-          <requirement name="org.eclipse.buckminster.core.feature.feature.group"/>
-          <requirement name="org.eclipse.buckminster.git.feature.feature.group"/>
-          <requirement name="org.eclipse.buckminster.pde.feature.feature.group"/>
-          <repository url="https://hudson.eclipse.org/papyrus/job/Papyrus-Luna-Developer/lastSuccessfulBuild/artifact/releng/dev/target/repository/"/>
-          <repository url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/luna"/>
-          <repository url="http://download.eclipse.org/modeling/emft/b3/updates-4.3/"/>
-          <repository url="http://download.eclipse.org/tools/buckminster/updates-4.4"/>
-        </setupTask>
-      </stream>
-      <description>Installs developer tools, including the code generator for Papyrus diagram plug-ins and various debugging aids such as &quot;spy&quot; views.  Source code is not included.</description>
-    </project>
-    <stream label="master (Photon/4.x)" name="master">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      <setupTask xsi:type="setup.targlets:TargletTask">
-        <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Neon Dependencies">
-          <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
-        </targlet>
-      </setupTask>
+    <stream label="master (2018-12/4.2)" name="master">
+      <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
     </stream>
     <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
       <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
-      <setupTask xsi:type="setup.targlets:TargletTask">
-        <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Infra Neon Dependencies">
-          <requirement name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
-        </targlet>
-      </setupTask>
-    </stream>
-    <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-    </stream>
-    <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-    </stream>
-    <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-      <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
     </stream>
     <description>Sources and tools required for working on the Papyrus developer tools (not part of the product).  Does not install the developer tools in your IDE:  use the Developer Tools sub-project for that.</description>
   </project>
-  <stream label="master (Photon/4.x)" name="master">
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.master}"/>
+  <stream label="master (2018-12/4.2)" name="master">
+    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.201812}"/>
     <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.8" location="${jre.location-1.8}"/>
     <setupTask xsi:type="setup.targlets:TargletTask">
       <targlet name="Papyrus Test Generation Framework Dependencies">
@@ -2084,50 +1134,6 @@
       <requirement name="org.eclipse.upr.utp" optional="true"/>
       <requirement name="org.eclipse.upr.utp.papyrus" optional="true"/>
       <repository url="http://download.eclipse.org/upr/nightly/standardized/update/"/>
-    </setupTask>
-  </stream>
-  <stream label="streams/2.0-maintenance (Neon/2.x)" name="streams/2.0-maintenance">
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.neon}"/>
-    <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.8" location="${jre.location-1.8}"/>
-    <setupTask xsi:type="setup.targlets:TargletTask">
-      <targlet name="Papyrus Test Generation Framework Dependencies">
-        <requirement name="org.eclipse.upr.utp" optional="true"/>
-        <requirement name="org.eclipse.upr.utp.papyrus" optional="true"/>
-        <requirement name="org.eclipse.gmf.tooling.codegen.xtend2.feature.group"/>
-        <repositoryList>
-          <repository url="http://download.eclipse.org/upr/nightly/standardized/update/"/>
-        </repositoryList>
-      </targlet>
-      <targlet name="Papyrus Widgets Dependencies">
-        <requirement name="org.eclipse.nebula.widgets.richtext.feature.feature.group"/>
-      </targlet>
-    </setupTask>
-    <setupTask xsi:type="setup.p2:P2Task" label="Papyrus Test Generation Framework Tools">
-      <requirement name="org.eclipse.upr.utp" optional="true"/>
-      <requirement name="org.eclipse.upr.utp.papyrus" optional="true"/>
-      <repository url="http://download.eclipse.org/upr/nightly/standardized/update/"/>
-    </setupTask>
-  </stream>
-  <stream label="streams/1.1-maintenance (Mars/1.1.x)" name="streams/1.1-maintenance">
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.mars}"/>
-    <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.7" location="${jre.location-1.7}"/>
-  </stream>
-  <stream label="streams/1.0-maintenance (Luna/1.0.x)" name="streams/1.0-maintenance">
-    <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.luna}"/>
-    <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.6" location="${jre.location-1.6}"/>
-    <setupTask xsi:type="setup.targlets:TargletTask">
-      <targlet activeRepositoryList="${eclipse.target.platform}" name="Papyrus Luna Dependencies">
-        <requirement name="org.eclipse.acceleo.feature.group"/>
-        <repositoryList name="Luna">
-          <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.5/S201409021433">
-            <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-              <detail key="updateFrom">
-                <value>M2T ACCELEO</value>
-              </detail>
-            </annotation>
-          </repository>
-        </repositoryList>
-      </targlet>
     </setupTask>
   </stream>
 </setup:Project>
