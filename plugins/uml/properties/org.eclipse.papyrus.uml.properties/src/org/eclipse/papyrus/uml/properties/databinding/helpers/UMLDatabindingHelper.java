@@ -11,26 +11,21 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.helper;
+package org.eclipse.papyrus.uml.properties.databinding.helpers;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableValue;
 
 /**
  * A Helper class for UML Databinding
  *
  * @author Camille Letavernier
- *
- * @deprecated since 3.2
- *             Use the {@link org.eclipse.papyrus.uml.properties.databinding.helpers.UMLDatabindingHelper} API, instead
- *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
+ * @since 3.3
  */
-@Deprecated
 public class UMLDatabindingHelper {
 
 	/**
@@ -50,6 +45,6 @@ public class UMLDatabindingHelper {
 	 * 		The IObservableValue
 	 */
 	public static IObservableValue getObservableValue(EObject source, EStructuralFeature feature, EditingDomain domain) {
-		return domain == null ? EMFProperties.value(feature).observe(source) : new PapyrusObservableValue(source, feature, domain);
+		return domain == null ? EMFProperties.value(feature).observe(source) : new GMFObservableValue(source, feature, domain);
 	}
 }

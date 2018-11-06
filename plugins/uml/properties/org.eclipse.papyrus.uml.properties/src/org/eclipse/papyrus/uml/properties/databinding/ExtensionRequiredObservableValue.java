@@ -14,7 +14,7 @@
  *  Christian W. Damus (CEA) - 402525
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.uml.properties.databinding;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
@@ -31,13 +31,9 @@ import org.eclipse.uml2.uml.Extension;
  * The isRequired property is reverse derived to retrieve the lower bound of the extensionEnd
  *
  * @author Camille Letavernier
+ * @since 3.3
  *
- * @deprecated since 4.3
- *             use {@link org.eclipe.papyrus.uml.properties.databinding.ExtensionRequiredObservableValue} instead
- *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
  */
-@Deprecated
 public class ExtensionRequiredObservableValue extends AbstractObservableValue implements IChangeListener, IObserving {
 
 	private Extension extension;

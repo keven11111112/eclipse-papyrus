@@ -14,7 +14,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.uml.properties.databinding;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,21 +26,18 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.services.edit.ui.databinding.AggregatedPapyrusObservableValue;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.infra.tools.databinding.DelegatingObservable;
 import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
-import org.eclipse.papyrus.uml.tools.helper.UMLDatabindingHelper;
+import org.eclipse.papyrus.uml.properties.databinding.helpers.UMLDatabindingHelper;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * The multiplicity observable values contains a list of 3 observable values : The first the multiplicity lower and upper value for the 'simple' mode and the 2 following are the lower and the upper value observable value.
  *
- * @deprecated since 4.3
- *             use {@link org.eclipe.papyrus.uml.properties.databinding.ExtendedMultiplicityObservableValue} API, instead
- *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
+ * @since 3.3
  */
-@Deprecated
 public class ExtendedMultiplicityObservableValue extends ReferenceCountedObservable.Value implements AggregatedObservable {
 
 	/**

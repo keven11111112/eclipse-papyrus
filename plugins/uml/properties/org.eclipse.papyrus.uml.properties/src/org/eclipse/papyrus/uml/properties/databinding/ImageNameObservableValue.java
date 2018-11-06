@@ -13,7 +13,7 @@
  *  Christian W. Damus (CEA) - 402525
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.uml.properties.databinding;
 
 import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
@@ -24,37 +24,12 @@ import org.eclipse.uml2.common.edit.command.ChangeCommand;
 import org.eclipse.uml2.uml.Image;
 
 /**
- *
- * An IObservableValue to handle the way the image is displayed
+ * An IObservableValue for editing Images
  *
  * @author Camille Letavernier
- *
- * @deprecated since 4.3
- *             use {@link org.eclipe.papyrus.uml.properties.databinding.ImageKindObservableValue} API, instead
- *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
- *
+ * @since 3.3
  */
-@Deprecated
-public class ImageKindObservableValue extends AbstractObservableValue implements IObserving {
-
-	/**
-	 * The kind of image display
-	 * Undefined
-	 */
-	public static final String KIND_UNDEFINED = "undefined"; //$NON-NLS-1$
-
-	/**
-	 * The kind of image display
-	 * Displays the image as an Icon in the element edit part
-	 */
-	public static final String KIND_ICON = "icon"; //$NON-NLS-1$
-
-	/**
-	 * The kind of image display
-	 * The image replaces the element edit part
-	 */
-	public static final String KIND_SHAPE = "shape"; //$NON-NLS-1$
+public class ImageNameObservableValue extends AbstractObservableValue implements IObserving {
 
 	private Image image;
 
@@ -65,11 +40,11 @@ public class ImageKindObservableValue extends AbstractObservableValue implements
 	 * Constructor.
 	 *
 	 * @param image
-	 *            The UML Image element
+	 *            The UML Image element to edit
 	 * @param domain
 	 *            The editing domain on which the commands will be executed
 	 */
-	public ImageKindObservableValue(Image image, EditingDomain domain) {
+	public ImageNameObservableValue(Image image, EditingDomain domain) {
 		this.image = image;
 		this.domain = domain;
 	}
@@ -79,27 +54,22 @@ public class ImageKindObservableValue extends AbstractObservableValue implements
 		return String.class;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected String doGetValue() {
-		return ImageUtil.getKind(image);
+	protected Object doGetValue() {
+		return ImageUtil.getName(image);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	protected void doSetValue(Object value) {
 		if (value instanceof String) {
-			final String kind = (String) value;
+			final String name = (String) value;
 
 			Runnable runnable = new Runnable() {
 
 				@Override
 				public void run() {
-					ImageUtil.setKind(image, kind);
+
+					ImageUtil.setName(image, name);
 				}
 			};
 

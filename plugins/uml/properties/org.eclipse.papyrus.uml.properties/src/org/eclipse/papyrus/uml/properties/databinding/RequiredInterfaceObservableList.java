@@ -13,7 +13,7 @@
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *  Vincent LORENZO - bug 541313 - [UML][CDO] UML calls to the method getCacheAdapter(EObject) must be replaced
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.uml.properties.databinding;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList;
 import org.eclipse.papyrus.uml.tools.adapters.PortTypeAdapter;
 import org.eclipse.papyrus.uml.tools.commands.DestroyDependencyWithoutSupplierCommand;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
@@ -51,13 +52,10 @@ import org.eclipse.uml2.uml.Usage;
  * An IObservableList to edit the UML Derived feature {@link Port#getRequireds()}
  *
  * @author Camille Letavernier
- * @deprecated since 4.3
- *             use {@link org.eclipe.papyrus.uml.properties.databinding.RequiredInterfaceObservableList} API, instead
+ * @since 3.3
  *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
  */
-@Deprecated
-public class RequiredInterfaceObservableList extends PapyrusObservableList {
+public class RequiredInterfaceObservableList extends GMFObservableList {
 
 	/** The port. */
 	protected Port port = null;
@@ -80,7 +78,7 @@ public class RequiredInterfaceObservableList extends PapyrusObservableList {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList#getAddAllCommand(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList#getAddAllCommand(java.util.Collection)
 	 *
 	 * @param values
 	 * @return
@@ -130,7 +128,7 @@ public class RequiredInterfaceObservableList extends PapyrusObservableList {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList#getRemoveCommand(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList#getRemoveCommand(java.lang.Object)
 	 *
 	 * @param value
 	 * @return
@@ -151,7 +149,7 @@ public class RequiredInterfaceObservableList extends PapyrusObservableList {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList#getRemoveAllCommand(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList#getRemoveAllCommand(java.util.Collection)
 	 *
 	 * @param values
 	 * @return
@@ -176,7 +174,7 @@ public class RequiredInterfaceObservableList extends PapyrusObservableList {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList#getClearCommand()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList#getClearCommand()
 	 *
 	 * @return
 	 */

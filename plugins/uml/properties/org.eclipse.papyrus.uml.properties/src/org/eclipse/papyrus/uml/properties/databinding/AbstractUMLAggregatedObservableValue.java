@@ -13,10 +13,11 @@
  *  Christian W. Damus (CEA) - bug 417409
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.uml.properties.databinding;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.services.edit.ui.databinding.AggregatedPapyrusObservableValue;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.infra.tools.databinding.CommandBasedObservableValue;
 import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
@@ -25,13 +26,9 @@ import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
  * An Abstract Class for Papyrus Command-based observable values
  *
  * @author Camille Letavernier
+ * @since 3.3
  *
- * @deprecated since 3.2
- *             use {@link org.eclipe.papyrus.uml.properties.databinding.AbstractUMLAggregatedObservableValue} API, instead.
- *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
  */
-@Deprecated
 public abstract class AbstractUMLAggregatedObservableValue extends ReferenceCountedObservable.Value implements AggregatedObservable, CommandBasedObservableValue {
 
 	protected EditingDomain domain;

@@ -14,7 +14,7 @@
  *  Christian W. Damus (CEA) - bug 417409
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.uml.properties.databinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +36,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.services.edit.ui.databinding.AggregatedPapyrusObservableValue;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.infra.tools.databinding.CommandBasedObservableValue;
 import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
 import org.eclipse.papyrus.uml.tools.Activator;
+import org.eclipse.papyrus.uml.tools.databinding.OwnedAttributeHelper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -56,14 +58,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This value doesn't make sense for n-ary associations, when n > 2.
  *
  * @author Camille Letavernier
- *
- * @deprecated since 3.2
- *             use {@link org.eclipe.papyrus.uml.properties.databinding.OwnerObservableValue} API, instead
- *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
+ * @since 3.3
  */
-
-@Deprecated
 public class OwnerObservableValue extends ReferenceCountedObservable.Value implements IChangeListener, AggregatedObservable, CommandBasedObservableValue, IObserving {
 
 	private Property memberEnd;

@@ -51,7 +51,13 @@ import org.eclipse.uml2.uml.UMLPackage;
  * An IObservableList to edit the UML Derived feature {@link Port#getProvideds()}.
  *
  * @author Camille Letavernier
+ *
+ * @deprecated since 4.3
+ *             use {@link org.eclipe.papyrus.uml.properties.databinding.ProvidedInterfaceObservableList} API, instead
+ *
+ *             This class Will be removed in Papyrus 5.0, see bug 540829
  */
+@Deprecated
 public class ProvidedInterfaceObservableList extends PapyrusObservableList {
 
 

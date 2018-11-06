@@ -14,7 +14,7 @@
  *  Christian W. Damus - bug 399859
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.uml.properties.databinding;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.uml.tools.commands.ApplyProfileCommand;
 import org.eclipse.papyrus.uml.tools.commands.UnapplyProfileCommand;
+import org.eclipse.papyrus.uml.tools.databinding.AbstractStereotypeListener;
 import org.eclipse.papyrus.uml.tools.helper.ProfileApplicationDelegateRegistry;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
@@ -45,13 +46,8 @@ import org.eclipse.uml2.uml.ProfileApplication;
  * An IObservableList for Profile application
  *
  * @author Camille Letavernier
- *
- * @deprecated since 4.3
- *             use {@link org.eclipe.papyrus.uml.properties.databinding.ProfileApplicationObservableList} API, instead
- *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
+ * @since 3.3
  */
-@Deprecated
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class ProfileApplicationObservableList extends WritableList implements ICommitListener, IObserving {
 

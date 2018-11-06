@@ -51,7 +51,13 @@ import org.eclipse.uml2.uml.UMLPackage;
  * The navigable property is a virtual property, represented as a Boolean.
  *
  * @author Camille Letavernier
+ *
+ * @deprecated since 4.3
+ *             use {@link org.eclipe.papyrus.uml.properties.databinding.NavigationObservableValue} API, instead
+ *
+ *             This class Will be removed in Papyrus 5.0, see bug 540829
  */
+@Deprecated
 public class NavigationObservableValue extends ReferenceCountedObservable.Value implements IChangeListener, CommandBasedObservableValue, AggregatedObservable, IObserving {
 
 	private Property memberEnd;
@@ -78,10 +84,12 @@ public class NavigationObservableValue extends ReferenceCountedObservable.Value 
 		ownerObservableList.addChangeListener(this);
 	}
 
+	@Override
 	public void handleChange(ChangeEvent event) {
 		fireValueChange(Diffs.createValueDiff(currentValue, doGetValue()));
 	}
 
+	@Override
 	public Object getValueType() {
 		return Boolean.class;
 	}
@@ -97,6 +105,7 @@ public class NavigationObservableValue extends ReferenceCountedObservable.Value 
 		domain.getCommandStack().execute(command);
 	}
 
+	@Override
 	public Object getObserved() {
 		return memberEnd;
 	}
@@ -108,6 +117,7 @@ public class NavigationObservableValue extends ReferenceCountedObservable.Value 
 		ownerObservableList.dispose();
 	}
 
+	@Override
 	public Command getCommand(Object value) {
 		if (value instanceof Boolean) {
 			boolean isNavigable = (Boolean) value;
@@ -117,16 +127,16 @@ public class NavigationObservableValue extends ReferenceCountedObservable.Value 
 
 			Association association = memberEnd.getAssociation();
 
-			List<Property> navigableEnds = new ArrayList<Property>();
+			List<Property> navigableEnds = new ArrayList<>();
 			navigableEnds.addAll(association.getNavigableOwnedEnds());
 
-			List<SetRequest> setRequests = new LinkedList<SetRequest>();
+			List<SetRequest> setRequests = new LinkedList<>();
 
 			if (isNavigable) {
 				navigableEnds.add(memberEnd);
 			} else {
 				if (memberEnd.getOwningAssociation() == null && memberEnd.getOwner() instanceof Classifier) {
-					List<Property> ownedEnds = new LinkedList<Property>();
+					List<Property> ownedEnds = new LinkedList<>();
 					ownedEnds.addAll(association.getOwnedEnds());
 					ownedEnds.add(memberEnd);
 					setRequests.add(new SetRequest(association, UMLPackage.eINSTANCE.getAssociation_OwnedEnd(), ownedEnds));
@@ -159,6 +169,7 @@ public class NavigationObservableValue extends ReferenceCountedObservable.Value 
 		return UnexecutableCommand.INSTANCE;
 	}
 
+	@Override
 	public AggregatedObservable aggregate(IObservable observable) {
 		try {
 			return new AggregatedPapyrusObservableValue(domain, this, observable);
@@ -167,6 +178,7 @@ public class NavigationObservableValue extends ReferenceCountedObservable.Value 
 		}
 	}
 
+	@Override
 	public boolean hasDifferentValues() {
 		return false;
 	}

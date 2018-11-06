@@ -20,14 +20,19 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
 //TODO : To be refactored. Merge this class with UMLLabelProvider
+//should be removed in Papyrus 5.0 (see bug 540821)
+/**
+ * @deprecated since 1.2.0
+ *
+ */
 @Deprecated
 public class ProfileLabelProvider extends EMFLabelProvider implements ILabelProvider {
 
 	private Package umlPackage;
 
-	public static final String TAG_PROFILE_CHANGED = "    (has changed, consider re-applying profile)";
+	public static final String TAG_PROFILE_CHANGED = "    (has changed, consider re-applying profile)"; //$NON-NLS-1$
 
-	public static final String UNKNOWN_PROFILE = "<Unknown>";
+	public static final String UNKNOWN_PROFILE = "<Unknown>"; //$NON-NLS-1$
 
 	public ProfileLabelProvider(Package umlPackage) {
 		this.umlPackage = umlPackage;

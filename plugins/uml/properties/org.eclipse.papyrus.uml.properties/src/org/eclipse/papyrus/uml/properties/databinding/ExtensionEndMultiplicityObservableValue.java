@@ -13,7 +13,7 @@
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.uml.properties.databinding;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -27,13 +27,9 @@ import org.eclipse.uml2.uml.ExtensionEnd;
  * The multiplicity can only be either 1 or 0..1
  *
  * @author Camille Letavernier
+ * @since 3.3
  *
- * @deprecated since 4.3
- *             use {@link org.eclipe.papyrus.uml.properties.databinding.ExtensionEndMultiplicityObservableValue} API, instead
- *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
  */
-@Deprecated
 public class ExtensionEndMultiplicityObservableValue extends MultiplicityObservableValue {
 
 	public ExtensionEndMultiplicityObservableValue(ExtensionEnd source, EditingDomain domain) {

@@ -27,7 +27,12 @@ import org.eclipse.uml2.uml.Image;
  * An IObservableValue for editing Images
  *
  * @author Camille Letavernier
+ * @deprecated since 4.3
+ *             use {@link org.eclipe.papyrus.uml.properties.databinding.ImageExpressionObservableValue} API, instead
+ *
+ *             This class Will be removed in Papyrus 5.0, see bug 540829
  */
+@Deprecated
 public class ImageExpressionObservableValue extends AbstractObservableValue implements IObserving {
 
 	private Image image;
@@ -48,6 +53,7 @@ public class ImageExpressionObservableValue extends AbstractObservableValue impl
 		this.domain = domain;
 	}
 
+	@Override
 	public Object getValueType() {
 		return String.class;
 	}
@@ -64,6 +70,7 @@ public class ImageExpressionObservableValue extends AbstractObservableValue impl
 
 			Runnable runnable = new Runnable() {
 
+				@Override
 				public void run() {
 
 					ImageUtil.setExpression(image, expression);
@@ -75,6 +82,7 @@ public class ImageExpressionObservableValue extends AbstractObservableValue impl
 		}
 	}
 
+	@Override
 	public Object getObserved() {
 		return image;
 	}

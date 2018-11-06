@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014, 2018 CEA LIST and others.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,10 +12,9 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - 402525
  *  Christian W. Damus (CEA) - bug 417409
- *  Ansgar Radermacher (CEA) - Bug 540815
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.uml.properties.databinding;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
@@ -28,12 +27,13 @@ import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.services.edit.ui.databinding.AggregatedPapyrusObservableValue;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.infra.tools.databinding.CommandBasedObservableValue;
 import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
+import org.eclipse.papyrus.uml.properties.databinding.helpers.UMLDatabindingHelper;
 import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.papyrus.uml.tools.commands.SetMultiplicityCommand;
-import org.eclipse.papyrus.uml.tools.helper.UMLDatabindingHelper;
 import org.eclipse.papyrus.uml.tools.util.MultiplicityParser;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.uml2.uml.MultiplicityElement;
@@ -48,13 +48,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  * These commands will probably only work in a Papyrus context.
  *
  * @author Camille Letavernier
- *
- * @deprecated since 4.3
- *             use {@link org.eclipe.papyrus.uml.properties.databinding.MultiplicityObservableValue} instead
- *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
+ * @since 3.3
  */
-@Deprecated
 public class MultiplicityObservableValue extends ReferenceCountedObservable.Value implements IChangeListener, CommandBasedObservableValue, AggregatedObservable, IObserving {
 
 	private IObservableValue lowerBound, upperBound, lowerValue, upperValue, lowerValueSpecification, upperValueSpecification;
@@ -125,28 +120,8 @@ public class MultiplicityObservableValue extends ReferenceCountedObservable.Valu
 		boolean fireChange = false;
 		if (event.getSource() == lowerValue || event.getSource() == upperValue) {
 			fireChange = true;
-			IObservableValue<?> newLowerVS = getValueSpecification(lowerValue, UMLPackage.eINSTANCE.getLiteralInteger_Value(), domain);
-			IObservableValue<?> newUpperVS = getValueSpecification(upperValue, UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(), domain);
-
-			// handle case that property has initially no value specification for upper and lower (bug 540815)
-			if (newLowerVS != lowerValueSpecification) {
-				if (lowerValueSpecification != null) {
-					lowerValueSpecification.removeChangeListener(this);
-				}
-				lowerValueSpecification = newLowerVS;
-				if (lowerValueSpecification != null) {
-					lowerValueSpecification.addChangeListener(this);
-				}
-			}
-			if (newUpperVS != upperValueSpecification) {
-				if (upperValueSpecification != null) {
-					upperValueSpecification.removeChangeListener(this);
-				}
-				upperValueSpecification = newUpperVS;
-				if (upperValueSpecification != null) {
-					upperValueSpecification.addChangeListener(this);
-				}
-			}
+			lowerValueSpecification = getValueSpecification(lowerValue, UMLPackage.eINSTANCE.getLiteralInteger_Value(), domain);
+			upperValueSpecification = getValueSpecification(upperValue, UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(), domain);
 		}
 
 		if (event.getSource() == lowerValueSpecification || event.getSource() == upperValueSpecification) {

@@ -14,14 +14,14 @@
  *  Gabriel Pascual (ALL4TEC)  -  Bug 441511
  *  Christian W. Damus (CEA) - Bug 441227
  *  Christian W. Damus - bug 399859
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.decoratormodel.properties.elements;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
-import org.eclipse.papyrus.uml.tools.databinding.ProfileApplicationObservableList;
+import org.eclipse.papyrus.uml.properties.databinding.ProfileApplicationObservableList;
 import org.eclipse.uml2.uml.Package;
 
 /**

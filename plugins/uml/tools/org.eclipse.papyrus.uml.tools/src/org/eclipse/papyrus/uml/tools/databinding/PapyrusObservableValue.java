@@ -45,7 +45,10 @@ import org.eclipse.papyrus.uml.tools.Activator;
  * Papyrus commands
  *
  * @author Camille Letavernier
- * @deprecated Use the {@link org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableValue} API, instead
+ * @deprecated since 1.2.0
+ *             Use the {@link org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableValue} API, instead
+ *
+ *             This class Will be removed in Papyrus 5.0, see bug 540829
  */
 @Deprecated
 public class PapyrusObservableValue extends EMFObservableValue implements AggregatedObservable, CommandBasedObservableValue, ReferenceCountedObservable {

@@ -11,7 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.databinding;
 
@@ -41,7 +41,10 @@ import org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList;
  * Papyrus commands
  *
  * @author Camille Letavernier
- * @deprecated Use the {@link org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList} API, instead
+ * @deprecated since 1.2.0
+ *             Use the {@link org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList} API, instead
+ *
+ *             This class Will be removed in Papyrus 5.0, see bug 540829
  */
 @Deprecated
 @SuppressWarnings("unchecked")
@@ -251,7 +254,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * @return
 	 */
 	protected Collection<? extends IEditCommandRequest> getRequests(List<Object> newValues, Collection<?> removedValues) {
-		LinkedList<IEditCommandRequest> requests = new LinkedList<IEditCommandRequest>();
+		LinkedList<IEditCommandRequest> requests = new LinkedList<>();
 
 		if (feature instanceof EReference && ((EReference) feature).isContainment() && removedValues != null) {
 			for (Object o : removedValues) {

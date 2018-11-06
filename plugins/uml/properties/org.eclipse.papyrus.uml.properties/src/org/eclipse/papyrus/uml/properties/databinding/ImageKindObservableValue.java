@@ -13,7 +13,7 @@
  *  Christian W. Damus (CEA) - 402525
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.uml.properties.databinding;
 
 import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
@@ -28,14 +28,9 @@ import org.eclipse.uml2.uml.Image;
  * An IObservableValue to handle the way the image is displayed
  *
  * @author Camille Letavernier
- *
- * @deprecated since 4.3
- *             use {@link org.eclipe.papyrus.uml.properties.databinding.ImageKindObservableValue} API, instead
- *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
+ * @since 3.3
  *
  */
-@Deprecated
 public class ImageKindObservableValue extends AbstractObservableValue implements IObserving {
 
 	/**

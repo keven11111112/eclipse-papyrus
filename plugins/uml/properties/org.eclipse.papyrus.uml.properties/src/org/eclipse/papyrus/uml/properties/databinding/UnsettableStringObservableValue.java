@@ -14,7 +14,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.tools.databinding;
+package org.eclipse.papyrus.uml.properties.databinding;
 
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.emf.ecore.EObject;
@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.emf.requests.UnsetRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableValue;
 
 
 /**
@@ -30,20 +31,15 @@ import org.eclipse.papyrus.infra.emf.requests.UnsetRequest;
  * For string features that have a {@code null} default, instead of accepting the empty string, the feature is simply unset so
  * that it will be {@code null}.
  *
- * @deprecated since 4.3
- *             use {@link org.eclipe.papyrus.uml.properties.databinding.UnsettableStringObservableValue} API,instead
- *
- *             This class Will be removed in Papyrus 5.0, see bug 540829
- *
+ * @since 3.3
  */
-@Deprecated
-public class UnsettableStringValue extends PapyrusObservableValue {
+public class UnsettableStringObservableValue extends GMFObservableValue {
 
-	public UnsettableStringValue(EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain) {
+	public UnsettableStringObservableValue(EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain) {
 		super(eObject, eStructuralFeature, domain);
 	}
 
-	public UnsettableStringValue(Realm realm, EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain) {
+	public UnsettableStringObservableValue(Realm realm, EObject eObject, EStructuralFeature eStructuralFeature, EditingDomain domain) {
 		super(realm, eObject, eStructuralFeature, domain);
 	}
 
