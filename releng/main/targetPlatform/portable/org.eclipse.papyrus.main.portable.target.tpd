@@ -23,7 +23,7 @@ location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repositor
 
 //manualUpdate (Needed by infra.tools, API Evolution Report generation and other plugins)
 
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/S20181010170940/repository" {
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/S20181031145145/repository" {
 	com.google.guava 21.0.0
 	com.google.guava.source 21.0.0
  	com.google.gson [2.7.0,2.8.0)
@@ -60,13 +60,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestone
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.10milestones/S-4.10M1-201810101800/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.10-I-builds/I20181031-1800/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2018-12",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.5.1/S201810121545" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.5.1/S201811050817" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -95,7 +95,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 
 //updateFrom("WebTools 3.12 for Simrel 2018-12",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.12.0/S-3.12.0.M1-20181011033659/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.12.0/S-3.12.0.M2-20181101035339/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
@@ -113,7 +113,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.15" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201811020629" {
 	org.eclipse.emf.sdk.feature.group
 }
 
