@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 515967
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -68,7 +69,7 @@ public class StringMask extends AbstractListEditor implements SelectionListener,
 	}
 
 	public Collection<String> getValue() {
-		Set<String> values = new HashSet<String>();
+		Set<String> values = new HashSet<>();
 		for (Button button : checkboxes) {
 			if (button.getSelection()) {
 				String value = (String) button.getData(DATA_KEY);
@@ -105,6 +106,9 @@ public class StringMask extends AbstractListEditor implements SelectionListener,
 	}
 
 	public void setMasks(final Map<String, String> values) {
+		if (!refreshCheckboxes) {
+			return;
+		}
 		if (checkboxes != null) {
 			disposeCheckboxes();
 		}
@@ -167,7 +171,7 @@ public class StringMask extends AbstractListEditor implements SelectionListener,
 	public void widgetSelected(final SelectionEvent e) {
 		Button button = (Button) e.widget;
 		String value = (String) button.getData(DATA_KEY);
-		Collection<String> values = new HashSet<String>(getCurrentValue());
+		Collection<String> values = new HashSet<>(getCurrentValue());
 		if (button.getSelection()) {
 			values.add(value);
 		} else {
@@ -177,15 +181,15 @@ public class StringMask extends AbstractListEditor implements SelectionListener,
 	}
 
 	protected void setCurrentValue(final Collection<String> values) {
+		refreshCheckboxes = false;
 		if (modelProperty != null) {
-			refreshCheckboxes = false;
 			modelProperty.clear();
 			modelProperty.addAll(values);
-			refreshCheckboxes = true;
 		}
 		currentValue = values;
 
 		commit();
+		refreshCheckboxes = true;
 	}
 
 	protected Collection<String> getCurrentValue() {
@@ -217,7 +221,7 @@ public class StringMask extends AbstractListEditor implements SelectionListener,
 
 	@Override
 	public void changeColorField() {
-		
+
 
 	}
 

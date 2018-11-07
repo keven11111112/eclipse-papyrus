@@ -10,11 +10,16 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 515967
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
 
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
 import org.eclipse.papyrus.infra.properties.ui.providers.XWTCompliantMaskProvider;
 import org.eclipse.papyrus.infra.properties.ui.providers.XWTCompliantMaskProviderListener;
+import org.eclipse.papyrus.infra.properties.ui.providers.XWTCompliantMaskProviderUpdater;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -31,6 +36,11 @@ public class StringMask extends AbstractPropertyEditor implements XWTCompliantMa
 	private XWTCompliantMaskProvider maskProvider;
 
 	private boolean maskProviderReady = false;
+
+	/**
+	 * The change listener to update the editor checkboxes when needed.
+	 */
+	private IChangeListener changeListener;
 
 	/**
 	 *
@@ -58,6 +68,11 @@ public class StringMask extends AbstractPropertyEditor implements XWTCompliantMa
 		return new org.eclipse.papyrus.infra.widgets.editors.StringMask(parent, style);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor#checkInput()
+	 */
 	@Override
 	protected void checkInput() {
 		if (maskProvider != null && maskProviderReady) {
@@ -107,10 +122,62 @@ public class StringMask extends AbstractPropertyEditor implements XWTCompliantMa
 		return maskProvider;
 	}
 
+	@Override
 	public void notifyReady(XWTCompliantMaskProvider provider) {
 		this.maskProviderReady = true;
 		editor.setMasks(maskProvider.getMasks());
 		provider.removeMaskProviderListener(this);
 		checkInput();
 	}
+
+	/**
+	 * Manage the change listener for the input.
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor#setInput(org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource)
+	 */
+	@Override
+	public void setInput(final DataSource input) {
+		final DataSource oldInput = this.input;
+
+		super.setInput(input);
+
+		if (input != oldInput) {
+			if (oldInput != null) {
+				oldInput.removeChangeListener(getChangeListener());
+			}
+
+			if (input != null) {
+				input.addChangeListener(getChangeListener());
+			}
+		}
+	}
+
+	/**
+	 * This allows to create the change listener which allow to update the checkboxes of the editor.
+	 *
+	 * @return The created change listener.
+	 * @since 3.4
+	 */
+	protected IChangeListener getChangeListener() {
+		if (changeListener == null) {
+			changeListener = new IChangeListener() {
+
+				@Override
+				public void handleChange(ChangeEvent event) {
+					if (null != maskProvider) {
+						if (maskProvider instanceof XWTCompliantMaskProviderUpdater) {
+							((XWTCompliantMaskProviderUpdater) maskProvider).setInput(getInput());
+						}
+
+						if (null != editor) {
+							editor.setMasks(maskProvider.getMasks());
+						}
+					}
+				}
+			};
+		}
+		return changeListener;
+	}
+
 }
