@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2017 CEA LIST, Esterel Technologies SAS and others.
+ * Copyright (c) 2012, 2017-2018 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -13,7 +13,7 @@
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 476618, 504077, 496905, 508175
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
- *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 526146, 515737
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 526146, 515737, 516314
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -116,6 +116,7 @@ import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.CellMapKey;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
+import org.eclipse.papyrus.infra.nattable.utils.NatTableFocusUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
@@ -263,7 +264,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * Constructor.
 	 *
 	 * @param rawModel
@@ -288,7 +289,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 		// If needed, initialize the invert axis listener and the update of cells map.
 		// Other listeners can stay used in all cases.
-		// For example: The table reference for properties view, these listeners are not needed and can caught exception 
+		// For example: The table reference for properties view, these listeners are not needed and can caught exception
 		if (initializeListeners) {
 			this.invertAxisListener = createInvertAxisListener();
 
@@ -463,10 +464,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	protected List<Object> createVerticalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
-		this.basicVerticalList = GlazedLists.eventList(new ArrayList<Object>());
+		this.basicVerticalList = GlazedLists.eventList(new ArrayList<>());
 		// it required than vertical element is a filter list -> warning to invert axis?
-		this.columnSortedList = new SortedList<Object>(this.basicVerticalList, null);
-		this.verticalFilterList = new FilterList<Object>(this.columnSortedList);
+		this.columnSortedList = new SortedList<>(this.basicVerticalList, null);
+		this.verticalFilterList = new FilterList<>(this.columnSortedList);
 		return this.verticalFilterList;
 	}
 
@@ -477,9 +478,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	protected List<Object> createHorizontalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
-		this.basicHorizontalList = GlazedLists.eventList(new ArrayList<Object>());
-		this.rowSortedList = new SortedList<Object>(this.basicHorizontalList, null);
-		final FilterList<Object> filteredList = new FilterList<Object>(this.rowSortedList);
+		this.basicHorizontalList = GlazedLists.eventList(new ArrayList<>());
+		this.rowSortedList = new SortedList<>(this.basicHorizontalList, null);
+		final FilterList<Object> filteredList = new FilterList<>(this.rowSortedList);
 		this.horizontalFilterList = filteredList;
 		return this.horizontalFilterList;
 	}
@@ -581,6 +582,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	@Override
 	public void focusGained(final FocusEvent e) {
 		updateToggleActionState();
+		NatTableFocusUtils.getInstance().setCurrentNattableModelManager(this);
 	}
 
 
@@ -792,7 +794,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 		this.horizontalFilterList = newHorizontalFilterList;
 		this.verticalFilterList = newVerticalFilterLilst;
-		
+
 		this.rowSortedList = newHorizontalSortedList;
 		this.columnSortedList = newVerticalSortedList;
 
@@ -868,7 +870,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	protected ICompositeAxisManager createAxisManager(final List<AxisManagerRepresentation> representations, final AbstractAxisProvider contentProvider, final boolean columnAxisManager) {
 		final ICompositeAxisManager compositeAxisManager = new CompositeAxisManager();
-		final List<IAxisManager> managers = new ArrayList<IAxisManager>();
+		final List<IAxisManager> managers = new ArrayList<>();
 		for (final AxisManagerRepresentation current : representations) {
 			final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(current);
 			Assert.isNotNull(manager);
@@ -1185,8 +1187,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 			// Keep the selection after the refresh of the table
 			if (null != selectedCells && !selectedCells.isEmpty()) {
-				Collection<Integer> selectedColumns = new ArrayList<Integer>();
-				Collection<Integer> selectedRows = new ArrayList<Integer>();
+				Collection<Integer> selectedColumns = new ArrayList<>();
+				Collection<Integer> selectedRows = new ArrayList<>();
 
 				// Keep the columns selected before the refresh
 				if (null != columnPositions && !columnPositions.isEmpty()) {
@@ -1640,16 +1642,16 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			dialog.setInformationDialogValues(Messages.NattableModelManager_DisconnectAxisManagerInformationDialogTitle, dialogQuestion);
 			dialog.setLabelProvider(labelProvider);
 			final List<Object> initialSelection = ((CompositeAxisManager) editedAxisManager).getAllManagedAxis(true);
-			dialog.setInitialElementSelections(new ArrayList<Object>(initialSelection));
+			dialog.setInitialElementSelections(new ArrayList<>(initialSelection));
 
 			final int open = dialog.open();
 			if (open == Window.OK) {
 				final Collection<Object> existingColumns = initialSelection;
-				final ArrayList<Object> checkedColumns = new ArrayList<Object>();
+				final ArrayList<Object> checkedColumns = new ArrayList<>();
 				final List<Object> result = Arrays.asList(dialog.getResult());
 				checkedColumns.addAll(result);
 
-				final ArrayList<Object> columnsToAdd = new ArrayList<Object>(checkedColumns);
+				final ArrayList<Object> columnsToAdd = new ArrayList<>(checkedColumns);
 				columnsToAdd.removeAll(existingColumns);
 				final CompoundCommand compoundCommand = new CompoundCommand("Update Existing Axis Command"); //$NON-NLS-1$
 				if (columnsToAdd.size() > 0) {
@@ -1662,7 +1664,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 					compoundCommand.append(addAxisElementCommand);
 				}
 
-				final ArrayList<Object> axisToDestroy = new ArrayList<Object>(existingColumns);
+				final ArrayList<Object> axisToDestroy = new ArrayList<>(existingColumns);
 				axisToDestroy.removeAll(checkedColumns);
 				if (axisToDestroy.size() > 0) {
 					Command destroyAxisElementCommand = null;

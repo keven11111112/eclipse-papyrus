@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,14 +11,19 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.fr - Bug 516314
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.observable;
 
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.nebula.widgets.nattable.util.ClientAreaAdapter;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
+import org.eclipse.papyrus.infra.nattable.utils.NatTableFocusUtils;
 
 
 /**
@@ -29,6 +34,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  */
 public class RowDisplayLabelHeaderObservableValue extends AbstractRowHeaderAxisConfigurationObservableValue {
 
+	/** The nattable model manager, used to hide/show the Display label of row. */
+	INattableModelManager nattableManager = null;
+
 	/**
 	 *
 	 * Constructor.
@@ -37,6 +45,7 @@ public class RowDisplayLabelHeaderObservableValue extends AbstractRowHeaderAxisC
 	 */
 	public RowDisplayLabelHeaderObservableValue(final Table table) {
 		super(table, NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_DisplayLabel());
+		this.nattableManager = NatTableFocusUtils.getInstance().getCurrentNattableModelManager();
 	}
 
 	/**
@@ -48,5 +57,28 @@ public class RowDisplayLabelHeaderObservableValue extends AbstractRowHeaderAxisC
 	@Override
 	public Object getValueType() {
 		return EcorePackage.eINSTANCE.getEBoolean();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void postDoSetValue() {
+		// If the current nattable manager is a tree one, show/hide the label column according to the Display Label flag
+		if (this.nattableManager instanceof TreeNattableModelManager) {
+
+			final TreeNattableModelManager treeNattableManager = (TreeNattableModelManager) this.nattableManager;
+			final ClientAreaAdapter clientAreaAdapter = new ClientAreaAdapter(treeNattableManager.getRowHeaderLayerStack().getViewportLayer().getClientAreaProvider());
+
+			// If display label is turned on, set width of slider composite to the relevant one to show the label column,
+			// otherwise, set width to 0 to hide it
+			if (treeNattableManager.getTable().getLocalRowHeaderAxisConfiguration().isDisplayLabel()) {
+				clientAreaAdapter.setWidth(treeNattableManager.getWidthOfSliderComposite());
+			} else {
+				clientAreaAdapter.setWidth(0);
+			}
+
+			treeNattableManager.getRowHeaderLayerStack().getViewportLayer().setClientAreaProvider(clientAreaAdapter);
+		}
 	}
 }

@@ -222,15 +222,15 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	@Override
 	protected List<Object> createHorizontalElementList() {
 		// super.createHorizontalElementList();
-		EventList<Object> eventList = GlazedLists.eventList(new ArrayList<Object>());
+		EventList<Object> eventList = GlazedLists.eventList(new ArrayList<>());
 		eventList = GlazedLists.threadSafeList(eventList);
 		this.basicHorizontalList = eventList;
 		// must be created before the row sort model
-		this.rowSortedList = new SortedList<Object>(this.basicHorizontalList, null);
+		this.rowSortedList = new SortedList<>(this.basicHorizontalList, null);
 		treeFormat = new DatumTreeFormat(getRowSortModel());
 		this.expansionModel = new DatumExpansionModel();
 
-		this.horizontalFilterList = new FilterList<Object>(this.rowSortedList);
+		this.horizontalFilterList = new FilterList<>(this.rowSortedList);
 		this.treeList = new TreeList(this.horizontalFilterList, treeFormat, expansionModel);
 
 		return this.treeList;
@@ -347,8 +347,20 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 *
 	 * @return The int value corresponding to the needed row header width.
 	 * @since 2.0
+	 * @deprecated since 6.1. Function {@link #getWidthOfSliderComposite()} must be used instead.
 	 */
+	@Deprecated
 	protected int getWidthSliderComposite() {
+		return getWidthOfSliderComposite();
+	}
+
+	/**
+	 * Get the width of the slider composite.
+	 *
+	 * @return The int value corresponding to the needed row header width.
+	 * @since 6.1
+	 */
+	public int getWidthOfSliderComposite() {
 		int result = 0;
 
 		final IntValueStyle valueRowHeader = (IntValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_HEADER_WIDTH);
@@ -570,9 +582,9 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		}
 
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param representations
 	 * @param contentProvider
 	 * @param columnAxisManager
@@ -582,7 +594,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 */
 	protected ICompositeAxisManager createTreeAxisManager(List<AxisManagerRepresentation> representations, AbstractAxisProvider contentProvider, boolean columnAxisManager) {
 		CompositeTreeAxisManagerForEventList compositeAxisManager = new CompositeTreeAxisManagerForEventList(horizontalFilterList);
-		final List<IAxisManagerForEventList> managers = new ArrayList<IAxisManagerForEventList>();
+		final List<IAxisManagerForEventList> managers = new ArrayList<>();
 		for (AxisManagerRepresentation current : representations) {
 			final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(current);
 			Assert.isTrue(manager instanceof IAxisManagerForEventList);
@@ -617,7 +629,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	public int getTreeItemDepth(final ITreeItemAxis axis) {
 		Format<ITreeItemAxis> format = getTreeFormat();
 		if (format != null) {
-			List<ITreeItemAxis> path = new ArrayList<ITreeItemAxis>();
+			List<ITreeItemAxis> path = new ArrayList<>();
 			format.getPath(path, axis);
 			return path.size() - 1;
 		}
@@ -708,7 +720,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 
 				if (depthToShow != null && depthToShow.size() > 0) {
 
-					List<Integer> indexToShow = new ArrayList<Integer>();
+					List<Integer> indexToShow = new ArrayList<>();
 					for (int i = 0; i < depthToShow.size(); i++) {
 						Integer curr = depthToShow.get(i);
 						int tmp = -1;

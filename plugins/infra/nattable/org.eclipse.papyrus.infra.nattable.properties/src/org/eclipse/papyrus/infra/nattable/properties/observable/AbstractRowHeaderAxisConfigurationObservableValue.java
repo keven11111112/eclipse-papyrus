@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@cea.fr - Bug 516314
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.observable;
@@ -68,6 +69,17 @@ public abstract class AbstractRowHeaderAxisConfigurationObservableValue extends 
 		final ICommand cmd = TableCommands.getSetRowHeaderConfigurationValueCommand(getTable(), getManagedFeature(), value);
 		final TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(getTable());
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
+
+		postDoSetValue();
+	}
+
+	/**
+	 * Method allow to do some actions in the concrete class after do set value.
+	 *
+	 * @since 2.3
+	 */
+	protected void postDoSetValue() {
+		// Do nothing in the abstract class
 	}
 
 }
