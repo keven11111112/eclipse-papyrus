@@ -69,7 +69,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	/**
 	 * The set of elements listening on changes from this editor
 	 */
-	protected Set<ICommitListener> commitListeners = new LinkedHashSet<ICommitListener>();
+	protected Set<ICommitListener> commitListeners = new LinkedHashSet<>();
 
 	/**
 	 * The binding between the model object and the widget
@@ -242,6 +242,15 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	 */
 	public void removeCommitListener(ICommitListener listener) {
 		commitListeners.remove(listener);
+	}
+
+	/**
+	 * Removes all the commit listeners from this editor.
+	 *
+	 * @since 3.4
+	 */
+	public void removeAllCommitListeners() {
+		commitListeners.clear();
 	}
 
 	/**
