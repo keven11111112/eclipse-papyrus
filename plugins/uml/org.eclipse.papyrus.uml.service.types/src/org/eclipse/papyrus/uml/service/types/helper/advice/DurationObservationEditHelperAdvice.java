@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   EclipseSource - Initial API and implementation
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 541041
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
@@ -37,7 +38,7 @@ public class DurationObservationEditHelperAdvice extends AbstractOccurrenceLinkE
 
 	@Override
 	protected ICommand getAfterConfigureCommand(ConfigureRequest request) {
-		ICommand composite = new CompositeCommand("After Configure Command of DurationObservation");// $NON-NLS-0$
+		CompositeCommand composite = new CompositeCommand("After Configure Command of DurationObservation");// $NON-NLS-0$
 		ICommand afterConfigureCommand = super.getAfterConfigureCommand(request);
 		if (null != afterConfigureCommand && afterConfigureCommand.canExecute()) {
 			composite.compose(afterConfigureCommand);
@@ -70,7 +71,7 @@ public class DurationObservationEditHelperAdvice extends AbstractOccurrenceLinkE
 			composite.compose(initConstrainedElements);
 		}
 
-		return composite;
+		return !composite.isEmpty() ? composite : null;
 	}
 
 	@Override
