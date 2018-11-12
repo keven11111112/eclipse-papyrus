@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.profile.custom.commands.tests;
@@ -22,13 +22,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.ModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.papyrus.uml.diagram.profile.custom.commands.DefineProfileCommand;
+import org.eclipse.papyrus.uml.tools.commands.DefineProfileCommand;
 import org.eclipse.papyrus.uml.tools.profile.definition.PapyrusDefinitionAnnotation;
 import org.eclipse.papyrus.uml.tools.profile.definition.Version;
+import org.eclipse.papyrus.uml.tools.util.PapyrusProfileDefinition;
 import org.eclipse.uml2.uml.Profile;
 import org.junit.Rule;
 import org.junit.Test;
@@ -80,8 +80,8 @@ public class DefineProfileCommandTest extends AbstractPapyrusTest {
 
 	void executeDefineCommand(Profile profile, String version) {
 		PapyrusDefinitionAnnotation annotation = new PapyrusDefinitionAnnotation(Version.parseVersion(version), "", "", "", "");
-		DefineProfileCommand command = new DefineProfileCommand(modelSet.getEditingDomain(), annotation, profile, true);
-		modelSet.getEditingDomain().getCommandStack().execute(GMFtoEMFCommandWrapper.wrap(command));
+		DefineProfileCommand command = new DefineProfileCommand(modelSet.getEditingDomain(), new PapyrusProfileDefinition(annotation, true), profile);
+		modelSet.getEditingDomain().getCommandStack().execute(command);
 	}
 
 	static EAnnotation getUMLAnnotation(ENamedElement namedElement) {

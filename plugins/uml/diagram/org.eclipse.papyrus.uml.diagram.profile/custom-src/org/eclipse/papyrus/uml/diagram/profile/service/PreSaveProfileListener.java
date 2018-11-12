@@ -59,7 +59,10 @@ import org.eclipse.uml2.uml.Profile;
  *
  *
  * This class describes the actions to do just before the save action
+ *
+ * @deprecated since 3.2
  */
+@Deprecated
 public class PreSaveProfileListener implements ISaveEventListener {
 
 	/**
@@ -67,12 +70,13 @@ public class PreSaveProfileListener implements ISaveEventListener {
 	 *
 	 * This function is called before the user make a "save" action
 	 */
+	@Override
 	public void doSave(DoSaveEvent event) {
 		if (event.isAutoSave()) {
 			return;
 		}
 		try {
-			//System.out.println("preSave Event received"); //$NON-NLS-1$
+			// System.out.println("preSave Event received"); //$NON-NLS-1$
 			/**
 			 * if the root is a profile, we must define it. If it's another thing, we
 			 * do nothing
@@ -237,9 +241,10 @@ public class PreSaveProfileListener implements ISaveEventListener {
 	 *
 	 * This function is called before the user make a "save as" action
 	 */
+	@Override
 	public void doSaveAs(DoSaveEvent event) {
 		try {
-			//System.out.println("preSaveAS Event received"); //$NON-NLS-1$
+			// System.out.println("preSaveAS Event received"); //$NON-NLS-1$
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

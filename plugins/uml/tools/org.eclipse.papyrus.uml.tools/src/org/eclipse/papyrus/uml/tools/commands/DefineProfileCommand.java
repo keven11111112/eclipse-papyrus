@@ -15,17 +15,14 @@
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 447665
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.profile.custom.commands;
+package org.eclipse.papyrus.uml.tools.commands;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -42,14 +39,13 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.profile.Activator;
+import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.papyrus.uml.tools.profile.definition.PapyrusDefinitionAnnotation;
 import org.eclipse.papyrus.uml.tools.profile.definition.ProfileRedefinition;
+import org.eclipse.papyrus.uml.tools.util.IPapyrusProfileDefinition;
 import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Package;
@@ -58,42 +54,42 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.uml2.uml.util.UMLUtil.Profile2EPackageConverter;
 import org.eclipse.uml2.uml.util.UMLUtil.UML2EcoreConverter;
 
-
 /**
  * This command is used to define a profile
  *
  * @author Vincent Lorenzo
- * @deprecated since 3.2. Use {@code org.eclipse.papyrus.uml.tools.commands.DefineProfileCommand} instead.
+ * @since 4.2
  */
-@Deprecated
-public class DefineProfileCommand extends AbstractTransactionalCommand {
+public class DefineProfileCommand extends RecordingCommand {
+
+	/** The Constant COMMAND_LABEL. */
+	private static final String COMMAND_LABEL = "Define Profile Command";
 
 	/**
 	 * the {@link PapyrusDefinitionAnnotation}
 	 */
-	private PapyrusDefinitionAnnotation papyrusAnnotation;
+	private IPapyrusProfileDefinition papyrusAnnotation;
 
 	/**
 	 * the profile to define
 	 */
 	private Profile rootProfile;
 
-	private boolean saveConstraint;
 
 	/**
-	 *
-	 * Constructor.
+	 * Instantiates a new define profile command.
 	 *
 	 * @param domain
+	 *            the domain
 	 * @param papyrusAnnotation
+	 *            the papyrus annotation
 	 * @param rootProfile
-	 * @param viewer
+	 *            the root profile
 	 */
-	public DefineProfileCommand(TransactionalEditingDomain domain, PapyrusDefinitionAnnotation papyrusAnnotation, Profile rootProfile, boolean saveConstraint) {
-		super(domain, "DefineProfileCommand", null); //$NON-NLS-1$
+	public DefineProfileCommand(final TransactionalEditingDomain domain, final IPapyrusProfileDefinition papyrusAnnotation, final Profile rootProfile) {
+		super(domain, COMMAND_LABEL, null);
 		this.rootProfile = rootProfile;
 		this.papyrusAnnotation = papyrusAnnotation;
-		this.saveConstraint = saveConstraint;
 	}
 
 
@@ -125,9 +121,7 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 		options.put(UML2EcoreConverter.OPTION__VALIDATION_DELEGATES, handleConstraints);
 		options.put(UML2EcoreConverter.OPTION__INVOCATION_DELEGATES, handleConstraints);
 		options.put(UML2EcoreConverter.OPTION__OPERATION_BODIES, handleConstraints);
-
-		// Assure that "right" (consistent with xtext editor) OCL delegate is used , see bug 512428
-		options.put(UML2EcoreConverter.OPTION__OCL_DELEGATE_URI, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"); //$NON-NLS-1$
+		//
 
 		options.put(UML2EcoreConverter.OPTION__COMMENTS, UMLUtil.OPTION__IGNORE);
 		options.put(Profile2EPackageConverter.OPTION__FOREIGN_DEFINITIONS, UMLUtil.OPTION__PROCESS);
@@ -158,40 +152,16 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 		return result;
 	}
 
+
 	/**
+	 * Post validate.
 	 *
-	 *
-	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
-	 *
-	 * @param monitor
-	 * @param info
-	 * @return
+	 * @param profileDefinitions
+	 *            the profile definitions
+	 * @return the i status
 	 * @throws ExecutionException
+	 *             the execution exception
 	 */
-	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		cleanUndefineTag();
-
-		List<EPackage> profileDefinitions = defineProfiles(rootProfile, saveConstraint);
-
-		IStatus result;
-
-		// PackageUtil.defineProfiles(rootProfile);
-		try {
-			ProfileRedefinition.redefineProfile(rootProfile, papyrusAnnotation);
-			ProfileRedefinition.cleanProfile(rootProfile);
-			// TODO: Validate the new definition
-
-			result = postValidate(profileDefinitions);
-		} catch (ExecutionException ex) {
-			throw ex;
-		} catch (Exception e) {
-			throw new ExecutionException("An error occurred during the profile definition", e);
-		}
-
-		return new CommandResult(result);
-	}
-
 	protected IStatus postValidate(List<EPackage> profileDefinitions) throws ExecutionException {
 
 		EditingDomain domain = EMFHelper.resolveEditingDomain(rootProfile);
@@ -221,6 +191,15 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 		return diagnostic;
 	}
 
+	/**
+	 * Creates the diagnostician.
+	 *
+	 * @param adapterFactory
+	 *            the adapter factory
+	 * @param progressMonitor
+	 *            the progress monitor
+	 * @return the diagnostician
+	 */
 	protected Diagnostician createDiagnostician(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor) {
 		return new Diagnostician() {
 
@@ -243,22 +222,26 @@ public class DefineProfileCommand extends AbstractTransactionalCommand {
 		};
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#getAffectedFiles()
-	 *
-	 * @return
-	 */
-	@Override
-	public List<IFile> getAffectedFiles() {
-		IFile f = WorkspaceSynchronizer.getFile(rootProfile.eResource());
-		return f != null ? Collections.<IFile> singletonList(f) : Collections.<IFile> emptyList();
-	}
 
 	/**
-	 * Clean undefine tag.
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+	 *
 	 */
-	private void cleanUndefineTag() {
-		ProfileRedefinition.removeUndefinedVersion(rootProfile);
+	@Override
+	protected void doExecute() {
+
+		List<EPackage> profileDefinitions = defineProfiles(rootProfile, papyrusAnnotation.saveConstraintDefinition());
+
+		ProfileRedefinition.redefineProfile(rootProfile, papyrusAnnotation.getPapyrusAnnotation());
+		ProfileRedefinition.cleanProfile(rootProfile);
+		try {
+			postValidate(profileDefinitions);
+		} catch (ExecutionException e) {
+			Activator.log.error(e);
+		}
+
+
 	}
 }

@@ -35,8 +35,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Removed all Profile Definitions of all Profile model.
- *
- * @author Gabriel Pascual
+
  * @since 4.1
  *
  */

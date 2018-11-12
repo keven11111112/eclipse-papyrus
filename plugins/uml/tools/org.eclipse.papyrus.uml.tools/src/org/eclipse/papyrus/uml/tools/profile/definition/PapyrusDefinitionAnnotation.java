@@ -151,4 +151,39 @@ public class PapyrusDefinitionAnnotation {
 	public String getAuthor() {
 		return author;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		boolean equal = false;
+		if (obj instanceof PapyrusDefinitionAnnotation) {
+			PapyrusDefinitionAnnotation definitionAnnotation = (PapyrusDefinitionAnnotation) obj;
+			equal = definitionAnnotation.author.equals(this.author) &&
+					definitionAnnotation.comment.equals(this.comment) &&
+					definitionAnnotation.copyright.equals(this.copyright) &&
+					definitionAnnotation.version.toString().equals(this.version.toString());
+		}
+		return equal;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		int hash = 1;
+
+		hash = hash * 13 * this.author.hashCode();
+		hash = hash * 32 * this.comment.hashCode();
+		hash = hash * 21 * this.copyright.hashCode();
+		hash = hash * 8 * this.version.toString().hashCode();
+
+		return hash;
+	}
 }
