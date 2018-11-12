@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2018 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - Bug 517731
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.generic.tests.bugs;
@@ -54,12 +54,12 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 	/**
 	 * The number of class features and operations.
 	 */
-	private static final int NB_CLASS_FEATURES_AND_OPERATIONS = 164;
+	private static final int NB_CLASS_FEATURES_AND_OPERATIONS = 103;
 
 	/**
-	 * The number of interface features and operations.
+	 * The number of features and operations provided by Interface, in addition of UML Class.
 	 */
-	private static final int NB_INTERFACE_FEATURES_AND_OPERATIONS = 9;
+	private static final int NB_INTERFACE_FEATURES_AND_OPERATIONS = 6;
 
 	/**
 	 * The number of empty axis (equals to 0).
@@ -93,7 +93,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 
 	/**
 	 * This allows to test add of elements in table .
-	 * 
+	 *
 	 * @throws Exception
 	 *             The exception
 	 */
@@ -218,7 +218,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 
 	/**
 	 * This allow to create a class element in the table from the contextual menu.
-	 * 
+	 *
 	 * @param commandService
 	 *            The command service.
 	 * @throws Exception
@@ -231,7 +231,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 
 	/**
 	 * This allow to create an interface element in the table from the contextual menu.
-	 * 
+	 *
 	 * @param commandService
 	 *            The command service.
 	 * @throws Exception
@@ -244,7 +244,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 
 	/**
 	 * Get the command from the command id an return its created element.
-	 * 
+	 *
 	 * @param commandService
 	 *            The command service.
 	 * @param commandId
