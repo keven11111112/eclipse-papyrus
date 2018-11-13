@@ -226,7 +226,7 @@
    </extension>
 <!-- CUSTOM EXTENSION POINT **************************************************************************-->
    <extension
-         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+         point="org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.DirectEditor">
       <DirectEditor
             additionalConstraint="org.eclipse.papyrus.uml.textedit.message.xtext.ui.contributions.AdvancedMessageDirectEditorConstraint"
             contributor="CEA List"

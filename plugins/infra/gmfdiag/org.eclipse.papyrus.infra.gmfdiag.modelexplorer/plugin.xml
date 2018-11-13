@@ -85,7 +85,7 @@
       </propertyTester>
    </extension>
    <extension
-         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+         point="org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.DirectEditor">
       <DirectEditor
             contributor="CEA LIST"
             language="Diagram Direct Editor"

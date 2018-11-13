@@ -17,7 +17,7 @@ package org.eclipse.papyrus.infra.nattable.modelexplorer.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.extensionpoints.editors.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 /**

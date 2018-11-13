@@ -13,13 +13,13 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.extensionpoints.editors.preferences.provider;
+package org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.preferences.provider;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint;
-import org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.definition.IDirectEditorExtensionPoint;
 
 /**
  * 

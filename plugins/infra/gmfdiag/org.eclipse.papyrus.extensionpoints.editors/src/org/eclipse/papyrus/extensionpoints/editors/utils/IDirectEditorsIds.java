@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 533667
  *
  *****************************************************************************/
 
@@ -18,19 +19,10 @@ package org.eclipse.papyrus.extensionpoints.editors.utils;
 
 /**
  * Ids and constants for the editors extension point plugin
+ *
+ * @deprecated since 3.1. Use {@link org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds} instead.
  */
-public interface IDirectEditorsIds {
-
-	/** Constant for the UML language */
-	public final String UML_LANGUAGE = "Papyrus UML";
-
-	/** Constant for the SysML language */
-	public final String SYSML_LANGUAGE = "Papyrus SysML";
-
-	/** Constant for the direct editors */
-	public static final String SIMPLE_DIRECT_EDITOR = "Simple Direct Editor"; //$NON-NLS-1$
-
-	/** constant for preferences */
-	public static final String EDITOR_FOR_ELEMENT = "papyrus.directeditor.";
+@Deprecated
+public interface IDirectEditorsIds extends org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds {
 
 }

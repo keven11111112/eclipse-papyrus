@@ -1,37 +1,39 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2008, 2018 CEA LIST.
  *
- */
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 533667
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.extensionpoints.editors.ui;
-
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.text.source.Annotation;
-import org.eclipse.jface.text.source.IAnnotationAccessExtension;
-import org.eclipse.jface.text.source.IAnnotationPresentation;
-import org.eclipse.jface.text.source.ImageUtilities;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.GC;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.widgets.Canvas;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * Extended annotation class for error annotation in embedded editors
+ *
+ * @deprecated since 3.1. Use {@link org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.ui.ErrorAnnotation} instead.
  */
-public class ErrorAnnotation extends Annotation implements IAnnotationPresentation {
+@Deprecated
+public class ErrorAnnotation extends org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.ui.ErrorAnnotation {
 
 	/**
 	 * Creates a new annotation with the given properties.
 	 *
-	 * @param type
-	 *            the unique name of this annotation type
 	 * @param isPersistent
 	 *            <code>true</code> if this annotation is persistent, <code>false</code> otherwise
 	 * @param text
 	 *            the text associated with this annotation
 	 */
 	public ErrorAnnotation(boolean isPersistent, String text) {
-		super(TYPE, isPersistent, text);
+		super(isPersistent, text);
 	}
 
 	/**
@@ -42,68 +44,6 @@ public class ErrorAnnotation extends Annotation implements IAnnotationPresentati
 	 */
 	// @unused
 	public ErrorAnnotation(boolean isPersistent) {
-		this(isPersistent, "no text");
+		super(isPersistent);
 	}
-
-	/**
-	 * The type of projection annotations.
-	 */
-	public static final String TYPE = "org.eclipse.ui.workbench.texteditor.error"; //$NON-NLS-1$
-
-	/** error image */
-	private static Image fgErrorImage;
-
-	/**
-	 * Class that disposes image on demand
-	 */
-	private static class DisplayDisposeRunnable implements Runnable {
-
-		public void run() {
-			if (fgErrorImage != null) {
-				fgErrorImage.dispose();
-				fgErrorImage = null;
-			}
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public int getLayer() {
-		return IAnnotationAccessExtension.DEFAULT_LAYER;
-	}
-
-	/*
-	 * @see org.eclipse.jface.text.source.IAnnotationPresentation#paint(org.eclipse
-	 * .swt.graphics.GC, org.eclipse.swt.widgets.Canvas, org.eclipse.swt.graphics.Rectangle)
-	 */
-	public void paint(GC gc, Canvas canvas, Rectangle rectangle) {
-		Image image = getImage(canvas.getDisplay());
-		if (image != null) {
-			ImageUtilities.drawImage(image, gc, canvas, rectangle, SWT.CENTER, SWT.TOP);
-		}
-	}
-
-	/**
-	 * Returns the image to be drawn
-	 *
-	 * @param display
-	 *            the current display
-	 * @return the image to be drawn
-	 */
-	protected Image getImage(Display display) {
-		initializeImages(display);
-		return fgErrorImage;
-	}
-
-	private void initializeImages(Display display) {
-		if (fgErrorImage == null) {
-
-			ImageDescriptor descriptor = ImageDescriptor.createFromFile(ErrorAnnotation.class, "images/error.gif"); //$NON-NLS-1$
-			fgErrorImage = descriptor.createImage(display);
-
-			display.disposeExec(new DisplayDisposeRunnable());
-		}
-	}
-
 }

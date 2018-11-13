@@ -13,7 +13,7 @@
    <element name="extension">
       <annotation>
          <appInfo>
-            <meta.element />
+            <meta.element deprecated="true" />
          </appInfo>
       </annotation>
       <complexType>
@@ -50,7 +50,7 @@
    <element name="DirectEditor">
       <annotation>
          <appInfo>
-            <meta.element labelAttribute="objectToEdit"/>
+            <meta.element labelAttribute="objectToEdit" deprecated="true"/>
          </appInfo>
          <documentation>
             Extension points for direct editors in Papyrus UML2.
@@ -120,6 +120,11 @@
    </element>
 
    <element name="simpleeditor">
+      <annotation>
+         <appInfo>
+            <meta.element deprecated="true"/>
+         </appInfo>
+      </annotation>
       <complexType>
          <attribute name="editorConfiguration" type="string" use="required">
             <annotation>
@@ -135,6 +140,11 @@
    </element>
 
    <element name="advancededitor">
+      <annotation>
+         <appInfo>
+            <meta.element deprecated="true"/>
+         </appInfo>
+      </annotation>
       <complexType>
          <attribute name="editorConfiguration" type="string" use="required">
             <annotation>
@@ -151,6 +161,9 @@
 
    <element name="popupeditor">
       <annotation>
+         <appInfo>
+            <meta.element deprecated="true"/>
+         </appInfo>
          <documentation>
             This extension point can be used to register a popup editor
          </documentation>
@@ -171,6 +184,9 @@
 
    <element name="Priority">
       <annotation>
+         <appInfo>
+            <meta.element deprecated="true"/>
+         </appInfo>
          <documentation>
             The description for the priority of the editpart provider
          </documentation>
@@ -238,9 +254,9 @@
    </annotation>
 
    <annotation>
-      <appinfo>
+      <appInfo>
          <meta.section type="copyright"/>
-      </appinfo>
+      </appInfo>
       <documentation>
          /*****************************************************************************
          * Copyright (c) 2008 CEA LIST.

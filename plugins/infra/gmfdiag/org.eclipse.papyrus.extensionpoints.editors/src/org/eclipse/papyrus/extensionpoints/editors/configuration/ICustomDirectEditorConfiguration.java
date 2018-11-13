@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,28 +10,19 @@
  *
  * Contributors:
  *  CEA LIST - initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 533667
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.extensionpoints.editors.configuration;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.tools.DirectEditManager;
-import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.swt.widgets.Composite;
 
 /**
  *
  * @author andreas muelder
  *
+ * @deprecated since 3.1. Use {@link org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration} instead.
  */
-public interface ICustomDirectEditorConfiguration extends IDirectEditorConfiguration {
-
-	public DirectEditManager createDirectEditManager(ITextAwareEditPart host);
-
-	public IParser createParser(EObject host);
-
-	public CellEditor createCellEditor(Composite parent, EObject object);
+@Deprecated
+public interface ICustomDirectEditorConfiguration extends org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration {
 
 }

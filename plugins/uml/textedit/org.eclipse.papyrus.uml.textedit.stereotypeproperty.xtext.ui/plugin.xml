@@ -227,7 +227,7 @@
    
     <!-- MANUAL EXTENSION POINT-->
    <extension
-         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+         point="org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.DirectEditor">
       <DirectEditor
             contributor="CEA LIST"
             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"

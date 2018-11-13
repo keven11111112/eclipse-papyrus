@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.internal.UmlValueSpecificationActivator;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils.commands.ValueSpecificationSetCommand;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
@@ -170,7 +170,7 @@ public class ValueSpecificationXtextDirectEditorConfiguration extends DefaultXte
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration#getTextToEdit(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration#getTextToEdit(java.lang.Object)
 	 */
 	@Override
 	public String getTextToEdit(Object editedObject) {

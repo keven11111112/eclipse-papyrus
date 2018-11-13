@@ -13,11 +13,11 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.extensionpoints.editors.preferences.provider;
+package org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.preferences.provider;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint;
 import org.eclipse.swt.graphics.Image;
 
 /**

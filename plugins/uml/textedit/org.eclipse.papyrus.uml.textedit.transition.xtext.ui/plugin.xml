@@ -196,7 +196,7 @@
    
    <!-- CUSTOM EXTENSION POINT***********************************************     -->
    <extension
-         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+         point="org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.DirectEditor">
       <DirectEditor
             language="Advanced transition textual editor"
             objectToEdit="org.eclipse.uml2.uml.Transition">

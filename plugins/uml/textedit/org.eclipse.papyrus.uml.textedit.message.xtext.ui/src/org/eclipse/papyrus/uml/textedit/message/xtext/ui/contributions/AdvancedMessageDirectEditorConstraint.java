@@ -15,7 +15,7 @@
 
 package org.eclipse.papyrus.uml.textedit.message.xtext.ui.contributions;
 
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageNameEditPart;
 
 /**
@@ -37,7 +37,7 @@ public class AdvancedMessageDirectEditorConstraint implements IDirectEditorConst
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint#getLabel()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint#getLabel()
 	 *
 	 * @return
 	 */
@@ -47,7 +47,7 @@ public class AdvancedMessageDirectEditorConstraint implements IDirectEditorConst
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint#appliesTo(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint#appliesTo(java.lang.Object)
 	 *
 	 * @param selection
 	 * @return

@@ -1,0 +1,53 @@
+Embedded editor use cases
+
+It is sometimes more efficient to use a textual editor to modify a model element, For instance,
+an operation with parameter definitions has a compact textual representation, but it is
+quite time consuming to create all parameters and provide a type when manipulating it on
+the model level. Other elements have an inherent textual representation, notably opaque expressions
+and behaviors. Therefore, Papyrus offers textual editors for these elements.
+
+Use case 1:
+Edit an OCL expression in an opaque expression.
+This can be done by pressing "F2" after selecting either the constraint owning the expression
+or the expression itself. The editor should support completion and syntax highlighting
+to enable the efficient specification.
+Note that the user wants to open an OCL editor on an existing
+expression with OCL content, even if a different editor has been configured as default
+editor for constraints/expressions. Of course, the default editor is chosen on an empty
+opaque expression.
+
+Use case 2:
+The user edits an attribute declaration with a textual editor. The editor allows to set
+name, type, multiplicities and uniqueness. Compared to the first use case, the textual
+representation is a combination of several model elements. The modification might result
+in a non-valid representation, i.e. a text that cannot be represented in the model, for
+instance an unknown type or a non-parseable multiplicity specification. Since this might
+be caused by a single typo, the edited content of an invalid text should not get lost,
+when the user quits the editor. Papyrus manages this situation with a specific stereotype
+storing the text (automatically managed by the editor). Once the specification is corrected
+in the editor, this additional text storage gets removed automatically.
+
+Requirements
+
+* A UML object of a certain kind (i.e. instance of a meta-model element, such
+  as State or Class) has an associated default edtior. This is configurable
+  in the Papyrus preferences ("Embedded Editors"). Technically, the editor
+  is identified using its name as "language".
+
+* Each editor can have additional constraints denoting whether it is eligible
+  to edit a certain element. For instance, it can check whether a certain stereotype
+  is applied. Another typical use case is to check whether opaque expressions
+  or opaque behaviors are either empty or have a body with the "right" language
+  tag.
+
+* Each editor has a priority that is configurable in the Papyrus preferences
+  ("Embedded Editors"). Five different levels are supported:
+  lowest, low, medium, high, highest
+
+* If the user opens a textual editor for a certain UML element, the tool should
+  check first, whether the default is applicable (check eligibility constraints)
+  to the given element. If this is the case, this editor should be opened. If
+  not, it should check whether other editors are eligible and choose the one with
+  the highest priority. If multiple editors with the same priority exist, the
+  first eligitible editor is chosen. This situation should be avoided by
+  choosing the priorities in a suitable way.

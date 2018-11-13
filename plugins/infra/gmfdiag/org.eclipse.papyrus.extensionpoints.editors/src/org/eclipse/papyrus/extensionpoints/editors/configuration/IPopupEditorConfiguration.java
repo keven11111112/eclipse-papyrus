@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,22 +10,18 @@
  *
  * Contributors:
  *  CEA LIST - initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 533667
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.extensionpoints.editors.configuration;
 
-import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-
 /**
  * This interface can be used to create an IPopupEditorHelper, that can then be used to show the editor
+ *
+ * @deprecated since 3.1. Use {@link org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IPopupEditorConfiguration} instead.
  */
-public interface IPopupEditorConfiguration extends IDirectEditorConfiguration {
-
-	/**
-	 * Should create an IPopupEditorHelper, that can then be used to show the editor
-	 *
-	 * It is expected that the type of the param editPart:Object is instanceof IGraphicalEditPart
-	 */
-	IPopupEditorHelper createPopupEditorHelper(Object editPart);
+@Deprecated
+public interface IPopupEditorConfiguration extends org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IPopupEditorConfiguration {
 
 }

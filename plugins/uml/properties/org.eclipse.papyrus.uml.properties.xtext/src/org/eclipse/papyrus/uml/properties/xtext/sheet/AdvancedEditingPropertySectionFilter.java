@@ -18,11 +18,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.IFilter;
-import org.eclipse.papyrus.extensionpoints.editors.Activator;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
-import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
-import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.DirectEditorsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds;
 
 public class AdvancedEditingPropertySectionFilter implements IFilter {
 

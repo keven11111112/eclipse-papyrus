@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
+         point="org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.DirectEditor">
       <DirectEditor
             additionalConstraint="org.eclipse.papyrus.uml.textedit.constraintwithessentialocl.xtext.OCLDirectEditorConstraint"
             contributor="Eclipse Modeling Project"

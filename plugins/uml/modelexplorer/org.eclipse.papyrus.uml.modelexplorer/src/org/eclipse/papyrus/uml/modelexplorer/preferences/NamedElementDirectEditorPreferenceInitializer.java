@@ -17,7 +17,7 @@ package org.eclipse.papyrus.uml.modelexplorer.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.extensionpoints.editors.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.Activator;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**

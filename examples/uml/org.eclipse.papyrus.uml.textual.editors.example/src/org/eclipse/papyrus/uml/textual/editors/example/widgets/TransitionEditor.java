@@ -40,7 +40,7 @@ public class TransitionEditor extends AbstractXtextPropertyEditor {
 	 */
 	public TransitionEditor(Composite parent, int style) {
 		// 1st parameter is name of language associated with xtext editor (see language
-		// attribute in extension point org.eclipse.papyrus.extensionpoints.editors.DirectEditor).
+		// attribute in extension point org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.DirectEditor).
 		// In this case, we added the language constant to the editor contribution, but this is
 		// not the case for all Papyrus xtext editors
 		super(TransitionEditorConfigurationContribution.LANGUAGE, parent, style);

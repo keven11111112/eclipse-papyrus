@@ -18,8 +18,8 @@ package org.eclipse.papyrus.uml.textedit.tests.editor;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint;
-import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.definition.IDirectEditorExtensionPoint;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Class;

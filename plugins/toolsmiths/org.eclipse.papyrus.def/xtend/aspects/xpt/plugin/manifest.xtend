@@ -69,7 +69,7 @@ Require-Bundle: org.eclipse.core.runtime,
 «ENDFOR» org.eclipse.gef,
  org.eclipse.papyrus.infra.gmfdiag.preferences,
  «IF it.eResource.allContents.filter(typeof (EditPartUsingDeleteService)).size != 0 || it.eResource.allContents.filter(typeof (EditPartUsingReorientService)).size != 0»
- org.eclipse.papyrus.extensionpoints.editors,
+ org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors,
  org.eclipse.papyrus.infra.services.edit
  «ELSE»
  org.eclipse.papyrus.extensionpoints.editors

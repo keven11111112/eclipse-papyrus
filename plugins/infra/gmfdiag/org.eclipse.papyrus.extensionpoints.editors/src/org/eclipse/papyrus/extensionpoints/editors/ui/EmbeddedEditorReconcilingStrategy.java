@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2018 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,19 +11,22 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 533667
  *
  *****************************************************************************/
 package org.eclipse.papyrus.extensionpoints.editors.ui;
 
 import org.eclipse.jface.text.source.ISourceViewer;
-import org.eclipse.ui.texteditor.spelling.SpellingReconcileStrategy;
 import org.eclipse.ui.texteditor.spelling.SpellingService;
 
 /**
  * Reconcile strategy used for spell checking and semantic verification
+ *
+ * @deprecated since 3.1. Use {@link org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.ui.EmbeddedEditorReconcilingStrategy} instead.
  */
+@Deprecated
 // @unused
-public class EmbeddedEditorReconcilingStrategy extends SpellingReconcileStrategy {
+public class EmbeddedEditorReconcilingStrategy extends org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.ui.EmbeddedEditorReconcilingStrategy {
 
 	/**
 	 * Creates a new EmbeddedEditorReconcilingStrategy.

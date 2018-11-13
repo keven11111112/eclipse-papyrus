@@ -17,7 +17,7 @@ package org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.constraint;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint;
 import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -35,7 +35,7 @@ public class MultiplicityUpperValueDirectEditorConstraint implements IDirectEdit
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint#getLabel()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint#getLabel()
 	 *
 	 * @return The label.
 	 */
@@ -44,7 +44,7 @@ public class MultiplicityUpperValueDirectEditorConstraint implements IDirectEdit
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint#appliesTo(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint#appliesTo(java.lang.Object)
 	 *
 	 * @param selection
 	 *            the current selection

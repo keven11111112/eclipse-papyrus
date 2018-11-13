@@ -16,7 +16,7 @@
 package org.eclipse.papyrus.uml.modelexplorer.directeditor;
 
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.AbstractBasicDirectEditorConfiguration;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.AbstractBasicDirectEditorConfiguration;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationPreferencesUtils;
 import org.eclipse.papyrus.uml.internationalization.utils.utils.UMLLabelInternationalization;
 import org.eclipse.uml2.uml.NamedElement;

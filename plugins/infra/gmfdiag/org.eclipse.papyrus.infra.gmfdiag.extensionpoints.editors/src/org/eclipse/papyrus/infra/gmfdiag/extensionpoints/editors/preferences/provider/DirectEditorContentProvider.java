@@ -13,7 +13,7 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.extensionpoints.editors.preferences.provider;
+package org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.preferences.provider;
 
 import java.util.List;
 

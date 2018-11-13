@@ -17,7 +17,7 @@
 package org.eclipse.papyrus.uml.textedit.tests.editor;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint;
+import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.LiteralString;
@@ -41,7 +41,7 @@ public class CppDirectEditorConstraint implements IDirectEditorConstraint {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint#getLabel()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint#getLabel()
 	 *
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public class CppDirectEditorConstraint implements IDirectEditorConstraint {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint#appliesTo(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint#appliesTo(java.lang.Object)
 	 *
 	 * @param selection
 	 * @return
