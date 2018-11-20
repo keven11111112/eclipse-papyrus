@@ -38,7 +38,7 @@
 				</dictionary>
 				<dictionary>
 					<key>release.path</key>
-					<value>/org.eclipse.papyrus.releng.main.release/release.xml</value>
+					<value>/org.eclipse.papyrus.releng.dev.release/release.xml</value>
 				</dictionary>
 			</arguments>
 		</buildCommand>

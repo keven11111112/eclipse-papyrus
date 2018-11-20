@@ -15,11 +15,11 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.pde.SchemaBuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
+        <buildCommand>
+            <name>org.eclipse.pde.SchemaBuilder</name>
+            <arguments>
+            </arguments>
+        </buildCommand>
 		<buildCommand>
 			<name>org.eclipse.pde.api.tools.apiAnalysisBuilder</name>
 			<arguments>
@@ -38,7 +38,7 @@
 				</dictionary>
 				<dictionary>
 					<key>release.path</key>
-					<value>/org.eclipse.papyrus.releng.main.release/release.xml</value>
+					<value>/org.eclipse.papyrus.releng.dev.release/release.xml</value>
 				</dictionary>
 			</arguments>
 		</buildCommand>

@@ -15,6 +15,11 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+        <buildCommand>
+            <name>org.eclipse.pde.api.tools.apiAnalysisBuilder</name>
+            <arguments>
+            </arguments>
+        </buildCommand>
 		<buildCommand>
 			<name>org.eclipse.oomph.version.VersionBuilder</name>
 			<arguments>
@@ -36,5 +41,6 @@
 	<natures>
 		<nature>org.eclipse.pde.PluginNature</nature>
 		<nature>org.eclipse.oomph.version.VersionNature</nature>
+        <nature>org.eclipse.pde.api.tools.apiAnalysisNature</nature>
 	</natures>
 </projectDescription>
