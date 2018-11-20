@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
+ * 	Christian W. Damus - bug 536405
  * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.provider;
@@ -26,6 +27,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -36,6 +38,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eclipse.papyrus.infra.filters.FiltersFactory;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu;
 
@@ -226,6 +229,16 @@ public class MenuItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ElementCreationMenuModelPackage.Literals.MENU__FILTER,
+				 FiltersFactory.eINSTANCE.createCompoundFilter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ElementCreationMenuModelPackage.Literals.MENU__FILTER,
+				 FiltersFactory.eINSTANCE.createEquals()));
 	}
 
 	/**
@@ -236,7 +249,7 @@ public class MenuItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ElementCreationMenuModelEditPlugin.INSTANCE;
+		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

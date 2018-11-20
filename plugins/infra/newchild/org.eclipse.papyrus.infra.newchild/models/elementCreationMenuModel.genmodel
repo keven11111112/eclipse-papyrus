@@ -34,7 +34,8 @@
   </genAnnotations>
   <foreignModel>elementCreationMenuModel.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="ElementCreationMenuModel" basePackage="org.eclipse.papyrus.infra.newchild"
-      resource="XMI" disposableProviderFactory="true" contentTypeIdentifier="" fileExtensions="creationmenumodel"
+      resource="XMI" disposableProviderFactory="true" extensibleProviderFactory="true"
+      childCreationExtenders="true" contentTypeIdentifier="" fileExtensions="creationmenumodel"
       ecorePackage="elementCreationMenuModel.ecore#/">
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="elementCreationMenuModel.ecore#//Folder">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"

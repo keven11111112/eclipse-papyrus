@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2018 CEA LIST, Christian W. Damus, and others.
  *  
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  * Contributors:
  * 	CEA LIST - Initial API and implementation
+ * 	Christian W. Damus - bug 536405
  * 
  */
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.provider;
@@ -17,14 +18,19 @@ package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
+import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ChangeNotifier;
+import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
+import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -33,6 +39,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.util.ElementCreationMenuModelAdapterFactory;
 
 /**
@@ -44,7 +51,7 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.util.ElementC
  * <!-- end-user-doc -->
  * @generated
  */
-public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementCreationMenuModelAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementCreationMenuModelAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -60,6 +67,15 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
+
+	/**
+	 * This helps manage the child creation extenders.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @since 4.1
+	 */
+	protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(ElementCreationMenuModelEditPlugin.INSTANCE, ElementCreationMenuModelPackage.eNS_URI);
 
 	/**
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -231,6 +247,34 @@ public class ElementCreationMenuModelItemProviderAdapterFactory extends ElementC
 		}
 
 		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @since 4.1
+	 */
+	public List<IChildCreationExtender> getChildCreationExtenders() {
+		return childCreationExtenderManager.getChildCreationExtenders();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+		return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ResourceLocator getResourceLocator() {
+		return childCreationExtenderManager;
 	}
 
 	/**
