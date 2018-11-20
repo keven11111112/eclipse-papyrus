@@ -31,8 +31,6 @@ import org.eclipse.papyrus.infra.editor.welcome.SashRow;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePackage;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePage;
 
-import org.eclipse.uml2.common.util.CacheAdapter;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Sash Row</b></em>'.
@@ -248,8 +246,7 @@ public class SashRowImpl extends MinimalEObjectImpl.Container implements SashRow
 	@Override
 	public void setColumn(SashColumn newColumn) {
 		if (newColumn != eInternalContainer() || (eContainerFeatureID() != WelcomePackage.SASH_ROW__COLUMN && newColumn != null)) {
-			if (EcoreUtil.isAncestor(this, newColumn))
-			 {
+			if (EcoreUtil.isAncestor(this, newColumn)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
@@ -413,12 +410,11 @@ public class SashRowImpl extends MinimalEObjectImpl.Container implements SashRow
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (y: "); //$NON-NLS-1$
 		if (yESet) {
 			result.append(y);
-		}
-		else {
+		} else {
 			result.append("<unset>"); //$NON-NLS-1$
 		}
 		result.append(')');
@@ -437,18 +433,6 @@ public class SashRowImpl extends MinimalEObjectImpl.Container implements SashRow
 	 */
 	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
-	}
-
-	/**
-	 * Retrieves the cache adapter for this '<em><b>Sash Row</b></em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return The cache adapter for this '<em><b>Sash Row</b></em>'.
-	 * @generated
-	 */
-	protected CacheAdapter getCacheAdapter() {
-		return CacheAdapter.getCacheAdapter(this);
 	}
 
 } // SashRowImpl

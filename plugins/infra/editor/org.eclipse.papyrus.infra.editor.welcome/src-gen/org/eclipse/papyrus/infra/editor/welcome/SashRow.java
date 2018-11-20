@@ -60,7 +60,7 @@ public interface SashRow extends EObject {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Y</em>' attribute.
+	 *                  the new value of the '<em>Y</em>' attribute.
 	 * @see #isSetY()
 	 * @see #unsetY()
 	 * @see #getY()
@@ -116,7 +116,7 @@ public interface SashRow extends EObject {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Page</em>' reference.
+	 *                  the new value of the '<em>Page</em>' reference.
 	 * @see #getPage()
 	 * @generated
 	 */
@@ -147,7 +147,7 @@ public interface SashRow extends EObject {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Column</em>' container reference.
+	 *                  the new value of the '<em>Column</em>' container reference.
 	 * @see #getColumn()
 	 * @generated
 	 */

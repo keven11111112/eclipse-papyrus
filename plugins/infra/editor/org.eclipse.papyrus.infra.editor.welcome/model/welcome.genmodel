@@ -7,9 +7,9 @@
     modelName="Welcome" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     codeFormatting="true" commentFormatting="true" testsDirectory="/org.eclipse.papyrus.infra.editor.welcome.tests/src-gen"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="8.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.uml2.types/model/Types.genmodel#//types"
-    operationReflection="true" importOrganizing="true" cleanup="true" factoryMethods="true"
-    pluralizedGetters="true" cacheAdapterSupport="true" invariantPrefix="">
+    usedGenPackages="../../org.eclipse.uml2.types/model/Types.genmodel#//types" operationReflection="true"
+    importOrganizing="true" cleanup="true" factoryMethods="true" pluralizedGetters="true"
+    invariantPrefix="">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
     <details key="DUPLICATE_FEATURES" value="DISCARD"/>

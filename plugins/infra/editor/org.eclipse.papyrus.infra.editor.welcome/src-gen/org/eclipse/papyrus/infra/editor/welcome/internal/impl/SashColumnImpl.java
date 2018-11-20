@@ -41,8 +41,6 @@ import org.eclipse.papyrus.infra.editor.welcome.WelcomePage;
 
 import org.eclipse.papyrus.infra.editor.welcome.internal.operations.SashColumnOperations;
 
-import org.eclipse.uml2.common.util.CacheAdapter;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Sash Column</b></em>'.
@@ -188,7 +186,7 @@ public class SashColumnImpl extends MinimalEObjectImpl.Container implements Sash
 	@Override
 	public EList<SashRow> getSashRows() {
 		if (sashRows == null) {
-			sashRows = new EObjectContainmentWithInverseEList<SashRow>(SashRow.class, this, WelcomePackage.SASH_COLUMN__SASH_ROW, WelcomePackage.SASH_ROW__COLUMN);
+			sashRows = new EObjectContainmentWithInverseEList<>(SashRow.class, this, WelcomePackage.SASH_COLUMN__SASH_ROW, WelcomePackage.SASH_ROW__COLUMN);
 		}
 		return sashRows;
 	}
@@ -240,8 +238,7 @@ public class SashColumnImpl extends MinimalEObjectImpl.Container implements Sash
 	@Override
 	public void setPage(WelcomePage newPage) {
 		if (newPage != eInternalContainer() || (eContainerFeatureID() != WelcomePackage.SASH_COLUMN__PAGE && newPage != null)) {
-			if (EcoreUtil.isAncestor(this, newPage))
-			 {
+			if (EcoreUtil.isAncestor(this, newPage)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
@@ -435,12 +432,11 @@ public class SashColumnImpl extends MinimalEObjectImpl.Container implements Sash
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (x: "); //$NON-NLS-1$
 		if (xESet) {
 			result.append(x);
-		}
-		else {
+		} else {
 			result.append("<unset>"); //$NON-NLS-1$
 		}
 		result.append(')');
@@ -459,18 +455,6 @@ public class SashColumnImpl extends MinimalEObjectImpl.Container implements Sash
 	 */
 	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
-	}
-
-	/**
-	 * Retrieves the cache adapter for this '<em><b>Sash Column</b></em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return The cache adapter for this '<em><b>Sash Column</b></em>'.
-	 * @generated
-	 */
-	protected CacheAdapter getCacheAdapter() {
-		return CacheAdapter.getCacheAdapter(this);
 	}
 
 } // SashColumnImpl

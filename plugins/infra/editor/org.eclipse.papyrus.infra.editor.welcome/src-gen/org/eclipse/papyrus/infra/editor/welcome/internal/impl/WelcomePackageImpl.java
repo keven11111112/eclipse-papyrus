@@ -128,7 +128,8 @@ public class WelcomePackageImpl extends EPackageImpl implements WelcomePackage {
 		}
 
 		// Obtain or create and register package
-		WelcomePackageImpl theWelcomePackage = (WelcomePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof WelcomePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new WelcomePackageImpl());
+		Object registeredWelcomePackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		WelcomePackageImpl theWelcomePackage = registeredWelcomePackage instanceof WelcomePackageImpl ? (WelcomePackageImpl) registeredWelcomePackage : new WelcomePackageImpl();
 
 		isInited = true;
 
@@ -143,7 +144,6 @@ public class WelcomePackageImpl extends EPackageImpl implements WelcomePackage {
 
 		// Mark meta-data to indicate it can't be changed
 		theWelcomePackage.freeze();
-
 
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(WelcomePackage.eNS_URI, theWelcomePackage);

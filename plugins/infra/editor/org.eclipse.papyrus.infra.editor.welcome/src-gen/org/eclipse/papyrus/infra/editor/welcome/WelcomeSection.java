@@ -76,7 +76,7 @@ public interface WelcomeSection extends EObject {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Hidden</em>' attribute.
+	 *                  the new value of the '<em>Hidden</em>' attribute.
 	 * @see #isHidden()
 	 * @generated
 	 */
@@ -107,7 +107,7 @@ public interface WelcomeSection extends EObject {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Page</em>' container reference.
+	 *                  the new value of the '<em>Page</em>' container reference.
 	 * @see #getPage()
 	 * @generated
 	 */

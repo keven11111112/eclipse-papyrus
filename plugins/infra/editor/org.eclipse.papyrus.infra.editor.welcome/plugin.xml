@@ -155,26 +155,6 @@
             name="%prefpage.welcome.name">
       </page>
    </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.properties.contexts">
-      <context
-            contextModel="model/general/general.ctx">
-      </context>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.properties.ui.context">
-      <preferencePageBinding
-            context="welcome-general"
-            page="org.eclipse.papyrus.infra.editor.welcome.content">
-      </preferencePageBinding>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.properties.environments">
-      <environment
-            environmentModel="model/environment.xmi">
-      </environment>
-   </extension>
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated welcome -->
       <package

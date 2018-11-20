@@ -62,7 +62,7 @@ public interface SashColumn extends EObject {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>X</em>' attribute.
+	 *                  the new value of the '<em>X</em>' attribute.
 	 * @see #isSetX()
 	 * @see #unsetX()
 	 * @see #getX()
@@ -150,7 +150,7 @@ public interface SashColumn extends EObject {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Page</em>' container reference.
+	 *                  the new value of the '<em>Page</em>' container reference.
 	 * @see #getPage()
 	 * @generated
 	 */

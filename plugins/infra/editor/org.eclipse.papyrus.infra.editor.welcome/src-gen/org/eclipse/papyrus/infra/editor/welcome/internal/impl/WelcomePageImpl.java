@@ -38,7 +38,6 @@ import org.eclipse.papyrus.infra.editor.welcome.WelcomePage;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomeSection;
 
 import org.eclipse.papyrus.infra.editor.welcome.internal.operations.WelcomePageOperations;
-import org.eclipse.uml2.common.util.CacheAdapter;
 
 /**
  * <!-- begin-user-doc -->
@@ -108,7 +107,7 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 	@Override
 	public EList<WelcomeSection> getSections() {
 		if (sections == null) {
-			sections = new EObjectContainmentWithInverseEList<WelcomeSection>(WelcomeSection.class, this, WelcomePackage.WELCOME_PAGE__SECTION, WelcomePackage.WELCOME_SECTION__PAGE);
+			sections = new EObjectContainmentWithInverseEList<>(WelcomeSection.class, this, WelcomePackage.WELCOME_PAGE__SECTION, WelcomePackage.WELCOME_SECTION__PAGE);
 		}
 		return sections;
 	}
@@ -134,15 +133,6 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 	 */
 	@Override
 	public EList<WelcomeSection> getVisibleSections() {
-		CacheAdapter cache = getCacheAdapter();
-		if (cache != null) {
-			@SuppressWarnings("unchecked")
-			EList<WelcomeSection> result = (EList<WelcomeSection>) cache.get(eResource(), this, WelcomePackage.Literals.WELCOME_PAGE__VISIBLE_SECTION);
-			if (result == null) {
-				cache.put(eResource(), this, WelcomePackage.Literals.WELCOME_PAGE__VISIBLE_SECTION, result = WelcomePageOperations.getVisibleSections(this));
-			}
-			return result;
-		}
 		return WelcomePageOperations.getVisibleSections(this);
 	}
 
@@ -179,7 +169,7 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 	@Override
 	public EList<SashColumn> getSashColumns() {
 		if (sashColumns == null) {
-			sashColumns = new EObjectContainmentWithInverseEList<SashColumn>(SashColumn.class, this, WelcomePackage.WELCOME_PAGE__SASH_COLUMN, WelcomePackage.SASH_COLUMN__PAGE);
+			sashColumns = new EObjectContainmentWithInverseEList<>(SashColumn.class, this, WelcomePackage.WELCOME_PAGE__SASH_COLUMN, WelcomePackage.SASH_COLUMN__PAGE);
 		}
 		return sashColumns;
 	}
@@ -382,18 +372,6 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 	 */
 	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
-	}
-
-	/**
-	 * Retrieves the cache adapter for this '<em><b>Page</b></em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return The cache adapter for this '<em><b>Page</b></em>'.
-	 * @generated
-	 */
-	protected CacheAdapter getCacheAdapter() {
-		return CacheAdapter.getCacheAdapter(this);
 	}
 
 } // WelcomePageImpl

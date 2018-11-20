@@ -38,8 +38,6 @@ import org.eclipse.papyrus.infra.editor.welcome.WelcomeSection;
 
 import org.eclipse.papyrus.infra.editor.welcome.internal.operations.WelcomeSectionOperations;
 
-import org.eclipse.uml2.common.util.CacheAdapter;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Section</b></em>'.
@@ -119,7 +117,7 @@ public class WelcomeSectionImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public EList<String> getIdentifiers() {
 		if (identifiers == null) {
-			identifiers = new EDataTypeUniqueEList<String>(String.class, this, WelcomePackage.WELCOME_SECTION__IDENTIFIER);
+			identifiers = new EDataTypeUniqueEList<>(String.class, this, WelcomePackage.WELCOME_SECTION__IDENTIFIER);
 		}
 		return identifiers;
 	}
@@ -184,8 +182,7 @@ public class WelcomeSectionImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void setPage(WelcomePage newPage) {
 		if (newPage != eInternalContainer() || (eContainerFeatureID() != WelcomePackage.WELCOME_SECTION__PAGE && newPage != null)) {
-			if (EcoreUtil.isAncestor(this, newPage))
-			 {
+			if (EcoreUtil.isAncestor(this, newPage)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;
@@ -374,7 +371,7 @@ public class WelcomeSectionImpl extends MinimalEObjectImpl.Container implements 
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: "); //$NON-NLS-1$
 		result.append(identifiers);
 		result.append(", hidden: "); //$NON-NLS-1$
@@ -395,18 +392,6 @@ public class WelcomeSectionImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
-	}
-
-	/**
-	 * Retrieves the cache adapter for this '<em><b>Section</b></em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return The cache adapter for this '<em><b>Section</b></em>'.
-	 * @generated
-	 */
-	protected CacheAdapter getCacheAdapter() {
-		return CacheAdapter.getCacheAdapter(this);
 	}
 
 } // WelcomeSectionImpl

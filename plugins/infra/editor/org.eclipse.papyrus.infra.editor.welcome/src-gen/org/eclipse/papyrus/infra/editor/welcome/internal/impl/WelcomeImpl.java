@@ -29,7 +29,6 @@ import org.eclipse.papyrus.infra.editor.welcome.Welcome;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePackage;
 
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePage;
-import org.eclipse.uml2.common.util.CacheAdapter;
 
 /**
  * <!-- begin-user-doc -->
@@ -235,18 +234,6 @@ public class WelcomeImpl extends MinimalEObjectImpl.Container implements Welcome
 	 */
 	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
-	}
-
-	/**
-	 * Retrieves the cache adapter for this '<em><b>Welcome</b></em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return The cache adapter for this '<em><b>Welcome</b></em>'.
-	 * @generated
-	 */
-	protected CacheAdapter getCacheAdapter() {
-		return CacheAdapter.getCacheAdapter(this);
 	}
 
 } // WelcomeImpl

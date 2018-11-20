@@ -57,7 +57,7 @@ public interface Welcome extends EObject {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Welcome Page</em>' containment reference.
+	 *                  the new value of the '<em>Welcome Page</em>' containment reference.
 	 * @see #getWelcomePage()
 	 * @generated
 	 */
