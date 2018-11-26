@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2014, 2018 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - 402525
  *  Christian W. Damus (CEA) - bug 417409
+ *  Ansgar Radermacher (CEA) - Bug 540815
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.databinding;
@@ -117,8 +118,28 @@ public class MultiplicityObservableValue extends ReferenceCountedObservable.Valu
 		boolean fireChange = false;
 		if (event.getSource() == lowerValue || event.getSource() == upperValue) {
 			fireChange = true;
-			lowerValueSpecification = getValueSpecification(lowerValue, UMLPackage.eINSTANCE.getLiteralInteger_Value(), domain);
-			upperValueSpecification = getValueSpecification(upperValue, UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(), domain);
+			IObservableValue<?> newLowerVS = getValueSpecification(lowerValue, UMLPackage.eINSTANCE.getLiteralInteger_Value(), domain);
+			IObservableValue<?> newUpperVS = getValueSpecification(upperValue, UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value(), domain);
+
+			// handle case that property has initially no value specification for upper and lower (bug 540815)
+			if (newLowerVS != lowerValueSpecification) {
+				if (lowerValueSpecification != null) {
+					lowerValueSpecification.removeChangeListener(this);
+				}
+				lowerValueSpecification = newLowerVS;
+				if (lowerValueSpecification != null) {
+					lowerValueSpecification.addChangeListener(this);
+				}
+			}
+			if (newUpperVS != upperValueSpecification) {
+				if (upperValueSpecification != null) {
+					upperValueSpecification.removeChangeListener(this);
+				}
+				upperValueSpecification = newUpperVS;
+				if (upperValueSpecification != null) {
+					upperValueSpecification.addChangeListener(this);
+				}
+			}
 		}
 
 		if (event.getSource() == lowerValueSpecification || event.getSource() == upperValueSpecification) {
