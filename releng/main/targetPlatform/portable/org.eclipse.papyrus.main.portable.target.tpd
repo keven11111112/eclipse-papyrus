@@ -54,19 +54,19 @@ location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/releases/
 
 //updateFrom("MDT UML2",0) 
 
-location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestones" {
+location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.5milestones" {
 	org.eclipse.uml2.sdk.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.10-I-builds/I20181031-1800/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.10milestones/S-4.10M3-201811211800/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2018-12",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/interim/6.6.0" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.6.0/S201811261148" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -79,7 +79,7 @@ location xwt "http://download.eclipse.org/xwt/updates" {
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201810150206" {
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201811260210" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -95,7 +95,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9
 
 //updateFrom("WebTools 3.12 for Simrel 2018-12",0) 
 
-location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.12.0/S-3.12.0.M2-20181101035339/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.12.0/S-3.12.0.M3-20181124033837/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
