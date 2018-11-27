@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 - 2014 CEA LIST.
+ * Copyright (c) 2011 - 2014, 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
+ *  Vincent LORENZO - bug 541313 - [UML][CDO] UML calls to the method getCacheAdapter(EObject) must be replaced
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.databinding;
 
@@ -86,8 +87,8 @@ public class ProvidedInterfaceObservableList extends PapyrusObservableList {
 	@Override
 	public Command getAddAllCommand(Collection<?> values) {
 		CompoundCommand returnedCommand = new CompoundCommand();
-		List<IEditCommandRequest> requests = new LinkedList<IEditCommandRequest>();
-		List<Interface> commonInterfacesList = new ArrayList<Interface>();
+		List<IEditCommandRequest> requests = new LinkedList<>();
+		List<Interface> commonInterfacesList = new ArrayList<>();
 
 		EList<Interface> providedInterfaceList = port.getProvideds();
 
@@ -114,7 +115,7 @@ public class ProvidedInterfaceObservableList extends PapyrusObservableList {
 
 		// Handle deleted interfaces
 		if (providedInterfaceList.size() != commonInterfacesList.size()) {
-			List<Interface> removedInterfacesList = new ArrayList<Interface>();
+			List<Interface> removedInterfacesList = new ArrayList<>();
 
 			for (Interface current : providedInterfaceList) {
 				if (!commonInterfacesList.contains(current)) {
@@ -165,7 +166,7 @@ public class ProvidedInterfaceObservableList extends PapyrusObservableList {
 	@Override
 	public Command getRemoveAllCommand(Collection<?> values) {
 		CompoundCommand commands = new CompoundCommand();
-		Set<Dependency> dependenciesSet = new HashSet<Dependency>();
+		Set<Dependency> dependenciesSet = new HashSet<>();
 
 		for (Object value : values) {
 			Dependency realization = getRealization(value);
@@ -226,7 +227,7 @@ public class ProvidedInterfaceObservableList extends PapyrusObservableList {
 
 			@Override
 			protected void doExecute() {
-				CacheAdapter cache = CacheAdapter.getCacheAdapter(port);
+				CacheAdapter cache = CacheAdapter.getInstance();
 				cache.put(port, UMLPackage.Literals.PORT__PROVIDED, null);
 
 			}

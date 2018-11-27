@@ -10,7 +10,7 @@
  *
  * Contributors:
  * 	 Christian W. Damus - Initial API and implementation
- *
+ *   Vincent LORENZO - bug 541313 - [UML][CDO] UML calls to the method getCacheAdapter(EObject) must be replaced
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
@@ -165,7 +165,7 @@ public class DestructionOccurrenceSpecificationEditHelperAdvice extends Interact
 			return Stream.empty();
 		}
 
-		return CacheAdapter.getCacheAdapter(constrained).getNonNavigableInverseReferences(constrained)
+		return CacheAdapter.getInstance().getNonNavigableInverseReferences(constrained)
 				.stream()
 				.filter(setting -> setting.getEStructuralFeature() == UMLPackage.Literals.CONSTRAINT__CONSTRAINED_ELEMENT)
 				.map(setting -> (Constraint) setting.getEObject())
@@ -193,7 +193,7 @@ public class DestructionOccurrenceSpecificationEditHelperAdvice extends Interact
 
 		// These observations are contained by packages, so the interaction context isn't
 		// actually useful. It is specified for API consistency with other cases
-		return CacheAdapter.getCacheAdapter(observed).getNonNavigableInverseReferences(observed)
+		return CacheAdapter.getInstance().getNonNavigableInverseReferences(observed)
 				.stream()
 				.filter(setting -> setting.getEStructuralFeature() == UMLPackage.Literals.TIME_OBSERVATION__EVENT)
 				.map(setting -> (TimeObservation) setting.getEObject());

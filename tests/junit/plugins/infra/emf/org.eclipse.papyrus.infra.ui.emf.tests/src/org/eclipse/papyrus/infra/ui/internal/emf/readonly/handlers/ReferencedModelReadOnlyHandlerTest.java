@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
+/**
+ * Copyright (c) 2014, 2016, 2018 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bugs 463631, 485220
- *
+ *   Vincent LORENZO - bug 541313 - [UML][CDO] UML calls to the method getCacheAdapter(EObject) must be replaced
  */
 package org.eclipse.papyrus.infra.ui.internal.emf.readonly.handlers;
 
@@ -333,7 +333,7 @@ public class ReferencedModelReadOnlyHandlerTest extends AbstractPapyrusTest {
 	void assertLocalViewsNotReadOnly(EObject object) {
 		boolean foundSomeLocalViews = false;
 
-		for (EStructuralFeature.Setting setting : CacheAdapter.getCacheAdapter(object).getNonNavigableInverseReferences(object)) {
+		for (EStructuralFeature.Setting setting : CacheAdapter.getInstance().getNonNavigableInverseReferences(object)) {
 			if (setting.getEStructuralFeature() == NotationPackage.Literals.VIEW__ELEMENT) {
 				EObject view = setting.getEObject();
 				Set<URI> uris = ControlledResourceTracker.getInstance(domain).getRootResourceURIs(view.eResource().getURI());

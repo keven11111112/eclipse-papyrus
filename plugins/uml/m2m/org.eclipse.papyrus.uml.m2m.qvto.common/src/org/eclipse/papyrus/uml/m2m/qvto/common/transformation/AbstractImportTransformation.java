@@ -789,7 +789,7 @@ public abstract class AbstractImportTransformation implements IImportTransformat
 
 	/** Lightweight delete operation, which only removes the object from its parent. Incoming references are not deleted */
 	public void delete(EObject elementToDelete) {
-		CacheAdapter adapter = CacheAdapter.getCacheAdapter(elementToDelete);
+		CacheAdapter adapter = CacheAdapter.getCacheAdapter(elementToDelete); // bug 541313 [CDO] - change is not required here
 		if (adapter == null) {
 			adapter = CacheAdapter.getInstance();
 		}

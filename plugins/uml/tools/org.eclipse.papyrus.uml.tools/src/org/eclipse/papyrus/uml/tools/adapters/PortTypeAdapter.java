@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2018 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
+ *  Vincent LORENZO - bug 541313 - [UML][CDO] UML calls to the method getCacheAdapter(EObject) must be replaced
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.adapters;
 
@@ -164,7 +165,7 @@ public class PortTypeAdapter extends AdapterImpl {
 	 * @param type
 	 *            Type is origin of evaluation
 	 * @return
-	 *         Source according of derived feature
+	 * 		Source according of derived feature
 	 */
 	private EObject determineSource(Type type) {
 		EObject source = type;
@@ -185,7 +186,7 @@ public class PortTypeAdapter extends AdapterImpl {
 	private void updateObservableList() {
 
 		// Clear cache for derived feature
-		CacheAdapter cache = CacheAdapter.getCacheAdapter(port);
+		CacheAdapter cache = CacheAdapter.getInstance();
 		if (cache != null) {
 			cache.put(port, derivedFeature, null);
 		}
