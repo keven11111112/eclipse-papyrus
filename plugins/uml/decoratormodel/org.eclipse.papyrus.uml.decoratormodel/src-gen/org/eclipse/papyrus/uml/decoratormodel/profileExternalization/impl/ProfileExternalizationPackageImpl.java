@@ -18,11 +18,13 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ApplyProfiles;
 import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ProfileExternalizationFactory;
 import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ProfileExternalizationPackage;
 import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.util.ProfileExternalizationValidator;
+import org.eclipse.uml2.types.TypesPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -32,8 +34,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  * @generated
  */
-public class ProfileExternalizationPackageImpl extends EPackageImpl implements ProfileExternalizationPackage
-{
+public class ProfileExternalizationPackageImpl extends EPackageImpl implements ProfileExternalizationPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -43,18 +44,22 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	private EClass applyProfilesEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ProfileExternalizationPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private ProfileExternalizationPackageImpl()
-	{
+	private ProfileExternalizationPackageImpl() {
 		super(eNS_URI, ProfileExternalizationFactory.eINSTANCE);
 	}
 
@@ -70,7 +75,9 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link ProfileExternalizationPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!--
+	 * This method is used to initialize {@link ProfileExternalizationPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 *
 	 * @see #eNS_URI
@@ -78,19 +85,21 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static ProfileExternalizationPackage init()
-	{
+	public static ProfileExternalizationPackage init() {
 		if (isInited) {
 			return (ProfileExternalizationPackage) EPackage.Registry.INSTANCE.getEPackage(ProfileExternalizationPackage.eNS_URI);
 		}
 
 		// Obtain or create and register package
-		ProfileExternalizationPackageImpl theProfileExternalizationPackage = (ProfileExternalizationPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ProfileExternalizationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-				: new ProfileExternalizationPackageImpl());
+		Object registeredProfileExternalizationPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ProfileExternalizationPackageImpl theProfileExternalizationPackage = registeredProfileExternalizationPackage instanceof ProfileExternalizationPackageImpl ? (ProfileExternalizationPackageImpl) registeredProfileExternalizationPackage
+				: new ProfileExternalizationPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
+		TypesPackage.eINSTANCE.eClass();
 		UMLPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -100,20 +109,16 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 		theProfileExternalizationPackage.initializePackageContents();
 
 		// Register package validator
-		EValidator.Registry.INSTANCE.put
-				(theProfileExternalizationPackage,
-						new EValidator.Descriptor()
-						{
-							@Override
-							public EValidator getEValidator()
-							{
-								return ProfileExternalizationValidator.INSTANCE;
-							}
-						});
+		EValidator.Registry.INSTANCE.put(theProfileExternalizationPackage,
+				new EValidator.Descriptor() {
+					@Override
+					public EValidator getEValidator() {
+						return ProfileExternalizationValidator.INSTANCE;
+					}
+				});
 
 		// Mark meta-data to indicate it can't be changed
 		theProfileExternalizationPackage.freeze();
-
 
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ProfileExternalizationPackage.eNS_URI, theProfileExternalizationPackage);
@@ -127,8 +132,7 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	@Override
-	public EClass getApplyProfiles()
-	{
+	public EClass getApplyProfiles() {
 		return applyProfilesEClass;
 	}
 
@@ -139,8 +143,7 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	@Override
-	public EReference getApplyProfiles_Base_Dependency()
-	{
+	public EReference getApplyProfiles_Base_Dependency() {
 		return (EReference) applyProfilesEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -151,8 +154,7 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	@Override
-	public EOperation getApplyProfiles__GetAppliedProfiles()
-	{
+	public EOperation getApplyProfiles__GetAppliedProfiles() {
 		return applyProfilesEClass.getEOperations().get(0);
 	}
 
@@ -163,8 +165,7 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	@Override
-	public EOperation getApplyProfiles__GetExternalizedAppliedProfilePackages()
-	{
+	public EOperation getApplyProfiles__GetExternalizedAppliedProfilePackages() {
 		return applyProfilesEClass.getEOperations().get(1);
 	}
 
@@ -175,8 +176,7 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	@Override
-	public ProfileExternalizationFactory getProfileExternalizationFactory()
-	{
+	public ProfileExternalizationFactory getProfileExternalizationFactory() {
 		return (ProfileExternalizationFactory) getEFactoryInstance();
 	}
 
@@ -196,8 +196,7 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 *
 	 * @generated
 	 */
-	public void createPackageContents()
-	{
+	public void createPackageContents() {
 		if (isCreated) {
 			return;
 		}
@@ -226,8 +225,7 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 *
 	 * @generated
 	 */
-	public void initializePackageContents()
-	{
+	public void initializePackageContents() {
 		if (isInitialized) {
 			return;
 		}
@@ -249,8 +247,8 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(applyProfilesEClass, ApplyProfiles.class, "ApplyProfiles", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getApplyProfiles_Base_Dependency(), theUMLPackage.getDependency(), null,
-				"base_Dependency", null, 1, 1, ApplyProfiles.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getApplyProfiles_Base_Dependency(), theUMLPackage.getDependency(), null, "base_Dependency", null, 1, 1, ApplyProfiles.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, !IS_ORDERED);
 
 		initEOperation(getApplyProfiles__GetAppliedProfiles(), theUMLPackage.getProfile(), "getAppliedProfiles", 0, -1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
@@ -277,18 +275,17 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 *
 	 * @generated
 	 */
-	protected void createEcoreAnnotations()
-	{
+	protected void createEcoreAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$
 		addAnnotation(this,
 				source,
-				new String[]
-				{		 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL" //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 		addAnnotation(applyProfilesEClass,
 				source,
-				new String[]
-				{		 "constraints", "suppliers_are_packages clients_are_packages" //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"constraints", "suppliers_are_packages clients_are_packages" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 	}
 
@@ -299,13 +296,12 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 *
 	 * @generated
 	 */
-	protected void createUMLAnnotations()
-	{
+	protected void createUMLAnnotations() {
 		String source = "http://www.eclipse.org/uml2/2.0.0/UML"; //$NON-NLS-1$
 		addAnnotation(this,
 				source,
-				new String[]
-				{		 "originalName", "ProfileExternalization" //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"originalName", "ProfileExternalization" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 	}
 
@@ -316,13 +312,12 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 *
 	 * @generated
 	 */
-	protected void createOCLAnnotations()
-	{
+	protected void createOCLAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL"; //$NON-NLS-1$
 		addAnnotation(applyProfilesEClass,
 				source,
-				new String[]
-				{		 "suppliers_are_packages", "base_Dependency.supplier->forAll(oclIsKindOf(uml::Package))", //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"suppliers_are_packages", "base_Dependency.supplier->forAll(oclIsKindOf(uml::Package))", //$NON-NLS-1$ //$NON-NLS-2$
 						"clients_are_packages", "base_Dependency.client->forAll(oclIsKindOf(uml::Package))" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 	}
@@ -334,13 +329,12 @@ public class ProfileExternalizationPackageImpl extends EPackageImpl implements P
 	 *
 	 * @generated
 	 */
-	protected void createEmofAnnotations()
-	{
+	protected void createEmofAnnotations() {
 		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName"; //$NON-NLS-1$
 		addAnnotation(getApplyProfiles_Base_Dependency(),
 				source,
-				new String[]
-				{		 "body", "extension_ApplyProfiles" //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"body", "extension_ApplyProfiles" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 	}
 

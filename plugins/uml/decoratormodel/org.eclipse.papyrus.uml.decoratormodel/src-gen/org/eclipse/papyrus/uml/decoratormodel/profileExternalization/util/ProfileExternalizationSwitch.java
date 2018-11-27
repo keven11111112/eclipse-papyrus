@@ -31,8 +31,7 @@ import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.*;
  * @see org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ProfileExternalizationPackage
  * @generated
  */
-public class ProfileExternalizationSwitch<T> extends Switch<T>
-{
+public class ProfileExternalizationSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -49,10 +48,8 @@ public class ProfileExternalizationSwitch<T> extends Switch<T>
 	 *
 	 * @generated
 	 */
-	public ProfileExternalizationSwitch()
-	{
-		if (modelPackage == null)
-		{
+	public ProfileExternalizationSwitch() {
+		if (modelPackage == null) {
 			modelPackage = ProfileExternalizationPackage.eINSTANCE;
 		}
 	}
@@ -62,13 +59,13 @@ public class ProfileExternalizationSwitch<T> extends Switch<T>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @parameter ePackage the package in question.
+	 * @param ePackage
+	 *            the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
 	@Override
-	protected boolean isSwitchFor(EPackage ePackage)
-	{
+	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
 
@@ -81,10 +78,8 @@ public class ProfileExternalizationSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
-	{
-		switch (classifierID)
-		{
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		switch (classifierID) {
 		case ProfileExternalizationPackage.APPLY_PROFILES: {
 			ApplyProfiles applyProfiles = (ApplyProfiles) theEObject;
 			T result = caseApplyProfiles(applyProfiles);
@@ -111,8 +106,7 @@ public class ProfileExternalizationSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseApplyProfiles(ApplyProfiles object)
-	{
+	public T caseApplyProfiles(ApplyProfiles object) {
 		return null;
 	}
 
@@ -130,8 +124,7 @@ public class ProfileExternalizationSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
-	{
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

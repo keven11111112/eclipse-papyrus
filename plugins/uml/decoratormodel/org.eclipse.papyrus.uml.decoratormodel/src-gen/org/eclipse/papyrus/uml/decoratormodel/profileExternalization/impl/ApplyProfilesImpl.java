@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ApplyProfiles;
 import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ProfileExternalizationPackage;
 import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.internal.operations.ApplyProfilesOperations;
-import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Profile;
 
@@ -36,15 +35,14 @@ import org.eclipse.uml2.uml.Profile;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.decoratormodel.profileExternalization.impl.ApplyProfilesImpl#getBase_Dependency <em>Base Dependency</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements ApplyProfiles
-{
+public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements ApplyProfiles {
 	/**
 	 * The cached value of the '{@link #getBase_Dependency() <em>Base Dependency</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -62,8 +60,7 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 *
 	 * @generated
 	 */
-	protected ApplyProfilesImpl()
-	{
+	protected ApplyProfilesImpl() {
 		super();
 	}
 
@@ -74,8 +71,7 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return ProfileExternalizationPackage.Literals.APPLY_PROFILES;
 	}
 
@@ -86,14 +82,11 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	public Dependency getBase_Dependency()
-	{
-		if (base_Dependency != null && base_Dependency.eIsProxy())
-		{
+	public Dependency getBase_Dependency() {
+		if (base_Dependency != null && base_Dependency.eIsProxy()) {
 			InternalEObject oldBase_Dependency = (InternalEObject) base_Dependency;
 			base_Dependency = (Dependency) eResolveProxy(oldBase_Dependency);
-			if (base_Dependency != oldBase_Dependency)
-			{
+			if (base_Dependency != oldBase_Dependency) {
 				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProfileExternalizationPackage.APPLY_PROFILES__BASE_DEPENDENCY, oldBase_Dependency, base_Dependency));
 				}
@@ -108,8 +101,7 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 *
 	 * @generated
 	 */
-	public Dependency basicGetBase_Dependency()
-	{
+	public Dependency basicGetBase_Dependency() {
 		return base_Dependency;
 	}
 
@@ -120,8 +112,7 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	public void setBase_Dependency(Dependency newBase_Dependency)
-	{
+	public void setBase_Dependency(Dependency newBase_Dependency) {
 		Dependency oldBase_Dependency = base_Dependency;
 		base_Dependency = newBase_Dependency;
 		if (eNotificationRequired()) {
@@ -136,8 +127,7 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	public EList<Profile> getAppliedProfiles()
-	{
+	public EList<Profile> getAppliedProfiles() {
 		return ApplyProfilesOperations.getAppliedProfiles(this);
 	}
 
@@ -148,8 +138,7 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	public EList<org.eclipse.uml2.uml.Package> getExternalizedAppliedProfilePackages()
-	{
+	public EList<org.eclipse.uml2.uml.Package> getExternalizedAppliedProfilePackages() {
 		return ApplyProfilesOperations.getExternalizedAppliedProfilePackages(this);
 	}
 
@@ -160,10 +149,8 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case ProfileExternalizationPackage.APPLY_PROFILES__BASE_DEPENDENCY:
 			if (resolve) {
 				return getBase_Dependency();
@@ -180,10 +167,8 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case ProfileExternalizationPackage.APPLY_PROFILES__BASE_DEPENDENCY:
 			setBase_Dependency((Dependency) newValue);
 			return;
@@ -198,10 +183,8 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case ProfileExternalizationPackage.APPLY_PROFILES__BASE_DEPENDENCY:
 			setBase_Dependency((Dependency) null);
 			return;
@@ -216,10 +199,8 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case ProfileExternalizationPackage.APPLY_PROFILES__BASE_DEPENDENCY:
 			return base_Dependency != null;
 		}
@@ -233,10 +214,8 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 * @generated
 	 */
 	@Override
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
-	{
-		switch (operationID)
-		{
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
 		case ProfileExternalizationPackage.APPLY_PROFILES___GET_APPLIED_PROFILES:
 			return getAppliedProfiles();
 		case ProfileExternalizationPackage.APPLY_PROFILES___GET_EXTERNALIZED_APPLIED_PROFILE_PACKAGES:
@@ -255,22 +234,8 @@ public class ApplyProfilesImpl extends MinimalEObjectImpl.Container implements A
 	 * @return The new instance.
 	 * @generated
 	 */
-	protected EObject create(EClass eClass)
-	{
+	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
-	}
-
-	/**
-	 * Retrieves the cache adapter for this '<em><b>Apply Profiles</b></em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return The cache adapter for this '<em><b>Apply Profiles</b></em>'.
-	 * @generated
-	 */
-	protected CacheAdapter getCacheAdapter()
-	{
-		return CacheAdapter.getCacheAdapter(this);
 	}
 
 } // ApplyProfilesImpl

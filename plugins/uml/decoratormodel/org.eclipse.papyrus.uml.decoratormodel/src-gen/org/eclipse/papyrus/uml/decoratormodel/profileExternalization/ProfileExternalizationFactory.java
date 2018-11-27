@@ -24,8 +24,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ProfileExternalizationPackage
  * @generated
  */
-public interface ProfileExternalizationFactory extends EFactory
-{
+public interface ProfileExternalizationFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->

@@ -30,8 +30,7 @@ import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.*;
  * @see org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ProfileExternalizationPackage
  * @generated
  */
-public class ProfileExternalizationValidator extends EObjectValidator
-{
+public class ProfileExternalizationValidator extends EObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -77,8 +76,7 @@ public class ProfileExternalizationValidator extends EObjectValidator
 	 *
 	 * @generated
 	 */
-	public ProfileExternalizationValidator()
-	{
+	public ProfileExternalizationValidator() {
 		super();
 	}
 
@@ -90,8 +88,7 @@ public class ProfileExternalizationValidator extends EObjectValidator
 	 * @generated
 	 */
 	@Override
-	protected EPackage getEPackage()
-	{
+	protected EPackage getEPackage() {
 		return ProfileExternalizationPackage.eINSTANCE;
 	}
 
@@ -103,10 +100,8 @@ public class ProfileExternalizationValidator extends EObjectValidator
 	 * @generated
 	 */
 	@Override
-	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		switch (classifierID)
-		{
+	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		switch (classifierID) {
 		case ProfileExternalizationPackage.APPLY_PROFILES:
 			return validateApplyProfiles((ApplyProfiles) value, diagnostics, context);
 		default:
@@ -120,8 +115,7 @@ public class ProfileExternalizationValidator extends EObjectValidator
 	 *
 	 * @generated
 	 */
-	public boolean validateApplyProfiles(ApplyProfiles applyProfiles, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateApplyProfiles(ApplyProfiles applyProfiles, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(applyProfiles, diagnostics, context)) {
 			return false;
 		}
@@ -172,12 +166,12 @@ public class ProfileExternalizationValidator extends EObjectValidator
 	 *
 	 * @generated
 	 */
-	public boolean validateApplyProfiles_suppliers_are_packages(ApplyProfiles applyProfiles, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateApplyProfiles_suppliers_are_packages(ApplyProfiles applyProfiles, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate(ProfileExternalizationPackage.Literals.APPLY_PROFILES,
 				applyProfiles,
 				diagnostics,
-				context, "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$
+				context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$
 				"suppliers_are_packages", //$NON-NLS-1$
 				APPLY_PROFILES__SUPPLIERS_ARE_PACKAGES__EEXPRESSION,
 				Diagnostic.ERROR,
@@ -201,12 +195,12 @@ public class ProfileExternalizationValidator extends EObjectValidator
 	 *
 	 * @generated
 	 */
-	public boolean validateApplyProfiles_clients_are_packages(ApplyProfiles applyProfiles, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
+	public boolean validateApplyProfiles_clients_are_packages(ApplyProfiles applyProfiles, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate(ProfileExternalizationPackage.Literals.APPLY_PROFILES,
 				applyProfiles,
 				diagnostics,
-				context, "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$
+				context,
+				"http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$
 				"clients_are_packages", //$NON-NLS-1$
 				APPLY_PROFILES__CLIENTS_ARE_PACKAGES__EEXPRESSION,
 				Diagnostic.ERROR,
@@ -222,8 +216,7 @@ public class ProfileExternalizationValidator extends EObjectValidator
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		// TODO
 		// Specialize this to return a resource locator for messages specific to this validator.
 		// Ensure that you remove @generated or mark it @generated NOT

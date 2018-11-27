@@ -32,18 +32,17 @@ import org.eclipse.uml2.uml.Profile;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ApplyProfiles#getBase_Dependency <em>Base Dependency</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ProfileExternalizationPackage#getApplyProfiles()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='suppliers_are_packages clients_are_packages'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL suppliers_are_packages='base_Dependency.supplier->forAll(oclIsKindOf(uml::Package))' clients_are_packages='base_Dependency.client->forAll(oclIsKindOf(uml::Package))'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL suppliers_are_packages='base_Dependency.supplier-&gt;forAll(oclIsKindOf(uml::Package))' clients_are_packages='base_Dependency.client-&gt;forAll(oclIsKindOf(uml::Package))'"
  * @generated
  */
-public interface ApplyProfiles extends EObject
-{
+public interface ApplyProfiles extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Base Dependency</b></em>' reference.
 	 * <!-- begin-user-doc -->

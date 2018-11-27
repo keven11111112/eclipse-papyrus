@@ -30,16 +30,15 @@ import org.eclipse.uml2.uml.Profile;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ApplyProfiles#getAppliedProfiles() <em>Get Applied Profiles</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ApplyProfiles#getExternalizedAppliedProfilePackages() <em>Get Externalized Applied Profile Packages</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class ApplyProfilesOperations
-{
+public class ApplyProfilesOperations {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,13 +56,13 @@ public class ApplyProfilesOperations
 	 * @generated NOT
 	 */
 	public static EList<Profile> getAppliedProfiles(ApplyProfiles applyProfiles) {
-		Set<Profile> result = new HashSet<Profile>();
+		Set<Profile> result = new HashSet<>();
 
 		for (org.eclipse.uml2.uml.Package package_ : applyProfiles.getExternalizedAppliedProfilePackages()) {
 			result.addAll(package_.getAppliedProfiles());
 		}
 
-		return new BasicEList.UnmodifiableEList<Profile>(result.size(), result.toArray());
+		return new BasicEList.UnmodifiableEList<>(result.size(), result.toArray());
 	}
 
 	/**
@@ -73,7 +72,7 @@ public class ApplyProfilesOperations
 	 * @generated NOT
 	 */
 	public static EList<org.eclipse.uml2.uml.Package> getExternalizedAppliedProfilePackages(ApplyProfiles applyProfiles) {
-		Set<org.eclipse.uml2.uml.Package> result = new HashSet<org.eclipse.uml2.uml.Package>();
+		Set<org.eclipse.uml2.uml.Package> result = new HashSet<>();
 
 		Dependency base = applyProfiles.getBase_Dependency();
 		if (base != null) {
@@ -84,7 +83,7 @@ public class ApplyProfilesOperations
 			}
 		}
 
-		return new BasicEList.UnmodifiableEList<org.eclipse.uml2.uml.Package>(result.size(), result.toArray());
+		return new BasicEList.UnmodifiableEList<>(result.size(), result.toArray());
 	}
 
 } // ApplyProfilesOperations

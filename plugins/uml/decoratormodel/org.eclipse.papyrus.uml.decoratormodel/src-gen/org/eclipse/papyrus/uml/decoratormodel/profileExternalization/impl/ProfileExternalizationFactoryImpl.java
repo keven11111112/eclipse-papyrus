@@ -27,8 +27,7 @@ import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.*;
  *
  * @generated
  */
-public class ProfileExternalizationFactoryImpl extends EFactoryImpl implements ProfileExternalizationFactory
-{
+public class ProfileExternalizationFactoryImpl extends EFactoryImpl implements ProfileExternalizationFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -36,17 +35,13 @@ public class ProfileExternalizationFactoryImpl extends EFactoryImpl implements P
 	 *
 	 * @generated
 	 */
-	public static ProfileExternalizationFactory init()
-	{
-		try
-		{
+	public static ProfileExternalizationFactory init() {
+		try {
 			ProfileExternalizationFactory theProfileExternalizationFactory = (ProfileExternalizationFactory) EPackage.Registry.INSTANCE.getEFactory(ProfileExternalizationPackage.eNS_URI);
-			if (theProfileExternalizationFactory != null)
-			{
+			if (theProfileExternalizationFactory != null) {
 				return theProfileExternalizationFactory;
 			}
-		} catch (Exception exception)
-		{
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ProfileExternalizationFactoryImpl();
@@ -59,8 +54,7 @@ public class ProfileExternalizationFactoryImpl extends EFactoryImpl implements P
 	 *
 	 * @generated
 	 */
-	public ProfileExternalizationFactoryImpl()
-	{
+	public ProfileExternalizationFactoryImpl() {
 		super();
 	}
 
@@ -71,10 +65,8 @@ public class ProfileExternalizationFactoryImpl extends EFactoryImpl implements P
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass)
-	{
-		switch (eClass.getClassifierID())
-		{
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
 		case ProfileExternalizationPackage.APPLY_PROFILES:
 			return createApplyProfiles();
 		default:
@@ -89,8 +81,7 @@ public class ProfileExternalizationFactoryImpl extends EFactoryImpl implements P
 	 * @generated
 	 */
 	@Override
-	public ApplyProfiles createApplyProfiles()
-	{
+	public ApplyProfiles createApplyProfiles() {
 		ApplyProfilesImpl applyProfiles = new ApplyProfilesImpl();
 		return applyProfiles;
 	}
@@ -102,8 +93,7 @@ public class ProfileExternalizationFactoryImpl extends EFactoryImpl implements P
 	 * @generated
 	 */
 	@Override
-	public ProfileExternalizationPackage getProfileExternalizationPackage()
-	{
+	public ProfileExternalizationPackage getProfileExternalizationPackage() {
 		return (ProfileExternalizationPackage) getEPackage();
 	}
 
@@ -115,8 +105,7 @@ public class ProfileExternalizationFactoryImpl extends EFactoryImpl implements P
 	 * @generated
 	 */
 	@Deprecated
-	public static ProfileExternalizationPackage getPackage()
-	{
+	public static ProfileExternalizationPackage getPackage() {
 		return ProfileExternalizationPackage.eINSTANCE;
 	}
 

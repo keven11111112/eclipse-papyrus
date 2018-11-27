@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
- *    
+ * Copyright (c) 2013, 2015, 2018 CEA LIST, Christian W. Damus, and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
  *  Christian W. Damus - bug 458197
  *  Christian W. Damus - bug 459613
  *  Christian W. Damus - bug 468030
- *
+ *  Vincent LORENZO - bug 541313 - [UML][CDO] UML calls to the method getCacheAdapter(EObject) must be replaced 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.decoratormodel.helper;
 
@@ -139,7 +139,7 @@ public class DecoratorModelUtils {
 		// their own applications of the same profile. For that matter, don't move stereotype applications governed by another
 		// application of the same profile in the *same* resource (each stereotype application is tied to a particular
 		// profile application, which may not be the one that we're externalizing)
-		List<EObject> stereotypeApplications = new ArrayList<EObject>();
+		List<EObject> stereotypeApplications = new ArrayList<>();
 		for (TreeIterator<EObject> iter = UML2Util.getAllContents(applyingPackage, true, false); iter.hasNext();) {
 			EObject next = iter.next();
 			if ((next instanceof Package) && (((Package) next).getProfileApplication(appliedProfile) != null)) {
@@ -178,7 +178,7 @@ public class DecoratorModelUtils {
 			Package applyingPackage = getUserPackage(externalPackage);
 
 			// Find all of the profile's stereotype applications in the source resource
-			List<EObject> stereotypeApplications = new ArrayList<EObject>();
+			List<EObject> stereotypeApplications = new ArrayList<>();
 			for (EObject next : sourceResource.getContents()) {
 				if (!(next instanceof Element) && isDefinedBy(profileApplication, next)) {
 					stereotypeApplications.add(next);
@@ -263,7 +263,7 @@ public class DecoratorModelUtils {
 	private static boolean isApplyProfiles(Dependency dependency) {
 		boolean result = false;
 
-		CacheAdapter cache = CacheAdapter.getCacheAdapter(dependency);
+		CacheAdapter cache = CacheAdapter.getInstance();
 		if (cache != null) {
 			for (EStructuralFeature.Setting setting : cache.getNonNavigableInverseReferences(dependency)) {
 				if (setting.getEStructuralFeature() == ProfileExternalizationPackage.Literals.APPLY_PROFILES__BASE_DEPENDENCY) {
@@ -280,7 +280,7 @@ public class DecoratorModelUtils {
 	 * Queries the packages in currently loaded decorator models that provide profile applications to a given package.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param package_
 	 *            a package
 	 * @return its currently loaded decorator-model packages
@@ -290,7 +290,7 @@ public class DecoratorModelUtils {
 
 		for (ApplyProfiles next : getDecoratorModelDependencies(package_)) {
 			if (result == null) {
-				result = new LinkedHashSet<Package>();
+				result = new LinkedHashSet<>();
 			}
 			result.addAll(next.getExternalizedAppliedProfilePackages());
 		}
@@ -302,7 +302,7 @@ public class DecoratorModelUtils {
 	 * Queries the currently loaded profile applications of a package that are provided by decorator models.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param package_
 	 *            a package
 	 * @return its currently loaded decorator-model profile applications
@@ -312,7 +312,7 @@ public class DecoratorModelUtils {
 
 		for (ApplyProfiles next : getDecoratorModelDependencies(package_)) {
 			if (result == null) {
-				result = new LinkedHashSet<ProfileApplication>();
+				result = new LinkedHashSet<>();
 			}
 			for (Package externalPackage : next.getExternalizedAppliedProfilePackages()) {
 				result.addAll(externalPackage.getProfileApplications());
@@ -326,7 +326,7 @@ public class DecoratorModelUtils {
 	 * Queries the package in the user model to which an externalized profile application applies a profile.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param profileApplication
 	 *            a profile application
 	 * @return the user-model package to which it applies a profile
@@ -343,10 +343,10 @@ public class DecoratorModelUtils {
 	 * Queries a mapping of the currently loaded profile applications in a decorator model resource.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param decoratorModel
 	 *            a decorator model resource
-	 * 
+	 *
 	 * @return a mapping of user-model package to applied profile as specified by the decorator model
 	 */
 	public static Map<Package, Profile> getDecoratorProfileApplications(Resource decoratorModel) {
@@ -370,10 +370,10 @@ public class DecoratorModelUtils {
 	 * Queries the currently loaded applied profiles of a package from decorator models.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param package_
 	 *            a user model package
-	 * 
+	 *
 	 * @return its applied profiles from currently loaded decorator models
 	 */
 	public static Iterable<Profile> getDecoratorModelAppliedProfiles(Package package_) {
@@ -381,7 +381,7 @@ public class DecoratorModelUtils {
 
 		for (ApplyProfiles next : getDecoratorModelDependencies(package_)) {
 			if (result == null) {
-				result = new LinkedHashSet<Profile>();
+				result = new LinkedHashSet<>();
 			}
 			result.addAll(next.getAppliedProfiles());
 		}
@@ -397,15 +397,15 @@ public class DecoratorModelUtils {
 	 * <p>
 	 * This method <em>accesses the decorator model index</em> and is therefore not suitable for use in time-sensitive code because an invocation may block the caller for an indeterminate interval. It is equivalent to invoking
 	 * {@code getAllDecoratorModelAppliedProfileDefinitions(package_, true, true)}.
-	 * 
+	 *
 	 * @param package_
 	 *            a user model package
-	 * 
+	 *
 	 * @return the mapping of URIs of all profiles that it applies, loaded and unloaded, to applied Ecore definitions by decorator model
-	 * 
+	 *
 	 * @throws CoreException
 	 *             on failure to access the decorator model index
-	 * 
+	 *
 	 * @see #getAllDecoratorModelAppliedProfileDefinitions(Package, boolean, boolean)
 	 */
 	public static Map<URI, Map<URI, URI>> getAllDecoratorModelAppliedProfileDefinitions(Package package_) throws CoreException {
@@ -419,7 +419,7 @@ public class DecoratorModelUtils {
 	 * to the same package.
 	 * <p>
 	 * This method <em>accesses the decorator model index</em> if {@code includeUnloaded} is {@code true} and is therefore not suitable for use in time-sensitive code in that case because an invocation may block the caller for an indeterminate interval.
-	 * 
+	 *
 	 * @param package_
 	 *            a user model package
 	 * @param includeLoaded
@@ -427,9 +427,9 @@ public class DecoratorModelUtils {
 	 * @param includeUnloaded
 	 *            whether to include profile definitions from decorator models that are <em>not</em> currently loaded.
 	 *            Obviously, it is not useful to exclude both loaded and unloaded decorator models, because that guarantees an empty result
-	 * 
+	 *
 	 * @return the mapping of URIs of all profiles that it applies, loaded and unloaded, to applied Ecore definitions by decorator model
-	 * 
+	 *
 	 * @throws CoreException
 	 *             on failure to access the decorator model index in the {@code includeUnloaded} case
 	 */
@@ -500,10 +500,10 @@ public class DecoratorModelUtils {
 		List<ApplyProfiles> result = null;
 
 		for (Dependency dependency : package_.getClientDependencies()) {
-			for (EStructuralFeature.Setting setting : CacheAdapter.getCacheAdapter(dependency).getNonNavigableInverseReferences(dependency)) {
+			for (EStructuralFeature.Setting setting : CacheAdapter.getInstance().getNonNavigableInverseReferences(dependency)) {
 				if (setting.getEStructuralFeature() == ProfileExternalizationPackage.Literals.APPLY_PROFILES__BASE_DEPENDENCY) {
 					if (result == null) {
-						result = new ArrayList<ApplyProfiles>();
+						result = new ArrayList<>();
 					}
 
 					result.add((ApplyProfiles) setting.getEObject());
@@ -541,7 +541,7 @@ public class DecoratorModelUtils {
 	 * Queries the package in the user model to which a package in the decorator model applies profiles.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param decoratorPackage
 	 *            a package in a decorator model
 	 * @return the user-model package to which it applies profiles
@@ -565,7 +565,7 @@ public class DecoratorModelUtils {
 	 * Queries whether a package has the externalization profile applied that is used by decorator models.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param package_
 	 *            a package
 	 * @return whether it has the externalization profile applied
@@ -616,12 +616,12 @@ public class DecoratorModelUtils {
 
 	/**
 	 * Creates a command that reintegrates the specified profile applications into the user model proper. Empty decorator models will always be deleted.
-	 * 
+	 *
 	 * @param profileApplications
 	 *            the externalized profile applications to reintegrate
-	 * 
+	 *
 	 * @return the delete command, or an unexecutable command if the request is invalid for some reason
-	 * 
+	 *
 	 * @see #createReclaimProfileApplicationsCommand(Iterable, IDeleteEmptyDecoratorModelsPolicy)
 	 */
 	public static Command createReclaimProfileApplicationsCommand(Iterable<? extends ProfileApplication> profileApplications) {
@@ -630,12 +630,12 @@ public class DecoratorModelUtils {
 
 	/**
 	 * Creates a command that reintegrates the specified profile applications into the user model proper.
-	 * 
+	 *
 	 * @param profileApplications
 	 *            the externalized profile applications to reintegrate
 	 * @param deletePolicy
 	 *            an optional policy determining whether any decorator models that are left without profile applications should be deleted. May be {@code null}, in which case empty decorator models will be deleted
-	 * 
+	 *
 	 * @return the delete command, or an unexecutable command if the request is invalid for some reason
 	 */
 	public static Command createReclaimProfileApplicationsCommand(Iterable<? extends ProfileApplication> profileApplications, IDeleteEmptyDecoratorModelsPolicy deletePolicy) {
@@ -676,16 +676,16 @@ public class DecoratorModelUtils {
 	 * Queries whether a package is the root of a decorator model.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param package_
 	 *            the root package of some UML model
-	 * 
+	 *
 	 * @return whether it is a loaded decorator model
 	 */
 	public static boolean isDecoratorModel(Package package_) {
 		// Must be a root
 		return (((InternalEObject) package_).eDirectResource() != null) &&
-				// Must have the externalization profile applied
+		// Must have the externalization profile applied
 				hasExternalizationProfile(package_);
 	}
 
@@ -693,10 +693,10 @@ public class DecoratorModelUtils {
 	 * Queries whether a resource is a loaded decorator model resource.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param resource
 	 *            a resource
-	 * 
+	 *
 	 * @return whether it is a loaded decorator model resource
 	 */
 	public static boolean isDecoratorModel(Resource resource) {
@@ -714,12 +714,12 @@ public class DecoratorModelUtils {
 	 * Queries whether a resource is a loaded decorator model for the given user model resource.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param resource
 	 *            a resource
 	 * @param modelResource
 	 *            a user model resource
-	 * 
+	 *
 	 * @return whether the {@code resource} is a loaded decorator model for the user model resource
 	 */
 	public static boolean isDecoratorModelFor(Resource resource, Resource modelResource) {
@@ -750,10 +750,10 @@ public class DecoratorModelUtils {
 	 * Queries the URIs of user model resources that contain packages for which a decorator model provides applied profiles.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param decoratorModelResource
 	 *            a resource in a decorator model
-	 * 
+	 *
 	 * @return the URIs of resources in user models containing packages to which the decorator model applies profiles
 	 */
 	public static Set<URI> getUserModelResources(Resource decoratorModelResource) {
@@ -784,10 +784,10 @@ public class DecoratorModelUtils {
 	 * Queries whether a given {@code file} is a decorator model resource.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param file
 	 *            a workspace file
-	 * 
+	 *
 	 * @return whether the fileexists and is a decorator model
 	 */
 	public static boolean isDecoratorModel(IFile file) {
@@ -810,10 +810,10 @@ public class DecoratorModelUtils {
 	 * Whether the resource indicated by the given URI is a decorator model resource.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param uri
 	 *            the URI of some resource, which may or may not exist
-	 * 
+	 *
 	 * @return whether the resource at the URI exists and is a decorator model
 	 */
 	public static boolean isDecoratorModel(URI uri) {
@@ -858,10 +858,10 @@ public class DecoratorModelUtils {
 	 * profile applications for packages in that user model resource.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param modelResource
 	 *            a resource in an user model
-	 * 
+	 *
 	 * @return the URIs of resources currently loaded in the same resource set that provide profile applications to packages
 	 *         in the user model resource
 	 */
@@ -871,7 +871,7 @@ public class DecoratorModelUtils {
 			return Collections.emptySet();
 		}
 
-		CacheAdapter cache = CacheAdapter.getCacheAdapter(root);
+		CacheAdapter cache = CacheAdapter.getInstance();
 
 		@SuppressWarnings("unchecked")
 		Set<URI> result = (Set<URI>) cache.get(root, LOADED_RESOURCES_CACHE_KEY);
@@ -906,11 +906,11 @@ public class DecoratorModelUtils {
 	 * <p>
 	 * This method <em>accesses the decorator model index</em> and is therefore not suitable for use in time-sensitive code because an invocation may block the caller for an indeterminate interval. In cases where responsiveness is essential, use the
 	 * {@link #getUnloadedDecoratorModelsAsync(Resource)} API, instead.
-	 * 
+	 *
 	 * @param modelResource
 	 *            a user model resource
 	 * @return the URIs of its currently available unloaded decorator models
-	 * 
+	 *
 	 * @see #getUnloadedDecoratorModelsAsync(Resource)
 	 */
 	public static Set<URI> getUnloadedDecoratorModels(Resource modelResource) {
@@ -919,7 +919,7 @@ public class DecoratorModelUtils {
 			return Collections.emptySet();
 		}
 
-		CacheAdapter cache = CacheAdapter.getCacheAdapter(root);
+		CacheAdapter cache = CacheAdapter.getInstance();
 
 		@SuppressWarnings("unchecked")
 		Set<URI> result = (Set<URI>) cache.get(root, UNLOADED_RESOURCE_DECORATORS_CACHE_KEY);
@@ -941,11 +941,11 @@ public class DecoratorModelUtils {
 	 * packages in the given user model resource. This set excludes and decorator models that have profile applications that
 	 * would conflict with natively-applied profiles of packages in the user model resource, as it would not be permitted
 	 * to load any of these.
-	 * 
+	 *
 	 * @param modelResource
 	 *            a user model resource
 	 * @return the future result of the URIs of its currently available unloaded decorator models
-	 * 
+	 *
 	 * @see #getUnloadedDecoratorModelsAsync(Iterable)
 	 * @see #getUnloadedDecoratorModelsAsync(Package)
 	 * @see #getUnloadedDecoratorModels(Resource)
@@ -959,11 +959,11 @@ public class DecoratorModelUtils {
 	 * packages in the given user model resources. This set excludes and decorator models that have profile applications that
 	 * would conflict with natively-applied profiles of packages in the user model resources, as it would not be permitted
 	 * to load any of these.
-	 * 
+	 *
 	 * @param modelResources
 	 *            zero or more user model resources
 	 * @return the future result of the URIs of their currently available unloaded decorator models
-	 * 
+	 *
 	 * @see #getUnloadedDecoratorModelsAsync(Resource)
 	 * @see #getUnloadedDecoratorModelsAsync(Package)
 	 */
@@ -981,7 +981,7 @@ public class DecoratorModelUtils {
 				for (Resource modelResource : modelResources) {
 					Element root = Iterables.isEmpty(modelResources) ? null : (Element) EcoreUtil.getObjectByType(modelResource.getContents(), UMLPackage.Literals.ELEMENT);
 					if (root != null) {
-						CacheAdapter cache = CacheAdapter.getCacheAdapter(root);
+						CacheAdapter cache = CacheAdapter.getInstance();
 
 						@SuppressWarnings("unchecked")
 						Set<URI> local = (Set<URI>) cache.get(root, UNLOADED_RESOURCE_DECORATORS_CACHE_KEY);
@@ -1006,11 +1006,11 @@ public class DecoratorModelUtils {
 	 * the given user model package. This set excludes and decorator models that have profile applications that
 	 * would conflict with natively-applied profiles of that package, as it would not be permitted
 	 * to load any of these.
-	 * 
+	 *
 	 * @param package_
 	 *            a package in a user model
 	 * @return the future result of the URIs of its currently available unloaded decorator models
-	 * 
+	 *
 	 * @see #getUnloadedDecoratorModelsAsync(Resource)
 	 * @see #getUnloadedDecoratorModelsAsync(Iterable)
 	 */
@@ -1019,7 +1019,7 @@ public class DecoratorModelUtils {
 			return Futures.immediateFuture(Collections.<URI> emptySet());
 		}
 
-		CacheAdapter cache = CacheAdapter.getCacheAdapter(package_);
+		CacheAdapter cache = CacheAdapter.getInstance();
 		@SuppressWarnings("unchecked")
 		Set<URI> cached = (Set<URI>) cache.get(package_, UNLOADED_PACKAGE_DECORATORS_CACHE_KEY);
 		if (cached != null) {
@@ -1044,7 +1044,7 @@ public class DecoratorModelUtils {
 				// filter for only those unloaded resources that apply profiles to this package
 				result.retainAll(input);
 
-				CacheAdapter cache = CacheAdapter.getCacheAdapter(package_);
+				CacheAdapter cache = CacheAdapter.getInstance();
 				cache.put(package_, UNLOADED_PACKAGE_DECORATORS_CACHE_KEY, result);
 
 				return result;
@@ -1057,13 +1057,13 @@ public class DecoratorModelUtils {
 	/**
 	 * Asynchronously queries whether the resource containing the given package (or, optionally, any of its currently loaded
 	 * sub-units) has applicable decorator models that are not yet loaded.
-	 * 
+	 *
 	 * @param package_
 	 *            a package in a user model
 	 * @param recursive
 	 *            whether to check loaded sub-units recursively
 	 * @return the future result of whether the package has available unloaded decorator models
-	 * 
+	 *
 	 * @see #getUnloadedDecoratorModelsAsync(Resource)
 	 */
 	public static ListenableFuture<Boolean> hasUnloadedDecoratorModelsAsync(Package package_, boolean recursive) {
@@ -1117,7 +1117,7 @@ public class DecoratorModelUtils {
 			return Collections.emptyList();
 		}
 
-		CacheAdapter cache = CacheAdapter.getCacheAdapter(root);
+		CacheAdapter cache = CacheAdapter.getInstance();
 
 		@SuppressWarnings("unchecked")
 		Collection<ProfileApplication> result = (Collection<ProfileApplication>) cache.get(root, INTRINSIC_PROFILE_APPLICATIONS_CACHE_KEY);
@@ -1160,10 +1160,10 @@ public class DecoratorModelUtils {
 	 * Obtains the currently loaded packages nested to any depth within the given package that are roots of sub-unit resources.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param package_
 	 *            a package in an user model
-	 * 
+	 *
 	 * @return nested packages that are roots of loaded sub-unit resources
 	 */
 	public static Iterable<Package> getLoadedSubUnitPackages(Package package_) {
@@ -1203,12 +1203,12 @@ public class DecoratorModelUtils {
 	 * Loads the specified decorator models in a given resource set context.
 	 * <p>
 	 * This method does <em>not</em> access the decorator model index.
-	 * 
+	 *
 	 * @param resourceSet
 	 *            the context in which to load the decorator models
 	 * @param resourceURIs
 	 *            URIs of the decorator models to load
-	 * 
+	 *
 	 * @return whether the decorator models were successfully loaded
 	 */
 	public static boolean loadDecoratorModels(final ResourceSet resourceSet, final Iterable<? extends URI> resourceURIs) {
@@ -1247,7 +1247,7 @@ public class DecoratorModelUtils {
 
 	/**
 	 * Configures a resource set to support profile applications externalized in decorator models.
-	 * 
+	 *
 	 * @param resourceSet
 	 *            the resource set to configure
 	 */

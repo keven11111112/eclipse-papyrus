@@ -5,10 +5,9 @@
     modelDirectory="/org.eclipse.papyrus.uml.decoratormodel/src-gen" modelPluginID="org.eclipse.papyrus.uml.decoratormodel"
     modelName="ProfileExternalization" nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     codeFormatting="true" commentFormatting="true" importerID="org.eclipse.uml2.uml.ecore.importer"
-    complianceLevel="6.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
-    operationReflection="true" importOrganizing="true"
-    cleanup="true" factoryMethods="true" pluralizedGetters="true" cacheAdapterSupport="true"
-    safeStrings="true" invariantPrefix="validate">
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
+    operationReflection="true" importOrganizing="true" cleanup="true" factoryMethods="true"
+    pluralizedGetters="true" safeStrings="true" invariantPrefix="validate">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
     <details key="UNION_PROPERTIES" value="PROCESS"/>

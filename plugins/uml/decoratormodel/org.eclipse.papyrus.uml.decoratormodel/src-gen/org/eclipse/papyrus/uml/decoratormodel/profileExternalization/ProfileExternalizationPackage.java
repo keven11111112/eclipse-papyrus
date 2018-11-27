@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EReference;
  *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='ProfileExternalization'"
  * @generated
  */
-public interface ProfileExternalizationPackage extends EPackage
-{
+public interface ProfileExternalizationPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -206,8 +205,7 @@ public interface ProfileExternalizationPackage extends EPackage
 	 *
 	 * @generated
 	 */
-	interface Literals
-	{
+	interface Literals {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.decoratormodel.profileExternalization.impl.ApplyProfilesImpl <em>Apply Profiles</em>}' class.
 		 * <!-- begin-user-doc -->

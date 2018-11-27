@@ -28,8 +28,7 @@ import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.*;
  * @see org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ProfileExternalizationPackage
  * @generated
  */
-public class ProfileExternalizationAdapterFactory extends AdapterFactoryImpl
-{
+public class ProfileExternalizationAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -46,10 +45,8 @@ public class ProfileExternalizationAdapterFactory extends AdapterFactoryImpl
 	 *
 	 * @generated
 	 */
-	public ProfileExternalizationAdapterFactory()
-	{
-		if (modelPackage == null)
-		{
+	public ProfileExternalizationAdapterFactory() {
+		if (modelPackage == null) {
 			modelPackage = ProfileExternalizationPackage.eINSTANCE;
 		}
 	}
@@ -64,14 +61,11 @@ public class ProfileExternalizationAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object)
-	{
-		if (object == modelPackage)
-		{
+	public boolean isFactoryForType(Object object) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -84,21 +78,17 @@ public class ProfileExternalizationAdapterFactory extends AdapterFactoryImpl
 	 *
 	 * @generated
 	 */
-	protected ProfileExternalizationSwitch<Adapter> modelSwitch =
-			new ProfileExternalizationSwitch<Adapter>()
-			{
-				@Override
-				public Adapter caseApplyProfiles(ApplyProfiles object)
-				{
-					return createApplyProfilesAdapter();
-				}
+	protected ProfileExternalizationSwitch<Adapter> modelSwitch = new ProfileExternalizationSwitch<Adapter>() {
+		@Override
+		public Adapter caseApplyProfiles(ApplyProfiles object) {
+			return createApplyProfilesAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object)
-				{
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -111,8 +101,7 @@ public class ProfileExternalizationAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target)
-	{
+	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
 
@@ -128,8 +117,7 @@ public class ProfileExternalizationAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ApplyProfiles
 	 * @generated
 	 */
-	public Adapter createApplyProfilesAdapter()
-	{
+	public Adapter createApplyProfilesAdapter() {
 		return null;
 	}
 
@@ -142,8 +130,7 @@ public class ProfileExternalizationAdapterFactory extends AdapterFactoryImpl
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter()
-	{
+	public Adapter createEObjectAdapter() {
 		return null;
 	}
 

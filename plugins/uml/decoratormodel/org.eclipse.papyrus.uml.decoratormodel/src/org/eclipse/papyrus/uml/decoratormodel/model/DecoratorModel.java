@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
- *    
+ * Copyright (c) 2013, 2015, 2018 CEA LIST, Christian W. Damus, and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
  *  Christian W. Damus - bug 458655
  *  Christian W. Damus - bug 458197
  *  Christian W. Damus - bug 481149
- *
+ *  Vincent LORENZO - bug 541313 - [UML][CDO] UML calls to the method getCacheAdapter(EObject) must be replaced
  *****************************************************************************/
 package org.eclipse.papyrus.uml.decoratormodel.model;
 
@@ -91,7 +91,7 @@ public class DecoratorModel extends AbstractModel {
 
 	/**
 	 * Returns a platform resource URI of the given path
-	 * 
+	 *
 	 * @param path
 	 *            the path
 	 * @return the uri
@@ -121,7 +121,7 @@ public class DecoratorModel extends AbstractModel {
 
 	/**
 	 * Returns the dynamically computed list of resources that are loaded decorator models.
-	 * 
+	 *
 	 * @return the loaded decorator models
 	 */
 	protected List<Resource> getResources() {
@@ -236,7 +236,7 @@ public class DecoratorModel extends AbstractModel {
 		if (domain != null) {
 			Adapter recorder = ((InternalTransactionalEditingDomain) domain).getChangeRecorder();
 			if (recorder != null) {
-				int afterCacheAdapter = resource.eAdapters().indexOf(CacheAdapter.getCacheAdapter(resource)) + 1;
+				int afterCacheAdapter = resource.eAdapters().indexOf(CacheAdapter.getInstance()) + 1;
 				int index = resource.eAdapters().indexOf(recorder);
 				if (index < 0) {
 					resource.eAdapters().add(afterCacheAdapter, recorder);
