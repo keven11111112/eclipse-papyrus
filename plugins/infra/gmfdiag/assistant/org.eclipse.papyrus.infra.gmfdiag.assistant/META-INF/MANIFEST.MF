@@ -18,7 +18,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.assistant,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.3.100.qualifier
+Bundle-Version: 1.4.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.AssistantPlugin$Implementation

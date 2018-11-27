@@ -1939,6 +1939,11 @@ public interface AssistantPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.gmf.runtime.emf.type.core.IElementType <em>Element Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>
+	 * From package assistantapi.
+	 * </p>
+	 * <!-- end-model-doc -->
 	 *
 	 * @return the meta object for data type '<em>Element Type</em>'.
 	 * @see org.eclipse.gmf.runtime.emf.type.core.IElementType
@@ -1963,6 +1968,11 @@ public interface AssistantPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.gmf.runtime.common.core.service.IOperation <em>IOperation</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>
+	 * From package serviceprovider.
+	 * </p>
+	 * <!-- end-model-doc -->
 	 *
 	 * @return the meta object for data type '<em>IOperation</em>'.
 	 * @see org.eclipse.gmf.runtime.common.core.service.IOperation
@@ -1975,6 +1985,11 @@ public interface AssistantPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener <em>IProvider Change Listener</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>
+	 * From package serviceprovider.
+	 * </p>
+	 * <!-- end-model-doc -->
 	 *
 	 * @return the meta object for data type '<em>IProvider Change Listener</em>'.
 	 * @see org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener
@@ -1987,6 +2002,11 @@ public interface AssistantPackage extends EPackage {
 	 * Returns the meta object for data type '{@link org.eclipse.core.runtime.IAdaptable <em>IAdaptable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * <p>
+	 * From package assistantapi.
+	 * </p>
+	 * <!-- end-model-doc -->
 	 *
 	 * @return the meta object for data type '<em>IAdaptable</em>'.
 	 * @see org.eclipse.core.runtime.IAdaptable

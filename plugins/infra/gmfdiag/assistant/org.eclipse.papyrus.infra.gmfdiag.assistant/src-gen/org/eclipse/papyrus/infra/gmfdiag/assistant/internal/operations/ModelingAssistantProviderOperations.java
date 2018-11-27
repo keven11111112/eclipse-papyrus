@@ -421,7 +421,7 @@ public class ModelingAssistantProviderOperations {
 		if (false == type instanceof IHintedType) {
 			return false;
 		}
-		String hint = ((IHintedType)type).getSemanticHint();
+		String hint = ((IHintedType) type).getSemanticHint();
 		return hint != null && !hint.isEmpty();
 	}
 
@@ -556,7 +556,7 @@ public class ModelingAssistantProviderOperations {
 	@SuppressWarnings("unchecked")
 	public static boolean isRelationshipType(ModelingAssistantProvider modelingAssistantProvider, IElementType elementType) {
 		Set<IElementType> relationshipTypes;
-		CacheAdapter cache = CacheAdapter.getCacheAdapter(modelingAssistantProvider);
+		CacheAdapter cache = CacheAdapter.getCacheAdapter(modelingAssistantProvider); // bug 541590 [CDO] - change is not required here
 		if (cache == null) {
 			relationshipTypes = ImmutableSet.copyOf(modelingAssistantProvider.getRelationshipTypes());
 		} else {

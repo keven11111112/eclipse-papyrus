@@ -17,9 +17,9 @@ import static org.eclipse.papyrus.infra.gmfdiag.assistant.tests.ElementTypesUtil
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+
 import java.util.Arrays;
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -32,6 +32,9 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.resource.UMLResource;
+
+import junit.framework.TestCase;
+import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
@@ -52,8 +55,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
  *
  * @generated
  */
-public class AssistedElementTypeFilterTest extends TestCase
-{
+public class AssistedElementTypeFilterTest extends TestCase {
 
 	/**
 	 * The fixture for this Assisted Element Type Filter test case.
@@ -70,8 +72,7 @@ public class AssistedElementTypeFilterTest extends TestCase
 	 *
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(AssistedElementTypeFilterTest.class);
 	}
 
@@ -82,8 +83,7 @@ public class AssistedElementTypeFilterTest extends TestCase
 	 *
 	 * @generated
 	 */
-	public AssistedElementTypeFilterTest(String name)
-	{
+	public AssistedElementTypeFilterTest(String name) {
 		super(name);
 	}
 
@@ -94,8 +94,7 @@ public class AssistedElementTypeFilterTest extends TestCase
 	 *
 	 * @generated
 	 */
-	protected void setFixture(AssistedElementTypeFilter fixture)
-	{
+	protected void setFixture(AssistedElementTypeFilter fixture) {
 		this.fixture = fixture;
 	}
 
@@ -106,8 +105,7 @@ public class AssistedElementTypeFilterTest extends TestCase
 	 *
 	 * @generated
 	 */
-	protected AssistedElementTypeFilter getFixture()
-	{
+	protected AssistedElementTypeFilter getFixture() {
 		return fixture;
 	}
 
@@ -119,10 +117,9 @@ public class AssistedElementTypeFilterTest extends TestCase
 	 * @generated NOT
 	 */
 	@Override
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		ResourceSet rset = new ResourceSetImpl();
-		rset.eAdapters().add(new CacheAdapter());
+		rset.eAdapters().add(new CacheAdapter()); // bug 541590 [CDO] - change is not required here
 		Resource res = rset.getResource(URI.createPlatformPluginURI("org.eclipse.papyrus.infra.gmfdiag.assistant.tests/resources/test.assistants", true), true);
 
 		setFixture((AssistedElementTypeFilter) ((ModelingAssistantProvider) res.getContents().get(0)).getOwnedFilter("isAssistedElementType"));
@@ -136,8 +133,7 @@ public class AssistedElementTypeFilterTest extends TestCase
 	 * @generated NOT
 	 */
 	@Override
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		EMFHelper.unload(EMFHelper.getResourceSet(getFixture()));
 		setFixture(null);
 	}
@@ -150,8 +146,7 @@ public class AssistedElementTypeFilterTest extends TestCase
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.AssistedElementTypeFilter#getProvider()
 	 * @generated NOT
 	 */
-	public void testGetProvider()
-	{
+	public void testGetProvider() {
 		ModelingAssistantProvider provider = (ModelingAssistantProvider) EcoreUtil.getRootContainer(getFixture());
 
 		assertThat(getFixture().getProvider(), is(provider));
@@ -173,8 +168,7 @@ public class AssistedElementTypeFilterTest extends TestCase
 	 * @see org.eclipse.papyrus.infra.filters.Filter#matches(java.lang.Object)
 	 * @generated NOT
 	 */
-	public void testMatches__Object()
-	{
+	public void testMatches__Object() {
 		// Match an element type
 		assertThat(getFixture().matches(canonicalize(UMLElementTypes.DATA_TYPE)), is(true));
 		assertThat(getFixture().matches(canonicalize(UMLElementTypes.ENUMERATION)), is(false)); // don't match element-type subtypes
@@ -185,7 +179,7 @@ public class AssistedElementTypeFilterTest extends TestCase
 		EMFHelper.getResourceSet(getFixture()).getResources().add(uml);
 		uml.getContents().addAll(Arrays.asList( //
 				UMLFactory.eINSTANCE.createDataType(), //
-				UMLFactory.eINSTANCE.createEnumeration(),//
+				UMLFactory.eINSTANCE.createEnumeration(), //
 				UMLFactory.eINSTANCE.createCallBehaviorAction()));
 
 		// Match an object

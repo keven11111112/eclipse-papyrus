@@ -32,8 +32,6 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.operations.AssistantOperations;
 
-import org.eclipse.uml2.common.util.CacheAdapter;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Assistant</b></em>'.
@@ -139,14 +137,6 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	@Override
 	public IElementType getElementType() {
-		CacheAdapter cache = getCacheAdapter();
-		if (cache != null) {
-			IElementType result = (IElementType) cache.get(eResource(), this, AssistantPackage.Literals.ASSISTANT__ELEMENT_TYPE);
-			if (result == null) {
-				cache.put(eResource(), this, AssistantPackage.Literals.ASSISTANT__ELEMENT_TYPE, result = AssistantOperations.getElementType(this));
-			}
-			return result;
-		}
 		return AssistantOperations.getElementType(this);
 	}
 
@@ -257,7 +247,7 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (elementTypeID: "); //$NON-NLS-1$
 		result.append(elementTypeID);
 		result.append(')');
@@ -276,18 +266,6 @@ public abstract class AssistantImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
-	}
-
-	/**
-	 * Retrieves the cache adapter for this '<em><b>Assistant</b></em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return The cache adapter for this '<em><b>Assistant</b></em>'.
-	 * @generated
-	 */
-	protected CacheAdapter getCacheAdapter() {
-		return CacheAdapter.getCacheAdapter(this);
 	}
 
 	/**

@@ -18,9 +18,9 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
+
 import java.util.Collection;
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -41,6 +41,9 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.hamcrest.CoreMatchers;
+
+import junit.framework.TestCase;
+import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
@@ -145,7 +148,7 @@ public class ModelingAssistantProviderTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		ResourceSet rset = new ResourceSetImpl();
-		rset.eAdapters().add(new CacheAdapter());
+		rset.eAdapters().add(new CacheAdapter()); // bug 541590 [CDO] - change is not required here
 		Resource res = rset.getResource(URI.createPlatformPluginURI("org.eclipse.papyrus.infra.gmfdiag.assistant.tests/resources/test.assistants", true), true);
 
 		setFixture((ModelingAssistantProvider) res.getContents().get(0));
@@ -185,8 +188,7 @@ public class ModelingAssistantProviderTest extends TestCase {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getClientContext()
 	 * @generated NOT
 	 */
-	public void testGetClientContext()
-	{
+	public void testGetClientContext() {
 		assertThat(getFixture().getClientContext(), is(ElementTypeUtils.getDefaultClientContext()));
 
 		getFixture().setClientContextID("org.eclipse.papyrus.uml.diagram.clazz.TypeContext");
@@ -211,8 +213,7 @@ public class ModelingAssistantProviderTest extends TestCase {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getExcludedElementTypes()
 	 * @generated NOT
 	 */
-	public void testGetExcludedElementTypes()
-	{
+	public void testGetExcludedElementTypes() {
 		assertThat(getFixture().getExcludedElementTypes(), hasItem(canonicalize(UMLElementTypes.ASSOCIATION_CLASS)));
 	}
 
@@ -224,8 +225,7 @@ public class ModelingAssistantProviderTest extends TestCase {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypes()
 	 * @generated NOT
 	 */
-	public void testGetRelationshipTypes()
-	{
+	public void testGetRelationshipTypes() {
 		assertThat(getFixture().getRelationshipTypes(), hasItem(canonicalize(UMLElementTypes.USAGE)));
 		assertThat(getFixture().getRelationshipTypes(), hasItem(canonicalize(UMLElementTypes.GENERALIZATION)));
 		assertThat(getFixture().getRelationshipTypes(), not(hasItem(canonicalize(UMLElementTypes.CLASS))));
@@ -491,8 +491,7 @@ public class ModelingAssistantProviderTest extends TestCase {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getElementType(java.lang.String)
 	 * @generated NOT
 	 */
-	public void testGetElementType__String()
-	{
+	public void testGetElementType__String() {
 		assertThat(canonicalize(UMLElementTypes.CLASS), is(getFixture().getElementType("org.eclipse.papyrus.uml.Class")));
 	}
 
@@ -504,8 +503,7 @@ public class ModelingAssistantProviderTest extends TestCase {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#isRelationshipType(org.eclipse.gmf.runtime.emf.type.core.IElementType)
 	 * @generated NOT
 	 */
-	public void testIsRelationshipType__IElementType()
-	{
+	public void testIsRelationshipType__IElementType() {
 		assertThat(getFixture().isRelationshipType(canonicalize(UMLElementTypes.USAGE)), is(true));
 		assertThat(getFixture().isRelationshipType(canonicalize(UMLElementTypes.GENERALIZATION)), is(true));
 		assertThat(getFixture().isRelationshipType(canonicalize(UMLElementTypes.CLASS)), is(false));

@@ -27,7 +27,6 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ElementTypeFilter;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.operations.ElementTypeFilterOperations;
-import org.eclipse.uml2.common.util.CacheAdapter;
 
 /**
  * <!-- begin-user-doc -->
@@ -184,14 +183,6 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	@Override
 	public IElementType getElementType() {
-		CacheAdapter cache = getCacheAdapter();
-		if (cache != null) {
-			IElementType result = (IElementType) cache.get(eResource(), this, AssistantPackage.Literals.ELEMENT_TYPE_FILTER__ELEMENT_TYPE);
-			if (result == null) {
-				cache.put(eResource(), this, AssistantPackage.Literals.ELEMENT_TYPE_FILTER__ELEMENT_TYPE, result = ElementTypeFilterOperations.getElementType(this));
-			}
-			return result;
-		}
 		return ElementTypeFilterOperations.getElementType(this);
 	}
 
@@ -338,7 +329,7 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(", elementTypeID: "); //$NON-NLS-1$
@@ -359,18 +350,6 @@ public class ElementTypeFilterImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
-	}
-
-	/**
-	 * Retrieves the cache adapter for this '<em><b>Element Type Filter</b></em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return The cache adapter for this '<em><b>Element Type Filter</b></em>'.
-	 * @generated
-	 */
-	protected CacheAdapter getCacheAdapter() {
-		return CacheAdapter.getCacheAdapter(this);
 	}
 
 } // ElementTypeFilterImpl

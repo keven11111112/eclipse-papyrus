@@ -19,37 +19,28 @@ import java.util.Collection;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.filters.Filter;
-
 import org.eclipse.papyrus.infra.gmfdiag.assistant.Assistant;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
-
 import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.operations.ModelingAssistantProviderOperations;
-import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 import org.eclipse.uml2.common.util.SubsetSupersetEDataTypeUniqueEList;
 
@@ -254,17 +245,6 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 */
 	@Override
 	public EList<Assistant> getAssistants() {
-		CacheAdapter cache = getCacheAdapter();
-		if (cache != null) {
-			Resource eResource = eResource();
-			@SuppressWarnings("unchecked")
-			EList<Assistant> assistants = (EList<Assistant>) cache.get(eResource, this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ASSISTANT);
-			if (assistants == null) {
-				cache.put(eResource, this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ASSISTANT,
-						assistants = new DerivedUnionEObjectEList<>(Assistant.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__ASSISTANT, ASSISTANT_ESUBSETS));
-			}
-			return assistants;
-		}
 		return new DerivedUnionEObjectEList<>(Assistant.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__ASSISTANT, ASSISTANT_ESUBSETS);
 	}
 
@@ -429,15 +409,6 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 */
 	@Override
 	public EList<IElementType> getElementTypes() {
-		CacheAdapter cache = getCacheAdapter();
-		if (cache != null) {
-			@SuppressWarnings("unchecked")
-			EList<IElementType> result = (EList<IElementType>) cache.get(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE);
-			if (result == null) {
-				cache.put(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE, result = ModelingAssistantProviderOperations.getElementTypes(this));
-			}
-			return result;
-		}
 		return ModelingAssistantProviderOperations.getElementTypes(this);
 	}
 
@@ -474,14 +445,6 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 */
 	@Override
 	public IClientContext getClientContext() {
-		CacheAdapter cache = getCacheAdapter();
-		if (cache != null) {
-			IClientContext result = (IClientContext) cache.get(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT);
-			if (result == null) {
-				cache.put(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT, result = ModelingAssistantProviderOperations.getClientContext(this));
-			}
-			return result;
-		}
 		return ModelingAssistantProviderOperations.getClientContext(this);
 	}
 
@@ -520,15 +483,6 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 */
 	@Override
 	public EList<IElementType> getExcludedElementTypes() {
-		CacheAdapter cache = getCacheAdapter();
-		if (cache != null) {
-			@SuppressWarnings("unchecked")
-			EList<IElementType> result = (EList<IElementType>) cache.get(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE);
-			if (result == null) {
-				cache.put(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE, result = ModelingAssistantProviderOperations.getExcludedElementTypes(this));
-			}
-			return result;
-		}
 		return ModelingAssistantProviderOperations.getExcludedElementTypes(this);
 	}
 
@@ -554,15 +508,6 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 */
 	@Override
 	public EList<IElementType> getRelationshipTypes() {
-		CacheAdapter cache = getCacheAdapter();
-		if (cache != null) {
-			@SuppressWarnings("unchecked")
-			EList<IElementType> result = (EList<IElementType>) cache.get(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE);
-			if (result == null) {
-				cache.put(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE, result = ModelingAssistantProviderOperations.getRelationshipTypes(this));
-			}
-			return result;
-		}
 		return ModelingAssistantProviderOperations.getRelationshipTypes(this);
 	}
 
@@ -1033,7 +978,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (listener: "); //$NON-NLS-1$
 		result.append(listeners);
 		result.append(", name: "); //$NON-NLS-1$
@@ -1062,18 +1007,6 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 */
 	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
-	}
-
-	/**
-	 * Retrieves the cache adapter for this '<em><b>Modeling Assistant Provider</b></em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return The cache adapter for this '<em><b>Modeling Assistant Provider</b></em>'.
-	 * @generated
-	 */
-	protected CacheAdapter getCacheAdapter() {
-		return CacheAdapter.getCacheAdapter(this);
 	}
 
 	/**

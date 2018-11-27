@@ -208,7 +208,8 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 		}
 
 		// Obtain or create and register package
-		AssistantPackageImpl theAssistantPackage = (AssistantPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AssistantPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new AssistantPackageImpl());
+		Object registeredAssistantPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		AssistantPackageImpl theAssistantPackage = registeredAssistantPackage instanceof AssistantPackageImpl ? (AssistantPackageImpl) registeredAssistantPackage : new AssistantPackageImpl();
 
 		isInited = true;
 
@@ -225,7 +226,6 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 
 		// Mark meta-data to indicate it can't be changed
 		theAssistantPackage.freeze();
-
 
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(AssistantPackage.eNS_URI, theAssistantPackage);

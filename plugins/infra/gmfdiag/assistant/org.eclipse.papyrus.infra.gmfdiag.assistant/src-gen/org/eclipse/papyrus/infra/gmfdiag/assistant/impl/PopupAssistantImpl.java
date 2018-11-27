@@ -15,17 +15,12 @@ package org.eclipse.papyrus.infra.gmfdiag.assistant.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.filters.Filter;
-
 import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
@@ -282,8 +277,7 @@ public class PopupAssistantImpl extends AssistantImpl implements PopupAssistant 
 	@Override
 	public void setOwningProvider(ModelingAssistantProvider newOwningProvider) {
 		if (newOwningProvider != eInternalContainer() || (eContainerFeatureID() != AssistantPackage.POPUP_ASSISTANT__OWNING_PROVIDER && newOwningProvider != null)) {
-			if (EcoreUtil.isAncestor(this, newOwningProvider))
-			 {
+			if (EcoreUtil.isAncestor(this, newOwningProvider)) {
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			}
 			NotificationChain msgs = null;

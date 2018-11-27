@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core;
@@ -77,7 +77,7 @@ public class ModelingAssistantModelRegistry implements IProviderChangeListener {
 		super();
 
 		// Attach a CacheAdapter for performance
-		resourceSet.eAdapters().add(new CacheAdapter());
+		resourceSet.eAdapters().add(new CacheAdapter()); // bug 541590 [CDO] - change is not required here
 
 		// Load plug-in models
 		new ExtensionLoader().readRegistry();
@@ -263,7 +263,7 @@ public class ModelingAssistantModelRegistry implements IProviderChangeListener {
 			@Override
 			public void elementTypeAdded(ElementTypeAddedEvent elementTypeAddedEvent) {
 				// Forget everything we think we know about element types and recompute
-				CacheAdapter.getCacheAdapter(resourceSet).clear();
+				CacheAdapter.getCacheAdapter(resourceSet).clear(); // bug 541590 [CDO] - change is not required here
 			}
 		};
 	}

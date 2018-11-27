@@ -34,8 +34,6 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
 
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.operations.AssistedElementTypeFilterOperations;
 
-import org.eclipse.uml2.common.util.CacheAdapter;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Assisted Element Type Filter</b></em>'.
@@ -250,7 +248,7 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 			return super.toString();
 		}
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(')');
@@ -269,18 +267,6 @@ public class AssistedElementTypeFilterImpl extends MinimalEObjectImpl.Container 
 	 */
 	protected EObject create(EClass eClass) {
 		return EcoreUtil.create(eClass);
-	}
-
-	/**
-	 * Retrieves the cache adapter for this '<em><b>Assisted Element Type Filter</b></em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @return The cache adapter for this '<em><b>Assisted Element Type Filter</b></em>'.
-	 * @generated
-	 */
-	protected CacheAdapter getCacheAdapter() {
-		return CacheAdapter.getCacheAdapter(this);
 	}
 
 } // AssistedElementTypeFilterImpl
