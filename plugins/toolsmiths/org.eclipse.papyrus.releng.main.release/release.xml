@@ -141,8 +141,8 @@
 		<plugin name="org.eclipse.papyrus.infra.hyperlink" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.doc" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.psf" version="1.2.0"/>
-		<plugin name="org.eclipse.papyrus.infra.newchild" version="4.0.0"/>
-		<plugin name="org.eclipse.papyrus.infra.newchild.edit" version="4.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.newchild" version="4.1.0"/>
+		<plugin name="org.eclipse.papyrus.infra.newchild.edit" version="4.1.0"/>
 		<plugin name="org.eclipse.papyrus.infra.sync" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.types" version="4.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.types.core" version="4.0.0"/>
@@ -263,7 +263,7 @@
 		<plugin name="org.eclipse.papyrus.infra.services.edit.ui" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.services.resourceloading.ui" version="1.2.100"/>
 		<plugin name="org.eclipse.papyrus.infra.properties.ui" version="3.4.0"/>
-		<plugin name="org.eclipse.papyrus.infra.editor.welcome" version="2.0.0"/>
+		<plugin name="org.eclipse.papyrus.infra.editor.welcome" version="2.0.100"/>
 		<plugin name="org.eclipse.papyrus.infra.editor.welcome.nattable" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.newchild.ui" version="2.0.100"/>
 		<plugin name="org.eclipse.papyrus.infra.newchild.editor" version="3.1.0"/>
@@ -316,7 +316,7 @@
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.decoratormodel.feature" version="3.0.0">
 		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
-		<plugin name="org.eclipse.papyrus.uml.decoratormodel" version="2.1.0"/>
+		<plugin name="org.eclipse.papyrus.uml.decoratormodel" version="2.2.0"/>
 		<plugin name="org.eclipse.papyrus.uml.decoratormodel.controlmode" version="1.2.200"/>
 		<plugin name="org.eclipse.papyrus.uml.decoratormodel.ui" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.decoratormodel.properties" version="4.0.0"/>
@@ -596,7 +596,7 @@
 	<plugin name="org.eclipse.papyrus.infra.core.sasheditor.di" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.core.sashwindows.di" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.infra.doc" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.infra.editor.welcome" version="2.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.editor.welcome" version="2.0.100"/>
 	<plugin name="org.eclipse.papyrus.infra.editor.welcome.internationalization" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.editor.welcome.nattable" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.emf" version="3.0.0"/>
@@ -682,9 +682,9 @@
 	<plugin name="org.eclipse.papyrus.infra.nattable.representation.edit" version="2.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.nattable.views.config" version="5.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.nattable.views.editor" version="1.2.100"/>
-	<plugin name="org.eclipse.papyrus.infra.newchild" version="4.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.newchild" version="4.1.0"/>
 	<plugin name="org.eclipse.papyrus.infra.newchild.doc" version="1.2.0"/>
-	<plugin name="org.eclipse.papyrus.infra.newchild.edit" version="4.0.0"/>
+	<plugin name="org.eclipse.papyrus.infra.newchild.edit" version="4.1.0"/>
 	<plugin name="org.eclipse.papyrus.infra.newchild.editor" version="3.1.0"/>
 	<plugin name="org.eclipse.papyrus.infra.newchild.ui" version="2.0.100"/>
 	<plugin name="org.eclipse.papyrus.infra.onefile" version="2.2.0"/>
@@ -744,7 +744,7 @@
 	<plugin name="org.eclipse.papyrus.uml.architecture" version="1.1.200"/>
 	<plugin name="org.eclipse.papyrus.uml.commands" version="1.3.100"/>
 	<plugin name="org.eclipse.papyrus.uml.controlmode.profile" version="2.0.100"/>
-	<plugin name="org.eclipse.papyrus.uml.decoratormodel" version="2.1.0"/>
+	<plugin name="org.eclipse.papyrus.uml.decoratormodel" version="2.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.decoratormodel.controlmode" version="1.2.200"/>
 	<plugin name="org.eclipse.papyrus.uml.decoratormodel.doc" version="1.2.0"/>
 	<plugin name="org.eclipse.papyrus.uml.decoratormodel.properties" version="4.0.0"/>
