@@ -78,14 +78,14 @@
       <requirement name="org.apache.xerces"/>
       <requirement name="org.eclipse.wst.xml.core"/>
       <repositoryList name="2018-12">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.10-I-builds/I20181031-1800/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.10milestones/S-4.10M3-201811211800/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201811020629">
+        <repository url="http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201811200213">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF (Core)</value>
@@ -116,7 +116,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.1/S201810130521">
+        <repository url="http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.1/S201811270601">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>QVT Operational for 2018-12</value>
@@ -130,14 +130,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.5.1/S201811050817">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.6.0/S201811261148">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>OCL for 2018-12</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.4milestones">
+        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.5milestones">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT UML2</value>
@@ -151,7 +151,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201810150206">
+        <repository url="http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201811260210">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Xtext, Xtend</value>
@@ -165,7 +165,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.12.0/S-3.12.0.M2-20181101035339/repository/">
+        <repository url="https://download.eclipse.org/webtools/downloads/drops/R3.12.0/S-3.12.0.M3-20181124033837/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools 3.12 for Simrel 2018-12</value>
@@ -331,7 +331,7 @@
       <requirement name="org.eclipse.gmf.tooling.feature.group"/>
       <requirement name="org.eclipse.emf.compare" versionRange="[3.3.0,4.0.0)"/>
       <repositoryList name="2018-12">
-        <repository url="http://download.eclipse.org/oomph/drops/milestone/S20181107-083923-1.11.0-M1">
+        <repository url="http://download.eclipse.org/oomph/drops/milestone/S20181120-175658-1.11.0-M2">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>oomph</value>

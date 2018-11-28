@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus RCP" sequenceNumber="1543248370">
+<target name="Papyrus RCP" sequenceNumber="1543392683">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -29,8 +29,8 @@
       <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/S20181120221132/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.9.1.v20181013-0521"/>
-      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.1/S201810130521"/>
+      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.9.1.v20181127-0601"/>
+      <repository id="qvto" location="http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.1/S201811270601"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xpand.sdk.feature.group" version="2.2.0.v201605260315"/>

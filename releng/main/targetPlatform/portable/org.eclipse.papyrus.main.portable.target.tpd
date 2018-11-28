@@ -41,7 +41,7 @@ location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/S2018112
 
 //updateFrom("QVT Operational for 2018-12",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.1/S201810130521" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.1/S201811270601" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
