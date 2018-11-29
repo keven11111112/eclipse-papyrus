@@ -11,11 +11,12 @@
  *     CEA LIST - initial API and implementation
  *     Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289
  *     Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Bug 528199
- *     
+ *
  *******************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.definition;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -25,6 +26,7 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.constraints.constraints.JavaQuery;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -32,13 +34,21 @@ import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.I
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConstraint;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.constraints.constraints.JavaQuery;
 import org.eclipse.swt.graphics.Image;
 
 /**
  * Represented class for Extension point of Direct Editor.
  */
 public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
+
+	/**
+	 * Id of the deprecated direct editor configuration extension point.
+	 * TODO : This field will be removed in Papyrus 5.0. See bug 541707.
+	 *
+	 * @deprecated since 1.0.
+	 */
+	@Deprecated
+	private static final String OLD_DIRECT_EDITOR_CONFIGURATION_EXTENSION_ID = "org.eclipse.papyrus.extensionpoints.editors.DirectEditor"; //$NON-NLS-1$
 
 	private static volatile DirectEditorExtensionPoint instance = null;
 
@@ -75,10 +85,15 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	protected void init() {
 		// It was not already computed,
 		// returns the new Collection of DirectEditorExtensionPoint
-		List<DirectEditorExtensionPoint> directEditorExtensionPoints = new ArrayList<DirectEditorExtensionPoint>();
+		List<DirectEditorExtensionPoint> directEditorExtensionPoints = new ArrayList<>();
 
 		// Reading data from plug-ins
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(IDirectEditorConfigurationIds.DIRECT_EDITOR_CONFIGURATION_EXTENSION_ID);
+		Collection<IConfigurationElement> configElements = new ArrayList<>();
+		configElements.addAll(Arrays.asList(Platform.getExtensionRegistry().getConfigurationElementsFor(IDirectEditorConfigurationIds.DIRECT_EDITOR_CONFIGURATION_EXTENSION_ID)));
+
+		// TODO : This line will be removed in Papyrus 5.0. See bug  541707
+		// This manage the old extension point
+		configElements.addAll(Arrays.asList(Platform.getExtensionRegistry().getConfigurationElementsFor(OLD_DIRECT_EDITOR_CONFIGURATION_EXTENSION_ID)));
 
 		// Read configuration elements for the current extension
 		for (IConfigurationElement configElement : configElements) {
@@ -150,7 +165,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	public Collection<DirectEditorExtensionPoint> getDirectEditorConfigurations(EObject semanticObjectToEdit, Object selectedObject) {
 		Collection<IDirectEditorExtensionPoint> directEditorConfigurations = DirectEditorsUtil.getDirectEditorExtensions(semanticObjectToEdit, selectedObject);
 
-		List<DirectEditorExtensionPoint> returnList = new ArrayList<DirectEditorExtensionPoint>();
+		List<DirectEditorExtensionPoint> returnList = new ArrayList<>();
 		for (IDirectEditorExtensionPoint extension : directEditorConfigurations) {
 			if (extension instanceof DirectEditorExtensionPoint) {
 				returnList.add((DirectEditorExtensionPoint) extension);
@@ -418,6 +433,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *
 	 * @return
 	 */
+	@Override
 	public String getLanguage() {
 		return language;
 	}
@@ -428,6 +444,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *
 	 * @return
 	 */
+	@Override
 	public String getObjectToEdit() {
 		return objectClassToEdit.getCanonicalName();
 	}
@@ -437,6 +454,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *
 	 * @return
 	 */
+	@Override
 	public Class<? extends EObject> getObjectClassToEdit() {
 		return objectClassToEdit;
 	}
@@ -447,6 +465,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *
 	 * @return
 	 */
+	@Override
 	public IDirectEditorConfiguration getDirectEditorConfiguration() {
 		return directEditorConfiguration;
 	}
@@ -457,6 +476,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *
 	 * @param directEditorConfiguration
 	 */
+	@Override
 	public void setDirectEditorConfiguration(IDirectEditorConfiguration directEditorConfiguration) {
 		this.directEditorConfiguration = directEditorConfiguration;
 	}
@@ -467,6 +487,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *
 	 * @return
 	 */
+	@Override
 	public Integer getPriority() {
 		int preferencePriority = getPreferencePriority();
 		return preferencePriority != -1 ? preferencePriority : extensionPriority;
@@ -493,6 +514,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *
 	 * @param priority
 	 */
+	@Override
 	public void setPriority(Integer priority) {
 		this.extensionPriority = priority;
 	}
@@ -502,6 +524,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *
 	 * @return the additional constraint
 	 */
+	@Override
 	public IDirectEditorConstraint getAdditionalConstraint() {
 		return constraint;
 	}
@@ -511,6 +534,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *
 	 * @return
 	 */
+	@Override
 	public Image getIcon() {
 		return null;
 	}
@@ -520,6 +544,7 @@ public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 	 *
 	 * @return
 	 */
+	@Override
 	public boolean isSuperType() {
 		return superType;
 	}
