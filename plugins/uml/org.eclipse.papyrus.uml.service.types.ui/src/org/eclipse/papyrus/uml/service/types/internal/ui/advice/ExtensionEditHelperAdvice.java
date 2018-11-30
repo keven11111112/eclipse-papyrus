@@ -1,3 +1,21 @@
+/*******************************************************************************
+ * Copyright (c) 2016, 2018 CEA LIST, Christian W. Damus, and others..
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *
+ *     Christian W. Damus - Initial API and implementation
+ *     Asma Smaoui (CEA LIST) asma.smaoui@cea.fr - Bug 541746
+ *
+ *******************************************************************************/
+
+
+
 package org.eclipse.papyrus.uml.service.types.internal.ui.advice;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -67,6 +85,7 @@ public class ExtensionEditHelperAdvice extends AbstractEditHelperAdvice {
 				property.setType(target);
 				property.setAssociation(newExtension);
 				property.setAggregation(AggregationKind.NONE_LITERAL);
+				property.setLower(0);
 				newExtension.getMemberEnds().add(property);
 				source.getOwnedAttributes().add(property);
 				container.getPackagedElements().add(newExtension);
