@@ -14,7 +14,6 @@
 
 	<properties>
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
-		<testSuiteClass>org.eclipse.papyrus.tests.AllTests</testSuiteClass>
 		<jacoco.version>0.7.9</jacoco.version>
 		<!-- Separate property for test argLine seems to be required when running 
 			Jacoco + Surefire -->

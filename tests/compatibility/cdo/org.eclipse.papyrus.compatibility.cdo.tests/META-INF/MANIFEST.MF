@@ -9,4 +9,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit;bundle-version="[4.12.0,5.0.0)",
  org.eclipse.gmf.runtime.notation;bundle-version="[1.9.0,2.0.0)",
  org.eclipse.uml2.uml;bundle-version="[5.4.0,6.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="[2.0.0,3.0.0)"
+ org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.junit.framework;bundle-version="[1.2.0,2.0.0)"
