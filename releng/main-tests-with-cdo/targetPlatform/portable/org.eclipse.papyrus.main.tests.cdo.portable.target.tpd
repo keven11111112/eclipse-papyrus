@@ -5,7 +5,7 @@ include
 
 //manualUpdate
 
-location PapyrusMain "http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/master"{
+location PapyrusMain "https://ci.eclipse.org/papyrus/view/Master/job/Papyrus-Master/lastSuccessfulBuild/artifact/repository/"{
 	org.eclipse.papyrus.sdk.feature.feature.group lazy
 }
 
