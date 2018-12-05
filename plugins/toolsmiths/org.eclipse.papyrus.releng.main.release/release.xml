@@ -185,7 +185,7 @@
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.gmfmenu.filter" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.menu" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.export" version="2.1.0"/>
-		<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant" version="1.3.100"/>
+		<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant" version="1.4.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.edit" version="1.3.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.editor" version="1.3.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.ui" version="1.2.0"/>
@@ -615,7 +615,7 @@
 	<plugin name="org.eclipse.papyrus.infra.emf.types.ui.properties" version="3.0.0"/>
 	<plugin name="org.eclipse.papyrus.infra.filters" version="1.3.0"/>
 	<plugin name="org.eclipse.papyrus.infra.filters.edit" version="1.4.0"/>
-	<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant" version="1.3.100"/>
+	<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant" version="1.4.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.edit" version="1.3.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.editor" version="1.3.0"/>
 	<plugin name="org.eclipse.papyrus.infra.gmfdiag.assistant.ui" version="1.2.0"/>
