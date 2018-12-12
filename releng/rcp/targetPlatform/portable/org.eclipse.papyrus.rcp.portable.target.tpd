@@ -7,13 +7,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //updateFrom("EGIT",0)
 
-location egit "http://download.eclipse.org/egit/staging/v5.2.0.201811281532-m3" {
+location egit "http://download.eclipse.org/egit/updates-5.2" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.10milestones/S-4.10RC1-201811290330/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.10milestones/S-4.10RC2-201812060815/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group 
 	org.eclipse.equinox.executable.feature.group 
@@ -32,14 +32,14 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.24.2/v20180905-2014" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201812041249/" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201812111422/" {
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201812030449" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201812060606" {
 	org.eclipse.xsd.sdk.feature.group
 }
 

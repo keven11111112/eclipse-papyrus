@@ -41,7 +41,7 @@ location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R2018112
 
 //updateFrom("QVT Operational for 2018-12",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.1/S201812032103" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.1/S201812101559" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -60,13 +60,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.5milestone
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.10milestones/S-4.10RC1-201811290330/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.10milestones/S-4.10RC2-201812060815/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2018-12",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.6.0/S201812031727" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.6.0/S201812101441" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -113,7 +113,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201812030449" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201812060606" {
 	org.eclipse.emf.sdk.feature.group
 }
 
