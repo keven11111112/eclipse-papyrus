@@ -347,4 +347,21 @@ public class NotificationContentEvent extends ContentEvent implements Notificati
 		return notification.getNewStringValue();
 	}
 
+	/**
+	 * @see java.lang.Object#toString()
+	 *
+	 * @return
+	 */
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append(getClass().getSimpleName());
+		builder.append(" wraps the EMF Notification: "); //$NON-NLS-1$
+		if (null != notification) {
+			builder.append(notification.toString());
+		} else {
+			builder.append("null"); //$NON-NLS-1$
+		}
+		return builder.toString();
+	}
 }
