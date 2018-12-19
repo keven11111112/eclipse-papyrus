@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.rcp.feature"
-      version="4.2.0.qualifier"
+      version="4.3.0.qualifier"
       label="%featureName"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
@@ -20,8 +20,8 @@
    </license>
 
    <url>
-      <discovery label="2018-09" url="http://download.eclipse.org/releases/2018-09/"/>
-      <discovery label="Eclipse Platform 4.9" url="http://download.eclipse.org/eclipse/updates/4.9"/>
+      <discovery label="2018-12" url="http://download.eclipse.org/releases/2018-12/"/>
+      <discovery label="Eclipse Platform 4.10" url="http://download.eclipse.org/eclipse/updates/4.10"/>
    </url>
 
    <requires>
