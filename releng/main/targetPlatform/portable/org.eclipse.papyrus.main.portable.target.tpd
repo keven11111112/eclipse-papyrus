@@ -54,13 +54,13 @@ location xpand "http://download.eclipse.org/modeling/m2t/xpand/updates/releases/
 
 //updateFrom("MDT UML2",0) 
 
-location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.5milestones" {
+location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 	org.eclipse.uml2.sdk.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.10milestones/S-4.10RC2-201812060815/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.10/R-4.10-201812060815/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -113,7 +113,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201812060606" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.16" {
 	org.eclipse.emf.sdk.feature.group
 }
 

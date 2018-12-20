@@ -78,14 +78,14 @@
       <requirement name="org.apache.xerces"/>
       <requirement name="org.eclipse.wst.xml.core"/>
       <repositoryList name="2018-12">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.10milestones/S-4.10RC2-201812060815/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.10/R-4.10-201812060815/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201812060606">
+        <repository url="http://download.eclipse.org/modeling/emf/emf/builds/release/2.16">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF (Core)</value>
@@ -137,7 +137,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.5milestones">
+        <repository url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.5">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>MDT UML2</value>
@@ -331,7 +331,7 @@
       <requirement name="org.eclipse.gmf.tooling.feature.group"/>
       <requirement name="org.eclipse.emf.compare" versionRange="[3.3.0,4.0.0)"/>
       <repositoryList name="2018-12">
-        <repository url="http://download.eclipse.org/oomph/drops/milestone/S20181204-063112-1.11.0-RC1">
+        <repository url="https://download.eclipse.org/oomph/drops/release/1.11.0">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>oomph</value>

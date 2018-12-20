@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus RCP" sequenceNumber="1544603111">
+<target name="Papyrus RCP" sequenceNumber="1545293514">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -39,7 +39,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.uml2.sdk.feature.group" version="5.5.0.v20181203-1331"/>
-      <repository id="uml" location="http://download.eclipse.org/modeling/mdt/uml2/updates/5.5milestones"/>
+      <repository id="uml" location="http://download.eclipse.org/modeling/mdt/uml2/updates/5.5"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.7.0.v20181210-1441"/>
@@ -99,7 +99,7 @@
       <unit id="org.eclipse.rcp.configuration.feature.group" version="1.1.300.v20181206-0815"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.8.200.v20180922-1751"/>
       <unit id="org.eclipse.sdk.feature.group" version="4.10.0.v20181206-1038"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.10milestones/S-4.10RC2-201812060815/"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.10/R-4.10-201812060815/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="3.24.2.v20180905-0014"/>
@@ -118,7 +118,7 @@
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xsd.sdk.feature.group" version="2.16.0.v20181127-0852"/>
       <unit id="org.eclipse.emf.sdk.feature.group" version="2.16.0.v20181206-1055"/>
-      <repository id="emf" location="http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201812060606"/>
+      <repository id="emf" location="http://download.eclipse.org/modeling/emf/emf/builds/release/2.16"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.7.0.v20180530-1201"/>
