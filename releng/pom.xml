@@ -9,7 +9,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<tycho-version>1.3.0-SNAPSHOT</tycho-version>
+		<tycho-version>1.3.0</tycho-version>
 		<tychoExtrasVersion>1.3.0-SNAPSHOT</tychoExtrasVersion>
 		<jarSignerVersion>1.1.5</jarSignerVersion>
 		<findbugs.version>3.0.1</findbugs.version>
