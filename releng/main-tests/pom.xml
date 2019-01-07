@@ -8,7 +8,7 @@
 		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>org.eclipse.papyrus</groupId>
+	
 	<artifactId>org.eclipse.papyrus.tests.releng</artifactId>
 	<version>1.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -16,7 +16,7 @@
 	<properties>
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
 		<testSuiteClass>org.eclipse.papyrus.tests.AllTests</testSuiteClass>
-		<jacoco.version>0.7.9</jacoco.version>
+		<jacoco.version>0.8.2</jacoco.version> <!-- https://repo.maven.apache.org/maven2/ -->
 		<!-- Separate property for test argLine seems to be required when running 
 			Jacoco + Surefire -->
 		<test.argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100</test.argLine>
