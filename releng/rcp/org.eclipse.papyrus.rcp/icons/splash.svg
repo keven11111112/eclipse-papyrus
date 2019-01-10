@@ -13,7 +13,10 @@
    width="460"
    version="1.2"
    sodipodi:docname="splash.svg"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:export-filename="C:\cygwin64\home\Papyrus\Papyrus-Maintenance\releng\rcp\org.eclipse.papyrus.rcp\icons\splash.svg.png"
+   inkscape:export-xdpi="86.400002"
+   inkscape:export-ydpi="86.400002">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -23,12 +26,12 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1380"
+     inkscape:window-width="1730"
      inkscape:window-height="898"
      id="namedview334"
      showgrid="false"
      inkscape:zoom="0.953584"
-     inkscape:cx="44.365474"
+     inkscape:cx="-147.01777"
      inkscape:cy="80.855544"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -1779,5 +1782,5 @@
        id="tspan4832"
        x="197.48167"
        y="240.93285"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.49736595px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1">2018-12N</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.49736595px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1">2018-12</tspan></text>
 </svg>
