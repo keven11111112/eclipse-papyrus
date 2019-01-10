@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2018 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,6 @@
  *
  * Contributors:
  *  Camille Letavernier (camille.letavernier@cea.fr) - Initial API and implementation
- *  Ansgar Radermacher (CEA) - Bug 540815
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.commands;
@@ -20,7 +19,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
@@ -46,10 +44,8 @@ public class SetMultiplicityCommand extends CompoundCommand {
 	private MultiplicityElement element;
 
 	static EStructuralFeature lowerFeature = UMLPackage.eINSTANCE.getMultiplicityElement_Lower();
-	static EStructuralFeature lowerFeatureVS = UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue();
 
 	static EStructuralFeature upperFeature = UMLPackage.eINSTANCE.getMultiplicityElement_Upper();
-	static EStructuralFeature upperFeatureVS = UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue();
 
 	public SetMultiplicityCommand(MultiplicityElement element, String value) {
 		if (element == null) {
@@ -71,21 +67,17 @@ public class SetMultiplicityCommand extends CompoundCommand {
 		this.lowerUpper = lowerUpper;
 		this.element = element;
 
-		append(getSetCommand(lowerFeature, lowerFeatureVS, lower));
-		append(getSetCommand(upperFeature, upperFeatureVS, upper));
+		append(getSetCommand(lowerFeature, lower));
+		append(getSetCommand(upperFeature, upper));
 	}
 
-	private Command getSetCommand(EStructuralFeature feature, EStructuralFeature featureVS, int value) {
+	private Command getSetCommand(EStructuralFeature feature, int value) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(element);
 		if (provider != null) {
-			AbstractEditCommandRequest request;
-			if (value == 1) { // default value (see bug 540815)
-				request = new SetRequest(element, featureVS, null);
-			} else {
-				request = new SetRequest(element, feature, value);
-			}
-			ICommand gmfCommand = provider.getEditCommand(request);
-			Command emfCommand = new GMFtoEMFCommandWrapper(gmfCommand);
+			SetRequest request = new SetRequest(element, feature, value);
+			ICommand createGMFCommand = provider.getEditCommand(request);
+
+			Command emfCommand = new GMFtoEMFCommandWrapper(createGMFCommand);
 
 			return emfCommand;
 		}
