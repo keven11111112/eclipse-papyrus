@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ * Copyright (c) 2016, 2019 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Ansgar Radermacher (CEA LIST) - common test model with UMLCopyTestME (context bug 541686)
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.tools.tests.tests;
@@ -88,8 +89,9 @@ public class UMLCopyTest {
 		model = UMLUtil.load(rset,
 				URI.createPlatformPluginURI("org.eclipse.papyrus.uml.tools.tests/resources/uml/copy.uml", true),
 				UMLPackage.Literals.PACKAGE);
-		foo = (Interface) model.getOwnedType("Foo");
-		bar = (Class) model.getOwnedType("Bar");
+		Package pkg = model.getNestedPackage("pkg");
+		foo = (Interface) pkg.getOwnedType("Foo");
+		bar = (Class) pkg.getOwnedType("Bar");
 		rlz = bar.getInterfaceRealization(null, foo);
 	}
 }
