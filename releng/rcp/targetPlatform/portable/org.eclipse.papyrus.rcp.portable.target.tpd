@@ -13,7 +13,7 @@ location egit "http://download.eclipse.org/egit/updates-5.2" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.10/R-4.10-201812060815/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.11milestones/S-4.11M1-201901091800/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group 
 	org.eclipse.equinox.executable.feature.group 
@@ -39,7 +39,7 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/mi
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.16" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201901090453" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
