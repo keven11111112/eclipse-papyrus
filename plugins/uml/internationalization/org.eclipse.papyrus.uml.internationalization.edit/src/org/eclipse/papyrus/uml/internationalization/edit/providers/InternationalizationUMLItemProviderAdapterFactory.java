@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2017 Christian W. Damus and others.
- * 
+ * Copyright (c) 2017, 2019 CEA LIST, Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Nicolas FAUVERGUE (CEA LIST) - Bug 543494
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.internationalization.edit.providers;
@@ -82,7 +83,7 @@ public class InternationalizationUMLItemProviderAdapterFactory
 	/**
 	 * Creates a listener on the internationalization preferences utility that will
 	 * be notified when the settings for any resource change.
-	 * 
+	 *
 	 * @return the preference listener
 	 */
 	private InternationalizationPreferenceListener createPreferenceListener() {
@@ -120,7 +121,7 @@ public class InternationalizationUMLItemProviderAdapterFactory
 	/**
 	 * Create an adapter that will check the internationalization status of
 	 * resources as they are added to any of my contextual resource sets.
-	 * 
+	 *
 	 * @return the resource-set adapter
 	 */
 	private Adapter createResourceSetAdapter() {
@@ -172,7 +173,7 @@ public class InternationalizationUMLItemProviderAdapterFactory
 
 	/**
 	 * Queries whether an {@code object} requires i18n support.
-	 * 
+	 *
 	 * @param object
 	 *            an object
 	 * @return whether it needs i18n
@@ -193,7 +194,7 @@ public class InternationalizationUMLItemProviderAdapterFactory
 
 	/**
 	 * Discover the internationalization status of a newly encountered resource set.
-	 * 
+	 *
 	 * @param resourceSet
 	 *            a resource set now encountered
 	 */
@@ -213,7 +214,7 @@ public class InternationalizationUMLItemProviderAdapterFactory
 
 	/**
 	 * Discover the internationalization status of a newly encountered resource.
-	 * 
+	 *
 	 * @param resource
 	 *            a resource now encountered
 	 */
@@ -249,6 +250,20 @@ public class InternationalizationUMLItemProviderAdapterFactory
 
 		// The alternate needs to know about this composition structure, too
 		uml.setParentAdapterFactory(parentAdapterFactory);
+	}
+
+	/**
+	 * We implement this method to avoid possible performance issues to adapt elements when it is not needed.
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory#adapt(org.eclipse.emf.common.notify.Notifier, java.lang.Object)
+	 */
+	@Override
+	public Adapter adapt(final Notifier notifier, final Object type) {
+		if (notifier instanceof EObject && !needsInterationalization((EObject) notifier)) {
+			return uml.adapt(notifier, type);
+		}
+		return super.adapt(notifier, this);
 	}
 
 }
