@@ -21,6 +21,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartm
 
 /**
  * Diagram Reconciler for compartment from 1.1.0 to 1.2.0
+ *
  * @since 3.0
  */
 public class ClassReconcilerForCompartment_1_2_0 extends ReconcilerForCompartment {
@@ -66,7 +67,7 @@ public class ClassReconcilerForCompartment_1_2_0 extends ReconcilerForCompartmen
 	private static final String PackagePackageableElementCompartmentEditPartCN_VISUAL_ID = "7010"; //$NON-NLS-1$
 	private static final String EnumerationEnumerationLiteralCompartmentEditPartCN_VISUAL_ID = "7031"; //$NON-NLS-1$
 	private static final String InstanceSpecificationSlotCompartmentEditPartCN_VISUAL_ID = "7035"; //$NON-NLS-1$
-	
+
 	/** The compartments visual id. */
 	private List<String> compartmentsVisualID = Arrays.asList(
 			ClassAttributeCompartmentEditPart_VISUAL_ID,

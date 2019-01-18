@@ -76,7 +76,7 @@ public class ClassLinkMappingHelper implements ILinkMappingHelper {
 
 			@Override
 			public java.util.Collection<?> caseElementImport(org.eclipse.uml2.uml.ElementImport object) {
-				List<Namespace> result = new ArrayList<Namespace>();
+				List<Namespace> result = new ArrayList<>();
 				result.add(object.getImportingNamespace());
 				return result;
 			};
@@ -88,21 +88,21 @@ public class ClassLinkMappingHelper implements ILinkMappingHelper {
 
 			@Override
 			public java.util.Collection<?> caseInterfaceRealization(org.eclipse.uml2.uml.InterfaceRealization object) {
-				List<BehavioredClassifier> result = new ArrayList<BehavioredClassifier>();
+				List<BehavioredClassifier> result = new ArrayList<>();
 				result.add(object.getImplementingClassifier());
 				return result;
 			};
 
 			@Override
 			public java.util.Collection<?> caseProfileApplication(org.eclipse.uml2.uml.ProfileApplication object) {
-				List<org.eclipse.uml2.uml.Package> result = new ArrayList<org.eclipse.uml2.uml.Package>();
+				List<org.eclipse.uml2.uml.Package> result = new ArrayList<>();
 				result.add(object.getApplyingPackage());
 				return result;
 			};
 
 			@Override
 			public java.util.Collection<?> caseTemplateBinding(org.eclipse.uml2.uml.TemplateBinding object) {
-				List<org.eclipse.uml2.uml.TemplateableElement> result = new ArrayList<org.eclipse.uml2.uml.TemplateableElement>();
+				List<org.eclipse.uml2.uml.TemplateableElement> result = new ArrayList<>();
 				result.add(object.getBoundElement());
 				return result;
 			};
@@ -123,7 +123,7 @@ public class ClassLinkMappingHelper implements ILinkMappingHelper {
 
 			@Override
 			public java.util.Collection<PackageableElement> caseElementImport(org.eclipse.uml2.uml.ElementImport object) {
-				List<org.eclipse.uml2.uml.PackageableElement> result = new ArrayList<org.eclipse.uml2.uml.PackageableElement>();
+				List<org.eclipse.uml2.uml.PackageableElement> result = new ArrayList<>();
 				result.add(object.getImportedElement());
 				return result;
 			};
@@ -135,21 +135,21 @@ public class ClassLinkMappingHelper implements ILinkMappingHelper {
 
 			@Override
 			public java.util.Collection<Interface> caseInterfaceRealization(org.eclipse.uml2.uml.InterfaceRealization object) {
-				List<org.eclipse.uml2.uml.Interface> result = new ArrayList<org.eclipse.uml2.uml.Interface>();
+				List<org.eclipse.uml2.uml.Interface> result = new ArrayList<>();
 				result.add(object.getContract());
 				return result;
 			};
 
 			@Override
 			public java.util.Collection<Profile> caseProfileApplication(org.eclipse.uml2.uml.ProfileApplication object) {
-				List<org.eclipse.uml2.uml.Profile> result = new ArrayList<org.eclipse.uml2.uml.Profile>();
+				List<org.eclipse.uml2.uml.Profile> result = new ArrayList<>();
 				result.add(object.getAppliedProfile());
 				return result;
 			};
 
 			@Override
 			public java.util.Collection<Element> caseTemplateBinding(org.eclipse.uml2.uml.TemplateBinding object) {
-				List<org.eclipse.uml2.uml.Element> result = new ArrayList<org.eclipse.uml2.uml.Element>();
+				List<org.eclipse.uml2.uml.Element> result = new ArrayList<>();
 				result.add(object.getSignature().getOwner());
 				return result;
 			};

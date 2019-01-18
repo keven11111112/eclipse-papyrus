@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI
-    xmi:version="2.0"
+<xmi:XMI xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
@@ -32,10 +31,6 @@
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
           figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
-      <behaviour
-          xsi:type="gmfgen:CustomBehaviour"
-          key="&quot;RemoveOrphanView&quot;"
-          editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7370,10 +7365,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7393,10 +7384,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7414,10 +7401,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7443,10 +7426,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7466,10 +7445,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7487,10 +7462,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7516,10 +7487,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7537,10 +7504,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getAttributeCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7562,10 +7525,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7583,10 +7542,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7612,10 +7567,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7633,10 +7584,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7658,10 +7605,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7679,10 +7622,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7703,10 +7642,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getPackageableElementFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7741,10 +7676,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
         <behaviour
@@ -7776,10 +7707,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
         <behaviour
@@ -7801,10 +7728,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getSlotCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7830,10 +7753,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7853,10 +7772,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7874,10 +7789,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -7903,10 +7814,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7926,10 +7833,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7947,10 +7850,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
@@ -7976,10 +7875,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -7999,10 +7894,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -8020,10 +7911,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -8049,10 +7936,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -8070,10 +7953,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -8095,10 +7974,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -8116,10 +7991,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getOperationCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -8141,10 +8012,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -8162,10 +8029,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getSlotCompartmentFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -8191,10 +8054,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
         <behaviour
@@ -8217,10 +8076,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getPackageableElementFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -8255,10 +8110,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
         <behaviour
@@ -8290,10 +8141,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
         <behaviour
@@ -8317,10 +8164,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -8338,10 +8181,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getNestedClassifierFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -8368,10 +8207,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy"/>
       </compartments>
@@ -8390,10 +8225,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getTemplateParameterRectangle"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -8428,7 +8259,7 @@
     <plugin
         iD="org.eclipse.papyrus.uml.diagram.clazz"
         name="PapyrusUMLClassDiagram"
-        version="3.0.0.qualifier"/>
+        version="3.1.0.qualifier"/>
     <editor/>
     <navigator/>
     <diagramUpdater/>
@@ -8781,134 +8612,91 @@
   <papyrusgmfgenextension:VisualIDOverride
       genView="/0/@diagram"
       visualID="Package_ClassDiagram">
-    <child
-        genView="/0/@diagram/@childNodes.0"
+    <child genView="/0/@diagram/@childNodes.0"
         visualID="Property_ClassAttributeLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.1"
+    <child genView="/0/@diagram/@childNodes.1"
         visualID="Property_ComponentAttributeLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.2"
+    <child genView="/0/@diagram/@childNodes.2"
         visualID="Property_SignalAttributeLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.3"
+    <child genView="/0/@diagram/@childNodes.3"
         visualID="Property_InterfaceAttributeLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.4"
+    <child genView="/0/@diagram/@childNodes.4"
         visualID="Property_PrimitiveTypeAttributeLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.5"
+    <child genView="/0/@diagram/@childNodes.5"
         visualID="Property_DataTypeAttributeLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.6"
+    <child genView="/0/@diagram/@childNodes.6"
         visualID="Class_ClassNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.7"
+    <child genView="/0/@diagram/@childNodes.7"
         visualID="Class_ComponentNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.8"
+    <child genView="/0/@diagram/@childNodes.8"
         visualID="Class_InterfaceNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.9"
+    <child genView="/0/@diagram/@childNodes.9"
         visualID="Operation_ClassOperationLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.10"
+    <child genView="/0/@diagram/@childNodes.10"
         visualID="Operation_ComponentOperationLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.11"
+    <child genView="/0/@diagram/@childNodes.11"
         visualID="Operation_InterfaceOperationLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.12"
+    <child genView="/0/@diagram/@childNodes.12"
         visualID="Operation_PrimitiveTypeOperationLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.13"
+    <child genView="/0/@diagram/@childNodes.13"
         visualID="Operation_DataTypeOperationLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.14"
+    <child genView="/0/@diagram/@childNodes.14"
         visualID="ConnectableElementTemplateParameter_TemplateParameterLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.15"
+    <child genView="/0/@diagram/@childNodes.15"
         visualID="OperationTemplateParameter_TemplateParameterLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.16"
+    <child genView="/0/@diagram/@childNodes.16"
         visualID="ClassifierTemplateParameter_TemplateParameterLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.17"
+    <child genView="/0/@diagram/@childNodes.17"
         visualID="TemplateParameter_TemplateParameterLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.18"
+    <child genView="/0/@diagram/@childNodes.18"
         visualID="EnumerationLiteral_LiteralLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.19"
+    <child genView="/0/@diagram/@childNodes.19"
         visualID="Reception_ReceptionLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.20"
+    <child genView="/0/@diagram/@childNodes.20"
         visualID="Reception_InterfaceReceptionLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.21"
+    <child genView="/0/@diagram/@childNodes.21"
         visualID="Slot_SlotLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.37"
+    <child genView="/0/@diagram/@childNodes.37"
         visualID="Interface_ClassNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.38"
+    <child genView="/0/@diagram/@childNodes.38"
         visualID="Interface_ComponentNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.39"
+    <child genView="/0/@diagram/@childNodes.39"
         visualID="Interface_InterfaceNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.40"
+    <child genView="/0/@diagram/@childNodes.40"
         visualID="Enumeration_ClassNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.41"
+    <child genView="/0/@diagram/@childNodes.41"
         visualID="Enumeration_ComponentNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.42"
+    <child genView="/0/@diagram/@childNodes.42"
         visualID="Enumeration_InterfaceNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.43"
+    <child genView="/0/@diagram/@childNodes.43"
         visualID="PrimitiveType_ClassNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.44"
+    <child genView="/0/@diagram/@childNodes.44"
         visualID="PrimitiveType_ComponentNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.45"
+    <child genView="/0/@diagram/@childNodes.45"
         visualID="PrimitiveType_InterfaceNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.46"
+    <child genView="/0/@diagram/@childNodes.46"
         visualID="DataType_ClassNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.47"
+    <child genView="/0/@diagram/@childNodes.47"
         visualID="DataType_ComponentNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.48"
+    <child genView="/0/@diagram/@childNodes.48"
         visualID="DataType_InterfaceNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.49"
+    <child genView="/0/@diagram/@childNodes.49"
         visualID="Signal_ClassNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.50"
+    <child genView="/0/@diagram/@childNodes.50"
         visualID="Signal_ComponentNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.51"
+    <child genView="/0/@diagram/@childNodes.51"
         visualID="Signal_InterfaceNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.52"
+    <child genView="/0/@diagram/@childNodes.52"
         visualID="Component_ClassNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.53"
+    <child genView="/0/@diagram/@childNodes.53"
         visualID="Component_InterfaceNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.54"
+    <child genView="/0/@diagram/@childNodes.54"
         visualID="Component_ComponentNestedClassifierLabel"/>
-    <child
-        genView="/0/@diagram/@childNodes.22"
+    <child genView="/0/@diagram/@childNodes.22"
         visualID="RedefinableTemplateSignature_Shape"/>
-    <child
-        genView="/0/@diagram/@childNodes.23"
+    <child genView="/0/@diagram/@childNodes.23"
         visualID="TemplateSignature_Shape"/>
-    <child
-        genView="/0/@diagram/@childNodes.24"
+    <child genView="/0/@diagram/@childNodes.24"
         visualID="InstanceSpecification_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.24/@labels.0"
@@ -8917,8 +8705,7 @@
           genView="/0/@diagram/@childNodes.24/@labels.1"
           visualID="InstanceSpecification_FloatingNameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.25"
+    <child genView="/0/@diagram/@childNodes.25"
         visualID="Component_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.25/@labels.0"
@@ -8927,8 +8714,7 @@
           genView="/0/@diagram/@childNodes.25/@labels.1"
           visualID="Component_FloatingNameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.26"
+    <child genView="/0/@diagram/@childNodes.26"
         visualID="Signal_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.26/@labels.0"
@@ -8937,8 +8723,7 @@
           genView="/0/@diagram/@childNodes.26/@labels.1"
           visualID="Signal_FloatingNameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.27"
+    <child genView="/0/@diagram/@childNodes.27"
         visualID="Interface_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.27/@labels.0"
@@ -8947,15 +8732,13 @@
           genView="/0/@diagram/@childNodes.27/@labels.1"
           visualID="Interface_FloatingNameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.28"
+    <child genView="/0/@diagram/@childNodes.28"
         visualID="Model_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.28/@labels.0"
           visualID="Model_NameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.29"
+    <child genView="/0/@diagram/@childNodes.29"
         visualID="Enumeration_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.29/@labels.0"
@@ -8964,15 +8747,13 @@
           genView="/0/@diagram/@childNodes.29/@labels.1"
           visualID="Enumeration_FloatingNameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.30"
+    <child genView="/0/@diagram/@childNodes.30"
         visualID="Package_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.30/@labels.0"
           visualID="Package_NameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.31"
+    <child genView="/0/@diagram/@childNodes.31"
         visualID="InformationItem_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.31/@labels.0"
@@ -8981,8 +8762,7 @@
           genView="/0/@diagram/@childNodes.31/@labels.1"
           visualID="InformationItem_FloatingNameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.32"
+    <child genView="/0/@diagram/@childNodes.32"
         visualID="Class_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.32/@labels.0"
@@ -8991,8 +8771,7 @@
           genView="/0/@diagram/@childNodes.32/@labels.1"
           visualID="Class_FloatingNameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.33"
+    <child genView="/0/@diagram/@childNodes.33"
         visualID="PrimitiveType_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.33/@labels.0"
@@ -9001,8 +8780,7 @@
           genView="/0/@diagram/@childNodes.33/@labels.1"
           visualID="PrimitiveType_FloatingNameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.34"
+    <child genView="/0/@diagram/@childNodes.34"
         visualID="DataType_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.34/@labels.0"
@@ -9011,15 +8789,13 @@
           genView="/0/@diagram/@childNodes.34/@labels.1"
           visualID="DataType_FloatingNameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.35"
+    <child genView="/0/@diagram/@childNodes.35"
         visualID="Comment_Shape_CN">
       <child
           genView="/0/@diagram/@childNodes.35/@labels.0"
           visualID="Comment_BodyLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@childNodes.36"
+    <child genView="/0/@diagram/@childNodes.36"
         visualID="Constraint_PackagedElementShape_CN">
       <child
           genView="/0/@diagram/@childNodes.36/@labels.0"
@@ -9028,131 +8804,89 @@
           genView="/0/@diagram/@childNodes.36/@labels.1"
           visualID="Constraint_FloatingNameLabel_CN"/>
     </child>
-    <child
-        genView="/0/@diagram/@compartments.0"
+    <child genView="/0/@diagram/@compartments.0"
         visualID="Class_AttributeCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.1"
+    <child genView="/0/@diagram/@compartments.1"
         visualID="Class_OperationCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.2"
+    <child genView="/0/@diagram/@compartments.2"
         visualID="Class_NestedClassifierCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.3"
+    <child genView="/0/@diagram/@compartments.3"
         visualID="Component_AttributeCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.4"
+    <child genView="/0/@diagram/@compartments.4"
         visualID="Component_OperationCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.5"
+    <child genView="/0/@diagram/@compartments.5"
         visualID="Component_NestedClassifierCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.6"
+    <child genView="/0/@diagram/@compartments.6"
         visualID="Signal_AttributeCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.7"
+    <child genView="/0/@diagram/@compartments.7"
         visualID="Interface_AttributeCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.8"
+    <child genView="/0/@diagram/@compartments.8"
         visualID="Interface_OperationCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.9"
+    <child genView="/0/@diagram/@compartments.9"
         visualID="Interface_NestedClassifierCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.10"
+    <child genView="/0/@diagram/@compartments.10"
         visualID="PrimitiveType_AttributeCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.11"
+    <child genView="/0/@diagram/@compartments.11"
         visualID="PrimitiveType_OperationCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.12"
+    <child genView="/0/@diagram/@compartments.12"
         visualID="DataType_AttributeCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.13"
+    <child genView="/0/@diagram/@compartments.13"
         visualID="DataType_OperationCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.14"
+    <child genView="/0/@diagram/@compartments.14"
         visualID="Model_PackagedElementCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.15"
+    <child genView="/0/@diagram/@compartments.15"
         visualID="Package_PackagedElementCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.16"
+    <child genView="/0/@diagram/@compartments.16"
         visualID="Enumeration_LiteralCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.17"
+    <child genView="/0/@diagram/@compartments.17"
         visualID="InstanceSpecification_SlotCompartment_CN"/>
-    <child
-        genView="/0/@diagram/@compartments.18"
+    <child genView="/0/@diagram/@compartments.18"
         visualID="Class_AttributeCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.19"
+    <child genView="/0/@diagram/@compartments.19"
         visualID="Class_OperationCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.20"
+    <child genView="/0/@diagram/@compartments.20"
         visualID="Class_NestedClassifierCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.21"
+    <child genView="/0/@diagram/@compartments.21"
         visualID="Component_AttributeCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.22"
+    <child genView="/0/@diagram/@compartments.22"
         visualID="Component_OperationCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.23"
+    <child genView="/0/@diagram/@compartments.23"
         visualID="Component_NestedClassifierCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.24"
+    <child genView="/0/@diagram/@compartments.24"
         visualID="Interface_AttributeCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.25"
+    <child genView="/0/@diagram/@compartments.25"
         visualID="Interface_OperationCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.26"
+    <child genView="/0/@diagram/@compartments.26"
         visualID="Interface_NestedClassifierCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.27"
+    <child genView="/0/@diagram/@compartments.27"
         visualID="PrimitiveType_AttributeCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.28"
+    <child genView="/0/@diagram/@compartments.28"
         visualID="PrimitiveType_OperationCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.29"
+    <child genView="/0/@diagram/@compartments.29"
         visualID="DataType_AttributeCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.30"
+    <child genView="/0/@diagram/@compartments.30"
         visualID="DataType_OperationCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.31"
+    <child genView="/0/@diagram/@compartments.31"
         visualID="AssociationClass_AttributeCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.32"
+    <child genView="/0/@diagram/@compartments.32"
         visualID="InstanceSpecification_SlotCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.33"
+    <child genView="/0/@diagram/@compartments.33"
         visualID="Signal_AttributeCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.34"
+    <child genView="/0/@diagram/@compartments.34"
         visualID="Model_PackagedElementCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.35"
+    <child genView="/0/@diagram/@compartments.35"
         visualID="Package_PackagedElementCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.36"
+    <child genView="/0/@diagram/@compartments.36"
         visualID="Enumeration_LiteralCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.37"
+    <child genView="/0/@diagram/@compartments.37"
         visualID="AssociationClass_OperationCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.38"
+    <child genView="/0/@diagram/@compartments.38"
         visualID="AssociationClass_NestedClassifierCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.39"
+    <child genView="/0/@diagram/@compartments.39"
         visualID="RedefinableTemplateSignature_TemplateParameterCompartment"/>
-    <child
-        genView="/0/@diagram/@compartments.40"
+    <child genView="/0/@diagram/@compartments.40"
         visualID="TemplateSignature_TemplateParameterCompartment"/>
-    <child
-        genView="/0/@diagram/@topLevelNodes.0"
+    <child genView="/0/@diagram/@topLevelNodes.0"
         visualID="Dependency_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.0/@labels.0"
@@ -9161,8 +8895,7 @@
           genView="/0/@diagram/@topLevelNodes.0/@labels.1"
           visualID="Dependency_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.1"
+    <child genView="/0/@diagram/@topLevelNodes.1"
         visualID="AssociationClass_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.1/@labels.0"
@@ -9171,15 +8904,13 @@
           genView="/0/@diagram/@topLevelNodes.1/@labels.1"
           visualID="AssociationClass_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.2"
+    <child genView="/0/@diagram/@topLevelNodes.2"
         visualID="Association_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.2/@labels.0"
           visualID="Association_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.3"
+    <child genView="/0/@diagram/@topLevelNodes.3"
         visualID="InstanceSpecification_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.3/@labels.0"
@@ -9188,8 +8919,7 @@
           genView="/0/@diagram/@topLevelNodes.3/@labels.1"
           visualID="InstanceSpecification_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.4"
+    <child genView="/0/@diagram/@topLevelNodes.4"
         visualID="Component_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.4/@labels.0"
@@ -9198,8 +8928,7 @@
           genView="/0/@diagram/@topLevelNodes.4/@labels.1"
           visualID="Component_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.5"
+    <child genView="/0/@diagram/@topLevelNodes.5"
         visualID="Signal_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.5/@labels.0"
@@ -9208,8 +8937,7 @@
           genView="/0/@diagram/@topLevelNodes.5/@labels.1"
           visualID="Signal_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.6"
+    <child genView="/0/@diagram/@topLevelNodes.6"
         visualID="Interface_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.6/@labels.0"
@@ -9218,15 +8946,13 @@
           genView="/0/@diagram/@topLevelNodes.6/@labels.1"
           visualID="Interface_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.7"
+    <child genView="/0/@diagram/@topLevelNodes.7"
         visualID="Model_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.7/@labels.0"
           visualID="Model_NameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.8"
+    <child genView="/0/@diagram/@topLevelNodes.8"
         visualID="Enumeration_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.8/@labels.0"
@@ -9235,15 +8961,13 @@
           genView="/0/@diagram/@topLevelNodes.8/@labels.1"
           visualID="Enumeration_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.9"
+    <child genView="/0/@diagram/@topLevelNodes.9"
         visualID="Package_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.9/@labels.0"
           visualID="Package_NameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.10"
+    <child genView="/0/@diagram/@topLevelNodes.10"
         visualID="InformationItem_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.10/@labels.0"
@@ -9252,8 +8976,7 @@
           genView="/0/@diagram/@topLevelNodes.10/@labels.1"
           visualID="InformationItem_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.11"
+    <child genView="/0/@diagram/@topLevelNodes.11"
         visualID="Class_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.11/@labels.0"
@@ -9262,8 +8985,7 @@
           genView="/0/@diagram/@topLevelNodes.11/@labels.1"
           visualID="Class_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.12"
+    <child genView="/0/@diagram/@topLevelNodes.12"
         visualID="PrimitiveType_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.12/@labels.0"
@@ -9272,8 +8994,7 @@
           genView="/0/@diagram/@topLevelNodes.12/@labels.1"
           visualID="PrimitiveType_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.13"
+    <child genView="/0/@diagram/@topLevelNodes.13"
         visualID="DataType_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.13/@labels.0"
@@ -9282,8 +9003,7 @@
           genView="/0/@diagram/@topLevelNodes.13/@labels.1"
           visualID="DataType_FloatingNameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.14"
+    <child genView="/0/@diagram/@topLevelNodes.14"
         visualID="Constraint_PackagedElementShape">
       <child
           genView="/0/@diagram/@topLevelNodes.14/@labels.0"
@@ -9292,22 +9012,19 @@
           genView="/0/@diagram/@topLevelNodes.14/@labels.1"
           visualID="Constraint_BodyLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.15"
+    <child genView="/0/@diagram/@topLevelNodes.15"
         visualID="Comment_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.15/@labels.0"
           visualID="Comment_BodyLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.16"
+    <child genView="/0/@diagram/@topLevelNodes.16"
         visualID="Diagram_ShortcutShape">
       <child
           genView="/0/@diagram/@topLevelNodes.16/@labels.0"
           visualID="Diagram_NameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.17"
+    <child genView="/0/@diagram/@topLevelNodes.17"
         visualID="DurationObservation_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.17/@labels.0"
@@ -9316,8 +9033,7 @@
           genView="/0/@diagram/@topLevelNodes.17/@labels.1"
           visualID="DurationObservation_StereotypeLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.18"
+    <child genView="/0/@diagram/@topLevelNodes.18"
         visualID="TimeObservation_Shape">
       <child
           genView="/0/@diagram/@topLevelNodes.18/@labels.0"
@@ -9326,18 +9042,15 @@
           genView="/0/@diagram/@topLevelNodes.18/@labels.1"
           visualID="TimeObservation_StereotypeLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@topLevelNodes.19"
+    <child genView="/0/@diagram/@topLevelNodes.19"
         visualID="NamedElement_DefaultShape">
       <child
           genView="/0/@diagram/@topLevelNodes.19/@labels.0"
           visualID="NamedElement_NameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.0"
+    <child genView="/0/@diagram/@links.0"
         visualID="AssociationClass_TetherEdge"/>
-    <child
-        genView="/0/@diagram/@links.1"
+    <child genView="/0/@diagram/@links.1"
         visualID="AssociationClass_Edge">
       <child
           genView="/0/@diagram/@links.1/@labels.0"
@@ -9346,8 +9059,7 @@
           genView="/0/@diagram/@links.1/@labels.1"
           visualID="AssociationClass_TargetRoleLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.2"
+    <child genView="/0/@diagram/@links.2"
         visualID="Association_Edge">
       <child
           genView="/0/@diagram/@links.2/@labels.0"
@@ -9368,8 +9080,7 @@
           genView="/0/@diagram/@links.2/@labels.5"
           visualID="Association_TargetMultiplicityLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.3"
+    <child genView="/0/@diagram/@links.3"
         visualID="Association_BranchEdge">
       <child
           genView="/0/@diagram/@links.3/@labels.0"
@@ -9378,15 +9089,13 @@
           genView="/0/@diagram/@links.3/@labels.1"
           visualID="Association_BranchMultiplicityLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.4"
+    <child genView="/0/@diagram/@links.4"
         visualID="Generalization_Edge">
       <child
           genView="/0/@diagram/@links.4/@labels.0"
           visualID="Generalization_StereotypeLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.5"
+    <child genView="/0/@diagram/@links.5"
         visualID="InterfaceRealization_Edge">
       <child
           genView="/0/@diagram/@links.5/@labels.0"
@@ -9395,8 +9104,7 @@
           genView="/0/@diagram/@links.5/@labels.1"
           visualID="InterfaceRealization_NameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.6"
+    <child genView="/0/@diagram/@links.6"
         visualID="Substitution_Edge">
       <child
           genView="/0/@diagram/@links.6/@labels.0"
@@ -9405,8 +9113,7 @@
           genView="/0/@diagram/@links.6/@labels.1"
           visualID="Substitution_NameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.7"
+    <child genView="/0/@diagram/@links.7"
         visualID="Realization_Edge">
       <child
           genView="/0/@diagram/@links.7/@labels.0"
@@ -9415,8 +9122,7 @@
           genView="/0/@diagram/@links.7/@labels.1"
           visualID="Realization_NameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.8"
+    <child genView="/0/@diagram/@links.8"
         visualID="Abstraction_Edge">
       <child
           genView="/0/@diagram/@links.8/@labels.0"
@@ -9425,8 +9131,7 @@
           genView="/0/@diagram/@links.8/@labels.1"
           visualID="Abstraction_StereotypeLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.9"
+    <child genView="/0/@diagram/@links.9"
         visualID="Usage_Edge">
       <child
           genView="/0/@diagram/@links.9/@labels.0"
@@ -9435,8 +9140,7 @@
           genView="/0/@diagram/@links.9/@labels.1"
           visualID="Usage_StereotypeLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.10"
+    <child genView="/0/@diagram/@links.10"
         visualID="Dependency_Edge">
       <child
           genView="/0/@diagram/@links.10/@labels.0"
@@ -9445,11 +9149,9 @@
           genView="/0/@diagram/@links.10/@labels.1"
           visualID="Dependency_StereotypeLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.11"
+    <child genView="/0/@diagram/@links.11"
         visualID="Dependency_BranchEdge"/>
-    <child
-        genView="/0/@diagram/@links.12"
+    <child genView="/0/@diagram/@links.12"
         visualID="ElementImport_Edge">
       <child
           genView="/0/@diagram/@links.12/@labels.0"
@@ -9458,31 +9160,25 @@
           genView="/0/@diagram/@links.12/@labels.1"
           visualID="ElementImport_StereotypeLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.13"
+    <child genView="/0/@diagram/@links.13"
         visualID="PackageImport_Edge">
       <child
           genView="/0/@diagram/@links.13/@labels.0"
           visualID="PackageImport_StereotypeLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.14"
+    <child genView="/0/@diagram/@links.14"
         visualID="PackageMerge_Edge">
       <child
           genView="/0/@diagram/@links.14/@labels.0"
           visualID="PackageMerge_StereotypeLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.15"
+    <child genView="/0/@diagram/@links.15"
         visualID="ProfileApplication_Edge"/>
-    <child
-        genView="/0/@diagram/@links.16"
+    <child genView="/0/@diagram/@links.16"
         visualID="Comment_AnnotatedElementEdge"/>
-    <child
-        genView="/0/@diagram/@links.17"
+    <child genView="/0/@diagram/@links.17"
         visualID="Constraint_ConstrainedElementEdge"/>
-    <child
-        genView="/0/@diagram/@links.18"
+    <child genView="/0/@diagram/@links.18"
         visualID="TemplateBinding_Edge">
       <child
           genView="/0/@diagram/@links.18/@labels.0"
@@ -9491,8 +9187,7 @@
           genView="/0/@diagram/@links.18/@labels.1"
           visualID="TemplateBinding_StereotypeLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.19"
+    <child genView="/0/@diagram/@links.19"
         visualID="GeneralizationSet_Edge">
       <child
           genView="/0/@diagram/@links.19/@labels.0"
@@ -9501,8 +9196,7 @@
           genView="/0/@diagram/@links.19/@labels.1"
           visualID="GeneralizationSet_StereotypeLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.20"
+    <child genView="/0/@diagram/@links.20"
         visualID="InstanceSpecification_Edge">
       <child
           genView="/0/@diagram/@links.20/@labels.0"
@@ -9511,17 +9205,13 @@
           genView="/0/@diagram/@links.20/@labels.1"
           visualID="InstanceSpecification_TargetRoleLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.21"
+    <child genView="/0/@diagram/@links.21"
         visualID="Element_ContainmentEdge"/>
-    <child
-        genView="/0/@diagram/@links.22"
+    <child genView="/0/@diagram/@links.22"
         visualID="TimeObservation_EventEdge"/>
-    <child
-        genView="/0/@diagram/@links.23"
+    <child genView="/0/@diagram/@links.23"
         visualID="DurationObservation_EventEdge"/>
-    <child
-        genView="/0/@diagram/@links.24"
+    <child genView="/0/@diagram/@links.24"
         visualID="InformationFlow_Edge">
       <child
           genView="/0/@diagram/@links.24/@labels.0"
@@ -9533,8 +9223,7 @@
           genView="/0/@diagram/@links.24/@labels.2"
           visualID="InformationFlow_NameLabel"/>
     </child>
-    <child
-        genView="/0/@diagram/@links.25"
+    <child genView="/0/@diagram/@links.25"
         visualID="Constraint_ContextEdge">
       <child
           genView="/0/@diagram/@links.25/@labels.0"

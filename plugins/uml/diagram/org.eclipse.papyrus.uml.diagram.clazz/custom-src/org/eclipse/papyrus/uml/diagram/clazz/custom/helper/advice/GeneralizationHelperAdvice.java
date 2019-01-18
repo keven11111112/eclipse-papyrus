@@ -44,7 +44,7 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 	@Override
 	protected ICommand getBeforeReorientRelationshipCommand(ReorientRelationshipRequest request) {
 		// The list of member views becoming inconsistent after re-orient that should be deleted.
-		Set<View> viewsToDestroy = new HashSet<View>();
+		Set<View> viewsToDestroy = new HashSet<>();
 		if (request.getRelationship() instanceof Generalization) {
 			viewsToDestroy.addAll(getMemberViewsToDestroy((Generalization) request.getRelationship()));
 		}
@@ -61,7 +61,7 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 		EObject destructee = request.getElementToDestroy();
-		Set<View> viewsToDestroy = new HashSet<View>();
+		Set<View> viewsToDestroy = new HashSet<>();
 		if (destructee instanceof Generalization) {
 			viewsToDestroy = getMemberViewsToDestroy((Generalization) destructee);
 		}
@@ -81,7 +81,7 @@ public class GeneralizationHelperAdvice extends AbstractEditHelperAdvice {
 	 * @return the list of {@link View} to delete
 	 */
 	protected Set<View> getMemberViewsToDestroy(Generalization generalization) {
-		Set<View> viewsToDestroy = new HashSet<View>();
+		Set<View> viewsToDestroy = new HashSet<>();
 		Classifier general = generalization.getGeneral();
 		if (general != null) {
 			// Parse members

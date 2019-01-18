@@ -51,7 +51,7 @@ public abstract class AbstractCustomCommand extends AbstractTransactionalCommand
 			}
 		}
 
-		List<IFile> result = new ArrayList<IFile>();
+		List<IFile> result = new ArrayList<>();
 		List<?> affectedFiles = super.getAffectedFiles();
 		for (Object affectedFile : affectedFiles) {
 			result.add((IFile) affectedFile);

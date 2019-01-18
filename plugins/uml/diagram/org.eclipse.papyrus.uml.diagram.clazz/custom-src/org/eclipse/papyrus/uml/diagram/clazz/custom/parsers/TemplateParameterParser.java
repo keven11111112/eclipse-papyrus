@@ -75,10 +75,10 @@ public class TemplateParameterParser implements IParser {
 			if (templateParam.getParameteredElement() instanceof NamedElement) {
 				NamedElement namedElement = (NamedElement) templateParam.getParameteredElement();
 				String name = newString.substring(0, newString.indexOf(":"));
-				if(InternationalizationPreferencesUtils.getInternationalizationPreference(namedElement) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(namedElement)){
-					final ModelSet modelSet = (ModelSet)namedElement.eResource().getResourceSet();
+				if (InternationalizationPreferencesUtils.getInternationalizationPreference(namedElement) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(namedElement)) {
+					final ModelSet modelSet = (ModelSet) namedElement.eResource().getResourceSet();
 					command = new EMFtoGMFCommandWrapper(UMLLabelInternationalization.getInstance().getSetLabelCommand(modelSet.getTransactionalEditingDomain(), namedElement, name.trim(), null));
-				}else{
+				} else {
 					SetRequest request = new SetRequest(namedElement, UMLPackage.eINSTANCE.getNamedElement_Name(), name.trim());
 					command = new SetValueCommand(request);
 				}

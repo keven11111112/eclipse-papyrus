@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Yupanqui MUNOZ JULHO (CEA LIST) yupanqui.munozjulho@cea.fr - Bug 514518
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
@@ -22,7 +22,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceEditPart;
 
 /**
  * The custom edit policy for the interface edit part.
- *  @since 3.0
+ *
+ * @since 3.0
  */
 public class CustomInterfaceEditPart extends InterfaceEditPart {
 
@@ -34,7 +35,7 @@ public class CustomInterfaceEditPart extends InterfaceEditPart {
 	public CustomInterfaceEditPart(View view) {
 		super(view);
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceEditPart#createDefaultEditPolicies()
 	 *

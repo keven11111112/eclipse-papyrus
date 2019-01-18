@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -24,9 +24,9 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreFactory;
+import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
-import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 
@@ -50,7 +50,8 @@ public class UMLOCLFactory {
 	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[2];
-		this.expressionBodies = new String[] { "\' \'", //$NON-NLS-1$
+		this.expressionBodies = new String[] {
+				"\' \'", //$NON-NLS-1$
 				"not self.oclIsTypeOf(EnumerationLiteral)", //$NON-NLS-1$
 		};
 	}
@@ -83,15 +84,14 @@ public class UMLOCLFactory {
 			throw new IllegalArgumentException();
 		}
 		if (cached.expressions[index] == null) {
-			cached.expressions[index] = getExpression(cached.expressionBodies[index], context,
-					environment == null ? Collections.<String, EClassifier>emptyMap() : environment);
+			cached.expressions[index] = getExpression(cached.expressionBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
 	}
 
 	/**
 	 * This is factory method, callers are responsible to keep reference to the return value if they want to reuse parsed expression
-	 * 
+	 *
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context,
@@ -101,11 +101,11 @@ public class UMLOCLFactory {
 
 	/**
 	 * This method will become private in the next release
-	 * 
+	 *
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context) {
-		return getExpression(body, context, Collections.<String, EClassifier>emptyMap());
+		return getExpression(body, context, Collections.<String, EClassifier> emptyMap());
 	}
 
 	/**
@@ -143,6 +143,7 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
+		@Override
 		@SuppressWarnings("rawtypes")
 		protected Object doEvaluate(Object context, Map env) {
 			if (oclExpression == null) {
@@ -166,11 +167,9 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
-		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv,
-				Map<String, EClassifier> environment) {
+		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv, Map<String, EClassifier> environment) {
 			// Use EObject as implicit root class for any object, to allow eContainer() and other EObject operations from OCL expressions
-			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv),
-					EcorePackage.eINSTANCE.getEObject());
+			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv), EcorePackage.eINSTANCE.getEObject());
 			for (String varName : environment.keySet()) {
 				EClassifier varType = environment.get(varName);
 				ecoreEnv.addElement(varName, createVar(ecoreEnv, varName, varType), false);
@@ -180,8 +179,7 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
-		private static Variable createVar(Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ecoreEnv,
-				String name, EClassifier type) {
+		private static Variable createVar(Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ecoreEnv, String name, EClassifier type) {
 			Variable var = EcoreFactory.eINSTANCE.createVariable();
 			var.setName(name);
 			var.setType(ecoreEnv.getUMLReflection().getOCLType(type));

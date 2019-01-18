@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Property;
 public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPart {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final String ASSOCIATION_END_LISTENERS_TARGET = "AssociationEndListenersTarget"; //$NON-NLS-1$
 
@@ -56,7 +56,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 		if (resolveSemanticElement() instanceof Association) {
 			Property targetEnd = MultiAssociationHelper.getPropertyToListen(((Edge) getModel()), (Association) resolveSemanticElement());
 			if (targetEnd != null) {
-				addListenerFilter(ASSOCIATION_END_LISTENERS_TARGET, this, targetEnd); 
+				addListenerFilter(ASSOCIATION_END_LISTENERS_TARGET, this, targetEnd);
 			}
 		}
 	}

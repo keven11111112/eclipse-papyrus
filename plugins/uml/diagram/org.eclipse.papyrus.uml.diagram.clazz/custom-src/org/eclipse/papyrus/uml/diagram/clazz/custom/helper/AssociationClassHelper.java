@@ -162,8 +162,10 @@ public class AssociationClassHelper extends ElementHelper {
 		cc.compose(associationcClassLinkCommand);
 		// creation of the dashedLine
 		ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.AssociationClass_TetherEdge, ((IHintedType) UMLElementTypes.AssociationClass_TetherEdge).getSemanticHint(), diagramPreferencesHint);
-		CustomDeferredCreateConnectionViewCommand dashedLineCmd = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.AssociationClass_TetherEdge).getSemanticHint(), ((IAdaptable) associationcClassLinkCommand.getCommandResult()
-				.getReturnValue()), ((IAdaptable) associationClassNodeCreationCommand.getCommandResult().getReturnValue()), viewer, diagramPreferencesHint, dashedLineViewDescriptor, null);
+		CustomDeferredCreateConnectionViewCommand dashedLineCmd = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.AssociationClass_TetherEdge).getSemanticHint(),
+				((IAdaptable) associationcClassLinkCommand.getCommandResult()
+						.getReturnValue()),
+				((IAdaptable) associationClassNodeCreationCommand.getCommandResult().getReturnValue()), viewer, diagramPreferencesHint, dashedLineViewDescriptor, null);
 		dashedLineCmd.setElement(associationClass);
 		cc.compose(dashedLineCmd);
 		return new ICommandProxy(cc);

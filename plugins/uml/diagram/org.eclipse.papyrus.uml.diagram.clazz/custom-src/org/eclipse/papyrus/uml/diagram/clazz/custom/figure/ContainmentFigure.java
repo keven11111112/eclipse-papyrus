@@ -26,8 +26,8 @@ public class ContainmentFigure extends RoundedCompartmentFigure {
 		super.paint(graphics);
 		graphics.pushState();
 		// Draw the cross.
-		int x = (int) (bounds.width / 2);
-		int y = (int) (bounds.height / (2));
+		int x = bounds.width / 2;
+		int y = bounds.height / (2);
 		graphics.drawLine(bounds.getCenter().translate(x, 0), bounds.getCenter().translate(-x, 0));
 		graphics.drawLine(bounds.getCenter().translate(0, -y), bounds.getCenter().translate(0, y));
 		graphics.popState();

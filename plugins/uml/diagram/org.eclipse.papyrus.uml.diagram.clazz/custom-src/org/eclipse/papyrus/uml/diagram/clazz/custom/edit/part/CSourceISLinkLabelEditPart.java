@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -22,7 +22,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SourceISLinkLabelEditPar
 
 /**
  * Custom Edit Part for {@link SourceISLinkLabelEditPart}.
- * 
+ *
  * @author Gabriel Pascual
  *
  */

@@ -29,8 +29,8 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLViewProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
+import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLViewProvider;
 
 /**
  * Custom class to create the associationClass node
@@ -94,8 +94,7 @@ public class AssociationDiamonViewCreateCommand extends AbstractCustomCommand {
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		notationLocation.setX(location.x);
 		notationLocation.setY(location.y);
-		if (getNode() instanceof Node)
-		{
+		if (getNode() instanceof Node) {
 			((Node) getNode()).setLayoutConstraint(notationLocation);
 		}
 

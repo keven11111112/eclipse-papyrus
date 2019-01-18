@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -40,8 +40,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 			@Override
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLAbstractNavigatorItem
-						&& adapterType == ITabbedPropertySheetPageContributor.class) {
+				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLAbstractNavigatorItem && adapterType == ITabbedPropertySheetPageContributor.class) {
 					return propertySheetPageContributor;
 				}
 				return null;

@@ -22,6 +22,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigu
 
 /**
  * Figure for Composite representation of InformationItem.
+ *
  * @since 3.0
  */
 public class InformationItemFigure extends RoundedCompartmentFigure {
@@ -30,7 +31,7 @@ public class InformationItemFigure extends RoundedCompartmentFigure {
 	private static String TAG_LABEL = "Information"; //$NON-NLS-1$
 
 	/** The List of Compartment */
-	private final static List<String> NO_COMPARTMENT = new ArrayList<String>();
+	private final static List<String> NO_COMPARTMENT = new ArrayList<>();
 
 	/**
 	 * Creates a new InformationItemFigure.

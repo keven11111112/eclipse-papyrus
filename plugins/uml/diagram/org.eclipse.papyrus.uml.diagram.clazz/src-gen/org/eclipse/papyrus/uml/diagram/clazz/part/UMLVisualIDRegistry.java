@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -23,14 +23,13 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.clazz.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This registry is used to determine which type of visual object should be
  * created for the corresponding Diagram, Node, ChildNode or Link represented
  * by a domain model object.
- * 
+ *
  * @generated
  */
 public class UMLVisualIDRegistry {
@@ -100,15 +99,13 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return "";
 		}
-		String containerModelID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!ModelEditPart.MODEL_ID.equals(containerModelID)) {
 			return "";
 		}
 		String containerVisualID;
 		if (ModelEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = ModelEditPart.VISUAL_ID;
@@ -128,8 +125,7 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass())) {
 					return AssociationNodeEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())
-						&& isInstanceSpecification_Shape((InstanceSpecification) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass()) && isInstanceSpecification_Shape((InstanceSpecification) domainElement)) {
 					return InstanceSpecificationEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
@@ -417,8 +413,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())
-						&& isInstanceSpecification_Shape_CN((InstanceSpecification) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass()) && isInstanceSpecification_Shape_CN((InstanceSpecification) domainElement)) {
 					return InstanceSpecificationEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
@@ -459,8 +454,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())
-						&& isInstanceSpecification_Shape_CN((InstanceSpecification) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass()) && isInstanceSpecification_Shape_CN((InstanceSpecification) domainElement)) {
 					return InstanceSpecificationEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
@@ -654,8 +648,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ModelPackageableElementCompartmentEditPartTN.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())
-						&& isInstanceSpecification_Shape_CN((InstanceSpecification) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass()) && isInstanceSpecification_Shape_CN((InstanceSpecification) domainElement)) {
 					return InstanceSpecificationEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
@@ -696,8 +689,7 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())
-						&& isInstanceSpecification_Shape_CN((InstanceSpecification) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass()) && isInstanceSpecification_Shape_CN((InstanceSpecification) domainElement)) {
 					return InstanceSpecificationEditPartCN.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())) {
@@ -756,8 +748,7 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getClassifierTemplateParameter().isSuperTypeOf(domainElement.eClass())) {
 					return ClassifierTemplateParameterEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConnectableElementTemplateParameter()
-						.isSuperTypeOf(domainElement.eClass())) {
+				if (UMLPackage.eINSTANCE.getConnectableElementTemplateParameter().isSuperTypeOf(domainElement.eClass())) {
 					return ConnectableElementTemplateParameterEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getOperationTemplateParameter().isSuperTypeOf(domainElement.eClass())) {
@@ -787,15 +778,13 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, String nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry
-				.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!ModelEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		String containerVisualID;
 		if (ModelEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry
-					.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = ModelEditPart.VISUAL_ID;
@@ -1997,8 +1986,7 @@ public class UMLVisualIDRegistry {
 		if (UMLPackage.eINSTANCE.getGeneralizationSet().isSuperTypeOf(domainElement.eClass())) {
 			return GeneralizationSetEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass())
-				&& isInstanceSpecification_Edge((InstanceSpecification) domainElement)) {
+		if (UMLPackage.eINSTANCE.getInstanceSpecification().isSuperTypeOf(domainElement.eClass()) && isInstanceSpecification_Edge((InstanceSpecification) domainElement)) {
 			return InstanceSpecificationLinkEditPart.VISUAL_ID;
 		}
 		if (UMLPackage.eINSTANCE.getInformationFlow().isSuperTypeOf(domainElement.eClass())) {
@@ -2010,7 +1998,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * User can change implementation of this method to handle some specific
 	 * situations not covered by default logic.
-	 * 
+	 *
 	 * @generated
 	 */
 	private static boolean isDiagram(Package element) {
@@ -2021,8 +2009,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInstanceSpecification_Shape(InstanceSpecification domainElement) {
-		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getInstanceSpecification(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getInstanceSpecification(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -2030,8 +2017,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInstanceSpecification_Shape_CN(InstanceSpecification domainElement) {
-		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getInstanceSpecification(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getInstanceSpecification(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -2039,8 +2025,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInstanceSpecification_Edge(InstanceSpecification domainElement) {
-		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getInstanceSpecification(), null)
-				.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getInstanceSpecification(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -2049,7 +2034,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 		if (candidate == null) {
-			//unrecognized id is always bad
+			// unrecognized id is always bad
 			return false;
 		}
 		String basic = getNodeVisualID(containerView, domainElement);
@@ -2200,8 +2185,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public String getNodeVisualID(View containerView, EObject domainElement) {
-			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getNodeVisualID(containerView,
-					domainElement);
+			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		}
 
 		/**
@@ -2209,8 +2193,7 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
-			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.checkNodeVisualID(containerView,
-					domainElement, candidate);
+			return org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
 		}
 
 		/**

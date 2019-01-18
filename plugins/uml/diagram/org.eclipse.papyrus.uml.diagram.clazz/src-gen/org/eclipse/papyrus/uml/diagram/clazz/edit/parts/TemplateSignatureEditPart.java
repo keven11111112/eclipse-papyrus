@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -72,6 +72,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -123,6 +124,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.clazz.custom.figure.TemplateFigure
+	 *
 	 * @generated
 	 */
 	public TemplateFigure getPrimaryShape() {
@@ -134,9 +136,10 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 
+
 		if (childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((TemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
@@ -159,6 +162,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -169,6 +173,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -179,6 +184,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			return getPrimaryShape().getTemplateParameterRectangle();
@@ -196,12 +202,13 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -215,7 +222,9 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 *
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -230,6 +239,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -240,6 +250,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -249,6 +260,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -256,6 +268,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -265,22 +278,19 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
-					.getCreateElementRequestAdapter();
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.ClassifierTemplateParameter_TemplateParameterLabel)) {
-				return getChildBySemanticHint(
-						UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.OperationTemplateParameter_TemplateParameterLabel)) {
-				return getChildBySemanticHint(
-						UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
 			if (UMLElementTypes.isKindOf(type, UMLElementTypes.TemplateParameter_TemplateParameterLabel)) {
-				return getChildBySemanticHint(
-						UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);

@@ -96,7 +96,7 @@ public class CustomMessageFormatParser extends MessageFormatParser {
 	 * @return the associated element
 	 */
 	protected IAdaptable obtainObject(IAdaptable adapter) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
+		EObject element = adapter.getAdapter(EObject.class);
 		Object result = element.eGet(eRefFeature);
 		// this is a collection
 		if (result instanceof List<?>) {

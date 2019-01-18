@@ -35,12 +35,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.uml2.uml.Association;
@@ -95,8 +95,8 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 			// 5. Graphical creation of the binary dependency
 			// 5.1 calculus of the future source and target of the binary
 			// dependency
-			List<EditPart> sourceList = new ArrayList<EditPart>();
-			List<EditPart> targetList = new ArrayList<EditPart>();
+			List<EditPart> sourceList = new ArrayList<>();
+			List<EditPart> targetList = new ArrayList<>();
 			for (Object editPart : associationNodeEditPart.getSourceConnections()) {
 				sourceList.add((EditPart) editPart);
 			}

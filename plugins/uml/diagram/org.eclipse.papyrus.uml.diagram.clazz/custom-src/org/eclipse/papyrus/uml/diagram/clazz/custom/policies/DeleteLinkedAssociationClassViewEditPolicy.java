@@ -84,7 +84,7 @@ public class DeleteLinkedAssociationClassViewEditPolicy extends ViewComponentEdi
 
 	private Command getHideCommand(EditPart source, EditPart dashedLink) {
 		GroupRequest hideRequest = new GroupRequest(RequestConstants.REQ_DELETE);
-		List<EditPart> parts = new ArrayList<EditPart>();
+		List<EditPart> parts = new ArrayList<>();
 		parts.add(dashedLink);
 		parts.add(source);
 		hideRequest.setEditParts(parts);

@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -24,8 +24,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNode
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
-	 * @generated
-	 */
+ * @generated
+ */
 public class DependencyBranchEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
@@ -43,6 +43,7 @@ public class DependencyBranchEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
@@ -51,12 +52,13 @@ public class DependencyBranchEditPart extends ConnectionEditPart implements ITre
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected Connection createConnectionFigure() {
 		return new DashedEdgeFigure();
 	}
@@ -64,6 +66,7 @@ public class DependencyBranchEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
+	@Override
 	public DashedEdgeFigure getPrimaryShape() {
 		return (DashedEdgeFigure) getFigure();
 	}

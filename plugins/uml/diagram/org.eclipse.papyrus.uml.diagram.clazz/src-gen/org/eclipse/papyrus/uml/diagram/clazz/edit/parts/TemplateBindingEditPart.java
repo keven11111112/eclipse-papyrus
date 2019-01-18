@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -27,8 +27,8 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabe
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 
 /**
-	 * @generated
-	 */
+ * @generated
+ */
 public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
@@ -46,11 +46,11 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
@@ -59,11 +59,12 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof BindingSubstitutionEditPart) {
-			((BindingSubstitutionEditPart) childEditPart).setLabel(getPrimaryShape().getBindingSubstitutionFigure());
+			((BindingSubstitutionEditPart) childEditPart).setLabel(
+					getPrimaryShape().getBindingSubstitutionFigure());
 		}
 		if (childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
-			((AppliedStereotypeTemplateBindingEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((AppliedStereotypeTemplateBindingEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -71,6 +72,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -94,6 +96,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -103,12 +106,13 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected Connection createConnectionFigure() {
 		return new TemplateBindingFigure();
 	}
@@ -116,6 +120,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	/**
 	 * @generated
 	 */
+	@Override
 	public TemplateBindingFigure getPrimaryShape() {
 		return (TemplateBindingFigure) getFigure();
 	}

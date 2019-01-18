@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   Shuai Li (CEA LIST) <shuai.li@cea.fr> - Initial API and implementation
  *   Christian W. Damus - bug 485220
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.clazz.custom.hyperlink;
@@ -39,7 +39,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 /**
  * Returns a list of HyperLinkEditor objects referencing views directly owned by
  * the nesting package of the double-clicked package.
- * 
+ *
  * @author Shuai Li
  * @since 3.0
  *
@@ -54,11 +54,11 @@ public class NestingPackageHyperlinkContributor implements HyperlinkContributor 
 	 */
 	@Override
 	public List<HyperLinkObject> getHyperlinks(Object fromElement) {
-		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<HyperLinkObject>();
+		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<>();
 
 		if (fromElement instanceof org.eclipse.uml2.uml.Package) {
 			org.eclipse.uml2.uml.Package nestingPackage = ((org.eclipse.uml2.uml.Package) fromElement).getNestingPackage();
-			List<Object> pages = new ArrayList<Object>();
+			List<Object> pages = new ArrayList<>();
 
 			if (nestingPackage != null) {
 				ViewerSearchService viewerSearchService = null;

@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -41,6 +41,7 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void doGotoMarker(IMarker marker) {
 		String elementId = marker.getAttribute(org.eclipse.gmf.runtime.common.core.resources.IMarker.ELEMENT_ID, null);
 		if (elementId == null || !(getEditor() instanceof DiagramEditor)) {
@@ -54,7 +55,8 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 		}
 		EditPart targetEditPart = (EditPart) editPartRegistry.get(targetView);
 		if (targetEditPart != null) {
-			UMLDiagramEditorUtil.selectElementsInDiagram(editor, Arrays.asList(new EditPart[] { targetEditPart }));
+			UMLDiagramEditorUtil.selectElementsInDiagram(
+					editor, Arrays.asList(new EditPart[] { targetEditPart }));
 		}
 	}
 
@@ -65,7 +67,8 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 		try {
 			resource.deleteMarkers(MARKER_TYPE, true, IResource.DEPTH_ZERO);
 		} catch (CoreException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Failed to delete validation markers", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Failed to delete validation markers", e); //$NON-NLS-1$
 		}
 	}
 
@@ -82,12 +85,14 @@ public class UMLMarkerNavigationProvider extends AbstractModelMarkerNavigationPr
 			int markerSeverity = IMarker.SEVERITY_INFO;
 			if (statusSeverity == IStatus.WARNING) {
 				markerSeverity = IMarker.SEVERITY_WARNING;
-			} else if (statusSeverity == IStatus.ERROR || statusSeverity == IStatus.CANCEL) {
+			} else if (statusSeverity == IStatus.ERROR ||
+					statusSeverity == IStatus.CANCEL) {
 				markerSeverity = IMarker.SEVERITY_ERROR;
 			}
 			marker.setAttribute(IMarker.SEVERITY, markerSeverity);
 		} catch (CoreException e) {
-			UMLDiagramEditorPlugin.getInstance().logError("Failed to create validation marker", e); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Failed to create validation marker", e); //$NON-NLS-1$
 		}
 		return marker;
 	}

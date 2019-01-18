@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 506314 
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 506314
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
 
@@ -53,7 +53,7 @@ public class CustomGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPolic
 				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
 				IElementType elementType = createElementRequest.getElementType();
 				if (UMLElementTypes.AssociationClass_Edge.equals(elementType)
-						|| (elementType!= null && Arrays.asList(elementType.getAllSuperTypes()).contains(UMLElementTypes.AssociationClass_Edge))) {
+						|| (elementType != null && Arrays.asList(elementType.getAllSuperTypes()).contains(UMLElementTypes.AssociationClass_Edge))) {
 					AssociationClassHelper associationClassHelper = new AssociationClassHelper(getEditingDomain());
 					return associationClassHelper.getAssociationClassElementCommand(((CreateConnectionViewAndElementRequest) request), c);
 				} else if (UMLElementTypes.Dependency_BranchEdge.equals(elementType)) {

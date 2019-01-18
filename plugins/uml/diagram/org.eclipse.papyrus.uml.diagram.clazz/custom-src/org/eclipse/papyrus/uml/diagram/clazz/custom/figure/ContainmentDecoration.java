@@ -46,8 +46,7 @@ public class ContainmentDecoration extends Ellipse implements RotatableDecoratio
 	/**
 	 * Constructor
 	 */
-	public ContainmentDecoration()
-	{
+	public ContainmentDecoration() {
 		location = new Point();
 		transform = new Transform();
 	}
@@ -55,10 +54,9 @@ public class ContainmentDecoration extends Ellipse implements RotatableDecoratio
 	/**
 	 * @see org.eclipse.draw2d.Figure#getBounds()
 	 */
-	public Rectangle getBounds()
-	{
-		if (bounds == null)
-		{
+	@Override
+	public Rectangle getBounds() {
+		if (bounds == null) {
 			updatePoints();
 
 			bounds = new Rectangle(location, new Dimension(0, 0));
@@ -80,14 +78,13 @@ public class ContainmentDecoration extends Ellipse implements RotatableDecoratio
 	/**
 	 * Set the sacle of the Oval. By default, the oval has a size of 10 per 10 :
 	 * that is a circle !
-	 * 
+	 *
 	 * @param x
 	 *            the x-scale value
 	 * @param y
 	 *            the y-scale value
 	 */
-	public void setScale(double x, double y)
-	{
+	public void setScale(double x, double y) {
 		ovalCenter = null;
 		ovalSize = null;
 		bounds = null;
@@ -99,8 +96,8 @@ public class ContainmentDecoration extends Ellipse implements RotatableDecoratio
 	/**
 	 * @see org.eclipse.draw2d.Figure#setLocation(org.eclipse.draw2d.geometry.Point)
 	 */
-	public void setLocation(Point p)
-	{
+	@Override
+	public void setLocation(Point p) {
 		ovalCenter = null;
 		ovalSize = null;
 		bounds = null;
@@ -112,8 +109,8 @@ public class ContainmentDecoration extends Ellipse implements RotatableDecoratio
 	/**
 	 * @see org.eclipse.draw2d.RotatableDecoration#setReferencePoint(org.eclipse.draw2d.geometry.Point)
 	 */
-	public void setReferencePoint(Point p)
-	{
+	@Override
+	public void setReferencePoint(Point p) {
 		ovalCenter = null;
 		ovalSize = null;
 		bounds = null;
@@ -125,12 +122,11 @@ public class ContainmentDecoration extends Ellipse implements RotatableDecoratio
 
 	/**
 	 * Set the rotation parameter
-	 * 
+	 *
 	 * @param angle
 	 *            set the angle of the oval
 	 */
-	public void setRotation(double angle)
-	{
+	public void setRotation(double angle) {
 		ovalCenter = null;
 		ovalSize = null;
 		bounds = null;
@@ -140,14 +136,11 @@ public class ContainmentDecoration extends Ellipse implements RotatableDecoratio
 	/**
 	 * Update the points of the Circle
 	 */
-	protected void updatePoints()
-	{
-		if (ovalSize == null)
-		{
+	protected void updatePoints() {
+		if (ovalSize == null) {
 			ovalSize = new Dimension((int) xScale * radius * 2, (int) yScale * radius * 2);
 		}
-		if (ovalCenter == null)
-		{
+		if (ovalCenter == null) {
 			ovalCenter = new Point(transform.getTransformed(new Point((int) -xScale * radius, 0)));
 		}
 
@@ -156,8 +149,8 @@ public class ContainmentDecoration extends Ellipse implements RotatableDecoratio
 	/**
 	 * @see org.eclipse.draw2d.Figure#paintFigure(org.eclipse.draw2d.Graphics)
 	 */
-	public void paintFigure(Graphics graphics)
-	{
+	@Override
+	public void paintFigure(Graphics graphics) {
 		updatePoints();
 
 		graphics.pushState();
@@ -172,8 +165,8 @@ public class ContainmentDecoration extends Ellipse implements RotatableDecoratio
 	/**
 	 * @see org.eclipse.draw2d.Figure#paintBorder(org.eclipse.draw2d.Graphics)
 	 */
-	protected void paintBorder(Graphics graphics)
-	{
+	@Override
+	protected void paintBorder(Graphics graphics) {
 		updatePoints();
 
 		graphics.pushState();

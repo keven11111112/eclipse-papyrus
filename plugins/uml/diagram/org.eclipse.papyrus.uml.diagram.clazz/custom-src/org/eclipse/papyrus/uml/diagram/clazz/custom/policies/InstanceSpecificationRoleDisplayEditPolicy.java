@@ -46,11 +46,11 @@ import org.eclipse.uml2.uml.Property;
 public abstract class InstanceSpecificationRoleDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
 	/** The Constant ACTIVATION_ERROR_MESSAGE. */
-	private static final String ACTIVATION_ERROR_MESSAGE = "No semantic element was found during activation of the mask managed label edit policy";  //$NON-NLS-1$
+	private static final String ACTIVATION_ERROR_MESSAGE = "No semantic element was found during activation of the mask managed label edit policy"; //$NON-NLS-1$
 
 	// FIXME : See #449476
-	// Will be fixed AFTER chaos (new generator) release. 
-	// An EditPolicy key should not imply its behavior (MASK) 
+	// Will be fixed AFTER chaos (new generator) release.
+	// An EditPolicy key should not imply its behavior (MASK)
 	public static String INSTANCE_SPECIFICATION_ROLE_DISPLAY = IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY;
 
 	/**
@@ -157,7 +157,7 @@ public abstract class InstanceSpecificationRoleDisplayEditPolicy extends Graphic
 			return interestingProperty;
 		}
 		if (hostSemanticElement != null) {
-			List<Property> array = new ArrayList<Property>();
+			List<Property> array = new ArrayList<>();
 			InstanceSpecification instanceSpecification = (InstanceSpecification) hostSemanticElement;
 			if (instanceSpecification.getClassifiers().size() > 0) {
 				if (instanceSpecification.getClassifiers().get(0) instanceof Association) {

@@ -39,7 +39,7 @@ import org.eclipse.uml2.uml.TemplateParameterSubstitution;
 public class TemplateBindingParser implements IParser {
 
 	private static final String EMPTY_STR = ""; //$NON-NLS-1$
-	
+
 	final ILabelProvider labelProvider = new AdapterFactoryLabelProvider(org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
@@ -85,7 +85,7 @@ public class TemplateBindingParser implements IParser {
 			final TemplateBinding binding = (TemplateBinding) e;
 			for (TemplateParameterSubstitution substitution : binding.getParameterSubstitutions()) {
 				if (!EMPTY_STR.equals(out)) {
-					out += ", ";	// add separator, if not empty //$NON-NLS-1$
+					out += ", "; // add separator, if not empty //$NON-NLS-1$
 				}
 				if (substitution.getFormal() != null && substitution.getFormal().getParameteredElement() instanceof NamedElement) {
 					out += UMLLabelInternationalization.getInstance().getLabel(((NamedElement) substitution.getFormal().getParameteredElement()));
@@ -98,8 +98,7 @@ public class TemplateBindingParser implements IParser {
 		}
 		if (EMPTY_STR.equals(out)) {
 			out = String.format("«bind»\n<No Binding Substitution>", out); //$NON-NLS-1$
-		}
-		else {
+		} else {
 			out = String.format("«bind»\n<%s>", out); //$NON-NLS-1$
 		}
 		return out;

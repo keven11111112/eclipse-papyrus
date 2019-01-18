@@ -87,8 +87,8 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 	public Collection<GeneralizationSetEditPart> getAllSameSemanticGeneralizationSet(GeneralizationEditPart editPart) {
 		// look for all Generalization set connected to the source location that reference the same
 		// generalizationSet
-		List<GeneralizationSetEditPart> result = new ArrayList<GeneralizationSetEditPart>();
-		List<Object> linkList = new ArrayList<Object>();
+		List<GeneralizationSetEditPart> result = new ArrayList<>();
+		List<Object> linkList = new ArrayList<>();
 		for (Object object : editPart.getSourceConnections()) {
 			linkList.add(object);
 		}
@@ -133,7 +133,7 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 		if (getHost().getViewer() instanceof DiagramGraphicalViewer) {
 			if (getHost() instanceof GeneralizationSetEditPart) {
 				String elementID = EMFCoreUtil.getProxyID(((GeneralizationSetEditPart) getHost()).resolveSemanticElement());
-				List<EditPart> editpartList = new ArrayList<EditPart>();
+				List<EditPart> editpartList = new ArrayList<>();
 				for (Object object : ((DiagramGraphicalViewer) (getHost().getViewer())).findEditPartsForElement(elementID, GeneralizationSetEditPart.class)) {
 					editpartList.add((EditPart) object);
 				}

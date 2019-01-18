@@ -77,7 +77,7 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// To load visualIDRegistry
 		host().refresh();
-		List<Object> createdViews = new LinkedList<Object>();
+		List<Object> createdViews = new LinkedList<>();
 		createdViews.addAll(populateSemanticNodes());
 		if (createdViews.size() > 0) {
 			RestoreRelatedLinksCommand restoreRelatedLinksCommand = new RestoreRelatedLinksCommand(((DiagramEditPart) getHost()), createdViews);
@@ -217,7 +217,7 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	}
 
 	protected List<ViewDescriptor> populateSemanticNodes() {
-		List<ViewDescriptor> descriptors = new ArrayList<ViewDescriptor>();
+		List<ViewDescriptor> descriptors = new ArrayList<>();
 		View viewObject = (View) getHost().getModel();
 		EObject container = getDiagram().getElement();
 		if (container instanceof Package) {
@@ -253,7 +253,7 @@ public class InitializeDiagramCommand extends AbstractTransactionalCommand {
 	}
 
 	private List<Object> prepareAdapterList(List<Object> createdViews) {
-		List<Object> viewAdapters = new ArrayList<Object>();
+		List<Object> viewAdapters = new ArrayList<>();
 		viewAdapters.add(host());
 		ListIterator<Object> li = createdViews.listIterator();
 		while (li.hasNext()) {

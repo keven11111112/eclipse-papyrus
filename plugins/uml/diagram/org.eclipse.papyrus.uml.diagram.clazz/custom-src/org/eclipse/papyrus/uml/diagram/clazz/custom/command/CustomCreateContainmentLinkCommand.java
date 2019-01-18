@@ -53,7 +53,7 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 	public CustomCreateContainmentLinkCommand(TransactionalEditingDomain editingDomain, EObject element, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ICommand command) {
 		super(editingDomain, element, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, command);
 		sourceView = null;
-		targetView = (View) targetViewAdapter.getAdapter(View.class);
+		targetView = targetViewAdapter.getAdapter(View.class);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 			ConnectionViewDescriptor viewDescriptor, ICommand command) {
 		super(editingDomain, semanticHint, sourceCircleViewAdapter, targetViewAdapter, viewer, preferencesHint, viewDescriptor, command);
 		sourceView = source;
-		targetView = (View) targetViewAdapter.getAdapter(View.class);
+		targetView = targetViewAdapter.getAdapter(View.class);
 	}
 
 	@Override
@@ -104,8 +104,8 @@ public class CustomCreateContainmentLinkCommand extends CommonDeferredCreateConn
 		if (sourceContainmentCircleEP == null) {
 			return null;
 		}
-		View targetView = (View) targetViewAdapter.getAdapter(View.class);
-		View sourceView = (View) sourceContainmentCircleEP.getParent().getAdapter(View.class);
+		View targetView = targetViewAdapter.getAdapter(View.class);
+		View sourceView = sourceContainmentCircleEP.getParent().getAdapter(View.class);
 		PackageableElement targetElement = (PackageableElement) targetView.getElement();
 		PackageableElement sourceElement = (PackageableElement) sourceView.getElement();
 		EditPart sourceEP = sourceContainmentCircleEP.getParent();

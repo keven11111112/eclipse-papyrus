@@ -97,7 +97,7 @@ public class OperationParser implements IParser {
 							protected void doExecute() {
 								if (InternationalizationPreferencesUtils.getInternationalizationPreference(operation) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(operation)) {
 									UMLLabelInternationalization.getInstance().setLabel(operation, result, null);
-								}else{
+								} else {
 									operation.setName(result);
 								}
 							}

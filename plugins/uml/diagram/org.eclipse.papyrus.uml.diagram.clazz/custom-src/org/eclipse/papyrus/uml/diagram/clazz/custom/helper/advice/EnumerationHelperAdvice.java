@@ -70,7 +70,7 @@ public class EnumerationHelperAdvice extends AbstractEditHelperAdvice {
 
 					if (null != elementsToMove) {
 						// After compare
-						Set<View> viewsToDestroy = new HashSet<View>();
+						Set<View> viewsToDestroy = new HashSet<>();
 
 						Iterator<EObject> it = elementsToMove.iterator();
 
@@ -103,7 +103,7 @@ public class EnumerationHelperAdvice extends AbstractEditHelperAdvice {
 	protected ICommand getAfterMoveCommand(final MoveRequest request) {
 		ICommand moveCommand = super.getAfterMoveCommand(request);
 
-		Set<View> viewsToDestroy = new HashSet<View>();
+		Set<View> viewsToDestroy = new HashSet<>();
 
 		Object parameter = request.getParameter(RequestParameterConstants.TYPE_MOVING);
 
@@ -135,7 +135,7 @@ public class EnumerationHelperAdvice extends AbstractEditHelperAdvice {
 	 * @return the list of {@link View} to delete
 	 */
 	protected Set<View> getMemberViewsToDestroy(final EObject object) {
-		Set<View> viewsToDestroy = new HashSet<View>();
+		Set<View> viewsToDestroy = new HashSet<>();
 		// Find Views in Class Diagram that are referencing current member
 		Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(object, ModelEditPart.MODEL_ID).iterator();
 		while (viewIt.hasNext()) {
@@ -156,14 +156,14 @@ public class EnumerationHelperAdvice extends AbstractEditHelperAdvice {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param listOne
 	 * @param listTwo
 	 * @return
 	 */
 	protected List<EObject> substractLists(final List<EObject> listOne, final List<EObject> listTwo) {
-		List<EObject> sourceList = new ArrayList<EObject>(listOne);
-		List<EObject> destinationList = new ArrayList<EObject>(listTwo);
+		List<EObject> sourceList = new ArrayList<>(listOne);
+		List<EObject> destinationList = new ArrayList<>(listTwo);
 
 		sourceList.removeAll(listTwo);
 		destinationList.removeAll(listOne);

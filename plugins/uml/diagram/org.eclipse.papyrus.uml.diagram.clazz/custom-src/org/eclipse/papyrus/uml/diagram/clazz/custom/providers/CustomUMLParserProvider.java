@@ -79,7 +79,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	protected IParser getAppliedStereotypeParser(String defaultPrintString) {
 		return new AppliedStereotypeParser(defaultPrintString);
 	}
-	
+
 	protected IParser getAppliedKeywordParser(String defaultPrintString) {
 		return new AppliedKeywordParser(defaultPrintString);
 	}
@@ -181,13 +181,13 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 		case AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotypeSubstitutionEditPart.VISUAL_ID:
-			return getAppliedKeywordParser(KeywordLabel.SUBSTITUTE); 
+			return getAppliedKeywordParser(KeywordLabel.SUBSTITUTE);
 		case AppliedStereotypeRealizationEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotypeAbstractionEditPart.VISUAL_ID:
 			return getAppliedKeywordParser(KeywordLabel.ABSTRACTION);
 		case AppliedStereotypeUsageEditPart.VISUAL_ID:
-			return getAppliedKeywordParser(KeywordLabel.USE); 
+			return getAppliedKeywordParser(KeywordLabel.USE);
 		case AppliedStereotypeDependencyEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotypeElementImportEditPart.VISUAL_ID:

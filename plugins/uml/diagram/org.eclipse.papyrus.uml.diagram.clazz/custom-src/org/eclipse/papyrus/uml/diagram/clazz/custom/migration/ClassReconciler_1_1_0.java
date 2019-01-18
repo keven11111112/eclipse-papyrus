@@ -36,6 +36,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
 
 /**
  * Class Diagram Reconciler from 1.0.0 to 1.1.0
+ *
  * @since 3.0
  */
 public class ClassReconciler_1_1_0 extends DiagramReconciler {
@@ -104,7 +105,7 @@ public class ClassReconciler_1_1_0 extends DiagramReconciler {
 	 * @return the floating label map
 	 */
 	private Map<String, String> getFloatingLabelMap() {
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		map.put(ClassEditPart_VISUAL_ID, ClassFloatingNameEditPart_VISUAL_ID);
 		map.put(AssociationClassEditPart_VISUAL_ID, AssociationClassFloatingNameEditPart_VISUAL_ID);
 		map.put(AssociationNodeEditPart_VISUAL_ID, AssociationFloatingNameEditPart_VISUAL_ID);

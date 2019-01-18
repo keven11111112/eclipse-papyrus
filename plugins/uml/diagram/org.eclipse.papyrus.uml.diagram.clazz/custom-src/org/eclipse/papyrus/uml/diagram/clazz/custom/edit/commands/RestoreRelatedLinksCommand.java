@@ -115,7 +115,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 * @return linkdescriptors
 	 */
 	protected Collection<? extends UMLLinkDescriptor> collectPartRelatedLinks(View view, Map<EObject, View> domain2NotationMap) {
-		Collection<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<UMLLinkDescriptor> result = new LinkedList<>();
 		if (!domain2NotationMap.containsKey(view.getElement())) {
 			// We must prevent duplicate descriptors
 			List<?> outgoingDescriptors = CustomUMLDiagramUpdater.INSTANCE.getOutgoingLinks(view);
@@ -171,7 +171,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 		for (Object object : adapters) {
 			if (object instanceof IAdaptable) {
 				IAdaptable ad = (IAdaptable) object;
-				View view = (View) ad.getAdapter(View.class);
+				View view = ad.getAdapter(View.class);
 				if (view != null) {
 					refreshRelatedLinks(view);
 				}
@@ -208,7 +208,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 		// Collect all related link from semantic model
 		Collection<? extends UMLLinkDescriptor> linkDescriptors = collectPartRelatedLinks(notationView, domain2NotationMap);
 		// Collect all related link from graphical model
-		Collection<Edge> existingLinks = new LinkedList<Edge>();
+		Collection<Edge> existingLinks = new LinkedList<>();
 		for (Object edge : notationView.getTargetEdges()) {
 			if (edge instanceof Edge && false == existingLinks.contains(edge)) {
 				existingLinks.add((Edge) edge);
@@ -225,7 +225,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 		for (Iterator<Edge> linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = linksIterator.next();
 			String diagramLinkVisualID = UMLVisualIDRegistry.getVisualID(nextDiagramLink);
-			if (diagramLinkVisualID == null || diagramLinkVisualID.isEmpty() ) {
+			if (diagramLinkVisualID == null || diagramLinkVisualID.isEmpty()) {
 				if (nextDiagramLink.getSource() != null && nextDiagramLink.getTarget() != null) {
 					linksIterator.remove();
 				}
@@ -298,7 +298,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 * @param graphicalEditPart
 	 */
 	protected void refreshRelatedLinks(View notationView) {
-		Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
+		Map<EObject, View> domain2NotationMap = new HashMap<>();
 		// Create related links
 		Collection<? extends UMLLinkDescriptor> linkDescriptors = getLinkDescriptorToProcess(notationView, domain2NotationMap);
 		createRelatedLinks(linkDescriptors, domain2NotationMap);

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 472034
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
 
 /**
  * This Policy is to be used for Enumeration Literal Edit Part to manage the stereotype display
- * 
+ *
  * @author Céline JANSSENS
  *
  */

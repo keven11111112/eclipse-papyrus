@@ -87,8 +87,8 @@ public class ClassReconciler_1_2_0 extends DiagramReconciler {
 
 	public static String getNewVisualID(String oldVisualID) {
 		switch (oldVisualID) {
-		case "1000": //$NON-NLS-1$ //$NON-NLS-1$
-			return "Package_ClassDiagram"; //$NON-NLS-1$ //$NON-NLS-1$
+		case "1000": //$NON-NLS-1$
+			return "Package_ClassDiagram"; //$NON-NLS-1$
 		case "3012": //$NON-NLS-1$
 			return "Property_ClassAttributeLabel"; //$NON-NLS-1$
 		case "3002": //$NON-NLS-1$

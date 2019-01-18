@@ -74,7 +74,8 @@ public class GeneralizationSetConstraintParser implements IParser {
 				out = out + "overlapping}";
 			}
 			return out;
-		};
+		}
+		;
 		return "";
 	}
 

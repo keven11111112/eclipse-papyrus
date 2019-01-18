@@ -33,7 +33,7 @@ public class InstanceSpecificationLinkHelper {
 	 *         if this is not an instance link : the size of the array list is 0
 	 */
 	public static List<InstanceSpecification> getEnds(InstanceSpecification instance) {
-		List<InstanceSpecification> array = new ArrayList<InstanceSpecification>();
+		List<InstanceSpecification> array = new ArrayList<>();
 		EAnnotation endtypes = instance.getEAnnotation(INSTANCE_END);
 		if (endtypes != null) {
 			assert (endtypes.getReferences().size() == 2);

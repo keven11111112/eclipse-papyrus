@@ -98,8 +98,7 @@ public class AssociationClassViewCreateCommand extends AbstractCustomCommand {
 		// UMLElementTypes.AssociationClass_2013).getSemanticHint(), -1,
 		// true, preferenceHint);
 		// put to the good position
-		if (getNode() instanceof Node)
-		{
+		if (getNode() instanceof Node) {
 			((Bounds) ((Node) getNode()).getLayoutConstraint()).setX(location.x);
 			((Bounds) ((Node) getNode()).getLayoutConstraint()).setY(location.y);
 		}

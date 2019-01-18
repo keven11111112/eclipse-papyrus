@@ -40,7 +40,7 @@ public class CustomDurationObservationStereotypeLabelEditPart extends DurationOb
 
 	/**
 	 * Redefine the refresh label to get the STEREOTYPE_LABEL_POLICY if exist and don't recalculate the text.
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortAppliedStereotypeEditPart#refreshLabel()
 	 */
 	@Override

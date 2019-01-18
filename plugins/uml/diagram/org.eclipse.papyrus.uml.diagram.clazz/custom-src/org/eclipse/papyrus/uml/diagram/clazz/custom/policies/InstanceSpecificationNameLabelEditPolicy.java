@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
-	protected final Map<String, String> masks = new HashMap<String, String>();
+	protected final Map<String, String> masks = new HashMap<>();
 
 	public InstanceSpecificationNameLabelEditPolicy() {
 		super();

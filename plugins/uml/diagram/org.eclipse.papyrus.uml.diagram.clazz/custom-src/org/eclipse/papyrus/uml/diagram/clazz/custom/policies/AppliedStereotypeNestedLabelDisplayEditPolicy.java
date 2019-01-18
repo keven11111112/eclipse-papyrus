@@ -5,7 +5,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.NestedStereotypeLabel
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 
 /**
- * 
+ *
  *
  */
 public class AppliedStereotypeNestedLabelDisplayEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {

@@ -50,6 +50,7 @@ public class PropertyCommandForAssociation extends CreateElementCommand {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected EObject doDefaultElementCreation() {
 		Property newElement = UMLFactory.eINSTANCE.createProperty();
 		Association owner = (Association) getElementToEdit();

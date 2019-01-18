@@ -9,7 +9,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.NestedStereotypeLabel
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
 
 /**
- * 
+ *
  *
  */
 public class NestedLabelMaskManagedEditPolicy extends AbstractMaskManagedEditPolicy {

@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
 
 /**
  * The base class of InstanceSpecification link edge parser
- * 
+ *
  */
 public class RoleInstanceSpecificationLinkParser implements IParser {
 

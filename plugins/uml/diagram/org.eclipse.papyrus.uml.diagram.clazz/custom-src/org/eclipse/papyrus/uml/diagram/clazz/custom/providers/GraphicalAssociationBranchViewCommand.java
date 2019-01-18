@@ -27,9 +27,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.C
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.uml2.uml.Property;
 
 public class GraphicalAssociationBranchViewCommand extends CommonDeferredCreateConnectionViewCommand {
@@ -62,7 +62,7 @@ public class GraphicalAssociationBranchViewCommand extends CommonDeferredCreateC
 			associationEnd = (Property) associationEndWrapper;
 		}
 		if (associationEnd != null && associationEnd instanceof Property) {
-			MultiAssociationHelper.setSemanticBranchEnd(view, (Property) associationEnd);
+			org.eclipse.papyrus.uml.diagram.common.helper.MultiAssociationHelper.setSemanticBranchEnd(view, (Property) associationEnd);
 		}
 		return commandResult;
 	}

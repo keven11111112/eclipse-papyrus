@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
-  * 
+  *
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License 2.0
   * which accompanies this distribution, and is available at
   * https://www.eclipse.org/legal/epl-2.0/
   *
   * SPDX-License-Identifier: EPL-2.0
-  * 
+  *
   * Contributors:
   *  CEA LIST - Initial API and implementation
  */
@@ -73,8 +73,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 * @generated
 	 */
 	public UMLDomainNavigatorContentProvider() {
-		myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(
-				UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+		myAdapterFctoryContentProvier = new AdapterFactoryContentProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 		TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		@SuppressWarnings("serial")
@@ -108,8 +107,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 
 			@Override
 			public boolean handleResourceChanged(final Resource resource) {
-				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it
-						.hasNext();) {
+				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = it.next();
 					nextResource.unload();
 				}
@@ -121,8 +119,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 
 			@Override
 			public boolean handleResourceDeleted(Resource resource) {
-				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it
-						.hasNext();) {
+				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = it.next();
 					nextResource.unload();
 				}
@@ -134,8 +131,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 
 			@Override
 			public boolean handleResourceMoved(Resource resource, final URI newURI) {
-				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it
-						.hasNext();) {
+				for (Iterator<Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 					Resource nextResource = it.next();
 					nextResource.unload();
 				}
@@ -150,6 +146,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
@@ -167,6 +164,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		myViewer = viewer;
 	}
@@ -192,6 +190,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object[] getElements(Object inputElement) {
 		return getChildren(inputElement);
 	}
@@ -199,24 +198,28 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public void restoreState(IMemento aMemento) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void saveState(IMemento aMemento) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof IFile) {
 			IFile file = (IFile) parentElement;
@@ -226,9 +229,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 		}
 
 		if (parentElement instanceof UMLDomainNavigatorItem) {
-			return wrapEObjects(
-					myAdapterFctoryContentProvier.getChildren(((UMLDomainNavigatorItem) parentElement).getEObject()),
-					parentElement);
+			return wrapEObjects(myAdapterFctoryContentProvier.getChildren(((UMLDomainNavigatorItem) parentElement).getEObject()), parentElement);
 		}
 		return EMPTY_ARRAY;
 	}
@@ -237,11 +238,10 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	 * @generated
 	 */
 	public Object[] wrapEObjects(Object[] objects, Object parentElement) {
-		Collection<UMLDomainNavigatorItem> result = new ArrayList<UMLDomainNavigatorItem>();
+		Collection<UMLDomainNavigatorItem> result = new ArrayList<>();
 		for (int i = 0; i < objects.length; i++) {
 			if (objects[i] instanceof EObject) {
-				result.add(
-						new UMLDomainNavigatorItem((EObject) objects[i], parentElement, myAdapterFctoryContentProvier));
+				result.add(new UMLDomainNavigatorItem((EObject) objects[i], parentElement, myAdapterFctoryContentProvier));
 			}
 		}
 		return result.toArray();
@@ -250,6 +250,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public Object getParent(Object element) {
 		if (element instanceof UMLAbstractNavigatorItem) {
 			UMLAbstractNavigatorItem abstractNavigatorItem = (UMLAbstractNavigatorItem) element;
@@ -261,6 +262,7 @@ public class UMLDomainNavigatorContentProvider implements ICommonContentProvider
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
 	}

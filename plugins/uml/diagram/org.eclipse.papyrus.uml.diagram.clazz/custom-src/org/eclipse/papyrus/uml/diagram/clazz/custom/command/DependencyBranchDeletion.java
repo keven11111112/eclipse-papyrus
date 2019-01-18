@@ -35,9 +35,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.uml2.uml.Dependency;
@@ -71,7 +71,7 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 		GraphicalEditPart branchSource = (GraphicalEditPart) selectedElement.getSource();
 		GraphicalEditPart branchtarget = (GraphicalEditPart) selectedElement.getTarget();
 		EStructuralFeature feature = null;
-		List<NamedElement> newValue = new ArrayList<NamedElement>();
+		List<NamedElement> newValue = new ArrayList<>();
 		if (branchSource.resolveSemanticElement() instanceof Dependency) {
 			// target is the supplier of the dependency
 			dependency = (Dependency) branchSource.resolveSemanticElement();
@@ -101,8 +101,8 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 			// 5. Graphical creation of the binary dependency
 			// 5.1 calculus of the furture source and taget of the binary
 			// dependency
-			List<EditPart> sourceList = new ArrayList<EditPart>();
-			List<EditPart> targetList = new ArrayList<EditPart>();
+			List<EditPart> sourceList = new ArrayList<>();
+			List<EditPart> targetList = new ArrayList<>();
 			for (Object editPart : dependencyNodeEditPart.getSourceConnections()) {
 				sourceList.add((EditPart) editPart);
 			}

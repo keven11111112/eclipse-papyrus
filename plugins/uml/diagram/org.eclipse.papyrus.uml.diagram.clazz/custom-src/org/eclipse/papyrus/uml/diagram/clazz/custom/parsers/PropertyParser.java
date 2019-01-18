@@ -101,7 +101,7 @@ public class PropertyParser implements IParser {
 							protected void doExecute() {
 								if (InternationalizationPreferencesUtils.getInternationalizationPreference(property) && null != UMLLabelInternationalization.getInstance().getLabelWithoutUML(property)) {
 									UMLLabelInternationalization.getInstance().setLabel(property, result, null);
-								}else{
+								} else {
 									property.setName(result);
 								}
 							}

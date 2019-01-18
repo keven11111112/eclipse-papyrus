@@ -54,7 +54,7 @@ public class CustomPackageReparentCreationEditPolicy extends PapyrusCreationEdit
 	@Override
 	protected Command getReparentCommand(ChangeBoundsRequest request) {
 		Iterator<?> editParts = request.getEditParts().iterator();
-		View container = (View) getHost().getAdapter(View.class);
+		View container = getHost().getAdapter(View.class);
 		EObject context = container == null ? null : ViewUtil.resolveSemanticElement(container);
 		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
 
