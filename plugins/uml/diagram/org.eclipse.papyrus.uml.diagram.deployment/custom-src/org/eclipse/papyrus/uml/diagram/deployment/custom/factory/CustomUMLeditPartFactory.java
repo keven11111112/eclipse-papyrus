@@ -35,7 +35,7 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 		if (model instanceof View) {
 			View view = (View) model;
 			String visualID = UMLVisualIDRegistry.getVisualID(view);
-			if(visualID != null) {
+			if (visualID != null) {
 				switch (visualID) {
 				// redefined classes to modify the method createNodePlate
 

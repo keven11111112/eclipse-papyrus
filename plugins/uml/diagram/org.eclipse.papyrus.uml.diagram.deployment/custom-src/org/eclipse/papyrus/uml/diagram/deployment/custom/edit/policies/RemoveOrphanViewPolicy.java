@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2019 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,7 +12,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Adaptation for Composite Diagram
-
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 528325
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.deployment.custom.edit.policies;
@@ -29,7 +29,10 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.OrphanViewPolicy;
  *
  * See RemoveOrphanViewPolicy in Class Diagram
  * </pre>
+ *
+ * @deprecated since 3.2
  */
+@Deprecated
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
 	/**

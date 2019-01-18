@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2009-2015 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
 
 /**
  * Deployment Diagram Reconciler from 1.0.0 to 1.1.0
+ *
  * @since 3.0
  */
 public class DeploymentReconciler_1_1_0 extends DiagramReconciler {
@@ -55,7 +56,7 @@ public class DeploymentReconciler_1_1_0 extends DiagramReconciler {
 	 * @return the floating label map
 	 */
 	private Map<String, String> getFloatingLabelMap() {
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		map.put(ArtifactEditPart_VISUAL_ID, ArtifactFloatingLabelEditPart_VISUAL_ID);
 		map.put(ArtifactEditPartACN_VISUAL_ID, ArtifactFloatingLabelEditPartACN_VISUAL_ID);
 		map.put(ArtifactEditPartCN_VISUAL_ID, ArtifactFloatingLabelEditPartCN_VISUAL_ID);

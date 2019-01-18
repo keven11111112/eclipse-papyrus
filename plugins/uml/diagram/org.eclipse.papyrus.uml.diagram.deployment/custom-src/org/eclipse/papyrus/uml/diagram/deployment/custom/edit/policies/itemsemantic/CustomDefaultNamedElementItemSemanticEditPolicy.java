@@ -35,7 +35,7 @@ public class CustomDefaultNamedElementItemSemanticEditPolicy extends DefaultSema
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		if (request instanceof ReorientRelationshipRequest) {
 			if (DependencyBranchEditPart.VISUAL_ID == getVisualID(request)) {
-				return new GMFtoGEFCommandWrapper(new BranchDependenctReorientCommand((ReorientRelationshipRequest)request));
+				return new GMFtoGEFCommandWrapper(new BranchDependenctReorientCommand((ReorientRelationshipRequest) request));
 			}
 		}
 		return super.getSemanticCommand(request);

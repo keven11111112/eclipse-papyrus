@@ -16,6 +16,7 @@
 
 package org.eclipse.papyrus.uml.diagram.deployment.custom.edit.command;
 
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
@@ -27,7 +28,7 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.policies.UMLBaseItemSeman
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.core.commands.ExecutionException;
+
 /**
  * because of the nature of this relation the test about can execute has to be change
  *

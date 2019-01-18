@@ -32,7 +32,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	protected IParser getAppliedStereotypeParser(String defaultEditString) {
 		return new AppliedStereotypeParser(defaultEditString);
 	}
-	
+
 	/**
 	 * @since 3.0
 	 */
