@@ -1114,7 +1114,7 @@
       <repository url="http://download.eclipse.org/upr/nightly/standardized/update/"/>
     </setupTask>
   </stream>
-  <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance ">
+  <stream label="streams/3.0-maintenance (Oxygen/3.x)" name="streams/3.0-maintenance">
     <setupTask xsi:type="setup:VariableTask" name="papyrus.bugzilla.version" value="${papyrus.bugzver.oxygen}"/>
     <setupTask xsi:type="jdt:JRETask" version="JavaSE-1.8" location="${jre.location-1.8}"/>
     <setupTask xsi:type="setup.targlets:TargletTask">
