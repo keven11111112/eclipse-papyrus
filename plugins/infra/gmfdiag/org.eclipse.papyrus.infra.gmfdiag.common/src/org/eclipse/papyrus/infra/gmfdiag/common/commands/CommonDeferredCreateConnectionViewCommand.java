@@ -143,16 +143,27 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 	 */
 	protected IGraphicalEditPart findEditPartForCreation(View view) {
 		Iterator<?> editPartIterator = viewer.getEditPartRegistry().values().iterator();
-		EObject semanticElement = view.getElement();
 		while (editPartIterator.hasNext()) {
 			EditPart currentEditPart = (EditPart) editPartIterator.next();
-			if ((!(currentEditPart instanceof CompartmentEditPart)) && currentEditPart instanceof IGraphicalEditPart && semanticElement == (((IGraphicalEditPart) currentEditPart).resolveSemanticElement())) {
-				// In the case of a diagram created inside an element and this element being dropped inside, there is a possibility (the order does not seem to be kept between creations)
-				// that the editPart matching the semantic element is the diagram itself as it is contained by the element.
-				// We cannot link a diagram Edit Part, it will return a null command, preventing the link creation.
-				if (!(currentEditPart instanceof LabelEditPart || currentEditPart.getModel() instanceof Diagram)) {
-					return (IGraphicalEditPart) currentEditPart;
-				}
+			if ((currentEditPart instanceof CompartmentEditPart)) {
+				continue;
+			}
+			
+			if (!(currentEditPart instanceof IGraphicalEditPart)) {
+				continue;
+			}
+
+			EObject semanticElement = view.getElement();
+			EObject resolvedElement = ((IGraphicalEditPart) currentEditPart).resolveSemanticElement();
+			if (null == resolvedElement || !(semanticElement == resolvedElement)) {
+				continue;
+			}
+			
+			// In the case of a diagram created inside an element and this element being dropped inside, there is a possibility (the order does not seem to be kept between creations)
+			// that the editPart matching the semantic element is the diagram itself as it is contained by the element.
+			// We cannot link a diagram Edit Part, it will return a null command, preventing the link creation.
+			if (!(currentEditPart instanceof LabelEditPart || currentEditPart.getModel() instanceof Diagram)) {
+				return (IGraphicalEditPart) currentEditPart;
 			}
 		}
 		return null;
