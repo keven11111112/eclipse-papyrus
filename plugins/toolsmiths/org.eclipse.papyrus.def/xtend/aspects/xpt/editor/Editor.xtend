@@ -89,7 +89,7 @@ public static final String CONTEXT_ID = "«contextID»"; «nonNLS»
 		
 		«generatedMemberComment»
 		private org.eclipse.jface.viewers.ISelection getNavigatorSelection() {
-			«IF getDiagramTopReference(it) !=null»
+			«IF getDiagramTopReference(it) !==null »
 			org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument document = getDiagramDocument();
 			«ENDIF»
 			«xptNavigatorLinkHelper.findSelectionBody(it)»
@@ -110,6 +110,69 @@ override createPaletteRoot (Palette it)'''
 		return paletteRoot;
 	}
 '''
+
+//	FIXME - This has been overrided to comment the test on the palette tag in the gmfgen
+	override Editor(GenEditorView it) '''
+		«copyright(editorGen)»
+		package «packageName(it)»;
+		
+		«generatedClassComment»
+		public class «className(it)» «extendsList(it)» «implementsList(it)» {
+		
+			«attributes(it)»
+			
+			«constructor(it)»
+			
+			«getContextID(it)»
+			
+«««			«IF editorGen.diagram.palette != null»
+				«createPaletteRoot(editorGen.diagram.palette)»
+«««			«ENDIF»
+			
+			«getPreferencesHint(it)»
+			
+			«getContributorId(it)»
+			
+			«getAdapter(it)»
+			
+			«getDocumentProvider(it)»
+			
+			«getEditingDomain(it)»
+			
+			«setDocumentProvider(it)»
+			«IF isIDEMode(it)»
+				
+					«gotoMarker(it)»
+					
+					«isSaveAsAllowed(it)»
+					
+					«doSaveAs(it)»
+					
+					«performSaveAs(it)»
+					
+					«getShowInContext(it)»
+					
+					«IF hasNavigator(it)»
+						«getNavigatorSelection(it.editorGen.navigator)»
+					«ENDIF»
+			«ENDIF»
+		
+			«configureGraphicalViewer(it)»
+		
+			«IF editorGen.diagram.generateCreateShortcutAction»
+				
+					«initializeGraphicalViewer(it)»
+					
+					«controlLastClickPositionProviderService»
+					
+					«dispose»
+					
+					«DropTargetListener(it)»
+			«ENDIF»
+		
+			«additions(it)»
+		}
+	'''
 
 def createPaletteCustomizer (GenEditorView it)'''
 	«generatedMemberComment»
@@ -142,7 +205,6 @@ override additions (GenEditorView it)'''
 	«««	Documentation: (RS) advanced customization abilities
 	«««	« createPaletteCustomizer»
 	
-	
 	« constructPaletteViewer(it)»
 	
 	« createPaletteviewerProvider(it)»
@@ -152,6 +214,7 @@ override additions (GenEditorView it)'''
 	«initializeGraphicalViewer(it)»
 	
 	«selectionChanged(it)»
+	
 '''
 
 def handlePaletteChange (GenEditorView it) '''
