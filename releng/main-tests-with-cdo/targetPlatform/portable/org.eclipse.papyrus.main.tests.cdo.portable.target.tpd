@@ -3,15 +3,17 @@ target "Papyrus CDO Tests" with source requirements
 include
 "../../../main-tests/targetPlatform/portable/org.eclipse.papyrus.main.tests.portable.target.tpd"
 
+/*** Manual referencing ***/
+
 //manualUpdate
 
 location PapyrusMain "https://ci.eclipse.org/papyrus/view/Master/job/Papyrus-Master/lastSuccessfulBuild/artifact/repository/"{
 	org.eclipse.papyrus.sdk.feature.feature.group lazy
 }
 
-//location PapyrusToolsmithis 
+//manualUpdate
 
-location Sysml "https://hudson.eclipse.org/papyrus/job/papyrus-sysml-master/4/artifact/releng/org.eclipse.papyrus.sysml14.p2/target/repository/" {
+location Sysml "https://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/2018-09/" {
 	org.eclipse.papyrus.sysml14.feature.feature.group lazy
 }
 
@@ -21,16 +23,18 @@ location papyrusCdo "https://hudson.eclipse.org/papyrus/job/Papyrus-CDO/lastSucc
 
 }
 
+/*** Updates from the Simrel repository ***/
 
-//manual update 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/I20181123-0100" {
- org.eclipse.emf.cdo.explorer 
- org.eclipse.emf.cdo.dawn
- org.eclipse.emf.cdo.dawn.gmf
- org.eclipse.emf.cdo.admin
- org.eclipse.emf.cdo.explorer.ui
- org.eclipse.emf.cdo.ui.admin
- org.eclipse.emf.cdo.server.ocl
+//updateFrom("EMF CDO",0) 
+
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20180613-0111" {
+ org.eclipse.emf.cdo.admin lazy
+ org.eclipse.emf.cdo.dawn lazy
+ org.eclipse.emf.cdo.dawn.gmf lazy
  org.eclipse.emf.cdo.ecore lazy
+ org.eclipse.emf.cdo.explorer lazy
+ org.eclipse.emf.cdo.explorer.ui lazy
  org.eclipse.emf.cdo.gmf.notation lazy
+ org.eclipse.emf.cdo.server.ocl lazy
+ org.eclipse.emf.cdo.ui.admin lazy
 }

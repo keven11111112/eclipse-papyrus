@@ -23,7 +23,7 @@ location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repositor
 
 //manualUpdate (Needed by infra.tools, API Evolution Report generation and other plugins)
 
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20181128170323/repository" {
+location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/S20190129210011/repository" {
 	com.google.guava 21.0.0
 	com.google.guava.source 21.0.0
  	com.google.gson [2.7.0,2.8.0)
@@ -60,13 +60,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.11milestones/S-4.11M1-201901091800/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.11-I-builds/I20190131-0130/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2018-12",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.7.0/S201901141422" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.7.0/S201902041943" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -79,7 +79,7 @@ location xwt "http://download.eclipse.org/xwt/updates" {
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201901151856" {
+location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201902051759" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -89,49 +89,49 @@ location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/mileston
 
 //updateFrom("EMFT MWE",0)
 
-location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.9.1/" {
+location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201901281525" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
 //updateFrom("WebTools 3.13 for Simrel 2019-03",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.13.0/S-3.13.0.M1-20190110035915/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.13.0/S-3.13.0.M2-20190131070724/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
 //updateFrom("GMF Runtime",0)
 
-location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201806010809" {
+location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201806010809" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
 //updateFrom("GMF Runtime",1)
 
-location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201805221301" {
+location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201805221301" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
 }
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201901090453" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201901300518" {
 	org.eclipse.emf.sdk.feature.group
 }
 
-//updateFrom("EMF Services",0) 
+//updateFrom("EMF Services for 2019-03",0) 
 
-location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/milestones/S201805030653" {
+location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releases/R201805030653" {
 	org.eclipse.emf.query.sdk.feature.group
 }
 
-//updateFrom("EMF Services",1)
+//updateFrom("EMF Services for 2019-03",1)
 
-location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201805030717" {
+location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/releases/R201812070911" {
 	org.eclipse.emf.validation.sdk.feature.group
 }
 
-//updateFrom("EMF Services",2)
+//updateFrom("EMF Services for 2019-03",2)
 
-location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201805140824/" {
+location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201805140824/" {
 	org.eclipse.emf.transaction.sdk.feature.group
 }
 
