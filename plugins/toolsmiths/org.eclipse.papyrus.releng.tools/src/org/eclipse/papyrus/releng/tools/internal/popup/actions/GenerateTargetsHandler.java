@@ -52,6 +52,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.releng.tools.internal.Activator;
+import org.eclipse.papyrus.releng.tools.internal.Messages;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -107,7 +108,7 @@ public class GenerateTargetsHandler extends AbstractHandler {
 				if (!tpdFiles.isEmpty()) {
 					new UpdateDependencies().updateDependencies(tpdFiles, activeShell); // Update all TPD Files from Simrel
 
-					String jobTitle = String.format("Generate %s target files", tpdFiles.size());
+					String jobTitle = String.format(Messages.GenerateTargetsHandler_GenerateTargetFile, tpdFiles.size());
 					Job topLevelJob = new Job(jobTitle) {
 						/**
 						 * @see org.eclipse.core.runtime.jobs.Job#run(org.eclipse.core.runtime.IProgressMonitor)
@@ -119,7 +120,7 @@ public class GenerateTargetsHandler extends AbstractHandler {
 						protected IStatus run(IProgressMonitor monitor) {
 							int maxThreads = 2; // Multi-threading is not really relevant, most time is spent in downloading artifacts
 
-							JobGroup tpdConverters = new JobGroup("Generate Targets", maxThreads, tpdFiles.size());
+							JobGroup tpdConverters = new JobGroup(Messages.GenerateTargetsHandler_GenerateTarget, maxThreads, tpdFiles.size());
 							for (IFile tpdFile : tpdFiles) {
 								generate(tpdFile, tpdConverters); // Generate *.target files
 							}
@@ -127,7 +128,7 @@ public class GenerateTargetsHandler extends AbstractHandler {
 							try {
 								tpdConverters.join(0, monitor);
 							} catch (InterruptedException e) {
-								return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unexpected exception", e);
+								return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.GenerateTargetsHandler_UnexpectedException, e);
 							}
 
 							return tpdConverters.getResult();
@@ -153,20 +154,20 @@ public class GenerateTargetsHandler extends AbstractHandler {
 						}
 
 						void done(IStatus status) {
-							String title = "Generate targets";
+							String title = Messages.GenerateTargetsHandler_GenerateTarget;
 							switch (status.getCode()) {
 							case IStatus.OK:
 							case IStatus.INFO:
-								MessageDialog.openInformation(activeShell, title, "Operation complete");
+								MessageDialog.openInformation(activeShell, title, Messages.GenerateTargetsHandler_OperationComplete);
 								break;
 							case IStatus.CANCEL:
-								MessageDialog.openInformation(activeShell, title, "Operation canceled");
+								MessageDialog.openInformation(activeShell, title, Messages.GenerateTargetsHandler_OperationCanceled);
 								break;
 							case IStatus.ERROR:
-								MessageDialog.openError(activeShell, title, "The operation completed with errors. Check error log for details");
+								MessageDialog.openError(activeShell, title, Messages.GenerateTargetsHandler_OperationCompleteWithError);
 								break;
 							case IStatus.WARNING:
-								MessageDialog.openWarning(activeShell, title, "The operation completed with warnings. Check error log for details");
+								MessageDialog.openWarning(activeShell, title, Messages.GenerateTargetsHandler_OperationCompleteWithWarning);
 								break;
 							}
 						}
@@ -175,7 +176,7 @@ public class GenerateTargetsHandler extends AbstractHandler {
 
 				}
 			} catch (CoreException e) {
-				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unexpected exception", e));
+				Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.GenerateTargetsHandler_UnexpectedException, e));
 			}
 
 		}
@@ -239,7 +240,7 @@ public class GenerateTargetsHandler extends AbstractHandler {
 		Injector injector = TargetplatformActivator.getInstance().getInjector(TargetplatformActivator.ORG_ECLIPSE_CBI_TARGETPLATFORM_TARGETPLATFORM);
 		injector.injectMembers(converter);
 
-		Job job = new Job("Generate Target Platform for " + file.getLocation().lastSegment()) {
+		Job job = new Job(Messages.GenerateTargetsHandler_GenerateTargetPlatformFor + file.getLocation().lastSegment()) {
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
@@ -252,7 +253,7 @@ public class GenerateTargetsHandler extends AbstractHandler {
 					file.getParent().refreshLocal(IResource.DEPTH_ONE, null);
 					generateEclipseTarget(file);
 				} catch (CoreException ex) {
-					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unexpected exception", ex);//$NON-NLS-1$
+					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.GenerateTargetsHandler_UnexpectedException, ex);
 				}
 
 				return BasicDiagnostic.toIStatus(result);
@@ -288,9 +289,10 @@ public class GenerateTargetsHandler extends AbstractHandler {
 			eclipseFolder.create(true, true, new NullProgressMonitor());
 		}
 
-		IFile eclipseTargetFile = eclipseFolder.getFile(fileName.replaceAll("portable", targetSuffix));
+		IFile eclipseTargetFile = eclipseFolder.getFile(fileName.replaceAll("portable", targetSuffix)); //$NON-NLS-1$
 
-		InputStream convertedStream = convert(portableTargetFile.getContents(), "http://download.eclipse.org/", "file:/home/data/httpd/download.eclipse.org/");
+		InputStream convertedStream = convert(portableTargetFile.getContents(), "http://download.eclipse.org/", "file:/home/data/httpd/download.eclipse.org/"); //$NON-NLS-1$ //$NON-NLS-2$
+		convertedStream = convert(convertedStream, "https://download.eclipse.org/", "file:/home/data/httpd/download.eclipse.org/"); //$NON-NLS-1$ //$NON-NLS-2$
 
 		if (eclipseTargetFile.exists()) {
 
@@ -328,7 +330,7 @@ public class GenerateTargetsHandler extends AbstractHandler {
 				builder.append(newLine).append("\n"); //$NON-NLS-1$
 			}
 		} catch (IOException ex) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unexpected error", ex));
+			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.GenerateTargetsHandler_UnexpectedError, ex));
 		}
 
 		ByteArrayInputStream result = new ByteArrayInputStream(builder.toString().getBytes());

@@ -16,6 +16,15 @@ import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.releng.tools.internal.messages"; //$NON-NLS-1$
+	public static String GenerateTargetsHandler_GenerateTarget;
+	public static String GenerateTargetsHandler_GenerateTargetFile;
+	public static String GenerateTargetsHandler_GenerateTargetPlatformFor;
+	public static String GenerateTargetsHandler_OperationCanceled;
+	public static String GenerateTargetsHandler_OperationComplete;
+	public static String GenerateTargetsHandler_OperationCompleteWithError;
+	public static String GenerateTargetsHandler_OperationCompleteWithWarning;
+	public static String GenerateTargetsHandler_UnexpectedError;
+	public static String GenerateTargetsHandler_UnexpectedException;
 	public static String UpdateRMapAction_mapWasUpdatedTitle;
 	public static String UpdateRMapAction_chooseBuildModel;
 	public static String UpdateRMapAction_chooseBuildModelLong;
