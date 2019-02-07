@@ -8,46 +8,29 @@
 		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>org.eclipse.papyrus</groupId>
-	<artifactId>org.eclipse.papyrus.tests.cdo.releng</artifactId>
+
+	<artifactId>org.eclipse.papyrus.tests.releng</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
-		<jacoco.version>0.7.9</jacoco.version>
+		<testSuiteClass>org.eclipse.papyrus.tests.AllTests</testSuiteClass>
+		<jacoco.version>0.8.2</jacoco.version> <!-- https://repo.maven.apache.org/maven2/ -->
 		<!-- Separate property for test argLine seems to be required when running 
 			Jacoco + Surefire -->
 		<test.argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100</test.argLine>
-		<target.platform>org.eclipse.papyrus.main.tests.cdo.${target.suffix}.target</target.platform>
 	</properties>
 
 	<modules>
 		<!-- Features -->
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.core.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.emf.expressions.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.nattable.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.services.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.assistants.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.decoratormodel.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.diagram.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.expressions.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.nattable.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.tools.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.views.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.uml.textedit.tests.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.uml.alf.tests.feature</module>
-		<module>../../features/papyrus-tests-features/org.eclipse.papyrus.tests.toolsmiths.feature</module>
+		<module>../../features/papyrus-tests-features/</module>
 
 		<!-- Plugins -->
 		<module>../../tests/junit/plugins</module>
-		<module>../../tests/compatibility/cdo</module>
-		<module>targetPlatform</module>
 	</modules>
 
-<build>
+	<build>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -132,7 +115,10 @@
 		<profile>
 			<id>defaultProfile</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>defaultProfile</name>
+					<value>!true</value>
+				</property>
 			</activation>
 			<repositories>
 				<repository>
@@ -144,6 +130,52 @@
 					<id>papyrus-toolsmiths</id>
 					<layout>p2</layout>
 					<url>${papyrus.repo.toolsmiths}</url>
+				</repository>
+			</repositories>
+		</profile>
+
+		<profile>
+			<id>mainTests</id>
+			<activation>
+				<property>
+					<name>mainTests</name>
+					<value>!true</value>
+				</property>
+			</activation>
+			<properties>
+				<target.platform>org.eclipse.papyrus.main.tests.${target.suffix}.target</target.platform>
+			</properties>
+			<modules>
+				<module>main-tests</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>mainTestsCDO</id>
+			<activation>
+                <property>
+                    <name>mainTestsCDO</name>
+                    <value>true</value>
+                </property>
+			</activation>
+			<properties>
+				<target.platform>org.eclipse.papyrus.main.tests.cdo.${target.suffix}.target</target.platform>
+			</properties>
+			<modules>
+				<module>../../tests/compatibility/cdo</module>
+				<module>main-tests-with-cdo</module>
+			</modules>
+
+			<repositories>
+				<repository>
+					<id>sysml14</id>
+					<layout>p2</layout>
+					<url>https://ci.eclipse.org/papyrus/job/papyrus-sysml-master/lastSuccessfulBuild/artifact/releng/org.eclipse.papyrus.sysml14.p2/target/repository/</url>
+				</repository>
+				<repository>
+					<id>papyrusCDO</id>
+					<layout>p2</layout>
+					<url>https://ci.eclipse.org/papyrus/job/Papyrus-CDO/lastSuccessfulBuild/artifact/repository/</url>
 				</repository>
 			</repositories>
 		</profile>

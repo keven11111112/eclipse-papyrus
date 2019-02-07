@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.eclipse.papyrus</groupId>
 		<artifactId>org.eclipse.papyrus.tests.releng</artifactId>
-		<version>1.2.0-SNAPSHOT</version>
-		<relativePath>../../../../../../releng/main-tests/pom.xml</relativePath>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../../../../../releng/tests/pom.xml</relativePath>
 	</parent>
 	<groupId>org.eclipse.papyrus.tests</groupId>
 	<artifactId>org.eclipse.papyrus.uml.textedit.suite.tests</artifactId>
@@ -24,7 +25,8 @@
 					<useUIThread>true</useUIThread>
 					<testFailureIgnore>true</testFailureIgnore>
 					<product>org.eclipse.sdk.ide</product>
-					<!-- If a specific <argLine> is required here, make sure to include JaCoCo parameters (See parent pom, Bug 478170) -->
+					<!-- If a specific <argLine> is required here, make sure to include 
+						JaCoCo parameters (See parent pom, Bug 478170) -->
 					<skipTests>${skipAllTests}</skipTests>
 					<testClass>org.eclipse.papyrus.uml.textedit.suite.tests.AllTests</testClass>
 				</configuration>
@@ -52,5 +54,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

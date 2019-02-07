@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<artifactId>org.eclipse.papyrus.releng</artifactId>
@@ -15,12 +15,12 @@
 	<packaging>eclipse-repository</packaging>
 
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>org.jboss.tools.tycho-plugins</id>
-            <url>https://repository.jboss.org/</url>
-        </pluginRepository>
-    </pluginRepositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>org.jboss.tools.tycho-plugins</id>
+			<url>https://repository.jboss.org/</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<build>
 		<plugins>
@@ -32,24 +32,24 @@
 					<includePackedArtifacts>true</includePackedArtifacts>
 				</configuration>
 			</plugin>
-			
+
 			<!-- workaround https://bugs.eclipse.org/bugs/show_bug.cgi?id=453708 -->
 			<plugin>
 				<groupId>org.jboss.tools.tycho-plugins</groupId>
 				<artifactId>repository-utils</artifactId>
-                <version>${jboss.utils.version}</version>
+				<version>${jboss.utils.version}</version>
 				<executions>
 					<execution>
-					<phase>package</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>generate-repository-facade</goal>
 						</goals>
 						<configuration>
-						    <!-- do not generate the pesky web folder and index.html -->
-                            <skipWebContentGeneration>true</skipWebContentGeneration>
-                            <!-- p2 update site transitive dependencies repositories -->
+							<!-- do not generate the pesky web folder and index.html -->
+							<skipWebContentGeneration>true</skipWebContentGeneration>
+							<!-- p2 update site transitive dependencies repositories -->
 							<associateSites>
-								<!-- Oxygen orbit bundles for batik 1.6.0-->
+								<!-- Oxygen orbit bundles for batik 1.6.0 -->
 								<site>http://download.eclipse.org/tools/orbit/downloads/drops/R20180206163158/repository/</site>
 							</associateSites>
 						</configuration>

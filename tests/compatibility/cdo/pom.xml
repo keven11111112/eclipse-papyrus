@@ -6,9 +6,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.eclipse.papyrus</groupId>
-		<artifactId>org.eclipse.papyrus.tests.cdo.releng</artifactId>
+		<artifactId>org.eclipse.papyrus.tests.releng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../../../releng/main-tests-with-cdo/pom.xml</relativePath>
+		<relativePath>../../../releng/tests/pom.xml</relativePath>
 	</parent>
 	<groupId>org.eclipse.papyrus.compatibility.tests-cdo</groupId>
 	<artifactId>org.eclipse.papyrus.plugins.tests.cdo</artifactId>

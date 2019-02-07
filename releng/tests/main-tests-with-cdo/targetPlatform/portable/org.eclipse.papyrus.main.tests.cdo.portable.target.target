@@ -110,19 +110,6 @@
       <repository id="emfCompare" location="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201812111422/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.papyrus.sdk.feature.feature.group" version="0.0.0"/>
-      <repository id="PapyrusMain" location="https://ci.eclipse.org/papyrus/view/Master/job/Papyrus-Master/lastSuccessfulBuild/artifact/repository/"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.papyrus.sysml14.feature.feature.group" version="0.0.0"/>
-      <repository id="Sysml" location="https://download.eclipse.org/modeling/mdt/papyrus/components/sysml14/2018-09/"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.papyrus.cdo.feature.feature.group" version="0.0.0"/>
-      <unit id="org.eclipse.papyrus.cdo.models.feature.feature.group" version="0.0.0"/>
-      <repository id="papyrusCdo" location="https://hudson.eclipse.org/papyrus/job/Papyrus-CDO/lastSuccessfulBuild/artifact/repository/"/>
-    </location>
-    <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.cdo.admin" version="0.0.0"/>
       <unit id="org.eclipse.emf.cdo.dawn" version="0.0.0"/>
       <unit id="org.eclipse.emf.cdo.dawn.gmf" version="0.0.0"/>

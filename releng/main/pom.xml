@@ -8,9 +8,9 @@
 		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
-    <artifactId>org.eclipse.papyrus.releng</artifactId>
-    <packaging>pom</packaging>
+
+	<artifactId>org.eclipse.papyrus.releng</artifactId>
+	<packaging>pom</packaging>
 
 	<modules>
 		<module>../../plugins</module>
@@ -22,7 +22,7 @@
 	</modules>
 
 	<properties>
-	    <!-- https://repo.maven.apache.org/maven2/ -->
+		<!-- https://repo.maven.apache.org/maven2/ -->
 		<mojo.buildhelper.version>3.0.0</mojo.buildhelper.version>
 		<mylyn.wikitext.version>3.0.29</mylyn.wikitext.version>
 

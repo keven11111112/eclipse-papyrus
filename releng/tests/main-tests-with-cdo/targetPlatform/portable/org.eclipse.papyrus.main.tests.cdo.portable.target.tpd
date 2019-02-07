@@ -1,0 +1,20 @@
+target "Papyrus CDO Tests" with source requirements
+
+include "../../../main-tests/targetPlatform/portable/org.eclipse.papyrus.main.tests.portable.target.tpd"
+
+
+/*** Updates from the Simrel repository ***/
+
+//updateFrom("EMF CDO",0) 
+
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20180613-0111" {
+ org.eclipse.emf.cdo.admin lazy
+ org.eclipse.emf.cdo.dawn lazy
+ org.eclipse.emf.cdo.dawn.gmf lazy
+ org.eclipse.emf.cdo.ecore lazy
+ org.eclipse.emf.cdo.explorer lazy
+ org.eclipse.emf.cdo.explorer.ui lazy
+ org.eclipse.emf.cdo.gmf.notation lazy
+ org.eclipse.emf.cdo.server.ocl lazy
+ org.eclipse.emf.cdo.ui.admin lazy
+}

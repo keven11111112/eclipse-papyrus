@@ -16,12 +16,12 @@
 	<packaging>eclipse-repository</packaging>
 
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>org.jboss.tools.tycho-plugins</id>
-            <url>https://repository.jboss.org/</url>
-        </pluginRepository>
-    </pluginRepositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>org.jboss.tools.tycho-plugins</id>
+			<url>https://repository.jboss.org/</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<build>
 		<plugins>
@@ -38,7 +38,7 @@
 			<plugin>
 				<groupId>org.jboss.tools.tycho-plugins</groupId>
 				<artifactId>repository-utils</artifactId>
-                <version>${jboss.utils.version}</version>
+				<version>${jboss.utils.version}</version>
 				<executions>
 					<execution>
 						<phase>package</phase>

@@ -7,11 +7,13 @@
 		<groupId>org.eclipse.papyrus</groupId>
 		<artifactId>org.eclipse.papyrus.tests.releng</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../../../releng/tests</relativePath>
 	</parent>
-	<groupId>org.eclipse.papyrus</groupId>
-	<artifactId>org.eclipse.papyrus.tests.uml.expressions.feature</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<packaging>eclipse-feature</packaging>
-	<description>This feature provides the JUnit tests for the UML Expressions framework.</description>
+
+	<artifactId>org.eclipse.papyrus.tests.cdo.releng</artifactId>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>targetPlatform</module>
+	</modules>
+
 </project>
