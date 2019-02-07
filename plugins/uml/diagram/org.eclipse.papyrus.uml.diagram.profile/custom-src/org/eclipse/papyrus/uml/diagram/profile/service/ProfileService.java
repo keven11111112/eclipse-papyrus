@@ -28,9 +28,7 @@ import org.eclipse.papyrus.infra.ui.lifecycleevents.LifeCycleEventsProvider;
  * This class is registered as a Papyrus service.
  * It then registered itself to the {@link LifeCycleEventsProvider}.
  *
- * @deprecated since 3.2.
  */
-@Deprecated
 public class ProfileService implements IService {
 
 	/**
@@ -57,17 +55,16 @@ public class ProfileService implements IService {
 	 */
 	public ProfileService() {
 		aboutToSaveListener = new PreSaveProfileListener();
-		// System.out.println("ProfileService created"); //$NON-NLS-1$
+		//	System.out.println("ProfileService created"); //$NON-NLS-1$
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.core.services.IService#disposeService()
 	 *
 	 */
-	@Override
 	public void disposeService() {
 		deactivate();
-		// System.out.println("ProfileService disposed"); //$NON-NLS-1$
+		//	System.out.println("ProfileService disposed"); //$NON-NLS-1$
 
 	}
 
@@ -79,7 +76,6 @@ public class ProfileService implements IService {
 	 *
 	 * @param servicesRegistry
 	 */
-	@Override
 	public void init(ServicesRegistry servicesRegistry) {
 		this.servicesRegistry = servicesRegistry;
 
@@ -89,10 +85,9 @@ public class ProfileService implements IService {
 	 * @see org.eclipse.papyrus.infra.core.services.IService#startService()
 	 *
 	 */
-	@Override
 	public void startService() {
 		activate();
-		// System.out.println("ProfileService started"); //$NON-NLS-1$
+		//	System.out.println("ProfileService started"); //$NON-NLS-1$
 	}
 
 	/**

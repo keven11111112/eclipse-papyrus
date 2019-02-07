@@ -186,6 +186,15 @@
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
+<extension
+      point="org.eclipse.papyrus.infra.core.service">
+   <service
+         classname="org.eclipse.papyrus.uml.diagram.profile.service.ProfileService"
+         priority="1"
+         startKind="startup"
+         useClassTypeAsKey="true">
+   </service>
+</extension>
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
 		      <?gmfgen generated="true"?>
 		<page
