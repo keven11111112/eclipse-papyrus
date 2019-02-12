@@ -66,7 +66,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.11-I-builds/I20
 
 //updateFrom("OCL for 2018-12",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.7.0/S201902041943" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.7.0/S201902061512" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -113,7 +113,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201901300518" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201902091045" {
 	org.eclipse.emf.sdk.feature.group
 }
 

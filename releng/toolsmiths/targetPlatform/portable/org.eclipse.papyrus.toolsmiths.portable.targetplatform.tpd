@@ -8,7 +8,7 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 //manualUpdate
 // This will need to be changed as soon as the new build is available @see Bug 538414
 location tpd "http://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT" {
-    org.eclipse.cbi.targetplatform-feature.feature.group
+    org.eclipse.cbi.targetplatform-feature.feature.group lazy
 }
 
 //manualUpdate 
@@ -33,7 +33,7 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 
 //updateFrom("oomph",0) 
 
-location oomph "https://download.eclipse.org/oomph/drops/milestone/S20190116-015610-1.12.0-M1" {
+location oomph "https://download.eclipse.org/oomph/drops/milestone/S20190206-100647-1.12.0-M2" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group

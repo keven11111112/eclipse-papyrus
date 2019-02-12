@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Tests" sequenceNumber="1549447535">
+<target name="Papyrus Tests" sequenceNumber="1549962966">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -46,9 +46,9 @@
       <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.11-I-builds/I20190131-0130/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.8.0.v20190204-1943"/>
-      <unit id="org.eclipse.ocl.examples.feature.group" version="6.7.0.v20190204-1943"/>
-      <repository id="ocl" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.7.0/S201902041943"/>
+      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.8.0.v20190206-1512"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="6.7.0.v20190206-1512"/>
+      <repository id="ocl" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.7.0/S201902061512"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="1.3.1.I20171018-2059"/>
@@ -79,8 +79,8 @@
       <repository id="gmfNotation" location="file:/home/data/httpd/download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201805221301"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.sdk.feature.group" version="2.17.0.v20190123-0656"/>
-      <repository id="emf" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/emf/builds/milestone/S201901300518"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.17.0.v20190209-1542"/>
+      <repository id="emf" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/emf/builds/milestone/S201902091045"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.query.sdk.feature.group" version="1.12.0.201805030653"/>
