@@ -25,6 +25,22 @@ import org.eclipse.papyrus.infra.widgets.messages.Messages;
  */
 public class RealValidator extends AbstractValidator {
 
+	private final boolean allowNull;
+
+	public RealValidator() {
+		this(false);
+	}
+
+	/**
+	 * Create a new {@link RealValidator}. If <code>allowNull</code>
+	 * is true, null and empty strings will be considered valid values (These
+	 * null/empty values can be used e.g. to reset or unset a real value)
+	 *
+	 * @since 3.5
+	 */
+	public RealValidator(boolean allowNull) {
+		this.allowNull = allowNull;
+	}
 
 	/**
 	 *
@@ -38,9 +54,17 @@ public class RealValidator extends AbstractValidator {
 			return Status.OK_STATUS;
 		}
 
+		if (newValue == null && allowNull) {
+			return Status.OK_STATUS;
+		}
+
 		if (newValue instanceof String) {
+			String strValue = (String) newValue;
+			if (allowNull && strValue.isEmpty()) {
+				return Status.OK_STATUS;
+			}
 			try {
-				Double.parseDouble((String) newValue);
+				Double.parseDouble(strValue);
 				return Status.OK_STATUS;
 			} catch (NumberFormatException ex) {
 				return error(Messages.RealInputValidator_NotaRealMessage);

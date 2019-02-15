@@ -70,6 +70,11 @@ public class EMFObservableValue extends EObjectObservableValue {
 	}
 
 	@Override
+	protected Object doGetValue() {
+		return eStructuralFeature.isUnsettable() && !eObject.eIsSet(eStructuralFeature) && eStructuralFeature.getDefaultValueLiteral() == null ? null : super.doGetValue();
+	}
+
+	@Override
 	protected void doSetValue(Object value) {
 		EObject eObject = EMFHelper.getEObject(value);
 		if (eObject != null) {

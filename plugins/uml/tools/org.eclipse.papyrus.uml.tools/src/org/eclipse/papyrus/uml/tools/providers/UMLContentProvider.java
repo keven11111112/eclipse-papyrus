@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2019 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
+ *  EclipseSource - Bug 544476
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
@@ -19,7 +20,6 @@ package org.eclipse.papyrus.uml.tools.providers;
 import java.util.Collections;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -30,6 +30,7 @@ import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFEnumeratorContentProvider;
@@ -64,7 +65,7 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		// Bug 522650: only update if there is an actual change, to avoid overriding the existing delegate
-		if (newInput == oldInput) { 
+		if (newInput == oldInput) {
 			super.inputChanged(viewer, oldInput, newInput);
 			return;
 		}
@@ -103,7 +104,7 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider#hasChildren(java.lang.Object)
 	 */
 	@Override
@@ -232,7 +233,7 @@ public class UMLContentProvider extends EncapsulatedContentProvider {
 			return new InteractionOperatorContentProvider(source, feature);
 		}
 
-		if (feature.getEType() instanceof EEnum) {
+		if (EMFHelper.isEnumType(feature.getEType())) {
 			return new EMFEnumeratorContentProvider(feature);
 		}
 

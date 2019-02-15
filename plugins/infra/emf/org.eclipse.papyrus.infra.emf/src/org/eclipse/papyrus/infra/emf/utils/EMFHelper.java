@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2019 CEA LIST, Christian W. Damus, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -14,6 +14,7 @@
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
  *  Christian W. Damus (CEA) - bugs 323802, 429826, 408491, 432813, 422257
  *  Christian W. Damus - bugs 469188, 485220
+ *  EclipseSource - Bug 544476
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
@@ -48,6 +49,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -438,12 +440,12 @@ public class EMFHelper {
 	/**
 	 * Gets the object of a given {@code type} containing an {@code object}, or the
 	 * {@code object} itself if it is of that {@code type}.
-	 * 
+	 *
 	 * @param object
 	 *            the object for which to search for a container
 	 * @param type
 	 *            the type of container to find
-	 * 
+	 *
 	 * @return the container of the requested {@code type}, or {@code null} if none
 	 * @since 2.0
 	 */
@@ -464,12 +466,12 @@ public class EMFHelper {
 	/**
 	 * Gets the object of a given {@code type} containing an {@code object}, or the
 	 * {@code object} itself if it is of that {@code type}.
-	 * 
+	 *
 	 * @param object
 	 *            the object for which to search for a container
 	 * @param type
 	 *            the type of container to find
-	 * 
+	 *
 	 * @return the container of the requested {@code type}, or {@code null} if none
 	 * @since 2.0
 	 */
@@ -496,14 +498,14 @@ public class EMFHelper {
 	 * 		The list of EClasses implementing or extending the given EClass
 	 */
 	public static List<EClass> getSubclassesOf(final EClass type, final boolean concreteClassesOnly) {
-		Set<EClass> result = new LinkedHashSet<EClass>();
+		Set<EClass> result = new LinkedHashSet<>();
 		if (!concreteClassesOnly || (!type.isAbstract() && !type.isInterface())) {
 			result.add(type);
 		}
 
 		EPackage ePackage = getRootPackage(type.getEPackage());
 		getSubclassesOf(type, ePackage, result, concreteClassesOnly);
-		return new LinkedList<EClass>(result);
+		return new LinkedList<>(result);
 	}
 
 	/**
@@ -519,7 +521,7 @@ public class EMFHelper {
 	 * 		The list of EClasses implementing or extending the given EClass
 	 */
 	public static List<EClass> getSubclassesOf(final EClass type, final boolean concreteClassesOnly, Collection<EPackage> packagesToBrowse) {
-		Set<EClass> result = new LinkedHashSet<EClass>();
+		Set<EClass> result = new LinkedHashSet<>();
 		if (!concreteClassesOnly || (!type.isAbstract() && !type.isInterface())) {
 			result.add(type);
 		}
@@ -528,7 +530,7 @@ public class EMFHelper {
 			getSubclassesOf(type, ePackage, result, concreteClassesOnly);
 		}
 
-		return new LinkedList<EClass>(result);
+		return new LinkedList<>(result);
 	}
 
 	/**
@@ -547,12 +549,12 @@ public class EMFHelper {
 		// If the current package is a dynamic package, it may not be registered (?). Add it directly
 		EPackage currentPackage = getRootPackage(type.getEPackage());
 
-		Set<EPackage> allPackages = new LinkedHashSet<EPackage>();
+		Set<EPackage> allPackages = new LinkedHashSet<>();
 		allPackages.add(currentPackage);
 
 		if (browseAllRegisteredPackages) {
 			// FIXME // WARNING: This loop will load all EPackages. The first call is expensive.
-			Set<String> allUris = new HashSet<String>(EPackage.Registry.INSTANCE.keySet());
+			Set<String> allUris = new HashSet<>(EPackage.Registry.INSTANCE.keySet());
 
 			for (String nsURI : allUris) {
 				allPackages.add(EPackage.Registry.INSTANCE.getEPackage(nsURI));
@@ -802,6 +804,7 @@ public class EMFHelper {
 		}
 
 		// EEnums are always required, as an EEnum always has a default value
+		// Note: For optional enums, the type will be a EDataType with instanceClass=Enumerator
 		if (eType instanceof EEnum) {
 			return true;
 		}
@@ -817,12 +820,45 @@ public class EMFHelper {
 			return true;
 		}
 
-		// If there is a default value, there is always a value
+		// If there is a default value, there is always a value; except for Enums which might be nullable
 		if (feature.getDefaultValueLiteral() != null) {
+			boolean isNullableEnum = feature.getEType() instanceof EDataType && getEnumType(feature.getEType()) != null;
+			if (!isNullableEnum) {
+				return true;
+			}
+		}
+
+		return false; // The property is not required
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public static boolean isEnumType(EClassifier eType) {
+		if (eType instanceof EEnum) {
 			return true;
 		}
 
-		return false; // The property if not required
+		if (eType instanceof EDataType) {
+			return getEnumType(eType) != null;
+		}
+
+		return false;
+	}
+
+	/**
+	 * @since 3.1
+	 */
+	public static EEnum getEnumType(EClassifier eType) {
+		if (eType instanceof EEnum) { // Standard Enums
+			return (EEnum) eType;
+		} else if (eType instanceof EDataType) { // Optional Enums
+			EDataType implType = (EDataType) eType;
+			EDataType baseType = ExtendedMetaData.INSTANCE.getBaseType(implType);
+			return baseType instanceof EEnum ? (EEnum) baseType : null;
+		}
+
+		return null;
 	}
 
 	/**
@@ -834,7 +870,7 @@ public class EMFHelper {
 	 */
 	public static <T> Set<T> allInstances(final Resource resource, Class<T> type) {
 		TreeIterator<EObject> iterator = resource.getAllContents();
-		Set<T> result = new LinkedHashSet<T>();
+		Set<T> result = new LinkedHashSet<>();
 
 		while (iterator.hasNext()) {
 			EObject element = iterator.next();
@@ -853,7 +889,7 @@ public class EMFHelper {
 	 * @return
 	 */
 	public static Set<EPackage> getAllEPackages(final Resource resource) {
-		Set<EPackage> result = new LinkedHashSet<EPackage>();
+		Set<EPackage> result = new LinkedHashSet<>();
 
 		for (EObject rootElement : resource.getContents()) {
 			if (rootElement instanceof EPackage) {
@@ -873,7 +909,7 @@ public class EMFHelper {
 	 * @return
 	 */
 	public static Set<EPackage> getAllNestedPackages(EPackage basePackage) {
-		Set<EPackage> result = new LinkedHashSet<EPackage>();
+		Set<EPackage> result = new LinkedHashSet<>();
 
 		for (EPackage nestedPackage : basePackage.getESubpackages()) {
 			result.add(nestedPackage);
@@ -892,9 +928,9 @@ public class EMFHelper {
 	 * 		the list of the metamodels known by the resource
 	 */
 	public static Set<EPackage> getMetamodels(final Resource resource) {
-		Set<EPackage> metamodels = new HashSet<EPackage>();
+		Set<EPackage> metamodels = new HashSet<>();
 		if (resource != null) {
-			final List<EObject> contents = new ArrayList<EObject>(resource.getContents());
+			final List<EObject> contents = new ArrayList<>(resource.getContents());
 			for (final EObject current : contents) {
 				metamodels.add(current.eClass().getEPackage());
 			}
@@ -952,7 +988,7 @@ public class EMFHelper {
 		EPackage mmPackage = usedObject.eClass().getEPackage();
 
 		// Retrieve the list of elements referencing the usedObject.
-		Set<EObject> crossReferences = new HashSet<EObject>();
+		Set<EObject> crossReferences = new HashSet<>();
 		for (Setting setting : getUsages(usedObject)) {
 			EObject eObj = setting.getEObject();
 			if (eObj.eClass().getEPackage().equals(mmPackage)) {
@@ -981,7 +1017,7 @@ public class EMFHelper {
 	 * @param subType
 	 *            another eClassifier
 	 * @return
-	 *         <code>true</code> if the 2nd {@link EClassifier} is a subtype of the first one
+	 * 		<code>true</code> if the 2nd {@link EClassifier} is a subtype of the first one
 	 */
 	public static boolean isSuperType(final EClassifier superType, final EClassifier subType) {
 		if (superType == subType) {
@@ -1016,7 +1052,7 @@ public class EMFHelper {
 	public static List<EObject> getContainmentPath(EObject element) {
 		List<EObject> result;
 		if (element.eContainer() == null) {
-			result = new LinkedList<EObject>();
+			result = new LinkedList<>();
 			result.add(element);
 			return result;
 		} else {

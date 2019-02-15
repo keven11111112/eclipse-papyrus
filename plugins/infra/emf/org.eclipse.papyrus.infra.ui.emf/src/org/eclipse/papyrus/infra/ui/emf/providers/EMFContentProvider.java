@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2019 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,17 +10,18 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  EclipseSource - Bug 544476
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.emf.providers;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
 import org.eclipse.papyrus.infra.ui.emf.providers.strategy.ContainmentBrowseStrategy;
 import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
@@ -60,11 +61,11 @@ public class EMFContentProvider extends EncapsulatedContentProvider {
 	 * @param feature
 	 *            The object's feature being edited
 	 * @return
-	 *         A content provider returning all the values valid for the given feature
+	 * 		A content provider returning all the values valid for the given feature
 	 */
 	protected IStructuredContentProvider getSemanticProvider(EObject editedEObject, EStructuralFeature feature) {
 		EClassifier type = feature.getEType();
-		if (type instanceof EEnum) {
+		if (EMFHelper.isEnumType(type)) {
 			return new EMFEnumeratorContentProvider(feature);
 		} else if (type instanceof EClass) {
 			return new SemanticEMFContentProvider(editedEObject, feature);

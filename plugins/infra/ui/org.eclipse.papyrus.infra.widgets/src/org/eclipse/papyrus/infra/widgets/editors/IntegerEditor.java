@@ -59,7 +59,7 @@ public class IntegerEditor extends StringEditor {
 	public IntegerEditor(Composite parent, int style, String label) {
 		super(parent, style, label);
 
-		targetValidator = new IntegerValidator();
+		targetValidator = new IntegerValidator(true);
 
 		targetToModelConverter = new IConverter() {
 
@@ -78,7 +78,7 @@ public class IntegerEditor extends StringEditor {
 				if (fromObject instanceof String) {
 					String newString = ((String) fromObject).replaceAll(" ", ""); //$NON-NLS-1$ //$NON-NLS-2$
 					try {
-						Integer i = (Integer) StringToNumberConverter.toInteger(false).convert(newString);
+						Integer i = StringToNumberConverter.toInteger(false).convert(newString);
 						return i;
 					} catch (Exception ex) {
 
@@ -107,8 +107,9 @@ public class IntegerEditor extends StringEditor {
 
 				if (fromObject instanceof Integer) {
 					return Integer.toString((Integer) fromObject);
+				} else if (fromObject != null) {
+					errorBinding = true;
 				}
-				errorBinding = true;
 				return ""; //$NON-NLS-1$
 			}
 

@@ -42,7 +42,7 @@ public class DoubleEditor extends StringEditor {
 	public DoubleEditor(Composite parent, int style) {
 		super(parent, style);
 
-		targetValidator = new RealValidator();
+		targetValidator = new RealValidator(true);
 		targetToModelConverter = new IConverter() {
 
 			@Override
@@ -60,6 +60,9 @@ public class DoubleEditor extends StringEditor {
 				if (fromObject instanceof String) {
 					String newString = ((String) fromObject)
 							.replaceAll(" ", ""); //$NON-NLS-1$ //$NON-NLS-2$
+					if (newString.isEmpty()) {
+						return null;
+					}
 					try {
 						return Double.parseDouble(newString);
 					} catch (NumberFormatException ex) {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2019 CEA LIST, EclipseSource.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Modification to match IValidator
+ *  EclipseSource - Bug 544476
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.validator;
@@ -28,6 +29,22 @@ import org.eclipse.papyrus.infra.widgets.messages.Messages;
  */
 public class IntegerValidator extends AbstractValidator {
 
+	private final boolean allowNull;
+
+	public IntegerValidator() {
+		this(false);
+	}
+
+	/**
+	 * Create a new {@link IntegerValidator}. If <code>allowNull</code>
+	 * is true, null and empty strings will be considered valid values (These
+	 * null/empty values can be used e.g. to reset or unset an integer value)
+	 *
+	 * @since 3.5
+	 */
+	public IntegerValidator(boolean allowNull) {
+		this.allowNull = allowNull;
+	}
 
 	/**
 	 *
@@ -41,9 +58,17 @@ public class IntegerValidator extends AbstractValidator {
 			return Status.OK_STATUS;
 		}
 
+		if (allowNull && newValue == null) {
+			return Status.OK_STATUS;
+		}
+
 		if (newValue instanceof String) {
+			String strValue = (String) newValue;
+			if (allowNull && strValue.isEmpty()) {
+				return Status.OK_STATUS;
+			}
 			try {
-				Integer.parseInt((String) newValue);
+				Integer.parseInt(strValue);
 				return Status.OK_STATUS;
 			} catch (NumberFormatException ex) {
 				return error(Messages.IntegerInputValidator_NotAnIntegerMessage);

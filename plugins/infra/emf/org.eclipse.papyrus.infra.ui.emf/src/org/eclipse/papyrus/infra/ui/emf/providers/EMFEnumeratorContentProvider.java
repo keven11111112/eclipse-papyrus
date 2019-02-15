@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2019 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  EclipseSource - Bug 544476
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.emf.providers;
 
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 
 /**
@@ -41,9 +43,10 @@ public class EMFEnumeratorContentProvider extends AbstractStaticContentProvider 
 		this.feature = feature;
 	}
 
+	@Override
 	public Object[] getElements() {
 		EClassifier type = feature.getEType();
-		EEnum enumerated = (EEnum) type;
+		EEnum enumerated = EMFHelper.getEnumType(type);
 		EEnumLiteral[] literals = enumerated.getELiterals().toArray(new EEnumLiteral[0]);
 		Enumerator[] values = new Enumerator[literals.length];
 
