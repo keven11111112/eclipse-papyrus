@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2019 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 527940
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.helper;
@@ -56,7 +57,7 @@ public class CleanDiagramHelper {
 	protected static CleanDiagramHelper cleanDiagramHelper;
 
 	/** The view to remove. */
-	protected ArrayList<View> viewToRemove = new ArrayList<View>();
+	protected ArrayList<View> viewToRemove = new ArrayList<>();
 
 	protected DiagramEditPart selectedElement;
 
@@ -72,10 +73,6 @@ public class CleanDiagramHelper {
 	 */
 	public void run(DiagramEditPart diagramEditPart) {
 		this.selectedElement = diagramEditPart;
-		OrphanViewPolicy removeOrphanViewPolicy = (OrphanViewPolicy) diagramEditPart.getEditPolicy("RemoveOrphanView");
-		if (removeOrphanViewPolicy != null) {
-			removeOrphanViewPolicy.forceRefresh();
-		}
 		scan(diagramEditPart);
 		deleteUnknownViews();
 
