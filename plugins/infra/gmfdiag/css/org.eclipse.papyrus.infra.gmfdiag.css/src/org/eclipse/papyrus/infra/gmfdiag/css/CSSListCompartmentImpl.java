@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2019 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 544547
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
@@ -19,7 +20,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Sorting;
 import org.eclipse.gmf.runtime.notation.impl.ListCompartmentImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSDrawerStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSTitleStyle;
@@ -54,7 +55,7 @@ public class CSSListCompartmentImpl extends ListCompartmentImpl implements CSSDr
 
 	protected ExtendedCSSEngine getEngine() {
 		if (engine == null) {
-			engine = ((CSSDiagramImpl) getDiagram()).getEngine();
+			engine = ((CSSDiagram) getDiagram()).getEngine();
 		}
 		return engine;
 	}

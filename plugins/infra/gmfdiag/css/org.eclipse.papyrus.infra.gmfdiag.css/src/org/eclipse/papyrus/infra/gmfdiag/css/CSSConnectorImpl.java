@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016, 2019 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bugs 433206, 436665
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 544547
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
@@ -25,7 +26,7 @@ import org.eclipse.gmf.runtime.notation.Smoothness;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.impl.ConnectorImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
-import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
+import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSConnectorStyle;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
@@ -49,7 +50,7 @@ public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle
 
 	protected ExtendedCSSEngine getEngine() {
 		if (engine == null) {
-			engine = ((CSSDiagramImpl) getDiagram()).getEngine();
+			engine = ((CSSDiagram) getDiagram()).getEngine();
 		}
 		return engine;
 	}
@@ -60,7 +61,7 @@ public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle
 		}
 		return cssView;
 	}
-	
+
 	@Override
 	public void resetCSS() {
 		cssView = null;

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2019 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Laurent Wouters <laurent.wouters@cea.fr> CEA LIST - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 544547
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
@@ -63,12 +63,12 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 	/**
 	 * The name of the CSS property that points to the CSS file for the SVG figure
 	 */
-	private static final String CSS_PROPERTY_SVG_STYLESHEET = "svgCSSFile";
+	private static final String CSS_PROPERTY_SVG_STYLESHEET = "svgCSSFile"; //$NON-NLS-1$
 
 	/**
 	 * The name of the CSS property that defines the name of the CSS class to look for in the SVG figure
 	 */
-	private static final String CSS_PROPERTY_SVG_CLASS = "svgCSSClass";
+	private static final String CSS_PROPERTY_SVG_CLASS = "svgCSSClass"; //$NON-NLS-1$
 
 	/**
 	 * The CSS engine for this post-processor
@@ -136,12 +136,12 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 			}
 			// Retrieve the applied CSS class
 			StringValueStyle nsClassName = (StringValueStyle) shape.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), CSS_PROPERTY_SVG_CLASS);
-			String className = "";
+			String className = ""; //$NON-NLS-1$
 			if (nsClassName != null) {
 				className = nsClassName.getStringValue();
 			}
 			// Apply the style
-			document.getDocumentElement().setAttribute("class", className);
+			document.getDocumentElement().setAttribute("class", className); //$NON-NLS-1$
 			applyStyles(document);
 		}
 	}
@@ -166,7 +166,7 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 		try {
 			stream = URIConverter.INSTANCE.createInputStream(uri);
 		} catch (IOException e) {
-			Activator.log.error("Failed to locate stylesheet from " + uri, e);
+			Activator.log.error("Failed to locate stylesheet from " + uri, e); //$NON-NLS-1$
 			failedSheets.add(uri);
 			return;
 		}
@@ -174,7 +174,7 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 		try {
 			sheet = engine.parseStyleSheet(stream);
 		} catch (IOException e) {
-			Activator.log.error("Failed to load stylesheet at " + uri, e);
+			Activator.log.error("Failed to load stylesheet at " + uri, e); //$NON-NLS-1$
 			failedSheets.add(uri);
 		} finally {
 			try {
@@ -198,7 +198,7 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 	 * @return The canonical URI of the resource
 	 */
 	private URI getCanonicalURI(EObject model, String uri) {
-		if (uri.startsWith("platform:/")) {
+		if (uri.startsWith("platform:/")) { //$NON-NLS-1$
 			return URI.createURI(uri);
 		}
 
@@ -216,11 +216,11 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 		if (!resURI.isPlatform()) {
 			return null;
 		}
-		StringBuilder builder = new StringBuilder("platform:/");
+		StringBuilder builder = new StringBuilder("platform:/"); //$NON-NLS-1$
 		String[] segments = resURI.segments();
 		for (int i = 0; i < segments.length - 1; i++) {
 			builder.append(segments[i]);
-			builder.append("/");
+			builder.append("/"); //$NON-NLS-1$
 		}
 		builder.append(uri);
 		canonical = URI.createURI(builder.toString());
@@ -284,14 +284,14 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 		int count = 0;
 		for (Entry<String, String> entry : style.entrySet()) {
 			if (count != 0) {
-				builder.append(";");
+				builder.append(";"); //$NON-NLS-1$
 			}
 			builder.append(entry.getKey());
-			builder.append(":");
+			builder.append(":"); //$NON-NLS-1$
 			builder.append(entry.getValue());
 			count++;
 		}
-		element.setAttribute("style", builder.toString());
+		element.setAttribute("style", builder.toString()); //$NON-NLS-1$
 	}
 
 	/**
@@ -383,17 +383,17 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 	 */
 	private Map<String, String> getBaseStyle(Element element) {
 		HashMap<String, String> result = new HashMap<>();
-		String styleValue = element.getAttribute("style");
+		String styleValue = element.getAttribute("style"); //$NON-NLS-1$
 		if (styleValue != null && !styleValue.isEmpty()) {
-			String[] props = styleValue.split(";");
+			String[] props = styleValue.split(";"); //$NON-NLS-1$
 			for (int i = 0; i != props.length; i++) {
-				String[] temp = props[i].split(":");
+				String[] temp = props[i].split(":"); //$NON-NLS-1$
 				if (temp.length == 2) {
 					result.put(temp[0], temp[1]);
 				} else if (temp.length > 2) {
 					StringBuilder builder = new StringBuilder(temp[1]);
 					for (int j = 2; j != temp.length; j++) {
-						builder.append(":");
+						builder.append(":"); //$NON-NLS-1$
 						builder.append(temp[j]);
 					}
 					result.put(temp[0], builder.toString());
