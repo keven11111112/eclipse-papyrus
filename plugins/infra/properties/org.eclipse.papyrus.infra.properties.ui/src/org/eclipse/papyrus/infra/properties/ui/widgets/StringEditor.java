@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -33,6 +34,18 @@ public class StringEditor extends AbstractPropertyEditor {
 	 *            The style for the widget
 	 */
 	public StringEditor(Composite parent, int style) {
-		super(new org.eclipse.papyrus.infra.widgets.editors.StringEditor(parent, style));
+		super(new org.eclipse.papyrus.infra.widgets.editors.StringEditor(parent, style | SWT.SEARCH | SWT.ICON_CANCEL));
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor#doBinding()
+	 *
+	 */
+	@Override
+	protected void doBinding() {
+		super.doBinding();
+		if (input != null && propertyPath != null && !input.isMandatory(propertyPath)) {
+			((org.eclipse.papyrus.infra.widgets.editors.StringEditor) getEditor()).setOptional(true);
+		}
 	}
 }

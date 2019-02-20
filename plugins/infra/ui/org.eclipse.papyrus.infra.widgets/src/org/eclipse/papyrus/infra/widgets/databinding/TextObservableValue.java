@@ -11,7 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Calin Glitia (Esterel Technologies SAS) - Bug 497496
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.databinding;
 
@@ -20,6 +20,7 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.infra.widgets.providers.UnchangedObject;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
@@ -31,6 +32,11 @@ import org.eclipse.swt.widgets.Text;
  * @author Camille Letavernier
  */
 public class TextObservableValue extends AbstractObservableValue implements Listener {
+
+	// Flag to avoid firing a change event when focus comes in and out,
+	// without any user change occurring in the text field
+	private boolean wasChanged = false;
+	private boolean isReset = false;
 
 	private Text text;
 
@@ -64,6 +70,16 @@ public class TextObservableValue extends AbstractObservableValue implements List
 			this.modelProperty = (AggregatedObservable) modelProperty;
 		}
 		this.text.addListener(eventType, this);
+		this.text.addModifyListener(event -> {
+			this.wasChanged = true;
+			this.isReset = false;
+		});
+
+		this.text.addListener(SWT.DefaultSelection, event -> {
+			if (event.detail == SWT.ICON_CANCEL) {
+				clear();
+			}
+		});
 	}
 
 	@Override
@@ -77,10 +93,19 @@ public class TextObservableValue extends AbstractObservableValue implements List
 			return null;
 		}
 
-		if (UnchangedObject.instance.toString().equals(text.getText())) {
-			return null;
+		if (wasChanged) {
+			// XXX We don't support special values, so we have to rely on null in two
+			// distinct cases. In case of single-selection, 'null' means 'null' (Unset or set(null))
+			// In case of multi-selection, 'null' means 'unchanged'
+			if (isReset) {
+				return null;
+			} else if (UnchangedObject.instance.toString().equals(text.getText())) {
+				return null;
+			} else {
+				return text.getText();
+			}
 		} else {
-			return text.getText();
+			return currentValue;
 		}
 	}
 
@@ -91,14 +116,14 @@ public class TextObservableValue extends AbstractObservableValue implements List
 		}
 		if (modelProperty != null && modelProperty.hasDifferentValues()) {
 			this.text.setText(UnchangedObject.instance.toString());
-			this.currentValue = UnchangedObject.instance;
+			storeValue(UnchangedObject.instance);
 		} else {
 			if (value instanceof String) {
 				this.text.setText((String) value);
-				this.currentValue = value;
+				storeValue(value);
 			} else if (value == null) {
 				this.text.setText(""); //$NON-NLS-1$
-				this.currentValue = null;
+				storeValue(null);
 			}
 		}
 	}
@@ -111,10 +136,10 @@ public class TextObservableValue extends AbstractObservableValue implements List
 
 		final Object oldValue = currentValue;
 		final Object newValue = getValue();
-		if (newValue == null) {
+		if (newValue == null && !isReset) {
 			return;
 		}
-		currentValue = newValue;
+		storeValue(newValue);
 
 		if ((eventType & event.type) != 0) {
 			fireValueChange(new ValueDiff() {
@@ -131,6 +156,18 @@ public class TextObservableValue extends AbstractObservableValue implements List
 
 			});
 		}
+	}
+
+	public void clear() {
+		this.text.setText("");
+		this.wasChanged = true;
+		this.isReset = true;
+	}
+
+	private void storeValue(Object value) {
+		this.currentValue = value;
+		this.wasChanged = false;
+		this.isReset = false;
 	}
 
 }

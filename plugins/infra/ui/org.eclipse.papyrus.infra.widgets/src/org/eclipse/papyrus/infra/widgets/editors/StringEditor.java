@@ -22,17 +22,38 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.fieldassist.FieldDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.papyrus.infra.widgets.databinding.TextObservableValue;
 import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.accessibility.ACC;
+import org.eclipse.swt.accessibility.AccessibleAdapter;
+import org.eclipse.swt.accessibility.AccessibleControlAdapter;
+import org.eclipse.swt.accessibility.AccessibleControlEvent;
+import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseMoveListener;
+import org.eclipse.swt.events.MouseTrackListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.internal.WorkbenchMessages;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * A Property Editor representing a single-line or multi-line String value as a
@@ -46,10 +67,32 @@ import org.eclipse.swt.widgets.Text;
  */
 public class StringEditor extends AbstractValueEditor implements KeyListener, ModifyListener {
 
+
+	private static final String CLEAR_ICON = "org.eclipse.ui.internal.dialogs.CLEAR_ICON"; //$NON-NLS-1$
+	private static final String DISABLED_CLEAR_ICON = "org.eclipse.ui.internal.dialogs.DCLEAR_ICON"; //$NON-NLS-1$
+
+	static {
+		ImageDescriptor descriptor = AbstractUIPlugin
+				.imageDescriptorFromPlugin(PlatformUI.PLUGIN_ID,
+						"$nl$/icons/full/etool16/clear_co.png"); //$NON-NLS-1$
+		if (descriptor != null) {
+			JFaceResources.getImageRegistry().put(CLEAR_ICON, descriptor);
+		}
+		descriptor = AbstractUIPlugin.imageDescriptorFromPlugin(
+				PlatformUI.PLUGIN_ID, "$nl$/icons/full/dtool16/clear_co.png"); //$NON-NLS-1$
+		if (descriptor != null) {
+			JFaceResources.getImageRegistry().put(DISABLED_CLEAR_ICON, descriptor);
+		}
+	}
+
 	/**
 	 * The text box for editing this editor's value
 	 */
 	protected final Text text;
+
+	private boolean wasChanged = false;
+
+	private String initialText;
 
 	private int delay = 600;
 
@@ -60,6 +103,10 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 	private TimerTask currentValidateTask;
 
 	private TimerTask changeColorTask;
+
+	private boolean isOptional;
+
+	private Label clearButton;
 
 	private final static int DEFAULT_HEIGHT_HINT = 55;
 
@@ -141,13 +188,54 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 			style = style | SWT.V_SCROLL;
 		}
 
-		text = factory.createText(this, null, style);
-		text.setLayoutData(data);
+		int clearStyle = SWT.SEARCH | SWT.ICON_CANCEL;
+
+		if ((style & clearStyle) == clearStyle) {
+			Text testText = factory.createText(this, null, style);
+			// Test if SEARCH is natively supported
+			if ((testText.getStyle() & clearStyle) != clearStyle) {
+				// Not natively supported (e.g. Windows); create a custom clear icon
+				testText.dispose();
+
+				final int borderStyle = factory.getBorderStyle();
+				final Composite textWrapper = factory.createComposite(this, borderStyle);
+				textWrapper.setLayoutData(data);
+
+				GridLayoutFactory.fillDefaults().numColumns(2).margins(0, 0).applyTo(textWrapper);
+				try {
+					// Remove border from the Text Control and add it to the wrapping composite
+					factory.setBorderStyle(SWT.NONE);
+					text = factory.createText(textWrapper, null, SWT.NONE);
+				} finally {
+					factory.setBorderStyle(borderStyle);
+				}
+				text.setLayoutData(GridDataFactory.copyData(data));
+
+				addClearIcon(text, textWrapper);
+			} else {
+				// Natively supported; just use it.
+				text = testText;
+				text.setLayoutData(data);
+				// Implement custom clear behavior
+				text.addSelectionListener(new SelectionAdapter() {
+					@Override
+					public void widgetDefaultSelected(SelectionEvent e) {
+						if (e.detail == SWT.CANCEL) {
+							clearText();
+							e.doit = false;
+						}
+					}
+				});
+			}
+		} else {
+			text = factory.createText(this, null, style);
+			text.setLayoutData(data);
+		}
 
 		if (label != null) {
 			super.label.setLayoutData(getLabelLayoutData());
-
 		}
+
 		text.addKeyListener(this);
 		text.addModifyListener(this);
 		setCommitOnFocusLost(text);
@@ -156,6 +244,108 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 		data.horizontalIndent = FieldDecorationRegistry.getDefault().getMaximumDecorationWidth();
 		pack();
 
+	}
+
+	// From org.eclipse.ui.dialogs.FilteredTree
+	private void addClearIcon(Text text, Composite parent) {
+		// only create the button if the text widget doesn't support one
+		// natively
+		if ((text.getStyle() & SWT.ICON_CANCEL) == 0) {
+			final Image inactiveImage = JFaceResources.getImageRegistry().getDescriptor(DISABLED_CLEAR_ICON).createImage();
+			final Image activeImage = JFaceResources.getImageRegistry().getDescriptor(CLEAR_ICON).createImage();
+			final Image pressedImage = new Image(getDisplay(), activeImage, SWT.IMAGE_GRAY);
+
+			final Label clearButton = new Label(parent, SWT.NONE);
+			clearButton.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+			clearButton.setImage(inactiveImage);
+			clearButton.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
+			clearButton.setToolTipText("Clear");
+			clearButton.addMouseListener(new MouseAdapter() {
+				private MouseMoveListener fMoveListener;
+
+				@Override
+				public void mouseDown(MouseEvent e) {
+					clearButton.setImage(pressedImage);
+					fMoveListener = new MouseMoveListener() {
+						private boolean fMouseInButton = true;
+
+						@Override
+						public void mouseMove(MouseEvent e) {
+							boolean mouseInButton = isMouseInButton(e);
+							if (mouseInButton != fMouseInButton) {
+								fMouseInButton = mouseInButton;
+								clearButton.setImage(mouseInButton ? pressedImage : inactiveImage);
+							}
+						}
+					};
+					clearButton.addMouseMoveListener(fMoveListener);
+				}
+
+				@Override
+				public void mouseUp(MouseEvent e) {
+					if (fMoveListener != null) {
+						clearButton.removeMouseMoveListener(fMoveListener);
+						fMoveListener = null;
+						boolean mouseInButton = isMouseInButton(e);
+						clearButton.setImage(mouseInButton ? activeImage : inactiveImage);
+						if (mouseInButton) {
+							clearText();
+							text.setFocus();
+						}
+					}
+				}
+
+				private boolean isMouseInButton(MouseEvent e) {
+					Point buttonSize = clearButton.getSize();
+					return 0 <= e.x && e.x < buttonSize.x && 0 <= e.y && e.y < buttonSize.y;
+				}
+			});
+			clearButton.addMouseTrackListener(new MouseTrackListener() {
+				@Override
+				public void mouseEnter(MouseEvent e) {
+					clearButton.setImage(activeImage);
+				}
+
+				@Override
+				public void mouseExit(MouseEvent e) {
+					clearButton.setImage(inactiveImage);
+				}
+
+				@Override
+				public void mouseHover(MouseEvent e) {
+				}
+			});
+			clearButton.addDisposeListener(e -> {
+				inactiveImage.dispose();
+				activeImage.dispose();
+				pressedImage.dispose();
+			});
+			clearButton.getAccessible().addAccessibleListener(
+					new AccessibleAdapter() {
+						@Override
+						public void getName(AccessibleEvent e) {
+							e.result = WorkbenchMessages.FilteredTree_AccessibleListenerClearButton;
+						}
+					});
+			clearButton.getAccessible().addAccessibleControlListener(
+					new AccessibleControlAdapter() {
+						@Override
+						public void getRole(AccessibleControlEvent e) {
+							e.detail = ACC.ROLE_PUSHBUTTON;
+						}
+					});
+
+			this.clearButton = clearButton;
+		}
+	}
+
+	protected void clearText() {
+		if (isOptional && widgetObservable instanceof TextObservableValue) {
+			((TextObservableValue) widgetObservable).clear();
+		} else {
+			text.setText("");
+		}
+		notifyChange();
 	}
 
 	@Override
@@ -235,12 +425,19 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 	 */
 	@Override
 	public Object getValue() {
-		return text.getText();
+		// If the user never typed anything, return the raw (potentially null) original value
+		// This is to avoid changing from "null" to "" (empty string) when the user simply
+		// focuses the control in and out.
+		return wasChanged ? text.getText() : initialText;
 	}
 
 	@Override
 	public void setReadOnly(boolean readOnly) {
 		text.setEnabled(!readOnly);
+		if (clearButton != null) {
+			clearButton.setVisible(!readOnly);
+			setExclusion(clearButton, readOnly);
+		}
 	}
 
 	@Override
@@ -269,9 +466,12 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 	public void setValue(Object value) {
 		if (value instanceof String) {
 			this.text.setText((String) value);
+			initialText = (String) value;
 		} else {
-			this.text.setText(""); //$NON-NLS-1$;
+			this.text.setText(""); //$NON-NLS-1$ ;
+			initialText = null;
 		}
+		wasChanged = false;
 	}
 
 	/**
@@ -353,6 +553,7 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 			};
 			timer.schedule(currentValidateTask, delay);
 		}
+		wasChanged = true;
 		if (targetValidator != null) {
 			IStatus status = targetValidator.validate(text.getText());
 			updateStatus(status);
@@ -454,7 +655,7 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 				text.setBackground(ERROR);
 				text.update();
 			} else {
-				IStatus status = (IStatus) binding.getValidationStatus().getValue();
+				IStatus status = binding.getValidationStatus().getValue();
 				switch (status.getSeverity()) {
 				case IStatus.OK:
 				case IStatus.WARNING:
@@ -477,6 +678,15 @@ public class StringEditor extends AbstractValueEditor implements KeyListener, Mo
 			changeColorTask.cancel();
 			changeColorTask = null;
 		}
+	}
+
+	/**
+	 * Indicate that this editor handles an optional value. If optional is true,
+	 * clearing this editor (via the Clear button) will set a <code>null</code> value;
+	 * otherwise it will set an empty string value ("")
+	 */
+	public void setOptional(boolean optional) {
+		this.isOptional = optional;
 	}
 
 }
