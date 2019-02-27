@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2019  CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Strategy improvement of generated files
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 544869
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.generators;
 
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.customization.properties.generation.Activator;
 import org.eclipse.papyrus.customization.properties.generation.messages.Messages;
 import org.eclipse.papyrus.customization.properties.generation.wizard.widget.FileChooser;
@@ -65,6 +67,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 
 	protected List<EPackage> listEPackages;
 
+	@Override
 	public void createControls(Composite parent) {
 		Composite root = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout(2, false);
@@ -81,22 +84,26 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		sourceFileChooser.setFilterExtensions(new String[] { "ecore" }); //$NON-NLS-1$
 		sourceFileChooser.addListener(this);
 
-		listEPackages = new ArrayList<EPackage>();
+		listEPackages = new ArrayList<>();
 
 	}
 
+	@Override
 	public String getDescription() {
 		return Messages.EcoreGenerator_ecoreGeneratorDescription;
 	}
 
+	@Override
 	public boolean isReady() {
 		return sourceFileChooser.getFilePath() != null;
 	}
 
+	@Override
 	public String getName() {
 		return Messages.EcoreGenerator_ecoreGeneratorName;
 	}
 
+	@Override
 	public boolean isSelectedSingle(Property property) {
 		EStructuralFeature feature = getFeature(property);
 		if (feature == null) {
@@ -201,7 +208,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 	private List<String> getPath(DataContextElement element) {
 		List<String> result;
 		if (element.getPackage() == null) {
-			result = new LinkedList<String>();
+			result = new LinkedList<>();
 		} else {
 			result = getPath(element.getPackage());
 		}
@@ -210,6 +217,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		return result;
 	}
 
+	@Override
 	public boolean isSelectedMultiple(Property property) {
 		if (!isSelectedSingle(property)) {
 			return false;
@@ -217,7 +225,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 
 		EStructuralFeature feature = getFeature(property);
 
-		Set<String> validDataTypes = new HashSet<String>(Arrays.asList(new String[] { "int", "boolean", "float", "double" })); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+		Set<String> validDataTypes = new HashSet<>(Arrays.asList(new String[] { "int", "boolean", "float", "double" })); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 
 		if (feature.getEType() instanceof EDataType) {
 			if (validDataTypes.contains(((EDataType) feature.getEType()).getInstanceTypeName())) {
@@ -232,10 +240,12 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		return false;
 	}
 
+	@Override
 	public boolean isSelectedSingle(Property property, DataContextElement element) {
 		return isSelectedSingle(property);
 	}
 
+	@Override
 	public boolean isSelectedMultiple(Property property, DataContextElement element) {
 		return isSelectedMultiple(property);
 	}
@@ -248,7 +258,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 
 	@Override
 	protected List<ModelExtent> getModelExtents() {
-		LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();
+		LinkedList<ModelExtent> result = new LinkedList<>();
 		ModelExtent temp = new BasicModelExtent();
 		ModelExtent inPackage = new BasicModelExtent(Collections.singletonList(ecorePackage));
 
@@ -282,6 +292,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		return sourceFileChooser.getObservableValue();
 	}
 
+	@Override
 	public List<Object> getExternalReference() {
 
 		URI packageURI = URI.createPlatformResourceURI(sourceFileChooser.getFilePath(), true);
@@ -294,7 +305,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 
 		EcoreUtil.resolveAll(ecorePackage);
 
-		List<Object> listePackage = new ArrayList<Object>();
+		List<Object> listePackage = new ArrayList<>();
 		if (!listePackage.contains(ecorePackage)) {
 			listePackage.add(ecorePackage);
 		}
@@ -329,10 +340,15 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 			if (object instanceof EClass) {
 
 				EClass eclass = (EClass) object;
-				List<EClass> liste = eclass.getESuperTypes();
-				for (EClass item : liste) {
+				List<EClass> list = eclass.getESuperTypes();
+				for (EClass item : list) {
 					if (!listePackage.contains(item.getEPackage())) {
-						listePackage.add(item.getEPackage());
+						final EPackage epackage = item.getEPackage();
+						if (null != epackage && !listePackage.contains(item.getEPackage())) {
+							listePackage.add(item.getEPackage());
+						} else if (null == epackage) {
+							Activator.log.warn(NLS.bind("The EPackage for {0} can't be resolved.", item)); //$NON-NLS-1$
+						}
 					}
 
 				}
@@ -343,6 +359,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 		return listePackage;
 	}
 
+	@Override
 	public void addCheckElement(Object obj) {
 
 		if (obj instanceof EPackage) {
@@ -361,7 +378,7 @@ public class EcoreGenerator extends AbstractQVTGenerator {
 			ModelExtent inPackage = new BasicModelExtent(Collections.singletonList(currentPackage));
 			PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
 			ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));
-			LinkedList<ModelExtent> result = new LinkedList<ModelExtent>();
+			LinkedList<ModelExtent> result = new LinkedList<>();
 			result.add(inPackage);
 			result.add(inPackage);
 			result.add(inRoot);

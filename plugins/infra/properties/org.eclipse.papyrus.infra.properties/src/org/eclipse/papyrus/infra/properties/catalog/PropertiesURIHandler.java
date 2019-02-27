@@ -61,11 +61,11 @@ public class PropertiesURIHandler implements URIHandler {
 	public InputStream createInputStream(URI uri, Map<?, ?> options) throws IOException {
 		URI convertedURI = getConvertedURI(uri);
 		if (convertedURI == null) {
-			throw new IOException(uri.toString() + " not found");
+			throw new IOException(uri.toString() + " not found"); //$NON-NLS-1$
 		}
 		URIHandler handler = getDelegateHandler(convertedURI);
 		if (handler == null) {
-			throw new IOException(uri.toString() + " : no handler found");
+			throw new IOException(uri.toString() + " : no handler found"); //$NON-NLS-1$
 		}
 		return handler.createInputStream(convertedURI, options);
 	}
