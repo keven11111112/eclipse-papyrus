@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014 CEA LIST and others.
+ * Copyright (c) 2008, 2014, 2019 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -14,6 +14,7 @@
  *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr
  *  Christian W. Damus (CEA) - bug 402525
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *  Ansgar Radermacher (CEA) - bug 545246 (getUserModel fails in case of internationalization) 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
@@ -59,6 +60,12 @@ import org.eclipse.uml2.uml.UMLPackage;
  * Utility class for <code>org.eclipse.uml2.uml.Package</code><BR>
  */
 public class PackageUtil {
+
+	/**
+	 * Extension of UML models (also declared in class UmlModel. This class is not accessible here,
+	 * since oep.uml.tools depends on oep.uml.tools.utils, but not vice versa
+	 */
+	public static final String UML_EXT = "uml"; //$NON-NLS-1$
 
 	/**
 	 * Apply a profile and every subprofiles to a package. Also import types defined in profile
@@ -617,8 +624,7 @@ public class PackageUtil {
 	}
 
 	/**
-	 * Return the top element of the model that is currently edited. This function is based on the
-	 * assumption that the user model is the first resource that is loaded into the model set.
+	 * Return the top element of the model that is currently edited.
 	 * Use this function instead of Utils.getTop (or getModel) if you want to avoid navigating to the
 	 * root of an imported model.
 	 *
@@ -627,21 +633,16 @@ public class PackageUtil {
 	public static Package getUserModel(ExecutionEvent event) {
 		ServiceUtilsForHandlers serviceUtils = ServiceUtilsForHandlers.getInstance();
 		try {
-			// IPath fn = serviceUtils.getModelSet().getFilenameWithoutExtension();
-			EList<Resource> resources = serviceUtils.getModelSet(event).getResources();
-			if (resources.size() >= 3) {
-				// check first three resources (di, notation, uml)
-				for (int i = 0; i < 3; i++) {
-					Resource userResource = resources.get(i);
-					if (userResource.getContents().size() > 0) {
-						EObject topEObj = userResource.getContents().get(0);
-						if ((topEObj instanceof Package) && (!(topEObj instanceof Profile))) {
-							return (Package) topEObj;
-						}
-					}
+			URI uri = serviceUtils.getModelSet(event).getURIWithoutExtension().appendFileExtension(UML_EXT);
+			Resource userResource = serviceUtils.getModelSet(event).getResource(uri, false);
+			if (userResource != null && userResource.getContents().size() > 0) {
+				EObject topEObj = userResource.getContents().get(0);
+				if ((topEObj instanceof Package) && (!(topEObj instanceof Profile))) {
+					return (Package) topEObj;
 				}
 			}
 		} catch (ServiceException e) {
+			Activator.log.error(e);
 		}
 		return null;
 	}
