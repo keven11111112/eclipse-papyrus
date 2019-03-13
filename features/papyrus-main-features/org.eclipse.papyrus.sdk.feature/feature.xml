@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.sdk.feature"
-      version="4.3.0.qualifier"
       label="%featureName"
+      version="4.4.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.papyrus.sdk" 
       license-feature="org.eclipse.license"
