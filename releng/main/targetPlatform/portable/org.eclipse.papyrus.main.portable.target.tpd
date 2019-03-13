@@ -60,13 +60,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.11milestones/S-4.11RC1-201903010040/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.11milestones/S-4.11RC2-201903070500/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2018-12",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.7.0/S201903041341" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.7.0/S201903111843" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -95,7 +95,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.1
 
 //updateFrom("WebTools 3.13 for Simrel 2019-03",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.13.0/S-3.13.0.M3-20190221042828/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.13.0/S-3.13.0.RC2-20190308131645/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
@@ -113,7 +113,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201903030654" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.17" {
 	org.eclipse.emf.sdk.feature.group
 }
 
