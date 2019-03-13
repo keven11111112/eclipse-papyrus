@@ -2,49 +2,22 @@ target "Papyrus RCP" with requirements source
 
 include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable.target.tpd"
 
-
-/*** Updates from the Simrel repository ***/
-
-//updateFrom("EGIT",0)
-
-location egit "http://download.eclipse.org/egit/staging/v5.3.0.201903061415-rc1" {
+location eclipse "https://download.eclipse.org/releases/2019-03/" {
 	org.eclipse.egit.feature.group
-}
-
-//updateFrom("Eclipse",0)
-
-location platform "http://download.eclipse.org/eclipse/updates/4.11milestones/S-4.11RC2-201903070500/" {
-	org.eclipse.e4.core.tools.feature.feature.group 
-	org.eclipse.rcp.configuration.feature.group 
-	org.eclipse.equinox.executable.feature.group 
-}
-
-//updateFrom("Mylyn",0)
-
-location mylyn "http://download.eclipse.org/mylyn/drops/3.24.2/v20180905-2014" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group
 	org.eclipse.mylyn.bugzilla_feature.feature.group
 	org.eclipse.mylyn.context_feature.feature.group
 	org.eclipse.mylyn_feature.feature.group
-}
-
-//updateFrom("EMF COMPARE",0) 
-
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201903050300/" {
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
-}
-
-//updateFrom("EMF (Core)",0)
-
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.17" {
 	org.eclipse.xsd.sdk.feature.group
+	org.eclipse.emf.cdo.epp.feature.group
 }
 
-//updateFrom("EMF CDO",0) 
-
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20180613-0111" {
-	org.eclipse.emf.cdo.epp.feature.group
+location platform "http://download.eclipse.org/eclipse/updates/4.11/" {
+	org.eclipse.e4.core.tools.feature.feature.group 
+	org.eclipse.rcp.configuration.feature.group 
+	org.eclipse.equinox.executable.feature.group 
 }

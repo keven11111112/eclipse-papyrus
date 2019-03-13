@@ -37,8 +37,8 @@
 		<!-- Papyrus repositories. Used when we're building individual components 
 			(vs building the parent pom including everything) -->
 		<papyrus.eclipse.target>master</papyrus.eclipse.target>
-		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/main</papyrus.repo.main>
-		<papyrus.repo.toolsmiths>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/toolsmiths</papyrus.repo.toolsmiths>
+		<papyrus.repo.main>https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2019-03/4.3.0/main</papyrus.repo.main>
+		<papyrus.repo.toolsmiths>https://download.eclipse.org/modeling/mdt/papyrus/updates/releases/2019-03/4.3.0/toolsmiths</papyrus.repo.toolsmiths>
 
 		<tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/papyrus/org.eclipse.papyrus.git</tycho.scmUrl>
 	</properties>

@@ -11,8 +11,6 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 	org.eclipse.gmf.codegen.xtend.ui
 }
 
-//updateFrom("EMF COMPARE",0)
-
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201903050300/" {
+location eclipse "https://download.eclipse.org/releases/2019-03/" {
 	org.eclipse.emf.compare.source.feature.group
 }
