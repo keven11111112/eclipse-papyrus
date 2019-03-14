@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.constraints.runtime;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.constraints.Activator;
 import org.eclipse.papyrus.infra.constraints.CompositeConstraint;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
@@ -46,7 +47,7 @@ public class ConstraintFactory {
 	 * @param model
 	 *            The ConstraintDescriptor describing the Constraint
 	 * @return
-	 *         The new constraint instance
+	 * 		The new constraint instance
 	 */
 	public Constraint createFromModel(ConstraintDescriptor model) {
 		Constraint constraint = null;
@@ -77,7 +78,7 @@ public class ConstraintFactory {
 
 		if (model.getConstraintType() != null) {
 			String className = model.getConstraintType().getConstraintClass();
-			constraint = ClassLoaderHelper.newInstance(className, Constraint.class);
+			constraint = ClassLoaderHelper.newInstance(className, Constraint.class, EcoreUtil.getURI(model));
 		}
 
 		if (constraint == null) {

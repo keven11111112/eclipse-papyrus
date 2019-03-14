@@ -163,7 +163,7 @@ public class DataSourceFactory {
 		}
 
 		String factoryName = factoryDescriptor.getFactoryClass();
-		ModelElementFactory factory = ClassLoaderHelper.newInstance(factoryName, ModelElementFactory.class);
+		ModelElementFactory factory = ClassLoaderHelper.newInstance(factoryName, ModelElementFactory.class, EcoreUtil.getURI(context));
 
 		return factory;
 	}
@@ -242,5 +242,5 @@ public class DataSourceFactory {
 	// TODO : More than one view can be displayed at the same time. The cache should only
 	// rely on a selection ; not on a selection-view pair.
 	// We may use a (ISelection, Context) key : the DataSource must be associated to a single context
-	private Map<SelectionEntry, DataSource> sources = new HashMap<SelectionEntry, DataSource>();
+	private Map<SelectionEntry, DataSource> sources = new HashMap<>();
 }

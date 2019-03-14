@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.types.core.factories.impl;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.types.MatcherConfiguration;
@@ -22,7 +23,7 @@ import org.eclipse.papyrus.infra.types.core.factories.IMatcherFactory;
 public class DefaultMatcherFactory implements IMatcherFactory<MatcherConfiguration> {
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.types.core.factories.IMatcherFactory#createElementMatcher(org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration)
 	 *
 	 * @param matcherConfiguration
@@ -31,7 +32,7 @@ public class DefaultMatcherFactory implements IMatcherFactory<MatcherConfigurati
 	@Override
 	public IElementMatcher createElementMatcher(MatcherConfiguration matcherConfiguration) {
 		String matcherClassName = matcherConfiguration.getMatcherClassName();
-		IElementMatcher matcher = ClassLoaderHelper.newInstance(matcherClassName, IElementMatcher.class);
+		IElementMatcher matcher = ClassLoaderHelper.newInstance(matcherClassName, IElementMatcher.class, EcoreUtil.getURI(matcherConfiguration));
 		return matcher;
 	}
 }

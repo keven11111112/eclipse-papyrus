@@ -1,17 +1,17 @@
 /**
  * Copyright (c) 2017,2018 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
  *  which accompanies this distribution, and is available at
  *  https://www.eclipse.org/legal/epl-2.0/
  *
  *  SPDX-License-Identifier: EPL-2.0
- *  
+ *
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
  *  Benoit Maggi - Bug 535393
- * 
+ *
  */
 package org.eclipse.papyrus.infra.architecture;
 
@@ -48,33 +48,34 @@ public class ArchitectureDescriptionUtils {
 	 * The model set in context
 	 */
 	private ModelSet modelSet;
-	
+
 	/**
 	 * The architecture domain manager
 	 */
 	private ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
-	
+
 	/**
 	 * Constructs an instance of this class given a model set
 	 *
-	 * @param modelSet The given model set
+	 * @param modelSet
+	 *            The given model set
 	 */
 	public ArchitectureDescriptionUtils(ModelSet modelSet) {
 		this.modelSet = modelSet;
 	}
-	
+
 	/**
 	 * Gets the model set in context
-	 * 
+	 *
 	 * @return a model set
 	 */
 	public ModelSet getModelSet() {
 		return modelSet;
 	}
-	
+
 	/**
 	 * Gets the architecture context set in the model set
-	 * 
+	 *
 	 * @return architecture context
 	 */
 	public MergedArchitectureContext getArchitectureContext() {
@@ -84,34 +85,36 @@ public class ArchitectureDescriptionUtils {
 
 	/**
 	 * Gets the architecture context id set in the model set
-	 * 
+	 *
 	 * @return architecture context id
 	 */
 	public String getArchitectureContextId() {
 		ArchitectureDescription description = DiModelUtils.getArchitectureDescription(modelSet);
-		if (description != null) 
+		if (description != null) {
 			return description.getContextId();
+		}
 		return ArchitectureDomainManager.getInstance().getDefaultArchitectureContextId();
 	}
 
 	/**
 	 * Gets the architecture viewpoints set in the model set
-	 * 
+	 *
 	 * @return a collection of architecture viewpoints
 	 */
 	public Collection<MergedArchitectureViewpoint> getArchitectureViewpoints() {
 		List<MergedArchitectureViewpoint> viewpoints = new ArrayList<>();
 		for (String viewpointId : getArchitectureViewpointIds()) {
 			MergedArchitectureViewpoint viewpoint = manager.getArchitectureViewpointById(viewpointId);
-			if (viewpoint != null)
+			if (viewpoint != null) {
 				viewpoints.add(viewpoint);
+			}
 		}
 		return viewpoints;
 	}
 
 	/**
 	 * Gets the architecture viewpoint ids set in the model set
-	 * 
+	 *
 	 * @return a collection of architecture viewpoint ids
 	 */
 	public Collection<String> getArchitectureViewpointIds() {
@@ -137,12 +140,14 @@ public class ArchitectureDescriptionUtils {
 	/**
 	 * Returns a command that applies the given contextId and viewpoint ids to the model set
 	 * and creates a new model in the set based on them
-	 * 
+	 *
 	 * Model creation is based on the creation command configured with the architecture context
 	 * and contribution commands registered in extensions
-	 * 
-	 * @param contextId the context id to apply to the model set
-	 * @param viewpointIds the viewpoint ids to apply to the model set
+	 *
+	 * @param contextId
+	 *            the context id to apply to the model set
+	 * @param viewpointIds
+	 *            the viewpoint ids to apply to the model set
 	 * @return a command to create a new model
 	 */
 	public Command createNewModel(final String contextId, final String[] viewpointIds) {
@@ -161,11 +166,12 @@ public class ArchitectureDescriptionUtils {
 	/**
 	 * Returns a command that switches the contextId of the model set to the given id and
 	 * converts the semantic model as a result
-	 * 
+	 *
 	 * Model conversion is based on the conversion command configured with the architecture context
 	 * and contribution commands registered in extensions
-	 * 
-	 * @param contextId the context id to apply to the model set
+	 *
+	 * @param contextId
+	 *            the context id to apply to the model set
 	 * @return a command that switches the model set to the given context id
 	 */
 	public Command switchArchitectureContextId(final String contextId) {
@@ -181,8 +187,9 @@ public class ArchitectureDescriptionUtils {
 
 	/**
 	 * Returns a command that switches the viewpoints of the model set to the given id
-	 * 
-	 * @param viewpointIds the new viewpoint ids to apply to the model set
+	 *
+	 * @param viewpointIds
+	 *            the new viewpoint ids to apply to the model set
 	 * @return a command that switches the model set to the given viewpoint ids
 	 */
 	public Command switchArchitectureViewpointIds(final String[] viewpointIds) {
@@ -194,8 +201,9 @@ public class ArchitectureDescriptionUtils {
 
 	/**
 	 * Returns a command to set the context id in the model set
-	 * 
-	 * @param contextId the new context id
+	 *
+	 * @param contextId
+	 *            the new context id
 	 * @return a command that sets the context id in the model set
 	 */
 	protected Command getSetContextCommand(String contextId) {
@@ -210,19 +218,21 @@ public class ArchitectureDescriptionUtils {
 
 	/**
 	 * Returns a command to create a new model in the model set based on the given context id
-	 * 
-	 * @param contextId the context id
+	 *
+	 * @param contextId
+	 *            the context id
 	 * @return a command that creates a new model
 	 */
 	protected Command getModelCreationCommand(String contextId) {
 		final MergedArchitectureContext context = manager.getArchitectureContextById(contextId);
-		if (context.getCreationCommandClassName() == null)
+		if (context.getCreationCommandClassName() == null) {
 			return UnexecutableCommand.INSTANCE;
+		}
 		return new RecordingCommand(modelSet.getTransactionalEditingDomain()) {
 			@Override
 			protected void doExecute() {
 				try {
-					IModelCreationCommand creationCommand = (IModelCreationCommand) context.getCreationCommandClass().newInstance();
+					IModelCreationCommand creationCommand = context.getCreationCommandClass().newInstance();
 					creationCommand.createModel(modelSet);
 				} catch (Exception e) {
 					Activator.log.error(e);
@@ -230,22 +240,24 @@ public class ArchitectureDescriptionUtils {
 			}
 		};
 	}
-	
+
 	/**
 	 * Returns a command to converts a new model in the model set based on the given new context id
-	 * 
-	 * @param contextId the new context id
+	 *
+	 * @param contextId
+	 *            the new context id
 	 * @return a command that converts a model
 	 */
 	protected Command getModelConversionCommand(String contextId) {
 		MergedArchitectureContext context = manager.getArchitectureContextById(contextId);
-		if (context.getConversionCommandClassName() == null)
+		if (context.getConversionCommandClassName() == null) {
 			return null;
+		}
 		return new RecordingCommand(modelSet.getTransactionalEditingDomain()) {
 			@Override
 			protected void doExecute() {
 				try {
-					IModelConversionCommand conversionCommand = (IModelConversionCommand) context.getConversionCommandClass().newInstance();
+					IModelConversionCommand conversionCommand = context.getConversionCommandClass().newInstance();
 					conversionCommand.convertModel(modelSet);
 				} catch (Exception e) {
 					Activator.log.error(e);
@@ -256,8 +268,9 @@ public class ArchitectureDescriptionUtils {
 
 	/**
 	 * Returns a command that sets the given viewpoint ids to the model set
-	 * 
-	 * @param viewpointIds The new viewpoint ids
+	 *
+	 * @param viewpointIds
+	 *            The new viewpoint ids
 	 * @return a command to set the viewpoint ids
 	 */
 	protected Command getSetViewpointCommand(String[] viewpointIds) {
@@ -270,5 +283,5 @@ public class ArchitectureDescriptionUtils {
 			}
 		};
 	}
-	
+
 }

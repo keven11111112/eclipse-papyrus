@@ -14,6 +14,7 @@
  /*****************************************************************************/
 package org.eclipse.papyrus.infra.constraints.constraints;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.constraints.Activator;
 import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
 import org.eclipse.papyrus.infra.constraints.constraints.JavaQuery.FalseQuery;
@@ -42,7 +43,7 @@ public class JavaQueryConstraint extends AbstractConstraint {
 	@Override
 	protected void setDescriptor(SimpleConstraint descriptor) {
 		String queryClassName = getValue(QUERY_CLASS_NAME_PROPERTY);
-		query = ClassLoaderHelper.newInstance(queryClassName, JavaQuery.class);
+		query = ClassLoaderHelper.newInstance(queryClassName, JavaQuery.class, EcoreUtil.getURI(descriptor));
 		if (query == null) {
 			Activator.log.warn("Cannot load the JavaQuery for this constraint : " + descriptor.getName());
 		}

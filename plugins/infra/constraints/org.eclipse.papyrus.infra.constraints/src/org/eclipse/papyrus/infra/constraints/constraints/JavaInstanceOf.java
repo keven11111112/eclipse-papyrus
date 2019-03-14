@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.constraints.constraints;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 
@@ -28,7 +29,7 @@ public class JavaInstanceOf extends AbstractConstraint {
 
 	@Override
 	public void setDescriptor(SimpleConstraint descriptor) {
-		clazz = ClassLoaderHelper.loadClass(getValue("class")); //$NON-NLS-1$
+		clazz = ClassLoaderHelper.loadClass(getValue("class"), EcoreUtil.getURI(descriptor)); //$NON-NLS-1$
 	}
 
 	@Override

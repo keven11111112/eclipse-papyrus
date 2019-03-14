@@ -15,6 +15,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.types.core.factories.impl;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
@@ -28,7 +30,9 @@ public class DefaultAdviceBindingFactory extends AbstractAdviceBindingFactory<Ad
 	 */
 	@Override
 	protected IEditHelperAdvice getEditHelperAdvice(final AdviceBindingConfiguration adviceConfiguration) {
-		IEditHelperAdvice editHelperAdvice = ClassLoaderHelper.newInstance(adviceConfiguration.getEditHelperAdviceClassName(), IEditHelperAdvice.class);
+		String className = adviceConfiguration.getEditHelperAdviceClassName();
+		URI uri = EcoreUtil.getURI(adviceConfiguration);
+		IEditHelperAdvice editHelperAdvice = ClassLoaderHelper.newInstance(className, IEditHelperAdvice.class, uri);
 		return editHelperAdvice;
 	}
 

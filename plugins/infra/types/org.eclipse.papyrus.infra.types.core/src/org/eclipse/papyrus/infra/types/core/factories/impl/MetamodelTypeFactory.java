@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.infra.types.core.factories.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelper;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
@@ -26,6 +27,7 @@ public class MetamodelTypeFactory extends AbstractElementTypeConfigurationFactor
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public IHintedType createElementType(MetamodelTypeConfiguration configuration) {
 		return new ConfiguredHintedMetamodelElementType(getID(configuration), getIconURL(configuration), getDisplayName(configuration), getEClass(configuration), createEditHelper(configuration), getSemanticHint(configuration), configuration);
 	}
@@ -39,7 +41,7 @@ public class MetamodelTypeFactory extends AbstractElementTypeConfigurationFactor
 		if (editHelperClassName == null) {
 			return null;
 		}
-		IEditHelper editHelper = ClassLoaderHelper.newInstance(editHelperClassName, IEditHelper.class);
+		IEditHelper editHelper = ClassLoaderHelper.newInstance(editHelperClassName, IEditHelper.class, EcoreUtil.getURI(configuration));
 		return editHelper;
 	}
 }

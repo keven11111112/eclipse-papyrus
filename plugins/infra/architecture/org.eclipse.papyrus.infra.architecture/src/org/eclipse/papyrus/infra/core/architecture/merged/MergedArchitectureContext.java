@@ -22,6 +22,9 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand;
+import org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
@@ -71,11 +74,11 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 *
 	 * @return a creation command class
 	 */
-	public Class<?> getCreationCommandClass() throws ClassNotFoundException {
+	public Class<? extends IModelCreationCommand> getCreationCommandClass() throws ClassNotFoundException {
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
 			if (context.getCreationCommandClass() != null) {
-				return ClassLoaderHelper.loadClass(context.getCreationCommandClass());
+				return ClassLoaderHelper.loadClass(context.getCreationCommandClass(), IModelCreationCommand.class, EcoreUtil.getURI(context));
 			}
 		}
 		return null;
@@ -86,11 +89,11 @@ public abstract class MergedArchitectureContext extends MergedADElement {
 	 *
 	 * @return a conversion command class
 	 */
-	public Class<?> getConversionCommandClass() throws ClassNotFoundException {
+	public Class<? extends IModelConversionCommand> getConversionCommandClass() throws ClassNotFoundException {
 		for (ADElement element : elements) {
 			ArchitectureContext context = (ArchitectureContext) element;
 			if (context.getConversionCommandClass() != null) {
-				return ClassLoaderHelper.loadClass(context.getConversionCommandClass());
+				return ClassLoaderHelper.loadClass(context.getConversionCommandClass(), IModelConversionCommand.class, EcoreUtil.getURI(context));
 			}
 		}
 		return null;
