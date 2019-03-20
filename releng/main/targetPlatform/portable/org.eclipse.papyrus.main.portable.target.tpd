@@ -41,7 +41,7 @@ location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R201902
 
 //updateFrom("QVT Operational for 2018-12",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.2/S201903041632" {
+location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.2/S201903130834" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -60,7 +60,7 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.11milestones/S-4.11RC2-201903070500/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.11/R-4.11-201903070500/" {
 	org.eclipse.sdk.feature.group
 }
 

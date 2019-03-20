@@ -99,7 +99,7 @@
       <unit id="org.eclipse.rcp.configuration.feature.group" version="1.1.400.v20190307-0500"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.8.300.v20190213-1655"/>
       <unit id="org.eclipse.sdk.feature.group" version="4.11.0.v20190307-0943"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.11milestones/S-4.11RC2-201903070500/"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.11/R-4.11-201903070500/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="3.24.2.v20180905-0014"/>

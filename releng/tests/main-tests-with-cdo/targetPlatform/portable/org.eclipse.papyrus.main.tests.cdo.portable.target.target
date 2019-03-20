@@ -43,7 +43,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.sdk.feature.group" version="4.11.0.v20190307-0943"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.11milestones/S-4.11RC2-201903070500/"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.11/R-4.11-201903070500/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.8.0.v20190311-1843"/>

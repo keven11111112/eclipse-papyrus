@@ -7,13 +7,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //updateFrom("EGIT",0)
 
-location egit "http://download.eclipse.org/egit/staging/v5.3.0.201903061415-rc1" {
+location egit "http://download.eclipse.org/egit/updates-5.3" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.11milestones/S-4.11RC2-201903070500/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.11/R-4.11-201903070500/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group 
 	org.eclipse.equinox.executable.feature.group 
