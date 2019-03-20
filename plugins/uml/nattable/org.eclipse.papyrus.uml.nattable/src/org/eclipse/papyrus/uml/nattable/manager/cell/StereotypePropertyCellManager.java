@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2017 CEA LIST and others.
+ * Copyright (c) 2012, 2017, 2019 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 545575
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.manager.cell;
 
@@ -21,6 +22,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.Command;
@@ -34,6 +36,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.paste.PastePostActionRegistry;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
@@ -281,6 +284,16 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 					// Don't apply the stereotype if there's no value to set.
 					return null;
 				}
+
+				//Clone the converter, because it will be disposed too early for this usecase
+				Object tmpConverted = null;
+				try {
+					tmpConverted = valueSolver.clone();
+				} catch (CloneNotSupportedException e) {
+					Activator.log.error(e);
+				}
+				Assert.isNotNull(tmpConverted, "The value converter is null");//$NON-NLS-1$
+				final AbstractStringValueConverter clonedConverter = (AbstractStringValueConverter) tmpConverted;
 				// Must first apply the stereotype
 				return new RecordingCommand(domain, "Set Value") { //$NON-NLS-1$
 
@@ -288,8 +301,9 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 					protected void doExecute() {
 						// This may apply the required stereotype if needed
 						applyRequiredStereotype(domain, el, id);
-						// Now recursively execute the set-string-value command
-						Command command = getSetStringValueCommand(domain, columnElement, rowElement, newValue, valueSolver, tableManager);
+
+						// we need to call the CellManagerFactory to get the StringResolutionProblemWrapperCellManager when required
+						Command command = CellManagerFactory.INSTANCE.getSetStringValueCommand(domain, columnElement, rowElement, newValue, clonedConverter, tableManager);
 						if (command != null) {
 							if (!command.canExecute()) {
 								throw new OperationCanceledException();
@@ -299,6 +313,8 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 						} else {
 							// A null command is not an error, it just means there's nothing to set because the value is already correct.
 						}
+						//we dispose the cloned converter
+						clonedConverter.dispose();
 					}
 				};
 			}

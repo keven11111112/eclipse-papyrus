@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2019 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 545575 (add Cloneable implementation)
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.converter;
 
@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.ui.messages.Messages;
  * @since 1.2
  *
  */
-public abstract class AbstractStringValueConverter implements IStringValueConverter {
+public abstract class AbstractStringValueConverter implements IStringValueConverter, Cloneable {
 
 	protected static final String THE_STRING_X_IS_NOT_VALID_TO_CREATE_Y = Messages.AbstractStringValueConverter_TheStringXIsNotValidToCreateY;
 
@@ -63,7 +63,7 @@ public abstract class AbstractStringValueConverter implements IStringValueConver
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 * 		the converted value, you should call deduceValueFromString before to call this method
 	 */
@@ -85,5 +85,17 @@ public abstract class AbstractStringValueConverter implements IStringValueConver
 	 */
 	protected abstract ConvertedValueContainer<?> doDeduceValueFromString(final Object type, final String valueAsString);
 
-
+	/**
+	 *
+	 * Added to fix easily the Bug 545575: [Table] Paste String resolution doesn't work for stereotype's properties typed with an UML metaclass
+	 *
+	 * @see java.lang.Object#clone()
+	 *
+	 * @return
+	 * @throws CloneNotSupportedException
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 }

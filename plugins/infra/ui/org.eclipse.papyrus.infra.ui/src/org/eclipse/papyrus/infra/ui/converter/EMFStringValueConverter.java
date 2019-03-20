@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2019 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,12 +11,13 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 545575
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.converter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -119,7 +120,6 @@ public class EMFStringValueConverter extends AbstractStringValueConverter {
 	 */
 	protected ConvertedValueContainer<?> deduceValueFromString(final Object feature, final EClassifier featureType, final String valueAsString) {
 		ConvertedValueContainer<?> realValue = null;
-		// if(feature instanceof EStructuralFeature) {
 		final int upperbound = getFeatureUpperBound(feature);
 		boolean isMany = (upperbound > 1 || upperbound == -1);
 		if (featureType instanceof EDataType) {
@@ -168,7 +168,7 @@ public class EMFStringValueConverter extends AbstractStringValueConverter {
 		if (valueAsString == null || valueAsString.equals("")) {
 			return new ConvertedValueContainer<EObject>(null, Status.OK_STATUS);
 		}
-		final IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, NLS.bind(THE_STRING_VALUE_X_CANT_BE_RESOLVED, valueAsString));
+		final IStatus status = new StringValueConverterStatus(IStatus.ERROR, Activator.PLUGIN_ID, NLS.bind(NO_X_REPRESENTED_BY_Y_HAVE_BEEN_FOUND, featureType.getName(), valueAsString), Collections.singleton(valueAsString));
 		return new ConvertedValueContainer<EObject>(null, status);
 	}
 

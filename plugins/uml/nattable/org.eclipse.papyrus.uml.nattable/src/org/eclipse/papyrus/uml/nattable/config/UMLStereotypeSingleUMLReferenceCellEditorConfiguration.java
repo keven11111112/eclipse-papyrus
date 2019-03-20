@@ -11,6 +11,7 @@
  * Contributors:
  *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 545401
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 545575
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.config;
@@ -18,12 +19,12 @@ package org.eclipse.papyrus.uml.nattable.config;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
-import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
+import org.eclipse.papyrus.uml.nattable.config.utils.CellEditorConfigurationUtils;
 import org.eclipse.papyrus.uml.nattable.converter.SingleUMLReferenceDisplayConverter;
 import org.eclipse.papyrus.uml.nattable.editor.SingleReferenceValueCellEditor;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
@@ -81,7 +82,7 @@ public class UMLStereotypeSingleUMLReferenceCellEditorConfiguration extends Sing
 	 */
 	@Override
 	public void configureCellEditor(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
-		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new TextPainter(), DisplayMode.NORMAL, configLabel);
+		CellEditorConfigurationUtils.configureCellPainter(configRegistry, axis, configLabel);
 		final Object axisElement = AxisUtils.getRepresentedElement(axis);
 
 		final INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
