@@ -14,7 +14,7 @@
  *  Christian W. Damus (CEA) - bug 422257
  *  Christian W. Damus - bugs 463156, 493030
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 519409
- *  Benoit Maggi (CEA) - Bug 536581   
+ *  Benoit Maggi (CEA) - Bug 536581
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
 
@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -78,7 +79,7 @@ public class PolicyChecker {
 	 * @since 2.0
 	 */
 	public static PolicyChecker getFor(EObject object) {
-		if (object!= null && object.eResource() != null) {
+		if (object != null && object.eResource() != null) {
 			return getFor(object.eResource());
 		} else {
 			return getFor(ArchitectureDomainManager.getInstance().getDefaultArchitectureContext());
@@ -181,7 +182,7 @@ public class PolicyChecker {
 		if (!matchesProfiles(prototype.representationKind, profileHelper.getAppliedProfiles(element))) {
 			return false;
 		}
-		if (!matchesCreationRoot(prototype.representationKind, element, profileHelper.getAppliedStereotypes(element), prototype.getViewCountOn(element))) {
+		if (!matchesCreationRoot(prototype.representationKind, element, profileHelper.getAppliedStereotypes(element), () -> prototype.getViewCountOn(element))) {
 			return false;
 		}
 		return true;
@@ -317,9 +318,9 @@ public class PolicyChecker {
 	 * @since 2.0
 	 */
 	public boolean isInViewpoint(PapyrusRepresentationKind kind) {
-		return kind!=null && getViewpoints().stream()
+		return kind != null && getViewpoints().stream()
 				.flatMap(viewpoint -> viewpoint.getRepresentationKinds().stream())
-		        .anyMatch(representationKinds -> representationKinds.getQualifiedName().equals(kind.getQualifiedName()));
+				.anyMatch(representationKinds -> representationKinds.getQualifiedName().equals(kind.getQualifiedName()));
 	}
 
 	/**
@@ -362,7 +363,7 @@ public class PolicyChecker {
 				if (proto == null) {
 					continue;
 				}
-				int count = proto.getOwnedViewCount(element);
+				Supplier<Integer> count = () -> proto.getOwnedViewCount(element);
 				OwningRule rule = matchesCreationOwner(view, element, stereotypes, count);
 				if (rule == null) {
 					continue;
@@ -374,7 +375,7 @@ public class PolicyChecker {
 					result.add(proto);
 				} else {
 					// We have to check if the owner can also be a root
-					count = proto.getViewCountOn(element);
+					count = () -> proto.getViewCountOn(element);
 					if (matchesCreationRoot(view, element, stereotypes, count)) {
 						// The owner can also be the root => OK
 						result.add(proto);
@@ -397,7 +398,7 @@ public class PolicyChecker {
 	 */
 	public OwningRule getOwningRuleFor(ViewPrototype prototype, EObject owner) {
 		Collection<EClass> stereotypes = profileHelper.getAppliedStereotypes(owner);
-		int count = prototype.getOwnedViewCount(owner);
+		Supplier<Integer> count = () -> prototype.getOwnedViewCount(owner);
 		return matchesCreationOwner(prototype.representationKind, owner, stereotypes, count);
 	}
 
@@ -524,7 +525,7 @@ public class PolicyChecker {
 	 *            The current cardinality for the owning element
 	 * @return The matching rule that allows the owner
 	 */
-	private OwningRule matchesCreationOwner(PapyrusRepresentationKind view, EObject owner, Collection<EClass> stereotypes, int count) {
+	private OwningRule matchesCreationOwner(PapyrusRepresentationKind view, EObject owner, Collection<EClass> stereotypes, Supplier<Integer> count) {
 		PapyrusRepresentationKind current = view;
 		while (current != null) {
 			for (OwningRule rule : current.getOwningRules()) {
@@ -536,7 +537,7 @@ public class PolicyChecker {
 					continue;
 				}
 				int multiplicity = rule.getMultiplicity();
-				if (multiplicity == -1 || count < multiplicity) {
+				if (multiplicity == -1 || count.get() < multiplicity) {
 					if (allows(rule, owner)) {
 						return rule;
 					}
@@ -588,7 +589,7 @@ public class PolicyChecker {
 	 *            The current cardinality for the root element
 	 * @return <code>true</code> if the prototype is matching
 	 */
-	private boolean matchesCreationRoot(PapyrusRepresentationKind view, EObject root, Collection<EClass> stereotypes, int count) {
+	private boolean matchesCreationRoot(PapyrusRepresentationKind view, EObject root, Collection<EClass> stereotypes, Supplier<Integer> count) {
 		PapyrusRepresentationKind current = view;
 		while (current != null) {
 			for (ModelRule rule : current.getModelRules()) {
@@ -600,7 +601,7 @@ public class PolicyChecker {
 					continue;
 				}
 				int multiplicity = rule.getMultiplicity();
-				if (multiplicity == -1 || count < multiplicity) {
+				if (multiplicity == -1 || count.get() < multiplicity) {
 					return true;
 				}
 			}
@@ -762,6 +763,6 @@ public class PolicyChecker {
 	private int allows(AssistantRule rule, IElementType elementType) {
 		return rule.matches(elementType)
 				? (rule.isPermit() ? RESULT_PERMIT : RESULT_DENY)
-						: RESULT_UNKNOWN;
+				: RESULT_UNKNOWN;
 	}
 }

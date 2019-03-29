@@ -60,10 +60,11 @@ public class NotationUtils {
 		public RootsIterator(Iterator<Resource> notations) {
 			this.notations = notations;
 			if (notations.hasNext()) {
-				inner = notations.next().getAllContents();
+				inner = notations.next().getContents().iterator();
 			}
 		}
 
+		@Override
 		public boolean hasNext() {
 			if (inner == null) {
 				return false;
@@ -72,7 +73,7 @@ public class NotationUtils {
 				return true;
 			}
 			while (notations.hasNext()) {
-				inner = notations.next().getAllContents();
+				inner = notations.next().getContents().iterator();
 				if (inner.hasNext()) {
 					return true;
 				}
@@ -81,6 +82,7 @@ public class NotationUtils {
 			return false;
 		}
 
+		@Override
 		public EObject next() {
 			if (inner == null) {
 				return null;
@@ -89,7 +91,7 @@ public class NotationUtils {
 				return inner.next();
 			}
 			while (notations.hasNext()) {
-				inner = notations.next().getAllContents();
+				inner = notations.next().getContents().iterator();
 				if (inner.hasNext()) {
 					return inner.next();
 				}
@@ -98,6 +100,7 @@ public class NotationUtils {
 			return null;
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
@@ -169,10 +172,12 @@ public class NotationUtils {
 			return null;
 		}
 
+		@Override
 		public boolean hasNext() {
 			return (next != null);
 		}
 
+		@Override
 		public Resource next() {
 			Resource result = next;
 			next = getNextNotation();
