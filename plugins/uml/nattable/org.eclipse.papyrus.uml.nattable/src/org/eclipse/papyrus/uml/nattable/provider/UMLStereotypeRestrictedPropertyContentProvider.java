@@ -32,6 +32,7 @@ import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Stereotype;
@@ -84,7 +85,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	 * inits the fields of the table
 	 */
 	protected void init() {
-		setProfiles(new ArrayList<Profile>(getAllAvailableProfiles()));
+		setProfiles(new ArrayList<>(getAllAvailableProfiles()));
 		this.restrictedElements = calculusOfAllowedElements();
 	}
 
@@ -108,7 +109,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 				return new Object[0];
 			} else {
 				List<Object> values = Arrays.asList(super.getElements());
-				values = new ArrayList<Object>(values);
+				values = new ArrayList<>(values);
 				values.retainAll(restrictedElements);
 				return values.toArray();
 			}
@@ -120,12 +121,12 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	/**
 	 *
 	 * @return
-	 *         the list of the allowed profiles and stereotypes
+	 * 		the list of the allowed profiles and stereotypes
 	 */
 	protected Collection<Element> calculusOfAllowedElements() {
-		final Collection<Element> restrictedElements = new HashSet<Element>();
+		final Collection<Element> restrictedElements = new HashSet<>();
 		// we are restricted so we show only the elements available for the current contents of the table
-		final Set<Stereotype> restrictedStereotypes = new HashSet<Stereotype>();
+		final Set<Stereotype> restrictedStereotypes = new HashSet<>();
 		final boolean isColumnManager = umlStereotypePropertyManager.isUsedAsColumnManager();
 		final List<?> elementsList;
 		if (isColumnManager) {
@@ -140,7 +141,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 			}
 		}
 
-		final Collection<Namespace> stereotypesNamespace = new HashSet<Namespace>();
+		final Collection<Namespace> stereotypesNamespace = new HashSet<>();
 		stereotypesNamespace.addAll(restrictedStereotypes);
 		for (Stereotype stereotype : restrictedStereotypes) {
 			stereotypesNamespace.addAll(stereotype.allNamespaces());
@@ -169,10 +170,10 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	/**
 	 *
 	 * @return
-	 *         the list of all the profiles applied somewhere in the model
+	 * 		the list of all the profiles applied somewhere in the model
 	 */
 	protected Set<Profile> getAllAvailableProfiles() {
-		final Set<Profile> coll = new HashSet<Profile>();
+		final Set<Profile> coll = new HashSet<>();
 		final EObject context = umlStereotypePropertyManager.getTableManager().getTableContext();
 		if (context instanceof Element) {
 			final EObject container = EcoreUtil.getRootContainer(context);
@@ -213,11 +214,11 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	 * @param pack
 	 *            a package
 	 * @return
-	 *         a collection with all profiles applied in the package and its subpackage
+	 * 		a collection with all profiles applied in the package and its subpackage
 	 *         //TODO : should be moved in an upper plugin
 	 */
 	private static final Collection<Profile> getAppliedProfilesInWholePackage(final Package pack) {
-		final Collection<Profile> appliedProfiles = new HashSet<Profile>();
+		final Collection<Profile> appliedProfiles = new HashSet<>();
 		final List<ProfileApplication> result = getInstancesFilteredByType(pack, ProfileApplication.class, null);
 		for (ProfileApplication profileApplication : result) {
 			if (EcoreUtil.getRootContainer((profileApplication.getApplyingPackage())) == pack) {// restriction to avoid to find profile application from an imported model
@@ -249,7 +250,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 		// Assert.isNotNull(topPackage,
 		// "Top package should not be null for element " + element);
 		Iterator<EObject> iter = topPackage.eAllContents();
-		List<T> filteredElements = new ArrayList<T>();
+		List<T> filteredElements = new ArrayList<>();
 
 		while (iter.hasNext()) {
 			EObject currentElt = iter.next();
@@ -263,39 +264,45 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 
 			/* package imports treatment */
 			else if (currentElt instanceof PackageImport) {
-				Iterator<EObject> piIter = ((PackageImport) currentElt).getImportedPackage().eAllContents();
-				while (piIter.hasNext()) {
-					EObject piCurrentElt = piIter.next();
-					if (piCurrentElt instanceof Element) {
-						if (appliedStereotype != null) {
+				Package imported = ((PackageImport) currentElt).getImportedPackage();
+				if (imported != null) {
+					Iterator<EObject> piIter = imported.eAllContents();
+					while (piIter.hasNext()) {
+						EObject piCurrentElt = piIter.next();
+						if (piCurrentElt instanceof Element) {
+							if (appliedStereotype != null) {
 
-							Iterator<Stereotype> appStIter = ((Element) piCurrentElt).getAppliedStereotypes().iterator();
-							while (appStIter.hasNext()) {
-								Stereotype currentSt = appStIter.next();
+								Iterator<Stereotype> appStIter = ((Element) piCurrentElt).getAppliedStereotypes().iterator();
+								while (appStIter.hasNext()) {
+									Stereotype currentSt = appStIter.next();
 
-								if (currentSt.conformsTo(appliedStereotype)) {
+									if (currentSt.conformsTo(appliedStereotype)) {
+										filteredElements.add((T) piCurrentElt);
+									}
+								}
+
+							} else { // if (appliedStereotype == null)
+								if (metaType.isInstance(piCurrentElt)) {
 									filteredElements.add((T) piCurrentElt);
 								}
-							}
 
-						} else { // if (appliedStereotype == null)
-							if (metaType.isInstance(piCurrentElt)) {
-								filteredElements.add((T) piCurrentElt);
-							}
-
-							/** add imported meta elements */
-							else if (piCurrentElt instanceof ElementImport) {
-								Iterator<EObject> eIter = ((ElementImport) piCurrentElt).getImportedElement().eAllContents();
-								while (eIter.hasNext()) {
-									EObject currentEIelt = eIter.next();
-									if (metaType.isInstance(currentEIelt)) {
-										filteredElements.add((T) currentEIelt);
+								/** add imported meta elements */
+								else if (piCurrentElt instanceof ElementImport) {
+									PackageableElement importedElement = ((ElementImport) piCurrentElt).getImportedElement();
+									if (importedElement != null) {
+										Iterator<EObject> eIter = importedElement.eAllContents();
+										while (eIter.hasNext()) {
+											EObject currentEIelt = eIter.next();
+											if (metaType.isInstance(currentEIelt)) {
+												filteredElements.add((T) currentEIelt);
+											}
+										}
 									}
 								}
 							}
 						}
-					}
 
+					}
 				}
 			}
 
@@ -320,11 +327,14 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 
 					/** add imported meta elements */
 					else if (currentElt instanceof ElementImport) {
-						Iterator<EObject> eIter = ((ElementImport) currentElt).getImportedElement().eAllContents();
-						while (eIter.hasNext()) {
-							EObject currentEIelt = eIter.next();
-							if (metaType.isInstance(currentEIelt)) {
-								filteredElements.add((T) currentEIelt);
+						PackageableElement importedElement = ((ElementImport) currentElt).getImportedElement();
+						if (importedElement != null) {
+							Iterator<EObject> eIter = importedElement.eAllContents();
+							while (eIter.hasNext()) {
+								EObject currentEIelt = eIter.next();
+								if (metaType.isInstance(currentEIelt)) {
+									filteredElements.add((T) currentEIelt);
+								}
 							}
 						}
 					}
@@ -365,7 +375,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 			return children;
 		} else {
 			// we are restricted so we show only the elements available for the current contents of the table
-			final Collection<Object> returnedValues = new ArrayList<Object>();
+			final Collection<Object> returnedValues = new ArrayList<>();
 			returnedValues.addAll(Arrays.asList(children));
 			returnedValues.retainAll(this.restrictedElements);
 			return returnedValues.toArray();
