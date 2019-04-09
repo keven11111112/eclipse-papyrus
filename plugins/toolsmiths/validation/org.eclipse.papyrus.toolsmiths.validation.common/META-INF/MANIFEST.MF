@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+ org.eclipse.ui;bundle-version="[3.112.0,4.0.0)",
+ org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)"
+Export-Package: 
+ org.eclipse.papyrus.toolsmiths.validation.common
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.toolsmiths.validation.common.Activator
+Bundle-ManifestVersion: 2
+Bundle-Description: %pluginDescription
+Bundle-SymbolicName: org.eclipse.papyrus.toolsmiths.validation.common;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.validation.common

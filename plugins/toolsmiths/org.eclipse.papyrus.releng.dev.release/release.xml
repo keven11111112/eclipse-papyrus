@@ -58,6 +58,11 @@
 		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.m2m.qvto.tests.tools" version="1.0.0"/>
 	</feature>
+	<feature name="org.eclipse.papyrus.toolsmiths.validation.feature" version="1.0.0">
+		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<plugin name="org.eclipse.papyrus.toolsmiths.validation.common" version="1.0.0"/>
+		<plugin name="org.eclipse.papyrus.toolsmiths.validation.profile" version="1.0.0"/>
+	</feature>
 	<feature name="org.eclipse.papyrus.user.examples.feature" version="0.0.1">
 		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
 		<plugin name="org.eclipse.papyrus.example.core.lifecycleevents" version="1.2.0"/>
