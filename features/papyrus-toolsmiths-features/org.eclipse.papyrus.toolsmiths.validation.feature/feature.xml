@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.toolsmiths.validation.feature"
-      version="1.0.0.qualifier"
       label="%featureName"
+      version="1.0.0.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="2.0.0">
@@ -19,7 +19,6 @@
       %license
    </license>
 
-
    <plugin
          id="org.eclipse.papyrus.toolsmiths.validation.common"
          download-size="0"
@@ -34,5 +33,11 @@
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="org.eclipse.papyrus.dev.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
