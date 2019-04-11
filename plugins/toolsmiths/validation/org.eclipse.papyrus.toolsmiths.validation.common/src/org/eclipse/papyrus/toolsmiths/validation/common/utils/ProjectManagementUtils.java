@@ -63,6 +63,25 @@ public class ProjectManagementUtils {
 	}
 
 	/**
+	 * This allows to get the build model of the project.
+	 *
+	 * @param project
+	 *            The current project.
+	 * @return The build model representing the 'build.properties' file.
+	 */
+	public static IBuildModel getPluginBuild(final IProject project) {
+		final IPluginModelBase pluginModelBase = ProjectManagementUtils.getPluginModelBase(project);
+		if (null != pluginModelBase) {
+			try {
+				return PluginRegistry.createBuildModel(pluginModelBase);
+			} catch (CoreException e) {
+				// Do nothing, just return null
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * This allows to check the file corresponding to the file name in parameter exists.
 	 *
 	 * @param container

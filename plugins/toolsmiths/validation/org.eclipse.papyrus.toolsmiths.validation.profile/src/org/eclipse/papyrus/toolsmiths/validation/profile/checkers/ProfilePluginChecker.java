@@ -60,6 +60,9 @@ public class ProfilePluginChecker {
 			if (!profiles.isEmpty()) {
 				ProfileExtensionsChecker.checkPluginXMLFile(project, profileFile, profiles);
 			}
+
+			// Check the build for file
+			ProfileBuildChecker.checkBuildFile(project, profileFile);
 		}
 	}
 
