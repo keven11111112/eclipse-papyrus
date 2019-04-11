@@ -59,6 +59,9 @@ public class ProfilePluginChecker {
 			// First, check the extensions
 			if (!profiles.isEmpty()) {
 				ProfileExtensionsChecker.checkPluginXMLFile(project, profileFile, profiles);
+				
+				// Check the profile definition (no definition must be done for static profiles)
+				ProfileDefinitionChecker.checkProfilesDefinition(project, profileFile, profiles);
 			}
 
 			// Check the build for file
@@ -80,7 +83,7 @@ public class ProfilePluginChecker {
 		final ResourceSet resourceSet = new ResourceSetImpl();
 		try {
 			final Resource resource = resourceSet.getResource(uri, true);
-			if (resource != null) {
+			if (null != resource) {
 				if (!resource.getContents().isEmpty()) {
 					final Iterator<EObject> contentIt = resource.getAllContents();
 					while (contentIt.hasNext()) {
