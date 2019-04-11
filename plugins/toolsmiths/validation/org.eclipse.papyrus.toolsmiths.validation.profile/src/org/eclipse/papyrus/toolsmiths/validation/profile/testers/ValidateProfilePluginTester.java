@@ -36,8 +36,8 @@ public class ValidateProfilePluginTester extends PropertyTester {
 
 		if (receiver instanceof IProject) {
 			final IProject selectedProject = (IProject) receiver;
-			result = null != ProjectManagementUtils.getFileFromProject(selectedProject, "profile.uml", true) //$NON-NLS-1$
-					&& null != ProjectManagementUtils.getFileFromProject(selectedProject, "genmodel", true); //$NON-NLS-1$
+			result = ProjectManagementUtils.existFileFromProject(selectedProject, "profile.uml", true) //$NON-NLS-1$
+					&& ProjectManagementUtils.existFileFromProject(selectedProject, "genmodel", true); //$NON-NLS-1$
 		}
 		return expectedValue instanceof Boolean ? ((Boolean) expectedValue).booleanValue() == result : result;
 	}
