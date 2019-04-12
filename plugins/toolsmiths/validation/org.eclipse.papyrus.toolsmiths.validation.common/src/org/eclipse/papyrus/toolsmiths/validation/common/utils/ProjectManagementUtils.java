@@ -27,6 +27,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.osgi.service.resolver.BundleSpecification;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.pde.core.build.IBuildModel;
 import org.eclipse.pde.core.plugin.IPluginExtension;
@@ -60,6 +61,18 @@ public class ProjectManagementUtils {
 	public static List<IPluginExtension> getPluginExtensions(final IProject project) {
 		final IPluginModelBase pluginModelBase = ProjectManagementUtils.getPluginModelBase(project);
 		return null != pluginModelBase ? Arrays.asList(pluginModelBase.getExtensions().getExtensions()) : Collections.emptyList();
+	}
+
+	/**
+	 * This allows to get the list of required plug-ins.
+	 *
+	 * @param project
+	 *            The current project.
+	 * @return The list of required plug-ins (can be empty).
+	 */
+	public static List<BundleSpecification> getPluginDependencies(final IProject project) {
+		final IPluginModelBase pluginModelBase = ProjectManagementUtils.getPluginModelBase(project);
+		return null != pluginModelBase ? Arrays.asList(pluginModelBase.getBundleDescription().getRequiredBundles()) : Collections.emptyList();
 	}
 
 	/**
@@ -141,6 +154,18 @@ public class ProjectManagementUtils {
 		}
 
 		return result;
+	}
+
+	/**
+	 * This allows to get the 'MANIFEST.MF' file.
+	 *
+	 * @param container
+	 *            The container.
+	 * @return The found file 'MANIFEST.MF' or <code>null</code>.
+	 */
+	public static IFile getManifestFile(final IContainer container) {
+		final Collection<IFile> manifestFiles = ProjectManagementUtils.getFilesFromProject(container, "MANIFEST.MF", false); //$NON-NLS-1$
+		return manifestFiles.isEmpty() ? null : manifestFiles.iterator().next();
 	}
 
 	/**

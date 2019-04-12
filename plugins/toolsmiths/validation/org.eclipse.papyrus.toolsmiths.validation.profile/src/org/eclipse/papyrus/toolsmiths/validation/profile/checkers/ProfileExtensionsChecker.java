@@ -108,7 +108,7 @@ public class ProfileExtensionsChecker {
 				MarkersManagementUtils.createMarker(
 						pluginXMLFile,
 						ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_TYPE,
-						"The extension point '" + ProfilePluginValidationConstants.UMLPROFILE_EXTENSION_POINT + "' should be created for file '" + profileFile.getName() + "'", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						"The extension point '" + ProfilePluginValidationConstants.UMLPROFILE_EXTENSION_POINT + "' should be created for profile '" + profileFile.getName() + "'", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 						IMarker.SEVERITY_WARNING);
 			}
 			// Create markers (one by missing profile) for uml generated package extension point if needed
