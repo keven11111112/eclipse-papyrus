@@ -13,9 +13,7 @@ Require-Bundle:
 Export-Package: 
  org.eclipse.papyrus.toolsmiths.validation.profile,
  org.eclipse.papyrus.toolsmiths.validation.profile.checkers,
- org.eclipse.papyrus.toolsmiths.validation.profile.constants,
- org.eclipse.papyrus.toolsmiths.validation.profile.handlers,
- org.eclipse.papyrus.toolsmiths.validation.profile.testers
+ org.eclipse.papyrus.toolsmiths.validation.profile.constants
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

@@ -13,13 +13,15 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.validation.profile.checkers;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersManagementUtils;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementUtils;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
 import org.eclipse.pde.core.build.IBuild;
 import org.eclipse.pde.core.build.IBuildEntry;
@@ -28,20 +30,47 @@ import org.eclipse.pde.core.build.IBuildModel;
 /**
  * This class allows to check the 'build.properties' needed for the profile file.
  */
-public class ProfileBuildChecker {
+public class ProfileBuildChecker implements IPluginChecker {
+
+	/**
+	 * The current project resource.
+	 */
+	private final IProject project;
+
+	/**
+	 * The file of the UML profile.
+	 */
+	private final IFile profileFile;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param project
+	 *            The current project resource.
+	 * @param profileFile
+	 *            The file of the UML profile.
+	 */
+	public ProfileBuildChecker(final IProject project, final IFile profileFile) {
+		this.project = project;
+		this.profileFile = profileFile;
+	}
+
 
 	/**
 	 * This allows to check the build of the profile file.
+	 * {@inheritDoc}
 	 *
-	 * @param project
-	 *            The current project to check.
-	 * @param profileFile
-	 *            The profile for which one to check.
+	 * @see org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker#check(org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public static void checkBuildFile(final IProject project, final IFile profileFile) {
+	@Override
+	public void check(final IProgressMonitor monitor) {
+
+		if (null != monitor) {
+			monitor.subTask("Validate 'build.properties' file for profile '" + profileFile.getName() + "'."); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 
 		// Get the build.properties entries from the project
-		final IBuildModel buildModel = ProjectManagementUtils.getPluginBuild(project);
+		final IBuildModel buildModel = ProjectManagementService.getPluginBuild(project);
 		if (null != buildModel) {
 
 			// Create the conditions:
@@ -62,14 +91,18 @@ public class ProfileBuildChecker {
 
 			// Create marker for UMLProfile extension point if needed
 			if (!containsProfile) {
-				final IFile buildPropertiesFile = ProjectManagementUtils.getBuildFile(project);
+				final IFile buildPropertiesFile = ProjectManagementService.getBuildFile(project);
 
-				MarkersManagementUtils.createMarker(
+				MarkersService.createMarker(
 						buildPropertiesFile,
 						ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_TYPE,
 						"The build does not contains entry for file '" + profilePath + "'", //$NON-NLS-1$ //$NON-NLS-2$
 						IMarker.SEVERITY_ERROR);
 			}
+		}
+
+		if (null != monitor) {
+			monitor.worked(1);
 		}
 	}
 

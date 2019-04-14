@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.validation.profile.checkers;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
@@ -28,8 +28,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersManagementUtils;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementUtils;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationService;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.papyrus.toolsmiths.validation.profile.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
 import org.eclipse.swt.widgets.Display;
@@ -55,13 +56,16 @@ public class ProfilePluginChecker {
 		try {
 			// Open the progress monitor dialog
 			new ProgressMonitorDialog(shell).run(true, true, monitor -> {
-				final Collection<IFile> profileFiles = ProjectManagementUtils.getFilesFromProject(project, "profile.uml", true); //$NON-NLS-1$
+				final Collection<IFile> profileFiles = ProjectManagementService.getFilesFromProject(project, "profile.uml", true); //$NON-NLS-1$
 				monitor.beginTask("Validate Profile plug-in.", 1 + (profileFiles.size() * 4)); // $NON-NLS-1$
 
 				monitor.subTask("Prepare validation."); //$NON-NLS-1$
 				// First of all, delete the existing markers for project
-				MarkersManagementUtils.deleteMarkers(project, ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_TYPE);
+				MarkersService.deleteMarkers(project, ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_TYPE);
 				monitor.worked(1);
+
+				// Create the plug-in validation service
+				final PluginValidationService pluginValidationService = new PluginValidationService();
 
 				// For all profiles files in the plug-in
 				for (final IFile profileFile : profileFiles) {
@@ -71,29 +75,24 @@ public class ProfilePluginChecker {
 					final Collection<Profile> profiles = loadProfiles(profileFileURI);
 
 					if (!profiles.isEmpty()) {
-						monitor.subTask("Validate 'plugin.xml' file for profile '" + profileFile.getName() + "'."); //$NON-NLS-1$ //$NON-NLS-2$
-						// First, check the extensions
-						ProfileExtensionsChecker.checkPluginXMLFile(project, profileFile, profiles);
-						monitor.worked(1);
+						// First, create the extensions checker
+						pluginValidationService.addPluginChecker(new ProfileExtensionsChecker(project, profileFile, profiles));
 
-						monitor.subTask("Validate profiles definitions for profile '" + profileFile.getName() + "'."); //$NON-NLS-1$ //$NON-NLS-2$
-						// Check the profile definition (no definition must be done for static profiles)
-						ProfileDefinitionChecker.checkProfilesDefinition(project, profileFile, profiles);
-						monitor.worked(1);
+						// Create the profile definition checker (no definition must be done for static profiles)
+						pluginValidationService.addPluginChecker(new ProfileDefinitionChecker(profileFile, profiles));
 
-						monitor.subTask("Validate dependencies for profile '" + profileFile.getName() + "'."); //$NON-NLS-1$ //$NON-NLS-2$
-						// Check the dependencies depending to the external profile references
-						ProfileDependenciesChecker.checkDependencies(project, profileFile, profiles.iterator().next().eResource());
-						monitor.worked(1);
-					} else {
-						monitor.worked(3);
+						// Create the dependencies checker (depending to the external profile references)
+						pluginValidationService.addPluginChecker(new ProfileDependenciesChecker(project, profileFile, profiles.iterator().next().eResource()));
 					}
 
-					monitor.subTask("Validate 'build.properties' file for profile '" + profileFile.getName() + "'."); //$NON-NLS-1$ //$NON-NLS-2$
-					// Check the build for file
-					ProfileBuildChecker.checkBuildFile(project, profileFile);
-					monitor.worked(1);
+					// Create the build checker
+					pluginValidationService.addPluginChecker(new ProfileBuildChecker(project, profileFile));
 				}
+
+				monitor.worked(1);
+
+				// Call the validate
+				pluginValidationService.validate(monitor);
 			});
 		} catch (InvocationTargetException e) {
 			Activator.log.error(e);

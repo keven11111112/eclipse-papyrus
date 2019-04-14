@@ -1,0 +1,28 @@
+# Requirements defined for the validation of Papyrus profile plug-in
+# This file must be filled by developer when a task is done in the validation of a profile plug-in
+
+# General Requirements
+Requirement: Req_Validate_Menu_ProfileValidation_001: The profile validation must be done with a button 'Validate Profile plug-in' on plug-in, in the papyrus developer menu
+Code instruction: - org.eclipse.papyrus.toolsmiths.validation.profile/src/org/eclipse/papyrus/toolsmiths/validation/profile/handlers/ValidateProfilePluginHandler.java
+- org.eclipse.papyrus.toolsmiths.validation.profile/src/org/eclipse/papyrus/toolsmiths/validation/profile/testers/ValidateProfilePluginTester.java
+- org.eclipse.papyrus.toolsmiths.validation.profile/plugin.xml
+
+Requirement: Req_Validation_Dialog_ProfileValidation_002: During the validation, a progress monitor must be opened with correct explanations
+Code instruction: - org.eclipse.papyrus.toolsmiths.validation.profile/src/org/eclipse/papyrus/toolsmiths/validation/profile/handlers/ValidateProfilePluginHandler.java
+
+# General Technical Requirements
+Requirement: ReqTechnical_Extensions_Checker_ProfileValidation_001: A checker for the extensions must be implemented
+Code instruction: - org.eclipse.papyrus.toolsmiths.validation.profile/src/org/eclipse/papyrus/toolsmiths/validation/profile/internal/checkers/ProfileExtensionsChecker.java
+
+Requirement: ReqTechnical_Definition_Profile_Checker_ProfileValidation_002: A checker for the definition profile must be implemented
+Code instruction: - org.eclipse.papyrus.toolsmiths.validation.profile/src/org/eclipse/papyrus/toolsmiths/validation/profile/internal/checkers/ProfileDefinitionChecker.java
+
+Requirement: ReqTechnical_Build_Checker_ProfileValidation_003: A checker for the build must be implemented
+Code instruction: - org.eclipse.papyrus.toolsmiths.validation.profile/src/org/eclipse/papyrus/toolsmiths/validation/profile/internal/checkers/ProfileBuildChecker.java
+
+Requirement: ReqTechnical_Dependencies_Checker_ProfileValidation_004: A checker for the dependencies must be implemented
+Code instruction: - org.eclipse.papyrus.toolsmiths.validation.profile/src/org/eclipse/papyrus/toolsmiths/validation/profile/internal/checkers/ProfileDependenciesChecker.java
+
+Requirement: ReqTechnical_Profile_Plugin_Checker_ProfileValidation_005: A method to call the profile plug-in validation must be available
+Code instruction: - org.eclipse.papyrus.toolsmiths.validation.profile/src/org/eclipse/papyrus/toolsmiths/validation/profile/checkers/ProfilePluginCheckerService.java
+- org.eclipse.papyrus.toolsmiths.validation.profile/src/org/eclipse/papyrus/toolsmiths/validation/profile/internal/checkers/ProfilePluginChecker.java

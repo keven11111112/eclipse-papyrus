@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.validation.profile.checkers;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -22,18 +22,20 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersManagementUtils;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementUtils;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
 
 /**
  * This class allows to check that the plug-in has the correct dependencies depending to the external profile references.
  */
-public class ProfileDependenciesChecker {
+public class ProfileDependenciesChecker implements IPluginChecker {
 
 	/**
 	 * The plug-ins to detect as warning instead of errors.
@@ -46,17 +48,50 @@ public class ProfileDependenciesChecker {
 		}
 	};
 
+
 	/**
-	 * This allows to check that the plug-in has the correct dependencies depending to the external profile references.
+	 * The current project resource.
+	 */
+	private final IProject project;
+
+	/**
+	 * The file of the UML profile.
+	 */
+	private final IFile profileFile;
+
+	/**
+	 * The EMF resource.
+	 */
+	private final Resource resource;
+
+	/**
+	 * Constructor.
 	 *
 	 * @param project
-	 *            The current project to check.
+	 *            The current project resource.
 	 * @param profileFile
-	 *            The file or the UML profile.
+	 *            The file of the UML profile.
 	 * @param resource
 	 *            The EMF resource.
 	 */
-	public static void checkDependencies(final IProject project, final IFile profileFile, final Resource resource) {
+	public ProfileDependenciesChecker(final IProject project, final IFile profileFile, final Resource resource) {
+		this.project = project;
+		this.profileFile = profileFile;
+		this.resource = resource;
+	}
+
+	/**
+	 * This allows to check that the plug-in has the correct dependencies depending to the external profile references.
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker#check(org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public void check(final IProgressMonitor monitor) {
+
+		if (null != monitor) {
+			monitor.subTask("Validate dependencies for profile '" + profileFile.getName() + "'."); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 
 		// Get the external reference paths
 		final Collection<URI> externalReferencesPaths = getExternalReferencesPaths(project, profileFile, resource);
@@ -67,24 +102,28 @@ public class ProfileDependenciesChecker {
 
 		// For each external reference, get its plug-in name and search its dependency in the plug-in
 		final Collection<String> existingRequiredPlugins = new HashSet<>();
-		ProjectManagementUtils.getPluginDependencies(project).stream().forEach(dependency -> existingRequiredPlugins.add(dependency.getName()));
+		ProjectManagementService.getPluginDependencies(project).stream().forEach(dependency -> existingRequiredPlugins.add(dependency.getName()));
 		requiredPlugins.removeIf(requiredPlugin -> existingRequiredPlugins.contains(requiredPlugin));
 
 		// If requiredPlugins is not empty, that means, the dependency is not available in the profile plug-in
 		// So, create the warning markers
 		if (!requiredPlugins.isEmpty()) {
-			final IFile manifestFile = ProjectManagementUtils.getManifestFile(project);
+			final IFile manifestFile = ProjectManagementService.getManifestFile(project);
 
 			requiredPlugins.stream().forEach(requiredPlugin -> {
 				int severity = IMarker.SEVERITY_ERROR;
 				if (WARNING_PLUGINS_EXCEPTION.contains(requiredPlugin)) {
 					severity = IMarker.SEVERITY_WARNING;
 				}
-				MarkersManagementUtils.createMarker(manifestFile,
+				MarkersService.createMarker(manifestFile,
 						ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_TYPE,
 						"The plug-in '" + requiredPlugin + "' must be defined as required plug-in (for profile '" + profileFile.getName() + "').", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 						severity);
 			});
+		}
+
+		if (null != monitor) {
+			monitor.worked(1);
 		}
 	}
 
@@ -99,7 +138,7 @@ public class ProfileDependenciesChecker {
 	 *            The resource to get external references paths.
 	 * @return The external references paths.
 	 */
-	public static Collection<URI> getExternalReferencesPaths(final IProject project, final IFile profileFile, final Resource resource) {
+	private Collection<URI> getExternalReferencesPaths(final IProject project, final IFile profileFile, final Resource resource) {
 		final Collection<URI> externalReferencesPaths = new HashSet<>();
 
 		// First step, resolve all references
@@ -116,7 +155,7 @@ public class ProfileDependenciesChecker {
 					final URI correspondingURI = getCorrespondingURIFromPathmap(resourceURI);
 					if (null == correspondingURI) {
 						// If this case, the pathmap cannot be resolved, so create a marker
-						MarkersManagementUtils.createMarker(profileFile,
+						MarkersService.createMarker(profileFile,
 								ProfilePluginValidationConstants.PROFILE_PLUGIN_VALIDATION_TYPE,
 								"The pathmap '" + resourceURI.toString() + "' cannot be resolved.", //$NON-NLS-1$ //$NON-NLS-2$
 								IMarker.SEVERITY_ERROR);
@@ -143,7 +182,7 @@ public class ProfileDependenciesChecker {
 	 *            The resource to check.
 	 * @return <code>true</code> if we have to manage reference, <code>false</code> otherwise.
 	 */
-	private static boolean isExternalReferenceToManage(final IProject project, final Resource resource) {
+	private boolean isExternalReferenceToManage(final IProject project, final Resource resource) {
 		final String resourceURI = resource.getURI().toString();
 
 		// We don't have to manage references of files from the same plug-in
@@ -163,7 +202,7 @@ public class ProfileDependenciesChecker {
 	 *            The pathmap URI to search.
 	 * @return The corresponding URI to the pathmap.
 	 */
-	private static URI getCorrespondingURIFromPathmap(final URI uri) {
+	private URI getCorrespondingURIFromPathmap(final URI uri) {
 		URI copiedURI = URI.createURI(uri.toString());
 		URI foundCorrespondingURI = null;
 
@@ -187,7 +226,7 @@ public class ProfileDependenciesChecker {
 	 *            The initial URI.
 	 * @return The plug-in name from URI or <code>null</code> if any problem occurred.
 	 */
-	private static String getPluginNameFromURI(final URI uri) {
+	private String getPluginNameFromURI(final URI uri) {
 		String pluginName = null;
 
 		// Take we correct segment (without authority)

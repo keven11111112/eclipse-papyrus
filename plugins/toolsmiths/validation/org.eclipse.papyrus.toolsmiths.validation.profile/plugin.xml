@@ -46,7 +46,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.eclipse.papyrus.toolsmiths.validation.profile.handlers.ValidateProfilePluginHandler"
+            defaultHandler="org.eclipse.papyrus.toolsmiths.validation.profile.internal.handlers.ValidateProfilePluginHandler"
             id="org.eclipse.papyrus.toolsmiths.validation.profile.validateCommand"
             name="Validate Profile plug-in">
       </command>
@@ -54,7 +54,7 @@
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="org.eclipse.papyrus.toolsmiths.validation.profile.testers.ValidateProfilePluginTester"
+            class="org.eclipse.papyrus.toolsmiths.validation.profile.internal.testers.ValidateProfilePluginTester"
             id="org.eclipse.papyrus.toolsmiths.validation.profile.canValidateProfilePlugin"
             namespace="org.eclipse.papyrus.toolsmiths.validation.profile"
             properties="canValidateProfilePlugin"

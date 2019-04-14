@@ -13,11 +13,11 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.validation.profile.testers;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.testers;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementUtils;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 
 /**
  * This allows to test if a selected plug-in contains papyrus profile and its genmodel.
@@ -36,8 +36,8 @@ public class ValidateProfilePluginTester extends PropertyTester {
 
 		if (receiver instanceof IProject) {
 			final IProject selectedProject = (IProject) receiver;
-			result = ProjectManagementUtils.existFileFromProject(selectedProject, "profile.uml", true) //$NON-NLS-1$
-					&& ProjectManagementUtils.existFileFromProject(selectedProject, "genmodel", true); //$NON-NLS-1$
+			result = ProjectManagementService.existFileFromProject(selectedProject, "profile.uml", true) //$NON-NLS-1$
+					&& ProjectManagementService.existFileFromProject(selectedProject, "genmodel", true); //$NON-NLS-1$
 		}
 		return expectedValue instanceof Boolean ? ((Boolean) expectedValue).booleanValue() == result : result;
 	}

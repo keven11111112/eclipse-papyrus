@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.validation.common.utils;
+package org.eclipse.papyrus.toolsmiths.validation.common.internal.utils;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 
 /**
- * This allows to manage markers
+ * This allows to manage markers.
  */
 public class MarkersManagementUtils {
 
