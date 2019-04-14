@@ -15,5 +15,6 @@
 	<modules>
 		<module>org.eclipse.papyrus.toolsmiths.validation.common</module>
 		<module>org.eclipse.papyrus.toolsmiths.validation.profile</module>
+		<module>org.eclipse.papyrus.toolsmiths.validation.elementtypes</module>
 	</modules>
 </project>

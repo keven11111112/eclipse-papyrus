@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Require-Bundle: 
+ org.eclipse.ui;bundle-version="[3.112.0,4.0.0)",
+ org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.core.expressions;bundle-version="[3.6.0,4.0.0)",
+ org.eclipse.core.resources;bundle-version="[3.13.0,4.0.0)",
+ org.eclipse.papyrus.toolsmiths.validation.common;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.dev.ui;bundle-version="[0.0.1,2.0.0)",
+ org.eclipse.pde.core;bundle-version="[3.12.0,4.0.0)",
+ org.eclipse.emf.ecore;bundle-version="[2.17.0,3.0.0)",
+ org.eclipse.uml2.uml;bundle-version="[5.2.0,6.0.0)",
+ org.eclipse.papyrus.uml.tools;bundle-version="[4.1.0,5.0.0)"
+Export-Package: 
+ org.eclipse.papyrus.toolsmiths.validation.elementtypes,
+ org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.0.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.toolsmiths.validation.elementtypes.Activator
+Bundle-ManifestVersion: 2
+Bundle-Description: %pluginDescription
+Bundle-SymbolicName: org.eclipse.papyrus.toolsmiths.validation.elementtypes;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.validation.profile
