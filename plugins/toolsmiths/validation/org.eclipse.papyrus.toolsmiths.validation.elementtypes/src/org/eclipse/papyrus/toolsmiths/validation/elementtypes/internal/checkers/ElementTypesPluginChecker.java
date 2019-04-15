@@ -20,6 +20,9 @@ import java.util.Collection;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationService;
@@ -58,11 +61,18 @@ public class ElementTypesPluginChecker {
 				// Create the plug-in validation service
 				final PluginValidationService pluginValidationService = new PluginValidationService();
 
+				// First, check the dependencies needed
+				pluginValidationService.addPluginChecker(new ElementTypesDependenciesChecker(project));
+
 				// For all element types files in the plug-in
 				for (final IFile elementTypesFile : elementTypesFiles) {
 
-					// First, check the validation of the element types file
-					pluginValidationService.addPluginChecker(new ElementTypesFileChecker(elementTypesFile));
+					// Get the resource
+					final URI elementTypesFileURI = URI.createPlatformResourceURI(elementTypesFile.getFullPath().toOSString(), true);
+					final Resource resource = new ResourceSetImpl().getResource(elementTypesFileURI, true);
+
+					// Check the validation of the element types file
+					pluginValidationService.addPluginChecker(new ElementTypesFileChecker(elementTypesFile, resource));
 
 					// Check the extension point
 					pluginValidationService.addPluginChecker(new ElementTypesExtensionsChecker(project, elementTypesFile));

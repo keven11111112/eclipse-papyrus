@@ -20,9 +20,7 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
@@ -39,13 +37,21 @@ public class ElementTypesFileChecker implements IPluginChecker {
 	private final IFile elementTypesFile;
 
 	/**
+	 * The EMF resource of the element types file.
+	 */
+	private final Resource resource;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param elementTypesFile
 	 *            The file defining the element types.
+	 * @param resource
+	 *            The EMF resource of the element types file.
 	 */
-	public ElementTypesFileChecker(final IFile elementTypesFile) {
+	public ElementTypesFileChecker(final IFile elementTypesFile, final Resource resource) {
 		this.elementTypesFile = elementTypesFile;
+		this.resource = resource;
 	}
 
 	/**
@@ -62,8 +68,6 @@ public class ElementTypesFileChecker implements IPluginChecker {
 		}
 
 		// Get the resource and validate it
-		final URI elementTypesFileURI = URI.createPlatformResourceURI(elementTypesFile.getFullPath().toOSString(), true);
-		final Resource resource = new ResourceSetImpl().getResource(elementTypesFileURI, true);
 		final Diagnostic diagnostic = Diagnostician.INSTANCE.validate(resource.getContents().get(0));
 
 		// Create markers if the validation is not OK
