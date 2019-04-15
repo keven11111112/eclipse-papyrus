@@ -51,7 +51,7 @@ public class ElementTypesPluginChecker {
 				final Collection<IFile> elementTypesFiles = ProjectManagementService.getFilesFromProject(project, "elementtypesconfigurations", true); //$NON-NLS-1$
 				monitor.beginTask("Validate Element Types plug-in", 1 + (elementTypesFiles.size() * 3)); // $NON-NLS-1$
 
-				monitor.subTask("Prepare plug-in validation");
+				monitor.subTask("Prepare plug-in validation"); //$NON-NLS-1$
 				// First of all, delete the existing markers for project
 				MarkersService.deleteMarkers(project, ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_TYPE);
 
@@ -60,7 +60,10 @@ public class ElementTypesPluginChecker {
 
 				// For all element types files in the plug-in
 				for (final IFile elementTypesFile : elementTypesFiles) {
-					// TODO : comming with future gerrits
+
+					// First, check the validation of the element types file
+					pluginValidationService.addPluginChecker(new ElementTypesFileChecker(elementTypesFile));
+
 				}
 
 				monitor.worked(1);
