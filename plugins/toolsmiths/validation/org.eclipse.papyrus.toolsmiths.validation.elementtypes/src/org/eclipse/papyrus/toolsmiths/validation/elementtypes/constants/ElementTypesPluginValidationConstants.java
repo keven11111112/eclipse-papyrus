@@ -25,4 +25,8 @@ public class ElementTypesPluginValidationConstants {
 	 */
 	public static final String ELEMENTTYPES_PLUGIN_VALIDATION_TYPE = "org.eclipse.papyrus.toolsmiths.validation.elementtypes.diagnostic"; //$NON-NLS-1$
 
+	/**
+	 * The extension point identifier for element types configurations files.
+	 */
+	public static final String ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER = "org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration"; //$NON-NLS-1$
 }

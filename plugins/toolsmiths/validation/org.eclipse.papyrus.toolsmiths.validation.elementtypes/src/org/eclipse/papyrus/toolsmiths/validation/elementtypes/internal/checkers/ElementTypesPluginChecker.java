@@ -64,6 +64,8 @@ public class ElementTypesPluginChecker {
 					// First, check the validation of the element types file
 					pluginValidationService.addPluginChecker(new ElementTypesFileChecker(elementTypesFile));
 
+					// Check the extension point
+					pluginValidationService.addPluginChecker(new ElementTypesExtensionsChecker(project, elementTypesFile));
 				}
 
 				monitor.worked(1);
