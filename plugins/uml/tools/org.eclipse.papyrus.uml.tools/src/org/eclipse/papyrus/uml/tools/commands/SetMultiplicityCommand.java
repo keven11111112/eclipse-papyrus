@@ -18,6 +18,8 @@ package org.eclipse.papyrus.uml.tools.commands;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
@@ -39,6 +41,11 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class SetMultiplicityCommand extends CompoundCommand {
 
+	/**
+	 * Optimize lower/upper bounds, if they correspond to the default value
+	 */
+	private static final String OPTIMIZE_BOUNDS = "optimize bounds";
+
 	private int[] lowerUpper;
 
 	private MultiplicityElement element;
@@ -46,6 +53,10 @@ public class SetMultiplicityCommand extends CompoundCommand {
 	static EStructuralFeature lowerFeature = UMLPackage.eINSTANCE.getMultiplicityElement_Lower();
 
 	static EStructuralFeature upperFeature = UMLPackage.eINSTANCE.getMultiplicityElement_Upper();
+	
+	static EStructuralFeature lowerFeatureVS = UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue();
+
+	static EStructuralFeature upperFeatureVS = UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue();
 
 	public SetMultiplicityCommand(MultiplicityElement element, String value) {
 		if (element == null) {
@@ -69,6 +80,8 @@ public class SetMultiplicityCommand extends CompoundCommand {
 
 		append(getSetCommand(lowerFeature, lower));
 		append(getSetCommand(upperFeature, upper));
+		append(getOptimizeCommand(lowerFeature, lowerFeatureVS));
+		append(getOptimizeCommand(upperFeature, upperFeatureVS));
 	}
 
 	private Command getSetCommand(EStructuralFeature feature, int value) {
@@ -82,6 +95,22 @@ public class SetMultiplicityCommand extends CompoundCommand {
 			return emfCommand;
 		}
 		return null;
+	}
+
+	private Command getOptimizeCommand(EStructuralFeature feature, EStructuralFeature featureVS) {
+		// can't use a SetRequest, since we need to evaluate the eIsSet after the first command has
+		// been executed
+		return new RecordingCommand(TransactionUtil.getEditingDomain(element), OPTIMIZE_BOUNDS) {
+
+			@Override
+			protected void doExecute() {
+				if (!element.eIsSet(feature)) {
+					// feature corresponds to default value, remove value specification
+					// see bug 540815
+					element.eSet(featureVS, null);
+				}
+			}
+		};
 	}
 
 	@Override
