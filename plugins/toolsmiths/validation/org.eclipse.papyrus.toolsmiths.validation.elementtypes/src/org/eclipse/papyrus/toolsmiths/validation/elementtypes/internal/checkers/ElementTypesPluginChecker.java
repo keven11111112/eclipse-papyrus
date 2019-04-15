@@ -76,6 +76,9 @@ public class ElementTypesPluginChecker {
 
 					// Check the extension point
 					pluginValidationService.addPluginChecker(new ElementTypesExtensionsChecker(project, elementTypesFile));
+
+					// Check the external dependencies needed
+					pluginValidationService.addPluginChecker(new ElementTypesExternalDependenciesChecker(project, elementTypesFile, resource));
 				}
 
 				monitor.worked(1);
