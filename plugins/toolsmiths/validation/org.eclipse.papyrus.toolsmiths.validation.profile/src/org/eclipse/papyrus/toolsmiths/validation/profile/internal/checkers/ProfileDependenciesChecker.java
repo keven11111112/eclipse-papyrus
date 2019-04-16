@@ -17,6 +17,7 @@ package org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -27,6 +28,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.osgi.service.resolver.BundleSpecification;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
@@ -102,8 +104,11 @@ public class ProfileDependenciesChecker implements IPluginChecker {
 
 		// For each external reference, get its plug-in name and search its dependency in the plug-in
 		final Collection<String> existingRequiredPlugins = new HashSet<>();
-		ProjectManagementService.getPluginDependencies(project).stream().forEach(dependency -> existingRequiredPlugins.add(dependency.getName()));
-		requiredPlugins.removeIf(requiredPlugin -> existingRequiredPlugins.contains(requiredPlugin));
+		final List<BundleSpecification> dependencies = ProjectManagementService.getPluginDependencies(project);
+		if (null != dependencies && !dependencies.isEmpty()) {
+			ProjectManagementService.getPluginDependencies(project).stream().forEach(dependency -> existingRequiredPlugins.add(dependency.getName()));
+			requiredPlugins.removeIf(requiredPlugin -> existingRequiredPlugins.contains(requiredPlugin));
+		}
 
 		// If requiredPlugins is not empty, that means, the dependency is not available in the profile plug-in
 		// So, create the warning markers
@@ -186,8 +191,8 @@ public class ProfileDependenciesChecker implements IPluginChecker {
 		final String resourceURI = resource.getURI().toString();
 
 		// We don't have to manage references of files from the same plug-in
-		if (resourceURI.startsWith("platform:/plugin/" + project.getName()) || //$NON-NLS-1$
-				resourceURI.startsWith("platform:/resource/" + project.getName())) { //$NON-NLS-1$
+		if (resourceURI.startsWith("platform:/plugin/" + project.getName() + "/") || //$NON-NLS-1$ //$NON-NLS-2$
+				resourceURI.startsWith("platform:/resource/" + project.getName() + "/")) { //$NON-NLS-1$ //$NON-NLS-2$
 			return false;
 		}
 

@@ -94,11 +94,11 @@ public class ProfileExtensionsChecker implements IPluginChecker {
 		while (extensions.hasNext()) {
 			final IPluginExtension extension = extensions.next();
 			// Check if the UML profile extension point is managed (warning because this one can be managed outside of this plug-in)
-			if (!foundExtensionUMLProfile && extension.getPoint().equals(ProfilePluginValidationConstants.UMLPROFILE_EXTENSION_POINT)) {
+			if (!foundExtensionUMLProfile && ProfilePluginValidationConstants.UMLPROFILE_EXTENSION_POINT.equals(extension.getPoint())) {
 				for (final IPluginObject pluginObject : extension.getChildren()) {
-					if (pluginObject instanceof IPluginElement && pluginObject.getName().equals("profile")) { //$NON-NLS-1$
+					if (pluginObject instanceof IPluginElement && "profile".equals(pluginObject.getName())) { //$NON-NLS-1$
 						for (final IPluginAttribute pluginAtttribute : ((IPluginElement) pluginObject).getAttributes()) {
-							if (pluginAtttribute.getName().equals("path")) { //$NON-NLS-1$
+							if ("path".equals(pluginAtttribute.getName())) { //$NON-NLS-1$
 								final String locationValue = pluginAtttribute.getValue();
 								if (locationValue.endsWith(profileFile.getName())) {
 									foundExtensionUMLProfile = true;
@@ -110,11 +110,11 @@ public class ProfileExtensionsChecker implements IPluginChecker {
 			}
 
 			// Manage the uml profile registration (check only if
-			if (!profiles.isEmpty() && extension.getPoint().equals(ProfilePluginValidationConstants.UML_GENERATED_PACKAGE_EXTENSION_POINT)) {
+			if (!profiles.isEmpty() && ProfilePluginValidationConstants.UML_GENERATED_PACKAGE_EXTENSION_POINT.equals(extension.getPoint())) {
 				for (final IPluginObject pluginObject : extension.getChildren()) {
-					if (pluginObject instanceof IPluginElement && pluginObject.getName().equals("profile")) { //$NON-NLS-1$
+					if (pluginObject instanceof IPluginElement && "profile".equals(pluginObject.getName())) { //$NON-NLS-1$
 						for (final IPluginAttribute pluginAtttribute : ((IPluginElement) pluginObject).getAttributes()) {
-							if (pluginAtttribute.getName().equals("location")) { //$NON-NLS-1$
+							if ("location".equals(pluginAtttribute.getName())) { //$NON-NLS-1$
 								final String locationValue = pluginAtttribute.getValue();
 
 								final Iterator<Profile> profilesIt = profiles.iterator();
