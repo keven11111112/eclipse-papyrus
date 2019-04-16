@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.toolsmiths.validation.profile.checkers;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers.ProfilePluginChecker;
 
 /**
  * This allows to check a profile plug-in (extensions, builds, dependencies).
@@ -29,7 +30,7 @@ public class ProfilePluginCheckerService {
 	 *            The current project to check.
 	 */
 	public static void checkProfilePlugin(final IProject project) {
-		ProfilePluginCheckerService.checkProfilePlugin(project);
+		ProfilePluginChecker.checkProfilePlugin(project);
 	}
 
 }
