@@ -20,6 +20,7 @@
 
 		<module>org.eclipse.papyrus.toolsmiths.profilemigration.tests</module>
 		<module>org.eclipse.papyrus.toolsmiths.validation.profile.tests</module>
+		<module>org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests</module>
 	</modules>
 
 </project>
