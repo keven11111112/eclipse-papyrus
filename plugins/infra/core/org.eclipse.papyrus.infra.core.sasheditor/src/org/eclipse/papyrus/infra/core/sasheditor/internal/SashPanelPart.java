@@ -19,12 +19,12 @@ package org.eclipse.papyrus.infra.core.sasheditor.internal;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.DragUtil;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.internal.dnd.DragUtil;
-import org.eclipse.ui.internal.dnd.IDropTarget;
 
 /**
  * Controller for a sash panel.

@@ -28,6 +28,9 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ICloseablePart;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IFolder;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.AbstractTabFolderPart;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.DragUtil;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDragOverListener;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -48,9 +51,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.internal.DragCursors;
-import org.eclipse.ui.internal.dnd.DragUtil;
-import org.eclipse.ui.internal.dnd.IDragOverListener;
-import org.eclipse.ui.internal.dnd.IDropTarget;
 
 /**
  * Controller associated to a tabfolder.
@@ -905,7 +905,7 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 			}
 		} else if (index < currentTabItems.size()) {
 			// There is too much tabs, remove them
-			List<TabItemPart> toRemove = new ArrayList<TabItemPart>();
+			List<TabItemPart> toRemove = new ArrayList<>();
 			// Collect tab to be removed
 			for (int i = index; i < currentTabItems.size(); i++) {
 				TabItemPart curTab = currentTabItems.get(i);

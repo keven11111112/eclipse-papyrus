@@ -18,7 +18,6 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.ui.internal.dnd.DragUtil;
 
 /**
  * FIXME : duplicate class from org.eclipse.ui.presentations. This class doesn't exist in Juno...

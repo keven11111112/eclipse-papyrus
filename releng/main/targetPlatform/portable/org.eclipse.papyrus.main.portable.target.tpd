@@ -39,9 +39,9 @@ location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R201902
 
 /*** Updates from the Simrel repository ***/
 
-//updateFrom("QVT Operational for 2018-12",0)
+//updateFrom("QVT Operational for 2019-06",0)
 
-location qvto "http://download.eclipse.org/mmt/qvto/updates/milestones/3.9.2/S201903130834" {
+location qvto "https://download.eclipse.org/mmt/qvto/updates/milestones/3.9.3/S201904160751" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -60,13 +60,13 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.11/R-4.11-201903070500/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.12milestones/S-4.12M1-201904110625/" {
 	org.eclipse.sdk.feature.group
 }
 
-//updateFrom("OCL for 2018-12",0) 
+//updateFrom("OCL for 2019-06",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.7.0/S201903111843" {
+location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.8.0/S201904151846" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -79,7 +79,7 @@ location xwt "http://download.eclipse.org/xwt/updates" {
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.17.0" {
+location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201904151903" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -93,19 +93,19 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.1
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
-//updateFrom("WebTools 3.13 for Simrel 2019-03",0) 
+//updateFrom("WebTools 3.14 for Simrel 2019-06",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.13.0/S-3.13.0.RC2-20190308131645/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.14.0/S-3.14.0.M1-20190411034028/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
-//updateFrom("GMF Runtime",0)
+//updateFrom("GMF Runtime for SimRel 2019-06 M1",0)
 
 location gmfRuntime "http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201806010809" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
-//updateFrom("GMF Runtime",1)
+//updateFrom("GMF Runtime for SimRel 2019-06 M1",1)
 
 location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201805221301" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
@@ -113,23 +113,23 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.17" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201904050820" {
 	org.eclipse.emf.sdk.feature.group
 }
 
-//updateFrom("EMF Services for 2019-03",0) 
+//updateFrom("EMF Services for SimRel 2019-06 M1",0) 
 
 location emfQuery "http://download.eclipse.org/modeling/emf/query/updates/releases/R201805030653" {
 	org.eclipse.emf.query.sdk.feature.group
 }
 
-//updateFrom("EMF Services for 2019-03",1)
+//updateFrom("EMF Services for SimRel 2019-06 M1",1)
 
 location emfValidation "http://download.eclipse.org/modeling/emf/validation/updates/releases/R201812070911" {
 	org.eclipse.emf.validation.sdk.feature.group
 }
 
-//updateFrom("EMF Services for 2019-03",2)
+//updateFrom("EMF Services for SimRel 2019-06 M1",2)
 
 location emfTransaction "http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201805140824/" {
 	org.eclipse.emf.transaction.sdk.feature.group

@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.jface.util.Geometry;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.DragUtil;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.PresentationUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -39,7 +40,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.ui.internal.dnd.DragUtil;
 
 /**
  * Papyrus wrapper for CTabFolder.
@@ -535,7 +535,7 @@ public class PTabFolder {
 		/**
 		 * List of event listeners.
 		 */
-		Set<IPTabFolderListener> listeners = new HashSet<IPTabFolderListener>();
+		Set<IPTabFolderListener> listeners = new HashSet<>();
 
 		/**
 		 * Add a listener

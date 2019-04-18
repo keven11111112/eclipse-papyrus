@@ -23,7 +23,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IComponentPage;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.AbstractPart.GarbageState;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -31,7 +31,6 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.internal.dnd.IDropTarget;
 
 
 /**
@@ -41,7 +40,6 @@ import org.eclipse.ui.internal.dnd.IDropTarget;
  * @author dumoulin
  *
  */
-@SuppressWarnings("restriction")
 public class ComponentPart extends PagePart implements IComponentPage {
 
 	/**
@@ -112,7 +110,7 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	@Override
 	public void dispose() {
 
-		if( !editorControl.isDisposed() ) {
+		if (!editorControl.isDisposed()) {
 			// dispose the SWT root control
 			editorControl.dispose();
 		}

@@ -13,7 +13,7 @@ location egit "http://download.eclipse.org/egit/updates-5.3" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.11/R-4.11-201903070500/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.12milestones/S-4.12M1-201904110625/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group 
 	org.eclipse.equinox.executable.feature.group 
@@ -32,14 +32,14 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.24.2/v20180905-2014" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201903050300/" {
+location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201904101253/" {
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.17" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201904050820" {
 	org.eclipse.xsd.sdk.feature.group
 }
 

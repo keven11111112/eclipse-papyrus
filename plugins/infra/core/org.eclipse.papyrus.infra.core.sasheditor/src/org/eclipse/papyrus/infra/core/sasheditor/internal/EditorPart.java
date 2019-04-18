@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.AbstractPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IMultiPageEditorSite;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
@@ -49,7 +50,6 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.internal.ErrorEditorPart;
-import org.eclipse.ui.internal.dnd.IDropTarget;
 import org.eclipse.ui.internal.misc.StatusUtil;
 import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.IWorkbenchPartOrientation;
@@ -404,7 +404,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	@Override
 	public void dispose() {
 
-		if( !editorControl.isDisposed() ) {
+		if (!editorControl.isDisposed()) {
 			detachListeners(editorControl, true);
 			// dispose the SWT root control
 			// This should also trigger the disposal of associated editor.
@@ -412,7 +412,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 			// Dispose the editor.
 			// disposeEditorPart();
 		}
-		
+
 		// clean up properties to help GC
 		editorModel = null;
 		rawModel = null;

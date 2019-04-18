@@ -37,6 +37,9 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageLifeCycleEventsList
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ITabMouseEventsListener;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.DragUtil;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDragOverListener;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
 import org.eclipse.papyrus.infra.core.sasheditor.utils.IObservableList;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -49,9 +52,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.internal.DragCursors;
-import org.eclipse.ui.internal.dnd.DragUtil;
-import org.eclipse.ui.internal.dnd.IDragOverListener;
-import org.eclipse.ui.internal.dnd.IDropTarget;
 
 
 /**
@@ -82,10 +82,11 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 	/**
 	 * Tracker maintaining the history of the active pages.
+	 * 
 	 * @since 2.0.0
 	 */
 	private ActivePageHistoryTracker activePageHistoryTracker;
-	
+
 	/**
 	 * Event provider firing Pages life cycle events to registered listeners. Inner parts call the fireXxxEvents
 	 * when appropriate.
@@ -373,35 +374,36 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	// }
 
 	/**
-	 * Method to request to change the currently active page. 
-	 * The currently active page is changed only if we are not currently synchronizing the tabs 
+	 * Method to request to change the currently active page.
+	 * The currently active page is changed only if we are not currently synchronizing the tabs
 	 * (currently in a call to {@link #refreshTabsInternal()}.
-	 * 
+	 *
 	 * This method is called by {@link TabFolderPart#pageChange(int)} when a UI change is detected.
 	 * Such UI change can happen:
 	 * <ul>
-	 *   <li>when a tab is removed. This usually happen inside the call of {@link #refreshTabsInternal()}</li>
-	 *   <li>when user select another tab in sashwindows</li>
+	 * <li>when a tab is removed. This usually happen inside the call of {@link #refreshTabsInternal()}</li>
+	 * <li>when user select another tab in sashwindows</li>
 	 * </ul>
-	 * 
+	 *
 	 * If we are currently refreshing the tabs, we do nothing. The cactive page will be set at the end of {@link #refreshTabsInternal()}.
-	 * 
+	 *
 	 * Otherwise, the page is changed by calling {@link #setActivePage(PagePart)}
-	 * 
-	 * @param childPart The new page to set
+	 *
+	 * @param childPart
+	 *            The new page to set
 	 * @since 2.0.0
 	 */
 	protected void setActivePageRequest(PagePart newChildPart) {
 
-		if( isRefreshing.get() ) {
-			// The page change comes from a PagePart removing. 
-			// skip 
+		if (isRefreshing.get()) {
+			// The page change comes from a PagePart removing.
+			// skip
 			return;
-		} 
+		}
 
 		setActivePage(newChildPart);
 	}
-	
+
 	/**
 	 * Set the active page. The current active page will be the specified page. Throw events indicating that
 	 * the current ActivePage has changed. <br>
@@ -602,7 +604,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer#getNextPage()
 	 *
 	 * @return
@@ -614,7 +616,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer#getNextPage()
 	 *
 	 * @return
@@ -740,7 +742,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		// Get the currently selected page and folder
 		PagePart oldActivePage = getActivePage();
-		TabFolderPart oldActiveFolder = (oldActivePage!=null?oldActivePage.getParent():null);
+		TabFolderPart oldActiveFolder = (oldActivePage != null ? oldActivePage.getParent() : null);
 
 		// Do refresh
 		container.setRedraw(false);
@@ -763,10 +765,10 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		// Reenable SWT and force layout
 		container.setRedraw(true);
 		container.layout(true, true);
-		
+
 		// Check focus
 		PagePart activePage = getActivePage();
-		if( activePage != null && oldActiveFolder != activePage.getParent() ) {
+		if (activePage != null && oldActiveFolder != activePage.getParent()) {
 			getActivePage().setFocus();
 		}
 		// System.out.println("end synchronize2() ------------------------");
@@ -851,20 +853,23 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 	/**
 	 * Try to find the page that should now be set as active.
-	 * 
+	 *
 	 * The next active page is:
 	 * <ul>
-	 *   <li>if a page has been created, set it as active</li>
-	 *   <li>otherwise, if the old active page still alive, set it as active</li>
-	 *   <li>otherwise, check if the last active tabfolder still alive, if yes, ask it for the currently selected tab, and set the corresponding page as active. </li>
-	 *   <li>If all of the previous fail, get a tabfolder, and set its active tabs as active page</li>
+	 * <li>if a page has been created, set it as active</li>
+	 * <li>otherwise, if the old active page still alive, set it as active</li>
+	 * <li>otherwise, check if the last active tabfolder still alive, if yes, ask it for the currently selected tab, and set the corresponding page as active.</li>
+	 * <li>If all of the previous fail, get a tabfolder, and set its active tabs as active page</li>
 	 * </ul>
 	 *
-	 * @param oldActivePage The last active page (before refreshing)
-	 * @param oldActiveFolder The last active tabFolder (before refreshing)
-	 * @param partLists Lists of modified Parts
+	 * @param oldActivePage
+	 *            The last active page (before refreshing)
+	 * @param oldActiveFolder
+	 *            The last active tabFolder (before refreshing)
+	 * @param partLists
+	 *            Lists of modified Parts
 	 * @return A valid active page or null if none exists.
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	private PagePart checkAndGetActivePage(PagePart oldActivePage, TabFolderPart oldActiveFolder, PartLists partLists) {
@@ -883,18 +888,18 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		// Old active page nor more exists, and none is created.
 		// Lookup in history
-		activePage = (PagePart)activePageHistoryTracker.lastActivePage();
+		activePage = (PagePart) activePageHistoryTracker.lastActivePage();
 		if (activePage != null) {
 			// There is a previous active page, use it
 			return activePage;
-		}		
-		
+		}
+
 		// No previous active page were found, try from tabfolder
-		if(oldActiveFolder==null || oldActiveFolder.isOrphaned() || oldActiveFolder.isUnchecked() ) {
-			// Last active folder is disabled. Search for a new  active folder
+		if (oldActiveFolder == null || oldActiveFolder.isOrphaned() || oldActiveFolder.isUnchecked()) {
+			// Last active folder is disabled. Search for a new active folder
 			oldActiveFolder = lookupFirstValidFolder();
 		}
-		
+
 		// Get an active page if any
 		return oldActiveFolder.getVisiblePagePart();
 	}
@@ -957,7 +962,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 * Visit the Part associated to the container. This method visibility is protected in order to be able to access it
 	 * from junit tests.
 	 * It is not intended to be used by public API or from outside.
-	 * 
+	 *
 	 * @noreference This method is not intended to be referenced by clients.
 	 */
 	public void visit(IPartVisitor visitor) {
@@ -1334,7 +1339,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	private class CollectVisiblePageVisitor extends PartVisitor {
 
-		private List<IPage> visiblePages = new ArrayList<IPage>();
+		private List<IPage> visiblePages = new ArrayList<>();
 
 		private Class<? extends IPage> expectedClass;
 
@@ -1396,7 +1401,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	private class CollectNextPageVisitor extends PartVisitor {
 
-		private List<IPage> nextPages = new ArrayList<IPage>();
+		private List<IPage> nextPages = new ArrayList<>();
 
 		private final boolean isPrevious;
 
@@ -1460,7 +1465,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	private class AbstractCollectIEditorPart extends PartVisitor {
 
-		protected List<IEditorPart> editorParts = new ArrayList<IEditorPart>();
+		protected List<IEditorPart> editorParts = new ArrayList<>();
 
 		/**
 		 * Constructor.

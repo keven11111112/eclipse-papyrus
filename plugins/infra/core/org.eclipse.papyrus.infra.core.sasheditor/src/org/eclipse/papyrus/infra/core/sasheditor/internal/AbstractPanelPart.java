@@ -16,9 +16,9 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
+import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.internal.dnd.IDropTarget;
 
 
 /**
