@@ -40,6 +40,13 @@
       <category name="org.eclipse.papyrus.releng.category"/>
    </feature>
    
+   <feature url="features/org.eclipse.papyrus.toolsmiths.validation.feature_1.0.0.qualifier.jar" id="org.eclipse.papyrus.toolsmiths.validation.feature" version="1.0.0.qualifier">
+      <category name="org.eclipse.papyrus.toolsmiths.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.toolsmiths.validation.feature.source_1.0.0.qualifier.jar" id="org.eclipse.papyrus.toolsmiths.validation.feature.source" version="1.0.0.qualifier">
+      <category name="org.eclipse.papyrus.toolsmiths.category"/>
+   </feature>
+   
    <category-def name="org.eclipse.papyrus.toolsmiths.category" label="Papyrus Toolsmiths">
       <description>
          Papyrus Toolsmiths offers a set of plugins dedicated to speedup the process to create your own customization on top of Papyrus.
