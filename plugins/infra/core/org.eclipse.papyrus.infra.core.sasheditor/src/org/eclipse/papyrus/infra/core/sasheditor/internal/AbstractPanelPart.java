@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
+ * Copyright (c) 2009, 2019 CEA LIST & LIFL
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,12 +11,13 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDropTarget;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 

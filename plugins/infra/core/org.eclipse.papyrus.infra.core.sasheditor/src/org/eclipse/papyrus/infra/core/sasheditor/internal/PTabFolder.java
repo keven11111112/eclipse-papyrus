@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2008, 2015, 2019 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus - bug 469188
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -20,7 +21,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.jface.util.Geometry;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.DragUtil;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.DragManager;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.PapyrusDragUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.PresentationUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -244,9 +246,9 @@ public class PTabFolder {
 		boolean allowSnapping = true;
 		Rectangle sourceBounds = Geometry.toDisplay(tabFolder.getParent(), tabFolder.getBounds());
 		if (tab == null) { // drag folder
-			DragUtil.performDrag(tabFolder, sourceBounds, displayPos, allowSnapping);
+			DragManager.getInstance().performDrag(tabFolder, sourceBounds, displayPos, allowSnapping);
 		} else { // drag item
-			DragUtil.performDrag(tab, sourceBounds, displayPos, allowSnapping);
+			DragManager.getInstance().performDrag(tab, sourceBounds, displayPos, allowSnapping);
 		}
 	}
 
@@ -339,33 +341,6 @@ public class PTabFolder {
 		listenersManager.fireMouseDown(itemIndex, e);
 	}
 
-
-	/**
-	 * Returns true iff the given point is on the border of the folder. By default, double-clicking,
-	 * context menus, and drag/drop are disabled on the folder's border.
-	 *
-	 * @param toTest
-	 *            a point (display coordinates)
-	 * @return true iff the point is on the presentation border
-	 * @since 3.1
-	 */
-	private boolean isOnBorder(Point toTest) {
-		Control content = getControl();
-		if (content != null) {
-			Rectangle displayBounds = DragUtil.getDisplayBounds(content);
-
-			if (tabFolder.getTabPosition() == SWT.TOP) {
-				return toTest.y >= displayBounds.y;
-			}
-
-			if (toTest.y >= displayBounds.y && toTest.y < displayBounds.y + displayBounds.height) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
 	/**
 	 * Get the item under the specified position.
 	 */
@@ -437,7 +412,7 @@ public class PTabFolder {
 	 * Get bounds of the tabs area in display coordinate.
 	 */
 	public Rectangle getTabArea() {
-		Rectangle bounds = DragUtil.getDisplayBounds(tabFolder);
+		Rectangle bounds = PapyrusDragUtils.getDisplayBounds(tabFolder);
 		//
 		if (tabFolder.getTabPosition() == SWT.TOP) {
 			bounds.height = tabFolder.getTabHeight();

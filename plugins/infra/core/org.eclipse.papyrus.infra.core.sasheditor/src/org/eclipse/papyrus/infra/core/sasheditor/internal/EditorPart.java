@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2016 CEA LIST, LIFL, Christian W. Damus, and others.
+ * Copyright (c) 2009, 2016, 2019 CEA LIST, LIFL, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus - bugs 469188, 474467, 494543
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -28,10 +29,11 @@ import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.AbstractPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDropTarget;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IMultiPageEditorSite;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
+import org.eclipse.papyrus.infra.tools.util.StatusUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -50,7 +52,6 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.internal.ErrorEditorPart;
-import org.eclipse.ui.internal.misc.StatusUtil;
 import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.IWorkbenchPartOrientation;
 
@@ -210,7 +211,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 	private void createErrorEditorPart(Composite parent, Exception e) {
 
 		try {
-			PartInitException partInitException = new PartInitException(StatusUtil.getLocalizedMessage(e), StatusUtil.getCause(e));
+			PartInitException partInitException = new PartInitException(StatusUtils.getLocalizedMessage(e), StatusUtils.getCause(e));
 			editorPart = new ErrorEditorPart(partInitException.getStatus());
 			// Initialize it and create its controls.
 			editorControl = createEditorPartControl(parent, editorPart);
@@ -541,7 +542,6 @@ public class EditorPart extends PagePart implements IEditorPage {
 
 	/**
 	 * This is a container method. Not necessary in Leaf Tile.
-	 * TODO: change the interface.
 	 *
 	 * @param draggedObject
 	 * @param position

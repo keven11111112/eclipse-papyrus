@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2016 CEA LIST & LIFL, Christian W. Damus, and others
+ * Copyright (c) 2009, 2016, 2019 CEA LIST & LIFL, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus - bugs 469188, 494543
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -23,7 +24,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IComponentPage;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDropTarget;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -188,7 +189,6 @@ public class ComponentPart extends PagePart implements IComponentPage {
 
 	/**
 	 * This is a container method. Not necessary in Leaf Tile.
-	 * TODO: change the interface.
 	 *
 	 * @param draggedObject
 	 * @param sourcePart

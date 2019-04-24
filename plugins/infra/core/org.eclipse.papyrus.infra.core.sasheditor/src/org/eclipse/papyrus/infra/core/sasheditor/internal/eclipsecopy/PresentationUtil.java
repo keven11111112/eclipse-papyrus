@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2006 IBM Corporation and others.
+ * Copyright (c) 2004, 2006, 2019 IBM Corporation, CEA LIST and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,12 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
  *******************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy;
 
 import org.eclipse.jface.util.Geometry;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.PapyrusDragUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
@@ -57,7 +59,7 @@ public class PresentationUtil {
 	 * opening a tracker.
 	 */
 	private static boolean hasMovedEnough(Event event) {
-		return Geometry.distanceSquared(DragUtil.getEventLoc(event), anchor) >= HYSTERESIS
+		return Geometry.distanceSquared(PapyrusDragUtils.getEventLoc(event), anchor) >= HYSTERESIS
 				* HYSTERESIS;
 	}
 
@@ -85,7 +87,7 @@ public class PresentationUtil {
 
 				dragSource = (Control) event.widget;
 				currentListener = (Listener) dragSource.getData(LISTENER_ID);
-				anchor = DragUtil.getEventLoc(event);
+				anchor = PapyrusDragUtils.getEventLoc(event);
 
 				if (dragEvent != null && (dragEvent.widget != dragSource)) {
 					dragEvent = null;

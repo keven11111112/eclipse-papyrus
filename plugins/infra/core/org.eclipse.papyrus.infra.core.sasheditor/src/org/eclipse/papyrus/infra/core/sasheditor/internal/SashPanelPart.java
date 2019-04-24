@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2019 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -19,8 +20,8 @@ package org.eclipse.papyrus.infra.core.sasheditor.internal;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashPanelModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.DragUtil;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDropTarget;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.PapyrusDragUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
@@ -38,7 +39,6 @@ import org.eclipse.swt.widgets.Composite;
  * @param T
  *            Type of the external model representing the sash.
  */
-@SuppressWarnings({ "restriction" })
 public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 
 	/** Interface to the model */
@@ -253,14 +253,14 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	@Override
 	public AbstractPart findPart(Point toFind) throws NotFoundException {
 
-		Rectangle bounds = DragUtil.getDisplayBounds(container); // container.getBounds();
+		Rectangle bounds = PapyrusDragUtils.getDisplayBounds(container); // container.getBounds();
 
 		// Try the left/up pane
-		bounds = DragUtil.getDisplayBounds(container.getLeftParent());
+		bounds = PapyrusDragUtils.getDisplayBounds(container.getLeftParent());
 		if (bounds.contains(toFind)) {
 			return currentChildParts[0].findPart(toFind);
 		}
-		bounds = DragUtil.getDisplayBounds(container.getRightParent());
+		bounds = PapyrusDragUtils.getDisplayBounds(container.getRightParent());
 		if (bounds.contains(toFind)) {
 			// Return right part
 			return currentChildParts[1].findPart(toFind);
@@ -285,7 +285,7 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 			return this;
 		}
 
-		Rectangle bounds = DragUtil.getDisplayBounds(container); // container.getBounds();
+		Rectangle bounds = PapyrusDragUtils.getDisplayBounds(container); // container.getBounds();
 
 		if (isVertical()) {
 			if (toFind.y < bounds.y + (bounds.height / 2)) {
@@ -333,6 +333,8 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 
 	/**
 	 * SashPanelPart can't be a DropTarget. Do nothing.
+	 *
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.AbstractPanelPart#getDropTarget(java.lang.Object, org.eclipse.papyrus.infra.core.sasheditor.internal.TabFolderPart, org.eclipse.swt.graphics.Point)
 	 */
 	@Override
 	public IDropTarget getDropTarget(Object draggedObject, TabFolderPart sourcePart, Point position) {

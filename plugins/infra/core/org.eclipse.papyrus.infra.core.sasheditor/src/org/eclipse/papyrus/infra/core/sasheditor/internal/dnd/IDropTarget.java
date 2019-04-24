@@ -11,7 +11,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy;
+package org.eclipse.papyrus.infra.core.sasheditor.internal.dnd;
 
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.graphics.Rectangle;
@@ -22,7 +22,7 @@ import org.eclipse.swt.graphics.Rectangle;
  * it is the job of the IDragOverListener to supply the drop target with information about
  * the object currently being dragged.
  *
- * @see org.eclipse.ui.internal.dnd.IDragOverListener
+ * @see org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDragOverListener
  */
 public interface IDropTarget {
 

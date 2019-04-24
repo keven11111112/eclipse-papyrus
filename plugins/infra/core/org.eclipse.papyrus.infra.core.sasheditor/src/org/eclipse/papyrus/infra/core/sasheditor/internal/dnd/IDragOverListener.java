@@ -11,7 +11,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy;
+package org.eclipse.papyrus.infra.core.sasheditor.internal.dnd;
 
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
@@ -36,6 +36,6 @@ public interface IDragOverListener {
 	 *            current drag rectangle (may be an empty rectangle if none)
 	 * @return a valid drop target or null if none
 	 */
-	IDropTarget drag(Control currentControl, Object draggedObject,
+	public IDropTarget drag(Control currentControl, Object draggedObject,
 			Point position, Rectangle dragRectangle);
 }

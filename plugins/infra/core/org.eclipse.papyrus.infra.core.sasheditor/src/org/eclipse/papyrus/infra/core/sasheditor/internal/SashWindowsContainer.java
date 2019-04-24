@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2009, 2016, 2019 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 437217
  *  Christian W. Damus - bug 488791
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -37,9 +38,10 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageLifeCycleEventsList
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ITabMouseEventsListener;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.DragUtil;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDragOverListener;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.DragManager;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDragOverListener;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDropTarget;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.PapyrusDragUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.utils.IObservableList;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -82,7 +84,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 	/**
 	 * Tracker maintaining the history of the active pages.
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	private ActivePageHistoryTracker activePageHistoryTracker;
@@ -977,7 +979,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 *
 	 */
 	private void initDrag(Composite container) {
-		DragUtil.addDragTarget(container, dragOverListener);
+		DragManager.getInstance().addDragTarget(container, dragOverListener);
 
 	}
 
@@ -985,7 +987,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		/**
 		 *
-		 * @see org.eclipse.ui.internal.dnd.IDragOverListener#drag(org.eclipse.swt.widgets.Control, java.lang.Object, org.eclipse.swt.graphics.Point, org.eclipse.swt.graphics.Rectangle)
+		 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDragOverListener#drag(org.eclipse.swt.widgets.Control, java.lang.Object, org.eclipse.swt.graphics.Point, org.eclipse.swt.graphics.Rectangle)
 		 */
 		@Override
 		public IDropTarget drag(Control currentControl, Object draggedObject, Point position, Rectangle dragRectangle) {
@@ -997,7 +999,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 				final int srcTabIndex = PTabFolder.getDraggedObjectTabIndex(draggedObject);
 
 				// System.out.println("drag to position=" + position);
-				Rectangle containerDisplayBounds = DragUtil.getDisplayBounds(container);
+				Rectangle containerDisplayBounds = PapyrusDragUtils.getDisplayBounds(container);
 				AbstractPanelPart targetPart = null;
 
 				// Check if the cursor is inside the container
@@ -1011,7 +1013,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 					if (targetPart != null) {
 						final Control targetControl = targetPart.getControl();
 
-						final Rectangle targetBounds = DragUtil.getDisplayBounds(targetControl);
+						final Rectangle targetBounds = PapyrusDragUtils.getDisplayBounds(targetControl);
 
 						int side = Geometry.getClosestSide(targetBounds, position);
 						int distance = Geometry.getDistanceFromEdge(targetBounds, position, side);
@@ -1127,7 +1129,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		/**
 		 * A folder is dropped.
 		 *
-		 * @see org.eclipse.ui.internal.dnd.IDropTarget#drop()
+		 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDropTarget#drop()
 		 */
 		@Override
 		public void drop() {
@@ -1142,7 +1144,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		/**
 		 * Return the cursor used during drag.
 		 *
-		 * @see org.eclipse.ui.internal.dnd.IDropTarget#getCursor()
+		 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDropTarget#getCursor()
 		 */
 		@Override
 		public Cursor getCursor() {
@@ -1157,10 +1159,10 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 			Rectangle targetDisplayBounds;
 
 			if (targetPart != null) {
-				targetDisplayBounds = DragUtil.getDisplayBounds(targetPart.getControl());
+				targetDisplayBounds = PapyrusDragUtils.getDisplayBounds(targetPart.getControl());
 			} else {
 				// targetBounds = DragUtil.getDisplayBounds(getParent());
-				targetDisplayBounds = DragUtil.getDisplayBounds(container);
+				targetDisplayBounds = PapyrusDragUtils.getDisplayBounds(container);
 			}
 
 			if (side == SWT.CENTER || side == SWT.NONE) {

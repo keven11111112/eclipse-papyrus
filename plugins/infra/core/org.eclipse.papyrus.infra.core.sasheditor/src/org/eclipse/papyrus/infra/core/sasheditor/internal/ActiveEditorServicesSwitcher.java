@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
+ * Copyright (c) 2009, 2019 CEA LIST & LIFL
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -28,7 +29,6 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IKeyBindingService;
 import org.eclipse.ui.INestableKeyBindingService;
 import org.eclipse.ui.IPartService;
-import org.eclipse.ui.internal.WorkbenchPlugin;
 import org.eclipse.ui.internal.services.INestable;
 import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
 import org.eclipse.ui.services.IServiceLocator;
@@ -125,7 +125,7 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 		activeEditor = newEditor;
 
 		// Set focus
-		IPartService partService = (IPartService) getOuterEditorSite().getService(IPartService.class);
+		IPartService partService = getOuterEditorSite().getService(IPartService.class);
 		if (newEditor != null && partService.getActivePart() == getOuterEditorSite().getPart()) {
 			newEditor.setFocus();
 		}
@@ -203,7 +203,7 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 				nestableService.activateKeyBindingService(editor.getEditorSite());
 
 			} else {
-				WorkbenchPlugin.log("MultiPageEditorPart.activateSite()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead."); //$NON-NLS-1$ //$NON-NLS-2$
+				Activator.log.error("MultiPageEditorPart.activateSite()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead.", null); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 			// Activate the services for the new service locator.
 			final IServiceLocator serviceLocator = editor.getEditorSite();
@@ -236,7 +236,7 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 				final INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
 				nestableService.activateKeyBindingService(null);
 			} else {
-				WorkbenchPlugin.log("MultiPageEditorPart.deactivateSite()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead."); //$NON-NLS-1$ //$NON-NLS-2$
+				Activator.log.error("MultiPageEditorPart.deactivateSite()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead.", null); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 	}

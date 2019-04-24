@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2015 IBM Corporation and others.
+ * Copyright (c) 2004, 2015, 2019 IBM Corporation, CEA LIST and others.
  *
  * This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,9 +10,11 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
  *******************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy;
 
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.PapyrusDragUtils;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
@@ -51,7 +53,7 @@ public class SwtUtil {
 	 * @return a control that obscures the test control or null if none
 	 */
 	public static Control controlThatCovers(Control toTest) {
-		return controlThatCovers(toTest, DragUtil.getDisplayBounds(toTest));
+		return controlThatCovers(toTest, PapyrusDragUtils.getDisplayBounds(toTest));
 	}
 
 	private static Control controlThatCovers(Control toTest, Rectangle testRegion) {
@@ -72,7 +74,7 @@ public class SwtUtil {
 				continue;
 			}
 
-			Rectangle nextBounds = DragUtil.getDisplayBounds(control);
+			Rectangle nextBounds = PapyrusDragUtils.getDisplayBounds(control);
 
 			if (nextBounds.intersects(testRegion)) {
 				return control;
@@ -145,7 +147,7 @@ public class SwtUtil {
 
 			if (!next.isDisposed() && next.isVisible()) {
 
-				Rectangle bounds = DragUtil.getDisplayBounds(next);
+				Rectangle bounds = PapyrusDragUtils.getDisplayBounds(next);
 
 				if (bounds.contains(locationToFind)) {
 					if (next instanceof Composite) {

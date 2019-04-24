@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2008, 2015, 2019 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -13,6 +13,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 392301
  *  Christian W. Damus - bug 469188
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -27,10 +28,11 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ICloseablePart;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IFolder;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.DragManager;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDragOverListener;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDropTarget;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.PapyrusDragUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.AbstractTabFolderPart;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.DragUtil;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDragOverListener;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -99,7 +101,7 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 
 		/**
 		 *
-		 * @see org.eclipse.ui.internal.dnd.IDragOverListener#drag(org.eclipse.swt.widgets.Control, java.lang.Object, org.eclipse.swt.graphics.Point, org.eclipse.swt.graphics.Rectangle)
+		 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDragOverListener#drag(org.eclipse.swt.widgets.Control, java.lang.Object, org.eclipse.swt.graphics.Point, org.eclipse.swt.graphics.Rectangle)
 		 */
 		@Override
 		public IDropTarget drag(Control currentControl, Object draggedObject, Point position, Rectangle dragRectangle) {
@@ -441,7 +443,7 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 	 *
 	 */
 	private void initDrag(Composite container) {
-		DragUtil.addDragTarget(container, dragOverListener);
+		DragManager.getInstance().addDragTarget(container, dragOverListener);
 	}
 
 
@@ -658,7 +660,7 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 			} else {
 				// If the closest side is the side with the tabs, consider this a stack operation.
 				// Otherwise, let the drop fall through to whatever the default behavior is
-				Rectangle displayBounds = DragUtil.getDisplayBounds(pTabFolder.getControl());
+				Rectangle displayBounds = PapyrusDragUtils.getDisplayBounds(pTabFolder.getControl());
 				int closestSide = Geometry.getClosestSide(displayBounds, position);
 				if (closestSide == pTabFolder.getTabFolder().getTabPosition()) {
 					return createDropTarget(sourcePart, sourceIndex, displayBounds, -1);
@@ -739,7 +741,7 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 
 		/**
 		 *
-		 * @see org.eclipse.ui.internal.dnd.IDropTarget#drop()
+		 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget#drop()
 		 */
 		@Override
 		public void drop() {
@@ -756,7 +758,7 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 		/**
 		 * Return the cursor used during drag.
 		 *
-		 * @see org.eclipse.ui.internal.dnd.IDropTarget#getCursor()
+		 * @see org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IDropTarget#getCursor()
 		 */
 		@Override
 		public Cursor getCursor() {
