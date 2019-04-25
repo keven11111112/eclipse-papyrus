@@ -26,8 +26,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageS
 import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IKeyBindingService;
-import org.eclipse.ui.INestableKeyBindingService;
 import org.eclipse.ui.IPartService;
 import org.eclipse.ui.internal.services.INestable;
 import org.eclipse.ui.part.MultiPageEditorActionBarContributor;
@@ -181,7 +179,7 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 	 * Activates services of the active editor: site, keybinding
 	 * deactivate old active site.
 	 */
-	@SuppressWarnings({ "restriction", "deprecation" })
+	@SuppressWarnings({ "restriction" })
 	private void activateServices() {
 		// Deactivate old active site
 		if (activeServiceLocator != null) {
@@ -189,22 +187,11 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 			activeServiceLocator = null;
 		}
 
-
-		// Get the service
-		final IKeyBindingService service = getOuterEditorSite().getKeyBindingService();
-
-
 		final IEditorPart editor = getActiveIEditorPart();
 
 		if (editor != null) {
-			// active the service for this inner editor
-			if (service instanceof INestableKeyBindingService) {
-				final INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
-				nestableService.activateKeyBindingService(editor.getEditorSite());
+			// It is not needed to manage the keys binding service because the nested binding service is already managed in the parent service currently
 
-			} else {
-				Activator.log.error("MultiPageEditorPart.activateSite()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead.", null); //$NON-NLS-1$ //$NON-NLS-2$
-			}
 			// Activate the services for the new service locator.
 			final IServiceLocator serviceLocator = editor.getEditorSite();
 			if (serviceLocator instanceof INestable) {
@@ -228,17 +215,7 @@ public class ActiveEditorServicesSwitcher implements IActiveEditorChangedListene
 			activeServiceLocator = null;
 		}
 
-		final IEditorPart editor = getActiveIEditorPart();
-		final IKeyBindingService service = getOuterEditorSite().getKeyBindingService();
-		if (editor != null || immediate) {
-			// There is no selected page, so deactivate the active service.
-			if (service instanceof INestableKeyBindingService) {
-				final INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
-				nestableService.activateKeyBindingService(null);
-			} else {
-				Activator.log.error("MultiPageEditorPart.deactivateSite()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead.", null); //$NON-NLS-1$ //$NON-NLS-2$
-			}
-		}
+		// It is no more needed to manage nested keys binding service because this is already done by its parent service
 	}
 
 	/**
