@@ -32,7 +32,6 @@ import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.DragManager;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDragOverListener;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDropTarget;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.PapyrusDragUtils;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.AbstractTabFolderPart;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
