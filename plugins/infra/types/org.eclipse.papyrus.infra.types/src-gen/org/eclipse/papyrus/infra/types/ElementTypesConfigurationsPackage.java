@@ -518,22 +518,22 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION = ADVICE_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION = ADVICE_CONFIGURATION_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Inheritance</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE = ADVICE_CONFIGURATION_FEATURE_COUNT + 4;
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE = ADVICE_CONFIGURATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION = ADVICE_CONFIGURATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Advice Binding Configuration</em>' class.
@@ -1047,15 +1047,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION = ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION;
 
 	/**
-	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION = ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION;
-
-	/**
 	 * The feature id for the '<em><b>Inheritance</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1063,6 +1054,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ADVICE_BINDING_CONFIGURATION__INHERITANCE = ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE;
+
+	/**
+	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION = ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION;
 
 	/**
 	 * The feature id for the '<em><b>Edit Helper Advice Class Name</b></em>' attribute.
@@ -1275,15 +1275,6 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int EXTERNALLY_REGISTERED_ADVICE__CONTAINER_CONFIGURATION = ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION;
 
 	/**
-	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNALLY_REGISTERED_ADVICE__MATCHER_CONFIGURATION = ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION;
-
-	/**
 	 * The feature id for the '<em><b>Inheritance</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1291,6 +1282,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNALLY_REGISTERED_ADVICE__INHERITANCE = ADVICE_BINDING_CONFIGURATION__INHERITANCE;
+
+	/**
+	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__MATCHER_CONFIGURATION = ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION;
 
 	/**
 	 * The feature id for the '<em><b>Edit Helper Advice Class Name</b></em>' attribute.

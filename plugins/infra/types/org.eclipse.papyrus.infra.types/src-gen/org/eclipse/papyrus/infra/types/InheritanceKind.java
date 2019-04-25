@@ -17,7 +17,6 @@ package org.eclipse.papyrus.infra.types;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -29,7 +28,8 @@ import org.eclipse.emf.common.util.Enumerator;
  * @model
  * @generated
  */
-public enum InheritanceKind implements Enumerator {
+public enum InheritanceKind implements Enumerator
+{
 	/**
 	 * The '<em><b>None</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -39,7 +39,6 @@ public enum InheritanceKind implements Enumerator {
 	 * @ordered
 	 */
 	NONE(0, "none", "none"),
-
 	/**
 	 * The '<em><b>All</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -49,14 +48,9 @@ public enum InheritanceKind implements Enumerator {
 	 * @ordered
 	 */
 	ALL(1, "all", "all");
-
 	/**
 	 * The '<em><b>None</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>None</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #NONE
 	 * @model name="none"
@@ -68,10 +62,6 @@ public enum InheritanceKind implements Enumerator {
 	/**
 	 * The '<em><b>All</b></em>' literal value.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>All</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #ALL
 	 * @model name="all"
@@ -190,6 +180,7 @@ public enum InheritanceKind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getValue() {
 	  return value;
 	}
@@ -199,6 +190,7 @@ public enum InheritanceKind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 	  return name;
 	}
@@ -208,6 +200,7 @@ public enum InheritanceKind implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getLiteral() {
 	  return literal;
 	}
@@ -222,5 +215,4 @@ public enum InheritanceKind implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-	
-} //InheritanceKind
+}

@@ -16,9 +16,7 @@ package org.eclipse.papyrus.infra.types.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
 import org.eclipse.papyrus.infra.types.*;
 
 /**
@@ -34,7 +32,7 @@ import org.eclipse.papyrus.infra.types.*;
  * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage
  * @generated
  */
-public class ElementTypesConfigurationsSwitch<T> extends Switch<T> {
+public class ElementTypesConfigurationsSwitch<T> extends Switch<T>  {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
