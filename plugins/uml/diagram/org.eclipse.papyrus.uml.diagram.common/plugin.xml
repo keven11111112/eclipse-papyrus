@@ -64,10 +64,10 @@
 	point="org.eclipse.ui.views.properties.tabbed.propertySections">
 	<propertySections contributorId="TreeOutlinePage">
 		<propertySection
-			afterSection=""
-	   		class="org.eclipse.papyrus.uml.diagram.common.sheet.UMLPropertySection"
-	  		id="AdvancedProperty"
-	   		tab="advanced">
+        class="org.eclipse.papyrus.uml.diagram.common.sheet.UMLPropertySection"
+        filter="org.eclipse.papyrus.uml.diagram.common.internal.sheet.UMLPropertySectionFilter"
+        id="AdvancedProperty"
+        tab="advanced">
 	   		<input type="java.lang.Object"/>
 		</propertySection>
 	</propertySections>

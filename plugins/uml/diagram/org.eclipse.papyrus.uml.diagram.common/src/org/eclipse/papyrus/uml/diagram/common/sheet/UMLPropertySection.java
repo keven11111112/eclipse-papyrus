@@ -11,7 +11,7 @@
  * Atos Origin - Initial API and implementation
  * Christian W. Damus (CEA) - bug 386118
  * Christian W. Damus - bug 512387
- *
+ * Vincent LORENZO (CEA ) - bug 546737
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.sheet;
@@ -21,18 +21,14 @@ import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.properties.sections.AdvancedPropertySection;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.diagram.common.internal.sheet.UMLPropertySectionInputUtils;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
@@ -63,7 +59,7 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 	/*
 	 * (non-Javadoc)
 	 *
-	 * @seeorg.eclipse.gmf.runtime.diagram.ui.properties.sections.
+	 * @see org.eclipse.gmf.runtime.diagram.ui.properties.sections.
 	 * AdvancedPropertySection# getPropertySourceProvider()
 	 */
 	@Override
@@ -76,44 +72,7 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 	 *
 	 */
 	protected Object transformSelection(Object selected) {
-		if (selected == null) {
-			return null;
-		}
-		if (selected instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable) selected;
-
-			Object adapter = adaptable.getAdapter(IPropertySource.class);
-			if (adapter != null) {
-				// This is a terminal transformation
-				return adapter;
-			}
-			adapter = adaptable.getAdapter(EObject.class);
-			if (adapter != null) {
-				// This is a terminal transformation
-				return adapter;
-			}
-			adapter = adaptable.getAdapter(View.class);
-			if (adapter instanceof View) {
-				// This is an intermediate transformation
-				return transformSelection(adapter);
-			}
-		}
-		if (selected instanceof EditPart) {
-			// This is an intermediate transformation
-			Object model = ((EditPart) selected).getModel();
-			return transformSelection(model);
-		}
-		if (selected instanceof View) {
-			// This is a terminal transformation
-			return ViewUtil.resolveSemanticElement((View) selected);
-		}
-
-		EObject elem = EMFHelper.getEObject(selected);
-		if (elem != null) {
-			return elem;
-		}
-
-		return selected;
+		return UMLPropertySectionInputUtils.transformSelection(selected);
 	}
 
 	@Override
