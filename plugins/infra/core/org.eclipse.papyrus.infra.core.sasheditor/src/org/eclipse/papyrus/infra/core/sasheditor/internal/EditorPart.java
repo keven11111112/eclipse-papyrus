@@ -12,7 +12,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus - bugs 469188, 474467, 494543
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
- *
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 546686
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
@@ -24,11 +24,14 @@ import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.AbstractPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.dnd.IDropTarget;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IMultiPageEditorSite;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
@@ -51,7 +54,6 @@ import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.internal.ErrorEditorPart;
 import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.IWorkbenchPartOrientation;
 
@@ -63,7 +65,6 @@ import org.eclipse.ui.part.IWorkbenchPartOrientation;
  * @author dumoulin
  * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas SZADEL</a> Improve the error text (avoid NPE)
  */
-@SuppressWarnings("restriction")
 public class EditorPart extends PagePart implements IEditorPage {
 
 	/**
@@ -211,11 +212,15 @@ public class EditorPart extends PagePart implements IEditorPage {
 	private void createErrorEditorPart(Composite parent, Exception e) {
 
 		try {
-			PartInitException partInitException = new PartInitException(StatusUtils.getLocalizedMessage(e), StatusUtils.getCause(e));
-			editorPart = new ErrorEditorPart(partInitException.getStatus());
-			// Initialize it and create its controls.
+			BasicDiagnostic basicDiagnostic = new BasicDiagnostic();
+			basicDiagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
+					Activator.PLUGIN_ID,
+					0,
+					StatusUtils.getLocalizedMessage(e),
+					new Object[] { e }));
+			editorPart = new PapyrusProblemEditorPart();
+			((PapyrusProblemEditorPart) editorPart).setDiagnostic(basicDiagnostic);
 			editorControl = createEditorPartControl(parent, editorPart);
-
 		} catch (Exception ex) {
 			// Even the ErrorEditorPart creation fail.
 			// Use a more simple renderer.
