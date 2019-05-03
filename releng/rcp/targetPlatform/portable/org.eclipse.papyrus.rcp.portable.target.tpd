@@ -11,12 +11,12 @@ location egit "http://download.eclipse.org/egit/updates-5.3" {
 	org.eclipse.egit.feature.group
 }
 
-//updateFrom("Eclipse",0)
+//deactivate for integration purposes
 
-location platform "http://download.eclipse.org/eclipse/updates/4.12milestones/S-4.12M1-201904110625/" {
-	org.eclipse.e4.core.tools.feature.feature.group 
-	org.eclipse.rcp.configuration.feature.group 
-	org.eclipse.equinox.executable.feature.group 
+location platform "http://download.eclipse.org/eclipse/updates/4.12-I-builds/" {
+	org.eclipse.e4.core.tools.feature.feature.group lazy
+	org.eclipse.rcp.configuration.feature.group lazy
+	org.eclipse.equinox.executable.feature.group lazy
 }
 
 //updateFrom("Mylyn",0)
@@ -39,7 +39,7 @@ location emfCompare "http://download.eclipse.org/modeling/emf/compare/updates/mi
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201904050820" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201904250840" {
 	org.eclipse.xsd.sdk.feature.group
 }
 

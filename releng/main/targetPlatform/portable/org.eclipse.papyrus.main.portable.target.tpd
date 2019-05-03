@@ -58,15 +58,15 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 	org.eclipse.uml2.sdk.feature.group
 }
 
-//updateFrom("Eclipse",0)
+//deactivate for integration purposes
 
-location platform "http://download.eclipse.org/eclipse/updates/4.12milestones/S-4.12M1-201904110625/" {
-	org.eclipse.sdk.feature.group
+location platform "http://download.eclipse.org/eclipse/updates/4.12-I-builds/" {
+	org.eclipse.sdk.feature.group lazy
 }
 
 //updateFrom("OCL for 2019-06",0) 
 
-location ocl "http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.8.0/S201904151846" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.8.0/S201905060707" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -79,7 +79,7 @@ location xwt "http://download.eclipse.org/xwt/updates" {
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201904151903" {
+location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201905061516" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -95,7 +95,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.1
 
 //updateFrom("WebTools 3.14 for Simrel 2019-06",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.14.0/S-3.14.0.M1-20190411034028/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.14.0/S-3.14.0.M2-20190507042910/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
@@ -113,7 +113,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201904050820" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201904250840" {
 	org.eclipse.emf.sdk.feature.group
 }
 
