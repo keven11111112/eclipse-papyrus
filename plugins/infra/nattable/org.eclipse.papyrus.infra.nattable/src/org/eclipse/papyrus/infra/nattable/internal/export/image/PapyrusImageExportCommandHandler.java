@@ -11,7 +11,7 @@
  * Contributors:
  *     Thanh Liem PHAN (ALL4TEC) <thanhliem.phan@all4tec.net> - Bug 417095
  ******************************************************************************/
-package org.eclipse.papyrus.infra.nattable.export.image;
+package org.eclipse.papyrus.infra.nattable.internal.export.image;
 
 import org.eclipse.nebula.widgets.nattable.command.AbstractLayerCommandHandler;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;

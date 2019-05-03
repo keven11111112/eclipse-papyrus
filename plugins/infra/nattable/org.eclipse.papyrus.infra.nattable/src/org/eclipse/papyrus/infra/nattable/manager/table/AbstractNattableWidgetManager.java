@@ -110,10 +110,10 @@ import org.eclipse.papyrus.infra.nattable.dataprovider.CompositeColumnHeaderData
 import org.eclipse.papyrus.infra.nattable.dataprovider.CompositeRowHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.display.converter.ObjectNameAndPathDisplayConverter;
 import org.eclipse.papyrus.infra.nattable.export.file.command.PapyrusFileExportCommand;
-import org.eclipse.papyrus.infra.nattable.export.image.PapyrusImageExportCommand;
 import org.eclipse.papyrus.infra.nattable.fillhandle.config.PapyrusFillHandleConfiguration;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.FilterConfigurationRegistry;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.IFilterConfiguration;
+import org.eclipse.papyrus.infra.nattable.internal.export.image.PapyrusImageExportCommand;
 import org.eclipse.papyrus.infra.nattable.layer.FilterRowHeaderComposite;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;

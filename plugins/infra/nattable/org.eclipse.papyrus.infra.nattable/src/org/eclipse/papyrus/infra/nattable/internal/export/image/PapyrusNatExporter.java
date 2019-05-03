@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2019 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,8 +10,9 @@
  *
  * Contributors:
  *     Thanh Liem PHAN (ALL4TEC) <thanhliem.phan@all4tec.net> - Bug 417095
+ *     Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - Bug 546965
  ******************************************************************************/
-package org.eclipse.papyrus.infra.nattable.export.image;
+package org.eclipse.papyrus.infra.nattable.internal.export.image;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -65,7 +66,7 @@ public class PapyrusNatExporter extends NatExporter {
 	 */
 	@Override
 	public void exportSingleTable(final ILayer layer, final IConfigRegistry configRegistry) {
-
+		this.openResult = configRegistry.getConfigAttribute(PapyrusExportConfigAttributes.OPEN_RESULT_AFTER_EXPORT, DisplayMode.NORMAL);
 		final Boolean useNatTableFileDialog = configRegistry.getConfigAttribute(PapyrusExportConfigAttributes.EXPORT_IMAGE_USE_PAPYRUS_EXPORT_TABLE_DIALOG, DisplayMode.NORMAL);
 
 		// If the Nattable file dialog is used, get parameters from the default file dialog to do the export

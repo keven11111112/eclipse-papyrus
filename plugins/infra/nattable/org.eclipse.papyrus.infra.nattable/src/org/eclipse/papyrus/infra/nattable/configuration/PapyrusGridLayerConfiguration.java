@@ -19,7 +19,7 @@ import org.eclipse.nebula.widgets.nattable.layer.CompositeLayer;
 import org.eclipse.papyrus.infra.nattable.applynamedstyle.PapyrusApplyNamedStyleBindings;
 import org.eclipse.papyrus.infra.nattable.export.PapyrusExportBindings;
 import org.eclipse.papyrus.infra.nattable.export.file.PapyrusFileExportBindings;
-import org.eclipse.papyrus.infra.nattable.export.image.PapyrusImageExportBindings;
+import org.eclipse.papyrus.infra.nattable.internal.export.image.PapyrusImageExportBindings;
 
 /**
  * We change the edit configuration

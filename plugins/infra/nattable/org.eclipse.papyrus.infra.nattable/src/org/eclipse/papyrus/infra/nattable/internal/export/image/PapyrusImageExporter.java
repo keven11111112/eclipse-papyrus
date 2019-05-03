@@ -11,7 +11,7 @@
  * Contributors:
  *      Thanh Liem PHAN (ALL4TEC) <thanhliem.phan@all4tec.net> - Bug 417095
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.export.image;
+package org.eclipse.papyrus.infra.nattable.internal.export.image;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +23,7 @@ import org.eclipse.nebula.widgets.nattable.export.image.ImageExporter;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.export.image.ImageFormat;
 import org.eclipse.papyrus.infra.nattable.export.streamprovider.PapyrusFileOutputStreamProvider;
 import org.eclipse.papyrus.infra.nattable.style.configattribute.PapyrusExportConfigAttributes;
 import org.eclipse.swt.SWTException;
@@ -55,11 +56,16 @@ public class PapyrusImageExporter extends ImageExporter {
 	private IOutputStreamProvider outputStreamProvider = null;
 
 	/**
+	 * The default image name
+	 */
+	private static final String DEFAULT_IMAGE_NAME = "table_export.png"; //$NON-NLS-1$
+
+	/**
 	 * Default constructor.
 	 */
 	public PapyrusImageExporter() {
 		// Use a custom file output stream provider, which permits to change the default image name
-		this(new PapyrusFileOutputStreamProvider(ImageFormat.DEFAULT_IMAGE_NAME, ImageFormat.IMAGE_FILTER_NAME_LIST, ImageFormat.IMAGE_FILTER_EXTENSION_LIST));
+		this(new PapyrusFileOutputStreamProvider(DEFAULT_IMAGE_NAME, ImageFormat.IMAGE_FILTER_NAME_LIST, ImageFormat.IMAGE_FILTER_EXTENSION_LIST));
 	}
 
 	/**
@@ -102,7 +108,7 @@ public class PapyrusImageExporter extends ImageExporter {
 					PapyrusExportConfigAttributes.EXPORT_IMAGE_FILENAME,
 					DisplayMode.NORMAL);
 
-			String imageFormatExtension = ImageFormat.getImageFilterExtension(imageFormat);
+			String imageFormatExtension = imageFormat.getImageFilterExtension();
 
 			if (null != this.currentImageName && null != imageFormatExtension) {
 				final int imageFormatIndex = getImageFormatIndex(imageFormatExtension);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016, 2017 CEA LIST and others.
+ * Copyright (c) 2016, 2017, 2019 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 417095
+ *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - Bug 546965
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.style.configattribute;
@@ -30,14 +31,22 @@ public interface PapyrusExportConfigAttributes {
 	 * The configuration attribute for specifying the concrete implementation
 	 * instance of ILayerExporter that should be used for a file export.
 	 */
-	ConfigAttribute<ILayerExporter> SIMPLE_FILE_EXPORTER = new ConfigAttribute<ILayerExporter>();
+	ConfigAttribute<ILayerExporter> SIMPLE_FILE_EXPORTER = new ConfigAttribute<>();
 
 	/** The configuration attribute for the export image format. */
-	ConfigAttribute<ImageFormat> EXPORT_IMAGE_FORMAT = new ConfigAttribute<ImageFormat>();
+	ConfigAttribute<ImageFormat> EXPORT_IMAGE_FORMAT = new ConfigAttribute<>();
 
 	/** The configuration attribute for the export image file name. */
-	ConfigAttribute<String> EXPORT_IMAGE_FILENAME = new ConfigAttribute<String>();
+	ConfigAttribute<String> EXPORT_IMAGE_FILENAME = new ConfigAttribute<>();
 
 	/** The configuration attribute to use the default Papyrus ExportTableDialog for exporting image. */
-	ConfigAttribute<Boolean> EXPORT_IMAGE_USE_PAPYRUS_EXPORT_TABLE_DIALOG = new ConfigAttribute<Boolean>();
+	ConfigAttribute<Boolean> EXPORT_IMAGE_USE_PAPYRUS_EXPORT_TABLE_DIALOG = new ConfigAttribute<>();
+
+	/**
+	 * The configuration attribute defining if the export image must be open after the export
+	 *
+	 * @since 6.2
+	 */
+	ConfigAttribute<Boolean> OPEN_RESULT_AFTER_EXPORT = new ConfigAttribute<>();
+
 }

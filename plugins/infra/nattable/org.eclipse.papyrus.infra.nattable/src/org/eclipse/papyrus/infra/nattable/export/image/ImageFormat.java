@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2019 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,77 +10,102 @@
  *
  * Contributors:
  *      Thanh Liem PHAN (ALL4TEC) <thanhliem.phan@all4tec.net> - Bug 417095
+ *      Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - Bug 546966 (add to API)
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.export.image;
 
 /**
  * Enumeration that is used to configure the image format.
+ *
+ * @since 6.2
  */
 public enum ImageFormat {
-	BMP, JPG, JPEG, PNG;
 
-	private static final String BMP_EXT = "BMP"; //$NON-NLS-1$
+	BMP("bmp", "BMP files (*.bmp)", "*.bmp"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
-	private static final String JPG_EXT = "JPG"; //$NON-NLS-1$
+	JPG("jpg", "JPG files (*.jpg)", "*.jpg"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
-	private static final String JPEG_EXT = "JPEG"; //$NON-NLS-1$
+	JPEG("jpeg", "JPEG files (*.jpeg)", "*.jpeg"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
-	private static final String PNG_EXT = "PNG"; //$NON-NLS-1$
-
-	private static final String BMP_FILTER_NAME = "BMP files (*.bmp)"; //$NON-NLS-1$
-
-	private static final String JPG_FILTER_NAME = "JPG files (*.jpg)"; //$NON-NLS-1$
-
-	private static final String JPEG_FILTER_NAME = "JPEG files (*.jpeg)"; //$NON-NLS-1$
-
-	private static final String PNG_FILTER_NAME = "PNG files (*.png)"; //$NON-NLS-1$
-
-	private static final String BMP_FILTER_EXT = "*.bmp"; //$NON-NLS-1$
-
-	private static final String JPG_FILTER_EXT = "*.jpg"; //$NON-NLS-1$
-
-	private static final String JPEG_FILTER_EXT = "*.jpeg"; //$NON-NLS-1$
-
-	private static final String PNG_FILTER_EXT = "*.png"; //$NON-NLS-1$
-
-	public static final String DEFAULT_IMAGE_NAME = "table_export.png"; //$NON-NLS-1$
+	PNG("png", "PNG files (*.png)", "*.png"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 	/** The list of all image extensions. */
-	public static final String[] IMAGE_EXTENSION_LIST = { PNG_EXT, BMP_EXT, JPG_EXT, JPEG_EXT };
+	public static final String[] IMAGE_EXTENSION_LIST = { PNG.getImageExtension(), BMP.getImageExtension(), JPG.getImageExtension(), JPEG.getImageExtension() };
 
 	/** The list of all image filter names. */
-	public static final String[] IMAGE_FILTER_NAME_LIST = { PNG_FILTER_NAME, BMP_FILTER_NAME, JPG_FILTER_NAME, JPEG_FILTER_NAME };
+	public static final String[] IMAGE_FILTER_NAME_LIST = { PNG.getImageFilterName(), BMP.getImageFilterName(), JPG.getImageFilterName(), JPEG.getImageFilterName() };
 
 	/** The list of all image filter extensions. */
-	public static final String[] IMAGE_FILTER_EXTENSION_LIST = { PNG_FILTER_EXT, BMP_FILTER_EXT, JPG_FILTER_EXT, JPEG_FILTER_EXT };
+	public static final String[] IMAGE_FILTER_EXTENSION_LIST = { PNG.getImageFilterExtension(), BMP.getImageFilterExtension(), JPG.getImageFilterExtension(), JPEG.getImageFilterExtension() };
+
 
 	/**
-	 * Return the corresponding filter extension string for a given image format.
-	 *
-	 * @param imageFormat
-	 *            The image format
-	 * @return The image file extenstion filter string
+	 * an image extension
 	 */
-	public static String getImageFilterExtension(final ImageFormat imageFormat) {
-		switch (imageFormat) {
-		case BMP:
-			return BMP_FILTER_EXT;
-		case JPG:
-			return JPG_FILTER_EXT;
-		case JPEG:
-			return JPEG_FILTER_EXT;
-		case PNG:
-			return PNG_FILTER_EXT;
-		default:
-			return null;
-		}
+	private final String imageExtension;
+
+	/**
+	 * the filter name for the extension
+	 */
+	private final String imageExtensionFilterName;
+
+	/**
+	 * the filter to use to find files with a such extension
+	 */
+	private final String imageFilterExtension;
+
+
+	/**
+	 *
+	 * Constructor.
+	 *
+	 * @param imageExtension
+	 *            the extension of the image
+	 * @param imageExtensionFilterName
+	 *            the filter's name for this extension
+	 * @param imageFilterExtension
+	 *            the filter to use to find this extension
+	 */
+	private ImageFormat(final String imageExtension, final String imageExtensionFilterName, final String imageFilterExtension) {
+		this.imageExtension = imageExtension;
+		this.imageExtensionFilterName = imageExtensionFilterName;
+		this.imageFilterExtension = imageFilterExtension;
 	}
 
 	/**
-	 * @return The default image format string
+	 *
+	 * @return
+	 *         the image extension represented by the enum instance
 	 */
-	public static String getDefaultImageExtension() {
-		return PNG_EXT;
+	public final String getImageExtension() {
+		return this.imageExtension;
+	}
+
+	/**
+	 *
+	 * @return
+	 *         the filter name for the enum instance
+	 */
+	public final String getImageFilterName() {
+		return this.imageExtensionFilterName;
+	}
+
+	/**
+	 *
+	 * @return
+	 *         the image filter to use for the enum instance
+	 */
+	public final String getImageFilterExtension() {
+		return this.imageFilterExtension;
+	}
+
+	/**
+	 *
+	 * @return
+	 *         the default image format (png)
+	 */
+	public static final ImageFormat getDefaultImageFormat() {
+		return PNG;
 	}
 
 }

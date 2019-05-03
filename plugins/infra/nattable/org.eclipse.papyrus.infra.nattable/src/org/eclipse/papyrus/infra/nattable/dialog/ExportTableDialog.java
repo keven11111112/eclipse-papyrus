@@ -48,6 +48,7 @@ import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 
 /**
  * Dialog lets user to export table to image.
+ * 
  * @since 3.0
  */
 public class ExportTableDialog extends Dialog {
@@ -309,7 +310,7 @@ public class ExportTableDialog extends Dialog {
 		for (String imageFileFormat : defaultFilterExtensions) {
 			this.outputFormatCb.add(imageFileFormat);
 		}
-		this.outputFormatCb.setText(ImageFormat.getDefaultImageExtension());
+		this.outputFormatCb.setText(ImageFormat.getDefaultImageFormat().getImageExtension());
 		this.exportFormat = this.outputFormatCb.getText();
 		this.filterIndex = 0;
 
