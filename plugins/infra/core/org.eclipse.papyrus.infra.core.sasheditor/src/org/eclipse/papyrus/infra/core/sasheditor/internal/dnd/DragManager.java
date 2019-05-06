@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 546686
  *
  *****************************************************************************/
 
@@ -19,16 +20,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.Geometry;
+import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tracker;
+import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.DragCursors;
 
 /**
  * This allows to manage the drag actions with drag targets.
@@ -191,7 +196,7 @@ public class DragManager {
 				snapTarget = target.getSnapRectangle();
 				tracker.setCursor(target.getCursor());
 			} else {
-				tracker.setCursor(DragCursors.getCursor(DragCursors.INVALID));
+				tracker.setCursor(getInvalidDragCursor());
 			}
 
 			// If snapping then reset the tracker's rectangle based on the current drop target
@@ -339,5 +344,163 @@ public class DragManager {
 
 		// No controls could handle this event -- check for default targets
 		return getDropTarget(defaultTargets, toSearch, draggedObject, position, dragRectangle);
+	}
+
+	/**
+	 * @return an invalid cursor
+	 */
+	public Cursor getInvalidDragCursor() {
+		return DragCursors.getCursor(DragCursors.INVALID);
+	}
+
+	/**
+	 * @param swtPositionConstant
+	 *            the SWT position constant corresponding to the drag position (ex: SWT.RIGHT, SWT.CENTER ...)
+	 * @return a cursor corresponding to the swtPositionConstant
+	 */
+	public Cursor getDragCursor(int swtPositionConstant) {
+		return DragCursors.getCursor(DragCursors.positionToDragCursor(swtPositionConstant));
+	}
+
+	private static class DragCursors {
+
+		public static final int INVALID = 0;
+
+		public static final int LEFT = INVALID + 1;
+
+		public static final int RIGHT = LEFT + 1;
+
+		public static final int TOP = RIGHT + 1;
+
+		public static final int BOTTOM = TOP + 1;
+
+		public static final int CENTER = BOTTOM + 1;
+
+		public static final int OFFSCREEN = CENTER + 1;
+
+		public static final int FASTVIEW = OFFSCREEN + 1;
+
+		public static final Cursor cursors[] = new Cursor[8];
+
+		/**
+		 * Return the cursor for a drop scenario, as identified by code. Code must be one of INVALID,
+		 * LEFT, RIGHT, TOP, etc. If the code is not found default to INVALID.
+		 *
+		 * @param code
+		 *            the code
+		 * @return the cursor
+		 */
+		public static Cursor getCursor(int code) {
+			Display display = Display.getCurrent();
+			if (cursors[code] == null) {
+				int imageSize = 16;
+				ISharedImages sharedImages = getSharedImages();
+				ImageData sourceImage = null;
+				ImageData maskImage = null;
+				switch (code) {
+				case LEFT:
+					sourceImage = getImageDate(ISharedImages.IMG_OBJS_DND_LEFT_SOURCE, sharedImages);
+					maskImage = getImageDate(ISharedImages.IMG_OBJS_DND_LEFT_MASK, sharedImages);
+					break;
+				case RIGHT:
+					sourceImage = getImageDate(ISharedImages.IMG_OBJS_DND_RIGHT_SOURCE, sharedImages);
+					maskImage = getImageDate(ISharedImages.IMG_OBJS_DND_RIGHT_MASK, sharedImages);
+					break;
+				case TOP:
+					sourceImage = getImageDate(ISharedImages.IMG_OBJS_DND_TOP_SOURCE, sharedImages);
+					maskImage = getImageDate(ISharedImages.IMG_OBJS_DND_TOP_MASK, sharedImages);
+					break;
+				case BOTTOM:
+					sourceImage = getImageDate(ISharedImages.IMG_OBJS_DND_BOTTOM_SOURCE, sharedImages);
+					maskImage = getImageDate(ISharedImages.IMG_OBJS_DND_BOTTOM_MASK, sharedImages);
+					break;
+				case CENTER:
+					sourceImage = getImageDate(ISharedImages.IMG_OBJS_DND_STACK_SOURCE, sharedImages);
+					maskImage = getImageDate(ISharedImages.IMG_OBJS_DND_STACK_MASK, sharedImages);
+					break;
+				case OFFSCREEN:
+					sourceImage = getImageDate(ISharedImages.IMG_OBJS_DND_OFFSCREEN_SOURCE, sharedImages);
+					maskImage = getImageDate(ISharedImages.IMG_OBJS_DND_OFFSCREEN_MASK, sharedImages);
+					break;
+				case FASTVIEW:
+					sourceImage = getImageDate(ISharedImages.IMG_OBJS_DND_TOFASTVIEW_SOURCE, sharedImages);
+					maskImage = getImageDate(ISharedImages.IMG_OBJS_DND_TOFASTVIEW_MASK, sharedImages);
+					break;
+				default:
+				case INVALID:
+					sourceImage = getImageDate(ISharedImages.IMG_OBJS_DND_INVALID_SOURCE, sharedImages);
+					maskImage = getImageDate(ISharedImages.IMG_OBJS_DND_INVALID_MASK, sharedImages);
+					break;
+				}
+				if (sourceImage == null) {
+					Activator.log.warn("The source image of the drag cursor is null"); //$NON-NLS-1$
+					return null;
+				}
+				if (maskImage == null) {
+					Activator.log.warn("The mask image of the drag cursor is null"); //$NON-NLS-1$
+					cursors[code] = new Cursor(display, sourceImage, imageSize, imageSize);
+				} else {
+					cursors[code] = new Cursor(display, sourceImage, maskImage, imageSize, imageSize);
+				}
+			}
+			return cursors[code];
+		}
+
+		/**
+		 * Convert the swt position into a internal position
+		 *
+		 * @param swtCode
+		 *            the swt position
+		 * @return the internal position corresponding to the given swt position
+		 */
+		public static int positionToDragCursor(int swtPositionConstant) {
+			switch (swtPositionConstant) {
+			case SWT.LEFT:
+				return LEFT;
+			case SWT.RIGHT:
+				return RIGHT;
+			case SWT.TOP:
+				return TOP;
+			case SWT.BOTTOM:
+				return BOTTOM;
+			case SWT.CENTER:
+				return CENTER;
+			default:
+				return INVALID;
+			}
+		}
+
+		/**
+		 * Get shared images
+		 *
+		 * @return shared images
+		 */
+		private static ISharedImages getSharedImages() {
+			if (PlatformUI.getWorkbench() != null) {
+				return PlatformUI.getWorkbench().getSharedImages();
+			}
+			return null;
+		}
+
+		/**
+		 * Get the image data corresponding to the symbolic name
+		 *
+		 * @param symbolicName
+		 *            the symbolic name of the image
+		 * @param sharedImages
+		 *            shared images
+		 * @return the image data corresponding to the symbolic name
+		 */
+		private static ImageData getImageDate(String symbolicName, ISharedImages sharedImages) {
+			int zoom = 100; // this is 100, since this is the default value of zoom (used to avoid use of the deprecated method ImageDescriptor#getImageData())
+			if (sharedImages != null) {
+				ImageDescriptor descriptor = sharedImages.getImageDescriptor(symbolicName);
+				if (descriptor != null) {
+					return descriptor.getImageData(zoom);
+				}
+			}
+			return null;
+		}
+
 	}
 }

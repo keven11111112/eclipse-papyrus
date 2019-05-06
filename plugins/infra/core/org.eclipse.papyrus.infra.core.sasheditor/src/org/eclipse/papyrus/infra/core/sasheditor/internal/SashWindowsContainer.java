@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 437217
  *  Christian W. Damus - bug 488791
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 546686
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -53,7 +54,6 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.internal.DragCursors;
 
 
 /**
@@ -63,7 +63,6 @@ import org.eclipse.ui.internal.DragCursors;
  *
  * @author dumoulin
  */
-@SuppressWarnings("restriction")
 public class SashWindowsContainer implements ISashWindowsContainer {
 
 	/**
@@ -1148,9 +1147,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 */
 		@Override
 		public Cursor getCursor() {
-			// System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".getCursor()-" + count++);
-			return DragCursors.getCursor(DragCursors.positionToDragCursor(cursor));
-
+			return DragManager.getInstance().getDragCursor(cursor);
 		}
 
 		@Override

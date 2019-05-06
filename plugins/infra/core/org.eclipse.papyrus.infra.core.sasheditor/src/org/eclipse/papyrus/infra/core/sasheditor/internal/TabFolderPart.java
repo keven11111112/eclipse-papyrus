@@ -14,6 +14,7 @@
  *  Christian W. Damus (CEA) - bug 392301
  *  Christian W. Damus - bug 469188
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 546686
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -51,7 +52,6 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IPropertyListener;
-import org.eclipse.ui.internal.DragCursors;
 
 /**
  * Controller associated to a tabfolder.
@@ -69,7 +69,6 @@ import org.eclipse.ui.internal.DragCursors;
  *            TODO : be more precise for the generic type ?
  *            TODO : Listen to the page change event, and call setActivePage().
  */
-@SuppressWarnings("restriction")
 public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 
 	/** Interface to the model */
@@ -702,7 +701,7 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 	 */
 	protected class DropTarget implements IDropTarget {
 
-		int cursor = SWT.CENTER;
+		private Cursor cursor = null;
 
 		private TabFolderPart sourcePart;
 
@@ -761,9 +760,10 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 		 */
 		@Override
 		public Cursor getCursor() {
-			// System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".getCursor()-" + count++);
-			return DragCursors.getCursor(DragCursors.positionToDragCursor(cursor));
-
+			if (cursor == null) {
+				cursor = DragManager.getInstance().getDragCursor(SWT.CENTER);
+			}
+			return cursor;
 		}
 
 		@Override
