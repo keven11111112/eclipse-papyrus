@@ -93,7 +93,6 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public AbstractMatcherConfiguration getContainerMatcherConfiguration() {
 		return containerMatcherConfiguration;
 	}
@@ -118,7 +117,6 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setContainerMatcherConfiguration(AbstractMatcherConfiguration newContainerMatcherConfiguration) {
 		if (newContainerMatcherConfiguration != containerMatcherConfiguration) {
 			NotificationChain msgs = null;
@@ -138,7 +136,6 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<EReference> getEContainmentFeatures() {
 		if (eContainmentFeatures == null) {
 			eContainmentFeatures = new EObjectResolvingEList<EReference>(EReference.class, this, ElementTypesConfigurationsPackage.CONTAINER_CONFIGURATION__ECONTAINMENT_FEATURES);

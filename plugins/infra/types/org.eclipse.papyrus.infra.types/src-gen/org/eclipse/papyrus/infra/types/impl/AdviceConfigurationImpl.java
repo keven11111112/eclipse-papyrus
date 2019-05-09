@@ -84,7 +84,6 @@ public abstract class AdviceConfigurationImpl extends ConfigurationElementImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<AdviceConfiguration> getBefore() {
 		if (before == null) {
 			before = new EObjectResolvingEList<AdviceConfiguration>(AdviceConfiguration.class, this, ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__BEFORE);
@@ -97,7 +96,6 @@ public abstract class AdviceConfigurationImpl extends ConfigurationElementImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<AdviceConfiguration> getAfter() {
 		if (after == null) {
 			after = new EObjectResolvingEList<AdviceConfiguration>(AdviceConfiguration.class, this, ElementTypesConfigurationsPackage.ADVICE_CONFIGURATION__AFTER);

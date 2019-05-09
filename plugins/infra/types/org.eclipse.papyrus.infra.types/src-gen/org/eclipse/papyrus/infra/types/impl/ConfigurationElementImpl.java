@@ -82,7 +82,6 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -92,7 +91,6 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -167,7 +165,7 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (description: ");
 		result.append(description);
 		result.append(')');

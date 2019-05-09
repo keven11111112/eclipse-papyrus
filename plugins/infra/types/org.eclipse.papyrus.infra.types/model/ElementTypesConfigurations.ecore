@@ -37,8 +37,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractAdviceBindingConfiguration"
       abstract="true" eSuperTypes="#//AdviceConfiguration #//IdentifiedConfiguration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//ElementTypeConfiguration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//ElementTypeConfiguration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="containerConfiguration"
         eType="#//ContainerConfiguration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="matcherConfiguration" eType="#//AbstractMatcherConfiguration"

@@ -93,7 +93,6 @@ public class MetamodelTypeConfigurationImpl extends ElementTypeConfigurationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getEClass() {
 		if (eClass != null && eClass.eIsProxy()) {
 			InternalEObject oldEClass = (InternalEObject)eClass;
@@ -120,7 +119,6 @@ public class MetamodelTypeConfigurationImpl extends ElementTypeConfigurationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setEClass(EClass newEClass) {
 		EClass oldEClass = eClass;
 		eClass = newEClass;
@@ -133,7 +131,6 @@ public class MetamodelTypeConfigurationImpl extends ElementTypeConfigurationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getEditHelperClassName() {
 		return editHelperClassName;
 	}
@@ -143,7 +140,6 @@ public class MetamodelTypeConfigurationImpl extends ElementTypeConfigurationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setEditHelperClassName(String newEditHelperClassName) {
 		String oldEditHelperClassName = editHelperClassName;
 		editHelperClassName = newEditHelperClassName;
@@ -229,7 +225,7 @@ public class MetamodelTypeConfigurationImpl extends ElementTypeConfigurationImpl
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (editHelperClassName: ");
 		result.append(editHelperClassName);
 		result.append(')');

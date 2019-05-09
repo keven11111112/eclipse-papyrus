@@ -26,8 +26,8 @@ package org.eclipse.papyrus.infra.types;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getContainerConfiguration <em>Container Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getInheritance <em>Inheritance</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration#getInheritance <em>Inheritance</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAbstractAdviceBindingConfiguration()
@@ -46,7 +46,7 @@ public interface AbstractAdviceBindingConfiguration extends AdviceConfiguration,
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(ElementTypeConfiguration)
 	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getAbstractAdviceBindingConfiguration_Target()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	ElementTypeConfiguration getTarget();

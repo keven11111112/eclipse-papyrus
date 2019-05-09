@@ -81,7 +81,6 @@ public class MatcherConfigurationImpl extends AbstractMatcherConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getMatcherClassName() {
 		return matcherClassName;
 	}
@@ -91,7 +90,6 @@ public class MatcherConfigurationImpl extends AbstractMatcherConfigurationImpl i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMatcherClassName(String newMatcherClassName) {
 		String oldMatcherClassName = matcherClassName;
 		matcherClassName = newMatcherClassName;
@@ -166,7 +164,7 @@ public class MatcherConfigurationImpl extends AbstractMatcherConfigurationImpl i
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (matcherClassName: ");
 		result.append(matcherClassName);
 		result.append(')');

@@ -41,8 +41,8 @@ import org.eclipse.papyrus.infra.types.InheritanceKind;
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getIdentifier <em>Identifier</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getContainerConfiguration <em>Container Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getInheritance <em>Inheritance</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl#getInheritance <em>Inheritance</em>}</li>
  * </ul>
  *
  * @generated
@@ -89,6 +89,16 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	protected ContainerConfiguration containerConfiguration;
 
 	/**
+	 * The cached value of the '{@link #getMatcherConfiguration() <em>Matcher Configuration</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMatcherConfiguration()
+	 * @generated
+	 * @ordered
+	 */
+	protected AbstractMatcherConfiguration matcherConfiguration;
+
+	/**
 	 * The default value of the '{@link #getInheritance() <em>Inheritance</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -107,16 +117,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * @ordered
 	 */
 	protected InheritanceKind inheritance = INHERITANCE_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getMatcherConfiguration() <em>Matcher Configuration</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMatcherConfiguration()
-	 * @generated
-	 * @ordered
-	 */
-	protected AbstractMatcherConfiguration matcherConfiguration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -142,7 +142,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -152,7 +151,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
@@ -165,7 +163,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ElementTypeConfiguration getTarget() {
 		if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject)target;
@@ -192,7 +189,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setTarget(ElementTypeConfiguration newTarget) {
 		ElementTypeConfiguration oldTarget = target;
 		target = newTarget;
@@ -205,7 +201,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ContainerConfiguration getContainerConfiguration() {
 		return containerConfiguration;
 	}
@@ -230,7 +225,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setContainerConfiguration(ContainerConfiguration newContainerConfiguration) {
 		if (newContainerConfiguration != containerConfiguration) {
 			NotificationChain msgs = null;
@@ -250,7 +244,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public AbstractMatcherConfiguration getMatcherConfiguration() {
 		return matcherConfiguration;
 	}
@@ -275,7 +268,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMatcherConfiguration(AbstractMatcherConfiguration newMatcherConfiguration) {
 		if (newMatcherConfiguration != matcherConfiguration) {
 			NotificationChain msgs = null;
@@ -295,7 +287,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public InheritanceKind getInheritance() {
 		return inheritance;
 	}
@@ -305,7 +296,6 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setInheritance(InheritanceKind newInheritance) {
 		InheritanceKind oldInheritance = inheritance;
 		inheritance = newInheritance == null ? INHERITANCE_EDEFAULT : newInheritance;
@@ -344,10 +334,10 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 				return basicGetTarget();
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION:
 				return getContainerConfiguration();
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE:
-				return getInheritance();
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION:
 				return getMatcherConfiguration();
+			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE:
+				return getInheritance();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -369,11 +359,11 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION:
 				setContainerConfiguration((ContainerConfiguration)newValue);
 				return;
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE:
-				setInheritance((InheritanceKind)newValue);
-				return;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION:
 				setMatcherConfiguration((AbstractMatcherConfiguration)newValue);
+				return;
+			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE:
+				setInheritance((InheritanceKind)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -396,11 +386,11 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION:
 				setContainerConfiguration((ContainerConfiguration)null);
 				return;
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE:
-				setInheritance(INHERITANCE_EDEFAULT);
-				return;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION:
 				setMatcherConfiguration((AbstractMatcherConfiguration)null);
+				return;
+			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE:
+				setInheritance(INHERITANCE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -420,10 +410,10 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 				return target != null;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION:
 				return containerConfiguration != null;
-			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE:
-				return inheritance != INHERITANCE_EDEFAULT;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION:
 				return matcherConfiguration != null;
+			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE:
+				return inheritance != INHERITANCE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -469,7 +459,7 @@ public abstract class AbstractAdviceBindingConfigurationImpl extends AdviceConfi
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuilder result = new StringBuilder(super.toString());
+		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (identifier: ");
 		result.append(identifier);
 		result.append(", inheritance: ");

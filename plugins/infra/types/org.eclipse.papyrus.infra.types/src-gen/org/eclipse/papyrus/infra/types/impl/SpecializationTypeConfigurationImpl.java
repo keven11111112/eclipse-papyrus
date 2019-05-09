@@ -116,7 +116,6 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public AbstractEditHelperAdviceConfiguration getEditHelperAdviceConfiguration() {
 		return editHelperAdviceConfiguration;
 	}
@@ -141,7 +140,6 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setEditHelperAdviceConfiguration(AbstractEditHelperAdviceConfiguration newEditHelperAdviceConfiguration) {
 		if (newEditHelperAdviceConfiguration != editHelperAdviceConfiguration) {
 			NotificationChain msgs = null;
@@ -161,7 +159,6 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public ContainerConfiguration getContainerConfiguration() {
 		return containerConfiguration;
 	}
@@ -186,7 +183,6 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setContainerConfiguration(ContainerConfiguration newContainerConfiguration) {
 		if (newContainerConfiguration != containerConfiguration) {
 			NotificationChain msgs = null;
@@ -206,7 +202,6 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public AbstractMatcherConfiguration getMatcherConfiguration() {
 		return matcherConfiguration;
 	}
@@ -231,7 +226,6 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public void setMatcherConfiguration(AbstractMatcherConfiguration newMatcherConfiguration) {
 		if (newMatcherConfiguration != matcherConfiguration) {
 			NotificationChain msgs = null;
@@ -251,7 +245,6 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EList<ElementTypeConfiguration> getSpecializedTypes() {
 		if (specializedTypes == null) {
 			specializedTypes = new EObjectResolvingEList<ElementTypeConfiguration>(ElementTypeConfiguration.class, this, ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SPECIALIZED_TYPES);
