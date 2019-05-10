@@ -57,7 +57,7 @@ public class ClassLoaderHelper {
 	 * @param context
 	 *            The context URI
 	 * @return
-	 * 		The loaded Class, or null if an error occurred
+	 *         The loaded Class, or null if an error occurred
 	 * @since 3.1
 	 */
 	public static Class<?> loadClass(String className, URI context) {
@@ -77,7 +77,7 @@ public class ClassLoaderHelper {
 	 * @param bundleId
 	 *            The bundle in which the class is located
 	 * @return
-	 * 		The loaded Class, or null if an error occurred
+	 *         The loaded Class, or null if an error occurred
 	 * @since 3.1
 	 */
 	public static Class<?> loadClass(String className, String bundleId) {
@@ -91,22 +91,30 @@ public class ClassLoaderHelper {
 	/**
 	 * Loads the class matching the given className. Exceptions are caught and sent
 	 * to the Logger.
+	 * This method is very slow (See Bug 543723).
+	 * Use {@link #loadClass(String, Bundle)} instead
 	 *
 	 * @param className
 	 *            The qualified name of the Class to load.
 	 * @return
-	 * 		The loaded Class, or null if an error occurred
-	 * @deprecated Since 3.1 This method is very slow (See Bug 543723).
-	 *             Use {@link #loadClass(String, Bundle)} instead
+	 *         The loaded Class, or null if an error occurred
+	 *
 	 */
-	@Deprecated
 	public static Class<?> loadClass(String className) {
-		Class<?> result = classes.get(className);
-		if (result == null) {
-			Activator.log.warn("Using ClassLoaderHelper#loadClass without an appropriate context. This may degrade performances (Class: " + className + ")"); //$NON-NLS-1$ //$NON-NLS-2$
-			return loadClass(className, Activator.getDefault().getBundle());
+		try {
+			Class<?> result = classes.get(className);
+			if (result == null) {
+				result = Activator.getDefault().getBundle().loadClass(className);
+				classes.put(className, result);
+			}
+			return result;
+		} catch (ClassNotFoundException ex) {
+			Activator.log.error(String.format("The class %s doesn't exist", className), ex); //$NON-NLS-1$
+		} catch (NullPointerException ex) {
+			Activator.log.error("Cannot load class " + className, ex); //$NON-NLS-1$
 		}
-		return result;
+
+		return null;
 	}
 
 	/**
@@ -119,7 +127,7 @@ public class ClassLoaderHelper {
 	 * @param bundle
 	 *            The bundle in which the class is located
 	 * @return
-	 * 		The loaded Class, or null if an error occurred
+	 *         The loaded Class, or null if an error occurred
 	 * @since 3.1
 	 */
 	public static Class<?> loadClass(String className, Bundle bundle) {
@@ -158,7 +166,7 @@ public class ClassLoaderHelper {
 	 * @param context
 	 *            The context URI
 	 * @return
-	 * 		The loaded class, or null if the class doesn't exist or is invalid.
+	 *         The loaded class, or null if the class doesn't exist or is invalid.
 	 *         In such a case, the exception is logged.
 	 * @since 3.1
 	 */
@@ -180,7 +188,7 @@ public class ClassLoaderHelper {
 	 * @param bundleId
 	 *            The bundle in which the class is located
 	 * @return
-	 * 		The loaded class, or null if the class doesn't exist or is invalid.
+	 *         The loaded class, or null if the class doesn't exist or is invalid.
 	 *         In such a case, the exception is logged.
 	 * @since 3.1
 	 */
@@ -202,7 +210,7 @@ public class ClassLoaderHelper {
 	 * @param bundle
 	 *            The bundle in which the class is located
 	 * @return
-	 * 		The loaded class, or null if the class doesn't exist or is invalid.
+	 *         The loaded class, or null if the class doesn't exist or is invalid.
 	 *         In such a case, the exception is logged.
 	 * @since 3.1
 	 */
@@ -235,7 +243,7 @@ public class ClassLoaderHelper {
 	 * @param asSubClass
 	 *            The interface or class that the loaded class must implement or extend
 	 * @return
-	 * 		The loaded class, or null if the class doesn't exist or is invalid.
+	 *         The loaded class, or null if the class doesn't exist or is invalid.
 	 *         In such a case, the exception is logged.
 	 * @deprecated Since 3.1 This method is very slow (See Bug 543723).
 	 *             Use {@link #loadClass(String, Class, Bundle)} instead
@@ -266,7 +274,7 @@ public class ClassLoaderHelper {
 	 * @param context
 	 *            The context URI
 	 * @return
-	 * 		An instance of the loaded class, or null if a valid instance
+	 *         An instance of the loaded class, or null if a valid instance
 	 *         cannot be created. In such a case, the exception is logged.
 	 * @since 3.1
 	 */
@@ -292,7 +300,7 @@ public class ClassLoaderHelper {
 	 * @param bundleId
 	 *            The bundle in which the class is located
 	 * @return
-	 * 		An instance of the loaded class, or null if a valid instance
+	 *         An instance of the loaded class, or null if a valid instance
 	 *         cannot be created. In such a case, the exception is logged.
 	 * @since 3.1
 	 */
@@ -318,7 +326,7 @@ public class ClassLoaderHelper {
 	 * @param bundle
 	 *            The bundle in which the class is located
 	 * @return
-	 * 		An instance of the loaded class, or null if a valid instance
+	 *         An instance of the loaded class, or null if a valid instance
 	 *         cannot be created. In such a case, the exception is logged.
 	 * @since 3.1
 	 */
@@ -340,7 +348,7 @@ public class ClassLoaderHelper {
 	 * @param asSubclass
 	 *            The interface or class that the loaded class must implement or extend
 	 * @return
-	 * 		An instance of the loaded class, or null if a valid instance
+	 *         An instance of the loaded class, or null if a valid instance
 	 *         cannot be created. In such a case, the exception is logged.
 	 * @deprecated Since 3.1 This method is very slow (See Bug 543723).
 	 *             Use {@link #newInstance(String, Class, Bundle)} instead
@@ -370,7 +378,7 @@ public class ClassLoaderHelper {
 	 * @param context
 	 *            the context URI
 	 * @return
-	 * 		A new instance of the given class, or null if the class couldn't be
+	 *         A new instance of the given class, or null if the class couldn't be
 	 *         instantiated
 	 * @since 3.1
 	 */
@@ -388,7 +396,7 @@ public class ClassLoaderHelper {
 	 * @param bundleId
 	 *            The bundle in which the class is located
 	 * @return
-	 * 		A new instance of the given class, or null if the class couldn't be
+	 *         A new instance of the given class, or null if the class couldn't be
 	 *         instantiated
 	 * @since 3.1
 	 */
@@ -406,7 +414,7 @@ public class ClassLoaderHelper {
 	 * @param bundle
 	 *            The bundle in which the class is located
 	 * @return
-	 * 		A new instance of the given class, or null if the class couldn't be
+	 *         A new instance of the given class, or null if the class couldn't be
 	 *         instantiated
 	 * @since 3.1
 	 */
@@ -420,7 +428,7 @@ public class ClassLoaderHelper {
 	 * @param className
 	 *            The qualified name of the Class to instantiate
 	 * @return
-	 * 		A new instance of the given class, or null if the class couldn't be
+	 *         A new instance of the given class, or null if the class couldn't be
 	 *         instantiated
 	 * @deprecated Since 3.1 This method is very slow (See Bug 543723).
 	 *             Use {@link #newInstance(String, Bundle)} instead
@@ -436,7 +444,7 @@ public class ClassLoaderHelper {
 	 * @param theClass
 	 *            The Class to instantiate
 	 * @return
-	 * 		A new instance of the given class, or null if the class couldn't be
+	 *         A new instance of the given class, or null if the class couldn't be
 	 *         instantiated
 	 */
 	public static <T extends Object> T newInstance(Class<T> theClass) {
@@ -463,7 +471,7 @@ public class ClassLoaderHelper {
 	 *
 	 * @param uri
 	 * @return
-	 * 		The ID of the Bundle containing the model represented by this URI,
+	 *         The ID of the Bundle containing the model represented by this URI,
 	 *         or <code>null</code> if the URI doesn't reference a bundle
 	 */
 	private static final String getPluginId(URI uri) {
