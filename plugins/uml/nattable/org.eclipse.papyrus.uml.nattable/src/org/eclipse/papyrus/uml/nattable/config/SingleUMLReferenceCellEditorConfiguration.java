@@ -11,7 +11,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 517374
- *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 545575
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 545575, 547160
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.config;
@@ -91,9 +91,10 @@ public class SingleUMLReferenceCellEditorConfiguration implements ICellAxisConfi
 	@Override
 	public void configureCellEditor(final IConfigRegistry configRegistry, final Object axis, final String configLabel) {
 		CellEditorConfigurationUtils.configureCellPainter(configRegistry, axis, configLabel);
+		final Object axisElement = AxisUtils.getRepresentedElement(axis);
 
 		final INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new SingleReferenceValueCellEditor(axis, modelManager.getTableAxisElementProvider()), DisplayMode.EDIT, configLabel);
+		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new SingleReferenceValueCellEditor(axisElement, modelManager.getTableAxisElementProvider()), DisplayMode.EDIT, configLabel);
 		configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, new SingleUMLReferenceDisplayConverter(), DisplayMode.EDIT, configLabel);
 	}
 
