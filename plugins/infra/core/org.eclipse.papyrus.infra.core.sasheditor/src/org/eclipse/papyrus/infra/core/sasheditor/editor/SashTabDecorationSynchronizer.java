@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.infra.core.sasheditor.editor;
 
 
-import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPropertyListener;
@@ -86,8 +85,7 @@ public class SashTabDecorationSynchronizer {
 
 		@Override
 		public void propertyChanged(Object source, int propId) {
-			if (propId == IWorkbenchPart.PROP_TITLE && source instanceof IEditorPart)
-			{
+			if (propId == IWorkbenchPart.PROP_TITLE && source instanceof IEditorPart) {
 				refreshContainerTabForPage((IEditorPart) source);
 			}
 
@@ -138,9 +136,7 @@ public class SashTabDecorationSynchronizer {
 	 * @param page
 	 */
 	protected void attachPage(IPage page) {
-		if (page instanceof IEditorPage)
-		{
-			Activator.log.debug("attachPage( " + page + " )");
+		if (page instanceof IEditorPage) {
 			IEditorPage editorPage = (IEditorPage) page;
 			editorPage.getIEditorPart().addPropertyListener(editorPartPropertyListener);
 		}

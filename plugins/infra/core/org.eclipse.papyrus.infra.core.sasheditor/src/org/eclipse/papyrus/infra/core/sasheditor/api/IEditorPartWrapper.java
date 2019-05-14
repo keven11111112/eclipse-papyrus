@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
+ * Copyright (c) 2019 CEA LIST
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,33 +10,30 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Patrick Tessier (CEA LIST) - add comments
+ *  Patrick Tessier (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
+package org.eclipse.papyrus.infra.core.sasheditor.api;
 
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
- * This model indicate that an Editor should be drawn in the sash window folder.
- * This class is used to create an editor that can be integrated by Papyrus Core. This the inking point for a papyrus editor
- *
- * see org.eclipse.papyrus.infra.core.api.IEditorAnchorPoint
- *
- * @author dumoulin
- *
+ * This class is used to create a wrapper. From which you can launch an IeditorPart that can be seen by Papyrus Core.
+ * see also org.eclipse.papyrus.infra.ui.extension.diagrameditor.AbstractEditorFactory to create a factory that provide it
+ * see also the extension point to reference the factory org.eclipse.papyrus.infra.ui.papyrusDiagram
  */
-public interface IEditorModel extends IPageModel {
+public interface IEditorPartWrapper extends IEditorModel, IPapyrusEditorDeclaration {
 
 	/**
-	 * Create the IEditor that should be shown.
-	 * Editor life cycle methods are not called.
+	 * Create the Eclipse Editor that should be shown inside Papyrus
 	 *
-	 * @return A new instance of the IEditor.
+	 *
+	 * @return A new instance of the IEditorPart.
 	 */
+	@Override
 	public IEditorPart createIEditorPart() throws PartInitException;
 
 	/**
@@ -44,6 +41,7 @@ public interface IEditorModel extends IPageModel {
 	 *
 	 * @return
 	 */
+	@Override
 	public EditorActionBarContributor getActionBarContributor();
 
 }

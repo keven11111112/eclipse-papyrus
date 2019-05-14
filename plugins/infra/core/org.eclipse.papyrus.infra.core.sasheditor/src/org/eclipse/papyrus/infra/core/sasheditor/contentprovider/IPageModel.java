@@ -12,6 +12,7 @@
  *
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 392301
+ *   Patrick Tessier (CEA LIST) add comments
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
@@ -24,7 +25,9 @@ import org.eclipse.swt.graphics.Image;
  * It can be an Editor or a simple control.
  * This interface is used by the sashes window to interact with the model describing the element to be
  * shown in the TabItem.
+ * To implement a new editor see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel
  *
+ * @see org.eclipse.papyrus.infra.core.sasheditor.api.IPapyrusEditorDeclaration
  * @author dumoulin
  *
  */
