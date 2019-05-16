@@ -19,6 +19,7 @@
 	<modules>
 		<module>org.eclipse.papyrus.toolsmiths</module>
 		<module>org.eclipse.papyrus.toolsmiths.palette</module>
+		<module>org.eclipse.papyrus.toolsmiths.ecore</module>
 		<module>org.eclipse.papyrus.toolsmiths.expressions</module>
 		<module>profilemigration</module>
 		
