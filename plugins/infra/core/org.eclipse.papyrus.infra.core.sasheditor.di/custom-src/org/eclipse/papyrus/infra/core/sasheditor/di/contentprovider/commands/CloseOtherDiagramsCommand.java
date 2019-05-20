@@ -3,11 +3,9 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 
 /**
  * A command to be used with the Eclipse Commands Framework.
- * This command is to be used with {@link SashWindowsContainer} implemented with the Di model.
  * This command allows to close all diagrams in the folder, except the currently openened one.
  *
  * @author cedric dumoulin

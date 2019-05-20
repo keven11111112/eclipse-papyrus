@@ -15,6 +15,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.editor;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPartSite;
@@ -23,7 +24,7 @@ import org.eclipse.ui.IWorkbenchPartSite;
  * Marker to mark a EditorPart as a MultiPartEditor. Provides methods needed by classes
  * like MultiPageActionBarContributor and MultiPageSelectionProvider.
  */
-public interface IMultiPageEditorPart {
+public interface IMultiPageEditorPart extends IAdaptable {
 
 	/**
 	 * Get the currently active editor of the MultiPageEditorPart.
