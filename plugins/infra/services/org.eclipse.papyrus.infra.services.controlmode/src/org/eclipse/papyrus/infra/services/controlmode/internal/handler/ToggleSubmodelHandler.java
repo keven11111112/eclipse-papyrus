@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.resource.ShardResourceHelper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -81,7 +80,7 @@ public class ToggleSubmodelHandler extends AbstractHandler {
 		EObject result = null;
 
 		Object value = HandlerUtil.getVariable(evaluationContext, ISources.ACTIVE_CURRENT_SELECTION_NAME);
-		if (value instanceof ISelection) {
+		if (value instanceof IStructuredSelection) {
 			IStructuredSelection selection = (IStructuredSelection) value;
 			result = ((List<?>) selection.toList()).stream()
 					.map(EMFHelper::getEObject)
