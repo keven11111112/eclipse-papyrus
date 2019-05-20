@@ -11,7 +11,6 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Patrick Tessier (CEA LIST) - add comments
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.contentprovider;
@@ -22,9 +21,6 @@ import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
  * This model indicate that an Editor should be drawn in the sash window folder.
- * This class is used to create an editor that can be integrated by Papyrus Core. This the inking point for a papyrus editor
- *
- * see org.eclipse.papyrus.infra.core.api.IEditorAnchorPoint
  *
  * @author dumoulin
  *

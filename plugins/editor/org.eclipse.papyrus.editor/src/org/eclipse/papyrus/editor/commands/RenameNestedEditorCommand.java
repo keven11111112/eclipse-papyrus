@@ -25,15 +25,18 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.editor.Activator;
+import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
+import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalizationUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 
 /**
  * A command to be used with the Eclipse Commands Framework.
+ * This command is to be used with {@link SashWindowsContainer} implemented with the Di model.
  * This command allows to rename a nested editor.
  *
  * This command use a Transaction.
@@ -95,10 +98,10 @@ public class RenameNestedEditorCommand extends AbstractHandler {
 		TransactionalEditingDomain editingDomain = null;
 
 		if (editorPart instanceof IAdaptable) {
-			ServicesRegistry registry = ((IAdaptable) editorPart).getAdapter(ServicesRegistry.class);
+			ServicesRegistry registry = (ServicesRegistry) ((IAdaptable) editorPart).getAdapter(ServicesRegistry.class);
 
 			if (registry == null) {
-				editingDomain = ((IAdaptable) editorPart).getAdapter(TransactionalEditingDomain.class);
+				editingDomain = (TransactionalEditingDomain) ((IAdaptable) editorPart).getAdapter(TransactionalEditingDomain.class);
 			} else {
 				try {
 					editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(registry);
@@ -111,27 +114,27 @@ public class RenameNestedEditorCommand extends AbstractHandler {
 		if (editingDomain != null) {
 			// If the diagram label is available, modify this one.
 			final String diagramLabel = LabelInternationalization.getInstance().getDiagramLabelWithoutName(diagram);
-			if (null != diagramLabel) {
+			if(null != diagramLabel){
 				InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename diagram label", "New label:", diagramLabel, null); //$NON-NLS-1$ //$NON-NLS-2$
 				if (Window.OK == dialog.open()) {
 					final String label = dialog.getValue();
 					editingDomain.getCommandStack().execute(LabelInternationalization.getInstance().getSetDiagramLabelCommand(editingDomain, diagram, label, null));
 				}
-			} else {
+			}else{
 				InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename an existing diagram", "New name:", diagram.getName(), null); //$NON-NLS-1$ //$NON-NLS-2$
 				if (dialog.open() == Window.OK) {
 					final String name = dialog.getValue();
 					if (name != null && name.length() > 0) {
-
+	
 						Command command = new RecordingCommand(editingDomain) {
-
-
+	
+	
 							@Override
 							protected void doExecute() {
 								diagram.setName(name);
 							}
 						};
-
+	
 						editingDomain.getCommandStack().execute(command);
 					}
 				}

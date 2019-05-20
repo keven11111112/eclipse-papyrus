@@ -22,7 +22,6 @@ import org.eclipse.papyrus.example.uml.comment.editor.newresource.editor.Papyrus
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
 import org.eclipse.papyrus.infra.ui.extension.diagrameditor.AbstractEditorFactory;
 import org.eclipse.papyrus.infra.ui.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
-import org.eclipse.papyrus.infra.core.sasheditor.api.IEditorPartWrapper;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -80,7 +79,7 @@ public class CommentEditorFactory extends AbstractEditorFactory {
 	 * 
 	 * 
 	 */
-	class TextEditorModel implements IEditorPartWrapper {
+	class TextEditorModel implements IEditorModel {
 
 
 		/**

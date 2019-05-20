@@ -50,10 +50,7 @@ import org.eclipse.ui.part.MultiPageEditorPart;
  * site management.
  *
  * @author dumoulin
- * @deprecated
- * @since 4.4
  */
-@Deprecated
 public abstract class MultiPageEditor extends MultiPageEditorPart {
 
 	/** The pageProvider */
@@ -65,7 +62,7 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 	private ITabFolderModel tabFolderModel;
 
 	/** Ordered set of currently shown diagrams */
-	protected List<IPageModel> currentTabs = new ArrayList<>();
+	protected List<IPageModel> currentTabs = new ArrayList<IPageModel>();
 
 	/**
 	 * Constructor.
@@ -305,7 +302,7 @@ public abstract class MultiPageEditor extends MultiPageEditorPart {
 		// There is some extra editors ! remove them.
 		// remove extra editors : for each open editor, check if its model is in
 		// the list of required models.
-		List<IPageModel> toBeRemoved = new ArrayList<>();
+		List<IPageModel> toBeRemoved = new ArrayList<IPageModel>();
 		Iterator<IPageModel> currentIter = currentTabs.iterator();
 		while (currentIter.hasNext()) {
 			IPageModel model = currentIter.next();

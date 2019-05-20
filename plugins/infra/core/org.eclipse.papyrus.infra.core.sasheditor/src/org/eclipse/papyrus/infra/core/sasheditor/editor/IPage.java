@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.infra.core.sasheditor.editor;
 
-import org.eclipse.papyrus.infra.core.sasheditor.api.IPapyrusEditor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Control;
 
@@ -16,7 +15,7 @@ import org.eclipse.swt.widgets.Control;
  * @author cedric dumoulin
  *
  */
-public interface IPage extends IPapyrusEditor {
+public interface IPage {
 
 	/**
 	 * Get the title to be shown in the tab
