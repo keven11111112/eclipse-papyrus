@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2018 Christian W. Damus and others.
- * 
+ * Copyright (c) 2018-2019 CEA LIST, Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 547864
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -45,8 +46,10 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * A {@link DestroyElementRequest} parameter tracking the deletion of {@link InteractionFragment}
  * containers in the context of an {@link Interaction}.
+ *
+ * @since 4.2
  */
-class InteractionContainerDeletionContext {
+public class InteractionContainerDeletionContext {
 
 	private static String PARAMETER_NAME = "papyrus.uml.InteractionContainerDeletionContext"; //$NON-NLS-1$
 
@@ -71,7 +74,7 @@ class InteractionContainerDeletionContext {
 		request.setParameter(PARAMETER_NAME, this);
 	}
 
-	static Optional<InteractionContainerDeletionContext> get(DestroyElementRequest request) {
+	public static Optional<InteractionContainerDeletionContext> get(DestroyElementRequest request) {
 		return get(request, request.getElementToDestroy());
 	}
 
@@ -127,7 +130,7 @@ class InteractionContainerDeletionContext {
 	/**
 	 * Query the new container into which a {@code fragment} should be moved instead of
 	 * destroyed.
-	 * 
+	 *
 	 * @param fragment
 	 *            a fragment for which destruction is requested
 	 * @return the container, either an {@link Interaction} or an {@link InteractionOperand},
@@ -141,7 +144,7 @@ class InteractionContainerDeletionContext {
 	/**
 	 * Query the new container into which a {@code generalOrdering} should be moved instead of
 	 * destroyed.
-	 * 
+	 *
 	 * @param generalOrdering
 	 *            a general ordering for which destruction is requested
 	 * @return the container, either an {@link Interaction} or an {@link InteractionOperand},
@@ -180,7 +183,7 @@ class InteractionContainerDeletionContext {
 		return result;
 	}
 
-	ICommand getDestroyCommand(InteractionFragment fragment) {
+	public ICommand getDestroyCommand(InteractionFragment fragment) {
 		InteractionFragment container = getNewContainerFor(fragment);
 		return container != null ? move(fragment, container) : null;
 	}
