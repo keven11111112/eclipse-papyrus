@@ -14,9 +14,9 @@ location egit "http://download.eclipse.org/egit/staging/v5.4.0.201905221418-m3" 
 //updateFrom("Eclipse",0)
 
 location platform "http://download.eclipse.org/eclipse/updates/4.12milestones/S-4.12M3-201905221800/" {
-	org.eclipse.e4.core.tools.feature.feature.group lazy
-	org.eclipse.rcp.configuration.feature.group lazy
-	org.eclipse.equinox.executable.feature.group lazy
+	org.eclipse.e4.core.tools.feature.feature.group 
+	org.eclipse.rcp.configuration.feature.group
+	org.eclipse.equinox.executable.feature.group
 }
 
 //updateFrom("Mylyn",0)
