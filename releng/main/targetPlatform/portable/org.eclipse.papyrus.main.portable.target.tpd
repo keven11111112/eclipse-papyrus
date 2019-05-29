@@ -66,7 +66,7 @@ location platform "http://download.eclipse.org/eclipse/updates/4.12milestones/S-
 
 //updateFrom("OCL for 2019-06",0) 
 
-location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.8.0/S201905060707" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.8.0/S201905281942" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }

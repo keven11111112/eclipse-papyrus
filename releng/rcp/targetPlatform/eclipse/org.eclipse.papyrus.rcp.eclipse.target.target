@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus RCP" sequenceNumber="1559065090">
+<target name="Papyrus RCP" sequenceNumber="1559115116">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -42,9 +42,9 @@
       <repository id="uml" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/uml2/updates/5.5"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.9.0.v20190506-0707"/>
-      <unit id="org.eclipse.ocl.examples.feature.group" version="6.8.0.v20190506-0707"/>
-      <repository id="ocl" location="https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.8.0/S201905060707"/>
+      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.9.0.v20190528-1942"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="6.8.0.v20190528-1942"/>
+      <repository id="ocl" location="https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.8.0/S201905281942"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="0.0.0"/>
