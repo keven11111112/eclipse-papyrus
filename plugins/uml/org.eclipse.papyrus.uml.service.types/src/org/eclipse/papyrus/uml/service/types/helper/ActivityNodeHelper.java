@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2015, 2019 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,10 +12,12 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 462979
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 494514
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,6 +27,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -39,7 +42,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * A customization of the destroy and configure commands for activity nodes to account for
  * the bizarre {@link Element#getOwnedElements() Element::ownedElement} override in {@link Activity} that has {@code node} and {@code group} subsetting {@code ownedElement} instead of {@code ownedNode} and {@code ownedGroup}.
- * 
+ *
  * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=463177
  */
 public class ActivityNodeHelper extends ElementEditHelper {
@@ -54,6 +57,18 @@ public class ActivityNodeHelper extends ElementEditHelper {
 	public static final String OUT_FROM_PARTITION = "OUT_FROM_PARTITION";
 
 	public static final String OUT_FROM_INTERRUPTIBLE_REGION = "OUT_FROM_REGION";
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper#getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest)
+	 */
+	@Override
+	protected ICommand getCreateCommand(final CreateElementRequest req) {
+		// Manage the InPartitions and the InInterruptibleRegions features
+		fillRequestWithInPartitionsAndInInterruptibleRegions(req);
+		return super.getCreateCommand(req);
+	}
 
 	@Override
 	protected ICommand getBasicDestroyElementCommand(DestroyElementRequest req) {
@@ -70,20 +85,56 @@ public class ActivityNodeHelper extends ElementEditHelper {
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper#getConfigureCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest)
+	 */
 	@Override
-	protected ICommand getConfigureCommand(ConfigureRequest req) {
+	protected ICommand getConfigureCommand(final ConfigureRequest req) {
 		if (req.getParameter(IN_PARTITION) != null) {
-			return new SetValueCommand(new SetRequest((EObject) req.getParameter(IN_PARTITION), UMLPackage.eINSTANCE.getActivityPartition_Node(), req.getElementToConfigure()));
+			final Object parameterValue = req.getParameter(IN_PARTITION);
+
+			// Manage some commands if this is a collection
+			if (parameterValue instanceof Collection) {
+				final CompositeCommand compositeCommand = new CompositeCommand("Set ActivityPartitions Nodes"); //$NON-NLS-1$
+				for (final Object entryValue : (Collection<?>) parameterValue) {
+					if (entryValue instanceof EObject) {
+						compositeCommand.add(new SetValueCommand(new SetRequest((EObject) entryValue, UMLPackage.eINSTANCE.getActivityPartition_Node(), req.getElementToConfigure())));
+					}
+				}
+				return compositeCommand;
+
+				// Else, just return the correct set command
+			} else if (parameterValue instanceof EObject) {
+				return new SetValueCommand(new SetRequest((EObject) parameterValue, UMLPackage.eINSTANCE.getActivityPartition_Node(), req.getElementToConfigure()));
+			}
 		}
 		if (req.getParameter(IN_INTERRUPTIBLE_ACTIVITY_REGION) != null) {
-			return new SetValueCommand(new SetRequest((EObject) req.getParameter(IN_INTERRUPTIBLE_ACTIVITY_REGION), UMLPackage.eINSTANCE.getInterruptibleActivityRegion_Node(), req.getElementToConfigure()));
+
+			final Object parameterValue = req.getParameter(IN_INTERRUPTIBLE_ACTIVITY_REGION);
+
+			// Manage some commands if this is a collection
+			if (parameterValue instanceof Collection) {
+				final CompositeCommand compositeCommand = new CompositeCommand("Set InterruptibleActivityRegions Nodes"); //$NON-NLS-1$
+				for (final Object entryValue : (Collection<?>) parameterValue) {
+					if (entryValue instanceof EObject) {
+						compositeCommand.add(new SetValueCommand(new SetRequest((EObject) entryValue, UMLPackage.eINSTANCE.getInterruptibleActivityRegion_Node(), req.getElementToConfigure())));
+					}
+				}
+				return compositeCommand;
+
+				// Else, just return the correct set command
+			} else if (parameterValue instanceof EObject) {
+				return new SetValueCommand(new SetRequest((EObject) parameterValue, UMLPackage.eINSTANCE.getInterruptibleActivityRegion_Node(), req.getElementToConfigure()));
+			}
 		}
 		return super.getConfigureCommand(req);
 	}
 
 	/**
 	 * Basic destruction command for owned elements of activities.
-	 * 
+	 *
 	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=463177
 	 */
 	static class DestroyActivityOwnedElementCommand extends DestroyElementCommand {
@@ -105,6 +156,29 @@ public class ActivityNodeHelper extends ElementEditHelper {
 		}
 	}
 
+	/**
+	 * This allows to fill the create element request with in partitions if needed.
+	 *
+	 * @param createRequest
+	 *            The create element request.
+	 */
+	public static void fillRequestWithInPartitionsAndInInterruptibleRegions(final CreateElementRequest createRequest) {
+		final EObject container = createRequest.getContainer();
+		if (container instanceof ActivityNode) {
+			// Manage the InPartition if needed
+			final Collection<ActivityPartition> inPartitions = ((ActivityNode) container).getInPartitions();
+			if (!inPartitions.isEmpty()) {
+				createRequest.setParameter(ActivityNodeHelper.IN_PARTITION, inPartitions);
+			}
+
+			// Manage the InInterruptibleRegions if needed
+			final Collection<InterruptibleActivityRegion> inInterruptibleRegions = ((ActivityNode) container).getInInterruptibleRegions();
+			if (!inInterruptibleRegions.isEmpty()) {
+				createRequest.setParameter(ActivityNodeHelper.IN_INTERRUPTIBLE_ACTIVITY_REGION, inInterruptibleRegions);
+			}
+		}
+	}
+
 	public static ICommand getMoveOutFromPartitionCommand(MoveRequest req) {
 		if (req.getParameter(OUT_FROM_PARTITION) != null) {
 			CompositeCommand cc = new CompositeCommand("Move Out From Parition");//$NON-NLS-1$
@@ -114,7 +188,7 @@ public class ActivityNodeHelper extends ElementEditHelper {
 					continue;
 				}
 				ActivityNode node = (ActivityNode) elementToMove;
-				List<ActivityPartition> inPartitions = new LinkedList<ActivityPartition>(node.getInPartitions());
+				List<ActivityPartition> inPartitions = new LinkedList<>(node.getInPartitions());
 				if (inPartitions.contains(outFromPartition)) {
 					inPartitions.remove(outFromPartition);
 					cc.add(new SetValueCommand(new SetRequest(node, UMLPackage.eINSTANCE.getActivityNode_InPartition(), inPartitions)));
@@ -134,7 +208,7 @@ public class ActivityNodeHelper extends ElementEditHelper {
 					continue;
 				}
 				ActivityNode node = (ActivityNode) elementToMove;
-				List<InterruptibleActivityRegion> inRegion = new LinkedList<InterruptibleActivityRegion>(node.getInInterruptibleRegions());
+				List<InterruptibleActivityRegion> inRegion = new LinkedList<>(node.getInInterruptibleRegions());
 				if (inRegion.contains(outFromRegion)) {
 					inRegion.remove(outFromRegion);
 					cc.add(new SetValueCommand(new SetRequest(node, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), inRegion)));

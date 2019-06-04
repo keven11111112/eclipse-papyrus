@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011-2012 CEA LIST.
+ * Copyright (c) 2011-2012, 2019 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,11 +9,14 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *		
- *		CEA LIST - Initial API and implementation
+ *    CEA LIST - Initial API and implementation
+ *	  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 494514
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -26,17 +29,21 @@ import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.service.types.command.ControlFlowReorientCommand;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.papyrus.uml.tools.utils.ActivityEdgeUtil;
 import org.eclipse.papyrus.uml.tools.utils.ControlFlowUtil;
 import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.ControlFlow;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Edit helper class for binary {@link ControlFlow}
@@ -48,12 +55,32 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 	 */
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		return new ControlFlowReorientCommand(req);
+		ICommand resultCommand = new ControlFlowReorientCommand(req);
+
+		// Get the control flow
+		final ControlFlow controlFlow = (ControlFlow) req.getRelationship();
+
+		// Get if this is a source re-orient or the target
+		final boolean isReorientSource = req.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE;
+
+		// Get the source and target from controlFlow and request for needed one
+		final Object source = isReorientSource ? req.getNewRelationshipEnd() : controlFlow.getSource();
+		final Object target = isReorientSource ? controlFlow.getTarget() : req.getNewRelationshipEnd();
+
+		if ((null == source || source instanceof ActivityNode) && (null == target || target instanceof ActivityNode)) {
+			// Get the command to update the InPartition feature
+			final ICommand updatePartitionsCommand = getInPartitionUpdateCommand(controlFlow, (ActivityNode) source, (ActivityNode) target);
+			if (null != updatePartitionsCommand) {
+				resultCommand = CompositeCommand.compose(resultCommand, updatePartitionsCommand);
+			}
+		}
+
+		return resultCommand;
 	}
 
 	/**
 	 * Test if the relationship creation is allowed.
-	 * 
+	 *
 	 * @param source
 	 *            the relationship source can be null
 	 * @param target
@@ -117,6 +144,7 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 
 		ICommand configureCommand = new ConfigureElementCommand(req) {
 
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 				ControlFlow element = (ControlFlow) req.getElementToConfigure();
@@ -129,6 +157,17 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 					element.setTarget(target);
 				}
 
+				// Manage InPartitions
+				if (null != source && null != target) {
+
+					// Get the source InPartitions
+					final List<ActivityPartition> partitions = new ArrayList<>(source.getInPartitions());
+					// Keep the InPartitions contained in the source and target to add it into the control flow
+					partitions.retainAll(target.getInPartitions());
+
+					element.getInPartitions().addAll(partitions);
+				}
+
 				return CommandResult.newOKCommandResult(element);
 			}
 		};
@@ -136,10 +175,9 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
 	}
 
-
 	/**
 	 * This method provides the object to be use as source.
-	 * 
+	 *
 	 * @return the source value
 	 */
 	protected ActivityNode getSourceObject(ConfigureRequest req) {
@@ -149,7 +187,7 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 
 	/**
 	 * This method provides the object to be used as target.
-	 * 
+	 *
 	 * @return the target value
 	 */
 	protected ActivityNode getTargetObject(ConfigureRequest req) {
@@ -174,6 +212,38 @@ public class ControlFlowEditHelper extends ElementEditHelper {
 			return false;
 		}
 		return ControlFlowUtil.canExistControlFlow(container, null, (ActivityNode) source, (ActivityNode) target);
+	}
+
+	/**
+	 * This allows to get the command to update the InPartition feature if needed.
+	 *
+	 * @param controlFlow
+	 *            The control flow to update.
+	 * @param source
+	 *            The source activity node.
+	 * @param target
+	 *            The target activity node.
+	 * @return The command to update the InPartition feature (can be <code>null</code>).
+	 */
+	protected ICommand getInPartitionUpdateCommand(final ControlFlow controlFlow, final ActivityNode source, final ActivityNode target) {
+		List<ActivityPartition> partitions = new ArrayList<>();
+		if (null != source && null != target) {
+			// Get the source InPartitions
+			partitions = new ArrayList<>(source.getInPartitions());
+			// Keep the in partitions contained in the source and target to add it into the control flow
+			partitions.retainAll(target.getInPartitions());
+
+			if (!partitions.isEmpty()) {
+				return new SetValueCommand(new SetRequest(controlFlow, UMLPackage.eINSTANCE.getActivityEdge_InPartition(), partitions));
+			}
+		}
+
+		// If the partitions found are empty and the control flow InPartitions are not, clear this
+		if (partitions.isEmpty() && !controlFlow.getInPartitions().isEmpty()) {
+			return new SetValueCommand(new SetRequest(controlFlow, UMLPackage.eINSTANCE.getActivityEdge_InPartition(), partitions));
+		}
+
+		return null;
 	}
 
 }
