@@ -2119,5 +2119,11 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
       </enablement>
    </visualChildrenStrategy>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.assistant.modelProviders">
+   <modelProvider
+         uri="model/activityDiagram.assistants">
+   </modelProvider>
+</extension>
 
 </plugin>
