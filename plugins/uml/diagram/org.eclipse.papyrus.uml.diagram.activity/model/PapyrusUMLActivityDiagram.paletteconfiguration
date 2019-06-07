@@ -623,7 +623,7 @@
           <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.ReduceAction_Shape"/>
         </elementDescriptors>
       </ownedConfigurations>
-      <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.miscellaneousactions.startclassifierbehavior" label="Start Classifier Behavior" description="Create a Start Classifier Behavior" kind="CreationTool">
+      <ownedConfigurations xmi:type="paletteconfiguration:ToolConfiguration" id="activity.nodes.miscellaneousactions.startclassifierbehavioraction" label="Start Classifier Behavior Action" description="Create a Start Classifier Behavior Action" kind="CreationTool">
         <icon xmi:type="paletteconfiguration:IconDescriptor" pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/StartClassifierBehaviorAction.gif"/>
         <elementDescriptors xmi:type="paletteconfiguration:ElementDescriptor">
           <elementType xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.StartClassifierBehaviorAction_Shape"/>
