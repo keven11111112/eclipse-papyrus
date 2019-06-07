@@ -6,4 +6,7 @@
   <adviceBindingsConfigurations xmi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_3RjqQMwTEeSyj5ums1L-vQ" identifier="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.ConnectionPointReferenceInStateHelperAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.ConnectionPointReferenceInStateHelperAdvice">
     <target xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.State_Shape"/>
   </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations xmi:type="elementtypesconfigurations:AdviceBindingConfiguration" xmi:id="_IL5sIIkgEemzzbpoE6iNwg" identifier="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice" inheritance="all" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice">
+    <target xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/umldi.elementtypesconfigurations#org.eclipse.papyrus.umldi.Pseudostate_Shape"/>
+  </adviceBindingsConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

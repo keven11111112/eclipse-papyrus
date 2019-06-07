@@ -571,7 +571,6 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.umldi.CallBehaviorAction_InteractionShape" identifier="org.eclipse.papyrus.umldi.CallBehaviorAction_InteractionShape" name="Call Behavior Action Interaction Shape" hint="CallBehaviorAction_InteractionShape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" specializedTypes="org.eclipse.papyrus.umldi.CallBehaviorAction_Shape">
     <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_sREikNx2EeWVxMf7SXAfhg" iconPath="/icons/full/obj16/CallBehaviorAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <editHelperAdviceConfiguration xmi:type="elementtypesconfigurations:EditHelperAdviceConfiguration" xmi:id="_vwkWkOuQEeWDDMpLFpMEMA" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.interactionoverview.edit.advices.CallBehaviorActionAsInteractionEditHelperAdvice"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.umldi.CallBehaviorAction_InteractionUseShape" identifier="org.eclipse.papyrus.umldi.CallBehaviorAction_InteractionUseShape" name="Call Behavior Action Interaction Use Shape" hint="CallBehaviorAction_InteractionUseShape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" specializedTypes="org.eclipse.papyrus.umldi.CallBehaviorAction_BaseType">
     <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_sQ_qENx2EeWVxMf7SXAfhg" iconPath="/icons/full/obj16/CallBehaviorAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
@@ -2579,7 +2578,6 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.umldi.Pseudostate_Shape" identifier="org.eclipse.papyrus.umldi.Pseudostate_Shape" name="Pseudostate Shape" hint="Pseudostate_Shape" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
     <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_r4WgkNx2EeWVxMf7SXAfhg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <editHelperAdviceConfiguration xmi:type="elementtypesconfigurations:EditHelperAdviceConfiguration" xmi:id="_vie3QOuQEeWDDMpLFpMEMA" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice"/>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Pseudostate"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="org.eclipse.papyrus.umldi.Pseudostate_Shape_CN" identifier="org.eclipse.papyrus.umldi.Pseudostate_Shape_CN" name="Pseudostate Shape CN" hint="Pseudostate_Shape_CN" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
