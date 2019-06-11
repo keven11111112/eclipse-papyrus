@@ -1,6 +1,10 @@
 =Activity Diagram=
 
 ==Drag and drop strategies==
+ * The tool should propose to drop an Association on the Activity (in the diagram) to create a ClearAssociationAction, whose the feature "association" is set with the dropped Behavior. 
+ * The tool should propose to drop an Association on the Activity (in the diagram) to create a CreateLinkAction, whose the feature "endData" is set with one or many new LinkEndCreationData whose the feature "end" is set according to the choice of the user on which end of the association he want to create.
+ * The tool should propose to drop an Association on the Activity (in the diagram) to create a DestroyLinkAction, whose the feature "endData" is set with one or many new LinkEndDestructionData whose the feature "end" is set according to the choice of the user on which end of the association he want to destroy.
+ * The tool should propose to drop an Association on the Activity (in the diagram) to create a ReadLinkAction, whose the feature "endData" is set with one or many new LinkEndData whose the feature "end" is set according to the choice of the user on which end of the association he want to read.
  * The tool should propose to drop a Behavior on the Activity (in the diagram) to create a CallBehaviorAction, whose the feature "behavior" is set with the dropped Behavior. 
  * The tool should propose to drop a Behavior on the Activity (in the diagram) to create a ReduceAction, whose the feature "reducer" is set with the dropped Behavior. 
  * The tool should propose to drop a Classifier on the Activity (in the diagram) to create a CreateObjectAction, whose the feature "classifier" is set with the dropped Classifier.

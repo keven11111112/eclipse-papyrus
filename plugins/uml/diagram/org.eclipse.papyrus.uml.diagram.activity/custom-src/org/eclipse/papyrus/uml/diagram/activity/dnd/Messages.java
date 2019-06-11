@@ -23,6 +23,14 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.diagram.activity.dnd.messages"; //$NON-NLS-1$
+	public static String AssociationToClearAssociationActionDropStrategy_Description;
+	public static String AssociationToClearAssociationActionDropStrategy_Label;
+	public static String AssociationToCreateLinkActionDropStrategy_Description;
+	public static String AssociationToCreateLinkActionDropStrategy_Label;
+	public static String AssociationToDestroyLinkActionDropStrategy_Description;
+	public static String AssociationToDestroyLinkActionDropStrategy_Label;
+	public static String AssociationToReadLinkActionDropStrategy_Description;
+	public static String AssociationToReadLinkActionDropStrategy_Label;
 	public static String BehaviorToReduceActionDropStrategy_Description;
 	public static String BehaviorToReduceActionDropStrategy_Label;
 	public static String ClassifierToCreateObjectActionDropStrategy_Drescription;

@@ -49,7 +49,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityConte
  * when drop an element of type S in an element of type E.
  * This class also update the newly created element to set
  * one of its feature with the dropped element.
- * 
+ *
  * @since 3.5.0
  */
 public class CreateTAndUpdateCommand<T extends EObject, E extends EObject, S extends EObject> extends AbstractCommand {
@@ -136,7 +136,6 @@ public class CreateTAndUpdateCommand<T extends EObject, E extends EObject, S ext
 		CreateElementRequest createElementRequest = new CreateElementRequest(domain, targetElement, typeToCreate);
 		ICommand creationElementCommand = null;
 
-		// creationElementCommand = new CreateElementCommand(createElementRequest);
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetElement);
 		if (provider != null) {
 			creationElementCommand = provider.getEditCommand(createElementRequest);
@@ -228,12 +227,14 @@ public class CreateTAndUpdateCommand<T extends EObject, E extends EObject, S ext
 	 * @throws ExecutionException
 	 */
 	protected void setElementFeature(EObject elementToSet, EStructuralFeature structuralFeature, Object value) throws ExecutionException {
-		SetRequest setFeatureRequest = new SetRequest(elementToSet, structuralFeature, value);
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToSet);
-		if (provider != null) {
-			ICommand setCommand = provider.getEditCommand(setFeatureRequest);
-			if (setCommand != null && setCommand.canExecute()) {
-				setCommand.execute(new NullProgressMonitor(), null);
+		if (structuralFeature != null) {
+			SetRequest setFeatureRequest = new SetRequest(elementToSet, structuralFeature, value);
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToSet);
+			if (provider != null) {
+				ICommand setCommand = provider.getEditCommand(setFeatureRequest);
+				if (setCommand != null && setCommand.canExecute()) {
+					setCommand.execute(new NullProgressMonitor(), null);
+				}
 			}
 		}
 	}

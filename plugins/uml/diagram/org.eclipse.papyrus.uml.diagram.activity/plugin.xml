@@ -51,6 +51,18 @@
 	<extension
          point="org.eclipse.papyrus.infra.gmfdiag.dnd.dropStrategy">
        <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.AssociationToClearAssociationActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.AssociationToCreateLinkActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.AssociationToDestroyLinkActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.AssociationToReadLinkActionDropStrategy">
+       </strategy>
+       <strategy
              strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.ClassifierToCreateObjectActionDropStrategy">
        </strategy>
        <strategy

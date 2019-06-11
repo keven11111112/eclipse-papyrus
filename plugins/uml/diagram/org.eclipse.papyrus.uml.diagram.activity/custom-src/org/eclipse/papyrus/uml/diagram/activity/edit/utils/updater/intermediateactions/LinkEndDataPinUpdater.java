@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.utils.updater.intermediateactions;
@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.ReadLinkAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * 
+ *
  * Pins of ReadLinkAction should be create and update automatically
  *
  */
@@ -45,7 +45,7 @@ public class LinkEndDataPinUpdater extends LinkEndDataCommonPinUpdater {
 				// * it is the creation of the linkEndDate (linkEndData is not associate to the action yet)
 				// * the linkEndData as already a value pin => update value pin
 				// * the linkEndData has no value pin and it is not the creation, it is the open end => update the result pin
-				if (parent == null) {
+				if (false == parent instanceof ReadLinkAction) { // this updater is specified only for ReadLinkAction see LinkEndDestructionDataPinUpdater and LinkEndCreationDataPinUpdater for others
 					super.updatePins(node);
 				} else if (node.getValue() != null) {
 					super.updatePins(node);
