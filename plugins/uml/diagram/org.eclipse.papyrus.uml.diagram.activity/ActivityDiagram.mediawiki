@@ -1,0 +1,18 @@
+=Activity Diagram=
+
+==Drag and drop strategies==
+ * The tool should propose to drop a Behavior on the Activity (in the diagram) to create a CallBehaviorAction, whose the feature "behavior" is set with the dropped Behavior. 
+ * The tool should propose to drop a Behavior on the Activity (in the diagram) to create a ReduceAction, whose the feature "reducer" is set with the dropped Behavior. 
+ * The tool should propose to drop a Classifier on the Activity (in the diagram) to create a CreateObjectAction, whose the feature "classifier" is set with the dropped Classifier.
+ * The tool should propose to drop a Classifier on the Activity (in the diagram) to create a ReadExtendAction, whose the feature "classifier" is set with the dropped Classifier. 
+ * The tool should propose to drop a Classifier on the Activity (in the diagram) to create a ReadIsClassifierObjectAction, whose the feature "classifier" is set with the dropped Classifier.
+ * The tool should propose to drop a Classifier on the Activity (in the diagram) to create a UnmarshallAction, whose the feature "unmarshallType" is set with the dropped Classifier.
+ * The tool should propose to drop an Operation on the Activity (in the diagram) to create a AcceptCallAction, whose the feature "trigger" is set with a new trigger referencing a new callEvent whose the feature "operation" is set with the dropped Operation.
+ * The tool should propose to drop a Operation on the Activity (in the diagram) to create a CallOperationAction, whose the feature "operation" is set with the dropped Operation.
+ * The tool should propose to drop a Parameter on the Activity (in the diagram) to create a ActivityParameterNode, whose the feature "parameter" is set with the dropped Parameter.
+ * The tool should propose to drop a Property on the Activity (in the diagram) to create a AddStructuralFeatureValueAction, whose the feature "structuralFeature" is set with the dropped Property.
+ * The tool should propose to drop a Property on the Activity (in the diagram) to create a ClearStructuralFeatureAction, whose the feature "structuralFeature" is set with the dropped Property.
+ * The tool should propose to drop a Property on the Activity (in the diagram) to create a ReadStructuralFeatureAction, whose the feature "structuralFeature" is set with the dropped Property.
+ * The tool should propose to drop a Signal on the Activity (in the diagram) to create a AcceptEventAction, whose the feature "trigger" is set with a new trigger referencing a new signalEvent whose the feature "signal" is set with the dropped Signal.
+ * The tool should propose to drop a Signal on the Activity (in the diagram) to create a BroadcastSignalAction, whose the feature "signal" is set with the dropped Signal.
+ * The tool should propose to drop a Signal on the Activity (in the diagram) to create a SendSignalAction, whose the feature "signal" is set with the dropped Signal.

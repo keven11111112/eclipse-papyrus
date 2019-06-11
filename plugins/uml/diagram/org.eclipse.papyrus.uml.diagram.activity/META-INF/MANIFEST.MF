@@ -90,7 +90,7 @@ Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibili
  org.eclipse.papyrus.infra.gmfdiag.assistant;bundle-version="[1.4.0,2.0.0)"
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
-Bundle-Version: 3.4.0.qualifier
+Bundle-Version: 3.5.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.activity; singleton:=true

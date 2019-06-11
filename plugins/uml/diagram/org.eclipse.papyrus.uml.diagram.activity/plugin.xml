@@ -51,7 +51,49 @@
 	<extension
          point="org.eclipse.papyrus.infra.gmfdiag.dnd.dropStrategy">
        <strategy
-             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.behavior.BehaviorToCallBehaviorActionDropStrategy">
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.ClassifierToCreateObjectActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.ClassifierToReadExtentActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.ClassifierToReadIsClassifiedObjectActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.BehaviorToReduceActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.ClassifierToUnmarshallActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.OperationToCallOperationActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.OperationToAcceptCallActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.ParameterToActivityParameterNodeDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.PropertyToAddStructuralFeatureValueActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.PropertyToClearStructuralFeatureActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.PropertyToReadStructuralFeatureActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.SignalToAcceptEventActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.BehaviorToCallBehaviorActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.SignalToSendSignalActionDropStrategy">
+       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.activity.dnd.strategies.SignalToBroadcastSignalActionDropStrategy">
        </strategy>
    </extension>
 
