@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
@@ -69,9 +69,21 @@ public class ActivityCompartmentCreationEditPolicy extends DefaultCreationEditPo
 			EObject currentParentSemantic = ((IGraphicalEditPart) gep.getParent()).resolveSemanticElement();
 			if (currentParentSemantic instanceof ActivityPartition) {
 				req.setParameter(ActivityNodeHelper.OUT_FROM_PARTITION, currentParentSemantic);
+				if (context instanceof ActivityPartition) {
+					req.setParameter(ActivityNodeHelper.IN_PARTITION, context);
+				}
+				if (context instanceof InterruptibleActivityRegion) {
+					req.setParameter(ActivityNodeHelper.IN_INTERRUPTIBLE_ACTIVITY_REGION, context);
+				}
 			}
 			if (currentParentSemantic instanceof InterruptibleActivityRegion) {
 				req.setParameter(ActivityNodeHelper.OUT_FROM_INTERRUPTIBLE_REGION, currentParentSemantic);
+				if (context instanceof ActivityPartition) {
+					req.setParameter(ActivityNodeHelper.IN_PARTITION, context);
+				}
+				if (context instanceof InterruptibleActivityRegion) {
+					req.setParameter(ActivityNodeHelper.IN_INTERRUPTIBLE_ACTIVITY_REGION, context);
+				}
 			}
 			Command moveSemanticCmd = getHost().getCommand(new EditCommandRequestWrapper(req));
 

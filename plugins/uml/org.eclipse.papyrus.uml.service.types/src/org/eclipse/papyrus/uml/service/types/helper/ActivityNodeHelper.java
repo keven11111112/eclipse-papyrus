@@ -12,7 +12,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 462979
- *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 494514
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bugs 494514, 533248
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -189,9 +189,31 @@ public class ActivityNodeHelper extends ElementEditHelper {
 				}
 				ActivityNode node = (ActivityNode) elementToMove;
 				List<ActivityPartition> inPartitions = new LinkedList<>(node.getInPartitions());
+				boolean change = false;
 				if (inPartitions.contains(outFromPartition)) {
 					inPartitions.remove(outFromPartition);
+					change = true;
+				}
+				// We know we have to remove the out inPartition, but we maybe have to add another inPartition
+				if (req.getParameter(IN_PARTITION) != null) {
+					ActivityPartition inPartition = (ActivityPartition) req.getParameter(IN_PARTITION);
+					if (!inPartitions.contains(inPartition)) {
+						inPartitions.add(inPartition);
+						change = true;
+					}
+				}
+				if (change) {
 					cc.add(new SetValueCommand(new SetRequest(node, UMLPackage.eINSTANCE.getActivityNode_InPartition(), inPartitions)));
+				}
+
+				// We know we have to remove the out inPartition, but maybe the inInterruptibleRegion must be filled
+				if (req.getParameter(IN_INTERRUPTIBLE_ACTIVITY_REGION) != null) {
+					InterruptibleActivityRegion inRegion = (InterruptibleActivityRegion) req.getParameter(IN_INTERRUPTIBLE_ACTIVITY_REGION);
+					List<InterruptibleActivityRegion> inRegions = new LinkedList<>(node.getInInterruptibleRegions());
+					if (!inRegions.contains(inRegion)) {
+						inRegions.add(inRegion);
+						cc.add(new SetValueCommand(new SetRequest(node, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), inRegions)));
+					}
 				}
 			}
 			return cc.isEmpty() ? null : cc.reduce();
@@ -208,10 +230,32 @@ public class ActivityNodeHelper extends ElementEditHelper {
 					continue;
 				}
 				ActivityNode node = (ActivityNode) elementToMove;
-				List<InterruptibleActivityRegion> inRegion = new LinkedList<>(node.getInInterruptibleRegions());
-				if (inRegion.contains(outFromRegion)) {
-					inRegion.remove(outFromRegion);
-					cc.add(new SetValueCommand(new SetRequest(node, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), inRegion)));
+				List<InterruptibleActivityRegion> inRegions = new LinkedList<>(node.getInInterruptibleRegions());
+				boolean change = false;
+				if (inRegions.contains(outFromRegion)) {
+					inRegions.remove(outFromRegion);
+					change = true;
+				}
+				// We know we have to remove the out inInterruptibleRegion, but we maybe have to add another inInterruptibleRegion
+				if (req.getParameter(IN_INTERRUPTIBLE_ACTIVITY_REGION) != null) {
+					InterruptibleActivityRegion inRegion = (InterruptibleActivityRegion) req.getParameter(IN_INTERRUPTIBLE_ACTIVITY_REGION);
+					if (!inRegions.contains(inRegion)) {
+						inRegions.add(inRegion);
+						change = true;
+					}
+				}
+				if (change) {
+					cc.add(new SetValueCommand(new SetRequest(node, UMLPackage.eINSTANCE.getActivityNode_InInterruptibleRegion(), inRegions)));
+				}
+
+				// We know we have to remove the out inInterruptibleRegion, but maybe the inPartition must be filled
+				if (req.getParameter(IN_PARTITION) != null) {
+					ActivityPartition inPartition = (ActivityPartition) req.getParameter(IN_PARTITION);
+					List<ActivityPartition> inPartitions = new LinkedList<>(node.getInPartitions());
+					if (!inPartitions.contains(inPartition)) {
+						inPartitions.add(inPartition);
+						cc.add(new SetValueCommand(new SetRequest(node, UMLPackage.eINSTANCE.getActivityNode_InPartition(), inPartitions)));
+					}
 				}
 			}
 			return cc.isEmpty() ? null : cc.reduce();
