@@ -23,7 +23,7 @@ location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repositor
 
 //manualUpdate (Needed by infra.tools, API Evolution Report generation and other plugins)
 
-location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository" {
+location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository" {
 	com.google.guava 21.0.0
 	com.google.guava.source 21.0.0
  	com.google.gson [2.7.0,2.8.0)
@@ -37,11 +37,20 @@ location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R201902
 }
 
 
+/*** temporary manual ***/
+
+//manualUpdate (until the result of this job has been published)
+
+location xwt "https://download.eclipse.org/xwt/milestones-1.4.0/1.4.0-RC2/" {
+    org.eclipse.xwt.feature.feature.group lazy
+}
+
+
 /*** Updates from the Simrel repository ***/
 
 //updateFrom("QVT Operational for 2019-06",0)
 
-location qvto "https://download.eclipse.org/mmt/qvto/updates/milestones/3.9.3/S201905190849" {
+location qvto "https://download.eclipse.org/mmt/qvto/updates/milestones/3.9.3/S201906100948" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
@@ -60,7 +69,7 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.12milestones/S-4.12RC1a-201905310245/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.12milestones/S-4.12RC2-201906051800/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -69,12 +78,6 @@ location platform "http://download.eclipse.org/eclipse/updates/4.12milestones/S-
 location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.8.0/S201906031146" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
-}
-
-//manualUpdate
-
-location xwt "https://ci.eclipse.org/shared/job/xwt/lastSuccessfulBuild/artifact/repository/" {
-	org.eclipse.xwt.feature.feature.group lazy
 }
 
 //updateFrom("Xtext, Xtend",0)
@@ -113,7 +116,7 @@ location gmfNotation "http://download.eclipse.org/modeling/gmp/gmf-notation/upda
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201905280646" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.18" {
 	org.eclipse.emf.sdk.feature.group
 }
 

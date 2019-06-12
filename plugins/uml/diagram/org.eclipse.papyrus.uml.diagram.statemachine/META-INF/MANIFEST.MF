@@ -81,6 +81,6 @@ Bundle-Version: 3.1.100.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.statemachine; singleton:=true
-Import-Package: com.google.common.base;version="21.0.0",
- com.google.common.collect;version="21.0.0"
+Import-Package: com.google.common.base;version="[21.0.0, 22.0.0)",
+ com.google.common.collect;version="[21.0.0, 22.0.0)"
 Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.statemachine

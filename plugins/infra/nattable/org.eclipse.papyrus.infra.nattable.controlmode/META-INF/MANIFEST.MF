@@ -15,6 +15,6 @@ Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.controlmode;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: com.google.common.base;version="21.0.0",
- com.google.common.collect;version="21.0.0"
+Import-Package: com.google.common.base;version="[21.0.0, 22.0.0)",
+ com.google.common.collect;version="[21.0.0, 22.0.0)"
 Automatic-Module-Name: org.eclipse.papyrus.infra.nattable.controlmode

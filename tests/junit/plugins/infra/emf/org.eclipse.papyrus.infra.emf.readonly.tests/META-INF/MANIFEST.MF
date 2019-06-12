@@ -16,6 +16,6 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.readonly.tests;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Import-Package: com.google.common.base;version="21.0.0",
- com.google.common.collect;version="21.0.0"
+Import-Package: com.google.common.base;version="[21.0.0, 22.0.0)",
+ com.google.common.collect;version="[21.0.0, 22.0.0)"
 Automatic-Module-Name: org.eclipse.papyrus.infra.emf.readonly.tests
