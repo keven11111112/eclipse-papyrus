@@ -16,3 +16,13 @@ TestIdentityAction,
 ValueSpecificationAction {
 	canonical: true;
 }
+
+StructuredActivityNode,
+LoopNode,
+SequenceNode,
+ConditionalNode,
+InterruptibleActivityRegion,
+ExpansionRegion {
+	borderStyle: custom;
+	customDash: 5 5;
+}
