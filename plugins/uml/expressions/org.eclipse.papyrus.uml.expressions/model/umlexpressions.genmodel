@@ -37,26 +37,23 @@
   <genPackages xsi:type="genmodel:GenPackage" prefix="UMLExpressions" basePackage="org.eclipse.papyrus.uml.expressions"
       disposableProviderFactory="true" generateModelWizard="false" extensibleProviderFactory="true"
       childCreationExtenders="true" ecorePackage="umlexpressions.ecore#/">
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsStereotypedWithExpression">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//IsStereotypedWithExpression/stereotypeQualifiedName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//IsStereotypedWithExpression/profileURI"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsStereotypedWithExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="umlexpressions.ecore#//AbstractStereotypeExpression">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//AbstractStereotypeExpression/stereotypeQualifiedName"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//AbstractStereotypeExpression/profileURI"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//HasAppliedStereotypesExpression"/>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsTypeOfExpression">
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsTypeOfExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="umlexpressions.ecore#//AbstractUMLEClassExpression">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference umlexpressions.ecore#//IsTypeOfExpression/umlEClass"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference umlexpressions.ecore#//AbstractUMLEClassExpression/umlEClass"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsKindOfExpression">
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference umlexpressions.ecore#//IsKindOfExpression/umlEClass"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsKindOfStereotypeExpression">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//IsKindOfStereotypeExpression/stereotypeQualifiedName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//IsKindOfStereotypeExpression/profileURI"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsTypeOfStereotypeExpression">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//IsTypeOfStereotypeExpression/stereotypeQualifiedName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//IsTypeOfStereotypeExpression/profileURI"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsKindOfExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsKindOfStereotypeExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//IsTypeOfStereotypeExpression"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="umlexpressions.ecore#//SingleStereotypeAttributeEqualityExpression">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//SingleStereotypeAttributeEqualityExpression/expectedValue"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute umlexpressions.ecore#//SingleStereotypeAttributeEqualityExpression/propertyName"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

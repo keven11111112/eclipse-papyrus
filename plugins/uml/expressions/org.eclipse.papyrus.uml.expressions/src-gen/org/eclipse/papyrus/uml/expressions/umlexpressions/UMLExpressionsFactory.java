@@ -1,16 +1,15 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.expressions.umlexpressions;
 
@@ -86,6 +85,15 @@ public interface UMLExpressionsFactory extends EFactory {
 	 * @generated
 	 */
 	IsTypeOfStereotypeExpression createIsTypeOfStereotypeExpression();
+
+	/**
+	 * Returns a new object of class '<em>Single Stereotype Attribute Equality Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Single Stereotype Attribute Equality Expression</em>'.
+	 * @generated
+	 */
+	SingleStereotypeAttributeEqualityExpression createSingleStereotypeAttributeEqualityExpression();
 
 	/**
 	 * Returns the package supported by this factory.

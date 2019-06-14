@@ -1,31 +1,34 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.expressions.umlexpressions.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
 import java.util.List;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.emf.edit.command.CommandParameter;
+
 import org.eclipse.emf.edit.domain.EditingDomain;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -39,15 +42,21 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionCatalog;
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
+
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractSingleBooleanEObjectExpressionOwnedExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbtractMultiBooleanEObjectExpressionsOwnedExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
+
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.util.BooleanExpressionsSwitch;
+
 import org.eclipse.papyrus.infra.emf.expressions.util.ExpressionsSwitch;
+
 import org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsFactory;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsPackage;
+
 import org.eclipse.papyrus.uml.expressions.umlexpressions.util.UMLExpressionsAdapterFactory;
 
 /**
@@ -245,6 +254,29 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.uml.expressions.umlexpressions.SingleStereotypeAttributeEqualityExpression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SingleStereotypeAttributeEqualityExpressionItemProvider singleStereotypeAttributeEqualityExpressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.uml.expressions.umlexpressions.SingleStereotypeAttributeEqualityExpression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSingleStereotypeAttributeEqualityExpressionAdapter() {
+		if (singleStereotypeAttributeEqualityExpressionItemProvider == null) {
+			singleStereotypeAttributeEqualityExpressionItemProvider = new SingleStereotypeAttributeEqualityExpressionItemProvider(this);
+		}
+
+		return singleStereotypeAttributeEqualityExpressionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -382,6 +414,7 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 		if (isKindOfExpressionItemProvider != null) isKindOfExpressionItemProvider.dispose();
 		if (isKindOfStereotypeExpressionItemProvider != null) isKindOfStereotypeExpressionItemProvider.dispose();
 		if (isTypeOfStereotypeExpressionItemProvider != null) isTypeOfStereotypeExpressionItemProvider.dispose();
+		if (singleStereotypeAttributeEqualityExpressionItemProvider != null) singleStereotypeAttributeEqualityExpressionItemProvider.dispose();
 	}
 
 	/**
@@ -460,6 +493,11 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 					(createChildParameter
 						(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
 						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfStereotypeExpression()));
+
+				newChildDescriptors.add
+					(createChildParameter
+						(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
+						 UMLExpressionsFactory.eINSTANCE.createSingleStereotypeAttributeEqualityExpression()));
 
 				return null;
 			}
@@ -573,8 +611,14 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 						(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfStereotypeExpression()));
 
+				newChildDescriptors.add
+					(createChildParameter
+						(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
+						 UMLExpressionsFactory.eINSTANCE.createSingleStereotypeAttributeEqualityExpression()));
+
 				return null;
 			}
+ 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -612,8 +656,14 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 						(BooleanExpressionsPackage.Literals.ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_OWNED_EXPRESSION__OWNED_EXPRESSION,
 						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfStereotypeExpression()));
 
+				newChildDescriptors.add
+					(createChildParameter
+						(BooleanExpressionsPackage.Literals.ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_OWNED_EXPRESSION__OWNED_EXPRESSION,
+						 UMLExpressionsFactory.eINSTANCE.createSingleStereotypeAttributeEqualityExpression()));
+
 				return null;
 			}
+ 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

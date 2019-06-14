@@ -1,16 +1,15 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.expressions.umlexpressions.impl;
 
@@ -74,6 +73,7 @@ public class UMLExpressionsFactoryImpl extends EFactoryImpl implements UMLExpres
 			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION: return createIsKindOfExpression();
 			case UMLExpressionsPackage.IS_KIND_OF_STEREOTYPE_EXPRESSION: return createIsKindOfStereotypeExpression();
 			case UMLExpressionsPackage.IS_TYPE_OF_STEREOTYPE_EXPRESSION: return createIsTypeOfStereotypeExpression();
+			case UMLExpressionsPackage.SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION: return createSingleStereotypeAttributeEqualityExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -143,6 +143,17 @@ public class UMLExpressionsFactoryImpl extends EFactoryImpl implements UMLExpres
 	public IsTypeOfStereotypeExpression createIsTypeOfStereotypeExpression() {
 		IsTypeOfStereotypeExpressionImpl isTypeOfStereotypeExpression = new IsTypeOfStereotypeExpressionImpl();
 		return isTypeOfStereotypeExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public SingleStereotypeAttributeEqualityExpression createSingleStereotypeAttributeEqualityExpression() {
+		SingleStereotypeAttributeEqualityExpressionImpl singleStereotypeAttributeEqualityExpression = new SingleStereotypeAttributeEqualityExpressionImpl();
+		return singleStereotypeAttributeEqualityExpression;
 	}
 
 	/**

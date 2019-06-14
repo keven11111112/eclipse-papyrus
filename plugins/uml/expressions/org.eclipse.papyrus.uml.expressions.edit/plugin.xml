@@ -40,4 +40,38 @@
             uri="http://www.eclipse.org/papyrus/expressions/booleanexpressions"
             class="org.eclipse.papyrus.uml.expressions.umlexpressions.provider.UMLExpressionsItemProviderAdapterFactory$BooleanExpressionsChildCreationExtender"/>
    </extension>
+   <extension
+         point="org.eclipse.emf.edit.propertyEditorFactories">
+      <factory
+            class="org.eclipse.papyrus.uml.expressions.edit.internal.editors.factory.SingleStereotypeQualifiedNameEditorFactory"
+            uri="http://www.eclipse.org/papyrus/umlExpressions/StereotypeExpression/StereotypeQualifiedName">
+      </factory>
+      <factory
+            class="org.eclipse.papyrus.uml.expressions.edit.internal.editors.factory.SingleProfileURIEditorFactory"
+            uri="http://www.eclipse.org/papyrus/umlExpressions/StereotypeExpression/ProfileURI">
+      </factory>
+      <factory
+            class="org.eclipse.papyrus.uml.expressions.edit.internal.editors.factory.SingleStereotypeAttributeEditorFactory"
+            uri="http://www.eclipse.org/papyrus/umlExpressions/StereotypeAttributeEqualityExpression/AttributeName">
+      </factory>
+      <factory
+            class="org.eclipse.papyrus.uml.expressions.edit.internal.editors.factory.SingleUMLEClassEditorFactory"
+            uri="http://www.eclipse.org/papyrus/umlExpressions/UMLEClassExpression/UMLEClass">
+      </factory>
+   </extension>
+    <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="TreeOutlinePage">
+         <propertySection
+               class="org.eclipse.papyrus.uml.expressions.edit.internal.sections.UMLExpressionPropertySection"
+               filter="org.eclipse.papyrus.uml.expressions.edit.internal.sections.UMLExpressionSectionFilter"
+               id="org.eclipse.papyrus.uml.expression.properties.propertySection"
+               tab="advanced">
+            <input
+                  type="java.lang.Object">
+            </input>
+         </propertySection>
+      </propertySections>
+   </extension>
 </plugin>

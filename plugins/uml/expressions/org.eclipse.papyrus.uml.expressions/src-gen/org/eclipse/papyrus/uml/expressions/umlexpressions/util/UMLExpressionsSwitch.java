@@ -1,16 +1,15 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.expressions.umlexpressions.util;
 
@@ -18,10 +17,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
+
 import org.eclipse.papyrus.infra.emf.expressions.IBasicExpressionElement;
 import org.eclipse.papyrus.infra.emf.expressions.IExpression;
+
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanEObjectExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanExpression;
+
 import org.eclipse.papyrus.uml.expressions.umlexpressions.*;
 
 /**
@@ -84,10 +86,21 @@ public class UMLExpressionsSwitch<T> extends Switch<T> {
 			case UMLExpressionsPackage.IS_STEREOTYPED_WITH_EXPRESSION: {
 				IsStereotypedWithExpression isStereotypedWithExpression = (IsStereotypedWithExpression)theEObject;
 				T result = caseIsStereotypedWithExpression(isStereotypedWithExpression);
+				if (result == null) result = caseAbstractStereotypeExpression(isStereotypedWithExpression);
 				if (result == null) result = caseIBooleanEObjectExpression(isStereotypedWithExpression);
 				if (result == null) result = caseIBooleanExpression(isStereotypedWithExpression);
 				if (result == null) result = caseIExpression(isStereotypedWithExpression);
 				if (result == null) result = caseIBasicExpressionElement(isStereotypedWithExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UMLExpressionsPackage.ABSTRACT_STEREOTYPE_EXPRESSION: {
+				AbstractStereotypeExpression abstractStereotypeExpression = (AbstractStereotypeExpression)theEObject;
+				T result = caseAbstractStereotypeExpression(abstractStereotypeExpression);
+				if (result == null) result = caseIBooleanEObjectExpression(abstractStereotypeExpression);
+				if (result == null) result = caseIBooleanExpression(abstractStereotypeExpression);
+				if (result == null) result = caseIExpression(abstractStereotypeExpression);
+				if (result == null) result = caseIBasicExpressionElement(abstractStereotypeExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -104,6 +117,7 @@ public class UMLExpressionsSwitch<T> extends Switch<T> {
 			case UMLExpressionsPackage.IS_TYPE_OF_EXPRESSION: {
 				IsTypeOfExpression isTypeOfExpression = (IsTypeOfExpression)theEObject;
 				T result = caseIsTypeOfExpression(isTypeOfExpression);
+				if (result == null) result = caseAbstractUMLEClassExpression(isTypeOfExpression);
 				if (result == null) result = caseIBooleanEObjectExpression(isTypeOfExpression);
 				if (result == null) result = caseIBooleanExpression(isTypeOfExpression);
 				if (result == null) result = caseIExpression(isTypeOfExpression);
@@ -111,9 +125,20 @@ public class UMLExpressionsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case UMLExpressionsPackage.ABSTRACT_UMLE_CLASS_EXPRESSION: {
+				AbstractUMLEClassExpression abstractUMLEClassExpression = (AbstractUMLEClassExpression)theEObject;
+				T result = caseAbstractUMLEClassExpression(abstractUMLEClassExpression);
+				if (result == null) result = caseIBooleanEObjectExpression(abstractUMLEClassExpression);
+				if (result == null) result = caseIBooleanExpression(abstractUMLEClassExpression);
+				if (result == null) result = caseIExpression(abstractUMLEClassExpression);
+				if (result == null) result = caseIBasicExpressionElement(abstractUMLEClassExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION: {
 				IsKindOfExpression isKindOfExpression = (IsKindOfExpression)theEObject;
 				T result = caseIsKindOfExpression(isKindOfExpression);
+				if (result == null) result = caseAbstractUMLEClassExpression(isKindOfExpression);
 				if (result == null) result = caseIBooleanEObjectExpression(isKindOfExpression);
 				if (result == null) result = caseIBooleanExpression(isKindOfExpression);
 				if (result == null) result = caseIExpression(isKindOfExpression);
@@ -124,6 +149,7 @@ public class UMLExpressionsSwitch<T> extends Switch<T> {
 			case UMLExpressionsPackage.IS_KIND_OF_STEREOTYPE_EXPRESSION: {
 				IsKindOfStereotypeExpression isKindOfStereotypeExpression = (IsKindOfStereotypeExpression)theEObject;
 				T result = caseIsKindOfStereotypeExpression(isKindOfStereotypeExpression);
+				if (result == null) result = caseAbstractStereotypeExpression(isKindOfStereotypeExpression);
 				if (result == null) result = caseIBooleanEObjectExpression(isKindOfStereotypeExpression);
 				if (result == null) result = caseIBooleanExpression(isKindOfStereotypeExpression);
 				if (result == null) result = caseIExpression(isKindOfStereotypeExpression);
@@ -134,10 +160,22 @@ public class UMLExpressionsSwitch<T> extends Switch<T> {
 			case UMLExpressionsPackage.IS_TYPE_OF_STEREOTYPE_EXPRESSION: {
 				IsTypeOfStereotypeExpression isTypeOfStereotypeExpression = (IsTypeOfStereotypeExpression)theEObject;
 				T result = caseIsTypeOfStereotypeExpression(isTypeOfStereotypeExpression);
+				if (result == null) result = caseAbstractStereotypeExpression(isTypeOfStereotypeExpression);
 				if (result == null) result = caseIBooleanEObjectExpression(isTypeOfStereotypeExpression);
 				if (result == null) result = caseIBooleanExpression(isTypeOfStereotypeExpression);
 				if (result == null) result = caseIExpression(isTypeOfStereotypeExpression);
 				if (result == null) result = caseIBasicExpressionElement(isTypeOfStereotypeExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case UMLExpressionsPackage.SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION: {
+				SingleStereotypeAttributeEqualityExpression singleStereotypeAttributeEqualityExpression = (SingleStereotypeAttributeEqualityExpression)theEObject;
+				T result = caseSingleStereotypeAttributeEqualityExpression(singleStereotypeAttributeEqualityExpression);
+				if (result == null) result = caseAbstractStereotypeExpression(singleStereotypeAttributeEqualityExpression);
+				if (result == null) result = caseIBooleanEObjectExpression(singleStereotypeAttributeEqualityExpression);
+				if (result == null) result = caseIBooleanExpression(singleStereotypeAttributeEqualityExpression);
+				if (result == null) result = caseIExpression(singleStereotypeAttributeEqualityExpression);
+				if (result == null) result = caseIBasicExpressionElement(singleStereotypeAttributeEqualityExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -157,6 +195,21 @@ public class UMLExpressionsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIsStereotypedWithExpression(IsStereotypedWithExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Stereotype Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Stereotype Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractStereotypeExpression(AbstractStereotypeExpression object) {
 		return null;
 	}
 
@@ -187,6 +240,21 @@ public class UMLExpressionsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIsTypeOfExpression(IsTypeOfExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract UMLE Class Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract UMLE Class Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractUMLEClassExpression(AbstractUMLEClassExpression object) {
 		return null;
 	}
 
@@ -232,6 +300,21 @@ public class UMLExpressionsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIsTypeOfStereotypeExpression(IsTypeOfStereotypeExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Single Stereotype Attribute Equality Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Single Stereotype Attribute Equality Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSingleStereotypeAttributeEqualityExpression(SingleStereotypeAttributeEqualityExpression object) {
 		return null;
 	}
 

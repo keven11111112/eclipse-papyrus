@@ -1,16 +1,15 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.expressions.umlexpressions;
 
@@ -18,6 +17,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
 
 /**
@@ -32,6 +32,9 @@ import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpre
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
+ * <!-- begin-model-doc -->
+ * A string representing the expected value.
+ * <!-- end-model-doc -->
  * @see org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsFactory
  * @model kind="package"
  *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='UMLExpressions'"
@@ -71,6 +74,79 @@ public interface UMLExpressionsPackage extends EPackage {
 	UMLExpressionsPackage eINSTANCE = org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.AbstractStereotypeExpressionImpl <em>Abstract Stereotype Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.AbstractStereotypeExpressionImpl
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl#getAbstractStereotypeExpression()
+	 * @generated
+	 */
+	int ABSTRACT_STEREOTYPE_EXPRESSION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STEREOTYPE_EXPRESSION__NAME = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STEREOTYPE_EXPRESSION__DESCRIPTION = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Stereotype Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Profile URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STEREOTYPE_EXPRESSION__PROFILE_URI = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Abstract Stereotype Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STEREOTYPE_EXPRESSION_FEATURE_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Evaluate</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STEREOTYPE_EXPRESSION___EVALUATE__OBJECT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION___EVALUATE__OBJECT;
+
+	/**
+	 * The number of operations of the '<em>Abstract Stereotype Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_STEREOTYPE_EXPRESSION_OPERATION_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsStereotypedWithExpressionImpl <em>Is Stereotyped With Expression</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,7 +163,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_STEREOTYPED_WITH_EXPRESSION__NAME = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__NAME;
+	int IS_STEREOTYPED_WITH_EXPRESSION__NAME = ABSTRACT_STEREOTYPE_EXPRESSION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -96,7 +172,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_STEREOTYPED_WITH_EXPRESSION__DESCRIPTION = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__DESCRIPTION;
+	int IS_STEREOTYPED_WITH_EXPRESSION__DESCRIPTION = ABSTRACT_STEREOTYPE_EXPRESSION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype Qualified Name</b></em>' attribute.
@@ -105,7 +181,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_STEREOTYPED_WITH_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 0;
+	int IS_STEREOTYPED_WITH_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = ABSTRACT_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Profile URI</b></em>' attribute.
@@ -114,7 +190,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_STEREOTYPED_WITH_EXPRESSION__PROFILE_URI = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 1;
+	int IS_STEREOTYPED_WITH_EXPRESSION__PROFILE_URI = ABSTRACT_STEREOTYPE_EXPRESSION__PROFILE_URI;
 
 	/**
 	 * The number of structural features of the '<em>Is Stereotyped With Expression</em>' class.
@@ -123,7 +199,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_STEREOTYPED_WITH_EXPRESSION_FEATURE_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 2;
+	int IS_STEREOTYPED_WITH_EXPRESSION_FEATURE_COUNT = ABSTRACT_STEREOTYPE_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Evaluate</em>' operation.
@@ -132,7 +208,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_STEREOTYPED_WITH_EXPRESSION___EVALUATE__OBJECT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION___EVALUATE__OBJECT;
+	int IS_STEREOTYPED_WITH_EXPRESSION___EVALUATE__OBJECT = ABSTRACT_STEREOTYPE_EXPRESSION___EVALUATE__OBJECT;
 
 	/**
 	 * The number of operations of the '<em>Is Stereotyped With Expression</em>' class.
@@ -141,8 +217,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_STEREOTYPED_WITH_EXPRESSION_OPERATION_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_OPERATION_COUNT + 0;
-
+	int IS_STEREOTYPED_WITH_EXPRESSION_OPERATION_COUNT = ABSTRACT_STEREOTYPE_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.HasAppliedStereotypesExpressionImpl <em>Has Applied Stereotypes Expression</em>}' class.
@@ -152,7 +227,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl#getHasAppliedStereotypesExpression()
 	 * @generated
 	 */
-	int HAS_APPLIED_STEREOTYPES_EXPRESSION = 1;
+	int HAS_APPLIED_STEREOTYPES_EXPRESSION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -199,6 +274,69 @@ public interface UMLExpressionsPackage extends EPackage {
 	 */
 	int HAS_APPLIED_STEREOTYPES_EXPRESSION_OPERATION_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_OPERATION_COUNT + 0;
 
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.AbstractUMLEClassExpressionImpl <em>Abstract UMLE Class Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.AbstractUMLEClassExpressionImpl
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl#getAbstractUMLEClassExpression()
+	 * @generated
+	 */
+	int ABSTRACT_UMLE_CLASS_EXPRESSION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_UMLE_CLASS_EXPRESSION__NAME = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_UMLE_CLASS_EXPRESSION__DESCRIPTION = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Uml EClass</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_UMLE_CLASS_EXPRESSION__UML_ECLASS = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Abstract UMLE Class Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_UMLE_CLASS_EXPRESSION_FEATURE_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Evaluate</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_UMLE_CLASS_EXPRESSION___EVALUATE__OBJECT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION___EVALUATE__OBJECT;
+
+	/**
+	 * The number of operations of the '<em>Abstract UMLE Class Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_UMLE_CLASS_EXPRESSION_OPERATION_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsTypeOfExpressionImpl <em>Is Type Of Expression</em>}' class.
@@ -208,7 +346,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl#getIsTypeOfExpression()
 	 * @generated
 	 */
-	int IS_TYPE_OF_EXPRESSION = 2;
+	int IS_TYPE_OF_EXPRESSION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -217,7 +355,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_EXPRESSION__NAME = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__NAME;
+	int IS_TYPE_OF_EXPRESSION__NAME = ABSTRACT_UMLE_CLASS_EXPRESSION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -226,7 +364,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_EXPRESSION__DESCRIPTION = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__DESCRIPTION;
+	int IS_TYPE_OF_EXPRESSION__DESCRIPTION = ABSTRACT_UMLE_CLASS_EXPRESSION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Uml EClass</b></em>' reference.
@@ -235,7 +373,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_EXPRESSION__UML_ECLASS = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 0;
+	int IS_TYPE_OF_EXPRESSION__UML_ECLASS = ABSTRACT_UMLE_CLASS_EXPRESSION__UML_ECLASS;
 
 	/**
 	 * The number of structural features of the '<em>Is Type Of Expression</em>' class.
@@ -244,7 +382,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_EXPRESSION_FEATURE_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 1;
+	int IS_TYPE_OF_EXPRESSION_FEATURE_COUNT = ABSTRACT_UMLE_CLASS_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Evaluate</em>' operation.
@@ -253,7 +391,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_EXPRESSION___EVALUATE__OBJECT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION___EVALUATE__OBJECT;
+	int IS_TYPE_OF_EXPRESSION___EVALUATE__OBJECT = ABSTRACT_UMLE_CLASS_EXPRESSION___EVALUATE__OBJECT;
 
 	/**
 	 * The number of operations of the '<em>Is Type Of Expression</em>' class.
@@ -262,7 +400,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_EXPRESSION_OPERATION_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_OPERATION_COUNT + 0;
+	int IS_TYPE_OF_EXPRESSION_OPERATION_COUNT = ABSTRACT_UMLE_CLASS_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsKindOfExpressionImpl <em>Is Kind Of Expression</em>}' class.
@@ -272,7 +410,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl#getIsKindOfExpression()
 	 * @generated
 	 */
-	int IS_KIND_OF_EXPRESSION = 3;
+	int IS_KIND_OF_EXPRESSION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -281,7 +419,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_EXPRESSION__NAME = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__NAME;
+	int IS_KIND_OF_EXPRESSION__NAME = ABSTRACT_UMLE_CLASS_EXPRESSION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -290,7 +428,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_EXPRESSION__DESCRIPTION = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__DESCRIPTION;
+	int IS_KIND_OF_EXPRESSION__DESCRIPTION = ABSTRACT_UMLE_CLASS_EXPRESSION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Uml EClass</b></em>' reference.
@@ -299,7 +437,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_EXPRESSION__UML_ECLASS = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 0;
+	int IS_KIND_OF_EXPRESSION__UML_ECLASS = ABSTRACT_UMLE_CLASS_EXPRESSION__UML_ECLASS;
 
 	/**
 	 * The number of structural features of the '<em>Is Kind Of Expression</em>' class.
@@ -308,7 +446,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_EXPRESSION_FEATURE_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 1;
+	int IS_KIND_OF_EXPRESSION_FEATURE_COUNT = ABSTRACT_UMLE_CLASS_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Evaluate</em>' operation.
@@ -317,7 +455,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_EXPRESSION___EVALUATE__OBJECT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION___EVALUATE__OBJECT;
+	int IS_KIND_OF_EXPRESSION___EVALUATE__OBJECT = ABSTRACT_UMLE_CLASS_EXPRESSION___EVALUATE__OBJECT;
 
 	/**
 	 * The number of operations of the '<em>Is Kind Of Expression</em>' class.
@@ -326,7 +464,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_EXPRESSION_OPERATION_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_OPERATION_COUNT + 0;
+	int IS_KIND_OF_EXPRESSION_OPERATION_COUNT = ABSTRACT_UMLE_CLASS_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsKindOfStereotypeExpressionImpl <em>Is Kind Of Stereotype Expression</em>}' class.
@@ -336,7 +474,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl#getIsKindOfStereotypeExpression()
 	 * @generated
 	 */
-	int IS_KIND_OF_STEREOTYPE_EXPRESSION = 4;
+	int IS_KIND_OF_STEREOTYPE_EXPRESSION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -345,7 +483,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_STEREOTYPE_EXPRESSION__NAME = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__NAME;
+	int IS_KIND_OF_STEREOTYPE_EXPRESSION__NAME = ABSTRACT_STEREOTYPE_EXPRESSION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -354,7 +492,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_STEREOTYPE_EXPRESSION__DESCRIPTION = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__DESCRIPTION;
+	int IS_KIND_OF_STEREOTYPE_EXPRESSION__DESCRIPTION = ABSTRACT_STEREOTYPE_EXPRESSION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype Qualified Name</b></em>' attribute.
@@ -363,7 +501,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 0;
+	int IS_KIND_OF_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = ABSTRACT_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Profile URI</b></em>' attribute.
@@ -372,7 +510,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_STEREOTYPE_EXPRESSION__PROFILE_URI = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 1;
+	int IS_KIND_OF_STEREOTYPE_EXPRESSION__PROFILE_URI = ABSTRACT_STEREOTYPE_EXPRESSION__PROFILE_URI;
 
 	/**
 	 * The number of structural features of the '<em>Is Kind Of Stereotype Expression</em>' class.
@@ -381,7 +519,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_STEREOTYPE_EXPRESSION_FEATURE_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 2;
+	int IS_KIND_OF_STEREOTYPE_EXPRESSION_FEATURE_COUNT = ABSTRACT_STEREOTYPE_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Evaluate</em>' operation.
@@ -390,7 +528,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_STEREOTYPE_EXPRESSION___EVALUATE__OBJECT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION___EVALUATE__OBJECT;
+	int IS_KIND_OF_STEREOTYPE_EXPRESSION___EVALUATE__OBJECT = ABSTRACT_STEREOTYPE_EXPRESSION___EVALUATE__OBJECT;
 
 	/**
 	 * The number of operations of the '<em>Is Kind Of Stereotype Expression</em>' class.
@@ -399,7 +537,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_KIND_OF_STEREOTYPE_EXPRESSION_OPERATION_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_OPERATION_COUNT + 0;
+	int IS_KIND_OF_STEREOTYPE_EXPRESSION_OPERATION_COUNT = ABSTRACT_STEREOTYPE_EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsTypeOfStereotypeExpressionImpl <em>Is Type Of Stereotype Expression</em>}' class.
@@ -409,7 +547,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl#getIsTypeOfStereotypeExpression()
 	 * @generated
 	 */
-	int IS_TYPE_OF_STEREOTYPE_EXPRESSION = 5;
+	int IS_TYPE_OF_STEREOTYPE_EXPRESSION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -418,7 +556,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_STEREOTYPE_EXPRESSION__NAME = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__NAME;
+	int IS_TYPE_OF_STEREOTYPE_EXPRESSION__NAME = ABSTRACT_STEREOTYPE_EXPRESSION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -427,7 +565,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_STEREOTYPE_EXPRESSION__DESCRIPTION = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION__DESCRIPTION;
+	int IS_TYPE_OF_STEREOTYPE_EXPRESSION__DESCRIPTION = ABSTRACT_STEREOTYPE_EXPRESSION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype Qualified Name</b></em>' attribute.
@@ -436,7 +574,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 0;
+	int IS_TYPE_OF_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = ABSTRACT_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Profile URI</b></em>' attribute.
@@ -445,7 +583,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_STEREOTYPE_EXPRESSION__PROFILE_URI = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 1;
+	int IS_TYPE_OF_STEREOTYPE_EXPRESSION__PROFILE_URI = ABSTRACT_STEREOTYPE_EXPRESSION__PROFILE_URI;
 
 	/**
 	 * The number of structural features of the '<em>Is Type Of Stereotype Expression</em>' class.
@@ -454,7 +592,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_STEREOTYPE_EXPRESSION_FEATURE_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 2;
+	int IS_TYPE_OF_STEREOTYPE_EXPRESSION_FEATURE_COUNT = ABSTRACT_STEREOTYPE_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Evaluate</em>' operation.
@@ -463,7 +601,7 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_STEREOTYPE_EXPRESSION___EVALUATE__OBJECT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION___EVALUATE__OBJECT;
+	int IS_TYPE_OF_STEREOTYPE_EXPRESSION___EVALUATE__OBJECT = ABSTRACT_STEREOTYPE_EXPRESSION___EVALUATE__OBJECT;
 
 	/**
 	 * The number of operations of the '<em>Is Type Of Stereotype Expression</em>' class.
@@ -472,7 +610,99 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IS_TYPE_OF_STEREOTYPE_EXPRESSION_OPERATION_COUNT = BooleanExpressionsPackage.IBOOLEAN_EOBJECT_EXPRESSION_OPERATION_COUNT + 0;
+	int IS_TYPE_OF_STEREOTYPE_EXPRESSION_OPERATION_COUNT = ABSTRACT_STEREOTYPE_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.SingleStereotypeAttributeEqualityExpressionImpl <em>Single Stereotype Attribute Equality Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.SingleStereotypeAttributeEqualityExpressionImpl
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl#getSingleStereotypeAttributeEqualityExpression()
+	 * @generated
+	 */
+	int SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION__NAME = ABSTRACT_STEREOTYPE_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION__DESCRIPTION = ABSTRACT_STEREOTYPE_EXPRESSION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Stereotype Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = ABSTRACT_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Profile URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION__PROFILE_URI = ABSTRACT_STEREOTYPE_EXPRESSION__PROFILE_URI;
+
+	/**
+	 * The feature id for the '<em><b>Expected Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION__EXPECTED_VALUE = ABSTRACT_STEREOTYPE_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION__PROPERTY_NAME = ABSTRACT_STEREOTYPE_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Single Stereotype Attribute Equality Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION_FEATURE_COUNT = ABSTRACT_STEREOTYPE_EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Evaluate</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION___EVALUATE__OBJECT = ABSTRACT_STEREOTYPE_EXPRESSION___EVALUATE__OBJECT;
+
+	/**
+	 * The number of operations of the '<em>Single Stereotype Attribute Equality Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION_OPERATION_COUNT = ABSTRACT_STEREOTYPE_EXPRESSION_OPERATION_COUNT + 0;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsStereotypedWithExpression <em>Is Stereotyped With Expression</em>}'.
@@ -485,26 +715,36 @@ public interface UMLExpressionsPackage extends EPackage {
 	EClass getIsStereotypedWithExpression();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsStereotypedWithExpression#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractStereotypeExpression <em>Abstract Stereotype Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Abstract Stereotype Expression</em>'.
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractStereotypeExpression
+	 * @generated
+	 */
+	EClass getAbstractStereotypeExpression();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractStereotypeExpression#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Stereotype Qualified Name</em>'.
-	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.IsStereotypedWithExpression#getStereotypeQualifiedName()
-	 * @see #getIsStereotypedWithExpression()
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractStereotypeExpression#getStereotypeQualifiedName()
+	 * @see #getAbstractStereotypeExpression()
 	 * @generated
 	 */
-	EAttribute getIsStereotypedWithExpression_StereotypeQualifiedName();
+	EAttribute getAbstractStereotypeExpression_StereotypeQualifiedName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsStereotypedWithExpression#getProfileURI <em>Profile URI</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractStereotypeExpression#getProfileURI <em>Profile URI</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Profile URI</em>'.
-	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.IsStereotypedWithExpression#getProfileURI()
-	 * @see #getIsStereotypedWithExpression()
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractStereotypeExpression#getProfileURI()
+	 * @see #getAbstractStereotypeExpression()
 	 * @generated
 	 */
-	EAttribute getIsStereotypedWithExpression_ProfileURI();
+	EAttribute getAbstractStereotypeExpression_ProfileURI();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.HasAppliedStereotypesExpression <em>Has Applied Stereotypes Expression</em>}'.
@@ -527,15 +767,25 @@ public interface UMLExpressionsPackage extends EPackage {
 	EClass getIsTypeOfExpression();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfExpression#getUmlEClass <em>Uml EClass</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractUMLEClassExpression <em>Abstract UMLE Class Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Abstract UMLE Class Expression</em>'.
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractUMLEClassExpression
+	 * @generated
+	 */
+	EClass getAbstractUMLEClassExpression();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractUMLEClassExpression#getUmlEClass <em>Uml EClass</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Uml EClass</em>'.
-	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfExpression#getUmlEClass()
-	 * @see #getIsTypeOfExpression()
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractUMLEClassExpression#getUmlEClass()
+	 * @see #getAbstractUMLEClassExpression()
 	 * @generated
 	 */
-	EReference getIsTypeOfExpression_UmlEClass();
+	EReference getAbstractUMLEClassExpression_UmlEClass();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfExpression <em>Is Kind Of Expression</em>}'.
@@ -548,17 +798,6 @@ public interface UMLExpressionsPackage extends EPackage {
 	EClass getIsKindOfExpression();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfExpression#getUmlEClass <em>Uml EClass</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Uml EClass</em>'.
-	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfExpression#getUmlEClass()
-	 * @see #getIsKindOfExpression()
-	 * @generated
-	 */
-	EReference getIsKindOfExpression_UmlEClass();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfStereotypeExpression <em>Is Kind Of Stereotype Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -567,28 +806,6 @@ public interface UMLExpressionsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getIsKindOfStereotypeExpression();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfStereotypeExpression#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stereotype Qualified Name</em>'.
-	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfStereotypeExpression#getStereotypeQualifiedName()
-	 * @see #getIsKindOfStereotypeExpression()
-	 * @generated
-	 */
-	EAttribute getIsKindOfStereotypeExpression_StereotypeQualifiedName();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfStereotypeExpression#getProfileURI <em>Profile URI</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Profile URI</em>'.
-	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfStereotypeExpression#getProfileURI()
-	 * @see #getIsKindOfStereotypeExpression()
-	 * @generated
-	 */
-	EAttribute getIsKindOfStereotypeExpression_ProfileURI();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfStereotypeExpression <em>Is Type Of Stereotype Expression</em>}'.
@@ -601,26 +818,36 @@ public interface UMLExpressionsPackage extends EPackage {
 	EClass getIsTypeOfStereotypeExpression();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfStereotypeExpression#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.SingleStereotypeAttributeEqualityExpression <em>Single Stereotype Attribute Equality Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stereotype Qualified Name</em>'.
-	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfStereotypeExpression#getStereotypeQualifiedName()
-	 * @see #getIsTypeOfStereotypeExpression()
+	 * @return the meta object for class '<em>Single Stereotype Attribute Equality Expression</em>'.
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.SingleStereotypeAttributeEqualityExpression
 	 * @generated
 	 */
-	EAttribute getIsTypeOfStereotypeExpression_StereotypeQualifiedName();
+	EClass getSingleStereotypeAttributeEqualityExpression();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfStereotypeExpression#getProfileURI <em>Profile URI</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.SingleStereotypeAttributeEqualityExpression#getExpectedValue <em>Expected Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Profile URI</em>'.
-	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.IsTypeOfStereotypeExpression#getProfileURI()
-	 * @see #getIsTypeOfStereotypeExpression()
+	 * @return the meta object for the attribute '<em>Expected Value</em>'.
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.SingleStereotypeAttributeEqualityExpression#getExpectedValue()
+	 * @see #getSingleStereotypeAttributeEqualityExpression()
 	 * @generated
 	 */
-	EAttribute getIsTypeOfStereotypeExpression_ProfileURI();
+	EAttribute getSingleStereotypeAttributeEqualityExpression_ExpectedValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.SingleStereotypeAttributeEqualityExpression#getPropertyName <em>Property Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Property Name</em>'.
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.SingleStereotypeAttributeEqualityExpression#getPropertyName()
+	 * @see #getSingleStereotypeAttributeEqualityExpression()
+	 * @generated
+	 */
+	EAttribute getSingleStereotypeAttributeEqualityExpression_PropertyName();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -656,12 +883,22 @@ public interface UMLExpressionsPackage extends EPackage {
 		EClass IS_STEREOTYPED_WITH_EXPRESSION = eINSTANCE.getIsStereotypedWithExpression();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.AbstractStereotypeExpressionImpl <em>Abstract Stereotype Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.AbstractStereotypeExpressionImpl
+		 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl#getAbstractStereotypeExpression()
+		 * @generated
+		 */
+		EClass ABSTRACT_STEREOTYPE_EXPRESSION = eINSTANCE.getAbstractStereotypeExpression();
+
+		/**
 		 * The meta object literal for the '<em><b>Stereotype Qualified Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IS_STEREOTYPED_WITH_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = eINSTANCE.getIsStereotypedWithExpression_StereotypeQualifiedName();
+		EAttribute ABSTRACT_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = eINSTANCE.getAbstractStereotypeExpression_StereotypeQualifiedName();
 
 		/**
 		 * The meta object literal for the '<em><b>Profile URI</b></em>' attribute feature.
@@ -669,7 +906,7 @@ public interface UMLExpressionsPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IS_STEREOTYPED_WITH_EXPRESSION__PROFILE_URI = eINSTANCE.getIsStereotypedWithExpression_ProfileURI();
+		EAttribute ABSTRACT_STEREOTYPE_EXPRESSION__PROFILE_URI = eINSTANCE.getAbstractStereotypeExpression_ProfileURI();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.HasAppliedStereotypesExpressionImpl <em>Has Applied Stereotypes Expression</em>}' class.
@@ -692,12 +929,22 @@ public interface UMLExpressionsPackage extends EPackage {
 		EClass IS_TYPE_OF_EXPRESSION = eINSTANCE.getIsTypeOfExpression();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.AbstractUMLEClassExpressionImpl <em>Abstract UMLE Class Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.AbstractUMLEClassExpressionImpl
+		 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl#getAbstractUMLEClassExpression()
+		 * @generated
+		 */
+		EClass ABSTRACT_UMLE_CLASS_EXPRESSION = eINSTANCE.getAbstractUMLEClassExpression();
+
+		/**
 		 * The meta object literal for the '<em><b>Uml EClass</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference IS_TYPE_OF_EXPRESSION__UML_ECLASS = eINSTANCE.getIsTypeOfExpression_UmlEClass();
+		EReference ABSTRACT_UMLE_CLASS_EXPRESSION__UML_ECLASS = eINSTANCE.getAbstractUMLEClassExpression_UmlEClass();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsKindOfExpressionImpl <em>Is Kind Of Expression</em>}' class.
@@ -710,14 +957,6 @@ public interface UMLExpressionsPackage extends EPackage {
 		EClass IS_KIND_OF_EXPRESSION = eINSTANCE.getIsKindOfExpression();
 
 		/**
-		 * The meta object literal for the '<em><b>Uml EClass</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference IS_KIND_OF_EXPRESSION__UML_ECLASS = eINSTANCE.getIsKindOfExpression_UmlEClass();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsKindOfStereotypeExpressionImpl <em>Is Kind Of Stereotype Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -726,22 +965,6 @@ public interface UMLExpressionsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IS_KIND_OF_STEREOTYPE_EXPRESSION = eINSTANCE.getIsKindOfStereotypeExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Stereotype Qualified Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IS_KIND_OF_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = eINSTANCE.getIsKindOfStereotypeExpression_StereotypeQualifiedName();
-
-		/**
-		 * The meta object literal for the '<em><b>Profile URI</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IS_KIND_OF_STEREOTYPE_EXPRESSION__PROFILE_URI = eINSTANCE.getIsKindOfStereotypeExpression_ProfileURI();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsTypeOfStereotypeExpressionImpl <em>Is Type Of Stereotype Expression</em>}' class.
@@ -754,20 +977,30 @@ public interface UMLExpressionsPackage extends EPackage {
 		EClass IS_TYPE_OF_STEREOTYPE_EXPRESSION = eINSTANCE.getIsTypeOfStereotypeExpression();
 
 		/**
-		 * The meta object literal for the '<em><b>Stereotype Qualified Name</b></em>' attribute feature.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.SingleStereotypeAttributeEqualityExpressionImpl <em>Single Stereotype Attribute Equality Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.SingleStereotypeAttributeEqualityExpressionImpl
+		 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.impl.UMLExpressionsPackageImpl#getSingleStereotypeAttributeEqualityExpression()
 		 * @generated
 		 */
-		EAttribute IS_TYPE_OF_STEREOTYPE_EXPRESSION__STEREOTYPE_QUALIFIED_NAME = eINSTANCE.getIsTypeOfStereotypeExpression_StereotypeQualifiedName();
+		EClass SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION = eINSTANCE.getSingleStereotypeAttributeEqualityExpression();
 
 		/**
-		 * The meta object literal for the '<em><b>Profile URI</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Expected Value</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute IS_TYPE_OF_STEREOTYPE_EXPRESSION__PROFILE_URI = eINSTANCE.getIsTypeOfStereotypeExpression_ProfileURI();
+		EAttribute SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION__EXPECTED_VALUE = eINSTANCE.getSingleStereotypeAttributeEqualityExpression_ExpectedValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Property Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SINGLE_STEREOTYPE_ATTRIBUTE_EQUALITY_EXPRESSION__PROPERTY_NAME = eINSTANCE.getSingleStereotypeAttributeEqualityExpression_PropertyName();
 
 	}
 

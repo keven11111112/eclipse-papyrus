@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2017 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -9,8 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *   
+ * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.expressions.umlexpressions.custom;
@@ -24,8 +24,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * @author as247872
- *
+ * Custom implementation for {@link IsTypeOfStereotypeExpressionImpl}
  */
 public class CustomIsTypeOfStereotypeExpression extends IsTypeOfStereotypeExpressionImpl {
 
@@ -37,7 +36,7 @@ public class CustomIsTypeOfStereotypeExpression extends IsTypeOfStereotypeExpres
 	 */
 	@Override
 	public Boolean evaluate(EObject context) {
-			
+
 		boolean result = false;
 		if (null != this.stereotypeQualifiedName && !this.stereotypeQualifiedName.isEmpty() && context instanceof Element) {
 			final Element el = (Element) context;

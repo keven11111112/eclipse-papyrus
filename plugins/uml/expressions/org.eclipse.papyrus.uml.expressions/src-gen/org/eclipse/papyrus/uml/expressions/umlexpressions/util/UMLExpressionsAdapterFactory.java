@@ -1,16 +1,15 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.expressions.umlexpressions.util;
 
@@ -20,10 +19,13 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
+
 import org.eclipse.papyrus.infra.emf.expressions.IBasicExpressionElement;
 import org.eclipse.papyrus.infra.emf.expressions.IExpression;
+
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanEObjectExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanExpression;
+
 import org.eclipse.papyrus.uml.expressions.umlexpressions.*;
 
 /**
@@ -87,12 +89,20 @@ public class UMLExpressionsAdapterFactory extends AdapterFactoryImpl {
 				return createIsStereotypedWithExpressionAdapter();
 			}
 			@Override
+			public Adapter caseAbstractStereotypeExpression(AbstractStereotypeExpression object) {
+				return createAbstractStereotypeExpressionAdapter();
+			}
+			@Override
 			public Adapter caseHasAppliedStereotypesExpression(HasAppliedStereotypesExpression object) {
 				return createHasAppliedStereotypesExpressionAdapter();
 			}
 			@Override
 			public Adapter caseIsTypeOfExpression(IsTypeOfExpression object) {
 				return createIsTypeOfExpressionAdapter();
+			}
+			@Override
+			public Adapter caseAbstractUMLEClassExpression(AbstractUMLEClassExpression object) {
+				return createAbstractUMLEClassExpressionAdapter();
 			}
 			@Override
 			public Adapter caseIsKindOfExpression(IsKindOfExpression object) {
@@ -105,6 +115,10 @@ public class UMLExpressionsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseIsTypeOfStereotypeExpression(IsTypeOfStereotypeExpression object) {
 				return createIsTypeOfStereotypeExpressionAdapter();
+			}
+			@Override
+			public Adapter caseSingleStereotypeAttributeEqualityExpression(SingleStereotypeAttributeEqualityExpression object) {
+				return createSingleStereotypeAttributeEqualityExpressionAdapter();
 			}
 			@Override
 			public Adapter caseIBasicExpressionElement(IBasicExpressionElement object) {
@@ -157,6 +171,20 @@ public class UMLExpressionsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractStereotypeExpression <em>Abstract Stereotype Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractStereotypeExpression
+	 * @generated
+	 */
+	public Adapter createAbstractStereotypeExpressionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.HasAppliedStereotypesExpression <em>Has Applied Stereotypes Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -181,6 +209,20 @@ public class UMLExpressionsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIsTypeOfExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractUMLEClassExpression <em>Abstract UMLE Class Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.AbstractUMLEClassExpression
+	 * @generated
+	 */
+	public Adapter createAbstractUMLEClassExpressionAdapter() {
 		return null;
 	}
 
@@ -223,6 +265,20 @@ public class UMLExpressionsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIsTypeOfStereotypeExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.expressions.umlexpressions.SingleStereotypeAttributeEqualityExpression <em>Single Stereotype Attribute Equality Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.expressions.umlexpressions.SingleStereotypeAttributeEqualityExpression
+	 * @generated
+	 */
+	public Adapter createSingleStereotypeAttributeEqualityExpressionAdapter() {
 		return null;
 	}
 

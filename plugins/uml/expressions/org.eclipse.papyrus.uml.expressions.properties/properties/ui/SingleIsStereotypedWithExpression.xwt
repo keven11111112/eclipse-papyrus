@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Composite xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:j="clr-namespace:java.lang"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
+	xmlns:uml="clr-namespace:org.eclipse.papyrus.uml.properties.widgets"
 	xmlns:x="http://www.eclipse.org/xwt">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
@@ -10,19 +12,10 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
+		<uml:StereotypeQualifyNamePropertyEditor
+			input="{Binding}"
+			property="umlexpressions:AbstractStereotypeExpression:stereotypeQualifiedName"></uml:StereotypeQualifyNamePropertyEditor>
 		<ppe:StringEditor input="{Binding}"
-			property="umlexpressions:IsStereotypedWithExpression:name"></ppe:StringEditor>
-		<ppe:StringEditor input="{Binding}"
-			property="umlexpressions:IsStereotypedWithExpression:description"></ppe:StringEditor>
-	</Composite>
-	<Composite>
-		<Composite.layout>
-			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
-		</Composite.layout>
-		<ppe:StringEditor input="{Binding}"
-			property="umlexpressions:IsStereotypedWithExpression:stereotypeQualifiedName"
-			customLabel="Stereotype Identifier"></ppe:StringEditor>
-		<ppe:StringEditor input="{Binding}"
-			property="umlexpressions:IsStereotypedWithExpression:profileURI"></ppe:StringEditor>
+			property="umlexpressions:AbstractStereotypeExpression:profileURI"></ppe:StringEditor>
 	</Composite>
 </Composite>
