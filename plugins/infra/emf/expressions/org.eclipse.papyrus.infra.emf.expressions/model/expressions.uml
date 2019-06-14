@@ -97,6 +97,9 @@ If there is no expression referenced we return TRUE.</body>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eU5uwBVbEee_D4EhwjboOQ" value="*"/>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_mbMYshn2EeeYEuQJkmbFAA" name="referencedExpressions" type="_P-MkYBVaEee_D4EhwjboOQ" association="_mbLxoBn2EeeYEuQJkmbFAA">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dJVfYI6yEemjwpaBkaWY0Q" source="http://www.eclipse.org/emf/2002/GenModel">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dJVfYY6yEemjwpaBkaWY0Q" key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference"/>
+          </eAnnotations>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yV2M0Bn2EeeYEuQJkmbFAA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yWOnUBn2EeeYEuQJkmbFAA" value="*"/>
         </ownedAttribute>
@@ -117,6 +120,9 @@ If there is no expression referenced we return TRUE.</body>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GHQWMBXjEee_D4EhwjboOQ" value="*"/>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_ltwD4Bn2EeeYEuQJkmbFAA" name="referencedExpressions" type="_P-MkYBVaEee_D4EhwjboOQ" association="_ltsZgBn2EeeYEuQJkmbFAA">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cHlugI6yEemjwpaBkaWY0Q" source="http://www.eclipse.org/emf/2002/GenModel">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cHlugY6yEemjwpaBkaWY0Q" key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference"/>
+          </eAnnotations>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rHd6kBn2EeeYEuQJkmbFAA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rHlPUBn2EeeYEuQJkmbFAA" value="*"/>
         </ownedAttribute>
@@ -128,6 +134,9 @@ If there is no expression referenced we return TRUE.</body>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9ytRsBn2EeeYEuQJkmbFAA" value="1"/>
         </ownedAttribute>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_nhG34Bn2EeeYEuQJkmbFAA" name="referencedExpression" type="_P-MkYBVaEee_D4EhwjboOQ" association="_nhEboBn2EeeYEuQJkmbFAA">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bZhuoI6yEemjwpaBkaWY0Q" source="http://www.eclipse.org/emf/2002/GenModel">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bZhuoY6yEemjwpaBkaWY0Q" key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/singleBooleanExpressionReference"/>
+          </eAnnotations>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-gm5gBn2EeeYEuQJkmbFAA"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-htswBn2EeeYEuQJkmbFAA" value="1"/>
         </ownedAttribute>
@@ -167,6 +176,9 @@ If there is no expression referenced we return TRUE.</body>
         <ownedEnd xmi:type="uml:Property" xmi:id="_nhHe8Bn2EeeYEuQJkmbFAA" name="notexpression" type="_3NcCQBXiEee_D4EhwjboOQ" association="_nhEboBn2EeeYEuQJkmbFAA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_oU_pgBrTEeeJdcoPLKQK3g" name="ReferenceBooleanExpression">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uWcIkJD3EembtcUdk7EePw" source="http://www.eclipse.org/emf/2002/GenModel">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uWcIkZD3EembtcUdk7EePw" key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/singleBooleanExpressionReference"/>
+        </eAnnotations>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_rnZOYBrTEeeJdcoPLKQK3g" name="referencedExpression" type="_P-MkYBVaEee_D4EhwjboOQ" association="_rnWLEBrTEeeJdcoPLKQK3g">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H0rjgBrUEeeJdcoPLKQK3g"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H1QyUBrUEeeJdcoPLKQK3g" value="1"/>
@@ -191,6 +203,30 @@ If there is no expression referenced we return TRUE.</body>
         </ownedTemplateSignature>
         <generalization xmi:type="uml:Generalization" xmi:id="_hAyYoBtuEeeI-LWWg9sIYg" general="_T6J2sBUlEee_D4EhwjboOQ"/>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_A4OoIBtrEeeNbZVCoqtPGQ" name="REDEFINED_CONTEXT_TYPE" templateParameter="_7vGyMBtqEeeNbZVCoqtPGQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_sIyu4I3OEemaCNM_5JlkJw" name="SingleEAttributeValueEqualityExpression">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_MKE6EI3PEemaCNM_5JlkJw" annotatedElement="_sIyu4I3OEemaCNM_5JlkJw">
+          <body>This expression allows to check if the eAttribute value is equals to the expected one. &#xD;
+This expression returns false in all cases, expected when the expectedValue is equals to the current value.</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_z6B2kI3OEemaCNM_5JlkJw" name="eAttribute">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hhHRkI6qEemjwpaBkaWY0Q" source="http://www.eclipse.org/emf/2002/GenModel">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_z1BGwI6qEemjwpaBkaWY0Q" key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/singleEAttributeReference"/>
+          </eAnnotations>
+          <ownedComment xmi:type="uml:Comment" xmi:id="_R3TioI3PEemaCNM_5JlkJw" annotatedElement="_z6B2kI3OEemaCNM_5JlkJw">
+            <body>The eAttribute to check.</body>
+          </ownedComment>
+          <type xmi:type="uml:Class" href="pathmap://ECORE_METAMODEL_LIBRARY/Ecore.uml#_SeWiQcX_EduPJbEsMYXjUQ"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_300RII3OEemaCNM_5JlkJw"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_5hKeMI3OEemaCNM_5JlkJw" name="expectedValue">
+          <ownedComment xmi:type="uml:Comment" xmi:id="_URzPII3PEemaCNM_5JlkJw" annotatedElement="_5hKeMI3OEemaCNM_5JlkJw">
+            <body>The expected value for the EAttribute.</body>
+          </ownedComment>
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-SKvEI3OEemaCNM_5JlkJw"/>
+        </ownedAttribute>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_NBlw4I3PEemaCNM_5JlkJw" client="_sIyu4I3OEemaCNM_5JlkJw" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_-hQYgBqgEeex7OKxnYgv8Q" name="IBasicExpressionElement">

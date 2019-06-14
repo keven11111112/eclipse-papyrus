@@ -1,16 +1,15 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.provider;
 
@@ -241,11 +240,35 @@ public class BooleanExpressionsItemProviderAdapterFactory extends BooleanExpress
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SingleEAttributeValueEqualityExpressionItemProvider singleEAttributeValueEqualityExpressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSingleEAttributeValueEqualityExpressionAdapter() {
+		if (singleEAttributeValueEqualityExpressionItemProvider == null) {
+			singleEAttributeValueEqualityExpressionItemProvider = new SingleEAttributeValueEqualityExpressionItemProvider(this);
+		}
+
+		return singleEAttributeValueEqualityExpressionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -256,6 +279,7 @@ public class BooleanExpressionsItemProviderAdapterFactory extends BooleanExpress
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -331,6 +355,7 @@ public class BooleanExpressionsItemProviderAdapterFactory extends BooleanExpress
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -341,6 +366,7 @@ public class BooleanExpressionsItemProviderAdapterFactory extends BooleanExpress
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -351,6 +377,7 @@ public class BooleanExpressionsItemProviderAdapterFactory extends BooleanExpress
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -365,6 +392,7 @@ public class BooleanExpressionsItemProviderAdapterFactory extends BooleanExpress
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (orExpressionItemProvider != null) orExpressionItemProvider.dispose();
 		if (andExpressionItemProvider != null) andExpressionItemProvider.dispose();
@@ -372,6 +400,7 @@ public class BooleanExpressionsItemProviderAdapterFactory extends BooleanExpress
 		if (literalTrueExpressionItemProvider != null) literalTrueExpressionItemProvider.dispose();
 		if (literalFalseExpressionItemProvider != null) literalFalseExpressionItemProvider.dispose();
 		if (referenceBooleanExpressionItemProvider != null) referenceBooleanExpressionItemProvider.dispose();
+		if (singleEAttributeValueEqualityExpressionItemProvider != null) singleEAttributeValueEqualityExpressionItemProvider.dispose();
 	}
 
 }

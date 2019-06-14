@@ -1,16 +1,15 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl;
 
@@ -74,6 +73,7 @@ public class BooleanExpressionsFactoryImpl extends EFactoryImpl implements Boole
 			case BooleanExpressionsPackage.LITERAL_TRUE_EXPRESSION: return createLiteralTrueExpression();
 			case BooleanExpressionsPackage.LITERAL_FALSE_EXPRESSION: return createLiteralFalseExpression();
 			case BooleanExpressionsPackage.REFERENCE_BOOLEAN_EXPRESSION: return createReferenceBooleanExpression();
+			case BooleanExpressionsPackage.SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION: return createSingleEAttributeValueEqualityExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -84,6 +84,7 @@ public class BooleanExpressionsFactoryImpl extends EFactoryImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OrExpression createOrExpression() {
 		OrExpressionImpl orExpression = new OrExpressionImpl();
 		return orExpression;
@@ -94,6 +95,7 @@ public class BooleanExpressionsFactoryImpl extends EFactoryImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AndExpression createAndExpression() {
 		AndExpressionImpl andExpression = new AndExpressionImpl();
 		return andExpression;
@@ -104,6 +106,7 @@ public class BooleanExpressionsFactoryImpl extends EFactoryImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotExpression createNotExpression() {
 		NotExpressionImpl notExpression = new NotExpressionImpl();
 		return notExpression;
@@ -114,6 +117,7 @@ public class BooleanExpressionsFactoryImpl extends EFactoryImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LiteralTrueExpression createLiteralTrueExpression() {
 		LiteralTrueExpressionImpl literalTrueExpression = new LiteralTrueExpressionImpl();
 		return literalTrueExpression;
@@ -124,6 +128,7 @@ public class BooleanExpressionsFactoryImpl extends EFactoryImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public LiteralFalseExpression createLiteralFalseExpression() {
 		LiteralFalseExpressionImpl literalFalseExpression = new LiteralFalseExpressionImpl();
 		return literalFalseExpression;
@@ -134,6 +139,7 @@ public class BooleanExpressionsFactoryImpl extends EFactoryImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ReferenceBooleanExpression createReferenceBooleanExpression() {
 		ReferenceBooleanExpressionImpl referenceBooleanExpression = new ReferenceBooleanExpressionImpl();
 		return referenceBooleanExpression;
@@ -144,6 +150,18 @@ public class BooleanExpressionsFactoryImpl extends EFactoryImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public SingleEAttributeValueEqualityExpression createSingleEAttributeValueEqualityExpression() {
+		SingleEAttributeValueEqualityExpressionImpl singleEAttributeValueEqualityExpression = new SingleEAttributeValueEqualityExpressionImpl();
+		return singleEAttributeValueEqualityExpression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public BooleanExpressionsPackage getBooleanExpressionsPackage() {
 		return (BooleanExpressionsPackage)getEPackage();
 	}

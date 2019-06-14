@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Composite xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:j="clr-namespace:java.lang" xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
+	xmlns:j="clr-namespace:java.lang"
+	xmlns:ppe="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"
 	xmlns:x="http://www.eclipse.org/xwt">
 	<Composite.layout>
@@ -20,8 +21,8 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:MultiReference input="{Binding}"
-			property="customexpressions:CustomOrExpression:ownedExpressions"></ppe:MultiReference>
+			property="expressions:booleanexpressions:OrExpression:ownedExpressions"></ppe:MultiReference>
 		<ppe:MultiReference input="{Binding}"
-			property="customexpressions:CustomOrExpression:referencedExpressions"></ppe:MultiReference>
+			property="expressions:booleanexpressions:OrExpression:referencedExpressions"></ppe:MultiReference>
 	</Composite>
 </Composite>

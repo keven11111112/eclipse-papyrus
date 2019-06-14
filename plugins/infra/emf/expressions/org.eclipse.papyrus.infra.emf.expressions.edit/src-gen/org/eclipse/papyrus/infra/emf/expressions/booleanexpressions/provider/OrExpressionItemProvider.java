@@ -1,16 +1,15 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.provider;
 
@@ -22,6 +21,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.common.util.URI;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -148,7 +148,8 @@ public class OrExpressionItemProvider
 				 true,
 				 null,
 				 null,
-				 null));
+				 null,
+				 URI.createURI("http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference")));
 	}
 
 	/**
@@ -215,7 +216,7 @@ public class OrExpressionItemProvider
 			getString("_UI_OrExpression_type") : //$NON-NLS-1$
 			getString("_UI_OrExpression_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -280,6 +281,11 @@ public class OrExpressionItemProvider
 			(createChildParameter
 				(BooleanExpressionsPackage.Literals.OR_EXPRESSION__OWNED_EXPRESSIONS,
 				 BooleanExpressionsFactory.eINSTANCE.createReferenceBooleanExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(BooleanExpressionsPackage.Literals.OR_EXPRESSION__OWNED_EXPRESSIONS,
+				 BooleanExpressionsFactory.eINSTANCE.createSingleEAttributeValueEqualityExpression()));
 	}
 
 	/**

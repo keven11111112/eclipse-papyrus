@@ -1,288 +1,280 @@
 <?xml version="1.0" encoding="ASCII"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_TD6UMCq7EeeggtQf9kdCWQ" name="expressions" label="Expressions Metamodel">
-  <tabs xmi:id="_UckJMCq7EeeggtQf9kdCWQ" label="expressions" id="expressions" priority="100">
-    <sections xmi:id="_UckwQCq7EeeggtQf9kdCWQ" name="Single IBasicExpressionElement" sectionFile="ui/SingleIBasicExpressionElement.xwt">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_P83s4I3oEemjwpaBkaWY0Q" name="expressions">
+  <tabs xmi:id="_QwT8AI3oEemjwpaBkaWY0Q" label="expressions" id="expressions" priority="100">
+    <sections xmi:id="_QwUjEI3oEemjwpaBkaWY0Q" name="Single IBasicExpressionElement" sectionFile="ui/SingleIBasicExpressionElement.xwt">
       <widget href="ui/SingleIBasicExpressionElement.xwt#/"/>
     </sections>
-    <sections xmi:id="_UckwQSq7EeeggtQf9kdCWQ" name="Single IExpression" sectionFile="ui/SingleIExpression.xwt">
+    <sections xmi:id="_QwUjEY3oEemjwpaBkaWY0Q" name="Single IExpression" sectionFile="ui/SingleIExpression.xwt">
       <widget href="ui/SingleIExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UckwQiq7EeeggtQf9kdCWQ" name="Single ExpressionCatalog" sectionFile="ui/SingleExpressionCatalog.xwt">
+    <sections xmi:id="_QwVKII3oEemjwpaBkaWY0Q" name="Single ExpressionCatalog" sectionFile="ui/SingleExpressionCatalog.xwt">
       <widget href="ui/SingleExpressionCatalog.xwt#/"/>
     </sections>
-    <sections xmi:id="_UclXUCq7EeeggtQf9kdCWQ" name="Single EClass" sectionFile="ui/SingleEClass.xwt">
-      <widget href="ui/SingleEClass.xwt#/"/>
-    </sections>
-    <sections xmi:id="_UclXUSq7EeeggtQf9kdCWQ" name="Single EObject" sectionFile="ui/SingleEObject.xwt">
-      <widget href="ui/SingleEObject.xwt#/"/>
-    </sections>
-    <sections xmi:id="_UclXUiq7EeeggtQf9kdCWQ" name="Multiple IBasicExpressionElement" sectionFile="ui/MultipleIBasicExpressionElement.xwt">
+    <sections xmi:id="_QwVKIY3oEemjwpaBkaWY0Q" name="Multiple IBasicExpressionElement" sectionFile="ui/MultipleIBasicExpressionElement.xwt">
       <widget href="ui/MultipleIBasicExpressionElement.xwt#/"/>
     </sections>
-    <sections xmi:id="_Ucl-YCq7EeeggtQf9kdCWQ" name="Multiple IExpression" sectionFile="ui/MultipleIExpression.xwt">
+    <sections xmi:id="_QwVKIo3oEemjwpaBkaWY0Q" name="Multiple IExpression" sectionFile="ui/MultipleIExpression.xwt">
       <widget href="ui/MultipleIExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_Ucl-YSq7EeeggtQf9kdCWQ" name="Multiple ExpressionCatalog" sectionFile="ui/MultipleExpressionCatalog.xwt">
+    <sections xmi:id="_QwVxMI3oEemjwpaBkaWY0Q" name="Multiple ExpressionCatalog" sectionFile="ui/MultipleExpressionCatalog.xwt">
       <widget href="ui/MultipleExpressionCatalog.xwt#/"/>
     </sections>
-    <sections xmi:id="_Ucl-Yiq7EeeggtQf9kdCWQ" name="Multiple EClass" sectionFile="ui/MultipleEClass.xwt">
-      <widget href="ui/MultipleEClass.xwt#/"/>
-    </sections>
-    <sections xmi:id="_Ucl-Yyq7EeeggtQf9kdCWQ" name="Multiple EObject" sectionFile="ui/MultipleEObject.xwt">
-      <widget href="ui/MultipleEObject.xwt#/"/>
-    </sections>
-    <sections xmi:id="_UcmlcCq7EeeggtQf9kdCWQ" name="Single IBooleanExpression" sectionFile="ui/SingleIBooleanExpression.xwt">
+    <sections xmi:id="_QwVxMY3oEemjwpaBkaWY0Q" name="Single IBooleanExpression" sectionFile="ui/SingleIBooleanExpression.xwt">
       <widget href="ui/SingleIBooleanExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UcmlcSq7EeeggtQf9kdCWQ" name="Multiple IBooleanExpression" sectionFile="ui/MultipleIBooleanExpression.xwt">
+    <sections xmi:id="_QwVxMo3oEemjwpaBkaWY0Q" name="Multiple IBooleanExpression" sectionFile="ui/MultipleIBooleanExpression.xwt">
       <widget href="ui/MultipleIBooleanExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_Ucmlciq7EeeggtQf9kdCWQ" name="Single IBooleanEObjectExpression" sectionFile="ui/SingleIBooleanEObjectExpression.xwt">
+    <sections xmi:id="_QwWYQI3oEemjwpaBkaWY0Q" name="Single IBooleanEObjectExpression" sectionFile="ui/SingleIBooleanEObjectExpression.xwt">
       <widget href="ui/SingleIBooleanEObjectExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_Ucmlcyq7EeeggtQf9kdCWQ" name="Multiple IBooleanEObjectExpression" sectionFile="ui/MultipleIBooleanEObjectExpression.xwt">
+    <sections xmi:id="_QwWYQY3oEemjwpaBkaWY0Q" name="Multiple IBooleanEObjectExpression" sectionFile="ui/MultipleIBooleanEObjectExpression.xwt">
       <widget href="ui/MultipleIBooleanEObjectExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UcnMgCq7EeeggtQf9kdCWQ" name="Single OrExpression" sectionFile="ui/SingleOrExpression.xwt">
+    <sections xmi:id="_QwW_UI3oEemjwpaBkaWY0Q" name="Single OrExpression" sectionFile="ui/SingleOrExpression.xwt">
       <widget href="ui/SingleOrExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UcnMgSq7EeeggtQf9kdCWQ" name="Multiple OrExpression" sectionFile="ui/MultipleOrExpression.xwt">
+    <sections xmi:id="_QwW_UY3oEemjwpaBkaWY0Q" name="Multiple OrExpression" sectionFile="ui/MultipleOrExpression.xwt">
       <widget href="ui/MultipleOrExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UcnMgiq7EeeggtQf9kdCWQ" name="Single AndExpression" sectionFile="ui/SingleAndExpression.xwt">
+    <sections xmi:id="_QwW_Uo3oEemjwpaBkaWY0Q" name="Single AndExpression" sectionFile="ui/SingleAndExpression.xwt">
       <widget href="ui/SingleAndExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UcnzkCq7EeeggtQf9kdCWQ" name="Multiple AndExpression" sectionFile="ui/MultipleAndExpression.xwt">
+    <sections xmi:id="_QwXmYI3oEemjwpaBkaWY0Q" name="Multiple AndExpression" sectionFile="ui/MultipleAndExpression.xwt">
       <widget href="ui/MultipleAndExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UcnzkSq7EeeggtQf9kdCWQ" name="Single NotExpression" sectionFile="ui/SingleNotExpression.xwt">
+    <sections xmi:id="_QwXmYY3oEemjwpaBkaWY0Q" name="Single NotExpression" sectionFile="ui/SingleNotExpression.xwt">
       <widget href="ui/SingleNotExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UcoaoCq7EeeggtQf9kdCWQ" name="Multiple NotExpression" sectionFile="ui/MultipleNotExpression.xwt">
+    <sections xmi:id="_QwYNcI3oEemjwpaBkaWY0Q" name="Multiple NotExpression" sectionFile="ui/MultipleNotExpression.xwt">
       <widget href="ui/MultipleNotExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UcoaoSq7EeeggtQf9kdCWQ" name="Single LiteralTrueExpression" sectionFile="ui/SingleLiteralTrueExpression.xwt">
+    <sections xmi:id="_QwYNcY3oEemjwpaBkaWY0Q" name="Single LiteralTrueExpression" sectionFile="ui/SingleLiteralTrueExpression.xwt">
       <widget href="ui/SingleLiteralTrueExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_Ucoaoiq7EeeggtQf9kdCWQ" name="Multiple LiteralTrueExpression" sectionFile="ui/MultipleLiteralTrueExpression.xwt">
+    <sections xmi:id="_QwYNco3oEemjwpaBkaWY0Q" name="Multiple LiteralTrueExpression" sectionFile="ui/MultipleLiteralTrueExpression.xwt">
       <widget href="ui/MultipleLiteralTrueExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_Ucoaoyq7EeeggtQf9kdCWQ" name="Single LiteralFalseExpression" sectionFile="ui/SingleLiteralFalseExpression.xwt">
+    <sections xmi:id="_QwY0gI3oEemjwpaBkaWY0Q" name="Single LiteralFalseExpression" sectionFile="ui/SingleLiteralFalseExpression.xwt">
       <widget href="ui/SingleLiteralFalseExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UcpBsCq7EeeggtQf9kdCWQ" name="Multiple LiteralFalseExpression" sectionFile="ui/MultipleLiteralFalseExpression.xwt">
+    <sections xmi:id="_QwY0gY3oEemjwpaBkaWY0Q" name="Multiple LiteralFalseExpression" sectionFile="ui/MultipleLiteralFalseExpression.xwt">
       <widget href="ui/MultipleLiteralFalseExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UcpBsSq7EeeggtQf9kdCWQ" name="Single ReferenceBooleanExpression" sectionFile="ui/SingleReferenceBooleanExpression.xwt">
+    <sections xmi:id="_QwZbkI3oEemjwpaBkaWY0Q" name="Single ReferenceBooleanExpression" sectionFile="ui/SingleReferenceBooleanExpression.xwt">
       <widget href="ui/SingleReferenceBooleanExpression.xwt#/"/>
     </sections>
-    <sections xmi:id="_UcpBsiq7EeeggtQf9kdCWQ" name="Multiple ReferenceBooleanExpression" sectionFile="ui/MultipleReferenceBooleanExpression.xwt">
+    <sections xmi:id="_QwZbkY3oEemjwpaBkaWY0Q" name="Multiple ReferenceBooleanExpression" sectionFile="ui/MultipleReferenceBooleanExpression.xwt">
       <widget href="ui/MultipleReferenceBooleanExpression.xwt#/"/>
     </sections>
+    <sections xmi:id="_QwZbko3oEemjwpaBkaWY0Q" name="Single SingleEAttributeValueEqualityExpression" sectionFile="ui/SingleSingleEAttributeValueEqualityExpression.xwt">
+      <widget href="ui/SingleSingleEAttributeValueEqualityExpression.xwt#/"/>
+    </sections>
+    <sections xmi:id="_QwaCoI3oEemjwpaBkaWY0Q" name="Multiple SingleEAttributeValueEqualityExpression" sectionFile="ui/MultipleSingleEAttributeValueEqualityExpression.xwt">
+      <widget href="ui/MultipleSingleEAttributeValueEqualityExpression.xwt#/"/>
+    </sections>
   </tabs>
-  <views xmi:id="_TD6UMSq7EeeggtQf9kdCWQ" name="Single IBasicExpressionElement" sections="_UckwQCq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Umiq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6UMiq7EeeggtQf9kdCWQ" name="isSingleIBasicExpressionElement">
+  <views xmi:id="_P83s4Y3oEemjwpaBkaWY0Q" name="Single IBasicExpressionElement" sections="_QwUjEI3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tQo3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83s4o3oEemjwpaBkaWY0Q" name="isSingleIBasicExpressionElement">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UMyq7EeeggtQf9kdCWQ" name="className" value="IBasicExpressionElement"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UNCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s443oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s5I3oEemjwpaBkaWY0Q" name="className" value="IBasicExpressionElement"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UNSq7EeeggtQf9kdCWQ" name="Single IExpression" sections="_UckwQSq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6UnSq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6UNiq7EeeggtQf9kdCWQ" name="isSingleIExpression">
+  <views xmi:id="_P83s5Y3oEemjwpaBkaWY0Q" name="Single IExpression" sections="_QwUjEY3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tRY3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83s5o3oEemjwpaBkaWY0Q" name="isSingleIExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UNyq7EeeggtQf9kdCWQ" name="className" value="IExpression"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UOCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s543oEemjwpaBkaWY0Q" name="className" value="IExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s6I3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UOSq7EeeggtQf9kdCWQ" name="Single ExpressionCatalog" sections="_UckwQiq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Uniq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6UOiq7EeeggtQf9kdCWQ" name="isSingleExpressionCatalog">
+  <views xmi:id="_P83s6Y3oEemjwpaBkaWY0Q" name="Single ExpressionCatalog" sections="_QwVKII3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tRo3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83s6o3oEemjwpaBkaWY0Q" name="isSingleExpressionCatalog">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UOyq7EeeggtQf9kdCWQ" name="className" value="ExpressionCatalog"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UPCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s643oEemjwpaBkaWY0Q" name="className" value="ExpressionCatalog"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s7I3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6URSq7EeeggtQf9kdCWQ" elementMultiplicity="-1" name="Multiple IBasicExpressionElement" sections="_UclXUiq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Umiq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6URiq7EeeggtQf9kdCWQ" name="isMultipleIBasicExpressionElement">
+  <views xmi:id="_P83s7Y3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple IBasicExpressionElement" sections="_QwVKIY3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tQo3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83s7o3oEemjwpaBkaWY0Q" name="isMultipleIBasicExpressionElement">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6URyq7EeeggtQf9kdCWQ" name="className" value="IBasicExpressionElement"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6USCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s743oEemjwpaBkaWY0Q" name="className" value="IBasicExpressionElement"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s8I3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6USSq7EeeggtQf9kdCWQ" elementMultiplicity="-1" name="Multiple IExpression" sections="_Ucl-YCq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6UnSq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6USiq7EeeggtQf9kdCWQ" name="isMultipleIExpression">
+  <views xmi:id="_P83s8Y3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple IExpression" sections="_QwVKIo3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tRY3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83s8o3oEemjwpaBkaWY0Q" name="isMultipleIExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6USyq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UTCq7EeeggtQf9kdCWQ" name="className" value="IExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s843oEemjwpaBkaWY0Q" name="className" value="IExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s9I3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UTSq7EeeggtQf9kdCWQ" elementMultiplicity="-1" name="Multiple ExpressionCatalog" sections="_Ucl-YSq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Uniq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6UTiq7EeeggtQf9kdCWQ" name="isMultipleExpressionCatalog">
+  <views xmi:id="_P83s9Y3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple ExpressionCatalog" sections="_QwVxMI3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tRo3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83s9o3oEemjwpaBkaWY0Q" name="isMultipleExpressionCatalog">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UTyq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UUCq7EeeggtQf9kdCWQ" name="className" value="ExpressionCatalog"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s943oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s-I3oEemjwpaBkaWY0Q" name="className" value="ExpressionCatalog"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UWSq7EeeggtQf9kdCWQ" name="Single IBooleanExpression" sections="_UcmlcCq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Upyq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6UWiq7EeeggtQf9kdCWQ" name="isSingleIBooleanExpression">
+  <views xmi:id="_P83s-Y3oEemjwpaBkaWY0Q" name="Single IBooleanExpression" sections="_QwVxMY3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tTY3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83s-o3oEemjwpaBkaWY0Q" name="isSingleIBooleanExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UWyq7EeeggtQf9kdCWQ" name="className" value="IBooleanExpression"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UXCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s-43oEemjwpaBkaWY0Q" name="className" value="IBooleanExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s_I3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UXSq7EeeggtQf9kdCWQ" elementMultiplicity="-1" name="Multiple IBooleanExpression" sections="_UcmlcSq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Upyq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6UXiq7EeeggtQf9kdCWQ" name="isMultipleIBooleanExpression">
+  <views xmi:id="_P83s_Y3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple IBooleanExpression" sections="_QwVxMo3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tTY3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83s_o3oEemjwpaBkaWY0Q" name="isMultipleIBooleanExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UXyq7EeeggtQf9kdCWQ" name="className" value="IBooleanExpression"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UYCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83s_43oEemjwpaBkaWY0Q" name="className" value="IBooleanExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tAI3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UYSq7EeeggtQf9kdCWQ" name="Single IBooleanEObjectExpression" sections="_Ucmlciq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Upiq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6UYiq7EeeggtQf9kdCWQ" name="isSingleIBooleanEObjectExpression">
+  <views xmi:id="_P83tAY3oEemjwpaBkaWY0Q" name="Single IBooleanEObjectExpression" sections="_QwWYQI3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tTI3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tAo3oEemjwpaBkaWY0Q" name="isSingleIBooleanEObjectExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UYyq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UZCq7EeeggtQf9kdCWQ" name="className" value="IBooleanEObjectExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tA43oEemjwpaBkaWY0Q" name="className" value="IBooleanEObjectExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tBI3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UZSq7EeeggtQf9kdCWQ" elementMultiplicity="-1" name="Multiple IBooleanEObjectExpression" sections="_Ucmlcyq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Upiq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6UZiq7EeeggtQf9kdCWQ" name="isMultipleIBooleanEObjectExpression">
+  <views xmi:id="_P83tBY3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple IBooleanEObjectExpression" sections="_QwWYQY3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tTI3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tBo3oEemjwpaBkaWY0Q" name="isMultipleIBooleanEObjectExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UZyq7EeeggtQf9kdCWQ" name="className" value="IBooleanEObjectExpression"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UaCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tB43oEemjwpaBkaWY0Q" name="className" value="IBooleanEObjectExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tCI3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UaSq7EeeggtQf9kdCWQ" name="Single OrExpression" sections="_UcnMgCq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Uoyq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Uaiq7EeeggtQf9kdCWQ" name="isSingleOrExpression">
+  <views xmi:id="_P83tCY3oEemjwpaBkaWY0Q" name="Single OrExpression" sections="_QwW_UI3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tSY3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tCo3oEemjwpaBkaWY0Q" name="isSingleOrExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Uayq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UbCq7EeeggtQf9kdCWQ" name="className" value="OrExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tC43oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tDI3oEemjwpaBkaWY0Q" name="className" value="OrExpression"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UbSq7EeeggtQf9kdCWQ" elementMultiplicity="-1" name="Multiple OrExpression" sections="_UcnMgSq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Uoyq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Ubiq7EeeggtQf9kdCWQ" name="isMultipleOrExpression">
+  <views xmi:id="_P83tDY3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple OrExpression" sections="_QwW_UY3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tSY3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tDo3oEemjwpaBkaWY0Q" name="isMultipleOrExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Ubyq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UcCq7EeeggtQf9kdCWQ" name="className" value="OrExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tD43oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tEI3oEemjwpaBkaWY0Q" name="className" value="OrExpression"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UcSq7EeeggtQf9kdCWQ" name="Single AndExpression" sections="_UcnMgiq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6UqCq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Uciq7EeeggtQf9kdCWQ" name="isSingleAndExpression">
+  <views xmi:id="_P83tEY3oEemjwpaBkaWY0Q" name="Single AndExpression" sections="_QwW_Uo3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tTo3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tEo3oEemjwpaBkaWY0Q" name="isSingleAndExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Ucyq7EeeggtQf9kdCWQ" name="className" value="AndExpression"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UdCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tE43oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tFI3oEemjwpaBkaWY0Q" name="className" value="AndExpression"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UdSq7EeeggtQf9kdCWQ" elementMultiplicity="-1" name="Multiple AndExpression" sections="_UcnzkCq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6UqCq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Udiq7EeeggtQf9kdCWQ" name="isMultipleAndExpression">
+  <views xmi:id="_P83tFY3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple AndExpression" sections="_QwXmYI3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tTo3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tFo3oEemjwpaBkaWY0Q" name="isMultipleAndExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Udyq7EeeggtQf9kdCWQ" name="className" value="AndExpression"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UeCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tF43oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tGI3oEemjwpaBkaWY0Q" name="className" value="AndExpression"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UeSq7EeeggtQf9kdCWQ" name="Single NotExpression" sections="_UcnzkSq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Uqyq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Ueiq7EeeggtQf9kdCWQ" name="isSingleNotExpression">
+  <views xmi:id="_P83tGY3oEemjwpaBkaWY0Q" name="Single NotExpression" sections="_QwXmYY3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tUY3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tGo3oEemjwpaBkaWY0Q" name="isSingleNotExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Ueyq7EeeggtQf9kdCWQ" name="className" value="NotExpression"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UfCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tG43oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tHI3oEemjwpaBkaWY0Q" name="className" value="NotExpression"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UfSq7EeeggtQf9kdCWQ" elementMultiplicity="-1" name="Multiple NotExpression" sections="_UcoaoCq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Uqyq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Ufiq7EeeggtQf9kdCWQ" name="isMultipleNotExpression">
+  <views xmi:id="_P83tHY3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple NotExpression" sections="_QwYNcI3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tUY3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tHo3oEemjwpaBkaWY0Q" name="isMultipleNotExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Ufyq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UgCq7EeeggtQf9kdCWQ" name="className" value="NotExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tH43oEemjwpaBkaWY0Q" name="className" value="NotExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tII3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UgSq7EeeggtQf9kdCWQ" name="Single LiteralTrueExpression" sections="_UcoaoSq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Uriq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Ugiq7EeeggtQf9kdCWQ" name="isSingleLiteralTrueExpression">
+  <views xmi:id="_P83tIY3oEemjwpaBkaWY0Q" name="Single LiteralTrueExpression" sections="_QwYNcY3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tVI3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tIo3oEemjwpaBkaWY0Q" name="isSingleLiteralTrueExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Ugyq7EeeggtQf9kdCWQ" name="className" value="LiteralTrueExpression"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UhCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tI43oEemjwpaBkaWY0Q" name="className" value="LiteralTrueExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tJI3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UhSq7EeeggtQf9kdCWQ" elementMultiplicity="-1" name="Multiple LiteralTrueExpression" sections="_Ucoaoiq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Uriq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Uhiq7EeeggtQf9kdCWQ" name="isMultipleLiteralTrueExpression">
+  <views xmi:id="_P83tJY3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple LiteralTrueExpression" sections="_QwYNco3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tVI3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tJo3oEemjwpaBkaWY0Q" name="isMultipleLiteralTrueExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Uhyq7EeeggtQf9kdCWQ" name="className" value="LiteralTrueExpression"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UiCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tJ43oEemjwpaBkaWY0Q" name="className" value="LiteralTrueExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tKI3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UiSq7EeeggtQf9kdCWQ" name="Single LiteralFalseExpression" sections="_Ucoaoyq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Uryq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Uiiq7EeeggtQf9kdCWQ" name="isSingleLiteralFalseExpression">
+  <views xmi:id="_P83tKY3oEemjwpaBkaWY0Q" name="Single LiteralFalseExpression" sections="_QwY0gI3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tVY3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tKo3oEemjwpaBkaWY0Q" name="isSingleLiteralFalseExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Uiyq7EeeggtQf9kdCWQ" name="className" value="LiteralFalseExpression"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UjCq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tK43oEemjwpaBkaWY0Q" name="className" value="LiteralFalseExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tLI3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UjSq7EeeggtQf9kdCWQ" elementMultiplicity="-1" name="Multiple LiteralFalseExpression" sections="_UcpBsCq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6Uryq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Ujiq7EeeggtQf9kdCWQ" name="isMultipleLiteralFalseExpression">
+  <views xmi:id="_P83tLY3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple LiteralFalseExpression" sections="_QwY0gY3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tVY3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tLo3oEemjwpaBkaWY0Q" name="isMultipleLiteralFalseExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Ujyq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UkCq7EeeggtQf9kdCWQ" name="className" value="LiteralFalseExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tL43oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tMI3oEemjwpaBkaWY0Q" name="className" value="LiteralFalseExpression"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UkSq7EeeggtQf9kdCWQ" name="Single ReferenceBooleanExpression" sections="_UcpBsSq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6UsCq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Ukiq7EeeggtQf9kdCWQ" name="isSingleReferenceBooleanExpression">
+  <views xmi:id="_P83tMY3oEemjwpaBkaWY0Q" name="Single ReferenceBooleanExpression" sections="_QwZbkI3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tVo3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tMo3oEemjwpaBkaWY0Q" name="isSingleReferenceBooleanExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Ukyq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UlCq7EeeggtQf9kdCWQ" name="className" value="ReferenceBooleanExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tM43oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tNI3oEemjwpaBkaWY0Q" name="className" value="ReferenceBooleanExpression"/>
     </constraints>
   </views>
-  <views xmi:id="_TD6UlSq7EeeggtQf9kdCWQ" elementMultiplicity="-1" name="Multiple ReferenceBooleanExpression" sections="_UcpBsiq7EeeggtQf9kdCWQ" automaticContext="true" datacontexts="_TD6UsCq7EeeggtQf9kdCWQ">
-    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_TD6Uliq7EeeggtQf9kdCWQ" name="isMultipleReferenceBooleanExpression">
+  <views xmi:id="_P83tNY3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple ReferenceBooleanExpression" sections="_QwZbkY3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tVo3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tNo3oEemjwpaBkaWY0Q" name="isMultipleReferenceBooleanExpression">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6Ulyq7EeeggtQf9kdCWQ" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_TD6UmCq7EeeggtQf9kdCWQ" name="className" value="ReferenceBooleanExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tN43oEemjwpaBkaWY0Q" name="className" value="ReferenceBooleanExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tOI3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
     </constraints>
   </views>
-  <dataContexts xmi:id="_TD6UmSq7EeeggtQf9kdCWQ" name="expressions" label="expressions">
-    <elements xmi:id="_TD6Umiq7EeeggtQf9kdCWQ" name="IBasicExpressionElement">
-      <properties xmi:id="_TD6Umyq7EeeggtQf9kdCWQ" name="name"/>
-      <properties xmi:id="_TD6UnCq7EeeggtQf9kdCWQ" name="description"/>
+  <views xmi:id="_P83tOY3oEemjwpaBkaWY0Q" name="Single SingleEAttributeValueEqualityExpression" sections="_QwZbko3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tWI3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tOo3oEemjwpaBkaWY0Q" name="isSingleSingleEAttributeValueEqualityExpression">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tO43oEemjwpaBkaWY0Q" name="className" value="SingleEAttributeValueEqualityExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tPI3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+    </constraints>
+  </views>
+  <views xmi:id="_P83tPY3oEemjwpaBkaWY0Q" elementMultiplicity="-1" name="Multiple SingleEAttributeValueEqualityExpression" sections="_QwaCoI3oEemjwpaBkaWY0Q" automaticContext="true" datacontexts="_P83tWI3oEemjwpaBkaWY0Q">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_P83tPo3oEemjwpaBkaWY0Q" name="isMultipleSingleEAttributeValueEqualityExpression">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tP43oEemjwpaBkaWY0Q" name="className" value="SingleEAttributeValueEqualityExpression"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_P83tQI3oEemjwpaBkaWY0Q" name="nsUri" value="http://www.eclipse.org/papyrus/expressions/booleanexpressions"/>
+    </constraints>
+  </views>
+  <dataContexts xmi:id="_P83tQY3oEemjwpaBkaWY0Q" name="expressions" label="expressions">
+    <elements xmi:id="_P83tQo3oEemjwpaBkaWY0Q" name="IBasicExpressionElement">
+      <properties xmi:id="_P83tQ43oEemjwpaBkaWY0Q" name="name"/>
+      <properties xmi:id="_P83tRI3oEemjwpaBkaWY0Q" name="description"/>
     </elements>
-    <elements xmi:id="_TD6UnSq7EeeggtQf9kdCWQ" name="IExpression" supertypes="_TD6Umiq7EeeggtQf9kdCWQ"/>
-    <elements xmi:id="_TD6Uniq7EeeggtQf9kdCWQ" name="ExpressionCatalog" supertypes="_TD6Umiq7EeeggtQf9kdCWQ">
-      <properties xmi:id="_TD6Unyq7EeeggtQf9kdCWQ" name="expressions" type="Reference" multiplicity="-1"/>
+    <elements xmi:id="_P83tRY3oEemjwpaBkaWY0Q" name="IExpression" supertypes="_P83tQo3oEemjwpaBkaWY0Q"/>
+    <elements xmi:id="_P83tRo3oEemjwpaBkaWY0Q" name="ExpressionCatalog" supertypes="_P83tQo3oEemjwpaBkaWY0Q">
+      <properties xmi:id="_P83tR43oEemjwpaBkaWY0Q" name="expressions" type="Reference" multiplicity="-1"/>
     </elements>
-    <elements xmi:id="_TD6UoCq7EeeggtQf9kdCWQ" name="EClass"/>
-    <elements xmi:id="_TD6UoSq7EeeggtQf9kdCWQ" name="EObject"/>
-    <elements xsi:type="contexts:DataContextPackage" xmi:id="_TD6Uoiq7EeeggtQf9kdCWQ" name="booleanexpressions">
-      <elements xmi:id="_TD6Uoyq7EeeggtQf9kdCWQ" name="OrExpression" supertypes="_TD6Upiq7EeeggtQf9kdCWQ">
-        <properties xmi:id="_TD6UpCq7EeeggtQf9kdCWQ" name="ownedExpressions" type="Reference" multiplicity="-1"/>
-        <properties xmi:id="_TD6UpSq7EeeggtQf9kdCWQ" name="referencedExpressions" type="Reference" multiplicity="-1"/>
+    <elements xsi:type="contexts:DataContextPackage" xmi:id="_P83tSI3oEemjwpaBkaWY0Q" name="booleanexpressions">
+      <elements xmi:id="_P83tSY3oEemjwpaBkaWY0Q" name="OrExpression" supertypes="_P83tTI3oEemjwpaBkaWY0Q">
+        <properties xmi:id="_P83tSo3oEemjwpaBkaWY0Q" name="ownedExpressions" type="Reference" multiplicity="-1"/>
+        <properties xmi:id="_P83tS43oEemjwpaBkaWY0Q" name="referencedExpressions" type="Reference" multiplicity="-1"/>
       </elements>
-      <elements xmi:id="_TD6Upiq7EeeggtQf9kdCWQ" name="IBooleanEObjectExpression" supertypes="_TD6Upyq7EeeggtQf9kdCWQ"/>
-      <elements xmi:id="_TD6Upyq7EeeggtQf9kdCWQ" name="IBooleanExpression" supertypes="_TD6UnSq7EeeggtQf9kdCWQ"/>
-      <elements xmi:id="_TD6UqCq7EeeggtQf9kdCWQ" name="AndExpression" supertypes="_TD6Upiq7EeeggtQf9kdCWQ">
-        <properties xmi:id="_TD6UqSq7EeeggtQf9kdCWQ" name="ownedExpressions" type="Reference" multiplicity="-1"/>
-        <properties xmi:id="_TD6Uqiq7EeeggtQf9kdCWQ" name="referencedExpressions" type="Reference" multiplicity="-1"/>
+      <elements xmi:id="_P83tTI3oEemjwpaBkaWY0Q" name="IBooleanEObjectExpression" supertypes="_P83tTY3oEemjwpaBkaWY0Q"/>
+      <elements xmi:id="_P83tTY3oEemjwpaBkaWY0Q" name="IBooleanExpression" supertypes="_P83tRY3oEemjwpaBkaWY0Q"/>
+      <elements xmi:id="_P83tTo3oEemjwpaBkaWY0Q" name="AndExpression" supertypes="_P83tTI3oEemjwpaBkaWY0Q">
+        <properties xmi:id="_P83tT43oEemjwpaBkaWY0Q" name="ownedExpressions" type="Reference" multiplicity="-1"/>
+        <properties xmi:id="_P83tUI3oEemjwpaBkaWY0Q" name="referencedExpressions" type="Reference" multiplicity="-1"/>
       </elements>
-      <elements xmi:id="_TD6Uqyq7EeeggtQf9kdCWQ" name="NotExpression" supertypes="_TD6Upiq7EeeggtQf9kdCWQ">
-        <properties xmi:id="_TD6UrCq7EeeggtQf9kdCWQ" name="ownedExpression" type="Reference"/>
-        <properties xmi:id="_TD6UrSq7EeeggtQf9kdCWQ" name="referencedExpression" type="Reference"/>
+      <elements xmi:id="_P83tUY3oEemjwpaBkaWY0Q" name="NotExpression" supertypes="_P83tTI3oEemjwpaBkaWY0Q">
+        <properties xmi:id="_P83tUo3oEemjwpaBkaWY0Q" name="ownedExpression" type="Reference"/>
+        <properties xmi:id="_P83tU43oEemjwpaBkaWY0Q" name="referencedExpression" type="Reference"/>
       </elements>
-      <elements xmi:id="_TD6Uriq7EeeggtQf9kdCWQ" name="LiteralTrueExpression" supertypes="_TD6Upiq7EeeggtQf9kdCWQ"/>
-      <elements xmi:id="_TD6Uryq7EeeggtQf9kdCWQ" name="LiteralFalseExpression" supertypes="_TD6Upiq7EeeggtQf9kdCWQ"/>
-      <elements xmi:id="_TD6UsCq7EeeggtQf9kdCWQ" name="ReferenceBooleanExpression" supertypes="_TD6Upiq7EeeggtQf9kdCWQ">
-        <properties xmi:id="_TD6UsSq7EeeggtQf9kdCWQ" name="referencedExpression" type="Reference"/>
+      <elements xmi:id="_P83tVI3oEemjwpaBkaWY0Q" name="LiteralTrueExpression" supertypes="_P83tTI3oEemjwpaBkaWY0Q"/>
+      <elements xmi:id="_P83tVY3oEemjwpaBkaWY0Q" name="LiteralFalseExpression" supertypes="_P83tTI3oEemjwpaBkaWY0Q"/>
+      <elements xmi:id="_P83tVo3oEemjwpaBkaWY0Q" name="ReferenceBooleanExpression" supertypes="_P83tTI3oEemjwpaBkaWY0Q">
+        <properties xmi:id="_P83tV43oEemjwpaBkaWY0Q" name="referencedExpression" type="Reference"/>
       </elements>
-    </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@modelElementFactories.0"/>
-  </dataContexts>
-  <dataContexts xmi:id="_6U4QsCdvEeeoAJG6t_MwCA" name="customexpressions" label="custom expressions">
-    <elements xmi:id="_Jq6mkCdwEeeoAJG6t_MwCA" name="CustomReferenceBooleanExpression" supertypes="_TD6UsCq7EeeggtQf9kdCWQ">
-      <properties xmi:id="_X_kX8CdwEeeoAJG6t_MwCA" name="referencedExpression" label="Referenced Expression" type="Reference"/>
-    </elements>
-    <elements xmi:id="_25jG8C8-EeexfKc2E3OwJQ" name="CustomAndExpression" supertypes="_TD6UqCq7EeeggtQf9kdCWQ">
-      <properties xmi:id="_6mc2gC8-EeexfKc2E3OwJQ" name="ownedExpressions" label="Owned Expressions" type="Reference" multiplicity="-1"/>
-      <properties xmi:id="_80D9kC8-EeexfKc2E3OwJQ" name="referencedExpressions" label="Referenced Expressions" type="Reference" multiplicity="-1"/>
-    </elements>
-    <elements xmi:id="_BosxQC8_EeexfKc2E3OwJQ" name="CustomOrExpression" supertypes="_TD6Uoyq7EeeggtQf9kdCWQ">
-      <properties xmi:id="_BotYUC8_EeexfKc2E3OwJQ" name="ownedExpressions" label="Owned Expressions" type="Reference" multiplicity="-1"/>
-      <properties xmi:id="_BotYUS8_EeexfKc2E3OwJQ" name="referencedExpressions" label="Referenced Expressions" type="Reference" multiplicity="-1"/>
-    </elements>
-    <elements xmi:id="_F-Dn8C8_EeexfKc2E3OwJQ" name="CustomNotExpression" supertypes="_TD6Uqyq7EeeggtQf9kdCWQ">
-      <properties xmi:id="_F-Dn8S8_EeexfKc2E3OwJQ" name="ownedExpression" label="Owned Expression" type="Reference" description="This field can be null, in this case we evaluate Referenced Expression."/>
-      <properties xmi:id="_F-Dn8i8_EeexfKc2E3OwJQ" name="referencedExpression" label="Referenced Expression" type="Reference" description="This field is evaluated only when Owned Expression is not null.&#xD;&#xA;This field can be null."/>
+      <elements xmi:id="_P83tWI3oEemjwpaBkaWY0Q" name="SingleEAttributeValueEqualityExpression" supertypes="_P83tTI3oEemjwpaBkaWY0Q">
+        <properties xmi:id="_P83tWY3oEemjwpaBkaWY0Q" name="eAttribute" type="Reference" description="The eAttribute to check." multiplicity="1"/>
+        <properties xmi:id="_P83tWo3oEemjwpaBkaWY0Q" name="expectedValue" description="The expected value for the EAttribute."/>
+      </elements>
     </elements>
     <modelElementFactory href="Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>

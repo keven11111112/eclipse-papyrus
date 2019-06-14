@@ -124,6 +124,7 @@ public class ExpressionCatalogImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -133,6 +134,7 @@ public class ExpressionCatalogImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -145,6 +147,7 @@ public class ExpressionCatalogImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -154,6 +157,7 @@ public class ExpressionCatalogImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -166,6 +170,7 @@ public class ExpressionCatalogImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<IExpression<?, ?>> getExpressions() {
 		if (expressions == null) {
 			expressions = new EObjectContainmentEList<IExpression<?, ?>>(IExpression.class, this, ExpressionsPackage.EXPRESSION_CATALOG__EXPRESSIONS);
@@ -276,7 +281,7 @@ public class ExpressionCatalogImpl extends MinimalEObjectImpl.Container implemen
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(", description: "); //$NON-NLS-1$

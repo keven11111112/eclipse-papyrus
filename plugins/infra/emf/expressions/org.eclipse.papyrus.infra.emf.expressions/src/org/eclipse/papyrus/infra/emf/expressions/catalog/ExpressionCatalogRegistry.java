@@ -1,14 +1,14 @@
 /**
  * Copyright (c) 2017 CEA LIST.
- * 
- * 
+ *
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
- * 
+ *
  * Contributors:
  * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionCatalog;
 
 /**
- * 
+ *
  * This registry provides all the catalog registered throw the extension point {@link ExpressionCatalogRegistry#EXTENSION_ID}
  *
  */
@@ -48,7 +48,7 @@ public class ExpressionCatalogRegistry {
 	/**
 	 * The list of the registered catalog
 	 */
-	private List<ExpressionCatalog> catalogs = new ArrayList<ExpressionCatalog>();
+	private List<ExpressionCatalog> catalogs = new ArrayList<>();
 
 	/** The instance of the {@link ExpressionCatalogRegistry} */
 	public static final ExpressionCatalogRegistry INSTANCE = new ExpressionCatalogRegistry();
@@ -88,12 +88,12 @@ public class ExpressionCatalogRegistry {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 * 		all the registered catalog
+	 *         all the registered catalog
 	 */
 	public List<ExpressionCatalog> getAllRegisteredCatalog() {
-		return catalogs;
+		return new ArrayList<>(catalogs); // to avoid clear call on the list!
 	}
 
 }

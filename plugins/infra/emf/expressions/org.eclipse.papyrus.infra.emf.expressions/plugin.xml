@@ -61,7 +61,8 @@
          point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
       <library
             description="The basic uml model for expression"
-            name="Expressions"
+            iconpath="icons/Expressions.gif"
+            name="Papyrus-EMFExpressions (Internal)"
             path="pathmap://EXPRESSIONS//expressions.uml">
       </library>
    </extension>

@@ -199,6 +199,7 @@ public class BooleanExpressionsActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("booleanexpressions-settings")); //$NON-NLS-1$
 		toolBarManager.add(new Separator("booleanexpressions-additions")); //$NON-NLS-1$
 	}
@@ -235,6 +236,7 @@ public class BooleanExpressionsActionBarContributor
 		//
 		submenuManager.addMenuListener
 			(new IMenuListener() {
+				 @Override
 				 public void menuAboutToShow(IMenuManager menuManager) {
 					 menuManager.updateAll(true);
 				 }
@@ -282,6 +284,7 @@ public class BooleanExpressionsActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		// Remove any menu items for old selection.
 		//
@@ -483,7 +486,7 @@ public class BooleanExpressionsActionBarContributor
 				if (contributionItem instanceof MenuManager) {
 					MenuManager submenuManager = (MenuManager)contributionItem;
 					if (submenuActions.containsKey(submenuManager.getMenuText())) {
-						depopulateManager(submenuManager, submenuActions.get(contributionItem));
+						depopulateManager(submenuManager, submenuActions.get(submenuManager.getMenuText()));
 						manager.remove(contributionItem);
 					}
 				}

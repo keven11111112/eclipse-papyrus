@@ -1,26 +1,26 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
-
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.LiteralTrueE
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.NotExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.OrExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.ReferenceBooleanExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression;
 
 import org.eclipse.papyrus.infra.emf.expressions.impl.ExpressionsPackageImpl;
 
@@ -102,6 +103,13 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	private EClass referenceBooleanExpressionEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass singleEAttributeValueEqualityExpressionEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -129,7 +137,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link BooleanExpressionsPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -143,7 +151,8 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 		if (isInited) return (BooleanExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(BooleanExpressionsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		BooleanExpressionsPackageImpl theBooleanExpressionsPackage = (BooleanExpressionsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BooleanExpressionsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new BooleanExpressionsPackageImpl());
+		Object registeredBooleanExpressionsPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		BooleanExpressionsPackageImpl theBooleanExpressionsPackage = registeredBooleanExpressionsPackage instanceof BooleanExpressionsPackageImpl ? (BooleanExpressionsPackageImpl)registeredBooleanExpressionsPackage : new BooleanExpressionsPackageImpl();
 
 		isInited = true;
 
@@ -151,7 +160,8 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
+		Object registeredPackage = EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
+		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(registeredPackage instanceof ExpressionsPackageImpl ? registeredPackage : ExpressionsPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theBooleanExpressionsPackage.createPackageContents();
@@ -164,7 +174,6 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 		// Mark meta-data to indicate it can't be changed
 		theBooleanExpressionsPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(BooleanExpressionsPackage.eNS_URI, theBooleanExpressionsPackage);
 		return theBooleanExpressionsPackage;
@@ -175,6 +184,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOrExpression() {
 		return orExpressionEClass;
 	}
@@ -184,6 +194,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOrExpression_OwnedExpressions() {
 		return (EReference)orExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -193,6 +204,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOrExpression_ReferencedExpressions() {
 		return (EReference)orExpressionEClass.getEStructuralFeatures().get(1);
 	}
@@ -202,6 +214,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIBooleanEObjectExpression() {
 		return iBooleanEObjectExpressionEClass;
 	}
@@ -211,6 +224,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIBooleanExpression() {
 		return iBooleanExpressionEClass;
 	}
@@ -220,6 +234,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAndExpression() {
 		return andExpressionEClass;
 	}
@@ -229,6 +244,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAndExpression_OwnedExpressions() {
 		return (EReference)andExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -238,6 +254,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAndExpression_ReferencedExpressions() {
 		return (EReference)andExpressionEClass.getEStructuralFeatures().get(1);
 	}
@@ -247,6 +264,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNotExpression() {
 		return notExpressionEClass;
 	}
@@ -256,6 +274,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNotExpression_OwnedExpression() {
 		return (EReference)notExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -265,6 +284,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getNotExpression_ReferencedExpression() {
 		return (EReference)notExpressionEClass.getEStructuralFeatures().get(1);
 	}
@@ -274,6 +294,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLiteralTrueExpression() {
 		return literalTrueExpressionEClass;
 	}
@@ -283,6 +304,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getLiteralFalseExpression() {
 		return literalFalseExpressionEClass;
 	}
@@ -292,6 +314,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getReferenceBooleanExpression() {
 		return referenceBooleanExpressionEClass;
 	}
@@ -301,6 +324,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReferenceBooleanExpression_ReferencedExpression() {
 		return (EReference)referenceBooleanExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -310,6 +334,37 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EClass getSingleEAttributeValueEqualityExpression() {
+		return singleEAttributeValueEqualityExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSingleEAttributeValueEqualityExpression_EAttribute() {
+		return (EReference)singleEAttributeValueEqualityExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSingleEAttributeValueEqualityExpression_ExpectedValue() {
+		return (EAttribute)singleEAttributeValueEqualityExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public BooleanExpressionsFactory getBooleanExpressionsFactory() {
 		return (BooleanExpressionsFactory)getEFactoryInstance();
 	}
@@ -355,6 +410,10 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 
 		referenceBooleanExpressionEClass = createEClass(REFERENCE_BOOLEAN_EXPRESSION);
 		createEReference(referenceBooleanExpressionEClass, REFERENCE_BOOLEAN_EXPRESSION__REFERENCED_EXPRESSION);
+
+		singleEAttributeValueEqualityExpressionEClass = createEClass(SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION);
+		createEReference(singleEAttributeValueEqualityExpressionEClass, SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION__EATTRIBUTE);
+		createEAttribute(singleEAttributeValueEqualityExpressionEClass, SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION__EXPECTED_VALUE);
 	}
 
 	/**
@@ -406,6 +465,7 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 		literalTrueExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
 		literalFalseExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
 		referenceBooleanExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
+		singleEAttributeValueEqualityExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(orExpressionEClass, OrExpression.class, "OrExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -431,6 +491,10 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 		initEClass(referenceBooleanExpressionEClass, ReferenceBooleanExpression.class, "ReferenceBooleanExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getReferenceBooleanExpression_ReferencedExpression(), this.getIBooleanEObjectExpression(), null, "referencedExpression", null, 0, 1, ReferenceBooleanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
+		initEClass(singleEAttributeValueEqualityExpressionEClass, SingleEAttributeValueEqualityExpression.class, "SingleEAttributeValueEqualityExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getSingleEAttributeValueEqualityExpression_EAttribute(), theEcorePackage.getEAttribute(), null, "eAttribute", null, 0, 1, SingleEAttributeValueEqualityExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getSingleEAttributeValueEqualityExpression_ExpectedValue(), ecorePackage.getEString(), "expectedValue", null, 0, 1, SingleEAttributeValueEqualityExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
 		// Create annotations
 		// http://www.eclipse.org/uml2/2.0.0/UML
 		createUMLAnnotations();
@@ -443,18 +507,18 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * @generated NOT
 	 */
 	protected void createUMLAnnotations() {
-		String source = "http://www.eclipse.org/uml2/2.0.0/UML"; //$NON-NLS-1$	
+		String source = "http://www.eclipse.org/uml2/2.0.0/UML"; //$NON-NLS-1$
 		addAnnotation
-		  (this, 
-		   source, 
+		  (this,
+		   source,
 		   new String[] {
-			 "originalName", "BooleanExpressions" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
+			   "originalName", "BooleanExpressions" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
 //		addAnnotation
-//		  (null, 
-//		   source, 
+//		  (null,
+//		   source,
 //		   new String[] {
-//			 "originalName", "REDEFINED_CONTEXT_TYPE" //$NON-NLS-1$ //$NON-NLS-2$
+//			   "originalName", "REDEFINED_CONTEXT_TYPE" //$NON-NLS-1$ //$NON-NLS-2$
 //		   });
 	}
 

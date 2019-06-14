@@ -1,16 +1,15 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.util;
 
@@ -113,6 +112,10 @@ public class BooleanExpressionsAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseReferenceBooleanExpression(ReferenceBooleanExpression object) {
 				return createReferenceBooleanExpressionAdapter();
+			}
+			@Override
+			public Adapter caseSingleEAttributeValueEqualityExpression(SingleEAttributeValueEqualityExpression object) {
+				return createSingleEAttributeValueEqualityExpressionAdapter();
 			}
 			@Override
 			public Adapter caseIBasicExpressionElement(IBasicExpressionElement object) {
@@ -251,6 +254,20 @@ public class BooleanExpressionsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createReferenceBooleanExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression <em>Single EAttribute Value Equality Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression
+	 * @generated
+	 */
+	public Adapter createSingleEAttributeValueEqualityExpressionAdapter() {
 		return null;
 	}
 

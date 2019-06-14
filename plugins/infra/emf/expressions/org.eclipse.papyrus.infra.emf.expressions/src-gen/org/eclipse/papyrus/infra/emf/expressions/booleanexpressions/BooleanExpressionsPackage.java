@@ -1,19 +1,19 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.infra.emf.expressions.booleanexpressions;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -573,6 +573,79 @@ public interface BooleanExpressionsPackage extends EPackage {
 	 */
 	int REFERENCE_BOOLEAN_EXPRESSION_OPERATION_COUNT = IBOOLEAN_EOBJECT_EXPRESSION_OPERATION_COUNT + 0;
 
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.SingleEAttributeValueEqualityExpressionImpl <em>Single EAttribute Value Equality Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.SingleEAttributeValueEqualityExpressionImpl
+	 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.BooleanExpressionsPackageImpl#getSingleEAttributeValueEqualityExpression()
+	 * @generated
+	 */
+	int SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION = 8;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION__NAME = IBOOLEAN_EOBJECT_EXPRESSION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION__DESCRIPTION = IBOOLEAN_EOBJECT_EXPRESSION__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>EAttribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION__EATTRIBUTE = IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Expected Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION__EXPECTED_VALUE = IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Single EAttribute Value Equality Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION_FEATURE_COUNT = IBOOLEAN_EOBJECT_EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Evaluate</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION___EVALUATE__OBJECT = IBOOLEAN_EOBJECT_EXPRESSION___EVALUATE__OBJECT;
+
+	/**
+	 * The number of operations of the '<em>Single EAttribute Value Equality Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION_OPERATION_COUNT = IBOOLEAN_EOBJECT_EXPRESSION_OPERATION_COUNT + 0;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.OrExpression <em>Or Expression</em>}'.
@@ -732,6 +805,38 @@ public interface BooleanExpressionsPackage extends EPackage {
 	EReference getReferenceBooleanExpression_ReferencedExpression();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression <em>Single EAttribute Value Equality Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Single EAttribute Value Equality Expression</em>'.
+	 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression
+	 * @generated
+	 */
+	EClass getSingleEAttributeValueEqualityExpression();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression#getEAttribute <em>EAttribute</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>EAttribute</em>'.
+	 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression#getEAttribute()
+	 * @see #getSingleEAttributeValueEqualityExpression()
+	 * @generated
+	 */
+	EReference getSingleEAttributeValueEqualityExpression_EAttribute();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression#getExpectedValue <em>Expected Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expected Value</em>'.
+	 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression#getExpectedValue()
+	 * @see #getSingleEAttributeValueEqualityExpression()
+	 * @generated
+	 */
+	EAttribute getSingleEAttributeValueEqualityExpression_ExpectedValue();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -889,6 +994,32 @@ public interface BooleanExpressionsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REFERENCE_BOOLEAN_EXPRESSION__REFERENCED_EXPRESSION = eINSTANCE.getReferenceBooleanExpression_ReferencedExpression();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.SingleEAttributeValueEqualityExpressionImpl <em>Single EAttribute Value Equality Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.SingleEAttributeValueEqualityExpressionImpl
+		 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.BooleanExpressionsPackageImpl#getSingleEAttributeValueEqualityExpression()
+		 * @generated
+		 */
+		EClass SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION = eINSTANCE.getSingleEAttributeValueEqualityExpression();
+
+		/**
+		 * The meta object literal for the '<em><b>EAttribute</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION__EATTRIBUTE = eINSTANCE.getSingleEAttributeValueEqualityExpression_EAttribute();
+
+		/**
+		 * The meta object literal for the '<em><b>Expected Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION__EXPECTED_VALUE = eINSTANCE.getSingleEAttributeValueEqualityExpression_ExpectedValue();
 
 	}
 

@@ -21,11 +21,13 @@ import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AndExpressio
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.NotExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.OrExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.ReferenceBooleanExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.SingleEAttributeValueEqualityExpression;
 import org.eclipse.papyrus.infra.emf.expressions.properties.Activator;
 import org.eclipse.papyrus.infra.emf.expressions.properties.modelelements.AndExpressionModelElement;
 import org.eclipse.papyrus.infra.emf.expressions.properties.modelelements.NotExpressionModelElement;
 import org.eclipse.papyrus.infra.emf.expressions.properties.modelelements.OrExpressionModelElement;
 import org.eclipse.papyrus.infra.emf.expressions.properties.modelelements.ReferenceBooleanEObjectExpressionModelElement;
+import org.eclipse.papyrus.infra.emf.expressions.properties.modelelements.SingleEAttributeValueEqualityExpressionModelElement;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
@@ -33,12 +35,12 @@ import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElementFacto
 
 /**
  * Custom Factory for EMF Expressions
- * 
+ *
  */
 public class CustomExpressionsEMFModelElementFactory extends EMFModelElementFactory {
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElementFactory#doCreateFromSource(java.lang.Object, org.eclipse.papyrus.infra.properties.contexts.DataContextElement)
 	 *
 	 * @param sourceElement
@@ -55,17 +57,19 @@ public class CustomExpressionsEMFModelElementFactory extends EMFModelElementFact
 		if (sourceElement instanceof ReferenceBooleanExpression) {
 			return new ReferenceBooleanEObjectExpressionModelElement((EObject) sourceElement, EMFHelper.resolveEditingDomain(sourceElement));
 		}
-		if(sourceElement instanceof AndExpression) {
+		if (sourceElement instanceof AndExpression) {
 			return new AndExpressionModelElement((EObject) sourceElement, EMFHelper.resolveEditingDomain(sourceElement));
 		}
-		if(sourceElement instanceof OrExpression) {
+		if (sourceElement instanceof OrExpression) {
 			return new OrExpressionModelElement((EObject) sourceElement, EMFHelper.resolveEditingDomain(sourceElement));
 		}
-		if(sourceElement instanceof NotExpression) {
+		if (sourceElement instanceof NotExpression) {
 			return new NotExpressionModelElement((EObject) sourceElement, EMFHelper.resolveEditingDomain(sourceElement));
 		}
+		if (sourceElement instanceof SingleEAttributeValueEqualityExpression) {
+			return new SingleEAttributeValueEqualityExpressionModelElement((EObject) sourceElement, EMFHelper.resolveEditingDomain(sourceElement));
+		}
 
-		
 		return super.doCreateFromSource(sourceElement, context);
 	}
 }

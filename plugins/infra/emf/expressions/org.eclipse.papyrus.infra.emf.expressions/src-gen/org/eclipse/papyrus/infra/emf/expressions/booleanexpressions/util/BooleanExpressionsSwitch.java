@@ -1,16 +1,15 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.util;
 
@@ -158,6 +157,16 @@ public class BooleanExpressionsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BooleanExpressionsPackage.SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION: {
+				SingleEAttributeValueEqualityExpression singleEAttributeValueEqualityExpression = (SingleEAttributeValueEqualityExpression)theEObject;
+				T result = caseSingleEAttributeValueEqualityExpression(singleEAttributeValueEqualityExpression);
+				if (result == null) result = caseIBooleanEObjectExpression(singleEAttributeValueEqualityExpression);
+				if (result == null) result = caseIBooleanExpression(singleEAttributeValueEqualityExpression);
+				if (result == null) result = caseIExpression(singleEAttributeValueEqualityExpression);
+				if (result == null) result = caseIBasicExpressionElement(singleEAttributeValueEqualityExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -279,6 +288,21 @@ public class BooleanExpressionsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseReferenceBooleanExpression(ReferenceBooleanExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Single EAttribute Value Equality Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Single EAttribute Value Equality Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSingleEAttributeValueEqualityExpression(SingleEAttributeValueEqualityExpression object) {
 		return null;
 	}
 

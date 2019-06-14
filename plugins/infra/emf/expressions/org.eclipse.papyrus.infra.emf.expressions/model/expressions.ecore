@@ -60,7 +60,11 @@
           upperBound="-1" eType="#//booleanexpressions/IBooleanEObjectExpression"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpressions"
-          ordered="false" upperBound="-1" eType="#//booleanexpressions/IBooleanEObjectExpression"/>
+          ordered="false" upperBound="-1" eType="#//booleanexpressions/IBooleanEObjectExpression">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IBooleanEObjectExpression" abstract="true"
         interface="true">
@@ -91,7 +95,11 @@
           upperBound="-1" eType="#//booleanexpressions/IBooleanEObjectExpression"
           containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpressions"
-          ordered="false" upperBound="-1" eType="#//booleanexpressions/IBooleanEObjectExpression"/>
+          ordered="false" upperBound="-1" eType="#//booleanexpressions/IBooleanEObjectExpression">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NotExpression" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -100,7 +108,11 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" ordered="false"
           eType="#//booleanexpressions/IBooleanEObjectExpression" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpression"
-          ordered="false" eType="#//booleanexpressions/IBooleanEObjectExpression"/>
+          ordered="false" eType="#//booleanexpressions/IBooleanEObjectExpression">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/singleBooleanExpressionReference"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LiteralTrueExpression" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -115,9 +127,29 @@
     <eClassifiers xsi:type="ecore:EClass" name="ReferenceBooleanExpression" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This expression allows to reference an expression defined in another model.&#xD;&#xA;If there is no expression referenced we return TRUE."/>
+        <details key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/singleBooleanExpressionReference"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpression"
           ordered="false" eType="#//booleanexpressions/IBooleanEObjectExpression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SingleEAttributeValueEqualityExpression"
+        eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="This expression allows to check if the eAttribute value is equals to the expected one. &#xD;&#xA;This expression returns false in all cases, expected when the expectedValue is equals to the current value."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="eAttribute" ordered="false"
+          eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The eAttribute to check."/>
+          <details key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/singleEAttributeReference"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="expectedValue" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The expected value for the EAttribute."/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

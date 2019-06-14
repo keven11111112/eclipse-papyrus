@@ -45,5 +45,35 @@
                org.eclipse.emf.edit.provider.IItemLabelProvider
                org.eclipse.emf.edit.provider.IItemPropertySource"/>
    </extension>
+     <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="TreeOutlinePage">
+         <propertySection
+               class="org.eclipse.papyrus.infra.emf.expressions.edit.internal.properties.EMFExpressionPropertySection"
+               filter="org.eclipse.papyrus.infra.emf.expressions.edit.internal.properties.EMFExpressionSectionFilter"
+               id="org.eclipse.papyrus.infra.emf.expression.properties.propertySection"
+               tab="advanced">
+            <input
+                  type="java.lang.Object">
+            </input>
+         </propertySection>
+      </propertySections>
+   </extension>
+   <extension
+         point="org.eclipse.emf.edit.propertyEditorFactories">
+      <factory
+            class="org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.SingleEAttributeReferenceExpressionEditorFactory"
+			uri="http://www.eclipse.org/papyrus/expressions/singleEAttributeReference">
+      </factory>
+      <factory
+            class="org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.SingleBooleanExpressionReferenceEditorFactory"
+            uri="http://www.eclipse.org/papyrus/expressions/singleBooleanExpressionReference">
+      </factory>
+      <factory
+            class="org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.MultiBooleanExpressionsReferenceEditorFactory"
+            uri="http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference">
+      </factory>
+   </extension>
 
 </plugin>

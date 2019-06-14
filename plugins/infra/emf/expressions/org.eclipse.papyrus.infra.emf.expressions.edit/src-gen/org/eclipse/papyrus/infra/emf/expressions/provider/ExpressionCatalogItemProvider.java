@@ -1,16 +1,15 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
 package org.eclipse.papyrus.infra.emf.expressions.provider;
 
@@ -191,7 +190,7 @@ public class ExpressionCatalogItemProvider
 			getString("_UI_ExpressionCatalog_type") : //$NON-NLS-1$
 			getString("_UI_ExpressionCatalog_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -256,6 +255,11 @@ public class ExpressionCatalogItemProvider
 			(createChildParameter
 				(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
 				 BooleanExpressionsFactory.eINSTANCE.createReferenceBooleanExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ExpressionsPackage.Literals.EXPRESSION_CATALOG__EXPRESSIONS,
+				 BooleanExpressionsFactory.eINSTANCE.createSingleEAttributeValueEqualityExpression()));
 	}
 
 	/**
