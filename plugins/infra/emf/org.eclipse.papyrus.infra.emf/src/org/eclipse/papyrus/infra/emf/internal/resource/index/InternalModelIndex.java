@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016, 2017 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.internal.resource.index;
@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex;
 import com.google.common.util.concurrent.AsyncFunction;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.SettableFuture;
 
 /**
@@ -78,11 +79,11 @@ public abstract class InternalModelIndex {
 
 	/**
 	 * Obtains the content types matching a {@code file}.
-	 * 
+	 *
 	 * @param file
 	 *            a file in the workspace
 	 * @return the content types of the {@code file}, or an empty array if none
-	 * 
+	 *
 	 * @precondition The {@link IndexManager} must have already {@linkplain #start() started} me.
 	 */
 	protected final IContentType[] getContentTypes(IFile file) {
@@ -92,25 +93,25 @@ public abstract class InternalModelIndex {
 	/**
 	 * Obtains an asynchronous future result that is scheduled to run after
 	 * any pending indexing work has completed.
-	 * 
+	 *
 	 * @param callable
 	 *            the operation to schedule
-	 * 
+	 *
 	 * @return the future result of the operation
 	 */
 	protected <V> ListenableFuture<V> afterIndex(final Callable<V> callable) {
 		AsyncFunction<IndexManager, V> indexFunction = mgr -> mgr.afterIndex(this, callable);
-		return Futures.transformAsync(manager, indexFunction);
+		return Futures.transformAsync(manager, indexFunction, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 	}
 
 	/**
 	 * Executes the specified {@code callable} on the index if it is ready now to provide
 	 * a result.
-	 * 
+	 *
 	 * @param callable
 	 *            an index operation
 	 * @return the result, or {@code null} if the index is not now ready
-	 * 
+	 *
 	 * @throws CoreException
 	 *             on failure to get the index manager or exception in the
 	 *             {@code callable}
@@ -164,7 +165,7 @@ public abstract class InternalModelIndex {
 
 	/**
 	 * Do I have an up-to-date index for the given {@code project}?
-	 * 
+	 *
 	 * @param project
 	 *            a project
 	 * @return whether I have an up-to-date index for it

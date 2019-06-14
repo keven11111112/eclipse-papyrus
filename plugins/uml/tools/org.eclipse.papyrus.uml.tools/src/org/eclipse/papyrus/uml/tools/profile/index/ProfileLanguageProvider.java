@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.tools.profile.index;
@@ -46,6 +46,7 @@ import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 
 /**
  * <p>
@@ -193,7 +194,7 @@ public class ProfileLanguageProvider implements ILanguageProvider, IExecutableEx
 							// Nothing to post
 							Activator.log.error(String.format("Failed to access profile index for resource %s", uriToQuery), t); //$NON-NLS-1$
 						}
-					});
+					}, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 				}
 			}
 		} catch (Exception e) {

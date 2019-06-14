@@ -43,6 +43,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.MoreExecutors;
 
 /**
  * JUnit tests for the {@link JobBasedFuture} class.
@@ -164,6 +165,7 @@ public class JobBasedFutureTest extends AbstractPapyrusTest {
 
 		Runnable reader = new Runnable() {
 
+			@Override
 			public void run() {
 				ISchedulingRule rule_ = (rule == null) ? null : rule.get();
 
@@ -228,16 +230,18 @@ public class JobBasedFutureTest extends AbstractPapyrusTest {
 
 		for (int i = 0; i < CONCURRENT_THREAD_COUNT; i++) {
 			Futures.addCallback(fixture, new FutureCallback<Boolean>() {
+				@Override
 				public void onSuccess(Boolean result) {
 					results.add(result);
 					latch.countDown();
 				}
 
+				@Override
 				public void onFailure(Throwable t) {
 					thrown.add(t);
 					latch.countDown();
 				}
-			});
+			}, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 		}
 
 		try {
@@ -318,12 +322,15 @@ public class JobBasedFutureTest extends AbstractPapyrusTest {
 	}
 
 	static class RuleSupplier implements Supplier<ISchedulingRule> {
+		@Override
 		public ISchedulingRule get() {
 			return new ISchedulingRule() {
+				@Override
 				public boolean isConflicting(ISchedulingRule rule) {
 					return rule == this;
 				}
 
+				@Override
 				public boolean contains(ISchedulingRule rule) {
 					return rule == this;
 				}

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014, 2017 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.resource.index;
@@ -60,6 +60,7 @@ import com.google.common.collect.SetMultimap;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 
 /**
  * A general-purpose index of model resources in the Eclipse workspace.
@@ -289,7 +290,7 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 
 	/**
 	 * Obtains the name of this index.
-	 * 
+	 *
 	 * @return my name
 	 * @since 2.1
 	 */
@@ -306,14 +307,14 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 	 * Obtains an asynchronous future result that is scheduled to run after any pending indexing work has completed.
 	 * The {@code function} is <em>not</em> invoked under synchronization on the index; it is passed a copy of the
 	 * last consistent state of the index after any pending calculations have completed.
-	 * 
+	 *
 	 * @param function
 	 *            the function to schedule. Its input is the complete index map
-	 * 
+	 *
 	 * @return the future result of the function applied to the index
 	 */
 	public <V> ListenableFuture<V> afterIndex(final Function<? super Map<IFile, T>, V> function) {
-		return Futures.transform(getIndex(), function);
+		return Futures.transform(getIndex(), function, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 	}
 
 	/**
@@ -321,10 +322,10 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 	 * pending indexing work has completed. The {@code callable} is invoked under
 	 * synchronization on the index, so it must be careful about how it
 	 * synchronizes on other objects to avoid deadlocks.
-	 * 
+	 *
 	 * @param callable
 	 *            the operation to schedule
-	 * 
+	 *
 	 * @return the future result of the operation
 	 */
 	@Override
@@ -345,7 +346,7 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 	 * Schedules an operation to run after any pending indexing work has completed.
 	 * The {@code runnable} is invoked under synchronization on the index, so it must be careful about how it
 	 * synchronizes on other objects to avoid deadlocks.
-	 * 
+	 *
 	 * @param runnable
 	 *            the operation to schedule
 	 */
@@ -361,7 +362,7 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 
 	/**
 	 * Obtains the index when it is ready.
-	 * 
+	 *
 	 * @return the future value of the index, when it is ready
 	 */
 	public ListenableFuture<Map<IFile, T>> getIndex() {
@@ -532,7 +533,7 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 			public void onFailure(Throwable t) {
 				// Don't need a listener
 			}
-		});
+		}, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 	}
 
 	public void removeListener(IWorkspaceModelIndexListener listener) {
@@ -546,7 +547,7 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 			public void onFailure(Throwable t) {
 				// Couldn't have added the listener anyways
 			}
-		});
+		}, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 	}
 
 	//
@@ -559,17 +560,17 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 	public static interface IndexHandler<T> {
 		/**
 		 * Updates the index for a file that matches our selection criteria.
-		 * 
+		 *
 		 * @param file
 		 *            a file that exists and matches the index selection criteria
-		 * 
+		 *
 		 * @return the object to store in the index for this {@code file}
 		 */
 		T index(IFile file);
 
 		/**
 		 * Updates the index for a file that no longer exists or no longer matches our selection criteria.
-		 * 
+		 *
 		 * @param file
 		 *            a file that no longer exists or otherwise no longer matches our selection criteria. It is removed from the index
 		 */
@@ -604,12 +605,12 @@ public class WorkspaceModelIndex<T> extends InternalModelIndex {
 	public static interface PersistentIndexHandler<T> extends IndexHandler<T> {
 		/**
 		 * Initializes the {@code index} data for a file from the persistent store.
-		 * 
+		 *
 		 * @param file
 		 *            a file in the workspace
 		 * @param index
 		 *            its previously stored index
-		 * 
+		 *
 		 * @return whether the {@code index} data were successfully integrated.
 		 *         A {@code false} result indicates that the file must be indexed
 		 *         from scratch

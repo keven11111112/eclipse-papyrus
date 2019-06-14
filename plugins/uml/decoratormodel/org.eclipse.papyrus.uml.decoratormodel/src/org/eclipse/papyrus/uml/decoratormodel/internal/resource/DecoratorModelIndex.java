@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014, 2017 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.decoratormodel.internal.resource;
@@ -65,6 +65,7 @@ import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 
 /**
  * A workspace-wide index mapping UML model resources to decorator models that apply profiles to them.
@@ -101,7 +102,7 @@ public class DecoratorModelIndex {
 	private DecoratorModelIndex() {
 		super();
 
-		index = new WorkspaceModelIndex<IndexedFile<?>>("papyrusUMLProfiles", UMLPackage.eCONTENT_TYPE, indexer(), MAX_INDEX_JOBS); //$NON-NLS-1$
+		index = new WorkspaceModelIndex<>("papyrusUMLProfiles", UMLPackage.eCONTENT_TYPE, indexer(), MAX_INDEX_JOBS); //$NON-NLS-1$
 	}
 
 	private void initialize() {
@@ -137,7 +138,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Asynchronously queries the mapping of URIs of user models to URIs of decorator models that apply profiles to them.
-	 * 
+	 *
 	 * @return a future result of the mapping of user model URIs to decorator model URIs
 	 */
 	public ListenableFuture<SetMultimap<URI, URI>> getDecoratorModelsAsync() {
@@ -146,7 +147,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Queries the mapping of URIs of user models to URIs of decorator models that apply profiles to them.
-	 * 
+	 *
 	 * @return the mapping of user model URIs to decorator model URIs
 	 */
 	public SetMultimap<URI, URI> getDecoratorModels() throws CoreException {
@@ -164,7 +165,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Asynchronously queries the URIs of decorator models that apply profiles to the specified user model resource.
-	 * 
+	 *
 	 * @param modelResourceURI
 	 *            the URI of a user model resource
 	 * @return a future result of the URIs of decorator models for the user model resource
@@ -175,7 +176,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Queries the URIs of decorator models that apply profiles to the specified user model resource.
-	 * 
+	 *
 	 * @param modelResourceURI
 	 *            the URI of a user model resource
 	 * @return the URIs of decorator models for the user model resource
@@ -205,7 +206,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Asynchronously queries the URIs of profiles applied to the specified user model package by the specified decorator model.
-	 * 
+	 *
 	 * @param packageURI
 	 *            the URI of a package in a user model
 	 * @param decoratorModel
@@ -218,12 +219,12 @@ public class DecoratorModelIndex {
 			public Set<URI> apply(SetMultimap<URI, URI> input) {
 				return input.get(packageURI);
 			}
-		});
+		}, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 	}
 
 	/**
 	 * Queries the URIs of profiles applied to the specified user model package by the specified decorator model.
-	 * 
+	 *
 	 * @param packageURI
 	 *            the URI of a package in a user model
 	 * @param decoratorModel
@@ -236,7 +237,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Asynchronously queries a mapping of user-model package URIs to URIs of profiles applied to them by the specified decorator model.
-	 * 
+	 *
 	 * @param decoratorModel
 	 *            the URI of a decorator model
 	 * @return the future result of the URIs of user model packages to profiles applied to them by the resource
@@ -247,7 +248,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Queries a mapping of user-model package URIs to URIs of profiles applied to them by the specified decorator model.
-	 * 
+	 *
 	 * @param decoratorModel
 	 *            the URI of a decorator model
 	 * @return the URIs of user model packages to profiles applied to them by the resource
@@ -281,7 +282,7 @@ public class DecoratorModelIndex {
 	/**
 	 * Asynchronously queries a mapping of all profiles applied externally on a package to the resources that apply those profiles.
 	 * The mapping is one-to-many because any number of decorator models can apply the same profile to a package.
-	 * 
+	 *
 	 * @param package_
 	 *            the URI of a user-model package
 	 * @return the future result of a mapping of the URIs of profiles externally applied on the package to the resources that apply them
@@ -293,7 +294,7 @@ public class DecoratorModelIndex {
 	/**
 	 * Queries a mapping of all profiles applied externally on a package to the resources that apply those profiles.
 	 * The mapping is one-to-many because any number of decorator models can apply the same profile to a package.
-	 * 
+	 *
 	 * @param package_
 	 *            the URI of a user-model package
 	 * @return a mapping of the URIs of profiles externally applied on the package to the resources that apply them
@@ -329,7 +330,7 @@ public class DecoratorModelIndex {
 	 * Asynchronously queries a mapping of all profiles applied externally on a package to mappings of decorator model resources that apply those profiles
 	 * to the Ecore definitions applied by those decorators. That is, (profile&nbsp;==>&nbsp;decorator-model&nbsp;==>&nbsp;ecore-definition).
 	 * The mapping is one-to-many because any number of decorator models can apply the same profile to a package.
-	 * 
+	 *
 	 * @param package_
 	 *            the URI of a user-model package
 	 * @return the future result of a mapping of the URIs of profiles externally applied on the package to the resources that apply them to
@@ -343,7 +344,7 @@ public class DecoratorModelIndex {
 	 * Queries a mapping of all profiles applied externally on a package to mappings of decorator model resources that apply those profiles
 	 * to the Ecore definitions applied by those decorators. That is, (profile&nbsp;==>&nbsp;decorator-model&nbsp;==>&nbsp;ecore-definition).
 	 * The mapping is one-to-many because any number of decorator models can apply the same profile to a package.
-	 * 
+	 *
 	 * @param package_
 	 *            the URI of a user-model package
 	 * @return a mapping of the URIs of profiles externally applied on the package to the resources that apply them to
@@ -389,7 +390,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Asynchronously queries the set of URIs of decorator models that apply profiles to the specified package.
-	 * 
+	 *
 	 * @param package_
 	 *            the URI of a user-model package
 	 * @return the future result of the URIs of all decorator models that apply profiels to it
@@ -400,7 +401,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Queries the set of URIs of decorator models that apply profiles to the specified package.
-	 * 
+	 *
 	 * @param package_
 	 *            the URI of a user-model package
 	 * @return the URIs of all decorator models that apply profiels to it
@@ -420,7 +421,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Asynchronously queries a mapping of the user-defined names/identifiers of the profile application externalization models in the workspace.
-	 * 
+	 *
 	 * @return the future result of the known decorator models' names
 	 */
 	public ListenableFuture<Map<URI, String>> getDecoratorModelNamesAsync() {
@@ -429,7 +430,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Queries a mapping of the user-defined names/identifiers of the profile application externalization models in the workspace.
-	 * 
+	 *
 	 * @return the known decorator models' names
 	 */
 	public Map<URI, String> getDecoratorModelNames() throws CoreException {
@@ -447,7 +448,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Asynchronously queries the user-defined names/identifier of a decorator model.
-	 * 
+	 *
 	 * @param resourceURI
 	 *            the URI of the decorator model
 	 * @return the future result of the decorator model name
@@ -458,12 +459,12 @@ public class DecoratorModelIndex {
 			public String apply(Map<URI, String> input) {
 				return input.get(resourceURI);
 			}
-		});
+		}, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 	}
 
 	/**
 	 * Queries the user-defined names/identifier of a decorator model.
-	 * 
+	 *
 	 * @param resourceURI
 	 *            the URI of the decorator model
 	 * @return the decorator model name
@@ -474,7 +475,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Asynchronously queries the mapping of URIs of decorator models to URIs of user models to which they apply profiles.
-	 * 
+	 *
 	 * @return a future result of the mapping of decorator model URIs to user model URIs
 	 */
 	public ListenableFuture<SetMultimap<URI, URI>> getUserModelsByDecoratorAsync() {
@@ -483,7 +484,7 @@ public class DecoratorModelIndex {
 
 	/**
 	 * Queries the mapping of URIs of decorator models to URIs of user models to which they apply profiles.
-	 * 
+	 *
 	 * @return the mapping of decorator model URIs to user model URIs
 	 */
 	public SetMultimap<URI, URI> getUserModelsByDecorator() throws CoreException {
@@ -502,7 +503,7 @@ public class DecoratorModelIndex {
 	/**
 	 * Asynchronously queries the set of URIs of {@link Profile}s applied internally and by decorators to {@link Package}s
 	 * within the specified user model.
-	 * 
+	 *
 	 * @param userModelURI
 	 *            the URI of a user model
 	 * @return a future result of the set of URIs of the profile elements applied to it
@@ -514,7 +515,7 @@ public class DecoratorModelIndex {
 	/**
 	 * Queries the set of URIs of {@link Profile}s applied internally and by decorators to {@link Package}s
 	 * within the specified user model.
-	 * 
+	 *
 	 * @param userModelURI
 	 *            the URI of a user model
 	 * @return the set of URIs of the profile elements applied to it

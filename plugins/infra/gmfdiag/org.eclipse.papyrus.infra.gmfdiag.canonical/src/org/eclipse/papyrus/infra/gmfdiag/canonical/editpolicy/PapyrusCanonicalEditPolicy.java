@@ -79,6 +79,7 @@ import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 
 /**
  * A specialization of the GMF {@link CanonicalEditPolicy} that alters the standard behaviour in a few key ways:
@@ -485,7 +486,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 				public void onFailure(Throwable t) {
 					Activator.log.error(t);
 				}
-			});
+			}, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 		}
 	}
 
@@ -599,7 +600,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 	/**
 	 * As {@link CanonicalEditPolicy#deleteViews(Iterator)}, deletes a list of views.
 	 * The views will be deleted <tt>iff</tt> their semantic element has also been deleted.
-	 * 
+	 *
 	 * @param views
 	 *            an iterator on a list of views.
 	 * @return <tt>true</tt> if the host editpart should be refreshed; either one one of the supplied
@@ -801,7 +802,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 	/**
 	 * Queries whether I manage canonical connections. Edit parts such as top shapes and border items manage connections;
 	 * other edit parts such as compartments manage contained views only.
-	 * 
+	 *
 	 * @return whether I manage canonical connections
 	 */
 	protected boolean isManageConnections() {
@@ -873,12 +874,12 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 
 	/**
 	 * Computes, if necessary, a new ordering of the {@code viewChildren} to match the ordering of the {@code semanticChildren}.
-	 * 
+	 *
 	 * @param viewChildren
 	 *            the existing view children in the order in which they are currently presented
 	 * @param semanticChildren
 	 *            the semantic children that are now presented (we may have already created views for some)
-	 * 
+	 *
 	 * @return a new list presenting the {@code viewChildren} in semantic order, or {@code null} if no ordering changes are required
 	 */
 	protected List<? extends View> matchCanonicalOrdering(List<? extends View> viewChildren, final List<EObject> semanticChildren) {

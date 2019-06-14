@@ -14,7 +14,7 @@
  *  Christian W. Damus - bug 458197
  *  Christian W. Damus - bug 459613
  *  Christian W. Damus - bug 468030
- *  Vincent LORENZO - bug 541313 - [UML][CDO] UML calls to the method getCacheAdapter(EObject) must be replaced 
+ *  Vincent LORENZO - bug 541313 - [UML][CDO] UML calls to the method getCacheAdapter(EObject) must be replaced
  *****************************************************************************/
 package org.eclipse.papyrus.uml.decoratormodel.helper;
 
@@ -90,6 +90,7 @@ import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.UncheckedExecutionException;
 
 /**
@@ -998,7 +999,7 @@ public class DecoratorModelUtils {
 			}
 		};
 
-		return Futures.transform(decoratorMap, transform);
+		return Futures.transform(decoratorMap, transform, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 	}
 
 	/**
@@ -1051,7 +1052,7 @@ public class DecoratorModelUtils {
 			}
 		};
 
-		return Futures.transform(decoratorMap, transform);
+		return Futures.transform(decoratorMap, transform, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 	}
 
 	/**
@@ -1082,7 +1083,7 @@ public class DecoratorModelUtils {
 			public Boolean apply(Collection<?> input) {
 				return (input != null) && !input.isEmpty();
 			}
-		});
+		}, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 	}
 
 	private static void collectUnloadedDecoratorModels(SetMultimap<URI, URI> userModelsToDecoratorModels, Resource modelResource, Set<URI> result) {

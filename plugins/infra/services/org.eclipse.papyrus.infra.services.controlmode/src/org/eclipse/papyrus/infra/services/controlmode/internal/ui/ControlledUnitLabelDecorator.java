@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.controlmode.internal.ui;
@@ -39,6 +39,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 
 /**
  * A label decorator for controlled-unit resources in the Project Explorer.
@@ -92,10 +93,10 @@ public class ControlledUnitLabelDecorator extends BaseLabelProvider implements I
 			// A very coarse-grained label change event
 			unregisterHandler = ((CrossReferenceIndex) index).onIndexChanged(
 					__ -> fireLabelProviderChanged(new LabelProviderChangedEvent(this)),
-				CoreExecutors.getUIExecutorService());
+					CoreExecutors.getUIExecutorService());
 		}
 	}
-	
+
 	private void decorateFile(IFile file, IDecoration decoration) {
 		ListenableFuture<SubunitKind> futureKind = getSubunitKind(file);
 		if (futureKind.isDone()) {
@@ -156,7 +157,7 @@ public class ControlledUnitLabelDecorator extends BaseLabelProvider implements I
 
 		@SuppressWarnings("unchecked")
 		ListenableFuture<?> combined = Futures.allAsList(parents, isShard);
-		return Futures.transform(combined, kindFunction);
+		return Futures.transform(combined, kindFunction, MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 	}
 
 	private Runnable postUpdate(Object element) {

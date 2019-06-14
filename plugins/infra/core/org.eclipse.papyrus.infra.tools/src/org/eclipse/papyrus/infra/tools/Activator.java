@@ -11,7 +11,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus = bug 485220
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.tools;
 
@@ -24,7 +24,7 @@ import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * The activator class controls the plug-in life cycle
- * 
+ *
  * @since 2.0
  */
 public class Activator extends Plugin {

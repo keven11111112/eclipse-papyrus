@@ -58,6 +58,7 @@ import org.eclipse.ui.PlatformUI;
 import com.google.common.collect.Iterables;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 
 /**
  * Set of utility methods for the CoreEditor. <br>
@@ -734,14 +735,14 @@ public class EditorUtils {
 	/**
 	 * Resolves the root resource URI from the URI of a resource that may be a
 	 * shard or may be an independent model unit.
-	 * 
+	 *
 	 * @param index
 	 *            the shard index to consult
 	 * @param resourceURI
 	 *            a resource URI
-	 * 
+	 *
 	 * @return the root, which may just be the input resource URI if it is a root
-	 * 
+	 *
 	 * @see ShardResourceHelper
 	 * @see ICrossReferenceIndex#getRoots(URI)
 	 * @since 1.3
@@ -769,14 +770,14 @@ public class EditorUtils {
 	/**
 	 * Asynchronously resolves the root resource URI from the URI of a resource that
 	 * may be a shard or may be an independent model unit.
-	 * 
+	 *
 	 * @param index
 	 *            the shard index to consult
 	 * @param resourceURI
 	 *            a resource URI
-	 * 
+	 *
 	 * @return the root, which may just be the input resource URI if it is a root
-	 * 
+	 *
 	 * @see ShardResourceHelper
 	 * @see ICrossReferenceIndex#getRootsAsync(URI)
 	 * @since 1.3
@@ -784,6 +785,6 @@ public class EditorUtils {
 	public static ListenableFuture<URI> resolveShardRootAsync(ICrossReferenceIndex index, URI resourceURI) {
 		// TODO: Handle case of multiple roots
 		return Futures.transform(index.getRootsAsync(resourceURI),
-				(Set<URI> roots) -> Iterables.getFirst(roots, resourceURI));
+				(Set<URI> roots) -> Iterables.getFirst(roots, resourceURI), MoreExecutors.directExecutor()); // Added because of compilation error on the executor-less method call
 	}
 }

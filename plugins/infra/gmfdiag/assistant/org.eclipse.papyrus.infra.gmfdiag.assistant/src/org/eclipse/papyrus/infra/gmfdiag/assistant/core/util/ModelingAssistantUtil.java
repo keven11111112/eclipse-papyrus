@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014, 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.assistant.core.util;
@@ -66,12 +66,12 @@ public class ModelingAssistantUtil {
 
 	/**
 	 * Best-effort calculation of the element types matching the given {@code input}.
-	 * 
+	 *
 	 * @param provider
 	 *            the modeling assistant provider in which context we are calculating element types. Must not be {@code null}
 	 * @param input
 	 *            some manifestation of an object being edited, usually either a diagram edit-part, a semantic model element, or an {@link IEditHelperContext}
-	 * 
+	 *
 	 * @return the elements, or an empty array if none can be determined (never {@code null})
 	 */
 	public static IElementType[] getElementTypes(ModelingAssistantProvider provider, Object input) {
@@ -164,7 +164,7 @@ public class ModelingAssistantUtil {
 
 	/**
 	 * Collects all of the concrete subtypes of a given {@code supertype} that are referenced by a modeling assistant {@code provider}.
-	 * 
+	 *
 	 * @param supertype
 	 *            a possible abstract (or not) element type
 	 * @param provider
@@ -182,7 +182,7 @@ public class ModelingAssistantUtil {
 
 	/**
 	 * Queries whether a postulated {@code subtype} is a subtype of its presumptive {@code supertype}.
-	 * 
+	 *
 	 * @param subtype
 	 *            an element type
 	 * @param supertype
@@ -195,14 +195,14 @@ public class ModelingAssistantUtil {
 
 	/**
 	 * Obtains the hinted specializations of an element type in the context of the given {@code provider}.
-	 * 
+	 *
 	 * @param supertype
 	 *            the element type for which to find hinted specializations
 	 * @param provider
 	 *            the provider context
 	 * @param host
 	 *            the host context in which the {@code provider} is asked for modeling assistants
-	 * 
+	 *
 	 * @return the hinted specializations
 	 */
 	public static List<IHintedType> getHintedTypes(IElementType supertype, ModelingAssistantProvider provider, IAdaptable host) {
@@ -240,7 +240,7 @@ public class ModelingAssistantUtil {
 
 	/**
 	 * Queries whether an {@code elementType} is a specialization of any of a set of other {@code types}.
-	 * 
+	 *
 	 * @param elementType
 	 *            an element type
 	 * @param types
@@ -279,33 +279,35 @@ public class ModelingAssistantUtil {
 
 	/**
 	 * Determines if the passed hint is a visualID
-	 * There is now no reliable way for testing if a semantic hint represents a visual id  
+	 * There is now no reliable way for testing if a semantic hint represents a visual id
+	 * 
 	 * @param hint
 	 * @return
-	 * @deprecated This function should not be relied on. Other ways of determining 
-	 * if an element type represents a visual element should be used
+	 * @deprecated This function should not be relied on. Other ways of determining
+	 *             if an element type represents a visual element should be used
 	 */
+	@Deprecated
 	public static boolean isVisualID(String hint) {
 		hint = Strings.nullToEmpty(hint);
 		return VISUAL_ID_PATTERN.matcher(hint).matches() ||
-				hint.contains("Diagram") || 
-				hint.contains("Shape") || 
-				hint.contains("Edge") || 
-				hint.contains("Compartment") || 
+				hint.contains("Diagram") ||
+				hint.contains("Shape") ||
+				hint.contains("Edge") ||
+				hint.contains("Compartment") ||
 				hint.contains("Label");
 	}
 
 	/**
 	 * Filters a set of connection types for only those that we think we could actually create in the current diagram context and
 	 * sorts them alphabetically.
-	 * 
+	 *
 	 * @param provider
 	 *            the contextual assistant provider
 	 * @param elementTypes
 	 *            connection element types matched in the assistant model
 	 * @param connectionEnd
 	 *            the context of the element creation, being one of the edit parts at its ends
-	 * 
+	 *
 	 * @return the (possibly) reduced set of connection types that we think we could create, sorted
 	 */
 	public static EList<IElementType> filterConnectionTypes(ModelingAssistantProvider provider, Set<IElementType> elementTypes, IAdaptable connectionEnd) {
@@ -345,7 +347,7 @@ public class ModelingAssistantUtil {
 
 				if (input instanceof IHintedType) {
 					String hint = ((IHintedType) input).getSemanticHint();
-					if (!Strings.isNullOrEmpty(hint) && CharMatcher.DIGIT.matchesAllOf(hint)) {
+					if (!Strings.isNullOrEmpty(hint) && CharMatcher.digit().matchesAllOf(hint)) {
 						result = Integer.parseInt(hint);
 					}
 				}
