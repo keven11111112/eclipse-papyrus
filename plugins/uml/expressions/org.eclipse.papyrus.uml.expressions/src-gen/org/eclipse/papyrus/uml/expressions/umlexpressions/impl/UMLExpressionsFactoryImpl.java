@@ -84,6 +84,7 @@ public class UMLExpressionsFactoryImpl extends EFactoryImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IsStereotypedWithExpression createIsStereotypedWithExpression() {
 		IsStereotypedWithExpressionImpl isStereotypedWithExpression = new IsStereotypedWithExpressionImpl();
 		return isStereotypedWithExpression;
@@ -94,6 +95,7 @@ public class UMLExpressionsFactoryImpl extends EFactoryImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public HasAppliedStereotypesExpression createHasAppliedStereotypesExpression() {
 		HasAppliedStereotypesExpressionImpl hasAppliedStereotypesExpression = new HasAppliedStereotypesExpressionImpl();
 		return hasAppliedStereotypesExpression;
@@ -104,6 +106,7 @@ public class UMLExpressionsFactoryImpl extends EFactoryImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IsTypeOfExpression createIsTypeOfExpression() {
 		IsTypeOfExpressionImpl isTypeOfExpression = new IsTypeOfExpressionImpl();
 		return isTypeOfExpression;
@@ -114,6 +117,7 @@ public class UMLExpressionsFactoryImpl extends EFactoryImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IsKindOfExpression createIsKindOfExpression() {
 		IsKindOfExpressionImpl isKindOfExpression = new IsKindOfExpressionImpl();
 		return isKindOfExpression;
@@ -124,6 +128,7 @@ public class UMLExpressionsFactoryImpl extends EFactoryImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IsKindOfStereotypeExpression createIsKindOfStereotypeExpression() {
 		IsKindOfStereotypeExpressionImpl isKindOfStereotypeExpression = new IsKindOfStereotypeExpressionImpl();
 		return isKindOfStereotypeExpression;
@@ -134,6 +139,7 @@ public class UMLExpressionsFactoryImpl extends EFactoryImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IsTypeOfStereotypeExpression createIsTypeOfStereotypeExpression() {
 		IsTypeOfStereotypeExpressionImpl isTypeOfStereotypeExpression = new IsTypeOfStereotypeExpressionImpl();
 		return isTypeOfStereotypeExpression;
@@ -144,6 +150,7 @@ public class UMLExpressionsFactoryImpl extends EFactoryImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UMLExpressionsPackage getUMLExpressionsPackage() {
 		return (UMLExpressionsPackage)getEPackage();
 	}

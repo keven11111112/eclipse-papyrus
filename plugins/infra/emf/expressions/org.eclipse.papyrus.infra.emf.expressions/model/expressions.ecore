@@ -52,19 +52,16 @@
     <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
       <details key="originalName" value="BooleanExpressions"/>
     </eAnnotations>
-    <eClassifiers xsi:type="ecore:EClass" name="OrExpression" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
+    <eClassifiers xsi:type="ecore:EClass" name="OrExpression" eSuperTypes="#//booleanexpressions/AbstractMultiBooleanEObjectExpressionsReferenceExpression #//booleanexpressions/AbtractMultiBooleanEObjectExpressionsOwnedExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Make an OR between all owned and referenced IBooleanExpressions.&#xD;&#xA;If ownedExpressions.size()==0 and referencedExpressions.size()==0, we return FALSE&#xD;&#xA;otherwize we return the OR between all owned and referenced expressions"/>
       </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbtractMultiBooleanEObjectExpressionsOwnedExpression"
+        abstract="true" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpressions" ordered="false"
           upperBound="-1" eType="#//booleanexpressions/IBooleanEObjectExpression"
           containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpressions"
-          ordered="false" upperBound="-1" eType="#//booleanexpressions/IBooleanEObjectExpression">
-        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference"/>
-        </eAnnotations>
-      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="IBooleanEObjectExpression" abstract="true"
         interface="true">
@@ -87,30 +84,36 @@
         <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
       </eGenericSuperTypes>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="AndExpression" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Make an AND between all owned and referenced IBooleanExpression.&#xD;&#xA;If ownedExpressions.size()==0 and referencedExpressions.size()==0, we return TRUE&#xD;&#xA;otherwize we return the OR between all owned and referenced expressions"/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpressions" ordered="false"
-          upperBound="-1" eType="#//booleanexpressions/IBooleanEObjectExpression"
-          containment="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractMultiBooleanEObjectExpressionsReferenceExpression"
+        abstract="true" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpressions"
           ordered="false" upperBound="-1" eType="#//booleanexpressions/IBooleanEObjectExpression">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference"/>
+          <details key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/MultiBooleanEObjectExpressionsReferenceExpression/referencedExpressions"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="NotExpression" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
+    <eClassifiers xsi:type="ecore:EClass" name="AndExpression" eSuperTypes="#//booleanexpressions/AbstractMultiBooleanEObjectExpressionsReferenceExpression #//booleanexpressions/AbtractMultiBooleanEObjectExpressionsOwnedExpression">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Make an AND between all owned and referenced IBooleanExpression.&#xD;&#xA;If ownedExpressions.size()==0 and referencedExpressions.size()==0, we return TRUE&#xD;&#xA;otherwize we return the OR between all owned and referenced expressions"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NotExpression" eSuperTypes="#//booleanexpressions/AbstractSingleBooleanEObjectExpressionOwnedExpression #//booleanexpressions/AbstractSingleBooleanEObjectExpressionReferenceExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Make a not on an IBooleanExpression&#xD;&#xA;If ownedExpression==NULL and referencedExpression==NULL we return FALSE&#xD;&#xA;If ownedExpression&lt;>NULL and referencedExpression&lt;>NULL we return the result for ownedExpression. The referencedExpression is ignored&#xD;&#xA;In other case we return the evaluation of the non NULL expression"/>
       </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractSingleBooleanEObjectExpressionOwnedExpression"
+        abstract="true" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedExpression" ordered="false"
           eType="#//booleanexpressions/IBooleanEObjectExpression" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AbstractSingleBooleanEObjectExpressionReferenceExpression"
+        abstract="true" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpression"
           ordered="false" eType="#//booleanexpressions/IBooleanEObjectExpression">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/singleBooleanExpressionReference"/>
+          <details key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/SingleBooleanEObjectExpressionReferenceExpression/referencedExpression"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -124,13 +127,11 @@
         <details key="documentation" value="Returns always false"/>
       </eAnnotations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ReferenceBooleanExpression" eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">
+    <eClassifiers xsi:type="ecore:EClass" name="ReferenceBooleanExpression" eSuperTypes="#//booleanexpressions/AbstractSingleBooleanEObjectExpressionReferenceExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="This expression allows to reference an expression defined in another model.&#xD;&#xA;If there is no expression referenced we return TRUE."/>
         <details key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/singleBooleanExpressionReference"/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="referencedExpression"
-          ordered="false" eType="#//booleanexpressions/IBooleanEObjectExpression"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SingleEAttributeValueEqualityExpression"
         eSuperTypes="#//booleanexpressions/IBooleanEObjectExpression">

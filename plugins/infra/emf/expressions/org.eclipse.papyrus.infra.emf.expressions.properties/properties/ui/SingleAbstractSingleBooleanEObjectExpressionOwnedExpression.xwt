@@ -21,6 +21,6 @@
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:ReferenceDialog input="{Binding}"
-			property="expressions:booleanexpressions:AbstractSingleBooleanEObjectExpressionReferenceExpression:referencedExpression"></ppe:ReferenceDialog>
+			property="expressions:booleanexpressions:AbstractSingleBooleanEObjectExpressionOwnedExpression:ownedExpression"></ppe:ReferenceDialog>
 	</Composite>
 </Composite>

@@ -49,7 +49,7 @@ public class ReferenceBooleanEObjectExpressionModelElement extends EMFModelEleme
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement#getContentProvider(java.lang.String)
 	 *
 	 * @param propertyPath
@@ -57,8 +57,8 @@ public class ReferenceBooleanEObjectExpressionModelElement extends EMFModelEleme
 	 */
 	@Override
 	public IStaticContentProvider getContentProvider(final String propertyPath) {
-		if (BooleanExpressionsPackage.eINSTANCE.getReferenceBooleanExpression_ReferencedExpression().getName().equals(propertyPath)) {
-			return new ExpressionCatalogContentProvider(BooleanExpressionsPackage.eINSTANCE.getReferenceBooleanExpression_ReferencedExpression());
+		if (BooleanExpressionsPackage.eINSTANCE.getAbstractMultiBooleanEObjectExpressionsReferenceExpression_ReferencedExpressions().getName().equals(propertyPath)) {
+			return new ExpressionCatalogContentProvider(BooleanExpressionsPackage.eINSTANCE.getAbstractMultiBooleanEObjectExpressionsReferenceExpression_ReferencedExpressions());
 		}
 		return super.getContentProvider(propertyPath);
 	}

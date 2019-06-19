@@ -25,6 +25,10 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
 
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractMultiBooleanEObjectExpressionsReferenceExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractSingleBooleanEObjectExpressionOwnedExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractSingleBooleanEObjectExpressionReferenceExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbtractMultiBooleanEObjectExpressionsOwnedExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AndExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsFactory;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
@@ -58,6 +62,13 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass abtractMultiBooleanEObjectExpressionsOwnedExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass iBooleanEObjectExpressionEClass = null;
 
 	/**
@@ -72,6 +83,13 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass abstractMultiBooleanEObjectExpressionsReferenceExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass andExpressionEClass = null;
 
 	/**
@@ -80,6 +98,20 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * @generated
 	 */
 	private EClass notExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass abstractSingleBooleanEObjectExpressionOwnedExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass abstractSingleBooleanEObjectExpressionReferenceExpressionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -195,8 +227,8 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * @generated
 	 */
 	@Override
-	public EReference getOrExpression_OwnedExpressions() {
-		return (EReference)orExpressionEClass.getEStructuralFeatures().get(0);
+	public EClass getAbtractMultiBooleanEObjectExpressionsOwnedExpression() {
+		return abtractMultiBooleanEObjectExpressionsOwnedExpressionEClass;
 	}
 
 	/**
@@ -205,8 +237,8 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * @generated
 	 */
 	@Override
-	public EReference getOrExpression_ReferencedExpressions() {
-		return (EReference)orExpressionEClass.getEStructuralFeatures().get(1);
+	public EReference getAbtractMultiBooleanEObjectExpressionsOwnedExpression_OwnedExpressions() {
+		return (EReference)abtractMultiBooleanEObjectExpressionsOwnedExpressionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -235,28 +267,28 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * @generated
 	 */
 	@Override
+	public EClass getAbstractMultiBooleanEObjectExpressionsReferenceExpression() {
+		return abstractMultiBooleanEObjectExpressionsReferenceExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractMultiBooleanEObjectExpressionsReferenceExpression_ReferencedExpressions() {
+		return (EReference)abstractMultiBooleanEObjectExpressionsReferenceExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getAndExpression() {
 		return andExpressionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAndExpression_OwnedExpressions() {
-		return (EReference)andExpressionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getAndExpression_ReferencedExpressions() {
-		return (EReference)andExpressionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -275,8 +307,8 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * @generated
 	 */
 	@Override
-	public EReference getNotExpression_OwnedExpression() {
-		return (EReference)notExpressionEClass.getEStructuralFeatures().get(0);
+	public EClass getAbstractSingleBooleanEObjectExpressionOwnedExpression() {
+		return abstractSingleBooleanEObjectExpressionOwnedExpressionEClass;
 	}
 
 	/**
@@ -285,8 +317,28 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	 * @generated
 	 */
 	@Override
-	public EReference getNotExpression_ReferencedExpression() {
-		return (EReference)notExpressionEClass.getEStructuralFeatures().get(1);
+	public EReference getAbstractSingleBooleanEObjectExpressionOwnedExpression_OwnedExpression() {
+		return (EReference)abstractSingleBooleanEObjectExpressionOwnedExpressionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getAbstractSingleBooleanEObjectExpressionReferenceExpression() {
+		return abstractSingleBooleanEObjectExpressionReferenceExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getAbstractSingleBooleanEObjectExpressionReferenceExpression_ReferencedExpression() {
+		return (EReference)abstractSingleBooleanEObjectExpressionReferenceExpressionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -317,16 +369,6 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 	@Override
 	public EClass getReferenceBooleanExpression() {
 		return referenceBooleanExpressionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getReferenceBooleanExpression_ReferencedExpression() {
-		return (EReference)referenceBooleanExpressionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -389,27 +431,32 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 
 		// Create classes and their features
 		orExpressionEClass = createEClass(OR_EXPRESSION);
-		createEReference(orExpressionEClass, OR_EXPRESSION__OWNED_EXPRESSIONS);
-		createEReference(orExpressionEClass, OR_EXPRESSION__REFERENCED_EXPRESSIONS);
+
+		abtractMultiBooleanEObjectExpressionsOwnedExpressionEClass = createEClass(ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION);
+		createEReference(abtractMultiBooleanEObjectExpressionsOwnedExpressionEClass, ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS);
 
 		iBooleanEObjectExpressionEClass = createEClass(IBOOLEAN_EOBJECT_EXPRESSION);
 
 		iBooleanExpressionEClass = createEClass(IBOOLEAN_EXPRESSION);
 
+		abstractMultiBooleanEObjectExpressionsReferenceExpressionEClass = createEClass(ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION);
+		createEReference(abstractMultiBooleanEObjectExpressionsReferenceExpressionEClass, ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__REFERENCED_EXPRESSIONS);
+
 		andExpressionEClass = createEClass(AND_EXPRESSION);
-		createEReference(andExpressionEClass, AND_EXPRESSION__OWNED_EXPRESSIONS);
-		createEReference(andExpressionEClass, AND_EXPRESSION__REFERENCED_EXPRESSIONS);
 
 		notExpressionEClass = createEClass(NOT_EXPRESSION);
-		createEReference(notExpressionEClass, NOT_EXPRESSION__OWNED_EXPRESSION);
-		createEReference(notExpressionEClass, NOT_EXPRESSION__REFERENCED_EXPRESSION);
+
+		abstractSingleBooleanEObjectExpressionOwnedExpressionEClass = createEClass(ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_OWNED_EXPRESSION);
+		createEReference(abstractSingleBooleanEObjectExpressionOwnedExpressionEClass, ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_OWNED_EXPRESSION__OWNED_EXPRESSION);
+
+		abstractSingleBooleanEObjectExpressionReferenceExpressionEClass = createEClass(ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_REFERENCE_EXPRESSION);
+		createEReference(abstractSingleBooleanEObjectExpressionReferenceExpressionEClass, ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_REFERENCE_EXPRESSION__REFERENCED_EXPRESSION);
 
 		literalTrueExpressionEClass = createEClass(LITERAL_TRUE_EXPRESSION);
 
 		literalFalseExpressionEClass = createEClass(LITERAL_FALSE_EXPRESSION);
 
 		referenceBooleanExpressionEClass = createEClass(REFERENCE_BOOLEAN_EXPRESSION);
-		createEReference(referenceBooleanExpressionEClass, REFERENCE_BOOLEAN_EXPRESSION__REFERENCED_EXPRESSION);
 
 		singleEAttributeValueEqualityExpressionEClass = createEClass(SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION);
 		createEReference(singleEAttributeValueEqualityExpressionEClass, SINGLE_EATTRIBUTE_VALUE_EQUALITY_EXPRESSION__EATTRIBUTE);
@@ -449,7 +496,9 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		orExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
+		orExpressionEClass.getESuperTypes().add(this.getAbstractMultiBooleanEObjectExpressionsReferenceExpression());
+		orExpressionEClass.getESuperTypes().add(this.getAbtractMultiBooleanEObjectExpressionsOwnedExpression());
+		abtractMultiBooleanEObjectExpressionsOwnedExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
 		EGenericType g1 = createEGenericType(this.getIBooleanExpression());
 		EGenericType g2 = createEGenericType(theEcorePackage.getEObject());
 		g1.getETypeArguments().add(g2);
@@ -460,36 +509,46 @@ public class BooleanExpressionsPackageImpl extends EPackageImpl implements Boole
 		g2 = createEGenericType(ecorePackage.getEBooleanObject());
 		g1.getETypeArguments().add(g2);
 		iBooleanExpressionEClass.getEGenericSuperTypes().add(g1);
-		andExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
-		notExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
+		abstractMultiBooleanEObjectExpressionsReferenceExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
+		andExpressionEClass.getESuperTypes().add(this.getAbstractMultiBooleanEObjectExpressionsReferenceExpression());
+		andExpressionEClass.getESuperTypes().add(this.getAbtractMultiBooleanEObjectExpressionsOwnedExpression());
+		notExpressionEClass.getESuperTypes().add(this.getAbstractSingleBooleanEObjectExpressionOwnedExpression());
+		notExpressionEClass.getESuperTypes().add(this.getAbstractSingleBooleanEObjectExpressionReferenceExpression());
+		abstractSingleBooleanEObjectExpressionOwnedExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
+		abstractSingleBooleanEObjectExpressionReferenceExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
 		literalTrueExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
 		literalFalseExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
-		referenceBooleanExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
+		referenceBooleanExpressionEClass.getESuperTypes().add(this.getAbstractSingleBooleanEObjectExpressionReferenceExpression());
 		singleEAttributeValueEqualityExpressionEClass.getESuperTypes().add(this.getIBooleanEObjectExpression());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(orExpressionEClass, OrExpression.class, "OrExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getOrExpression_OwnedExpressions(), this.getIBooleanEObjectExpression(), null, "ownedExpressions", null, 0, -1, OrExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getOrExpression_ReferencedExpressions(), this.getIBooleanEObjectExpression(), null, "referencedExpressions", null, 0, -1, OrExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(abtractMultiBooleanEObjectExpressionsOwnedExpressionEClass, AbtractMultiBooleanEObjectExpressionsOwnedExpression.class, "AbtractMultiBooleanEObjectExpressionsOwnedExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getAbtractMultiBooleanEObjectExpressionsOwnedExpression_OwnedExpressions(), this.getIBooleanEObjectExpression(), null, "ownedExpressions", null, 0, -1, AbtractMultiBooleanEObjectExpressionsOwnedExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(iBooleanEObjectExpressionEClass, IBooleanEObjectExpression.class, "IBooleanEObjectExpression", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(iBooleanExpressionEClass, IBooleanExpression.class, "IBooleanExpression", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
+		initEClass(abstractMultiBooleanEObjectExpressionsReferenceExpressionEClass, AbstractMultiBooleanEObjectExpressionsReferenceExpression.class, "AbstractMultiBooleanEObjectExpressionsReferenceExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getAbstractMultiBooleanEObjectExpressionsReferenceExpression_ReferencedExpressions(), this.getIBooleanEObjectExpression(), null, "referencedExpressions", null, 0, -1, AbstractMultiBooleanEObjectExpressionsReferenceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
 		initEClass(andExpressionEClass, AndExpression.class, "AndExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAndExpression_OwnedExpressions(), this.getIBooleanEObjectExpression(), null, "ownedExpressions", null, 0, -1, AndExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getAndExpression_ReferencedExpressions(), this.getIBooleanEObjectExpression(), null, "referencedExpressions", null, 0, -1, AndExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(notExpressionEClass, NotExpression.class, "NotExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNotExpression_OwnedExpression(), this.getIBooleanEObjectExpression(), null, "ownedExpression", null, 0, 1, NotExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getNotExpression_ReferencedExpression(), this.getIBooleanEObjectExpression(), null, "referencedExpression", null, 0, 1, NotExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(abstractSingleBooleanEObjectExpressionOwnedExpressionEClass, AbstractSingleBooleanEObjectExpressionOwnedExpression.class, "AbstractSingleBooleanEObjectExpressionOwnedExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getAbstractSingleBooleanEObjectExpressionOwnedExpression_OwnedExpression(), this.getIBooleanEObjectExpression(), null, "ownedExpression", null, 0, 1, AbstractSingleBooleanEObjectExpressionOwnedExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(abstractSingleBooleanEObjectExpressionReferenceExpressionEClass, AbstractSingleBooleanEObjectExpressionReferenceExpression.class, "AbstractSingleBooleanEObjectExpressionReferenceExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getAbstractSingleBooleanEObjectExpressionReferenceExpression_ReferencedExpression(), this.getIBooleanEObjectExpression(), null, "referencedExpression", null, 0, 1, AbstractSingleBooleanEObjectExpressionReferenceExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(literalTrueExpressionEClass, LiteralTrueExpression.class, "LiteralTrueExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(literalFalseExpressionEClass, LiteralFalseExpression.class, "LiteralFalseExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(referenceBooleanExpressionEClass, ReferenceBooleanExpression.class, "ReferenceBooleanExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getReferenceBooleanExpression_ReferencedExpression(), this.getIBooleanEObjectExpression(), null, "referencedExpression", null, 0, 1, ReferenceBooleanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(singleEAttributeValueEqualityExpressionEClass, SingleEAttributeValueEqualityExpression.class, "SingleEAttributeValueEqualityExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getSingleEAttributeValueEqualityExpression_EAttribute(), theEcorePackage.getEAttribute(), null, "eAttribute", null, 0, 1, SingleEAttributeValueEqualityExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$

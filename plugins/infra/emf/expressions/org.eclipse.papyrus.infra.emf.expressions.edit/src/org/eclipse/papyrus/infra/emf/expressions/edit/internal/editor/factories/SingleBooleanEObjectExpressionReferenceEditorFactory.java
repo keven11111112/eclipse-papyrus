@@ -19,11 +19,11 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.emf.ui.contentproviders.EcoreContentProvider;
 import org.eclipse.papyrus.emf.ui.converters.IdentityDisplayConverter;
 import org.eclipse.papyrus.emf.ui.editor.factories.AbstractEStructuralFeatureDialogEditorFactory;
 import org.eclipse.papyrus.emf.ui.editor.factories.CustomExtendedDialogCellEditor;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
 import org.eclipse.papyrus.infra.emf.expressions.catalog.ExpressionCatalogRegistry;
 import org.eclipse.papyrus.infra.emf.expressions.edit.internal.validators.SingleBooleanExpressionValidator;
 
@@ -32,22 +32,19 @@ import org.eclipse.papyrus.infra.emf.expressions.edit.internal.validators.Single
  * This editor allows to edit a single reference to an expression
  *
  */
-public class SingleBooleanExpressionReferenceEditorFactory extends AbstractEStructuralFeatureDialogEditorFactory {
+public class SingleBooleanEObjectExpressionReferenceEditorFactory extends AbstractEStructuralFeatureDialogEditorFactory {
 
 	/**
 	 * The URI of this editor
 	 */
-	private static final URI SELF_URI = URI.createURI("http://www.eclipse.org/papyrus/expressions/singleBooleanExpressionReference"); //$NON-NLS-1$
+	private static final URI SELF_URI = URI.createURI("http://www.eclipse.org/papyrus/expressions/SingleBooleanEObjectExpressionReferenceExpression/referencedExpression"); //$NON-NLS-1$
 
 	/**
 	 *
 	 * Constructor.
-	 *
-	 * @param editedFeature
-	 *            the edited feature
 	 */
-	public SingleBooleanExpressionReferenceEditorFactory(final EStructuralFeature editedFeature) {
-		super(SELF_URI, editedFeature);
+	public SingleBooleanEObjectExpressionReferenceEditorFactory() {
+		super(SELF_URI, BooleanExpressionsPackage.eINSTANCE.getAbstractSingleBooleanEObjectExpressionReferenceExpression_ReferencedExpression());
 	}
 
 

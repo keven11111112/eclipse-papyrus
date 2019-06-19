@@ -92,104 +92,28 @@ If there is no expression referenced we return TRUE.</body>
         <generalization xmi:type="uml:Generalization" xmi:id="_KMXTMBVbEee_D4EhwjboOQ" general="_yFQYgBtpEeeNbZVCoqtPGQ"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_WpVKMBVbEee_D4EhwjboOQ" name="AndExpression">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_cc7ggRVbEee_D4EhwjboOQ" name="ownedExpressions" type="_P-MkYBVaEee_D4EhwjboOQ" aggregation="composite" association="_cc5rUBVbEee_D4EhwjboOQ">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eUuvoBVbEee_D4EhwjboOQ"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eU5uwBVbEee_D4EhwjboOQ" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_mbMYshn2EeeYEuQJkmbFAA" name="referencedExpressions" type="_P-MkYBVaEee_D4EhwjboOQ" association="_mbLxoBn2EeeYEuQJkmbFAA">
-          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dJVfYI6yEemjwpaBkaWY0Q" source="http://www.eclipse.org/emf/2002/GenModel">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_dJVfYY6yEemjwpaBkaWY0Q" key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference"/>
-          </eAnnotations>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yV2M0Bn2EeeYEuQJkmbFAA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yWOnUBn2EeeYEuQJkmbFAA" value="*"/>
-        </ownedAttribute>
-        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_54HMIBVbEee_D4EhwjboOQ" client="_WpVKMBVbEee_D4EhwjboOQ" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_cc5rUBVbEee_D4EhwjboOQ" memberEnd="_cc7ggRVbEee_D4EhwjboOQ _cc8HkBVbEee_D4EhwjboOQ">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cc65cBVbEee_D4EhwjboOQ" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cc7ggBVbEee_D4EhwjboOQ" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_cc8HkBVbEee_D4EhwjboOQ" name="andexpression" type="_WpVKMBVbEee_D4EhwjboOQ" association="_cc5rUBVbEee_D4EhwjboOQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_qM9EcJHYEemkbNOY_7-CZA" general="_16D2sJHWEemkbNOY_7-CZA"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_vtTHkJHYEemkbNOY_7-CZA" general="_RqUHAJHWEemkbNOY_7-CZA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_wcKe0BVKEee_D4EhwjboOQ" name="LiteralTrueExpression">
         <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_5eytMBVbEee_D4EhwjboOQ" client="_wcKe0BVKEee_D4EhwjboOQ" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_2GdzIBXiEee_D4EhwjboOQ" name="OrExpression">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_BwX1ghXjEee_D4EhwjboOQ" name="ownedExpressions" type="_P-MkYBVaEee_D4EhwjboOQ" aggregation="composite" association="_BwWAUBXjEee_D4EhwjboOQ">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GHAekBXjEee_D4EhwjboOQ"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GHQWMBXjEee_D4EhwjboOQ" value="*"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_ltwD4Bn2EeeYEuQJkmbFAA" name="referencedExpressions" type="_P-MkYBVaEee_D4EhwjboOQ" association="_ltsZgBn2EeeYEuQJkmbFAA">
-          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cHlugI6yEemjwpaBkaWY0Q" source="http://www.eclipse.org/emf/2002/GenModel">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cHlugY6yEemjwpaBkaWY0Q" key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference"/>
-          </eAnnotations>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rHd6kBn2EeeYEuQJkmbFAA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rHlPUBn2EeeYEuQJkmbFAA" value="*"/>
-        </ownedAttribute>
-        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_p9NF0BXjEee_D4EhwjboOQ" client="_2GdzIBXiEee_D4EhwjboOQ" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_nTgLEJHYEemkbNOY_7-CZA" general="_RqUHAJHWEemkbNOY_7-CZA"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_s-gmEJHYEemkbNOY_7-CZA" general="_16D2sJHWEemkbNOY_7-CZA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_3NcCQBXiEee_D4EhwjboOQ" name="NotExpression">
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_44dZoRXiEee_D4EhwjboOQ" name="ownedExpression" type="_P-MkYBVaEee_D4EhwjboOQ" aggregation="composite" association="_44cLgBXiEee_D4EhwjboOQ">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9yRM0Bn2EeeYEuQJkmbFAA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9ytRsBn2EeeYEuQJkmbFAA" value="1"/>
-        </ownedAttribute>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_nhG34Bn2EeeYEuQJkmbFAA" name="referencedExpression" type="_P-MkYBVaEee_D4EhwjboOQ" association="_nhEboBn2EeeYEuQJkmbFAA">
-          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bZhuoI6yEemjwpaBkaWY0Q" source="http://www.eclipse.org/emf/2002/GenModel">
-            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bZhuoY6yEemjwpaBkaWY0Q" key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/singleBooleanExpressionReference"/>
-          </eAnnotations>
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-gm5gBn2EeeYEuQJkmbFAA"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-htswBn2EeeYEuQJkmbFAA" value="1"/>
-        </ownedAttribute>
-        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_JtfdEBXjEee_D4EhwjboOQ" client="_3NcCQBXiEee_D4EhwjboOQ" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_44cLgBXiEee_D4EhwjboOQ" memberEnd="_44dZoRXiEee_D4EhwjboOQ _44eAsBXiEee_D4EhwjboOQ">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_44cykBXiEee_D4EhwjboOQ" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_44dZoBXiEee_D4EhwjboOQ" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_44eAsBXiEee_D4EhwjboOQ" name="notexpression" type="_3NcCQBXiEee_D4EhwjboOQ" association="_44cLgBXiEee_D4EhwjboOQ"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_BwWAUBXjEee_D4EhwjboOQ" memberEnd="_BwX1ghXjEee_D4EhwjboOQ _BwiNkBXjEee_D4EhwjboOQ">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_BwX1gBXjEee_D4EhwjboOQ" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_BwX1gRXjEee_D4EhwjboOQ" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_BwiNkBXjEee_D4EhwjboOQ" name="orexpression" type="_2GdzIBXiEee_D4EhwjboOQ" association="_BwWAUBXjEee_D4EhwjboOQ"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_yNmhIJHYEemkbNOY_7-CZA" general="_vbWt4JHWEemkbNOY_7-CZA"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_1TDPIJHYEemkbNOY_7-CZA" general="_fidikJHWEemkbNOY_7-CZA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_sckEMBXjEee_D4EhwjboOQ" name="LiteralFalseExpression">
         <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_w6Uo8BXjEee_D4EhwjboOQ" client="_sckEMBXjEee_D4EhwjboOQ" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_ltsZgBn2EeeYEuQJkmbFAA" memberEnd="_ltwD4Bn2EeeYEuQJkmbFAA _ltwD4Rn2EeeYEuQJkmbFAA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ltvc0Bn2EeeYEuQJkmbFAA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ltvc0Rn2EeeYEuQJkmbFAA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_ltwD4Rn2EeeYEuQJkmbFAA" name="orexpression" type="_2GdzIBXiEee_D4EhwjboOQ" association="_ltsZgBn2EeeYEuQJkmbFAA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_mbLxoBn2EeeYEuQJkmbFAA" memberEnd="_mbMYshn2EeeYEuQJkmbFAA _mbM_wBn2EeeYEuQJkmbFAA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_mbMYsBn2EeeYEuQJkmbFAA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_mbMYsRn2EeeYEuQJkmbFAA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_mbM_wBn2EeeYEuQJkmbFAA" name="andexpression" type="_WpVKMBVbEee_D4EhwjboOQ" association="_mbLxoBn2EeeYEuQJkmbFAA"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_nhEboBn2EeeYEuQJkmbFAA" memberEnd="_nhG34Bn2EeeYEuQJkmbFAA _nhHe8Bn2EeeYEuQJkmbFAA">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nhFpwBn2EeeYEuQJkmbFAA" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nhGQ0Bn2EeeYEuQJkmbFAA" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_nhHe8Bn2EeeYEuQJkmbFAA" name="notexpression" type="_3NcCQBXiEee_D4EhwjboOQ" association="_nhEboBn2EeeYEuQJkmbFAA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_oU_pgBrTEeeJdcoPLKQK3g" name="ReferenceBooleanExpression">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uWcIkJD3EembtcUdk7EePw" source="http://www.eclipse.org/emf/2002/GenModel">
           <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uWcIkZD3EembtcUdk7EePw" key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/singleBooleanExpressionReference"/>
         </eAnnotations>
-        <ownedAttribute xmi:type="uml:Property" xmi:id="_rnZOYBrTEeeJdcoPLKQK3g" name="referencedExpression" type="_P-MkYBVaEee_D4EhwjboOQ" association="_rnWLEBrTEeeJdcoPLKQK3g">
-          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_H0rjgBrUEeeJdcoPLKQK3g"/>
-          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_H1QyUBrUEeeJdcoPLKQK3g" value="1"/>
-        </ownedAttribute>
-        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_98AYwBrUEeeJdcoPLKQK3g" client="_oU_pgBrTEeeJdcoPLKQK3g" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Association" xmi:id="_rnWLEBrTEeeJdcoPLKQK3g" memberEnd="_rnZOYBrTEeeJdcoPLKQK3g _rnZ1cBrTEeeJdcoPLKQK3g">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_rnYnUBrTEeeJdcoPLKQK3g" source="org.eclipse.papyrus">
-          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rnYnURrTEeeJdcoPLKQK3g" key="nature" value="UML_Nature"/>
-        </eAnnotations>
-        <ownedEnd xmi:type="uml:Property" xmi:id="_rnZ1cBrTEeeJdcoPLKQK3g" name="booleanexpressionreference" type="_oU_pgBrTEeeJdcoPLKQK3g" association="_rnWLEBrTEeeJdcoPLKQK3g"/>
+        <generalization xmi:type="uml:Generalization" xmi:id="_4K3w0JHYEemkbNOY_7-CZA" general="_fidikJHWEemkbNOY_7-CZA"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Interface" xmi:id="_yFQYgBtpEeeNbZVCoqtPGQ" name="IBooleanExpression">
         <templateBinding xmi:type="uml:TemplateBinding" xmi:id="_1nV_MBtpEeeNbZVCoqtPGQ" signature="_mhY58BVZEee_D4EhwjboOQ">
@@ -227,6 +151,64 @@ This expression returns false in all cases, expected when the expectedValue is e
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-SKvEI3OEemaCNM_5JlkJw"/>
         </ownedAttribute>
         <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_NBlw4I3PEemaCNM_5JlkJw" client="_sIyu4I3OEemaCNM_5JlkJw" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_RqUHAJHWEemkbNOY_7-CZA" name="AbtractMultiBooleanEObjectExpressionsOwnedExpression" isAbstract="true">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_CfNj4JHYEemkbNOY_7-CZA" name="ownedExpressions" type="_P-MkYBVaEee_D4EhwjboOQ" aggregation="composite" association="_CfEZ8JHYEemkbNOY_7-CZA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_CfOK8JHYEemkbNOY_7-CZA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_CfOK8ZHYEemkbNOY_7-CZA" value="*"/>
+        </ownedAttribute>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_tpYkgJHXEemkbNOY_7-CZA" client="_RqUHAJHWEemkbNOY_7-CZA" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_fidikJHWEemkbNOY_7-CZA" name="AbstractSingleBooleanEObjectExpressionReferenceExpression" isAbstract="true">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_ade64JHYEemkbNOY_7-CZA" name="referencedExpression" type="_P-MkYBVaEee_D4EhwjboOQ" association="_addFsJHYEemkbNOY_7-CZA">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dLAR0JJsEemkbNOY_7-CZA" source="http://www.eclipse.org/emf/2002/GenModel">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_guXq4JJsEemkbNOY_7-CZA" key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/SingleBooleanEObjectExpressionReferenceExpression/referencedExpression"/>
+          </eAnnotations>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_adfh8JHYEemkbNOY_7-CZA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_adgJAJHYEemkbNOY_7-CZA" value="1"/>
+        </ownedAttribute>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_tpADYJJuEemkbNOY_7-CZA" client="_fidikJHWEemkbNOY_7-CZA" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_vbWt4JHWEemkbNOY_7-CZA" name="AbstractSingleBooleanEObjectExpressionOwnedExpression" isAbstract="true">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_gX8HIZHYEemkbNOY_7-CZA" name="ownedExpression" type="_P-MkYBVaEee_D4EhwjboOQ" aggregation="composite" association="_gX6R8JHYEemkbNOY_7-CZA">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gX8uMJHYEemkbNOY_7-CZA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gX9VQJHYEemkbNOY_7-CZA" value="1"/>
+        </ownedAttribute>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_-YK2AJHXEemkbNOY_7-CZA" client="_vbWt4JHWEemkbNOY_7-CZA" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_16D2sJHWEemkbNOY_7-CZA" name="AbstractMultiBooleanEObjectExpressionsReferenceExpression" isAbstract="true">
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_OwPQoJHYEemkbNOY_7-CZA" name="referencedExpressions" type="_P-MkYBVaEee_D4EhwjboOQ" association="_OwLmQJHYEemkbNOY_7-CZA">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yg87sJJsEemkbNOY_7-CZA" source="http://www.eclipse.org/emf/2002/GenModel">
+            <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yg87sZJsEemkbNOY_7-CZA" key="propertyEditorFactory" value="http://www.eclipse.org/papyrus/expressions/MultiBooleanEObjectExpressionsReferenceExpression/referencedExpressions"/>
+          </eAnnotations>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SkDggJHYEemkbNOY_7-CZA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SeYWUJHYEemkbNOY_7-CZA" value="*"/>
+        </ownedAttribute>
+        <interfaceRealization xmi:type="uml:InterfaceRealization" xmi:id="_3ODYsJHXEemkbNOY_7-CZA" client="_16D2sJHWEemkbNOY_7-CZA" supplier="_P-MkYBVaEee_D4EhwjboOQ" contract="_P-MkYBVaEee_D4EhwjboOQ"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_CfEZ8JHYEemkbNOY_7-CZA" memberEnd="_CfNj4JHYEemkbNOY_7-CZA _CfOyAJHYEemkbNOY_7-CZA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CfKgkJHYEemkbNOY_7-CZA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CfLHoJHYEemkbNOY_7-CZA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_CfOyAJHYEemkbNOY_7-CZA" name="abtractmultibooleaneobjectexpressionscontainmentexpression" type="_RqUHAJHWEemkbNOY_7-CZA" association="_CfEZ8JHYEemkbNOY_7-CZA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_OwLmQJHYEemkbNOY_7-CZA" memberEnd="_OwPQoJHYEemkbNOY_7-CZA _OwQewJHYEemkbNOY_7-CZA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OwOpkJHYEemkbNOY_7-CZA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_OwOpkZHYEemkbNOY_7-CZA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_OwQewJHYEemkbNOY_7-CZA" name="abstractmultibooleaneobjectexpressionsreferenceexpression" type="_16D2sJHWEemkbNOY_7-CZA" association="_OwLmQJHYEemkbNOY_7-CZA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_addFsJHYEemkbNOY_7-CZA" memberEnd="_ade64JHYEemkbNOY_7-CZA _adgwEJHYEemkbNOY_7-CZA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_adeT0JHYEemkbNOY_7-CZA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_adeT0ZHYEemkbNOY_7-CZA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_adgwEJHYEemkbNOY_7-CZA" name="abstractsinglebooleaneobjectexpressionreferenceexpression" type="_fidikJHWEemkbNOY_7-CZA" association="_addFsJHYEemkbNOY_7-CZA"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_gX6R8JHYEemkbNOY_7-CZA" memberEnd="_gX8HIZHYEemkbNOY_7-CZA _gX9VQZHYEemkbNOY_7-CZA">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gX7gEJHYEemkbNOY_7-CZA" source="org.eclipse.papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gX8HIJHYEemkbNOY_7-CZA" key="nature" value="UML_Nature"/>
+        </eAnnotations>
+        <ownedEnd xmi:type="uml:Property" xmi:id="_gX9VQZHYEemkbNOY_7-CZA" name="abstractsinglebooleaneobjectexpressionownedexpression" type="_vbWt4JHWEemkbNOY_7-CZA" association="_gX6R8JHYEemkbNOY_7-CZA"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_-hQYgBqgEeex7OKxnYgv8Q" name="IBasicExpressionElement">

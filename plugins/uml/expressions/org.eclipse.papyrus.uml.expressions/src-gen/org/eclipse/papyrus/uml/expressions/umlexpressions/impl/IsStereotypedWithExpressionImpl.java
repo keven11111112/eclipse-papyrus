@@ -146,6 +146,7 @@ public class IsStereotypedWithExpressionImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -155,6 +156,7 @@ public class IsStereotypedWithExpressionImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -167,6 +169,7 @@ public class IsStereotypedWithExpressionImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -176,6 +179,7 @@ public class IsStereotypedWithExpressionImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -188,6 +192,7 @@ public class IsStereotypedWithExpressionImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getStereotypeQualifiedName() {
 		return stereotypeQualifiedName;
 	}
@@ -197,6 +202,7 @@ public class IsStereotypedWithExpressionImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setStereotypeQualifiedName(String newStereotypeQualifiedName) {
 		String oldStereotypeQualifiedName = stereotypeQualifiedName;
 		stereotypeQualifiedName = newStereotypeQualifiedName;
@@ -209,6 +215,7 @@ public class IsStereotypedWithExpressionImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getProfileURI() {
 		return profileURI;
 	}
@@ -218,6 +225,7 @@ public class IsStereotypedWithExpressionImpl extends MinimalEObjectImpl.Containe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setProfileURI(String newProfileURI) {
 		String oldProfileURI = profileURI;
 		profileURI = newProfileURI;
@@ -347,7 +355,7 @@ public class IsStereotypedWithExpressionImpl extends MinimalEObjectImpl.Containe
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(", description: "); //$NON-NLS-1$

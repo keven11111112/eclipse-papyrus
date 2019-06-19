@@ -19,26 +19,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
-
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AndExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsFactory;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
@@ -50,13 +33,7 @@ import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpre
  * @generated
  */
 public class AndExpressionItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+	extends AbstractMultiBooleanEObjectExpressionsReferenceExpressionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -78,78 +55,8 @@ public class AndExpressionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
-			addReferencedExpressionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IBasicExpressionElement_name_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IBasicExpressionElement_name_feature", "_UI_IBasicExpressionElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 ExpressionsPackage.Literals.IBASIC_EXPRESSION_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_IBasicExpressionElement_description_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_IBasicExpressionElement_description_feature", "_UI_IBasicExpressionElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 ExpressionsPackage.Literals.IBASIC_EXPRESSION_ELEMENT__DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Referenced Expressions feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addReferencedExpressionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AndExpression_referencedExpressions_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_AndExpression_referencedExpressions_feature", "_UI_AndExpression_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 BooleanExpressionsPackage.Literals.AND_EXPRESSION__REFERENCED_EXPRESSIONS,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null,
-				 URI.createURI("http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference")));
 	}
 
 	/**
@@ -164,7 +71,7 @@ public class AndExpressionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS);
+			childrenFeatures.add(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS);
 		}
 		return childrenFeatures;
 	}
@@ -230,10 +137,6 @@ public class AndExpressionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AndExpression.class)) {
-			case BooleanExpressionsPackage.AND_EXPRESSION__NAME:
-			case BooleanExpressionsPackage.AND_EXPRESSION__DESCRIPTION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
 			case BooleanExpressionsPackage.AND_EXPRESSION__OWNED_EXPRESSIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -254,49 +157,38 @@ public class AndExpressionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+				(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 				 BooleanExpressionsFactory.eINSTANCE.createOrExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+				(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 				 BooleanExpressionsFactory.eINSTANCE.createAndExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+				(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 				 BooleanExpressionsFactory.eINSTANCE.createNotExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+				(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 				 BooleanExpressionsFactory.eINSTANCE.createLiteralTrueExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+				(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 				 BooleanExpressionsFactory.eINSTANCE.createLiteralFalseExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+				(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 				 BooleanExpressionsFactory.eINSTANCE.createReferenceBooleanExpression()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+				(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 				 BooleanExpressionsFactory.eINSTANCE.createSingleEAttributeValueEqualityExpression()));
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
 	}
 
 }

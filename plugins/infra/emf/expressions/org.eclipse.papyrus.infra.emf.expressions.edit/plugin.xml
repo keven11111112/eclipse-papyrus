@@ -67,12 +67,12 @@
 			uri="http://www.eclipse.org/papyrus/expressions/singleEAttributeReference">
       </factory>
       <factory
-            class="org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.SingleBooleanExpressionReferenceEditorFactory"
-            uri="http://www.eclipse.org/papyrus/expressions/singleBooleanExpressionReference">
+            class="org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.SingleBooleanEObjectExpressionReferenceEditorFactory"
+            uri="http://www.eclipse.org/papyrus/expressions/SingleBooleanEObjectExpressionReferenceExpression/referencedExpression">
       </factory>
       <factory
-            class="org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.MultiBooleanExpressionsReferenceEditorFactory"
-            uri="http://www.eclipse.org/papyrus/expressions/multiBooleanExpressionsReference">
+            class="org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.MultiBooleanEObjectExpressionsReferenceEditorFactory"
+            uri="http://www.eclipse.org/papyrus/expressions/MultiBooleanEObjectExpressionsReferenceExpression/referencedExpressions">
       </factory>
    </extension>
 

@@ -41,10 +41,9 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionCatalog;
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AndExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractSingleBooleanEObjectExpressionOwnedExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbtractMultiBooleanEObjectExpressionsOwnedExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.NotExpression;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.OrExpression;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.util.BooleanExpressionsSwitch;
 import org.eclipse.papyrus.infra.emf.expressions.util.ExpressionsSwitch;
 import org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsFactory;
@@ -251,6 +250,7 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ComposeableAdapterFactory getRootAdapterFactory() {
 		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
 	}
@@ -261,6 +261,7 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
 		this.parentAdapterFactory = parentAdapterFactory;
 	}
@@ -336,6 +337,7 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void addListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.addListener(notifyChangedListener);
 	}
@@ -346,6 +348,7 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
 		changeNotifier.removeListener(notifyChangedListener);
 	}
@@ -356,6 +359,7 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
@@ -370,6 +374,7 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void dispose() {
 		if (isStereotypedWithExpressionItemProvider != null) isStereotypedWithExpressionItemProvider.dispose();
 		if (hasAppliedStereotypesExpressionItemProvider != null) hasAppliedStereotypesExpressionItemProvider.dispose();
@@ -537,120 +542,78 @@ public class UMLExpressionsItemProviderAdapterFactory extends UMLExpressionsAdap
 			 * @generated
 			 */
 			@Override
-			public Object caseOrExpression(OrExpression object) {
+			public Object caseAbtractMultiBooleanEObjectExpressionsOwnedExpression(AbtractMultiBooleanEObjectExpressionsOwnedExpression object) {
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.OR_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 						 UMLExpressionsFactory.eINSTANCE.createIsStereotypedWithExpression()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.OR_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 						 UMLExpressionsFactory.eINSTANCE.createHasAppliedStereotypesExpression()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.OR_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfExpression()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.OR_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 						 UMLExpressionsFactory.eINSTANCE.createIsKindOfExpression()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.OR_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 						 UMLExpressionsFactory.eINSTANCE.createIsKindOfStereotypeExpression()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.OR_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION__OWNED_EXPRESSIONS,
 						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfStereotypeExpression()));
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
 			 * @generated
 			 */
 			@Override
-			public Object caseAndExpression(AndExpression object) {
+			public Object caseAbstractSingleBooleanEObjectExpressionOwnedExpression(AbstractSingleBooleanEObjectExpressionOwnedExpression object) {
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_OWNED_EXPRESSION__OWNED_EXPRESSION,
 						 UMLExpressionsFactory.eINSTANCE.createIsStereotypedWithExpression()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_OWNED_EXPRESSION__OWNED_EXPRESSION,
 						 UMLExpressionsFactory.eINSTANCE.createHasAppliedStereotypesExpression()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_OWNED_EXPRESSION__OWNED_EXPRESSION,
 						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfExpression()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_OWNED_EXPRESSION__OWNED_EXPRESSION,
 						 UMLExpressionsFactory.eINSTANCE.createIsKindOfExpression()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_OWNED_EXPRESSION__OWNED_EXPRESSION,
 						 UMLExpressionsFactory.eINSTANCE.createIsKindOfStereotypeExpression()));
 
 				newChildDescriptors.add
 					(createChildParameter
-						(BooleanExpressionsPackage.Literals.AND_EXPRESSION__OWNED_EXPRESSIONS,
+						(BooleanExpressionsPackage.Literals.ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_OWNED_EXPRESSION__OWNED_EXPRESSION,
 						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfStereotypeExpression()));
 
 				return null;
 			}
- 
-			/**
-			 * <!-- begin-user-doc -->
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			@Override
-			public Object caseNotExpression(NotExpression object) {
-				newChildDescriptors.add
-					(createChildParameter
-						(BooleanExpressionsPackage.Literals.NOT_EXPRESSION__OWNED_EXPRESSION,
-						 UMLExpressionsFactory.eINSTANCE.createIsStereotypedWithExpression()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(BooleanExpressionsPackage.Literals.NOT_EXPRESSION__OWNED_EXPRESSION,
-						 UMLExpressionsFactory.eINSTANCE.createHasAppliedStereotypesExpression()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(BooleanExpressionsPackage.Literals.NOT_EXPRESSION__OWNED_EXPRESSION,
-						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfExpression()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(BooleanExpressionsPackage.Literals.NOT_EXPRESSION__OWNED_EXPRESSION,
-						 UMLExpressionsFactory.eINSTANCE.createIsKindOfExpression()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(BooleanExpressionsPackage.Literals.NOT_EXPRESSION__OWNED_EXPRESSION,
-						 UMLExpressionsFactory.eINSTANCE.createIsKindOfStereotypeExpression()));
-
-				newChildDescriptors.add
-					(createChildParameter
-						(BooleanExpressionsPackage.Literals.NOT_EXPRESSION__OWNED_EXPRESSION,
-						 UMLExpressionsFactory.eINSTANCE.createIsTypeOfStereotypeExpression()));
-
-				return null;
-			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

@@ -120,6 +120,7 @@ public class IsTypeOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -129,6 +130,7 @@ public class IsTypeOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -141,6 +143,7 @@ public class IsTypeOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getDescription() {
 		return description;
 	}
@@ -150,6 +153,7 @@ public class IsTypeOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDescription(String newDescription) {
 		String oldDescription = description;
 		description = newDescription;
@@ -162,6 +166,7 @@ public class IsTypeOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getUmlEClass() {
 		if (umlEClass != null && umlEClass.eIsProxy()) {
 			InternalEObject oldUmlEClass = (InternalEObject)umlEClass;
@@ -188,6 +193,7 @@ public class IsTypeOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUmlEClass(EClass newUmlEClass) {
 		EClass oldUmlEClass = umlEClass;
 		umlEClass = newUmlEClass;
@@ -308,7 +314,7 @@ public class IsTypeOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(", description: "); //$NON-NLS-1$

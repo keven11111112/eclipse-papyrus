@@ -108,7 +108,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link UMLExpressionsPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -122,7 +122,8 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 		if (isInited) return (UMLExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(UMLExpressionsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		UMLExpressionsPackageImpl theUMLExpressionsPackage = (UMLExpressionsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UMLExpressionsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new UMLExpressionsPackageImpl());
+		Object registeredUMLExpressionsPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		UMLExpressionsPackageImpl theUMLExpressionsPackage = registeredUMLExpressionsPackage instanceof UMLExpressionsPackageImpl ? (UMLExpressionsPackageImpl)registeredUMLExpressionsPackage : new UMLExpressionsPackageImpl();
 
 		isInited = true;
 
@@ -139,7 +140,6 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 		// Mark meta-data to indicate it can't be changed
 		theUMLExpressionsPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(UMLExpressionsPackage.eNS_URI, theUMLExpressionsPackage);
 		return theUMLExpressionsPackage;
@@ -150,6 +150,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIsStereotypedWithExpression() {
 		return isStereotypedWithExpressionEClass;
 	}
@@ -159,6 +160,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIsStereotypedWithExpression_StereotypeQualifiedName() {
 		return (EAttribute)isStereotypedWithExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -168,6 +170,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIsStereotypedWithExpression_ProfileURI() {
 		return (EAttribute)isStereotypedWithExpressionEClass.getEStructuralFeatures().get(1);
 	}
@@ -177,6 +180,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getHasAppliedStereotypesExpression() {
 		return hasAppliedStereotypesExpressionEClass;
 	}
@@ -186,6 +190,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIsTypeOfExpression() {
 		return isTypeOfExpressionEClass;
 	}
@@ -195,6 +200,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIsTypeOfExpression_UmlEClass() {
 		return (EReference)isTypeOfExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -204,6 +210,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIsKindOfExpression() {
 		return isKindOfExpressionEClass;
 	}
@@ -213,6 +220,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getIsKindOfExpression_UmlEClass() {
 		return (EReference)isKindOfExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -222,6 +230,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIsKindOfStereotypeExpression() {
 		return isKindOfStereotypeExpressionEClass;
 	}
@@ -231,6 +240,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIsKindOfStereotypeExpression_StereotypeQualifiedName() {
 		return (EAttribute)isKindOfStereotypeExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -240,6 +250,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIsKindOfStereotypeExpression_ProfileURI() {
 		return (EAttribute)isKindOfStereotypeExpressionEClass.getEStructuralFeatures().get(1);
 	}
@@ -249,6 +260,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIsTypeOfStereotypeExpression() {
 		return isTypeOfStereotypeExpressionEClass;
 	}
@@ -258,6 +270,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIsTypeOfStereotypeExpression_StereotypeQualifiedName() {
 		return (EAttribute)isTypeOfStereotypeExpressionEClass.getEStructuralFeatures().get(0);
 	}
@@ -267,6 +280,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIsTypeOfStereotypeExpression_ProfileURI() {
 		return (EAttribute)isTypeOfStereotypeExpressionEClass.getEStructuralFeatures().get(1);
 	}
@@ -276,6 +290,7 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public UMLExpressionsFactory getUMLExpressionsFactory() {
 		return (UMLExpressionsFactory)getEFactoryInstance();
 	}
@@ -395,12 +410,12 @@ public class UMLExpressionsPackageImpl extends EPackageImpl implements UMLExpres
 	 * @generated
 	 */
 	protected void createUMLAnnotations() {
-		String source = "http://www.eclipse.org/uml2/2.0.0/UML"; //$NON-NLS-1$	
+		String source = "http://www.eclipse.org/uml2/2.0.0/UML"; //$NON-NLS-1$
 		addAnnotation
-		  (this, 
-		   source, 
+		  (this,
+		   source,
 		   new String[] {
-			 "originalName", "UMLExpressions" //$NON-NLS-1$ //$NON-NLS-2$
+			   "originalName", "UMLExpressions" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

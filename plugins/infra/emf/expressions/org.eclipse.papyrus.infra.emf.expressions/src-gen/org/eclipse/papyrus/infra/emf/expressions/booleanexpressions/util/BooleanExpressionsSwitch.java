@@ -83,10 +83,22 @@ public class BooleanExpressionsSwitch<T> extends Switch<T> {
 			case BooleanExpressionsPackage.OR_EXPRESSION: {
 				OrExpression orExpression = (OrExpression)theEObject;
 				T result = caseOrExpression(orExpression);
+				if (result == null) result = caseAbstractMultiBooleanEObjectExpressionsReferenceExpression(orExpression);
+				if (result == null) result = caseAbtractMultiBooleanEObjectExpressionsOwnedExpression(orExpression);
 				if (result == null) result = caseIBooleanEObjectExpression(orExpression);
 				if (result == null) result = caseIBooleanExpression(orExpression);
 				if (result == null) result = caseIExpression(orExpression);
 				if (result == null) result = caseIBasicExpressionElement(orExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BooleanExpressionsPackage.ABTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_OWNED_EXPRESSION: {
+				AbtractMultiBooleanEObjectExpressionsOwnedExpression abtractMultiBooleanEObjectExpressionsOwnedExpression = (AbtractMultiBooleanEObjectExpressionsOwnedExpression)theEObject;
+				T result = caseAbtractMultiBooleanEObjectExpressionsOwnedExpression(abtractMultiBooleanEObjectExpressionsOwnedExpression);
+				if (result == null) result = caseIBooleanEObjectExpression(abtractMultiBooleanEObjectExpressionsOwnedExpression);
+				if (result == null) result = caseIBooleanExpression(abtractMultiBooleanEObjectExpressionsOwnedExpression);
+				if (result == null) result = caseIExpression(abtractMultiBooleanEObjectExpressionsOwnedExpression);
+				if (result == null) result = caseIBasicExpressionElement(abtractMultiBooleanEObjectExpressionsOwnedExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -107,9 +119,21 @@ public class BooleanExpressionsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION: {
+				AbstractMultiBooleanEObjectExpressionsReferenceExpression abstractMultiBooleanEObjectExpressionsReferenceExpression = (AbstractMultiBooleanEObjectExpressionsReferenceExpression)theEObject;
+				T result = caseAbstractMultiBooleanEObjectExpressionsReferenceExpression(abstractMultiBooleanEObjectExpressionsReferenceExpression);
+				if (result == null) result = caseIBooleanEObjectExpression(abstractMultiBooleanEObjectExpressionsReferenceExpression);
+				if (result == null) result = caseIBooleanExpression(abstractMultiBooleanEObjectExpressionsReferenceExpression);
+				if (result == null) result = caseIExpression(abstractMultiBooleanEObjectExpressionsReferenceExpression);
+				if (result == null) result = caseIBasicExpressionElement(abstractMultiBooleanEObjectExpressionsReferenceExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BooleanExpressionsPackage.AND_EXPRESSION: {
 				AndExpression andExpression = (AndExpression)theEObject;
 				T result = caseAndExpression(andExpression);
+				if (result == null) result = caseAbstractMultiBooleanEObjectExpressionsReferenceExpression(andExpression);
+				if (result == null) result = caseAbtractMultiBooleanEObjectExpressionsOwnedExpression(andExpression);
 				if (result == null) result = caseIBooleanEObjectExpression(andExpression);
 				if (result == null) result = caseIBooleanExpression(andExpression);
 				if (result == null) result = caseIExpression(andExpression);
@@ -120,10 +144,32 @@ public class BooleanExpressionsSwitch<T> extends Switch<T> {
 			case BooleanExpressionsPackage.NOT_EXPRESSION: {
 				NotExpression notExpression = (NotExpression)theEObject;
 				T result = caseNotExpression(notExpression);
+				if (result == null) result = caseAbstractSingleBooleanEObjectExpressionOwnedExpression(notExpression);
+				if (result == null) result = caseAbstractSingleBooleanEObjectExpressionReferenceExpression(notExpression);
 				if (result == null) result = caseIBooleanEObjectExpression(notExpression);
 				if (result == null) result = caseIBooleanExpression(notExpression);
 				if (result == null) result = caseIExpression(notExpression);
 				if (result == null) result = caseIBasicExpressionElement(notExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BooleanExpressionsPackage.ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_OWNED_EXPRESSION: {
+				AbstractSingleBooleanEObjectExpressionOwnedExpression abstractSingleBooleanEObjectExpressionOwnedExpression = (AbstractSingleBooleanEObjectExpressionOwnedExpression)theEObject;
+				T result = caseAbstractSingleBooleanEObjectExpressionOwnedExpression(abstractSingleBooleanEObjectExpressionOwnedExpression);
+				if (result == null) result = caseIBooleanEObjectExpression(abstractSingleBooleanEObjectExpressionOwnedExpression);
+				if (result == null) result = caseIBooleanExpression(abstractSingleBooleanEObjectExpressionOwnedExpression);
+				if (result == null) result = caseIExpression(abstractSingleBooleanEObjectExpressionOwnedExpression);
+				if (result == null) result = caseIBasicExpressionElement(abstractSingleBooleanEObjectExpressionOwnedExpression);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case BooleanExpressionsPackage.ABSTRACT_SINGLE_BOOLEAN_EOBJECT_EXPRESSION_REFERENCE_EXPRESSION: {
+				AbstractSingleBooleanEObjectExpressionReferenceExpression abstractSingleBooleanEObjectExpressionReferenceExpression = (AbstractSingleBooleanEObjectExpressionReferenceExpression)theEObject;
+				T result = caseAbstractSingleBooleanEObjectExpressionReferenceExpression(abstractSingleBooleanEObjectExpressionReferenceExpression);
+				if (result == null) result = caseIBooleanEObjectExpression(abstractSingleBooleanEObjectExpressionReferenceExpression);
+				if (result == null) result = caseIBooleanExpression(abstractSingleBooleanEObjectExpressionReferenceExpression);
+				if (result == null) result = caseIExpression(abstractSingleBooleanEObjectExpressionReferenceExpression);
+				if (result == null) result = caseIBasicExpressionElement(abstractSingleBooleanEObjectExpressionReferenceExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -150,6 +196,7 @@ public class BooleanExpressionsSwitch<T> extends Switch<T> {
 			case BooleanExpressionsPackage.REFERENCE_BOOLEAN_EXPRESSION: {
 				ReferenceBooleanExpression referenceBooleanExpression = (ReferenceBooleanExpression)theEObject;
 				T result = caseReferenceBooleanExpression(referenceBooleanExpression);
+				if (result == null) result = caseAbstractSingleBooleanEObjectExpressionReferenceExpression(referenceBooleanExpression);
 				if (result == null) result = caseIBooleanEObjectExpression(referenceBooleanExpression);
 				if (result == null) result = caseIBooleanExpression(referenceBooleanExpression);
 				if (result == null) result = caseIExpression(referenceBooleanExpression);
@@ -187,6 +234,21 @@ public class BooleanExpressionsSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abtract Multi Boolean EObject Expressions Owned Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abtract Multi Boolean EObject Expressions Owned Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbtractMultiBooleanEObjectExpressionsOwnedExpression(AbtractMultiBooleanEObjectExpressionsOwnedExpression object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>IBoolean EObject Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -217,6 +279,21 @@ public class BooleanExpressionsSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Multi Boolean EObject Expressions Reference Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Multi Boolean EObject Expressions Reference Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractMultiBooleanEObjectExpressionsReferenceExpression(AbstractMultiBooleanEObjectExpressionsReferenceExpression object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>And Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -243,6 +320,36 @@ public class BooleanExpressionsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseNotExpression(NotExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Single Boolean EObject Expression Owned Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Single Boolean EObject Expression Owned Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractSingleBooleanEObjectExpressionOwnedExpression(AbstractSingleBooleanEObjectExpressionOwnedExpression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Single Boolean EObject Expression Reference Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Single Boolean EObject Expression Reference Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractSingleBooleanEObjectExpressionReferenceExpression(AbstractSingleBooleanEObjectExpressionReferenceExpression object) {
 		return null;
 	}
 

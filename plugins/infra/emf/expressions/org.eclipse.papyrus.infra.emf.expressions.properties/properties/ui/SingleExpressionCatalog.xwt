@@ -16,11 +16,4 @@
 		<ppe:StringEditor input="{Binding}"
 			property="expressions:IBasicExpressionElement:description"></ppe:StringEditor>
 	</Composite>
-	<Composite>
-		<Composite.layout>
-			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
-		</Composite.layout>
-		<ppe:MultiReference input="{Binding}"
-			property="expressions:ExpressionCatalog:expressions"></ppe:MultiReference>
-	</Composite>
 </Composite>

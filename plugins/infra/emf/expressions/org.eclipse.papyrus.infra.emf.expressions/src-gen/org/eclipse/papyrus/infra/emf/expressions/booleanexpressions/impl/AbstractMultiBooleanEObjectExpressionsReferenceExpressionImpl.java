@@ -1,20 +1,21 @@
 /**
  * Copyright (c) 2017 CEA LIST.
  * 
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License 2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-2.0/
  * 
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License 2.0
- * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
- *
- * SPDX-License-Identifier: EPL-2.0
+ *  SPDX-License-Identifier: EPL-2.0
  * 
- * Contributors:
- * 	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  */
-package org.eclipse.papyrus.uml.expressions.umlexpressions.impl;
+package org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl;
 
 import java.lang.reflect.InvocationTargetException;
+
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -22,30 +23,32 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.papyrus.uml.expressions.umlexpressions.IsKindOfExpression;
-import org.eclipse.papyrus.uml.expressions.umlexpressions.UMLExpressionsPackage;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractMultiBooleanEObjectExpressionsReferenceExpression;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
+import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanEObjectExpression;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Is Kind Of Expression</b></em>'.
+ * An implementation of the model object '<em><b>Abstract Multi Boolean EObject Expressions Reference Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsKindOfExpressionImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsKindOfExpressionImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.papyrus.uml.expressions.umlexpressions.impl.IsKindOfExpressionImpl#getUmlEClass <em>Uml EClass</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.AbstractMultiBooleanEObjectExpressionsReferenceExpressionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.AbstractMultiBooleanEObjectExpressionsReferenceExpressionImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.impl.AbstractMultiBooleanEObjectExpressionsReferenceExpressionImpl#getReferencedExpressions <em>Referenced Expressions</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container implements IsKindOfExpression {
+public abstract class AbstractMultiBooleanEObjectExpressionsReferenceExpressionImpl extends MinimalEObjectImpl.Container implements AbstractMultiBooleanEObjectExpressionsReferenceExpression {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -87,21 +90,21 @@ public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getUmlEClass() <em>Uml EClass</em>}' reference.
+	 * The cached value of the '{@link #getReferencedExpressions() <em>Referenced Expressions</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUmlEClass()
+	 * @see #getReferencedExpressions()
 	 * @generated
 	 * @ordered
 	 */
-	protected EClass umlEClass;
+	protected EList<IBooleanEObjectExpression> referencedExpressions;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IsKindOfExpressionImpl() {
+	protected AbstractMultiBooleanEObjectExpressionsReferenceExpressionImpl() {
 		super();
 	}
 
@@ -112,7 +115,7 @@ public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return UMLExpressionsPackage.Literals.IS_KIND_OF_EXPRESSION;
+		return BooleanExpressionsPackage.Literals.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION;
 	}
 
 	/**
@@ -135,7 +138,7 @@ public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__NAME, oldName, name));
 	}
 
 	/**
@@ -158,7 +161,7 @@ public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 		String oldDescription = description;
 		description = newDescription;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__DESCRIPTION, oldDescription, description));
+			eNotify(new ENotificationImpl(this, Notification.SET, BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__DESCRIPTION, oldDescription, description));
 	}
 
 	/**
@@ -167,38 +170,11 @@ public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	 * @generated
 	 */
 	@Override
-	public EClass getUmlEClass() {
-		if (umlEClass != null && umlEClass.eIsProxy()) {
-			InternalEObject oldUmlEClass = (InternalEObject)umlEClass;
-			umlEClass = (EClass)eResolveProxy(oldUmlEClass);
-			if (umlEClass != oldUmlEClass) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__UML_ECLASS, oldUmlEClass, umlEClass));
-			}
+	public EList<IBooleanEObjectExpression> getReferencedExpressions() {
+		if (referencedExpressions == null) {
+			referencedExpressions = new EObjectResolvingEList<IBooleanEObjectExpression>(IBooleanEObjectExpression.class, this, BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__REFERENCED_EXPRESSIONS);
 		}
-		return umlEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass basicGetUmlEClass() {
-		return umlEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setUmlEClass(EClass newUmlEClass) {
-		EClass oldUmlEClass = umlEClass;
-		umlEClass = newUmlEClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__UML_ECLASS, oldUmlEClass, umlEClass));
+		return referencedExpressions;
 	}
 
 	/**
@@ -220,13 +196,12 @@ public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__NAME:
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__NAME:
 				return getName();
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__DESCRIPTION:
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__DESCRIPTION:
 				return getDescription();
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__UML_ECLASS:
-				if (resolve) return getUmlEClass();
-				return basicGetUmlEClass();
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__REFERENCED_EXPRESSIONS:
+				return getReferencedExpressions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -236,17 +211,19 @@ public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__NAME:
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__NAME:
 				setName((String)newValue);
 				return;
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__DESCRIPTION:
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__DESCRIPTION:
 				setDescription((String)newValue);
 				return;
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__UML_ECLASS:
-				setUmlEClass((EClass)newValue);
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__REFERENCED_EXPRESSIONS:
+				getReferencedExpressions().clear();
+				getReferencedExpressions().addAll((Collection<? extends IBooleanEObjectExpression>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -260,14 +237,14 @@ public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__NAME:
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__DESCRIPTION:
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
 				return;
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__UML_ECLASS:
-				setUmlEClass((EClass)null);
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__REFERENCED_EXPRESSIONS:
+				getReferencedExpressions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -281,12 +258,12 @@ public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__NAME:
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__DESCRIPTION:
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION__UML_ECLASS:
-				return umlEClass != null;
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION__REFERENCED_EXPRESSIONS:
+				return referencedExpressions != null && !referencedExpressions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -299,7 +276,7 @@ public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case UMLExpressionsPackage.IS_KIND_OF_EXPRESSION___EVALUATE__OBJECT:
+			case BooleanExpressionsPackage.ABSTRACT_MULTI_BOOLEAN_EOBJECT_EXPRESSIONS_REFERENCE_EXPRESSION___EVALUATE__OBJECT:
 				return evaluate((EObject)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
@@ -323,4 +300,4 @@ public class IsKindOfExpressionImpl extends MinimalEObjectImpl.Container impleme
 		return result.toString();
 	}
 
-} //IsKindOfExpressionImpl
+} //AbstractMultiBooleanEObjectExpressionsReferenceExpressionImpl

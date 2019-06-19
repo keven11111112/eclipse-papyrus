@@ -20,7 +20,7 @@
 		<Composite.layout>
 			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
 		</Composite.layout>
-		<ppe:ReferenceDialog input="{Binding}"
-			property="expressions:booleanexpressions:AbstractSingleBooleanEObjectExpressionReferenceExpression:referencedExpression"></ppe:ReferenceDialog>
+		<ppe:MultiReference input="{Binding}"
+			property="expressions:booleanexpressions:AbtractMultiBooleanEObjectExpressionsOwnedExpression:ownedExpressions"></ppe:MultiReference>
 	</Composite>
 </Composite>

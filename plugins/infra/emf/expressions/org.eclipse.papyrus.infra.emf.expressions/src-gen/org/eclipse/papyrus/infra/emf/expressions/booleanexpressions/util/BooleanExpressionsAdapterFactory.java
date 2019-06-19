@@ -86,6 +86,10 @@ public class BooleanExpressionsAdapterFactory extends AdapterFactoryImpl {
 				return createOrExpressionAdapter();
 			}
 			@Override
+			public Adapter caseAbtractMultiBooleanEObjectExpressionsOwnedExpression(AbtractMultiBooleanEObjectExpressionsOwnedExpression object) {
+				return createAbtractMultiBooleanEObjectExpressionsOwnedExpressionAdapter();
+			}
+			@Override
 			public Adapter caseIBooleanEObjectExpression(IBooleanEObjectExpression object) {
 				return createIBooleanEObjectExpressionAdapter();
 			}
@@ -94,12 +98,24 @@ public class BooleanExpressionsAdapterFactory extends AdapterFactoryImpl {
 				return createIBooleanExpressionAdapter();
 			}
 			@Override
+			public Adapter caseAbstractMultiBooleanEObjectExpressionsReferenceExpression(AbstractMultiBooleanEObjectExpressionsReferenceExpression object) {
+				return createAbstractMultiBooleanEObjectExpressionsReferenceExpressionAdapter();
+			}
+			@Override
 			public Adapter caseAndExpression(AndExpression object) {
 				return createAndExpressionAdapter();
 			}
 			@Override
 			public Adapter caseNotExpression(NotExpression object) {
 				return createNotExpressionAdapter();
+			}
+			@Override
+			public Adapter caseAbstractSingleBooleanEObjectExpressionOwnedExpression(AbstractSingleBooleanEObjectExpressionOwnedExpression object) {
+				return createAbstractSingleBooleanEObjectExpressionOwnedExpressionAdapter();
+			}
+			@Override
+			public Adapter caseAbstractSingleBooleanEObjectExpressionReferenceExpression(AbstractSingleBooleanEObjectExpressionReferenceExpression object) {
+				return createAbstractSingleBooleanEObjectExpressionReferenceExpressionAdapter();
 			}
 			@Override
 			public Adapter caseLiteralTrueExpression(LiteralTrueExpression object) {
@@ -160,6 +176,20 @@ public class BooleanExpressionsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbtractMultiBooleanEObjectExpressionsOwnedExpression <em>Abtract Multi Boolean EObject Expressions Owned Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbtractMultiBooleanEObjectExpressionsOwnedExpression
+	 * @generated
+	 */
+	public Adapter createAbtractMultiBooleanEObjectExpressionsOwnedExpressionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.IBooleanEObjectExpression <em>IBoolean EObject Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -188,6 +218,20 @@ public class BooleanExpressionsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractMultiBooleanEObjectExpressionsReferenceExpression <em>Abstract Multi Boolean EObject Expressions Reference Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractMultiBooleanEObjectExpressionsReferenceExpression
+	 * @generated
+	 */
+	public Adapter createAbstractMultiBooleanEObjectExpressionsReferenceExpressionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AndExpression <em>And Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -212,6 +256,34 @@ public class BooleanExpressionsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNotExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractSingleBooleanEObjectExpressionOwnedExpression <em>Abstract Single Boolean EObject Expression Owned Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractSingleBooleanEObjectExpressionOwnedExpression
+	 * @generated
+	 */
+	public Adapter createAbstractSingleBooleanEObjectExpressionOwnedExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractSingleBooleanEObjectExpressionReferenceExpression <em>Abstract Single Boolean EObject Expression Reference Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.AbstractSingleBooleanEObjectExpressionReferenceExpression
+	 * @generated
+	 */
+	public Adapter createAbstractSingleBooleanEObjectExpressionReferenceExpressionAdapter() {
 		return null;
 	}
 

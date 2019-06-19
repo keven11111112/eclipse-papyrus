@@ -22,8 +22,8 @@ import org.eclipse.emf.edit.ui.provider.PropertySource;
 import org.eclipse.papyrus.emf.ui.editor.factories.AbstractEStructuralFeatureDialogEditorFactory;
 import org.eclipse.papyrus.emf.ui.properties.CustomPropertyDescriptor;
 import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
-import org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.MultiBooleanExpressionsReferenceEditorFactory;
-import org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.SingleBooleanExpressionReferenceEditorFactory;
+import org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.MultiBooleanEObjectExpressionsReferenceEditorFactory;
+import org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.SingleBooleanEObjectExpressionReferenceEditorFactory;
 import org.eclipse.papyrus.infra.emf.expressions.edit.internal.editor.factories.SingleEAttributeReferenceExpressionEditorFactory;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
@@ -52,14 +52,13 @@ public class EMFExpressionPropertySource extends PropertySource {
 	protected IPropertyDescriptor createPropertyDescriptor(final IItemPropertyDescriptor itemPropertyDescriptor) {
 		final EStructuralFeature f = (EStructuralFeature) itemPropertyDescriptor.getFeature(this.object);
 		AbstractEStructuralFeatureDialogEditorFactory editorFactory = null;
-		if (f == BooleanExpressionsPackage.eINSTANCE.getAndExpression_ReferencedExpressions()
-				|| f == BooleanExpressionsPackage.eINSTANCE.getOrExpression_ReferencedExpressions()) {
-			editorFactory = new MultiBooleanExpressionsReferenceEditorFactory(f);
+		if (f == BooleanExpressionsPackage.eINSTANCE.getAbstractMultiBooleanEObjectExpressionsReferenceExpression_ReferencedExpressions()) {
+			editorFactory = new MultiBooleanEObjectExpressionsReferenceEditorFactory();
 		}
-		if (f == BooleanExpressionsPackage.eINSTANCE.getNotExpression_ReferencedExpression()
-				|| f == BooleanExpressionsPackage.eINSTANCE.getReferenceBooleanExpression_ReferencedExpression()) {
-			editorFactory = new SingleBooleanExpressionReferenceEditorFactory(f);
+		if (f == BooleanExpressionsPackage.eINSTANCE.getAbstractSingleBooleanEObjectExpressionReferenceExpression_ReferencedExpression()) {
+			editorFactory = new SingleBooleanEObjectExpressionReferenceEditorFactory();
 		}
+
 		if (f == BooleanExpressionsPackage.eINSTANCE.getSingleEAttributeValueEqualityExpression_EAttribute()) {
 			editorFactory = new SingleEAttributeReferenceExpressionEditorFactory();
 		}
