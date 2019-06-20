@@ -69,7 +69,7 @@ location uml "http://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.12milestones/S-4.12RC2-201906051800/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.12/R-4.12-201906051800/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -82,7 +82,7 @@ location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201905280716" {
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.18.0" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -98,7 +98,7 @@ location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.1
 
 //updateFrom("WebTools 3.14 for Simrel 2019-06",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.14.0/S-3.14.0.RC1a-20190604044041/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.14.0/S-3.14.0.RC2-20190612230649/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
