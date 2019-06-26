@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2015  CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *		CEA LIST - Initial implementation
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
 import java.util.Arrays;
@@ -45,8 +58,7 @@ public class ElementOwnedElementEditHelperAdvice extends AbstractEditHelperAdvic
 	protected ICommand getBeforeCreateRelationshipCommand(CreateRelationshipRequest request) {
 		// Be careful, This advice is binded to Element elementtype directly
 		List<ISpecializationType> subs = Arrays.asList(ElementTypeRegistry.getInstance().getSpecializationsOf(UMLElementTypes.ELEMENT_OWNEDELEMENT.getId()));
-		if (!subs.contains(request.getElementType()))
-		{
+		if (!subs.contains(request.getElementType())) {
 			return IdentityCommand.INSTANCE;
 		}
 

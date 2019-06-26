@@ -36,20 +36,21 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class CallBehaviorActionAsInteractionUseEditHelperAdvice extends AbstractEditHelperAdvice {
 
-	public static String CALL_BEHAVIOR_ACTION_AS_INTERACTION_USE = "CallBehaviorActionAsInteractionUse";
+	public static String CALL_BEHAVIOR_ACTION_AS_INTERACTION_USE = "CallBehaviorActionAsInteractionUse"; //$NON-NLS-1$
 
 	@Override
 	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
-		// get the activity containing the new element
-		Activity parentActivity = null;
-		EObject parent = request.getElementToConfigure();
-		while (parent != null && parentActivity == null) {
-			if (parent instanceof Activity) {
-				parentActivity = (Activity) parent;
-			}
-			parent = parent.eContainer();
-		}
 		if (CALL_BEHAVIOR_ACTION_AS_INTERACTION_USE.equals(request.getParameter(CallBehaviorActionEditHelperAdvice.POPUP_TYPE))) {
+			// get the activity containing the new element
+			Activity parentActivity = null;
+			EObject parent = request.getElementToConfigure();
+			while (parent != null && parentActivity == null) {
+				if (parent instanceof Activity) {
+					parentActivity = (Activity) parent;
+				}
+				parent = parent.eContainer();
+			}
+
 			final CreateInteractionUseDialog dialog = new CreateInteractionUseDialog(Display.getDefault().getActiveShell(), parentActivity, (InvocationAction) request.getElementToConfigure());
 			if (IDialogConstants.OK_ID == dialog.open()) {
 				// initialize the invoked element (no need to use a command, since action is being created)

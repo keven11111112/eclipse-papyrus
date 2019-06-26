@@ -1,7 +1,7 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2019 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Implement approveRequest
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.internal.ui.advice;
@@ -23,11 +24,11 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.uml.service.types.internal.ui.dialogs.CollaborationRoleTreeContentProvider;
 import org.eclipse.swt.SWT;
@@ -42,6 +43,21 @@ import org.eclipse.uml2.uml.NamedElement;
 
 public class RoleBindingHelperAdvice extends AbstractEditHelperAdvice {
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#approveRequest(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest)
+	 */
+	@Override
+	public boolean approveRequest(final IEditCommandRequest request) {
+		if (request instanceof CreateRelationshipRequest) {
+			if (((CreateRelationshipRequest) request).getSource() instanceof CollaborationUse && null == ((CreateRelationshipRequest) request).getTarget()) {
+				return false;
+			}
+		}
+		return super.approveRequest(request);
+	}
+
 
 	@Override
 	protected ICommand getAfterCreateRelationshipCommand(CreateRelationshipRequest request) {
@@ -51,17 +67,13 @@ public class RoleBindingHelperAdvice extends AbstractEditHelperAdvice {
 			final CollaborationUse source = (CollaborationUse) reqSource;
 			final Dependency dependency = (Dependency) request.getNewElement();
 			final NamedElement target = (NamedElement) request.getTarget();
-			if ((target == null)) {
-				return UnexecutableCommand.INSTANCE;
-			}
-
 
 			return new CreateRelationshipCommand(request) {
 
 				@Override
 				protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 					if (!canExecute()) {
-						throw new ExecutionException("Invalid arguments in create link command");
+						throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 					}
 
 
@@ -72,8 +84,8 @@ public class RoleBindingHelperAdvice extends AbstractEditHelperAdvice {
 
 					try {
 						// Set dialog parameters
-						dialog.setTitle("Collaboration role binding");
-						dialog.setMessage("Select the role to bind:");
+						dialog.setTitle("Collaboration role binding"); //$NON-NLS-1$
+						dialog.setMessage("Select the role to bind:"); //$NON-NLS-1$
 						dialog.setAllowMultiple(false);
 						dialog.setHelpAvailable(false);
 						// The source CollaborationUse is set as input for the selection dialog,
@@ -94,7 +106,7 @@ public class RoleBindingHelperAdvice extends AbstractEditHelperAdvice {
 						ConnectableElement roleToBind = (ConnectableElement) dialog.getFirstResult();
 						// Create a Dependency (the binding) between selected role and a ConnectableElement
 						// (the target)
-						dependency.setName("binding_" + roleToBind.getName() + "_" + target.getName());
+						dependency.setName("binding_" + roleToBind.getName() + "_" + target.getName()); //$NON-NLS-1$ //$NON-NLS-2$
 						source.getRoleBindings().add(dependency);
 
 
@@ -110,9 +122,6 @@ public class RoleBindingHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		return null;
-
 	}
-
-
 
 }

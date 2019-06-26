@@ -36,7 +36,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.service.types.command.ObjectFlowReorientCommand;
-import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.papyrus.uml.tools.utils.ActivityEdgeUtil;
 import org.eclipse.papyrus.uml.tools.utils.ObjectFlowUtil;
 import org.eclipse.uml2.uml.ActivityNode;
@@ -104,7 +103,7 @@ public class ObjectFlowEditHelper extends ElementEditHelper {
 		EObject target = req.getTarget();
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
-		if (!noSourceAndTarget && !canCreate(source, target, RequestParameterUtils.getSourceView(req), RequestParameterUtils.getTargetView(req))) {
+		if (!noSourceAndTarget && !canCreate(source, target)) {
 			// Abort creation.
 			return UnexecutableCommand.INSTANCE;
 		}

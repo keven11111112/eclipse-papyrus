@@ -19,9 +19,7 @@ package org.eclipse.papyrus.uml.service.types.helper.advice;
 import static org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils.getCoveredLifelines;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -189,36 +187,6 @@ public class ExecutionSpecificationHelperAdvice extends InteractionFragmentEditH
 			dependentsToDestroy.add(osFinish);
 		}
 
-		Set<Lifeline> coveredLifelines = new HashSet<>(es.getCovereds());
-
-		// find initiating MOS of a synch message
-		// InteractionFragment previousIft = InteractionFragmentHelper.findPreviousFragment(osStart, es.getOwner());
-		// while (previousIft != null) {
-		// // keep the first ift with the same lifelines, and check it
-		// if (coveredLifelines.equals(new HashSet<Lifeline>(previousIft.getCovereds()))) {
-		// if (previousIft instanceof MessageOccurrenceSpecification) {
-		// Message msg = ((MessageOccurrenceSpecification) previousIft).getMessage();
-		// if (msg != null && MessageSort.SYNCH_CALL_LITERAL.equals(msg.getMessageSort())) {
-		// dependentsToDestroy.add(previousIft);
-		// }
-		// }
-		// break;
-		// }
-		// previousIft = InteractionFragmentHelper.findPreviousFragment(previousIft, es.getOwner());
-		// }
-		//
-		// // find MOS between the start and finish
-		// InteractionFragment fragment = osStart;
-		// while (fragment != null && !fragment.equals(osFinish)) {
-		// // remove MOS if it have the same covered lifelines as the ES
-		// if (fragment instanceof MessageOccurrenceSpecification && coveredLifelines.equals(new HashSet<Lifeline>(fragment.getCovereds()))) {
-		// dependentsToDestroy.add(fragment);
-		// }
-		//
-		// fragment = InteractionFragmentHelper.findNextFragment(fragment, es.getOwner());
-		// }
-		//
-		// return command to destroy dependents
 		if (!dependentsToDestroy.isEmpty()) {
 			return request.getDestroyDependentsCommand(dependentsToDestroy);
 		}

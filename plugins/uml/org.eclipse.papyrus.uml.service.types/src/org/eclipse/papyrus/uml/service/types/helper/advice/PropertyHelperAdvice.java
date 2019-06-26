@@ -32,10 +32,8 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -78,10 +76,11 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 	@Override
 	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
 
-		List<EObject> dependents = new ArrayList<EObject>();
-		EReference[] refs = null;
-
 		if (request.getElementToDestroy() instanceof Property) {
+
+			List<EObject> dependents = new ArrayList<>();
+			EReference[] refs = null;
+
 			Property propertyToDelete = (Property) request.getElementToDestroy();
 
 			// Get related ConnectorEnd to be destroyed with the property
@@ -99,7 +98,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 			for (Association association : associationRefs) {
 
 				// Test the number of remaining ends considering the dependents elements deletion in progress
-				List<Property> remainingMembers = new ArrayList<Property>();
+				List<Property> remainingMembers = new ArrayList<>();
 				remainingMembers.addAll(association.getMemberEnds());
 				remainingMembers.removeAll(request.getDependentElementsToDestroy());
 
@@ -107,11 +106,11 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 					dependents.add(association);
 				}
 			}
-		}
 
-		// Return the command to destroy all these dependents
-		if (!dependents.isEmpty()) {
-			return request.getDestroyDependentsCommand(dependents);
+			// Return the command to destroy all these dependents
+			if (!dependents.isEmpty()) {
+				return request.getDestroyDependentsCommand(dependents);
+			}
 		}
 
 		return null;
@@ -141,7 +140,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 			// Only apply if the property is an association end.
 			Association relatedAssociation = propertyToEdit.getAssociation();
 			if (relatedAssociation != null) {
-				Set<Property> members = new HashSet<Property>();
+				Set<Property> members = new HashSet<>();
 				members.addAll(relatedAssociation.getMemberEnds());
 				members.remove(propertyToEdit);
 
@@ -165,7 +164,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(relatedAssociation);
 				if (provider != null) {
 					DestroyElementRequest destroyRequest = new DestroyElementRequest(relatedAssociation, false);
-					List<EObject> ps = new ArrayList<EObject>();
+					List<EObject> ps = new ArrayList<>();
 					ps.add(propertyToEdit);
 					destroyRequest.setParameter(org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants.DEPENDENTS_TO_KEEP, ps);
 					ICommand destroyCommand = provider.getEditCommand(destroyRequest);
@@ -224,7 +223,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 			// the request comes from re-orient association? so do not remove the edge
 			if (request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) == null) {
 				// Destroy inconsistent views of the association
-				Set<View> viewsToDestroy = new HashSet<View>();
+				Set<View> viewsToDestroy = new HashSet<>();
 				viewsToDestroy.addAll(getViewsToDestroy(relatedAssociation));
 
 
@@ -247,38 +246,6 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		return gmfCommand;
-	}
-
-	/**
-	 * Create a re-factoring command related to a Property move.
-	 *
-	 * @param setProperty
-	 *            the property which type is set
-	 * @param associationToRefactor
-	 *            the association to re-factor (re-orient action)
-	 * @param request
-	 *            the original set request
-	 * @return the re-factoring command
-	 */
-	private ICommand getAssociationRefactoringCommand(Property setProperty, Association associationToRefactor, SetRequest request) {
-
-		Association relatedAssociation = setProperty.getAssociation(); // Should not be null, test before calling method.
-
-		// Re-orient the related association (do not use edit service to avoid infinite loop here)
-		int direction = ReorientRelationshipRequest.REORIENT_TARGET;
-		if (setProperty == associationToRefactor.getMemberEnds().get(1)) {
-			direction = ReorientRelationshipRequest.REORIENT_SOURCE;
-		}
-
-		ReorientRelationshipRequest reorientRequest = new ReorientRelationshipRequest(relatedAssociation, (Type) request.getValue(), setProperty.eContainer(), direction);
-		reorientRequest.addParameters(request.getParameters());
-
-		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(relatedAssociation);
-		if (provider != null) {
-			return provider.getEditCommand(reorientRequest);
-		}
-
-		return null;
 	}
 
 	@Override
@@ -307,7 +274,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 	 * @return the list of views to be destroy
 	 */
 	private HashSet<View> getViewsToDestroy(Association association) {
-		HashSet<View> viewsToDestroy = new HashSet<View>();
+		HashSet<View> viewsToDestroy = new HashSet<>();
 
 		// Find all views representing the Associations
 		EReference[] refs = new EReference[] { NotationPackage.eINSTANCE.getView_Element() };

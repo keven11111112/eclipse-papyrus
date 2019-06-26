@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class CommunicationPathEditHelper extends AssociationBaseEditHelper {
 
+	@Override
 	protected boolean canCreate(EObject source, EObject target) {
 		if (isInvalidEnd(source)) {
 			return false;
@@ -42,22 +43,16 @@ public class CommunicationPathEditHelper extends AssociationBaseEditHelper {
 
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		return new AssociationReorientCommand(req){
+		return new AssociationReorientCommand(req) {
 
 			@Override
 			protected boolean canReorientSource() {
-				if (isInvalidEnd(getNewSource())) {
-					return false;
-				}
-				return true;
+				return !isInvalidEnd(getNewSource());
 			}
 
 			@Override
 			protected boolean canReorientTarget() {
-				if (isInvalidEnd(getNewTarget())) {
-					return false;
-				}
-				return true;
+				return !isInvalidEnd(getNewTarget());
 			}
 		};
 	}

@@ -35,20 +35,21 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class CallBehaviorActionAsInteractionEditHelperAdvice extends AbstractEditHelperAdvice {
 
-	public static String CALL_BEHAVIOR_ACTION_AS_INTERACTION = "CallBehaviorActionAsInteraction";
+	public static String CALL_BEHAVIOR_ACTION_AS_INTERACTION = "CallBehaviorActionAsInteraction"; //$NON-NLS-1$
 
 	@Override
 	protected ICommand getBeforeConfigureCommand(final ConfigureRequest request) {
-		// get the activity containing the new element
-		Activity parentActivity = null;
-		EObject parent = request.getElementToConfigure();
-		while (parent != null && parentActivity == null) {
-			if (parent instanceof Activity) {
-				parentActivity = (Activity) parent;
-			}
-			parent = parent.eContainer();
-		}
 		if (CALL_BEHAVIOR_ACTION_AS_INTERACTION.equals(request.getParameter(CallBehaviorActionEditHelperAdvice.POPUP_TYPE))) {
+			// get the activity containing the new element
+			Activity parentActivity = null;
+			EObject parent = request.getElementToConfigure();
+			while (parent != null && parentActivity == null) {
+				if (parent instanceof Activity) {
+					parentActivity = (Activity) parent;
+				}
+				parent = parent.eContainer();
+			}
+
 			final CreateInteractionWithSnapshotDialog dialog = new CreateInteractionWithSnapshotDialog(Display.getDefault().getActiveShell(), parentActivity, (InvocationAction) request.getElementToConfigure());
 			if (IDialogConstants.OK_ID == dialog.open()) {
 				// initialize the invoked element (no need to use a command, since action is being created)
