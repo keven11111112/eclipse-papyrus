@@ -50,7 +50,12 @@ Here, we present you the generic boolean expressions provided by Papyrus:
 ***''referencedExpression'': the referenced boolean expression.
 **semantic: this expression allows to reference an expression provided by the <code>ExpressionCatalog</code>.
 **defaultValue: if there is no referenced expression, the expression returns <code>true</code>.
-
+*'''SingleEAttributeValueEqualityExpression'''
+**parameters:
+***''eAttribute'': the EAttribute used on the evaluated element to get a value,
+***''expectedValue'': the expected value for the EAttribute, as string.
+**semantic: this expression allows to check the value of an EAttribtue is equals to the expected one. 
+**default value: we return <code>false</code> if the EAttribute is not defined. We only return <code>true</code> when the EAtribute value is eaquals to the expected one.
 
 After defining these main objects required to write boolean expression, we provided some expressions dedicated to UML:
 *'''IsStereotypedWithExpression'''
@@ -92,3 +97,14 @@ After defining these main objects required to write boolean expression, we provi
 **semantic: this expression returns <code>true</code> when the stereotype applied on the context element is a Kind of the identified stereotype. So for element stereotyped by a stereotype that generalize the expected stereotype, we return <code>true</code>. If the ''profile URI'' is defined, we check that the stereotype comes from the expected profile.
 **default value:
 *** we return <code>false</code>, if the stereotype identifier is not defined.
+
+*'''SingleStereotypeAttributeEqualityExpression'''
+**parameters:
+***''stereotype qualified name'': the qualified name of the stereotype,
+***''property name'': the name of a property of the stereotype,
+***''profile URI'': the uri of the profile (not mandatory),
+***''expected value'': the expected value for the stereotype's property as string.
+**semantic: this expression returns <code>true</code> when the required stereotype is applied on the context element and when its property value is equals to the expected one. If the ''profile URI'' is defined, we check that the stereotype comes from the expected profile.
+**default value:
+***we return <code>false</code>, when the qualified name, or the property, or the expected value, is not defined. 
+
