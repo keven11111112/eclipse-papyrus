@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2013, 2019 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
+ *  Nicolas FAUVERGUE (CEA) nicolas.fauvergue@cea.fr - Bug 548720
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.toolsmiths.editor;
 
@@ -58,9 +59,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.views.properties.toolsmiths.editor.MoDiscoDropAdapter;
-import org.eclipse.papyrus.views.properties.toolsmiths.editor.ResourceEditorInput;
-import org.eclipse.papyrus.views.properties.toolsmiths.editor.ViewFilter;
 import org.eclipse.papyrus.infra.properties.catalog.PropertiesURIHandler;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.internal.ui.runtime.IInternalConfigurationManager;
@@ -491,7 +489,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 		// Create an adapter factory that yields item providers.
 		//
 		adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-
+		ecoreItemProviderAdapterFactory = new EcoreItemProviderAdapterFactory();
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
