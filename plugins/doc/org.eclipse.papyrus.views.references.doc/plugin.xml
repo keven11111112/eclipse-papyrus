@@ -4,11 +4,11 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="target/generated-eclipse-help/references-view-toc.xml"
+            file="target/generated-eclipse-help/references-view-main-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="target/generated-eclipse-help/references-view.html"
+            file="target/generated-eclipse-help/references-view-toc.xml"
             primary="false">
       </toc>
    </extension>
