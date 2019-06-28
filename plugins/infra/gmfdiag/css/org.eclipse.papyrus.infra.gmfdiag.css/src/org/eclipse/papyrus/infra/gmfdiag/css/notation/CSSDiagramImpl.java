@@ -53,9 +53,18 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram, CSSView.I
 		if (engine == null) {
 			ExtendedCSSEngine modelEngine = getModelEngine();
 			viewpointEngine = new ViewpointCSSEngine(modelEngine, this);
-			engine = new DiagramCSSEngine(viewpointEngine, this);
+			engine = createEngine(viewpointEngine);
 		}
 		return engine;
+	}
+
+	/**
+	 * Create the DiagramCSS
+	 * @param viewpointCSSEngine
+	 * @return
+	 */
+	protected ExtendedCSSEngine createEngine(ExtendedCSSEngine viewpointCSSEngine) {
+		return new DiagramCSSEngine(viewpointEngine, this);
 	}
 
 	@Override
@@ -97,7 +106,7 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram, CSSView.I
 
 	@Override
 	public List<StyleSheet> getStyleSheets() {
-		List<StyleSheet> result = new LinkedList<StyleSheet>();
+		List<StyleSheet> result = new LinkedList<>();
 
 		for (Object styleObject : getStyles()) {
 			if (styleObject instanceof NamedStyle) {
@@ -122,7 +131,7 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram, CSSView.I
 		return result;
 	}
 
-	
+
 
 	protected CSSView getCSSView() {
 		if (cssView == null) {
