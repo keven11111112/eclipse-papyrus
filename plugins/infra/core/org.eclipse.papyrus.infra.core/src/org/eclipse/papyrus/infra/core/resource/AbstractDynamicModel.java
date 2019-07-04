@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2015, 2019 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *  LIFL - Initial API and implementation
  *  Christian W. Damus - bug 481149
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 548973
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.core.resource;
@@ -35,6 +35,10 @@ import org.eclipse.emf.ecore.EObject;
  */
 public abstract class AbstractDynamicModel<T extends EObject> extends AbstractBaseModel {
 
+	/**
+	 * boolean indicating than the resource contains or containing something previously and must be saved
+	 */
+	private boolean containsSomethingInThePast = false;
 
 	/**
 	 *
@@ -83,8 +87,15 @@ public abstract class AbstractDynamicModel<T extends EObject> extends AbstractBa
 	 */
 	@Override
 	public void saveModel() throws IOException {
+		// we check if the resource contains something
+		if (false == this.containsSomethingInThePast) {
+			this.containsSomethingInThePast = getResource().getContents().size() > 0;
+		}
 
-		if (getResource().getContents().size() <= 0) {
+		/*
+		 * the resource is empty and has always been empty
+		 */
+		if (false == this.containsSomethingInThePast && getResource().getContents().size() <= 0) {
 			return;
 		}
 
