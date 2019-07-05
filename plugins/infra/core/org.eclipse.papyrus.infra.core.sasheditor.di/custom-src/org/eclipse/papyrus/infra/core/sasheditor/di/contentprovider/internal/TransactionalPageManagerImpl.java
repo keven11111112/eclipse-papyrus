@@ -11,12 +11,21 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 485220
- *  
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo - Bug 548998
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
@@ -154,4 +163,38 @@ public class TransactionalPageManagerImpl extends PageManagerImpl {
 		}
 	}
 
+
+	/**
+	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.service.BasicPageManagerImpl#allPages()
+	 *
+	 * @return
+	 */
+	@Override
+	public List<Object> allPages() {
+		if (false == isLegacyMode()) {
+			final ResourceSet set = this.editingDomain.getResourceSet();
+			if (set instanceof ModelSet) {
+				final ModelSet modelSet = (ModelSet) set;
+				final URI uri = modelSet.getURIWithoutExtension();
+				final ModelsReader reader = new ModelsReader();
+				List<Object> result = new ArrayList<>();
+				for (URI currentURI : reader.getKnownModelURIs(uri)) {
+					final String fileExtension = currentURI.fileExtension();
+					// this filter on uml is not the best solution, but we currently don't have other way to get all pages properly
+					if (!"uml".equals(fileExtension)) {// to avoid to cross all UML contents for nothing (and avoid time consumption) //$NON-NLS-1$
+						List<Resource> notationResources = getResources(fileExtension);
+						for (Resource notationResource : notationResources) {
+							for (EObject content : notationResource.getContents()) {
+								if (isPage(content)) {
+									result.add(content);
+								}
+							}
+						}
+					}
+				}
+				return result;
+			}
+		}
+		return super.allPages();
+	}
 }

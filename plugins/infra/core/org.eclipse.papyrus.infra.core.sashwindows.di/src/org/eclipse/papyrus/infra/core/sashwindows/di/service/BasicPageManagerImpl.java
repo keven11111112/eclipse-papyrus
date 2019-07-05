@@ -14,7 +14,7 @@
  *  Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 415638
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 440754
  *  Christian W. Damus - bug 485220
- *  
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.core.sashwindows.di.service;
@@ -112,10 +112,10 @@ public class BasicPageManagerImpl implements IPageManager {
 
 	/**
 	 * Remove a page.
-	 * 
+	 *
 	 * @param pageIdentifier
 	 *            identifies the page to remove
-	 * 
+	 *
 	 * @deprecated Use the {@linkplain #closeAllOpenedPages(Object)} method, instead
 	 */
 	@Deprecated
@@ -172,6 +172,7 @@ public class BasicPageManagerImpl implements IPageManager {
 			result = legacyAllPages();
 		} else {
 			// FIXME: Temporary, naive code. Need to implement a mechanism to contribute page providers
+			// fixed in subclass to avoir cyclic dependency problem (see bug 548998)
 			result = new ArrayList<>();
 
 			List<Resource> notationResources = getResources("notation");
@@ -218,7 +219,7 @@ public class BasicPageManagerImpl implements IPageManager {
 	 */
 	@Override
 	public List<Object> allLocalPages(ILocalPageService service) {
-		List<Object> result = new LinkedList<Object>();
+		List<Object> result = new LinkedList<>();
 
 		for (Object next : allPages()) {
 			if (service.isLocalPage(next)) {
@@ -240,7 +241,7 @@ public class BasicPageManagerImpl implements IPageManager {
 	@Override
 	public List<Object> getAssociatedPages(Object uriTrim) {
 
-		List<Object> list = new ArrayList<Object>();
+		List<Object> list = new ArrayList<>();
 
 		SashModel sashModel = diSashModel.getSashModel();
 		Iterator<?> iter = sashModel.eAllContents();
@@ -282,9 +283,10 @@ public class BasicPageManagerImpl implements IPageManager {
 	 * @param fileExtension
 	 *            the file extension
 	 * @return the resources
+	 * @since 1.3
 	 */
-	private List<Resource> getResources(String fileExtension) {
-		List<Resource> resourcesList = new LinkedList<Resource>();
+	protected List<Resource> getResources(String fileExtension) {
+		List<Resource> resourcesList = new LinkedList<>();
 
 		// Get the contextual resources from the sash model
 		ResourceSet resourceSet = diSashModel.eResource().getResourceSet();
@@ -318,7 +320,7 @@ public class BasicPageManagerImpl implements IPageManager {
 	/**
 	 * Obtains the currently active tab folder, whatever that might mean in the
 	 * context of the page manager.
-	 * 
+	 *
 	 * @return the current folder, never {@code null} because at least one folder always
 	 *         implicitly exists
 	 */
