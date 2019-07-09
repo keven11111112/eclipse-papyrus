@@ -1,6 +1,6 @@
-/*
+/**
  * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bugs 399859, 451230, 458685, 469188, 485220, 496299
- *
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 549108
  */
 package org.eclipse.papyrus.junit.utils.rules;
 
@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -81,9 +82,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.google.common.io.ByteSource;
 import com.google.common.io.ByteStreams;
-import com.google.common.io.CharStreams;
 import com.google.common.io.Resources;
 
 
@@ -117,9 +116,32 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 	private Iterable<URI> initialResourceURIs;
 
+	/**
+	 * @since 2.3
+	 */
+	private List<String> managedFileExtension;
+
 	public AbstractModelFixture() {
 		super();
+		this.managedFileExtension = new ArrayList<>();
+		this.managedFileExtension.add(DiModel.DI_FILE_EXTENSION);
+		this.managedFileExtension.add(UmlModel.UML_FILE_EXTENSION);
+		this.managedFileExtension.add(NotationModel.NOTATION_FILE_EXTENSION);
 	}
+
+	/**
+	 *
+	 * Constructor.
+	 *
+	 * @param additionalFileExtension
+	 *            the extension of additional files to manage during the project creation
+	 * @since 2.3
+	 */
+	public AbstractModelFixture(final List<String> additionalFileExtension) {
+		this();
+		this.managedFileExtension.addAll(additionalFileExtension);
+	}
+
 
 	@Override
 	public Statement apply(Statement base, Description description) {
@@ -134,7 +156,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 	/**
 	 * Obtains the nested project fixture rule. If stored in a field of the test class, it must not be annotated as a {@link Rule @Rule} because that
 	 * would result in double initialization of the rule.
-	 * 
+	 *
 	 * @return the nested project fixture
 	 */
 	public ProjectFixture getProject() {
@@ -194,7 +216,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 	/**
 	 * Obtains the first root of the main test resource.
-	 * 
+	 *
 	 * @return the first test resource root
 	 */
 	public EObject getRoot() {
@@ -203,7 +225,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 	/**
 	 * Obtains the test model, which is resident in the <tt>model.uml</tt> file in the test project (as indicated by its {@linkplain #getModelResourceURI() URI}).
-	 * 
+	 *
 	 * @return the test model
 	 */
 	public Package getModel() {
@@ -445,9 +467,9 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 			// Default manifest
 			result = Maps.newHashMap();
 			IPath basePath = manifestPath.removeFileExtension();
-			result.put(basePath.addFileExtension(DiModel.DI_FILE_EXTENSION), true);
-			result.put(basePath.addFileExtension(UmlModel.UML_FILE_EXTENSION), true);
-			result.put(basePath.addFileExtension(NotationModel.NOTATION_FILE_EXTENSION), true);
+			for (final String current : this.managedFileExtension) {
+				result.put(basePath.addFileExtension(current), true);
+			}
 		}
 
 		return result;
@@ -493,7 +515,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 		if (result == null) {
 			String extension = modelURI.fileExtension();
-			if (DiModel.DI_FILE_EXTENSION.equals(extension) || UmlModel.UML_FILE_EXTENSION.equals(extension) || NotationModel.NOTATION_FILE_EXTENSION.equals(extension)) {
+			if (this.managedFileExtension.contains(extension)) {
 				// Default load behaviour
 				result = resourceSet.createResource(modelURI);
 			} else {

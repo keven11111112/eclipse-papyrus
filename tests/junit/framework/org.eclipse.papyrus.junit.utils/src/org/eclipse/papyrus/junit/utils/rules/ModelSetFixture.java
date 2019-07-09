@@ -1,6 +1,6 @@
-/*
- * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
- * 
+/**
+ * Copyright (c) 2014, 2016, 2019 CEA, Christian W. Damus, and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,13 +11,14 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bugs 399859, 485220
- *
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 549108
  */
 package org.eclipse.papyrus.junit.utils.rules;
 
 import static org.junit.Assert.fail;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -42,6 +43,19 @@ public class ModelSetFixture extends AbstractModelFixture<TransactionalEditingDo
 	public ModelSetFixture() {
 		super();
 	}
+
+	/**
+	 *
+	 * Constructor.
+	 *
+	 * @param additionalFileExtension
+	 *            a list of additional file extension to manage
+	 * @since 2.3
+	 */
+	public ModelSetFixture(final List<String> additionalFileExtension) {
+		super(additionalFileExtension);
+	}
+
 
 	@Override
 	public ModelSet getResourceSet() {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2018 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2018, 2019 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -13,6 +13,7 @@
  *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220, 491542, 497865, 533673, 533682, 533676, 533679, 536486
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 521550
  *   EclipseSource - Bug 536631
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 549108
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils.rules;
 
@@ -222,9 +223,39 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	 */
 	public PapyrusEditorFixture(boolean ensureOperationHistoryIntegrity) {
 		super();
-
 		this.ensureOperationHistoryIntegrity = ensureOperationHistoryIntegrity;
 	}
+
+	/**
+	 *
+	 * Constructor.
+	 *
+	 * @param ensureOperationHistoryIntegrity
+	 *
+	 * @param additionalFileExtension
+	 *            a list of additional file extension to manage
+	 * @since 2.3
+	 */
+	public PapyrusEditorFixture(boolean ensureOperationHistoryIntegrity, final List<String> additionalFileExtension) {
+		super(additionalFileExtension);
+		this.ensureOperationHistoryIntegrity = ensureOperationHistoryIntegrity;
+	}
+
+	/**
+	 *
+	 * Constructor.
+	 *
+	 * @param ensureOperationHistoryIntegrity
+	 *
+	 * @param additionalFileExtension
+	 *            a list of additional file extension to manage
+	 * @since 2.3
+	 */
+	public PapyrusEditorFixture(final List<String> additionalFileExtension) {
+		super(additionalFileExtension);
+		this.ensureOperationHistoryIntegrity = true;
+	}
+
 
 	/**
 	 * @since 2.0
