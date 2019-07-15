@@ -50,7 +50,7 @@
 							<!-- p2 update site transitive dependencies repositories -->
 							<associateSites>
 								<!-- Oxygen orbit bundles for batik 1.6.0 -->
-								<site>http://download.eclipse.org/tools/orbit/downloads/drops/R20180206163158/repository/</site>
+								<site>http://download.eclipse.org/tools/orbit/downloads/drops/S20190709113129/repository/</site>
 							</associateSites>
 						</configuration>
 					</execution>

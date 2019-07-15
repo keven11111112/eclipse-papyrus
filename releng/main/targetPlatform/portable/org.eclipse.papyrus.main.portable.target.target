@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Main" sequenceNumber="1561014276">
+<target name="Papyrus Main" sequenceNumber="1563178368">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -18,15 +18,15 @@
       <repository id="nattable" location="http://download.eclipse.org/nattable/releases/1.5.0/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="com.google.guava" version="27.1.0.v20190517-1946"/>
-      <unit id="com.google.guava.source" version="27.1.0.v20190517-1946"/>
+      <unit id="com.google.guava" version="21.0.0.v20170206-1425"/>
+      <unit id="com.google.guava.source" version="21.0.0.v20170206-1425"/>
       <unit id="com.google.gson" version="2.7.0.v20170129-0911"/>
       <unit id="com.google.gson.source" version="2.7.0.v20170129-0911"/>
       <unit id="org.apache.commons.lang3" version="3.1.0.v201403281430"/>
       <unit id="org.apache.commons.lang3.source" version="3.1.0.v201403281430"/>
       <unit id="org.objectweb.asm" version="5.0.1.v201404251740"/>
       <unit id="org.objectweb.asm.source" version="5.0.1.v201404251740"/>
-      <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"/>
+      <repository id="orbit" location="http://download.eclipse.org/tools/orbit/downloads/drops/S20190709113129/repository"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="0.0.0"/>
@@ -34,37 +34,37 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.9.3.v20190610-0948"/>
-      <repository id="qvto" location="https://download.eclipse.org/mmt/qvto/updates/milestones/3.9.3/S201906100948"/>
+      <repository id="qvto" location="https://download.eclipse.org/mmt/qvto/updates/releases/3.9.3"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xpand.sdk.feature.group" version="2.2.0.v201605260315"/>
       <unit id="org.eclipse.xtend.feature.group" version="2.2.0.v201605260315"/>
-      <repository id="xpand" location="http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/"/>
+      <repository id="xpand" location="https://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.uml2.sdk.feature.group" version="5.5.0.v20181203-1331"/>
-      <repository id="uml" location="http://download.eclipse.org/modeling/mdt/uml2/updates/5.5"/>
+      <repository id="uml" location="https://download.eclipse.org/modeling/mdt/uml2/updates/5.5"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.sdk.feature.group" version="4.12.0.v20190605-1801"/>
-      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.12/R-4.12-201906051800/"/>
+      <repository id="platform" location="https://download.eclipse.org/eclipse/updates/4.12/R-4.12-201906051800/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.9.0.v20190603-1146"/>
-      <unit id="org.eclipse.ocl.examples.feature.group" version="6.8.0.v20190603-1146"/>
-      <repository id="ocl" location="https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.8.0/S201906031146"/>
+      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.10.0.v20190713-1440"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="6.9.0.v20190713-1440"/>
+      <repository id="ocl" location="https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.9.0/S201907131440"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.18.0.v20190603-1516"/>
-      <unit id="org.eclipse.xtend.sdk.feature.group" version="2.18.0.v20190603-1516"/>
-      <unit id="org.eclipse.xtext.redist.feature.group" version="2.18.0.v20190603-1516"/>
-      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.18.0.v20190603-1516"/>
-      <unit id="org.eclipse.xtext.ui.feature.group" version="2.18.0.v20190603-1516"/>
-      <repository id="xtext" location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.18.0"/>
+      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.19.0.v20190712-0222"/>
+      <unit id="org.eclipse.xtend.sdk.feature.group" version="2.19.0.v20190712-0222"/>
+      <unit id="org.eclipse.xtext.redist.feature.group" version="2.19.0.v20190712-0222"/>
+      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.19.0.v20190712-0222"/>
+      <unit id="org.eclipse.xtext.ui.feature.group" version="2.19.0.v20190712-0222"/>
+      <repository id="xtext" location="https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S201907120222"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.mwe2.language.sdk.feature.group" version="2.10.0"/>
-      <repository id="mwe" location="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.10.0"/>
+      <unit id="org.eclipse.emf.mwe2.language.sdk.feature.group" version="2.11.0.201906111547"/>
+      <repository id="mwe" location="https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.11.0"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="0.0.0"/>
@@ -72,31 +72,31 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.12.1.201905141505"/>
-      <repository id="gmfRuntime" location="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201905141505"/>
+      <repository id="gmfRuntime" location="https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201905141505"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.notation.sdk.feature.group" version="1.12.0.201805221301"/>
-      <repository id="gmfNotation" location="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201805221301"/>
+      <repository id="gmfNotation" location="https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201805221301"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.sdk.feature.group" version="2.18.0.v20190528-0845"/>
-      <repository id="emf" location="http://download.eclipse.org/modeling/emf/emf/builds/release/2.18"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.19.0.v20190704-0632"/>
+      <repository id="emf" location="http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201907100440"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.query.sdk.feature.group" version="1.12.0.201805030653"/>
-      <repository id="emfQuery" location="http://download.eclipse.org/modeling/emf/query/updates/releases/R201805030653"/>
+      <repository id="emfQuery" location="https://download.eclipse.org/modeling/emf/query/updates/releases/R201805030653"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.validation.sdk.feature.group" version="1.12.1.201812070911"/>
-      <repository id="emfValidation" location="http://download.eclipse.org/modeling/emf/validation/updates/releases/R201812070911"/>
+      <repository id="emfValidation" location="https://download.eclipse.org/modeling/emf/validation/updates/releases/R201812070911"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.transaction.sdk.feature.group" version="1.12.0.201805140824"/>
-      <repository id="emfTransaction" location="http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201805140824/"/>
+      <repository id="emfTransaction" location="https://download.eclipse.org/modeling/emf/transaction/updates/releases/R201805140824/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gef.feature.group" version="3.11.0.201606061308"/>
-      <repository id="gef" location="http://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952"/>
+      <repository id="gef" location="https://download.eclipse.org/tools/gef/updates/legacy/releases/4.0.0_gef-master_1952"/>
     </location>
   </locations>
 </target>
