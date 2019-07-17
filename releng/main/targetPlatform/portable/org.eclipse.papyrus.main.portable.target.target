@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Main" sequenceNumber="1563178368">
+<target name="Papyrus Main" sequenceNumber="1563347691">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -46,8 +46,8 @@
       <repository id="uml" location="https://download.eclipse.org/modeling/mdt/uml2/updates/5.5"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.12.0.v20190605-1801"/>
-      <repository id="platform" location="https://download.eclipse.org/eclipse/updates/4.12/R-4.12-201906051800/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.13.0.v20190711-1805"/>
+      <repository id="platform" location="http://download.eclipse.org/eclipse/updates/4.13milestones/S-4.13M1-201907111805/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.10.0.v20190713-1440"/>

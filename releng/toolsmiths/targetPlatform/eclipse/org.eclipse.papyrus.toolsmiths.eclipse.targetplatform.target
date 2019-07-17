@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Toolsmiths" sequenceNumber="1563178368">
+<target name="Papyrus Toolsmiths" sequenceNumber="1563347696">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -46,8 +46,8 @@
       <repository id="uml" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/uml2/updates/5.5"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.12.0.v20190605-1801"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.12/R-4.12-201906051800/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.13.0.v20190711-1805"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.13milestones/S-4.13M1-201907111805/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.10.0.v20190713-1440"/>
@@ -138,7 +138,7 @@
       <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-5.4"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="m2e" location="file:/home/data/httpd/download.eclipse.org/technology/m2e/milestones/1.12/1.12.0.20190529-1916"/>
+      <repository id="m2e" location="file:/home/data/httpd/download.eclipse.org/technology/m2e/milestones/1.13/1.13.0.20190716-1624"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="mylyn" location="file:/home/data/httpd/download.eclipse.org/mylyn/drops/3.24.2/v20180905-2014"/>

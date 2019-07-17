@@ -69,7 +69,7 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.12/R-4.12-201906051800/" {
+location platform "http://download.eclipse.org/eclipse/updates/4.13milestones/S-4.13M1-201907111805/" {
 	org.eclipse.sdk.feature.group
 }
 

@@ -58,7 +58,7 @@ location egit "https://download.eclipse.org/egit/updates-5.4" // oomph
 
 //updateFrom("m2e",0)
 
-location m2e "https://download.eclipse.org/technology/m2e/milestones/1.12/1.12.0.20190529-1916" // oomph
+location m2e "https://download.eclipse.org/technology/m2e/milestones/1.13/1.13.0.20190716-1624" // oomph
 
 //updateFrom("Mylyn",0)
 
