@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Toolsmiths" sequenceNumber="1563347696">
+<target name="Papyrus Toolsmiths" sequenceNumber="1563435279">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -68,7 +68,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="0.0.0"/>
-      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.14.0/S-3.14.0.RC2-20190612230649/repository/"/>
+      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.15.0/S-3.15.0.M1-20190717080107/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.12.1.201905141505"/>
@@ -127,12 +127,12 @@
       <unit id="org.eclipse.oomph.targlets.feature.group" version="1.12.0.v20190323-1134"/>
       <unit id="org.eclipse.oomph.setup.jdt.feature.group" version="1.12.0.v20190511-0841"/>
       <unit id="org.eclipse.oomph.setup.projects.feature.group" version="1.11.0.v20190323-1134"/>
-      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.13.0.v20190530-1228"/>
+      <unit id="org.eclipse.oomph.setup.git.feature.group" version="1.14.0.v20190705-1316"/>
       <unit id="org.eclipse.oomph.setup.maven.feature.group" version="1.13.0.v20190530-1228"/>
-      <unit id="org.eclipse.oomph.p2.feature.group" version="1.12.0.v20190527-1611"/>
-      <unit id="org.eclipse.oomph.setup.feature.group" version="1.13.0.v20190531-1228"/>
+      <unit id="org.eclipse.oomph.p2.feature.group" version="1.13.0.v20190704-1252"/>
+      <unit id="org.eclipse.oomph.setup.feature.group" version="1.14.0.v20190705-1542"/>
       <unit id="org.eclipse.oomph.preferences.feature.group" version="1.11.0.v20190323-1134"/>
-      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/release/1.13.0"/>
+      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/milestone/S20190717-105943-1.14.0-M1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-5.4"/>
