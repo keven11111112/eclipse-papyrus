@@ -19,6 +19,14 @@
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
 </listAttribute>
+<listAttribute key="org.eclipse.eclemma.core.SCOPE_IDS">
+<listEntry value="=org.eclipse.papyrus.infra.gmfdiag.properties/src"/>
+<listEntry value="=org.eclipse.papyrus.infra.services.edit.ui/src"/>
+<listEntry value="=org.eclipse.papyrus.infra.widgets/src"/>
+<listEntry value="=org.eclipse.papyrus.infra.ui.emf/src"/>
+<listEntry value="=org.eclipse.papyrus.infra.gmfdiag.common/src"/>
+<listEntry value="=org.eclipse.papyrus.uml.properties/src"/>
+</listAttribute>
 <stringAttribute key="org.eclipse.jdt.junit.CONTAINER" value=""/>
 <booleanAttribute key="org.eclipse.jdt.junit.KEEPRUNNING_ATTR" value="false"/>
 <stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
