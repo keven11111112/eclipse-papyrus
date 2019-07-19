@@ -11,6 +11,7 @@
  * Contributors:
  *   Celine JANSSENS (ALL4TEC) - Initial API and implementation
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 542802
+ *   Antonio Campesino (Ericsson AB) - Bug 542802 II
  *
  *****************************************************************************/
 
@@ -125,19 +126,25 @@ public class ConfigureMessageEventCommand extends ConfigureElementCommand {
 	public MessageOccurrenceSpecification createMessageEnd(Message message, Lifeline lifeline, final MessageEnd previous) {
 		final MessageOccurrenceSpecification messageOccurrenceSpecification = UMLFactory.eINSTANCE.createMessageOccurrenceSpecification();
 		if (previous == null) {
-			messageOccurrenceSpecification.setCovered(lifeline);
+			messageOccurrenceSpecification.setCovered(lifeline);			
 		} else {
 			final int index = lifeline.getCoveredBys().indexOf(previous) + 1;
 			lifeline.getCoveredBys().add(index, messageOccurrenceSpecification);
-			// Store the added covered to manage the undo if needed
-			if (coveredLifelines == null) {
-				coveredLifelines = new HashMap<>();
-			}
-			if (!coveredLifelines.containsKey(lifeline)) {
-				coveredLifelines.put(lifeline, new ArrayList<MessageOccurrenceSpecification>());
-			}
-			coveredLifelines.get(lifeline).add(messageOccurrenceSpecification);
+			
 		}
+
+		// Store the added covered to manage the undo if needed
+		if (coveredLifelines == null) {
+			coveredLifelines = new HashMap<>();
+		}
+		
+		List<MessageOccurrenceSpecification> newCoveredBy = coveredLifelines.get(lifeline);
+		if (newCoveredBy == null) {
+			newCoveredBy = new ArrayList<>();
+			coveredLifelines.put(lifeline, newCoveredBy);
+		}
+		
+		newCoveredBy.add(messageOccurrenceSpecification);
 		messageOccurrenceSpecification.setMessage(message);
 		((Interaction) message.getOwner()).getFragments().add(messageOccurrenceSpecification);
 		return messageOccurrenceSpecification;
