@@ -354,6 +354,9 @@ public class ConfigureMessageEventCommand extends ConfigureElementCommand {
 		// Remove the created message ends
 		if (null != createdMessageEnds && !createdMessageEnds.isEmpty()) {
 			for (final MessageEnd createdMessage : createdMessageEnds) {
+				if (createdMessage == null) {
+					continue;
+				}
 				final EObject container = createdMessage.eContainer();
 				if (container instanceof Interaction) {
 					((Interaction) container).getFragments().remove(createdMessage);
