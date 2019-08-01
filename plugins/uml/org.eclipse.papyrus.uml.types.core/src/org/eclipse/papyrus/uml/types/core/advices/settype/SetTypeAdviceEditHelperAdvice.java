@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2019 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,16 +10,19 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 549705
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.types.core.advices.settype;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -28,12 +31,17 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextRoot;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElementFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
-import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElement;
 import org.eclipse.papyrus.uml.types.core.Activator;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdviceConfiguration;
+import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 
@@ -86,17 +94,30 @@ public class SetTypeAdviceEditHelperAdvice extends AbstractEditHelperAdvice {
 		// retrieve edit service to get features from configure command
 		IElementEditService service = ElementEditServiceUtils.getCommandProvider(elementToConfigure);
 		if (service == null) {
-			Activator.log.error("Impossible to get edit service from element: " + elementToConfigure, null);
+			Activator.log.error("Impossible to get edit service from element: " + elementToConfigure, null); //$NON-NLS-1$
 			return null;
 		}
 
-		resultCommand = new AbstractTransactionalCommand(editingDomain, "Editing type", Arrays.asList((WorkspaceSynchronizer.getFile(elementToConfigure.eResource())))) {
+		resultCommand = new AbstractTransactionalCommand(editingDomain, "Editing type", Arrays.asList((WorkspaceSynchronizer.getFile(elementToConfigure.eResource())))) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				UMLModelElement umlModelElement = new UMLModelElement(elementToConfigure, editingDomain);
-				ReferenceValueFactory factory = umlModelElement.getValueFactory("type");
-				Object elemObject = factory.edit(Display.getDefault().getFocusControl(), elementToConfigure);
+				Object elemObject = null;
+
+				final Context context = ConfigurationManager.getInstance().getContext("UML"); //$NON-NLS-1$
+				if (null != context) {
+					Optional<DataContextRoot> umlDataContextFilter = context.getDataContexts().stream().filter(dc -> "UML".equals(dc.getName())).findFirst(); //$NON-NLS-1$
+					DataContextRoot umlDataContext = umlDataContextFilter.isPresent() ? umlDataContextFilter.get() : null;
+
+					if (null != umlDataContext) {
+						final String factoryName = umlDataContext.getModelElementFactory().getFactoryClass();
+						final ModelElementFactory modelElementFactory = ClassLoaderHelper.newInstance(factoryName, ModelElementFactory.class, EcoreUtil.getURI(context));
+
+						final ModelElement umlModelElement = modelElementFactory.createFromSource(elementToConfigure, umlDataContext);
+						final ReferenceValueFactory factory = umlModelElement.getValueFactory("type"); //$NON-NLS-1$
+						elemObject = factory.edit(Display.getDefault().getFocusControl(), elementToConfigure);
+					}
+				}
 				return CommandResult.newOKCommandResult(elemObject);
 			}
 		};

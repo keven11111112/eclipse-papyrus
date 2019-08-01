@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2019 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 549705
  *
  *****************************************************************************/
 
@@ -45,12 +46,12 @@ public class EStructuralFeatureUtil {
 
 	/**
 	 * Change displayed values according to the new element
-	 * 
+	 *
 	 * @param editor
 	 * @param stereotypedElement
 	 * @param property
 	 * @param stereotype
-	 * 
+	 *
 	 */
 	public static void setValueToEditor(EStructuralFeatureEditor editor, Element stereotypedElement, Property property, Stereotype stereotype) {
 		EObject stereotypeApplication = stereotypedElement.getStereotypeApplication(stereotype);
@@ -60,13 +61,13 @@ public class EStructuralFeatureUtil {
 			editor.setValueFactory(getUMLPropertyEditorFactory(stereotypeApplication, (EReference) structuralFeature));
 		}
 
-		editor.setFeatureToEdit(property.getName(), structuralFeature, stereotypeApplication);
+		editor.setFeatureToEdit(property.getName(), structuralFeature, stereotypedElement, stereotypeApplication);
 
 	}
 
 	/**
 	 * Get the structural feature according to the stereotype application and the property
-	 * 
+	 *
 	 * @param stereotypeApplication
 	 * @return
 	 */
@@ -76,7 +77,7 @@ public class EStructuralFeatureUtil {
 
 	/**
 	 * Get an UMLPropertyEditorFactory
-	 * 
+	 *
 	 * @param stereotypeApplication
 	 * @param reference
 	 * @return
