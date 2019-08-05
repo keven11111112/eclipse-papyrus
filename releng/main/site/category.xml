@@ -6,24 +6,20 @@
    <feature url="features/org.eclipse.papyrus.sdk.feature.source_4.5.0.qualifier.jar" id="org.eclipse.papyrus.sdk.feature.source" version="4.5.0.qualifier">
       <category name="org.eclipse.papyrus.category"/>
    </feature>
-   
-   <feature url="features/org.eclipse.papyrus.user.examples.feature_0.0.1.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature" version="0.0.1.qualifier">
+   <feature url="features/org.eclipse.papyrus.user.examples.feature_0.0.2.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature" version="0.0.2.qualifier">
       <category name="org.eclipse.papyrus.user.examples.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.user.examples.feature.source_0.0.1.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature.source" version="0.0.1.qualifier">
+   <feature url="features/org.eclipse.papyrus.user.examples.feature.source_0.0.2.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature.source" version="0.0.2.qualifier">
       <category name="org.eclipse.papyrus.user.examples.category"/>
    </feature>
-   
    <category-def name="org.eclipse.papyrus.category" label="Papyrus">
       <description>
          Papyrus Category
       </description>
    </category-def>
-   
    <category-def name="org.eclipse.papyrus.user.examples.category" label="Papyrus User Examples">
       <description>
          Papyrus User Examples offers a set of plugins dedicated to gather examples of Papyrus usage.
       </description>
    </category-def>
 </site>
-

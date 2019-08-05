@@ -15,5 +15,6 @@
 		<module>org.eclipse.papyrus.uml.diagram.emftree</module>
 		<module>org.eclipse.papyrus.uml.textual.editors.example</module>
 		<module>org.eclipse.papyrus.uml.disable.helper.advices.example</module>
+		<module>org.eclipse.papyrus.examples.uml.diagrams</module>
 	</modules>
 </project>
