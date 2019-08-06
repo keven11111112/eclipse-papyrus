@@ -12,7 +12,8 @@
  *  Mathieu Velten (Atos) mathieu.velten@atos.net - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 432753
  *  Christian W. Damus (CEA) - bug 437052
- *  Calin Glitia (Esterel Technologies) calin.glitia@esterel-technologies.com - bug 480209 
+ *  Calin Glitia (Esterel Technologies) calin.glitia@esterel-technologies.com - bug 480209
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 549816
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -22,13 +23,15 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 
 /**
  * This adapter handles "modified" flag of resources for tricky cases :
@@ -88,14 +91,7 @@ public class ProxyModificationTrackingAdapter extends EContentAdapter {
 
 			if (n.getEventType() == Notification.SET && n.getFeatureID(Resource.class) == Resource.RESOURCE__URI) {
 				r.setModified(true);
-
-				TreeIterator<Object> properContents = EcoreUtil.getAllProperContents(r, false);
-				while (properContents.hasNext()) {
-					Object obj = properContents.next();
-					if (obj instanceof EObject) {
-						setReferencingResourcesAsModified((EObject) obj);
-					}
-				}
+				setOtherResourcesAsModified(r);
 
 			} else {
 				List<?> objects;
@@ -121,19 +117,7 @@ public class ProxyModificationTrackingAdapter extends EContentAdapter {
 				if (r.isLoaded() && !r.isLoading()) {
 					if (!objects.isEmpty()) {
 						r.setModified(true);
-					}
-
-					for (Object o : objects) {
-						if (o instanceof EObject) {
-							setReferencingResourcesAsModified((EObject) o);
-							TreeIterator<Object> properContents = EcoreUtil.getAllProperContents((EObject) o, false);
-							while (properContents.hasNext()) {
-								Object obj = properContents.next();
-								if (obj instanceof EObject) {
-									setReferencingResourcesAsModified((EObject) obj);
-								}
-							}
-						}
+						setOtherResourcesAsModified(r);
 					}
 				}
 			}
@@ -150,6 +134,40 @@ public class ProxyModificationTrackingAdapter extends EContentAdapter {
 				Resource.Internal refResource = (org.eclipse.emf.ecore.resource.Resource.Internal) setting.getEObject().eResource();
 				if (refResource != null && !refResource.isLoading()) {
 					refResource.setModified(true);
+				}
+			}
+		}
+	}
+
+	/**
+	 * This allows to mark other resources of resource set as modified if needed.
+	 *
+	 * @param resource
+	 *            The current resource.
+	 * @since 3.1
+	 */
+	protected void setOtherResourcesAsModified(final Resource resource) {
+		// Get the resource set to loop through resources
+		final ResourceSet resourceSet = resource.getResourceSet();
+		EditingDomain domain = null;
+
+		// Get the editing domain to determinate if a resource is read only
+		if (resourceSet instanceof ModelSet) {
+			domain = ((ModelSet) resourceSet).getTransactionalEditingDomain();
+		} else if (resourceSet instanceof IEditingDomainProvider) {
+			domain = ((IEditingDomainProvider) resourceSet).getEditingDomain();
+		} else if (resourceSet != null) {
+			IEditingDomainProvider editingDomainProvider = (IEditingDomainProvider) EcoreUtil.getExistingAdapter(resourceSet, IEditingDomainProvider.class);
+			if (editingDomainProvider != null) {
+				domain = editingDomainProvider.getEditingDomain();
+			}
+		}
+
+		// Loop through resources to determinate if this is needed to mark it as modified
+		for (final Resource subResource : resourceSet.getResources()) {
+			if (subResource instanceof Resource.Internal && subResource.isLoaded() && !((Resource.Internal) subResource).isLoading()) {
+				if (null == domain || !domain.isReadOnly(subResource)) {
+					subResource.setModified(true);
 				}
 			}
 		}
