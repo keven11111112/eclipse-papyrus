@@ -12,12 +12,12 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)",
  org.eclipse.cbi.targetplatform.model;bundle-version="[3.0.0,4.0.0)"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.releng.tools.internal.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.releng.tools;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: com.google.common.base;version="[21.0.0, 22.0.0)",
- com.google.common.collect;version="[21.0.0, 22.0.0)"
+Import-Package: com.google.common.base;version="[27.1.0, 28.0.0)",
+ com.google.common.collect;version="[27.1.0, 28.0.0)"
 Automatic-Module-Name: org.eclipse.papyrus.releng.tools

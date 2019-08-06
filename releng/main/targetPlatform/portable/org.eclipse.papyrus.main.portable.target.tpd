@@ -21,11 +21,11 @@ location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repositor
 	org.eclipse.nebula.widgets.nattable.extension.nebula.source.feature.feature.group
 }
 
-//manualUpdate (Needed by infra.tools, API Evolution Report generation and other plugins)
+//manualUpdate
 
-location orbit "http://download.eclipse.org/tools/orbit/downloads/drops/S20190709113129/repository" {
-	com.google.guava [21.0.0,22.0.0)
-	com.google.guava.source [21.0.0,22.0.0)
+location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository/" {
+	com.google.guava [21.0.0,28.0.0) // emf.compare still needs guava 21.0.0
+	com.google.guava.source [21.0.0,28.0.0)
  	com.google.gson [2.7.0,2.8.0)
 	com.google.gson.source [2.7.0,2.8.0)
  	org.apache.commons.lang3 3.1.0
@@ -69,20 +69,20 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "http://download.eclipse.org/eclipse/updates/4.13milestones/S-4.13M1-201907111805/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.13-I-builds/I20190801-0600/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2019-09",0) 
 
-location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.9.0/S201907131440" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.9.0/S201908050730" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S201907120222" {
+location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S201908050915" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -98,7 +98,7 @@ location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.
 
 //updateFrom("WebTools 3.15 for Simrel 2019-09",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.15.0/S-3.15.0.M1-20190717080107/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.15.0/S-3.15.0.M2-20190801034436/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
