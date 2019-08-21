@@ -4,12 +4,21 @@
    
 	<extension
          point="org.eclipse.ui.newWizards">
+    <category
+          id="org.eclipse.papyrus.examples"
+          name="%wizardCategoryExamples"
+          parentCategory="org.eclipse.papyrus.examples">
+    </category>
       <wizard
+      		canFinishEarly="false"
             category="org.eclipse.ui.Examples/org.eclipse.papyrus.examples"
             class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
             icon="resources/icons/papyrus.png"
             id="org.eclipse.papyrus.example.decoration.wizard"
-            name="Decoration Services Examples">
+            finalPerspective="org.eclipse.papyrus.infra.core.perspective"
+            preferredPerspectives="org.eclipse.papyrus.infra.core.perspective"
+            name="Decoration Services Examples"
+            project="true">
       </wizard>
    </extension>
    <extension
