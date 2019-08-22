@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 
@@ -50,6 +51,15 @@ public abstract class AbstractObservableTest extends AbstractPapyrusTest {
 	@Before
 	public void setup() {
 		domain = editorFixture.getEditingDomain();
+	}
+	
+	/**
+	 * This allows to dispose the needed elements.
+	 */
+	@After
+	public void dispose() {
+		domain = null;
+		contextObject = null;
 	}
 
 	/**

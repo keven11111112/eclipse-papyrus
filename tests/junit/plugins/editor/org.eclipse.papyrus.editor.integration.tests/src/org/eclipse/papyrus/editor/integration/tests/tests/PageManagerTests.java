@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2016, 2019 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 433371
  *  Christian W. Damus - bug 485220
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550321
  *
  *****************************************************************************/
 package org.eclipse.papyrus.editor.integration.tests.tests;
@@ -26,7 +27,6 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -402,32 +402,23 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
 
-		CompoundCommand command = new CompoundCommand("Delete diagram");
+		pageManager.closeAllOpenedPages(page);
+		final Command destroyCommand = new GMFtoEMFCommandWrapper(new DestroyElementPapyrusCommand(new DestroyElementRequest(page, false)));
 
-		Command sashRemoveComd = new RecordingCommand(editingDomain, "Remove page") {
-
-			@Override
-			protected void doExecute() {
-				pageManager.closeAllOpenedPages(page);
-			}
-
-		};
-
-		command.append(sashRemoveComd);
-		command.append(new GMFtoEMFCommandWrapper(new DestroyElementPapyrusCommand(new DestroyElementRequest(page, false))));
-
-		editingDomain.getCommandStack().execute(command);
+		editingDomain.getCommandStack().execute(destroyCommand);
 
 		for (int i = 0; i < 3; i++) { // Undo/Redo 3 times
 			Assert.assertNull("The editor should be closed", editor.getActiveEditor());
 			Assert.assertEquals("The page has not been correctly deleted", initialPagesSize - 1, pageManager.allPages().size());
 
 			editingDomain.getCommandStack().undo();
+			pageManager.openPage(page);
 
 			Assert.assertEquals("The has not been correctly created", initialPagesSize, pageManager.allPages().size());
 			Assert.assertTrue("The editor has not been correctly opened", expectedEditorClass.isInstance(editor.getActiveEditor()));
 
 			editingDomain.getCommandStack().redo();
+			pageManager.closeAllOpenedPages(page);
 		}
 	}
 
