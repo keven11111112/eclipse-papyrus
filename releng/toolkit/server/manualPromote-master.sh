@@ -67,8 +67,7 @@ while [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; do
 done
 
 echo "updateSite (e.g. \"nightly/juno\", \"milestones/0.9/M5\", \"releases/indigo/0.8.1\") : "
-while [[ ! "$updateSite" =~ ^(tmpTest|releases/(oxygen|photon)/[0-9]+\.[0-9]+\.[0-9]+|milestones/[0-9]+\.[0-9]+/(I[1-7]|M[1-7]|RC[1-9]|SR[1-9]_RC[1-
-9])[a-z]?|nightly/(oxygen|photon))$ ]]; do
+while [[ ! "$updateSite" =~ ^(tmpTest|releases/(oxygen|photon)/[0-9]+\.[0-9]+\.[0-9]+|milestones/[0-9]+\.[0-9]+/(I[1-7]|M[1-7]|RC[1-9]|SR[1-9]_RC[1-9])[a-z]?|nightly/(oxygen|photon))$ ]]; do
     echo -n "? "
     read updateSite
 done
