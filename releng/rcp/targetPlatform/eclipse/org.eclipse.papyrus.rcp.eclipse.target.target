@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus RCP" sequenceNumber="1565167519">
+<target name="Papyrus RCP" sequenceNumber="1566976998">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -33,8 +33,8 @@
       <repository id="xwt" location="file:/home/data/httpd/download.eclipse.org/xwt/milestones-1.4.0/1.4.0-RC2/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.9.3.v20190610-0948"/>
-      <repository id="qvto" location="file:/home/data/httpd/download.eclipse.org/mmt/qvto/updates/releases/3.9.3"/>
+      <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.10.0.v20190826-0913"/>
+      <repository id="qvto" location="file:/home/data/httpd/download.eclipse.org/mmt/qvto/updates/milestones/3.10.0/S201908260913"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xpand.sdk.feature.group" version="2.2.0.v201605260315"/>
@@ -46,17 +46,17 @@
       <repository id="uml" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/uml2/updates/5.5"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.10.0.v20190805-0730"/>
-      <unit id="org.eclipse.ocl.examples.feature.group" version="6.9.0.v20190805-0730"/>
-      <repository id="ocl" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.9.0/S201908050730"/>
+      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.10.0.v20190826-0830"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="6.9.0.v20190826-0830"/>
+      <repository id="ocl" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.9.0/S201908260830"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.19.0.v20190805-0915"/>
-      <unit id="org.eclipse.xtend.sdk.feature.group" version="2.19.0.v20190805-0915"/>
-      <unit id="org.eclipse.xtext.redist.feature.group" version="2.19.0.v20190805-0915"/>
-      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.19.0.v20190805-0915"/>
-      <unit id="org.eclipse.xtext.ui.feature.group" version="2.19.0.v20190805-0915"/>
-      <repository id="xtext" location="file:/home/data/httpd/download.eclipse.org/modeling/tmf/xtext/updates/milestones/S201908050915"/>
+      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.19.0.v20190826-0548"/>
+      <unit id="org.eclipse.xtend.sdk.feature.group" version="2.19.0.v20190826-0548"/>
+      <unit id="org.eclipse.xtext.redist.feature.group" version="2.19.0.v20190826-0548"/>
+      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.19.0.v20190826-0548"/>
+      <unit id="org.eclipse.xtext.ui.feature.group" version="2.19.0.v20190826-0548"/>
+      <repository id="xtext" location="file:/home/data/httpd/download.eclipse.org/modeling/tmf/xtext/updates/milestones/S201908260548"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.mwe2.language.sdk.feature.group" version="2.11.0.201906111547"/>
@@ -64,7 +64,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="0.0.0"/>
-      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.15.0/S-3.15.0.M2-20190801034436/repository/"/>
+      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.15.0/S-3.15.0.M3-20190827075533/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.12.1.201905141505"/>
@@ -95,11 +95,11 @@
       <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-5.4"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.13.0.v20190709-1459"/>
-      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.1.600.v20190801-0600"/>
+      <unit id="org.eclipse.e4.core.tools.feature.feature.group" version="4.13.0.v20190710-1453"/>
+      <unit id="org.eclipse.rcp.configuration.feature.group" version="1.1.600.v20190821-1800"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.8.500.v20190715-1310"/>
-      <unit id="org.eclipse.sdk.feature.group" version="4.13.0.v20190801-0600"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.13-I-builds/I20190801-0600/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.13.0.v20190821-1800"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.13milestones/S-4.13M3-201908211800/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="3.24.2.v20180905-0014"/>
@@ -111,14 +111,14 @@
       <repository id="mylyn" location="file:/home/data/httpd/download.eclipse.org/mylyn/drops/3.24.2/v20180905-2014"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.3.8.201908061400"/>
-      <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="3.3.8.201908061400"/>
-      <repository id="emfCompare" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201908061400/"/>
+      <unit id="org.eclipse.emf.compare.source.feature.group" version="3.3.8.201908271120"/>
+      <unit id="org.eclipse.emf.compare.ide.ui.source.feature.group" version="3.3.8.201908271120"/>
+      <repository id="emfCompare" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201908271120"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xsd.sdk.feature.group" version="2.19.0.v20190625-1132"/>
-      <unit id="org.eclipse.emf.sdk.feature.group" version="2.19.0.v20190704-0632"/>
-      <repository id="emf" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/emf/builds/milestone/S201907100440"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.19.0.v20190824-1315"/>
+      <repository id="emf" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/emf/builds/milestone/S201908270841"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.7.0.v20180530-1201"/>

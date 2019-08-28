@@ -66,7 +66,7 @@ location mylyn "https://download.eclipse.org/mylyn/drops/3.24.2/v20180905-2014" 
 
 //updateFrom("EMF COMPARE",0)
 
-location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201908061400/" {
+location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201908271120" {
 	org.eclipse.emf.compare.ide.ui.feature.group lazy
 	org.eclipse.emf.compare.source.feature.group
 }
