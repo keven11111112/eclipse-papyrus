@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 CEA LIST and others.
+ * Copyright (c) 2014, 2017, 2019 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,14 +11,20 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 515737, 527496
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 550520
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
 
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -31,6 +37,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListVa
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -46,7 +53,7 @@ public class StyleUtils {
 	 * @param table
 	 *            a table
 	 * @return
-	 * 		a list with the hidden depth in the table. The returned values in never <code>null</code>;
+	 *         a list with the hidden depth in the table. The returned values in never <code>null</code>;
 	 */
 	public static final List<Integer> getHiddenDepths(final Table table) {
 		IntListValueStyle style = getHiddenDepthsValueStyle(table);
@@ -61,7 +68,7 @@ public class StyleUtils {
 	 * @param table
 	 *            a table
 	 * @return
-	 * 		a list with the hidden depth in the table. The returned values in never <code>null</code>;
+	 *         a list with the hidden depth in the table. The returned values in never <code>null</code>;
 	 */
 	public static final List<Integer> getHiddenDepths(final INattableModelManager manager) {
 		return getHiddenDepths(manager.getTable());
@@ -72,7 +79,7 @@ public class StyleUtils {
 	 * @param manager
 	 *            the table
 	 * @return
-	 * 		the style referencing the hidden category
+	 *         the style referencing the hidden category
 	 */
 
 	public static final IntListValueStyle getHiddenDepthsValueStyle(final Table table) {
@@ -84,7 +91,7 @@ public class StyleUtils {
 	 * @param manager
 	 *            the table manager
 	 * @return
-	 * 		the style referencing the hidden category
+	 *         the style referencing the hidden category
 	 */
 	public static final IntListValueStyle getHiddenDepthsValueStyle(final INattableModelManager manager) {
 		return getHiddenDepthsValueStyle(manager.getTable());
@@ -97,7 +104,7 @@ public class StyleUtils {
 	 * @param depth
 	 *            a depth
 	 * @return
-	 * 		<code>true</code> if the category must be hidden
+	 *         <code>true</code> if the category must be hidden
 	 */
 	public static final boolean isHiddenDepth(final INattableModelManager manager, final int depth) {
 		return isHiddenDepth(manager.getTable(), depth);
@@ -110,7 +117,7 @@ public class StyleUtils {
 	 * @param depth
 	 *            a depth
 	 * @return
-	 * 		<code>true</code> if the category must be hidden
+	 *         <code>true</code> if the category must be hidden
 	 */
 	public static final boolean isHiddenDepth(final Table table, final int depth) {
 		List<Integer> hidden = getHiddenDepths(table);
@@ -125,7 +132,7 @@ public class StyleUtils {
 	 * @param manager
 	 *            the table manager
 	 * @return
-	 * 		<code>true</code> if at least one filter is register on the currents columns
+	 *         <code>true</code> if at least one filter is register on the currents columns
 	 */
 	public static final boolean hasAppliedFilter(final INattableModelManager manager) {
 		for (Object current : manager.getColumnElementsList()) {
@@ -292,5 +299,37 @@ public class StyleUtils {
 				}
 			}
 		}
+	}
+
+	/**
+	 * @since 6.4
+	 * @param dominantStyledElement
+	 *            the styled element providing style to use in case of duplication with recessiveStyledElement
+	 * @param recessiveStyledElement
+	 *            the styled element providing style to erase in case of duplication with dominantStyledElement
+	 *
+	 * @return
+	 *         the combination of the 2 styles
+	 */
+	public static final Collection<Style> getCombinedStyles(final StyledElement dominantStyledElement, final StyledElement recessiveStyledElement) {
+		final EcoreUtil.Copier copier = new Copier();
+		final Map<Object, Style> styles = new HashMap<>();
+		for (final Style current : recessiveStyledElement.getStyles()) {
+			if (current instanceof NamedStyle) {
+				styles.put(((NamedStyle) current).getName(), (Style) copier.copy(current));
+			} else {
+				styles.put(current.eClass(), (Style) copier.copy(current));
+			}
+		}
+
+		for (final Style current : dominantStyledElement.getStyles()) {
+			if (current instanceof NamedStyle) {
+				styles.put(((NamedStyle) current).getName(), (Style) copier.copy(current));
+			} else {
+				styles.put(current.eClass(), (Style) copier.copy(current));
+			}
+		}
+		copier.clear();
+		return styles.values();
 	}
 }

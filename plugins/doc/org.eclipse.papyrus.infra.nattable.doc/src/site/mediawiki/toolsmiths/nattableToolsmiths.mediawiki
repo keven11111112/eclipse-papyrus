@@ -1,0 +1,40 @@
+=How To Create a TableConfiguration From a Table?=
+#Install the plugin '''com.cea.papyrus.infra.nattable.export''' in your Eclipse, then restart.
+#Create a new Papyrus Project
+#Create a new Table
+##To create a configuration for a flat or a tree table, we recommend to create a '''Generic Tree Table'''.
+##To create a configuration for a matrix table, we recommend to create a '''Relationship Generic Matrix'''.
+#Configure your table.
+#Export your table '''Right-Click > Export As Table Configuration''' or in Eclipse Menu '''File > Export > Papyrus > Export As Table Configuration''', then follow the wizard.
+
+==Description of the Wizard==
+*''Optional page'':
+**If your configured table is not a '''Generic Tree Table''' or a '''Relationship Generic Matrix''', a warning page will be displayed
+[[File:images/CreateTableConfigurationFromTable_WarningWizard.png|frame|none]]
+
+You can cancel or continue after this page.
+*''First page'':
+**you must select an existing plugin as output of the table configuration file
+[[File:images/CreateTableConfigurationFromTable_OutputPage.png|frame|none]]
+*''Second page'':
+**You must define the name and the type of your new table configuration. The description is not mandatory. 
+[[File:images/CreateTableConfigurationFromTable_TableDataPage.png|frame|none]]
+
+
+After clicking on '''Finish''', in some case, we open a dialog, when we think the created TableConfiguration references others files which are not expected. In this case, we advice you to check them manually
+and fill us a bug if required. 
+[[File:images/CreateTableConfigurationFromTable_CheckDependecyDialog.png|frame|none]]
+
+==Description of the result==
+*a new '''nattableconfiguration''' file has been created in the new folder '''tableConfiguration''',
+*the extension point '''org.eclipse.papyrus.infra.nattable.configuration''' in the '''plugin.xml''' file has been filled,
+*a folder '''icons''' has been created. It owns the icon to use for the new table,
+*the following dependencies have been added in the '''MANIFEST.MF''' file:
+**'''org.eclipse.papyrus.infra.nattable'''
+**If you use your new configuration in a RCP, don't forget, to include these plugins to your table feature:
+***'''org.eclipse.papyrus.infra.nattable.common''' (required to get the table editor),
+***'''org.eclipse.papyrus.infra.nattable.properties''' (to get Table Properties View),
+***'''org.eclipse.papyrus.uml.nattable''' (required for UML table),
+***'''org.eclipse.papyrus.uml.nattable.matrix''' (required for Matrix),
+***'''org.eclipse.papyrus.uml.nattable.properties''' (required for Matrix Properties View).
+*the files and folders to include to the binary build have been added to the '''build.properties''' file.

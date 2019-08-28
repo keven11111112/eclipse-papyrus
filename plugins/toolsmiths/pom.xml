@@ -21,6 +21,7 @@
 		<module>org.eclipse.papyrus.toolsmiths.palette</module>
 		<module>org.eclipse.papyrus.toolsmiths.ecore</module>
 		<module>org.eclipse.papyrus.toolsmiths.expressions</module>
+		<module>org.eclipse.papyrus.toolsmiths.nattable</module>
 		<module>profilemigration</module>
 		
 		<module>../infra/gmfdiag/paletteconfiguration/org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.editor</module>

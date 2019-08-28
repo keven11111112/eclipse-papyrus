@@ -111,6 +111,16 @@
          version="0.0.0"
          unpack="false"/> 
 
+   <!--NatTable-->      
+
+
+   <plugin
+         id="org.eclipse.papyrus.toolsmiths.nattable"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/> 
+         
    <!--UML properties-->
 
    <plugin
