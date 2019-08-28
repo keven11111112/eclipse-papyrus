@@ -35,29 +35,47 @@ A user can choose to enable or disable those architecture contexts in the workbe
 
 The enabling of architecture contexts in a workbench has some impacts on the following UI elements in Papyrus:
 
-* The '''Select Architecture Context''' page of the '''New Papyrus Model''' wizard allows for selecting one of the enabled architecture contexts to create the model in. It also allows for enabling/disabling on the model the set of viewpoints that are provided by the context.
+==Select Architecture Context==
+The '''Select Architecture Context''' page of the '''New Papyrus Model''' wizard allows for selecting one of the enabled architecture contexts to create the model in. It also allows for enabling/disabling on the model the set of viewpoints that are provided by the context.
 
 [[Image:images/selectarchitecture.png]]
 
-
-* The '''Initialization Information''' in the '''New Papyrus Model''' wizard has a '''Select a Representation Kind''' section that is populated with only the diagrams and tables that are available in the enabled viewpoints.
+==Initialization Information==
+The '''Initialization Information''' in the '''New Papyrus Model''' wizard has a '''Select a Representation Kind''' section that is populated with only the diagrams and tables that are available in the enabled viewpoints.
 
 [[Image:images/diagramkind.png]]
 
-* The '''Switch Architecture Context...''' context menu action in the Model Explorer view allows for switching the model's architecture context and/or viewpoints. Similarly, the '''Switch Architecture Viewpoints''' context menu allows for quickly enabling/disabling a viewpoint.
+==Switch Architecture Context and Viewpoints==
+The '''Switch Architecture Context...''' context menu action in the Model Explorer view allows for switching the model's architecture context and/or viewpoints. Similarly, the '''Switch Architecture Viewpoints''' context menu allows for quickly enabling/disabling a viewpoint.
 
 [[Image:images/switchmenus.png]]
 
-* The '''Unsupported Diagrams/Tables''' filter in the Model Explorer view hides diagrams/tables whose kinds are not supported by the viewpoints currently enabled on the model.
+===Switch Architecture Viewpoint===
+When the '''Switch Architecture Viewpoints''' is disabling viewpoint(s), there are these behaviors:
+* The diagrams/tables provided by this viewpoint(s):
+** are closed (if they are not enabled by another viewpoint)
+** are still visible in Model Explorer, Welcome Page, Hyperlink and Table of views but with a grayed icon
+** cannot be opened (double click on them opens a window to activate the correct viewpoint)
+* The new diagram/table menu for the diagrams/tables in this viewpoint(s) becomes not available
 
-* The '''New Diagram''' and '''New Table''' contextual menus for the model elements in the Model Explorer view provides only the diagrams and tables that are available in the enabled viewpoints and are applicable to the currently selected model element. For example, when a UML Activity is selected, the '''New Diagram''' context menu will not offer to create a Package diagram, or a class diagram. The same holds for the toolbar elements for the creation of diagrams and tables.
+On the contrary, when the '''Switch Architecture Viewpoints''' is enabling viewpoint(s):
+* The diagrams/table provided by this viewpoint(s) are visible with initial icon in Model Explorer, Welcome Page, Hyperlink and Table of views
+* The new diagram/table menu for the diagrams/tables in this viewpoint(s) becomes available
+
+==Unsupported Diagrams/Tables filter==
+The '''Unsupported Diagrams/Tables''' filter in the Model Explorer view hides diagrams/tables whose kinds are not supported by the viewpoints currently enabled on the model.
+
+==New Diagram/Table menu==
+The '''New Diagram''' and '''New Table''' contextual menus for the model elements in the Model Explorer view provides only the diagrams and tables that are available in the enabled viewpoints and are applicable to the currently selected model element. For example, when a UML Activity is selected, the '''New Diagram''' context menu will not offer to create a Package diagram, or a class diagram. The same holds for the toolbar elements for the creation of diagrams and tables.
 
 [[Image:images/contextmenu.png]]
 
-* The diagrams properties show the following information:
+==Properties view==
+The diagrams properties show the following information:
 
 [[Image:images/properties.png]]
 
+==Diagrams/Tables==
 * '''Diagram Type''' or '''Table Kind''' is the qualified name of the representation kind. It gives an indication of which architecture context is providing it.
 * The '''Owner''' attribute is the model element that syntactically contains the representation in the model explorer. It can be different from the root element.
 * The '''Root''' element attribute is the model element that is the representation's root semantic element.
