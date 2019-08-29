@@ -101,16 +101,6 @@
      </menuContribution>
    </extension>   
 
-   <extension point="org.eclipse.ui.navigator.navigatorContent">
-      <commonFilter
-            activeByDefault="true"
-            description="Filters diagrams/tables that are unsupported by the selected viewpoints in the Papyrus model"
-            class="org.eclipse.papyrus.infra.ui.architecture.navigator.ViewpointFilter"
-            id="org.eclipse.papyrus.infra.ui.architecture.viewpointFilter"
-            name="Unsupported Diagrams/Tables"
-            visibleInUI="true">
-      </commonFilter>
-   </extension>   
 
    <extension
          point="org.eclipse.ui.navigator.viewer">

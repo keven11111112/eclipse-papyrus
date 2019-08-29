@@ -1,17 +1,17 @@
 /**
- * Copyright (c) 2017 CEA LIST.
- * 
+ * Copyright (c) 2017, 2019 CEA LIST.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
  *  which accompanies this distribution, and is available at
  *  https://www.eclipse.org/legal/epl-2.0/
  *
  *  SPDX-License-Identifier: EPL-2.0
- *  
+ *
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  
- * 
+ *  FAUVERGUE Nicolas (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550567
+ *
  */
 package org.eclipse.papyrus.infra.ui.architecture.navigator;
 
@@ -26,27 +26,29 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractTreeFilter;
 
 /**
- * A tree filter for representations (diagrams, tables) based on active viewpoints in a model set 
+ * A tree filter for representations (diagrams, tables) based on active viewpoints in a model set
  *
  * @since 1.0
+ * @deprecated since 2.1
  */
+@Deprecated
 public class ViewpointFilter extends AbstractTreeFilter {
 
 	public ViewpointFilter() {
 		super();
-		useCache = false;//don't cache
+		useCache = false;// don't cache
 	}
-	
+
 	/**
 	 * hide a representation when it's not supported by the active viewpoints
 	 */
 	@Override
 	public boolean isVisible(Viewer viewer, Object parentElement, Object element) {
 		if (element instanceof EObjectTreeElement) {
-			EObject eObj = ((EObjectTreeElement)element).getEObject();
-			if (eObj instanceof Diagram && DiagramVersioningUtils.isOfCurrentPapyrusVersion((Diagram)eObj)) {
+			EObject eObj = ((EObjectTreeElement) element).getEObject();
+			if (eObj instanceof Diagram && DiagramVersioningUtils.isOfCurrentPapyrusVersion((Diagram) eObj)) {
 				return ViewPrototype.get(eObj) != ViewPrototype.UNAVAILABLE_VIEW;
-			} else if (eObj instanceof Table && TableVersioningUtils.isOfCurrentPapyrusVersion((Table)eObj)) {
+			} else if (eObj instanceof Table && TableVersioningUtils.isOfCurrentPapyrusVersion((Table) eObj)) {
 				return ViewPrototype.get(eObj) != ViewPrototype.UNAVAILABLE_VIEW;
 			}
 		}

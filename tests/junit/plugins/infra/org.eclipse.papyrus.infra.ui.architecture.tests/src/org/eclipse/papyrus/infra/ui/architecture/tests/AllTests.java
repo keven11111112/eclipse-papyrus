@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.architecture.tests;
 
+import org.eclipse.papyrus.infra.ui.architecture.tests.editors.ModelExplorerViewpointFilterTest;
 import org.eclipse.papyrus.infra.ui.architecture.tests.editors.SwitchViewpointsTest;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.runner.Headless;
@@ -26,6 +27,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
 	SwitchViewpointsTest.class,
+	ModelExplorerViewpointFilterTest.class,
 	})
 @Headless
 public class AllTests {
