@@ -6,8 +6,8 @@
     modelPluginID="org.eclipse.papyrus.infra.core.architecture" modelName="Architecture"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/org.eclipse.papyrus.infra.core.architecture.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
-    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types"
-    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types"
+    operationReflection="true" importOrganizing="true">
   <foreignModel>Architecture.ecore</foreignModel>
   <genPackages prefix="Architecture" basePackage="org.eclipse.papyrus.infra.core"
       disposableProviderFactory="true" extensibleProviderFactory="true" ecorePackage="Architecture.ecore#/">
@@ -68,6 +68,8 @@
       <genFeatures notify="false" createChild="false" propertyCategory="Representation Kind"
           propertyDescription="The set of concerns covered by the representation kind"
           propertySortChoices="true" ecoreFeature="ecore:EReference Architecture.ecore#//RepresentationKind/concerns"/>
+      <genFeatures createChild="false" propertyCategory="Element" propertyDescription="The icon of the element specified using a platform plugin URI"
+          ecoreFeature="ecore:EAttribute Architecture.ecore#//RepresentationKind/grayedIcon"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Architecture.ecore#//ArchitectureContext">
       <genFeatures property="None" children="true" createChild="true" propertyDescription="The set of viewpoints defined by the context"

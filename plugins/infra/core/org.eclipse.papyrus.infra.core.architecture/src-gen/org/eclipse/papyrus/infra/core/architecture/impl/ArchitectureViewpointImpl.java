@@ -94,6 +94,7 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Concern> getConcerns() {
 		if (concerns == null) {
 			concerns = new EObjectResolvingEList<Concern>(Concern.class, this, ArchitecturePackage.ARCHITECTURE_VIEWPOINT__CONCERNS);
@@ -106,6 +107,7 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<RepresentationKind> getRepresentationKinds() {
 		if (representationKinds == null) {
 			representationKinds = new EObjectResolvingEList<RepresentationKind>(RepresentationKind.class, this, ArchitecturePackage.ARCHITECTURE_VIEWPOINT__REPRESENTATION_KINDS);
@@ -118,6 +120,7 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitectureContext getContext() {
 		if (eContainerFeatureID() != ArchitecturePackage.ARCHITECTURE_VIEWPOINT__CONTEXT) return null;
 		return (ArchitectureContext)eInternalContainer();
@@ -138,6 +141,7 @@ public class ArchitectureViewpointImpl extends ADElementImpl implements Architec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContext(ArchitectureContext newContext) {
 		if (newContext != eInternalContainer() || (eContainerFeatureID() != ArchitecturePackage.ARCHITECTURE_VIEWPOINT__CONTEXT && newContext != null)) {
 			if (EcoreUtil.isAncestor(this, newContext))

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2017, 2019 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,8 +12,9 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 454891
  *  Christian W. Damus - bugs 485220, 515459
- *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
- *  
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550568
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
 
@@ -89,11 +90,11 @@ public class GMFModelElement extends EMFModelElement {
 	@Override
 	protected boolean isFeatureEditable(String propertyPath) {
 		boolean result = true;
-		if(InternationalizationConstants.LABEL_PROPERTY_PATH.equals(propertyPath)){ //$NON-NLS-1$
+		if (InternationalizationConstants.LABEL_PROPERTY_PATH.equals(propertyPath)) {
 			result = true;
-		}else if (propertyPath.endsWith("owner")) { //$NON-NLS-1$
+		} else if (propertyPath.endsWith("owner")) { //$NON-NLS-1$
 			result = true;
-		}else{
+		} else {
 			result = super.isFeatureEditable(propertyPath);
 		}
 		return result;
@@ -101,10 +102,10 @@ public class GMFModelElement extends EMFModelElement {
 
 	@Override
 	protected IObservable doGetObservable(String propertyPath) {
-		if(InternationalizationConstants.LABEL_PROPERTY_PATH.equals(propertyPath)){ //$NON-NLS-1$
+		if (InternationalizationConstants.LABEL_PROPERTY_PATH.equals(propertyPath)) {
 			Diagram diagram = (Diagram) source;
 			return new DiagramLabelObservableValue(diagram, getDomain());
-		}else if (propertyPath.endsWith("owner")) {
+		} else if (propertyPath.endsWith("owner")) {
 			Diagram diagram = (Diagram) source;
 			Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_DIAGRAM_STYLE);
 			if (style != null) {
@@ -164,13 +165,21 @@ public class GMFModelElement extends EMFModelElement {
 
 				@Override
 				public Image getImage(Object element) {
-					ViewPrototype proto = DiagramUtils.getPrototype((Diagram) source);
-					return proto.getIcon();
+					PolicyChecker checker = PolicyChecker.getFor(source);
+					ViewPrototype prototype = DiagramUtils.getPrototype((Diagram) source, checker, false);
+
+					// If this is not an unavailable view prototype and is not in current viewpoints, display the grayed icon if possible
+					if (!ViewPrototype.UNAVAILABLE_VIEW.equals(prototype) && !checker.isInViewpoint(prototype.getRepresentationKind())) {
+						// If the grayed icon is not set, use the unavailable view prototype icon
+						return null == prototype.getGrayedIconURI() || prototype.getGrayedIconURI().isEmpty() ? ViewPrototype.UNAVAILABLE_VIEW.getIcon() : prototype.getGrayedIcon();
+					}
+
+					return prototype.getIcon();
 				}
 
 				@Override
 				public String getText(Object element) {
-					ViewPrototype proto = DiagramUtils.getPrototype((Diagram) source);
+					ViewPrototype proto = DiagramUtils.getPrototype((Diagram) source, false);
 					return proto.getQualifiedName();
 				}
 			};
@@ -224,7 +233,7 @@ public class GMFModelElement extends EMFModelElement {
 		}
 		return super.getContentProvider(propertyPath);
 	}
-	
+
 	/**
 	 * Gets the root EObject from the given one
 	 *

@@ -82,6 +82,7 @@ public abstract class RuleImpl extends MinimalEObjectImpl.Container implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isPermit() {
 		return permit;
 	}
@@ -91,6 +92,7 @@ public abstract class RuleImpl extends MinimalEObjectImpl.Container implements R
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPermit(boolean newPermit) {
 		boolean oldPermit = permit;
 		permit = newPermit;

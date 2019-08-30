@@ -118,6 +118,10 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_46bPGl_sEeecE-N4uvmt0g"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_46bPG1_sEeecE-N4uvmt0g" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_3prHYMrzEem0O816XhrVeA" name="grayedIcon" visibility="public" isOrdered="true">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3prHYcrzEem0O816XhrVeA"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_46bPHF_sEeecE-N4uvmt0g" name="ArchitectureDescriptionLanguage">
       <generalization xmi:id="_46bPHV_sEeecE-N4uvmt0g" general="_46bO8l_sEeecE-N4uvmt0g"/>

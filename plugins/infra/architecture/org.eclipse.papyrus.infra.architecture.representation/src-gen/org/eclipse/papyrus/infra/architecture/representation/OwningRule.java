@@ -58,7 +58,7 @@ public interface OwningRule extends Rule {
 	 * @return the value of the '<em>Element</em>' reference.
 	 * @see #setElement(EClass)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getOwningRule_Element()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The type (from the language\'s metamodel) that a model element must have to own a representation of this kind.'"
+	 * @model
 	 * @generated
 	 */
 	EClass getElement();
@@ -87,7 +87,7 @@ public interface OwningRule extends Rule {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Stereotypes</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getOwningRule_Stereotypes()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of stereotypes (from the language\'s profiles) that a model element must have to own a representation of this kind.'"
+	 * @model
 	 * @generated
 	 */
 	EList<EClass> getStereotypes();
@@ -108,7 +108,6 @@ public interface OwningRule extends Rule {
 	 * @see #setMultiplicity(int)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getOwningRule_Multiplicity()
 	 * @model default="-1" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The maximum number of representations of this kind that a model element can own. -1 represents an unbounded number.'"
 	 * @generated
 	 */
 	int getMultiplicity();
@@ -138,7 +137,6 @@ public interface OwningRule extends Rule {
 	 * @return the value of the '<em>New Model Path</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getOwningRule_NewModelPath()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The settings of auto creating model elements with this representation kind'"
 	 * @generated
 	 */
 	EList<ModelAutoCreate> getNewModelPath();
@@ -158,7 +156,6 @@ public interface OwningRule extends Rule {
 	 * @return the value of the '<em>Select Diagram Root</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getOwningRule_SelectDiagramRoot()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The settings of selecting a model element that is the root of this representation kind'"
 	 * @generated
 	 */
 	EList<RootAutoSelect> getSelectDiagramRoot();

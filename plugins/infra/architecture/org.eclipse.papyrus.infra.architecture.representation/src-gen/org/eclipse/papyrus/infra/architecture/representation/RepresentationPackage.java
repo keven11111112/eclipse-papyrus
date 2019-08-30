@@ -87,7 +87,6 @@ public interface RepresentationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @since 2.0
 	 */
 	int PAPYRUS_REPRESENTATION_KIND__ID = ArchitecturePackage.REPRESENTATION_KIND__ID;
 
@@ -144,6 +143,15 @@ public interface RepresentationPackage extends EPackage {
 	 * @ordered
 	 */
 	int PAPYRUS_REPRESENTATION_KIND__CONCERNS = ArchitecturePackage.REPRESENTATION_KIND__CONCERNS;
+
+	/**
+	 * The feature id for the '<em><b>Grayed Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_REPRESENTATION_KIND__GRAYED_ICON = ArchitecturePackage.REPRESENTATION_KIND__GRAYED_ICON;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.

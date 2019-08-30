@@ -118,6 +118,7 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElement() {
 		if (element != null && element.eIsProxy()) {
 			InternalEObject oldElement = (InternalEObject)element;
@@ -144,6 +145,7 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElement(EClass newElement) {
 		EClass oldElement = element;
 		element = newElement;
@@ -156,6 +158,7 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EClass> getStereotypes() {
 		if (stereotypes == null) {
 			stereotypes = new EObjectResolvingEList<EClass>(EClass.class, this, RepresentationPackage.CHILD_RULE__STEREOTYPES);
@@ -168,6 +171,7 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOrigin() {
 		if (origin != null && origin.eIsProxy()) {
 			InternalEObject oldOrigin = (InternalEObject)origin;
@@ -194,6 +198,7 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOrigin(EClass newOrigin) {
 		EClass oldOrigin = origin;
 		origin = newOrigin;
@@ -206,6 +211,7 @@ public class ChildRuleImpl extends RuleImpl implements ChildRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<PathElement> getInsertionPath() {
 		if (insertionPath == null) {
 			insertionPath = new EObjectContainmentEList<PathElement>(PathElement.class, this, RepresentationPackage.CHILD_RULE__INSERTION_PATH);

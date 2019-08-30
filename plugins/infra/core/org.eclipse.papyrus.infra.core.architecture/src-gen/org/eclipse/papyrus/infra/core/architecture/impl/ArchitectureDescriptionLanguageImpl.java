@@ -104,6 +104,7 @@ public class ArchitectureDescriptionLanguageImpl extends ArchitectureContextImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<RepresentationKind> getRepresentationKinds() {
 		if (representationKinds == null) {
 			representationKinds = new EObjectContainmentWithInverseEList<RepresentationKind>(RepresentationKind.class, this, ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__REPRESENTATION_KINDS, ArchitecturePackage.REPRESENTATION_KIND__LANGUAGE);
@@ -116,6 +117,7 @@ public class ArchitectureDescriptionLanguageImpl extends ArchitectureContextImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EPackage getMetamodel() {
 		if (metamodel != null && metamodel.eIsProxy()) {
 			InternalEObject oldMetamodel = (InternalEObject)metamodel;
@@ -142,6 +144,7 @@ public class ArchitectureDescriptionLanguageImpl extends ArchitectureContextImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetamodel(EPackage newMetamodel) {
 		EPackage oldMetamodel = metamodel;
 		metamodel = newMetamodel;
@@ -154,6 +157,7 @@ public class ArchitectureDescriptionLanguageImpl extends ArchitectureContextImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EPackage> getProfiles() {
 		if (profiles == null) {
 			profiles = new EObjectResolvingEList<EPackage>(EPackage.class, this, ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__PROFILES);

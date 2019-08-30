@@ -180,6 +180,13 @@
         <details key="propertyCategory" value="Representation Kind"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="grayedIcon" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The icon of the element specified using a platform plugin URI"/>
+        <details key="propertyDescription" value="The icon of the element specified using a platform plugin URI"/>
+        <details key="propertyCategory" value="Element"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArchitectureContext" abstract="true"
       eSuperTypes="#//ADElement">

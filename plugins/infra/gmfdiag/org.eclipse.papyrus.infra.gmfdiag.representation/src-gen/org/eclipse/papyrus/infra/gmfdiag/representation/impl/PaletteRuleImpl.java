@@ -84,6 +84,7 @@ public class PaletteRuleImpl extends RuleImpl implements PaletteRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getElement() {
 		return element;
 	}
@@ -93,6 +94,7 @@ public class PaletteRuleImpl extends RuleImpl implements PaletteRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElement(String newElement) {
 		String oldElement = element;
 		element = newElement;

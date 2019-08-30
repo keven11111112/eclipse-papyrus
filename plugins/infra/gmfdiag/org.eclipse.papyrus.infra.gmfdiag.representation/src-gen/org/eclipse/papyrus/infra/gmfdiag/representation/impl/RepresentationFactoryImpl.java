@@ -117,6 +117,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PapyrusDiagram createPapyrusDiagram() {
 		PapyrusDiagramImpl papyrusDiagram = new PapyrusDiagramImpl();
 		return papyrusDiagram;
@@ -127,6 +128,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ChildRule createChildRule() {
 		ChildRuleImpl childRule = new ChildRuleImpl();
 		return childRule;
@@ -137,6 +139,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PaletteRule createPaletteRule() {
 		PaletteRuleImpl paletteRule = new PaletteRuleImpl();
 		return paletteRule;
@@ -147,6 +150,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PathElement createPathElement() {
 		PathElementImpl pathElement = new PathElementImpl();
 		return pathElement;
@@ -157,6 +161,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public AssistantRule createAssistantRule() {
 		AssistantRuleImpl assistantRule = new AssistantRuleImpl();
 		return assistantRule;
@@ -185,6 +190,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RepresentationPackage getRepresentationPackage() {
 		return (RepresentationPackage)getEPackage();
 	}

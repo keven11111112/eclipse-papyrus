@@ -50,7 +50,7 @@ public interface AssistantRule extends Rule {
 	 * @return the value of the '<em>Element Type ID</em>' attribute.
 	 * @see #setElementTypeID(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getAssistantRule_ElementTypeID()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='A pattern (that can include *) to match for the identifier of a assistant element.'"
+	 * @model
 	 * @generated
 	 */
 	String getElementTypeID();
@@ -73,7 +73,6 @@ public interface AssistantRule extends Rule {
 	 * <!-- end-model-doc -->
 	 * @model required="true" elementTypeDataType="org.eclipse.papyrus.infra.gmfdiag.representation.ElementType" elementTypeRequired="true"
 	 * @generated
-	 * @since 2.0
 	 */
 	boolean matches(IElementType elementType);
 

@@ -57,7 +57,6 @@ public interface PathElement extends EObject {
 	 * @see #setFeature(EReference)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPathElement_Feature()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The reference from the origin type that represents the collection of next elements in the path.'"
 	 * @generated
 	 */
 	EReference getFeature();
@@ -86,7 +85,6 @@ public interface PathElement extends EObject {
 	 * @return the value of the '<em>Origin</em>' reference.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPathElement_Origin()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The type (from the language\'s metamodel) that an element must have to be the next segment in the path.'"
 	 * @generated
 	 */
 	EClass getOrigin();
@@ -105,7 +103,6 @@ public interface PathElement extends EObject {
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPathElement_Target()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The type (from the language\'s metamodel) that is the type of the reference feature.'"
 	 * @generated
 	 */
 	EClass getTarget();

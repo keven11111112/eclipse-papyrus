@@ -137,6 +137,7 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElement() {
 		if (element != null && element.eIsProxy()) {
 			InternalEObject oldElement = (InternalEObject)element;
@@ -163,6 +164,7 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElement(EClass newElement) {
 		EClass oldElement = element;
 		element = newElement;
@@ -175,6 +177,7 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EClass> getStereotypes() {
 		if (stereotypes == null) {
 			stereotypes = new EObjectResolvingEList<EClass>(EClass.class, this, RepresentationPackage.OWNING_RULE__STEREOTYPES);
@@ -187,6 +190,7 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMultiplicity() {
 		return multiplicity;
 	}
@@ -196,6 +200,7 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMultiplicity(int newMultiplicity) {
 		int oldMultiplicity = multiplicity;
 		multiplicity = newMultiplicity;
@@ -208,6 +213,7 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ModelAutoCreate> getNewModelPath() {
 		if (newModelPath == null) {
 			newModelPath = new EObjectContainmentEList<ModelAutoCreate>(ModelAutoCreate.class, this, RepresentationPackage.OWNING_RULE__NEW_MODEL_PATH);
@@ -220,6 +226,7 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<RootAutoSelect> getSelectDiagramRoot() {
 		if (selectDiagramRoot == null) {
 			selectDiagramRoot = new EObjectContainmentEList<RootAutoSelect>(RootAutoSelect.class, this, RepresentationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT);

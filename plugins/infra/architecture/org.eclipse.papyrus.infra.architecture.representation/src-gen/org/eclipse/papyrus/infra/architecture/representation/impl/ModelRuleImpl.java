@@ -148,6 +148,7 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ConstraintDescriptor> getConstraints() {
 		if (constraints == null) {
 			constraints = new EObjectContainmentWithInverseEList<ConstraintDescriptor>(ConstraintDescriptor.class, this, RepresentationPackage.MODEL_RULE__CONSTRAINTS, ConstraintsPackage.CONSTRAINT_DESCRIPTOR__DISPLAY);
@@ -160,6 +161,7 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getElementMultiplicity() {
 		return elementMultiplicity;
 	}
@@ -169,6 +171,7 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementMultiplicity(int newElementMultiplicity) {
 		int oldElementMultiplicity = elementMultiplicity;
 		elementMultiplicity = newElementMultiplicity;
@@ -181,6 +184,7 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getElement() {
 		if (element != null && element.eIsProxy()) {
 			InternalEObject oldElement = (InternalEObject)element;
@@ -207,6 +211,7 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElement(EClass newElement) {
 		EClass oldElement = element;
 		element = newElement;
@@ -219,6 +224,7 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<EClass> getStereotypes() {
 		if (stereotypes == null) {
 			stereotypes = new EObjectResolvingEList<EClass>(EClass.class, this, RepresentationPackage.MODEL_RULE__STEREOTYPES);
@@ -231,6 +237,7 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public int getMultiplicity() {
 		return multiplicity;
 	}
@@ -240,6 +247,7 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMultiplicity(int newMultiplicity) {
 		int oldMultiplicity = multiplicity;
 		multiplicity = newMultiplicity;

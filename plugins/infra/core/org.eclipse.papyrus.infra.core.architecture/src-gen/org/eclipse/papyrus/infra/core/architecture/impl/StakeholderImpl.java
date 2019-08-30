@@ -82,6 +82,7 @@ public class StakeholderImpl extends ADElementImpl implements Stakeholder {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Concern> getConcerns() {
 		if (concerns == null) {
 			concerns = new EObjectResolvingEList<Concern>(Concern.class, this, ArchitecturePackage.STAKEHOLDER__CONCERNS);
@@ -94,6 +95,7 @@ public class StakeholderImpl extends ADElementImpl implements Stakeholder {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitectureDomain getDomain() {
 		if (eContainerFeatureID() != ArchitecturePackage.STAKEHOLDER__DOMAIN) return null;
 		return (ArchitectureDomain)eInternalContainer();
@@ -114,6 +116,7 @@ public class StakeholderImpl extends ADElementImpl implements Stakeholder {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomain(ArchitectureDomain newDomain) {
 		if (newDomain != eInternalContainer() || (eContainerFeatureID() != ArchitecturePackage.STAKEHOLDER__DOMAIN && newDomain != null)) {
 			if (EcoreUtil.isAncestor(this, newDomain))

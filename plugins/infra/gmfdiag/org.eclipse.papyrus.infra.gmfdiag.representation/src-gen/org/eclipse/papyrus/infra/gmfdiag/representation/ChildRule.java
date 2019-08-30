@@ -59,7 +59,7 @@ public interface ChildRule extends Rule {
 	 * @return the value of the '<em>Element</em>' reference.
 	 * @see #setElement(EClass)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getChildRule_Element()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The type (from the language\'s metamodel) that an element must have to be dropped on this diagram kind.'"
+	 * @model
 	 * @generated
 	 */
 	EClass getElement();
@@ -88,7 +88,7 @@ public interface ChildRule extends Rule {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Stereotypes</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getChildRule_Stereotypes()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The stereotype (from the language\'s profiles) that an element must have to be dropped on this diagram kind.'"
+	 * @model
 	 * @generated
 	 */
 	EList<EClass> getStereotypes();
@@ -107,7 +107,7 @@ public interface ChildRule extends Rule {
 	 * @return the value of the '<em>Origin</em>' reference.
 	 * @see #setOrigin(EClass)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getChildRule_Origin()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The type (from the language\'s metamodel) that an element must have to be the target of the drop of the child model element.'"
+	 * @model
 	 * @generated
 	 */
 	EClass getOrigin();
@@ -137,7 +137,6 @@ public interface ChildRule extends Rule {
 	 * @return the value of the '<em>Insertion Path</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getChildRule_InsertionPath()
 	 * @model containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='A path of properties that must be used from the origin to insert the new child model element in the model.'"
 	 * @generated
 	 */
 	EList<PathElement> getInsertionPath();

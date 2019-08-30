@@ -57,7 +57,7 @@ public interface PapyrusRepresentationKind extends RepresentationKind {
 	 * @return the value of the '<em>Parent</em>' reference.
 	 * @see #setParent(PapyrusRepresentationKind)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getPapyrusRepresentationKind_Parent()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Representation Kind' propertyDescription='The parent representation kind from which this representation kind inherits'"
+	 * @model
 	 * @generated
 	 */
 	PapyrusRepresentationKind getParent();
@@ -83,7 +83,6 @@ public interface PapyrusRepresentationKind extends RepresentationKind {
 	 * @return the value of the '<em>Model Rules</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getPapyrusRepresentationKind_ModelRules()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Representation Kind' propertyDescription='The set of rules that determine which model elements can be the semantic element behind this diagram'"
 	 * @generated
 	 */
 	EList<ModelRule> getModelRules();
@@ -99,7 +98,6 @@ public interface PapyrusRepresentationKind extends RepresentationKind {
 	 * @return the value of the '<em>Owning Rules</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getPapyrusRepresentationKind_OwningRules()
 	 * @model containment="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Representation Kind' propertyDescription='The set of rules that determine which elements can be the syntactic owner of this diagram'"
 	 * @generated
 	 */
 	EList<OwningRule> getOwningRules();
@@ -119,7 +117,6 @@ public interface PapyrusRepresentationKind extends RepresentationKind {
 	 * @see #setImplementationID(String)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getPapyrusRepresentationKind_ImplementationID()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyCategory='Representation Kind' propertyDescription='The id of the underlying implementation of this representation kind'"
 	 * @generated
 	 */
 	String getImplementationID();

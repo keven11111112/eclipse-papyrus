@@ -86,6 +86,7 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitectureDomain createArchitectureDomain() {
 		ArchitectureDomainImpl architectureDomain = new ArchitectureDomainImpl();
 		return architectureDomain;
@@ -96,6 +97,7 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitectureDescriptionLanguage createArchitectureDescriptionLanguage() {
 		ArchitectureDescriptionLanguageImpl architectureDescriptionLanguage = new ArchitectureDescriptionLanguageImpl();
 		return architectureDescriptionLanguage;
@@ -106,6 +108,7 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Stakeholder createStakeholder() {
 		StakeholderImpl stakeholder = new StakeholderImpl();
 		return stakeholder;
@@ -116,6 +119,7 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Concern createConcern() {
 		ConcernImpl concern = new ConcernImpl();
 		return concern;
@@ -126,6 +130,7 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitectureViewpoint createArchitectureViewpoint() {
 		ArchitectureViewpointImpl architectureViewpoint = new ArchitectureViewpointImpl();
 		return architectureViewpoint;
@@ -136,6 +141,7 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitectureFramework createArchitectureFramework() {
 		ArchitectureFrameworkImpl architectureFramework = new ArchitectureFrameworkImpl();
 		return architectureFramework;
@@ -146,6 +152,7 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitectureDescription createArchitectureDescription() {
 		ArchitectureDescriptionImpl architectureDescription = new ArchitectureDescriptionImpl();
 		return architectureDescription;
@@ -156,6 +163,7 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitectureDescriptionPreferences createArchitectureDescriptionPreferences() {
 		ArchitectureDescriptionPreferencesImpl architectureDescriptionPreferences = new ArchitectureDescriptionPreferencesImpl();
 		return architectureDescriptionPreferences;
@@ -166,6 +174,7 @@ public class ArchitectureFactoryImpl extends EFactoryImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitecturePackage getArchitecturePackage() {
 		return (ArchitecturePackage)getEPackage();
 	}

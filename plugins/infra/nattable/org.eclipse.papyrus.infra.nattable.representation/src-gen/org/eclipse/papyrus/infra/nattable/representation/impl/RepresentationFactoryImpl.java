@@ -80,6 +80,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PapyrusTable createPapyrusTable() {
 		PapyrusTableImpl papyrusTable = new PapyrusTableImpl();
 		return papyrusTable;
@@ -90,6 +91,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RepresentationPackage getRepresentationPackage() {
 		return (RepresentationPackage)getEPackage();
 	}

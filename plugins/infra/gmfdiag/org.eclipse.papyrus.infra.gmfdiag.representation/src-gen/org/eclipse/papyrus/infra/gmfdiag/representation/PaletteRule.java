@@ -52,7 +52,7 @@ public interface PaletteRule extends Rule {
 	 * @return the value of the '<em>Element</em>' attribute.
 	 * @see #setElement(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPaletteRule_Element()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='A pattern (that can include *) to match for the identifier of a palette element.'"
+	 * @model
 	 * @generated
 	 */
 	String getElement();

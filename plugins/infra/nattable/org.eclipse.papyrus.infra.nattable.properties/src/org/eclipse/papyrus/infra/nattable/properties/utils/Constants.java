@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2019 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550568
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.utils;
@@ -30,14 +31,16 @@ public class Constants {
 
 	/**
 	 * The table owner constant.
-	 * 
+	 *
 	 * @since 2.1
 	 */
 	public static final String TABLE_OWNER = "owner"; //$NON-NLS-1$
 
 	public static final String TABLE_CONTEXT = "context"; //$NON-NLS-1$
-	
+
 	public static final String TABLE_LABEL = "label"; //$NON-NLS-1$
+
+	public static final String TABLE_PROTOTYPE = "prototype"; //$NON-NLS-1$
 
 	public static final String LOCAL_COLUMN_HEADER_AXIS_CONFIGURATION_DISPLAY_LABEL = "localColumnHeaderAxisConfiguration.displayLabel"; //$NON-NLS-1$
 
@@ -106,7 +109,7 @@ public class Constants {
 	public static final String ROW_PASTED_OBJECT_POST_ACTIONS_FEATURE = "localRowHeaderAxisConfiguration.postActions";//$NON-NLS-1$
 
 	public static final String COLUMN_PASTED_EOBJECT_ID = "localColumnHeaderAxisConfiguration.pastedEObjectId";//$NON-NLS-1$
-	
+
 	public static final String ROW_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE = "localRowHeaderAxisConfiguration.axisIdentifier";//$NON-NLS-1$
 
 	public static final String COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE = "localColumnHeaderAxisConfiguration.pastedEObjectContainmentFeature";//$NON-NLS-1$
@@ -114,7 +117,7 @@ public class Constants {
 	public static final String COLUMN_PASTED_OBJECT_DETACHED_MODE_FEATURE = "localColumnHeaderAxisConfiguration.detachedMode";//$NON-NLS-1$
 
 	public static final String COLUMN_PASTED_OBJECT_POST_ACTIONS_FEATURE = "localColumnHeaderAxisConfiguration.postActions";//$NON-NLS-1$
-	
+
 	public static final String COLUMN_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE = "localColumnHeaderAxisConfiguration.axisIdentifier";//$NON-NLS-1$
 
 }

@@ -54,7 +54,6 @@ public interface RootAutoSelect extends EObject {
 	 * @see #setFeature(EReference)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getRootAutoSelect_Feature()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='A reference from the newly created element type that is used to get the root of a representation of this kind'"
 	 * @generated
 	 */
 	EReference getFeature();

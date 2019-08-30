@@ -82,6 +82,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ModelRule createModelRule() {
 		ModelRuleImpl modelRule = new ModelRuleImpl();
 		return modelRule;
@@ -92,6 +93,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public OwningRule createOwningRule() {
 		OwningRuleImpl owningRule = new OwningRuleImpl();
 		return owningRule;
@@ -102,6 +104,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ModelAutoCreate createModelAutoCreate() {
 		ModelAutoCreateImpl modelAutoCreate = new ModelAutoCreateImpl();
 		return modelAutoCreate;
@@ -112,6 +115,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RootAutoSelect createRootAutoSelect() {
 		RootAutoSelectImpl rootAutoSelect = new RootAutoSelectImpl();
 		return rootAutoSelect;
@@ -122,6 +126,7 @@ public class RepresentationFactoryImpl extends EFactoryImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RepresentationPackage getRepresentationPackage() {
 		return (RepresentationPackage)getEPackage();
 	}

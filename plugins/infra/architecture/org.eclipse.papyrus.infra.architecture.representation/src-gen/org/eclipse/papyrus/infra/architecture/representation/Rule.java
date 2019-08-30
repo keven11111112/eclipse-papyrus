@@ -54,7 +54,6 @@ public interface Rule extends EObject {
 	 * @see #setPermit(boolean)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getRule_Permit()
 	 * @model default="true" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='Whether the rule permits or forbids the action it represents'"
 	 * @generated
 	 */
 	boolean isPermit();

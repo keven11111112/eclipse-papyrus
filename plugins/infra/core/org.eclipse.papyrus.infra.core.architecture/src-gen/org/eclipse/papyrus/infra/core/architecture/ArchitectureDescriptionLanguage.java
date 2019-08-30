@@ -58,7 +58,6 @@ public interface ArchitectureDescriptionLanguage extends ArchitectureContext {
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDescriptionLanguage_RepresentationKinds()
 	 * @see org.eclipse.papyrus.infra.core.architecture.RepresentationKind#getLanguage
 	 * @model opposite="language" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of representation kinds defined by the language'"
 	 * @generated
 	 */
 	EList<RepresentationKind> getRepresentationKinds();
@@ -78,7 +77,6 @@ public interface ArchitectureDescriptionLanguage extends ArchitectureContext {
 	 * @see #setMetamodel(EPackage)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDescriptionLanguage_Metamodel()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The metamodel used by the language' propertyCategory='Description Language'"
 	 * @generated
 	 */
 	EPackage getMetamodel();
@@ -107,7 +105,7 @@ public interface ArchitectureDescriptionLanguage extends ArchitectureContext {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Profiles</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDescriptionLanguage_Profiles()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of UML profiles used by the language' propertyCategory='Description Language'"
+	 * @model
 	 * @generated
 	 */
 	EList<EPackage> getProfiles();

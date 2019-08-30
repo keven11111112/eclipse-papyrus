@@ -43,6 +43,7 @@ import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.RepresentationKindImpl#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.RepresentationKindImpl#getConcerns <em>Concerns</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.RepresentationKindImpl#getGrayedIcon <em>Grayed Icon</em>}</li>
  * </ul>
  *
  * @generated
@@ -57,6 +58,25 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 	 * @ordered
 	 */
 	protected EList<Concern> concerns;
+
+	/**
+	 * The default value of the '{@link #getGrayedIcon() <em>Grayed Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGrayedIcon()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String GRAYED_ICON_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getGrayedIcon() <em>Grayed Icon</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGrayedIcon()
+	 * @generated
+	 * @ordered
+	 */
+	protected String grayedIcon = GRAYED_ICON_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,6 +102,7 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Concern> getConcerns() {
 		if (concerns == null) {
 			concerns = new EObjectResolvingEList<Concern>(Concern.class, this, ArchitecturePackage.REPRESENTATION_KIND__CONCERNS);
@@ -94,6 +115,30 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public String getGrayedIcon() {
+		return grayedIcon;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setGrayedIcon(String newGrayedIcon) {
+		String oldGrayedIcon = grayedIcon;
+		grayedIcon = newGrayedIcon;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchitecturePackage.REPRESENTATION_KIND__GRAYED_ICON, oldGrayedIcon, grayedIcon));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ArchitectureDescriptionLanguage getLanguage() {
 		if (eContainerFeatureID() != ArchitecturePackage.REPRESENTATION_KIND__LANGUAGE) return null;
 		return (ArchitectureDescriptionLanguage)eInternalContainer();
@@ -114,6 +159,7 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setLanguage(ArchitectureDescriptionLanguage newLanguage) {
 		if (newLanguage != eInternalContainer() || (eContainerFeatureID() != ArchitecturePackage.REPRESENTATION_KIND__LANGUAGE && newLanguage != null)) {
 			if (EcoreUtil.isAncestor(this, newLanguage))
@@ -186,6 +232,8 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 				return getLanguage();
 			case ArchitecturePackage.REPRESENTATION_KIND__CONCERNS:
 				return getConcerns();
+			case ArchitecturePackage.REPRESENTATION_KIND__GRAYED_ICON:
+				return getGrayedIcon();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -206,6 +254,9 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 				getConcerns().clear();
 				getConcerns().addAll((Collection<? extends Concern>)newValue);
 				return;
+			case ArchitecturePackage.REPRESENTATION_KIND__GRAYED_ICON:
+				setGrayedIcon((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -224,6 +275,9 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 			case ArchitecturePackage.REPRESENTATION_KIND__CONCERNS:
 				getConcerns().clear();
 				return;
+			case ArchitecturePackage.REPRESENTATION_KIND__GRAYED_ICON:
+				setGrayedIcon(GRAYED_ICON_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -240,8 +294,26 @@ public abstract class RepresentationKindImpl extends ADElementImpl implements Re
 				return getLanguage() != null;
 			case ArchitecturePackage.REPRESENTATION_KIND__CONCERNS:
 				return concerns != null && !concerns.isEmpty();
+			case ArchitecturePackage.REPRESENTATION_KIND__GRAYED_ICON:
+				return GRAYED_ICON_EDEFAULT == null ? grayedIcon != null : !GRAYED_ICON_EDEFAULT.equals(grayedIcon);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (grayedIcon: "); //$NON-NLS-1$
+		result.append(grayedIcon);
+		result.append(')');
+		return result.toString();
 	}
 
 } //RepresentationKindImpl

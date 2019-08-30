@@ -156,6 +156,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPapyrusRepresentationKind() {
 		return papyrusRepresentationKindEClass;
 	}
@@ -165,6 +166,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPapyrusRepresentationKind_Parent() {
 		return (EReference)papyrusRepresentationKindEClass.getEStructuralFeatures().get(0);
 	}
@@ -174,6 +176,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPapyrusRepresentationKind_ModelRules() {
 		return (EReference)papyrusRepresentationKindEClass.getEStructuralFeatures().get(1);
 	}
@@ -183,6 +186,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPapyrusRepresentationKind_OwningRules() {
 		return (EReference)papyrusRepresentationKindEClass.getEStructuralFeatures().get(2);
 	}
@@ -192,6 +196,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPapyrusRepresentationKind_ImplementationID() {
 		return (EAttribute)papyrusRepresentationKindEClass.getEStructuralFeatures().get(3);
 	}
@@ -201,6 +206,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRule() {
 		return ruleEClass;
 	}
@@ -210,6 +216,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getRule_Permit() {
 		return (EAttribute)ruleEClass.getEStructuralFeatures().get(0);
 	}
@@ -219,6 +226,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getModelRule() {
 		return modelRuleEClass;
 	}
@@ -228,6 +236,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModelRule_Element() {
 		return (EReference)modelRuleEClass.getEStructuralFeatures().get(0);
 	}
@@ -237,6 +246,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModelRule_Stereotypes() {
 		return (EReference)modelRuleEClass.getEStructuralFeatures().get(1);
 	}
@@ -246,6 +256,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getModelRule_Multiplicity() {
 		return (EAttribute)modelRuleEClass.getEStructuralFeatures().get(2);
 	}
@@ -255,6 +266,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOwningRule() {
 		return owningRuleEClass;
 	}
@@ -264,6 +276,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOwningRule_Element() {
 		return (EReference)owningRuleEClass.getEStructuralFeatures().get(0);
 	}
@@ -273,6 +286,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOwningRule_Stereotypes() {
 		return (EReference)owningRuleEClass.getEStructuralFeatures().get(1);
 	}
@@ -282,6 +296,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getOwningRule_Multiplicity() {
 		return (EAttribute)owningRuleEClass.getEStructuralFeatures().get(2);
 	}
@@ -291,6 +306,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOwningRule_NewModelPath() {
 		return (EReference)owningRuleEClass.getEStructuralFeatures().get(3);
 	}
@@ -300,6 +316,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getOwningRule_SelectDiagramRoot() {
 		return (EReference)owningRuleEClass.getEStructuralFeatures().get(4);
 	}
@@ -309,6 +326,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getModelAutoCreate() {
 		return modelAutoCreateEClass;
 	}
@@ -318,6 +336,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModelAutoCreate_Feature() {
 		return (EReference)modelAutoCreateEClass.getEStructuralFeatures().get(0);
 	}
@@ -327,6 +346,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModelAutoCreate_Origin() {
 		return (EReference)modelAutoCreateEClass.getEStructuralFeatures().get(1);
 	}
@@ -336,6 +356,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getModelAutoCreate_CreationType() {
 		return (EAttribute)modelAutoCreateEClass.getEStructuralFeatures().get(2);
 	}
@@ -345,6 +366,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRootAutoSelect() {
 		return rootAutoSelectEClass;
 	}
@@ -354,6 +376,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRootAutoSelect_Feature() {
 		return (EReference)rootAutoSelectEClass.getEStructuralFeatures().get(0);
 	}
@@ -363,6 +386,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RepresentationFactory getRepresentationFactory() {
 		return (RepresentationFactory)getEFactoryInstance();
 	}

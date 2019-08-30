@@ -64,6 +64,7 @@ public class ConcernImpl extends ADElementImpl implements Concern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitectureDomain getDomain() {
 		if (eContainerFeatureID() != ArchitecturePackage.CONCERN__DOMAIN) return null;
 		return (ArchitectureDomain)eInternalContainer();
@@ -84,6 +85,7 @@ public class ConcernImpl extends ADElementImpl implements Concern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomain(ArchitectureDomain newDomain) {
 		if (newDomain != eInternalContainer() || (eContainerFeatureID() != ArchitecturePackage.CONCERN__DOMAIN && newDomain != null)) {
 			if (EcoreUtil.isAncestor(this, newDomain))

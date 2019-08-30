@@ -34,7 +34,6 @@ import org.eclipse.papyrus.infra.gmfdiag.representation.*;
  * <!-- end-user-doc -->
  * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage
  * @generated
- * @since 2.0
  */
 public class RepresentationValidator extends EObjectValidator {
 	/**

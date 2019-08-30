@@ -24,6 +24,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 
@@ -56,6 +58,7 @@ public class RepresentationKindItemProvider extends ADElementItemProvider {
 			super.getPropertyDescriptors(object);
 
 			addConcernsPropertyDescriptor(object);
+			addGrayedIconPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,6 +82,28 @@ public class RepresentationKindItemProvider extends ADElementItemProvider {
 				 true,
 				 null,
 				 getString("_UI_RepresentationKindPropertyCategory"), //$NON-NLS-1$
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Grayed Icon feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addGrayedIconPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_RepresentationKind_grayedIcon_feature"), //$NON-NLS-1$
+				 getString("_UI_RepresentationKind_grayedIcon_description"), //$NON-NLS-1$
+				 ArchitecturePackage.Literals.REPRESENTATION_KIND__GRAYED_ICON,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 getString("_UI_ElementPropertyCategory"), //$NON-NLS-1$
 				 null));
 	}
 
@@ -107,6 +132,12 @@ public class RepresentationKindItemProvider extends ADElementItemProvider {
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(RepresentationKind.class)) {
+			case ArchitecturePackage.REPRESENTATION_KIND__GRAYED_ICON:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
 		super.notifyChanged(notification);
 	}
 

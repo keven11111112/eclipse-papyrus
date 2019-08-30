@@ -57,7 +57,6 @@ public interface ArchitectureDomain extends ADElement {
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDomain_Stakeholders()
 	 * @see org.eclipse.papyrus.infra.core.architecture.Stakeholder#getDomain
 	 * @model opposite="domain" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of stakeholders defined by the domain'"
 	 * @generated
 	 */
 	EList<Stakeholder> getStakeholders();
@@ -79,7 +78,6 @@ public interface ArchitectureDomain extends ADElement {
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDomain_Concerns()
 	 * @see org.eclipse.papyrus.infra.core.architecture.Concern#getDomain
 	 * @model opposite="domain" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of concerns defined by the domain'"
 	 * @generated
 	 */
 	EList<Concern> getConcerns();
@@ -101,7 +99,6 @@ public interface ArchitectureDomain extends ADElement {
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDomain_Contexts()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getDomain
 	 * @model opposite="domain" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of contexts defined by the domain'"
 	 * @generated
 	 */
 	EList<ArchitectureContext> getContexts();

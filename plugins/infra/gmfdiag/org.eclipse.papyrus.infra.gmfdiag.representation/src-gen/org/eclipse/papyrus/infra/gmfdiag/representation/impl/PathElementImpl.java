@@ -77,6 +77,7 @@ public class PathElementImpl extends MinimalEObjectImpl.Container implements Pat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature() {
 		if (feature != null && feature.eIsProxy()) {
 			InternalEObject oldFeature = (InternalEObject)feature;
@@ -103,6 +104,7 @@ public class PathElementImpl extends MinimalEObjectImpl.Container implements Pat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeature(EReference newFeature) {
 		EReference oldFeature = feature;
 		feature = newFeature;
@@ -115,6 +117,7 @@ public class PathElementImpl extends MinimalEObjectImpl.Container implements Pat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOrigin() {
 		EClass origin = basicGetOrigin();
 		return origin != null && origin.eIsProxy() ? (EClass)eResolveProxy((InternalEObject)origin) : origin;
@@ -137,6 +140,7 @@ public class PathElementImpl extends MinimalEObjectImpl.Container implements Pat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTarget() {
 		EClass target = basicGetTarget();
 		return target != null && target.eIsProxy() ? (EClass)eResolveProxy((InternalEObject)target) : target;

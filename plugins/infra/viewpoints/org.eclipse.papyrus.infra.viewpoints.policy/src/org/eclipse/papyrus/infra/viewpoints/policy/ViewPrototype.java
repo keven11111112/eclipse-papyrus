@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2017, 2019 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
  *  Christian W. Damus - bugs 474467, 493375, 527580
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550568
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
@@ -53,11 +54,11 @@ public abstract class ViewPrototype {
 	/**
 	 * Singleton for unavailable views
 	 */
-	public static final ViewPrototype UNAVAILABLE_VIEW = new UnavailableViewPrototype("View", "View");
+	public static final ViewPrototype UNAVAILABLE_VIEW = new UnavailableViewPrototype("View", "View"); //$NON-NLS-1$ //$NON-NLS-2$
 	/**
 	 * ID of the extension point for Papyrus diagrams
 	 */
-	protected static final String EXTENSION_ID = "org.eclipse.papyrus.infra.viewpoints.policy.viewType";
+	protected static final String EXTENSION_ID = "org.eclipse.papyrus.infra.viewpoints.policy.viewType"; //$NON-NLS-1$
 
 	/**
 	 * The collection of helpers
@@ -75,7 +76,7 @@ public abstract class ViewPrototype {
 
 		// Only the view helper elements
 		for (Iterator<IConfigurationElement> iter = elements.iterator(); iter.hasNext();) {
-			if (!"helper".equals(iter.next().getName())) {
+			if (!"helper".equals(iter.next().getName())) { //$NON-NLS-1$
 				iter.remove();
 			}
 		}
@@ -86,7 +87,7 @@ public abstract class ViewPrototype {
 		Collection<IViewTypeHelper> result = new ArrayList<>();
 		for (IConfigurationElement element : elements) {
 			try {
-				IViewTypeHelper instance = (IViewTypeHelper) element.createExecutableExtension("class");
+				IViewTypeHelper instance = (IViewTypeHelper) element.createExecutableExtension("class"); //$NON-NLS-1$
 				if (instance != null) {
 					result.add(instance);
 				}
@@ -199,9 +200,9 @@ public abstract class ViewPrototype {
 
 	/**
 	 * Queries whether the prototype is unavailable, effectively a <em>Null Object</em>.
-	 * 
+	 *
 	 * @return whether the prototype is a non-view prototype
-	 * 
+	 *
 	 * @since 1.2
 	 */
 	public boolean isUnavailable() {
@@ -233,20 +234,20 @@ public abstract class ViewPrototype {
 	 */
 	public String getFullLabel() {
 		StringBuilder builder = new StringBuilder(getLabel());
-		builder.append(" for ");
+		builder.append(" for "); //$NON-NLS-1$
 		boolean first = true;
 		for (ModelRule rule : representationKind.getModelRules()) {
 			if (rule.getStereotypes() != null && rule.getStereotypes().size() > 0) {
 				for (EClass stereotype : rule.getStereotypes()) {
 					if (!first) {
-						builder.append(", ");
+						builder.append(", "); //$NON-NLS-1$
 						first = false;
 					}
 					builder.append(stereotype.getName());
 				}
 			} else if (rule.getElement() != null) {
 				if (!first) {
-					builder.append(", ");
+					builder.append(", "); //$NON-NLS-1$
 					first = false;
 				}
 				builder.append(rule.getElement().getName());
@@ -264,7 +265,7 @@ public abstract class ViewPrototype {
 	 */
 	public String getQualifiedName() {
 		ArchitectureDescriptionLanguage lang = (ArchitectureDescriptionLanguage) representationKind.eContainer();
-		return lang.getName() + " :: " + getLabel();
+		return lang.getName() + " :: " + getLabel(); //$NON-NLS-1$
 	}
 
 	/**
@@ -277,6 +278,16 @@ public abstract class ViewPrototype {
 	}
 
 	/**
+	 * Gets the URI of this prototype's grayed icon.
+	 *
+	 * @return The grayed icon's URI.
+	 * @since 3.1
+	 */
+	public String getGrayedIconURI() {
+		return representationKind.getGrayedIcon();
+	}
+
+	/**
 	 * Gets the image descriptor of this prototype's icon
 	 *
 	 * @return The icon's descriptor
@@ -286,7 +297,23 @@ public abstract class ViewPrototype {
 		try {
 			url = new URL(getIconURI());
 		} catch (MalformedURLException e) {
-			Activator.log.error("Cannot load icon at URI " + getIconURI(), e);
+			Activator.log.error("Cannot load icon at URI " + getIconURI(), e); //$NON-NLS-1$
+		}
+		return ImageDescriptor.createFromURL(url);
+	}
+
+	/**
+	 * Gets the image descriptor of this prototype's grayed icon.
+	 *
+	 * @return The grayed icon's descriptor.
+	 * @since 3.1
+	 */
+	public ImageDescriptor getGrayedIconDescriptor() {
+		URL url = null;
+		try {
+			url = new URL(getGrayedIconURI());
+		} catch (MalformedURLException e) {
+			Activator.log.error("Cannot load grayed icon at URI " + getIconURI(), e); //$NON-NLS-1$
 		}
 		return ImageDescriptor.createFromURL(url);
 	}
@@ -298,6 +325,16 @@ public abstract class ViewPrototype {
 	 */
 	public Image getIcon() {
 		return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(getIconDescriptor());
+	}
+
+	/**
+	 * Gets the image of this prototype's grayed icon.
+	 *
+	 * @return The grayed icon's image.
+	 * @since 3.1
+	 */
+	public Image getGrayedIcon() {
+		return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(getGrayedIconDescriptor());
 	}
 
 	/**
@@ -462,7 +499,7 @@ public abstract class ViewPrototype {
 	/**
 	 * Comparator to order view-type helper configurations from highest to
 	 * lowest priority.
-	 * 
+	 *
 	 * @return the descending priority comparator
 	 */
 	private static Comparator<IConfigurationElement> helperConfigComparator() {
@@ -480,7 +517,7 @@ public abstract class ViewPrototype {
 
 				if (result == null) {
 					result = 0;
-					String priorityString = element.getAttribute("priority");
+					String priorityString = element.getAttribute("priority"); //$NON-NLS-1$
 					if (priorityString != null) {
 						try {
 							result = Integer.parseInt(priorityString);

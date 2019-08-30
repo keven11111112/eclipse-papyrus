@@ -19,12 +19,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import java.util.Map;
-
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -42,7 +38,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.papyrus.infra.architecture.representation.impl.PapyrusRepresentationKindImpl;
@@ -127,7 +122,6 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * @see #getCreationCommandClass()
 	 * @generated
 	 * @ordered
-	 * @since 2.0
 	 */
 	protected static final String CREATION_COMMAND_CLASS_EDEFAULT = null;
 
@@ -172,6 +166,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCustomStyle() {
 		return customStyle;
 	}
@@ -180,6 +175,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCustomStyle(String newCustomStyle) {
 		String oldCustomStyle = customStyle;
 		customStyle = newCustomStyle;
@@ -191,6 +187,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ChildRule> getChildRules() {
 		if (childRules == null) {
 			childRules = new EObjectContainmentEList<ChildRule>(ChildRule.class, this, RepresentationPackage.PAPYRUS_DIAGRAM__CHILD_RULES);
@@ -202,6 +199,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<PaletteRule> getPaletteRules() {
 		if (paletteRules == null) {
 			paletteRules = new EObjectContainmentEList<PaletteRule>(PaletteRule.class, this, RepresentationPackage.PAPYRUS_DIAGRAM__PALETTE_RULES);
@@ -213,6 +211,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AssistantRule> getAssistantRules() {
 		if (assistantRules == null) {
 			assistantRules = new EObjectContainmentEList<AssistantRule>(AssistantRule.class, this, RepresentationPackage.PAPYRUS_DIAGRAM__ASSISTANT_RULES);
@@ -224,6 +223,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCreationCommandClass() {
 		return creationCommandClass;
 	}
@@ -233,6 +233,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreationCommandClass(String newCreationCommandClass) {
 		String oldCreationCommandClass = creationCommandClass;
 		creationCommandClass = newCreationCommandClass;
@@ -244,6 +245,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<PaletteConfiguration> getPalettes() {
 		if (palettes == null) {
 			palettes = new EObjectResolvingEList<PaletteConfiguration>(PaletteConfiguration.class, this, RepresentationPackage.PAPYRUS_DIAGRAM__PALETTES);

@@ -53,7 +53,7 @@ public interface Stakeholder extends ADElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Concerns</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getStakeholder_Concerns()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of concerns of the stakeholder' propertyCategory='Stakeholder'"
+	 * @model
 	 * @generated
 	 */
 	EList<Concern> getConcerns();
@@ -75,7 +75,6 @@ public interface Stakeholder extends ADElement {
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getStakeholder_Domain()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain#getStakeholders
 	 * @model opposite="stakeholders" required="true" transient="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The domain that defines the stakeholder'"
 	 * @generated
 	 */
 	ArchitectureDomain getDomain();

@@ -126,6 +126,7 @@ public abstract class PapyrusRepresentationKindImpl extends RepresentationKindIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PapyrusRepresentationKind getParent() {
 		if (parent != null && parent.eIsProxy()) {
 			InternalEObject oldParent = (InternalEObject)parent;
@@ -152,6 +153,7 @@ public abstract class PapyrusRepresentationKindImpl extends RepresentationKindIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setParent(PapyrusRepresentationKind newParent) {
 		PapyrusRepresentationKind oldParent = parent;
 		parent = newParent;
@@ -164,6 +166,7 @@ public abstract class PapyrusRepresentationKindImpl extends RepresentationKindIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ModelRule> getModelRules() {
 		if (modelRules == null) {
 			modelRules = new EObjectContainmentEList<ModelRule>(ModelRule.class, this, RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__MODEL_RULES);
@@ -176,6 +179,7 @@ public abstract class PapyrusRepresentationKindImpl extends RepresentationKindIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<OwningRule> getOwningRules() {
 		if (owningRules == null) {
 			owningRules = new EObjectContainmentEList<OwningRule>(OwningRule.class, this, RepresentationPackage.PAPYRUS_REPRESENTATION_KIND__OWNING_RULES);
@@ -188,6 +192,7 @@ public abstract class PapyrusRepresentationKindImpl extends RepresentationKindIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getImplementationID() {
 		return implementationID;
 	}
@@ -197,6 +202,7 @@ public abstract class PapyrusRepresentationKindImpl extends RepresentationKindIm
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setImplementationID(String newImplementationID) {
 		String oldImplementationID = implementationID;
 		implementationID = newImplementationID;

@@ -58,7 +58,7 @@ public interface ModelRule extends Rule, DisplayUnit {
 	 * @return the value of the '<em>Element</em>' reference.
 	 * @see #setElement(EClass)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getModelRule_Element()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The type (from the language\'s metamodel) that a model element must have for a representation of this kind to apply to.'"
+	 * @model
 	 * @generated
 	 */
 	EClass getElement();
@@ -87,7 +87,7 @@ public interface ModelRule extends Rule, DisplayUnit {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Stereotypes</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getModelRule_Stereotypes()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of stereotypes (from the language\'s profiles) that a model element must have for a representation of this kind to apply to.'"
+	 * @model
 	 * @generated
 	 */
 	EList<EClass> getStereotypes();
@@ -108,7 +108,6 @@ public interface ModelRule extends Rule, DisplayUnit {
 	 * @see #setMultiplicity(int)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getModelRule_Multiplicity()
 	 * @model default="-1" required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The maximum number of representations of this kind that a model element can have. -1 represents an unbounded number.'"
 	 * @generated
 	 */
 	int getMultiplicity();

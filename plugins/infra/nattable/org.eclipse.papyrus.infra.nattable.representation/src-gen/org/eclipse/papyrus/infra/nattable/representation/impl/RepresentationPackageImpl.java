@@ -123,6 +123,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPapyrusTable() {
 		return papyrusTableEClass;
 	}
@@ -132,6 +133,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPapyrusTable_Configuration() {
 		return (EReference)papyrusTableEClass.getEStructuralFeatures().get(0);
 	}
@@ -141,6 +143,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RepresentationFactory getRepresentationFactory() {
 		return (RepresentationFactory)getEFactoryInstance();
 	}

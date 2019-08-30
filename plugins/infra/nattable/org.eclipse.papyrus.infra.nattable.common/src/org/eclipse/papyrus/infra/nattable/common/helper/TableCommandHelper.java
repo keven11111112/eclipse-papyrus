@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017 CEA LIST and others.
+ * Copyright (c) 2013, 2017, 2019 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,17 +12,17 @@
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 516882
  *  Christian W. Damus - bug 527580
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550568
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.helper;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.nattable.common.utils.TableUtil;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
 import org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage;
 import org.eclipse.papyrus.infra.viewpoints.policy.AbstractViewTypeHelper;
-import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
@@ -57,7 +57,7 @@ public class TableCommandHelper extends AbstractViewTypeHelper<PapyrusTable> {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @since 5.0
 	 */
 	@Override
@@ -67,16 +67,11 @@ public class TableCommandHelper extends AbstractViewTypeHelper<PapyrusTable> {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @since 4.1
 	 */
 	@Override
 	protected ViewPrototype doGetPrototypeOf(EObject view) {
-		PolicyChecker checker = getPolicyChecker(view);
-		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
-		PapyrusTable repKind = (PapyrusTable) manager.getRepresentationKindById(((Table) view).getTableKindId());
-		if (null != repKind && checker.isInViewpoint(repKind)) // null when we are destroying the table (undo after a creation for example), bug 516882
-			return getPrototypeFor(repKind);
-		return ViewPrototype.UNAVAILABLE_VIEW;
+		return TableUtil.getPrototype((Table) view, false);
 	}
 }

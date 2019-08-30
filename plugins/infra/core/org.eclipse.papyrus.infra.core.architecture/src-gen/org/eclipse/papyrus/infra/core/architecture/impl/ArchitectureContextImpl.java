@@ -126,7 +126,6 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * @see #getCreationCommandClass()
 	 * @generated
 	 * @ordered
-	 * @since 2.0
 	 */
 	protected static final String CREATION_COMMAND_CLASS_EDEFAULT = null;
 
@@ -147,7 +146,6 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * @see #getConversionCommandClass()
 	 * @generated
 	 * @ordered
-	 * @since 2.0
 	 */
 	protected static final String CONVERSION_COMMAND_CLASS_EDEFAULT = null;
 
@@ -185,6 +183,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ArchitectureViewpoint> getViewpoints() {
 		if (viewpoints == null) {
 			viewpoints = new EObjectContainmentWithInverseEList<ArchitectureViewpoint>(ArchitectureViewpoint.class, this, ArchitecturePackage.ARCHITECTURE_CONTEXT__VIEWPOINTS, ArchitecturePackage.ARCHITECTURE_VIEWPOINT__CONTEXT);
@@ -197,6 +196,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ArchitectureViewpoint> getDefaultViewpoints() {
 		if (defaultViewpoints == null) {
 			defaultViewpoints = new EObjectResolvingEList<ArchitectureViewpoint>(ArchitectureViewpoint.class, this, ArchitecturePackage.ARCHITECTURE_CONTEXT__DEFAULT_VIEWPOINTS);
@@ -209,6 +209,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ElementTypeSetConfiguration> getElementTypes() {
 		if (elementTypes == null) {
 			elementTypes = new EObjectResolvingEList<ElementTypeSetConfiguration>(ElementTypeSetConfiguration.class, this, ArchitecturePackage.ARCHITECTURE_CONTEXT__ELEMENT_TYPES);
@@ -221,6 +222,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getExtensionPrefix() {
 		return extensionPrefix;
 	}
@@ -230,6 +232,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setExtensionPrefix(String newExtensionPrefix) {
 		String oldExtensionPrefix = extensionPrefix;
 		extensionPrefix = newExtensionPrefix;
@@ -242,6 +245,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCreationCommandClass() {
 		return creationCommandClass;
 	}
@@ -251,6 +255,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreationCommandClass(String newCreationCommandClass) {
 		String oldCreationCommandClass = creationCommandClass;
 		creationCommandClass = newCreationCommandClass;
@@ -263,6 +268,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getConversionCommandClass() {
 		return conversionCommandClass;
 	}
@@ -272,6 +278,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConversionCommandClass(String newConversionCommandClass) {
 		String oldConversionCommandClass = conversionCommandClass;
 		conversionCommandClass = newConversionCommandClass;
@@ -374,6 +381,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitectureDomain getDomain() {
 		if (eContainerFeatureID() != ArchitecturePackage.ARCHITECTURE_CONTEXT__DOMAIN) return null;
 		return (ArchitectureDomain)eInternalContainer();
@@ -394,6 +402,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDomain(ArchitectureDomain newDomain) {
 		if (newDomain != eInternalContainer() || (eContainerFeatureID() != ArchitecturePackage.ARCHITECTURE_CONTEXT__DOMAIN && newDomain != null)) {
 			if (EcoreUtil.isAncestor(this, newDomain))

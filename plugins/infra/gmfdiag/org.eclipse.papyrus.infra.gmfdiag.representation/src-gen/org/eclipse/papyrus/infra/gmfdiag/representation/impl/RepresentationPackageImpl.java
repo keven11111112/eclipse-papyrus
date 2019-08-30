@@ -164,6 +164,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		EValidator.Registry.INSTANCE.put
 			(theRepresentationPackage,
 			 new EValidator.Descriptor() {
+				 @Override
 				 public EValidator getEValidator() {
 					 return RepresentationValidator.INSTANCE;
 				 }
@@ -182,6 +183,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPapyrusDiagram() {
 		return papyrusDiagramEClass;
 	}
@@ -191,6 +193,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPapyrusDiagram_CustomStyle() {
 		return (EAttribute)papyrusDiagramEClass.getEStructuralFeatures().get(0);
 	}
@@ -200,6 +203,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPapyrusDiagram_ChildRules() {
 		return (EReference)papyrusDiagramEClass.getEStructuralFeatures().get(1);
 	}
@@ -209,6 +213,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPapyrusDiagram_PaletteRules() {
 		return (EReference)papyrusDiagramEClass.getEStructuralFeatures().get(2);
 	}
@@ -218,6 +223,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPapyrusDiagram_AssistantRules() {
 		return (EReference)papyrusDiagramEClass.getEStructuralFeatures().get(3);
 	}
@@ -227,6 +233,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPapyrusDiagram_CreationCommandClass() {
 		return (EAttribute)papyrusDiagramEClass.getEStructuralFeatures().get(4);
 	}
@@ -236,6 +243,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPapyrusDiagram_Palettes() {
 		return (EReference)papyrusDiagramEClass.getEStructuralFeatures().get(5);
 	}
@@ -245,6 +253,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getPapyrusDiagram__CeationCommandClassExists__DiagnosticChain_Map() {
 		return papyrusDiagramEClass.getEOperations().get(0);
 	}
@@ -254,6 +263,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getChildRule() {
 		return childRuleEClass;
 	}
@@ -263,6 +273,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getChildRule_Element() {
 		return (EReference)childRuleEClass.getEStructuralFeatures().get(0);
 	}
@@ -272,6 +283,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getChildRule_Stereotypes() {
 		return (EReference)childRuleEClass.getEStructuralFeatures().get(1);
 	}
@@ -281,6 +293,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getChildRule_Origin() {
 		return (EReference)childRuleEClass.getEStructuralFeatures().get(2);
 	}
@@ -290,6 +303,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getChildRule_InsertionPath() {
 		return (EReference)childRuleEClass.getEStructuralFeatures().get(3);
 	}
@@ -299,6 +313,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPaletteRule() {
 		return paletteRuleEClass;
 	}
@@ -308,6 +323,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPaletteRule_Element() {
 		return (EAttribute)paletteRuleEClass.getEStructuralFeatures().get(0);
 	}
@@ -317,6 +333,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPathElement() {
 		return pathElementEClass;
 	}
@@ -326,6 +343,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPathElement_Feature() {
 		return (EReference)pathElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -335,6 +353,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPathElement_Origin() {
 		return (EReference)pathElementEClass.getEStructuralFeatures().get(1);
 	}
@@ -344,6 +363,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getPathElement_Target() {
 		return (EReference)pathElementEClass.getEStructuralFeatures().get(2);
 	}
@@ -353,6 +373,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAssistantRule() {
 		return assistantRuleEClass;
 	}
@@ -362,6 +383,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAssistantRule_ElementTypeID() {
 		return (EAttribute)assistantRuleEClass.getEStructuralFeatures().get(0);
 	}
@@ -371,6 +393,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getAssistantRule__Matches__IElementType() {
 		return assistantRuleEClass.getEOperations().get(0);
 	}
@@ -380,6 +403,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EDataType getElementType() {
 		return elementTypeEDataType;
 	}
@@ -389,6 +413,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public RepresentationFactory getRepresentationFactory() {
 		return (RepresentationFactory)getEFactoryInstance();
 	}

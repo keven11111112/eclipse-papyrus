@@ -76,6 +76,7 @@ public class ArchitectureDescriptionPreferencesImpl extends MinimalEObjectImpl.C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<String> getViewpointIds() {
 		if (viewpointIds == null) {
 			viewpointIds = new EDataTypeUniqueEList<String>(String.class, this, ArchitecturePackage.ARCHITECTURE_DESCRIPTION_PREFERENCES__VIEWPOINT_IDS);

@@ -76,6 +76,7 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TableConfiguration getConfiguration() {
 		if (configuration != null && configuration.eIsProxy()) {
 			InternalEObject oldConfiguration = (InternalEObject)configuration;
@@ -102,6 +103,7 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setConfiguration(TableConfiguration newConfiguration) {
 		TableConfiguration oldConfiguration = configuration;
 		configuration = newConfiguration;

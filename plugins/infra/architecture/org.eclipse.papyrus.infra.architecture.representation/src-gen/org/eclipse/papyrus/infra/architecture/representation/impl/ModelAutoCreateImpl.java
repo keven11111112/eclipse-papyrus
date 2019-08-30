@@ -96,6 +96,7 @@ public class ModelAutoCreateImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getFeature() {
 		if (feature != null && feature.eIsProxy()) {
 			InternalEObject oldFeature = (InternalEObject)feature;
@@ -122,6 +123,7 @@ public class ModelAutoCreateImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeature(EReference newFeature) {
 		EReference oldFeature = feature;
 		feature = newFeature;
@@ -134,6 +136,7 @@ public class ModelAutoCreateImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getOrigin() {
 		EClass origin = basicGetOrigin();
 		return origin != null && origin.eIsProxy() ? (EClass)eResolveProxy((InternalEObject)origin) : origin;
@@ -156,6 +159,7 @@ public class ModelAutoCreateImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCreationType() {
 		return creationType;
 	}
@@ -165,6 +169,7 @@ public class ModelAutoCreateImpl extends MinimalEObjectImpl.Container implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCreationType(String newCreationType) {
 		String oldCreationType = creationType;
 		creationType = newCreationType;

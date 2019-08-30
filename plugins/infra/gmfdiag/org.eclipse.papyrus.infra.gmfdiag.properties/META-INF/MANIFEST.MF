@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.papyrus.infra.properties.ui;bundle-version="[3.4.0,4
  org.eclipse.papyrus.infra.architecture.representation;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy;exclude:="org.eclipse.papyrus.infra.gmfdiag.properties.constraint"
-Bundle-Version: 4.1.0.qualifier
+Bundle-Version: 4.1.100.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.properties.Activator

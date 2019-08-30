@@ -186,6 +186,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		EValidator.Registry.INSTANCE.put
 			(theArchitecturePackage,
 			 new EValidator.Descriptor() {
+				 @Override
 				 public EValidator getEValidator() {
 					 return ArchitectureValidator.INSTANCE;
 				 }
@@ -204,6 +205,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getADElement() {
 		return adElementEClass;
 	}
@@ -213,6 +215,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getADElement_Id() {
 		return (EAttribute)adElementEClass.getEStructuralFeatures().get(0);
 	}
@@ -222,6 +225,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getADElement_Name() {
 		return (EAttribute)adElementEClass.getEStructuralFeatures().get(1);
 	}
@@ -231,6 +235,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getADElement_Description() {
 		return (EAttribute)adElementEClass.getEStructuralFeatures().get(2);
 	}
@@ -240,6 +245,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getADElement_QualifiedName() {
 		return (EAttribute)adElementEClass.getEStructuralFeatures().get(3);
 	}
@@ -249,6 +255,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getADElement_Icon() {
 		return (EAttribute)adElementEClass.getEStructuralFeatures().get(4);
 	}
@@ -258,6 +265,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getArchitectureDomain() {
 		return architectureDomainEClass;
 	}
@@ -267,6 +275,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureDomain_Stakeholders() {
 		return (EReference)architectureDomainEClass.getEStructuralFeatures().get(0);
 	}
@@ -276,6 +285,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureDomain_Concerns() {
 		return (EReference)architectureDomainEClass.getEStructuralFeatures().get(1);
 	}
@@ -285,6 +295,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureDomain_Contexts() {
 		return (EReference)architectureDomainEClass.getEStructuralFeatures().get(2);
 	}
@@ -294,6 +305,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getArchitectureDescriptionLanguage() {
 		return architectureDescriptionLanguageEClass;
 	}
@@ -303,6 +315,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureDescriptionLanguage_RepresentationKinds() {
 		return (EReference)architectureDescriptionLanguageEClass.getEStructuralFeatures().get(0);
 	}
@@ -312,6 +325,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureDescriptionLanguage_Metamodel() {
 		return (EReference)architectureDescriptionLanguageEClass.getEStructuralFeatures().get(1);
 	}
@@ -321,6 +335,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureDescriptionLanguage_Profiles() {
 		return (EReference)architectureDescriptionLanguageEClass.getEStructuralFeatures().get(2);
 	}
@@ -330,6 +345,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStakeholder() {
 		return stakeholderEClass;
 	}
@@ -339,6 +355,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStakeholder_Concerns() {
 		return (EReference)stakeholderEClass.getEStructuralFeatures().get(0);
 	}
@@ -348,6 +365,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStakeholder_Domain() {
 		return (EReference)stakeholderEClass.getEStructuralFeatures().get(1);
 	}
@@ -357,6 +375,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getConcern() {
 		return concernEClass;
 	}
@@ -366,6 +385,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getConcern_Domain() {
 		return (EReference)concernEClass.getEStructuralFeatures().get(0);
 	}
@@ -375,6 +395,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getArchitectureViewpoint() {
 		return architectureViewpointEClass;
 	}
@@ -384,6 +405,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureViewpoint_Concerns() {
 		return (EReference)architectureViewpointEClass.getEStructuralFeatures().get(0);
 	}
@@ -393,6 +415,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureViewpoint_RepresentationKinds() {
 		return (EReference)architectureViewpointEClass.getEStructuralFeatures().get(1);
 	}
@@ -402,6 +425,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureViewpoint_Context() {
 		return (EReference)architectureViewpointEClass.getEStructuralFeatures().get(2);
 	}
@@ -411,6 +435,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getRepresentationKind() {
 		return representationKindEClass;
 	}
@@ -420,6 +445,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getRepresentationKind_Concerns() {
 		return (EReference)representationKindEClass.getEStructuralFeatures().get(1);
 	}
@@ -429,6 +455,17 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EAttribute getRepresentationKind_GrayedIcon() {
+		return (EAttribute)representationKindEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EReference getRepresentationKind_Language() {
 		return (EReference)representationKindEClass.getEStructuralFeatures().get(0);
 	}
@@ -438,6 +475,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getArchitectureContext() {
 		return architectureContextEClass;
 	}
@@ -447,6 +485,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureContext_Viewpoints() {
 		return (EReference)architectureContextEClass.getEStructuralFeatures().get(0);
 	}
@@ -456,6 +495,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureContext_DefaultViewpoints() {
 		return (EReference)architectureContextEClass.getEStructuralFeatures().get(1);
 	}
@@ -465,6 +505,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureContext_ElementTypes() {
 		return (EReference)architectureContextEClass.getEStructuralFeatures().get(2);
 	}
@@ -474,6 +515,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getArchitectureContext_ExtensionPrefix() {
 		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(4);
 	}
@@ -483,6 +525,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getArchitectureContext_CreationCommandClass() {
 		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(5);
 	}
@@ -492,6 +535,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getArchitectureContext_ConversionCommandClass() {
 		return (EAttribute)architectureContextEClass.getEStructuralFeatures().get(6);
 	}
@@ -501,6 +545,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map() {
 		return architectureContextEClass.getEOperations().get(0);
 	}
@@ -510,6 +555,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EOperation getArchitectureContext__ConversionCommandClassExists__DiagnosticChain_Map() {
 		return architectureContextEClass.getEOperations().get(1);
 	}
@@ -519,6 +565,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getArchitectureContext_Domain() {
 		return (EReference)architectureContextEClass.getEStructuralFeatures().get(3);
 	}
@@ -528,6 +575,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getArchitectureFramework() {
 		return architectureFrameworkEClass;
 	}
@@ -537,6 +585,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getArchitectureDescription() {
 		return architectureDescriptionEClass;
 	}
@@ -546,6 +595,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getArchitectureDescription_ContextId() {
 		return (EAttribute)architectureDescriptionEClass.getEStructuralFeatures().get(0);
 	}
@@ -555,6 +605,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getArchitectureDescriptionPreferences() {
 		return architectureDescriptionPreferencesEClass;
 	}
@@ -564,6 +615,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getArchitectureDescriptionPreferences_ViewpointIds() {
 		return (EAttribute)architectureDescriptionPreferencesEClass.getEStructuralFeatures().get(0);
 	}
@@ -573,6 +625,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public ArchitectureFactory getArchitectureFactory() {
 		return (ArchitectureFactory)getEFactoryInstance();
 	}
@@ -628,6 +681,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		representationKindEClass = createEClass(REPRESENTATION_KIND);
 		createEReference(representationKindEClass, REPRESENTATION_KIND__LANGUAGE);
 		createEReference(representationKindEClass, REPRESENTATION_KIND__CONCERNS);
+		createEAttribute(representationKindEClass, REPRESENTATION_KIND__GRAYED_ICON);
 
 		architectureContextEClass = createEClass(ARCHITECTURE_CONTEXT);
 		createEReference(architectureContextEClass, ARCHITECTURE_CONTEXT__VIEWPOINTS);
@@ -723,6 +777,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		initEClass(representationKindEClass, RepresentationKind.class, "RepresentationKind", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getRepresentationKind_Language(), this.getArchitectureDescriptionLanguage(), this.getArchitectureDescriptionLanguage_RepresentationKinds(), "language", null, 1, 1, RepresentationKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getRepresentationKind_Concerns(), this.getConcern(), null, "concerns", null, 0, -1, RepresentationKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getRepresentationKind_GrayedIcon(), ecorePackage.getEString(), "grayedIcon", null, 0, 1, RepresentationKind.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(architectureContextEClass, ArchitectureContext.class, "ArchitectureContext", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getArchitectureContext_Viewpoints(), this.getArchitectureViewpoint(), this.getArchitectureViewpoint_Context(), "viewpoints", null, 0, -1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

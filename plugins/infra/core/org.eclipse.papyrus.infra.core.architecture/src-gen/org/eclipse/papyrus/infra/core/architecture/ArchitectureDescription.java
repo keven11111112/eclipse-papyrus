@@ -52,7 +52,7 @@ public interface ArchitectureDescription extends EObject {
 	 * @return the value of the '<em>Context Id</em>' attribute.
 	 * @see #setContextId(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDescription_ContextId()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The id of the context applied to a UML model'"
+	 * @model
 	 * @generated
 	 */
 	String getContextId();

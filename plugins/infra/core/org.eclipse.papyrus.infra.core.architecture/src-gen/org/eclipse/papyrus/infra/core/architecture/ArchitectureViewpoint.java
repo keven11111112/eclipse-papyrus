@@ -54,7 +54,7 @@ public interface ArchitectureViewpoint extends ADElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Concerns</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureViewpoint_Concerns()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of concerns covered by the viewpoint' propertyCategory='Viewpoint'"
+	 * @model
 	 * @generated
 	 */
 	EList<Concern> getConcerns();
@@ -73,7 +73,7 @@ public interface ArchitectureViewpoint extends ADElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Representation Kinds</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureViewpoint_RepresentationKinds()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of representation kinds provided by the viewpoint' propertyCategory='Viewpoint'"
+	 * @model
 	 * @generated
 	 */
 	EList<RepresentationKind> getRepresentationKinds();
@@ -95,7 +95,6 @@ public interface ArchitectureViewpoint extends ADElement {
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureViewpoint_Context()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#getViewpoints
 	 * @model opposite="viewpoints" required="true" transient="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The context that defines the viewpoint'"
 	 * @generated
 	 */
 	ArchitectureContext getContext();

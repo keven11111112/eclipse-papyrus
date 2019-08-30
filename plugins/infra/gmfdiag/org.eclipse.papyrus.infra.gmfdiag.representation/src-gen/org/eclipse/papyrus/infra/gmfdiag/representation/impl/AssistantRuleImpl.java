@@ -90,6 +90,7 @@ public class AssistantRuleImpl extends RuleImpl implements AssistantRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getElementTypeID() {
 		return elementTypeID;
 	}
@@ -99,6 +100,7 @@ public class AssistantRuleImpl extends RuleImpl implements AssistantRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setElementTypeID(String newElementTypeID) {
 		String oldElementTypeID = elementTypeID;
 		elementTypeID = newElementTypeID;
@@ -111,6 +113,7 @@ public class AssistantRuleImpl extends RuleImpl implements AssistantRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean matches(IElementType elementType) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT

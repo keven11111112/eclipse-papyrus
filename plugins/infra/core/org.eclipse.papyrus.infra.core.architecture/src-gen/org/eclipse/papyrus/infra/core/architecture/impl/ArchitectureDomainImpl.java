@@ -101,6 +101,7 @@ public class ArchitectureDomainImpl extends ADElementImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Stakeholder> getStakeholders() {
 		if (stakeholders == null) {
 			stakeholders = new EObjectContainmentWithInverseEList<Stakeholder>(Stakeholder.class, this, ArchitecturePackage.ARCHITECTURE_DOMAIN__STAKEHOLDERS, ArchitecturePackage.STAKEHOLDER__DOMAIN);
@@ -113,6 +114,7 @@ public class ArchitectureDomainImpl extends ADElementImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Concern> getConcerns() {
 		if (concerns == null) {
 			concerns = new EObjectContainmentWithInverseEList<Concern>(Concern.class, this, ArchitecturePackage.ARCHITECTURE_DOMAIN__CONCERNS, ArchitecturePackage.CONCERN__DOMAIN);
@@ -125,6 +127,7 @@ public class ArchitectureDomainImpl extends ADElementImpl implements Architectur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ArchitectureContext> getContexts() {
 		if (contexts == null) {
 			contexts = new EObjectContainmentWithInverseEList<ArchitectureContext>(ArchitectureContext.class, this, ArchitecturePackage.ARCHITECTURE_DOMAIN__CONTEXTS, ArchitecturePackage.ARCHITECTURE_CONTEXT__DOMAIN);

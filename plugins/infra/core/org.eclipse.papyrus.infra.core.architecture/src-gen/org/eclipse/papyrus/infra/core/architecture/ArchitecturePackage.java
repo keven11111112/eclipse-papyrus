@@ -379,7 +379,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @since 2.0
 	 */
 	int ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 0;
 
@@ -389,7 +388,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @since 2.0
 	 */
 	int ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 1;
 
@@ -562,7 +560,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @since 2.0
 	 */
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
 
@@ -572,7 +569,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @since 2.0
 	 */
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
 
@@ -932,13 +928,22 @@ public interface ArchitecturePackage extends EPackage {
 	int REPRESENTATION_KIND__CONCERNS = AD_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Grayed Icon</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPRESENTATION_KIND__GRAYED_ICON = AD_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Representation Kind</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REPRESENTATION_KIND_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 2;
+	int REPRESENTATION_KIND_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Representation Kind</em>' class.
@@ -1082,7 +1087,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @since 2.0
 	 */
 	int ARCHITECTURE_FRAMEWORK___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
 
@@ -1092,7 +1096,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @since 2.0
 	 */
 	int ARCHITECTURE_FRAMEWORK___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
 
@@ -1449,6 +1452,17 @@ public interface ArchitecturePackage extends EPackage {
 	EReference getRepresentationKind_Concerns();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.RepresentationKind#getGrayedIcon <em>Grayed Icon</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Grayed Icon</em>'.
+	 * @see org.eclipse.papyrus.infra.core.architecture.RepresentationKind#getGrayedIcon()
+	 * @see #getRepresentationKind()
+	 * @generated
+	 */
+	EAttribute getRepresentationKind_GrayedIcon();
+
+	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.infra.core.architecture.RepresentationKind#getLanguage <em>Language</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1542,7 +1556,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * @return the meta object for the '<em>Ceation Command Class Exists</em>' operation.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#ceationCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
-	 * @since 2.0
 	 */
 	EOperation getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map();
 
@@ -1553,7 +1566,6 @@ public interface ArchitecturePackage extends EPackage {
 	 * @return the meta object for the '<em>Conversion Command Class Exists</em>' operation.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#conversionCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
-	 * @since 2.0
 	 */
 	EOperation getArchitectureContext__ConversionCommandClassExists__DiagnosticChain_Map();
 
@@ -1858,6 +1870,14 @@ public interface ArchitecturePackage extends EPackage {
 		EReference REPRESENTATION_KIND__CONCERNS = eINSTANCE.getRepresentationKind_Concerns();
 
 		/**
+		 * The meta object literal for the '<em><b>Grayed Icon</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REPRESENTATION_KIND__GRAYED_ICON = eINSTANCE.getRepresentationKind_GrayedIcon();
+
+		/**
 		 * The meta object literal for the '<em><b>Language</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1928,7 +1948,6 @@ public interface ArchitecturePackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @since 2.0
 		 */
 		EOperation ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map();
 
@@ -1937,7 +1956,6 @@ public interface ArchitecturePackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
-		 * @since 2.0
 		 */
 		EOperation ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__ConversionCommandClassExists__DiagnosticChain_Map();
 

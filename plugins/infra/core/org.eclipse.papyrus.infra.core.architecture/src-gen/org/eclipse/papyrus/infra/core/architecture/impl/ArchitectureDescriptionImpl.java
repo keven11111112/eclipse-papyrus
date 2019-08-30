@@ -81,6 +81,7 @@ public class ArchitectureDescriptionImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getContextId() {
 		return contextId;
 	}
@@ -90,6 +91,7 @@ public class ArchitectureDescriptionImpl extends MinimalEObjectImpl.Container im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setContextId(String newContextId) {
 		String oldContextId = contextId;
 		contextId = newContextId;

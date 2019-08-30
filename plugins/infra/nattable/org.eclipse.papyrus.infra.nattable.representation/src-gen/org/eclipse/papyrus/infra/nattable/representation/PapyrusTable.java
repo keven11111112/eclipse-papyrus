@@ -54,7 +54,6 @@ public interface PapyrusTable extends PapyrusRepresentationKind {
 	 * @see #setConfiguration(TableConfiguration)
 	 * @see org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage#getPapyrusTable_Configuration()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The configuration of the table' propertyCategory='Table'"
 	 * @generated
 	 */
 	TableConfiguration getConfiguration();

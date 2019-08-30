@@ -32,7 +32,6 @@ import org.eclipse.papyrus.infra.core.architecture.*;
  * <!-- end-user-doc -->
  * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage
  * @generated
- * @since 2.0
  */
 public class ArchitectureValidator extends EObjectValidator {
 	/**

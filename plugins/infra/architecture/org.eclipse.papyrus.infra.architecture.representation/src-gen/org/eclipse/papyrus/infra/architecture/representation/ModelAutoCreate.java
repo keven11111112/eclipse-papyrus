@@ -57,7 +57,6 @@ public interface ModelAutoCreate extends EObject {
 	 * @see #setFeature(EReference)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getModelAutoCreate_Feature()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='A reference in the origin type that will contain the newly created model element with this representation kind.'"
 	 * @generated
 	 */
 	EReference getFeature();
@@ -86,7 +85,6 @@ public interface ModelAutoCreate extends EObject {
 	 * @return the value of the '<em>Origin</em>' reference.
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getModelAutoCreate_Origin()
 	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The type (from the language\'s metamodel) that will own the newly created model element'"
 	 * @generated
 	 */
 	EClass getOrigin();
@@ -106,7 +104,6 @@ public interface ModelAutoCreate extends EObject {
 	 * @see #setCreationType(String)
 	 * @see org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage#getModelAutoCreate_CreationType()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The element type (from the element type registry) that will used to created the new model element.'"
 	 * @generated
 	 */
 	String getCreationType();

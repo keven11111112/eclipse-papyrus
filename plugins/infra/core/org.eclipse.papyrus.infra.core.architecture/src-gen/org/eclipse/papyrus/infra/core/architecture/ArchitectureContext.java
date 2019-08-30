@@ -64,7 +64,6 @@ public interface ArchitectureContext extends ADElement {
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_Viewpoints()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint#getContext
 	 * @model opposite="context" containment="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of viewpoints defined by the context'"
 	 * @generated
 	 */
 	EList<ArchitectureViewpoint> getViewpoints();
@@ -83,7 +82,7 @@ public interface ArchitectureContext extends ADElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Default Viewpoints</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_DefaultViewpoints()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of viewpoints that are selected for the context by default' propertyCategory='Context'"
+	 * @model
 	 * @generated
 	 */
 	EList<ArchitectureViewpoint> getDefaultViewpoints();
@@ -102,7 +101,7 @@ public interface ArchitectureContext extends ADElement {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Element Types</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_ElementTypes()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of element type set configurations that are used by the context (typically found in .elementtypesconfigurations resources)' propertyCategory='Context'"
+	 * @model
 	 * @generated
 	 */
 	EList<ElementTypeSetConfiguration> getElementTypes();
@@ -121,7 +120,7 @@ public interface ArchitectureContext extends ADElement {
 	 * @return the value of the '<em>Extension Prefix</em>' attribute.
 	 * @see #setExtensionPrefix(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_ExtensionPrefix()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The prefix of the file extension of the UML models applying this context (e.g., &lt;Name&gt;.&lt;prefixExtension&gt;.uml)' propertyCategory='Context'"
+	 * @model
 	 * @generated
 	 */
 	String getExtensionPrefix();
@@ -151,9 +150,7 @@ public interface ArchitectureContext extends ADElement {
 	 * @see #setCreationCommandClass(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_CreationCommandClass()
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The fully qualified name of a command that creates models applying this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand inteface' propertyCategory='Context'"
 	 * @generated
-	 * @since 2.0
 	 */
 	String getCreationCommandClass();
 
@@ -164,7 +161,6 @@ public interface ArchitectureContext extends ADElement {
 	 * @param value the new value of the '<em>Creation Command Class</em>' attribute.
 	 * @see #getCreationCommandClass()
 	 * @generated
-	 * @since 2.0
 	 */
 	void setCreationCommandClass(String value);
 
@@ -182,9 +178,8 @@ public interface ArchitectureContext extends ADElement {
 	 * @return the value of the '<em>Conversion Command Class</em>' attribute.
 	 * @see #setConversionCommandClass(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_ConversionCommandClass()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface' propertyCategory='Context'"
+	 * @model
 	 * @generated
-	 * @since 2.0
 	 */
 	String getConversionCommandClass();
 
@@ -195,7 +190,6 @@ public interface ArchitectureContext extends ADElement {
 	 * @param value the new value of the '<em>Conversion Command Class</em>' attribute.
 	 * @see #getConversionCommandClass()
 	 * @generated
-	 * @since 2.0
 	 */
 	void setConversionCommandClass(String value);
 
@@ -204,7 +198,6 @@ public interface ArchitectureContext extends ADElement {
 	 * <!-- end-user-doc -->
 	 * @model diagnosticsUnique="false" contextUnique="false"
 	 * @generated
-	 * @since 2.0
 	 */
 	boolean ceationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context);
 
@@ -213,7 +206,6 @@ public interface ArchitectureContext extends ADElement {
 	 * <!-- end-user-doc -->
 	 * @model diagnosticsUnique="false" contextUnique="false"
 	 * @generated
-	 * @since 2.0
 	 */
 	boolean conversionCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context);
 
@@ -234,7 +226,6 @@ public interface ArchitectureContext extends ADElement {
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_Domain()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain#getContexts
 	 * @model opposite="contexts" required="true" transient="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The domain that defines the context'"
 	 * @generated
 	 */
 	ArchitectureDomain getDomain();

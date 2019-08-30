@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017 CEA LIST and others.
+ * Copyright (c) 2013, 2017, 2019 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -14,6 +14,7 @@
  *  Christian W. Damus (CEA) - bug 323802
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 476618, 192891, 496905, 508175
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 520188
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550568
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.modelelement;
 
@@ -30,7 +31,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.papyrus.infra.architecture.representation.PapyrusRepresentationKind;
+import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.contentprovider.ColumnAxisIdentifierContentProvider;
 import org.eclipse.papyrus.infra.nattable.contentprovider.ColumnContainmentFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.contentprovider.ColumnElementTypeIdContentProvider;
@@ -79,12 +80,14 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteEObjectE
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectDetachedModeObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectPostActionsObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.TableLabelObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.TablePrototypeObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.provider.AxisIdentifierLabelProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnPostActionIdsProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowPostActionIdsProvider;
 import org.eclipse.papyrus.infra.nattable.properties.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.swt.graphics.Image;
@@ -133,7 +136,7 @@ public class NatTableModelElement extends EMFModelElement {
 
 	/**
 	 * This allows to keep a reference to the table to manage (because the source must be modified when the edited object is not a table).
-	 * 
+	 *
 	 * @since 2.1
 	 */
 	protected Table table;
@@ -164,6 +167,7 @@ public class NatTableModelElement extends EMFModelElement {
 	 *            the editing domain
 	 * @deprecated since 4.0
 	 */
+	@Deprecated
 	public NatTableModelElement(final Table source, final EditingDomain domain) {
 		super(source, domain);
 		table = source;
@@ -453,6 +457,8 @@ public class NatTableModelElement extends EMFModelElement {
 
 		else if (Constants.TABLE_LABEL.equals(propertyPath)) {
 			value = new TableLabelObservableValue(table);
+		} else if (Constants.TABLE_PROTOTYPE.equals(propertyPath)) {
+			value = new TablePrototypeObservableValue(table);
 		}
 
 		if (value != null) {
@@ -622,7 +628,7 @@ public class NatTableModelElement extends EMFModelElement {
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		ILabelProvider provider = null;
-		if (propertyPath.endsWith("prototype")) { //$NON-NLS-1$
+		if (propertyPath.endsWith(Constants.TABLE_PROTOTYPE)) {
 			provider = new ILabelProvider() {
 				@Override
 				public void addListener(ILabelProviderListener listener) {
@@ -643,20 +649,20 @@ public class NatTableModelElement extends EMFModelElement {
 
 				@Override
 				public Image getImage(Object element) {
-					if (!(element instanceof PapyrusRepresentationKind)) {
-						return null;
+					if (element instanceof TableViewPrototype) {
+						PolicyChecker checker = PolicyChecker.getFor(table);
+						TableViewPrototype prototype = (TableViewPrototype) element;
+						return null != prototype.getRepresentationKind() && null != checker && !checker.isInViewpoint(prototype.getRepresentationKind()) ? prototype.getGrayedIcon() : prototype.getIcon();
 					}
-					ViewPrototype proto = ViewPrototype.get((PapyrusRepresentationKind) element);
-					return proto.getIcon();
+					return ViewPrototype.UNAVAILABLE_VIEW.getIcon();
 				}
 
 				@Override
 				public String getText(Object element) {
-					if (!(element instanceof PapyrusRepresentationKind)) {
+					if (!(element instanceof TableViewPrototype)) {
 						return null;
 					}
-					ViewPrototype proto = ViewPrototype.get((PapyrusRepresentationKind) element);
-					return proto.getQualifiedName();
+					return ((TableViewPrototype) element).getQualifiedName();
 				}
 			};
 		}

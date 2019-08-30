@@ -55,7 +55,6 @@ public interface Concern extends ADElement {
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getConcern_Domain()
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain#getConcerns
 	 * @model opposite="concerns" required="true" transient="false"
-	 *        annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The domain that defines the concern'"
 	 * @generated
 	 */
 	ArchitectureDomain getDomain();

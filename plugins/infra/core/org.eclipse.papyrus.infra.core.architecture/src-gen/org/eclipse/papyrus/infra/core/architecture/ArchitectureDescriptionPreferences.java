@@ -54,7 +54,7 @@ public interface ArchitectureDescriptionPreferences extends EObject {
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Viewpoint Ids</em>' attribute list.
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDescriptionPreferences_ViewpointIds()
-	 * @model annotation="http://www.eclipse.org/emf/2002/GenModel propertyDescription='The set of ids of viewpoints enabled on a UML model'"
+	 * @model
 	 * @generated
 	 */
 	EList<String> getViewpointIds();
