@@ -5,7 +5,7 @@
       label="%featureName"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
-      license-feature-version="2.0.0">
+      license-feature-version="2.0.2">
 
    <description url="https://eclipse.org/papyrus/">
       %description
