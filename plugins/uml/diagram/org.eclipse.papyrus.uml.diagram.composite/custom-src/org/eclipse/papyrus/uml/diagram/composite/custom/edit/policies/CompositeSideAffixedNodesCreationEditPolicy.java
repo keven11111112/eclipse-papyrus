@@ -32,6 +32,7 @@ import org.eclipse.uml2.uml.Port;
 
 /**
  * This EditPolicy takes care of the correct placement of ports, see bug 527181
+ *
  * @since 3.1
  */
 public class CompositeSideAffixedNodesCreationEditPolicy extends SideAffixedNodesCreationEditPolicy {
@@ -46,7 +47,7 @@ public class CompositeSideAffixedNodesCreationEditPolicy extends SideAffixedNode
 		if (portEObj instanceof Port) {
 			final NodeEditPart partEditPart = (NodeEditPart) getHost();
 			if (partEditPart.getFigure().getBounds().width != 0) {
-				Point initialLocation = CompositeStructureDiagramUtils.getInitialPortLocation(getHost(), (Port) portEObj, descriptor);
+				Point initialLocation = CompositeStructureDiagramUtils.getInitialPortLocation(getHost(), portEObj, descriptor);
 				if (initialLocation != null) {
 					return new SetBoundsCommand(partEditPart.getEditingDomain(),
 							DiagramUIMessages.SetLocationCommand_Label_Resize, descriptor, initialLocation);
@@ -58,13 +59,16 @@ public class CompositeSideAffixedNodesCreationEditPolicy extends SideAffixedNode
 
 					@Override
 					public void figureMoved(IFigure source) {
-						Point initialLocation = CompositeStructureDiagramUtils.getInitialPortLocation(getHost(), (Port) portEObj, descriptor);
-						SetBoundsCommand cmd = new SetBoundsCommand(partEditPart.getEditingDomain(),
-								DiagramUIMessages.SetLocationCommand_Label_Resize, descriptor, initialLocation);
-						try {
-							cmd.execute(null, descriptor);
-						} catch (ExecutionException e) {
-							Activator.log.error(e);
+						Point initialLocation = CompositeStructureDiagramUtils.getInitialPortLocation(getHost(), portEObj, descriptor);
+						// can be null, see bug 527181
+						if (initialLocation != null) {
+							SetBoundsCommand cmd = new SetBoundsCommand(partEditPart.getEditingDomain(),
+									DiagramUIMessages.SetLocationCommand_Label_Resize, descriptor, initialLocation);
+							try {
+								cmd.execute(null, descriptor);
+							} catch (ExecutionException e) {
+								Activator.log.error(e);
+							}
 						}
 						source.removeFigureListener(this);
 					}
