@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <release>
-	<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+	<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 	<feature name="org.eclipse.papyrus.doc.feature" version="3.1.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.copypaste.ui.doc" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.dsml.validation.doc" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.emf.expressions.doc" version="1.0.0"/>
@@ -36,13 +36,13 @@
 		<plugin name="org.eclipse.papyrus.views.documentation.doc" version="1.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.editor.feature" version="2.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.editor" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.eclipse.project.editors" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.editor.perspectiveconfiguration" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.emf.facet.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.emf.facet.common.core" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.emf.facet.common.sdk.core" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.emf.facet.common.ui" version="1.2.0"/>
@@ -82,19 +82,19 @@
 		<plugin name="org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.emf.feature" version="1.1.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.emf" version="1.0.0"/>
 		<plugin name="org.eclipse.papyrus.emf.ui" version="1.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.architecture.feature" version="1.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.architecture" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.architecture.doc" version="1.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.architecture.representation" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.architecture.representation.edit" version="1.1.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.core.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.core" version="3.1.0"/>
 		<plugin name="org.eclipse.papyrus.infra.core.architecture" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.core.architecture.edit" version="2.0.0"/>
@@ -105,14 +105,14 @@
 		<plugin name="org.eclipse.papyrus.infra.tools" version="3.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.emf.expressions.feature" version="1.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.emf.expressions" version="1.1.0"/>
 		<plugin name="org.eclipse.papyrus.infra.emf.expressions.edit" version="1.1.0"/>
 		<plugin name="org.eclipse.papyrus.infra.emf.expressions.editor" version="1.1.0"/>
 		<plugin name="org.eclipse.papyrus.infra.emf.expressions.properties" version="1.0.100"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.emf.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.emf" version="3.1.0"/>
 		<plugin name="org.eclipse.papyrus.infra.emf.diagram.common" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.emf.appearance" version="2.0.0"/>
@@ -122,7 +122,7 @@
 		<plugin name="org.eclipse.papyrus.infra.emf.gmf" version="1.3.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<feature name="org.eclipse.papyrus.infra.core.feature" version="3.0.0"/>
 		<feature name="org.eclipse.papyrus.infra.gmfdiag.feature" version="3.0.0"/>
 		<feature name="org.eclipse.papyrus.infra.services.feature" version="3.0.0"/>
@@ -156,7 +156,7 @@
 		<plugin name="org.eclipse.papyrus.infra.properties.editor" version="3.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.gmfdiag.css.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.css" version="2.4.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.css.configuration" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.css.properties" version="3.1.0"/>
@@ -167,7 +167,7 @@
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.css.model.edit" version="1.3.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.gmfdiag.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.commands" version="3.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.navigation" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.outline" version="2.0.0"/>
@@ -202,7 +202,7 @@
 		<plugin name="org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors" version="1.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.internationalization.feature" version="1.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.internationalization" version="1.2.0"/>
 		<plugin name="org.eclipse.papyrus.infra.internationalization.edit" version="1.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.internationalization.utils" version="1.0.100"/>
@@ -213,7 +213,7 @@
 		<plugin name="org.eclipse.papyrus.infra.editor.welcome.internationalization" version="2.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.nattable.feature" version="4.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.nattable.model" version="4.1.0"/>
 		<plugin name="org.eclipse.papyrus.infra.nattable.model.edit" version="4.0.100"/>
 		<plugin name="org.eclipse.papyrus.infra.nattable.model.editor" version="5.0.0"/>
@@ -234,7 +234,7 @@
 		<plugin name="org.eclipse.nebula.cwt" version="1.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.services.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.services.architecture" version="1.0.100"/>
 		<plugin name="org.eclipse.papyrus.infra.services.controlmode" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.infra.services.controlmode.history" version="2.0.0"/>
@@ -252,7 +252,7 @@
 		<plugin name="org.eclipse.papyrus.infra.services.localizer" version="2.1.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.ui.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.ui" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.infra.ui.architecture" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.infra.onefile.ui" version="1.2.0"/>
@@ -271,17 +271,17 @@
 		<plugin name="org.eclipse.papyrus.infra.ui.fonts" version="1.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.viewpoints.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.viewpoints.policy" version="3.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.infra.widget.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.infra.widgets" version="3.5.0"/>
 		<plugin name="org.eclipse.papyrus.infra.widgets.toolbox" version="2.0.0"/>
 		<plugin name="org.eclipse.nebula.widgets.richtext" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.sdk.feature" version="4.5.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<feature name="org.eclipse.papyrus.infra.feature" version="3.0.0"/>
 		<feature name="org.eclipse.papyrus.editor.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.emf.feature" version="1.1.0"/>
@@ -294,7 +294,7 @@
 		<plugin name="org.eclipse.papyrus.sdk" version="4.5.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.alf.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.alf.common" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.alf.common.ui" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.alf" version="3.0.0"/>
@@ -303,11 +303,11 @@
 		<plugin name="org.eclipse.papyrus.uml.alf.ui" version="3.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.architecture.feature" version="1.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.architecture" version="1.1.200"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.assistants.feature" version="4.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.profile.assistants.generator" version="4.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.profile.assistants.generator.ui" version="1.2.100"/>
 		<plugin name="org.eclipse.papyrus.uml.profile.types.generator" version="2.2.0"/>
@@ -316,18 +316,18 @@
 		<plugin name="org.eclipse.papyrus.uml.profile.newchildmenu.generator.ui" version="1.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.decoratormodel.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.decoratormodel" version="2.3.0"/>
 		<plugin name="org.eclipse.papyrus.uml.decoratormodel.controlmode" version="1.3.0"/>
 		<plugin name="org.eclipse.papyrus.uml.decoratormodel.ui" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.uml.decoratormodel.properties" version="4.1.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.diagram.css.feature" version="2.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.css" version="2.0.100"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.diagram.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.clazz" version="3.2.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.common" version="3.4.0"/>
 		<plugin name="org.eclipse.papyrus.uml.diagram.common.groups" version="2.0.0"/>
@@ -355,13 +355,13 @@
 		<plugin name="org.eclipse.papyrus.uml.diagram.sequence.restrictions" version="1.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.expressions.feature" version="1.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.expressions" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.uml.expressions.edit" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.uml.expressions.properties" version="1.0.100"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.feature" version="4.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<feature name="org.eclipse.papyrus.uml.internationalization.feature" version="1.0.0"/>
 		<feature name="org.eclipse.papyrus.uml.modelexplorer.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.uml.properties.feature" version="3.0.0"/>
@@ -403,23 +403,23 @@
 		<plugin name="org.eclipse.papyrus.uml.types.core" version="4.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.internationalization.feature" version="1.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.internationalization" version="1.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.internationalization.edit" version="1.100.100"/>
 		<plugin name="org.eclipse.papyrus.uml.internationalization.utils" version="1.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.m2m.qvto.feature" version="1.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.m2m.qvto.common" version="1.0.0"/>
 		<plugin name="org.eclipse.papyrus.uml.m2m.qvto.common.blackboxes" version="1.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.modelexplorer.feature" version="2.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.modelexplorer" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.uml.modelexplorer.widgets" version="2.0.100"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.nattable.feature" version="4.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.nattable" version="5.2.300"/>
 		<plugin name="org.eclipse.papyrus.uml.nattable.generic" version="1.2.100"/>
 		<plugin name="org.eclipse.papyrus.uml.nattable.generic.config" version="1.2.100"/>
@@ -434,16 +434,16 @@
 		<plugin name="org.eclipse.nebula.widgets.nattable.extension.nebula" version="1.1.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.properties.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.properties" version="3.3.0"/>
 		<plugin name="org.eclipse.papyrus.uml.properties.xtext" version="1.3.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.search.feature" version="2.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.search.ui" version="2.0.100"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.textedit.feature" version="2.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.uml.textedit.common.xtext" version="2.1.0"/>
@@ -471,26 +471,26 @@
 		<plugin name="org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui" version="3.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.tools.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.tools.utils" version="3.5.0"/>
 		<plugin name="org.eclipse.papyrus.uml.tools" version="4.2.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.ui.feature" version="1.2.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.ui" version="1.3.100"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.uml.xtext.integration.feature" version="2.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.uml.xtext.integration.core" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.uml.xtext.integration.ui" version="2.1.0"/>
 		<plugin name="org.eclipse.papyrus.uml.xtext.integration.validation" version="2.1.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.views.documentation.feature" version="1.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.views.documentation" version="1.0.100"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.views.feature" version="1.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<feature name="org.eclipse.papyrus.views.search.feature" version="2.0.0"/>
 		<feature name="org.eclipse.papyrus.views.modelexplorer.feature" version="3.0.0"/>
 		<feature name="org.eclipse.papyrus.views.properties.feature" version="3.0.0"/>
@@ -499,27 +499,27 @@
 		<feature name="org.eclipse.papyrus.views.validation.feature" version="2.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.views.modelexplorer.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.views.modelexplorer" version="3.1.0"/>
 		<plugin name="org.eclipse.papyrus.views.modelexplorer.resourceloading" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.views.modelexplorer.widgets" version="2.0.0"/>
 		<plugin name="org.eclipse.papyrus.views.modelexplorer.newchild" version="1.2.100"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.views.properties.feature" version="3.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.views.properties" version="4.0.0"/>
 		<plugin name="org.eclipse.papyrus.views.properties.model.xwt" version="2.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.views.references.feature" version="2.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.views.references" version="2.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.views.search.feature" version="2.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.views.search" version="2.0.0"/>
 	</feature>
 	<feature name="org.eclipse.papyrus.views.validation.feature" version="2.0.0">
-		<feature name="org.eclipse.license" version="2.0.0" license="true"/>
+		<feature name="org.eclipse.license" version="2.0.2" license="true"/>
 		<plugin name="org.eclipse.papyrus.views.validation" version="2.1.0"/>
 	</feature>
 	<plugin name="ca.odell.glazedlists" version="1.9.0"/>
