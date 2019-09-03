@@ -81,10 +81,10 @@ public class SwitchViewpointsTest extends AbstractPapyrusTest {
 		// execute the command to change viewpoint and close editors
 		final EditingDomain domain = editorFixture.getEditingDomain();
 		final CompoundCommand cc = new CompoundCommand();
+		// It is needed to be the first action to avoid opened dialog for viewpoints selection
+		cc.append(new CloseEditorsForViewpointsCommand(viewpoints.stream().filter(viewpoint -> viewpointIds.contains(viewpoint.getId())).collect(Collectors.toList())));
 		cc.append(helper.switchArchitectureViewpointIds(viewpointIds.toArray(new String[0])));
 		// More than set the architecture viewpoints used, close needed editors
-		cc.append(new CloseEditorsForViewpointsCommand(viewpoints.stream()
-				.filter(viewpoint -> viewpointIds.contains(viewpoint.getId())).collect(Collectors.toList())));
 		domain.getCommandStack().execute(cc);
 
 		// Get the number of opened page

@@ -113,5 +113,11 @@
          </includes>
       </viewerContentBinding>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.sasheditor.pageAddValidator">
+      <validator
+            class="org.eclipse.papyrus.infra.ui.architecture.validators.ArchitecturePageAddValidator">
+      </validator>
+   </extension>
     
 </plugin>

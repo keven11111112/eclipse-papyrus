@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 Cedric Dumoulin, CEA, and others.
+ * Copyright (c) 2013-2014, 2019 Cedric Dumoulin, CEA, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -14,6 +14,8 @@
  *  Christian W. Damus (CEA) - bug 433371
  *  Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 415638
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 440754
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550569
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
@@ -21,6 +23,8 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
+import org.eclipse.papyrus.infra.core.sasheditor.utils.PageAddValidatorManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.BasicPageManagerImpl;
@@ -92,6 +96,26 @@ public class PageManagerImpl extends BasicPageManagerImpl {
 	protected boolean isLegacyMode() {
 		// We are never in legacy mode even if there is a page list
 		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.service.BasicPageManagerImpl#canAddPage(java.lang.Object)
+	 */
+	@Override
+	protected boolean canAddPage(final Object pageIdentifier) {
+		return PageAddValidatorManager.getInstance().isValid(pageIdentifier);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.service.BasicPageManagerImpl#canAddPage(org.eclipse.papyrus.infra.core.sashwindows.di.PageRef)
+	 */
+	@Override
+	protected boolean canAddPage(final PageRef page) {
+		return PageAddValidatorManager.getInstance().isValid(page);
 	}
 
 	/**

@@ -9,6 +9,9 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.papyrus.infra.ui.architecture,
+ org.eclipse.papyrus.infra.ui.architecture.dialogs,
+ org.eclipse.papyrus.infra.ui.architecture.messages,
+ org.eclipse.papyrus.infra.ui.architecture.validators,
  org.eclipse.papyrus.infra.ui.architecture.commands,
  org.eclipse.papyrus.infra.ui.architecture.widgets
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.0.0,4.0.0)",
@@ -29,6 +32,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.jdt.ui;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.representation;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.nattable.representation;bundle-version="[2.0.0,3.0.0)"
+ org.eclipse.papyrus.infra.nattable.representation;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.editor.welcome;bundle-version="[2.0.0,3.0.0)"
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: org.eclipse.papyrus.infra.ui.architecture

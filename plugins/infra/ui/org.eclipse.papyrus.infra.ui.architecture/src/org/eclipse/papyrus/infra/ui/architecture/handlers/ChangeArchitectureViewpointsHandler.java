@@ -96,9 +96,10 @@ public class ChangeArchitectureViewpointsHandler extends CompoundContributionIte
 						viewpoints.add(viewpoint);
 					}
 					TransactionalEditingDomain ted = helper.getModelSet().getTransactionalEditingDomain();
-					cc.append(helper.switchArchitectureViewpointIds(viewpointIds.toArray(new String[0])));
 					// More than set the architecture viewpoints used, close needed editors
+					// It is needed to be the first action to avoid opened dialog for viewpoints selection
 					cc.append(new CloseEditorsForViewpointsCommand(viewpoints.stream().filter(viewpoint -> viewpointIds.contains(viewpoint.getId())).collect(Collectors.toList())));
+					cc.append(helper.switchArchitectureViewpointIds(viewpointIds.toArray(new String[0])));
 					ted.getCommandStack().execute(cc);
 				}
 			}));

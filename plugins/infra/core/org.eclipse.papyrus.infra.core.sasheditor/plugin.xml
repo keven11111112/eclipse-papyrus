@@ -6,6 +6,7 @@
    		id="nestedEditor" 
    		name="NestedEditor" 
    		schema="schema/nestedEditor.exsd"/>
+   <extension-point id="pageAddValidator" name="PageAddValidator" schema="schema/pageAddValidator.exsd"/>
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer

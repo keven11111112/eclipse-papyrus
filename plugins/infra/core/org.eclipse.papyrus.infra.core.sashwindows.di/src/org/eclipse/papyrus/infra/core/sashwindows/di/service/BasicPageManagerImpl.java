@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2016 Cedric Dumoulin, CEA, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2016, 2019 Cedric Dumoulin, CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -14,6 +14,7 @@
  *  Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 415638
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 440754
  *  Christian W. Damus - bug 485220
+ *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550569
  *
  *****************************************************************************/
 
@@ -89,25 +90,31 @@ public class BasicPageManagerImpl implements IPageManager {
 	@Override
 	@Deprecated
 	public void addPage(Object pageIdentifier) {
-		if (isLegacyMode()) {
-			diSashModel.getPageList().addPage(pageIdentifier);
+		if (canAddPage(pageIdentifier)) {
+			if (isLegacyMode()) {
+				diSashModel.getPageList().addPage(pageIdentifier);
+			}
 		}
 	}
 
 	@SuppressWarnings("deprecation")
 	private void doAddPage(Object pageIdentifier) {
-		if (isLegacyMode()) {
-			diSashModel.getPageList().addPage(pageIdentifier);
+		if (canAddPage(pageIdentifier)) {
+			if (isLegacyMode()) {
+				diSashModel.getPageList().addPage(pageIdentifier);
+			}
+			diSashModel.getSashModel().addPage(getCurrentFolder(), pageIdentifier);
 		}
-		diSashModel.getSashModel().addPage(getCurrentFolder(), pageIdentifier);
 	}
 
 	@SuppressWarnings("deprecation")
 	private void doAddPage(PageRef page) {
-		if (isLegacyMode()) {
-			diSashModel.getPageList().addPage(page.getPageIdentifier());
+		if (canAddPage(page)) {
+			if (isLegacyMode()) {
+				diSashModel.getPageList().addPage(page.getPageIdentifier());
+			}
+			diSashModel.getSashModel().addPage(getCurrentFolder(), page);
 		}
-		diSashModel.getSashModel().addPage(getCurrentFolder(), page);
 	}
 
 	/**
@@ -314,6 +321,30 @@ public class BasicPageManagerImpl implements IPageManager {
 	 */
 	protected boolean isPage(EObject content) {
 		// In the headless context, anything can be a page
+		return true;
+	}
+
+	/**
+	 * Determinate if the page can be added or not.
+	 *
+	 * @param pageIdentifier
+	 *            The page identifier.
+	 * @return <code>true</code> if the page can be added, <code>false</code> otherwise.
+	 * @since 1.4
+	 */
+	protected boolean canAddPage(final Object pageIdentifier) {
+		return true;
+	}
+
+	/**
+	 * Determinate if the page can be added or not.
+	 *
+	 * @param page
+	 *            The page ref.
+	 * @return <code>true</code> if the page can be added, <code>false</code> otherwise.
+	 * @since 1.4
+	 */
+	protected boolean canAddPage(final PageRef page) {
 		return true;
 	}
 
