@@ -65,13 +65,15 @@ echo "-------------------- initialize parameters --------------------"
 #echo "testsBuildNumber: $testsBuildNumber"
 #echo "version: $version"
 #echo "updateSite: $updateSite"
+#echo "mainBuildJob: $mainBuildJob"
+#echo "toolsmithsBuildJob: $toolsmithsBuildJob"
+#echo "testsBuildJob: $testsBuildJob"
 
-branchName=$branchName
-mainBuildNumber=$mainBuildNumber
-toolsmithsBuildNumber=$toolsmithsBuildNumber
-if [[ "$mainBuildNumber" =~ "0" || "$toolsmithsBuildNumber" =~ "0" ]] ; then
+localMainBuildNumber=$mainBuildNumber
+localToolsmithsBuildNumber=$toolsmithsBuildNumber
+if [[ "$localMainBuildNumber" =~ "0" || "$localToolsmithsBuildNumber" =~ "0" ]] ; then
     IFS=":"
-    read mainBuildNumber toolsmithsBuildNumber <<< "$(getLastSuccessfulBuildNumbers $branchName)"
+    read localMainBuildNumber localToolsmithsBuildNumber <<< "$(getLastSuccessfulBuildNumbers $branchName)"
 fi
 
 testsBuildNumber=$testsBuildNumber
@@ -88,12 +90,12 @@ if [[ ! "$branchName" =~ ^(Oxygen|Master)$ ]]; then
     echo "Canceled."; exit 1
 fi
 
-if [[ ! "$mainBuildNumber" =~ ^[0-9]+$ || "$mainBuildNumber" < 1 ]]; then
+if [[ ! "$localMainBuildNumber" =~ ^[0-9]+$ || "$localMainBuildNumber" < 1 ]]; then
     echo "mainBuildNumber (the number of the \"Papyrus-Master\" Hudson build from which to publish the main Papyrus plug-ins)"
     echo "Canceled."; exit 1
 fi
 
-if [[ ! "$toolsmithsBuildNumber" =~ ^[0-9]+$ || "$toolsmithsBuildNumber" < 1 ]]; then
+if [[ ! "$localToolsmithsBuildNumber" =~ ^[0-9]+$ || "$localToolsmithsBuildNumber" < 1 ]]; then
     echo "toolsmithsBuildNumber (the number of the \"Papyrus-Master-Toolsmiths\" Hudson build from which to publish the toolsmiths Papyrus plug-ins, or 0 to not publish)"
     echo "Canceled."; exit 1
 fi
@@ -114,8 +116,8 @@ else [[ "$updateSite" =~ ^(milestones/[0-9]+\.[0-9]+/(I[1-7]|M[1-7]|RC[1-9]|SR[1
 fi
 
 #echo "branchName: $branchName"
-#echo "mainBuildNumber: $mainBuildNumber"
-#echo "toolsmithsBuildNumber: $toolsmithsBuildNumber"
+#echo "mainBuildNumber: $localMainBuildNumber"
+#echo "toolsmithsBuildNumber: $localToolsmithsBuildNumber"
 #echo "testsBuildNumber: $testsBuildNumber"
 #echo "version: $version"
 #echo "updateSite: $updateSite"
@@ -139,7 +141,7 @@ cd "$workingDir"
 
 # ============================== PUBLISH MAIN ==============================
 nfsURL="" ## Not supported for HIPP builds. Leave the variable since the promote functions are still shared with the Shared Hudson Instance builds
-hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Master/$mainBuildNumber/artifact/"
+hudsonURL="https://hudson.eclipse.org/papyrus/job/$mainBuildJob/$localMainBuildNumber/artifact/"
 zipName="Papyrus-Main.zip"
 updateZipPrefix="Papyrus-Update"
 getZip "$zipName" "$nfsURL" "$hudsonURL"
@@ -187,9 +189,9 @@ EOF
 #$ADD_DOWNLOAD_STATS "$updateSiteDir/main" "main"
 
 # ============================== PUBLISH TOOLSMITHS ==============================
-if [[ "$toolsmithsBuildNumber" != "0" ]]; then
+if [[ "$localToolsmithsBuildNumber" != "0" ]]; then
     nfsURL="" ## Not supported for HIPP builds. Leave the variable since the promote functions are still shared with the Shared Hudson Instance builds
-    hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Toolsmiths/$toolsmithsBuildNumber/artifact/"
+    hudsonURL="https://hudson.eclipse.org/papyrus/job/$toolsmithsBuildJob/$localToolsmithsBuildNumber/artifact/"
     zipName="Papyrus-Toolsmiths.zip"
     updateZipPrefix="Papyrus-Toolsmiths"
     getZip "$zipName" "$nfsURL" "$hudsonURL"
@@ -210,7 +212,7 @@ fi
 # ============================== PUBLISH TESTS ==============================
 if [[ "$testsBuildNumber" != "0" ]]; then
     nfsURL="" ## Not supported for HIPP builds. Leave the variable since the promote functions are still shared with the Shared Hudson Instance builds
-    hudsonURL="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Tests/$testsBuildNumber/artifact/"
+    hudsonURL="https://hudson.eclipse.org/papyrus/job/$testsBuildJob/$testsBuildNumber/artifact/"
     zipName="Papyrus-TestResults.zip"
     getZip "$zipName" "$nfsURL" "$hudsonURL"
     # unzips under a "testresults" folder under the main build's folder
