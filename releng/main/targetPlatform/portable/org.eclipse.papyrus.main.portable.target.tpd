@@ -69,20 +69,20 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.13milestones/S-4.13M3-201908211800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.13milestones/S-4.13RC1-201908281800/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2019-09",0) 
 
-location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.9.0/S201908260830" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.9.0/S201909030512" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S201908260548" {
+location xtext "http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.19.0" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -116,7 +116,7 @@ location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/upd
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201908270841" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.19" {
 	org.eclipse.emf.sdk.feature.group
 }
 
