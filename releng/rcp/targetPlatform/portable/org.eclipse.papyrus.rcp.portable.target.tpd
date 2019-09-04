@@ -7,13 +7,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //updateFrom("EGIT",0)
 
-location egit "https://download.eclipse.org/egit/updates-5.4" {
+location egit "https://download.eclipse.org/egit/staging/v5.5.0.201908280940-m3" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.13milestones/S-4.13M3-201908211800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.13milestones/S-4.13RC1-201908281800/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -39,7 +39,7 @@ location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/m
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S201908270841" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.19" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
