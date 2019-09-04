@@ -37,16 +37,13 @@ location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R201906
 }
 
 
-/*** temporary manual ***/
+/*** Updates from the Simrel repository ***/
 
-//manualUpdate (until the result of this job has been published)
+//updateFrom("XWT",0)
 
 location xwt "https://download.eclipse.org/xwt/milestones-1.4.0/1.4.0-RC2/" {
     org.eclipse.xwt.feature.feature.group lazy
 }
-
-
-/*** Updates from the Simrel repository ***/
 
 //updateFrom("QVT Operational for 2019-09",0)
 
