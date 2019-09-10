@@ -11,7 +11,7 @@
             file="target/generated-eclipse-help/PapyrusStarterGuide-toc.xml"
             primary="false">
       </toc>
-       <toc
+      <toc
             file="target/generated-eclipse-help/namingStrategy-userDoc-main-toc.xml"
             primary="false">
       </toc>
@@ -23,8 +23,28 @@
             file="target/generated-eclipse-help/namingStrategy-devDoc-main-toc.xml"
             primary="false">
       </toc>
-       <toc
+      <toc
             file="target/generated-eclipse-help/namingStrategy-devDoc-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/embeddedEditors-userDoc-main-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/embeddedEditors-userDoc-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/embeddedEditors-devDoc-main-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/embeddedEditors-XText-devDoc-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/embeddedEditors-Textual-devDoc-toc.xml"
             primary="false">
       </toc>
       <toc

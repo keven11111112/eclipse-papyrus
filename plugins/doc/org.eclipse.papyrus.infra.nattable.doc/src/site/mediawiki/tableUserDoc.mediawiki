@@ -755,8 +755,8 @@ Several kind of cell editors are available in Papyrus Table. Currently, the user
 Several kind of cell editors are available:
 ===String cell editor===
 ===String with completion cell editor===
-*UML ValueSpecification Cell Editor: This editor allows to edit and create ValueSpecification from a text field. Description is available [[Papyrus_Developer_Guide/Papyrus_Embedded_Editors_Documentation/Value_Specification_Xtext_editor|here]]
-*UML Reference Cell Editor: This editor allows to edit reference (single or multi valued) using a text field. This editor provides a completion mechanism (using CTRL+SPACE) and validate the string (the string is valid when we are able to find element from the text typed by the user). For further information, please see the page [[Papyrus_Developer_Guide/Papyrus_Embedded_Editors_Documentation/Textual_Editor_For_NamedElement]]
+*UML ValueSpecification Cell Editor: This editor allows to edit and create ValueSpecification from a text field. Description is available in the '''Papyrus Developer Guide > Embedded Editors > Value Specification Xtext editor''' topic
+*UML Reference Cell Editor: This editor allows to edit reference (single or multi valued) using a text field. This editor provides a completion mechanism (using CTRL+SPACE) and validate the string (the string is valid when we are able to find element from the text typed by the user). For further information, please see the page '''Papyrus Developer Guide > Embedded Editors > Textual Editor For NamedElement'''
  but not the other way around. <br/>
 The first image illustrates the model and the profile's stereotype, applied on both classes, containing the three attributes activity and classifiers. <br/>
 
