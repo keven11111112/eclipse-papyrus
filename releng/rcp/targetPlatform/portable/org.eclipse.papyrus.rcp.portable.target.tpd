@@ -7,13 +7,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //updateFrom("EGIT",0)
 
-location egit "https://download.eclipse.org/egit/staging/v5.5.0.201908280940-m3" {
+location egit "https://download.eclipse.org/egit/staging/v5.5.0.201909041048-rc1" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.13milestones/S-4.13RC1-201908281800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.13milestones/S-4.13RC2-201909071130/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -32,7 +32,7 @@ location mylyn "https://download.eclipse.org/mylyn/drops/3.24.2/v20180905-2014" 
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201908271120" {
+location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S201909101346" {
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
