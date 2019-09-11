@@ -20,6 +20,10 @@
             primary="false">
       </toc>
       <toc
+            file="target/generated-eclipse-help/DisplayStereotypes-toc.xml"
+            primary="false">
+      </toc>
+      <toc
             file="target/generated-eclipse-help/stereotype-property-reference-edge-main-toc.xml"
             primary="false">
       </toc>
