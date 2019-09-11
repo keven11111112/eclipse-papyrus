@@ -979,7 +979,7 @@ When creating models UML is used. Since UML is general-purpose modeling language
 
 == <div id="Modelvalidation">7.8 Model validation</div> ==
 
-=== 7.8.1 Object Constrain Language (OCL) ===
+=== 7.8.1 Object Constraint Language (OCL) ===
 
 === 7.8.2 Defining constraints using OCL ===
 

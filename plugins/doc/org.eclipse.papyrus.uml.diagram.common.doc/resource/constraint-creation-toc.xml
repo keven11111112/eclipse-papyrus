@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8' ?>
-<toc topic="org.eclipse.papyrus.uml.diagram.common.doc/resource/constraint-creation.html" label="constraint-creation">
-	<topic href="org.eclipse.papyrus.uml.diagram.common.doc/resource/constraint-creation.html" label="Creating and editing constraints">
-		<topic href="org.eclipse.papyrus.uml.diagram.common.doc/resource/constraint-creation.html#Define_a_constraint_and_its_context" label="Define a constraint and its context"></topic>
-		<topic href="org.eclipse.papyrus.uml.diagram.common.doc/resource/constraint-creation.html#Define_constraint_specification" label="Define constraint specification"></topic>
-	</topic>
-</toc>
