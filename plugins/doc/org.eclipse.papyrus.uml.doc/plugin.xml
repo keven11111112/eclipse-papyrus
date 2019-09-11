@@ -27,6 +27,14 @@
             file="target/generated-eclipse-help/namingStrategy-devDoc-toc.xml"
             primary="false">
       </toc>
+      <toc
+            file="target/generated-eclipse-help/obfuscation-main-toc.xml"
+            primary="false">
+      </toc>
+       <toc
+            file="target/generated-eclipse-help/obfuscation-toc.xml"
+            primary="false">
+      </toc>
    </extension>
 
 </plugin>
