@@ -64,3 +64,6 @@ This page allow you to do:
 #* '''IsAbstract feature of Stereotype has been modified''': every stereotype applications of the abstract stereotype are deleted.
 #* '''The upper multiplicity of Property has been modified''': values of slots corresponding to the property are not changed (the model is not valid).
 # During the execution, the program keep in cache files you select for the migration. If you made twice the same migration the tool will not ask you again to select the file corresponding to the profile before modifications. However if you really need to change the file it is used, you can remove cached files in this preference page.
+
+=Video=
+A quick video can be found on the Papyrus' Youtube channel right [https://www.youtube.com/watch?v=tGrQUaERoA0 here] showcasing the use of the current iteration of the Profile Migration Tool.
