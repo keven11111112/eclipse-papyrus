@@ -19,10 +19,10 @@ If the view is already open, it is updated with the references found without tak
 The other way to display all references of an item, is to use the button "Link with Editor" in the 'References' view. 
 This action displays the references of the active selection. It’s only available on the diagram selection.
 
-[[File:images/linkWithEditorButton.png| The "References View"]]
+[[File:images/ReferencesView_LinkWithEditorButton.png| The "References View"]]
 
 === Go to reference ===
 
 To access to the element referencing the searched item, you must either double click on the element or right click and select the 'Go To' feature.
 
-[[File:images/goToMenu.png| The context menu "Go To"]]
+[[File:images/ReferencesView_GoToMenu.png| The context menu "Go To"]]
