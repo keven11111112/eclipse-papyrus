@@ -983,6 +983,13 @@ When creating models UML is used. Since UML is general-purpose modeling language
 
 === 7.8.2 Defining constraints using OCL ===
 
+It should be possible to model OCL constraints for a profile, with a specific OCL editor. It should be possible to generate an EMF Validation plug-in from these constraints. The constraints should be validated either in real-time or in batch-mode, according to a user preference. It should be possible to define this preference either globally or constraint by constraint.
+
+Concretely, this will be realized in three steps:
+* Embedding the OCL X-Text editor in the property view, and associating it to UML Opaque expressions using the OCL language
+* Creating a generator, which inputs a Profile and outputs an EMF Validation plug-in
+* If necessary, adapt the Papyrus validation framework
+
 == <div id="Searching">7.9 Searching</div> ==
 
 == 7.10 Sample models ==
