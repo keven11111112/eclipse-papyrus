@@ -12,13 +12,14 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - bug 453445, 515650
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 502533
- *
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 551377
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.properties.modelelement;
 
+import java.util.List;
+
 import org.eclipse.core.databinding.observable.IObservable;
-import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -29,20 +30,21 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList;
-import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableValue;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.EObjectStructuredValueFactory;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.ILabeledModelElement;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.Activator;
+import org.eclipse.papyrus.uml.properties.databinding.StereotypePropertyObservableList;
+import org.eclipse.papyrus.uml.properties.databinding.StereotypePropertyObservableValue;
 import org.eclipse.papyrus.uml.properties.datatype.DataTypeProvider;
 import org.eclipse.papyrus.uml.properties.datatype.StructuredDataTypeObservableValue;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.utils.DataTypeUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.common.util.UML2Util;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -89,6 +91,7 @@ public class StereotypeModelElement extends EMFModelElement implements ILabeledM
 			if (feature.getUpperBound() == 1) {
 				// Single-valued DataType
 				if (DataTypeProvider.instance.canHandle((EDataType) feature.getEType())) {
+					// TODO : shall we create an observable to manage SetStereotypeValueRequest ?
 					return new StructuredDataTypeObservableValue(source, feature, domain, (EDataType) feature.getEType());
 				}
 				// TODO : Multi-valued DataTypes
@@ -97,16 +100,21 @@ public class StereotypeModelElement extends EMFModelElement implements ILabeledM
 
 		if (feature.getEType() instanceof EClass) {
 			if (DataTypeUtil.isDataTypeDefinition((EClass) feature.getEType(), getSource(featurePath))) {
+				// TODO : shall we create an observable to manage SetStereotypeValueRequest ?
 				return new org.eclipse.papyrus.infra.services.edit.ui.databinding.PapyrusObservableValue(getSource(featurePath), feature, domain, GMFtoEMFCommandWrapper::wrap);
 			}
 		}
 
 
-		if (feature.getUpperBound() != 1) {
-			return new GMFObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
-		}
+		final Element baseElement = org.eclipse.uml2.uml.util.UMLUtil.getBaseElement(source);
 
-		return new GMFObservableValue(getSource(featurePath), feature, domain);
+		if (feature.getUpperBound() != 1) {
+			List<?> wrappedList = (List<?>) source.eGet(feature);
+			// this observable uses the SetStereotypeValueRequest
+			return new StereotypePropertyObservableList(wrappedList, domain, baseElement, feature, stereotype);
+		}
+		// this observable uses the SetStereotypeValueRequest
+		return new StereotypePropertyObservableValue(baseElement, feature, domain, stereotype);
 	}
 
 	/**
