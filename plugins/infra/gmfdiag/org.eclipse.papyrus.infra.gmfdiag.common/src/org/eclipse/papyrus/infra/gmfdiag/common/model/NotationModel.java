@@ -12,6 +12,7 @@
  *   LIFL - Initial API and implementation
  *   Christian W. Damus - bugs 485220, 496299
  *   Nicolas FAUVERGUE (CEA-LIST) nicolas.fauvergue@cea.fr - bug 549015
+ *   Vincent LORENZO (CEA-LIST) vincent.lorenzo@cea.fr - bug 551057
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.model;
 
@@ -48,7 +49,7 @@ public class NotationModel extends AbstractModelWithSharedResource<Diagram> impl
 	 *
 	 */
 	public NotationModel() {
-
+		super(ModelKind.master);
 	}
 
 	/**
