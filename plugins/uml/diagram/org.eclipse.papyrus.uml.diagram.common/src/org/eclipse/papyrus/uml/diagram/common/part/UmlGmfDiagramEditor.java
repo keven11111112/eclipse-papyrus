@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016, 2017 CEA LIST.
+ * Copyright (c) 2016, 2017, 2019 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,7 +12,7 @@
  *   CEA LIST - Initial API and implementation
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
  *   Ansgar Radermacher (CEA) ansgar.radermacher@cea.fr - Bug 519107 (lazy diagram opening)
- *
+ *   Vincent LORENZO (CEA) vincent.lorenzo@cea.fr - bug 551530
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.part;
 
@@ -371,7 +371,11 @@ public class UmlGmfDiagramEditor extends SynchronizableGmfDiagramEditor implemen
 	 * @see org.eclipse.papyrus.infra.internationalization.common.editor.IInternationalizationEditor#refreshEditorPart()
 	 */
 	@Override
-	public void refreshEditorPart(){
+	public void refreshEditorPart() {
+		if (null == getDiagramEditPart()) {
+			return;// see bug 551530
+		}
+
 		DiagramHelper.forceRefresh(getDiagramEditPart());
 	}
 }
