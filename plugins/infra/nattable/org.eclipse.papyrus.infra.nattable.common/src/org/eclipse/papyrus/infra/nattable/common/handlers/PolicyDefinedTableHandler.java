@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2019 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 551566
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.handlers;
@@ -69,10 +70,9 @@ public class PolicyDefinedTableHandler extends CreateNatTableEditorHandler {
 				@Override
 				protected void doExecute() {
 					try {
-						Table table = PolicyDefinedTableHandler.this.doExecute(serviceRegistry, name, this.description);
+						Table table = PolicyDefinedTableHandler.this.doExecute(serviceRegistry, name, this.description, prototype.getRepresentationKind().getId());
 						TableVersioningUtils.stampCurrentVersion(table);
 						table.setOwner(context);
-						table.setTableKindId(prototype.getRepresentationKind().getId());
 					} catch (Exception ex) {
 						Activator.log.error(ex);
 					}

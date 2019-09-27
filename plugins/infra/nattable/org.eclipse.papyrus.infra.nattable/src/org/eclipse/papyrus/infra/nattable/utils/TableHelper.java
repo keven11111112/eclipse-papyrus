@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2016, 2018 CEA LIST, Esterel Technologies SAS and others.
+ * Copyright (c) 2013, 2016, 2018, 2019 CEA LIST, Esterel Technologies SAS and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -13,6 +13,8 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Calin Glitia (Esterel Technologies SAS) - Bug 497654
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 535935
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 551566
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
@@ -53,7 +55,7 @@ public class TableHelper {
 	 * @param configuration
 	 *            the configuration used to create the table
 	 * @return
-	 * 		the table created from this configuration
+	 *         the table created from this configuration
 	 */
 	public static final Table createTable(final TableConfiguration configuration) {
 		return createTable(configuration, null);
@@ -62,11 +64,11 @@ public class TableHelper {
 	/**
 	 *
 	 * @param configuration
-	 *           the configuration used to create the table, cannot be <code>null</code>
+	 *            the configuration used to create the table, cannot be <code>null</code>
 	 * @param context
 	 *            the context of the table
 	 * @return
-	 * 		the table created from these parameters
+	 *         the table created from these parameters
 	 */
 	public static final Table createTable(final TableConfiguration configuration, final EObject context) {
 		return createTable(configuration, context, null);
@@ -81,7 +83,7 @@ public class TableHelper {
 	 * @param name
 	 *            the name for the table
 	 * @return
-	 * 		the table created from these parameters
+	 *         the table created from these parameters
 	 */
 	public static final Table createTable(final TableConfiguration configuration, final EObject context, final String name) {
 		return createTable(configuration, context, name, null);
@@ -98,9 +100,32 @@ public class TableHelper {
 	 * @param description
 	 *            the description for the table
 	 * @return
-	 * 		the table created from these parameters
+	 *         the table created from these parameters
+	 *
+	 * @deprecated since 6.5.0
 	 */
+	@Deprecated
 	public static final Table createTable(final TableConfiguration configuration, final EObject context, final String name, final String description) {
+		return createTable(configuration, context, name, description, null);
+	}
+
+	/**
+	 *
+	 * @param configuration
+	 *            the configuration used to create the table, cannot be <code>null</code>
+	 * @param context
+	 *            the context of the table
+	 * @param name
+	 *            the name for the table
+	 * @param description
+	 *            the description for the table
+	 * @param tableKindId
+	 *            the table kind id
+	 *
+	 * @return
+	 *         the table created from these parameters
+	 */
+	public static final Table createTable(final TableConfiguration configuration, final EObject context, final String name, final String description, String tableKindId) {
 		Assert.isNotNull(configuration);
 
 		Table table = NattableFactory.eINSTANCE.createTable();
@@ -108,6 +133,7 @@ public class TableHelper {
 		table.setDescription(description);
 		table.setName(name);
 		table.setContext(context);
+		table.setTableKindId(tableKindId);
 
 		// the configuration always provides axis provider
 		AbstractAxisProvider rowProvider = configuration.getDefaultRowAxisProvider();
@@ -127,20 +153,20 @@ public class TableHelper {
 			IntListValueStyle copy = EcoreUtil.copy(style);
 			table.getStyles().add(copy);
 		}
-		
-		
-		if(isMatrixTreeTable(table)) {
-			if(null!=configuration.getOwnedCellEditorConfigurations()) {
+
+
+		if (isMatrixTreeTable(table)) {
+			if (null != configuration.getOwnedCellEditorConfigurations()) {
 				table.setOwnedCellEditorConfigurations(EcoreUtil.copy(configuration.getOwnedCellEditorConfigurations()));
-			}else {
-				//we can do it because currently, we only have one possible type for that!
+			} else {
+				// we can do it because currently, we only have one possible type for that!
 				GenericRelationshipMatrixCellEditorConfiguration conf = NattablecelleditorFactory.eINSTANCE.createGenericRelationshipMatrixCellEditorConfiguration();
 				conf.setCellEditorId("GenericRelationshipMatrixEditorConfiguration"); //$NON-NLS-1$
 				table.setOwnedCellEditorConfigurations(conf);
 			}
 			Assert.isNotNull(table.getOwnedCellEditorConfigurations(), "A matrix must own a CellEditorConfiguration"); //$NON-NLS-1$
 		}
-		
+
 		return table;
 	}
 
@@ -149,7 +175,7 @@ public class TableHelper {
 	 * @param table
 	 *            a table
 	 * @return
-	 * 		the display style to use for the table, the return value is never <code>null</code>
+	 *         the display style to use for the table, the return value is never <code>null</code>
 	 */
 	public static final DisplayStyle getTableDisplayStyle(final Table table) {
 		DisplayStyle result = DisplayStyle.NORMAL;
@@ -171,7 +197,7 @@ public class TableHelper {
 	 * @param table
 	 *            a table manager
 	 * @return
-	 * 		the display style to use for the managed table, the return value is never <code>null</code>
+	 *         the display style to use for the managed table, the return value is never <code>null</code>
 	 */
 	public static final DisplayStyle getTableDisplayStyle(final INattableModelManager tableManager) {
 		return tableManager != null ? getTableDisplayStyle(tableManager.getTable()) : null;
@@ -185,7 +211,7 @@ public class TableHelper {
 	 *         <code>true</code> if the managed table is a tree table
 	 */
 	public static final boolean isTreeTable(final INattableModelManager tableManager) {
-		return tableManager != null  ? isTreeTable(tableManager.getTable()) : false;
+		return tableManager != null ? isTreeTable(tableManager.getTable()) : false;
 	}
 
 	/**
@@ -206,11 +232,12 @@ public class TableHelper {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * This allows to check if this is a tree table.
-	 * 
-	 * @param tableConfiguration The table configuration.
+	 *
+	 * @param tableConfiguration
+	 *            The table configuration.
 	 * @return <code>true</code> if this is a tree table, <code>false</code> otherwise.
 	 */
 	public static final boolean isTreeTable(final TableConfiguration tableConfiguration) {
@@ -224,8 +251,9 @@ public class TableHelper {
 
 	/**
 	 * This allows to check if the tree table contains a single column for the row header.
-	 * 
-	 * @param tableConfiguration The table configuration.
+	 *
+	 * @param tableConfiguration
+	 *            The table configuration.
 	 * @return <code>true</code> if this is a single column, <code>false</code> otherwise.
 	 */
 	public static final boolean isSingleColumnTreeTable(final TableConfiguration tableConfiguration) {
@@ -320,11 +348,11 @@ public class TableHelper {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param tableManager
 	 *            a table manager
 	 * @return
-	 * 		the way to use to declare cell editor for the current table manager, according to invert axis property
+	 *         the way to use to declare cell editor for the current table manager, according to invert axis property
 	 */
 	public static final CellEditorDeclaration getCellEditorDeclaration(final INattableModelManager tableManager) {
 		return tableManager != null ? getCellEditorDeclaration(tableManager.getTable()) : null;
@@ -332,11 +360,11 @@ public class TableHelper {
 
 
 	/**
-	 * 
+	 *
 	 * @param tableManager
 	 *            a table manager
 	 * @return
-	 * 		the way to use to declare cell editor for the current table, according to invert axis property
+	 *         the way to use to declare cell editor for the current table, according to invert axis property
 	 */
 	public static final CellEditorDeclaration getCellEditorDeclaration(final Table table) {
 		CellEditorDeclaration declaration = table.getTableConfiguration().getCellEditorDeclaration();
@@ -352,7 +380,7 @@ public class TableHelper {
 		}
 		return declaration;
 	}
-	
+
 
 	/**
 	 *
@@ -369,13 +397,13 @@ public class TableHelper {
 			parent = parent.getParent();
 		}
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param table
-	 * a table 
+	 *            a table
 	 * @return
-	 * <code>true</code> if the table is a matrix. That is to say
+	 *         <code>true</code> if the table is a matrix. That is to say
 	 * @since 3.0
 	 */
 	public static final boolean isMatrixTreeTable(final Table table) {

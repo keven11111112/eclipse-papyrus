@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016, 2019 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,7 +12,8 @@
  *   Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *   Juan Cadavid (CEA-LIST) juan.cadavid@cea.fr - Overloading execution to support creation of multiple tables with an incremental name
  *   Christian W. Damus - bug 485220
- *   
+ *   Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 551566
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.handlers;
 
@@ -161,8 +162,15 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * Do the execution of the command.
 	 *
 	 * @param serviceRegistry
+	 *            the service registry
+	 * @param name
+	 *            the name for the table
+	 * @param description
+	 *            the description for the table
 	 * @throws ServiceException
 	 * @throws NotFoundException
+	 *
+	 * @Deprecated since 5.4.0
 	 */
 	public Table doExecute(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
 		final Table editorModel = createEditorModel(serviceRegistry, name, description);
@@ -174,19 +182,85 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	}
 
 	/**
+	 * Do the execution of the command.
+	 *
+	 * @param serviceRegistry
+	 *            the service registry
+	 * @param name
+	 *            the name for the table
+	 * @param description
+	 *            the description for the table
+	 * @param tableKindId
+	 *            the table kind id
+	 * @throws ServiceException
+	 * @throws NotFoundException
+	 *
+	 * @since 5.4.0
+	 */
+	public Table doExecute(final ServicesRegistry serviceRegistry, String name, String description, String tableKindId) throws ServiceException, NotFoundException {
+		final Table editorModel = createEditorModel(serviceRegistry, name, description, tableKindId);
+		// Get the mngr allowing to add/open new editor.
+		final IPageManager pageMngr = ServiceUtils.getInstance().getService(IPageManager.class, serviceRegistry);
+		// add the new editor model to the sash.
+		pageMngr.openPage(editorModel);
+		return editorModel;
+	}
+
+	/**
 	 * Create a model identifying the editor. This model will be saved with the
 	 * sash
 	 *
-	 * @return
+	 * @param serviceRegistry
+	 *            the service registry
+	 * @param name
+	 *            the name for the table
+	 * @param description
+	 *            the description for the table
+	 * @return the created table
+	 *
 	 * @throws ServiceException
 	 * @throws NotFoundException
 	 *             The model where to save the TableInstance is not found.
+	 *
+	 * @deprecated since 5.4.0
 	 */
+	@Deprecated
 	protected Table createEditorModel(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
 		final TableConfiguration configuration = getTableEditorConfiguration();
 		Assert.isNotNull(configuration);
 
 		final Table table = TableHelper.createTable(configuration, null, name, description); // context null here, see bug 410357
+		// Save the model in the associated resource
+		final ModelSet modelSet = ServiceUtils.getInstance().getModelSet(serviceRegistry);
+		final PapyrusNattableModel model = (PapyrusNattableModel) modelSet.getModelChecked(PapyrusNattableModel.MODEL_ID);
+		table.setContext(getTableContext());
+		model.addPapyrusTable(table);
+		return table;
+	}
+
+	/**
+	 * Create a model identifying the editor. This model will be saved with the
+	 * sash
+	 *
+	 * @param serviceRegistry
+	 *            the service registry
+	 * @param name
+	 *            the name for the table
+	 * @param description
+	 *            the description for the table
+	 * @return the created table
+	 *
+	 * @throws ServiceException
+	 * @throws NotFoundException
+	 *             The model where to save the TableInstance is not found.
+	 *
+	 * @since 5.4.0
+	 */
+	protected Table createEditorModel(final ServicesRegistry serviceRegistry, String name, String description, String tableKindId) throws ServiceException, NotFoundException {
+		final TableConfiguration configuration = getTableEditorConfiguration();
+		Assert.isNotNull(configuration);
+
+		final Table table = TableHelper.createTable(configuration, null, name, description, tableKindId); // context null here, see bug 410357
 		// Save the model in the associated resource
 		final ModelSet modelSet = ServiceUtils.getInstance().getModelSet(serviceRegistry);
 		final PapyrusNattableModel model = (PapyrusNattableModel) modelSet.getModelChecked(PapyrusNattableModel.MODEL_ID);
@@ -205,7 +279,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * Returns the context used to create the table
 	 *
 	 * @return
-	 * 		the context used to create the table or <code>null</code> if not found
+	 *         the context used to create the table or <code>null</code> if not found
 	 * @throws ServiceException
 	 */
 	protected EObject getTableContext() {
@@ -222,7 +296,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * @return
 	 */
 	protected List<EObject> getSelection() {
-		final List<EObject> selectedElements = new ArrayList<EObject>();
+		final List<EObject> selectedElements = new ArrayList<>();
 		final IWorkbenchWindow ww = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		if (ww != null) {
 			final ISelection selection = ww.getSelectionService().getSelection();
