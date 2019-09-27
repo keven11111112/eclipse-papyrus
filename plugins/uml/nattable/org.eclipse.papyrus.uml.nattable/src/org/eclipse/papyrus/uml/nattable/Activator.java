@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2019 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 551558
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable;
 
@@ -27,6 +27,9 @@ public class Activator extends AbstractUIPlugin {
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.nattable"; //$NON-NLS-1$
 
+	/** the type of the table */
+	public static final String GENERIC_TREE_TABLE_TYPE = "PapyrusUMLGenericTreeTable";//$NON-NLS-1$
+
 	// The shared instance
 	private static Activator plugin;
 
@@ -40,7 +43,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -52,7 +55,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override

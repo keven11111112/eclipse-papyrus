@@ -11,6 +11,8 @@
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550568
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 551558
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.utils;
 
@@ -162,53 +164,56 @@ public class TableUtil {
 		ArchitectureDomainManager manager = ArchitectureDomainManager.getInstance();
 		PapyrusTable repKind = null;
 		String tableKindId = table.getTableKindId();
-		if (manager.getRepresentationKindById(tableKindId) instanceof PapyrusTable) {
-			repKind = (PapyrusTable) manager.getRepresentationKindById(tableKindId);
-		} else {
-			Activator.log.info("Unexpected table kind: " + tableKindId + " Your notation file might be broken or created with a previous version of the architecture framework."); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-
-		// Check if the selected viewpoint contains the diagram model kind
-		if (repKind != null) {
-
-			if (!checkViewpoint || checker.isInViewpoint(repKind)) {
-				return ViewPrototype.get(repKind);
+		if (manager.getRepresentationKindById(tableKindId) != null) {
+			if (manager.getRepresentationKindById(tableKindId) instanceof PapyrusTable) {
+				repKind = (PapyrusTable) manager.getRepresentationKindById(tableKindId);
+			} else {
+				Activator.log.info("Unexpected table kind: " + tableKindId + " Your notation file might be broken or created with a previous version of the architecture framework."); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 
-			// Check if the selected viewpoint contains an ancestor of the diagram model kind
-			PapyrusRepresentationKind tableParentView = repKind.getParent();
-			while (tableParentView != null && !checker.isInViewpoint(tableParentView)) {
-				tableParentView = tableParentView.getParent();
-			}
-			if (tableParentView != null) {
-				return ViewPrototype.get(tableParentView);
-			}
+			// Check if the selected viewpoint contains the diagram model kind
+			if (repKind != null) {
 
-			// Check if the selected viewpoint contains a descendant of the diagram model kind
-			String tableConfigName = repKind.getName();
-			if (tableConfigName != null) { // the model kind name is used as a "semantic" key to test equality
-				for (final MergedArchitectureViewpoint viewpoint : checker.getViewpoints()) {
-					for (final RepresentationKind representationKind : viewpoint.getRepresentationKinds()) {
-						if (representationKind instanceof PapyrusRepresentationKind) {
-							PapyrusRepresentationKind papyrusRepresentationKind = (PapyrusRepresentationKind) representationKind;
+				if (!checkViewpoint || checker.isInViewpoint(repKind)) {
+					return ViewPrototype.get(repKind);
+				}
 
-							if (tableConfigName.equals(papyrusRepresentationKind.getName())) {
-								ViewPrototype.get(papyrusRepresentationKind);
-							}
+				// Check if the selected viewpoint contains an ancestor of the diagram model kind
+				PapyrusRepresentationKind tableParentView = repKind.getParent();
+				while (tableParentView != null && !checker.isInViewpoint(tableParentView)) {
+					tableParentView = tableParentView.getParent();
+				}
+				if (tableParentView != null) {
+					return ViewPrototype.get(tableParentView);
+				}
 
-							PapyrusRepresentationKind parentPapyrusRepresentationKind = papyrusRepresentationKind.getParent();
-							while (parentPapyrusRepresentationKind != null && !tableConfigName.equals(parentPapyrusRepresentationKind.getName())) {
-								parentPapyrusRepresentationKind = parentPapyrusRepresentationKind.getParent();
-							}
-							if (parentPapyrusRepresentationKind != null) {
-								return ViewPrototype.get(papyrusRepresentationKind);
+				// Check if the selected viewpoint contains a descendant of the diagram model kind
+				String tableConfigName = repKind.getName();
+				if (tableConfigName != null) { // the model kind name is used as a "semantic" key to test equality
+					for (final MergedArchitectureViewpoint viewpoint : checker.getViewpoints()) {
+						for (final RepresentationKind representationKind : viewpoint.getRepresentationKinds()) {
+							if (representationKind instanceof PapyrusRepresentationKind) {
+								PapyrusRepresentationKind papyrusRepresentationKind = (PapyrusRepresentationKind) representationKind;
+
+								if (tableConfigName.equals(papyrusRepresentationKind.getName())) {
+									ViewPrototype.get(papyrusRepresentationKind);
+								}
+
+								PapyrusRepresentationKind parentPapyrusRepresentationKind = papyrusRepresentationKind.getParent();
+								while (parentPapyrusRepresentationKind != null && !tableConfigName.equals(parentPapyrusRepresentationKind.getName())) {
+									parentPapyrusRepresentationKind = parentPapyrusRepresentationKind.getParent();
+								}
+								if (parentPapyrusRepresentationKind != null) {
+									return ViewPrototype.get(papyrusRepresentationKind);
+								}
 							}
 						}
 					}
 				}
-			}
 
+			}
+			return ViewPrototype.get(checker, table.getTableKindId(), table.getOwner(), table.getContext());
 		}
-		return ViewPrototype.get(checker, table.getTableKindId(), table.getOwner(), table.getContext());
+		return ViewPrototype.get(checker, table.getTableConfiguration().getType(), table.getOwner(), table.getContext());
 	}
 }

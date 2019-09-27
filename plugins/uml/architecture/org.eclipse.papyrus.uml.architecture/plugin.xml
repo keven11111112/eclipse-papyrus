@@ -97,7 +97,7 @@
 	   <tableReconciler
 	         reconcilerClass="org.eclipse.papyrus.uml.architecture.migration.UMLTableReconciler_1_3_0"
 	         source="1.0.0"
-	         target="1.4.0">
+	         target="1.3.0">
 	   </tableReconciler>
 	</extension>
 
