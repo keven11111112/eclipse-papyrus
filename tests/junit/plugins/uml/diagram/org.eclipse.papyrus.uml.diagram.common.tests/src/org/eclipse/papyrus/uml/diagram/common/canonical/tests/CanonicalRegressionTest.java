@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2015, 2019 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 551742
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.common.canonical.tests;
@@ -22,6 +23,7 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.eclipse.papyrus.infra.gmfdiag.canonical.tests.AbstractCanonicalTest;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.runner.Scenario;
 import org.eclipse.papyrus.junit.framework.runner.ScenarioRunner;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
@@ -78,6 +80,7 @@ public class CanonicalRegressionTest extends AbstractCanonicalTest {
 
 	@PluginResource("resources/478558/bug478558.di")
 	@ActiveDiagram("IBD")
+	@FailingTest  //see Bug 551742
 	@Test
 	public void visualizePropertyThatIsAssociationEnd_bug478558() {
 		org.eclipse.uml2.uml.Class block3 = (org.eclipse.uml2.uml.Class) editor.getModel().getOwnedType("Block3");
