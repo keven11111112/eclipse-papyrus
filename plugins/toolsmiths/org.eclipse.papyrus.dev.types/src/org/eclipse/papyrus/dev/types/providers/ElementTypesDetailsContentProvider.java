@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -28,7 +29,7 @@ import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.types.core.utils.AdviceComparator;
+import org.eclipse.papyrus.infra.types.core.utils.AdviceUtil;
 
 public class ElementTypesDetailsContentProvider implements ITreeContentProvider {
 
@@ -55,7 +56,7 @@ public class ElementTypesDetailsContentProvider implements ITreeContentProvider 
 	 */
 	@Override
 	public void dispose() {
-		
+
 
 	}
 
@@ -68,7 +69,7 @@ public class ElementTypesDetailsContentProvider implements ITreeContentProvider 
 	 */
 	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		
+
 
 	}
 
@@ -80,7 +81,7 @@ public class ElementTypesDetailsContentProvider implements ITreeContentProvider 
 	 */
 	@Override
 	public Object[] getElements(Object inputElement) {
-		ArrayList<Object> result = new ArrayList<Object>();
+		ArrayList<Object> result = new ArrayList<>();
 		if (inputElement instanceof IElementType) {
 			if (inputElement instanceof IHintedType) {
 				result.add("Semantic Hint: " + ((IHintedType) inputElement).getSemanticHint());
@@ -123,7 +124,7 @@ public class ElementTypesDetailsContentProvider implements ITreeContentProvider 
 			}
 
 			result.add("Display Name: " + ((IElementType) inputElement).getDisplayName());
-			IEditHelperAdvice[] advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(((IElementType) inputElement));
+			IEditHelperAdvice[] advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(((IElementType) inputElement), ClientContextManager.getInstance().getClientContext(contextID));
 			result.add(Arrays.asList(advices));
 		}
 		return result.toArray();
@@ -138,8 +139,11 @@ public class ElementTypesDetailsContentProvider implements ITreeContentProvider 
 	@Override
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof List<?>) {
-			Collections.sort((List<IEditHelperAdvice>) parentElement, new AdviceComparator(ElementTypeRegistry.getInstance().getType(typeID), contextID));
-			return ((List<?>) parentElement).toArray();
+			IEditHelperAdvice[] parents = new IEditHelperAdvice[((List<?>) parentElement).size()];
+			((List<?>) parentElement).toArray(parents);
+			IEditHelperAdvice[] sortedAdvices = AdviceUtil.sort(parents, ElementTypeRegistry.getInstance().getType(typeID), contextID);
+			// Collections.sort((List<IEditHelperAdvice>) parentElement, new AdviceComparator(ElementTypeRegistry.getInstance().getType(typeID), contextID));
+			return sortedAdvices;
 		}
 
 		return Collections.emptyList().toArray();
@@ -153,7 +157,7 @@ public class ElementTypesDetailsContentProvider implements ITreeContentProvider 
 	 */
 	@Override
 	public Object getParent(Object element) {
-		
+
 		return null;
 	}
 

@@ -19,8 +19,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
@@ -35,7 +33,7 @@ import org.eclipse.papyrus.dev.types.providers.ElementTypesContentProvider;
 import org.eclipse.papyrus.dev.types.providers.ElementTypesDetailsContentProvider;
 import org.eclipse.papyrus.dev.types.providers.ElementTypesDetailsLabelProvider;
 import org.eclipse.papyrus.dev.types.providers.ElementTypesLabelProvider;
-import org.eclipse.papyrus.infra.types.core.utils.AdviceComparator;
+import org.eclipse.papyrus.infra.types.core.utils.AdviceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.MouseAdapter;
@@ -68,7 +66,7 @@ public class RegistredElementTypesView extends ViewPart {
 
 		combo = new Combo(parent, SWT.NONE);
 		final List<String> itemsList = new ArrayList<>();
-		List<IClientContext> contexts = new ArrayList<IClientContext>(ClientContextManager.getInstance().getClientContexts());
+		List<IClientContext> contexts = new ArrayList<>(ClientContextManager.getInstance().getClientContexts());
 
 		int index = -1;
 		int i = 0;
@@ -135,9 +133,11 @@ public class RegistredElementTypesView extends ViewPart {
 
 
 									IEditHelperAdvice[] advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(elementType);
-									List<IEditHelperAdvice> advicesList = Arrays.asList(advices);
-									Collections.sort(advicesList, new AdviceComparator(elementType, clientContexId));
-									for (IEditHelperAdvice advice : advicesList) {
+
+									// List<IEditHelperAdvice> advicesList = Arrays.asList(advices);
+									// Collections.sort(advicesList, new AdviceComparator(elementType, clientContexId));
+									IEditHelperAdvice[] sortedAdvices = AdviceUtil.sort(advices, elementType, clientContexId);
+									for (IEditHelperAdvice advice : sortedAdvices) {
 										writer.write("\t\t" + advice.getClass().getName() + "\n");
 									}
 								}
