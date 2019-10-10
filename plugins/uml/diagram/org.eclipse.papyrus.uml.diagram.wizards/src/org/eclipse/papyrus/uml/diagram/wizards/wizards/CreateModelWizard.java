@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2017, 2018 Obeo, CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2008, 2017, 2018, 2019 Obeo, CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,7 @@
  *     Christian W. Damus (CEA) - Support creating models in repositories (CDO)
  *     Christian W. Damus - bugs 490936, 471453, 540584
  *	   Pauline DEVILLE (CEA LIST) - Bug 493312 - [Wizard] Apply multiple profiles in new model wizard
+ *     Ansgar Radermacher (CEA LIST) - bug 551952
  *
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.wizards;
@@ -1032,14 +1033,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		for (int i = endProviderPageIndex; result && (i < allPages.length); i++) {
 			result = allPages[i].isPageComplete();
-		}
-
-		if (result) {
-			// This takes care of the case problems when creating a model with the same name but different case
-			IWizardPage page = getNewModelPage();
-			if (page != null) {
-				result = page.canFlipToNextPage();
-			}
 		}
 
 		return result;

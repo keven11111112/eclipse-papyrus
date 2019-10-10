@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2017, 2019 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,8 +9,10 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- * Thibault Le Ouay (Sherpa Engineering) t.leouay@sherpa-eng.com  - Initial API and implementation
- * Christian W. Damus - bug 471453
+ *   Thibault Le Ouay (Sherpa Engineering) t.leouay@sherpa-eng.com  - Initial API and implementation
+ *   Christian W. Damus - bug 471453
+ *   Ansgar Radermacher (CEA LIST) - bug 551952
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
@@ -138,7 +140,7 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage imp
 
 	/**
 	 * This method is used to avoid case conflicts between existing and newly created projects
-	 * 
+	 *
 	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
 	 *
 	 * @return
@@ -156,7 +158,7 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage imp
 			canFlip = false;
 		}
 
-		return canFlip;
+		return canFlip && super.canFlipToNextPage();
 	}
 
 	private boolean verifyProjectName() {

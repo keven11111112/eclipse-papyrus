@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2017 Obeo, Christian W. Damus, and others.
+ * Copyright (c) 2008, 2017, 2019 Obeo, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,7 @@
  *     Tatiana Fesenko(CEA) - initial API and implementation
  *     Christian W. Damus (CEA) - Support creating models in repositories (CDO)
  *     Christian W. Damus - bug 471453
+ *     Ansgar Radermacher (CEA LIST) - bug 551952
  *
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
@@ -247,7 +248,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage implements INewP
 	 * @see org.eclipse.ui.dialogs.WizardNewFileCreationPage#createNewFile()
 	 *
 	 * @return
-	 * 		The model's IFile
+	 *         The model's IFile
 	 */
 	@Override
 	public IFile createNewFile() {
@@ -263,7 +264,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage implements INewP
 	/**
 	 * This method is used to avoid case conflicts between existing and newly created models
 	 * As well as to prevent the user to create a model outside a container
-	 * 
+	 *
 	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
 	 *
 	 * @return
@@ -291,14 +292,14 @@ public class NewModelFilePage extends WizardNewFileCreationPage implements INewP
 			canFlip = false;
 		}
 
-		return canFlip;
+		return canFlip && super.canFlipToNextPage();
 	}
 
 	/**
 	 * This method fetches all the IFiles' name in the workspace
-	 * 
+	 *
 	 * @return
-	 * 		The list of the names
+	 *         The list of the names
 	 */
 	public Collection<String> getExistingNames() {
 		Collection<String> result = new LinkedList<>();
@@ -323,7 +324,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage implements INewP
 
 	/**
 	 * This method returns the names of the first level children of the selected element
-	 * 
+	 *
 	 * @param membersArray
 	 * @return
 	 */
