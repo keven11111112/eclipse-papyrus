@@ -14,7 +14,7 @@
 
 You can cancel or continue after this page.
 *''First page'':
-**you must select an existing plugin as output of the table configuration file
+**you must select an existing '''plugin''' as output of the table configuration file
 [[File:images/CreateTableConfigurationFromTable_OutputPage.png|frame|none]]
 *''Second page'':
 **You must define the name and the type of your new table configuration. The description is not mandatory. 

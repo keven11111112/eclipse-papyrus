@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 552101
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.nattable.wizard;
@@ -33,7 +34,6 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -62,7 +62,6 @@ import org.eclipse.papyrus.toolsmiths.nattable.wizard.pages.WarningOnCurrentTabl
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
-import org.osgi.framework.Bundle;
 
 
 
@@ -242,8 +241,7 @@ public class ExportAsTableConfigurationWizard extends Wizard implements IExportW
 			newIconPath = URI.createPlatformPluginURI(imageFilePNG.getFullPath().toPortableString(), true).toString();
 			// 3.2 we create the defaut table icon, using the PNG format.
 			if (!imageFilePNG.exists()) {
-				final Bundle bundle = Platform.getBundle(Activator.PLUGIN_ID);
-				final URL fileURL = bundle.getResource(DEFAULT_TABLE_ICON);
+				final URL fileURL = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getURL(Activator.PLUGIN_ID, DEFAULT_TABLE_ICON);
 				File file = null;
 				try {
 					file = new File(FileLocator.resolve(fileURL).toURI());
