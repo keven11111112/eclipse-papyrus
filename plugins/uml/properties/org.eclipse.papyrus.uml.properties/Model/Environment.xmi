@@ -18,6 +18,9 @@
   <constraintTypes
       label="Is Profile Applied"
       constraintClass="org.eclipse.papyrus.uml.properties.constraints.IsProfileAppliedConstraint"/>
+  <constraintTypes
+      label="Is Valid Architecture Context"
+      constraintClass="org.eclipse.papyrus.uml.properties.constraints.IsValidArchitectureContext"/>
   <modelElementFactories
       name="UML Specific Factory"
       factoryClass="org.eclipse.papyrus.uml.properties.modelelement.UMLEditorFactory"/>
