@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 CEA LIST.
+ * Copyright (c) 2014, 2017, 2019 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,13 +12,18 @@
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Gaabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - bug 438511
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - bug 511045
- *  Ansgar Radermacher (CEA LIST), ansgar.radermacher@cea.fr - bug 521279 (copy/paste between models) 
+ *  Ansgar Radermacher (CEA LIST), ansgar.radermacher@cea.fr - bug 521279 (copy/paste between models)
+ *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - bug 552410
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.commands;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -98,7 +103,22 @@ public class DuplicateStereotypeCommand extends RecordingCommand {
 		for (EStructuralFeature eStructuralFeature : eStructuralFeatures) {
 			String name = eStructuralFeature.getName();
 			if (!name.startsWith(Extension.METACLASS_ROLE_PREFIX) && eStructuralFeature.isChangeable()) {
-				applyStereotype.eSet(eStructuralFeature, stereotypeApplication.eGet(eStructuralFeature));
+				if (eStructuralFeature instanceof EReference && ((EReference) eStructuralFeature).isContainment()) {
+					// In case that the structural feature is containment then we should copy the value not only change the reference
+					Object value = stereotypeApplication.eGet(eStructuralFeature);
+					if (value instanceof EObject) {
+						EObject valueCopy = EcoreUtil.copy((EObject) value);
+						applyStereotype.eSet(eStructuralFeature, valueCopy);
+					} else if (value instanceof Collection<?>) {
+						Collection<?> listValue = (Collection<?>) value;
+						if (listValue.stream().allMatch(v -> v instanceof EObject)) {
+							Collection<?> valueCopy = EcoreUtil.copyAll(listValue);
+							applyStereotype.eSet(eStructuralFeature, valueCopy);
+						}
+					}
+				} else {
+					applyStereotype.eSet(eStructuralFeature, stereotypeApplication.eGet(eStructuralFeature));
+				}
 			}
 		}
 	}

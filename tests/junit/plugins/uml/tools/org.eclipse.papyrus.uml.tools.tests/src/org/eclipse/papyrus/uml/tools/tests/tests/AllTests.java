@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 440108
  *  Christian W. Damus - bugs 458197, 468030, 485220, 502461, 508629
  *  Ansgar Radermacher (CEA LIST) - bug 541686 (duplicated replationships)
+ *  Pauline DEVILLE (CEA LIST) - bug 552410
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.tests.tests;
 
@@ -39,6 +40,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		DelegatingItemLabelProviderTest.class,
 		UMLCopyTest.class,
 		UMLCopyTestME.class,
+		DuplicateStereotypeCommandTest.class
 
 })
 public class AllTests {
