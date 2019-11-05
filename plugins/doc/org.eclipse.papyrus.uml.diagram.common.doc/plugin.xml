@@ -35,6 +35,22 @@
             file="target/generated-eclipse-help/stereotype-property-reference-edge-toc.xml"
             primary="false">
       </toc>
+      <toc
+            file="target/generated-eclipse-help/modelingAssistants-main-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/modelingAssistants-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/diagramSynchronization-main-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/diagramSynchronization-toc.xml"
+            primary="false">
+      </toc>
    </extension>
 
 </plugin>
