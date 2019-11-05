@@ -16,8 +16,8 @@ package org.eclipse.papyrus.uml.textedit.parameter.tests.suites;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.junit.utils.xtext.AbstractGrammarTest;
 import org.eclipse.papyrus.uml.textedit.parameter.xtext.ui.contributions.ParameterXtextDirectEditorConfiguration;
-import org.eclipse.papyrus.uml.textedit.tests.AbstractGrammarTest;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.DataType;

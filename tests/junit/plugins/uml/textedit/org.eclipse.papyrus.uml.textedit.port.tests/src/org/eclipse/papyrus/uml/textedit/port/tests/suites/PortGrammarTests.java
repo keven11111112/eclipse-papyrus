@@ -15,8 +15,8 @@ package org.eclipse.papyrus.uml.textedit.port.tests.suites;
 
 
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.junit.utils.xtext.AbstractGrammarTest;
 import org.eclipse.papyrus.uml.textedit.port.xtext.ui.contribution.PortXtextDirectEditorConfiguration;
-import org.eclipse.papyrus.uml.textedit.tests.AbstractGrammarTest;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.DataType;
@@ -106,45 +106,45 @@ public class PortGrammarTests extends AbstractGrammarTest<Port> {
 		final LiteralInteger lowerBound = UMLFactory.eINSTANCE.createLiteralInteger();
 		lowerBound.setValue(2);
 		testedPort.setLowerValue(lowerBound);
-		
+
 		final LiteralUnlimitedNatural upperBound = UMLFactory.eINSTANCE.createLiteralUnlimitedNatural();
 		upperBound.setValue(4);
 		testedPort.setUpperValue(upperBound);
-		
+
 		Assert.assertEquals("+ p1 : <Undefined> [2..4] {unique}", tester.getInitialText(testedPort));
-		
+
 		// Parse Integer and UnlimitedNatural
 		tester.parseText(testedPort, "p1 : <Undefined> [1..*] {unique}");
 		Assert.assertEquals("The instance of lower ValueSpecification should not change when compatible types are used", lowerBound, testedPort.getLowerValue());
 		Assert.assertEquals("The instance of upper ValueSpecification should not change when compatible types are used", upperBound, testedPort.getUpperValue());
 		Assert.assertEquals(1, lowerBound.getValue());
 		Assert.assertEquals(-1, upperBound.getValue());
-		
+
 		// Manage only one bound display
 		lowerBound.setValue(0);
 		Assert.assertEquals("+ p1 : <Undefined> [*] {unique}", tester.getInitialText(testedPort));
-		
+
 		// Parse one String
 		tester.parseText(testedPort, "p1 : <Undefined> [\"TEN\"] {unique}");
 		Assert.assertTrue("The created lower ValueSpecification must be a LiteralString", testedPort.getLowerValue() instanceof LiteralString);
 		Assert.assertTrue("The created upper ValueSpecification must be a LiteralString", testedPort.getUpperValue() instanceof LiteralString);
-		Assert.assertEquals("TEN", ((LiteralString)testedPort.getLowerValue()).getValue());
-		LiteralString upperStringBound = (LiteralString)testedPort.getUpperValue();
+		Assert.assertEquals("TEN", ((LiteralString) testedPort.getLowerValue()).getValue());
+		LiteralString upperStringBound = (LiteralString) testedPort.getUpperValue();
 		Assert.assertEquals("TEN", upperStringBound.getValue());
-		
+
 		// Manage Integer and String
 		lowerBound.setValue(3);
 		testedPort.setLowerValue(lowerBound);
 		Assert.assertEquals("+ p1 : <Undefined> [3..\"TEN\"] {unique}", tester.getInitialText(testedPort));
-		
+
 		// Parse Integer and String
 		tester.parseText(testedPort, "p1 : <Undefined> [\"MIN\"..\"MAX\"] {unique}");
 		Assert.assertTrue("The created lower ValueSpecification must be a LiteralString", testedPort.getLowerValue() instanceof LiteralString);
 		Assert.assertEquals("The instance of upper ValueSpecification should not change when compatible types are used", upperStringBound, testedPort.getUpperValue());
-		Assert.assertEquals("MIN", ((LiteralString)testedPort.getLowerValue()).getValue());
+		Assert.assertEquals("MIN", ((LiteralString) testedPort.getLowerValue()).getValue());
 		Assert.assertEquals("MAX", upperStringBound.getValue());
 	}
-	
+
 	@Override
 	public DefaultXtextDirectEditorConfiguration getEditor() {
 		return new PortXtextDirectEditorConfiguration();

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST
+ * Copyright (c) 2014, 2019 CEA LIST
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,10 +10,10 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 552697
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.textedit.tests;
+package org.eclipse.papyrus.junit.utils.xtext;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -26,6 +26,9 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.junit.Before;
 import org.junit.Rule;
 
+/**
+ * @since 2.4
+ */
 public abstract class AbstractGrammarTest<T extends EObject> extends AbstractPapyrusTest {
 
 	protected DefaultXtextDirectEditorConfiguration editor;
@@ -38,7 +41,7 @@ public abstract class AbstractGrammarTest<T extends EObject> extends AbstractPap
 	@Before
 	public void initEditor() {
 		editor = getEditor();
-		tester = new XTextEditorTester<T>(editor);
+		tester = new XTextEditorTester<>(editor);
 	}
 
 	public <E extends NamedElement> E findElement(Class<E> type, String name) {

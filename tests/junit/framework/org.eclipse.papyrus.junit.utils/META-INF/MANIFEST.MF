@@ -10,15 +10,17 @@ Require-Bundle: org.eclipse.jdt.ui;bundle-version="[3.12.0,4.0.0)";visibility:=r
  org.eclipse.papyrus.junit.framework;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.nattable.common;bundle-version="[5.0.0,6.0.0)";visibility:=reexport,
  org.eclipse.papyrus.infra.internationalization.common;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.papyrus.infra.internationalization;bundle-version="[1.0.0,2.0.0)"
+ org.eclipse.papyrus.infra.internationalization;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="[2.1.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.junit.matchers,
  org.eclipse.papyrus.junit.utils,
  org.eclipse.papyrus.junit.utils.resources,
  org.eclipse.papyrus.junit.utils.rules,
- org.eclipse.papyrus.junit.utils.tests
+ org.eclipse.papyrus.junit.utils.tests,
+ org.eclipse.papyrus.junit.utils.xtext
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.3.0.qualifier
+Bundle-Version: 2.4.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.junit.utils.Activator

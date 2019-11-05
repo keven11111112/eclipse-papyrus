@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.valuespecification.tests.suites;
 
@@ -18,7 +18,7 @@ package org.eclipse.papyrus.uml.textedit.valuespecification.tests.suites;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.papyrus.uml.textedit.tests.AbstractGrammarTest;
+import org.eclipse.papyrus.junit.utils.xtext.AbstractGrammarTest;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contribution.ValueSpecificationXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Class;
@@ -88,7 +88,7 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 		realType = findElement(Property.class, "PropertyRealType").getType();
 
 		Class createdClass = (Class) rootModel.createPackagedElement("Class1", UMLPackage.eINSTANCE.getClass_());
-		testedProperty = (Property) createdClass.createOwnedAttribute("Property", null, UMLPackage.eINSTANCE.getProperty());
+		testedProperty = createdClass.createOwnedAttribute("Property", null, UMLPackage.eINSTANCE.getProperty());
 	}
 
 	@Test
@@ -101,7 +101,7 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 		// Check undefined
 		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "<Undefined>");
 		Assert.assertNull(testedProperty.getDefaultValue());
-		
+
 		// ***************************************************//
 		// Check the basic parser with all the possible types //
 		// ***************************************************//
@@ -133,7 +133,7 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 		Assert.assertEquals("integer", testedProperty.getDefaultValue().getName());
 		Assert.assertEquals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural(), testedProperty.getDefaultValue().eClass());
 		Assert.assertEquals(34, ((LiteralUnlimitedNatural) testedProperty.getDefaultValue()).getValue());
-		
+
 		// Check literal real
 		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "123.45");
 		Assert.assertEquals(VisibilityKind.PROTECTED_LITERAL, testedProperty.getDefaultValue().getVisibility());
@@ -146,7 +146,7 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 		Assert.assertEquals(VisibilityKind.PUBLIC_LITERAL, testedProperty.getDefaultValue().getVisibility());
 		Assert.assertEquals("integer", testedProperty.getDefaultValue().getName());
 		Assert.assertEquals(UMLPackage.eINSTANCE.getLiteralNull(), testedProperty.getDefaultValue().eClass());
-		
+
 		// Check return to null
 		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "");
 		Assert.assertEquals(null, testedProperty.getDefaultValue());
@@ -163,20 +163,20 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 		Assert.assertEquals(VisibilityKind.PRIVATE_LITERAL, testedProperty.getDefaultValue().getVisibility());
 		Assert.assertEquals("+#id=\"test\"", testedProperty.getDefaultValue().getName());
 		Assert.assertEquals(UMLPackage.eINSTANCE.getOpaqueExpression(), testedProperty.getDefaultValue().eClass());
-		
+
 		// *********************************************//
 		// Check the update of same value specification //
 		// *********************************************//
-		
+
 		// Check literal unlimited natural
 		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "+unlimitedNatural=12");
 		Assert.assertEquals(VisibilityKind.PUBLIC_LITERAL, testedProperty.getDefaultValue().getVisibility());
 		Assert.assertEquals("unlimitedNatural", testedProperty.getDefaultValue().getName());
 		Assert.assertEquals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural(), testedProperty.getDefaultValue().eClass());
 		Assert.assertEquals(12, ((LiteralUnlimitedNatural) testedProperty.getDefaultValue()).getValue());
-		
+
 		// Get the id of the default value to check that the default value is not created an other time
-		final String currentIdentifier = ((XMIResource)testedProperty.getDefaultValue().eResource()).getID(testedProperty.getDefaultValue());
+		final String currentIdentifier = ((XMIResource) testedProperty.getDefaultValue().eResource()).getID(testedProperty.getDefaultValue());
 		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "34");
 		Assert.assertEquals(currentIdentifier, ((XMIResource) testedProperty.getDefaultValue().eResource()).getID(testedProperty.getDefaultValue()));
 
@@ -196,7 +196,7 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 		Assert.assertEquals("unlimitedNatural", testedProperty.getDefaultValue().getName());
 		Assert.assertEquals(UMLPackage.eINSTANCE.getLiteralReal(), testedProperty.getDefaultValue().eClass());
 		Assert.assertEquals(12, ((LiteralReal) testedProperty.getDefaultValue()).getValue(), 0);
-		
+
 		// Check the unlimited natural text parser with integer type on property -> Literal integer will be created
 		testedProperty.setType(integerType);
 		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "-integer=34");
@@ -204,13 +204,13 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 		Assert.assertEquals("integer", testedProperty.getDefaultValue().getName());
 		Assert.assertEquals(UMLPackage.eINSTANCE.getLiteralInteger(), testedProperty.getDefaultValue().eClass());
 		Assert.assertEquals(34, ((LiteralInteger) testedProperty.getDefaultValue()).getValue(), 0);
-		
+
 		// Check the integer text parser with boolean type on property -> Opaque Expression will be created
 		testedProperty.setType(booleanType);
 		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "+integer=56");
 		Assert.assertEquals("+integer=56", testedProperty.getDefaultValue().getName());
 		Assert.assertEquals(UMLPackage.eINSTANCE.getOpaqueExpression(), testedProperty.getDefaultValue().eClass());
-		
+
 		// ******************************//
 		// Check the multi valued option //
 		// ******************************//
@@ -229,12 +229,12 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 		// Check the integer text parser with boolean type on property -> Opaque Expression will be created
 		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "");
 		Assert.assertNull(testedProperty.getDefaultValue());
-		
+
 	}
 
 	@Test
 	public void testInitialText() {
-		ValueSpecification testedValueSpecification = (ValueSpecification) testedProperty.createDefaultValue("valueSpec", null, UMLPackage.eINSTANCE.getLiteralBoolean());
+		ValueSpecification testedValueSpecification = testedProperty.createDefaultValue("valueSpec", null, UMLPackage.eINSTANCE.getLiteralBoolean());
 		Assert.assertEquals("valueSpec=false", tester.getParentInitialText(testedValueSpecification));
 
 		((LiteralBoolean) testedValueSpecification).setValue(true);

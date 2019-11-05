@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2018 CEA LIST
+ * Copyright (c) 2014, 2018, 2019 CEA LIST
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,10 +10,10 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Bug 539293
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Bug 539293, Bug 552697
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.textedit.tests;
+package org.eclipse.papyrus.junit.utils.xtext;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
@@ -23,6 +23,9 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 
+/**
+ * @since 2.4
+ */
 public class XTextEditorTester<T extends EObject> {
 
 	/**
@@ -69,7 +72,7 @@ public class XTextEditorTester<T extends EObject> {
 	/**
 	 *
 	 * @return
-	 * 		the command result. This method must be called after the method parseText. If not, this method will return <code>null</code>;
+	 *         the command result. This method must be called after the method parseText. If not, this method will return <code>null</code>;
 	 *
 	 * @since 1.3
 	 */

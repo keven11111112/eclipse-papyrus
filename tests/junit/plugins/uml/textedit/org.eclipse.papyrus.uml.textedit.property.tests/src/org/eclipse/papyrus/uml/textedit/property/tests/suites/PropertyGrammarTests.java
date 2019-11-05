@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.uml.textedit.property.tests.suites;
 
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.junit.utils.xtext.AbstractGrammarTest;
 import org.eclipse.papyrus.uml.textedit.property.xtext.ui.contributions.PropertyXtextDirectEditorConfiguration;
-import org.eclipse.papyrus.uml.textedit.tests.AbstractGrammarTest;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.DataType;
@@ -92,49 +92,49 @@ public class PropertyGrammarTests extends AbstractGrammarTest<Property> {
 		Assert.assertEquals("The instance of ValueSpecification should not change when compatible types are used", defaultRealValue, testedProperty.getDefaultValue());
 		Assert.assertEquals(.2, defaultRealValue.getValue(), 0.001);
 	}
-	
+
 	@Test
 	public void testMultiplicity() throws Exception {
 		// Manage two bounds (integer and unlimited natural) display
 		final LiteralInteger lowerBound = UMLFactory.eINSTANCE.createLiteralInteger();
 		lowerBound.setValue(2);
 		testedProperty.setLowerValue(lowerBound);
-		
+
 		final LiteralUnlimitedNatural upperBound = UMLFactory.eINSTANCE.createLiteralUnlimitedNatural();
 		upperBound.setValue(4);
 		testedProperty.setUpperValue(upperBound);
-		
+
 		Assert.assertEquals("+ p1 : <Undefined> [2..4] {unique}", tester.getInitialText(testedProperty));
-		
+
 		// Parse Integer and UnlimitedNatural
 		tester.parseText(testedProperty, "p1 : <Undefined> [1..*] {unique}");
 		Assert.assertEquals("The instance of lower ValueSpecification should not change when compatible types are used", lowerBound, testedProperty.getLowerValue());
 		Assert.assertEquals("The instance of upper ValueSpecification should not change when compatible types are used", upperBound, testedProperty.getUpperValue());
 		Assert.assertEquals(1, lowerBound.getValue());
 		Assert.assertEquals(-1, upperBound.getValue());
-		
+
 		// Manage only one bound display
 		lowerBound.setValue(0);
 		Assert.assertEquals("+ p1 : <Undefined> [*] {unique}", tester.getInitialText(testedProperty));
-		
+
 		// Parse one String
 		tester.parseText(testedProperty, "p1 : <Undefined> [\"TEN\"] {unique}");
 		Assert.assertTrue("The created lower ValueSpecification must be a LiteralString", testedProperty.getLowerValue() instanceof LiteralString);
 		Assert.assertTrue("The created upper ValueSpecification must be a LiteralString", testedProperty.getUpperValue() instanceof LiteralString);
-		Assert.assertEquals("TEN", ((LiteralString)testedProperty.getLowerValue()).getValue());
-		LiteralString upperStringBound = (LiteralString)testedProperty.getUpperValue();
+		Assert.assertEquals("TEN", ((LiteralString) testedProperty.getLowerValue()).getValue());
+		LiteralString upperStringBound = (LiteralString) testedProperty.getUpperValue();
 		Assert.assertEquals("TEN", upperStringBound.getValue());
-		
+
 		// Manage Integer and String
 		lowerBound.setValue(3);
 		testedProperty.setLowerValue(lowerBound);
 		Assert.assertEquals("+ p1 : <Undefined> [3..\"TEN\"] {unique}", tester.getInitialText(testedProperty));
-		
+
 		// Parse Integer and String
 		tester.parseText(testedProperty, "p1 : <Undefined> [\"MIN\"..\"MAX\"] {unique}");
 		Assert.assertTrue("The created lower ValueSpecification must be a LiteralString", testedProperty.getLowerValue() instanceof LiteralString);
 		Assert.assertEquals("The instance of upper ValueSpecification should not change when compatible types are used", upperStringBound, testedProperty.getUpperValue());
-		Assert.assertEquals("MIN", ((LiteralString)testedProperty.getLowerValue()).getValue());
+		Assert.assertEquals("MIN", ((LiteralString) testedProperty.getLowerValue()).getValue());
 		Assert.assertEquals("MAX", upperStringBound.getValue());
 	}
 

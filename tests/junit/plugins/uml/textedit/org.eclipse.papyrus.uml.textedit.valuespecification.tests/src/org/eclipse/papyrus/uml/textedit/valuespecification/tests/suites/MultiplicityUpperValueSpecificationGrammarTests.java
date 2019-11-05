@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,14 +10,14 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.textedit.valuespecification.tests.suites;
 
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.papyrus.uml.textedit.tests.AbstractGrammarTest;
+import org.eclipse.papyrus.junit.utils.xtext.AbstractGrammarTest;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contribution.MultiplicityUpperValueSpecificationXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Class;
@@ -48,7 +48,7 @@ public class MultiplicityUpperValueSpecificationGrammarTests extends AbstractGra
 		rootModel = findElement(Model.class, "model");
 
 		final Class createdClass = (Class) rootModel.createPackagedElement("Class1", UMLPackage.eINSTANCE.getClass_());
-		testedProperty = (Property) createdClass.createOwnedAttribute("Property", null, UMLPackage.eINSTANCE.getProperty());
+		testedProperty = createdClass.createOwnedAttribute("Property", null, UMLPackage.eINSTANCE.getProperty());
 	}
 
 	@Test
