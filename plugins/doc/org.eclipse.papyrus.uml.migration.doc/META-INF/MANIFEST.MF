@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Require-Bundle: org.eclipse.help;bundle-version="[3.7.0,4.0.0)",
+ org.eclipse.papyrus.infra.doc;bundle-version="[1.2.0,2.0.0)"
+Bundle-Vendor: %vendorName
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 1.0.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.papyrus.uml.migration.doc;singleton:=true
+Automatic-Module-Name: org.eclipse.papyrus.uml.migration.doc
