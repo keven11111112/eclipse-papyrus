@@ -12,6 +12,7 @@
 	
 	<modules>
 		<module>org.eclipse.papyrus.copypaste.ui.doc</module>
+		<module>org.eclipse.papyrus.developer.doc</module>
 		<module>org.eclipse.papyrus.dsml.validation.doc</module>
 		<module>org.eclipse.papyrus.infra.doc</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.common.doc</module>
