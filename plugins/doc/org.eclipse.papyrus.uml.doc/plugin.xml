@@ -55,6 +55,30 @@
             file="target/generated-eclipse-help/obfuscation-toc.xml"
             primary="false">
       </toc>
+      <toc
+            file="target/generated-eclipse-help/searchModelExplorer-main-toc.xml"
+            primary="false">
+      </toc>
+       <toc
+            file="target/generated-eclipse-help/searchModelExplorer-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/customizeUMLLabelInModelExplorer-main-toc.xml"
+            primary="false">
+      </toc>
+       <toc
+            file="target/generated-eclipse-help/customizeUMLLabelInModelExplorer-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/expandInModelExplorer-main-toc.xml"
+            primary="false">
+      </toc>
+       <toc
+            file="target/generated-eclipse-help/expandInModelExplorer-toc.xml"
+            primary="false">
+      </toc>
    </extension>
 
 </plugin>

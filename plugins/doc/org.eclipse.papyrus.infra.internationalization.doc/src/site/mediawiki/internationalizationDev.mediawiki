@@ -1,4 +1,17 @@
 = Internationalization =
+
+== Requirements ==
+Requirements for the internationalization are this following:
+
+[[File:images/Internationalization_Requirements.png]]
+
+== Use case ==
+The principal use case for this feature is this following:
+
+[[File:images/Internationalization_UseCase.png]]
+
+== Description ==
+
 The internationalization is the way to manage your model with a specific language by labels. Like Eclipse, the internationalization is managed by the 'properties' file which are defined depending language as following (with for example, english language in US country):
 * ''modelName'''''_en_US.properties'''
 * ''modelName'''''_en.properties'''
@@ -207,6 +220,43 @@ The <code>InternationalizationResource</code> need options for its load and save
 === Model Resource ===
 The <code>InternationalizationResource</code> are managed with a <code>ModelResource</code>.
 For the internationalization, the model resource is the <code>UMLInternationalizationModelResource</code> (UML plugins) inherit from <code>InternationalizationModelResource</code> (infra plugins).
+
+The internationalization must be managed by a resource containing data from EMF meta-model according to the ‘*.properties’ file.
+The EMF meta-model can be similar to this one:
+
+[[File:images/Internationalization_Resource_MetaModel.png]]
+ 
+This data must be loaded and set when the resource set of the project will be opened. This must be managed as following:
+
+[[File:images/Internationalization_Resource_Load.png]]
+
+To read the ‘*.properties’ file (if exists), the ‘ResourceBundle’ simplify this one. By example:
+
+<source lang="java">
+InternationalisationLibrary library = InternationalisationFactory.eINSTANCE.createInternationalisationLibrary();
+
+ResourceBundle resourceBundle = ResourceBundle.getBundle(eObject, localize);
+
+Enumeration keys = resourceBundle.getKeys();
+
+while (keys.hasMoreElements()) {
+
+    InternationalisationEntry entry = InternationalisationFactory.eINSTANCE.createInternationalisationEntry();
+
+    String key = (String)keys.nextElement();
+
+    entry.setKey(key);
+
+    entry.setValue(resourceBundle.getString(key));
+
+    library.getEntries().add(entry);
+
+}</source>
+
+The internationalization library must be created as previously with String ‘key’ in a first way.
+To create the UML Element reference in a second way, two ways are possible:
+* Browse all the UML elements in model and search the qualified name match
+* Retrieve the UML Element by its qualified name using ‘NameResolutionUtils’
 
 === InternationalizationKeyResolver ===
 The <code>InternationalizationKeyResolver</code> and <code>UMLInternationalizationKeyResolver</code> manage the correct retrieve of Diagrams, Tables (infra plugins) and UML elements (UML plugins) by the keys and the correct save elements keys as specified previously.
