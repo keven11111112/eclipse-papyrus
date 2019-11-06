@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.modelexplorer.tests;
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
@@ -52,7 +53,7 @@ import org.junit.Test;
 @PluginResource("resources/adv_mode.di")
 public class AdvancedModeTest extends AbstractPapyrusTest {
 
-	private static final String SIMPLE_UML_CUSTOMIZATION = "SimpleUML"; //$NON-NLS-1$ 
+	private static final String SIMPLE_UML_CUSTOMIZATION = "SimpleUML"; //$NON-NLS-1$
 
 	@Rule
 	public final PapyrusEditorFixture editor = new PapyrusEditorFixture();
@@ -65,10 +66,10 @@ public class AdvancedModeTest extends AbstractPapyrusTest {
 
 	@Test
 	public void advancedModeDoesNotCollapseItself() {
-		ParameterableElement parameteredClass = ((TemplateableElement)editor.getModel().getOwnedType("Container")).getOwnedTemplateSignature().getOwnedParameters().get(0).getOwnedParameteredElement();
+		ParameterableElement parameteredClass = ((TemplateableElement) editor.getModel().getOwnedType("Container")).getOwnedTemplateSignature().getOwnedParameters().get(0).getOwnedParameteredElement();
 
 		// "reveal" actually does a "select and reveal"
-		ModelExplorerView.reveal(new StructuredSelection(parameteredClass), editor.getModelExplorerView().getCommonViewer());
+		ModelExplorerView.reveal((ISelection) new StructuredSelection(parameteredClass), editor.getModelExplorerView().getCommonViewer());
 
 		editor.flushDisplayEvents();
 
@@ -79,9 +80,9 @@ public class AdvancedModeTest extends AbstractPapyrusTest {
 		editor.flushDisplayEvents();
 
 		// Verify that the class is still selected
-		IStructuredSelection selection = (IStructuredSelection)editor.getModelExplorerView().getSite().getSelectionProvider().getSelection();
+		IStructuredSelection selection = (IStructuredSelection) editor.getModelExplorerView().getSite().getSelectionProvider().getSelection();
 		assertThat(selection.size(), is(1));
-		assertThat(EMFHelper.getEObject(selection.getFirstElement()), is((EObject)parameteredClass));
+		assertThat(EMFHelper.getEObject(selection.getFirstElement()), is((EObject) parameteredClass));
 	}
 
 	//
@@ -100,31 +101,31 @@ public class AdvancedModeTest extends AbstractPapyrusTest {
 
 	private void setAdvancedMode(boolean advancedMode) {
 		ICustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
-		if(customizationManager != null) {
+		if (customizationManager != null) {
 			ICustomizationCatalogManager customCatalog = ICustomizationCatalogManagerFactory.DEFAULT.getOrCreateCustomizationCatalogManager(customizationManager.getResourceSet());
 			Customization simpleUMLCustomization = null;
 
-			//look for SIMPLE UML Customization
-			for(Customization customization : customCatalog.getRegisteredCustomizations()) {
-				if(SIMPLE_UML_CUSTOMIZATION.equals(customization.getName())) {
+			// look for SIMPLE UML Customization
+			for (Customization customization : customCatalog.getRegisteredCustomizations()) {
+				if (SIMPLE_UML_CUSTOMIZATION.equals(customization.getName())) {
 					simpleUMLCustomization = customization;
 					break;
 				}
 			}
 
-			if(simpleUMLCustomization != null) {
+			if (simpleUMLCustomization != null) {
 				List<Customization> registeredCustomizations = new ArrayList<Customization>(customizationManager.getManagedCustomizations());
 				wasAdvancedMode = !registeredCustomizations.contains(simpleUMLCustomization);
 
-				if(advancedMode) {
-					if(registeredCustomizations.remove(simpleUMLCustomization)) {
+				if (advancedMode) {
+					if (registeredCustomizations.remove(simpleUMLCustomization)) {
 						customizationManager.getManagedCustomizations().clear();
-						for(Customization customization : registeredCustomizations) {
+						for (Customization customization : registeredCustomizations) {
 							customizationManager.getManagedCustomizations().add(customization);
 						}
 					}
 				} else {
-					if(!customizationManager.getManagedCustomizations().contains(simpleUMLCustomization)) {
+					if (!customizationManager.getManagedCustomizations().contains(simpleUMLCustomization)) {
 						customizationManager.getManagedCustomizations().add(0, simpleUMLCustomization);
 					}
 				}
