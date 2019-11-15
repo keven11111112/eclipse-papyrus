@@ -52,7 +52,7 @@ public class PapyrusProjectCreationPage extends WizardNewProjectCreationPage imp
 				wizardData.setModelFileName(fileName.getText());
 			}
 
-			boolean valid = canFlipToNextPage();
+			boolean valid = validatePage();
 			setPageComplete(valid);
 		}
 	};
