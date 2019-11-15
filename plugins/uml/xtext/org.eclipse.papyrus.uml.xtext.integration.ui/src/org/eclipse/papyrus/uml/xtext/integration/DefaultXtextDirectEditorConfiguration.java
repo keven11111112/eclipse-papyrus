@@ -80,7 +80,9 @@ import com.google.inject.name.Names;
  * @author andreas muelder - Initial contribution and API
  *         Ansgar Radermacher - Added possibility to configure context provider
  *
+ * @deprecated since 2.2 use {@link AbstractXtextDirectEditorConfiguration} instead
  */
+@Deprecated
 public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirectEditorConfiguration implements ICustomDirectEditorConfiguration {
 
 	public static final String ANNOTATION_SOURCE = "expression_source"; //$NON-NLS-1$
@@ -231,7 +233,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 	 * @param semanticElement
 	 *            the edited element
 	 * @return
-	 * 		the command saving the invalid string in a stereotyped comment
+	 *         the command saving the invalid string in a stereotyped comment
 	 * @deprecated since 2.1
 	 */
 	@Deprecated
@@ -252,7 +254,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 	 * @param issues
 	 *            the issues found by the resource validator
 	 * @return
-	 * 		the command saving the invalid string in a stereotyped comment. The command result contains contains a {@link XTextStringValidationResult} owning informations about the invalid string
+	 *         the command saving the invalid string in a stereotyped comment. The command result contains contains a {@link XTextStringValidationResult} owning informations about the invalid string
 	 * @since 2.1
 	 */
 	protected ICommand createInvalidStringCommand(final String invalidString, final EObject semanticElement, final IParseResult parseResult, final List<Diagnostic> diagnostics, final List<Issue> issues) {
