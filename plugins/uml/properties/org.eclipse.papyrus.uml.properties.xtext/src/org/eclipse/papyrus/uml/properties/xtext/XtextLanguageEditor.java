@@ -9,7 +9,7 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *  	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea. fr - Bug 536594
+ *  	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea. fr - Bug 536594, 553107
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.properties.xtext;
@@ -22,13 +22,14 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
 import org.eclipse.papyrus.infra.ui.emf.dialog.NestedEditingDialogContext;
+import org.eclipse.papyrus.infra.widgets.util.StyledTextUtils;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElement;
 import org.eclipse.papyrus.uml.properties.widgets.LanguageBodyEditor;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
@@ -156,6 +157,8 @@ public class XtextLanguageEditor implements LanguageBodyEditor, IContextElementP
 				}
 			}
 		});
+
+		StyledTextUtils.addLineNumberSupportForXtext(this.textControl);
 	}
 
 	/**
