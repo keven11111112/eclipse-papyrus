@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2017 CEA LIST.
+ * Copyright (c) 2010, 2017, 2019 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,13 +10,15 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - bug 453445, 515650
- *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 502533
- *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 551377
+ *  Nicolas FAUVERGUE (ALL4TEC)    nicolas.fauvergue@all4tec.net - bug 453445, 515650
+ *  Fanch BONNABESSE (ALL4TEC)     fanch.bonnabesse@all4tec.net  - bug 502533
+ *  Vincent LORENZO (CEA LIST)     vincent.lorenzo@cea.fr        - bug 551377
+ *  Ansgar Radermacher (CEA LIST)  ansgar.radermacher@cea.fr     - bug 551377
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.properties.modelelement;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.IObservable;
@@ -108,13 +110,22 @@ public class StereotypeModelElement extends EMFModelElement implements ILabeledM
 
 		final Element baseElement = org.eclipse.uml2.uml.util.UMLUtil.getBaseElement(source);
 
+		// determine stereotype to use
+		Stereotype useStereotype = stereotype;
+		if (baseElement.getStereotypeApplication(stereotype) == null) {
+			// stereotype is not applied, use first applied sub-stereotype
+			Iterator<Stereotype> stereoIter = baseElement.getAppliedSubstereotypes(stereotype).iterator();
+			if (stereoIter.hasNext()) {
+				useStereotype = stereoIter.next();
+			}
+		}
 		if (feature.getUpperBound() != 1) {
 			List<?> wrappedList = (List<?>) source.eGet(feature);
 			// this observable uses the SetStereotypeValueRequest
-			return new StereotypePropertyObservableList(wrappedList, domain, baseElement, feature, stereotype);
+			return new StereotypePropertyObservableList(wrappedList, domain, baseElement, feature, useStereotype);
 		}
 		// this observable uses the SetStereotypeValueRequest
-		return new StereotypePropertyObservableValue(baseElement, feature, domain, stereotype);
+		return new StereotypePropertyObservableValue(baseElement, feature, domain, useStereotype);
 	}
 
 	/**
