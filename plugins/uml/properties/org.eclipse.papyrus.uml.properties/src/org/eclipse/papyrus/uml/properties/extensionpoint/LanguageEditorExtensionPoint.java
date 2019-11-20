@@ -42,11 +42,11 @@ public class LanguageEditorExtensionPoint {
 		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 
 		for (IConfigurationElement e : config) {
-			String languageName = e.getAttribute("language"); //$NON-NLS-1$
-			String editorClassName = e.getAttribute("editor"); //$NON-NLS-1$
-
-			Editor editor = languagepreferencesFactory.eINSTANCE.createEditor();
+			final String languageName = e.getAttribute("language"); //$NON-NLS-1$
+			final String editorClassName = e.getAttribute("editor"); //$NON-NLS-1$
+			final Editor editor = languagepreferencesFactory.eINSTANCE.createEditor();
 			editor.setClass(editorClassName);
+			editor.setBundleId(e.getContributor().getName());
 			LanguageRegistry.instance.registerEditor(languageName, editor);
 		}
 	}

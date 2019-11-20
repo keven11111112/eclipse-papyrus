@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  EclipseSource - Bug 543723
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 553247
  *****************************************************************************/
 package org.eclipse.papyrus.infra.tools.util;
 
@@ -193,6 +194,10 @@ public class ClassLoaderHelper {
 	 * @since 3.1
 	 */
 	public static <T> Class<? extends T> loadClass(String className, Class<T> asSubClass, String bundleId) {
+		Class<?> clazz = classes.get(className);
+		if (clazz != null) {
+			return clazz.asSubclass(asSubClass);// to avoid to load the bundle when it is not required
+		}
 		return loadClass(className, asSubClass, bundleId == null ? null : Platform.getBundle(bundleId));
 	}
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST and others.
+ * Copyright (c) 2011, 2014, 2019 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 553247
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.preferences;
 
@@ -44,13 +44,17 @@ import org.eclipse.papyrus.uml.properties.widgets.BodyEditor;
  */
 public class LanguageRegistry {
 
+	private Map<String, List<Editor>> languageMapping;
+
+	private Preferences preferences;
+
 	/**
 	 * The singleton instance for the LanguageRegistry
 	 */
 	public static final LanguageRegistry instance = new LanguageRegistry();
 
 	private LanguageRegistry() {
-		languageMapping = new HashMap<String, List<Editor>>();
+		languageMapping = new HashMap<>();
 
 		IPath path = Activator.getDefault().getPreferencesPath();
 		String preferencesPath = path.toString() + "/languagePreferences.xmi"; //$NON-NLS-1$
@@ -75,6 +79,7 @@ public class LanguageRegistry {
 		preferences = languagepreferencesFactory.eINSTANCE.createPreferences();
 		Editor defaultEditor = languagepreferencesFactory.eINSTANCE.createEditor();
 		defaultEditor.setClass("org.eclipse.papyrus.uml.properties.widgets.NaturalLanguageEditor"); //$NON-NLS-1$
+		defaultEditor.setBundleId(Activator.PLUGIN_ID);
 
 		preferences.getEditors().add(defaultEditor);
 		preferences.setDefaultEditor(defaultEditor);
@@ -176,22 +181,24 @@ public class LanguageRegistry {
 		return language;
 	}
 
-	private BodyEditor getInstance(Editor editor) {
-		String className = editor.getClass_();
-		return ClassLoaderHelper.newInstance(className, BodyEditor.class);
+	/**
+	 *
+	 * @param editor
+	 *            the editor to load
+	 * @return
+	 *         a new instance of the editor
+	 */
+	private BodyEditor getInstance(final Editor editor) {
+		return ClassLoaderHelper.newInstance(editor.getClass_(), BodyEditor.class, editor.getBundleId());
 	}
-
-	private Map<String, List<Editor>> languageMapping;
-
-	private Preferences preferences;
 
 	/**
 	 *
 	 * @return the list of all known languages
 	 */
 	public List<String> getLanguages() {
-		List<String> result = new LinkedList<String>(languageMapping.keySet());
-		result.remove(""); //$NON-NLS-1$
+		List<String> result = new LinkedList<>(languageMapping.keySet());
+		result.remove(""); //$NON-NLS-1$ the default editor is register with empty string as key
 		Collections.sort(result);
 		return result;
 	}

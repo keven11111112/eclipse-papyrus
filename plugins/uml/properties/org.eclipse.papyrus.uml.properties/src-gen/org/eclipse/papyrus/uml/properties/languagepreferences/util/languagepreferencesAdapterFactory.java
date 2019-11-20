@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.uml.properties.languagepreferences.*;
 import org.eclipse.papyrus.uml.properties.languagepreferences.Editor;
 import org.eclipse.papyrus.uml.properties.languagepreferences.Language;
 import org.eclipse.papyrus.uml.properties.languagepreferences.Preferences;
@@ -20,7 +21,6 @@ import org.eclipse.papyrus.uml.properties.languagepreferences.languagepreference
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.uml.properties.languagepreferences.languagepreferencesPackage
  * @generated
  */
@@ -29,7 +29,6 @@ public class languagepreferencesAdapterFactory extends AdapterFactoryImpl {
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected static languagepreferencesPackage modelPackage;
@@ -38,7 +37,6 @@ public class languagepreferencesAdapterFactory extends AdapterFactoryImpl {
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public languagepreferencesAdapterFactory() {
@@ -52,7 +50,6 @@ public class languagepreferencesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -62,7 +59,7 @@ public class languagepreferencesAdapterFactory extends AdapterFactoryImpl {
 			return true;
 		}
 		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -71,45 +68,39 @@ public class languagepreferencesAdapterFactory extends AdapterFactoryImpl {
 	 * The switch that delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected languagepreferencesSwitch<Adapter> modelSwitch =
 			new languagepreferencesSwitch<Adapter>() {
-				@Override
-				public Adapter caseLanguage(Language object) {
-					return createLanguageAdapter();
-				}
-
-				@Override
-				public Adapter caseEditor(Editor object) {
-					return createEditorAdapter();
-				}
-
-				@Override
-				public Adapter casePreferences(Preferences object) {
-					return createPreferencesAdapter();
-				}
-
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+			@Override
+			public Adapter caseLanguage(Language object) {
+				return createLanguageAdapter();
+			}
+			@Override
+			public Adapter caseEditor(Editor object) {
+				return createEditorAdapter();
+			}
+			@Override
+			public Adapter casePreferences(Preferences object) {
+				return createPreferencesAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
+				return createEObjectAdapter();
+			}
+		};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param target
-	 *            the object to adapt.
+	 * @param target the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 
@@ -119,7 +110,6 @@ public class languagepreferencesAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.properties.languagepreferences.Language
 	 * @generated
@@ -134,7 +124,6 @@ public class languagepreferencesAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.properties.languagepreferences.Editor
 	 * @generated
@@ -149,7 +138,6 @@ public class languagepreferencesAdapterFactory extends AdapterFactoryImpl {
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @see org.eclipse.papyrus.uml.properties.languagepreferences.Preferences
 	 * @generated
@@ -163,7 +151,6 @@ public class languagepreferencesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the new adapter.
 	 * @generated
 	 */
