@@ -66,7 +66,7 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.14milestones/S-4.14M3-201911201800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.14milestones/S-4.14RC1-201911271800/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -79,7 +79,7 @@ location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S201911251623" {
+location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.20.0" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -101,7 +101,7 @@ location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.16.0
 
 //updateFrom("GMF Runtime for SimRel 2019-12",0)
 
-location gmfRuntime "https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201905141505" {
+location gmfRuntime "https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201912020813" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 

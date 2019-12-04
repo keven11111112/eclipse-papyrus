@@ -54,7 +54,7 @@ location oomph "https://download.eclipse.org/oomph/drops/milestone/S20191119-111
 
 //updateFrom("EGIT",0) 
 
-location egit "https://download.eclipse.org/egit/updates-5.5" // oomph
+location egit "https://download.eclipse.org/egit/staging/v5.6.0.201911271000-m3" // oomph
 
 //updateFrom("m2e",0)
 
