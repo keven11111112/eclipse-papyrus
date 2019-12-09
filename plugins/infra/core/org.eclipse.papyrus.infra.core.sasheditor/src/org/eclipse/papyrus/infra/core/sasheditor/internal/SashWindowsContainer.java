@@ -14,6 +14,7 @@
  *  Christian W. Damus - bug 488791
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 546686
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 546686
+ *  Ansgar Radermacher (CEA LIST) - Bug 553094, setFocus before dispose
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -302,6 +303,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 		// DO NOT dispose the container composite, as we did not create it!
 		if (container != null) {
+			// set focus to shell instead of container that is being disposed
+			// this avoids an exception due to a disposed widget having the focus
+			container.getShell().setFocus();
 			for (Control next : container.getChildren()) {
 				next.dispose();
 			}

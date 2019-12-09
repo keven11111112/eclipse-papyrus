@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016, 2017, 2019 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -16,6 +16,7 @@
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 497289, 455241
  *  Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - Bug 500290: implement new filter and ignore case Check button
  *  Ansgar Radermacher (CEA LIST) - Bug 516459: Navigation mechanism with Alt+hover does not work on Linux
+ *  Ansgar Radermacher (CEA LIST) - Bug 553094: Avoid potential NPE during dispose and remove reload-listener
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -50,7 +51,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.util.Policy;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.DoubleClickEvent;
-import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -187,6 +187,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	/** The tree viewer filter. */
 	protected PatternViewerFilter viewerFilter;
 
+	/** Adapter that gets called during reload */
+	protected EditorReloadAdapter reloadAdapter;
+
+	/** reference to reload function of editor */
+	protected IReloadableEditor reloadableEditor;
+
 	/** true if the stereotype delimiters have to be replaced. */
 	private boolean stereotypeDelimitersReplaced;
 
@@ -311,7 +317,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		init(part);
 
-		IReloadableEditor.Adapter.getAdapter(part).addEditorReloadListener(new EditorReloadAdapter() {
+		reloadAdapter = new EditorReloadAdapter() {
 
 			@Override
 			public void editorAboutToReload(EditorReloadEvent event) {
@@ -332,7 +338,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				// Restore expansion and selection state of the common viewer
 				((TreeViewerContext<?>) event.getContext()).restore(getCommonViewer());
 			}
-		});
+		};
+		reloadableEditor = IReloadableEditor.Adapter.getAdapter(part);
+		reloadableEditor.addEditorReloadListener(reloadAdapter);
 	}
 
 	private void init(IMultiDiagramEditor editor) {
@@ -549,6 +557,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	public class MenuListener extends MouseAdapter implements MouseMoveListener {
 
 		// @Override
+		@Override
 		public void mouseMove(MouseEvent mouseEvent) {
 			if (navigationMenu != null) {
 				if (navigationMenu.willEnter(mouseEvent, null)) {
@@ -556,8 +565,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					if (treeItem != null) {
 						navigationMenu.handleRequest(mouseEvent, treeItem.getData());
 					}
-				}
-				else {
+				} else {
 					navigationMenu.exitItem();
 				}
 			}
@@ -566,6 +574,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		/**
 		 * exit navigation menu on click (avoids that menu remains open, if user clicks outside
 		 */
+		@Override
 		public void mouseDown(MouseEvent mouseEvent) {
 			if (navigationMenu != null) {
 				navigationMenu.exitItem();
@@ -709,7 +718,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		filterText.getText().addFocusListener(new FocusAdapter() {
 			/**
 			 * {@inhiriteDoc}
-			 * 
+			 *
 			 * @see java.awt.event.FocusAdapter#focusGained(java.awt.event.FocusEvent)
 			 */
 			@Override
@@ -1005,8 +1014,13 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		undoContext = null;
 		editingDomain = null;
 		lastTrans = null;
-		viewerFilter.clearCache();
-		viewerFilter = null;
+		// a viewerFilter is not necessarily set
+		if (viewerFilter != null) {
+			viewerFilter.clearCache();
+			viewerFilter = null;
+		}
+
+		reloadableEditor.removeEditorReloadListener(reloadAdapter);
 	}
 
 	/**
@@ -1172,7 +1186,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		if (selectionList.isEmpty()) {
 			return;
 		}
-		
+
 		Display.getDefault().syncExec(() -> ProviderHelper.selectReveal(selectionList, commonViewer));
 	}
 
