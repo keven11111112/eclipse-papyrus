@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2016, 2017 CEA LIST, Christian W. Damus, and others.
- * 
+ * Copyright (c) 2016, 2017, 2019 CEA LIST, Christian W. Damus, and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 514955
- *   
+ *   Jeremie Tatibouet (CEA LIST) jeremie.tatibouet@cea.fr - Bug 553875
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.validation.internal;
@@ -61,7 +61,7 @@ public class ValidationRegistry {
 
 	/**
 	 * Return a diagnostician for an element of a model.
-	 * 
+	 *
 	 * @param element
 	 *            an element of a model (that must be contained in an eResource)
 	 * @return
@@ -91,10 +91,10 @@ public class ValidationRegistry {
 
 	/**
 	 * Sort an array of extension configuration elements by priority, from highest to lowest.
-	 * 
+	 *
 	 * @param configElements
 	 *            an array of configuration elements
-	 * 
+	 *
 	 * @return the sorted array
 	 */
 	private static IConfigurationElement[] sort(IConfigurationElement[] configElements) {
@@ -139,7 +139,7 @@ public class ValidationRegistry {
 
 	/**
 	 * Obtain a diagnostician for a given language
-	 * 
+	 *
 	 * @param languageID
 	 *            the id of the language for which we want to obtain the diagnostician
 	 * @return the associated diagnostician
@@ -165,7 +165,7 @@ public class ValidationRegistry {
 
 	/**
 	 * Execute validation hooks
-	 * 
+	 *
 	 * @param element
 	 *            An element of the model we want to validate
 	 * @param hookType
@@ -184,9 +184,17 @@ public class ValidationRegistry {
 						if (hookObj instanceof IValidationHook) {
 							IValidationHook validationHook = (IValidationHook) hookObj;
 							if (hookType == HookType.BEFORE) {
-								validationHook.beforeValidation(element);
+								try {
+									validationHook.beforeValidation(element);
+								} catch (Exception exception) {
+									Activator.log.error("Before | validation hook for" + configElement.getAttribute(VALIDATION_HOOK) + "execution failed", exception); //$NON-NLS-1$ //$NON-NLS-2$
+								}
 							} else if (hookType == HookType.AFTER) {
-								validationHook.afterValidation(element);
+								try {
+									validationHook.afterValidation(element);
+								} catch (Exception exception) {
+									Activator.log.error("After | validation hook for" + configElement.getAttribute(VALIDATION_HOOK) + "execution failed", exception); //$NON-NLS-1$ //$NON-NLS-2$
+								}
 							}
 						}
 					}
