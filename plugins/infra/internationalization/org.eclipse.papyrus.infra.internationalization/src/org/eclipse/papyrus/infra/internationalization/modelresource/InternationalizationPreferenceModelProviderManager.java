@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
- * 
+ * Copyright (c) 2016, 2019 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Jeremie Tatibouet (CEA LIST) jeremie.tatibouet@cea.fr - Bug 553878
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.internationalization.modelresource;
@@ -20,6 +20,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
@@ -69,14 +71,15 @@ class InternationalizationPreferenceModelProviderManager {
 	/**
 	 * Constructor.
 	 *
-	 * @param modelSet The current model set.
+	 * @param modelSet
+	 *            The current model set.
 	 */
 	public InternationalizationPreferenceModelProviderManager(final ModelSet modelSet) {
 		super();
 
 		this.modelSet = modelSet;
 		this.defaultInternationalizationPrefModelProvider = createDefaultInternationalizationPrefModelProvider();
-		this.descriptors = new CopyOnWriteArrayList<InternationalizationPreferenceModelProviderManager.ProviderDescriptor>(createDescriptors());
+		this.descriptors = new CopyOnWriteArrayList<>(createDescriptors());
 	}
 
 	/**
@@ -91,7 +94,8 @@ class InternationalizationPreferenceModelProviderManager {
 	/**
 	 * Obtains the most appropriate sash model provider for the specified URI.
 	 *
-	 * @param userModelURI The initial user model URI.
+	 * @param userModelURI
+	 *            The initial user model URI.
 	 *
 	 * @return the sash model provider, never {@code null} (there is always a default available)
 	 */
@@ -122,7 +126,7 @@ class InternationalizationPreferenceModelProviderManager {
 
 	/**
 	 * This allows to create the descriptors.
-	 * 
+	 *
 	 * @return The list of created descriptors.
 	 */
 	private List<ProviderDescriptor> createDescriptors() {
@@ -146,7 +150,7 @@ class InternationalizationPreferenceModelProviderManager {
 
 	/**
 	 * This allows to create the default internationalization preference model provider.
-	 * 
+	 *
 	 * @return The created {@link IInternationalizationPreferenceModelProvider}.
 	 */
 	private IInternationalizationPreferenceModelProvider createDefaultInternationalizationPrefModelProvider() {
@@ -154,19 +158,19 @@ class InternationalizationPreferenceModelProviderManager {
 
 			@Override
 			public URI getInternationalizationPreferenceModelURI(final URI userModelURI) {
-				final URI uriWithoutExtension = userModelURI.trimFileExtension();
-
-				IPath stateLocation = Activator.getDefault().getStateLocation();
-
-				if (uriWithoutExtension.isPlatform()) {
-					stateLocation = stateLocation.append(uriWithoutExtension.toPlatformString(true));
-				} else {
-					stateLocation = stateLocation.append(URI.decode(uriWithoutExtension.toString()));
+				Assert.isNotNull(userModelURI);
+				final IPath internationalizationWorkspaceLocation = Activator.getDefault().getStateLocation();
+				final URI modelURI = userModelURI.trimFileExtension();
+				URI internationalizationModelURI = null;
+				if (modelURI.isPlatform()) {
+					internationalizationModelURI = URI.createFileURI(internationalizationWorkspaceLocation.append(modelURI.toPlatformString(true)).toString());
+					internationalizationModelURI = internationalizationModelURI.appendFileExtension(InternationalizationPreferenceModel.INTERNATIONALIZATION_PREFERENCE_FILE_EXTENSION);
+				} else if (modelURI.isFile()) {
+					final String workspaceURI = ResourcesPlugin.getWorkspace().getRoot().getLocationURI().toString();
+					internationalizationModelURI = URI.createFileURI(internationalizationWorkspaceLocation.append(modelURI.toString().replaceFirst(workspaceURI, "")).toString()); //$NON-NLS-1$
+					internationalizationModelURI = internationalizationModelURI.appendFileExtension(InternationalizationPreferenceModel.INTERNATIONALIZATION_PREFERENCE_FILE_EXTENSION);
 				}
-
-				URI workspaceFileURI = URI.createFileURI(stateLocation.toString()).appendFileExtension(InternationalizationPreferenceModel.INTERNATIONALIZATION_PREFERENCE_FILE_EXTENSION);
-
-				return workspaceFileURI;
+				return internationalizationModelURI;
 			}
 		};
 	}
