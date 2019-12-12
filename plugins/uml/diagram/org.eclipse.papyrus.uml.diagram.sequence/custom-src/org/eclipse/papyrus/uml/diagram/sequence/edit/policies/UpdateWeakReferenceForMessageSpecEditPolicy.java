@@ -46,6 +46,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LogOptions;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
@@ -64,7 +65,7 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 	 * @param request
 	 * @return
 	 *
-	 * 		<img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
+	 *         <img src="../../../../../../../../../icons/sequenceScheme.png" width="250" />
 	 *         <UL>
 	 *         <LI>when move E --> move B on the coordinate Y of E and move A on the coordinate Y of E
 	 *         <LI>when Move F (execution specification) (resize)--> move C on the coordinate of C of F and move D on the coordinate of Y of F
@@ -158,7 +159,8 @@ public class UpdateWeakReferenceForMessageSpecEditPolicy extends UpdateWeakRefer
 							Point moveDelta = new Point(0, 0);
 							PolylineConnectionEx polyline = (PolylineConnectionEx) ((ConnectionEditPart) editPart).getFigure();
 							Point anchorPositionOnScreen;
-							if (((Message) element).getSendEvent().equals(nextEvent)) {
+							MessageEnd messageEnd = ((Message) element).getSendEvent();
+							if (null != messageEnd && messageEnd.equals(nextEvent)) {
 								anchorPositionOnScreen = polyline.getTargetAnchor().getReferencePoint();
 							} else {
 								anchorPositionOnScreen = polyline.getSourceAnchor().getReferencePoint();

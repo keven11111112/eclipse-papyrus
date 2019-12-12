@@ -264,10 +264,10 @@ public class SequenceReferenceEditPolicy extends GraphicalEditPolicy implements 
 			EditPart editPart = iterator.next();
 			if (editPart instanceof AbstractMessageEditPart) {
 				Message message = (Message) (((AbstractMessageEditPart) editPart)).resolveSemanticElement();
-				if (message.getSendEvent().equals(event)) {
+				if (null != message.getSendEvent() && message.getSendEvent().equals(event)) {
 					return true;
 				}
-				if (message.getReceiveEvent().equals(event)) {
+				if (null != message.getReceiveEvent() && message.getReceiveEvent().equals(event)) {
 					return true;
 				}
 			}
