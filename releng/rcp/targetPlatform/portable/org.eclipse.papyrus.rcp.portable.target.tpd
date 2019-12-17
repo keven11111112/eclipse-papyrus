@@ -13,7 +13,7 @@ location egit "https://download.eclipse.org/egit/updates-5.6" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.14milestones/S-4.14RC2a-201912100610/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.14/R-4.14-201912100610/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
