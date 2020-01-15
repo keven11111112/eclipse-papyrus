@@ -45,13 +45,13 @@ location xwt "https://download.eclipse.org/xwt/milestones-1.4.0/1.4.0-RC2/" {
     org.eclipse.xwt.feature.feature.group lazy
 }
 
-//updateFrom("QVT Operational for 2019-12",0)
+//updateFrom("QVT Operational for 2020-03",0)
 
 location qvto "https://download.eclipse.org/mmt/qvto/updates/releases/3.10.1" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
-//updateFrom("M2T Xpand for 2019-12",0) 
+//updateFrom("M2T Xpand for 2020-03",0) 
 
 location xpand "https://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/" {
 	org.eclipse.xpand.sdk.feature.group
@@ -66,20 +66,20 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.14milestones/S-4.14RC2a-201912100610/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.15milestones/S-4.15M1-202001100905/" {
 	org.eclipse.sdk.feature.group
 }
 
-//updateFrom("OCL for 2019-12",0) 
+//updateFrom("OCL for 2020-03",0) 
 
-location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.10.0" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.11.0/S202001131543" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.20.0" {
+location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S202001131426" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -87,7 +87,7 @@ location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/releases
     org.eclipse.xtext.ui.feature.group
 }
 
-//updateFrom("EMFT MWE",0)
+//updateFrom("EMFT MWE for 2020-03",0)
 
 location mwe "http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.11.1" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
@@ -113,7 +113,7 @@ location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/upd
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.20" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S202001070458" {
 	org.eclipse.emf.sdk.feature.group
 }
 
