@@ -2084,8 +2084,8 @@ It will allow you to get the contents of the cell and to save it after editing v
 It will allow you to edit the cell value.
 #Create a new class implementing <code>org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration</code> or one of these subclasses and complete it.
 #Register the class in the plugin.xml file, using the extension point <code>org.eclipse.papyrus.infra.nattable.celleditor.configuration</code> and the object <code>cellAxisConfiguration</code>. (FYI, <code>configuration</code> is deprecated since Eclipse Neon/Papyrus 1.2.0)
-##'''class''': the java class for the cell editor configuration
-##'''order''': an integer
+##'''class''': the java class for the cell editor configuration,
+##'''order''': an integer.
 
 ==Create a new Label Provider Configuration==
 It will allow you to display the contents of the cells returned by the CellManager. This steps is not mandatory, because it depends on the object displayed in our cells. Maybe your case is always managed by Papyrus, maybe not.
@@ -2094,6 +2094,15 @@ It will allow you to display the contents of the cells returned by the CellManag
 #Register your class in the plugin.xml file, using the extension point <code>org.eclipse.papyrus.infra.services.labelprovider.labelProvider</code>
 ##'''priority''': an integer
 ##'''provider''': the java class
+#create a '''labelprovidercontext''' as child of the declared label provider. You must use one of these ones, depending on the table's region for which you want a custom label:
+##'''org.eclipse.papyrus.infra.nattable.full.labelprovider''': the labelprovider declared in this context dispatches to others labelproviders depending on the element's region for which we want a label,
+##'''org.eclipse.papyrus.infra.nattable.header.labelprovider''': the labelprovider declared in this context dispatches to others labelproviders declared on header, depending on the kind of the element (and sometimes of its place in the header (index layer, label layer, column/row, ...),
+##'''org.eclipse.papyrus.infra.nattable.header.feature.labelprovider''': this context is used to get the label for a feature displayed in the header of the table,
+##'''org.eclipse.papyrus.infra.nattable.header.operation.labelprovider''': this context is used to get the label for a feature displayed in the header of the table,
+##'''org.eclipse.papyrus.infra.nattable.header.treefilling.feature.labelprovider''': this context is used to get the label for a feature referenced by a TreeFillingConfiguration,
+##'''org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider''': this context is used to get the label for an operation referenced by a TreeFillingConfiguration, 
+##'''org.eclipse.papyrus.infra.nattable.body.labelprovider''': this context is used to get the label of the elements in the body of the table. Most of the time, you will contribute to this one.
+
 
 ==Create a new Filter Configuration==
 This step is not mandatory, by default, the string filter will be used.
@@ -2101,6 +2110,7 @@ This step is not mandatory, by default, the string filter will be used.
 #Register your class in the plugin.xml file, using the extension point <code>org.eclipse.papyrus.infra.nattable.filter.configuration</code>
 ##'''class''': the java class
 ##'''order''': an integer
+
 
 =How to create your own post action for paste=
 //TODO
