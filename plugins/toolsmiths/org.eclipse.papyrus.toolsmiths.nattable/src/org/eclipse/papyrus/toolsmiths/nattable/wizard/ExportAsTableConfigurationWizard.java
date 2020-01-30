@@ -28,6 +28,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
@@ -157,6 +158,12 @@ public class ExportAsTableConfigurationWizard extends Wizard implements IExportW
 		final IStatus status = createAndRegisterTableConfiguration(outputJavaProject, outputFolderName, fileName, newTableName, newTableType, newTableDescription, this.exportedTable);
 		if (false == status.isOK()) {
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.ExportAsTableConfigurationWizard_ErrorDuringTableConfigurationCreation, status.getMessage());
+		}
+		// refresh workspace
+		try {
+			outputJavaProject.getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+		} catch (CoreException e) {
+			Activator.log.error(e);
 		}
 		return true;
 	}
@@ -323,12 +330,10 @@ public class ExportAsTableConfigurationWizard extends Wizard implements IExportW
 
 		// 9. we check the table created table configuration reloading it
 
-		// ResourcesPlugin.getWorkspace().getRoot().getProject().re
 		try {
-			outputJavaProject.getProject().refreshLocal(-1, new NullProgressMonitor());
+			outputJavaProject.getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 		} catch (CoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Activator.log.error(e);
 		}
 		checkTableConfigurationDependencies(tableConfigurationURI);
 		return Status.OK_STATUS;

@@ -109,7 +109,7 @@ public class DefineOutputPluginWizardPage extends AbstractExportTableAsTableConf
 		ouputData.horizontalSpan = 2;
 
 		final Label outputLabel = new Label(outputGroup, SWT.NONE);
-		outputLabel.setText(Messages.DefineOutputPluginWizardPage_SelectOuputPlugin);
+		outputLabel.setText(Messages.DefineOutputPluginWizardPage_SelectOutputPluginProject);
 		outputLabel.setLayoutData(ouputData);
 
 		ouputData = new GridData(GridData.FILL_HORIZONTAL);
@@ -149,7 +149,7 @@ public class DefineOutputPluginWizardPage extends AbstractExportTableAsTableConf
 	@Override
 	public void widgetSelected(final SelectionEvent e) {
 		if (this.outputPluginWorkspaceButton == e.widget) {
-			final IContainer[] ifile = WorkspaceResourceDialog.openFolderSelection(getShell(), null, null, false, new IContainer[] {}, this.javaProjectFilter);
+			final IContainer[] ifile = WorkspaceResourceDialog.openFolderSelection(getShell(), Messages.DefineOutputPluginWizardPage_SelectOutput, Messages.DefineOutputPluginWizardPage_SelectOutputPlugin, false, new IContainer[] {}, this.javaProjectFilter);
 			if (ifile.length > 0) {
 				this.outputJavaProject = (IJavaProject) JavaCore.create(ifile[0]);
 				this.outputPluginNameTextField.setText(this.outputJavaProject.getPath().toString());

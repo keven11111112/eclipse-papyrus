@@ -23,7 +23,9 @@ public class Messages extends NLS {
 	public static String DefineOutputPluginWizardPage_Output;
 	public static String DefineOutputPluginWizardPage_OUTPUT_PAGE_TILE;
 	public static String DefineOutputPluginWizardPage_ProjectMustBeSet;
-	public static String DefineOutputPluginWizardPage_SelectOuputPlugin;
+	public static String DefineOutputPluginWizardPage_SelectOutputPluginProject;
+	public static String DefineOutputPluginWizardPage_SelectOutput;
+	public static String DefineOutputPluginWizardPage_SelectOutputPlugin;
 	public static String DefineTableConfigurationDataWizardPage_ConfigureTableConfiguration;
 	public static String DefineTableConfigurationDataWizardPage_DataPageTitle;
 	public static String DefineTableConfigurationDataWizardPage_DefineTableConfigurationDescription;
