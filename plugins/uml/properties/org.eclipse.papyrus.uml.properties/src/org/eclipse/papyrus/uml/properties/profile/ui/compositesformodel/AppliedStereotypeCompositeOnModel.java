@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014, 2017 CEA LIST and others.
+ * Copyright (c) 2008, 2014, 2017. 2019 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -15,6 +15,7 @@
  *  Christian W. Damus (CEA) - bug 323802
  *  Christian W. Damus (CEA) - bug 448139
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 522564
+ *  Ansgar Radermacher (CEA LIST) - bug 558645
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositesformodel;
 
@@ -732,16 +733,24 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 		 */
 		@Override
 		public void commandStackChanged(EventObject event) {
-			if (!AppliedStereotypeCompositeOnModel.this.treeViewer.getTree().isDisposed()) {
-				final ISelection selection = treeViewer.getSelection();
-				if (selection instanceof IStructuredSelection) {
-					final Object first = ((IStructuredSelection) selection).getFirstElement();
-					if (first instanceof AppliedStereotypePropertyTreeObject) {
-						// we refresh the whole tree viewer and not only the leaf to be OK in case of derived properties
-						AppliedStereotypeCompositeOnModel.this.refreshTreeViewer();
+			Runnable runRefresh = new Runnable() {
+
+				@Override
+				public void run() {
+					// isDiposed must be called by UI thread
+					if (!treeViewer.getTree().isDisposed()) {
+						final ISelection selection = treeViewer.getSelection();
+						if (selection instanceof IStructuredSelection) {
+							final Object first = ((IStructuredSelection) selection).getFirstElement();
+							if (first instanceof AppliedStereotypePropertyTreeObject) {
+								// we refresh the whole tree viewer and not only the leaf to be OK in case of derived properties
+								refreshTreeViewer();
+							}
+						}
 					}
-				}
-			}
+				};
+			};
+			treeViewer.getControl().getDisplay().asyncExec(runRefresh);
 		}
 	}
 

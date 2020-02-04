@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016, 2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 410346
  *  Christian W. Damus - bugs 451338, 496299
+ *  Ansgar Radermacher - bug 558645
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
@@ -117,7 +118,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 			}
 		}
 
-		List<EObject> rootElements = new LinkedList<EObject>();
+		List<EObject> rootElements = new LinkedList<>();
 		for (Resource resource : root.getResources()) {
 			if (isUMLModel(resource, rootElement)) {
 				for (EObject rootEObject : resource.getContents()) {
@@ -385,25 +386,28 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 			// During display, a resource has been loaded (e.g. by a Label provider).
 			// Schedule an update (in the future, to avoid conflicts with a potential current update)
-			
+
 			// do not trigger a refresh if the widget is activated (in edit mode) Bug 509653
-			if ((viewer != null) && (viewer.getControl() != null) && !viewer.getControl().isDisposed() && !viewer.getControl().isFocusControl()) {
+			if (viewer != null && viewer.getControl() != null) {
 				if (pendingRefresh.compareAndSet(null, new Runnable() {
 
 					@Override
 					public void run() {
-						if (!pendingRefresh.compareAndSet(this, null)
-								|| (viewer == null) || (viewer.getControl() == null)
-								|| viewer.getControl().isDisposed()) {
-							return;
+						// isDiposed/isFocusControl must be called by UI thread
+						if (!viewer.getControl().isDisposed() && !viewer.getControl().isFocusControl()) {
+							if (!pendingRefresh.compareAndSet(this, null)
+									|| (viewer == null) || (viewer.getControl() == null)
+									|| viewer.getControl().isDisposed()) {
+								return;
+							}
+
+							// Because containment proxy resolution that sets a root's
+							// eContainer is not detected by the adapter, so recompute
+							// again, now
+							roots = getRoots(root);
+
+							viewer.refresh();
 						}
-
-						// Because containment proxy resolution that sets a root's
-						// eContainer is not detected by the adapter, so recompute
-						// again, now
-						roots = getRoots(root);
-
-						viewer.refresh();
 					};
 				})) {
 					viewer.getControl().getDisplay().asyncExec(pendingRefresh.get());
@@ -416,7 +420,7 @@ public class SemanticUMLContentProvider extends SemanticEMFContentProvider {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider#hasChildren(java.lang.Object)
 	 */
 	@Override
