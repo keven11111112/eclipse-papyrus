@@ -108,8 +108,8 @@
                <with variable="activeEditorId">
                   <equals value="org.eclipse.papyrus.infra.core.papyrusEditor"/>
                </with>
-               <with
-                     variable="selection">
+               <with variable="selection">
+                  <instanceof value="org.eclipse.jface.viewers.IStructuredSelection"/>
                   <test
                         property="org.eclipse.papyrus.infra.emf.readonly.tester.isReadOnly"
                         value="true">
