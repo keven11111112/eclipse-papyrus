@@ -54,11 +54,11 @@ location oomph "https://download.eclipse.org/oomph/drops/milestone/S20200113-061
 
 //updateFrom("EGIT",0) 
 
-location egit "https://download.eclipse.org/egit/updates-5.6" // oomph
+location egit "https://download.eclipse.org/egit/staging/v5.7.0.202001151323-m1" // oomph
 
 //updateFrom("m2e",0)
 
-location m2e "https://download.eclipse.org/technology/m2e/milestones/1.14/1.14.0.20191209-1925/" // oomph
+location m2e "https://download.eclipse.org/technology/m2e/milestones/1.15/1.15.0.20200109-1107/" // oomph
 
 //updateFrom("Mylyn",0)
 
