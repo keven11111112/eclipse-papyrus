@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2020 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559975
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.manager.axis;
@@ -32,8 +32,8 @@ import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 
 /**
  * This comparator is used to sort the ITreeItemAxis in the table according to the UML Model and the table model (order of the filling configuration).
- * The sort of the row selecting the header IS NOI DONE HERE!
- * 
+ * The sort of the row selecting the header IS NOT DONE HERE!
+ * This comparator sort the empty line {@link ITreeItemAxis#getElement()}==null at the end of the table.
  *
  */
 public class ITreeItemAxisComparator implements Comparator<ITreeItemAxis> {
@@ -200,6 +200,15 @@ public class ITreeItemAxisComparator implements Comparator<ITreeItemAxis> {
 				if (values instanceof List<?>) {
 					index1 = ((List<?>) values).indexOf(axis1.getElement());
 					index2 = ((List<?>) values).indexOf(axis2.getElement());
+					if (index1 == -1 && index2 == -1) {
+						// no idea about this case
+					} else
+					// allows to set empty line at the end of the table
+					if (index1 == -1) {
+						index1 = index2 + 1;
+					} else if (index2 == -1) {
+						index2 = index1 + 1;
+					}
 				} else {
 					index1 = index2 = 0;
 				}
