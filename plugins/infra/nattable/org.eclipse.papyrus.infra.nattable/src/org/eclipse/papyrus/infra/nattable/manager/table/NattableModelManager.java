@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2017-2018 CEA LIST, Esterel Technologies SAS and others.
+ * Copyright (c) 2012, 2017-2018, 2020 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -14,6 +14,7 @@
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 526146, 515737, 516314
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559973
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -2058,8 +2059,12 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	@Override
 	public Cell getCell(final Object columnElement, final Object rowElement) {
-		final CellMapKey key = new CellMapKey(columnElement, rowElement);
-		return this.cellsMap.get(key);
+		//required to support axis with no associated element
+		if (AxisUtils.getRepresentedElement(columnElement) != null && AxisUtils.getRepresentedElement(rowElement) != null) {
+			final CellMapKey key = new CellMapKey(columnElement, rowElement);
+			return this.cellsMap.get(key);
+		}
+		return null;
 	}
 
 	/**
