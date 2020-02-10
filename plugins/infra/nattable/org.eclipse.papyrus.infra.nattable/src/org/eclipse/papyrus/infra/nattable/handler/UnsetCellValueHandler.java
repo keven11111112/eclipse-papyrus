@@ -1,3 +1,18 @@
+/*****************************************************************************
+ * Copyright (c) 2015, 2016, 2020 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 559968
+ *****************************************************************************/
+
 package org.eclipse.papyrus.infra.nattable.handler;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -11,18 +26,17 @@ import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 
 /**
- * 
+ *
  * This handler is used to unset cell values, that is to say, than we reset the cell value to the default value
  *
  */
 public class UnsetCellValueHandler extends AbstractTableHandler {
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 *
 	 * @param event
@@ -44,8 +58,8 @@ public class UnsetCellValueHandler extends AbstractTableHandler {
 			SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
 			int colIndex = layer.getColumnIndexByPosition(colPosition);
 			int rowIndex = layer.getRowIndexByPosition(rowposition);
-			Object columnElement = AxisUtils.getRepresentedElement(manager.getColumnElement(colIndex));
-			Object rowElement = AxisUtils.getRepresentedElement(manager.getRowElement(rowIndex));
+			Object columnElement = manager.getColumnElement(colIndex);
+			Object rowElement = manager.getRowElement(rowIndex);
 
 			Command command = CellManagerFactory.INSTANCE.getUnsetCellValueCommand(getContextEditingDomain(), columnElement, rowElement, manager);
 			if (command != null && command.canExecute()) {
@@ -75,21 +89,21 @@ public class UnsetCellValueHandler extends AbstractTableHandler {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param evaluationContext
-	 * 
+	 *
 	 * @return
 	 *         <code>true</code> if the mouse is in the Body of the table and if cells are selected
 	 */
 	protected boolean canUnsetCell(Object evaluationContext) {
 		boolean enabled = false;
 		TableSelectionWrapper wrapper = getTableSelectionWrapper();
-		if (wrapper!=null && !wrapper.getSelectedCells().isEmpty()) {
+		if (wrapper != null && !wrapper.getSelectedCells().isEmpty()) {
 			enabled = true;
 			NatEventData data = getNatEventData();
-			if (data != null) { //null with JUnit tests
+			if (data != null) { // null with JUnit tests
 				LabelStack labels = data.getRegionLabels();
-				if(labels!=null){  //seem null with JUnit tests
+				if (labels != null) { // seem null with JUnit tests
 					enabled = labels.hasLabel(GridRegion.BODY) && labels.getLabels().size() == 1;
 				}
 			}
