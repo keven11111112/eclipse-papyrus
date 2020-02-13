@@ -30,8 +30,9 @@ import org.eclipse.swt.widgets.Display;
 /**
  *
  * @author Vincent Lorenzo
- *
+ * @deprecated since 6.6, use {@link ActionComboBoxCellEditor} instead
  */
+@Deprecated
 public class ComboBoxWithButtonCellEditor extends ComboBoxCellEditor {
 
 	/**
@@ -158,8 +159,9 @@ public class ComboBoxWithButtonCellEditor extends ComboBoxCellEditor {
 	@Override
 	public NatCombo createEditorControl(Composite parent) {
 		int style = this.editMode == EditModeEnum.INLINE ? SWT.NONE : SWT.BORDER;
-		final NatCombo combo = this.iconImage == null ? new NatComboButton(parent, this.cellStyle, this.maxVisibleItems, this.freeEdit, this.multiselect, style, buttonConfiguration) : new NatComboButton(parent, this.cellStyle, this.maxVisibleItems,
-				this.freeEdit, this.multiselect, style, this.iconImage, buttonConfiguration);
+		final NatCombo combo = this.iconImage == null ? new NatComboButton(parent, this.cellStyle, this.maxVisibleItems, this.freeEdit, this.multiselect, style, buttonConfiguration)
+				: new NatComboButton(parent, this.cellStyle, this.maxVisibleItems,
+						this.freeEdit, this.multiselect, style, this.iconImage, buttonConfiguration);
 
 		combo.setCursor(new Cursor(Display.getDefault(), SWT.CURSOR_IBEAM));
 

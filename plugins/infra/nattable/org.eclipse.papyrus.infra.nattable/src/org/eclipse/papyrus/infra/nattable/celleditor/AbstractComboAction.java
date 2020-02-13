@@ -17,12 +17,15 @@ package org.eclipse.papyrus.infra.nattable.celleditor;
 
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
 import org.eclipse.nebula.widgets.nattable.widget.NatCombo;
+import org.eclipse.papyrus.infra.nattable.celleditor.action.ICellEditorButtonAction;
 
 /**
  *
  * This abstract class is used to declare addition action for a button located near a NatCombo
  *
+ * @deprecated since 6.6 (use {@link ICellEditorButtonAction} mixed with {@link ActionComboBoxCellEditor}
  */
+@Deprecated
 public abstract class AbstractComboAction {
 
 	/**

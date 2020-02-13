@@ -36,9 +36,10 @@ import org.eclipse.swt.widgets.Control;
  * This class is used for XText Cell Editor and text editor with completion
  *
  * @author Vincent Lorenzo
- *
+ * @deprecated since 6.6, use {@link AbstractActionStyledTextCellEditor} instead
  */
-public abstract class AbstractPapyrusStyledTextCellEditor extends AbstractStyledTextCellEditor{
+@Deprecated
+public abstract class AbstractPapyrusStyledTextCellEditor extends AbstractStyledTextCellEditor {
 
 	/**
 	 * the table
@@ -174,12 +175,12 @@ public abstract class AbstractPapyrusStyledTextCellEditor extends AbstractStyled
 	}
 
 	/**
-	 * 
+	 *
 	 * @param composite
 	 *            the composite parent
 	 * @return
 	 *         the created button
-	 * 
+	 *
 	 */
 	protected Button createAdditionalButton(Composite composite) {
 		Button button = new Button(composite, SWT.NONE);
@@ -215,7 +216,7 @@ public abstract class AbstractPapyrusStyledTextCellEditor extends AbstractStyled
 
 	/**
 	 * This method allow to define the behavior of the an additional button located at the right of the text field in the cell
-	 * 
+	 *
 	 * @param additionalAction
 	 */
 	public void setOpenDialogCellEditorButtonAction(AbstractOpenDialogCellEditorButtonAction additionalAction) {

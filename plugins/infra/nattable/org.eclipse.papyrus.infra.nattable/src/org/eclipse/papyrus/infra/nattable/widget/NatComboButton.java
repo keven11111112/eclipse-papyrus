@@ -31,7 +31,9 @@ import org.eclipse.swt.widgets.Composite;
  *
  * This widget provides a Combo with a button
  *
+ * @deprecated since 6.6, use {@link ButtonNatCombo} instead
  */
+@Deprecated
 public class NatComboButton extends NatCombo {
 
 	/**

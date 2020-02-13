@@ -27,7 +27,10 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * This class allows to store required information to customize
  * a Button to open a dialog
+ *
+ * @deprecated since 6.6 (use {@link org.eclipse.papyrus.infra.nattable.celleditor.action.AbstractOpenDialogCellEditorButtonAction} instead)
  */
+@Deprecated
 public abstract class AbstractOpenDialogCellEditorButtonAction {
 
 	/** The text to use for the button. */
@@ -118,7 +121,7 @@ public abstract class AbstractOpenDialogCellEditorButtonAction {
 
 
 	/**
-	 * 
+	 *
 	 * @return
 	 *         the created dialog
 	 */
@@ -139,7 +142,7 @@ public abstract class AbstractOpenDialogCellEditorButtonAction {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
 	 *         the value selected by the user
 	 */
@@ -148,7 +151,7 @@ public abstract class AbstractOpenDialogCellEditorButtonAction {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param parent
 	 *            the parent composite used to open a dialog
 	 * @param originalCanonicalValue

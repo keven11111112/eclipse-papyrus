@@ -15,12 +15,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.celleditor;
 
+import org.eclipse.papyrus.infra.nattable.celleditor.action.ICellEditorButtonAction;
 import org.eclipse.swt.graphics.Image;
 
 /**
  * This class allows to store required information to customize
  * a Button and define the action done when it is pressed.
+ *
+ * @deprecated since 6.6 use {@link ICellEditorButtonAction} instead
  */
+@Deprecated
 public class ButtonConfiguration {
 
 	/** The text to use for the button. */

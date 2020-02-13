@@ -45,7 +45,9 @@ import org.eclipse.uml2.uml.Stereotype;
  * @author Vincent Lorenzo
  *
  *         TODO : maybe we could improve this action using AbstractDialogCellEditor
+ * @deprecated since 5.3, use {@link UMLOpenDialogCellEditorButtonAction} {@link InstantiationError}
  */
+@Deprecated
 public class UMLDialogComboAction extends AbstractComboAction {
 
 	/**
