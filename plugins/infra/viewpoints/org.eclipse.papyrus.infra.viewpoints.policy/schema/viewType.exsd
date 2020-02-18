@@ -64,7 +64,7 @@
                <documentation>
                   The priority rank, as an integer, of the extension relative to others.
 &lt;p&gt;
-The default priority is zero and higher priorities precede lower priorities in matching helpers against views in the notation model.
+The default priority is zero (lowest priority) and higher priorities precede lower priorities in matching helpers against views in the notation model.
 &lt;/p&gt;&lt;p&gt;
 Since version 2.1.
 &lt;/p&gt;

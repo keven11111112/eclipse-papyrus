@@ -223,7 +223,8 @@
 <extension
       point="org.eclipse.papyrus.infra.viewpoints.policy.viewType">
    <helper
-         class="org.eclipse.papyrus.infra.nattable.common.helper.TableCommandHelper">
+         class="org.eclipse.papyrus.infra.nattable.common.helper.TableCommandHelper"
+         priority="0">
    </helper>
 </extension>
 <extension

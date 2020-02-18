@@ -288,7 +288,8 @@
 <extension
       point="org.eclipse.papyrus.infra.viewpoints.policy.viewType">
    <helper
-         class="org.eclipse.papyrus.infra.gmfdiag.common.helper.GMFDiagramViewTypeHelper">
+         class="org.eclipse.papyrus.infra.gmfdiag.common.helper.GMFDiagramViewTypeHelper"
+         priority="0">
    </helper>
 </extension>
 <extension

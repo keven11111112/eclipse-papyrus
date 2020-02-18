@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017, 2019 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2017, 2019, 2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,7 +12,7 @@
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
  *  Christian W. Damus - bugs 474467, 493375, 527580
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550568
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 560219
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
 
@@ -363,6 +363,20 @@ public abstract class ViewPrototype {
 	 * @return <code>true</code> if the instantiation succeeded
 	 */
 	public abstract boolean instantiateOn(EObject owner, String name);
+
+	/**
+	 * Create a new view from this prototype with the given owner and name, and open it if required
+	 *
+	 * @param owner
+	 * @param name
+	 * @param openCreatedView
+	 * @return
+	 *         <code>true</code> if the diagram creation succeed, <code>false</code> otherwise
+	 * @since 3.2
+	 */
+	public boolean instantiateOn(final EObject owner, final String name, final boolean openCreatedView) {
+		return instantiateOn(owner, name);
+	}
 
 	/**
 	 * Gets the command for moving the given view to a new owner (target)

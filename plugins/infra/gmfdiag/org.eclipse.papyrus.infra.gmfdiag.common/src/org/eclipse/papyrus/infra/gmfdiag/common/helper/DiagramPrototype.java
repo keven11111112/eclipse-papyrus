@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo vincent.lorenzo@cea.fr - bug 560219
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
  * Represents a prototype of GMF diagram for the viewpoints infrastructure
  *
  * @author Laurent Wouters
+ *
  */
 public class DiagramPrototype extends ViewPrototype {
 	protected final String category;
@@ -54,6 +55,19 @@ public class DiagramPrototype extends ViewPrototype {
 
 	@Override
 	public boolean instantiateOn(EObject owner, String name) {
+		return instantiateOn(owner, name, true);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype#instantiateOn(org.eclipse.emf.ecore.EObject, java.lang.String, boolean)
+	 *
+	 * @param owner
+	 * @param name
+	 * @param openCreatedView
+	 * @return
+	 */
+	@Override
+	public boolean instantiateOn(EObject owner, String name, boolean openCreatedView) {
 		ServicesRegistry registry;
 		try {
 			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(owner);
@@ -68,7 +82,7 @@ public class DiagramPrototype extends ViewPrototype {
 			Activator.log.error(ex);
 			return false;
 		}
-		Object result = command.createDiagram(modelSet, owner, owner, this, name);
+		Object result = command.createDiagram(modelSet, owner, owner, this, name, openCreatedView);
 		return (result != null);
 	}
 
@@ -141,7 +155,7 @@ public class DiagramPrototype extends ViewPrototype {
 	public EObject getRootOf(EObject view) {
 		return ((Diagram) view).getElement();
 	}
-	
+
 	/**
 	 * @since 3.0
 	 */
