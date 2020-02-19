@@ -14,7 +14,7 @@
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 526146, 515737, 516314
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559973
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559973, 560318
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -461,7 +461,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 *
 	 * @return
-	 * 		the new list to use for vertical element
+	 *         the new list to use for vertical element
 	 */
 	protected List<Object> createVerticalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
@@ -475,7 +475,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 *
 	 * @return
-	 * 		the new list to use for horizontal element
+	 *         the new list to use for horizontal element
 	 */
 	protected List<Object> createHorizontalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
@@ -1129,7 +1129,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 *
 	 * @return
-	 * 		a new runnable for the refreash action
+	 *         a new runnable for the refreash action
 	 */
 	private Runnable createRefreshRunnable() {
 		return new Runnable() {
@@ -1178,6 +1178,8 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		if (isRefreshing.compareAndSet(false, true)) {
 			final SelectionLayer selectionLayer = getBodyLayerStack().getSelectionLayer();
 			selectionLayer.doCommand(new ClearAllSelectionsCommand());
+
+
 			this.natTable.refresh();
 
 			// Refresh the nattable columns size in the case of named style
@@ -1303,7 +1305,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @param table
 	 *            the table
 	 * @return
-	 * 		the celleditor declaration to use according to the table configuration and {@link Table#isInvertAxis()}
+	 *         the celleditor declaration to use according to the table configuration and {@link Table#isInvertAxis()}
 	 */
 	private CellEditorDeclaration getCellEditorDeclarationToUse(final Table table) {
 		CellEditorDeclaration declaration = table.getTableConfiguration().getCellEditorDeclaration();
@@ -2000,6 +2002,13 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 										resizeAxis();
 										resizeHeader();
 									}
+
+									/*
+									 * refresh when with show/hide the column for row header label (for example)
+									 */
+									if (notification.getNewValue() instanceof Boolean && notification.getNotifier() instanceof AbstractHeaderAxisConfiguration) {
+										resizeHeader();
+									}
 								}
 							}
 						});
@@ -2059,7 +2068,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 */
 	@Override
 	public Cell getCell(final Object columnElement, final Object rowElement) {
-		//required to support axis with no associated element
+		// required to support axis with no associated element
 		if (AxisUtils.getRepresentedElement(columnElement) != null && AxisUtils.getRepresentedElement(rowElement) != null) {
 			final CellMapKey key = new CellMapKey(columnElement, rowElement);
 			return this.cellsMap.get(key);
@@ -2155,7 +2164,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * @return
-	 * 		the filter strategy to use
+	 *         the filter strategy to use
 	 *
 	 */
 	@Override
@@ -2169,7 +2178,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 *
 	 * @return
-	 * 		a new decoration service listener
+	 *         a new decoration service listener
 	 */
 	private Observer getOrCreateDecorationServiceObserver() {
 		if (this.decoractionServiceObserver == null) {

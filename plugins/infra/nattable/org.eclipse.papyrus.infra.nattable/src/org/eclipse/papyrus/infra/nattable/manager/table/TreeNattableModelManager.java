@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015, 2016 CEA LIST and others.
+ * Copyright (c) 2015, 2016, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *   CEA LIST - Initial API and implementation
  *   Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 508175
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 560318
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -362,15 +363,29 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 */
 	public int getWidthOfSliderComposite() {
 		int result = 0;
-
-		final IntValueStyle valueRowHeader = (IntValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_HEADER_WIDTH);
-		if (null != valueRowHeader) {
-			result = valueRowHeader.getIntValue();
-		} else {
-			result = calculateBestWidthSliderComposite();
+		AbstractHeaderAxisConfiguration configuration = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisConfigurationUsedInTable(getTable());
+		if (configuration.isDisplayLabel()) {
+			final IntValueStyle valueRowHeader = (IntValueStyle) getTable().getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_HEADER_WIDTH);
+			if (null != valueRowHeader && valueRowHeader.getIntValue() != 0) {
+				result = valueRowHeader.getIntValue();
+			} else {
+				result = calculateBestWidthSliderComposite();
+			}
 		}
-
 		return result;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager#resizeHeader()
+	 *
+	 */
+	@Override
+	public void resizeHeader() {
+		ClientAreaAdapter clientAreaAdapter = new ClientAreaAdapter(getRowHeaderLayerStack().getViewportLayer().getClientAreaProvider());
+		clientAreaAdapter.setWidth(getWidthOfSliderComposite());
+		getRowHeaderLayerStack().getViewportLayer().setClientAreaProvider(clientAreaAdapter);
+		super.resizeHeader();
+		refreshNatTable();
 	}
 
 	/**
@@ -383,42 +398,43 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 
 		// If non namedStyle exists for the slider composite, the initial width of the table must be an addition of:
 		// - The size of the two first columns
-		// - The alf size of the 3rd column
+		// - The half size of the 3rd column
 
 		int result = 0;
+		AbstractHeaderAxisConfiguration configuration = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisConfigurationUsedInTable(getTable());
+		if (configuration.isDisplayLabel()) {
+			final AbstractHeaderAxisConfiguration rowHeader = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisConfigurationUsedInTable(getTable());
 
-		final AbstractHeaderAxisConfiguration rowHeader = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisConfigurationUsedInTable(getTable());
-
-		// Get the size of the two first columns
-		final IntValueStyle valueFirstRow = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_WIDTH);
-		if (null != valueFirstRow) {
-			result += valueFirstRow.getIntValue();
-		} else {
-			result += DefaultSizeUtils.getDefaultRowHeaderWidth();
-		}
-		final IntValueStyle valueSecondRow = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_POSITION_PREFIX_WIDTH + "2" + NamedStyleConstants.ROW_LABEL_POSITION_SUFFIX_WIDTH); //$NON-NLS-1$
-		if (null != valueSecondRow) {
-			result += valueSecondRow.getIntValue();
-		} else {
-			result += DefaultSizeUtils.getDefaultRowHeaderWidth();
-		}
-
-		// Get the alf size of the 3rd column
-		final IntValueStyle valueThirdRow = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_POSITION_PREFIX_WIDTH + "3" + NamedStyleConstants.ROW_LABEL_POSITION_SUFFIX_WIDTH); //$NON-NLS-1$
-		if (null != valueThirdRow) {
-			if (1 == valueThirdRow.getIntValue() % 2) {
-				result += (valueThirdRow.getIntValue() / 2) + 1;
+			// Get the size of the two first columns
+			final IntValueStyle valueFirstRow = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_WIDTH);
+			if (null != valueFirstRow) {
+				result += valueFirstRow.getIntValue();
 			} else {
-				result += valueThirdRow.getIntValue() / 2;
+				result += DefaultSizeUtils.getDefaultRowHeaderWidth();
 			}
-		} else {
-			if (1 == DefaultSizeUtils.getDefaultRowHeaderWidth() % 2) {
-				result += (DefaultSizeUtils.getDefaultRowHeaderWidth() / 2) + 1;
+			final IntValueStyle valueSecondRow = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_POSITION_PREFIX_WIDTH + "2" + NamedStyleConstants.ROW_LABEL_POSITION_SUFFIX_WIDTH); //$NON-NLS-1$
+			if (null != valueSecondRow) {
+				result += valueSecondRow.getIntValue();
 			} else {
-				result += DefaultSizeUtils.getDefaultRowHeaderWidth() / 2;
+				result += DefaultSizeUtils.getDefaultRowHeaderWidth();
+			}
+
+			// Get the half size of the 3rd column
+			final IntValueStyle valueThirdRow = (IntValueStyle) rowHeader.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_POSITION_PREFIX_WIDTH + "3" + NamedStyleConstants.ROW_LABEL_POSITION_SUFFIX_WIDTH); //$NON-NLS-1$
+			if (null != valueThirdRow) {
+				if (1 == valueThirdRow.getIntValue() % 2) {
+					result += (valueThirdRow.getIntValue() / 2) + 1;
+				} else {
+					result += valueThirdRow.getIntValue() / 2;
+				}
+			} else {
+				if (1 == DefaultSizeUtils.getDefaultRowHeaderWidth() % 2) {
+					result += (DefaultSizeUtils.getDefaultRowHeaderWidth() / 2) + 1;
+				} else {
+					result += DefaultSizeUtils.getDefaultRowHeaderWidth() / 2;
+				}
 			}
 		}
-
 		return result;
 	}
 
@@ -589,7 +605,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 * @param contentProvider
 	 * @param columnAxisManager
 	 * @return
-	 * 		the Composite axis manager used to manage Tree
+	 *         the Composite axis manager used to manage Tree
 	 * @since 3.0
 	 */
 	protected ICompositeAxisManager createTreeAxisManager(List<AxisManagerRepresentation> representations, AbstractAxisProvider contentProvider, boolean columnAxisManager) {
@@ -746,7 +762,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 *            the body layer stack to use
 	 *
 	 * @return
-	 * 		the row header layer stack to use
+	 *         the row header layer stack to use
 	 */
 	@Override
 	protected RowHeaderLayerStack createRowHeaderLayerStack(BodyLayerStack bodyLayerStack) {
@@ -789,7 +805,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 * @param iAxis
 	 *            The list of axis.
 	 */
-	private void modifyAcisDeliver(final List<IAxis> iAxis) {
+	private void modifyAxisDeliver(final List<IAxis> iAxis) {
 		for (IAxis axis : iAxis) {
 			if (axis instanceof ITreeItemAxis) {
 				boolean isDelivering = axis.eDeliver();
@@ -829,14 +845,14 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 
 				@Override
 				public void run() {
-					modifyAcisDeliver(iAxis);
+					modifyAxisDeliver(iAxis);
 				}
 			};
 			try {
 				if (null != getTableEditingDomain()) {
 					GMFUnsafe.write(getTableEditingDomain(), runnable);
 				} else {
-					modifyAcisDeliver(iAxis);
+					modifyAxisDeliver(iAxis);
 				}
 			} catch (InterruptedException e) {
 				Activator.log.error(e);
