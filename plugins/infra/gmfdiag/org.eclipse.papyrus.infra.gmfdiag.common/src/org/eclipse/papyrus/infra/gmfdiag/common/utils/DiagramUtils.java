@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017, 2019 CEA LIST and others.
+ * Copyright (c) 2013, 2017, 2019, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -15,6 +15,7 @@
  *  Christian W. Damus - bug 527580
  *  Ansgar Radermacher - bug 539754
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 550568
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 560644
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
@@ -389,4 +390,26 @@ public class DiagramUtils {
 		}
 		return null;
 	}
+
+	/**
+	 *
+	 * Return the kind of the diagram containing this view
+	 *
+	 * @param view
+	 *            a view
+	 * @return
+	 *         the kind of the diagram, or <code>null</code>
+	 * @since 3.104
+	 */
+	public static String getContainingDiagramKindId(final View view) {
+		final Diagram containingDiagram = getContainingDiagram(view);
+		if (containingDiagram != null) {
+			PapyrusDiagramStyle pvs = getPapyrusDiagramStyle(containingDiagram);
+			if (pvs != null) {
+				return pvs.getDiagramKindId();
+			}
+		}
+		return null;
+	}
+
 }
