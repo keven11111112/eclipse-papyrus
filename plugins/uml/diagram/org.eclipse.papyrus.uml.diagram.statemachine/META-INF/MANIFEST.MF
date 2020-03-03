@@ -32,16 +32,16 @@ Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Created-By: 1.5.0_06-b05 (Sun Microsystems Inc.)
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12.0,3.0.0)",
- org.eclipse.emf.ecore.edit;visibility:=reexport;bundle-version="[2.9.0,3.0.0)",
- org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12.0,3.0.0)",
- org.eclipse.emf.validation.ocl;visibility:=reexport;bundle-version="[1.4.0,2.0.0)",
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
+ org.eclipse.emf.ecore.edit;bundle-version="[2.9.0,3.0.0)";visibility:=reexport,
+ org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
+ org.eclipse.emf.validation.ocl;bundle-version="[1.4.0,2.0.0)";visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.providers.ide;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide;bundle-version="[1.7.0,2.0.0)",
  org.eclipse.ocl.ecore;bundle-version="[3.5.0,4.0.0)",
  org.eclipse.papyrus.editor;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.preferences;visibility:=reexport;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.preferences;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.papyrus.uml.appearance;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.diagram.navigation;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.uml.service.types;bundle-version="[4.0.0,5.0.0)",
@@ -65,19 +65,20 @@ Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport;bundle-version="[2.12
  org.eclipse.gmf.runtime.diagram.ui.properties,
  org.eclipse.gmf.runtime.diagram.ui.providers,
  org.eclipse.gmf.runtime.diagram.ui.resources.editor,
- org.eclipse.uml2.uml;visibility:=reexport;bundle-version="[5.3.0,6.0.0)",
- org.eclipse.uml2.uml.edit;visibility:=reexport;bundle-version="[5.3.0,6.0.0)",
+ org.eclipse.uml2.uml;bundle-version="[5.3.0,6.0.0)";visibility:=reexport,
+ org.eclipse.uml2.uml.edit;bundle-version="[5.3.0,6.0.0)";visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
  org.eclipse.gef,
  org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.papyrus.infra.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.papyrus.uml.internationalization.utils;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;visibility:=reexport;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[2.0.0,4.0.0)"
+ org.eclipse.papyrus.infra.gmfdiag.tooling.runtime;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[2.0.0,4.0.0)",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="[3.1.0,4.0.0)"
 Bundle-Vendor: %providerName
 Ant-Version: Apache Ant 1.7.0
 Eclipse-LazyStart: true
-Bundle-Version: 3.2.0.qualifier
+Bundle-Version: 3.2.100.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.statemachine; singleton:=true

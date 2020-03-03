@@ -131,7 +131,7 @@ public class TransitionNameEditPart extends PapyrusLabelEditPart
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionNameEditPart.VISUAL_ID), new Point(0, 0));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionNameEditPart.VISUAL_ID), new Point(0, 20));
 	}
 
 	/**

@@ -2163,7 +2163,11 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel"/>
+              figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="20"/>
+          </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.1">
@@ -2179,7 +2183,11 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel"/>
+              figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="-20"/>
+          </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.3">
@@ -2519,7 +2527,7 @@
         iD="org.eclipse.papyrus.uml.diagram.statemachine"
         name="PapyrusUMLStateMachineDiagram"
         provider="Papyrus"
-        version="3.0.0.qualifier"/>
+        version="3.2.100.qualifier"/>
     <editor
         iconPath="icons/UMLDiagramFile.gif"/>
     <diagramUpdater/>

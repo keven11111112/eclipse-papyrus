@@ -975,8 +975,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// }
 		Node transition_NameLabel = createLabel(edge, UMLVisualIDRegistry.getType(TransitionNameEditPart.VISUAL_ID));
 		transition_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location transition_NameLabel_Location = (Location) transition_NameLabel.getLayoutConstraint();
+		transition_NameLabel_Location.setX(0);
+		transition_NameLabel_Location.setY(20);
 		Node transition_GuardLabel = createLabel(edge, UMLVisualIDRegistry.getType(TransitionGuardEditPart.VISUAL_ID));
 		transition_GuardLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location transition_GuardLabel_Location = (Location) transition_GuardLabel.getLayoutConstraint();
+		transition_GuardLabel_Location.setX(0);
+		transition_GuardLabel_Location.setY(-20);
 		Node transition_StereotypeLabel = createLabel(edge, UMLVisualIDRegistry.getType(TransitionStereotypeEditPart.VISUAL_ID));
 		transition_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location transition_StereotypeLabel_Location = (Location) transition_StereotypeLabel.getLayoutConstraint();
