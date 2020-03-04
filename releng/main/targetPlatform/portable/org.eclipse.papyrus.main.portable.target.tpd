@@ -41,7 +41,7 @@ location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R201906
 
 //updateFrom("XWT",0)
 
-location xwt "https://download.eclipse.org/xwt/milestones-1.4.0/1.4.0-RC2/" {
+location xwt "https://download.eclipse.org/xwt/milestones-1.4.100/1.4.100-RC1/" {
     org.eclipse.xwt.feature.feature.group lazy
 }
 
@@ -66,7 +66,7 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5mileston
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.15milestones/S-4.15M3-202002191800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.15milestones/S-4.15RC1-202002261800/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -79,7 +79,7 @@ location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S202002241333" {
+location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.21.0" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -89,7 +89,7 @@ location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/mileston
 
 //updateFrom("EMFT MWE for 2020-03",0)
 
-location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/milestones/S202002170915/" {
+location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.11.2/" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
@@ -113,7 +113,7 @@ location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/upd
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S202002180048" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.21" {
 	org.eclipse.emf.sdk.feature.group
 }
 

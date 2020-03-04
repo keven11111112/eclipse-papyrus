@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Tests" sequenceNumber="1582625161">
+<target name="Papyrus Tests" sequenceNumber="1583309480">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -30,7 +30,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="0.0.0"/>
-      <repository id="xwt" location="https://download.eclipse.org/xwt/milestones-1.4.0/1.4.0-RC2/"/>
+      <repository id="xwt" location="https://download.eclipse.org/xwt/milestones-1.4.100/1.4.100-RC1/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.10.1.v20191209-1226"/>
@@ -42,12 +42,12 @@
       <repository id="xpand" location="https://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.uml2.sdk.feature.group" version="5.5.1.v20200131-1848"/>
+      <unit id="org.eclipse.uml2.sdk.feature.group" version="5.5.1.v20200302-1312"/>
       <repository id="uml" location="https://download.eclipse.org/modeling/mdt/uml2/updates/5.5milestones"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.15.0.v20200219-1800"/>
-      <repository id="platform" location="https://download.eclipse.org/eclipse/updates/4.15milestones/S-4.15M3-202002191800/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.15.0.v20200226-1800"/>
+      <repository id="platform" location="https://download.eclipse.org/eclipse/updates/4.15milestones/S-4.15RC1-202002261800/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.11.0.v20200224-1248"/>
@@ -55,16 +55,16 @@
       <repository id="ocl" location="https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.11.0/S202002241248"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.21.0.v20200224-1333"/>
-      <unit id="org.eclipse.xtend.sdk.feature.group" version="2.21.0.v20200224-1333"/>
-      <unit id="org.eclipse.xtext.redist.feature.group" version="2.21.0.v20200224-1333"/>
-      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.21.0.v20200224-1333"/>
-      <unit id="org.eclipse.xtext.ui.feature.group" version="2.21.0.v20200224-1333"/>
-      <repository id="xtext" location="https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S202002241333"/>
+      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.21.0.v20200302-1509"/>
+      <unit id="org.eclipse.xtend.sdk.feature.group" version="2.21.0.v20200302-1509"/>
+      <unit id="org.eclipse.xtext.redist.feature.group" version="2.21.0.v20200302-1509"/>
+      <unit id="org.eclipse.xtext.runtime.feature.group" version="2.21.0.v20200302-1509"/>
+      <unit id="org.eclipse.xtext.ui.feature.group" version="2.21.0.v20200302-1509"/>
+      <repository id="xtext" location="https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.21.0"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.mwe2.language.sdk.feature.group" version="2.11.2.v20200217-0915"/>
-      <repository id="mwe" location="https://download.eclipse.org/modeling/emft/mwe/updates/milestones/S202002170915/"/>
+      <unit id="org.eclipse.emf.mwe2.language.sdk.feature.group" version="2.11.2.v20200224-0816"/>
+      <repository id="mwe" location="https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.11.2/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="0.0.0"/>
@@ -80,7 +80,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.sdk.feature.group" version="2.21.0.v20200205-0529"/>
-      <repository id="emf" location="http://download.eclipse.org/modeling/emf/emf/builds/milestone/S202002180048"/>
+      <repository id="emf" location="http://download.eclipse.org/modeling/emf/emf/builds/release/2.21"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.query.sdk.feature.group" version="1.12.0.201805030653"/>
