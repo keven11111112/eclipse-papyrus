@@ -66,13 +66,13 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5mileston
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.15milestones/S-4.15RC1-202002261800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.15milestones/S-4.15RC2-202003050155/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2020-03",0) 
 
-location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.11.0/S202002241248" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.11.0" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }

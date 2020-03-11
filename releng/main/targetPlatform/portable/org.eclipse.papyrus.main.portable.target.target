@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Main" sequenceNumber="1583309479">
+<target name="Papyrus Main" sequenceNumber="1583919628">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -46,13 +46,13 @@
       <repository id="uml" location="https://download.eclipse.org/modeling/mdt/uml2/updates/5.5milestones"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.sdk.feature.group" version="4.15.0.v20200226-1800"/>
-      <repository id="platform" location="https://download.eclipse.org/eclipse/updates/4.15milestones/S-4.15RC1-202002261800/"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.15.0.v20200305-0155"/>
+      <repository id="platform" location="https://download.eclipse.org/eclipse/updates/4.15milestones/S-4.15RC2-202003050155/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.11.0.v20200224-1248"/>
-      <unit id="org.eclipse.ocl.examples.feature.group" version="6.11.0.v20200224-1248"/>
-      <repository id="ocl" location="https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.11.0/S202002241248"/>
+      <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.11.0.v20200309-0848"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="6.11.0.v20200309-0848"/>
+      <repository id="ocl" location="https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.11.0"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xtext.sdk.feature.group" version="2.21.0.v20200302-1509"/>
