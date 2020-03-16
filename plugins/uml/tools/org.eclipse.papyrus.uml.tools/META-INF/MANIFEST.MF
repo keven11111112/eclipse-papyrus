@@ -33,7 +33,7 @@ Require-Bundle: org.eclipse.uml2.uml;bundle-version="[5.3.0,6.0.0)";visibility:=
  org.eclipse.papyrus.infra.services.decoration;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 4.2.100.qualifier
+Bundle-Version: 4.3.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.uml.tools.Activator
 Bundle-ManifestVersion: 2

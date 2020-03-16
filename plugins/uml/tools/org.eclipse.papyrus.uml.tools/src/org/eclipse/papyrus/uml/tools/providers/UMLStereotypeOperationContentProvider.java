@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -23,19 +23,21 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IInheritedElementContentProvider;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.papyrus.uml.tools.util.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
  *
- * This content providers is used to get the properties of stereotypes
+ * This content providers is used to get the operations of stereotypes
+ *
+ * @since 4.3
  *
  */
-public class UMLStereotypePropertyContentProvider implements IHierarchicContentProvider, IInheritedElementContentProvider, IIgnoreStereotypeBasePropertyContentProvider {
+public class UMLStereotypeOperationContentProvider implements IHierarchicContentProvider, IInheritedElementContentProvider, IOperationContentProvider {
 
 	/**
 	 * the profiles
@@ -43,16 +45,13 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	protected List<Profile> profiles;
 
 	/**
-	 * this boolean is used to know if we should returns the Property base_EXTENDED_METACLASS or not
-	 */
-	private boolean ignoreBaseProperty;
-
-
-	/**
 	 * if <code>true</code> we don't return the inherited properties
 	 */
-	private boolean ignoreInheritedProperties;
+	private boolean ignoreInheritedOperation;
 
+	private boolean ignoreVoidOperations;
+
+	private boolean ignoreOperationsWithParameters;
 
 	/**
 	 *
@@ -63,10 +62,11 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	 *
 	 *            the boolean fields are initialized to false
 	 */
-	public UMLStereotypePropertyContentProvider(final List<Profile> profiles) {
+	public UMLStereotypeOperationContentProvider(final List<Profile> profiles) {
 		this.profiles = profiles;
-		this.ignoreBaseProperty = false;
-		this.ignoreInheritedProperties = false;
+		this.ignoreInheritedOperation = false;
+		this.ignoreOperationsWithParameters = false;
+		this.ignoreVoidOperations = false;
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	 * Constructor.
 	 *
 	 */
-	public UMLStereotypePropertyContentProvider() {
+	public UMLStereotypeOperationContentProvider() {
 		this(null);
 	}
 
@@ -117,21 +117,7 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 					}
 				}
 			} else if (parentElement instanceof Stereotype) {
-				if (ignoreInheritedProperties) {
-					if (this.ignoreBaseProperty) {
-						children.addAll(StereotypeUtil.getStereotypePropertiesWithoutBaseProperties((Stereotype) parentElement));
-					} else {
-						children.addAll((((Stereotype) parentElement).getOwnedAttributes()));
-					}
-
-				} else {
-					if (this.ignoreBaseProperty) {
-						children.addAll(StereotypeUtil.getAllStereotypePropertiesWithoutBaseProperties((Stereotype) parentElement));
-
-					} else {
-						children.addAll((((Stereotype) parentElement).getAllAttributes()));
-					}
-				}
+				children.addAll(StereotypeUtil.getAllStereotypeOperations((Stereotype) parentElement, this.ignoreVoidOperations, this.ignoreOperationsWithParameters, this.ignoreInheritedOperation));
 			}
 		}
 		return children.toArray();
@@ -195,11 +181,7 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	@Override
 	public boolean isValidValue(Object element) {
 		if (element instanceof Element) {
-			boolean result = element instanceof Property && ((Element) element).eContainer() instanceof Stereotype;
-			if (result) {
-				return StereotypeUtil.isValidStereotypeProperty((Property) element);
-			}
-			return result;
+			return element instanceof Operation && ((Element) element).eContainer() instanceof Stereotype;
 		}
 		return false;
 	}
@@ -214,17 +196,6 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	}
 
 	/**
-	 * Setter for {@link #ignoreBaseProperty}
-	 *
-	 * @param ignoreBaseProperty
-	 */
-	@Override
-	public void setIgnoreBaseProperty(boolean ignoreBaseProperty) {
-		this.ignoreBaseProperty = ignoreBaseProperty;
-	}
-
-
-	/**
 	 *
 	 * @see org.eclipse.papyrus.infra.widgets.providers.IInheritedElementContentProvider#setIgnoreInheritedElements(boolean)
 	 *
@@ -232,7 +203,7 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	 */
 	@Override
 	public void setIgnoreInheritedElements(final boolean ignoreInheritedElements) {
-		this.ignoreInheritedProperties = ignoreInheritedElements;
+		this.ignoreInheritedOperation = ignoreInheritedElements;
 	}
 
 	/**
@@ -243,17 +214,47 @@ public class UMLStereotypePropertyContentProvider implements IHierarchicContentP
 	 */
 	@Override
 	public boolean isIgnoringInheritedElements() {
-		return this.ignoreInheritedProperties;
+		return this.ignoreInheritedOperation;
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.uml.tools.providers.IOperationContentProvider#setIgnoredOperationsWithParameters(boolean)
 	 *
-	 * @see org.eclipse.papyrus.uml.tools.providers.IIgnoreStereotypeBasePropertyContentProvider#isIgnoringBaseProperty()
+	 * @param ignoreOperationsWithParameters
+	 */
+	@Override
+	public void setIgnoredOperationsWithParameters(boolean ignoreOperationsWithParameters) {
+		this.ignoreOperationsWithParameters = ignoreOperationsWithParameters;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.tools.providers.IOperationContentProvider#setIgnoreVoidOperations(boolean)
+	 *
+	 * @param ignoreVoidOperation
+	 */
+	@Override
+	public void setIgnoreVoidOperations(boolean ignoreVoidOperation) {
+		this.ignoreVoidOperations = ignoreVoidOperation;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.tools.providers.IOperationContentProvider#isIgnoringOperationsWithParameters()
 	 *
 	 * @return
 	 */
 	@Override
-	public boolean isIgnoringBaseProperty() {
-		return this.ignoreBaseProperty;
+	public boolean isIgnoringOperationsWithParameters() {
+		return this.ignoreOperationsWithParameters;
 	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.tools.providers.IOperationContentProvider#isIgnoringVoidOperations()
+	 *
+	 * @return
+	 */
+	@Override
+	public boolean isIgnoringVoidOperations() {
+		return this.ignoreVoidOperations;
+	}
+
 }

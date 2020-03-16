@@ -1,15 +1,16 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
+ * http://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.provider;
 
@@ -24,8 +25,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
-import org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypePropertyAxisManager;
-import org.eclipse.papyrus.uml.tools.providers.UMLStereotypePropertyContentProvider;
+import org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypeOperationAxisManager;
+import org.eclipse.papyrus.uml.tools.providers.UMLStereotypeOperationContentProvider;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
@@ -34,14 +35,11 @@ import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * Restricted Content Provider for the properties of Stereotypes
+ * Restricted Content Provider for the operations of Stereotypes
  *
- * @author Juan Cadavid
- *
+ * @since 5.4
  */
-// TODO we maybe should use the AbstractRestrictedContentProvider
-// of extends a generic uml content provider?
-public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotypePropertyContentProvider implements IRestrictedContentProvider {
+public class UMLStereotypeRestrictedOperationContentProvider extends UMLStereotypeOperationContentProvider implements IRestrictedContentProvider {
 
 	/**
 	 * we show the value according to the table content
@@ -52,7 +50,7 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	/**
 	 * the stereotype axis manager
 	 */
-	private UMLStereotypePropertyAxisManager umlStereotypePropertyManager;
+	private UMLStereotypeOperationAxisManager umlStereotypePropertyManager;
 
 	/**
 	 * the list of the allowed contents (Profile and Stereotype) when we are in restricted mode
@@ -68,10 +66,11 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 	 * @param isRestricted
 	 *            restrict mode
 	 */
-	public UMLStereotypeRestrictedPropertyContentProvider(final UMLStereotypePropertyAxisManager umlStereotypePropertyManager, final boolean isRestricted) {
+	public UMLStereotypeRestrictedOperationContentProvider(final UMLStereotypeOperationAxisManager umlStereotypePropertyManager, final boolean isRestricted) {
 		super();
-		setIgnoreBaseProperty(true);
-		// setIgnoreInheritedElements(true);
+		setIgnoredOperationsWithParameters(true);
+		setIgnoreVoidOperations(true);
+		setIgnoreInheritedElements(true);
 		this.isRestricted = isRestricted;
 		this.umlStereotypePropertyManager = umlStereotypePropertyManager;
 		init();
@@ -148,6 +147,15 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 		return restrictedElements;
 	}
 
+	/**
+	 *
+	 * @param profile
+	 *            a profile
+	 * @param availableProfiles
+	 *            the list of available profile
+	 * @return
+	 *         the root applied profile
+	 */
 	protected Profile getTopRootProfile(final Profile profile, final Collection<Profile> availableProfiles) {
 		EObject container = profile.eContainer();
 		Profile topProfile = profile;
@@ -181,24 +189,6 @@ public class UMLStereotypeRestrictedPropertyContentProvider extends UMLStereotyp
 				for (Profile profile : allAppliedProfiles) {
 					coll.add(getTopRootProfile(profile, allAppliedProfiles));
 				}
-
-
-				// // coll.addAll(allAppliedProfiles);
-				// //for each of these profiles, we look for the top profile which is applied in the model
-				// //for example, if only SysML::Blocks is applied, we don't want to display SysML as root profile, but only SysML::Blocks
-				// for(final Profile current : allAppliedProfiles) {
-				// Profile topPackage = null;
-				// for(final Package pack : current.allOwningPackages()) {
-				// if(pack instanceof Profile && allAppliedProfiles.contains(pack)) {
-				// topPackage = (Profile)pack;
-				// break;
-				// }
-				// }
-				// if(topPackage == null) {
-				// topPackage = current;
-				// }
-				// coll.add(topPackage);
-				// }
 			}
 		}
 		return coll;

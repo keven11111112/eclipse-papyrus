@@ -185,6 +185,23 @@
                context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
          </labelProviderContext>
       </labelProvider>
+      <labelProvider
+            priority="1105"
+            provider="org.eclipse.papyrus.uml.nattable.provider.StereotypeOperationHeaderLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.operation.labelprovider">
+         </labelProviderContext>
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
+      <labelProvider
+            priority="1107"
+            provider="org.eclipse.papyrus.uml.nattable.provider.StereotypeOperationCellLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.axismanager">
@@ -208,6 +225,10 @@
             id="org.eclipse.papyrus.uml.nattable.operation.axis.manager"
             manager="org.eclipse.papyrus.uml.nattable.manager.axis.UMLOperationAxisManager">
       </axisManager>
+      <axisManager
+            id="org.eclipse.papyrus.uml.nattable.stereotype.operation.axis.manager"
+            manager="org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypeOperationAxisManager">
+      </axisManager>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.cellmanager">
@@ -222,9 +243,14 @@
             order="500">
       </cellManager>
       <cellManager
-            id="org.eclipse.papyrus.infra.emf.nattable.cell.operation.manager"
+            id="org.eclipse.papyrus.uml.nattable.cell.operation.manager"
             manager="org.eclipse.papyrus.uml.nattable.manager.cell.UMLOperationValueCellManager"
             order="1150">
+      </cellManager>
+      <cellManager
+            id="org.eclipse.papyrus.uml.nattable.uml.stereotype.operation.cell.manager"
+            manager="org.eclipse.papyrus.uml.nattable.manager.cell.StereotypeOperationCellManager"
+            order="502">
       </cellManager>
    </extension>
    <extension
