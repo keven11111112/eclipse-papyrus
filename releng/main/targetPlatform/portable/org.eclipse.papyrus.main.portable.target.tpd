@@ -60,13 +60,13 @@ location xpand "https://download.eclipse.org/modeling/m2t/xpand/updates/releases
 
 //updateFrom("MDT UML2",0) 
 
-location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5milestones" {
+location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 	org.eclipse.uml2.sdk.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.15milestones/S-4.15RC2-202003050155/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.15/R-4.15-202003050155/" {
 	org.eclipse.sdk.feature.group
 }
 
@@ -95,7 +95,7 @@ location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.
 
 //updateFrom("Web Tools Platform 3.17 for Simrel 2020-03",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.17.0/S-3.17.0.M3-20200221035047/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.17.0/R-3.17.0-20200306035042/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 

@@ -13,7 +13,10 @@
    width="460"
    version="1.2"
    sodipodi:docname="splash.svg"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:export-filename="C:\cygwin64\home\Papyrus\Papyrus-Master\releng\rcp\org.eclipse.papyrus.rcp\icons\splash.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
   <sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
@@ -23,15 +26,15 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1810"
-     inkscape:window-height="898"
+     inkscape:window-width="2133"
+     inkscape:window-height="1141"
      id="namedview334"
      showgrid="false"
      inkscape:zoom="1.3485714"
-     inkscape:cx="-113.99386"
+     inkscape:cx="94.476549"
      inkscape:cy="80.855544"
-     inkscape:window-x="164"
-     inkscape:window-y="124"
+     inkscape:window-x="3028"
+     inkscape:window-y="327"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg2" />
   <defs
@@ -1384,7 +1387,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1779,5 +1782,9 @@
        id="tspan4832"
        x="197.48167"
        y="240.93285"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.49736595px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1">2020-03N</tspan></text>
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.49736595px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1">2020-03</tspan><tspan
+       x="197.48167"
+       y="240.93285"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.49736595px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1"
+       id="tspan335" /></text>
 </svg>
