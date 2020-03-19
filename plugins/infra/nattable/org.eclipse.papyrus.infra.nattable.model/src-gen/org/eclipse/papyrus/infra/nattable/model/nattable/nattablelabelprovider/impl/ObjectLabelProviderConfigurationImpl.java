@@ -219,7 +219,7 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (displayIcon: "); //$NON-NLS-1$
 		result.append(displayIcon);
 		result.append(", displayLabel: "); //$NON-NLS-1$

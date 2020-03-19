@@ -340,7 +340,7 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (alias: "); //$NON-NLS-1$
 		result.append(alias);
 		result.append(')');

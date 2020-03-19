@@ -203,6 +203,16 @@ public class AxisProviderItemProvider extends AbstractAxisProviderItemProvider {
 			(createChildParameter
 				(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS,
 				 NattableaxisFactory.eINSTANCE.createAxisGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS,
+				 NattableaxisFactory.eINSTANCE.createOperationIdAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisproviderPackage.Literals.AXIS_PROVIDER__AXIS,
+				 NattableaxisFactory.eINSTANCE.createOperationIdTreeItemAxis()));
 	}
 
 }

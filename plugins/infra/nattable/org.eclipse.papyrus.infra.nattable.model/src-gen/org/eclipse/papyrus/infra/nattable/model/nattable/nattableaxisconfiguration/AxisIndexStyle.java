@@ -37,6 +37,9 @@ public enum AxisIndexStyle implements Enumerator {
 	 * The '<em><b>ALPHABETIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Index Headers count will be : A-B-C-...Y-Z-AA-AB-...
+	 * <!-- end-model-doc -->
 	 * @see #ALPHABETIC_VALUE
 	 * @generated
 	 * @ordered
@@ -46,6 +49,9 @@ public enum AxisIndexStyle implements Enumerator {
 	 * The '<em><b>NUMERIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Index Headers count will be : 1-2-3-...
+	 * <!-- end-model-doc -->
 	 * @see #NUMERIC_VALUE
 	 * @generated
 	 * @ordered

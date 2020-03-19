@@ -179,6 +179,7 @@ public class NattablelabelproviderActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("nattablelabelprovider-settings")); //$NON-NLS-1$
 		toolBarManager.add(new Separator("nattablelabelprovider-additions")); //$NON-NLS-1$
 	}

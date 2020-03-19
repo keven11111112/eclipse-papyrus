@@ -148,7 +148,7 @@ public class DoubleListValueStyleImpl extends NamedStyleImpl implements DoubleLi
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (doubleListValue: "); //$NON-NLS-1$
 		result.append(doubleListValue);
 		result.append(')');

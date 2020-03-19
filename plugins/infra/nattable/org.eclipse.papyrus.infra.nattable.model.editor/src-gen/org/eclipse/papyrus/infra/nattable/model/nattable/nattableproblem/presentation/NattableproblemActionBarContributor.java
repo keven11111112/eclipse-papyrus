@@ -179,6 +179,7 @@ public class NattableproblemActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("nattableproblem-settings")); //$NON-NLS-1$
 		toolBarManager.add(new Separator("nattableproblem-additions")); //$NON-NLS-1$
 	}

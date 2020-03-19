@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.infra.nattable.model" version="2">
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/NattableaxisFactory.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory">
+        <filter comment="Bug 561096" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory"/>
+                <message_argument value="createOperationIdAxis()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory"/>
+                <message_argument value="createOperationIdTreeItemAxis()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="createOperationIdAxis()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="createOperationIdTreeItemAxis()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/NattableaxisPackage.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage">
+        <filter comment="Bug 561096" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage"/>
+                <message_argument value="getOperationIdAxis()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage"/>
+                <message_argument value="getOperationIdTreeItemAxis()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS_FEATURE_COUNT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS_OPERATION_COUNT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS__ALIAS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS__EANNOTATIONS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS__ELEMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS__LOCAL_LABEL_CONFIGURATION"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS__MANAGER"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS__STYLES"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS___CREATE_STYLE__ECLASS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS___GET_EANNOTATION__STRING"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS___GET_ELEMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS___GET_LOCAL_LABEL_CONFIGURATION"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS___GET_NAMED_STYLE__ECLASS_STRING"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS___GET_STYLE__ECLASS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS_FEATURE_COUNT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS_OPERATION_COUNT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS__ALIAS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS__CHILDREN"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS__EANNOTATIONS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS__ELEMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS__EXPANDED"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS__LOCAL_LABEL_CONFIGURATION"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS__MANAGER"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS__PARENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS__STYLES"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS___CREATE_STYLE__ECLASS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS___GET_EANNOTATION__STRING"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS___GET_ELEMENT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS___GET_LOCAL_LABEL_CONFIGURATION"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS___GET_NAMED_STYLE__ECLASS_STRING"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS___GET_STYLE__ECLASS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="getOperationIdAxis()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="getOperationIdTreeItemAxis()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/NattableaxisPackage.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage$Literals">
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_AXIS"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1211105284">
+            <message_arguments>
+                <message_argument value="OPERATION_ID_TREE_ITEM_AXIS"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/OperationIdAxis.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdAxis">
+        <filter comment="Bug 561096" id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdAxis"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/OperationIdTreeItemAxis.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdTreeItemAxis">
+        <filter comment="Bug 561096" id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdTreeItemAxis"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/impl/OperationIdAxisImpl.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdAxisImpl">
+        <filter comment="Bug 561096" id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdAxisImpl"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/impl/OperationIdTreeItemAxisImpl.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdTreeItemAxisImpl">
+        <filter comment="Bug 561096" id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdTreeItemAxisImpl"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/util/NattableaxisAdapterFactory.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.util.NattableaxisAdapterFactory">
+        <filter comment="Bug 561096" id="1143996420">
+            <message_arguments>
+                <message_argument value="createOperationIdAxisAdapter()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1143996420">
+            <message_arguments>
+                <message_argument value="createOperationIdTreeItemAxisAdapter()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/util/NattableaxisSwitch.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.util.NattableaxisSwitch">
+        <filter comment="Bug 561096" id="1143996420">
+            <message_arguments>
+                <message_argument value="caseOperationIdAxis(OperationIdAxis)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1143996420">
+            <message_arguments>
+                <message_argument value="caseOperationIdTreeItemAxis(OperationIdTreeItemAxis)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

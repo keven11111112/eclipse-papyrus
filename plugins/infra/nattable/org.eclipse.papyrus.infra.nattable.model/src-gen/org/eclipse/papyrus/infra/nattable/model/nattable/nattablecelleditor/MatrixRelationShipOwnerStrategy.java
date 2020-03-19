@@ -28,18 +28,15 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-model-doc -->
  * This Enumeration is used to define the owner of relationships created editing the matrix.
  * <!-- end-model-doc -->
- * 
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablecelleditor.NattablecelleditorPackage#getMatrixRelationShipOwnerStrategy()
  * @model
  * @generated
- * @since 4.1
  */
 public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	/**
 	 * The '<em><b>DEFAULT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #DEFAULT_VALUE
 	 * @generated
 	 * @ordered
@@ -49,7 +46,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * The '<em><b>TABLE CONTEXT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #TABLE_CONTEXT_VALUE
 	 * @generated
 	 * @ordered
@@ -59,7 +55,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * The '<em><b>ROW OWNER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #ROW_OWNER_VALUE
 	 * @generated
 	 * @ordered
@@ -70,7 +65,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * The '<em><b>ROW AS OWNER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #ROW_AS_OWNER_VALUE
 	 * @generated
 	 * @ordered
@@ -80,7 +74,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * The '<em><b>COLUMN OWNER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #COLUMN_OWNER_VALUE
 	 * @generated
 	 * @ordered
@@ -91,7 +84,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * The '<em><b>COLUMN AS OWNER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #COLUMN_AS_OWNER_VALUE
 	 * @generated
 	 * @ordered
@@ -102,7 +94,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * The '<em><b>OTHER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #OTHER_VALUE
 	 * @generated
 	 * @ordered
@@ -117,7 +108,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #DEFAULT
 	 * @model
 	 * @generated
@@ -133,7 +123,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #TABLE_CONTEXT
 	 * @model
 	 * @generated
@@ -149,7 +138,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #ROW_OWNER
 	 * @model
 	 * @generated
@@ -165,7 +153,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #ROW_AS_OWNER
 	 * @model
 	 * @generated
@@ -181,7 +168,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #COLUMN_OWNER
 	 * @model
 	 * @generated
@@ -197,7 +183,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #COLUMN_AS_OWNER
 	 * @model
 	 * @generated
@@ -213,7 +198,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #OTHER
 	 * @model
 	 * @generated
@@ -225,7 +209,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * An array of all the '<em><b>Matrix Relation Ship Owner Strategy</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static final MatrixRelationShipOwnerStrategy[] VALUES_ARRAY = new MatrixRelationShipOwnerStrategy[] {
@@ -236,13 +219,12 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 			COLUMN_OWNER,
 			COLUMN_AS_OWNER,
 			OTHER,
-	};
+		};
 
 	/**
 	 * A public read-only list of all the '<em><b>Matrix Relation Ship Owner Strategy</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static final List<MatrixRelationShipOwnerStrategy> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
@@ -251,9 +233,7 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * Returns the '<em><b>Matrix Relation Ship Owner Strategy</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *            the literal.
+	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
@@ -271,9 +251,7 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * Returns the '<em><b>Matrix Relation Ship Owner Strategy</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param name
-	 *            the name.
+	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
@@ -291,28 +269,19 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * Returns the '<em><b>Matrix Relation Ship Owner Strategy</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the integer value.
+	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static MatrixRelationShipOwnerStrategy get(int value) {
 		switch (value) {
-		case DEFAULT_VALUE:
-			return DEFAULT;
-		case TABLE_CONTEXT_VALUE:
-			return TABLE_CONTEXT;
-		case ROW_OWNER_VALUE:
-			return ROW_OWNER;
-		case ROW_AS_OWNER_VALUE:
-			return ROW_AS_OWNER;
-		case COLUMN_OWNER_VALUE:
-			return COLUMN_OWNER;
-		case COLUMN_AS_OWNER_VALUE:
-			return COLUMN_AS_OWNER;
-		case OTHER_VALUE:
-			return OTHER;
+			case DEFAULT_VALUE: return DEFAULT;
+			case TABLE_CONTEXT_VALUE: return TABLE_CONTEXT;
+			case ROW_OWNER_VALUE: return ROW_OWNER;
+			case ROW_AS_OWNER_VALUE: return ROW_AS_OWNER;
+			case COLUMN_OWNER_VALUE: return COLUMN_OWNER;
+			case COLUMN_AS_OWNER_VALUE: return COLUMN_AS_OWNER;
+			case OTHER_VALUE: return OTHER;
 		}
 		return null;
 	}
@@ -320,7 +289,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final int value;
@@ -328,7 +296,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String name;
@@ -336,7 +303,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private final String literal;
@@ -345,7 +311,6 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	 * Only this class can construct instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private MatrixRelationShipOwnerStrategy(int value, String name, String literal) {
@@ -357,38 +322,34 @@ public enum MatrixRelationShipOwnerStrategy implements Enumerator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
-		return value;
+	  return value;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
-		return name;
+	  return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
-		return literal;
+	  return literal;
 	}
 
 	/**
 	 * Returns the literal value of the enumerator, which is its string representation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

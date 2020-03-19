@@ -219,7 +219,7 @@ public abstract class TableNamedElementImpl extends StyledElementImpl implements
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (description: "); //$NON-NLS-1$
 		result.append(description);
 		result.append(", name: "); //$NON-NLS-1$

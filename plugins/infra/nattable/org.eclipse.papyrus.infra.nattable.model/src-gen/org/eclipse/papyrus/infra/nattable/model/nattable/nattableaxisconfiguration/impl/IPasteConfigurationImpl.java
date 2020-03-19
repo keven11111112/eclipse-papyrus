@@ -205,7 +205,7 @@ public class IPasteConfigurationImpl extends StyledElementImpl implements IPaste
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (postActions: "); //$NON-NLS-1$
 		result.append(postActions);
 		result.append(", detachedMode: "); //$NON-NLS-1$

@@ -319,6 +319,16 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 
 		newChildDescriptors.add
 			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
+				 NattableaxisFactory.eINSTANCE.createOperationIdAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER,
+				 NattableaxisFactory.eINSTANCE.createOperationIdTreeItemAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__FILTER_RULE,
 				 BooleanExpressionsFactory.eINSTANCE.createOrExpression()));
 
@@ -346,6 +356,11 @@ public class TreeFillingConfigurationItemProvider extends StyledElementItemProvi
 			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__FILTER_RULE,
 				 BooleanExpressionsFactory.eINSTANCE.createReferenceBooleanExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.TREE_FILLING_CONFIGURATION__FILTER_RULE,
+				 BooleanExpressionsFactory.eINSTANCE.createSingleEAttributeValueEqualityExpression()));
 	}
 
 	/**

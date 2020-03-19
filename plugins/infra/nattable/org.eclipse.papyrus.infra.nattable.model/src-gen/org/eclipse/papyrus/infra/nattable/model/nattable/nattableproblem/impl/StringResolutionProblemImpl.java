@@ -204,7 +204,7 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (valueAsString: "); //$NON-NLS-1$
 		result.append(valueAsString);
 		result.append(", unresolvedString: "); //$NON-NLS-1$

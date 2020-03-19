@@ -316,6 +316,30 @@ public class NattableaxisSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case NattableaxisPackage.OPERATION_ID_AXIS: {
+				OperationIdAxis operationIdAxis = (OperationIdAxis)theEObject;
+				T result = caseOperationIdAxis(operationIdAxis);
+				if (result == null) result = caseIdAxis(operationIdAxis);
+				if (result == null) result = caseOperationAxis(operationIdAxis);
+				if (result == null) result = caseIAxis(operationIdAxis);
+				if (result == null) result = caseStyledElement(operationIdAxis);
+				if (result == null) result = caseEModelElement(operationIdAxis);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case NattableaxisPackage.OPERATION_ID_TREE_ITEM_AXIS: {
+				OperationIdTreeItemAxis operationIdTreeItemAxis = (OperationIdTreeItemAxis)theEObject;
+				T result = caseOperationIdTreeItemAxis(operationIdTreeItemAxis);
+				if (result == null) result = caseITreeItemAxis(operationIdTreeItemAxis);
+				if (result == null) result = caseOperationIdAxis(operationIdTreeItemAxis);
+				if (result == null) result = caseIdAxis(operationIdTreeItemAxis);
+				if (result == null) result = caseOperationAxis(operationIdTreeItemAxis);
+				if (result == null) result = caseIAxis(operationIdTreeItemAxis);
+				if (result == null) result = caseStyledElement(operationIdTreeItemAxis);
+				if (result == null) result = caseEModelElement(operationIdTreeItemAxis);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -632,6 +656,36 @@ public class NattableaxisSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAxisGroup(AxisGroup object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation Id Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation Id Axis</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationIdAxis(OperationIdAxis object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation Id Tree Item Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation Id Tree Item Axis</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationIdTreeItemAxis(OperationIdTreeItemAxis object) {
 		return null;
 	}
 

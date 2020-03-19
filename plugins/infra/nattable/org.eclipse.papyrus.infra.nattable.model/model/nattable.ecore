@@ -752,6 +752,16 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="groupedAxis" upperBound="-1"
           eType="#//nattableaxis/IAxis"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OperationIdAxis" eSuperTypes="#//nattableaxis/IdAxis #//nattableaxis/OperationAxis">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="IAxis used to represent operation using a string."/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OperationIdTreeItemAxis" eSuperTypes="#//nattableaxis/ITreeItemAxis #//nattableaxis/OperationIdAxis">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="ITreeItemAxis used to represent operation using a string."/>
+      </eAnnotations>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="nattablecell" nsURI="http://www.eclipse.org/papyrus/nattable/model/table/nattablecell"
       nsPrefix="nattablecell">

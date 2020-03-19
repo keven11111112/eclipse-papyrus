@@ -164,7 +164,7 @@ public class BooleanValueStyleImpl extends NamedStyleImpl implements BooleanValu
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (booleanValue: "); //$NON-NLS-1$
 		result.append(booleanValue);
 		result.append(')');

@@ -220,7 +220,7 @@ public class MasterObjectAxisProviderImpl extends AxisProviderImpl implements Ma
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (disconnectSlave: "); //$NON-NLS-1$
 		result.append(disconnectSlave);
 		result.append(')');

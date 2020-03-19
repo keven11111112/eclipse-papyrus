@@ -495,7 +495,7 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (depth: "); //$NON-NLS-1$
 		result.append(depth);
 		result.append(", labelProviderContext: "); //$NON-NLS-1$

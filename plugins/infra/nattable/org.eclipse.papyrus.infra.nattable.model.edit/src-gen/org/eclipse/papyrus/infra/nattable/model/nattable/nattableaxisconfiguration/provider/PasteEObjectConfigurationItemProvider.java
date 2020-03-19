@@ -263,6 +263,16 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 			(createChildParameter
 				(NattableaxisconfigurationPackage.Literals.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER,
 				 NattableaxisFactory.eINSTANCE.createAxisGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER,
+				 NattableaxisFactory.eINSTANCE.createOperationIdAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattableaxisconfigurationPackage.Literals.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER,
+				 NattableaxisFactory.eINSTANCE.createOperationIdTreeItemAxis()));
 	}
 
 }

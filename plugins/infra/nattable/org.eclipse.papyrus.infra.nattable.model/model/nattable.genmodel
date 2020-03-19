@@ -225,6 +225,8 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference nattable.ecore#//nattableaxis/AxisGroup/groupedAxis"/>
       </genClasses>
+      <genClasses ecoreClass="nattable.ecore#//nattableaxis/OperationIdAxis"/>
+      <genClasses ecoreClass="nattable.ecore#//nattableaxis/OperationIdTreeItemAxis"/>
     </nestedGenPackages>
     <nestedGenPackages prefix="Nattablecell" basePackage="org.eclipse.papyrus.infra.nattable.model.nattable"
         disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"

@@ -323,6 +323,11 @@ public class GenericRelationshipMatrixCellEditorConfigurationItemProvider extend
 
 		newChildDescriptors.add
 			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__CELL_CONTENTS_FILTER,
+				 BooleanExpressionsFactory.eINSTANCE.createSingleEAttributeValueEqualityExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER,
 				 NattablewrapperFactory.eINSTANCE.createEObjectWrapper()));
 
@@ -390,6 +395,16 @@ public class GenericRelationshipMatrixCellEditorConfigurationItemProvider extend
 			(createChildParameter
 				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
 				 NattableaxisFactory.eINSTANCE.createAxisGroup()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createOperationIdAxis()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(NattablecelleditorPackage.Literals.GENERIC_RELATIONSHIP_MATRIX_CELL_EDITOR_CONFIGURATION__RELATIONSHIP_OWNER_FEATURE,
+				 NattableaxisFactory.eINSTANCE.createOperationIdTreeItemAxis()));
 	}
 
 	/**

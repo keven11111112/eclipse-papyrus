@@ -313,7 +313,7 @@ public abstract class IdAxisImpl extends StyledElementImpl implements IdAxis {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (alias: "); //$NON-NLS-1$
 		result.append(alias);
 		result.append(", element: "); //$NON-NLS-1$

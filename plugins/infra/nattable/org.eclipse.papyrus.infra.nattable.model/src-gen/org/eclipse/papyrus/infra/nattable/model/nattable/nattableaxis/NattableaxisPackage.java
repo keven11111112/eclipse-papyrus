@@ -3081,6 +3081,305 @@ public interface NattableaxisPackage extends EPackage {
 	int AXIS_GROUP_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdAxisImpl <em>Operation Id Axis</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdAxisImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getOperationIdAxis()
+	 * @generated
+	 */
+	int OPERATION_ID_AXIS = 21;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS__EANNOTATIONS = ID_AXIS__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS__STYLES = ID_AXIS__STYLES;
+
+	/**
+	 * The feature id for the '<em><b>Manager</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS__MANAGER = ID_AXIS__MANAGER;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS__ALIAS = ID_AXIS__ALIAS;
+
+	/**
+	 * The feature id for the '<em><b>Element</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS__ELEMENT = ID_AXIS__ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS__LOCAL_LABEL_CONFIGURATION = ID_AXIS_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Operation Id Axis</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS_FEATURE_COUNT = ID_AXIS_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS___GET_EANNOTATION__STRING = ID_AXIS___GET_EANNOTATION__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Named Style</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS___GET_NAMED_STYLE__ECLASS_STRING = ID_AXIS___GET_NAMED_STYLE__ECLASS_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Style</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS___GET_STYLE__ECLASS = ID_AXIS___GET_STYLE__ECLASS;
+
+	/**
+	 * The operation id for the '<em>Create Style</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS___CREATE_STYLE__ECLASS = ID_AXIS___CREATE_STYLE__ECLASS;
+
+	/**
+	 * The operation id for the '<em>Get Element</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS___GET_ELEMENT = ID_AXIS___GET_ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS___GET_LOCAL_LABEL_CONFIGURATION = ID_AXIS___GET_LOCAL_LABEL_CONFIGURATION;
+
+	/**
+	 * The number of operations of the '<em>Operation Id Axis</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_AXIS_OPERATION_COUNT = ID_AXIS_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdTreeItemAxisImpl <em>Operation Id Tree Item Axis</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdTreeItemAxisImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getOperationIdTreeItemAxis()
+	 * @generated
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS = 22;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS__EANNOTATIONS = ITREE_ITEM_AXIS__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Styles</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS__STYLES = ITREE_ITEM_AXIS__STYLES;
+
+	/**
+	 * The feature id for the '<em><b>Manager</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS__MANAGER = ITREE_ITEM_AXIS__MANAGER;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS__ALIAS = ITREE_ITEM_AXIS__ALIAS;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS__PARENT = ITREE_ITEM_AXIS__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Expanded</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS__EXPANDED = ITREE_ITEM_AXIS__EXPANDED;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS__CHILDREN = ITREE_ITEM_AXIS__CHILDREN;
+
+	/**
+	 * The feature id for the '<em><b>Element</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS__ELEMENT = ITREE_ITEM_AXIS_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Local Label Configuration</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS__LOCAL_LABEL_CONFIGURATION = ITREE_ITEM_AXIS_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Operation Id Tree Item Axis</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS_FEATURE_COUNT = ITREE_ITEM_AXIS_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS___GET_EANNOTATION__STRING = ITREE_ITEM_AXIS___GET_EANNOTATION__STRING;
+
+	/**
+	 * The operation id for the '<em>Get Named Style</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS___GET_NAMED_STYLE__ECLASS_STRING = ITREE_ITEM_AXIS___GET_NAMED_STYLE__ECLASS_STRING;
+
+	/**
+	 * The operation id for the '<em>Get Style</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS___GET_STYLE__ECLASS = ITREE_ITEM_AXIS___GET_STYLE__ECLASS;
+
+	/**
+	 * The operation id for the '<em>Create Style</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS___CREATE_STYLE__ECLASS = ITREE_ITEM_AXIS___CREATE_STYLE__ECLASS;
+
+	/**
+	 * The operation id for the '<em>Get Element</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS___GET_ELEMENT = ITREE_ITEM_AXIS___GET_ELEMENT;
+
+	/**
+	 * The operation id for the '<em>Get Local Label Configuration</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS___GET_LOCAL_LABEL_CONFIGURATION = ITREE_ITEM_AXIS___GET_LOCAL_LABEL_CONFIGURATION;
+
+	/**
+	 * The number of operations of the '<em>Operation Id Tree Item Axis</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_ID_TREE_ITEM_AXIS_OPERATION_COUNT = ITREE_ITEM_AXIS_OPERATION_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis <em>IAxis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3454,6 +3753,26 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getAxisGroup_GroupedAxis();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdAxis <em>Operation Id Axis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Operation Id Axis</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdAxis
+	 * @generated
+	 */
+	EClass getOperationIdAxis();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdTreeItemAxis <em>Operation Id Tree Item Axis</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Operation Id Tree Item Axis</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdTreeItemAxis
+	 * @generated
+	 */
+	EClass getOperationIdTreeItemAxis();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3806,5 +4125,25 @@ public interface NattableaxisPackage extends EPackage {
 		 * @generated
 		 */
 		EReference AXIS_GROUP__GROUPED_AXIS = eINSTANCE.getAxisGroup_GroupedAxis();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdAxisImpl <em>Operation Id Axis</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdAxisImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getOperationIdAxis()
+		 * @generated
+		 */
+		EClass OPERATION_ID_AXIS = eINSTANCE.getOperationIdAxis();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdTreeItemAxisImpl <em>Operation Id Tree Item Axis</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.OperationIdTreeItemAxisImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.NattableaxisPackageImpl#getOperationIdTreeItemAxis()
+		 * @generated
+		 */
+		EClass OPERATION_ID_TREE_ITEM_AXIS = eINSTANCE.getOperationIdTreeItemAxis();
 	}
 } // NattableaxisPackage

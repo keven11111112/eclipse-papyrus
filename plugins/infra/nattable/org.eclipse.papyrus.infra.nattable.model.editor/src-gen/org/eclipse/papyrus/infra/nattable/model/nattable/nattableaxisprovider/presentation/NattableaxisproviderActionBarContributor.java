@@ -179,6 +179,7 @@ public class NattableaxisproviderActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("nattableaxisprovider-settings")); //$NON-NLS-1$
 		toolBarManager.add(new Separator("nattableaxisprovider-additions")); //$NON-NLS-1$
 	}

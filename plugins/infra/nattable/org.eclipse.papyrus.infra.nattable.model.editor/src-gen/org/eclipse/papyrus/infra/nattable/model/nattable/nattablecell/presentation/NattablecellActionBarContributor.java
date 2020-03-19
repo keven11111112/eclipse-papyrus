@@ -179,6 +179,7 @@ public class NattablecellActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("nattablecell-settings")); //$NON-NLS-1$
 		toolBarManager.add(new Separator("nattablecell-additions")); //$NON-NLS-1$
 	}

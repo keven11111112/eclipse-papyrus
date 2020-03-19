@@ -166,7 +166,7 @@ public class IdWrapperImpl extends StyledElementImpl implements IdWrapper {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (element: "); //$NON-NLS-1$
 		result.append(element);
 		result.append(')');

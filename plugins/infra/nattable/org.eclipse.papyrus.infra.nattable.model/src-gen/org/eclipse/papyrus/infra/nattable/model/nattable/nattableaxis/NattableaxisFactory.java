@@ -143,6 +143,24 @@ public interface NattableaxisFactory extends EFactory {
 	AxisGroup createAxisGroup();
 
 	/**
+	 * Returns a new object of class '<em>Operation Id Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operation Id Axis</em>'.
+	 * @generated
+	 */
+	OperationIdAxis createOperationIdAxis();
+
+	/**
+	 * Returns a new object of class '<em>Operation Id Tree Item Axis</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Operation Id Tree Item Axis</em>'.
+	 * @generated
+	 */
+	OperationIdTreeItemAxis createOperationIdTreeItemAxis();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

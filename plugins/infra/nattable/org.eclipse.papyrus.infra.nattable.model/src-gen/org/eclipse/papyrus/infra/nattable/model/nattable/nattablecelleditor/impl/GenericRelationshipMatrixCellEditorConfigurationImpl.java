@@ -122,7 +122,6 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	 * @see #getRelationshipOwnerStrategy()
 	 * @generated
 	 * @ordered
-	 * @since 4.1
 	 */
 	protected static final MatrixRelationShipOwnerStrategy RELATIONSHIP_OWNER_STRATEGY_EDEFAULT = MatrixRelationShipOwnerStrategy.DEFAULT;
 
@@ -133,7 +132,6 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	 * @see #getRelationshipOwnerStrategy()
 	 * @generated
 	 * @ordered
-	 * @since 4.1
 	 */
 	protected MatrixRelationShipOwnerStrategy relationshipOwnerStrategy = RELATIONSHIP_OWNER_STRATEGY_EDEFAULT;
 
@@ -552,7 +550,7 @@ public class GenericRelationshipMatrixCellEditorConfigurationImpl extends Styled
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (cellEditorId: "); //$NON-NLS-1$
 		result.append(cellEditorId);
 		result.append(", direction: "); //$NON-NLS-1$

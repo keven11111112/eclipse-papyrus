@@ -326,7 +326,7 @@ public class FeatureLabelProviderConfigurationImpl extends ObjectLabelProviderCo
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (displayIsDerived: "); //$NON-NLS-1$
 		result.append(displayIsDerived);
 		result.append(", displayType: "); //$NON-NLS-1$

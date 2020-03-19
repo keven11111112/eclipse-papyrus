@@ -358,6 +358,52 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdAxis} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperationIdAxisItemProvider operationIdAxisItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdAxis}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOperationIdAxisAdapter() {
+		if (operationIdAxisItemProvider == null) {
+			operationIdAxisItemProvider = new OperationIdAxisItemProvider(this);
+		}
+
+		return operationIdAxisItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdTreeItemAxis} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OperationIdTreeItemAxisItemProvider operationIdTreeItemAxisItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.OperationIdTreeItemAxis}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOperationIdTreeItemAxisAdapter() {
+		if (operationIdTreeItemAxisItemProvider == null) {
+			operationIdTreeItemAxisItemProvider = new OperationIdTreeItemAxisItemProvider(this);
+		}
+
+		return operationIdTreeItemAxisItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -474,6 +520,8 @@ public class NattableaxisItemProviderAdapterFactory extends NattableaxisAdapterF
 		if (objectIdAxisItemProvider != null) objectIdAxisItemProvider.dispose();
 		if (objectIdTreeItemAxisItemProvider != null) objectIdTreeItemAxisItemProvider.dispose();
 		if (axisGroupItemProvider != null) axisGroupItemProvider.dispose();
+		if (operationIdAxisItemProvider != null) operationIdAxisItemProvider.dispose();
+		if (operationIdTreeItemAxisItemProvider != null) operationIdTreeItemAxisItemProvider.dispose();
 	}
 
 }

@@ -148,7 +148,7 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (intListValue: "); //$NON-NLS-1$
 		result.append(intListValue);
 		result.append(')');

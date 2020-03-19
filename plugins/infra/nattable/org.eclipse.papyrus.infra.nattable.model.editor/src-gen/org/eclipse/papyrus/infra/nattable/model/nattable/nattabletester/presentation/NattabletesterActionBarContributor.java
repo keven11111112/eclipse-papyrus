@@ -179,6 +179,7 @@ public class NattabletesterActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("nattabletester-settings")); //$NON-NLS-1$
 		toolBarManager.add(new Separator("nattabletester-additions")); //$NON-NLS-1$
 	}

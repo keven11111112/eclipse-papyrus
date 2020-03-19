@@ -489,7 +489,7 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (fontColor: "); //$NON-NLS-1$
 		result.append(fontColor);
 		result.append(", fontName: "); //$NON-NLS-1$

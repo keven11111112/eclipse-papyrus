@@ -78,6 +78,8 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 			case NattableaxisPackage.OBJECT_ID_AXIS: return createObjectIdAxis();
 			case NattableaxisPackage.OBJECT_ID_TREE_ITEM_AXIS: return createObjectIdTreeItemAxis();
 			case NattableaxisPackage.AXIS_GROUP: return createAxisGroup();
+			case NattableaxisPackage.OPERATION_ID_AXIS: return createOperationIdAxis();
+			case NattableaxisPackage.OPERATION_ID_TREE_ITEM_AXIS: return createOperationIdTreeItemAxis();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -211,6 +213,26 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	public AxisGroup createAxisGroup() {
 		AxisGroupImpl axisGroup = new AxisGroupImpl();
 		return axisGroup;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperationIdAxis createOperationIdAxis() {
+		OperationIdAxisImpl operationIdAxis = new OperationIdAxisImpl();
+		return operationIdAxis;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperationIdTreeItemAxis createOperationIdTreeItemAxis() {
+		OperationIdTreeItemAxisImpl operationIdTreeItemAxis = new OperationIdTreeItemAxisImpl();
+		return operationIdTreeItemAxis;
 	}
 
 	/**

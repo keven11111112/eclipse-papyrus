@@ -164,7 +164,7 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (stringValue: "); //$NON-NLS-1$
 		result.append(stringValue);
 		result.append(')');

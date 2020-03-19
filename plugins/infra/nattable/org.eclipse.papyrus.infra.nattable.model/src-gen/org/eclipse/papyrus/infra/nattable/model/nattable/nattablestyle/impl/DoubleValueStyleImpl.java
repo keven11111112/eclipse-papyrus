@@ -164,7 +164,7 @@ public class DoubleValueStyleImpl extends NamedStyleImpl implements DoubleValueS
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (doubleValue: "); //$NON-NLS-1$
 		result.append(doubleValue);
 		result.append(')');

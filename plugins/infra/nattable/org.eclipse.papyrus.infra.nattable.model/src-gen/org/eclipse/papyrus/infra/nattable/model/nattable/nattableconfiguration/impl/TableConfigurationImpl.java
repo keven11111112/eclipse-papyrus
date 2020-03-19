@@ -765,7 +765,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (type: "); //$NON-NLS-1$
 		result.append(type);
 		result.append(", iconPath: "); //$NON-NLS-1$

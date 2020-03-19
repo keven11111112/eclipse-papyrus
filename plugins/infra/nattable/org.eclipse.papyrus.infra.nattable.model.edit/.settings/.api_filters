@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.infra.nattable.model.edit" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="Bug 561096" id="923795461">
+            <message_arguments>
+                <message_argument value="4.1.0"/>
+                <message_argument value="4.0.100"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/provider/NattableaxisItemProviderAdapterFactory.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider.NattableaxisItemProviderAdapterFactory">
+        <filter comment="Bug 561096" id="1143996420">
+            <message_arguments>
+                <message_argument value="operationIdAxisItemProvider"/>
+            </message_arguments>
+        </filter>
+        <filter comment="Bug 561096" id="1143996420">
+            <message_arguments>
+                <message_argument value="operationIdTreeItemAxisItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/provider/OperationIdAxisItemProvider.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider.OperationIdAxisItemProvider">
+        <filter comment="Bug 561096" id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider.OperationIdAxisItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/model/nattable/nattableaxis/provider/OperationIdTreeItemAxisItemProvider.java" type="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider.OperationIdTreeItemAxisItemProvider">
+        <filter comment="Bug 561096" id="1110441988">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.provider.OperationIdTreeItemAxisItemProvider"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

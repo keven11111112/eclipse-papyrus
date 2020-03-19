@@ -177,6 +177,7 @@ public class NattableActionBarContributor
 	 */
 	@Override
 	public void contributeToToolBar(IToolBarManager toolBarManager) {
+		super.contributeToToolBar(toolBarManager);
 		toolBarManager.add(new Separator("nattable-settings")); //$NON-NLS-1$
 		toolBarManager.add(new Separator("nattable-additions")); //$NON-NLS-1$
 	}
