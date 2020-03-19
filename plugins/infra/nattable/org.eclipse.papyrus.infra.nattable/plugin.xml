@@ -1031,6 +1031,9 @@
            description="Context used to display operation referenced by TreeFillingConfiguration"
            id="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
      </context>
+     <context
+           id="org.eclipse.papyrus.infra.nattable.header.action.labelprovider">
+     </context>
  </extension>
  
 	
@@ -1391,6 +1394,15 @@
          priority="10"
          provider="org.eclipse.papyrus.infra.nattable.provider.ProblemLabelProvider">
    </labelProvider>
+   <labelProvider
+         priority="10"
+         provider="org.eclipse.papyrus.infra.nattable.provider.ActionHeaderLabelProvider">
+      <labelProviderContext
+            context="org.eclipse.papyrus.infra.nattable.header.action.labelprovider"></labelProviderContext>
+      <labelProviderContext
+            context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
+      </labelProviderContext>
+   </labelProvider>
 </extension>
    <extension
          point="org.eclipse.ui.commandImages">
@@ -1560,6 +1572,11 @@
             id="org.eclipse.papyrus.infra.nattable.tree.filling.configuration"
             manager="org.eclipse.papyrus.infra.nattable.manager.cell.TreeFillingConfigurationCellManager"
             order="10">
+      </cellManager>
+      <cellManager
+            id="org.eclipse.papyrus.infra.nattable.action.cell.manager"
+            manager="org.eclipse.papyrus.infra.nattable.manager.cell.ActionCellManager"
+            order="101">
       </cellManager>
    </extension>
    <extension
@@ -1933,5 +1950,27 @@
       <initializer
             class="org.eclipse.papyrus.infra.nattable.preferences.initializers.CellPreferenceInitializer">
       </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.axismanager">
+      <axisManager
+            id="org.eclipse.papyrus.infra.nattable.action.axis.manager"
+            manager="org.eclipse.papyrus.infra.nattable.manager.axis.ActionAxisManager">
+      </axisManager>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
+      <cellAxisConfiguration
+            class="org.eclipse.papyrus.infra.nattable.celleditor.action.DestroyAxisElementCellEditorAxisConfiguration"
+            order="22">
+      </cellAxisConfiguration>
+      <cellAxisConfiguration
+            class="org.eclipse.papyrus.infra.nattable.celleditor.action.MoveDownAxisElementCellEditorAxisConfiguration"
+            order="13">
+      </cellAxisConfiguration>
+      <cellAxisConfiguration
+            class="org.eclipse.papyrus.infra.nattable.celleditor.action.MoveUpAxisElementCellEditorAxisConfiguration"
+            order="13">
+      </cellAxisConfiguration>
    </extension>
 </plugin>

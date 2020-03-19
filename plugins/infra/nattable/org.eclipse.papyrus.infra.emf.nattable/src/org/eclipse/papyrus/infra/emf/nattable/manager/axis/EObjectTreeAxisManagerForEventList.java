@@ -210,7 +210,8 @@ public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerF
 	public boolean canDestroyAxisElement(final Integer axisIndex) {
 		final Object current = getElements().get(axisIndex);
 		if (current instanceof EObjectTreeItemAxis && !(((EObjectTreeItemAxis) current).getElement() instanceof TreeFillingConfiguration)) {
-			return !EMFHelper.isReadOnly(((EObjectTreeItemAxis) current).getElement());
+			return ((EObjectTreeItemAxis) current).getElement() != null // can be null for empty axis
+                          	&& !EMFHelper.isReadOnly(((EObjectTreeItemAxis) current).getElement());
 		}
 		return false;
 	}
