@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Toolsmiths" sequenceNumber="1583919635">
+<target name="Papyrus Toolsmiths" sequenceNumber="1584608743">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -43,11 +43,11 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.uml2.sdk.feature.group" version="5.5.1.v20200302-1312"/>
-      <repository id="uml" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/uml2/updates/5.5milestones"/>
+      <repository id="uml" location="file:/home/data/httpd/download.eclipse.org/modeling/mdt/uml2/updates/5.5"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.sdk.feature.group" version="4.15.0.v20200305-0155"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.15milestones/S-4.15RC2-202003050155/"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.15/R-4.15-202003050155/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.ocl.examples.classic.feature.group" version="5.11.0.v20200309-0848"/>
@@ -68,7 +68,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.wst.xml_ui.feature.feature.group" version="0.0.0"/>
-      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.17.0/S-3.17.0.M3-20200221035047/repository/"/>
+      <repository id="webtools" location="file:/home/data/httpd/download.eclipse.org/webtools/downloads/drops/R3.17.0/R-3.17.0-20200306035042/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.12.2.201912020813"/>
@@ -132,10 +132,10 @@
       <unit id="org.eclipse.oomph.p2.feature.group" version="1.15.0.v20200307-0636"/>
       <unit id="org.eclipse.oomph.setup.feature.group" version="1.16.0.v20200309-0628"/>
       <unit id="org.eclipse.oomph.preferences.feature.group" version="1.12.0.v20190929-1544"/>
-      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/milestone/S20200309-083258-1.16.0-RC2/"/>
+      <repository id="oomph" location="file:/home/data/httpd/download.eclipse.org/oomph/drops/release/1.16.0"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="egit" location="file:/home/data/httpd/download.eclipse.org/egit/updates-5.7"/>
+      <repository id="egit" location="https://repo.eclipse.org/content/unzip/releases.unzip/org/eclipse/egit/org.eclipse.egit.repository/5.7.0.202003110725-r/org.eclipse.egit.repository-5.7.0.202003110725-r.zip-unzip/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="m2e" location="file:/home/data/httpd/download.eclipse.org/technology/m2e/milestones/1.15/1.15.0.20200310-1746/"/>
