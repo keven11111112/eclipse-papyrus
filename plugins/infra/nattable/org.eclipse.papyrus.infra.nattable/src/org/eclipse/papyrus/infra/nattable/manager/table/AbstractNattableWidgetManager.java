@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2017, 2018 CEA LIST and others.
+ * Copyright (c) 2012, 2017, 2018, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -18,6 +18,7 @@
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 417095
  *  Vincent Lorenzo (CEA LIST) - bug 525221
  *  Nicolas Fauvergue (CEA LIST) - bug 509971
+ *  Vincent Lorenzo (CEA LIST) - bug 561300
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -65,6 +66,7 @@ import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.data.DefaultCornerDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.layer.CornerLayer;
 import org.eclipse.nebula.widgets.nattable.grid.layer.GridLayer;
+import org.eclipse.nebula.widgets.nattable.hideshow.RowHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.layer.AbstractDpiConverter;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
 import org.eclipse.nebula.widgets.nattable.layer.IDpiConverter;
@@ -1729,8 +1731,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			Object currentAxisObject = rowObjects.get(rowIndex);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			if (toFind.contains(currentRealObject)) {
-				selectionLayer.doCommand(new SelectRowsCommand(selectionLayer, 0, rowIndex, false, true));
-				// we remove the found object from the cloned elementList as they are already selected
+				final RowHideShowLayer layer = getBodyLayerStack().getRowHideShowLayer();
+				int realIndex = layer.underlyingToLocalRowPosition(natTable, rowIndex);
+				natTable.doCommand(new SelectRowsCommand(selectionLayer, 0, realIndex, false, true)); // we remove the found object from the cloned elementList as they are already selected
 				toFind.remove(currentRealObject);
 				selectObject = true;
 			}
