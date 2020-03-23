@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2019 CEA LIST.
+ * Copyright (c) 2013, 2019, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,7 +12,7 @@
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
  *  Pauline DEVILLE (CEA LIST) pauline.deville@cea.fr - Bug 551566
- *
+ *  Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 561371
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.handlers;
 
@@ -36,8 +36,14 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
  */
 public class PolicyDefinedTableHandler extends CreateNatTableEditorHandler {
 	private TableConfiguration configuration;
-	private EObject context;
-	private String name;
+	/**
+	 * @since 5.5
+	 */
+	protected EObject context;
+	/**
+	 * @since 5.5
+	 */
+	protected String name;
 
 	/**
 	 * @since 3.0
@@ -51,6 +57,16 @@ public class PolicyDefinedTableHandler extends CreateNatTableEditorHandler {
 	@Override
 	protected EObject getTableContext() {
 		return context;
+	}
+
+	/**
+	 * The context to use for the table creation
+	 *
+	 * @param context
+	 * @since 5.5
+	 */
+	public void setTableContext(final EObject context) {
+		this.context = context;
 	}
 
 	@Override

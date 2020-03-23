@@ -14,5 +14,12 @@
         <details key="propertyCategory" value="Table"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationCommand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The fully qualified name of a command that creates the table. The command must implement the org.eclipse.papyrus.infra.nattable.representation.ITableCreationCommand inteface"/>
+        <details key="propertyDescription" value="The configuration of the table"/>
+        <details key="propertyCategory" value="Table"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

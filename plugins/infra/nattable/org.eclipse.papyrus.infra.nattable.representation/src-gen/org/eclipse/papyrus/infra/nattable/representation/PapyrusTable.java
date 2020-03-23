@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusTable#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusTable#getCreationCommand <em>Creation Command</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage#getPapyrusTable()
@@ -67,5 +68,30 @@ public interface PapyrusTable extends PapyrusRepresentationKind {
 	 * @generated
 	 */
 	void setConfiguration(TableConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Creation Command</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The fully qualified name of a command that creates the table. The command must implement the org.eclipse.papyrus.infra.nattable.representation.ITableCreationCommand inteface
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Creation Command</em>' attribute.
+	 * @see #setCreationCommand(String)
+	 * @see org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage#getPapyrusTable_CreationCommand()
+	 * @model
+	 * @generated
+	 */
+	String getCreationCommand();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusTable#getCreationCommand <em>Creation Command</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Creation Command</em>' attribute.
+	 * @see #getCreationCommand()
+	 * @generated
+	 */
+	void setCreationCommand(String value);
 
 } // PapyrusTable

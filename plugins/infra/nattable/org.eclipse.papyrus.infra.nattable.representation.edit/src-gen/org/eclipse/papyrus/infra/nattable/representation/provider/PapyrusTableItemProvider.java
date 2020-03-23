@@ -24,6 +24,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.architecture.representation.provider.PapyrusRepresentationKindItemProvider;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
@@ -58,6 +59,7 @@ public class PapyrusTableItemProvider extends PapyrusRepresentationKindItemProvi
 			super.getPropertyDescriptors(object);
 
 			addConfigurationPropertyDescriptor(object);
+			addCreationCommandPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -80,6 +82,28 @@ public class PapyrusTableItemProvider extends PapyrusRepresentationKindItemProvi
 				 false,
 				 false,
 				 null,
+				 getString("_UI_TablePropertyCategory"),
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Creation Command feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCreationCommandPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PapyrusTable_creationCommand_feature"),
+				 getString("_UI_PapyrusTable_creationCommand_description"),
+				 RepresentationPackage.Literals.PAPYRUS_TABLE__CREATION_COMMAND,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 getString("_UI_TablePropertyCategory"),
 				 null));
 	}
@@ -119,6 +143,7 @@ public class PapyrusTableItemProvider extends PapyrusRepresentationKindItemProvi
 
 		switch (notification.getFeatureID(PapyrusTable.class)) {
 			case RepresentationPackage.PAPYRUS_TABLE__CONFIGURATION:
+			case RepresentationPackage.PAPYRUS_TABLE__CREATION_COMMAND:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

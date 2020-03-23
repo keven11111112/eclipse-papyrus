@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage;
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.representation.impl.PapyrusTableImpl#getConfiguration <em>Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.representation.impl.PapyrusTableImpl#getCreationCommand <em>Creation Command</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,6 +52,25 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 	 * @ordered
 	 */
 	protected TableConfiguration configuration;
+
+	/**
+	 * The default value of the '{@link #getCreationCommand() <em>Creation Command</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCreationCommand()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CREATION_COMMAND_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getCreationCommand() <em>Creation Command</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCreationCommand()
+	 * @generated
+	 * @ordered
+	 */
+	protected String creationCommand = CREATION_COMMAND_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -117,11 +137,36 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 	 * @generated
 	 */
 	@Override
+	public String getCreationCommand() {
+		return creationCommand;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setCreationCommand(String newCreationCommand) {
+		String oldCreationCommand = creationCommand;
+		creationCommand = newCreationCommand;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RepresentationPackage.PAPYRUS_TABLE__CREATION_COMMAND, oldCreationCommand, creationCommand));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RepresentationPackage.PAPYRUS_TABLE__CONFIGURATION:
 				if (resolve) return getConfiguration();
 				return basicGetConfiguration();
+			case RepresentationPackage.PAPYRUS_TABLE__CREATION_COMMAND:
+				return getCreationCommand();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -136,6 +181,9 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 		switch (featureID) {
 			case RepresentationPackage.PAPYRUS_TABLE__CONFIGURATION:
 				setConfiguration((TableConfiguration)newValue);
+				return;
+			case RepresentationPackage.PAPYRUS_TABLE__CREATION_COMMAND:
+				setCreationCommand((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -152,6 +200,9 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 			case RepresentationPackage.PAPYRUS_TABLE__CONFIGURATION:
 				setConfiguration((TableConfiguration)null);
 				return;
+			case RepresentationPackage.PAPYRUS_TABLE__CREATION_COMMAND:
+				setCreationCommand(CREATION_COMMAND_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -166,8 +217,26 @@ public class PapyrusTableImpl extends PapyrusRepresentationKindImpl implements P
 		switch (featureID) {
 			case RepresentationPackage.PAPYRUS_TABLE__CONFIGURATION:
 				return configuration != null;
+			case RepresentationPackage.PAPYRUS_TABLE__CREATION_COMMAND:
+				return CREATION_COMMAND_EDEFAULT == null ? creationCommand != null : !CREATION_COMMAND_EDEFAULT.equals(creationCommand);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (creationCommand: ");
+		result.append(creationCommand);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PapyrusTableImpl

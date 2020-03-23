@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="org.eclipse.papyrus.infra.nattable.representation" version="2">
+    <resource path="META-INF/MANIFEST.MF">
+        <filter comment="generated code changes for bug 561371" id="923795461">
+            <message_arguments>
+                <message_argument value="2.2.0"/>
+                <message_argument value="2.1.0"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/representation/PapyrusTable.java" type="org.eclipse.papyrus.infra.nattable.representation.PapyrusTable">
+        <filter id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.representation.PapyrusTable"/>
+                <message_argument value="getCreationCommand()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="generated code changes for bug 561371" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.representation.PapyrusTable"/>
+                <message_argument value="setCreationCommand(String)"/>
+            </message_arguments>
+        </filter>
+        <filter comment="generated code changes for bug 561371" id="1211105284">
+            <message_arguments>
+                <message_argument value="getCreationCommand()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="generated code changes for bug 561371" id="1211105284">
+            <message_arguments>
+                <message_argument value="setCreationCommand(String)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/representation/RepresentationPackage.java" type="org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage">
+        <filter comment="generated code changes for bug 561371" id="403804204">
+            <message_arguments>
+                <message_argument value="org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage"/>
+                <message_argument value="getPapyrusTable_CreationCommand()"/>
+            </message_arguments>
+        </filter>
+        <filter comment="generated code changes for bug 561371" id="1211105284">
+            <message_arguments>
+                <message_argument value="PAPYRUS_TABLE__CREATION_COMMAND"/>
+            </message_arguments>
+        </filter>
+        <filter comment="generated code changes for bug 561371" id="1211105284">
+            <message_arguments>
+                <message_argument value="getPapyrusTable_CreationCommand()"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/representation/RepresentationPackage.java" type="org.eclipse.papyrus.infra.nattable.representation.RepresentationPackage$Literals">
+        <filter comment="generated code changes for bug 561371" id="1211105284">
+            <message_arguments>
+                <message_argument value="PAPYRUS_TABLE__CREATION_COMMAND"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src-gen/org/eclipse/papyrus/infra/nattable/representation/impl/PapyrusTableImpl.java" type="org.eclipse.papyrus.infra.nattable.representation.impl.PapyrusTableImpl">
+        <filter comment="generated code changes for bug 561371" id="1143996420">
+            <message_arguments>
+                <message_argument value="CREATION_COMMAND_EDEFAULT"/>
+            </message_arguments>
+        </filter>
+        <filter comment="generated code changes for bug 561371" id="1143996420">
+            <message_arguments>
+                <message_argument value="creationCommand"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

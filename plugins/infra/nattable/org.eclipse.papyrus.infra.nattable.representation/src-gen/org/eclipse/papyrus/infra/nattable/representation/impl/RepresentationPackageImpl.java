@@ -15,6 +15,7 @@
  */
 package org.eclipse.papyrus.infra.nattable.representation.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -25,7 +26,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.emf.expressions.ExpressionsPackage;
-import org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.BooleanExpressionsPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.representation.PapyrusTable;
@@ -101,7 +101,6 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		ElementTypesConfigurationsPackage.eINSTANCE.eClass();
 		NattablePackage.eINSTANCE.eClass();
 		org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.eINSTANCE.eClass();
-		BooleanExpressionsPackage.eINSTANCE.eClass();
 		ExpressionsPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -144,6 +143,16 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * @generated
 	 */
 	@Override
+	public EAttribute getPapyrusTable_CreationCommand() {
+		return (EAttribute)papyrusTableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public RepresentationFactory getRepresentationFactory() {
 		return (RepresentationFactory)getEFactoryInstance();
 	}
@@ -169,6 +178,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		// Create classes and their features
 		papyrusTableEClass = createEClass(PAPYRUS_TABLE);
 		createEReference(papyrusTableEClass, PAPYRUS_TABLE__CONFIGURATION);
+		createEAttribute(papyrusTableEClass, PAPYRUS_TABLE__CREATION_COMMAND);
 	}
 
 	/**
@@ -208,6 +218,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		// Initialize classes, features, and operations; add parameters
 		initEClass(papyrusTableEClass, PapyrusTable.class, "PapyrusTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPapyrusTable_Configuration(), theNattableconfigurationPackage.getTableConfiguration(), null, "configuration", null, 1, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPapyrusTable_CreationCommand(), ecorePackage.getEString(), "creationCommand", null, 0, 1, PapyrusTable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

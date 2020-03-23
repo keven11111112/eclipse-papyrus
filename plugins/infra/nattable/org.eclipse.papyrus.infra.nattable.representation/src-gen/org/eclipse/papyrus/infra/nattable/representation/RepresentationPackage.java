@@ -15,6 +15,7 @@
  */
 package org.eclipse.papyrus.infra.nattable.representation;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -196,13 +197,22 @@ public interface RepresentationPackage extends EPackage {
 	int PAPYRUS_TABLE__CONFIGURATION = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Creation Command</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_TABLE__CREATION_COMMAND = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Papyrus Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_TABLE_FEATURE_COUNT = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 1;
+	int PAPYRUS_TABLE_FEATURE_COUNT = org.eclipse.papyrus.infra.architecture.representation.RepresentationPackage.PAPYRUS_REPRESENTATION_KIND_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Papyrus Table</em>' class.
@@ -234,6 +244,17 @@ public interface RepresentationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPapyrusTable_Configuration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.representation.PapyrusTable#getCreationCommand <em>Creation Command</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Creation Command</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.representation.PapyrusTable#getCreationCommand()
+	 * @see #getPapyrusTable()
+	 * @generated
+	 */
+	EAttribute getPapyrusTable_CreationCommand();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -275,6 +296,14 @@ public interface RepresentationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAPYRUS_TABLE__CONFIGURATION = eINSTANCE.getPapyrusTable_Configuration();
+
+		/**
+		 * The meta object literal for the '<em><b>Creation Command</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PAPYRUS_TABLE__CREATION_COMMAND = eINSTANCE.getPapyrusTable_CreationCommand();
 
 	}
 
