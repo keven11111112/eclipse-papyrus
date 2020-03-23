@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2017 CEA LIST.
+ * Copyright (c) 2012, 2017, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,7 +12,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
- *  Vincent Lorenzo (CEA LIST) - bug 525221
+ *  Vincent Lorenzo (CEA LIST) - bug 525221, 561370
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.provider;
@@ -200,10 +200,10 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 			} else {
 				selection = calculateSelectionRowsAndColumnsWithoutTypeSelectionEvent(wrapper, event);
 			}
-			// If no selection appended, the selection must be the context of the table 
-			if(selection.isEmpty()){
+			// If no selection appended, the selection must be the context of the table
+			if (selection.isEmpty()) {
 				newSelection = new TableStructuredSelection(manager.getTable().getContext(), wrapper);
-			}else{
+			} else {
 				newSelection = new TableStructuredSelection(selection.toArray(), wrapper);
 			}
 		} else {
@@ -427,14 +427,18 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 		final List<Integer> selectedColumnsIndexes = new ArrayList<Integer>();
 		for (final Entry<Integer, Object> selectedColumn : wrapper.getFullySelectedColumns().entrySet()) {
 			final Object selectedObject = AxisUtils.getRepresentedElement(selectedColumn.getValue());
-			selection.add(selectedObject);
+			if (selectedObject != null) {
+				selection.add(selectedObject);
+			}
 			selectedColumnsIndexes.add(selectedColumn.getKey());
 		}
 		// Fill the selection list with the selected rows
 		final List<Integer> selectedRowsIndexes = new ArrayList<Integer>();
 		for (final Entry<Integer, Object> selectedRow : wrapper.getFullySelectedRows().entrySet()) {
 			final Object selectedObject = AxisUtils.getRepresentedElement(selectedRow.getValue());
-			selection.add(selectedObject);
+			if (selectedObject != null) {
+				selection.add(selectedObject);
+			}
 			selectedRowsIndexes.add(selectedRow.getKey());
 		}
 		// Fill the selection list with the selected cells
@@ -455,7 +459,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 						} else {
 							selection.add(value);
 						}
-					}else{
+					} else {
 						// Bug 481817 : When the value is null, we need to have the cell selection, so add the cell as selection instead of value
 						selection.add(cell);
 					}
@@ -527,7 +531,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 						} else {
 							selection.add(value);
 						}
-					}else{
+					} else {
 						// Bug 481817 : When the value is null, we need to have the cell selection, so add the cell as selection instead of value
 						selection.add(cell);
 					}
