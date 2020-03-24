@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017 CEA LIST.
+ * Copyright (c) 2013, 2017, 2020 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,10 +11,14 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 417095, 515737
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 561411
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.configuration;
 
+import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
+import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.layer.config.DefaultGridLayerConfiguration;
+import org.eclipse.nebula.widgets.nattable.grid.layer.config.DefaultRowStyleConfiguration;
 import org.eclipse.nebula.widgets.nattable.layer.CompositeLayer;
 import org.eclipse.papyrus.infra.nattable.applynamedstyle.PapyrusApplyNamedStyleBindings;
 import org.eclipse.papyrus.infra.nattable.export.PapyrusExportBindings;
@@ -23,11 +27,13 @@ import org.eclipse.papyrus.infra.nattable.internal.export.image.PapyrusImageExpo
 
 /**
  * We change the edit configuration
- *
- * @author Vincent Lorenzo
- *
  */
 public class PapyrusGridLayerConfiguration extends DefaultGridLayerConfiguration {
+
+	/**
+	 * The configuration to use to get a color for odd row and a color for even row
+	 */
+	private PapyrusAlternateRowConfigLabelAccumulatorForRegion alternateRowConfiguration;
 
 	/**
 	 *
@@ -83,6 +89,7 @@ public class PapyrusGridLayerConfiguration extends DefaultGridLayerConfiguration
 
 	/**
 	 * Add the image export binding.
+	 * 
 	 * @since 3.0
 	 */
 	protected void addImageExportUIBindings() {
@@ -96,5 +103,31 @@ public class PapyrusGridLayerConfiguration extends DefaultGridLayerConfiguration
 	 */
 	protected void addApplyNamedStyleBindings() {
 		addConfiguration(new PapyrusApplyNamedStyleBindings());
+	}
+
+	/**
+	 * @see org.eclipse.nebula.widgets.nattable.config.AggregateConfiguration#configureRegistry(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
+	 *
+	 * @param configRegistry
+	 */
+	@Override
+	public void configureRegistry(final IConfigRegistry configRegistry) {
+		if (this.alternateRowConfiguration != null) {
+			this.alternateRowConfiguration.setConfigRegistry(configRegistry);
+		}
+		super.configureRegistry(configRegistry);
+	}
+
+	/**
+	 * @see org.eclipse.nebula.widgets.nattable.grid.layer.config.DefaultGridLayerConfiguration#addAlternateRowColoringConfig(org.eclipse.nebula.widgets.nattable.layer.CompositeLayer)
+	 *
+	 * @param gridLayer
+	 */
+	@Override
+	protected void addAlternateRowColoringConfig(final CompositeLayer layer) {
+		addConfiguration(new DefaultRowStyleConfiguration());
+		this.alternateRowConfiguration = new PapyrusAlternateRowConfigLabelAccumulatorForRegion(layer
+				.getChildLayerByRegionName(GridRegion.BODY));
+		layer.setConfigLabelAccumulatorForRegion(GridRegion.BODY, this.alternateRowConfiguration);
 	}
 }
