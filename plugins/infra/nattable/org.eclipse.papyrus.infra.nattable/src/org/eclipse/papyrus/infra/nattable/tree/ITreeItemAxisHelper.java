@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *
+ *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - Bug 561410
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.tree;
@@ -56,7 +56,7 @@ public class ITreeItemAxisHelper {
 	 */
 	public static ITreeItemAxis createITreeItemAxis(final TransactionalEditingDomain editingDomain, final ITreeItemAxis parentAxis, final Object child, final AxisManagerRepresentation axisRepresentation) {
 		final ITreeItemAxis axis;
-		if (child instanceof EObject) {
+		if (child instanceof EObject || child == null) { //null for bug 561410
 			axis = NattableaxisFactory.eINSTANCE.createEObjectTreeItemAxis();
 			((EObjectTreeItemAxis) axis).setElement((EObject) child);
 		} else {

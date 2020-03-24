@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2016, 2017 CEA LIST, Esterel Technologies SAS and others.
+ * Copyright (c) 2014, 2016, 2017, 2020 CEA LIST, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Sebastien Bordes (Esterel Technologies SAS) - Bug 497756
- *   Vincent Lorenzo (CEA LIST) - Bug 517742
+ *   Vincent Lorenzo (CEA LIST) - Bug 517742, 561410
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.manager.axis;
@@ -47,7 +47,6 @@ import org.eclipse.nebula.widgets.nattable.sort.ISortModel;
 import org.eclipse.nebula.widgets.nattable.tree.TreeLayer;
 import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.emf.gmf.util.CommandUtils;
 import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
@@ -192,9 +191,16 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 				}
 			}
 		}
-		ITreeItemAxisHelper.linkITreeItemAxisToSemanticElement(this.managedElements, newAxis);
-		EventListHelper.addToEventList(this.eventList, newAxis);
-
+		if (newAxis.getElement() != null) {//bug 561410
+			ITreeItemAxisHelper.linkITreeItemAxisToSemanticElement(this.managedElements, newAxis);
+			EventListHelper.addToEventList(this.eventList, newAxis);
+			if (false == objectToAdd instanceof TreeFillingConfiguration) {
+				// to display children too in case of copy of an element with children
+				fillChildrenForSemanticElement(newAxis);
+			}
+		} else {
+			EventListHelper.addToEventList(this.eventList, newAxis);
+		}
 		return newAxis;
 	}
 
