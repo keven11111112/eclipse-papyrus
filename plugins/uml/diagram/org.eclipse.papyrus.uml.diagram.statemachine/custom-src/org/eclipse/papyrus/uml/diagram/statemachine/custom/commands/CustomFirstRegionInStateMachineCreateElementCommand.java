@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,12 +10,14 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - bug 561512
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -33,12 +35,13 @@ import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
-import org.eclipse.papyrus.uml.diagram.statemachine.providers.ElementInitializers;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Region;
-import org.eclipse.uml2.uml.StateMachine;
-import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.State;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Create a region.
@@ -64,6 +67,10 @@ public class CustomFirstRegionInStateMachineCreateElementCommand extends Abstrac
 		this.dropLocation = dropLocation;
 	}
 
+	/**
+	 * TODO : useless since 3.2.200
+	 */
+	@Deprecated
 	protected void doConfigure(Region newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = createElementRequest.getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
@@ -92,13 +99,12 @@ public class CustomFirstRegionInStateMachineCreateElementCommand extends Abstrac
 			Zone.setWidth(ownerView, width);
 		}
 		if (adaptableForDropped == null) {
-			Region umlRegion = UMLFactory.eINSTANCE.createRegion();
-			createElementRequest = new CreateElementRequest(getEditingDomain(), ownerView, UMLElementTypes.Region_Shape);
-			StateMachine umlState = (StateMachine) ownerView.getElement();
-			umlState.getRegions().add(umlRegion);
-			ElementInitializers.getInstance().init_Region_Shape(umlRegion);
-			doConfigure(umlRegion, monitor, info);
-			adaptableForDropped = new SemanticAdapter(umlRegion, null);
+			final State umlState = (State) ownerView.getElement();
+			final CreateElementRequest request = new CreateElementRequest(umlState, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.REGION, UMLPackage.eINSTANCE.getState_Region());
+			final IElementEditService service = ElementEditServiceUtils.getCommandProvider(umlState);
+			final ICommand cmd = service.getEditCommand(request);
+			cmd.execute(new NullProgressMonitor(), null);
+			adaptableForDropped = new SemanticAdapter(request.getNewElement(), null);
 		}
 		// create a view for the new region on the stateMachineCompartment
 		String semanticHint = ((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint();
