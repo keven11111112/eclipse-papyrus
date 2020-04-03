@@ -229,6 +229,10 @@
             id="org.eclipse.papyrus.uml.nattable.stereotype.operation.axis.manager"
             manager="org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypeOperationAxisManager">
       </axisManager>
+      <axisManager
+            id="org.eclipse.papyrus.uml.nattable.manager.axis.EmptyLineUMLElementTreeAxisManagerForEventList"
+            manager="org.eclipse.papyrus.uml.nattable.manager.axis.EmptyLineUMLElementTreeAxisManagerForEventList">
+      </axisManager>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.cellmanager">

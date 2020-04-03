@@ -1,4 +1,17 @@
-
+/*****************************************************************************
+ * Copyright (c) 2015 CEA LIST and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License 2.0
+ * which accompanies this distribution, and is available at
+ * https://www.eclipse.org/legal/epl-2.0/
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.stereotype.display.manager.axis;
 
 import java.util.ArrayList;
@@ -90,7 +103,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 			} else if (part instanceof DiagramEditor) {
 				editor = (DiagramEditor) part;
 			}
-			selectionList = new ArrayList<Object>();
+			selectionList = new ArrayList<>();
 			if (editor != null && !editor.getDiagramGraphicalViewer().getSelection().isEmpty()) {
 				IStructuredSelection selection = (IStructuredSelection) editor.getDiagramGraphicalViewer().getSelection();
 				Iterator<?> iter = selection.iterator();
@@ -130,7 +143,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 
 	/**
 	 * Check is the element of the view is stereotyped.
-	 * 
+	 *
 	 * @param view
 	 *            The view.
 	 * @return <code>true</code> if the element of view is stereotyped, <code>false</code> otherwise.
@@ -340,7 +353,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 * Get the tree layer.
 	 *
 	 * @return
-	 * 		the tree layer
+	 *         the tree layer
 	 */
 	private TreeLayer getTreeLayer() {
 		NatTable natTable = (NatTable) getTableManager().getAdapter(NatTable.class);
@@ -357,7 +370,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractTreeAxisManagerForEventList#dispose()
 	 */
 	@Override

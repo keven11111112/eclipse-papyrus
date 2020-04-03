@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.papyrus.infra.nattable;bundle-version="[6.0.0,7.0.0)
  org.eclipse.papyrus.infra.emf.expressions;bundle-version="[1.0.0,2.0.0)"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 5.1.0.qualifier
+Bundle-Version: 5.2.0.qualifier
 Bundle-Name: Papyrus EMF Nattable
 Bundle-Activator: org.eclipse.papyrus.infra.emf.nattable.Activator
 Bundle-ManifestVersion: 2

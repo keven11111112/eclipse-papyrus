@@ -2414,10 +2414,86 @@ The classes managing the NatTable widget in the property view are:
 
 These tables have some custom behaviors: 
 * the tree table is always expand all ath the beginning
-* <pre style="color:red">the table will use percentage sizing for the columns display, excepted if you set a BooleanNamedStyle columnsWidthAsPercentage to false has a child of your TableConfiguration.</pre>
+* <pre style="color:red"> the table will use percentage sizing for the columns display, excepted if you set a BooleanNamedStyle columnsWidthAsPercentage to false has a child of your TableConfiguration.</pre>
 * the table are not really persisted, but we keep the user configuration for a given table opened on an object of a given EClass. See 
 <code>org.eclipse.papyrus.uml.properties.widgets.NattablePropertyEditor.createTableURI(EObject, TableConfiguration)</code> for further information. 
 * <pre style="color:red"> So during your table development, you need to clear your workspace each time to test your table configuration, or you need to remove your table instance from the location yourRuntimeWorkspace/.metadata.plugins/org.eclipse.papyrus.uml.properties/tables.</pre>
 
-
-
+=What are the existing axis manager ?=
+*Axis Managers for EMF
+**EObject management (used for rows, flat)
+***''description:'' allows to manage EObject as rows
+***''id:'' '''org.eclipse.papyrus.infra.emf.nattable.user.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectAxisManager</code>
+**EObject management (used for rows, tree)
+***''description:'' allows to manage EObject as rows in a tree
+***''id:'' '''org.eclipse.papyrus.infra.emf.nattable.tree.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectTreeAxisManagerForEventList</code>
+**EObject management (used for columns, in Matrix)
+***''description:'' allows to manage EObject as columns
+***''id:'' '''org.eclipse.papyrus.infra.emf.nattable.axis.column.eobject.matrix.manager'''
+***''java class:'' <code>org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectColumnMatrixAxisManager</code>
+**EStructuralFeature management (used for columns)
+***''description:'' allows to manage EStructuralFeature as columns
+***''id:'' '''org.eclipse.papyrus.infra.emf.nattable.feature.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.infra.emf.nattable.manager.axis.EStructuralFeatureAxisManager</code>
+**EOperation management (used for columns)
+***''description:'' allows to manage EOperation as columns (operations with no parameters and a return value only)
+***''id:'' '''org.eclipse.papyrus.infra.emf.nattable.operation.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.infra.emf.nattable.manager.axis.EOperationAxisManager</code>
+*Axis Manager for UML
+**Element management (used for rows, flat)
+***''description:'' allows to manage UML Element as rows
+***''id:'' '''org.eclipse.papyrus.uml.nattable.element.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.uml.nattable.manager.axis.UMLElementAxisManager</code>
+**Element management (used for tree rows, tree)
+***''description:'' allows to manage UML Element as rows in a tree
+***''id:'' '''org.eclipse.papyrus.infra.uml.nattable.tree.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.uml.nattable.manager.axis.UMLElementTreeAxisManagerForEventList</code>
+**(deprecated) Class  managements (used for rows, tree)
+***''description:'' allows to manage UML Classes (with their Properties, Operation (and their Parameters), Nested Classes). Must not be used anymore, used '''org.eclipse.papyrus.infra.uml.nattable.tree.axis.manager''' instead.
+***''id:'' '''org.eclipse.papyrus.infra.uml.nattable.class.tree.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.uml.nattable.clazz.config.manager.axis.UMLClassTreeAxisManagerForEventList</code>
+**Element management with empty lines(used for tree rows, tree) - EXPERIMENTAL
+***''description:'' allows to manage UML Element as rows in a tree, with an empty line at each level in addition
+***''id:'' '''org.eclipse.papyrus.uml.nattable.manager.axis.EmptyLineUMLElementTreeAxisManagerForEventList'''
+***''java class:'' <code>org.eclipse.papyrus.uml.nattable.manager.axis.EmptyLineUMLElementTreeAxisManagerForEventList</code>
+**Element properties management (used for columns, flat)
+***''description:'' allows to manage the properties of UML Element as columns
+***''id:'' '''org.eclipse.papyrus.uml.nattable.feature.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.uml.nattable.manager.axis.UMLFeatureAxisManager</code>
+**Element operations management (used for columns, flat)
+***''description:'' allows to manage the operations of UML Element as columns (operations with no parameters and a return value only)
+***''id:'' '''org.eclipse.papyrus.uml.nattable.operation.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.uml.nattable.manager.axis.UMLOperationAxisManager</code>
+**Stereotypes properties management (used for columns, flat)
+***''description:'' allows to manage the properties of Stereotype as columns
+***''id:'' '''org.eclipse.papyrus.uml.nattable.element.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypePropertyAxisManager</code>
+**Stereotypes operations management (used for columns, flat)
+***''description:'' allows to manage the operations of Stereotype as columns (operations with no parameters and a return value only)
+***''id:'' '''org.eclipse.papyrus.uml.nattable.stereotype.operation.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.uml.nattable.manager.axis.UMLStereotypeOperationAxisManager</code>
+*Axis Manager for Papyrus Editors (Table of Views)
+**Axis Manager to display Papyrus editors (used for row, flat)
+***''description:'' allows to display all diagrams/tables of the model as rows
+***''id:'' '''org.eclipse.papyrus.infra.nattable.pagelist.contents.axis.manager'''
+***''java class:''  <code>org.eclipse.papyrus.infra.nattable.views.config.manager.axis.EditorContextSynchronizerAxisManager</code>
+**Axis Manager for Papyrus editors properties (used for columns)     
+***''description:'' allows to display some properties of the editors in columns
+***''id:'' '''org.eclipse.papyrus.infra.nattable.page.view.feature.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.infra.nattable.views.config.manager.axis.EditorFeatureAxisManager</code>
+*Axis Manager to manage stereotypes from a selected GMF View (used in Appearance Tab of the properties View, to define how to display stereotype in GMF View)
+**Management of stereotypes applied on the selected views (used for rows, tree)
+***''description:'' allows to display applied stereotypes from a GMF View representing a UML Element (used by a Table embedded in Properties View, to define how applied stereotypes must be displayed in the GMF View)
+***''id:'' '''org.eclipse.papyrus.uml.nattable.stereotype.display.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.uml.nattable.stereotype.display.manager.axis.NotationTreeTableAxisManager</code>
+**Axis Manager managing the properties used for display on GMF View  
+***''description:'' manage soallows to display some properties of the editors in columns (used by a Table embedded in Properties View, to define how applied stereotypes must be displayed in the GMF View)
+***''id:'' '''org.eclipse.papyrus.uml.nattable.stereotype.display.properties.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.uml.nattable.stereotype.display.manager.axis.StereotypeDisplayPropertiesAxisManager</code>
+*Other Axis Manager
+**Axis Manager for actions (used for columns)
+***''description:'' allows to manage one action for all cells of the column (typically we display an icon in the cell, and register an action of single click on a cell of this column). The action is defined as a FeatureId, with this value: ''action:/myActionName''.
+***''id:'' '''org.eclipse.papyrus.infra.nattable.action.axis.manager'''
+***''java class:'' <code>org.eclipse.papyrus.infra.nattable.manager.axis.ActionAxisManager</code>
