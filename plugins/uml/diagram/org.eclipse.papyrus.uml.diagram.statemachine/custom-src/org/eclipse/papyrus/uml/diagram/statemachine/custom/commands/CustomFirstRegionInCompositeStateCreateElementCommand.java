@@ -11,10 +11,12 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - bug 561512
+ *  Patrick Tessier (CEA LIST) - patrick.tessier@cea.fr - bug 561723
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.commands;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -136,8 +138,14 @@ public class CustomFirstRegionInCompositeStateCreateElementCommand extends Abstr
 		}
 
 		if (adaptableForDropped == null) {
+			final State umlState = (State) ownerView.getElement();
+			final List<Region> regions = umlState.getRegions();
+			if (!regions.isEmpty()) {
+				// the view does not contain any region, but the model has already at least one. Use the first
+				// existing region.
+				umlRegion = regions.get(0);
+			}
 			if (umlRegion == null) {
-				final State umlState = (State) ownerView.getElement();
 				final CreateElementRequest request = new CreateElementRequest(umlState, org.eclipse.papyrus.uml.service.types.element.UMLElementTypes.REGION, UMLPackage.eINSTANCE.getState_Region());
 				final IElementEditService service = ElementEditServiceUtils.getCommandProvider(umlState);
 				final ICommand cmd = service.getEditCommand(request);
