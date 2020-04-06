@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.papyrus.user.examples.feature"
       label="%featureName"
-      version="0.0.2.qualifier"
+      version="0.0.3.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="2.0.2">
@@ -76,13 +76,13 @@
          unpack="false"/>
 
    <plugin
-	     id="org.eclipse.papyrus.example.uml.services.decorator"
-	     download-size="0"
-	     install-size="0"
-	     version="0.0.0"
-	     unpack="false"/>
-         
-     <plugin
+         id="org.eclipse.papyrus.example.uml.services.decorator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.papyrus.uml.diagram.emftree"
          download-size="0"
          install-size="0"
@@ -103,5 +103,18 @@
          version="0.0.0"
          unpack="false"/>
 
-         
+   <plugin
+         id="org.eclipse.papyrus.example.uml.nattable.actions"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.example.uml.nattable.empty.line"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

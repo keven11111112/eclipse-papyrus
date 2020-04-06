@@ -6,10 +6,10 @@
    <feature url="features/org.eclipse.papyrus.sdk.feature.source_4.8.0.qualifier.jar" id="org.eclipse.papyrus.sdk.feature.source" version="4.8.0.qualifier">
       <category name="org.eclipse.papyrus.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.user.examples.feature_0.0.2.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature" version="0.0.2.qualifier">
+   <feature url="features/org.eclipse.papyrus.user.examples.feature_0.0.3.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature" version="0.0.3.qualifier">
       <category name="org.eclipse.papyrus.user.examples.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.user.examples.feature.source_0.0.2.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature.source" version="0.0.2.qualifier">
+   <feature url="features/org.eclipse.papyrus.user.examples.feature.source_0.0.3.qualifier.jar" id="org.eclipse.papyrus.user.examples.feature.source" version="0.0.3.qualifier">
       <category name="org.eclipse.papyrus.user.examples.category"/>
    </feature>
    <category-def name="org.eclipse.papyrus.category" label="Papyrus">

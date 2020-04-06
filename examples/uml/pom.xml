@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -16,6 +17,8 @@
 		<module>org.eclipse.papyrus.uml.textual.editors.example</module>
 		<module>org.eclipse.papyrus.uml.disable.helper.advices.example</module>
 		<module>org.eclipse.papyrus.examples.uml.diagrams</module>
+		<module>org.eclipse.papyrus.example.uml.nattable.actions</module>
+		<module>org.eclipse.papyrus.example.uml.nattable.empty.line</module>
 		<module>org.eclipse.papyrus.example.uml.services.decorator</module>
 	</modules>
 </project>
