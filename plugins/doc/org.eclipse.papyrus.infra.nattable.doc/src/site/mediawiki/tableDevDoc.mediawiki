@@ -2454,7 +2454,7 @@ These tables have some custom behaviors:
 ***''description:'' allows to manage UML Classes (with their Properties, Operation (and their Parameters), Nested Classes). Must not be used anymore, used '''org.eclipse.papyrus.infra.uml.nattable.tree.axis.manager''' instead.
 ***''id:'' '''org.eclipse.papyrus.infra.uml.nattable.class.tree.axis.manager'''
 ***''java class:'' <code>org.eclipse.papyrus.uml.nattable.clazz.config.manager.axis.UMLClassTreeAxisManagerForEventList</code>
-**Element management with empty lines(used for tree rows, tree) - EXPERIMENTAL
+**Element management with empty lines(used for tree rows, tree) - still experimental (see ''Experimental features'' chapter for further informations)
 ***''description:'' allows to manage UML Element as rows in a tree, with an empty line at each level in addition
 ***''id:'' '''org.eclipse.papyrus.uml.nattable.manager.axis.EmptyLineUMLElementTreeAxisManagerForEventList'''
 ***''java class:'' <code>org.eclipse.papyrus.uml.nattable.manager.axis.EmptyLineUMLElementTreeAxisManagerForEventList</code>
@@ -2493,7 +2493,8 @@ These tables have some custom behaviors:
 ***''id:'' '''org.eclipse.papyrus.uml.nattable.stereotype.display.properties.axis.manager'''
 ***''java class:'' <code>org.eclipse.papyrus.uml.nattable.stereotype.display.manager.axis.StereotypeDisplayPropertiesAxisManager</code>
 *Other Axis Manager
-**Axis Manager for actions (used for columns)
+**Axis Manager for actions (used for columns), still experimental (see ''Experimental features'' chapter for further information)
 ***''description:'' allows to manage one action for all cells of the column (typically we display an icon in the cell, and register an action of single click on a cell of this column). The action is defined as a FeatureId, with this value: ''action:/myActionName''.
 ***''id:'' '''org.eclipse.papyrus.infra.nattable.action.axis.manager'''
 ***''java class:'' <code>org.eclipse.papyrus.infra.nattable.manager.axis.ActionAxisManager</code>
+

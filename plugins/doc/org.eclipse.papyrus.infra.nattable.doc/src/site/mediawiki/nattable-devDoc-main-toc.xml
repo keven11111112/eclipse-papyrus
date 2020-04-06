@@ -13,5 +13,9 @@
        <link toc="target/site/generated-eclipse-help/matrixDevDoc-toc.xml"/>
        <anchor id="matrixDevDoc"/>
     </topic>
+    <topic label="Experimental features">
+       <link toc="target/site/generated-eclipse-help/tableDevDoc_experimental_features-toc.xml"/>
+       <anchor id="tableDevDoc_experimental_features.mediawiki"/>
+    </topic>
   </topic>
 </toc>

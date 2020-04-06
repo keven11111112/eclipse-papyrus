@@ -39,6 +39,10 @@
             file="target/site/generated-eclipse-help/toolsmiths/nattableToolsmiths-toc.xml"
             primary="false">
       </toc>
+      <toc
+            file="target/site/generated-eclipse-help/tableDevDoc_experimental_features-toc.xml"
+            primary="false">
+      </toc>
    </extension>
 
 </plugin>
