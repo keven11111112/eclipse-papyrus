@@ -3,10 +3,10 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.providers;bundle-version="[1.
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)"
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.gmfmenu.filter
 Bundle-Vendor: %Bundle-Vendor
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.gmfmenu.filter;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.gmfdiag.gmfmenu.filter

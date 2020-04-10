@@ -16,12 +16,12 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.107.0,4.0.0)",
 Export-Package: org.eclipse.papyrus.bundles.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.3.0.qualifier
+Bundle-Version: 1.4.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.bundles.tests.Activator
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.bundles.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: org.apache.commons.lang3.text.translate;version="3.1.0"
 Automatic-Module-Name: org.eclipse.papyrus.bundles.tests

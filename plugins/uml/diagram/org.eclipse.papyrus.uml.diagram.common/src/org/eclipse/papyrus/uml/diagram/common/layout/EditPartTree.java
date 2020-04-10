@@ -16,6 +16,7 @@
 package org.eclipse.papyrus.uml.diagram.common.layout;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -215,9 +216,10 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	 *
 	 * @param editpart
 	 *            the editpart that we look for
-	 * @return <ul>
-	 *         <li> {@code true}</li> if the tree contains the editpart
-	 *         <li> {@code false}</li> if not
+	 * @return
+	 *         <ul>
+	 *         <li>{@code true}</li> if the tree contains the editpart
+	 *         <li>{@code false}</li> if not
 	 *         </ul>
 	 */
 	public boolean contains(EditPart editpart) {
@@ -230,15 +232,15 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	 * @param level
 	 *            the level
 	 * @return the child level
-	 *        the level we wants children
+	 *         the level we wants children
 	 * @return the children of the specific level
 	 */
 	public List<EditPartTree> getChildLevel(int level) {
-		List<EditPartTree> epList = new ArrayList<EditPartTree>();
+		List<EditPartTree> epList = new ArrayList<>();
 		if (level > 0) {
 			if ((level == 1 && this.children != null) && this.children.size() != 0) {
 
-				epList.addAll(this.children);
+				epList.addAll((Collection<? extends EditPartTree>) this.children);
 
 			} else if (children != null) {
 				for (int iter = 0; iter < this.children.size(); iter++) {
@@ -274,15 +276,16 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	 *
 	 * @param index
 	 *            the index
-	 * @return <ul>
+	 * @return
+	 *         <ul>
 	 *         <li>the level for first selected element</li>
-	 *         <li> {@code -1}</li> if the first selected element can't be found
+	 *         <li>{@code -1}</li> if the first selected element can't be found
 	 *         </ul>
 	 */
 	public int getLevelForFirstSelectedElement() {
 		// We search the first level in the tree
 		TreeNode[] path = this.getPath();
-		
+
 		if (path.length > 1) {
 			EditPartTree result = getSelectedFirstEditPart((EditPartTree) path[1]);
 			if (result != null) {
@@ -317,7 +320,8 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	/**
 	 * Test if this node have child that are not selected
 	 *
-	 * @return <ul>
+	 * @return
+	 *         <ul>
 	 *         <li>{@code true}</li> it exists a child which is not selected
 	 *         <li>{@code false}</li> all the children are selected
 	 *         </ul>
@@ -329,9 +333,10 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 	/**
 	 * Returns the distance between the tree and the first unselected child
 	 *
-	 * @return <ul>
+	 * @return
+	 *         <ul>
 	 *         <li>the distance between this tree and the first unselected child</li>
-	 *         <li>  {@code -1} when all the children are selected</li>
+	 *         <li>{@code -1} when all the children are selected</li>
 	 *         </ul>
 	 */
 	public int getDistanceWithTheFirstUnselectedChild() {
@@ -383,7 +388,7 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 
 			// we build the tree
 			for (EditPart currentEP : editparts) {
-				parentsList = new ArrayList<EditPart>();
+				parentsList = new ArrayList<>();
 				EditPart parent = currentEP;
 				EditPartTree grandFatherTree = this;
 				int i = 0;

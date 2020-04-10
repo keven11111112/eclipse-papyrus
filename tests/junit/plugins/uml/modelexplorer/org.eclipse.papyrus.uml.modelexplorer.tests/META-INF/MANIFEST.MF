@@ -26,12 +26,12 @@ Export-Package: org.eclipse.papyrus.uml.modelexplorer.tests,
  org.eclipse.papyrus.uml.modelexplorer.tests.paste
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.3.100.qualifier
+Bundle-Version: 1.4.100.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.tests.Activator
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.modelexplorer.tests

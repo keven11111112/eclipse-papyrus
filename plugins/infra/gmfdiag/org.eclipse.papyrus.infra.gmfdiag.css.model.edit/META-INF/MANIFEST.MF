@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.model.edit;singleton:=true
-Bundle-Version: 1.3.0.qualifier
+Bundle-Version: 1.4.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.provider.StyleSheetsEditPlugin$Implementation$Activator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.provider
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.13.0";resolution:=optional;x-installation:=greedy,
  org.eclipse.papyrus.infra.gmfdiag.css.model;bundle-version="1.2.0",

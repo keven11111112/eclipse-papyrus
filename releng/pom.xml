@@ -25,8 +25,9 @@
 		<!-- https://repository.jboss.org/ -->
 		<jboss.utils.version>1.3.0</jboss.utils.version>
 
-		<java.source.version>1.8</java.source.version>
-		<java.target.version>1.8</java.target.version>
+		<java.source.version>11</java.source.version>
+		<java.target.version>11</java.target.version>
+		<java.release.version>11</java.release.version>
 		<skipAllTests>false</skipAllTests>
 		<skipInnerTests>true</skipInnerTests>
 		<!-- Set buildAll to true when building this pom directly (Rather than 
@@ -94,7 +95,8 @@
 					<version>${maven.compiler.version}</version>
 					<configuration>
 						<source>${java.source.version}</source>
-						<target>${java.target.version}</target>
+			            <target>${java.target.version}</target>
+						<release>${java.release.version}</release>
 					</configuration>
 				</plugin>
 				<plugin>

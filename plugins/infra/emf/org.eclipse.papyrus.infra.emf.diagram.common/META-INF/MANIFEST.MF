@@ -9,11 +9,11 @@ Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)";vi
  org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.infra.emf.diagram.common.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.diagram.common;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.emf.diagram.common

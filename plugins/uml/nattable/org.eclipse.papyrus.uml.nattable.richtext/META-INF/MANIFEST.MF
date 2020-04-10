@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.1.100.qualifier
+Bundle-Version: 2.2.100.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.richtext.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.richtext;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.infra.nattable;bundle-version="[6.0.0,7.0.0)",
  org.eclipse.uml2.uml;bundle-version="[5.3.0,6.0.0)",

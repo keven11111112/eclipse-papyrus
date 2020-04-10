@@ -7,12 +7,12 @@ Require-Bundle: org.eclipse.uml2.uml.editor;bundle-version="[5.2.0,6.0.0)";visib
  org.eclipse.papyrus.infra.core.sasheditor
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.emftree.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.emftree;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: org.eclipse.papyrus.infra.ui.extension.diagrameditor
 Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.emftree

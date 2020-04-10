@@ -3,11 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.architecture;singleton:=true
 Automatic-Module-Name: org.eclipse.papyrus.infra.core.architecture
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 2.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.core.architecture,
  org.eclipse.papyrus.infra.core.architecture.impl,
  org.eclipse.papyrus.infra.core.architecture.util

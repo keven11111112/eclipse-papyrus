@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textual.editors.example;singleton:=true
-Bundle-Version: 1.1.100.qualifier
+Bundle-Version: 1.2.100.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.textual.editors.example.Activator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
@@ -23,7 +23,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.uml.nattable.xtext.valuespecification;bundle-version="[5.0.0,6.0.0)",
  org.eclipse.papyrus.uml.properties.xtext;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.uml.textedit.transition.xtext.ui;bundle-version="[2.1.0,3.0.0)"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Bundle-Description: %Bundle-Description
 Bundle-Localization: plugin

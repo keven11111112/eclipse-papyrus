@@ -17,12 +17,12 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility
  org.eclipse.papyrus.infra.editor.welcome;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.editor.welcome.nattable.internal.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.editor.welcome.nattable;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.editor.welcome.nattable

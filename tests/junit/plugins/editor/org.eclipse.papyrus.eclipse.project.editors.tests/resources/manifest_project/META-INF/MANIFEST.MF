@@ -9,12 +9,12 @@ Export-Package: org.eclipse.papyrus.eclipse.project.editors.tests;x-internal:=tr
  org.eclipse.papyrus.foo.tests;version="2.0.0"
 Bundle-Vendor: Papyrus Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Name: Papyrus Test Bundle
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.foo
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 
 Name: author-info
 Full-Name: Christian W. Damus

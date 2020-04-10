@@ -24,10 +24,10 @@ Export-Package: org.eclipse.papyrus.uml.diagram.timing.tests,
  org.eclipse.papyrus.uml.diagram.timing.tests.generic
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.100.qualifier
+Bundle-Version: 1.3.100.qualifier
 Bundle-Name: Papyrus Timing Diagram Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.timing.tests.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.timing.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.timing.tests

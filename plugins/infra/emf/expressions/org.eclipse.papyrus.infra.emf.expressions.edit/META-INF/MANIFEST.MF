@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.emf.expressions.edit;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.infra.emf.expressions.provider.ExpressionsEditPlugin$Implementation$Activator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.provider,
  org.eclipse.papyrus.infra.emf.expressions.provider
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)";resolution:=optional;x-installation:=greedy,

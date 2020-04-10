@@ -17,11 +17,11 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)";visibil
  org.eclipse.papyrus.infra.tools;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.infra.widgets.toolbox.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.widgets.toolbox;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.widgets.toolbox

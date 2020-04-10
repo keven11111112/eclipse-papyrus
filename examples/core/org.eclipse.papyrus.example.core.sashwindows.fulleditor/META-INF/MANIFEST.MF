@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.example.core.sashwindows.fulleditor;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.example.core.sashwindows.fulleditor.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="[2.0.0,3.0.0)"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.example.core.sashwindows.fulleditor,
  org.eclipse.papyrus.example.core.sashwindows.fulleditor.editor,

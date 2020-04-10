@@ -244,7 +244,7 @@ public final class PluginUtils {
 		}
 	}
 
-	private static final String JAVA_VERSION = "J2SE-1.5"; //$NON-NLS-1$
+	private static final String JAVA_VERSION = "JavaSE-11"; //$NON-NLS-1$
 	private static final String ACTIVATOR_NAME = "Activator"; //$NON-NLS-1$
 	private static final String MANIFEST_MF_TPL = "resources/MANIFEST.MF.template"; //$NON-NLS-1$
 	private static final String ACTIVATOR_TPL = "resources/Activator.java.template"; //$NON-NLS-1$
@@ -359,11 +359,12 @@ public final class PluginUtils {
 		}
 
 		final IStatus status = JavaConventions.validatePackageName(result,
-				JavaCore.VERSION_1_5, JavaCore.VERSION_1_5);
+				JavaCore.VERSION_11, JavaCore.VERSION_11);
 		if (!status.isOK()) {
 			Logger.logWarning(
 					"Couldn't make valid package name from project name: " //$NON-NLS-1$
-							+ status.getMessage(), Activator.getDefault());
+							+ status.getMessage(),
+					Activator.getDefault());
 			result = name;
 		}
 		return result;
@@ -509,7 +510,7 @@ public final class PluginUtils {
 			final List<IStatus> errors, final URL url) throws CoreException {
 		try {
 			final InputStream inputStream = url.openStream();
-			final String strSubpath = url.toString().replaceAll("bundleentry://[^/]*/", ""); //$NON-NLS-1$  //$NON-NLS-2$
+			final String strSubpath = url.toString().replaceAll("bundleentry://[^/]*/", ""); //$NON-NLS-1$ //$NON-NLS-2$
 			final IFile file = project.getFile(new Path(strSubpath));
 			if (file.exists()) {
 				file.delete(true, new NullProgressMonitor());

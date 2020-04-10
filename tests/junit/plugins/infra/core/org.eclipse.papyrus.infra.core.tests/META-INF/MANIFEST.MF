@@ -8,12 +8,12 @@ Export-Package: org.eclipse.papyrus.infra.core.resource,
  org.eclipse.papyrus.infra.core.services,
  org.eclipse.papyrus.infra.core.tests
 Bundle-Vendor: %providerName
-Bundle-Version: 3.1.0.qualifier
+Bundle-Version: 3.2.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: com.google.common.base;version="[27.1.0, 28.0.0)",
  com.google.common.collect;version="[27.1.0, 28.0.0)",
  com.google.common.util.concurrent;version="[27.1.0, 28.0.0)"

@@ -8,10 +8,10 @@ Require-Bundle: org.eclipse.ui.ide;bundle-version="[3.12.0,4.0.0)";visibility:=r
  org.eclipse.papyrus.infra.ui;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Name: OpenElement Service
 Bundle-Activator: org.eclipse.papyrus.infra.services.openelement.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.openelement;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.services.openelement

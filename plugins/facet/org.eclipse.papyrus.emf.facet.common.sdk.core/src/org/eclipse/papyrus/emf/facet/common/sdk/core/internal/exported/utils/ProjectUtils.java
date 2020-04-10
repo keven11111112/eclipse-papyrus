@@ -61,7 +61,7 @@ public final class ProjectUtils {
 		// Nothing
 	}
 
-	private static final String JAVA_VERSION = "J2SE-1.5"; //$NON-NLS-1$
+	private static final String JAVA_VERSION = "JavaSE-11"; //$NON-NLS-1$
 
 	public static void addPdeClassPath(final IProject project) throws JavaModelException {
 		final IJavaProject javaProject = JavaCore.create(project);
@@ -97,7 +97,7 @@ public final class ProjectUtils {
 			manifestSB.append("Bundle-Version: 0.0.1.qualifier\n"); //$NON-NLS-1$
 			manifestSB
 					.append("Bundle-Activator: " + ProjectUtils.bundleActivatorQualifiedName(packageName) + "\n"); //$NON-NLS-1$ //$NON-NLS-2$
-			//manifestSB.append("Bundle-Vendor: bundle vendor\n"); //$NON-NLS-1$
+			// manifestSB.append("Bundle-Vendor: bundle vendor\n"); //$NON-NLS-1$
 			manifestSB.append("Require-Bundle: org.eclipse.core.runtime,\n"); //$NON-NLS-1$
 			manifestSB.append(" org.eclipse.papyrus.emf.facet.util.core\n"); //$NON-NLS-1$
 			manifestSB.append("Bundle-RequiredExecutionEnvironment: " //$NON-NLS-1$
@@ -169,8 +169,8 @@ public final class ProjectUtils {
 			result = UCharacter.toLowerCase(result.charAt(0)) + result.substring(1);
 		}
 
-		final IStatus status = JavaConventions.validatePackageName(result, JavaCore.VERSION_1_5,
-				JavaCore.VERSION_1_5);
+		final IStatus status = JavaConventions.validatePackageName(result, JavaCore.VERSION_11,
+				JavaCore.VERSION_11);
 		if (!status.isOK()) {
 			Logger.logWarning("Couldn't make valid package name from project name: " //$NON-NLS-1$
 					+ status.getMessage(), Activator.getDefault());

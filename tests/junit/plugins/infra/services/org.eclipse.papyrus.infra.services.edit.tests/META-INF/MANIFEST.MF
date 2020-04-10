@@ -20,10 +20,10 @@ Export-Package: org.eclipse.papyrus.infra.services.edit.tests,
  org.eclipse.papyrus.infra.services.edit.tests.suites,
  org.eclipse.papyrus.infra.services.edit.tests.utils
 Bundle-Vendor: %providerName
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.edit.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.services.edit.tests

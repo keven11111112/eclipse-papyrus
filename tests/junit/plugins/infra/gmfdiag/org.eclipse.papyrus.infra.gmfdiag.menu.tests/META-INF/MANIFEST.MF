@@ -11,10 +11,10 @@ Require-Bundle: org.eclipse.core.runtime,
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.menu.tests.tests
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.100.qualifier
+Bundle-Version: 1.3.100.qualifier
 Bundle-Name: GMF Diagram Menu Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.menu.tests.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.menu.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.gmfdiag.menu.tests

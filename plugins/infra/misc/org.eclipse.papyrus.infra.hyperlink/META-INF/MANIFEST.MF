@@ -14,12 +14,12 @@ Require-Bundle: org.eclipse.papyrus.infra.emf;bundle-version="[3.0.0,4.0.0)";vis
  org.eclipse.papyrus.infra.ui.emf;bundle-version="[2.0.0,3.0.0)";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 3.0.0.qualifier
+Bundle-Version: 3.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.hyperlink.Activator
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.hyperlink;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.hyperlink

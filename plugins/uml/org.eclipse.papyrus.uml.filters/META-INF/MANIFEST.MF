@@ -15,13 +15,13 @@ Export-Package: org.eclipse.papyrus.infra.filters.internal;x-internal:=true,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.4.0.qualifier
+Bundle-Version: 1.5.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.filters.internal.UMLFiltersPlugin$Implementation
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.filters;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: com.google.common.base;version="[27.1.0, 28.0.0)"
 Automatic-Module-Name: org.eclipse.papyrus.uml.filters

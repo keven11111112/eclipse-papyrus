@@ -77,12 +77,12 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.utils,
  org.eclipse.papyrus.infra.gmfdiag.internal.common.expressions;x-internal:=true,
  org.eclipse.papyrus.infra.gmfdiag.internal.common.model;x-internal:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 3.104.0.qualifier
+Bundle-Version: 3.105.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2

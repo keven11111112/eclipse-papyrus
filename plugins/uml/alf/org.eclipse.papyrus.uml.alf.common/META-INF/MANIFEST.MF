@@ -16,11 +16,11 @@ Require-Bundle: org.eclipse.xtext;bundle-version="[2.10.0,3.0.0)";visibility:=re
  org.eclipse.xtext.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.1.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Import-Package: org.apache.log4j;version="[1.2.0,2.0.0)"
 Bundle-SymbolicName: org.eclipse.papyrus.uml.alf.common;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.alf.common

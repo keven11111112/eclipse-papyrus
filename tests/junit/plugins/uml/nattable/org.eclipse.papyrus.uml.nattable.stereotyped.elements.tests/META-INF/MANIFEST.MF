@@ -21,13 +21,13 @@ Export-Package: org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests,
  org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests.manager.axis,
  org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests.tests
 Bundle-Vendor: %providerName
-Bundle-Version: 1.0.200.qualifier
+Bundle-Version: 1.1.200.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests.Activator
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests

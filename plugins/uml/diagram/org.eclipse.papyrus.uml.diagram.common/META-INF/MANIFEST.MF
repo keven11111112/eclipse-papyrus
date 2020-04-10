@@ -51,7 +51,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
  org.eclipse.papyrus.uml.tools.utils;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="[1.7.0,2.0.0)";visibility:=reexport,
@@ -92,7 +92,7 @@ Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors;bundle
  org.eclipse.papyrus.infra.gmfdiag.style;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.papyrus.infra.gmfdiag.representation;bundle-version="[2.0.0,3.0.0)"
 Bundle-Vendor: %providerName
-Bundle-Version: 3.4.100.qualifier
+Bundle-Version: 3.5.100.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.common.Activator
 Bundle-ManifestVersion: 2

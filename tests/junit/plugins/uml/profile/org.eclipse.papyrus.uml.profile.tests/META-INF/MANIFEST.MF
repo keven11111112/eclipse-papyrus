@@ -6,10 +6,10 @@ Require-Bundle: org.junit;bundle-version="4.10.0",
 Export-Package: org.eclipse.papyrus.uml.profile.service,
  org.eclipse.papyrus.uml.profile.tests
 Bundle-Vendor: %providerName
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profile.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.profile.tests

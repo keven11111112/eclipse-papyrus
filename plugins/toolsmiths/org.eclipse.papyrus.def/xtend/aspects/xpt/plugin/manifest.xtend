@@ -77,7 +77,7 @@ Require-Bundle: org.eclipse.core.runtime,
 '''
 
 	override def executionEnvironment(GenPlugin it) '''
-		Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+		Bundle-RequiredExecutionEnvironment: JavaSE-11
 	'''
 	
 }

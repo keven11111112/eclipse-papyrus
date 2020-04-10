@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.editor;singleton:=true
-Bundle-Version: 3.2.0.qualifier
+Bundle-Version: 3.3.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.presentation.PaletteConfigurationEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.presentation,
  org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.widgets.editors
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)",

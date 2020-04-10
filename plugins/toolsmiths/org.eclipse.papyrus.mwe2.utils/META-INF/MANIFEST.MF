@@ -11,10 +11,10 @@ Export-Package: org.eclipse.papyrus.mwe2.utils,
  org.eclipse.papyrus.mwe2.utils.messages
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.3.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.mwe2.utils.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.mwe2.utils;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.mwe2.utils

@@ -27,10 +27,10 @@ Require-Bundle: org.eclipse.core.runtime,
 Export-Package: org.eclipse.papyrus.uml.diagram.sequence.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.3.100.qualifier
+Bundle-Version: 1.4.100.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.sequence.tests.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.sequence.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.sequence.tests

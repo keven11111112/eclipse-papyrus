@@ -51,17 +51,27 @@ public class BundleTestsUtils {
 
 	public static final String BUNDLE_IMPORT_PACKAGE = "Import-Package"; //$NON-NLS-1$
 
+	@Deprecated(since = "1.4.0")
 	public static final String JAVA_VERSION_5 = "J2SE-1.5"; //$NON-NLS-1$
 
+	@Deprecated(since = "1.4.0")
 	public static final String JAVA_VERSION_6 = "JavaSE-1.6"; //$NON-NLS-1$
 
+	@Deprecated(since = "1.4.0")
 	public static final String JAVA_VERSION_7 = "JavaSE-1.7"; //$NON-NLS-1$
 
+	@Deprecated(since = "1.4.0")
 	public static final String JAVA_VERSION_8 = "JavaSE-1.8"; //$NON-NLS-1$
 
-	public static final String JAVA_VERSION_REGEX = Stream.of(JAVA_VERSION_5, JAVA_VERSION_6, JAVA_VERSION_7, JAVA_VERSION_8)
-			.map(Pattern::quote)
+	public static final String JAVA_VERSION_11 = "JavaSE-11"; //$NON-NLS-1$
+
+	public static final String JAVA_VERSION_REGEX = Stream.of(JAVA_VERSION_11).map(Pattern::quote)
 			.collect(Collectors.joining("|")); //$NON-NLS-1$
+
+
+	// public static final String JAVA_VERSION_REGEX = Stream.of(JAVA_VERSION_5, JAVA_VERSION_6, JAVA_VERSION_7, JAVA_VERSION_8)
+	// .map(Pattern::quote)
+	// .collect(Collectors.joining("|")); //$NON-NLS-1$
 
 	public static final String REQUIRE_BUNDLE = "Require-Bundle"; //$NON-NLS-1$
 
@@ -74,7 +84,7 @@ public class BundleTestsUtils {
 	 * @return the Bundle with a name beginning by {@link #PAPYRUS_PREFIX}
 	 */
 	public static List<Bundle> getPapyrusBundles() {
-		final List<Bundle> papyrusBundle = new ArrayList<Bundle>();
+		final List<Bundle> papyrusBundle = new ArrayList<>();
 		BundleContext context = InternalPlatform.getDefault().getBundleContext();
 		org.osgi.framework.Bundle[] bundles = context.getBundles();
 		for (int i = 0; i < bundles.length; i++) {
@@ -92,7 +102,7 @@ public class BundleTestsUtils {
 	 * @param bundle
 	 *            a bundle
 	 * @return
-	 * 		<code>true</code> if the bundle represents a Java Project
+	 *         <code>true</code> if the bundle represents a Java Project
 	 */
 	public static boolean isJavaProject(final Bundle bundle) {
 		// we are looking for folders "org/eclipse/papyrus" that contains classes. If not, it is not a Java project
@@ -103,10 +113,10 @@ public class BundleTestsUtils {
 	/**
 	 *
 	 * @return
-	 * 		the list of the Papyrus features
+	 *         the list of the Papyrus features
 	 */
 	public static List<Feature> getPapyrusFeature() {
-		final List<Feature> features = new ArrayList<Feature>();
+		final List<Feature> features = new ArrayList<>();
 		org.eclipse.pde.internal.core.FeatureModelManager manager = PDECore.getDefault().getFeatureModelManager();
 		IFeatureModel[] models2 = manager.getModels();
 		for (IFeatureModel iFeatureModel : models2) {

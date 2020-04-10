@@ -11,12 +11,12 @@ Export-Package: org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils,
  org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils.commands
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.4.0.qualifier
+Bundle-Version: 1.5.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils.Activator
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils

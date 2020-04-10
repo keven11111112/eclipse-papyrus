@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.infra.internationalization.utils;singleton:=true
-Bundle-Version: 1.0.100.qualifier
+Bundle-Version: 1.1.100.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.internationalization.utils.commands,
  org.eclipse.papyrus.infra.internationalization.utils.utils
 Require-Bundle: org.eclipse.core.runtime,

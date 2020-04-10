@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
 	<!-- This plugin is not released ouside of the Toolsmith feature and therefore must be part of the toolsmith build -->
@@ -11,6 +9,6 @@
 		<relativePath>../../toolsmiths/pom.xml</relativePath>
 	</parent>
 	<artifactId>org.eclipse.papyrus.uml.types.ui.properties</artifactId>
-	<version>3.1.100-SNAPSHOT</version>
+	<version>3.2.100-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 </project>
