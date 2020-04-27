@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
- * 
+ * Copyright (c) 2016, 2020 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,29 +10,33 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Jeremie TATIBOUET (CEA LIST) jeremie.tatibouet@cea.fr
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.service.validation.internal;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.services.validation.IValidationFilter;
-import org.eclipse.uml2.uml.Element;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.papyrus.infra.services.edit.context.TypeContext;
+import org.eclipse.papyrus.uml.service.validation.api.AbstractPapyrusValidationFilter;
 
 /**
- * A filter that associates UML models with the UMLDiagnotician (it is
- * referenced from the plugin.xml)
+ * The UML filter enables a diagnotician to triggered on a UML Papyrus model using the UML architecture
  */
-public class UMLFilter implements IValidationFilter {
+public class UMLFilter extends AbstractPapyrusValidationFilter {
 
 	/**
-	 * @see org.eclipse.papyrus.infra.services.validation.IValidationFilter#isApplicable(org.eclipse.emf.ecore.EObject)
+	 * Get the expected context ID
 	 *
-	 * @param an
-	 *            element of the model to validate
-	 * @return true, iff the element is a UML element
+	 * @return context ID
 	 */
-	public boolean isApplicable(EObject element) {
-		return element instanceof Element;
+	@Override
+	public List<String> getExpectedValidationContext() {
+		List<String> architectureContext = new ArrayList<String>();
+		architectureContext.add(TypeContext.getDefaultContextId());
+		return architectureContext;
 	}
+
 }

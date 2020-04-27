@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2013, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  * Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Contribution related to bug 410457, 410119 and 410059
+ * Jeremie TATIBOUET (CEA LIST) jeremie.tatibouet@cea.fr
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.validation.internal;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
+import org.eclipse.papyrus.infra.services.validation.internal.EValidatorAdapter;
 import org.eclipse.papyrus.infra.services.validation.internal.EcoreDiagnostician;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -43,6 +45,11 @@ public class UMLDiagnostician extends EcoreDiagnostician {
 		validateStereotype = false;
 	}
 
+	public UMLDiagnostician(EValidatorAdapter validatorAdapter) {
+		super(validatorAdapter);
+		validateStereotype = false;
+	}
+
 	@Override
 	public Map<Object, Object> createDefaultContext() {
 		Map<Object, Object> context = super.createDefaultContext();
@@ -54,7 +61,7 @@ public class UMLDiagnostician extends EcoreDiagnostician {
 
 	@Override
 	public BasicDiagnostic createDefaultDiagnostic(EObject eObject) {
-		if (eObject == null || eObject.eResource() == null){
+		if (eObject == null || eObject.eResource() == null) {
 			return super.createDefaultDiagnostic(eObject);
 		}
 		ResourceSet resourceSet = eObject.eResource().getResourceSet();
@@ -66,10 +73,13 @@ public class UMLDiagnostician extends EcoreDiagnostician {
 
 	/**
 	 * Explicitly validate stereotype applications.
-	 * 
-	 * @param eObject the eObject to validate
-	 * @param diagnostics the diagnostic chain
-	 * @param context the context
+	 *
+	 * @param eObject
+	 *            the eObject to validate
+	 * @param diagnostics
+	 *            the diagnostic chain
+	 * @param context
+	 *            the context
 	 * @return
 	 */
 	protected boolean doValidateStereotypeApplications(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -129,8 +139,7 @@ public class UMLDiagnostician extends EcoreDiagnostician {
 						d.getSeverity(), d.getSource(), d.getCode(), d.getMessage(), data));
 			}
 			return ok;
-		}
-		else {
+		} else {
 			return super.validate(eObject, diagnostics, context);
 		}
 	}

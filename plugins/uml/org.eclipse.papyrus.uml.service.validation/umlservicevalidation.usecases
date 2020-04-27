@@ -1,0 +1,18 @@
+# Requirements defined for the uml.service.validation plug-in
+
+This plugin provides a base diagnostician for UML models.
+
+# General Requirements
+-----------------------
+Requirement: Req_001: Papyrus shall provide developers with the possibility to develop domain specific diagnosticians that may be based on the UML one.
+
+Code instructions: 
+- Contribute a new diagnostician through the org.eclipse.papyrus.infra.services.validation.diagnosticians extension point
+	- Provide a new diagnostician (one should extend UMLDiagnostician)
+	- Provide a new filter for this diagnostician (one should extend AbstractPapyrusValidationFilter)
+
+
+Requirement: Req_002: Domain specific diagnosticians shall have the possibility to rely on a specific validator .
+
+Code instructions: 
+- Proceed exactly as for Req_001 and in addition make sure that your diagnostician is instanciated using the constructor enabling to provide a specific EValidator 
