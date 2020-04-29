@@ -1,14 +1,15 @@
 /*******************************************************************************
- * Copyright (c) 2012, 2013 Original authors and others.
+ * Copyright (c) 2012, 2013, 2020 Original authors and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
- * 
+ *
  * Contributors:
  *     Original authors and others - initial API and implementation
+ *     Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562646
  ******************************************************************************/
 package org.eclipse.papyrus.infra.nattable.sort;
 
@@ -32,12 +33,12 @@ import ca.odell.glazedlists.SortedList;
 
 
 /**
- * 
+ *
  * @author Vincent Lorenzo
  *         This class provides the sort model for an axis
  */
 public class PapyrusGlazedListsSortModel extends AbstractGlazedListSortModel {
-	
+
 	/**
 	 * the column accessor
 	 */
@@ -73,33 +74,32 @@ public class PapyrusGlazedListsSortModel extends AbstractGlazedListSortModel {
 	}
 
 
-	
+
 	protected PapyrusNatColumnTableFormat<Object> f;
 
 	protected NatTableComparatorChooser<Object> getComparatorChooser() {
 
 		if (comparatorChooser == null) {
-			f = new PapyrusNatColumnTableFormat<Object>(columnAccessor, getTableManager(), columnHeaderDataLayer);
-			comparatorChooser =
-					new PapyrusNatTableComparatorChooser(sortedList, f) {
+			f = new PapyrusNatColumnTableFormat<>(columnAccessor, getTableManager(), columnHeaderDataLayer);
+			comparatorChooser = new PapyrusNatTableComparatorChooser(sortedList, f) {
 
-						/**
-						 * @see ca.odell.glazedlists.gui.AbstractTableComparatorChooser#createSortingState()
-						 *
-						 * @return
-						 */
-						@Override
-						protected org.eclipse.papyrus.infra.nattable.glazedlists.copy.SortingState createSortingState() {
-							return new PapyrusSortingState(this, getTableManager());
-						}
-					};
+				/**
+				 * @see ca.odell.glazedlists.gui.AbstractTableComparatorChooser#createSortingState()
+				 *
+				 * @return
+				 */
+				@Override
+				protected org.eclipse.papyrus.infra.nattable.glazedlists.copy.SortingState createSortingState() {
+					return new PapyrusSortingState(this, getTableManager());
+				}
+			};
 		}
 
 		return comparatorChooser;
 	}
 
 	protected IConfigRegistry getConfigRegistry() {
-		NatTable nat = (NatTable) getTableManager().getAdapter(NatTable.class);
+		NatTable nat = getTableManager().getAdapter(NatTable.class);
 		return nat.getConfigRegistry();
 	}
 
@@ -142,6 +142,11 @@ public class PapyrusGlazedListsSortModel extends AbstractGlazedListSortModel {
 	public void handleLayerEvent(ILayerEvent event) {
 		if (event instanceof StructuralRefreshEvent && ((StructuralRefreshEvent) event).isHorizontalStructureChanged()) {
 			String test = getComparatorChooser().toString();
+			if (test.contains("-")) { //$NON-NLS-1$
+				// avoid exception moving column where a filter is applied
+				// the - sign is for negative column index...
+				return;
+			}
 			this.comparatorChooser = null;
 			getComparatorChooser().fromString(test);
 		}
@@ -165,7 +170,7 @@ public class PapyrusGlazedListsSortModel extends AbstractGlazedListSortModel {
 	 */
 	// @Override
 	public void updateSort() {
-		
+
 
 	}
 
@@ -177,7 +182,7 @@ public class PapyrusGlazedListsSortModel extends AbstractGlazedListSortModel {
 	 */
 	@Override
 	public Comparator<?> getColumnComparator(int columnIndex) {
-		
+
 		return null;
 	}
 }

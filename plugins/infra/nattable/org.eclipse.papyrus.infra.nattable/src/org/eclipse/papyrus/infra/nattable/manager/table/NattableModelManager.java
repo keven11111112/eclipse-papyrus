@@ -14,7 +14,7 @@
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 526146, 515737, 516314
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559973, 560318, 562619
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559973, 560318, 562619, 562646
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -89,9 +89,6 @@ import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
@@ -108,6 +105,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.selection.ISelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.selection.ObjectsSelectionExtractor;
@@ -1993,6 +1992,32 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 							@Override
 							public void run() {
 								if (null != natTable && !natTable.isDisposed()) {
+									final Object notifier = notification.getNotifier();
+									final Object feature = notification.getFeature();
+									final Object newValue = notification.getNewValue();
+									final Object oldValue = notification.getOldValue();
+									final int type = notification.getEventType();
+
+									if (notifier instanceof IAxis && notification.getFeature() == NattablestylePackage.eINSTANCE.getStyledElement_Styles()) {
+										// the change is on a style of an IAxis
+										final String styleName;
+										if (newValue instanceof NamedStyle) {
+											styleName = ((NamedStyle) newValue).getName();
+										} else if (oldValue instanceof NamedStyle) {
+											styleName = ((NamedStyle) oldValue).getName();
+										} else {
+											styleName = null;
+										}
+
+										// we are working with a filter
+										if (NamedStyleConstants.FILTER_SYSTEM_ID.equals(styleName)
+												|| NamedStyleConstants.FILTER_VALUE_TO_MATCH.equals(styleName)) {
+											// nothing to do
+											return;
+										}
+
+									}
+
 									// already created booleanValues and intValues
 									if (notification.getNotifier() instanceof BooleanValueStyle) {
 										// as the filter already prevented any nonBooleanValueStyle, and therefore any non EObject, it can be cast without verification
@@ -2067,9 +2092,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 						.or(NotificationFilter.createEventTypeFilter(Notification.REMOVE)))
 								.and((NotificationFilter.createNotifierTypeFilter(BooleanValueStyle.class))
 										.or(NotificationFilter.createNotifierTypeFilter(IntValueStyle.class))
-										.or(NotificationFilter.createNotifierTypeFilter(EObjectAxis.class))
-										.or(NotificationFilter.createNotifierTypeFilter(FeatureIdAxis.class))
-										.or(NotificationFilter.createNotifierTypeFilter(EStructuralFeatureAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(IAxis.class))
 										.or(NotificationFilter.createNotifierTypeFilter(LocalTableHeaderAxisConfiguration.class))
 										.or(NotificationFilter.createNotifierTypeFilter(Table.class)));
 				// return NotificationFilter.createNotifierTypeFilter(EObject.class);
