@@ -14,7 +14,7 @@
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 526146, 515737, 516314
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559973, 560318
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559973, 560318, 562619
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -430,8 +430,34 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				needConfiguration = true;
 			}
 			if (needConfiguration) {
-				configureCellAxisEditor();
-				configureFilters();
+				// we check the events before to launch a reconfiguration, maybe it is just an update
+				// bug 562619
+				boolean isJustUpdate = true;
+				final ListEvent<Object> copiedListChanges = listChanges.copy();
+				while (copiedListChanges.hasNext() && isJustUpdate) {
+					if (copiedListChanges.next()) {
+						int eventType = copiedListChanges.getType();
+						switch (eventType) {
+						case ListEvent.UPDATE:
+							if (copiedListChanges.isReordering()) {
+								// in this case of update we need to reconfigure the editors and the filters
+								isJustUpdate = false;
+							}
+							break;
+						// in fact we get delete event for a cell edition,
+						// because the refresh generate a structural refresh and the comparator registered on the list is updated too
+						// see AbstractTableComparatorChooser.rebuildComparator()
+						case ListEvent.DELETE:
+						case ListEvent.INSERT:
+						default:
+							isJustUpdate = false;
+						}
+					}
+				}
+				if (!isJustUpdate) {
+					configureCellAxisEditor();
+					configureFilters();
+				}
 
 				// comment to fix the bug 469739: [Table] Infinite refresh in Tables
 				// https://bugs.eclipse.org/bugs/show_bug.cgi?id=469739
