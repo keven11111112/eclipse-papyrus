@@ -41,17 +41,17 @@ location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R201906
 
 //updateFrom("XWT",0)
 
-location xwt "https://download.eclipse.org/xwt/milestones-1.4.100/1.4.100-RC1/" {
+location xwt "https://download.eclipse.org/xwt/release-1.4.100/" {
     org.eclipse.xwt.feature.feature.group lazy
 }
 
-//updateFrom("QVT Operational for 2020-03",0)
+//updateFrom("QVT Operational for 2020-06",0)
 
-location qvto "https://download.eclipse.org/mmt/qvto/updates/releases/3.10.1" {
+location qvto "https://download.eclipse.org/mmt/qvto/updates/milestones/3.10.2/S202005051425" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
-//updateFrom("M2T Xpand for 2020-03",0) 
+//updateFrom("M2T Xpand for 2020-06",0) 
 
 location xpand "https://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/" {
 	org.eclipse.xpand.sdk.feature.group
@@ -66,20 +66,20 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.15/R-4.15-202003050155/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.16-I-builds/I20200501-0520/" {
 	org.eclipse.sdk.feature.group
 }
 
-//updateFrom("OCL for 2020-03",0) 
+//updateFrom("OCL for 2020-06",0) 
 
-location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.11.0" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.12.0/S202005041315" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.21.0" {
+location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S202005050245" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -87,33 +87,33 @@ location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/releases
     org.eclipse.xtext.ui.feature.group
 }
 
-//updateFrom("EMFT MWE for 2020-03",0)
+//updateFrom("EMFT MWE for 2020-06",0)
 
 location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.11.2/" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
-//updateFrom("Web Tools Platform 3.17 for Simrel 2020-03",0) 
+//updateFrom("Web Tools Platform 3.18 for Simrel 2020-06",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.17.0/R-3.17.0-20200306035042/repository/" {
+location webtools "http://download.eclipse.org/webtools/downloads/drops/R3.18.0/3.18.0.M2-20200430031435/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
-//updateFrom("GMF Runtime for SimRel 2020-03",0)
+//updateFrom("GMF Runtime 1.13.0 for SimRel 2020-06",0)
 
-location gmfRuntime "https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201912020813" {
+location gmfRuntime "https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202004160913" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
-//updateFrom("GMF Runtime for SimRel 2020-03",1)
+//updateFrom("GMF Runtime 1.13.0 for SimRel 2020-06",1)
 
-location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201805221301" {
+location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R202004160913" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
 }
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.21" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/milestone/S202004270812" {
 	org.eclipse.emf.sdk.feature.group
 }
 

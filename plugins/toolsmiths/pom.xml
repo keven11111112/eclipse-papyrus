@@ -49,7 +49,7 @@
 		<module>org.eclipse.papyrus.infra.emf.commandstack</module>
 		<module>org.eclipse.papyrus.infra.gmfdiag.css.debug</module>
 		<module>org.eclipse.papyrus.mwe2.utils</module>
-		<module>org.eclipse.papyrus.releng.tools</module>
+<!-- 		<module>org.eclipse.papyrus.releng.tools</module> -->
 		<module>org.eclipse.papyrus.uml.m2m.qvto.tests.tools</module>
 		<module>org.eclipse.papyrus.architectureview</module>
 		<module>validation</module>
