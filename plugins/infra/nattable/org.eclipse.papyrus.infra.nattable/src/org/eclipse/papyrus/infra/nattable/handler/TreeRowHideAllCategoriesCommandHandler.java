@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562864
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
@@ -30,12 +30,18 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 
-
-
+/**
+ *
+ * @deprecated since Papyrus 4.8, use TreeRowHideAllCategoriesHandler
+ *
+ *             this class is not used
+ *             this class will be removed in Papyrus 5.0 (see bug Bug 562870)
+ */
+@Deprecated
 public class TreeRowHideAllCategoriesCommandHandler extends AbstractTreeRowHideShowCategoryHandler {
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 *
 	 * @param event
@@ -54,7 +60,7 @@ public class TreeRowHideAllCategoriesCommandHandler extends AbstractTreeRowHideS
 			cc.append(AddCommand.create(getTableEditingDomain(), table, NattablestylePackage.eINSTANCE.getStyledElement_Styles(), Collections.singleton(values)));
 			cc.append(SetCommand.create(getTableEditingDomain(), values, NattablestylePackage.eINSTANCE.getNamedStyle_Name(), NamedStyleConstants.HIDDEN_CATEGORY_FOR_DEPTH));
 		}
-		final List<Integer> toHide = new ArrayList<Integer>();
+		final List<Integer> toHide = new ArrayList<>();
 		int start = 0;
 		if (!FillingConfigurationUtils.hasTreeFillingConfigurationForDepth(getTable(), 0)) {
 			start = 1;
@@ -69,18 +75,17 @@ public class TreeRowHideAllCategoriesCommandHandler extends AbstractTreeRowHideS
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler#setEnabled(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTreeTableHandler#computeEnable(Object)
 	 *
-	 * @param evaluationContext
+	 * @return
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		super.setEnabled(evaluationContext);
-		if (isEnabled()) {
-			if (allCategoriesAreCurrentlyHidden()) {
-				setBaseEnabled(false);
-			}
+	protected boolean computeEnable(Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			calculatedValue = !allCategoriesAreCurrentlyHidden();
 		}
+		return calculatedValue;
 	}
 
 }

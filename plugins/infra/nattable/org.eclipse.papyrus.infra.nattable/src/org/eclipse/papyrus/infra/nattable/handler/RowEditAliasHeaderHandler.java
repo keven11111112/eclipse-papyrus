@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562864
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 public class RowEditAliasHeaderHandler extends AbstractTableHandler {
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 *
 	 * @param event
@@ -36,7 +36,7 @@ public class RowEditAliasHeaderHandler extends AbstractTableHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		NatEventData eventData = getNatEventData();
-		if (eventData!=null) {
+		if (eventData != null) {
 			AbstractNattableWidgetManager manager = (AbstractNattableWidgetManager) getCurrentNattableModelManager();
 			manager.openEditRowAliasDialog(eventData);
 		}
@@ -44,22 +44,19 @@ public class RowEditAliasHeaderHandler extends AbstractTableHandler {
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTreeTableHandler#computeEnable(Object)
 	 *
-	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
-	 *
-	 * @param evaluationContext
+	 * @return
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {// it must be the nattable selection event
-		super.setEnabled(evaluationContext);
-		final NatEventData eventData = getNatEventData();
-		final NattableModelManager manager = (NattableModelManager) getCurrentNattableModelManager();
-		if(isEnabled() && eventData!=null && manager!=null ){
-			setBaseEnabled(manager.canEditRowHeader(eventData));
-		} else {
-			setBaseEnabled(false);
+	protected boolean computeEnable(Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			final NatEventData eventData = getNatEventData();
+			final NattableModelManager manager = (NattableModelManager) getCurrentNattableModelManager();
+			calculatedValue = eventData != null && manager != null && manager.canEditRowHeader(eventData);
 		}
+		return calculatedValue;
 	}
-
 
 }

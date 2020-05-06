@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2020 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562864
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.handler;
@@ -18,7 +18,6 @@ package org.eclipse.papyrus.infra.nattable.handler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.utils.AbstractPasteInsertInTableHandler;
@@ -33,7 +32,7 @@ public class InsertInTableHandler extends AbstractPasteInsertInTableHandler {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	@SuppressWarnings("unchecked")
@@ -43,32 +42,32 @@ public class InsertInTableHandler extends AbstractPasteInsertInTableHandler {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler#setEnabled(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTreeTableHandler#computeEnable(Object)
 	 *
-	 * @param evaluationContext
+	 * @return
 	 */
 	@Override
-	public void setEnabled(final Object evaluationContext) {
-		super.setEnabled(evaluationContext);
-		if (isEnabled()) {
-			// Recalculate if the enable is allowed because the user can select cells and try to insert by click on rows for example.
-			boolean canEnable = false;
-			final INattableModelManager currentNattableModelManager = getCurrentNattableModelManager();
-			if (null != currentNattableModelManager) {
-				final ISelection currentSelection = ((NattableModelManager) currentNattableModelManager).getSelectionInTable();
+	protected boolean computeEnable(Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			final NattableModelManager manager = (NattableModelManager) getCurrentNattableModelManager();
+			if (manager == null) {
+				calculatedValue = false;
+			} else {
+				final ISelection currentSelection = manager.getSelectionInTable();
 				if (null == currentSelection) {
-					canEnable = true;
+					calculatedValue = true;
 				} else if (currentSelection instanceof TableStructuredSelection) {
 					TableSelectionWrapper tableSelectionWrapper = (TableSelectionWrapper) ((TableStructuredSelection) currentSelection).getAdapter(TableSelectionWrapper.class);
-					if (null != tableSelectionWrapper) {
-						if (tableSelectionWrapper.getSelectedCells().isEmpty()
-								|| !tableSelectionWrapper.getFullySelectedRows().isEmpty() && tableSelectionWrapper.getFullySelectedColumns().isEmpty()) {
-							canEnable = true;
-						}
-					}
+					calculatedValue = tableSelectionWrapper != null
+							&& (tableSelectionWrapper.getSelectedCells().isEmpty()
+									|| (!tableSelectionWrapper.getFullySelectedRows().isEmpty()
+											&& tableSelectionWrapper.getFullySelectedColumns().isEmpty()));
+				} else {
+					calculatedValue = false;
 				}
 			}
-			setBaseEnabled(canEnable);
 		}
+		return calculatedValue;
 	}
 }

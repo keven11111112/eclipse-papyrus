@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562864
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
@@ -42,28 +42,30 @@ public class ColumnDestroyAxisHandler extends AbstractTableHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final IAxisManager axisManager = getColumnAxisManager();
 		NatEventData eventData = getNatEventData();
-		if (axisManager != null && eventData!=null) {
+		if (axisManager != null && eventData != null) {
 			axisManager.destroyAxis(getFullSelectedColumnsIndex(eventData));
 		}
 		return null;
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTreeTableHandler#computeEnable(Object)
 	 *
-	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
-	 *
-	 * @param evaluationContext
+	 * @return
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		super.setEnabled(evaluationContext);
-		NatEventData eventData = getNatEventData();
-		boolean enabled = false;
-		final IAxisManager axisManager = getColumnAxisManager();
-		if (isEnabled() && axisManager != null && eventData!=null) {
-			final List<Integer> col = getFullSelectedColumnsIndex(eventData);
-			enabled = axisManager.canDestroyAxis(col);
+	protected boolean computeEnable(Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			final NatEventData eventData = getNatEventData();
+			final IAxisManager axisManager = getColumnAxisManager();
+			if (eventData == null || axisManager == null) {
+				calculatedValue = false;
+			} else {
+				final List<Integer> col = getFullSelectedColumnsIndex(eventData);
+				calculatedValue = axisManager.canDestroyAxis(col);
+			}
 		}
-		setBaseEnabled(enabled);
+		return calculatedValue;
 	}
 }

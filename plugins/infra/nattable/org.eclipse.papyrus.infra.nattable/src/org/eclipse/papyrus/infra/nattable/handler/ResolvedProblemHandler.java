@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562864
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
@@ -60,7 +60,7 @@ public class ResolvedProblemHandler extends AbstractTableHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final TransactionalEditingDomain domain = getTableEditingDomain();
-		
+
 		Problem problemToDestroy = getProblemToDestroy(event);
 		DestroyElementRequest request = new DestroyElementRequest(domain, problemToDestroy, false);
 		final Cell cell = (Cell) problemToDestroy.eContainer();
@@ -71,61 +71,61 @@ public class ResolvedProblemHandler extends AbstractTableHandler {
 		// TODO : improve me and move me into an edit helper when we will have customization for the cell
 		composite.add(new AbstractTransactionalCommand(domain, "Clean Table Model : remove empty Cell", null) { //$NON-NLS-1$
 
-					@Override
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-						boolean isEmpty = true;
-						if (cell.getProblems().size() == 0) {
-							Collection<EStructuralFeature> featureToIgnore = new ArrayList<EStructuralFeature>();
-							featureToIgnore.add(EcorePackage.eINSTANCE.getEModelElement_EAnnotations());
-							featureToIgnore.add(NattablecellPackage.eINSTANCE.getCell_ColumnWrapper());
-							featureToIgnore.add(NattablecellPackage.eINSTANCE.getCell_RowWrapper());
-							Collection<EStructuralFeature> allFeatures = new ArrayList<EStructuralFeature>(cell.eClass().getEAllStructuralFeatures());
-							allFeatures.removeAll(featureToIgnore);
-							for (EStructuralFeature eStructuralFeature : allFeatures) {
-								if (eStructuralFeature.isMany()) {
-									if (!((Collection<?>) cell.eGet(eStructuralFeature)).isEmpty()) {
-										isEmpty = false;
-									}
-								} else {
-									if (cell.eGet(eStructuralFeature) != eStructuralFeature.getDefaultValue()) {
-										isEmpty = false;
-									}
-								}
-
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				boolean isEmpty = true;
+				if (cell.getProblems().size() == 0) {
+					Collection<EStructuralFeature> featureToIgnore = new ArrayList<>();
+					featureToIgnore.add(EcorePackage.eINSTANCE.getEModelElement_EAnnotations());
+					featureToIgnore.add(NattablecellPackage.eINSTANCE.getCell_ColumnWrapper());
+					featureToIgnore.add(NattablecellPackage.eINSTANCE.getCell_RowWrapper());
+					Collection<EStructuralFeature> allFeatures = new ArrayList<>(cell.eClass().getEAllStructuralFeatures());
+					allFeatures.removeAll(featureToIgnore);
+					for (EStructuralFeature eStructuralFeature : allFeatures) {
+						if (eStructuralFeature.isMany()) {
+							if (!((Collection<?>) cell.eGet(eStructuralFeature)).isEmpty()) {
+								isEmpty = false;
+							}
+						} else {
+							if (cell.eGet(eStructuralFeature) != eStructuralFeature.getDefaultValue()) {
+								isEmpty = false;
 							}
 						}
-						if (isEmpty) {
-							DestroyElementRequest request = new DestroyElementRequest(domain, cell, false);
-							// final Cell cell = (Cell)problemToDestroy.eContainer();
-							IElementEditService provider = ElementEditServiceUtils.getCommandProvider(cell.eContainer());
-							provider.getEditCommand(request).execute(null, null);
-						}
-						return null;
+
 					}
-				});
+				}
+				if (isEmpty) {
+					DestroyElementRequest request = new DestroyElementRequest(domain, cell, false);
+					// final Cell cell = (Cell)problemToDestroy.eContainer();
+					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(cell.eContainer());
+					provider.getEditCommand(request).execute(null, null);
+				}
+				return null;
+			}
+		});
 		Command cmd = new GMFtoEMFCommandWrapper(composite);
 		domain.getCommandStack().execute(cmd);
 		return null;
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTreeTableHandler#computeEnable(Object)
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler#setEnabled(java.lang.Object)
-	 *
-	 * @param evaluationContext
+	 * @return
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		super.setEnabled(evaluationContext);
-		if (isEnabled()) {
-			setBaseEnabled(getProblemToDestroy(evaluationContext) != null);
+	protected boolean computeEnable(Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			calculatedValue = getProblemToDestroy(evaluationContext) != null;
 		}
+		return calculatedValue;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param evaluationContextOrExecutionEvent
-	 * an evaluation context (coming from setEnable(Object evaluationContext) or an ExecutionEvent (coming from execute(ExecutionEvent e)
+	 *            an evaluation context (coming from setEnable(Object evaluationContext) or an ExecutionEvent (coming from execute(ExecutionEvent e)
 	 * @return
 	 */
 	private Problem getProblemToDestroy(Object evaluationContextOrExecutionEvent) {

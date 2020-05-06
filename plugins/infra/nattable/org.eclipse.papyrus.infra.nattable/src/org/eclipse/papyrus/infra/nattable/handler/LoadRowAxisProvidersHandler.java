@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2020 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562864
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
@@ -26,20 +27,22 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Ab
 public class LoadRowAxisProvidersHandler extends AbstractLoadAxisProvidersHandler {
 
 	/**
-	 * This handler is enabled only if the concerned axis manager allows to save a configuration.
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTreeTableHandler#computeEnable(Object)
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler#setEnabled(java.lang.Object)
-	 *
-	 * @param evaluationContext
+	 * @return
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		if (getCurrentNattableModelManager() != null && getCurrentNattableModelManager().getRowAxisManager() != null) {
-			IAxisManager columnAxisManager = this.getCurrentNattableModelManager().getRowAxisManager();
-			setBaseEnabled(columnAxisManager.canBeSavedAsConfig());
-		} else {
-			setBaseEnabled(false);
+	protected boolean computeEnable(Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			if (getCurrentNattableModelManager() != null && getCurrentNattableModelManager().getRowAxisManager() != null) {
+				final IAxisManager rowAxisManager = getCurrentNattableModelManager().getRowAxisManager();
+				calculatedValue = rowAxisManager.canBeSavedAsConfig();
+			} else {
+				calculatedValue = false;
+			}
 		}
+		return calculatedValue;
 	}
 
 	/**

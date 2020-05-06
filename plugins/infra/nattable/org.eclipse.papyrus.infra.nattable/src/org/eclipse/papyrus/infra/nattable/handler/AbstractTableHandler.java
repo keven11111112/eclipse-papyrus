@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562864
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
@@ -57,7 +57,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 
 	/**
 	 * the id used to find the NatEvent in the EclipseContext
-	 * 
+	 *
 	 * @deprecated since Papyrus 1.2 (Eclipse Neon)
 	 */
 	@Deprecated
@@ -66,7 +66,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	/**
 	 * the event which have declenched the call to setEnable(Object evaluationContext. This event contains the location of the mouse pointer when
 	 * the popup menu for this handler have been created
-	 * 
+	 *
 	 * we do a weak reference to fix the bug 469376: [Table] Memory Leak : (Tree)NattableWidgetManager, EObjectTreeItemAxis and others objects are not disposed when the table is closed
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=469376
 	 */
@@ -76,7 +76,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	/**
 	 *
 	 * @return
-	 * 		the current active part
+	 *         the current active part
 	 * @deprecated since 2.0
 	 */
 	@Deprecated
@@ -85,9 +85,9 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 * 		the TableSelectioWrapper used (according to the referenced NatEventData) or <code>null</code> if not found
+	 *         the TableSelectioWrapper used (according to the referenced NatEventData) or <code>null</code> if not found
 	 * @since 2.0
 	 */
 	protected final TableSelectionWrapper getTableSelectionWrapper() {
@@ -117,7 +117,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 
 	/**
 	 * @return
-	 * 		the current NatTable or <code>null</code> if not found
+	 *         the current NatTable or <code>null</code> if not found
 	 * @since 5.0
 	 */
 	protected NatTable getCurrentNatTable() {
@@ -149,9 +149,9 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 * 		the last NatEventData received during the setEnable
+	 *         the last NatEventData received during the setEnable
 	 */
 	protected NatEventData getNatEventData() {
 		if (this.eventDataWeakReference != null) {
@@ -165,7 +165,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	 * @param evaluationContext
 	 *            the evaluation context
 	 * @return
-	 * 		the NatEventData from this evaluation context or <code>null</code> if not found
+	 *         the NatEventData from this evaluation context or <code>null</code> if not found
 	 */
 	protected NatEventData getNatEventData(final Object evaluationContext) {
 		if (evaluationContext instanceof NatEventData) {
@@ -183,23 +183,23 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 		if (eventData == null) {
 			Point cursorLocation = Display.getDefault().getCursorLocation();
 			Control control = null;
-			
+
 			// Try to get the nattable from the multi diagram
 			// We need to manage it from active editor for the sub menu items
 			final IEditorPart activeEditor = EditorHelper.getCurrentEditor();
 			if (null != activeEditor) {
 				INattableModelManager nattableModelManager = null;
-				if(activeEditor instanceof IMultiPageEditorPart && null != ((IMultiPageEditorPart)activeEditor).getActiveEditor()){
-					nattableModelManager = ((IMultiPageEditorPart)activeEditor).getActiveEditor().getAdapter(INattableModelManager.class);
-				}else if(activeEditor instanceof IAdaptable){
-					nattableModelManager = ((IAdaptable)activeEditor).getAdapter(INattableModelManager.class);
+				if (activeEditor instanceof IMultiPageEditorPart && null != ((IMultiPageEditorPart) activeEditor).getActiveEditor()) {
+					nattableModelManager = ((IMultiPageEditorPart) activeEditor).getActiveEditor().getAdapter(INattableModelManager.class);
+				} else if (activeEditor instanceof IAdaptable) {
+					nattableModelManager = ((IAdaptable) activeEditor).getAdapter(INattableModelManager.class);
 				}
-				
-				if(null != nattableModelManager){
+
+				if (null != nattableModelManager) {
 					control = nattableModelManager.getAdapter(NatTable.class);
 				}
 			}
-			
+
 			if (control instanceof NatTable) {// : not nice, but required
 				cursorLocation = control.toControl(cursorLocation);
 				Event e = new Event();
@@ -227,7 +227,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 			if (data != null) {
 				final SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
 				int[] fullSelectedColumnsPosition = layer.getFullySelectedRowPositions();
-				List<Integer> positions = new ArrayList<Integer>();
+				List<Integer> positions = new ArrayList<>();
 				for (int i : fullSelectedColumnsPosition) {
 					positions.add(layer.getRowIndexByPosition(i));
 				}
@@ -250,7 +250,7 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 			if (data != null) {
 				final SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
 				int[] fullSelectedColumnsPosition = layer.getFullySelectedColumnPositions();
-				List<Integer> positions = new ArrayList<Integer>();
+				List<Integer> positions = new ArrayList<>();
 				for (int i : fullSelectedColumnsPosition) {
 					positions.add(layer.getColumnIndexByPosition(i));
 				}
@@ -288,16 +288,31 @@ public abstract class AbstractTableHandler extends AbstractHandler {
 	}
 
 	/**
+	 * TODO : this method should be declared as final in Papyrus 5.0 (bug 562866)
 	 *
 	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
 	 *
+	 *      Please override {@link #computeEnable(Object)} instead of this method
 	 * @param evaluationContext
+	 *
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		this.eventDataWeakReference = new WeakReference<NatEventData>(getNatEventData(evaluationContext));
-		boolean enabled = getCurrentNattableModelManager() != null;
-		setBaseEnabled(enabled);
+		this.eventDataWeakReference = new WeakReference<>(getNatEventData(evaluationContext));
+		setBaseEnabled(computeEnable(evaluationContext));
+	}
+
+	/**
+	 * This method avoid to call setBaseEnable several time in the same handler
+	 * to avoid a StackOverFlow is strange cases
+	 *
+	 * @param evaluationContext
+	 *            the evaluation context used to calculate the enablement
+	 * @since 6.7
+	 *
+	 */
+	protected boolean computeEnable(final Object evaluationContext) {
+		return getCurrentNattableModelManager() != null;
 	}
 
 	/**

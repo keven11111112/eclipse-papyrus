@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2015 CEA LIST.
+ * Copyright (c) 2013, 2015, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562864
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
@@ -67,13 +67,16 @@ public abstract class AbstractDisconnectSlaveHandler extends AbstractTableHandle
 	protected abstract AbstractAxisProvider getAxisProviderToEdit();
 
 	/**
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler#computeEnable(Object)
 	 *
-	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
-	 *
-	 * @param evaluationContext
+	 * @return
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		setBaseEnabled(getAxisProviderToEdit() instanceof MasterObjectAxisProvider);
+	protected boolean computeEnable(final Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			calculatedValue = getAxisProviderToEdit() instanceof MasterObjectAxisProvider;
+		}
+		return calculatedValue;
 	}
 }

@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 559968
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 559968, 562864
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.handler;
@@ -73,20 +73,20 @@ public class UnsetCellValueHandler extends AbstractTableHandler {
 		return null;
 	}
 
-
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler#setEnabled(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler#computeEnable(Object)
 	 *
-	 * @param evaluationContext
+	 * @return
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		super.setEnabled(evaluationContext);
-		if (isEnabled()) {
-			boolean enabled = canUnsetCell(evaluationContext);
-			setBaseEnabled(enabled);
+	protected boolean computeEnable(final Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			calculatedValue = canUnsetCell(evaluationContext);
 		}
+		return calculatedValue;
 	}
+
 
 	/**
 	 *

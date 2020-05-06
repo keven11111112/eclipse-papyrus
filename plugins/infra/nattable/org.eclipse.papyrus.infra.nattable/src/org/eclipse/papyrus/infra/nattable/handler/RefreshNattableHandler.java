@@ -17,18 +17,19 @@ package org.eclipse.papyrus.infra.nattable.handler;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * 
+ *
  * This handler allows to force a nattable refresh
  *
  */
 public class RefreshNattableHandler extends AbstractTableHandler {
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 *
 	 * @param event
@@ -43,8 +44,7 @@ public class RefreshNattableHandler extends AbstractTableHandler {
 			try {
 				b = Display.getDefault().readAndDispatch();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Activator.log.error(e);
 			}
 			if (!b) {
 				break;

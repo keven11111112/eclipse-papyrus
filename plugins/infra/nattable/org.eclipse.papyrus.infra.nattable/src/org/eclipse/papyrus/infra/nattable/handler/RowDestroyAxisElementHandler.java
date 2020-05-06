@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562864
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
@@ -49,21 +49,23 @@ public class RowDestroyAxisElementHandler extends AbstractTableHandler {
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTreeTableHandler#computeEnable(Object)
 	 *
-	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
-	 *
-	 * @param evaluationContext
+	 * @return
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		super.setEnabled(evaluationContext);
-		boolean enabled = false;
-		NatEventData eventData = getNatEventData();
-		final IAxisManager axisManager = getRowAxisManager();
-		if (isEnabled() && axisManager != null && eventData != null) {
-			final List<Integer> rows = getFullSelectedRowsIndex(eventData);
-			enabled = axisManager.canDestroyAxisElement(rows);
+	protected boolean computeEnable(Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			final NatEventData eventData = getNatEventData();
+			final IAxisManager axisManager = getRowAxisManager();
+			calculatedValue = eventData != null && axisManager != null;
+			if (calculatedValue) {
+				final List<Integer> rows = getFullSelectedRowsIndex(eventData);
+				calculatedValue = axisManager.canDestroyAxisElement(rows);
+			}
 		}
-		setBaseEnabled(enabled);
+		return calculatedValue;
 	}
+
 }

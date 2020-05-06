@@ -44,19 +44,19 @@ public class SelectRowsHandler extends AbstractTableHandler {
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTreeTableHandler#computeEnable(Object)
 	 *
-	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
-	 *
-	 * @param evaluationContext
+	 * @return
+	 * @since 6.7
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		super.setEnabled(evaluationContext);
-		final INattableModelManager currentNattableModelManager = getCurrentNattableModelManager();
-		boolean enabled = false;
-		if (currentNattableModelManager != null) {
-			enabled = currentNattableModelManager.canCreateDestroyRowsAxis();
+	protected boolean computeEnable(Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			final INattableModelManager manager = getCurrentNattableModelManager();
+			calculatedValue = manager != null
+					&& manager.canCreateDestroyRowsAxis();
 		}
-		setBaseEnabled(enabled);
+		return calculatedValue;
 	}
 }

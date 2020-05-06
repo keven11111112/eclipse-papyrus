@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
- * 
+ * Copyright (c) 2014, 2020 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562864
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.handler;
@@ -55,36 +55,18 @@ public class CollapseAndExpandTreeHandler extends AbstractParametricTreeTableHan
 		return null;
 	}
 
-
-
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler#setEnabled(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTreeTableHandler#computeEnable(Object)
 	 *
-	 * @param evaluationContext
+	 * @return
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		super.setEnabled(evaluationContext);
-		if (isEnabled() && this.actionId == null) {
-			setBaseEnabled(false);
-			return;
+	protected boolean computeEnable(Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			calculatedValue = this.actionId != null && !getFullSelectedRowsIndex(evaluationContext).isEmpty();
 		}
-		if (isEnabled()) {
-			switch (this.actionId) {
-			case COLLAPSE_ALL_FROM_SELECTION:
-			case COLLAPSE_ONE_LEVEL:
-			case EXPAND_ALL_FROM_SELECTION:
-			case EXPAND_ONE_LEVEL:
-				if (getFullSelectedRowsIndex(evaluationContext).isEmpty()) {
-					setBaseEnabled(false);
-				}
-				break;
-
-			default:
-				// nothing to do
-				break;
-			}
-		}
+		return calculatedValue;
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562864
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
@@ -40,26 +40,25 @@ public class SortColumnsHandler extends AbstractTableHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final String directionParameter = event.getParameter(Constants.SORT_COMMAND_PARAMETER);
 		INattableModelManager manager = getCurrentNattableModelManager();
-		boolean alphabeticOrder = "true".equals(directionParameter);
+		boolean alphabeticOrder = Boolean.TRUE.toString().equals(directionParameter);
 		manager.sortColumnsByName(alphabeticOrder);
 		return null;
 	}
 
 
 	/**
+	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTreeTableHandler#computeEnable(Object)
 	 *
-	 * @see org.eclipse.core.commands.AbstractHandler#setEnabled(java.lang.Object)
-	 *
-	 * @param evaluationContext
+	 * @return
 	 */
 	@Override
-	public void setEnabled(Object evaluationContext) {
-		super.setEnabled(evaluationContext);
-		INattableModelManager manager = getCurrentNattableModelManager();
-		boolean enabled = false;
-		if (manager != null) {
-			enabled = manager.canMoveColumns();
+	protected boolean computeEnable(Object evaluationContext) {
+		boolean calculatedValue = super.computeEnable(evaluationContext);
+		if (calculatedValue) {
+			final INattableModelManager manager = getCurrentNattableModelManager();
+			calculatedValue = manager != null
+					&& manager.canMoveColumns();
 		}
-		setBaseEnabled(enabled);
+		return calculatedValue;
 	}
 }
