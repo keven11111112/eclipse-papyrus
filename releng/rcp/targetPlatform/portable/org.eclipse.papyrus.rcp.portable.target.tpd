@@ -7,13 +7,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //updateFrom("EGIT",0)
 
-location egit "https://repo.eclipse.org/content/unzip/releases.unzip/org/eclipse/egit/org.eclipse.egit.repository/5.7.0.202003110725-r/org.eclipse.egit.repository-5.7.0.202003110725-r.zip-unzip/" {
+location egit "https://repo.eclipse.org/content/unzip/releases.unzip/org/eclipse/egit/org.eclipse.egit.repository/5.8.0.202005061305-m2/org.eclipse.egit.repository-5.8.0.202005061305-m2.zip-unzip/" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.15/R-4.15-202003050155/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.16milestones/S-4.16RC1-202005280200/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -21,7 +21,7 @@ location platform "https://download.eclipse.org/eclipse/updates/4.15/R-4.15-2020
 
 //updateFrom("Mylyn",0)
 
-location mylyn "https://download.eclipse.org/mylyn/drops/3.24.2/v20180905-2014" {
+location mylyn "http://download.eclipse.org/mylyn/drops/3.25.1/v20200526-0330" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group
@@ -32,14 +32,14 @@ location mylyn "https://download.eclipse.org/mylyn/drops/3.24.2/v20180905-2014" 
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202003070301" {
+location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202005260905" {
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.21" {
+location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.22" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
