@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_QKU0YEMwEeiEZ5Jtfh6-KA" type="PapyrusUMLSequenceDiagram" name="sequence" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_QKU0YEMwEeiEZ5Jtfh6-KA" type="PapyrusUMLSequenceDiagram" name="sequence" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_QKU0YUMwEeiEZ5Jtfh6-KA" type="Interaction_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_QKU0YkMwEeiEZ5Jtfh6-KA" type="Interaction_NameLabel">
       <element xmi:type="uml:Interaction" href="bug533681.uml#_POkWwEMwEeiEZ5Jtfh6-KA"/>

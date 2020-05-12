@@ -7,7 +7,7 @@ Export-Package: org.eclipse.papyrus.infra.sync,
  org.eclipse.papyrus.infra.sync.service
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 2.1.100.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

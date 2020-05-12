@@ -17,7 +17,7 @@ Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  bin
-Bundle-Version: 2.1.100.qualifier
+Bundle-Version: 2.1.200.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2

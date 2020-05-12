@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_1xkSQHqQEeK9jI2Tc6HWsA" type="PapyrusUMLClassDiagram" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_1xkSQHqQEeK9jI2Tc6HWsA" type="PapyrusUMLClassDiagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_2WT-EHqQEeK9jI2Tc6HWsA" type="2008">
     <children xmi:type="notation:DecorationNode" xmi:id="_2WdvEHqQEeK9jI2Tc6HWsA" type="5029"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_2WdvEXqQEeK9jI2Tc6HWsA" type="7017">

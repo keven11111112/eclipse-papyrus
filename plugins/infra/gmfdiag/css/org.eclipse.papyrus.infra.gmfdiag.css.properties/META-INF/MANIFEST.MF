@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.papyrus.infra.properties.ui;bundle-version="[3.0.0,4
  org.eclipse.papyrus.infra.gmfdiag.dnd;bundle-version="[1.2.0,2.0.0)"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 3.1.0.qualifier
+Bundle-Version: 3.1.100.qualifier
 Bundle-Name: CSS Properties
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.css.properties.Activator
 Bundle-ManifestVersion: 2

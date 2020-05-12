@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_WNy24OGBEeevdMKtbxkWdg" type="PapyrusUMLClassDiagram" name="Expresions" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_WNy24OGBEeevdMKtbxkWdg" type="PapyrusUMLClassDiagram" name="Expresions" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_zfjgwOGBEeevdMKtbxkWdg" type="Comment_Shape">
     <children xmi:type="notation:DecorationNode" xmi:id="_zfkH0eGBEeevdMKtbxkWdg" type="Comment_BodyLabel"/>
     <element xmi:type="uml:Comment" href="opaqueExpressionTest.uml#_zfbk8OGBEeevdMKtbxkWdg"/>

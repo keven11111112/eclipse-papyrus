@@ -35,7 +35,7 @@ Export-Package: org.eclipse.papyrus.uml.nattable.clazz.config.tests,
  org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.200.qualifier
+Bundle-Version: 1.2.300.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.clazz.config.tests.Activator

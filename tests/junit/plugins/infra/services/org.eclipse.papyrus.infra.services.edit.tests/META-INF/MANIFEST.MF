@@ -20,7 +20,7 @@ Export-Package: org.eclipse.papyrus.infra.services.edit.tests,
  org.eclipse.papyrus.infra.services.edit.tests.suites,
  org.eclipse.papyrus.infra.services.edit.tests.utils
 Bundle-Vendor: %providerName
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.2.100.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

@@ -21,7 +21,7 @@ Export-Package: org.eclipse.papyrus.infra.services.controlmode.tests,
  org.eclipse.papyrus.infra.services.controlmode.tests.uncontrol
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.5.0.qualifier
+Bundle-Version: 1.5.100.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.services.controlmode.tests.control.Activator

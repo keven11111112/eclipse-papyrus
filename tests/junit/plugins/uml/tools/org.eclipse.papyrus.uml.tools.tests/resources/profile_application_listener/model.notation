@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_kUz00KaiEeSMDtdtp4w6Xg" type="PapyrusUMLClassDiagram" name="packages" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_kUz00KaiEeSMDtdtp4w6Xg" type="PapyrusUMLClassDiagram" name="packages" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_lcRzMKaiEeSMDtdtp4w6Xg" type="2007">
     <children xmi:type="notation:DecorationNode" xmi:id="_lcWrsKaiEeSMDtdtp4w6Xg" type="5026"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_lcX50KaiEeSMDtdtp4w6Xg" type="7016">

@@ -8,7 +8,7 @@
 	<extension point="org.eclipse.emf.ecore.factory_override">
 		<factory
 			class="org.eclipse.papyrus.infra.gmfdiag.css.factory.CSSNotationFactory"
-			uri="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+			uri="http://www.eclipse.org/gmf/runtime/1.0.3/notation">
 		</factory>
 	</extension>
  <extension

@@ -4,7 +4,7 @@ Bundle-SymbolicName: org.eclipse.papyrus.infra.ui.architecture.tests
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.100.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Automatic-Module-Name: org.eclipse.papyrus.infra.ui.architecture.tests

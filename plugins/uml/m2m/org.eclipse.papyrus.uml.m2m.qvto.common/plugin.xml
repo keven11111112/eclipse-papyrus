@@ -53,7 +53,7 @@
          <library
                class="org.eclipse.papyrus.uml.m2m.qvto.common.utils.NotationTypes">
             <metamodel
-                  nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+                  nsURI="http://www.eclipse.org/gmf/runtime/1.0.3/notation">
             </metamodel>
          </library>
       </unit>

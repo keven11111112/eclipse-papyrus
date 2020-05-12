@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_E3XDsPSrEei9TovdHTlmxQ" type="CompositeStructure" name="Composite Structure Diagram" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_E3XDsPSrEei9TovdHTlmxQ" type="CompositeStructure" name="Composite Structure Diagram" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_InnCMPSrEei9TovdHTlmxQ" type="Class_Shape" fillColor="15053796">
     <children xmi:type="notation:DecorationNode" xmi:id="_InwMIPSrEei9TovdHTlmxQ" type="Class_NameLabel"/>
     <children xmi:type="notation:DecorationNode" xmi:id="_InwMIfSrEei9TovdHTlmxQ" type="Class_FloatingNameLabel">

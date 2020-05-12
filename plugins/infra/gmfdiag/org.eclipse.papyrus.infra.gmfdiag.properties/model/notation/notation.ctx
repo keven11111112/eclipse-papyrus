@@ -189,49 +189,49 @@
   <views xmi:id="_Lf8dIJLDEeWbp4A9_-WIrQ" name="Single Diagram" sections="_Lf8dH5LDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5gpLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf8dIZLDEeWbp4A9_-WIrQ" name="isSingleDiagram">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf8dIpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf8dIpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf8dI5LDEeWbp4A9_-WIrQ" name="className" value="Diagram"/>
     </constraints>
   </views>
   <views xmi:id="_Lf8dJJLDEeWbp4A9_-WIrQ" name="Single Edge" sections="_Lf718pLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5X5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf8dJZLDEeWbp4A9_-WIrQ" name="isSingleEdge">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf8dJpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf8dJpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf8dJ5LDEeWbp4A9_-WIrQ" name="className" value="Edge"/>
     </constraints>
   </views>
   <views xmi:id="_Lf8dKJLDEeWbp4A9_-WIrQ" name="Single Node" sections="_Lf7185LDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5ZZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf8dKZLDEeWbp4A9_-WIrQ" name="isSingleNode">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EEJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EEJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EEZLDEeWbp4A9_-WIrQ" name="className" value="Node"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9EEpLDEeWbp4A9_-WIrQ" name="Single LayoutConstraint" sections="_Lf719JLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5Z5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EE5LDEeWbp4A9_-WIrQ" name="isSingleLayoutConstraint">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EFJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EFJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EFZLDEeWbp4A9_-WIrQ" name="className" value="LayoutConstraint"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9EFpLDEeWbp4A9_-WIrQ" name="Single Size" sections="_Lf719ZLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5aJLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EF5LDEeWbp4A9_-WIrQ" name="isSingleSize">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EGJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EGJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EGZLDEeWbp4A9_-WIrQ" name="className" value="Size"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9EGpLDEeWbp4A9_-WIrQ" name="Single Location" sections="_Lf719pLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5a5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EG5LDEeWbp4A9_-WIrQ" name="isSingleLocation">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EHJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EHJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EHZLDEeWbp4A9_-WIrQ" name="className" value="Location"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9EHpLDEeWbp4A9_-WIrQ" name="Single Bounds" sections="_Lf7195LDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5bpLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EH5LDEeWbp4A9_-WIrQ" name="isSingleBounds">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EIJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EIJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EIZLDEeWbp4A9_-WIrQ" name="className" value="Bounds"/>
     </constraints>
   </views>
@@ -239,55 +239,55 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EI5LDEeWbp4A9_-WIrQ" name="isSingleRatio">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EJJLDEeWbp4A9_-WIrQ" name="className" value="Ratio"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EJZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EJZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9EJpLDEeWbp4A9_-WIrQ" name="Single Anchor" sections="_Lf71-ZLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5cZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EJ5LDEeWbp4A9_-WIrQ" name="isSingleAnchor">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EKJLDEeWbp4A9_-WIrQ" name="className" value="Anchor"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EKZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EKZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9EKpLDEeWbp4A9_-WIrQ" name="Single Bendpoints" sections="_Lf71-pLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5cpLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EK5LDEeWbp4A9_-WIrQ" name="isSingleBendpoints">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ELJLDEeWbp4A9_-WIrQ" name="className" value="Bendpoints"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ELZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ELZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9ELpLDEeWbp4A9_-WIrQ" name="Single IdentityAnchor" sections="_Lf71-5LDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5c5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EL5LDEeWbp4A9_-WIrQ" name="isSingleIdentityAnchor">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EMJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EMJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EMZLDEeWbp4A9_-WIrQ" name="className" value="IdentityAnchor"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9EMpLDEeWbp4A9_-WIrQ" name="Single View" sections="_Lf71_JLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5dZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EM5LDEeWbp4A9_-WIrQ" name="isSingleView">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ENJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ENJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ENZLDEeWbp4A9_-WIrQ" name="className" value="View"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9ENpLDEeWbp4A9_-WIrQ" name="Single RelativeBendpoints" sections="_Lf71_ZLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5gJLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EN5LDEeWbp4A9_-WIrQ" name="isSingleRelativeBendpoints">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EOJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EOJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EOZLDEeWbp4A9_-WIrQ" name="className" value="RelativeBendpoints"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9EOpLDEeWbp4A9_-WIrQ" name="Single Image" sections="_Lf71_pLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5h5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EO5LDEeWbp4A9_-WIrQ" name="isSingleImage">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EPJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EPJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EPZLDEeWbp4A9_-WIrQ" name="className" value="Image"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9EPpLDEeWbp4A9_-WIrQ" name="Single Guide" sections="_Lf71_5LDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5iZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EP5LDEeWbp4A9_-WIrQ" name="isSingleGuide">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EQJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EQJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EQZLDEeWbp4A9_-WIrQ" name="className" value="Guide"/>
     </constraints>
   </views>
@@ -295,34 +295,34 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9EQ5LDEeWbp4A9_-WIrQ" name="isSingleNodeEntry">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ERJLDEeWbp4A9_-WIrQ" name="className" value="NodeEntry"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ERZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ERZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9ERpLDEeWbp4A9_-WIrQ" name="Single StringToPropertyValueMapEntry" sections="_Lf72AZLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gVZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9ER5LDEeWbp4A9_-WIrQ" name="isSingleStringToPropertyValueMapEntry">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ESJLDEeWbp4A9_-WIrQ" name="className" value="StringToPropertyValueMapEntry"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ESZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ESZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9ESpLDEeWbp4A9_-WIrQ" name="Single PropertyValue" sections="_Lf72ApLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gWJLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9ES5LDEeWbp4A9_-WIrQ" name="isSinglePropertyValue">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ETJLDEeWbp4A9_-WIrQ" name="className" value="PropertyValue"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ETZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9ETZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9ETpLDEeWbp4A9_-WIrQ" name="Single StringObjectConverter" sections="_Lf72A5LDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gW5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9ET5LDEeWbp4A9_-WIrQ" name="isSingleStringObjectConverter">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EUJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EUJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9EUZLDEeWbp4A9_-WIrQ" name="className" value="StringObjectConverter"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rIJLDEeWbp4A9_-WIrQ" name="Single Shape" sections="_Lf72BJLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gXJLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rIZLDEeWbp4A9_-WIrQ" name="isSingleShape">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rIpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rIpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rI5LDEeWbp4A9_-WIrQ" name="className" value="Shape"/>
     </constraints>
   </views>
@@ -330,13 +330,13 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rJZLDEeWbp4A9_-WIrQ" name="isSingleCompartment">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rJpLDEeWbp4A9_-WIrQ" name="className" value="Compartment"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rJ5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rJ5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rKJLDEeWbp4A9_-WIrQ" name="Single ListCompartment" sections="_Lf72BpLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gXpLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rKZLDEeWbp4A9_-WIrQ" name="isSingleListCompartment">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rKpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rKpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rK5LDEeWbp4A9_-WIrQ" name="className" value="ListCompartment"/>
     </constraints>
   </views>
@@ -344,27 +344,27 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rLZLDEeWbp4A9_-WIrQ" name="isSingleConnector">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rLpLDEeWbp4A9_-WIrQ" name="className" value="Connector"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rL5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rL5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rMJLDEeWbp4A9_-WIrQ" name="Single StandardDiagram" sections="_Lf72CJLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gYJLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rMZLDEeWbp4A9_-WIrQ" name="isSingleStandardDiagram">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rMpLDEeWbp4A9_-WIrQ" name="className" value="StandardDiagram"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rM5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rM5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rNJLDEeWbp4A9_-WIrQ" name="Single DecorationNode" sections="_Lf72CZLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gYZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rNZLDEeWbp4A9_-WIrQ" name="isSingleDecorationNode">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rNpLDEeWbp4A9_-WIrQ" name="className" value="DecorationNode"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rN5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rN5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rOJLDEeWbp4A9_-WIrQ" name="Single BasicDecorationNode" sections="_Lf72CpLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gYpLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rOZLDEeWbp4A9_-WIrQ" name="isSingleBasicDecorationNode">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rOpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rOpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rO5LDEeWbp4A9_-WIrQ" name="className" value="BasicDecorationNode"/>
     </constraints>
   </views>
@@ -372,21 +372,21 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rPZLDEeWbp4A9_-WIrQ" name="isSingleBasicCompartment">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rPpLDEeWbp4A9_-WIrQ" name="className" value="BasicCompartment"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rP5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rP5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rQJLDEeWbp4A9_-WIrQ" name="Single BasicSemanticCompartment" sections="_Lf72DJLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gZJLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rQZLDEeWbp4A9_-WIrQ" name="isSingleBasicSemanticCompartment">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rQpLDEeWbp4A9_-WIrQ" name="className" value="BasicSemanticCompartment"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rQ5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rQ5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rRJLDEeWbp4A9_-WIrQ" name="Single SemanticListCompartment" sections="_Lf72DZLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gZZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rRZLDEeWbp4A9_-WIrQ" name="isSingleSemanticListCompartment">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rRpLDEeWbp4A9_-WIrQ" name="className" value="SemanticListCompartment"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rR5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rR5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rSJLDEeWbp4A9_-WIrQ" name="Single RulersAndGrid" sections="_Lf8dHZLDEeWbp4A9_-WIrQ" datacontexts="_Lf_gapLDEeWbp4A9_-WIrQ">
@@ -398,14 +398,14 @@
   <views xmi:id="_Lf9rS5LDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Edge" sections="_Lf72DpLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5X5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rTJLDEeWbp4A9_-WIrQ" name="isMultipleEdge">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rTZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rTZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rTpLDEeWbp4A9_-WIrQ" name="className" value="Edge"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rT5LDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Node" sections="_Lf72D5LDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5ZZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rUJLDEeWbp4A9_-WIrQ" name="isMultipleNode">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rUZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rUZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rUpLDEeWbp4A9_-WIrQ" name="className" value="Node"/>
     </constraints>
   </views>
@@ -413,34 +413,34 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rVJLDEeWbp4A9_-WIrQ" name="isMultipleLayoutConstraint">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rVZLDEeWbp4A9_-WIrQ" name="className" value="LayoutConstraint"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rVpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rVpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rV5LDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Size" sections="_Lf8dAZLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5aJLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rWJLDEeWbp4A9_-WIrQ" name="isMultipleSize">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rWZLDEeWbp4A9_-WIrQ" name="className" value="Size"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rWpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rWpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rW5LDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Location" sections="_Lf8dApLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5a5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rXJLDEeWbp4A9_-WIrQ" name="isMultipleLocation">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rXZLDEeWbp4A9_-WIrQ" name="className" value="Location"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rXpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rXpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf9rX5LDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Bounds" sections="_Lf8dA5LDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5bpLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rYJLDEeWbp4A9_-WIrQ" name="isMultipleBounds">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rYZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rYZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SMJLDEeWbp4A9_-WIrQ" name="className" value="Bounds"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-SMZLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Ratio" sections="_Lf8dBJLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5b5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SMpLDEeWbp4A9_-WIrQ" name="isMultipleRatio">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SM5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SM5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SNJLDEeWbp4A9_-WIrQ" name="className" value="Ratio"/>
     </constraints>
   </views>
@@ -448,20 +448,20 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SNpLDEeWbp4A9_-WIrQ" name="isMultipleAnchor">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SN5LDEeWbp4A9_-WIrQ" name="className" value="Anchor"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SOJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SOJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-SOZLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Bendpoints" sections="_Lf8dBpLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5cpLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SOpLDEeWbp4A9_-WIrQ" name="isMultipleBendpoints">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SO5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SO5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SPJLDEeWbp4A9_-WIrQ" name="className" value="Bendpoints"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-SPZLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple IdentityAnchor" sections="_Lf8dB5LDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5c5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SPpLDEeWbp4A9_-WIrQ" name="isMultipleIdentityAnchor">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SP5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SP5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SQJLDEeWbp4A9_-WIrQ" name="className" value="IdentityAnchor"/>
     </constraints>
   </views>
@@ -469,20 +469,20 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SQpLDEeWbp4A9_-WIrQ" name="isMultipleView">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SQ5LDEeWbp4A9_-WIrQ" name="className" value="View"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SRJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SRJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-SRZLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple RelativeBendpoints" sections="_Lf8dCZLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5gJLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SRpLDEeWbp4A9_-WIrQ" name="isMultipleRelativeBendpoints">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SR5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SR5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SSJLDEeWbp4A9_-WIrQ" name="className" value="RelativeBendpoints"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-SSZLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Diagram" sections="_Lf8dCpLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5gpLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SSpLDEeWbp4A9_-WIrQ" name="isMultipleDiagram">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SS5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SS5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-STJLDEeWbp4A9_-WIrQ" name="className" value="Diagram"/>
     </constraints>
   </views>
@@ -490,20 +490,20 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-STpLDEeWbp4A9_-WIrQ" name="isMultipleImage">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-ST5LDEeWbp4A9_-WIrQ" name="className" value="Image"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SUJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SUJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-SUZLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Guide" sections="_Lf8dDJLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf-5iZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SUpLDEeWbp4A9_-WIrQ" name="isMultipleGuide">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SU5LDEeWbp4A9_-WIrQ" name="className" value="Guide"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SVJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SVJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-SVZLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple NodeEntry" sections="_Lf8dDZLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gUpLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SVpLDEeWbp4A9_-WIrQ" name="isMultipleNodeEntry">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SV5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SV5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SWJLDEeWbp4A9_-WIrQ" name="className" value="NodeEntry"/>
     </constraints>
   </views>
@@ -511,34 +511,34 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SWpLDEeWbp4A9_-WIrQ" name="isMultipleStringToPropertyValueMapEntry">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SW5LDEeWbp4A9_-WIrQ" name="className" value="StringToPropertyValueMapEntry"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SXJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SXJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-SXZLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple PropertyValue" sections="_Lf8dD5LDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gWJLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SXpLDEeWbp4A9_-WIrQ" name="isMultiplePropertyValue">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SX5LDEeWbp4A9_-WIrQ" name="className" value="PropertyValue"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SYJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SYJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-SYZLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple StringObjectConverter" sections="_Lf8dEJLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gW5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SYpLDEeWbp4A9_-WIrQ" name="isMultipleStringObjectConverter">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SY5LDEeWbp4A9_-WIrQ" name="className" value="StringObjectConverter"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SZJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SZJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-SZZLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Shape" sections="_Lf8dEZLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gXJLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SZpLDEeWbp4A9_-WIrQ" name="isMultipleShape">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SZ5LDEeWbp4A9_-WIrQ" name="className" value="Shape"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SaJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SaJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-SaZLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Compartment" sections="_Lf8dEpLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gXZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SapLDEeWbp4A9_-WIrQ" name="isMultipleCompartment">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-Sa5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-Sa5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-SbJLDEeWbp4A9_-WIrQ" name="className" value="Compartment"/>
     </constraints>
   </views>
@@ -546,27 +546,27 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-SbpLDEeWbp4A9_-WIrQ" name="isMultipleListCompartment">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-Sb5LDEeWbp4A9_-WIrQ" name="className" value="ListCompartment"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-ScJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-ScJLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-5QJLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Connector" sections="_Lf8dFJLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gX5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-5QZLDEeWbp4A9_-WIrQ" name="isMultipleConnector">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5QpLDEeWbp4A9_-WIrQ" name="className" value="Connector"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5Q5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5Q5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-5RJLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple StandardDiagram" sections="_Lf8dFZLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gYJLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-5RZLDEeWbp4A9_-WIrQ" name="isMultipleStandardDiagram">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5RpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5RpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5R5LDEeWbp4A9_-WIrQ" name="className" value="StandardDiagram"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-5SJLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple DecorationNode" sections="_Lf8dFpLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gYZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-5SZLDEeWbp4A9_-WIrQ" name="isMultipleDecorationNode">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5SpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5SpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5S5LDEeWbp4A9_-WIrQ" name="className" value="DecorationNode"/>
     </constraints>
   </views>
@@ -574,13 +574,13 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-5TZLDEeWbp4A9_-WIrQ" name="isMultipleBasicDecorationNode">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5TpLDEeWbp4A9_-WIrQ" name="className" value="BasicDecorationNode"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5T5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5T5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-5UJLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple BasicCompartment" sections="_Lf8dGJLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gY5LDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-5UZLDEeWbp4A9_-WIrQ" name="isMultipleBasicCompartment">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5UpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5UpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5U5LDEeWbp4A9_-WIrQ" name="className" value="BasicCompartment"/>
     </constraints>
   </views>
@@ -588,13 +588,13 @@
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-5VZLDEeWbp4A9_-WIrQ" name="isMultipleBasicSemanticCompartment">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5VpLDEeWbp4A9_-WIrQ" name="className" value="BasicSemanticCompartment"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5V5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5V5LDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
     </constraints>
   </views>
   <views xmi:id="_Lf-5WJLDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple SemanticListCompartment" sections="_Lf8dGpLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_Lf_gZZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf-5WZLDEeWbp4A9_-WIrQ" name="isMultipleSemanticListCompartment">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.3"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5WpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5WpLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf-5W5LDEeWbp4A9_-WIrQ" name="className" value="SemanticListCompartment"/>
     </constraints>
   </views>

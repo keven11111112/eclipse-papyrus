@@ -412,7 +412,7 @@
     </representationKinds>
     <representationKinds xmi:type="nattablerepresentation:PapyrusTable" xmi:id="_WC1q0P4UEhSRsNBVzfUrzA" id="org.eclipse.papyrus.uml.table.stereotypeDisplayTree" name="Stereotype Display Tree Table" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" concerns="_NxfRgMSjEeaCPPhpB0_9OQ" implementationID="PapyrusStereotypeDisplayTreeTable" grayedIcon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table_grayed.png">
       <modelRules xmi:type="representation:ModelRule" xmi:id="_7k79wP4VEeSRsNBVzfUrzA" permit="true" elementMultiplicity="1" multiplicity="-1">
-        <element xmi:type="ecore:EClass" href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View"/>
+        <element xmi:type="ecore:EClass" href="http://www.eclipse.org/gmf/runtime/1.0.3/notation#//View"/>
       </modelRules>
       <owningRules xmi:type="representation:OwningRule" xmi:id="_AJmbwP4WEeSRsNBVzfUrzA" permit="true" multiplicity="-1">
         <element xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>

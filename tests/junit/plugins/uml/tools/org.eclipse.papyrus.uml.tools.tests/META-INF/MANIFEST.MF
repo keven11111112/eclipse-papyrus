@@ -22,7 +22,7 @@ Export-Package: org.eclipse.papyrus.uml.tools.tests,
  org.eclipse.papyrus.uml.tools.tests.tests
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 3.1.0.qualifier
+Bundle-Version: 3.1.100.qualifier
 Bundle-Name: UML Tools Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.tools.tests.Activator

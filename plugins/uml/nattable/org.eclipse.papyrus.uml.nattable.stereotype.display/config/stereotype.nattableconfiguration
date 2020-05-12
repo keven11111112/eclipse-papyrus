@@ -13,7 +13,7 @@
     <ownedLabelConfigurations xmi:type="nattablelabelprovider:OperationLabelProviderConfiguration" xmi:id="_guSxkjzQEei_1txcmoHe_A" displayIcon="false" displayLabel="true" displayType="false" displayMultiplicity="false" displayName="true"/>
     <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:TreeFillingConfiguration" xmi:id="_guSxkzzQEei_1txcmoHe_A" depth="1" labelProvider="_guSxkTzQEei_1txcmoHe_A" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.treefilling.feature.labelprovider">
       <axisUsedAsAxisProvider xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_guSxlDzQEei_1txcmoHe_A" alias="">
-        <element xmi:type="ecore:EReference" href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
+        <element xmi:type="ecore:EReference" href="http://www.eclipse.org/gmf/runtime/1.0.3/notation#//View/element"/>
       </axisUsedAsAxisProvider>
     </ownedAxisConfigurations>
     <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:TreeFillingConfiguration" xmi:id="_guSxlTzQEei_1txcmoHe_A" depth="2" labelProvider="_guSxkTzQEei_1txcmoHe_A" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">

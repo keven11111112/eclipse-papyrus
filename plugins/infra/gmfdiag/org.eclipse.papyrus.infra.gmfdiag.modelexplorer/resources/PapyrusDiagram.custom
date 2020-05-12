@@ -17,7 +17,7 @@
       name="Diagram"
       documentation="Representation of diagram in model explorer">
     <extendedMetaclass
-        href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+        href="http://www.eclipse.org/gmf/runtime/1.0.3/notation#//Diagram"/>
     <facetOperations
         name="GetDiagramLabel"
         documentation="Return the label of the corresponding diagram">
@@ -119,7 +119,7 @@
         derived="true">
       <eType
           xsi:type="ecore:EClass"
-          href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+          href="http://www.eclipse.org/gmf/runtime/1.0.3/notation#//Diagram"/>
       <query
           xsi:type="query:OperationCallQuery"
           operation="//DiagramContainer.1/DiagramsRefContent"/>
@@ -130,7 +130,7 @@
         documentation="Get the collection of all contained diagrams">
       <eType
           xsi:type="ecore:EClass"
-          href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//Diagram"/>
+          href="http://www.eclipse.org/gmf/runtime/1.0.3/notation#//Diagram"/>
       <query
           xsi:type="javaQuery:JavaQuery"
           implementationClassName="org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries.GetContainedDiagrams"/>

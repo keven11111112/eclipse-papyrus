@@ -21,7 +21,7 @@ Export-Package: org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests,
  org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests.manager.axis,
  org.eclipse.papyrus.uml.nattable.stereotyped.elements.tests.tests
 Bundle-Vendor: %providerName
-Bundle-Version: 1.0.200.qualifier
+Bundle-Version: 1.0.300.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

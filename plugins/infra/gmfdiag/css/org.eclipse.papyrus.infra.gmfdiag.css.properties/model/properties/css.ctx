@@ -23,21 +23,21 @@
   <views xmi:id="_8MqbNYk1EeWBadfj_-2HEQ" name="SingleStylableElement" sections="_8Mp0Iok1EeWBadfj_-2HEQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_8MqbNok1EeWBadfj_-2HEQ" name="isSingleStylableElement" overrideable="false" overriddenConstraints="_8MqbOok1EeWBadfj_-2HEQ">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_8MqbN4k1EeWBadfj_-2HEQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_8MqbN4k1EeWBadfj_-2HEQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_8MqbOIk1EeWBadfj_-2HEQ" name="className" value="View"/>
     </constraints>
   </views>
   <views xmi:id="_8MqbOYk1EeWBadfj_-2HEQ" elementMultiplicity="-1" name="MultipleStylableElement" sections="_8MqbMIk1EeWBadfj_-2HEQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_8MqbOok1EeWBadfj_-2HEQ" name="isMultipleStylableElement" overrideable="false">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_8MqbO4k1EeWBadfj_-2HEQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_8MqbO4k1EeWBadfj_-2HEQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_8MqbPIk1EeWBadfj_-2HEQ" name="className" value="View"/>
     </constraints>
   </views>
   <views xmi:id="_8MqbPYk1EeWBadfj_-2HEQ" name="Diagram" sections="_8MqbMYk1EeWBadfj_-2HEQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_8MqbPok1EeWBadfj_-2HEQ" name="isDiagram" overrideable="false" overriddenConstraints="_8MqbNok1EeWBadfj_-2HEQ _8MqbOok1EeWBadfj_-2HEQ">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.gmfdiag.properties/model/Environment.xmi#//@constraintTypes.0"/>
-      <properties xsi:type="constraints:ValueProperty" xmi:id="_8MqbP4k1EeWBadfj_-2HEQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_8MqbP4k1EeWBadfj_-2HEQ" name="nsUri" value="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_8MqbQIk1EeWBadfj_-2HEQ" name="className" value="Diagram"/>
     </constraints>
   </views>

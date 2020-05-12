@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_1qKYAIUtEeShE72q-FdWsA" type="PapyrusUMLClassDiagram" name="classes" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_1qKYAIUtEeShE72q-FdWsA" type="PapyrusUMLClassDiagram" name="classes" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_jvPOEIUuEeSlfqEMhfPvcw" type="2008">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_izjgkIU8EeSxYKUcfWASZQ" source="Stereotype_Annotation">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_izkusIU8EeSxYKUcfWASZQ" key="StereotypeWithQualifiedNameList" value=""/>

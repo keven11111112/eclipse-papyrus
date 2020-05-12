@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.uml.m2m.qvto.common;singleton:=true
-Bundle-Version: 1.1.0.qualifier
+Bundle-Version: 1.1.100.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.uml.m2m.qvto.common.Activator
 Bundle-Vendor: %providerName
@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.109.0,4.0.0)",
  org.eclipse.ui.console;bundle-version="[3.6.200,4.0.0)",
  org.eclipse.uml2.uml;bundle-version="[5.3.0,6.0.0)",
  org.eclipse.papyrus.uml.tools;bundle-version="[4.0.0,5.0.0)",
- org.eclipse.gmf.runtime.notation;bundle-version="[1.7.0,2.0.0)",
+ org.eclipse.gmf.runtime.notation;bundle-version="[1.10.0,2.0.0)",
  org.eclipse.m2m.qvt.oml;bundle-version="[3.7.0,4.0.0)",
  org.eclipse.papyrus.uml.extensionpoints;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.papyrus.uml.modelrepair;bundle-version="[2.0.0,3.0.0)"

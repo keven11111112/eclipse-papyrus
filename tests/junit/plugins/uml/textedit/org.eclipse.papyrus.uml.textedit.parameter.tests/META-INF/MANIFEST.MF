@@ -10,7 +10,7 @@ Export-Package: org.eclipse.papyrus.uml.textedit.parameter.tests,
  org.eclipse.papyrus.uml.textedit.parameter.tests.suites
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.100.qualifier
+Bundle-Version: 1.2.200.qualifier
 Bundle-Name: UML Textedit Parameter Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.parameter.tests.Activator

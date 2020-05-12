@@ -11,7 +11,7 @@ Export-Package: org.eclipse.papyrus.uml.nattable.stereotype.display,
  org.eclipse.papyrus.uml.nattable.stereotype.display.utils
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 3.0.100.qualifier
+Bundle-Version: 3.0.200.qualifier
 Bundle-Name: Stereotype Display Table
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.stereotype.display.Activator

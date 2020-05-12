@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_UypeIJewEeKr0Yypv4rfLA" type="EcoreTools" name="nattable.ecorediag" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmi:id="_UypeIJewEeKr0Yypv4rfLA" type="EcoreTools" name="nattable.ecorediag" measurementUnit="Pixel">
   <children xmi:type="notation:Node" xmi:id="_EfChwKHtEeKNUa7kbzEWsw" type="1005">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EkGA4KHtEeKNUa7kbzEWsw" source="Shortcut">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_EkGA4aHtEeKNUa7kbzEWsw" key="modelID" value="EcoreTools"/>

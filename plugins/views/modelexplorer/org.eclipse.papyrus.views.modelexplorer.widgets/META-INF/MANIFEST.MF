@@ -4,7 +4,7 @@ Require-Bundle: org.eclipse.papyrus.views.modelexplorer;bundle-version="[3.0.0,4
  org.eclipse.papyrus.infra.services.edit;bundle-version="[3.0.0,4.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.0.100.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.views.modelexplorer.widgets.Activator

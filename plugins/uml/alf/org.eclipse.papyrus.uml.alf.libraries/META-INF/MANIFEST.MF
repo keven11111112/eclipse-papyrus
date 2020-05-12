@@ -6,7 +6,7 @@ Export-Package: org.eclipse.papyrus.uml.alf.libraries,
  org.eclipse.papyrus.uml.alf.libraries.helper
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.0.100.qualifier
 Bundle-Name: ALF Libraries
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.alf.libraries.AlfLibrariesActivator

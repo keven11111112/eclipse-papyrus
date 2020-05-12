@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.core.runtime,
 Export-Package: org.eclipse.papyrus.uml.textedit.property.tests.suites
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.200.qualifier
+Bundle-Version: 1.2.300.qualifier
 Bundle-Name: XText Property editor Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.property.tests.Activator

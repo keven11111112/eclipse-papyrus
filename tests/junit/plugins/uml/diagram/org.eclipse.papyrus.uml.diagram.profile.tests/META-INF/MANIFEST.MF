@@ -20,7 +20,7 @@ Export-Package: org.eclipse.papyrus.uml.diagram.profile.tests,
  org.eclipse.papyrus.uml.diagram.profile.tests.canonical
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.100.qualifier
+Bundle-Version: 1.2.200.qualifier
 Bundle-Name: Profile Diagram Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.profile.tests.Activator

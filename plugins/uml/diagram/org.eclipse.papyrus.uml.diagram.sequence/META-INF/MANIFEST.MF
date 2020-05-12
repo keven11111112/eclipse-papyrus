@@ -65,12 +65,12 @@ Require-Bundle: org.eclipse.ui.navigator;bundle-version="[3.6.0,4.0.0)";visibili
  org.eclipse.papyrus.infra.properties.ui,
  org.eclipse.papyrus.uml.diagram.menu,
  org.eclipse.draw2d;visibility:=reexport,
- org.eclipse.gmf.runtime.notation;visibility:=reexport,
+ org.eclipse.gmf.runtime.notation;bundle-version="[1.10.0,2.0.0)",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[2.0.0,4.0.0)",
  org.eclipse.papyrus.uml.service.validation;bundle-version="[2.1.0,3.0.0)",
  org.eclipse.papyrus.infra.services.validation;bundle-version="[3.0.0,4.0.0)"
 Bundle-Vendor: %providerName
-Bundle-Version: 5.3.0.qualifier
+Bundle-Version: 5.3.100.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.sequence; singleton:=true

@@ -29,7 +29,7 @@ Require-Bundle: org.junit;bundle-version="4.11.0",
 Export-Package: org.eclipse.papyrus.uml.nattable.generic.tests.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.200.qualifier
+Bundle-Version: 1.2.300.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

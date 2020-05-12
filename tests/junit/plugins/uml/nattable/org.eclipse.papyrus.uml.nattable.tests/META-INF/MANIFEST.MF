@@ -21,7 +21,7 @@ Export-Package: org.eclipse.papyrus.uml.nattable.tests,
  org.eclipse.papyrus.uml.nattable.tests.tests
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.100.qualifier
+Bundle-Version: 1.2.200.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.tests.Activator

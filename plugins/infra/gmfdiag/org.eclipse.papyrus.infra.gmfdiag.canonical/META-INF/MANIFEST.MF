@@ -7,7 +7,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy,
  org.eclipse.papyrus.infra.gmfdiag.canonical.strategy
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 2.1.100.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.canonical.internal.Activator

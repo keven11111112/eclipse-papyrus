@@ -256,7 +256,7 @@
       </category>
       <constraintProvider cache="true">
          <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
-         <package namespaceUri="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
+         <package namespaceUri="http://www.eclipse.org/gmf/runtime/1.0.3/notation"/>
                <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate">
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.papyrus.uml.diagram.sequence.validation.FragmentOrderingKeeper">

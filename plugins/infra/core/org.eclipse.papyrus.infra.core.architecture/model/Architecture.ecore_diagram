@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_jPuUwLeqEearJ4erliAKEg" type="Ecore" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmi:id="_jPuUwLeqEearJ4erliAKEg" type="Ecore" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_jpWVsLeqEearJ4erliAKEg" type="2001" fontName="Lucida Grande">
     <children xmi:type="notation:DecorationNode" xmi:id="_jph74LeqEearJ4erliAKEg" type="5001"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_jpnbcLeqEearJ4erliAKEg" type="7001">

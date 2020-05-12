@@ -15,7 +15,7 @@ Export-Package: org.eclipse.papyrus.infra.filters.internal;x-internal:=true,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.4.0.qualifier
+Bundle-Version: 1.4.100.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.filters.internal.UMLFiltersPlugin$Implementation

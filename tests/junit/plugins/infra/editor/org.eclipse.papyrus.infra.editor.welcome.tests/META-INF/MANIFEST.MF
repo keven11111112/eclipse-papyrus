@@ -20,7 +20,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="[1.2.0,2.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.2.100.qualifier
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin

@@ -5,7 +5,7 @@ Export-Package: org.eclipse.papyrus.uml.validation.tests.staticprofile,
  profile.impl,
  profile.util
 Bundle-Name: %pluginName
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.2.100.qualifier
 Bundle-ClassPath: .
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

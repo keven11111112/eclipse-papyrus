@@ -20,7 +20,7 @@ Export-Package: org.eclipse.papyrus.views.properties.toolsmiths.tests,
  org.eclipse.papyrus.views.properties.toolsmiths.tests.qvt
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.2.100.qualifier
 Bundle-Name: Properties view customization Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.views.properties.toolsmiths.tests.Activator

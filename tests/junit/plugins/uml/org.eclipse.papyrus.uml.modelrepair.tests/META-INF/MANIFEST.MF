@@ -9,7 +9,7 @@ Export-Package: org.eclipse.papyrus.uml.modelrepair.internal.stereotypes,
  org.eclipse.papyrus.uml.modelrepair.internal.uripattern,
  org.eclipse.papyrus.uml.modelrepair.tests
 Bundle-Vendor: %providerName
-Bundle-Version: 1.3.0.qualifier
+Bundle-Version: 1.3.100.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

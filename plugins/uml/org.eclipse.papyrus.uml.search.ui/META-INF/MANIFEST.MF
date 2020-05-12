@@ -16,10 +16,10 @@ Require-Bundle: org.eclipse.papyrus.editor;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.ltk.ui.refactoring;bundle-version="[3.8.0,4.0.0)",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.infra.services.navigation;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.gmf.runtime.notation;bundle-version="[1.8.0,2.0.0)"
+ org.eclipse.gmf.runtime.notation;bundle-version="[1.10.0,2.0.0)"
 Bundle-Vendor: %vendorName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.100.qualifier
+Bundle-Version: 2.0.200.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.search.ui.Activator

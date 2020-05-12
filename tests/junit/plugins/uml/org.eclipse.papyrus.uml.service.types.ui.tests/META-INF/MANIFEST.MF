@@ -15,7 +15,7 @@ Export-Package: org.eclipse.papyrus.uml.service.types.ui.tests.creation,
  org.eclipse.papyrus.uml.service.types.ui.tests.deletion,
  org.eclipse.papyrus.uml.service.types.ui.tests.suites
 Bundle-Vendor: %providerName
-Bundle-Version: 1.2.100.qualifier
+Bundle-Version: 1.2.200.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
