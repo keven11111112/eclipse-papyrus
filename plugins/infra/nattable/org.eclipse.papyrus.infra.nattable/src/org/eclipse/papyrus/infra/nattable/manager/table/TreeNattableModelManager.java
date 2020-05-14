@@ -12,7 +12,7 @@
  *   CEA LIST - Initial API and implementation
  *   Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 508175
- *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 560318
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 560318, 563172
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -316,9 +316,11 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		// update the hidden categories
 
 		List<Integer> hiddenDepth = StyleUtils.getHiddenDepths(this);
-		if (hiddenDepth.size() > 0) {
-			hideShowCategories(hiddenDepth, null);
-		}
+
+		// we always need to call this method, because we use it as hack to register
+		// action on row header (bug 563172), it is used by the example examples/uml/org.eclipse.papyrus.example.uml.nattable.empty.line, showing categories in the table configuration
+		hideShowCategories(hiddenDepth, null);
+
 		this.hideShowCategoriesListener = new HideShowCategoriesTableListener(this);
 		if (null != getTableEditingDomain()) {
 			getTableEditingDomain().addResourceSetListener(this.hideShowCategoriesListener);
