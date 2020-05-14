@@ -9,7 +9,7 @@
  *
  * Contributors:
  *     Original authors and others - initial API and implementation
- *     Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562646
+ *     Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562646, 562619
  ******************************************************************************/
 package org.eclipse.papyrus.infra.nattable.sort;
 
@@ -26,6 +26,7 @@ import org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent;
 import org.eclipse.nebula.widgets.nattable.layer.event.StructuralRefreshEvent;
 import org.eclipse.nebula.widgets.nattable.sort.SortDirectionEnum;
 import org.eclipse.papyrus.infra.nattable.glazedlists.PapyrusSortingState;
+import org.eclipse.papyrus.infra.nattable.manager.refresh.CustomStructuralRefreshEvent;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.sort.copy.NatTableComparatorChooser;
 
@@ -99,7 +100,7 @@ public class PapyrusGlazedListsSortModel extends AbstractGlazedListSortModel {
 	}
 
 	protected IConfigRegistry getConfigRegistry() {
-		NatTable nat = getTableManager().getAdapter(NatTable.class);
+		NatTable nat = (NatTable) getTableManager().getAdapter(NatTable.class);
 		return nat.getConfigRegistry();
 	}
 
@@ -140,6 +141,11 @@ public class PapyrusGlazedListsSortModel extends AbstractGlazedListSortModel {
 
 	@Override
 	public void handleLayerEvent(ILayerEvent event) {
+		if (event instanceof CustomStructuralRefreshEvent
+				&& ((CustomStructuralRefreshEvent) event).isSortModelAlreadyNotified()) {
+			return; // already managed, nothing to do
+		}
+
 		if (event instanceof StructuralRefreshEvent && ((StructuralRefreshEvent) event).isHorizontalStructureChanged()) {
 			String test = getComparatorChooser().toString();
 			if (test.contains("-")) { //$NON-NLS-1$
@@ -149,6 +155,10 @@ public class PapyrusGlazedListsSortModel extends AbstractGlazedListSortModel {
 			}
 			this.comparatorChooser = null;
 			getComparatorChooser().fromString(test);
+		}
+
+		if (event instanceof CustomStructuralRefreshEvent) {
+			((CustomStructuralRefreshEvent) event).setSortModelAlreadyNotified();
 		}
 	}
 

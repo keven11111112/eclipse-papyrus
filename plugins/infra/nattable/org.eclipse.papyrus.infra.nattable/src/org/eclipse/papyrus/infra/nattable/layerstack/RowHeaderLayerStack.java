@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 562619
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.layerstack;
 
@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.nattable.configuration.PapyrusRowHeaderStyleCon
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusRowResizeBindingsConfiguration;
 import org.eclipse.papyrus.infra.nattable.dataprovider.RowIndexHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.RowLabelHeaderDataProvider;
+import org.eclipse.papyrus.infra.nattable.layer.CustomDataLayer;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.DefaultSizeUtils;
 import org.eclipse.swt.SWT;
@@ -101,7 +102,7 @@ public class RowHeaderLayerStack extends AbstractLayerTransform {
 	 */
 	@Deprecated
 	public RowHeaderLayerStack(final IDataProvider dataProvider, final BodyLayerStack bodyLayer) {
-		final DataLayer dataLayer = new DataLayer(dataProvider, RowHeaderLayerStack.DEFAULT_COLUMN_WIDTH, RowHeaderLayerStack.DEFAULT_ROW_HEIGHT);
+		final DataLayer dataLayer = new CustomDataLayer(dataProvider, RowHeaderLayerStack.DEFAULT_COLUMN_WIDTH, RowHeaderLayerStack.DEFAULT_ROW_HEIGHT);
 		// I know that selection layer is probably false
 		final RowHeaderLayer rowHeaderLayer = new RowHeaderLayer(dataLayer, bodyLayer, /* bodyLayer.getSelectionLayer() */new SelectionLayer(dataLayer), false);
 		rowHeaderLayer.addConfiguration(new PapyrusRowResizeBindingsConfiguration());
@@ -243,7 +244,7 @@ public class RowHeaderLayerStack extends AbstractLayerTransform {
 	 * @return
 	 */
 	protected DataLayer createLabelDataLayer() {
-		return new DataLayer(getLabelDataProvider(), RowHeaderLayerStack.DEFAULT_COLUMN_WIDTH, RowHeaderLayerStack.DEFAULT_ROW_HEIGHT);
+		return new CustomDataLayer(getLabelDataProvider(), RowHeaderLayerStack.DEFAULT_COLUMN_WIDTH, RowHeaderLayerStack.DEFAULT_ROW_HEIGHT);
 	}
 
 	/**
@@ -260,7 +261,7 @@ public class RowHeaderLayerStack extends AbstractLayerTransform {
 	 * @return
 	 */
 	protected DataLayer createIndexDataLayer() {
-		return new DataLayer(getIndexDataProvider(), RowHeaderLayerStack.DEFAULT_COLUMN_WIDTH, RowHeaderLayerStack.DEFAULT_ROW_HEIGHT);
+		return new CustomDataLayer(getIndexDataProvider(), RowHeaderLayerStack.DEFAULT_COLUMN_WIDTH, RowHeaderLayerStack.DEFAULT_ROW_HEIGHT);
 	}
 
 	/**

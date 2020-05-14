@@ -18,7 +18,7 @@
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 417095
  *  Vincent Lorenzo (CEA LIST) - bug 525221
  *  Nicolas Fauvergue (CEA LIST) - bug 509971
- *  Vincent Lorenzo (CEA LIST) - bug 561300
+ *  Vincent Lorenzo (CEA LIST) - bug 561300, 562619
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -116,6 +116,7 @@ import org.eclipse.papyrus.infra.nattable.fillhandle.config.PapyrusFillHandleCon
 import org.eclipse.papyrus.infra.nattable.filter.configuration.FilterConfigurationRegistry;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.IFilterConfiguration;
 import org.eclipse.papyrus.infra.nattable.internal.export.image.PapyrusImageExportCommand;
+import org.eclipse.papyrus.infra.nattable.layer.CustomDataLayer;
 import org.eclipse.papyrus.infra.nattable.layer.FilterRowHeaderComposite;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
@@ -448,7 +449,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		// init the filter visibility
 		this.filterColumnHeaderComposite.setFilterRowVisible(HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisConfigurationUsedInTable(this.table).isDisplayFilter());
 
-		final CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), this.rowHeaderLayerStack, filterColumnHeaderComposite);
+		final CornerLayer cornerLayer = new CornerLayer(new CustomDataLayer(cornerDataProvider), this.rowHeaderLayerStack, filterColumnHeaderComposite);
 		cornerLayer.addConfiguration(new CornerConfiguration(this));
 
 		this.gridLayer = new PapyrusGridLayer(TransactionUtil.getEditingDomain(tableContext), this.bodyLayerStack, filterColumnHeaderComposite, this.rowHeaderLayerStack, cornerLayer);

@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2020 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 562619
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.sort;
@@ -49,7 +49,12 @@ public class PapyrusCompositeGlazedListSortModel extends AbstractGlazedListSortM
 	private boolean isTableInverted = false;
 
 	/**
-	 * 
+	 * the column header layer (it doesn't change even if the table is inverted)
+	 */
+	private ILayer columnHeaderLayer;
+
+	/**
+	 *
 	 * Constructor.
 	 *
 	 * @param manager
@@ -87,7 +92,7 @@ public class PapyrusCompositeGlazedListSortModel extends AbstractGlazedListSortM
 	 */
 	@Override
 	public void handleLayerEvent(ILayerEvent event) {
-		
+
 
 	}
 
@@ -182,18 +187,24 @@ public class PapyrusCompositeGlazedListSortModel extends AbstractGlazedListSortM
 	 */
 	@Override
 	public void clear() {
-		
+
 	}
-
-
 
 	/**
 	 * @param compositeLayer
 	 */
-	// TODO : try to remove me
 	public void setColumnHeaderLayer(ILayer compositeLayer) {
-		this.rowSortModel.setColumnHeaderLayer(compositeLayer);
-		this.columnSortModel.setColumnHeaderLayer(compositeLayer);
+		this.columnHeaderLayer = compositeLayer;
+		this.rowSortModel.clear();
+		this.columnSortModel.clear();
+		if (this.isTableInverted) {
+			compositeLayer.removeLayerListener(this.columnSortModel);
+			// the sort model is in charge to add the listener on the new column header layer
+			this.rowSortModel.setColumnHeaderLayer(compositeLayer);
+		} else {
+			compositeLayer.removeLayerListener(this.rowSortModel);
+			this.columnSortModel.setColumnHeaderLayer(compositeLayer);
+		}
 	}
 
 
@@ -219,8 +230,8 @@ public class PapyrusCompositeGlazedListSortModel extends AbstractGlazedListSortM
 	@Override
 	public void setTableInverted(boolean isInverted) {
 		this.isTableInverted = isInverted;
-		this.rowSortModel.clear();
-		this.columnSortModel.clear();
+		// we re-set the column header layer to use the good one
+		setColumnHeaderLayer(this.columnHeaderLayer);
 	}
 
 
@@ -232,9 +243,8 @@ public class PapyrusCompositeGlazedListSortModel extends AbstractGlazedListSortM
 	 */
 	@Override
 	public Comparator<?> getColumnComparator(int columnIndex) {
-		
+
 		return null;
 	}
 
-	
 }

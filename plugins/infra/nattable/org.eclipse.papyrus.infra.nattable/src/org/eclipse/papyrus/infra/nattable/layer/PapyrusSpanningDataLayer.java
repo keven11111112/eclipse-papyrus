@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014-2015 CEA LIST and others.
+ * Copyright (c) 2014-2015, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,7 +12,7 @@
  *   CEA LIST - Initial API and implementation
  *   Camille Letavernier - CEA LIST - Bug 464168 - Use the Context's EditingDomain
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077
- *
+ *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Bug 562619
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.layer;
@@ -22,6 +22,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.nebula.widgets.nattable.data.ISpanningDataProvider;
 import org.eclipse.nebula.widgets.nattable.layer.SpanningDataLayer;
 import org.eclipse.nebula.widgets.nattable.resize.event.ColumnResizeEvent;
+import org.eclipse.papyrus.infra.nattable.manager.refresh.StructuralRefreshConfiguration;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
@@ -47,7 +48,7 @@ public class PapyrusSpanningDataLayer extends SpanningDataLayer {
 	public PapyrusSpanningDataLayer(final TransactionalEditingDomain contextDomain, ISpanningDataProvider dataProvider, int defaultColumnWidth, int defaultRowHeight) {
 		super(dataProvider, defaultColumnWidth, defaultRowHeight);
 		this.contextDomain = contextDomain;
-
+		addConfiguration(new StructuralRefreshConfiguration());
 	}
 
 	/**
@@ -58,6 +59,7 @@ public class PapyrusSpanningDataLayer extends SpanningDataLayer {
 	public PapyrusSpanningDataLayer(final TransactionalEditingDomain contextDomain, ISpanningDataProvider dataProvider) {
 		super(dataProvider);
 		this.contextDomain = contextDomain;
+		addConfiguration(new StructuralRefreshConfiguration());
 	}
 
 
@@ -75,6 +77,7 @@ public class PapyrusSpanningDataLayer extends SpanningDataLayer {
 		super(spanProvider, defaultCellWidth, defaultCellHeight);
 		this.contextDomain = contextEditingDomain;
 		this.manager = manager;
+		addConfiguration(new StructuralRefreshConfiguration());
 	}
 
 	/**
@@ -111,7 +114,7 @@ public class PapyrusSpanningDataLayer extends SpanningDataLayer {
 	 */
 	public void setColumnWidthPercentageByPosition(int columnPosition, int width, boolean fireEvent) {
 		this.columnWidthConfig.setPercentage(columnPosition, width);
-		if (fireEvent){
+		if (fireEvent) {
 			fireLayerEvent(new ColumnResizeEvent(this, columnPosition));
 		}
 	}

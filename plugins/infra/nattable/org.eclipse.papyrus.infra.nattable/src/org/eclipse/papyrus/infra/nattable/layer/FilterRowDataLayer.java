@@ -1,14 +1,15 @@
 /*******************************************************************************
- * Copyright (c) 2012, 2013 Original authors and others.
+ * Copyright (c) 2012, 2013, 2020 Original authors and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
- * 
+ *
  * Contributors:
  *     Original authors and others - initial API and implementation
+ *     Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Bug 562619
  ******************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.layer;
@@ -25,6 +26,7 @@ import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.layer.event.RowStructuralRefreshEvent;
 import org.eclipse.papyrus.infra.nattable.dataprovider.FilterRowDataProvider;
+import org.eclipse.papyrus.infra.nattable.manager.refresh.StructuralRefreshConfiguration;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
@@ -34,7 +36,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
  *
  * @param <T>
  *            type of the underlying row object
- * 
+ *
  *            Duplicated and adapted code from Nattable
  */
 public class FilterRowDataLayer<T> extends DataLayer {
@@ -47,9 +49,10 @@ public class FilterRowDataLayer<T> extends DataLayer {
 
 
 	public FilterRowDataLayer(IFilterStrategy<T> filterStrategy, ILayer columnHeaderLayer, IDataProvider columnHeaderDataProvider, INattableModelManager tableManager) {
-		super(new FilterRowDataProvider<T>(filterStrategy, columnHeaderLayer, columnHeaderDataProvider, tableManager));
+		super(new FilterRowDataProvider<>(filterStrategy, columnHeaderLayer, columnHeaderDataProvider, tableManager));
 
 		addConfiguration(new DefaultFilterRowConfiguration());
+		addConfiguration(new StructuralRefreshConfiguration());// bug 562619
 	}
 
 	@SuppressWarnings("unchecked")

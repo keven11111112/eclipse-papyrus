@@ -86,6 +86,7 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.CompositeAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ICompositeAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
+import org.eclipse.papyrus.infra.nattable.manager.refresh.CustomStructuralRefreshCommand;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -1204,8 +1205,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			final SelectionLayer selectionLayer = getBodyLayerStack().getSelectionLayer();
 			selectionLayer.doCommand(new ClearAllSelectionsCommand());
 
-
-			this.natTable.refresh();
+			// this.natTable.refresh();
+			// custom refresh for bug 562619
+			this.natTable.doCommand(new CustomStructuralRefreshCommand());
 
 			// Refresh the nattable columns size in the case of named style
 			doFillColumnsSize();
