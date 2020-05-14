@@ -34,6 +34,7 @@ import org.eclipse.papyrus.uml.architecture.UMLDiagramTypes;
 import org.eclipse.papyrus.uml.architecture.UMLTableKinds;
 import org.eclipse.papyrus.uml.diagram.common.commands.AbstractModelConversionCommand;
 import org.eclipse.uml2.uml.Component;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.StructuredClassifier;
 
 /**
