@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 563217
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.manager.axis;
@@ -27,7 +27,7 @@ import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 /**
  * TODO : not yet tested with no {@link TreeFillingConfiguration} for depth==0
  * Axis Manager with one empty line at each level
- * 
+ *
  * @since 5.4
  */
 public class EmptyLineUMLElementTreeAxisManagerForEventList extends UMLElementTreeAxisManagerForEventList {
@@ -70,10 +70,24 @@ public class EmptyLineUMLElementTreeAxisManagerForEventList extends UMLElementTr
 	 * @param axis
 	 */
 	@Override
-	protected void fillChildrenForSemanticElement(ITreeItemAxis axis) {
-		if (this.createEmptyRow && axis != null
-				&& axis.getElement() != null) {// to avoid to add empty axis to an empty axis
-			if (axis.getChildren().size() == 0) {
+	protected void fillChildrenForSemanticElement(final ITreeItemAxis axis) {
+		if (this.createEmptyRow) {
+			if (axis == null) {
+				int nextDepth = 0;
+				Object context = getTableContext();
+				final List<TreeFillingConfiguration> confs = FillingConfigurationUtils.getTreeFillingConfigurationForDepth(getTable(), representedAxisManager, nextDepth);
+				for (TreeFillingConfiguration current : confs) {
+					final Collection<?> values = getFilteredValueAsCollection(current, context, nextDepth);
+					// with empty line, we always create a new axis for the TreeFillingConfiguration
+					ITreeItemAxis newAxis = addObject(axis, current);
+					if (nextDepth == 0) {
+						for (Object curr : values) {
+							addObject(newAxis, curr);
+						}
+					}
+				}
+			}
+			if (axis != null && axis.getElement() != null && axis.getChildren().size() == 0) {
 				int nextDepth = getSemanticDepth(axis) + 1;
 				Object context = axis.getElement();
 				Assert.isTrue(!(context instanceof TreeFillingConfiguration));
@@ -95,5 +109,6 @@ public class EmptyLineUMLElementTreeAxisManagerForEventList extends UMLElementTr
 		} else {
 			super.fillChildrenForSemanticElement(axis);
 		}
+
 	}
 }
