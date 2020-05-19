@@ -51,6 +51,14 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
@@ -61,14 +69,6 @@ import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.ui.ILabelEditor
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
-import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.edit.policies.DefaultNodeLabelDragPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
@@ -102,7 +102,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
+	 *
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
@@ -285,6 +285,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 		return ParserOptions.NONE;
 	}
 
+	@Override
 	public IParser getParser() {
 
 		if (parser == null) {
@@ -582,7 +583,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
+	 *
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
@@ -597,7 +598,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 
 	/**
 	 * Updates the preference configuration
-	 * 
+	 *
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
@@ -611,7 +612,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
+	 *
 	 * @param theRequest
 	 *            the direct edit request that starts the direct edit system
 	 */
@@ -690,6 +691,7 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 		super.handleNotificationEvent(event);
 	}
 
+	@Override
 	protected IFigure createFigure() {
 		IFigure label = null;
 		if (getParent() instanceof ContainerNodeEditPart) {
