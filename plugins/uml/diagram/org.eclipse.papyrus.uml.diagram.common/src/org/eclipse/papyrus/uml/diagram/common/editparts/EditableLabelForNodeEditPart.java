@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2020 CEA LIST, EclipseSource.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Camille Letavernier (EclipseSource) - Bug 563330
  */
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
@@ -26,6 +27,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.AccessibleEditPart;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.DirectEditRequest;
@@ -36,6 +38,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
@@ -53,12 +56,13 @@ import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.infra.gmfdiag.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
@@ -192,11 +196,21 @@ public class EditableLabelForNodeEditPart extends PapyrusCompartmentEditPart imp
 		if (parserElement == null) {
 			return null;
 		}
-		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
-		for (View view : views) {
-			if (AppearanceHelper.showElementIcon(view)) {
+
+		EditPart current = this;
+		while (current != null) {
+			EObject element = EMFHelper.getEObject(current);
+			if (element != parserElement) {
+				break;
+			}
+			View view = NotationHelper.findView(current);
+			if (view != null && AppearanceHelper.showElementIcon(view)) {
 				return org.eclipse.papyrus.uml.diagram.common.Activator.getDefault().getImage(parserElement.eClass());
 			}
+			if (current instanceof IPrimaryEditPart) {
+				break;
+			}
+			current = current.getParent();
 		}
 		return null;
 	}
