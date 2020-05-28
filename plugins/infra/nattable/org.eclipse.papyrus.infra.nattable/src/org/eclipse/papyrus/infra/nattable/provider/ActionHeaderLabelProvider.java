@@ -38,9 +38,12 @@ public class ActionHeaderLabelProvider extends AbstractNattableCellLabelProvider
 	 */
 	@Override
 	public boolean accept(Object element) {
-		final ILabelProviderCellContextElementWrapper contextElement = (ILabelProviderCellContextElementWrapper) element;
-		final Object value = contextElement.getObject();
-		return ActionUtils.isAction(value);
+		if (element instanceof ILabelProviderContextElementWrapper) {
+			final ILabelProviderContextElementWrapper contextElement = (ILabelProviderContextElementWrapper) element;
+			final Object value = getWrappedValue(contextElement);
+			return ActionUtils.isAction(value);
+		}
+		return false;
 	}
 
 	/**
