@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015, 2020 Christian W. Damus and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
+ *   Remi Schnekenburger (EclipseSource) - Bug 563126
  */
 package org.eclipse.papyrus.infra.gmfdiag.assistant.internal.operations;
 
@@ -17,7 +18,9 @@ import static org.eclipse.papyrus.infra.gmfdiag.assistant.core.util.ModelingAssi
 import static org.eclipse.papyrus.infra.gmfdiag.assistant.core.util.ModelingAssistantUtil.filterConnectionTypes;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -33,6 +36,9 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.GetRelTypesOnSourceOperation;
 import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.GetRelTypesOnTargetOperation;
 import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.GetTypesForPopupBarOperation;
+import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.GetTypesForSourceOperation;
+import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.GetTypesForTargetOperation;
+import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.GetTypesOperation;
 import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantOperation;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
@@ -91,6 +97,10 @@ import com.google.common.collect.Sets;
  * @generated
  */
 public class ModelingAssistantProviderOperations {
+
+	/** @generated NOT */
+	private static final String ALL_TYPES = "all_types";
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,6 +127,7 @@ public class ModelingAssistantProviderOperations {
 		case IModelingAssistantOperation.GET_REL_TYPES_ON_TARGET_ID:
 		case IModelingAssistantOperation.GET_REL_TYPES_ON_SOURCE_AND_TARGET_ID:
 		case IModelingAssistantOperation.GET_TYPES_FOR_POPUP_BAR_ID:
+		case IModelingAssistantOperation.GET_TYPES_ID:
 			result = true;
 			break;
 		}
@@ -271,38 +282,51 @@ public class ModelingAssistantProviderOperations {
 	 * @generated NOT
 	 */
 	public static EList<IElementType> getTypesForSource(ModelingAssistantProvider modelingAssistantProvider, IAdaptable target, IElementType relationshipType) {
-		Set<IElementType> types = Sets.newLinkedHashSet();
+		ProviderCache<IAdaptable, Map<IElementType, EList<IElementType>>> cache = ProviderCache.getCache(modelingAssistantProvider, GetTypesForSourceOperation.class);
+		if (cache == null) {
+			cache = ProviderCache.cache(modelingAssistantProvider, GetTypesForSourceOperation.class, new Function<IAdaptable, Map<IElementType, EList<IElementType>>>() {
+				@Override
+				public Map<IElementType, EList<IElementType>> apply(IAdaptable input) {
+					// simply return a new map for the given input
+					return new HashMap<>();
+				}
+			});
+		}
+		IElementType semanticRelationship = ModelingAssistantUtil.resolveSemanticType(relationshipType);
+		// retrieve cached map for relationship kind => list of potential sources
+		Map<IElementType, EList<IElementType>> relationShipToTypes = cache.get(target);
+		// return existing list if available, or initialize it
+		return relationShipToTypes.computeIfAbsent(semanticRelationship, src -> {
+			Set<IElementType> types = Sets.newLinkedHashSet();
 
-		// In case we had to create a proxy for diagram-specific hinted types that are not modeled
-		relationshipType = ModelingAssistantUtil.resolveSemanticType(relationshipType);
+			// Don't suggest types that we would exclude from connection ends
+			List<IElementType> validTypes = ImmutableList.copyOf(Iterables.filter(
+					modelingAssistantProvider.getElementTypes(),
+					ModelingAssistantUtil.notSpecializationOfAny(modelingAssistantProvider.getExcludedElementTypes())));
 
-		// Don't suggest types that we would exclude from connection ends
-		List<IElementType> validTypes = ImmutableList.copyOf(Iterables.filter(
-				modelingAssistantProvider.getElementTypes(),
-				ModelingAssistantUtil.notSpecializationOfAny(modelingAssistantProvider.getExcludedElementTypes())));
-
-		for (ConnectionAssistant next : modelingAssistantProvider.getConnectionAssistants()) {
-			if (Objects.equal(relationshipType, next.getElementType())) {
-				if ((next.getTargetFilter() == null) || next.getTargetFilter().matches(target)) {
-					for (IElementType sourceType : validTypes) {
-						// The filter, if any, needs to match but we also don't want to propose connections
-						// from relationships (only node-like things)
-						if (((next.getSourceFilter() == null) || next.getSourceFilter().matches(sourceType))
-								&& !modelingAssistantProvider.isRelationshipType(sourceType)) {
-							ModelingAssistantUtil.collectAllConcreteSubtypes(sourceType, modelingAssistantProvider, types);
+			for (ConnectionAssistant next : modelingAssistantProvider.getConnectionAssistants()) {
+				if (Objects.equal(relationshipType, next.getElementType())) {
+					if ((next.getTargetFilter() == null) || next.getTargetFilter().matches(target)) {
+						for (IElementType sourceType : validTypes) {
+							// The filter, if any, needs to match but we also don't want to propose connections
+							// from relationships (only node-like things)
+							if (((next.getSourceFilter() == null) || next.getSourceFilter().matches(sourceType))
+									&& !modelingAssistantProvider.isRelationshipType(sourceType)) {
+								ModelingAssistantUtil.collectAllConcreteSubtypes(sourceType, modelingAssistantProvider, types);
+							}
 						}
 					}
 				}
 			}
-		}
 
-		// And now resolve hinted types as necessary
-		ImmutableEListBuilder<IElementType> result = ECollections2.immutableEListBuilder();
-		for (IElementType next : types) {
-			resolveAndAppendHintedTypes(next, modelingAssistantProvider, target, result);
-		}
+			// And now resolve hinted types as necessary
+			ImmutableEListBuilder<IElementType> result = ECollections2.immutableEListBuilder();
+			for (IElementType next : types) {
+				resolveAndAppendHintedTypes(next, modelingAssistantProvider, target, result);
+			}
 
-		return result.sort(alphabetical()).build();
+			return result.sort(alphabetical()).build();
+		});
 	}
 
 	/**
@@ -312,38 +336,51 @@ public class ModelingAssistantProviderOperations {
 	 * @generated NOT
 	 */
 	public static EList<IElementType> getTypesForTarget(ModelingAssistantProvider modelingAssistantProvider, IAdaptable source, IElementType relationshipType) {
-		Set<IElementType> types = Sets.newLinkedHashSet();
+		ProviderCache<IAdaptable, Map<IElementType, EList<IElementType>>> cache = ProviderCache.getCache(modelingAssistantProvider, GetTypesForTargetOperation.class);
+		if (cache == null) {
+			cache = ProviderCache.cache(modelingAssistantProvider, GetTypesForTargetOperation.class, new Function<IAdaptable, Map<IElementType, EList<IElementType>>>() {
+				@Override
+				public Map<IElementType, EList<IElementType>> apply(IAdaptable input) {
+					// simply return a new map for the given input
+					return new HashMap<>();
+				}
+			});
+		}
+		IElementType semanticRelationship = ModelingAssistantUtil.resolveSemanticType(relationshipType);
+		// retrieve cached map for relationship kind => list of potential targets
+		Map<IElementType, EList<IElementType>> relationShipToTypes = cache.get(source);
+		// return existing list if available, or initialize it
+		return relationShipToTypes.computeIfAbsent(semanticRelationship, src -> {
+			Set<IElementType> types = Sets.newLinkedHashSet();
+			// Don't suggest types that we would exclude from connection ends
+			List<IElementType> validTypes = ImmutableList.copyOf(Iterables.filter(
+					modelingAssistantProvider.getElementTypes(),
+					ModelingAssistantUtil.notSpecializationOfAny(modelingAssistantProvider.getExcludedElementTypes())));
 
-		// In case we had to create a proxy for diagram-specific hinted types that are not modeled
-		relationshipType = ModelingAssistantUtil.resolveSemanticType(relationshipType);
-
-		// Don't suggest types that we would exclude from connection ends
-		List<IElementType> validTypes = ImmutableList.copyOf(Iterables.filter(
-				modelingAssistantProvider.getElementTypes(),
-				ModelingAssistantUtil.notSpecializationOfAny(modelingAssistantProvider.getExcludedElementTypes())));
-
-		for (ConnectionAssistant next : modelingAssistantProvider.getConnectionAssistants()) {
-			if (Objects.equal(relationshipType, next.getElementType())) {
-				if ((next.getSourceFilter() == null) || next.getSourceFilter().matches(source)) {
-					for (IElementType targetType : validTypes) {
-						// The filter, if any, needs to match but we also don't want to propose connections
-						// to relationships (only node-like things)
-						if (((next.getTargetFilter() == null) || next.getTargetFilter().matches(targetType))
-								&& !modelingAssistantProvider.isRelationshipType(targetType)) {
-							ModelingAssistantUtil.collectAllConcreteSubtypes(targetType, modelingAssistantProvider, types);
+			for (ConnectionAssistant next : modelingAssistantProvider.getConnectionAssistants()) {
+				if (Objects.equal(relationshipType, next.getElementType())) {
+					if ((next.getSourceFilter() == null) || next.getSourceFilter().matches(source)) {
+						for (IElementType targetType : validTypes) {
+							// The filter, if any, needs to match but we also don't want to propose connections
+							// to relationships (only node-like things)
+							if (((next.getTargetFilter() == null) || next.getTargetFilter().matches(targetType))
+									&& !modelingAssistantProvider.isRelationshipType(targetType)) {
+								ModelingAssistantUtil.collectAllConcreteSubtypes(targetType, modelingAssistantProvider, types);
+							}
 						}
 					}
 				}
 			}
-		}
 
-		// And now resolve hinted types as necessary
-		ImmutableEListBuilder<IElementType> result = ECollections2.immutableEListBuilder();
-		for (IElementType next : types) {
-			resolveAndAppendHintedTypes(next, modelingAssistantProvider, source, result);
-		}
+			// And now resolve hinted types as necessary
+			ImmutableEListBuilder<IElementType> result = ECollections2.immutableEListBuilder();
+			for (IElementType next : types) {
+				resolveAndAppendHintedTypes(next, modelingAssistantProvider, source, result);
+			}
 
-		return result.sort(alphabetical()).build();
+			EList<IElementType> build = result.sort(alphabetical()).build();
+			return build;
+		});
 	}
 
 	/**
@@ -440,17 +477,27 @@ public class ModelingAssistantProviderOperations {
 	 * @generated NOT
 	 */
 	public static EList<IElementType> getElementTypes(ModelingAssistantProvider modelingAssistantProvider) {
-		Set<IElementType> types = Sets.newLinkedHashSet();
-		for (String next : modelingAssistantProvider.getElementTypeIDs()) {
-			IElementType type = modelingAssistantProvider.getElementType(next);
-			if (type != null) {
-				types.add(type);
-			}
-		}
+		ProviderCache<String, EList<IElementType>> cache = ProviderCache.getCache(modelingAssistantProvider, GetTypesOperation.class);
+		if (cache == null) {
+			cache = ProviderCache.cache(modelingAssistantProvider, GetTypesOperation.class, new Function<String, EList<IElementType>>() {
+				@Override
+				public EList<IElementType> apply(String input) {
+					// note, here input is unused
+					Set<IElementType> types = Sets.newLinkedHashSet();
+					for (String next : modelingAssistantProvider.getElementTypeIDs()) {
+						IElementType type = modelingAssistantProvider.getElementType(next);
+						if (type != null) {
+							types.add(type);
+						}
+					}
 
-		ImmutableEListBuilder<IElementType> result = ECollections2.immutableEListBuilder();
-		result.addAll(types);
-		return result.sort(alphabetical()).build();
+					ImmutableEListBuilder<IElementType> result = ECollections2.immutableEListBuilder();
+					result.addAll(types);
+					return result.sort(alphabetical()).build();
+				}
+			});
+		}
+		return cache.get(ALL_TYPES);
 	}
 
 	/**
