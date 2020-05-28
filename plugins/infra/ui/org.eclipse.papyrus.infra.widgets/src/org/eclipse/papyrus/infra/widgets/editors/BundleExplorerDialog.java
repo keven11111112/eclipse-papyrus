@@ -10,7 +10,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - move from oep.customization.palette 
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - move from oep.customization.palette
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
 
@@ -21,11 +21,11 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
-import org.eclipse.pde.internal.ui.PDEPlugin;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
@@ -61,8 +61,7 @@ public class BundleExplorerDialog extends FilteredItemsSelectionDialog {
 		setTitle(Messages.BundleExplorerDialog_PlugInSelectionTitle);
 		setMessage(Messages.BundleExplorerDialog_DialogMessage);
 		fModels = models;
-		PDEPlugin.getDefault().getLabelProvider().connect(this);
-		setListLabelProvider(PDEPlugin.getDefault().getLabelProvider());
+		setListLabelProvider(new LabelProvider());
 	}
 
 	/**
@@ -169,7 +168,7 @@ public class BundleExplorerDialog extends FilteredItemsSelectionDialog {
 		@Override
 		protected boolean matches(final String text) {
 			String pattern = patternMatcher.getPattern();
-			if (pattern.indexOf(ASTERISK) != 0 && pattern.indexOf(INTERROGATION) != 0 && pattern.indexOf(DOT) != 0) {// $NON-NLS-1$ //$NON-NLS-2$
+			if (pattern.indexOf(ASTERISK) != 0 && pattern.indexOf(INTERROGATION) != 0 && pattern.indexOf(DOT) != 0) {// $NON-NLS-1$
 				pattern = ASTERISK + pattern;
 				patternMatcher.setPattern(pattern);
 			}

@@ -35,7 +35,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomainEvent;
 import org.eclipse.emf.transaction.TransactionalEditingDomainListener;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.internationalization.utils.PropertiesFilesUtils;
-import org.eclipse.pde.internal.ui.util.LocaleUtil;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Iterables;
@@ -122,10 +121,10 @@ public class ControlledResourceTracker extends AdapterImpl implements Transactio
 
 		return result;
 	}
-	
+
 	/**
 	 * Get the URI modified if necessary (for example, the properties file can have a locale at the end of the file).
-	 * 
+	 *
 	 * @param uri
 	 *            The URI of a resource that potentially is in a sub-model unit.
 	 * @param initialURI
@@ -136,7 +135,7 @@ public class ControlledResourceTracker extends AdapterImpl implements Transactio
 		URI result = initialURI;
 
 		// If this is a properties file, check if a locale is available at the end of the URI
-		if (null != uri && null != uri.fileExtension() && uri.fileExtension().equals(PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION)) { //$NON-NLS-1$
+		if (null != uri && null != uri.fileExtension() && uri.fileExtension().equals(PropertiesFilesUtils.PROPERTIES_FILE_EXTENSION)) {
 			// Get the last segment
 			final String lastSegment = initialURI.lastSegment();
 			// Try to remove existing localization
@@ -335,7 +334,7 @@ public class ControlledResourceTracker extends AdapterImpl implements Transactio
 					handleAdd(resource, (EObject) msg.getNewValue());
 					break;
 				}
-					// case MOVE: moving within the list does not change sub-unit relationships
+				// case MOVE: moving within the list does not change sub-unit relationships
 				case Notification.REMOVE: {
 					handleRemove(resource, (EObject) msg.getOldValue());
 					break;
