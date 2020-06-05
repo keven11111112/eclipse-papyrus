@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2021 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 563983
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.expressions.edit.internal.validators;
@@ -18,6 +18,7 @@ package org.eclipse.papyrus.uml.expressions.edit.internal.validators;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.papyrus.emf.ui.validators.AbstractSelectionStatusValidator;
 import org.eclipse.papyrus.uml.expressions.edit.internal.messages.Messages;
+import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 
@@ -40,8 +41,11 @@ public class SinglePropertyAttributeValidator extends AbstractSelectionStatusVal
 			errorMessage = NO_SELECTION;
 		} else {
 			final Object firstSelection = selection[0];
-			if (selection.length != 1 || false == firstSelection instanceof Property || (firstSelection instanceof Property && false == ((Property) firstSelection).getType() instanceof PrimitiveType)) {
-				errorMessage = Messages.SinglePropertyAttributeValidator_SelectOnePropertyTypeWithAPrimitiveType;
+			if (selection.length != 1
+					|| false == firstSelection instanceof Property
+					|| (firstSelection instanceof Property && false == ((((Property) firstSelection).getType() instanceof PrimitiveType)
+							|| ((Property) firstSelection).getType() instanceof Enumeration))) {
+				errorMessage = Messages.SinglePropertyAttributeValidator_SelectOnePropertyTypeWithAPrimitiveTypeOrEnumeration;
 			}
 		}
 		return buildIStatus(errorMessage);
