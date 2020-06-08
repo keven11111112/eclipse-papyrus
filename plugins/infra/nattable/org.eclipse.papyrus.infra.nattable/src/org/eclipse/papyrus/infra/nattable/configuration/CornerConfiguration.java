@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 564085
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.configuration;
 
@@ -57,7 +57,7 @@ public class CornerConfiguration extends AbstractRegistryConfiguration {
 	@Override
 	public void configureUiBindings(UiBindingRegistry uiBindingRegistry) {
 		super.configureUiBindings(uiBindingRegistry);
-		uiBindingRegistry.registerSingleClickBinding(new MouseEventMatcher(GridRegion.CORNER), new IMouseAction() {
+		uiBindingRegistry.registerSingleClickBinding(new MouseEventMatcher(GridRegion.CORNER, MouseEventMatcher.LEFT_BUTTON), new IMouseAction() {
 
 			@Override
 			public void run(final NatTable natTable, final MouseEvent event) {
