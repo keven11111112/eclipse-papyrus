@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug #471903
- *
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - bug 564127
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.listener;
@@ -32,6 +32,7 @@ import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.axis.CompositeAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManagerForEventList;
@@ -88,6 +89,11 @@ public class UpdateTableContentListener implements ResourceSetListener {
 				}
 				Object notifier = notification.getNotifier();
 				if (notifier instanceof EObject) {
+					// to avoid to refresh table when a page (diagram/table/... is created, opened, closed)
+					if (DiPackage.eINSTANCE.getEClassifiers().contains(((EObject) notifier).eClass())) {
+						// bug 564127
+						return false;
+					}
 					if (EcoreUtil.getRootContainer(((EObject) notifier).eClass()) == NattablePackage.eINSTANCE) {
 						// we must verify than the notification concern the current managed table
 						try {
@@ -148,7 +154,7 @@ public class UpdateTableContentListener implements ResourceSetListener {
 		// The initial notifications
 		final List<Notification> initialNotifications = event.getNotifications();
 		// Create a copy of notifications to keep only the managed one
-		final List<Notification> managedNotifications = new ArrayList<Notification>(initialNotifications);
+		final List<Notification> managedNotifications = new ArrayList<>(initialNotifications);
 		final Iterator<Notification> notificationsIterator = initialNotifications.iterator();
 		int index = 0;
 
@@ -158,12 +164,12 @@ public class UpdateTableContentListener implements ResourceSetListener {
 
 			if (managedNotifications.contains(current)) {
 				int currentEvent = current.getEventType();
-				
+
 				// filtering notification concerning creation of ITreeItemAxis created as children
 				if (Notification.ADD == currentEvent) {
 					current = getAddNotification(current, managedNotifications, index);
 					// check if the remove event is a move action
-				}else if (Notification.REMOVE_MANY == currentEvent || Notification.REMOVE == currentEvent && notificationsIterator.hasNext()) {
+				} else if (Notification.REMOVE_MANY == currentEvent || Notification.REMOVE == currentEvent && notificationsIterator.hasNext()) {
 					current = getMoveNotification(current, managedNotifications, index);
 				}
 
@@ -177,10 +183,10 @@ public class UpdateTableContentListener implements ResourceSetListener {
 		tableManager.refreshNatTable();
 
 	}
-	
+
 	/**
 	 * This allow to get the notification from the initial add notification.
-	 * 
+	 *
 	 * @param initialNotification
 	 *            The initial add notification.
 	 * @param managedNotifications
@@ -189,21 +195,21 @@ public class UpdateTableContentListener implements ResourceSetListener {
 	 *            The index of the notification in the list of initial notifications.
 	 * @return The notification to manage.
 	 */
-	protected Notification getAddNotification(final Notification initialNotification, final List<Notification> managedNotifications, final int index){
+	protected Notification getAddNotification(final Notification initialNotification, final List<Notification> managedNotifications, final int index) {
 		Notification currentNotification = initialNotification;
-		
+
 		if (NattableaxisPackage.eINSTANCE.getITreeItemAxis_Children() == currentNotification.getFeature()) {
 			if (currentNotification.getNotifier() instanceof ITreeItemAxis && (null == ((EObject) currentNotification.getNotifier()).eContainer() || (((EObject) currentNotification.getNotifier()).eContainer()) instanceof AbstractAxisProvider)) {
 				currentNotification = null;
 			}
 		}
-		
-		return currentNotification;	
+
+		return currentNotification;
 	}
 
 	/**
 	 * This allow to get the move notification from the initial remove notification. This one will be managed as a move (because the move does not exist in GMD command (replaced by add and remove)).
-	 * 
+	 *
 	 * @param initialNotification
 	 *            The initial remove notification.
 	 * @param managedNotifications
@@ -231,8 +237,8 @@ public class UpdateTableContentListener implements ResourceSetListener {
 				// Get the old value(s)
 				Collection<Object> oldValue = null;
 				if (Notification.REMOVE == currentNotification.getEventType()) {
-					oldValue = new ArrayList<Object>(1);
-					oldValue.add((Object) currentNotification.getOldValue());
+					oldValue = new ArrayList<>(1);
+					oldValue.add(currentNotification.getOldValue());
 				} else {
 					oldValue = (Collection<Object>) currentNotification.getOldValue();
 				}
@@ -256,7 +262,7 @@ public class UpdateTableContentListener implements ResourceSetListener {
 						}
 
 						// Get the objects to add
-						final List<Object> addedObject = new ArrayList<Object>(newValue);
+						final List<Object> addedObject = new ArrayList<>(newValue);
 						addedObject.removeAll(oldValue);
 
 						// Create the add notifications
