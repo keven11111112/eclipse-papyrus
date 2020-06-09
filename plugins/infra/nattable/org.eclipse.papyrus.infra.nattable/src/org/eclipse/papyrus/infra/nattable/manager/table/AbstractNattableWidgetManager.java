@@ -18,7 +18,7 @@
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 417095
  *  Vincent Lorenzo (CEA LIST) - bug 525221
  *  Nicolas Fauvergue (CEA LIST) - bug 509971
- *  Vincent Lorenzo (CEA LIST) - bug 561300, 562619
+ *  Vincent Lorenzo (CEA LIST) - bug 561300, 562619, 564130
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -1709,17 +1709,39 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		return revealElement(Collections.singleton(element));
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.util.NavigationTarget#revealElement(java.util.Collection)
+	 *
+	 * @param elements
+	 *            elements to select in the table
+	 * @return
+	 *         <code>true</code> if we succeed to reveal
+	 *         This method select rows (or columns) representing the elements given in arguments.
+	 *         This method doesn't select cells
+	 */
 	@Override
 	public boolean revealElement(Collection<?> elements) {
+		final TableStructuredSelection selection = getSelectionInTable();
+		// we check the elements to reveal are not yet equals to the current selection
+		if (elements.equals(selection.toList())) {
+			// ok it is equals, but don't know if the selection is a row, a column or a cell, and the cell selection are not the expected behavior
+			final TableSelectionWrapper wrapper = (TableSelectionWrapper) selection.getAdapter(TableSelectionWrapper.class);
+
+			// reveal elements are always rows or columns and never cells
+			if (wrapper.getFullySelectedRows().size() == selection.size()
+					|| wrapper.getFullySelectedColumns().size() == selection.size()) {
+				return true;
+			}
+		}
 
 		boolean selectObject = false;
 		SelectionLayer selectionLayer = bodyLayerStack.getSelectionLayer();
 		List<Object> rowObjects = getRowElementsList();
 		List<Object> columnObjects = getColumnElementsList();
 
-		// clear the selectionLayer to avoid the previous selections to mess with the current
-		selectionLayer.clear();
-
+		// ctrl mask is always set to false at the beginning, because we are doing a new selection
+		boolean ctrlMask = false;
 		for (int rowIndex = 0; rowIndex < rowObjects.size(); rowIndex++) {
 			List<Object> toFind = new ArrayList<Object>(elements);
 			for (Object object : elements) {
@@ -1734,7 +1756,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			if (toFind.contains(currentRealObject)) {
 				final RowHideShowLayer layer = getBodyLayerStack().getRowHideShowLayer();
 				int realIndex = layer.underlyingToLocalRowPosition(natTable, rowIndex);
-				natTable.doCommand(new SelectRowsCommand(selectionLayer, 0, realIndex, false, true)); // we remove the found object from the cloned elementList as they are already selected
+				natTable.doCommand(new SelectRowsCommand(selectionLayer, 0, realIndex, false, ctrlMask));
+				// we remove the found object from the cloned elementList as they are already selected
+				ctrlMask = true;
 				toFind.remove(currentRealObject);
 				selectObject = true;
 			}
@@ -1756,9 +1780,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			Object currentAxisObject = columnObjects.get(columnIndex);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			if (toFind.contains(currentRealObject)) {
-				selectionLayer.doCommand(new SelectColumnCommand(selectionLayer, columnIndex, 0, false, true));
+				selectionLayer.doCommand(new SelectColumnCommand(selectionLayer, columnIndex, 0, false, ctrlMask));
 				// we remove the found object from the cloned elementList as they are already selected
 				toFind.remove(currentRealObject);
+				ctrlMask = true;
 				selectObject = true;
 			}
 			if (toFind.isEmpty()) {
@@ -1766,7 +1791,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 				return selectObject;
 			}
 		}
-
+		if (!selectObject) {
+			// we don't found the selection in the table
+			selectionLayer.clear();
+		}
 		return selectObject;
 	}
 
