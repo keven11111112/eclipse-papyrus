@@ -1,24 +1,23 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017, 2020 CEA LIST.
- *
+ * Copyright (c) 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
- * https://www.eclipse.org/legal/epl-2.0/
+ * http://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
- *  Vincent Lorenzo (CEA LIST) - bug 525221, 517617, 532452
+ *   Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr> - Initial API and implementation
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -33,9 +32,21 @@ import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
- * Wrapper for the selection in the table
+ *
+ * This class is in charge to store the selection (selection position, IAxis and elements owned by the IAxis)
+ * This class also provides a method to update the position of the selection using the real elements
+ *
+ * This class uses the {@link SelectionLayer} to define the current selection.
+ * We don't use it in the general usecase, because with this implementation we lose the difference between a user cell selection and the row/column
+ * selection. Losing this difference, we break arount 30 JUnit tests in Papyrus.
+ *
+ * @author Vincent Lorenzo (CEA LIST) <vincent.lorenzo@cea.fr>
+ * @since 7.0
+ *
  */
-public class TableSelectionWrapper {
+// TODO inheritance is here just for retrocompatibility.
+// remove inheritance in Papyrus 5.0 and create common API (see bug 564477)
+public class TableSelectionWrapper2 extends TableSelectionWrapper {
 
 	/**
 	 * The table manager for the NatTable instance
@@ -45,7 +56,7 @@ public class TableSelectionWrapper {
 	/**
 	 * The {@link SelectionLayer} use by the NatTable instance
 	 */
-	private SelectionLayer selectionLayer;
+	private final SelectionLayer selectionLayer;
 
 	/*---------------------------ROWS----------------------*/
 	/**
@@ -74,7 +85,8 @@ public class TableSelectionWrapper {
 	/*---------------------------CELL--------------------*/
 	/**
 	 * The list of all selected cells (including cells from a fully selected rows or columns)
-	 * we need to get the cell order for test PasteCellsOverwriteByOneLine_Test, so we use a LinkedHashMap
+	 * we need to kep the cell order for test PasteCellsOverwriteByOneLine_Test, so we use a LinkedHashMap
+	 * when we fill the map, the cell are already ordinated by NatTable
 	 */
 	private final Map<PositionCoordinate, CellReference> allSelectedCells = new LinkedHashMap<>();
 
@@ -90,105 +102,82 @@ public class TableSelectionWrapper {
 	private final Collection<Object> singleCellValues = new ArrayList<>();
 
 	/**
-	 * Constructor.
-	 *
-	 * @param selectionCells
-	 *            The selected cells.
-	 * @deprecated since 5.0
+	 * this value allows to know if the current selection is equivalent to a select all
 	 */
-	@Deprecated
-	public TableSelectionWrapper(final Collection<PositionCoordinate> selectionCells) {
-		this(selectionCells, new HashMap<>(), new HashMap<>());
-	}
-
-	/**
-	 * Constructor.
-	 *
-	 * @param selectionCells
-	 *            The selected cells.
-	 * @param fullySelectedRowObject
-	 *            The selected rows (index or object affected).
-	 * @param fullySelectedColumnObject
-	 *            The selected columns (index or object affected).
-	 * @deprecated since 5.0
-	 */
-	@Deprecated
-	public TableSelectionWrapper(final Collection<PositionCoordinate> selectionCells, final Map<Integer, Object> fullySelectedRowObject, final Map<Integer, Object> fullySelectedColumnObject) {
-		fillAllSelectedCellsMap(selectionCells);
-		this.rowPositionAndAxis = fullySelectedRowObject;
-		this.columnPositionAndAxis = fullySelectedColumnObject;
-		this.manager = null;
-	}
-
-	/**
-	 * Constructor.
-	 *
-	 * @param manager
-	 *            the table manager from where the selection comes
-	 * @param selectionCells
-	 *            The selected cells.
-	 * @since 5.0
-	 */
-	@Deprecated
-	public TableSelectionWrapper(final INattableModelManager manager, final Collection<PositionCoordinate> selectionCells) {
-		this(manager, selectionCells, new HashMap<>(), new HashMap<>());
-	}
-
-	/**
-	 * Constructor.
-	 *
-	 * @param manager
-	 *            the table manager from where the selection comes
-	 * @param selectionCells
-	 *            The selected cells.
-	 * @param fullySelectedRowObject
-	 *            The selected rows (index or object affected).
-	 * @param fullySelectedColumnObject
-	 *            The selected columns (index or object affected).
-	 * @since 5.0
-	 */
-	@Deprecated
-	public TableSelectionWrapper(final INattableModelManager manager, final Collection<PositionCoordinate> selectionCells, final Map<Integer, Object> fullySelectedRowObject, final Map<Integer, Object> fullySelectedColumnObject) {
-		this.manager = manager;
-		this.selectionLayer = null;
-		fillAllSelectedCellsMap(selectionCells);
-		this.rowPositionAndAxis = fullySelectedRowObject;
-		this.columnPositionAndAxis = fullySelectedColumnObject;
+	private boolean isSelectAll = false;
 
 
-	}
 
-	/**
-	 * Constructor.
-	 *
-	 * @param manager
-	 *            the table manager from where the selection comes
-	 * @param the
-	 *            selection layer
-	 * @param selectionCells
-	 *            The selected cells.
-	 * @since 7.0
-	 */
-	public TableSelectionWrapper(final INattableModelManager manager, final SelectionLayer selectionLayer, final Collection<PositionCoordinate> selectionCells) {
+	public TableSelectionWrapper2(final INattableModelManager manager, final SelectionLayer selectionLayer) {
+		super(manager, Collections.emptyList(), Collections.emptyMap(), Collections.emptyMap());
 		this.manager = manager;
 		this.selectionLayer = selectionLayer;
-		fillAllSelectedCellsMap(selectionCells);
+		buildSelection();
 	}
 
 	/**
-	 * This method fill a map with the selected cell, referencing the initial row and column object
-	 *
-	 * @param selectedCells
-	 *            the selected cells
+	 * This method is used to build the selection
 	 */
-	private void fillAllSelectedCellsMap(final Collection<PositionCoordinate> selectedCells) {
-		if (this.selectionLayer == null && manager != null) {
-			this.selectionLayer = this.manager.getBodyLayerStack().getSelectionLayer();
+	protected final void buildSelection() {
+		// we are not able to distinguish the 2 ways to select a full axis :
+		// - first way : clicking on axis header
+		// - second way : clicking on first cell of the axis, Pressing SHIFT, clicking on the last cell of the axis (or selecting each cell of the axis pressing CTRL)
+		// so we are not able to know if the user want to select the element represented by the axis OR all values displayed on the axis, without the element represented by the axis
+		// we decided to implements this behavior for all kind of selection event :
+		// 1- we add in the selection elements represented by fully selected rows
+		// 2- we add in the selection elements represented by fully selected columns
+		// 3- we add in the selection the contents of selected cell which are not included in the fully selected axis
+		buildColumnSelection();
+		buildRowSelection();
+		/*
+		 * The cell selection must be done last, because it reuse the row and column selection
+		 */
+		buildCellSelection();
+
+		calculateSelectAll();
+	}
+
+	/**
+	 * This method builds the column selection. It fills the fields {@link #columnAxisElements} and {@link #columnPositionAndAxis}
+	 */
+	protected void buildColumnSelection() {
+		for (int currentPosition : this.selectionLayer.getFullySelectedColumnPositions()) {
+			int currentIndex = this.selectionLayer.getColumnIndexByPosition(currentPosition);
+			final Object el = this.manager.getColumnElement(currentIndex);
+			this.columnPositionAndAxis.put(Integer.valueOf(currentPosition), el);
+			final Object representedElement = AxisUtils.getRepresentedElement(el);
+			if (representedElement != null) {
+				this.columnAxisElements.add(representedElement);
+			} else {
+				// usefull or not ?
+				this.columnAxisElements.add(el);
+			}
 		}
-		if (selectionLayer == null) {
-			return;
+	}
+
+	/**
+	 * This method builds the column selection. It fills the fields {@link #rowAxisElements} and {@link #rowPositionAndAxis}
+	 */
+	protected void buildRowSelection() {
+		for (int currentPosition : this.selectionLayer.getFullySelectedRowPositions()) {
+			int currentIndex = this.selectionLayer.getRowIndexByPosition(currentPosition);
+			final Object el = this.manager.getRowElement(currentIndex);
+			this.rowPositionAndAxis.put(Integer.valueOf(currentPosition), el);
+			final Object representedElement = AxisUtils.getRepresentedElement(el);
+			if (representedElement != null) {
+				this.rowAxisElements.add(representedElement);
+			} else {
+				// usefull or not ?
+				this.rowAxisElements.add(el);
+			}
 		}
-		for (final PositionCoordinate positionCoordinate : selectedCells) {
+	}
+
+	/**
+	 * This method builds the cell selection. It fills the fields {#allSelectedCells} {@link #singleSelectedCells} and {@link #singleSelectedCells}
+	 */
+	protected void buildCellSelection() {
+		for (final PositionCoordinate positionCoordinate : this.selectionLayer.getSelectedCellPositions()) {
 			final ILayerCell cell = this.selectionLayer.getCellByPosition(positionCoordinate.getColumnPosition(), positionCoordinate.getRowPosition());
 			if (cell != null) {
 				int columnIndex = this.selectionLayer.getColumnIndexByPosition(positionCoordinate.getColumnPosition());
@@ -197,6 +186,28 @@ public class TableSelectionWrapper {
 				final Object rowElement = this.manager.getRowElement(rowIndex);
 				final CellReference reference = new CellReference(columnElement, rowElement);
 				this.allSelectedCells.put(positionCoordinate, reference);
+
+				/*
+				 * if the selected cells is a single cell, we also fill the map of single cells and add the cell value in the list
+				 */
+				if (isSingleSelectedCell(positionCoordinate)) {
+					this.singleCellsCoordinatesAndUniqueReference.put(positionCoordinate, reference);
+					final Object value = cell.getDataValue();
+					if (value != null) {
+						if (value instanceof Collection<?>) {
+							final Iterator<?> iter = ((Collection<?>) value).iterator();
+							while (iter.hasNext()) {
+								final Object current = iter.next();
+								this.singleCellValues.add(current);
+							}
+						} else {
+							this.singleCellValues.add(value);
+						}
+					} else {
+						// Bug 481817 : When the value is null, we need to have the cell selection, so add the cell as selection instead of value
+						this.singleCellValues.add(cell);
+					}
+				}
 			}
 		}
 	}
@@ -208,13 +219,37 @@ public class TableSelectionWrapper {
 	 *
 	 * This method has been developed to re-apply the selection after a refresh. To do that, the position of selected elements must updated
 	 * (org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager.refreshInUIThread())
-	 *
-	 * @since 7.0
 	 */
+	@Override
 	public void updatePositions() {
 		updateRowPositions();
 		updateColumnPositions();
 		updateCellPositions();
+	}
+
+	/**
+	 *
+	 * @return
+	 *         <code>true</code> if the selection represents a select all
+	 */
+	public boolean isSelectAll() {
+		return this.isSelectAll;
+	}
+
+	/**
+	 * This method must be called just after the build of the selection (method {@link #buildSelection()}
+	 * This method MUST not be called after {@link #updatePosition()}, because some elements can have changed (columns/rows destruction/creation)
+	 *
+	 */
+	private void calculateSelectAll() {
+		boolean res = false;
+		int columnCount = this.selectionLayer.getColumnCount();
+		int rowCount = this.selectionLayer.getRowCount();
+		if (this.rowPositionAndAxis.size() >= rowCount && this.columnPositionAndAxis.size() >= columnCount) {
+			res = true;
+		}
+		this.isSelectAll = res;
+
 	}
 
 	/**
@@ -282,51 +317,25 @@ public class TableSelectionWrapper {
 		}
 	}
 
-	/**
-	 * @since 7.0
-	 */
-	public void buildSingleCellSelection() {
-		for (final PositionCoordinate positionCoordinate : this.allSelectedCells.keySet()) {
-			final ILayerCell cell = this.selectionLayer.getCellByPosition(positionCoordinate.getColumnPosition(), positionCoordinate.getRowPosition());
-			if (cell != null) {
 
-				/*
-				 * if the selected cells is a single cell, we fill the map of single cells and add the cell value in the list
-				 */
-				if (isSingleSelectedCell(positionCoordinate)) {
-					this.singleCellsCoordinatesAndUniqueReference.put(positionCoordinate, this.allSelectedCells.get(positionCoordinate));
-					final Object value = cell.getDataValue();
-					if (value != null) {
-						if (value instanceof Collection<?>) {
-							final Iterator<?> iter = ((Collection<?>) value).iterator();
-							while (iter.hasNext()) {
-								final Object current = iter.next();
-								this.singleCellValues.add(current);
-							}
-						} else {
-							this.singleCellValues.add(value);
-						}
-					} else {
-						// Bug 481817 : When the value is null, we need to have the cell selection, so add the cell as selection instead of value
-						this.singleCellValues.add(cell);
-					}
-				}
-			}
-		}
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper#getFullySelectedRows()
+	 *
+	 * @return
+	 */
+	@Override
+	public Map<Integer, Object> getFullySelectedRows() {
+		return this.rowPositionAndAxis;
 	}
 
 	/**
 	 *
 	 * @return
-	 *         a collection of the selected elements
-	 * @since 7.0
+	 *         the position, according to the {@link SelectionLayer} of single cells
 	 */
-	public Collection<Object> getSelectedElements() {
-		final Collection<Object> selection = new HashSet<>();
-		selection.addAll(this.rowAxisElements);
-		selection.addAll(this.columnAxisElements);
-		selection.addAll(this.singleCellValues);
-		return selection;
+	@Override
+	public Set<PositionCoordinate> getSingleSelectedCells() {
+		return this.singleCellsCoordinatesAndUniqueReference.keySet();
 	}
 
 	/**
@@ -340,123 +349,38 @@ public class TableSelectionWrapper {
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper#getFullySelectedRows()
 	 *
 	 * @return
-	 *         the position, according to the {@link SelectionLayer} of single cells
-	 * @since 7.0
 	 */
-	public Set<PositionCoordinate> getSingleSelectedCells() {
-		return this.singleCellsCoordinatesAndUniqueReference.keySet();
-	}
-
-	/**
-	 * Get the selected cells.
-	 *
-	 * @return
-	 *         the list of the {@link PositionCoordinate} of all selected cells
-	 */
-	public Collection<PositionCoordinate> getSelectedCells() {
-		return allSelectedCells.keySet();
-	}
-
-	/**
-	 * Get the selected rows.
-	 *
-	 * @return
-	 *         a map with the fully selected rows and their position in the selection layer
-	 */
-	public Map<Integer, Object> getFullySelectedRows() {
-		return this.rowPositionAndAxis;
-	}
-
-	/**
-	 * This method allows to register a new row in the current selection
-	 *
-	 * @param rowPosition
-	 *            the position of the selected row
-	 *
-	 * @since 7.0
-	 */
-	public void addSelectedRow(final int rowPosition) {
-		final int rowIndex = this.selectionLayer.getRowIndexByPosition(rowPosition);
-		Object el = this.manager.getRowElement(rowIndex);
-		this.rowPositionAndAxis.put(Integer.valueOf(rowPosition), el);
-		final Object realElement = AxisUtils.getRepresentedElement(el);
-		if (realElement != null) {
-			this.rowAxisElements.add(realElement);
-		} else {
-			this.rowAxisElements.add(el);
-		}
-	}
-
-	/**
-	 * This method allows to remove a row in the current selection
-	 *
-	 * @param rowPosition
-	 *            the position of the selected row
-	 *
-	 * @since 7.0
-	 */
-	public void removeSelectedRow(final int rowPosition) {
-		final int rowIndex = this.selectionLayer.getRowIndexByPosition(rowPosition);
-		Object el = this.manager.getRowElement(rowIndex);
-		this.rowPositionAndAxis.remove(Integer.valueOf(rowPosition));
-		final Object realElement = AxisUtils.getRepresentedElement(el);
-		if (realElement != null) {
-			this.rowAxisElements.remove(realElement);
-		} else {
-			this.rowAxisElements.remove(el);
-		}
-	}
-
-	/**
-	 * This method allows to register a new column in the current selection
-	 *
-	 * @param columnPosition
-	 *            the position of the selected column
-	 *
-	 * @since 7.0
-	 */
-	public void addSelectedColumn(final int columnPosition) {
-		final int columnIndex = this.selectionLayer.getColumnIndexByPosition(columnPosition);
-		Object el = this.manager.getColumnElement(columnIndex);
-		this.columnPositionAndAxis.put(Integer.valueOf(columnPosition), el);
-		final Object realElement = AxisUtils.getRepresentedElement(el);
-		if (realElement != null) {
-			this.columnAxisElements.add(realElement);
-		} else {
-			this.columnAxisElements.add(el);
-		}
-	}
-
-	/**
-	 * This method allows to remove a column in the current selection
-	 *
-	 * @param columnPosition
-	 *            the position of the selected column
-	 *
-	 * @since 7.0
-	 */
-	public void removeSelectedColumn(final int columnPosition) {
-		final int rowIndex = this.selectionLayer.getRowIndexByPosition(columnPosition);
-		Object el = this.manager.getColumnElement(rowIndex);
-		this.columnPositionAndAxis.remove(Integer.valueOf(columnPosition));
-		final Object realElement = AxisUtils.getRepresentedElement(el);
-		if (realElement != null) {
-			this.columnAxisElements.remove(realElement);
-		} else {
-			this.columnAxisElements.remove(el);
-		}
-	}
-
-	/**
-	 * Get the selected columns.
-	 *
-	 * @return
-	 *         a map with the fully selected columns and their position in the selection layer
-	 */
+	@Override
 	public Map<Integer, Object> getFullySelectedColumns() {
 		return this.columnPositionAndAxis;
+	}
+
+	/**
+	 *
+	 * @return
+	 *         a collection of the selected elements
+	 */
+	@Override
+	public Collection<Object> getSelectedElements() {
+		final Collection<Object> selection = new HashSet<>();
+		selection.addAll(this.rowAxisElements);
+		selection.addAll(this.columnAxisElements);
+		selection.addAll(this.singleCellValues);
+		return selection;
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper#getSelectedCells()
+	 *
+	 * @return
+	 */
+	@Override
+	public Collection<PositionCoordinate> getSelectedCells() {
+		return this.allSelectedCells.keySet();
 	}
 
 	/**
@@ -464,6 +388,7 @@ public class TableSelectionWrapper {
 	 *
 	 * @return <code>true</code> if at least one selected cell is outside of the selected rows and columns, <code>false</code> otherwise.
 	 */
+	@Override
 	public boolean isCellsOutsideOfAxis() {
 		boolean result = false;
 
@@ -471,6 +396,7 @@ public class TableSelectionWrapper {
 		final Iterator<PositionCoordinate> selectedCells = this.allSelectedCells.keySet().iterator();
 		while (!result && selectedCells.hasNext()) {
 			final PositionCoordinate selectedCell = selectedCells.next();
+
 			// Check that the selected cell is not outside of selected rows and columns
 			result = !(this.rowPositionAndAxis.containsKey(selectedCell.getRowPosition())
 					|| this.columnPositionAndAxis.containsKey(selectedCell.getColumnPosition()));
@@ -484,6 +410,7 @@ public class TableSelectionWrapper {
 	 *
 	 * @return <code>true</code> if the selected rows are continuous, <code>false</code> otherwise.
 	 */
+	@Override
 	public boolean isContinuousRows() {
 		int firstRowIndex = -1;
 		int lastRowIndex = -1;
@@ -510,6 +437,7 @@ public class TableSelectionWrapper {
 	 *
 	 * @return <code>true</code> if the selected columns are continuous, <code>false</code> otherwise.
 	 */
+	@Override
 	public boolean isContinuousColumns() {
 		int firstColumnIndex = -1;
 		int lastColumnIndex = -1;
@@ -536,6 +464,7 @@ public class TableSelectionWrapper {
 	 *
 	 * @return <code>true</code> if the selected cells are continuous, <code>false</code> otherwise.
 	 */
+	@Override
 	public boolean isContinuousCells() {
 		int firstRowIndex = -1;
 		int lastRowIndex = -1;
@@ -567,84 +496,71 @@ public class TableSelectionWrapper {
 		return ((lastColumnIndex - firstColumnIndex + 1) * (lastRowIndex - firstRowIndex + 1)) == getSelectedCells().size();
 	}
 
+
 	/**
-	 * This method clear the values stored in the collections and in the maps of this wrapper
+	 * @see org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper#clearWrappedSelection()
+	 *
 	 */
+	@Override
 	public void clearWrappedSelection() {
-		this.rowPositionAndAxis.clear();
-		this.columnPositionAndAxis.clear();
-		this.allSelectedCells.clear();
-		this.rowAxisElements.clear();
+		super.clearWrappedSelection();
 		this.columnAxisElements.clear();
-		this.singleCellValues.clear();
+		this.rowAxisElements.clear();
+		this.columnPositionAndAxis.clear();
+		this.rowPositionAndAxis.clear();
 		this.singleCellsCoordinatesAndUniqueReference.clear();
+		this.singleCellValues.clear();
+		this.allSelectedCells.clear();
 	}
 
 	/**
-	 * @see java.lang.Object#equals(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper#equals(java.lang.Object)
 	 *
-	 * @param obj
+	 * @param o
 	 * @return
 	 */
 	@Override
-	public boolean equals(final Object o) {
-		if (!(o instanceof TableSelectionWrapper)) {
-			return false;
-		}
-
+	public boolean equals(Object o) {
 		if (o == this) {
 			return true;
 		}
-
-		final TableSelectionWrapper w2 = (TableSelectionWrapper) o;
-		if (w2.getNatTableModelManager() != this.manager) {
+		if (!(o instanceof TableSelectionWrapper2)) {
 			return false;
 		}
-		if (w2.getNatTableModelManager() == this.manager && w2.getFullySelectedColumns().equals(this.columnPositionAndAxis)
-				&& w2.getFullySelectedRows().equals(this.rowPositionAndAxis)
-				&& w2.getSelectedCells().equals(this.allSelectedCells.keySet())
-				&& w2.getSingleSelectedCells().equals(this.singleCellValues)) {
-			return true;
+
+		final TableSelectionWrapper2 wrapper = (TableSelectionWrapper2) o;
+
+		if (wrapper.getNatTableModelManager() != this.manager) {
+			return false;
 		}
-		return false;
+		if (wrapper.isSelectAll() != isSelectAll()) {
+			return false;
+		}
+		if (!wrapper.getFullySelectedColumns().equals(getFullySelectedColumns())) {
+			return false;
+		}
+		if (!wrapper.getFullySelectedRows().equals(getFullySelectedRows())) {
+			return false;
+		}
+		if (!wrapper.getSingleSelectedCells().equals(getSingleSelectedCells())) {
+			return false;
+		}
+		if (wrapper.getSelectedCells().equals(getSelectedCells())) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper#getNatTableModelManager()
 	 *
 	 * @return
-	 *         the table manager from where the selection comes or <code>null</code> if a deprecated constructor has been used
-	 * @since 5.0
 	 */
+	@Override
 	public INattableModelManager getNatTableModelManager() {
 		return this.manager;
 	}
 
-
-	/**
-	 * This method is used to fill referenced rows from another {@link TableSelectionWrapper}
-	 *
-	 * @param sourceWrapper
-	 *            the source selection wrapper used to copy the rows selection
-	 *
-	 * @since 7.0
-	 */
-	public void copyRowsSelection(final TableSelectionWrapper sourceWrapper) {
-		this.rowPositionAndAxis.putAll(sourceWrapper.rowPositionAndAxis);
-		this.rowAxisElements.addAll(sourceWrapper.rowAxisElements);
-	}
-
-	/**
-	 * This method is used to fill referenced columns from another {@link TableSelectionWrapper}
-	 *
-	 * @param sourceWrapper
-	 *            the source selection wrapper used to copy the columns selection
-	 *
-	 * @since 7.0
-	 */
-	public void copyColumnsSelection(final TableSelectionWrapper sourceWrapper) {
-		this.columnPositionAndAxis.putAll(sourceWrapper.columnPositionAndAxis);
-		this.columnAxisElements.addAll(sourceWrapper.columnAxisElements);
-	}
 
 	/**
 	 *

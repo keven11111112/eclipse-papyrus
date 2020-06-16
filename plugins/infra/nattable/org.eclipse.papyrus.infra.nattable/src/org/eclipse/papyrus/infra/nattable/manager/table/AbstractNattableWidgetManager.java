@@ -18,7 +18,7 @@
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 417095
  *  Vincent Lorenzo (CEA LIST) - bug 525221
  *  Nicolas Fauvergue (CEA LIST) - bug 509971
- *  Vincent Lorenzo (CEA LIST) - bug 561300, 562619, 564130
+ *  Vincent Lorenzo (CEA LIST) - bug 561300, 562619, 564130, 517617, 532452
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -330,7 +330,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 * The column DPI converter.
 	 * TODO: This must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
-	 * 
+	 *
 	 * @since 5.0
 	 */
 	private IDpiConverter widthDPIConverter = null;
@@ -338,7 +338,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 * The row DPI converter.
 	 * TODO: This must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
-	 * 
+	 *
 	 * @since 5.0
 	 */
 	private IDpiConverter heightDPIConverter = null;
@@ -444,7 +444,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 		// create the filter layer, configRegistry can be null for our usecase
 		this.filterStrategy = createFilterStrategy();
-		this.filterColumnHeaderComposite = new FilterRowHeaderComposite<Object>(this.filterStrategy, columnHeaderLayerStack, columnHeaderDataProvider, this);
+		this.filterColumnHeaderComposite = new FilterRowHeaderComposite<>(this.filterStrategy, columnHeaderLayerStack, columnHeaderDataProvider, this);
 
 		// init the filter visibility
 		this.filterColumnHeaderComposite.setFilterRowVisible(HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisConfigurationUsedInTable(this.table).isDisplayFilter());
@@ -486,7 +486,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
 		this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
 		// This allows to define the table context as selection on the table opening
-		this.selectionProvider.setSelection(new TableStructuredSelection(getTable().getContext(), new TableSelectionWrapper(this, Collections.<PositionCoordinate> emptyList())));
+		this.selectionProvider.setSelection(new TableStructuredSelection(getTable().getContext(), new TableSelectionWrapper(this, this.bodyLayerStack.getSelectionLayer(), Collections.<PositionCoordinate> emptyList())));
 
 		// Add a selection listener on the CTabFolder to select the table context
 		final CTabFolder tabFolder = getParentCTabFolder();
@@ -526,6 +526,25 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		initResourceSetListener();
 		return this.natTable;
 	}
+
+	/**
+	 * This method allows to activate the selection the provider
+	 *
+	 * @since 7.0
+	 */
+	protected final void activateSelectionProvider() {
+		this.selectionProvider.setActive(true);
+	}
+
+	/**
+	 * This method allows to suspend the selection provider in order to ignore selection notification
+	 *
+	 * @since 7.0
+	 */
+	protected final void unactivateSelectionProvider() {
+		this.selectionProvider.setActive(false);
+	}
+
 
 	/**
 	 * Get the parent CTabFolder if exists.
@@ -573,10 +592,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						if (!hasSelection && null != natTable && null != selectionProvider && null != getTable().getContext()) {
 							if (selectionInTable.getFirstElement().equals(getTable().getContext())) {
 								// Set the table as selection to force the properties view to refresh it
-								selectionProvider.setSelection(new TableStructuredSelection(getTable(), new TableSelectionWrapper(AbstractNattableWidgetManager.this, Collections.<PositionCoordinate> emptyList())));
+								selectionProvider.setSelection(new TableStructuredSelection(getTable(), new TableSelectionWrapper(AbstractNattableWidgetManager.this, bodyLayerStack.getSelectionLayer(), Collections.<PositionCoordinate> emptyList())));
 							}
 							// This allows to define the table context as selection on the table opening
-							selectionProvider.setSelection(new TableStructuredSelection(getTable().getContext(), new TableSelectionWrapper(AbstractNattableWidgetManager.this, Collections.<PositionCoordinate> emptyList())));
+							selectionProvider.setSelection(new TableStructuredSelection(getTable().getContext(), new TableSelectionWrapper(AbstractNattableWidgetManager.this, bodyLayerStack.getSelectionLayer(), Collections.<PositionCoordinate> emptyList())));
 						}
 					}
 				}
@@ -629,7 +648,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * @return
-	 * 		the filter strategy to use
+	 *         the filter strategy to use
 	 */
 	protected abstract IFilterStrategy<Object> createFilterStrategy();
 
@@ -761,7 +780,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 *
 	 * @param notification
 	 * @return
-	 * 		The nearest table containing the style in order to verify the table's styled event's source
+	 *         The nearest table containing the style in order to verify the table's styled event's source
 	 */
 	protected static Table findTable(Notification notification) {
 		if (notification.getNotifier() instanceof Table) {
@@ -785,7 +804,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 *            the body layer stack to use
 	 *
 	 * @return
-	 * 		the row header layer stack to use
+	 *         the row header layer stack to use
 	 */
 	protected RowHeaderLayerStack createRowHeaderLayerStack(BodyLayerStack bodyLayerStack) {
 		return new RowHeaderLayerStack(bodyLayerStack, this);
@@ -808,7 +827,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 * 		the label provider service
+	 *         the label provider service
 	 */
 	private LabelProviderService getContextLabelProviderService() {
 		try {
@@ -823,7 +842,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 * 		the decoration service
+	 *         the decoration service
 	 */
 	protected DecorationService getDecorationService() {
 		if (null == decorationService) {
@@ -860,7 +879,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @param selectionProvider
 	 *
 	 * @return
-	 * 		This method creates the MenuManager used for theBody of the table and register it, with the selection provider in the {@link IWorkbenchPartSite} of the editor when not <code>null</code>
+	 *         This method creates the MenuManager used for theBody of the table and register it, with the selection provider in the {@link IWorkbenchPartSite} of the editor when not <code>null</code>
 	 * @since 2.0
 	 */
 	public MenuManager createAndRegisterMenuManagerAndSelectionProvider(final NatTable natTable, final IWorkbenchPartSite site, ISelectionProvider selectionProvider) {
@@ -1118,7 +1137,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @param newColumnWidth
 	 *            the new width for the given column.
 	 * @return
-	 * 		the command to set the new column width when the column is saved as IAxis and <code>null</code> in others cases
+	 *         the command to set the new column width when the column is saved as IAxis and <code>null</code> in others cases
 	 *
 	 * @since 2.0
 	 */
@@ -1174,7 +1193,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @param newRowHeight
 	 *            the new height for the given row.
 	 * @return
-	 * 		the command to set the new row height when the row is saved as IAxis and <code>null</code> in others cases
+	 *         the command to set the new row height when the row is saved as IAxis and <code>null</code> in others cases
 	 *
 	 * @since 2.0
 	 */
@@ -1241,8 +1260,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			public void handleLayerEvent(ILayerEvent event) {
 				if (event instanceof RowResizeEvent) {
 					// get the new values from the index and label headers
-					//TODO: the down scale must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
-                    // Get the size depending to the DPI scale
+					// TODO: the down scale must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
+					// Get the size depending to the DPI scale
 					int newHeaderIndexHeight = downScale(heightDPIConverter, columnHeaderLayerStack.getColumnIndexDataLayer().getRowHeightByPosition(0));
 					int newHeaderLabelHeight = downScale(heightDPIConverter, columnHeaderLayerStack.getColumnLabelDataLayer().getRowHeightByPosition(0));
 					// get the position of the header being modified
@@ -1430,8 +1449,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 							// Resize the index if the position is 0
 							if (0 == resizedHeaderPosition && localRowHeaderAxis != null) {
 								// Calculate the width of the index column
-								//TODO: the down scale must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
-			                    // Get the size depending to the DPI scale
+								// TODO: the down scale must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
+								// Get the size depending to the DPI scale
 								int newHeaderIndexWidth = downScale(widthDPIConverter, rowHeaderLayerStack.getRowIndexDataLayer().getColumnWidthByPosition(0));
 								IntValueStyle valueIndex = (IntValueStyle) localRowHeaderAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_INDEX_WIDTH);
 								if (valueIndex != null && valueIndex.getIntValue() != newHeaderIndexWidth) {
@@ -1452,8 +1471,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 							// This is a resize of row header label
 							if (1 <= resizedHeaderPosition && null != localRowHeaderAxis) {
 								// Calculate the width of the label column (depending to its position)
-								//TODO: the down scale must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
-			                    // Get the size depending to the DPI scale
+								// TODO: the down scale must be removed after using NatTable 1.6 which provides {@link DataLayer#upScaleColumnWidth(int)} and {@link DataLayer#upScaleRowHeight(int)}
+								// Get the size depending to the DPI scale
 								int newHeaderLabelWidth = downScale(widthDPIConverter, rowHeaderLayerStack.getRowLabelDataLayer().getColumnWidthByPosition(resizedHeaderPosition - 1));
 								if (1 == resizedHeaderPosition) {
 									IntValueStyle valueLabel = (IntValueStyle) localRowHeaderAxis.getNamedStyle(NattablestylePackage.eINSTANCE.getIntValueStyle(), NamedStyleConstants.ROW_LABEL_WIDTH);
@@ -1514,7 +1533,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @param event
 	 *            an event
 	 * @return
-	 * 		a LocationValue for the point, which contains informations about this location (TableGridRegion, row and column index, row and column
+	 *         a LocationValue for the point, which contains informations about this location (TableGridRegion, row and column index, row and column
 	 *         elements, the cell, the point and its translation).
 	 *         Some of these values can be <code>null</code> or not depending of the region of the table
 	 */
@@ -1743,7 +1762,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		// ctrl mask is always set to false at the beginning, because we are doing a new selection
 		boolean ctrlMask = false;
 		for (int rowIndex = 0; rowIndex < rowObjects.size(); rowIndex++) {
-			List<Object> toFind = new ArrayList<Object>(elements);
+			List<Object> toFind = new ArrayList<>(elements);
 			for (Object object : elements) {
 				Object realObject = AxisUtils.getRepresentedElement(object);
 				if (!realObject.equals(object)) { // getRepresentedElement can return the axis itself
@@ -1769,7 +1788,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		}
 
 		for (int columnIndex = 0; columnIndex < columnObjects.size(); columnIndex++) {
-			List<Object> toFind = new ArrayList<Object>(elements);
+			List<Object> toFind = new ArrayList<>(elements);
 			for (Object object : elements) {
 				Object realObject = AxisUtils.getRepresentedElement(object);
 				if (!realObject.equals(object)) { // getRepresentedElement can return the axis itself
@@ -1830,7 +1849,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		}
 
 		// Get the axis with non 'axisWidth' named style (to set the correct percentage)
-		final Set<Integer> notManagedIndexAxisWidth = new HashSet<Integer>();
+		final Set<Integer> notManagedIndexAxisWidth = new HashSet<>();
 		int remainingPercentage = 100;
 
 		// we go through all the elements to find those which have been modified
@@ -2062,7 +2081,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		List<IAxis> notationColumnsAxisList = getTable().getCurrentColumnAxisProvider().getAxis();
 		List<IAxis> notationRowsAxisList = getTable().getCurrentRowAxisProvider().getAxis();
 		// list of the selected Axis indexes
-		List<Integer> selectedAxisIndex = new ArrayList<Integer>();
+		List<Integer> selectedAxisIndex = new ArrayList<>();
 
 		// the two conditions below handle the merge of all the columns/rows
 		if (valueRow != null && valueRow.isBooleanValue()) {
@@ -2139,7 +2158,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 * 		The boolean indicating that some row axis are to be merged in the selection
+	 *         The boolean indicating that some row axis are to be merged in the selection
 	 */
 	protected boolean getToMergeRowBoolean() {
 		// for(IAxis currentAxis : getTable().getCurrentRowAxisProvider().getAxis()) {
@@ -2160,7 +2179,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 * 		The boolean indicating that some column axis are to be merged in the selection
+	 *         The boolean indicating that some column axis are to be merged in the selection
 	 */
 	protected boolean getToMergeColumnBoolean() {
 		// for(IAxis currentAxis : getTable().getCurrentColumnAxisProvider().getAxis()) {
@@ -2181,7 +2200,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateSelectedRows() {
@@ -2210,7 +2229,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateSelectedColumns() {
@@ -2239,7 +2258,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateAllRows() {
@@ -2269,7 +2288,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateAllColumns() {
@@ -2314,7 +2333,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 * 		a {@link TableStructuredSelection} representing the current selection of the table or <code>null</code> when there is no selection
+	 *         a {@link TableStructuredSelection} representing the current selection of the table or <code>null</code> when there is no selection
 	 * @since 2.0
 	 */
 	@Override
@@ -2331,7 +2350,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 * 		a map representing index of fully selected rows linked to the associated element
+	 *         a map representing index of fully selected rows linked to the associated element
 	 *
 	 *         The returned value can't be <code>null</code>
 	 */
@@ -2349,7 +2368,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 * 		a map representing index of fully selected columns linked to the associated element
+	 *         a map representing index of fully selected columns linked to the associated element
 	 *
 	 *         The returned value can't be <code>null</code>
 	 */
@@ -2374,7 +2393,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 *            The value that should be down scaled.
 	 * @return The scaled value if a {@link IDpiConverter} is configured, the
 	 *         value itself if no {@link IDpiConverter} is set.
-	 * 
+	 *
 	 * @since 5.0
 	 */
 	private int downScale(final IDpiConverter dpiConverter, final int value) {

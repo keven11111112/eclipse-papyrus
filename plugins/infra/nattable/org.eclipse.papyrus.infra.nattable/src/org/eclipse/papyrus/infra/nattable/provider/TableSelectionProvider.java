@@ -12,18 +12,16 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
- *  Vincent Lorenzo (CEA LIST) - bug 525221, 561370
+ *  Vincent Lorenzo (CEA LIST) - bug 525221, 561370, 517617, 532452
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -32,8 +30,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
 import org.eclipse.nebula.widgets.nattable.coordinate.Range;
+import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.layer.ILayerListener;
-import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.event.CellSelectionEvent;
@@ -41,8 +39,8 @@ import org.eclipse.nebula.widgets.nattable.selection.event.ColumnSelectionEvent;
 import org.eclipse.nebula.widgets.nattable.selection.event.ISelectionEvent;
 import org.eclipse.nebula.widgets.nattable.selection.event.RowSelectionEvent;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
+import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper2;
 import org.eclipse.papyrus.infra.nattable.utils.TypeSelectionEnum;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.ui.services.IDisposable;
@@ -84,6 +82,12 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 	private boolean isDisposed = false;
 
 	/**
+	 * boolean indicating if we must listen notification or not
+	 * (used to suspend selection construction during a refresh)
+	 */
+	private boolean isActive = true;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param manager
@@ -96,7 +100,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 		this.selectionListener = this;
 		this.selectionLayer.addLayerListener(this.selectionListener);
 		this.currentSelection = new StructuredSelection();
-		this.listeners = new ArrayList<ISelectionChangedListener>();
+		this.listeners = new ArrayList<>();
 		this.manager = manager;
 	}
 
@@ -132,7 +136,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.jface.viewers.ISelectionProvider#setSelection(org.eclipse.jface.viewers.ISelection)
 	 */
 	@Override
@@ -149,16 +153,16 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 
 	/**
 	 * This allows to calculate the new selection from the event and the layer.
-	 * 
+	 *
 	 * @param event
 	 *            The event caught.
 	 */
 	protected void calculateAndStoreNewSelection(final ILayerEvent event) {
 		// the list of the selected elements
-		Collection<Object> selection = new HashSet<Object>();
+		Collection<Object> selection = new HashSet<>();
 		final ISelection newSelection;
 		if (event instanceof ISelectionEvent) {
-			TableSelectionWrapper wrapper = new TableSelectionWrapper(this.manager, ListHelper.asList(this.selectionLayer.getSelectedCellPositions()), new HashMap<Integer, Object>(0), new HashMap<Integer, Object>(0));
+			TableSelectionWrapper wrapper = new TableSelectionWrapper(this.manager, this.selectionLayer, ListHelper.asList(this.selectionLayer.getSelectedCellPositions()));// , new HashMap<Integer, Object>(0), new HashMap<Integer, Object>(0));
 
 			// Get the type selection event if it is a specific selection event
 			TypeSelectionEnum typeSelectionEvent = TypeSelectionEnum.NONE;
@@ -198,6 +202,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 				}
 
 			} else {
+				wrapper = new TableSelectionWrapper2(this.manager, this.selectionLayer);
 				selection = calculateSelectionRowsAndColumnsWithoutTypeSelectionEvent(wrapper, event);
 			}
 			// If no selection appended, the selection must be the context of the table
@@ -214,7 +219,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 
 	/**
 	 * This allows to calculate the selection when the shift key is pressed with the selection.
-	 * 
+	 *
 	 * @param wrapper
 	 *            The table selection wrapper to fill.è
 	 * @param typeSelectionEvent
@@ -227,20 +232,16 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 			if (this.currentSelection instanceof TableStructuredSelection) {
 				// Add the previous selected rows and columns to the current wrapper
 				final TableSelectionWrapper existingWrapper = (TableSelectionWrapper) ((TableStructuredSelection) currentSelection).getAdapter(TableSelectionWrapper.class);
-				wrapper.getFullySelectedRows().putAll(existingWrapper.getFullySelectedRows());
-				wrapper.getFullySelectedColumns().putAll(existingWrapper.getFullySelectedColumns());
+				wrapper.copyRowsSelection(existingWrapper);
+				wrapper.copyColumnsSelection(existingWrapper);
 			}
 			// If a row is selected with shift mask, the selected rows by the layer must be the wrapper selected rows
 		} else if (TypeSelectionEnum.ROW.equals(typeSelectionEvent)) {
-			for (final int i : this.selectionLayer.getFullySelectedRowPositions()) {
-				final int rowIndex = this.selectionLayer.getRowIndexByPosition(i);
-				Object el = this.manager.getRowElement(rowIndex);
-				if (el != null) {
-					if (!wrapper.getFullySelectedRows().containsKey(rowIndex)) {
-						// Check if the column to select is corresponding to at least one cell
-						if (isSelectedCellsContainsRow(wrapper.getSelectedCells(), this.manager.getBodyLayerStack().getRowHideShowLayer().getRowPositionByIndex(rowIndex))) {
-							wrapper.getFullySelectedRows().put(Integer.valueOf(rowIndex), el);
-						}
+			for (final int rowPosition : this.selectionLayer.getFullySelectedRowPositions()) {
+				if (!wrapper.getFullySelectedRows().containsKey(rowPosition)) {
+					// Check if the row to select is corresponding to at least one cell
+					if (isSelectedCellsContainsRow(wrapper.getSelectedCells(), rowPosition)) {
+						wrapper.addSelectedRow(rowPosition);
 					}
 				}
 			}
@@ -252,30 +253,27 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 			if (this.currentSelection instanceof TableStructuredSelection) {
 				// Add the previous selected rows and columns to the current wrapper
 				final TableSelectionWrapper existingWrapper = (TableSelectionWrapper) ((TableStructuredSelection) currentSelection).getAdapter(TableSelectionWrapper.class);
-				wrapper.getFullySelectedRows().putAll(existingWrapper.getFullySelectedRows());
-				wrapper.getFullySelectedColumns().putAll(existingWrapper.getFullySelectedColumns());
+				wrapper.copyRowsSelection(existingWrapper);
+				wrapper.copyColumnsSelection(existingWrapper);
 			}
 
-			for (final int i : this.selectionLayer.getFullySelectedColumnPositions()) {
-				final int columnIndex = this.selectionLayer.getColumnIndexByPosition(i);
-				Object el = this.manager.getColumnElement(columnIndex);
-				if (el != null) {
-					if (!wrapper.getFullySelectedColumns().containsKey(columnIndex)) {
-						// Check if the column to select is corresponding to at least one cell
-						if (isSelectedCellsContainsColumn(wrapper.getSelectedCells(), this.manager.getBodyLayerStack().getColumnHideShowLayer().getColumnPositionByIndex(columnIndex))) {
-							wrapper.getFullySelectedColumns().put(Integer.valueOf(columnIndex), el);
-						}
+			for (final int columnPosition : this.selectionLayer.getFullySelectedColumnPositions()) {
+				if (!wrapper.getFullySelectedColumns().containsKey(columnPosition)) {
+					// Check if the column to select is corresponding to at least one cell
+					if (isSelectedCellsContainsColumn(wrapper.getSelectedCells(), columnPosition)) {
+						wrapper.addSelectedColumn(columnPosition);
 					}
 				}
+
 			}
 		}
-
+		wrapper.buildSingleCellSelection();
 		return calculateSelectionFromWrapper(wrapper);
 	}
 
 	/**
 	 * This allows to calculate the selection when the control key is pressed with the selection.
-	 * 
+	 *
 	 * @param wrapper
 	 *            The table selection wrapper to fill.
 	 * @param typeSelectionEvent
@@ -288,8 +286,8 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 		if (this.currentSelection instanceof TableStructuredSelection) {
 			// Add the previous selected rows and columns to the current wrapper
 			final TableSelectionWrapper existingWrapper = (TableSelectionWrapper) ((TableStructuredSelection) currentSelection).getAdapter(TableSelectionWrapper.class);
-			wrapper.getFullySelectedRows().putAll(existingWrapper.getFullySelectedRows());
-			wrapper.getFullySelectedColumns().putAll(existingWrapper.getFullySelectedColumns());
+			wrapper.copyRowsSelection(existingWrapper);
+			wrapper.copyColumnsSelection(existingWrapper);
 		}
 
 		// If a cell is selected by the control and was already selected, remove it and remove the selected row and column
@@ -301,22 +299,23 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 			// Check if the cell was unselected
 			if (!wrapper.getSelectedCells().contains(tmpCoordinate)) {
 				if (wrapper.getFullySelectedRows().containsKey(rowPosition)) {
-					wrapper.getFullySelectedRows().remove(rowPosition);
+					wrapper.removeSelectedRow(rowPosition);// getFullySelectedRows().remove(rowPosition);
 				}
 				if (wrapper.getFullySelectedColumns().containsKey(columnPosition)) {
-					wrapper.getFullySelectedColumns().remove(columnPosition);
+					wrapper.removeSelectedColumn(columnPosition);// wrapper.getFullySelectedColumns().remove(columnPosition);
 				}
 			}
 		} else {
 			calculateSelectionRowsAndColumnsWithTypeSelectionEvent(wrapper, typeSelectionEvent, event);
 		}
 
+		wrapper.buildSingleCellSelection();
 		return calculateSelectionFromWrapper(wrapper);
 	}
 
 	/**
 	 * This allows to calculate the selection for rows and columns (cells already added to the wrapper).
-	 * 
+	 *
 	 * @param wrapper
 	 *            The table selection wrapper to fill.
 	 * @param typeSelectionEvent
@@ -329,17 +328,16 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 		// Manage the column selection event
 		if (TypeSelectionEnum.COLUMN.equals(typeSelectionEvent)) {
 			for (Range range : ((ColumnSelectionEvent) event).getColumnPositionRanges()) {
-				for (int index = range.start; index < range.end; index++) {
-					final int columnIndex = this.selectionLayer.getColumnIndexByPosition(index);
-					Object el = this.manager.getColumnElement(columnIndex);
-					if (wrapper.getFullySelectedColumns().containsKey(index)) {
+				for (int columnPosition = range.start; columnPosition < range.end; columnPosition++) {
+					if (wrapper.getFullySelectedColumns().containsKey(columnPosition)) {
 						// The selected column was only selected, so it need to be removed
-						wrapper.getFullySelectedColumns().remove(columnIndex);
-					} else if (el != null) {
+						wrapper.removeSelectedColumn(columnPosition);
+					} else {
 						// Check if the column to select is corresponding to at least one cell
-						if (isSelectedCellsContainsColumn(wrapper.getSelectedCells(), this.manager.getBodyLayerStack().getColumnHideShowLayer().getColumnPositionByIndex(columnIndex))) {
+						// why this stupid test
+						if (isSelectedCellsContainsColumn(wrapper.getSelectedCells(), columnPosition)) {
 							// The selected column was not already in selection, add it
-							wrapper.getFullySelectedColumns().put(Integer.valueOf(columnIndex), el);
+							wrapper.addSelectedColumn(columnPosition);
 						}
 					}
 				}
@@ -347,29 +345,27 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 			// Manage the row selection event
 		} else if (TypeSelectionEnum.ROW.equals(typeSelectionEvent)) {
 			for (Range range : ((RowSelectionEvent) event).getRowPositionRanges()) {
-				for (int index = range.start; index < range.end; index++) {
-					final int rowIndex = this.selectionLayer.getRowIndexByPosition(index);
-					Object el = this.manager.getRowElement(rowIndex);
-					if (wrapper.getFullySelectedRows().containsKey(index)) {
+				for (int rowPosition = range.start; rowPosition < range.end; rowPosition++) {
+					if (wrapper.getFullySelectedRows().containsKey(rowPosition)) {
 						// The selected row was only selected, so it need to be removed
-						wrapper.getFullySelectedRows().remove(rowIndex);
-					} else if (el != null) {
+						wrapper.removeSelectedRow(rowPosition);
+					} else {
 						// Check if the row to select is corresponding to at least one cell
-						if (isSelectedCellsContainsRow(wrapper.getSelectedCells(), this.manager.getBodyLayerStack().getRowHideShowLayer().getRowPositionByIndex(rowIndex))) {
+						if (isSelectedCellsContainsRow(wrapper.getSelectedCells(), rowPosition)) {
 							// The selected row was not already in selection, add it
-							wrapper.getFullySelectedRows().put(Integer.valueOf(rowIndex), el);
+							wrapper.addSelectedRow(rowPosition);
 						}
 					}
 				}
 			}
 		}
-
+		wrapper.buildSingleCellSelection();
 		return calculateSelectionFromWrapper(wrapper);
 	}
 
 	/**
 	 * This allows to determinate if the row index to add to the rows selected have at least one of its cells in the selected cells.
-	 * 
+	 *
 	 * @param selectedCells
 	 *            The selected cells.
 	 * @param rowIndex
@@ -392,7 +388,7 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 
 	/**
 	 * This allows to determinate if the column index to add to the columns selected have at least one of its cells in the selected cells.
-	 * 
+	 *
 	 * @param selectedCells
 	 *            The selected cells.
 	 * @param columnIndex
@@ -415,64 +411,18 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 
 	/**
 	 * This allows to calculate the selected objects from the wrapper filled.
-	 * 
+	 *
 	 * @param wrapper
 	 *            The wrapper filled.
 	 * @return The collection of object selected.
 	 */
 	protected Collection<Object> calculateSelectionFromWrapper(final TableSelectionWrapper wrapper) {
-		final Collection<Object> selection = new ArrayList<Object>();
-
-		// Fill the selection list with the selected columns
-		final List<Integer> selectedColumnsIndexes = new ArrayList<Integer>();
-		for (final Entry<Integer, Object> selectedColumn : wrapper.getFullySelectedColumns().entrySet()) {
-			final Object selectedObject = AxisUtils.getRepresentedElement(selectedColumn.getValue());
-			if (selectedObject != null) {
-				selection.add(selectedObject);
-			}
-			selectedColumnsIndexes.add(selectedColumn.getKey());
-		}
-		// Fill the selection list with the selected rows
-		final List<Integer> selectedRowsIndexes = new ArrayList<Integer>();
-		for (final Entry<Integer, Object> selectedRow : wrapper.getFullySelectedRows().entrySet()) {
-			final Object selectedObject = AxisUtils.getRepresentedElement(selectedRow.getValue());
-			if (selectedObject != null) {
-				selection.add(selectedObject);
-			}
-			selectedRowsIndexes.add(selectedRow.getKey());
-		}
-		// Fill the selection list with the selected cells
-		for (final PositionCoordinate cellLocation : wrapper.getSelectedCells()) {
-			final int colPos = cellLocation.getColumnPosition();
-			final int rowPos = cellLocation.getRowPosition();
-			if (!selectedColumnsIndexes.contains(new Integer(this.selectionLayer.getColumnIndexByPosition(colPos))) && !selectedRowsIndexes.contains(new Integer(this.selectionLayer.getRowIndexByPosition(rowPos)))) {
-				final ILayerCell cell = this.selectionLayer.getCellByPosition(colPos, rowPos);
-				if (cell != null) {
-					final Object value = cell.getDataValue();
-					if (value != null) {
-						if (value instanceof Collection<?>) {
-							final Iterator<?> iter = ((Collection<?>) value).iterator();
-							while (iter.hasNext()) {
-								final Object current = iter.next();
-								selection.add(current);
-							}
-						} else {
-							selection.add(value);
-						}
-					} else {
-						// Bug 481817 : When the value is null, we need to have the cell selection, so add the cell as selection instead of value
-						selection.add(cell);
-					}
-				}
-			}
-		}
-
-		return selection;
+		return wrapper.getSelectedElements();
 	}
 
 	/**
 	 * This allows to manage the selection when any type of selection was done (cell, row or column selection from the selection event).
-	 * 
+	 *
 	 * @param wrapper
 	 *            The wrapper to fill.
 	 * @param event
@@ -480,72 +430,13 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 	 * @return The collection of object selected.
 	 */
 	protected Collection<Object> calculateSelectionRowsAndColumnsWithoutTypeSelectionEvent(final TableSelectionWrapper wrapper, final ILayerEvent event) {
-		final Collection<Object> selection = new ArrayList<Object>();
-
-		// we are not able to distinguish the 2 ways to select a full axis :
-		// - first way : clicking on axis header
-		// - second way : clicking on first cell of the axis, Pressing SHIFT, clicking on the last cell of the axis (or selecting each cell of the axis pressing CTRL)
-		// so we are not able to know if the user want to select the element represented by the axis OR all values displayed on the axis, without the element represented by the axis
-		// we decided to implements this behavior for all kind of selection event :
-		// 1- we add in the selection elements represented by fully selected rows
-		// 2- we add in the selection elements represented by fully selected columns
-		// 3- we add in the selection the contents of selected cell which are not included in the fully selected axis
-
-		final List<Integer> selectedRowsIndexes = new ArrayList<Integer>();
-		for (int i : this.selectionLayer.getFullySelectedRowPositions()) {
-			int rowIndex = this.selectionLayer.getRowIndexByPosition(i);
-			selectedRowsIndexes.add(new Integer(rowIndex));
-			Object el = this.manager.getRowElement(rowIndex);
-			if (el != null) {
-				wrapper.getFullySelectedRows().put(Integer.valueOf(rowIndex), el);
-				el = AxisUtils.getRepresentedElement(el);
-				selection.add(el);
-			}
-		}
-		final List<Integer> selectedColumnsIndexes = new ArrayList<Integer>();
-		for (int i : this.selectionLayer.getFullySelectedColumnPositions()) {
-			int columnIndex = this.selectionLayer.getColumnIndexByPosition(i);
-			selectedColumnsIndexes.add(new Integer(columnIndex));
-			Object el = this.manager.getColumnElement(columnIndex);
-			if (el != null) {
-				wrapper.getFullySelectedColumns().put(Integer.valueOf(columnIndex), el);
-				el = AxisUtils.getRepresentedElement(el);
-				selection.add(el);
-			}
-		}
-
-		for (final PositionCoordinate cellLocation : wrapper.getSelectedCells()) {
-			final int colPos = cellLocation.getColumnPosition();
-			final int rowPos = cellLocation.getRowPosition();
-			if (!selectedColumnsIndexes.contains(new Integer(this.selectionLayer.getColumnIndexByPosition(colPos))) && !selectedRowsIndexes.contains(new Integer(this.selectionLayer.getRowIndexByPosition(rowPos)))) {
-				final ILayerCell cell = this.selectionLayer.getCellByPosition(colPos, rowPos);
-				if (cell != null) {
-					final Object value = cell.getDataValue();
-					if (value != null) {
-						if (value instanceof Collection<?>) {
-							final Iterator<?> iter = ((Collection<?>) value).iterator();
-							while (iter.hasNext()) {
-								final Object current = iter.next();
-								selection.add(current);
-							}
-						} else {
-							selection.add(value);
-						}
-					} else {
-						// Bug 481817 : When the value is null, we need to have the cell selection, so add the cell as selection instead of value
-						selection.add(cell);
-					}
-				}
-			}
-		}
-
-		return selection;
+		return wrapper.getSelectedElements();
 	}
 
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.ui.services.IDisposable#dispose()
 	 */
 	@Override
@@ -565,13 +456,78 @@ public class TableSelectionProvider implements ISelectionProvider, IDisposable, 
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.nebula.widgets.nattable.layer.ILayerListener#handleLayerEvent(org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent)
 	 */
 	@Override
 	public void handleLayerEvent(final ILayerEvent event) {
-		if (!isDisposed && event instanceof ISelectionEvent) {
+		if (!isDisposed && isActive && event instanceof ISelectionEvent) {
 			calculateAndStoreNewSelection(event);
 		}
+	}
+
+
+	/**
+	 * @param activate
+	 *            if <code>true</code> we listen selection change event to build a new selection
+	 * @since 7.0
+	 */
+	public void setActive(boolean activate) {
+		this.isActive = activate;
+		if (activate) {
+			// we need to recalculate the selection on reactivation, to get a correction cell selection
+			// example for a table with 3 columns, 1 row is selected
+			// we add one row
+			// we refresh reselecting the row
+			// if not, only 3 cells are selected, but now there are 4 cells on the row...
+			calculateAndStoreNewSelection(new FakeSelectionEvent(this.selectionLayer));
+		}
+	}
+
+	/**
+	 *
+	 * a fake selection event to relaunch a build of the selection
+	 *
+	 */
+	private class FakeSelectionEvent implements ILayerEvent, ISelectionEvent {
+
+		private final SelectionLayer selectionLayer;
+
+		public FakeSelectionEvent(final SelectionLayer layer) {
+			this.selectionLayer = layer;
+		}
+
+		/**
+		 * @see org.eclipse.nebula.widgets.nattable.selection.event.ISelectionEvent#getSelectionLayer()
+		 *
+		 * @return
+		 */
+		@Override
+		public SelectionLayer getSelectionLayer() {
+			return selectionLayer;
+		}
+
+		/**
+		 * @see org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent#convertToLocal(org.eclipse.nebula.widgets.nattable.layer.ILayer)
+		 *
+		 * @param localLayer
+		 * @return
+		 */
+		@Override
+		public boolean convertToLocal(ILayer localLayer) {
+			// unused
+			return false;
+		}
+
+		/**
+		 * @see org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent#cloneEvent()
+		 *
+		 * @return
+		 */
+		@Override
+		public ILayerEvent cloneEvent() {
+			return new FakeSelectionEvent(this.selectionLayer);
+		}
+
 	}
 }

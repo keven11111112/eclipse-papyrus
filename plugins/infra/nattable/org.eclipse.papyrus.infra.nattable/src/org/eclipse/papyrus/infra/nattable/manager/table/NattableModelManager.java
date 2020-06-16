@@ -14,7 +14,7 @@
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 526146, 515737, 516314
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559973, 560318, 562619, 562646
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559973, 560318, 562619, 562646, 517617, 532452
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -26,6 +26,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.runtime.Assert;
@@ -59,7 +60,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
-import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.data.IColumnAccessor;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.filterrow.IFilterStrategy;
@@ -67,7 +67,6 @@ import org.eclipse.nebula.widgets.nattable.layer.ILayerListener;
 import org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent;
 import org.eclipse.nebula.widgets.nattable.resize.command.InitializeAutoResizeRowsCommand;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
-import org.eclipse.nebula.widgets.nattable.selection.command.ClearAllSelectionsCommand;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectCellCommand;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectColumnCommand;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectRowsCommand;
@@ -80,7 +79,6 @@ import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.dialog.DisplayedAxisSelectorDialog;
 import org.eclipse.papyrus.infra.nattable.filter.PapyrusFilterStrategy;
-import org.eclipse.papyrus.infra.nattable.layer.PapyrusSelectionLayer;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AxisManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.axis.CompositeAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
@@ -1186,24 +1184,27 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			return;
 		}
 
-		// Get the previous selection before the refresh
-		TableStructuredSelection selectionInTable = getSelectionInTable();
-		Collection<PositionCoordinate> selectedCells = null;
-		Collection<Integer> columnPositions = null;
-		Collection<Integer> rowsPositions = null;
-
-		if (null != selectionInTable) {
-			TableSelectionWrapper tableSelectionWrapper = (TableSelectionWrapper) selectionInTable.getAdapter(TableSelectionWrapper.class);
-			selectedCells = tableSelectionWrapper.getSelectedCells();
-			columnPositions = tableSelectionWrapper.getFullySelectedColumns().keySet();
-			rowsPositions = tableSelectionWrapper.getFullySelectedRows().keySet();
-		}
-
 		// avoid reentrant call
 		// Refresh only of we are not already refreshing.
 		if (isRefreshing.compareAndSet(false, true)) {
+			// Get the previous selection before the refresh
+			final TableStructuredSelection selectionInTable = getSelectionInTable();
+
+			// we get the current selection (reset to empty after the refresh...)
+			final TableSelectionWrapper tableSelectionWrapper;
+			if (selectionInTable != null) {
+				// we get the current selection (reset to empty after the refresh...)
+				tableSelectionWrapper = (TableSelectionWrapper) selectionInTable.getAdapter(TableSelectionWrapper.class);
+			} else {
+				tableSelectionWrapper = null;
+			}
+
+			// stop to update selection on selection event
+			unactivateSelectionProvider();
+
 			final SelectionLayer selectionLayer = getBodyLayerStack().getSelectionLayer();
-			selectionLayer.doCommand(new ClearAllSelectionsCommand());
+			// useless
+			// selectionLayer.doCommand(new ClearAllSelectionsCommand());
 
 			// this.natTable.refresh();
 			// custom refresh for bug 562619
@@ -1216,43 +1217,46 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			reinitialiseRowHeight();
 
 			// Keep the selection after the refresh of the table
-			if (null != selectedCells && !selectedCells.isEmpty()) {
-				Collection<Integer> selectedColumns = new ArrayList<>();
-				Collection<Integer> selectedRows = new ArrayList<>();
+
+			// Keep the columns selected before the refresh
+			if (tableSelectionWrapper != null) {
+				// if (false || tableSelectionWrapper.isSelectAll()) {
+				// natTable.doCommand(new SelectAllCommand());
+				// } else {
+				// update the position of the elements in the selection
+				// required to avoid bad re-apply of the previous selection
+				tableSelectionWrapper.updatePositions();
+
+				// now we can take the position of element to select
+				final Set<Integer> columnIndexes = tableSelectionWrapper.getFullySelectedColumns().keySet();
+				final Set<Integer> rowIndexes = tableSelectionWrapper.getFullySelectedRows().keySet();
+				final Set<PositionCoordinate> selectedCells = tableSelectionWrapper.getSingleSelectedCells();
+
+				boolean ctrlMask = false;
 
 				// Keep the columns selected before the refresh
-				if (null != columnPositions && !columnPositions.isEmpty()) {
-					List<Range> selectedColumnsRanges = ((PapyrusSelectionLayer) selectionLayer).getRangeSelectedAxis(columnPositions);
-
-					for (final Range selectedColumnRange : selectedColumnsRanges) {
-						for (int position = selectedColumnRange.start; position < selectedColumnRange.end; position++) {
-							// int realIndex = getBodyLayerStack().getColumnHideShowLayer().getColumnPositionByIndex(position);
-							selectionLayer.doCommand(new SelectColumnCommand(selectionLayer, position, 0, false, true));
-							selectedColumns.add(position);
-						}
-					}
+				for (final int index : columnIndexes) {
+					selectionLayer.doCommand(new SelectColumnCommand(selectionLayer, index, 0, false, ctrlMask));
+					ctrlMask = true;
 				}
 
-				// Keep the rows selected before the refresh
-				if (null != rowsPositions && !rowsPositions.isEmpty()) {
-					List<Range> selectedRowsRanges = ((PapyrusSelectionLayer) selectionLayer).getRangeSelectedAxis(rowsPositions);
 
-					for (final Range selectedRowRange : selectedRowsRanges) {
-						for (int position = selectedRowRange.start; position < selectedRowRange.end; position++) {
-							// int realIndex = getBodyLayerStack().getRowHideShowLayer().getRowPositionByIndex(position);
-							selectionLayer.doCommand(new SelectRowsCommand(selectionLayer, 0, position, false, true));
-							selectedRows.add(position);
-						}
-					}
+				// Keep the rows selected before the refresh
+				for (final int index : rowIndexes) {
+					selectionLayer.doCommand(new SelectRowsCommand(selectionLayer, 0, index, false, ctrlMask));
+					ctrlMask = true;
 				}
 
 				// Manage the cells not contained in the rows and columns already selected
 				for (PositionCoordinate selectedCell : selectedCells) {
-					if (!selectedColumns.contains(selectedCell.getColumnPosition()) && !selectedRows.contains(selectedCell.getRowPosition())) {
-						selectionLayer.doCommand(new SelectCellCommand(selectionLayer, selectedCell.getColumnPosition(), selectedCell.getRowPosition(), false, true));
-					}
+					selectionLayer.doCommand(new SelectCellCommand(selectionLayer, selectedCell.getColumnPosition(), selectedCell.getRowPosition(), false, ctrlMask));
+					ctrlMask = true;
 				}
+
 			}
+			// reactivate the selection provider
+			activateSelectionProvider();
+
 			isRefreshing.set(false);
 		}
 	}

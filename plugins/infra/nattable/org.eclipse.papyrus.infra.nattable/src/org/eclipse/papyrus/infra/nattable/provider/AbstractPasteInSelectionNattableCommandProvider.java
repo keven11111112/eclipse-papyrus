@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2020 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - bug 517617, 532452
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.provider;
@@ -36,7 +36,6 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -52,8 +51,6 @@ import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
-import org.eclipse.nebula.widgets.nattable.hideshow.ColumnHideShowLayer;
-import org.eclipse.nebula.widgets.nattable.hideshow.RowHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectCellCommand;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectColumnCommand;
@@ -1004,10 +1001,6 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 				lastRowPosition = firstRowPosition;
 				lastColumnPosition = firstColumnPosition;
 
-				// Get the hide show layer to calculate the index from the position
-				final RowHideShowLayer rowHideShowLayer = tableManager.getBodyLayerStack().getRowHideShowLayer();
-				final ColumnHideShowLayer columnHideShowLayer = tableManager.getBodyLayerStack().getColumnHideShowLayer();
-
 				// Create the compound command for the paste action
 				final CompoundCommand compoundCommand = new CompoundCommand("Paste action"); //$NON-NLS-1$
 
@@ -1046,7 +1039,8 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 						}
 
 						// Get the row index from its position
-						int realRowIndex = rowHideShowLayer.getRowIndexByPosition(lastRowPosition);
+						int realRowIndex = tableManager.getBodyLayerStack().getSelectionLayer().getRowIndexByPosition(lastRowPosition);
+						
 						// Get the row element from its index
 						final Object rowElement = AxisUtils.getRepresentedElement(tableManager.getRowElement(realRowIndex));
 
@@ -1058,7 +1052,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 								final String valueAsString = cellIter.next();
 
 								// Get the column index from its position
-								int realColumnIndex = columnHideShowLayer.getColumnIndexByPosition(nbColmnRead);
+								int realColumnIndex = tableManager.getBodyLayerStack().getSelectionLayer().getColumnIndexByPosition(nbColmnRead);
 								// Get the column attribute from its index
 								final Object columnElement = AxisUtils.getRepresentedElement(tableManager.getColumnElement(realColumnIndex));
 
@@ -1180,26 +1174,28 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 					long readChar = 0;
 					long previousreadChar = 0;
 
-					// Calculate the first row position of the selection and the index of the first selected element i the root parent (to determinate where the inserted element have to be)
+					// Calculate the first row position of the selection and the position of the first selected element i the root parent (to determinate where the inserted element have to be)
 					int initialFirstRowPosition = -1;
 					if (null != rows) {
-						for (int rowIndex : rows.keySet()) {
-							if (-1 == initialFirstRowPosition || rowIndex < initialFirstRowPosition) {
-								initialFirstRowPosition = rowIndex;
+						for (int rowPosition : rows.keySet()) {
+							if (-1 == initialFirstRowPosition || rowPosition < initialFirstRowPosition) {
+								initialFirstRowPosition = rowPosition;
 							}
 						}
 					}
-					firstRowPosition = tableManager.getBodyLayerStack().getRowHideShowLayer().getRowPositionByIndex(initialFirstRowPosition);
+					firstRowPosition = initialFirstRowPosition;
 					firstColumnPosition = 0;
 					lastRowPosition = firstRowPosition;
 					lastColumnPosition = firstColumnPosition;
 
 					// Calculate the parent context, depth and category from the row position
-					int noIndex = 0;
+					int noPosition = 0;
 					if (-1 != firstRowPosition) {
-						noIndex = firstRowPosition;
+						noPosition = firstRowPosition;
 					}
-					final EObject parentContext = getContentOfSelection(rows, noIndex);
+
+					final EObject parentContext = getContentOfSelection(rows, noPosition);
+					final int noIndex = tableManager.getBodyLayerStack().getSelectionLayer().getRowIndexByPosition(noPosition);
 					final Object firstRowElementSelected = tableManager.getRowElement(noIndex);
 					final int parentDepth = getDepthFromObject(firstRowElementSelected);
 					final String parentCategory = getCategoryFromObject(firstRowElementSelected);
@@ -1209,9 +1205,6 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 					if (-1 != firstRowPosition) {
 						initialFirstIndexInParent = getFirstSelectedElementIndexOfTableContext(rows, firstRowPosition, parentContext);
 					}
-
-					// Get the hide show layer to calculate the index from the position
-					final ColumnHideShowLayer columnHideShowLayer = tableManager.getBodyLayerStack().getColumnHideShowLayer();
 
 					final Iterator<Object> rowIter = pastedValues.keySet().iterator();
 
@@ -1228,19 +1221,20 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 							if (!identifierValue.isEmpty()) {
 
 								// Calculate the row to modify
-								int rowIndexToModify = -1;
+								int rowPositionToModify = -1;
 								boolean sameMultipleIdentifier = false;
 								if (null != rows) {
-									final Iterator<Integer> selectedRowsIndex = rows.keySet().iterator();
-									while (selectedRowsIndex.hasNext() && canContinue(multiStatus)) {
-										int selectedRowIndex = selectedRowsIndex.next();
+									final Iterator<Integer> selectedRowsPosition = rows.keySet().iterator();
+									while (selectedRowsPosition.hasNext() && canContinue(multiStatus)) {
+										int selectedRowPosition = selectedRowsPosition.next();
+										int selectedRowIndex = tableManager.getBodyLayerStack().getSelectionLayer().getRowIndexByPosition(selectedRowPosition);
 										// Check the column identifier into the rows selected
 										if (identifierValue.equals(tableManager.getDataValue(axisIdentifierIndex, selectedRowIndex))) {
 											// If the value is equals and the name is already existing, add an error to specify that the name is corresponding for multiple rows
-											if (-1 < rowIndexToModify) {
+											if (-1 < rowPositionToModify) {
 												sameMultipleIdentifier = true;
 											} else {
-												rowIndexToModify = selectedRowIndex;
+												rowPositionToModify = selectedRowPosition;
 											}
 										}
 									}
@@ -1250,17 +1244,17 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 										// Check the column identifier into the rows selected
 										if (identifierValue.equals(tableManager.getDataValue(axisIdentifierIndex, counter))) {
 											// If the value is equals and the name is already existing, add an error to specify that the name is corresponding for multiple rows
-											if (-1 < rowIndexToModify) {
+											if (-1 < rowPositionToModify) {
 												sameMultipleIdentifier = true;
 											} else {
-												rowIndexToModify = counter;
+												rowPositionToModify = tableManager.getBodyLayerStack().getSelectionLayer().getRowPositionByIndex(counter);
 											}
 										}
 										counter++;
 									}
 								}
 
-								manageUserAction(rowIndexToModify, isInsert, openDialog, identifierValue, multiStatus);
+								manageUserAction(rowPositionToModify, isInsert, openDialog, identifierValue, multiStatus);
 
 								// If several row found for the same identifier and must be replaced, return an error message
 								// because we don't know which one modified
@@ -1287,9 +1281,10 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 										EObject currentContext = parentContext;
 
 										// If a row is found, the created item must be created as the same depth
-										if (-1 != rowIndexToModify) {
+										if (-1 != rowPositionToModify) {
 
 											// Get the depth and the category from the object found in the table (because the added once will be at the same level)
+											int rowIndexToModify = tableManager.getBodyLayerStack().getSelectionLayer().getRowIndexByPosition(rowPositionToModify);
 											Object object = tableManager.getRowElement(rowIndexToModify);
 											currentDepth = getDepthFromObject(object);
 											currentCategory = getCategoryFromObject(object);
@@ -1350,6 +1345,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 
 								// If the row element is not (this is not a created element), calculate it
 								if (null == rowElement) {
+									int rowIndexToModify = tableManager.getBodyLayerStack().getSelectionLayer().getRowIndexByPosition(rowPositionToModify);
 									rowElement = AxisUtils.getRepresentedElement(tableManager.getRowElement(rowIndexToModify));
 								}
 
@@ -1378,7 +1374,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 										final String valueAsString = cellIter.next();
 
 										// Get the row and the column indexes from their positions
-										final int realColumnIndex = columnHideShowLayer.getColumnIndexByPosition(nbColmnRead);
+										final int realColumnIndex = tableManager.getBodyLayerStack().getSelectionLayer().getColumnIndexByPosition(nbColmnRead);
 
 										// Get the row object and column attribute from their indexes
 										final Object columnElement = getColumnElement(realColumnIndex);
@@ -1558,19 +1554,15 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 				// Iterate on selected cells iterator at the same time that on cells
 				firstRowPosition = 0;
 				firstColumnPosition = -1;
-				for (int columnIndex : columns.keySet()) {
+				for (int columnPosition : columns.keySet()) {
 					if (-1 == firstColumnPosition) {
-						firstColumnPosition = columnIndex;
-					} else if (columnIndex < firstColumnPosition) {
-						firstColumnPosition = columnIndex;
+						firstColumnPosition = columnPosition;
+					} else if (columnPosition < firstColumnPosition) {
+						firstColumnPosition = columnPosition;
 					}
 				}
 				lastRowPosition = firstRowPosition;
 				lastColumnPosition = firstColumnPosition;
-
-				// Get the hide show layer to calculate the index from the position
-				final RowHideShowLayer rowHideShowLayer = tableManager.getBodyLayerStack().getRowHideShowLayer();
-				final ColumnHideShowLayer columnHideShowLayer = tableManager.getBodyLayerStack().getColumnHideShowLayer();
 
 				// Create the compound command for the paste action
 				final CompoundCommand compoundCommand = new CompoundCommand("Paste action"); //$NON-NLS-1$
@@ -1610,7 +1602,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 						}
 
 						// Get the column indexes from its position
-						int realColumnIndex = columnHideShowLayer.getColumnIndexByPosition(lastColumnPosition);
+						int realColumnIndex = tableManager.getBodyLayerStack().getSelectionLayer().getColumnIndexByPosition(lastColumnPosition);
 						// Get the column attribute from its index
 						final Object columnElement = AxisUtils.getRepresentedElement(tableManager.getColumnElement(realColumnIndex));
 
@@ -1619,7 +1611,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 							final String valueAsString = cellIter.next();
 
 							// Get the row index from its position
-							int realRowIndex = rowHideShowLayer.getRowIndexByPosition(nbRowRead);
+							int realRowIndex = tableManager.getBodyLayerStack().getSelectionLayer().getRowIndexByPosition(nbRowRead);
 							// Get the row object from its index
 							final Object rowElement = AxisUtils.getRepresentedElement(tableManager.getRowElement(realRowIndex));
 
@@ -1717,9 +1709,9 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 
 	/**
 	 * This allows to manage the user action when it is necessary.
-	 * 
-	 * @param rowIndexToModify
-	 *            The row index to modify (-1 if the row is not found).
+	 *
+	 * @param rowPositionToModify
+	 *            The row position to modify (-1 if the row is not found).
 	 * @param isInsert
 	 *            Determinate if this an insert or just a paste.
 	 * @param openDialog
@@ -1729,10 +1721,10 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 	 * @param multiStatus
 	 *            The multi status.
 	 */
-	protected void manageUserAction(final int rowIndexToModify, final boolean isInsert, final boolean openDialog, final String identifierValue, final MultiStatus multiStatus) {
+	protected void manageUserAction(final int rowPositionToModify, final boolean isInsert, final boolean openDialog, final String identifierValue, final MultiStatus multiStatus) {
 		currentUserAction = UserActionConstants.UNDEFINED_USER_ACTION;
 
-		if (-1 != rowIndexToModify) {
+		if (-1 != rowPositionToModify) {
 			if (isInsert) {
 				// If the user action is undefined, open the dialog to ask what it is decided to do
 				if (UserActionConstants.UNDEFINED_USER_ACTION == userAction) {
@@ -1858,7 +1850,7 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 		final PasteEObjectConfiguration pasteconfiguration = getPasteconfigurationTopLevel(table);
 
 		int index = -1;
-		EList<IAxis> axis = null;
+		List<IAxis> axis = null;
 		if (!table.isInvertAxis()) {
 			axis = tableManager.getColumnAxisManager().getRepresentedContentProvider().getAxis();
 		} else {
@@ -1881,30 +1873,32 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 	 * 
 	 * @param rows
 	 *            The selected rows.
-	 * @param currentRowIndex
-	 *            The current row index to check.
+	 * @param currentRowPosition
+	 *            The current row position to check.
 	 * @param context
 	 *            The context of the selection.
 	 * @return The index of first element selected from the table context.
 	 */
 	@SuppressWarnings("unchecked")
-	protected int getFirstSelectedElementIndexOfTableContext(final Map<Integer, Object> rows, final int currentRowIndex, final EObject cotext) {
+	protected int getFirstSelectedElementIndexOfTableContext(final Map<Integer, Object> rows, final int currentRowPosition, final EObject context) {
 		int initialFirstIndexInParent = -1;
 
 		if (isInsert) {
+			int currentRowIndex = tableManager.getBodyLayerStack().getSelectionLayer().getRowIndexByPosition(currentRowPosition);
+
 			Object rowElement = tableManager.getRowElement(currentRowIndex);
 			int depth = getDepthFromObject(rowElement);
 			String categoryName = getCategoryFromObject(rowElement);
 			final PasteEObjectConfiguration pasteConfiguration = getPasteConfiguration(table, depth, categoryName);
 
-			Object axis = rows.get(currentRowIndex);
+			Object axis = rows.get(currentRowPosition);
 			Object object = AxisUtils.getRepresentedElement(axis);
 			if (object instanceof EObject) {
 				while (object instanceof EObject && null != ((EObject) object).eContainer()) {
-					if (((EObject) object).eContainer().equals(cotext)) {
+					if (((EObject) object).eContainer().equals(context)) {
 						final EStructuralFeature containmentFeature = pasteConfiguration.getPasteElementContainementFeature();
 						if (containmentFeature.isMany()) {
-							initialFirstIndexInParent = ((EObjectContainmentEList<EObject>) cotext.eGet(containmentFeature)).indexOf(object);
+							initialFirstIndexInParent = ((EObjectContainmentEList<EObject>) context.eGet(containmentFeature)).indexOf(object);
 						}
 					}
 					object = ((EObject) object).eContainer();
@@ -1920,17 +1914,17 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 	 * 
 	 * @param rows
 	 *            The selected rows.
-	 * @param currentRowIndex
-	 *            The current row index to check.
+	 * @param currentRowPosition
+	 *            The current row position to check.
 	 * @return The index of first element selected from the table context.
 	 */
-	protected EObject getContentOfSelection(final Map<Integer, Object> rows, final int currentRowIndex) {
+	protected EObject getContentOfSelection(final Map<Integer, Object> rows, final int currentRowPosition) {
 		EObject context = null;
 
-		if (0 == currentRowIndex) {
+		if (0 == currentRowPosition) {
 			context = table.getContext();
 		} else {
-			Object axis = rows.get(currentRowIndex);
+			Object axis = rows.get(currentRowPosition);
 			Object object = AxisUtils.getRepresentedElement(axis);
 			if (object instanceof EObject) {
 				context = ((EObject) object).eContainer();

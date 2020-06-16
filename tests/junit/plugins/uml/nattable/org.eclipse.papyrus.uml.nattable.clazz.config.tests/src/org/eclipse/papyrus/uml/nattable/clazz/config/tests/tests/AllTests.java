@@ -187,6 +187,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWith
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_V1_V3_V1_MultiColumns_DetachedMode_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_V1_V3_V1_SingleColumn_AttachedMode_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_V1_V3_V1_SingleColumn_DetachedMode_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.selection.TableSelectionTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Sort_H1_H3_H1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Sort_V1_V3_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.styles.ResizeHeaderWithIndexTest;
@@ -200,265 +201,267 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
-	EditInvalidPastedText_V1_V3_V1.class,
-	OpenTableTest.class,
-	OpenAndDeleteTest.class,
-	Bug_481017_ReloadEditorTest.class,
-	NoDepth0TreeFillingConfigurationTest.class,
+		EditInvalidPastedText_V1_V3_V1.class,
+		OpenTableTest.class,
+		OpenAndDeleteTest.class,
+		Bug_481017_ReloadEditorTest.class,
+		NoDepth0TreeFillingConfigurationTest.class,
 
-	SortAxisClassTreeTableTest.class,
-	EditAxisClassTreeTableTest.class,
+		SortAxisClassTreeTableTest.class,
+		EditAxisClassTreeTableTest.class,
 
-	// Bug 481020 : Delete a requirement containing a nested requirement
-	DeleteRequirementsWithNestedClassifier.class,
+		// Bug 481020 : Delete a requirement containing a nested requirement
+		DeleteRequirementsWithNestedClassifier.class,
 
-	// Bug 481023 : The nested requirement was not available in table
-	RequirementsNestedClassifier.class,
+		// Bug 481023 : The nested requirement was not available in table
+		RequirementsNestedClassifier.class,
 
-	// Move elements
-	MoveElementsTreeTableTest.class,
+		// Move elements
+		MoveElementsTreeTableTest.class,
 
-	// Bug 467723: Change categories with hidden categories display
-	ChangeCategoryNotExpandedTest.class,
+		// Bug 467723: Change categories with hidden categories display
+		ChangeCategoryNotExpandedTest.class,
 
-	// Delete row elements
-	DeleteRowElementTest.class,
+		// Delete row elements
+		DeleteRowElementTest.class,
 
-	// Bug 515737: Papyrus Table must be able to display list in cells with a new line for each object owned by the list and fake line between values
-	DisplayListOnSeparatedRowsTest.class,
-		
-	// Destroy column
-	DestroyColumnTest.class,
+		// Bug 515737: Papyrus Table must be able to display list in cells with a new line for each object owned by the list and fake line between values
+		DisplayListOnSeparatedRowsTest.class,
 
-	ContentsAndExpandWithCategories_0_1_2_Tests.class,
-	ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.class,
+		// Destroy column
+		DestroyColumnTest.class,
 
-	// Resize of header
-	ResizeHeaderWithIndexTest.class,
-	ResizeHeaderWithoutIndexTest.class,
-	ResizeHeaderWithoutCategoriesWithIndexTest.class,
-	ResizeHeaderWithoutCategoriesWithoutIndexTest.class,
+		ContentsAndExpandWithCategories_0_1_2_Tests.class,
+		ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.class,
 
-	// SORT
-	Sort_V1_V3_V1.class,
-	Sort_H1_H3_H1.class,
+		// Resize of header
+		ResizeHeaderWithIndexTest.class,
+		ResizeHeaderWithoutIndexTest.class,
+		ResizeHeaderWithoutCategoriesWithIndexTest.class,
+		ResizeHeaderWithoutCategoriesWithoutIndexTest.class,
 
-	// Bug 473155 : change axis index style
-	AxisChangeIndexWithConfigurationTest.class,
-	AxisChangeIndexWithoutConfigurationTest.class,
+		// SORT
+		Sort_V1_V3_V1.class,
+		Sort_H1_H3_H1.class,
 
-	// reset cell value
-	UnsetCellValueWithProfile_V1_V3_V1_Test.class,
-	UnsetCellValue_H1_H3_H1_Test.class,
+		// Bug 473155 : change axis index style
+		AxisChangeIndexWithConfigurationTest.class,
+		AxisChangeIndexWithoutConfigurationTest.class,
 
-	// test creation outside of the table
-	CreateElementDepth0_H1_V3_V1_Test.class,
-	CreateElementDepth0_V1_V3_V1_Test.class,
-	CreateElementDepth1_H1_H3_V1_Test.class,
-	CreateElementDepth1_H1_V3_V1_Test.class,
-	CreateElementDepth1_V1_H3_V1_Test.class,
-	CreateElementDepth1_V1_V3_V1_Test.class,
-	CreateElementDepth2_H1_H3_H1_Test.class,
-	CreateElementDepth2_H1_H3_V1_Test.class,
-	CreateElementDepth2_H1_V3_H1_Test.class,
-	CreateElementDepth2_H1_V3_V1_Test.class,
-	CreateElementDepth2_V1_H3_H1_Test.class,
-	CreateElementDepth2_V1_H3_V1_Test.class,
-	CreateElementDepth2_V1_V3_H1_Test.class,
-	CreateElementDepth2_V1_V3_V1_Test.class,
+		// reset cell value
+		UnsetCellValueWithProfile_V1_V3_V1_Test.class,
+		UnsetCellValue_H1_H3_H1_Test.class,
 
-	// filter tests
-	ReopenFilteredTable_Empty_H1_H1.class,
-	ReopenFilteredTable_Empty_H1_V1.class,
-	ReopenFilteredTable_Empty_V1_H1.class,
-	ReopenFilteredTable_Empty_V1_V1.class,
-	ReopenFilteredTable_H1_H1_H1.class,
-	ReopenFilteredTable_H1_H1_V1.class,
-	ReopenFilteredTable_H1_V1_H1.class,
-	ReopenFilteredTable_H1_V1_V1.class,
-	ReopenFilteredTable_V1_H1_H1.class,
-	ReopenFilteredTable_V1_H1_V1.class,
-	ReopenFilteredTable_V1_V1_H1.class,
-	ReopenFilteredTable_V1_V1_V1.class,
+		// test creation outside of the table
+		CreateElementDepth0_H1_V3_V1_Test.class,
+		CreateElementDepth0_V1_V3_V1_Test.class,
+		CreateElementDepth1_H1_H3_V1_Test.class,
+		CreateElementDepth1_H1_V3_V1_Test.class,
+		CreateElementDepth1_V1_H3_V1_Test.class,
+		CreateElementDepth1_V1_V3_V1_Test.class,
+		CreateElementDepth2_H1_H3_H1_Test.class,
+		CreateElementDepth2_H1_H3_V1_Test.class,
+		CreateElementDepth2_H1_V3_H1_Test.class,
+		CreateElementDepth2_H1_V3_V1_Test.class,
+		CreateElementDepth2_V1_H3_H1_Test.class,
+		CreateElementDepth2_V1_H3_V1_Test.class,
+		CreateElementDepth2_V1_V3_H1_Test.class,
+		CreateElementDepth2_V1_V3_V1_Test.class,
 
-	// Fill handle tests
-	FillHandleInteger_V1_V3_V1_Test.class,
-	FillHandleStringOnlySuffix_V1_V3_V1_Test.class,
-	FillHandleStringOnlyPrefix_V1_V3_V1_Test.class,
-	FillHandleStringSuffix_V1_V3_V1_Test.class,
-	FillHandleStringPrefix_V1_V3_V1_Test.class,
-	FillHandleNameBug499466BeginningPrefix_V1_V3_V1_Test.class,
-	FillHandleNameBug499466EndingSuffix_V1_V3_V1_Test.class,
-	FillHandleNameBug499466BeginningEndingPrefix_V1_V3_V1_Test.class,
-	FillHandleNameBug499466BeginningEndingSuffix_V1_V3_V1_Test.class,
+		// filter tests
+		ReopenFilteredTable_Empty_H1_H1.class,
+		ReopenFilteredTable_Empty_H1_V1.class,
+		ReopenFilteredTable_Empty_V1_H1.class,
+		ReopenFilteredTable_Empty_V1_V1.class,
+		ReopenFilteredTable_H1_H1_H1.class,
+		ReopenFilteredTable_H1_H1_V1.class,
+		ReopenFilteredTable_H1_V1_H1.class,
+		ReopenFilteredTable_H1_V1_V1.class,
+		ReopenFilteredTable_V1_H1_H1.class,
+		ReopenFilteredTable_V1_H1_V1.class,
+		ReopenFilteredTable_V1_V1_H1.class,
+		ReopenFilteredTable_V1_V1_V1.class,
 
-	// Bug 519383 - Increment action in table throws a NPE in some cases
-	FillHandleHiddenRowsBug519383BeginningEndingPrefix_V1_H1_H1_Test.class,
-	FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_H1_H1_Test.class,
-	
-	//Bug 535073 : trouble with increment for name such as Class-01
-	FillHandleNameBug535073BeginningPrefix_V1_V3_V1_Test.class,
-	FillHandleNameBug535073EndingSuffix_V1_V3_V1_Test.class,
-	
-	
-	// Attached Mode
-	// Paste tests for single column
-	PasteWithCategories_Empty_H1_H1_SingleColumn_AttachedMode_Test.class,
-	PasteWithCategories_Empty_H1_V1_SingleColumn_AttachedMode_Test.class,
-	PasteWithCategories_Empty_H3_V1_SingleColumn_AttachedMode_Test.class,
-	PasteWithCategories_Empty_V3_H1_SingleColumn_AttachedMode_Test.class,
-	PasteWithCategories_Empty_V3_V1_SingleColumn_AttachedMode_Test.class,
+		// Fill handle tests
+		FillHandleInteger_V1_V3_V1_Test.class,
+		FillHandleStringOnlySuffix_V1_V3_V1_Test.class,
+		FillHandleStringOnlyPrefix_V1_V3_V1_Test.class,
+		FillHandleStringSuffix_V1_V3_V1_Test.class,
+		FillHandleStringPrefix_V1_V3_V1_Test.class,
+		FillHandleNameBug499466BeginningPrefix_V1_V3_V1_Test.class,
+		FillHandleNameBug499466EndingSuffix_V1_V3_V1_Test.class,
+		FillHandleNameBug499466BeginningEndingPrefix_V1_V3_V1_Test.class,
+		FillHandleNameBug499466BeginningEndingSuffix_V1_V3_V1_Test.class,
 
-	PasteWithCategories_H1_H1_H1_SingleColumn_AttachedMode_Test.class,
-	PasteWithCategories_H1_H1_V1_SingleColumn_AttachedMode_Test.class,
-	PasteWithCategories_H1_H3_H1_SingleColumn_AttachedMode_Test.class,
-	PasteWithCategories_H1_V3_H1_SingleColumn_AttachedMode_Test.class,
-	PasteWithCategories_H1_V3_V1_SingleColumn_AttachedMode_Test.class,
+		// Bug 519383 - Increment action in table throws a NPE in some cases
+		FillHandleHiddenRowsBug519383BeginningEndingPrefix_V1_H1_H1_Test.class,
+		FillHandleHiddenRowsBug519383BeginningEndingSuffix_V1_H1_H1_Test.class,
 
-	PasteWithCategories_V1_H1_H1_SingleColumn_AttachedMode_Test.class,
-	PasteWithCategories_V1_H1_V1_SingleColumn_AttachedMode_Test.class,
-	PasteWithCategories_V1_V3_H1_SingleColumn_AttachedMode_Test.class,
-	PasteWithCategories_V1_V3_V1_SingleColumn_AttachedMode_Test.class,
+		// Bug 535073 : trouble with increment for name such as Class-01
+		FillHandleNameBug535073BeginningPrefix_V1_V3_V1_Test.class,
+		FillHandleNameBug535073EndingSuffix_V1_V3_V1_Test.class,
 
-	// Paste tests for multi columns
-	PasteWithCategories_Empty_H1_H1_MultiColumns_AttachedMode_Test.class,
-	PasteWithCategories_Empty_H1_V1_MultiColumns_AttachedMode_Test.class,
-	PasteWithCategories_Empty_H3_V1_MultiColumns_AttachedMode_Test.class,
-	PasteWithCategories_Empty_V3_H1_MultiColumns_AttachedMode_Test.class,
-	PasteWithCategories_Empty_V3_V1_MultiColumns_AttachedMode_Test.class,
 
-	PasteWithCategories_H1_H1_H1_MultiColumns_AttachedMode_Test.class,
-	PasteWithCategories_H1_H1_V1_MultiColumns_AttachedMode_Test.class,
-	PasteWithCategories_H1_H3_H1_MultiColumns_AttachedMode_Test.class,
-	PasteWithCategories_H1_V3_H1_MultiColumns_AttachedMode_Test.class,
-	PasteWithCategories_H1_V3_V1_MultiColumns_AttachedMode_Test.class,
+		// Attached Mode
+		// Paste tests for single column
+		PasteWithCategories_Empty_H1_H1_SingleColumn_AttachedMode_Test.class,
+		PasteWithCategories_Empty_H1_V1_SingleColumn_AttachedMode_Test.class,
+		PasteWithCategories_Empty_H3_V1_SingleColumn_AttachedMode_Test.class,
+		PasteWithCategories_Empty_V3_H1_SingleColumn_AttachedMode_Test.class,
+		PasteWithCategories_Empty_V3_V1_SingleColumn_AttachedMode_Test.class,
 
-	PasteWithCategories_V1_H1_H1_MultiColumns_AttachedMode_Test.class,
-	PasteWithCategories_V1_H1_V1_MultiColumns_AttachedMode_Test.class,
-	PasteWithCategories_V1_V3_H1_MultiColumns_AttachedMode_Test.class,
-	PasteWithCategories_V1_V3_V1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_H1_H1_H1_SingleColumn_AttachedMode_Test.class,
+		PasteWithCategories_H1_H1_V1_SingleColumn_AttachedMode_Test.class,
+		PasteWithCategories_H1_H3_H1_SingleColumn_AttachedMode_Test.class,
+		PasteWithCategories_H1_V3_H1_SingleColumn_AttachedMode_Test.class,
+		PasteWithCategories_H1_V3_V1_SingleColumn_AttachedMode_Test.class,
 
-	// Bug 481310 : Paste one depth when others can't get pasted elements
-	PasteWithCategories_H1_H3_H1_MultiColumns_AttachedMode_Bug481310Test.class,
+		PasteWithCategories_V1_H1_H1_SingleColumn_AttachedMode_Test.class,
+		PasteWithCategories_V1_H1_V1_SingleColumn_AttachedMode_Test.class,
+		PasteWithCategories_V1_V3_H1_SingleColumn_AttachedMode_Test.class,
+		PasteWithCategories_V1_V3_V1_SingleColumn_AttachedMode_Test.class,
 
-	// Detached Mode
-	// Paste tests for single column
-	PasteWithCategories_Empty_H1_H1_SingleColumn_DetachedMode_Test.class,
-	PasteWithCategories_Empty_H1_V1_SingleColumn_DetachedMode_Test.class,
-	PasteWithCategories_Empty_H3_V1_SingleColumn_DetachedMode_Test.class,
-	PasteWithCategories_Empty_V3_H1_SingleColumn_DetachedMode_Test.class,
-	PasteWithCategories_Empty_V3_V1_SingleColumn_DetachedMode_Test.class,
+		// Paste tests for multi columns
+		PasteWithCategories_Empty_H1_H1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_Empty_H1_V1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_Empty_H3_V1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_Empty_V3_H1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_Empty_V3_V1_MultiColumns_AttachedMode_Test.class,
 
-	PasteWithCategories_H1_H1_H1_SingleColumn_DetachedMode_Test.class,
-	PasteWithCategories_H1_H1_V1_SingleColumn_DetachedMode_Test.class,
-	PasteWithCategories_H1_H3_H1_SingleColumn_DetachedMode_Test.class,
-	PasteWithCategories_H1_V3_H1_SingleColumn_DetachedMode_Test.class,
-	PasteWithCategories_H1_V3_V1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_H1_H1_H1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_H1_H1_V1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_H1_H3_H1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_H1_V3_H1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_H1_V3_V1_MultiColumns_AttachedMode_Test.class,
 
-	PasteWithCategories_V1_H1_H1_SingleColumn_DetachedMode_Test.class,
-	PasteWithCategories_V1_H1_V1_SingleColumn_DetachedMode_Test.class,
-	PasteWithCategories_V1_V3_H1_SingleColumn_DetachedMode_Test.class,
-	PasteWithCategories_V1_V3_V1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_V1_H1_H1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_V1_H1_V1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_V1_V3_H1_MultiColumns_AttachedMode_Test.class,
+		PasteWithCategories_V1_V3_V1_MultiColumns_AttachedMode_Test.class,
 
-	// Paste tests for multi columns
-	PasteWithCategories_Empty_H1_H1_MultiColumns_DetachedMode_Test.class,
-	PasteWithCategories_Empty_H1_V1_MultiColumns_DetachedMode_Test.class,
-	PasteWithCategories_Empty_H3_V1_MultiColumns_DetachedMode_Test.class,
-	PasteWithCategories_Empty_V3_H1_MultiColumns_DetachedMode_Test.class,
-	PasteWithCategories_Empty_V3_V1_MultiColumns_DetachedMode_Test.class,
+		// Bug 481310 : Paste one depth when others can't get pasted elements
+		PasteWithCategories_H1_H3_H1_MultiColumns_AttachedMode_Bug481310Test.class,
 
-	PasteWithCategories_H1_H1_H1_MultiColumns_DetachedMode_Test.class,
-	PasteWithCategories_H1_H1_V1_MultiColumns_DetachedMode_Test.class,
-	PasteWithCategories_H1_H3_H1_MultiColumns_DetachedMode_Test.class,
-	PasteWithCategories_H1_V3_H1_MultiColumns_DetachedMode_Test.class,
-	PasteWithCategories_H1_V3_V1_MultiColumns_DetachedMode_Test.class,
+		// Detached Mode
+		// Paste tests for single column
+		PasteWithCategories_Empty_H1_H1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_Empty_H1_V1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_Empty_H3_V1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_Empty_V3_H1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_Empty_V3_V1_SingleColumn_DetachedMode_Test.class,
 
-	PasteWithCategories_V1_H1_H1_MultiColumns_DetachedMode_Test.class,
-	PasteWithCategories_V1_H1_V1_MultiColumns_DetachedMode_Test.class,
-	PasteWithCategories_V1_V3_H1_MultiColumns_DetachedMode_Test.class,
-	PasteWithCategories_V1_V3_V1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_H1_H1_H1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_H1_H1_V1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_H1_H3_H1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_H1_V3_H1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_H1_V3_V1_SingleColumn_DetachedMode_Test.class,
 
-	// Tests of the paste with overwrite
-	PasteEmptyClipboard_H1_H1_H1_MultiColumns_Test.class,
+		PasteWithCategories_V1_H1_H1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_V1_H1_V1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_V1_V3_H1_SingleColumn_DetachedMode_Test.class,
+		PasteWithCategories_V1_V3_V1_SingleColumn_DetachedMode_Test.class,
 
-	PasteCellsOverwriteAll_H1_H1_H1_MultiColumns_Test.class,
-	PasteCellsOverwriteAll_V1_V3_V1_MultiColumns_Test.class,
-	PasteCellsOverwriteByOneLine_H1_H1_H1_MultiColumns_Test.class,
-	PasteCellsOverwriteFailRows_H1_H1_H1_MultiColumns_Test.class,
-	PasteCellsOverwriteFailColumns_H1_H1_H1_MultiColumns_Test.class,
+		// Paste tests for multi columns
+		PasteWithCategories_Empty_H1_H1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_Empty_H1_V1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_Empty_H3_V1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_Empty_V3_H1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_Empty_V3_V1_MultiColumns_DetachedMode_Test.class,
 
-	PasteColumnsOverwriteAll_H1_H1_H1_MultiColumns_Test.class,
-	PasteColumnsOverwriteAll_V1_V3_V1_MultiColumns_Test.class,
-	PasteColumnsOverwriteByOneLine_H1_H1_H1_MultiColumns_Test.class,
-	PasteColumnsOverwriteByOneColumn_H1_H1_H1_MultiColumns_Test.class,
-	PasteColumnsOverwriteFailColumns_H1_H1_H1_MultiColumns_Test.class,
-	PasteColumnsOverwriteFailRows_H1_H1_H1_MultiColumns_Test.class,
+		PasteWithCategories_H1_H1_H1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_H1_H1_V1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_H1_H3_H1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_H1_V3_H1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_H1_V3_V1_MultiColumns_DetachedMode_Test.class,
 
-	PasteRowsOverwriteAll_H1_H1_H1_MultiColumns_Test.class,
-	PasteRowsOverwriteAll_V1_V3_V1_MultiColumns_Test.class,
-	PasteRowsOverwriteFailColumns_H1_H1_H1_MultiColumns_Test.class,
-	PasteRowsOverwriteFailRows_H1_H1_H1_MultiColumns_Test.class,
-	PasteRowsOverwriteWarningNotExisting_H1_H1_H1_MultiColumns_Test.class,
-	PasteRowsOverwriteAxisIdentifierNotExisting_H1_H1_H1_MultiColumns_Test.class,
+		PasteWithCategories_V1_H1_H1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_V1_H1_V1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_V1_V3_H1_MultiColumns_DetachedMode_Test.class,
+		PasteWithCategories_V1_V3_V1_MultiColumns_DetachedMode_Test.class,
 
-	PasteEmptyOverwriteReplaceAll_H1_H1_H1_MultiColumns_Test.class,
-	PasteEmptyOverwriteReplaceAll_V1_V3_V1_MultiColumns_Test.class,
-	PasteEmptyOverwriteAddAll_H1_H1_H1_MultiColumns_Test.class,
-	PasteEmptyOverwriteAddAll_V1_V3_V1_MultiColumns_Test.class,
-	PasteEmptyOverwriteSkipAll_H1_H1_H1_MultiColumns_Test.class,
-	PasteEmptyOverwriteSkipAll_V1_V3_V1_MultiColumns_Test.class,
-	PasteEmptyOverwriteFailColumns_H1_H1_H1_MultiColumns_Test.class,
-	PasteEmptyOverwriteWarningNotExisting_H1_H1_H1_MultiColumns_Test.class,
-	PasteEmptyOverwriteAxisIdentifierNotExisting_H1_H1_H1_MultiColumns_Test.class,
+		// Tests of the paste with overwrite
+		PasteEmptyClipboard_H1_H1_H1_MultiColumns_Test.class,
 
-	// Tests of insert
-	InsertEmptyClipboard_H1_H1_H1_MultiColumns_Test.class,
+		PasteCellsOverwriteAll_H1_H1_H1_MultiColumns_Test.class,
+		PasteCellsOverwriteAll_V1_V3_V1_MultiColumns_Test.class,
+		PasteCellsOverwriteByOneLine_H1_H1_H1_MultiColumns_Test.class,
+		PasteCellsOverwriteFailRows_H1_H1_H1_MultiColumns_Test.class,
+		PasteCellsOverwriteFailColumns_H1_H1_H1_MultiColumns_Test.class,
 
-	InsertRowsReplaceAll_H1_H1_H1_MultiColumns_Test.class,
-	InsertRowsReplaceAll_V1_V3_V1_MultiColumns_Test.class,
-	InsertRowsAddAll_H1_H1_H1_MultiColumns_Test.class,
-	InsertRowsAddAll_V1_V3_V1_MultiColumns_Test.class,
-	InsertRowsSkipAll_H1_H1_H1_MultiColumns_Test.class,
-	InsertRowsSkipAll_V1_V3_V1_MultiColumns_Test.class,
-	InsertRowsFailColumns_H1_H1_H1_MultiColumns_Test.class,
-	InsertRowsFailRows_H1_H1_H1_MultiColumns_Test.class,
-	InsertRowsWarningNotExisting_H1_H1_H1_MultiColumns_Test.class,
-	InsertRowsAxisIdentifierNotExisting_H1_H1_H1_MultiColumns_Test.class,
+		PasteColumnsOverwriteAll_H1_H1_H1_MultiColumns_Test.class,
+		PasteColumnsOverwriteAll_V1_V3_V1_MultiColumns_Test.class,
+		PasteColumnsOverwriteByOneLine_H1_H1_H1_MultiColumns_Test.class,
+		PasteColumnsOverwriteByOneColumn_H1_H1_H1_MultiColumns_Test.class,
+		PasteColumnsOverwriteFailColumns_H1_H1_H1_MultiColumns_Test.class,
+		PasteColumnsOverwriteFailRows_H1_H1_H1_MultiColumns_Test.class,
 
-	InsertEmptyReplaceAll_H1_H1_H1_MultiColumns_Test.class,
-	InsertEmptyReplaceAll_V1_V3_V1_MultiColumns_Test.class,
-	InsertEmptyAddAll_H1_H1_H1_MultiColumns_Test.class,
-	InsertEmptyAddAll_V1_V3_V1_MultiColumns_Test.class,
-	InsertEmptySkipAll_H1_H1_H1_MultiColumns_Test.class,
-	InsertEmptySkipAll_V1_V3_V1_MultiColumns_Test.class,
-	InsertEmptyFailColumns_H1_H1_H1_MultiColumns_Test.class,
-	InsertEmptyWarningNotExisting_H1_H1_H1_MultiColumns_Test.class,
-	InsertEmptyAxisIdentifierNotExisting_H1_H1_H1_MultiColumns_Test.class,
+		PasteRowsOverwriteAll_H1_H1_H1_MultiColumns_Test.class,
+		PasteRowsOverwriteAll_V1_V3_V1_MultiColumns_Test.class,
+		PasteRowsOverwriteFailColumns_H1_H1_H1_MultiColumns_Test.class,
+		PasteRowsOverwriteFailRows_H1_H1_H1_MultiColumns_Test.class,
+		PasteRowsOverwriteWarningNotExisting_H1_H1_H1_MultiColumns_Test.class,
+		PasteRowsOverwriteAxisIdentifierNotExisting_H1_H1_H1_MultiColumns_Test.class,
 
-	// Import test
-	ImportCellsAll_H1_H1_H1_MultiColumns_Test.class,
-	ImportCellsAll_V1_V3_V1_MultiColumns_Test.class,
+		PasteEmptyOverwriteReplaceAll_H1_H1_H1_MultiColumns_Test.class,
+		PasteEmptyOverwriteReplaceAll_V1_V3_V1_MultiColumns_Test.class,
+		PasteEmptyOverwriteAddAll_H1_H1_H1_MultiColumns_Test.class,
+		PasteEmptyOverwriteAddAll_V1_V3_V1_MultiColumns_Test.class,
+		PasteEmptyOverwriteSkipAll_H1_H1_H1_MultiColumns_Test.class,
+		PasteEmptyOverwriteSkipAll_V1_V3_V1_MultiColumns_Test.class,
+		PasteEmptyOverwriteFailColumns_H1_H1_H1_MultiColumns_Test.class,
+		PasteEmptyOverwriteWarningNotExisting_H1_H1_H1_MultiColumns_Test.class,
+		PasteEmptyOverwriteAxisIdentifierNotExisting_H1_H1_H1_MultiColumns_Test.class,
 
-	ImportRowsReplaceAll_H1_H1_H1_MultiColumns_Test.class,
-	ImportRowsReplaceAll_V1_V3_V1_MultiColumns_Test.class,
-	ImportRowsAddAll_H1_H1_H1_MultiColumns_Test.class,
-	ImportRowsAddAll_V1_V3_V1_MultiColumns_Test.class,
-	ImportRowsSkipAll_H1_H1_H1_MultiColumns_Test.class,
-	ImportRowsSkipAll_V1_V3_V1_MultiColumns_Test.class,
+		// Tests of insert
+		InsertEmptyClipboard_H1_H1_H1_MultiColumns_Test.class,
 
-	ImportEmptyReplaceAll_H1_H1_H1_MultiColumns_Test.class,
-	ImportEmptyReplaceAll_V1_V3_V1_MultiColumns_Test.class,
-	ImportEmptyAddAll_H1_H1_H1_MultiColumns_Test.class,
-	ImportEmptyAddAll_V1_V3_V1_MultiColumns_Test.class,
-	ImportEmptySkipAll_H1_H1_H1_MultiColumns_Test.class,
-	ImportEmptySkipAll_V1_V3_V1_MultiColumns_Test.class,
+		InsertRowsReplaceAll_H1_H1_H1_MultiColumns_Test.class,
+		InsertRowsReplaceAll_V1_V3_V1_MultiColumns_Test.class,
+		InsertRowsAddAll_H1_H1_H1_MultiColumns_Test.class,
+		InsertRowsAddAll_V1_V3_V1_MultiColumns_Test.class,
+		InsertRowsSkipAll_H1_H1_H1_MultiColumns_Test.class,
+		InsertRowsSkipAll_V1_V3_V1_MultiColumns_Test.class,
+		InsertRowsFailColumns_H1_H1_H1_MultiColumns_Test.class,
+		InsertRowsFailRows_H1_H1_H1_MultiColumns_Test.class,
+		InsertRowsWarningNotExisting_H1_H1_H1_MultiColumns_Test.class,
+		InsertRowsAxisIdentifierNotExisting_H1_H1_H1_MultiColumns_Test.class,
 
-	// validation markers tests
-	ValidationMarkerInTableHeaderTest.class,
+		InsertEmptyReplaceAll_H1_H1_H1_MultiColumns_Test.class,
+		InsertEmptyReplaceAll_V1_V3_V1_MultiColumns_Test.class,
+		InsertEmptyAddAll_H1_H1_H1_MultiColumns_Test.class,
+		InsertEmptyAddAll_V1_V3_V1_MultiColumns_Test.class,
+		InsertEmptySkipAll_H1_H1_H1_MultiColumns_Test.class,
+		InsertEmptySkipAll_V1_V3_V1_MultiColumns_Test.class,
+		InsertEmptyFailColumns_H1_H1_H1_MultiColumns_Test.class,
+		InsertEmptyWarningNotExisting_H1_H1_H1_MultiColumns_Test.class,
+		InsertEmptyAxisIdentifierNotExisting_H1_H1_H1_MultiColumns_Test.class,
 
-	// Bug 515806 - Provide a preference to choose the string to display instead of N/A
-	UnsupportedColumnCellTextTest.class,
+		// Import test
+		ImportCellsAll_H1_H1_H1_MultiColumns_Test.class,
+		ImportCellsAll_V1_V3_V1_MultiColumns_Test.class,
 
+		ImportRowsReplaceAll_H1_H1_H1_MultiColumns_Test.class,
+		ImportRowsReplaceAll_V1_V3_V1_MultiColumns_Test.class,
+		ImportRowsAddAll_H1_H1_H1_MultiColumns_Test.class,
+		ImportRowsAddAll_V1_V3_V1_MultiColumns_Test.class,
+		ImportRowsSkipAll_H1_H1_H1_MultiColumns_Test.class,
+		ImportRowsSkipAll_V1_V3_V1_MultiColumns_Test.class,
+
+		ImportEmptyReplaceAll_H1_H1_H1_MultiColumns_Test.class,
+		ImportEmptyReplaceAll_V1_V3_V1_MultiColumns_Test.class,
+		ImportEmptyAddAll_H1_H1_H1_MultiColumns_Test.class,
+		ImportEmptyAddAll_V1_V3_V1_MultiColumns_Test.class,
+		ImportEmptySkipAll_H1_H1_H1_MultiColumns_Test.class,
+		ImportEmptySkipAll_V1_V3_V1_MultiColumns_Test.class,
+
+		// validation markers tests
+		ValidationMarkerInTableHeaderTest.class,
+
+		// Bug 515806 - Provide a preference to choose the string to display instead of N/A
+		UnsupportedColumnCellTextTest.class,
+
+		// selection test
+		TableSelectionTest.class
 })
 public class AllTests {
 	// JUnit 4 test suite

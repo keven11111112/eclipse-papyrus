@@ -6,3 +6,16 @@ To ease Papyrus developement, we remove all reexported dependencies from the Man
 
 ==Changes==
 Here the list of API changes for each plugin.
+
+===org.eclipse.papyrus.infra.nattable===
+*bug 517617 and bug 532452 (ensure the selection don't change after some user actions)
+We change the storage of the current selection, but we keep the algorithm provided by '''TableSelectionProvider''', but we change the manipulation and the storages of the informations. 
+
+**'''TableSelectionProvider'''
+***new method '''setActive(boolean)''' to allow to listen or not the selection changes
+**'''TableSelectionWrapper'''
+***new constructor '''TableSelectionWrapper(final INattableModelManager manager, final SelectionLayer selectionLayer, final Collection<PositionCoordinate> selectionCells)''', 
+all others are deprecated and will be removed.
+***new methods '''updatePositions''', to update position of referenced elements (rows/columns/cells) after a refresh
+***new methods '''buildSingleCellSelection''', '''getSelectedElements''', '''getSingleSelectedCells''', '''addSelectedRow''', '''addSelectedColumn''', '''removeSelectedRow''', '''removeSelectedColumn''', '''copyRowsSelection''', '''copyColumnsSelection'''
+***methods '''getFullySelectedRows''' and '''getFullySelectedColumns''' changed without breaking API: before the returned map used the row index as key, and now this same map use the row position as key. To obtain the row index, you must call '''selectionLayer.getRowIndexByPosition'''

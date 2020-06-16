@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
@@ -49,7 +49,7 @@ import org.junit.Test;
  * @author Vincent Lorenzo
  *
  */
-public class AbstractTableTest extends AbstractPapyrusTest {
+public abstract class AbstractTableTest extends AbstractPapyrusTest {
 
 	@Rule
 	public final PapyrusEditorFixture fixture = new PapyrusEditorFixture();
@@ -72,7 +72,7 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 	/**
 	 * this method initialize some field for the test + expand all the table + check the initial state of the table
 	 *
-	 * 
+	 *
 	 */
 	protected void startTest() {
 		this.manager = (TreeNattableModelManager) fixture.getActiveTableManager();
@@ -84,7 +84,7 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 
 	/**
 	 * This method register the nattable widget in the eclipse context, to be able to get is in the the setEnable(Objet) of the handlers
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler.getCurrentNattableModelManager()
 	 * @param manager
 	 *            the nattable manager
@@ -117,7 +117,7 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 	 *            the tested table
 	 * @param the
 	 *            simple Class name : should be something like than : className_Empty/H1/V1_H1/V1_H1/V1, where Empty than the roots of the table are filled by DnD, H1 : means 1 category hidden and V1 means 1 category visible
-	 * 
+	 *
 	 */
 	public void checkFillingConfigurationAndHiddenCategoryForTestConsistency(Table table, String simpleClassName) {
 		// we expect a name like CLassName_H1_V1_H1_Tests or CLassName_H1_V1_H1
@@ -162,21 +162,21 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param fileName
 	 *            a file name
 	 * @return
-	 * 		the text stored in the file associated to this test
+	 *         the text stored in the file associated to this test
 	 */
 	protected String getWantedString(String fileName) {
 		return FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), fileName, FileUtils.getSystemPropertyLineSeparator());// $NON-NLS-1$
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 * 		the source path to use to load files
-	 * 
+	 *         the source path to use to load files
+	 *
 	 *         must be overridden by sub classes
 	 */
 	protected String getSourcePath() {
@@ -184,9 +184,9 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 * 		the clipboard contents
+	 *         the clipboard contents
 	 */
 	protected String getClipboardContent() {
 		String clipboard = TableClipboardUtils.getClipboardContentsAsString();
@@ -194,25 +194,25 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 * 		the editing domain of the context of the table
+	 *         the editing domain of the context of the table
 	 */
 	protected TransactionalEditingDomain getTableContextEditingDomain() {
 		return TableEditingDomainUtils.getTableContextEditingDomain(this.manager.getTable());
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 * 		the editing domain of the table
+	 *         the editing domain of the table
 	 */
 	protected TransactionalEditingDomain getTableEditingDomain() {
 		return TableEditingDomainUtils.getTableEditingDomain(this.manager.getTable());
 	}
 
 	/**
-	 * 
+	 *
 	 * @param resultFileName
 	 *            the name of the file containing the wanted result
 	 */
@@ -234,12 +234,13 @@ public class AbstractTableTest extends AbstractPapyrusTest {
 	/**
 	 * Method to hide all categories in the tree table manager.
 	 *
-	 * @param treeManager The tree table manager
+	 * @param treeManager
+	 *            The tree table manager
 	 */
 	protected void hideAllCategories(final TreeNattableModelManager treeManager) {
 		final Table table = treeManager.getTable();
 		final int maxDepth = FillingConfigurationUtils.getMaxDepthForTree(table);
-		final List<Integer> toHide = new ArrayList<Integer>();
+		final List<Integer> toHide = new ArrayList<>();
 		int start = 0;
 		if (!FillingConfigurationUtils.hasTreeFillingConfigurationForDepth(table, 0)) {
 			start = 1;

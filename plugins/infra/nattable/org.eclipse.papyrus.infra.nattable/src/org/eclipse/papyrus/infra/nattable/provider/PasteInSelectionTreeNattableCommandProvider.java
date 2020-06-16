@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2015, 2020 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - bug 517617, 532452
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.provider;
@@ -415,17 +415,17 @@ public class PasteInSelectionTreeNattableCommandProvider extends PasteInSelectio
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractPasteInSelectionNattableCommandProvider#getFirstSelectedElementIndexOfTableContext(java.util.Map, int)
 	 */
 	@Override
-	protected int getFirstSelectedElementIndexOfTableContext(final Map<Integer, Object> rows, final int currentRowIndex, final EObject context) {
+	protected int getFirstSelectedElementIndexOfTableContext(final Map<Integer, Object> rows, final int currentRowPosition, final EObject context) {
 		int initialFirstIndexInParent = -1;
 
 		if (isInsert) {
-			Object axis = rows.get(currentRowIndex);
+			Object axis = rows.get(currentRowPosition);
 			Object object = AxisUtils.getRepresentedElement(axis);
 			if (object instanceof EObject) {
 				if (object instanceof TreeFillingConfiguration) {
 					initialFirstIndexInParent = 0;
 				} else {
-					initialFirstIndexInParent = super.getFirstSelectedElementIndexOfTableContext(rows, currentRowIndex, context);
+					initialFirstIndexInParent = super.getFirstSelectedElementIndexOfTableContext(rows, currentRowPosition, context);
 				}
 			}
 		}
@@ -449,13 +449,14 @@ public class PasteInSelectionTreeNattableCommandProvider extends PasteInSelectio
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractPasteInSelectionNattableCommandProvider#getContentOfSelection(java.util.Map, int)
 	 */
-	protected EObject getContentOfSelection(final Map<Integer, Object> rows, final int currentRowIndex) {
+	@Override
+	protected EObject getContentOfSelection(final Map<Integer, Object> rows, final int currentRowPosition) {
 		EObject context = null;
 
-		if (0 == currentRowIndex) {
+		if (0 == currentRowPosition) {
 			context = table.getContext();
 		} else {
-			Object axis = rows.get(currentRowIndex);
+			Object axis = rows.get(currentRowPosition);
 			Object object = AxisUtils.getRepresentedElement(axis);
 			if (object instanceof TreeFillingConfiguration && axis instanceof ITreeItemAxis) {
 				axis = ((ITreeItemAxis) axis).getParent();

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2017 CEA LIST.
+ * Copyright (c) 2013, 2017, 2020 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,10 +11,9 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515737
+ *  Vincent Lorenzo (CEA LIST) - bug 517617, 532452
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
-
-import java.util.Set;
 
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -145,23 +144,16 @@ public class AxisUtils {
 			if (null != tableSelectionWrapper && null != nattableManager.getTable()) {
 				final Table table = nattableManager.getTable();
 
-				int numSelectedAxis = 0;
-				Set<Integer> keySet = null;
-
 				// If the table is already inverted, handle with the number of fully selected rows
 				// otherwise, handle with the number of fully selected columns
 				if (table.isInvertAxis()) {
-					numSelectedAxis = tableSelectionWrapper.getFullySelectedRows().size();
-					keySet = tableSelectionWrapper.getFullySelectedRows().keySet();
-				} else {
-					numSelectedAxis = tableSelectionWrapper.getFullySelectedColumns().size();
-					keySet = tableSelectionWrapper.getFullySelectedColumns().keySet();
-				}
-
-				// Just continue to check the upper bound if there is only one selected axis
-				if (1 == numSelectedAxis) {
-					// Get the axis index from the key set
-					axisIndex = (Integer) keySet.toArray()[0];
+					if (tableSelectionWrapper.getFullySelectedRows().size() == 1) {
+						int axisPosition = (int) tableSelectionWrapper.getFullySelectedRows().keySet().toArray()[0];
+						axisIndex = nattableManager.getBodyLayerStack().getSelectionLayer().getRowIndexByPosition(axisPosition);
+					}
+				} else if (tableSelectionWrapper.getFullySelectedColumns().size() == 1) {
+					int axisPosition = (int) tableSelectionWrapper.getFullySelectedColumns().keySet().toArray()[0];
+					axisIndex = nattableManager.getBodyLayerStack().getSelectionLayer().getColumnIndexByPosition(axisPosition);
 				}
 			}
 		}

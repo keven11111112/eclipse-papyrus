@@ -1,3 +1,5 @@
+Class0	package	true	N/A
+Class1	package	true	N/A
 Class0	public	false	N/A
 Operation0_0	package	false	N/A
 Param0_0_0	public	N/A	in
@@ -48,5 +50,3 @@ Param1_2_2	private	N/A	return
 Operation1_0	public	true	N/A
 Operation1_1	private	true	N/A
 Operation1_2	public	true	N/A
-Class0	package	true	N/A
-Class1	package	true	N/A

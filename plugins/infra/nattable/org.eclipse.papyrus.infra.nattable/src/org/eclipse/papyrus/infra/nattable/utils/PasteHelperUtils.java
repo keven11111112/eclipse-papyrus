@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2020 CEA LIST and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,8 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Nicolas fAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - bug 517617, 532452
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
@@ -18,7 +18,6 @@ package org.eclipse.papyrus.infra.nattable.utils;
 import java.io.Reader;
 import java.util.Map;
 
-import org.eclipse.papyrus.editor.Activator;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
@@ -166,10 +165,10 @@ public class PasteHelperUtils {
 
 			final Map<Integer, Object> selectedRows = tableSelectionWrapper.getFullySelectedRows();
 
-			for (int rowIndex : selectedRows.keySet()) {
-				if (selectedRows.get(rowIndex) instanceof TreeFillingConfiguration) {
-					if (minDepth > ((TreeFillingConfiguration) selectedRows.get(rowIndex)).getDepth()) {
-						minDepth = ((TreeFillingConfiguration) selectedRows.get(rowIndex)).getDepth();
+			for (int rowPosition : selectedRows.keySet()) {
+				if (selectedRows.get(rowPosition) instanceof TreeFillingConfiguration) {
+					if (minDepth > ((TreeFillingConfiguration) selectedRows.get(rowPosition)).getDepth()) {
+						minDepth = ((TreeFillingConfiguration) selectedRows.get(rowPosition)).getDepth();
 					}
 				} 
 			}
