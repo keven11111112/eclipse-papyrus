@@ -1656,6 +1656,29 @@ If you need to declare your own comparator and you extend <code>org.eclipse.papy
 * In case of filtering on several column in the same time, we will display only the rows matching all applied filters
 * In case of collection in a cell, the row matches if the collection contains the wanted element
 
+=How to define columns sorted by default=
+Since Papyrus 5.0, it is possible to define column which will be sorted by default.
+In order to do that, you must select the axis to sorted in your '''TableConfiguration''' file, then
+*add it a '''StringValueStyle'''
+*name this style '''sort'''
+*give it a string value with this format: <number>_<direction>, where
+**number is the column sort sequence. The biggest number is the first sorted column, then we decrease until 0 for the last sorted column. 
+**direction must be '''ASC''' (alphabetic order) or '''DESC''' (reverse alphabetic order). 
+
+==Example==
+To sort the rows by alphabetic order according to the value of 2 columns A and B. You want to start the sort with the values of column A, then continuing the sort with the values of column B when the values of A are equals. To obtain this behavior, you need to define: 
+*for A: 0_ASC - first sorted column
+*for B: 1_ASC - last sorted column
+
+[[File:images/SortStyleName_snapshot1.png|frame|none|Sort configuration for column A]]
+
+[[File:images/SortStyleName_snapshot2.png|frame|none|Sort configuration for column B]]
+
+==How does it works?==
+*The sorted columns are save with the command <code>org.eclipse.papyrus.infra.nattable.sort.SaveSortedColumnCommand</code>.
+*The apply/reapply (after a refresh/a reload or a table creation) is done by the class <code> org.eclipse.papyrus.infra.nattable.sort.PapyrusGlazedListsSortModel</code>.
+*The comparator chooser use a specific format to apply sort. This format is given by the method <code>org.eclipse.papyrus.infra.nattable.sort.ColumnSortUtils.buildComparatorValues(INattableModelManager)</code>
+
 =Cell Editor=
 Papyrus table provides several kinds of cell editors, for example, editors for ValueSpecification and UML NamedElement:
 *textual editor

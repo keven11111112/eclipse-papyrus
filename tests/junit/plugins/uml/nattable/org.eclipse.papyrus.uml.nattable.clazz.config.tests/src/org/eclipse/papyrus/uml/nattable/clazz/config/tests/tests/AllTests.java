@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 CEA LIST.
+ * Copyright (c) 2014, 2017, 2020 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 515806, 519383, 515737
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 486733
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 
@@ -188,6 +189,30 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWith
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_V1_V3_V1_SingleColumn_AttachedMode_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_V1_V3_V1_SingleColumn_DetachedMode_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.selection.TableSelectionTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_NAME_ASC_TYPE_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_NAME_ASC_TYPE_DESC_;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_NAME_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_NAME_DESC_TYPE_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_NAME_DESC_TYPE_DESC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_NAME_DESC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_TYPE_ASC_NAME_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_TYPE_ASC_NAME_DESC;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_TYPE_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_TYPE_DESC_NAME_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_TYPE_DESC_NAME_DESC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_H1_H3_H1_TYPE_DESC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_NAME_ASC_TYPE_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_NAME_ASC_TYPE_DESC;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_NAME_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_NAME_DESC_TYPE_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_NAME_DESC_TYPE_DESC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_NAME_DESC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_TYPE_ASC_NAME_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_TYPE_ASC_NAME_DESC;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_TYPE_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_TYPE_DESC_NAME_ASC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_TYPE_DESC_NAME_DESC_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Open_Sorted_Table_V1_V3_V1_TYPE_DESC_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Sort_H1_H3_H1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.sort.Sort_V1_V3_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.styles.ResizeHeaderWithIndexTest;
@@ -243,6 +268,32 @@ import org.junit.runners.Suite.SuiteClasses;
 		// SORT
 		Sort_V1_V3_V1.class,
 		Sort_H1_H3_H1.class,
+
+		// OPEN SORTED TABLE bug 486733
+		Open_Sorted_Table_H1_H3_H1_NAME_ASC_Test.class,
+		Open_Sorted_Table_H1_H3_H1_NAME_ASC_TYPE_ASC_Test.class,
+		Open_Sorted_Table_H1_H3_H1_NAME_ASC_TYPE_DESC_.class,
+		Open_Sorted_Table_H1_H3_H1_NAME_DESC_Test.class,
+		Open_Sorted_Table_H1_H3_H1_NAME_DESC_TYPE_ASC_Test.class,
+		Open_Sorted_Table_H1_H3_H1_NAME_DESC_TYPE_DESC_Test.class,
+		Open_Sorted_Table_H1_H3_H1_TYPE_ASC_NAME_ASC_Test.class,
+		Open_Sorted_Table_H1_H3_H1_TYPE_ASC_NAME_DESC.class,
+		Open_Sorted_Table_H1_H3_H1_TYPE_ASC_Test.class,
+		Open_Sorted_Table_H1_H3_H1_TYPE_DESC_NAME_ASC_Test.class,
+		Open_Sorted_Table_H1_H3_H1_TYPE_DESC_NAME_DESC_Test.class,
+		Open_Sorted_Table_H1_H3_H1_TYPE_DESC_Test.class,
+		Open_Sorted_Table_V1_V3_V1_NAME_ASC_Test.class,
+		Open_Sorted_Table_V1_V3_V1_NAME_ASC_TYPE_ASC_Test.class,
+		Open_Sorted_Table_V1_V3_V1_NAME_ASC_TYPE_DESC.class,
+		Open_Sorted_Table_V1_V3_V1_NAME_DESC_Test.class,
+		Open_Sorted_Table_V1_V3_V1_NAME_DESC_TYPE_ASC_Test.class,
+		Open_Sorted_Table_V1_V3_V1_NAME_DESC_TYPE_DESC_Test.class,
+		Open_Sorted_Table_V1_V3_V1_TYPE_ASC_NAME_ASC_Test.class,
+		Open_Sorted_Table_V1_V3_V1_TYPE_ASC_NAME_DESC.class,
+		Open_Sorted_Table_V1_V3_V1_TYPE_ASC_Test.class,
+		Open_Sorted_Table_V1_V3_V1_TYPE_DESC_NAME_ASC_Test.class,
+		Open_Sorted_Table_V1_V3_V1_TYPE_DESC_NAME_DESC_Test.class,
+		Open_Sorted_Table_V1_V3_V1_TYPE_DESC_Test.class,
 
 		// Bug 473155 : change axis index style
 		AxisChangeIndexWithConfigurationTest.class,

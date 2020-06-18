@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2017 CEA LIST.
+ * Copyright (c) 2014, 2017, 2020 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,10 +12,12 @@
  *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE(ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 504077
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 515737
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 486733
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
 
+import org.eclipse.nebula.widgets.nattable.sort.SortDirectionEnum;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
@@ -151,6 +153,7 @@ public class NamedStyleConstants {
 	/**
 	 * A default value used to enable the wraptext function in the NatTable.
 	 * It is enabled by default.
+	 *
 	 * @since 5.0
 	 */
 	public static final boolean ENABLE_WRAP_TEXT = true;
@@ -165,6 +168,7 @@ public class NamedStyleConstants {
 	/**
 	 * A default value used to enable the auto resize cell height function in the NatTable.
 	 * It is enabled by default.
+	 *
 	 * @since 5.0
 	 */
 	public static final boolean ENABLE_AUTO_RESIZE_CELL_HEIGHT = true;
@@ -179,7 +183,16 @@ public class NamedStyleConstants {
 	/**
 	 * A default value used to enable the display list on separated rows function in the NatTable.
 	 * It is disable by default.
+	 *
 	 * @since 5.0
 	 */
 	public static final boolean ENABLE_DISPLAY_LIST_ON_SEPARATED_ROWS = false;
+
+	/**
+	 * A {@link StringValueStyle} used to save the the sort.
+	 * The value must be respect this syntax: number_direction, where number is the order sequence of the column and direction is {@link SortDirectionEnum}
+	 *
+	 * @since 7.0
+	 */
+	public static final String SORT = "sort"; //$NON-NLS-1$
 }

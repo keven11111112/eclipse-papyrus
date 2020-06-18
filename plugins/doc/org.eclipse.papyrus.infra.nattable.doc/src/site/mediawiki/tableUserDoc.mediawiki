@@ -154,7 +154,7 @@ Moreover Tree table provides some specific features
 ::*##, then left click on the wanted column header : the rows are sorted ascending,
 ::*## clicking a second time, the rows are sorted descending
 ::*## clickling a third time, the rows return to the default sort
-::*# Pressing MAJ + ALT allows to sort rows using several columns. The last selected column is the first one used to do the sort
+::*# Pressing SHIFT + ALT allows to sort rows using several columns. The last selected column is the first one used to do the sort
 ::* Update of the sorted state
 ::*# new row added to the table will be sorted
 ::*# modifying a value is a sorted column (from the table or another Papyrus View) doesn't change the sort of the rows for 2 reasons
@@ -162,6 +162,7 @@ Moreover Tree table provides some specific features
 ::*## usability: the edited row will change of location, so the table will blink and scroll)
 ::*# destroying a sorted column will not update the sort, to avoid to disturb the user
 ::*# Invert Axis in a sorted state will clear the sort
+::* the sort status is saved in the table and it is undoable (this point has been added for Papyrus 5.0)
 
 ; Remove Column/Row<br> 
 ::* Select the header of the axis to remove then right click and select Remove Column/Row. The axis will be remove of the table, but the represented element will continue to be in the model.<br>
@@ -254,7 +255,7 @@ the provided configuration
 | colspan="5" style="text-align: center;" | Yes (F2, or Double click on a cell)
 |-
 | Sort Row Axis clicking on column header
-| colspan="5" style="text-align: center;" | Yes (ALT-Click on column header, or MAJ-ALT-Click to sort on several columns)
+| colspan="5" style="text-align: center;" | Yes (ALT-Click on column header, or SHIFT-ALT-Click to sort on several columns)
 |-
 | Change Columns Order
 | colspan="5" style="text-align: center;" | Yes

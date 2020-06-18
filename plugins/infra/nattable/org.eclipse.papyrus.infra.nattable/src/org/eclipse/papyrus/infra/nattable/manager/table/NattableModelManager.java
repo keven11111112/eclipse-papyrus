@@ -14,7 +14,7 @@
  *  Nicolas Boulay (Esterel Technologies SAS) - Bug 497467
  *  Sebastien Bordes (Esterel Technologies SAS) - Bug 497738
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 526146, 515737, 516314
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559973, 560318, 562619, 562646, 517617, 532452
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 559973, 560318, 562619, 562646, 517617, 532452, 486733
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -49,6 +49,7 @@ import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -74,6 +75,7 @@ import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.nebula.widgets.nattable.util.GCFactory;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.NestingNotifyingWorkspaceCommandStack;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
@@ -106,6 +108,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanVa
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.selection.ISelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.selection.ObjectsSelectionExtractor;
@@ -2003,6 +2006,14 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 									final Object newValue = notification.getNewValue();
 									final Object oldValue = notification.getOldValue();
 									final int type = notification.getEventType();
+
+									// ignore all from style about sort
+									if (newValue instanceof StringValueStyle && ((StringValueStyle) newValue).getName().equals("sort")) {
+										return; // nothing to do
+									}
+									if (oldValue instanceof StringValueStyle && ((StringValueStyle) oldValue).getName().equals("sort")) {
+										return; // nothing to do
+									}
 
 									if (notifier instanceof IAxis && notification.getFeature() == NattablestylePackage.eINSTANCE.getStyledElement_Styles()) {
 										// the change is on a style of an IAxis

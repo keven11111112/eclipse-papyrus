@@ -19,3 +19,7 @@ all others are deprecated and will be removed.
 ***new methods '''updatePositions''', to update position of referenced elements (rows/columns/cells) after a refresh
 ***new methods '''buildSingleCellSelection''', '''getSelectedElements''', '''getSingleSelectedCells''', '''addSelectedRow''', '''addSelectedColumn''', '''removeSelectedRow''', '''removeSelectedColumn''', '''copyRowsSelection''', '''copyColumnsSelection'''
 ***methods '''getFullySelectedRows''' and '''getFullySelectedColumns''' changed without breaking API: before the returned map used the row index as key, and now this same map use the row position as key. To obtain the row index, you must call '''selectionLayer.getRowIndexByPosition'''
+
+*bug 486733
+**'''PapyrusNatTableComparatorChooser'''
+***change visibility from protected to public for method '''rebuildComparator'''
