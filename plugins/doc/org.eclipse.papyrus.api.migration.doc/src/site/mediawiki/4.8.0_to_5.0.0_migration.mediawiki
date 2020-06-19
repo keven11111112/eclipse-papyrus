@@ -1,0 +1,8 @@
+
+Here we will list all changes between Papyrus 4.8.0 (Eclipse 2020-06) and Papyrus 5.0.0 (Eclipse 2020-12).
+
+==Plugin dependencies==
+To ease Papyrus developement, we remove all reexported dependencies from the Manifest file.
+
+==Changes==
+Here the list of API changes for each plugin.

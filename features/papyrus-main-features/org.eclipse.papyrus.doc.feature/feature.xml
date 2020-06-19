@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.doc.feature"
-      version="3.1.0.qualifier"
       label="%featureName"
-      provider-name="%providerName" 
+      version="3.1.0.qualifier"
+      provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="2.0.2">
 
@@ -19,6 +19,12 @@
       %license
    </license>
 
+   <plugin
+         id="org.eclipse.papyrus.api.migration.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+         
    <plugin
          id="org.eclipse.papyrus.copypaste.ui.doc"
          download-size="0"
@@ -83,14 +89,14 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.papyrus.infra.services.decoration.doc"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.papyrus.infra.services.navigation.doc"
          download-size="0"
@@ -141,7 +147,7 @@
          download-size="0"
          install-size="0"
          version="0.0.0"/>
-         
+
    <plugin
          id="org.eclipse.papyrus.uml.migration.doc"
          download-size="0"
@@ -237,21 +243,21 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.papyrus.toolsmiths.architecture.doc"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.papyrus.toolsmiths.validation.doc"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+   
    <!--plugin
          id="org.eclipse.papyrus.doctemplate.doc"
          download-size="0"
