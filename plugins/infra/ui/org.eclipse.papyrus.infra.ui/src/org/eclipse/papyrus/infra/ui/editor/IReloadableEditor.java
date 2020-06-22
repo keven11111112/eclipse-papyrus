@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016, 2020 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 485220
+ *   Patrick Tessier - Bug 564546 Lost modification when two papyrus editor work on model with dependency
  *
  */
 package org.eclipse.papyrus.infra.ui.editor;
@@ -29,7 +30,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.tools.util.CoreExecutors;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.ui.Activator;
 import org.eclipse.papyrus.infra.ui.editor.reload.IEditorReloadListener;
+import org.eclipse.papyrus.infra.ui.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -52,7 +53,7 @@ import org.eclipse.ui.ide.IDE;
 /**
  * An {@linkplain IAdaptable adapter protocol} for editors that know how to internally
  * reload themselves without disturbing the workbench window's perspective layout.
- * 
+ *
  * @since 1.2
  */
 public interface IReloadableEditor {
@@ -135,114 +136,77 @@ public interface IReloadableEditor {
 					}
 				}
 
-				final String editorName = getEditorName(editor);
 
-				final boolean allReadOnly = allReadOnly(triggeringResources);
+				final String editorName = getEditorName(editor);
 				final String promptTitle;
 				final String promptIntro;
 				final String saveOption;
-				final String dontSaveOption;
-				final String ignoreOption = "Ignore";
+				final String ignoreOption = Messages.IReloadableEditor_do_not_save_do_not_reload;
+				String resourceNames = ""; //$NON-NLS-1$
+
+				for (Resource resource : triggeringResources) {
+					resourceNames = resourceNames + " " + resource.getURI().lastSegment(); //$NON-NLS-1$
+				}
 
 				switch (reason) {
 				case RESOURCES_DELETED:
-					promptTitle = "Resources Deleted";
-					promptIntro = NLS.bind("Some resources used by \"{0}\" have been deleted.", editorName);
-					saveOption = "Save and Close";
-					dontSaveOption = "Close Editor";
+					promptTitle = Messages.IReloadableEditor_Resources_Deleted;
+					promptIntro = NLS.bind(Messages.IReloadableEditor_Some_resources_used_by, editorName);
+					saveOption = Messages.IReloadableEditor_Save_and_Close;
 					break;
 				default:
-					promptTitle = "Resources Changed";
-					promptIntro = NLS.bind("Some resources used by \"{0}\" have changed.", editorName);
-					saveOption = "Save and Re-open";
-					dontSaveOption = "Re-open Editor";
+					promptTitle = Messages.IReloadableEditor_Resources_Changed;
+					promptIntro = NLS.bind(Messages.IReloadableEditor_Some_resources_used_by_have_changed, resourceNames, editorName);
+					saveOption = Messages.IReloadableEditor_Save_and_Reopen;
 					break;
 				}
 
 				Callable<DirtyPolicy> result;
 
-				if (allReadOnly) {
-					// Only read-only models have changed. We (most likely) won't save them within this current editor. As they are already loaded, we can just continue.
-					result = new Callable<DirtyPolicy>() {
 
-						@Override
-						public DirtyPolicy call() {
-							Shell parentShell = Display.getCurrent().getActiveShell();
+				// Only read-only models have changed. We (most likely) won't save them within this current editor. As they are already loaded, we can just continue.
+				result = new Callable<DirtyPolicy>() {
 
-							final String message;
-							final String[] options;
-							if (dirty) {
-								message = promptIntro + " Note: all these resources are loaded in read-only mode and won't be overridden if you choose to save. Unsaved changes will be lost.";
-								options = new String[] { saveOption, dontSaveOption, ignoreOption };
-							} else {
-								message = promptIntro;
-								options = new String[] { dontSaveOption, ignoreOption };
-							}
+					@Override
+					public DirtyPolicy call() {
+						Shell parentShell = Display.getCurrent().getActiveShell();
 
-							final MessageDialog dialog = new MessageDialog(parentShell, promptTitle, null, message, MessageDialog.WARNING, options, 0) {
+						final String message;
+						final String[] options;
+						message = promptIntro + Messages.IReloadableEditor_continue_to_work;
+						options = new String[] { ignoreOption, saveOption };
 
-								@Override
-								protected void setShellStyle(int newShellStyle) {
-									super.setShellStyle(newShellStyle | SWT.SHEET);
-								}
-							};
-							final int answer = dialog.open();
+						final int answer = MessageDialog.open(MessageDialog.QUESTION, parentShell, promptTitle, message, SWT.NONE, options);
 
-							DirtyPolicy result;
+						DirtyPolicy result;
 
-							if (answer == SWT.DEFAULT) {
-								// User hit Esc or dismissed the dialog with the window manager button. Ignore
+						if (answer == SWT.DEFAULT) {
+							// User hit Esc or dismissed the dialog with the window manager button. Ignore
+							result = IGNORE;
+						} else if (dirty) {
+							if (answer == 0) {
 								result = IGNORE;
-							} else if (dirty) {
-								result = values()[answer];
 							} else {
-								result = values()[answer + 1]; // Account for the missing "Save and Xxx" option
+								result = SAVE;
 							}
 
-							return result;
+						} else {
+							result = values()[answer + 1]; // Account for the missing "Save and Xxx" option
 						}
-					};
-				} else {
-					// At least one read-write resource has changed. Potential conflicts.
-					result = new Callable<DirtyPolicy>() {
 
-						@Override
-						public DirtyPolicy call() {
-							DirtyPolicy result = IGNORE;
+						return result;
+					}
+				};
 
-							final Shell parentShell = Display.getCurrent().getActiveShell();
-							final String action = reason.shouldReload(triggeringResources) ? "re-open" : "close";
-							final String message;
 
-							if (dirty) {
-								message = promptIntro + NLS.bind(" Do you wish to {0} the current editor? Unsaved changes will be lost.", action);
-							} else {
-								message = promptIntro + NLS.bind(" Do you wish to {0} the current editor?", action);
-							}
+				try
 
-							final String[] options = { IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL };
-							final MessageDialog dialog = new MessageDialog(parentShell, promptTitle, null, message, MessageDialog.WARNING, options, 0) {
-
-								@Override
-								protected void setShellStyle(int newShellStyle) {
-									super.setShellStyle(newShellStyle | SWT.SHEET);
-								}
-							};
-							if (dialog.open() == 0) {
-								result = DO_NOT_SAVE;
-							}
-
-							return result;
-						}
-					};
-				}
-
-				try {
+		{
 					return CoreExecutors.getUIExecutorService().syncCall(result);
 				} catch (ExecutionException e) {
-					throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to determine dirty policy for editor re-load.", e));
+					throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.IReloadableEditor_Failed_to_determine, e));
 				} catch (InterruptedException e) {
-					throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Interrupted in determining dirty policy for editor re-load.", e));
+					throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.IReloadableEditor_Interrupted_in_determining, e));
 				}
 			}
 		};

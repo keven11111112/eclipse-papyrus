@@ -46,6 +46,18 @@ public class Messages extends NLS {
 	public static String RichtextPreferencePage_FirstBooleanEditorName;
 
 	public static String RichtextPreferencePage_SecondBooleanEditorName;
+
+	public static String IReloadableEditor_do_not_save_do_not_reload;
+	public static String IReloadableEditor_Resources_Deleted;
+	public static String IReloadableEditor_Interrupted_in_determining;
+	public static String IReloadableEditor_Some_resources_used_by;
+	public static String IReloadableEditor_Save_and_Close;
+	public static String IReloadableEditor_Resources_Changed;
+	public static String IReloadableEditor_Some_resources_used_by_have_changed;
+	public static String IReloadableEditor_Save_and_Reopen;
+	public static String IReloadableEditor_continue_to_work;
+	public static String IReloadableEditor_Failed_to_determine;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
