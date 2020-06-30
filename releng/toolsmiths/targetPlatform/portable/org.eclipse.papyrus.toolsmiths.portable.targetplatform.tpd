@@ -13,11 +13,11 @@ location tpd "http://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT" {
 
 //manualUpdate 
 
-//location cbiAggregator "http://download.eclipse.org/cbi/updates/aggregator/ide/4.13/" {
-//    org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group lazy
-//    org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group lazy
-//    org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
-//}
+location cbiAggregator "https://download.eclipse.org/cbi/updates/aggregator/ide/4.13/" {
+    org.eclipse.cbi.p2repo.aggregator.editor.feature.source.feature.group lazy
+    org.eclipse.cbi.p2repo.aggregator.editor.feature.feature.group lazy
+    org.eclipse.cbi.p2repo.aggregator.engine.feature.source.feature.group lazy
+}
 
 //manualUpdate
 
