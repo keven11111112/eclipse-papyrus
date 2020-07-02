@@ -11,7 +11,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug #471903
- *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - bug 564127
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - bug 564127, 564248
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.listener;
@@ -105,7 +105,11 @@ public class UpdateTableContentListener implements ResourceSetListener {
 						}
 					}
 				}
-
+				final Object feature = notification.getFeature();
+				if (feature == NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_DisplayFilter()) {
+					// notification already managed by org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager.resourceSetListener
+					return false;
+				}
 				return true;
 			}
 		};
@@ -181,7 +185,6 @@ public class UpdateTableContentListener implements ResourceSetListener {
 			index++;
 		}
 		tableManager.refreshNatTable();
-
 	}
 
 	/**

@@ -49,7 +49,6 @@ import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
@@ -75,7 +74,6 @@ import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.nebula.widgets.nattable.util.GCFactory;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.emf.gmf.command.NestingNotifyingWorkspaceCommandStack;
 import org.eclipse.papyrus.infra.internationalization.utils.utils.LabelInternationalization;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
@@ -2008,10 +2006,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 									final int type = notification.getEventType();
 
 									// ignore all from style about sort
-									if (newValue instanceof StringValueStyle && ((StringValueStyle) newValue).getName().equals("sort")) {
+									if (newValue instanceof StringValueStyle && ((StringValueStyle) newValue).getName().equals(NamedStyleConstants.SORT)) {
 										return; // nothing to do
 									}
-									if (oldValue instanceof StringValueStyle && ((StringValueStyle) oldValue).getName().equals("sort")) {
+									if (oldValue instanceof StringValueStyle && ((StringValueStyle) oldValue).getName().equals(NamedStyleConstants.SORT)) {
 										return; // nothing to do
 									}
 

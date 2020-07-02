@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - bug 564248
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.listener;
@@ -21,7 +21,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -30,7 +29,6 @@ import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
-import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
@@ -99,7 +97,7 @@ public class HideShowCategoriesTableListener implements ResourceSetListener {
 			if (Notification.ADD_MANY == eventType) {
 				Object newValue = notification.getNewValue();
 				Assert.isTrue(newValue instanceof Collection<?>);
-				toHide = new ArrayList<Integer>();
+				toHide = new ArrayList<>();
 				for (Object tmp : (Collection<?>) newValue) {
 					Assert.isTrue(tmp instanceof Integer);
 					toHide.add((Integer) tmp);
@@ -108,7 +106,7 @@ public class HideShowCategoriesTableListener implements ResourceSetListener {
 			if (Notification.REMOVE_MANY == eventType) {
 				Object oldValue = notification.getOldValue();
 				Assert.isTrue(oldValue instanceof Collection<?>);
-				toShow = new ArrayList<Integer>();
+				toShow = new ArrayList<>();
 				for (Object tmp : (Collection<?>) oldValue) {
 					Assert.isTrue(tmp instanceof Integer);
 					toShow.add((Integer) tmp);
@@ -157,12 +155,8 @@ public class HideShowCategoriesTableListener implements ResourceSetListener {
 		}
 
 		if (multiToSingle) {
-			NatTable natTable = (NatTable) ((IAdaptable) this.tableManager).getAdapter(NatTable.class);
-			natTable.refresh();
 			((ITreeNattableModelManager) this.tableManager).hideShowColumnCategoriesInRowHeader(null, null);
 		} else {
-			NatTable natTable = (NatTable) ((IAdaptable) this.tableManager).getAdapter(NatTable.class);
-			natTable.refresh();
 			((ITreeNattableModelManager) this.tableManager).hideShowColumnCategoriesInRowHeader(StyleUtils.getHiddenDepths(tableManager), null);
 		}
 
@@ -244,7 +238,7 @@ public class HideShowCategoriesTableListener implements ResourceSetListener {
 	 * @param notification
 	 *            a notification
 	 * @return
-	 * 		<code>true</code> if the notification concerns the display style of the table
+	 *         <code>true</code> if the notification concerns the display style of the table
 	 */
 	private static final boolean isNotificationOnSingleOrMultiColumnInRowHeader(Notification notification) {
 		Object feature = notification.getFeature();
@@ -269,7 +263,7 @@ public class HideShowCategoriesTableListener implements ResourceSetListener {
 	 * @param notification
 	 *            a notification
 	 * @return
-	 * 		<code>true</code> if the notification concerns the hide/show of the categoriesF
+	 *         <code>true</code> if the notification concerns the hide/show of the categoriesF
 	 */
 	private static final boolean isNotificationOnHideShowCategories(Notification notification) {
 		Object notifier = notification.getNotifier();

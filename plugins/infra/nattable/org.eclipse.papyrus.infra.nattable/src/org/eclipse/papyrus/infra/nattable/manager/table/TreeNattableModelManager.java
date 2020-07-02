@@ -12,7 +12,7 @@
  *   CEA LIST - Initial API and implementation
  *   Dirk Fauth <dirk.fauth@googlemail.com> - Bug 488234
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 508175
- *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 560318, 563172
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 560318, 563172, 564248
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -708,7 +708,6 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 */
 	@Override
 	public void hideShowColumnCategoriesInRowHeader(List<Integer> depthToHide, List<Integer> depthToShow) {
-		this.natTable.refresh();
 		RowHeaderLayerStack rowHeaderLayerStack = getRowHeaderLayerStack();
 		if (rowHeaderLayerStack instanceof RowHeaderHierarchicalLayerStack) {
 			ColumnHideShowLayer layer = ((RowHeaderHierarchicalLayerStack) rowHeaderLayerStack).getRowHeaderColumnHideShowLayer();

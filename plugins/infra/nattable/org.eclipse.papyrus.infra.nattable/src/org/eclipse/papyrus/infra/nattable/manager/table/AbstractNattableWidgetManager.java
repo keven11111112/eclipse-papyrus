@@ -18,7 +18,7 @@
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 459220, 417095
  *  Vincent Lorenzo (CEA LIST) - bug 525221
  *  Nicolas Fauvergue (CEA LIST) - bug 509971
- *  Vincent Lorenzo (CEA LIST) - bug 561300, 562619, 564130, 517617, 532452
+ *  Vincent Lorenzo (CEA LIST) - bug 561300, 562619, 564130, 517617, 532452, 564248
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
@@ -690,13 +690,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 									if (feature == NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_DisplayFilter() && newValue instanceof Boolean) {
 										if ((onColumnOnModel && !isInverted) || (!onColumnOnModel && isInverted)) {
 											AbstractNattableWidgetManager.this.filterColumnHeaderComposite.setFilterRowVisible(((Boolean) newValue).booleanValue());
-											natTable.refresh();
 										}
 									}
 								} else if (notifier instanceof Table && feature == NattablePackage.eINSTANCE.getTable_InvertAxis()) {
 									// TODO : replace the listener and its action done in NattableModelManger by this one
 									AbstractNattableWidgetManager.this.filterColumnHeaderComposite.setFilterRowVisible(HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisConfigurationUsedInTable(getTable()).isDisplayFilter());
-									natTable.refresh();
 								} else if (notifier instanceof IAxis || notifier instanceof StringValueStyle || notifier instanceof StringListValueStyle) {
 									boolean refreshFilter = false;
 									IAxis axisToRefresh = null;
