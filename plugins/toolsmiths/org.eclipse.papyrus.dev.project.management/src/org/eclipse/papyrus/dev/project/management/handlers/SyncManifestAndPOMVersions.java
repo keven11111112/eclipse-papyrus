@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ * Copyright (c) 2016, 2020 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Vincent LORENZO (CEA LIST) vincent.lorenzo@cea.fr - Bug 565006
  *****************************************************************************/
 
 package org.eclipse.papyrus.dev.project.management.handlers;
@@ -56,11 +56,13 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.MultiRule;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.dev.project.management.Activator;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.progress.IProgressService;
 import org.eclipse.ui.statushandlers.StatusManager;
+import org.eclipse.wst.xml.core.internal.formatter.XMLFormatterFormatProcessor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -69,12 +71,17 @@ import org.w3c.dom.NodeList;
 /**
  * Ensures that <tt>pom.xml</tt> files have the same version number as their
  * corresponding <tt>MANIFEST.MF</tt> or <tt>feature.xml</tt> file.
- * 
+ *
  * @since 1.2
  */
 public class SyncManifestAndPOMVersions extends AbstractHandler {
 	private static final Pattern BUNDLE_VERSION = Pattern.compile("^Bundle-Version:\\s*(\\S+)\\s*$", Pattern.MULTILINE); //$NON-NLS-1$
-	private static final Pattern POM_FIXUP = Pattern.compile("^(<\\?xml\\s.*?\\?>)\\s*(<project>)\\s*$", Pattern.MULTILINE);
+	private static final Pattern POM_FIXUP = Pattern.compile("^(<\\?xml\\s.*?\\?>)\\s*(<project>)\\s*$", Pattern.MULTILINE); //$NON-NLS-1$
+
+	/**
+	 * the format processor used to format XML files
+	 */
+	private static final XMLFormatterFormatProcessor processor = new XMLFormatterFormatProcessor();
 
 	public SyncManifestAndPOMVersions() {
 		super();
@@ -89,7 +96,7 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 				pomsByManifest.values().stream()).toArray(ISchedulingRule[]::new);
 		MultiRule jobRule = new MultiRule(rules);
 
-		Job updateJob = new Job("Synchronize POM versions") {
+		Job updateJob = new Job("Synchronize POM versions") { //$NON-NLS-1$
 
 			{
 				setRule(jobRule);
@@ -97,7 +104,7 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
-				SubMonitor sub = SubMonitor.convert(monitor, "Updating POMs...", pomsByManifest.size());
+				SubMonitor sub = SubMonitor.convert(monitor, "Updating POMs...", pomsByManifest.size()); //$NON-NLS-1$
 
 				pomsByManifest.forEach((manifest, pom) -> {
 					try {
@@ -114,6 +121,7 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 								if (!version.equals(versionElement.getTextContent())) {
 									versionElement.setTextContent(version);
 									write(xml, pom);
+									formatXMLFile(pom);
 								}
 							}
 						}
@@ -146,9 +154,9 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 				.forEach(project -> {
 					IFile pom = project.getFile("pom.xml"); //$NON-NLS-1$
 					if ((pom != null) && pom.isAccessible()) {
-						IFile manifest = project.getFile("feature.xml");
+						IFile manifest = project.getFile("feature.xml"); //$NON-NLS-1$
 						if (!manifest.isAccessible()) {
-							manifest = project.getFile("META-INF/MANIFEST.MF");
+							manifest = project.getFile("META-INF/MANIFEST.MF"); //$NON-NLS-1$
 						}
 
 						if (manifest.isAccessible()) {
@@ -174,7 +182,7 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 				buf.rewind();
 			}
 		} catch (IOException e) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to read manifest", e));
+			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to read manifest", e)); //$NON-NLS-1$
 		}
 
 		return result.toString();
@@ -197,7 +205,7 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 
 			transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8"); //$NON-NLS-1$
 			xml.setXmlStandalone(true);
-			xml.setXmlVersion("1.0");
+			xml.setXmlVersion("1.0"); //$NON-NLS-1$
 
 			Result result = new StreamResult(writer);
 			transformer.transform(new DOMSource(xml), result);
@@ -216,7 +224,7 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 			ByteArrayInputStream input = new ByteArrayInputStream(text.getBytes(Charset.forName("UTF-8"))); //$NON-NLS-1$
 			xmlFile.setContents(input, false, true, null);
 		} catch (Exception e) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to update POM", e));
+			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to update POM", e)); //$NON-NLS-1$
 		}
 	}
 
@@ -242,7 +250,7 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 	Element findVersion(Document pom) {
 		Element project = pom.getDocumentElement();
 		return stream(project.getChildNodes())
-				.filter(n -> "version".equals(n.getNodeName()))
+				.filter(n -> "version".equals(n.getNodeName())) //$NON-NLS-1$
 				.filter(Element.class::isInstance).map(Element.class::cast)
 				.findFirst().orElse(null);
 	}
@@ -271,5 +279,22 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 		}
 
 		return result;
+	}
+
+	/**
+	 *
+	 * @param filePath
+	 *            the path of the file to format
+	 */
+	protected static final void formatXMLFile(final IFile file) {
+		if (null != file && file.exists()) {
+			try {
+				processor.formatFile(file);
+			} catch (IOException ex) {
+				Activator.log.error(NLS.bind("IOException formating the XML file from {0}", file.getFullPath()), ex); //$NON-NLS-1$
+			} catch (CoreException ex) {
+				Activator.log.error(NLS.bind("Exception during the formatting of {0}", file.getFullPath()), ex); //$NON-NLS-1$
+			}
+		}
 	}
 }
