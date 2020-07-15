@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST, ALL4TEC and others.
+ * Copyright (c) 2016, 2020 CEA LIST, ALL4TEC and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -30,12 +30,12 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
-import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.editors.InputDialog;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectionDialog;
 import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
+import org.eclipse.papyrus.views.documentation.Activator;
 import org.eclipse.papyrus.views.documentation.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -148,10 +148,10 @@ public class DocumentationResourceEditor implements SelectionListener {
 	 * Creates controls.
 	 */
 	protected void createListControls() {
-		addRemoteButton = createButton(Activator.getDefault().getImageFromPlugin(REMOTE_ICON), Messages.DocumentationResourceEditor_AddButtonTooltip);
-		browseFileSystemButton = createButton(Activator.getDefault().getImageFromPlugin(BROWSE_FILE_SYSTEM_ICON), Messages.DocumentationResourceEditor_BrowseSystemButtonTooltip);
-		browseWorkspaceButton = createButton(Activator.getDefault().getImageFromPlugin(BROWSE_WORKSPACE_ICON), Messages.DocumentationResourceEditor_BrowseWSButtonTooltip);
-		removeButton = createButton(Activator.getDefault().getImage(DELETE_ICON), Messages.DocumentationResourceEditor_RemoveButtonTootip);
+		addRemoteButton = createButton(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImageFromPlugin(REMOTE_ICON), Messages.DocumentationResourceEditor_AddButtonTooltip);
+		browseFileSystemButton = createButton(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImageFromPlugin(BROWSE_FILE_SYSTEM_ICON), Messages.DocumentationResourceEditor_BrowseSystemButtonTooltip);
+		browseWorkspaceButton = createButton(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImageFromPlugin(BROWSE_WORKSPACE_ICON), Messages.DocumentationResourceEditor_BrowseWSButtonTooltip);
+		removeButton = createButton(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(DELETE_ICON), Messages.DocumentationResourceEditor_RemoveButtonTootip);
 	}
 
 	protected Button createButton(final Image image, final String toolTipText) {
@@ -165,7 +165,7 @@ public class DocumentationResourceEditor implements SelectionListener {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 	 */
 	@Override

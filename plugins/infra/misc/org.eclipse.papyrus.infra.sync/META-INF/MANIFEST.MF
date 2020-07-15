@@ -1,13 +1,18 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.infra.core;bundle-version="[3.0.0,4.0.0)";visibility:=reexport,
- org.eclipse.core.expressions;bundle-version="[3.5.0,4.0.0)"
+Require-Bundle: org.eclipse.core.expressions;bundle-version="[3.6.0,4.0.0)",
+ org.eclipse.emf.ecore.xmi;bundle-version="[2.16.0,3.0.0)",
+ org.eclipse.emf.transaction;bundle-version="[1.9.0,2.0.0)",
+ org.eclipse.papyrus.infra.core;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.core.log;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.tools;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.uml2.types;bundle-version="[2.5.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.infra.sync,
  org.eclipse.papyrus.infra.sync.internal;x-internal:=true,
  org.eclipse.papyrus.infra.sync.policy,
  org.eclipse.papyrus.infra.sync.service
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.1.100.qualifier
+Bundle-Version: 3.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

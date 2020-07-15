@@ -6,13 +6,27 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.export,
  org.eclipse.papyrus.infra.gmfdiag.export.propertytester,
  org.eclipse.papyrus.infra.gmfdiag.export.utils,
  org.eclipse.papyrus.infra.gmfdiag.export.wizard
-Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="[1.7.0,2.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="[2.1.0,3.0.0)",
- org.eclipse.papyrus.infra.services.validation;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.services.semantic;bundle-version="[2.0.0,3.0.0)"
+Require-Bundle: org.eclipse.core.expressions;bundle-version="[3.6.0,4.0.0)",
+ org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
+ org.eclipse.emf.edit.ui;bundle-version="[2.18.0,3.0.0)",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="[1.9.0,2.0.0)",
+ org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="[1.7.0,2.0.0)",
+ org.eclipse.papyrus.infra.core;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.core.log;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.emf;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.services.decoration;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.services.markerlistener;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.services.semantic;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.services.validation;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.ui;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.ui.ide;bundle-version="[3.17.0,4.0.0)",
+ org.eclipse.uml2.types;bundle-version="[2.5.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.1.0.qualifier
+Bundle-Version: 3.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.export.Activator

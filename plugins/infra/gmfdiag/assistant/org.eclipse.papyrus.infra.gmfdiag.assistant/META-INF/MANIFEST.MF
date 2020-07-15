@@ -1,11 +1,18 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.emf.ecore.xmi;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.filters;bundle-version="[1.2.0,2.0.0)";visibility:=reexport,
- org.eclipse.papyrus.infra.emf;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)",
- com.ibm.icu;bundle-version="52.1.0",
- org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.architecture;bundle-version="[2.0.0,3.0.0)"
+Require-Bundle: com.ibm.icu,
+ org.eclipse.core.expressions;bundle-version="[3.6.0,4.0.0)",
+ org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
+ org.eclipse.emf.edit.ui;bundle-version="[2.18.0,3.0.0)",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="[1.9.0,2.0.0)",
+ org.eclipse.papyrus.infra.architecture;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.core;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.core.log;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.emf;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.filters;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.uml2.types;bundle-version="[2.5.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.assistant,
  org.eclipse.papyrus.infra.gmfdiag.assistant.core,
  org.eclipse.papyrus.infra.gmfdiag.assistant.core.util,
@@ -18,7 +25,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.assistant,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.5.100.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.AssistantPlugin$Implementation

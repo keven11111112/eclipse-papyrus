@@ -2,15 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.toolsmiths.validation.profile.example;singleton:=true
-Bundle-Version: 1.0.100.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.toolsmiths.validation.profile.example.Activator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)",
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.uml2.types;visibility:=reexport,
- org.eclipse.uml2.uml;visibility:=reexport
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.18.0,4.0.0)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.validation.profile.example
 Bundle-ActivationPolicy: lazy

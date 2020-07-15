@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
+ * Copyright (c) 2016, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.ui.preferences.RichtextPreferencePage;
 import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.papyrus.views.documentation.preferences.DocumentationViewPreferences;
@@ -53,6 +54,11 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	/**
+	 * @since 2.0
+	 */
+	public static LogHelper log;
+
+	/**
 	 * The constructor.
 	 */
 	public Activator() {
@@ -85,7 +91,7 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-
+		log = new LogHelper(this);
 		// Reopen Documentation View in case of preference changes
 		getDefault().getPreferenceStore().addPropertyChangeListener(listener);
 	}

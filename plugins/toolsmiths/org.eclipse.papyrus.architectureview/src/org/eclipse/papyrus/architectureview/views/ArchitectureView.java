@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -34,6 +34,7 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
+import org.eclipse.papyrus.architectureview.Activator;
 import org.eclipse.papyrus.architectureview.providers.ArchiectureViewLabelProvider;
 import org.eclipse.papyrus.architectureview.providers.ArchitectureViewContentProvider;
 import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
@@ -219,7 +220,7 @@ public class ArchitectureView extends ViewPart {
 							try {
 								page.openEditor(new URIEditorInput(((Resource) selectedObject).getURI()), "org.eclipse.papyrus.infra.ui.architecture.ArchitectureEditorID", true); //$NON-NLS-1$
 							} catch (PartInitException e) {
-								org.eclipse.papyrus.infra.ui.Activator.log.error("The selected resource cannot be opened.", e); //$NON-NLS-1$
+								Activator.log.error("The selected resource cannot be opened.", e); //$NON-NLS-1$
 							}
 						} else {
 							// If this is not a resource, expand or collapse element
