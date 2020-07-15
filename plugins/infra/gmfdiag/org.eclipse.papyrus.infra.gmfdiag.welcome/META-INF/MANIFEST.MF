@@ -2,17 +2,28 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.welcome.internal;x-internal:=true,
  org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements;x-internal:=true,
  org.eclipse.papyrus.infra.gmfdiag.welcome.internal.widgets;x-internal:=true
-Require-Bundle: org.eclipse.papyrus.infra.editor.welcome;bundle-version="[2.0.0,3.0.0)",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.services.navigation;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.jface.databinding;bundle-version="[1.8.0,2.0.0)",
- org.eclipse.papyrus.infra.editor.welcome.nattable;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.nattable.model;bundle-version="[4.0.0,5.0.0)",
- org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.papyrus.infra.architecture.representation;bundle-version="[2.0.0,3.0.0)"
+Require-Bundle: org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
+ org.eclipse.emf.edit.ui;bundle-version="[2.18.0,3.0.0)",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="[1.9.0,2.0.0)",
+ org.eclipse.nebula.widgets.nattable.core;bundle-version="[1.5.0,2.0.0)",
+ org.eclipse.papyrus.infra.architecture.representation;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.core;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.core.log;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.editor.welcome.nattable;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.emf;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="[5.0.0,6.0.0)",
+ org.eclipse.papyrus.infra.properties;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.properties.ui;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.tools;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.ui;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.ui.emf;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.widgets;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.uml2.types;bundle-version="[2.5.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.2.100.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Name: %pluginName

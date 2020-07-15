@@ -32,6 +32,7 @@ import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
+ *
  * @since 3.0
  */
 public class Activator extends AbstractUIPlugin {
@@ -47,13 +48,19 @@ public class Activator extends AbstractUIPlugin {
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.widgets"; //$NON-NLS-1$
 
 
-	/** The Constant UML_VIS_ICONS_16x16. 
-	 * @since 3.0*/
+	/**
+	 * The Constant UML_VIS_ICONS_16x16.
+	 *
+	 * @since 3.0
+	 */
 	public static final String UML_VIS_ICONS_16x16 = "icons/obj16/"; //$NON-NLS-1$
 
 
-	/** Default image. 
-	 * @since 3.0*/
+	/**
+	 * Default image.
+	 *
+	 * @since 3.0
+	 */
 	public static final String DEFAULT_IMAGE = "icons/PapyrusLogo16x16.gif"; //$NON-NLS-1$
 
 	/**
@@ -80,6 +87,7 @@ public class Activator extends AbstractUIPlugin {
 	 * The constructor
 	 */
 	public Activator() {
+		super();
 	}
 
 	/*
@@ -162,7 +170,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Get the path of a plateform entry from its plugin and its local path.
-	 * 
+	 *
 	 * @param plugin
 	 *            the plugin bundle name
 	 * @param localPath
@@ -261,7 +269,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param path
 	 *            The path to the image from the plugin
 	 * @return
-	 * 		The Image at the given location, or null if it couldn't be found
+	 *         The Image at the given location, or null if it couldn't be found
 	 */
 	public Image getImage(final String pluginId, final String path) {
 		final ImageRegistry registry = getImageRegistry();
@@ -296,7 +304,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param path
 	 *            The path to the image from the plugin
 	 * @return
-	 * 		The Image Descriptor at the given location, or null if it
+	 *         The Image Descriptor at the given location, or null if it
 	 *         couldn't be found
 	 */
 	public ImageDescriptor getImageDescriptor(String pluginId, String path) {
@@ -327,7 +335,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param imagePath
 	 *            The path of the image, in the form /<plug-in ID>/<path to the image>
 	 * @return
-	 * 		The Image at the given location, or null if none was found
+	 *         The Image at the given location, or null if none was found
 	 */
 	public Image getImageFromPlugin(final String imagePath) {
 		Image image;
@@ -345,7 +353,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the URL of a given path relative to the given bundle
-	 * 
+	 *
 	 * @return file url or null
 	 * @since 2.0
 	 */
@@ -355,7 +363,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Returns the URL of a given path relative to the given bundle
-	 * 
+	 *
 	 * @param path
 	 *            relative to the rich text bundle
 	 * @return file url or null
@@ -390,42 +398,58 @@ public class Activator extends AbstractUIPlugin {
 	/** the default value for the use of live validation in filter. */
 	private static final Boolean DEFAULT_FILTER_LIVE_VALIDATION_VALUE = true; // $NON-NLS-1$
 
-	/** The max level to expand action preference. 
-	 * @since 3.0*/
+	/**
+	 * The max level to expand action preference.
+	 *
+	 * @since 3.0
+	 */
 	public static final String PREF_MAX_LEVEL_TO_EXPAND = "maxLevelToExpand"; //$NON-NLS-1$
 
-	/** The default value of the expand action preference. 
-	 * @since 3.0*/
+	/**
+	 * The default value of the expand action preference.
+	 *
+	 * @since 3.0
+	 */
 	public static final int DEFAULT_MAX_LEVEL_TO_EXPAND_VALUE = 15;
 
-	/** The preference for the replacement of stereotype delimiters. 
-	 * @since 3.0*/
+	/**
+	 * The preference for the replacement of stereotype delimiters.
+	 *
+	 * @since 3.0
+	 */
 	public static final String PREF_FILTER_STEREOTYPE_REPLACED = "replaceStrereotypeDelimiter"; //$NON-NLS-1$
 
-	/** the default value for the replacement of stereotype delimiters. 
-	 * @since 3.0*/
+	/**
+	 * the default value for the replacement of stereotype delimiters.
+	 *
+	 * @since 3.0
+	 */
 	public static final boolean DEFAULT_FILTER_STEREOTYPE_REPLACED_VALUE = true;
 
 	/**
 	 * The left stereotype delimiter
+	 *
 	 * @since 3.0
 	 */
 	public static final String ST_LEFT = "\u00AB";//$NON-NLS-1$
 
 	/**
 	 * The right stereotype delimiter
+	 *
 	 * @since 3.0
 	 */
 	public static final String ST_RIGHT = "\u00BB";//$NON-NLS-1$
 
 	/**
 	 * The right stereotype delimiter to be replaced in Text
+	 *
 	 * @since 3.0
 	 */
 	public static final String ST_RIGHT_BEFORE = ">>";//$NON-NLS-1$
 
 	/**
 	 * The left stereotype delimiter to be replaced in fields
+	 *
 	 * @since 3.0
 	 */
 	public static final String ST_LEFT_BEFORE = "<<";//$NON-NLS-1$
@@ -433,6 +457,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Gets the preferences for the validation kind of filter field.
+	 *
 	 * @since 3.0
 	 */
 	public static boolean isFilterValidateOnDelay() {
@@ -441,6 +466,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Gets the preferences for the validation delay.
+	 *
 	 * @since 3.0
 	 */
 	public static int getValidationDelay() {
@@ -449,6 +475,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Gets the preferences for the max level to expand value.
+	 *
 	 * @since 3.0
 	 */
 	public static int getMaxLevelToExpandValue() {
@@ -457,6 +484,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * Gets the preferences for the stereotype delimiter replacement.
+	 *
 	 * @since 3.0
 	 */
 	public static boolean isStereotypeDelimitersReplaced() {

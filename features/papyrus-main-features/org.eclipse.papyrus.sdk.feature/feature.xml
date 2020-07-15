@@ -4,7 +4,7 @@
       label="%featureName"
       version="5.0.0.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.papyrus.sdk" 
+      plugin="org.eclipse.papyrus.sdk"
       license-feature="org.eclipse.license"
       license-feature-version="2.0.2">
 
@@ -51,6 +51,12 @@
          id="org.eclipse.papyrus.doc.feature"
          version="0.0.0"/>
 
+   <!-- required plugins -->
+
+   <requires>
+      <import plugin="com.ibm.icu"/>
+      <import plugin="com.ibm.icu.source"/>
+   </requires>
 
    <!-- External Dependencies -->
 

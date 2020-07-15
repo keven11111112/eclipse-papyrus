@@ -10,11 +10,11 @@ Automatic-Module-Name: org.eclipse.papyrus.emf.facet.architecture
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.18.0,4.0.0)",
  org.eclipse.emf.ecore;bundle-version="[2.22.0,3.0.0)",
- org.eclipse.papyrus.infra.core.architecture;bundle-version="[2.1.0,3.0.0)",
- org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="[1.4.0,2.0.0)",
- org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="[1.3.0,2.0.0)",
- org.eclipse.papyrus.infra.types;bundle-version="[4.0.0,5.0.0)",
- org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)",
+ org.eclipse.papyrus.infra.core.architecture;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.types;bundle-version="[5.0.0,6.0.0)",
+ org.eclipse.papyrus.infra.core.log;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.ui.workbench;bundle-version="[3.119.0,4.0.0)"
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.emf.facet.architecture.api,

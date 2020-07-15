@@ -1,13 +1,23 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[3.0.0,4.0.0)",
+Require-Bundle: org.eclipse.core.expressions;bundle-version="[3.6.0,4.0.0)",
+ org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
+ org.eclipse.emf.edit.ui;bundle-version="[2.18.0,3.0.0)",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="[1.9.0,2.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.render;bundle-version="[1.7.0,2.0.0)",
- org.eclipse.papyrus.infra.emf.readonly;bundle-version="[3.0.0,4.0.0)"
+ org.eclipse.papyrus.infra.core;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.core.log;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.emf;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.emf.gmf;bundle-version="[2.0.0,3.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="[4.0.0,5.0.0)",
+ org.eclipse.papyrus.infra.ui;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.uml2.types;bundle-version="[2.5.0,3.0.0)"
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.menu,
  org.eclipse.papyrus.infra.gmfdiag.menu.handlers,
  org.eclipse.papyrus.infra.gmfdiag.menu.utils
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.3.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.menu.Activator
 Bundle-ManifestVersion: 2

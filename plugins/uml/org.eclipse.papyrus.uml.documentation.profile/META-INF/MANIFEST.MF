@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.12.0,4.0.0)",
- org.eclipse.emf.ecore;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
- org.eclipse.emf.ecore.xmi;bundle-version="[2.12.0,3.0.0)";visibility:=reexport,
- org.eclipse.uml2.types;bundle-version="[2.0.0,3.0.0)";visibility:=reexport,
- org.eclipse.uml2.uml;bundle-version="[5.3.0,6.0.0)";visibility:=reexport,
- org.eclipse.papyrus.uml.extensionpoints;bundle-version="[1.2.0,2.0.0)"
+Require-Bundle: org.eclipse.uml2.uml;bundle-version="[5.5.0,6.0.0)"
 Export-Package: org.eclipse.papyrus.uml.documentation.Documentation,
  org.eclipse.papyrus.uml.documentation.Documentation.impl,
  org.eclipse.papyrus.uml.documentation.Documentation.util,
@@ -12,7 +7,7 @@ Export-Package: org.eclipse.papyrus.uml.documentation.Documentation,
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.3.0.qualifier
+Bundle-Version: 2.0.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

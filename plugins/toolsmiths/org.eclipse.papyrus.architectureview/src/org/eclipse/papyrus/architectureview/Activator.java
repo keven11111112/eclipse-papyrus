@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -15,6 +15,7 @@
 
 package org.eclipse.papyrus.architectureview;
 
+import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -55,6 +56,13 @@ public class Activator extends AbstractUIPlugin {
 	private static Activator plugin;
 
 	/**
+	 * The logger used in this plugin
+	 *
+	 * @since 2.0
+	 */
+	public static LogHelper log;
+
+	/**
 	 * The constructor.
 	 */
 	public Activator() {
@@ -69,6 +77,7 @@ public class Activator extends AbstractUIPlugin {
 	public void start(final BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		log = new LogHelper(this);
 	}
 
 	/**
