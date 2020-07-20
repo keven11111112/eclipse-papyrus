@@ -136,6 +136,8 @@ public class ArchitectureValidator extends EObjectValidator {
 				return validateArchitectureDescription((ArchitectureDescription)value, diagnostics, context);
 			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_PREFERENCES:
 				return validateArchitectureDescriptionPreferences((ArchitectureDescriptionPreferences)value, diagnostics, context);
+			case ArchitecturePackage.TREE_VIEWER_CONFIGURATION:
+				return validateTreeViewerConfiguration((TreeViewerConfiguration)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -291,6 +293,15 @@ public class ArchitectureValidator extends EObjectValidator {
 	 */
 	public boolean validateArchitectureDescriptionPreferences(ArchitectureDescriptionPreferences architectureDescriptionPreferences, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(architectureDescriptionPreferences, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTreeViewerConfiguration(TreeViewerConfiguration treeViewerConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(treeViewerConfiguration, diagnostics, context);
 	}
 
 	/**

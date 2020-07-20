@@ -546,13 +546,22 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE__PROFILES = ARCHITECTURE_CONTEXT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Tree Viewer Configurations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE__TREE_VIEWER_CONFIGURATIONS = ARCHITECTURE_CONTEXT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Description Language</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_DESCRIPTION_LANGUAGE_FEATURE_COUNT = ARCHITECTURE_CONTEXT_FEATURE_COUNT + 3;
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE_FEATURE_COUNT = ARCHITECTURE_CONTEXT_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Ceation Command Class Exists</em>' operation.
@@ -1184,6 +1193,43 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_DESCRIPTION_PREFERENCES_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.core.architecture.impl.TreeViewerConfigurationImpl <em>Tree Viewer Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.core.architecture.impl.TreeViewerConfigurationImpl
+	 * @see org.eclipse.papyrus.infra.core.architecture.impl.ArchitecturePackageImpl#getTreeViewerConfiguration()
+	 * @generated
+	 */
+	int TREE_VIEWER_CONFIGURATION = 11;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE_VIEWER_CONFIGURATION__DESCRIPTION = 0;
+
+	/**
+	 * The number of structural features of the '<em>Tree Viewer Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE_VIEWER_CONFIGURATION_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Tree Viewer Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TREE_VIEWER_CONFIGURATION_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.core.architecture.ADElement <em>AD Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1333,6 +1379,17 @@ public interface ArchitecturePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getArchitectureDescriptionLanguage_Profiles();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage#getTreeViewerConfigurations <em>Tree Viewer Configurations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Tree Viewer Configurations</em>'.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage#getTreeViewerConfigurations()
+	 * @see #getArchitectureDescriptionLanguage()
+	 * @generated
+	 */
+	EReference getArchitectureDescriptionLanguage_TreeViewerConfigurations();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.core.architecture.Stakeholder <em>Stakeholder</em>}'.
@@ -1633,6 +1690,27 @@ public interface ArchitecturePackage extends EPackage {
 	EAttribute getArchitectureDescriptionPreferences_ViewpointIds();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.core.architecture.TreeViewerConfiguration <em>Tree Viewer Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tree Viewer Configuration</em>'.
+	 * @see org.eclipse.papyrus.infra.core.architecture.TreeViewerConfiguration
+	 * @generated
+	 */
+	EClass getTreeViewerConfiguration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.architecture.TreeViewerConfiguration#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.eclipse.papyrus.infra.core.architecture.TreeViewerConfiguration#getDescription()
+	 * @see #getTreeViewerConfiguration()
+	 * @generated
+	 */
+	EAttribute getTreeViewerConfiguration_Description();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1772,6 +1850,14 @@ public interface ArchitecturePackage extends EPackage {
 		 * @generated
 		 */
 		EReference ARCHITECTURE_DESCRIPTION_LANGUAGE__PROFILES = eINSTANCE.getArchitectureDescriptionLanguage_Profiles();
+
+		/**
+		 * The meta object literal for the '<em><b>Tree Viewer Configurations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ARCHITECTURE_DESCRIPTION_LANGUAGE__TREE_VIEWER_CONFIGURATIONS = eINSTANCE.getArchitectureDescriptionLanguage_TreeViewerConfigurations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.core.architecture.impl.StakeholderImpl <em>Stakeholder</em>}' class.
@@ -2012,6 +2098,24 @@ public interface ArchitecturePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ARCHITECTURE_DESCRIPTION_PREFERENCES__VIEWPOINT_IDS = eINSTANCE.getArchitectureDescriptionPreferences_ViewpointIds();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.core.architecture.impl.TreeViewerConfigurationImpl <em>Tree Viewer Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.core.architecture.impl.TreeViewerConfigurationImpl
+		 * @see org.eclipse.papyrus.infra.core.architecture.impl.ArchitecturePackageImpl#getTreeViewerConfiguration()
+		 * @generated
+		 */
+		EClass TREE_VIEWER_CONFIGURATION = eINSTANCE.getTreeViewerConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TREE_VIEWER_CONFIGURATION__DESCRIPTION = eINSTANCE.getTreeViewerConfiguration_Description();
 
 	}
 

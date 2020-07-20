@@ -154,6 +154,12 @@ public class ArchitectureSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ArchitecturePackage.TREE_VIEWER_CONFIGURATION: {
+				TreeViewerConfiguration treeViewerConfiguration = (TreeViewerConfiguration)theEObject;
+				T result = caseTreeViewerConfiguration(treeViewerConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -320,6 +326,21 @@ public class ArchitectureSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseArchitectureDescriptionPreferences(ArchitectureDescriptionPreferences object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tree Viewer Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tree Viewer Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTreeViewerConfiguration(TreeViewerConfiguration object) {
 		return null;
 	}
 

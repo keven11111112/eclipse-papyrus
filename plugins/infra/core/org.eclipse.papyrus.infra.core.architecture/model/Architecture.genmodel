@@ -40,6 +40,8 @@
       <genFeatures notify="false" createChild="false" propertyCategory="Description Language"
           propertyDescription="The set of UML profiles used by the language" propertySortChoices="true"
           ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDescriptionLanguage/profiles"/>
+      <genFeatures property="None" children="true" createChild="true" propertyDescription="The set of TreeViewer configuration to apply for the ADL."
+          ecoreFeature="ecore:EReference Architecture.ecore#//ArchitectureDescriptionLanguage/treeViewerConfigurations"/>
     </genClasses>
     <genClasses ecoreClass="Architecture.ecore#//Stakeholder">
       <genFeatures notify="false" createChild="false" propertyCategory="Stakeholder"
@@ -103,6 +105,9 @@
     <genClasses ecoreClass="Architecture.ecore#//ArchitectureDescriptionPreferences">
       <genFeatures createChild="false" propertyDescription="The set of ids of viewpoints enabled on a UML model"
           ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureDescriptionPreferences/viewpointIds"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Architecture.ecore#//TreeViewerConfiguration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Architecture.ecore#//TreeViewerConfiguration/description"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

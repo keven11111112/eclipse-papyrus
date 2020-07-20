@@ -90,11 +90,12 @@ The architecture metamodel in Papyrus is implemented as a realization and an ext
 * A ''domain'' is the root of the architecture model. It can contains a collection of ''concerns'', ''stakeholders'', as well as ''contexts'' (which can be ''description languages'' and/or ''frameworks'').
 * A ''concern'' (from ISO 42010) represents in Papyrus a matter of interest to some stakeholder.
 * A ''stakeholder'' (from ISO 42010) represents in Papyrus an archetype of users. It references a set of its ''concerns''.
-* A ''description language'' (from ISO 42010) represents in Papyrus a modeling language (e.g., UML, SysML). It has a unique ''id' that corresponds to that of an ''IClientContext'' from GMF. It references a ''metamodel'', a set of ''profiles'', a set of ''element type set configurations'', a ''creation command'' (creates a model of this language), a ''conversion command'' (converts a model to this language), and and ''icon''. It also has an optional ''extension prefix'' for its models. It can also contain a set of ''representation kinds'' (which can be either ''diagrams'' or ''tables'') and a set of ''viewpoints''.
+* A ''description language'' (from ISO 42010) represents in Papyrus a modeling language (e.g., UML, SysML). It has a unique ''id' that corresponds to that of an ''IClientContext'' from GMF. It references a ''metamodel'', a set of ''profiles'', a set of ''element type set configurations'', a ''creation command'' (creates a model of this language), a ''conversion command'' (converts a model to this language), and and ''icon''. It also has an optional ''extension prefix'' for its models. It can also contain a set of ''representation kinds'' (which can be either ''diagrams'' or ''tables'') and a set of ''viewpoints''. This element can also provide ''TreeViewerConfigurations'' elements to configure the display of the model in TreeViewer (used in Dialog and in ModelExplorer).
 * A ''framework'' (from ISO 42010) represents in Papyrus a modeling framework (e.g., DoDAF). It has a unique ''id' that corresponds to that of an ''IClientContext'' from GMF. It references a set of ''element type set configurations'', a ''creation command'' (creates a model of this framework), a ''conversion command'' (converts a model to this framework), and an ''icon''. It also has an optional ''extension prefix'' for its models. It can also contain a set of ''viewpoints''.
 * A ''viewpoint'' (from ISO 42010) in Papyrus references set of ''representation kinds'', which can be ''diagrams'' or ''tables''.
 * A ''diagram'' in this context does not represent a single instance (for example the diagram named X in model Y), but the specification (or prototype) of future diagrams of this kind. For example the ''UML Class Diagram''.
 * A ''table'' is another kind of view in Papyrus that enables the presentation of models in a tabular format.
+* A ''tree viewer configuration'' is used to configure the display of the model in TreeViewer (used in Dialog and in ModelExplorer). An implementation of it is provided by the class ''EMFFacetTreeViewerConfiguration''
 
 ==Walkthrough==
 
@@ -114,7 +115,13 @@ The definition of an architecture model in Papyrus starts with the selection of 
 
 <u>Step 6</u>: Right click on the description language (step 4) or framework (step 5) to add one or more ''Architecture Viewpoints''. In the properties view, specify for each viewpoint: a ''Name'', a ''Description'',  a unique ''Id'' (e.g., org.eclipse.uml.design), one ore more references to ''Concerns'', and one or more references to ''Representation Kinds''.
 
-<u>Step 7</u>: Deploy the model. The new architecture file can be deployed in an Eclipse plugin and registered through an extension point. The extension point to use is <code>org.eclipse.papyrus.infra.architecture.models</code>. Alternatively, the model can be deployed using the ''Other Architecture Model'' button in the ''Architecture Contexts'' preference page.
+<u>Step 7</u>: Right click on the description language (step 4), to add one or more ''EMFFacetTreeViewerConfiguration''. In the properties view, specify : a ''Description'' and the extended ''EMFFacetTreeViewerConfiguration'' or keep the value to ''null''.
+
+<u>Step 7A</u>: Right click on the ''EMFFacetTreeViewerConfiguration'' and create one or more ''CustomizatioReference''. In the properties view, specify the ''Referenced Customization''. You need to get the project providing the ''Customization'' in your workspace. To be able to reference the ''Customization'', you need to load in from the workspace in your architecture file'' ('''Right click -> Load Resource -> From Workspace''')
+
+<u>Step 7B</u>: Right click on the ''CustomizatioReference'' and create an application rule (''Absolute Order'' or ''Relative Order'' or ''Redefinition''). ''Absolute Order'' allows to give the order of application (the smallest order is the first applied). ''Relative Order'' allows to define if your ''CustomizationReference'' must be applied ''Before'' or ''After'' another one. ''Redefinition'' allows to replace the a ''CustomizationReference'' with a new one. 
+
+<u>Step 8</u>: Deploy the model. The new architecture file can be deployed in an Eclipse plugin and registered through an extension point. The extension point to use is <code>org.eclipse.papyrus.infra.architecture.models</code>. Alternatively, the model can be deployed using the ''Other Architecture Model'' button in the ''Architecture Contexts'' preference page.
 
 Note: If the Architecture Model you are developing is considered an extension of another model that is available in the target platform, and you want to reference some of its dependencies (like elementtypeconfigurations and palleteconfiguration, etc.) you first need to load the plugin that contains the model in your workspace. Then, using the  Architecture Model editor, load the other Architecture Model using the ''Load Resource->Browse Workspace'' context menu action). This will import it using its "platform:/resource" URI. On the other hand, if the extended architecture model is rather deployed in the current platform, then use the ''Loaded Resource->Browse Registered Architectures'' context menu action. This will load the model using its "platform:/plugin" URI. Once the extended model is loaded in the editor, you can invoke the context menu action ''Resolve All'' to load all its related resources.
 
@@ -213,3 +220,28 @@ The minimal required rules for a diagram specification to work are:
 * A model rule that allows the diagram to be created for a model element. For example, a model rule with ''Element'' set to UML Package, ''Multiplicity'' to -1 and ''Permit'' to true; meaning this diagram can be created for UML Packages and an unlimited number of diagrams can be created for each UML Package.
 * An owning rule that allows the diagram to be owned by a model element (appear under an element in the model explorer). For example, an owning rule with ''Element'' set to UML Package, ''Multiplicity'' set to -1 and ''Permit'' to true; meaning an unlimited number of diagrams of this kind can be placed under each UML Package element in the model explorer.
 * A child rule that allows the dropping of any element in the diagram, expressed with the ''Permit'' attribute set to true and other attributes left empty.
+
+==EMFFacetTreeViewerConfiguration specifications==
+* An ''ArchitectureDescriptionLanguage'' can contains 0, 1 or more ''EMFFacetTreeViewerConfiguration''.
+* As the declaration of ''ArchitectureDescriptionLanguage'' can be split on several architecture file and merged by the framework, the ''TreeViewerConfiguration'' can also be split on several architecture files and merged by the framework. Here we explain the rules for the definition of ''EMFFacetTreeViewerConfiguration''.
+** At least one of the ''EMFFacetTreeViewerConfiguration'' must not extend another ''EMFFacetTreeViewerConfiguration'', to be used as starting point of the ''Customization'' application. We call these configurations ''roots'' in the next sentences.
+** Several ''EMFFacetTreeViewerConfiguration'' can extends a given ''EMFFacetTreeViewerConfiguration''.
+** All the ''CustomizationReference'' owned by ''roots'' ''EMFFacetTreeViewerConfiguration'' must use the ''AbsoluteOrder''.
+** The reference''EMFFacetTreeViewerConfiguration#extends'' must target an ''EMFFacetTreeViewerConfiguration'' defined in the same ''ArchitectureDescriptionLanguage''  (but not necessary in the same architecture file).
+** All ''AbsoluteOrder#order''value must be unique for a given ''ArchitectureDescriptionLanguage''.
+** ''Redefinition'' is allowed only one time for a ''CustomizationReference'', so you can't redefines several time the same ''CustomizationReference''.
+** ''Relative Order'' allowed to define only one ''CustomizationReference'' before another one, and only one ''CustomizationReference'' after another one. So you can't declare several ''CustomizationReference'' before/after an other one.
+
+===Description of the merge process===
+The merge is done by the class '''org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.comparators.CustomizationReferenceMerger'''. Here, the description of the process:
+# the process starts from the ''roots'' (''EMFFacetTreeViewerConfiguration'' which extend nobody),
+# all ''CustomizationReference'' of the ''roots'' are taken into account and sorted by order,
+# the ''EMFFacetTreeViewerConfiguration#extends'' link is used recursively and reversed.
+## so the ''EMFFacetTreeViewerConfiguration'' extending the ''roots'' ones are applied first, 
+## then the ''EMFFacetTreeViewerConfiguration'' extending the previous ones and so one.
+### at each step, the ''CustomizationReference'' are applied to build a ''intermediate result list'' of the ''CustomizationReference'' to apply, 
+#### the ''EMFFacetTreeViewerConfiguration'' declared as redefinition are applied first,
+#### then the ''EMFFacetTreeViewerConfiguration'' declared with a ''Relative Location'' (''Before/After'').
+
+If an error occurred during this process, the error is logged and Papyrus will use the produced ''intermediate result list'' which is just a partial merge of the ''Customization'' to apply.
+

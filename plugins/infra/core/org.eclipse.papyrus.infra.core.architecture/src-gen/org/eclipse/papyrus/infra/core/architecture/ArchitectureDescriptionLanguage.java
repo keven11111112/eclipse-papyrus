@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage#getRepresentationKinds <em>Representation Kinds</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage#getMetamodel <em>Metamodel</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage#getProfiles <em>Profiles</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage#getTreeViewerConfigurations <em>Tree Viewer Configurations</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDescriptionLanguage()
@@ -109,5 +110,20 @@ public interface ArchitectureDescriptionLanguage extends ArchitectureContext {
 	 * @generated
 	 */
 	EList<EPackage> getProfiles();
+
+	/**
+	 * Returns the value of the '<em><b>Tree Viewer Configurations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.core.architecture.TreeViewerConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The set of TreeViewer configuration to apply for the ADL.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Tree Viewer Configurations</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureDescriptionLanguage_TreeViewerConfigurations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<TreeViewerConfiguration> getTreeViewerConfigurations();
 
 } // ArchitectureDescriptionLanguage

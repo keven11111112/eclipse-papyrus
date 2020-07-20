@@ -27,8 +27,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
-import org.eclipse.papyrus.infra.core.architecture.provider.EPackagePropertyDescriptor;
-import org.eclipse.papyrus.infra.core.architecture.provider.ProfilePropertyDescriptor;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage} object.
@@ -117,6 +115,7 @@ public class ArchitectureDescriptionLanguageItemProvider extends ArchitectureCon
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_LANGUAGE__REPRESENTATION_KINDS);
+			childrenFeatures.add(ArchitecturePackage.Literals.ARCHITECTURE_DESCRIPTION_LANGUAGE__TREE_VIEWER_CONFIGURATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -173,6 +172,7 @@ public class ArchitectureDescriptionLanguageItemProvider extends ArchitectureCon
 
 		switch (notification.getFeatureID(ArchitectureDescriptionLanguage.class)) {
 			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__REPRESENTATION_KINDS:
+			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__TREE_VIEWER_CONFIGURATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

@@ -99,6 +99,13 @@
         <details key="propertyCategory" value="Description Language"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="treeViewerConfigurations"
+        upperBound="-1" eType="#//TreeViewerConfiguration" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The set of TreeViewer configuration to apply for the ADL."/>
+        <details key="propertyDescription" value="The set of TreeViewer configuration to apply for the ADL."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Stakeholder" eSuperTypes="#//ADElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -290,6 +297,16 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="The set of ids of viewpoints enabled on a UML model"/>
         <details key="propertyDescription" value="The set of ids of viewpoints enabled on a UML model"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TreeViewerConfiguration" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Interface to implements to define the appearence of TreeViewer used in the Papyrus."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The description of the element"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

@@ -27,12 +27,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
+import org.eclipse.papyrus.infra.core.architecture.TreeViewerConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +47,7 @@ import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureDescriptionLanguageImpl#getRepresentationKinds <em>Representation Kinds</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureDescriptionLanguageImpl#getMetamodel <em>Metamodel</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureDescriptionLanguageImpl#getProfiles <em>Profiles</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.core.architecture.impl.ArchitectureDescriptionLanguageImpl#getTreeViewerConfigurations <em>Tree Viewer Configurations</em>}</li>
  * </ul>
  *
  * @generated
@@ -79,6 +82,16 @@ public class ArchitectureDescriptionLanguageImpl extends ArchitectureContextImpl
 	 * @ordered
 	 */
 	protected EList<EPackage> profiles;
+
+	/**
+	 * The cached value of the '{@link #getTreeViewerConfigurations() <em>Tree Viewer Configurations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTreeViewerConfigurations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TreeViewerConfiguration> treeViewerConfigurations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -170,6 +183,19 @@ public class ArchitectureDescriptionLanguageImpl extends ArchitectureContextImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EList<TreeViewerConfiguration> getTreeViewerConfigurations() {
+		if (treeViewerConfigurations == null) {
+			treeViewerConfigurations = new EObjectContainmentEList<TreeViewerConfiguration>(TreeViewerConfiguration.class, this, ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__TREE_VIEWER_CONFIGURATIONS);
+		}
+		return treeViewerConfigurations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -190,6 +216,8 @@ public class ArchitectureDescriptionLanguageImpl extends ArchitectureContextImpl
 		switch (featureID) {
 			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__REPRESENTATION_KINDS:
 				return ((InternalEList<?>)getRepresentationKinds()).basicRemove(otherEnd, msgs);
+			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__TREE_VIEWER_CONFIGURATIONS:
+				return ((InternalEList<?>)getTreeViewerConfigurations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -209,6 +237,8 @@ public class ArchitectureDescriptionLanguageImpl extends ArchitectureContextImpl
 				return basicGetMetamodel();
 			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__PROFILES:
 				return getProfiles();
+			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__TREE_VIEWER_CONFIGURATIONS:
+				return getTreeViewerConfigurations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -233,6 +263,10 @@ public class ArchitectureDescriptionLanguageImpl extends ArchitectureContextImpl
 				getProfiles().clear();
 				getProfiles().addAll((Collection<? extends EPackage>)newValue);
 				return;
+			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__TREE_VIEWER_CONFIGURATIONS:
+				getTreeViewerConfigurations().clear();
+				getTreeViewerConfigurations().addAll((Collection<? extends TreeViewerConfiguration>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -254,6 +288,9 @@ public class ArchitectureDescriptionLanguageImpl extends ArchitectureContextImpl
 			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__PROFILES:
 				getProfiles().clear();
 				return;
+			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__TREE_VIEWER_CONFIGURATIONS:
+				getTreeViewerConfigurations().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -272,6 +309,8 @@ public class ArchitectureDescriptionLanguageImpl extends ArchitectureContextImpl
 				return metamodel != null;
 			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__PROFILES:
 				return profiles != null && !profiles.isEmpty();
+			case ArchitecturePackage.ARCHITECTURE_DESCRIPTION_LANGUAGE__TREE_VIEWER_CONFIGURATIONS:
+				return treeViewerConfigurations != null && !treeViewerConfigurations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -152,4 +152,10 @@
          </affinity>
       </readOnlyHandler>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.architecture.listeners">
+      <listener
+            class="org.eclipse.papyrus.infra.ui.emf.internal.listeners.ArchitectureDescriptionLanguageListener">
+      </listener>
+   </extension>
 </plugin>

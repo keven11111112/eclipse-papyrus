@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
 import org.eclipse.papyrus.infra.core.architecture.Concern;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.Stakeholder;
+import org.eclipse.papyrus.infra.core.architecture.TreeViewerConfiguration;
 import org.eclipse.papyrus.infra.core.architecture.util.ArchitectureValidator;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 
@@ -124,6 +125,13 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * @generated
 	 */
 	private EClass architectureDescriptionPreferencesEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass treeViewerConfigurationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -338,6 +346,16 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	@Override
 	public EReference getArchitectureDescriptionLanguage_Profiles() {
 		return (EReference)architectureDescriptionLanguageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getArchitectureDescriptionLanguage_TreeViewerConfigurations() {
+		return (EReference)architectureDescriptionLanguageEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -626,6 +644,26 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * @generated
 	 */
 	@Override
+	public EClass getTreeViewerConfiguration() {
+		return treeViewerConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTreeViewerConfiguration_Description() {
+		return (EAttribute)treeViewerConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public ArchitectureFactory getArchitectureFactory() {
 		return (ArchitectureFactory)getEFactoryInstance();
 	}
@@ -665,6 +703,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		createEReference(architectureDescriptionLanguageEClass, ARCHITECTURE_DESCRIPTION_LANGUAGE__REPRESENTATION_KINDS);
 		createEReference(architectureDescriptionLanguageEClass, ARCHITECTURE_DESCRIPTION_LANGUAGE__METAMODEL);
 		createEReference(architectureDescriptionLanguageEClass, ARCHITECTURE_DESCRIPTION_LANGUAGE__PROFILES);
+		createEReference(architectureDescriptionLanguageEClass, ARCHITECTURE_DESCRIPTION_LANGUAGE__TREE_VIEWER_CONFIGURATIONS);
 
 		stakeholderEClass = createEClass(STAKEHOLDER);
 		createEReference(stakeholderEClass, STAKEHOLDER__CONCERNS);
@@ -701,6 +740,9 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 
 		architectureDescriptionPreferencesEClass = createEClass(ARCHITECTURE_DESCRIPTION_PREFERENCES);
 		createEAttribute(architectureDescriptionPreferencesEClass, ARCHITECTURE_DESCRIPTION_PREFERENCES__VIEWPOINT_IDS);
+
+		treeViewerConfigurationEClass = createEClass(TREE_VIEWER_CONFIGURATION);
+		createEAttribute(treeViewerConfigurationEClass, TREE_VIEWER_CONFIGURATION__DESCRIPTION);
 	}
 
 	/**
@@ -761,6 +803,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		initEReference(getArchitectureDescriptionLanguage_RepresentationKinds(), this.getRepresentationKind(), this.getRepresentationKind_Language(), "representationKinds", null, 0, -1, ArchitectureDescriptionLanguage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getArchitectureDescriptionLanguage_Metamodel(), ecorePackage.getEPackage(), null, "metamodel", null, 1, 1, ArchitectureDescriptionLanguage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getArchitectureDescriptionLanguage_Profiles(), ecorePackage.getEPackage(), null, "profiles", null, 0, -1, ArchitectureDescriptionLanguage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getArchitectureDescriptionLanguage_TreeViewerConfigurations(), this.getTreeViewerConfiguration(), null, "treeViewerConfigurations", null, 0, -1, ArchitectureDescriptionLanguage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(stakeholderEClass, Stakeholder.class, "Stakeholder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getStakeholder_Concerns(), this.getConcern(), null, "concerns", null, 0, -1, Stakeholder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -813,6 +856,9 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 
 		initEClass(architectureDescriptionPreferencesEClass, ArchitectureDescriptionPreferences.class, "ArchitectureDescriptionPreferences", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getArchitectureDescriptionPreferences_ViewpointIds(), ecorePackage.getEString(), "viewpointIds", null, 0, -1, ArchitectureDescriptionPreferences.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(treeViewerConfigurationEClass, TreeViewerConfiguration.class, "TreeViewerConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTreeViewerConfiguration_Description(), ecorePackage.getEString(), "description", null, 0, 1, TreeViewerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
