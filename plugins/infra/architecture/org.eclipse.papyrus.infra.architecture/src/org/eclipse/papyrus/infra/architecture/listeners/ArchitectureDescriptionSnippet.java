@@ -1,17 +1,17 @@
 /**
  * Copyright (c) 2017 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
  *  which accompanies this distribution, and is available at
  *  https://www.eclipse.org/legal/epl-2.0/
  *
  *  SPDX-License-Identifier: EPL-2.0
- *  
+ *
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  
- * 
+ *
+ *
  */
 package org.eclipse.papyrus.infra.architecture.listeners;
 
@@ -31,38 +31,46 @@ public class ArchitectureDescriptionSnippet implements IModelSetSnippet {
 	 * The installed adapter
 	 */
 	private ArchitectureDescriptionAdapter adapter = new ArchitectureDescriptionAdapter();
-	
+
 	/**
 	 * Installs the architecture adapter model snippet on the given model set
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.IModelSetSnippet#start(org.eclipse.papyrus.infra.core.resource.ModelSet)
 	 *
-	 * @param modelSet the given model set
+	 * @param modelSet
+	 *            the given model set
 	 */
 	@Override
 	public void start(ModelSet modelSet) {
 		DiModel diModel = (DiModel) modelSet.getModel(DiModel.DI_MODEL_ID);
-		if (diModel != null)
+		if (diModel != null) {
 			diModel.getResource().eAdapters().add(adapter);
+		}
 		SashModel sashModel = (SashModel) modelSet.getModel(SashModel.MODEL_ID);
-		if (sashModel != null)
+		if (sashModel != null) {
 			sashModel.getResource().eAdapters().add(adapter);
+		}
 	}
 
 	/**
 	 * Removes the architecture adapter model snippet from the given model set
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.core.resource.IModelSetSnippet#dispose(org.eclipse.papyrus.infra.core.resource.ModelSet)
 	 *
-	 * @param modelSet the given model set
+	 * @param modelSet
+	 *            the given model set
 	 */
 	@Override
 	public void dispose(ModelSet modelSet) {
 		DiModel diModel = (DiModel) modelSet.getModel(DiModel.DI_MODEL_ID);
-		if (diModel != null)
+		if (diModel != null) {
 			diModel.getResource().eAdapters().remove(adapter);
+		}
 		SashModel sashModel = (SashModel) modelSet.getModel(SashModel.MODEL_ID);
-		if (sashModel != null)
-			sashModel.getResource().eAdapters().remove(adapter);
+		if (sashModel != null) {
+			if (sashModel.getResource() != null) {
+				sashModel.getResource().eAdapters().remove(adapter);
+			}
+		}
 	}
 }

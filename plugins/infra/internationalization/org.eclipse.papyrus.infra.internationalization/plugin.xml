@@ -28,5 +28,7 @@
             type="properties">
       </parser>
    </extension>
+   
+   <extension-point id="internationalizationPreferenceModelProvider" name="Internationalization Preference Model Providers" schema="schema/internationalizationPreferenceModelProvider.exsd"/>
 
 </plugin>

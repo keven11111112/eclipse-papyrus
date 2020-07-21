@@ -92,12 +92,12 @@ class InternationalizationPreferenceModelProviderManager {
 	}
 
 	/**
-	 * Obtains the most appropriate sash model provider for the specified URI.
+	 * Obtains the most appropriate Internationalization Preference model provider for the specified URI.
 	 *
 	 * @param userModelURI
 	 *            The initial user model URI.
 	 *
-	 * @return the sash model provider, never {@code null} (there is always a default available)
+	 * @return the Internationalization Preference model provider, never {@code null} (there is always a default available)
 	 */
 	protected IInternationalizationPreferenceModelProvider getInternationalizationPreferenceModelProvider(final URI userModelURI) {
 		IInternationalizationPreferenceModelProvider result = null;
@@ -169,7 +169,10 @@ class InternationalizationPreferenceModelProviderManager {
 					final String workspaceURI = ResourcesPlugin.getWorkspace().getRoot().getLocationURI().toString();
 					internationalizationModelURI = URI.createFileURI(internationalizationWorkspaceLocation.append(modelURI.toString().replaceFirst(workspaceURI, "")).toString()); //$NON-NLS-1$
 					internationalizationModelURI = internationalizationModelURI.appendFileExtension(InternationalizationPreferenceModel.INTERNATIONALIZATION_PREFERENCE_FILE_EXTENSION);
+				} else {
+					internationalizationModelURI = modelURI.appendFileExtension(InternationalizationPreferenceModel.INTERNATIONALIZATION_PREFERENCE_FILE_EXTENSION);
 				}
+
 				return internationalizationModelURI;
 			}
 		};
@@ -210,13 +213,13 @@ class InternationalizationPreferenceModelProviderManager {
 			String pattern = config.getAttribute(A_PATTERN);
 
 			if (Strings.isNullOrEmpty(scheme) && Strings.isNullOrEmpty(pattern)) {
-				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Sash model provider missing both scheme and pattern filter.")); //$NON-NLS-1$
+				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Internationalization Preference model provider missing both scheme and pattern filter.")); //$NON-NLS-1$
 			}
 
 			try {
 				this.pattern = (pattern == null) ? null : Pattern.compile(pattern);
 			} catch (PatternSyntaxException e) {
-				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Invalid sash model provider URI pattern filter.", e)); //$NON-NLS-1$
+				throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Invalid Internationalization Preference model provider URI pattern filter.", e)); //$NON-NLS-1$
 			}
 		}
 
@@ -234,9 +237,9 @@ class InternationalizationPreferenceModelProviderManager {
 				} catch (CoreException e) {
 					throw e;
 				} catch (ClassCastException e) {
-					throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Invalid sash model provider implementation.", e)); //$NON-NLS-1$
+					throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Invalid Internationalization Preference model provider implementation.", e)); //$NON-NLS-1$
 				} catch (Exception e) {
-					throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to initialize sash model provider implementation.", e)); //$NON-NLS-1$
+					throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to initialize Internationalization Preference model provider implementation.", e)); //$NON-NLS-1$
 				}
 			}
 
@@ -248,7 +251,7 @@ class InternationalizationPreferenceModelProviderManager {
 				try {
 					provider.dispose();
 				} catch (Exception e) {
-					Activator.log.error("Failed to initialize sash model provider implementation.", e); //$NON-NLS-1$
+					Activator.log.error("Failed to initialize Internationalization Preference model provider implementation.", e); //$NON-NLS-1$
 				}
 
 				provider = null;
