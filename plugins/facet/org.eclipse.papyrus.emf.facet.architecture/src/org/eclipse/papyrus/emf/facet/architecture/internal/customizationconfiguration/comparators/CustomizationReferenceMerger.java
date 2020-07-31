@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.comparators;
+package org.eclipse.papyrus.emf.facet.architecture.internal.customizationconfiguration.comparators;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.emf.facet.architecture.api.ICustomizationReferenceMerger;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.AbsoluteOrder;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.Activator;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.CustomizationConfigurationPackage;
@@ -70,7 +71,7 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
  *
  *
  */
-public class CustomizationReferenceMerger {
+public class CustomizationReferenceMerger implements ICustomizationReferenceMerger {
 
 	/**
 	 * The initial input
@@ -98,10 +99,11 @@ public class CustomizationReferenceMerger {
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.emf.facet.architecture.api.ICustomizationReferenceMerger#doValidationAndMerge()
 	 *
 	 * @return
-	 *         <code>true</code> if the validation process works until the final merge, <code>false</code> otherwise
 	 */
+	@Override
 	public boolean doValidationAndMerge() {
 		this.statusMap.clear();
 		this.mergedCustomizations.clear();
@@ -191,11 +193,11 @@ public class CustomizationReferenceMerger {
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.emf.facet.architecture.api.ICustomizationReferenceMerger#getStatus()
 	 *
 	 * @return
-	 *         a map with eobject for which a status is associated. The status can be a {@link MultiStatus}
-	 *
 	 */
+	@Override
 	public Map<EObject, IStatus> getStatus() {
 		final Map<EObject, IStatus> resultingStatus = new HashMap<>();
 		for (final Entry<EObject, List<IStatus>> entry : this.statusMap.entrySet()) {
@@ -213,20 +215,21 @@ public class CustomizationReferenceMerger {
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.emf.facet.architecture.api.ICustomizationReferenceMerger#getMergedCustomizations()
 	 *
 	 * @return
-	 *         the build list of {@link Customization} to apply. if the method {@link #doValidationAndMerge()} returned <code>true</code>,
-	 *         we return the full merge of {@link Customization}, if the method {@link #doValidationAndMerge()} returned <code>false</code>, we return the merge built until the error appears
 	 */
+	@Override
 	public List<Customization> getMergedCustomizations() {
 		return this.mergedCustomizations;
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.emf.facet.architecture.api.ICustomizationReferenceMerger#isValid()
 	 *
 	 * @return
-	 *         <code>true</code> if the merge was a success, <code>false</code> otherwise.
 	 */
+	@Override
 	public boolean isValid() {
 		return this.statusMap.isEmpty();
 	}

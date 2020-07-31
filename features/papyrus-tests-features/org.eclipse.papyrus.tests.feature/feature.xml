@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.papyrus.tests.feature"
-      version="2.0.0.qualifier"
       label="%featureName"
+      version="2.0.0.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="2.0.2">
@@ -73,6 +73,10 @@
 
    <includes
          id="org.eclipse.papyrus.tests.toolsmiths.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.papyrus.tests.emf.facet.feature"
          version="0.0.0"/>
 
    <requires>

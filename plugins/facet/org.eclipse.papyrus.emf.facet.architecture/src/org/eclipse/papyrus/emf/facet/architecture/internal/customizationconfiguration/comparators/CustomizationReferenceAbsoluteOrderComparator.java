@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.comparators;
+package org.eclipse.papyrus.emf.facet.architecture.internal.customizationconfiguration.comparators;
 
 import java.util.Comparator;
 

@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.emf.facet.architecture.validation;
+package org.eclipse.papyrus.emf.facet.architecture.internal.validation;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,14 +29,15 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.emf.facet.architecture.api.ICustomizationReferenceMerger;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.AbsoluteOrder;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.CustomizationReference;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.EMFFacetTreeViewerConfiguration;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.IApplicationRule;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.Redefinition;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.RelativeOrder;
-import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.comparators.CustomizationReferenceMerger;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.util.CustomizationConfigurationValidator;
+import org.eclipse.papyrus.emf.facet.architecture.internal.customizationconfiguration.comparators.CustomizationReferenceMerger;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
@@ -174,7 +175,7 @@ public class CustomCustomizationConfigurationValidator extends CustomizationConf
 	 *         <code>true</code> if the element is valid, <code>false</code> otherwise
 	 */
 	private boolean checkElement(final EObject toCheck, final DiagnosticChain diagnostics, final Map<Object, Object> context, final Collection<EMFFacetTreeViewerConfiguration> allConfigurations) {
-		final CustomizationReferenceMerger merger = new CustomizationReferenceMerger(allConfigurations);
+		final ICustomizationReferenceMerger merger = new CustomizationReferenceMerger(allConfigurations);
 		merger.doValidationAndMerge();
 		final IStatus status = merger.getStatus().get(toCheck);
 		createDiagnostic(toCheck, diagnostics, context, status);

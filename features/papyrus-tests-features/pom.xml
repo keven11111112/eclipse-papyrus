@@ -17,6 +17,7 @@
 	<modules>
 		<!-- <module>org.eclipse.papyrus.tests.build.feature</module> -->
 		<module>org.eclipse.papyrus.tests.feature</module>
+		<module>org.eclipse.papyrus.tests.emf.facet.feature</module>
 		<module>org.eclipse.papyrus.tests.infra.core.feature</module>
 		<module>org.eclipse.papyrus.tests.infra.emf.expressions.feature</module>
 		<module>org.eclipse.papyrus.tests.infra.feature</module>

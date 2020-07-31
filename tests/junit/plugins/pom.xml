@@ -20,10 +20,11 @@
 		<!-- children -->
 		<module>bundlestests</module>
 		<module>editor</module>
+		<module>facet</module>
 		<module>infra</module>
+		<module>toolsmiths</module>
 		<module>uml</module>
 		<module>views</module>
-		<module>toolsmiths</module>
 	</modules>
 
 </project>

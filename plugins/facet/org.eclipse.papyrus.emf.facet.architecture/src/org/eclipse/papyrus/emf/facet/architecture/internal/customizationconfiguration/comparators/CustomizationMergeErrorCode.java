@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.comparators;
+package org.eclipse.papyrus.emf.facet.architecture.internal.customizationconfiguration.comparators;
 
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.AbsoluteOrder;
@@ -23,6 +23,7 @@ import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.EMF
 /**
  * this class lists the error code we can get merging {@link EMFFacetTreeViewerConfiguration}
  */
+
 public final class CustomizationMergeErrorCode {
 
 	private CustomizationMergeErrorCode() {

@@ -1,4 +1,4 @@
-Manifest-Version: 1.0
+Manifest-Version: 1.0s
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.architecture;singleton:=true
@@ -17,8 +17,10 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.18.0,4.0.0)",
  org.eclipse.papyrus.infra.core.log;bundle-version="[1.2.0,2.0.0)",
  org.eclipse.ui.workbench;bundle-version="[3.119.0,4.0.0)"
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration,
- org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.comparators,
+Export-Package: org.eclipse.papyrus.emf.facet.architecture.api,
+ org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration,
  org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.impl,
- org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.util
+ org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.util,
+ org.eclipse.papyrus.emf.facet.architecture.internal.customizationconfiguration.comparators;x-friends:="org.eclipse.papyrus.emf.facet.architecture.tests",
+ org.eclipse.papyrus.emf.facet.architecture.internal.validation;x-friends:="org.eclipse.papyrus.emf.facet.architecture.tests"
 Bundle-Activator: org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.Activator

@@ -29,9 +29,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.emf.facet.architecture.api.CustomizationFacetFactory;
+import org.eclipse.papyrus.emf.facet.architecture.api.ICustomizationReferenceMerger;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.CustomizationConfigurationPackage;
 import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.EMFFacetTreeViewerConfiguration;
-import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.comparators.CustomizationReferenceMerger;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
@@ -237,7 +238,7 @@ public class ArchitectureFrameworkCustomizationManagerUpdater extends WorskpaceC
 		if (confs != null && confs.isEmpty()) {
 			return Collections.emptyList();
 		}
-		final CustomizationReferenceMerger merger = new CustomizationReferenceMerger(confs);
+		final ICustomizationReferenceMerger merger = CustomizationFacetFactory.getCustomizationReferenceMerger(confs);
 
 		// until here, we are working with the Customization loaded in the ModelSet of the model.
 		// we need to return the equivalent customization loaded in the ResourceSet of the CustomizationManager

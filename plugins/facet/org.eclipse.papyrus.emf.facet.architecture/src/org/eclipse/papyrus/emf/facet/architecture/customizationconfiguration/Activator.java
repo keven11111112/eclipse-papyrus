@@ -17,7 +17,8 @@ package org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.papyrus.emf.facet.architecture.validation.CustomCustomizationConfigurationValidator;
+import org.eclipse.papyrus.emf.facet.architecture.customizationconfiguration.CustomizationConfigurationPackage;
+import org.eclipse.papyrus.emf.facet.architecture.internal.validation.CustomCustomizationConfigurationValidator;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
