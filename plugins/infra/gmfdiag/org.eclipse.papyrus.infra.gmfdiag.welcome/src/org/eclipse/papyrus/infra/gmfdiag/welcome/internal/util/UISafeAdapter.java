@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.welcome.internal.util;
@@ -38,7 +38,7 @@ public class UISafeAdapter extends AdapterImpl {
 			if (Display.getCurrent() != null) {
 				doNotifyChanged(msg);
 			} else {
-				syncExec(Display.getDefault(),
+				execOnDisplay(Display.getDefault(),
 						msg.getNotifier(),
 						() -> doNotifyChanged(msg));
 			}
@@ -47,7 +47,7 @@ public class UISafeAdapter extends AdapterImpl {
 
 	/**
 	 * Overridden by subclasses to react to a notification.
-	 * 
+	 *
 	 * @param msg
 	 *            a notification
 	 */
@@ -55,7 +55,7 @@ public class UISafeAdapter extends AdapterImpl {
 		// Pass
 	}
 
-	private void syncExec(Display display, Object notifier, Runnable action) {
+	private void execOnDisplay(Display display, Object notifier, Runnable action) {
 		// If we're in an editing domain and there is an active transaction,
 		// then we must be careful about how we synchronize with another thread,
 		// in case someone in the call chain attempts further model access
@@ -80,8 +80,8 @@ public class UISafeAdapter extends AdapterImpl {
 				// specification of the API) so just leave the action as is
 			}
 		}
-		
+
 		// Go execute on the display thread
-		display.syncExec(action);
+		display.asyncExec(action);
 	}
 }
