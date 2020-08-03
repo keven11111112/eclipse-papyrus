@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.internationalization.utils.utils;
@@ -45,7 +45,7 @@ public class LabelInternationalizationUtils {
 
 	/**
 	 * This allows to get the label without getting name if the label is null.
-	 * 
+	 *
 	 * @param eObject
 	 *            The object.
 	 * @param localize
@@ -71,7 +71,7 @@ public class LabelInternationalizationUtils {
 
 	/**
 	 * This allows to set the label.
-	 * 
+	 *
 	 * @param eObject
 	 *            The object.
 	 * @param value
@@ -103,7 +103,7 @@ public class LabelInternationalizationUtils {
 
 	/**
 	 * This allows to get the set label command.
-	 * 
+	 *
 	 * @param domain
 	 *            The editing domain to use.
 	 * @param eObject
@@ -144,37 +144,21 @@ public class LabelInternationalizationUtils {
 	/**
 	 * This allows to get the {@link InternationalizationEntry} corresponding to
 	 * the object and the key.
-	 * 
+	 *
 	 * @param eObject
 	 *            The object to search.
 	 * @param key
 	 *            The key to search in the internationalization library.
 	 * @return The corresponding {@link InternationalizationEntry}.
 	 */
-	public static InternationalizationEntry getInternationalizationEntry(final EObject eObject, final Object key) {
-		InternationalizationEntry resultEntry = null;
-
-		final EObject parentEObject = getParentEObject(eObject);
-
-		try {
-			final InternationalizationModelResource internationalizationResource = getInternationalizationModelResource(
-					parentEObject.eResource());
-
-			if (null != internationalizationResource) {
-				resultEntry = internationalizationResource.getEntryForKey(parentEObject.eResource().getURI(), key,
-						InternationalizationPreferencesUtils.getLocalePreference(parentEObject));
-			}
-		} catch (final Exception e) {
-			// Do nothing
-		}
-
-		return resultEntry;
+	public static InternationalizationEntry getInternationalizationEntry(EObject eObject, Object key) {
+		return getInternationalizationEntry(eObject, key, null);
 	}
 
 	/**
 	 * This allows to get the {@link InternationalizationEntry} corresponding to
 	 * the object and the key.
-	 * 
+	 *
 	 * @param eObject
 	 *            The object to search.
 	 * @param key
@@ -183,36 +167,31 @@ public class LabelInternationalizationUtils {
 	 *            The locale of which get the value
 	 * @return The corresponding {@link InternationalizationEntry}.
 	 */
-	public static InternationalizationEntry getInternationalizationEntry(final EObject eObject, final Object key,
-			final Locale locale) {
-		InternationalizationEntry resultEntry = null;
+	public static InternationalizationEntry getInternationalizationEntry(EObject eObject, Object key, Locale locale) {
+		EObject parent = getParentEObject(eObject);
+		if (parent != null) {
+			Resource resource = parent.eResource();
+			try {
+				InternationalizationModelResource internationalizationResource = getInternationalizationModelResource(resource);
 
-		final EObject parentEObject = getParentEObject(eObject);
+				if (internationalizationResource != null && resource != null) {
+					if (locale == null) {
+						locale = InternationalizationPreferencesUtils.getLocalePreference(parent);
+					}
 
-		try {
-			final InternationalizationModelResource internationalizationResource = getInternationalizationModelResource(
-					parentEObject.eResource());
-
-			if (null != internationalizationResource) {
-
-				Locale localeToUse = locale;
-				if (null == localeToUse) {
-					localeToUse = InternationalizationPreferencesUtils.getLocalePreference(parentEObject);
+					return internationalizationResource.getEntryForKey(resource.getURI(), key, locale);
 				}
-
-				resultEntry = internationalizationResource.getEntryForKey(parentEObject.eResource().getURI(), key,
-						locale);
+			} catch (Exception e) {
+				// Do nothing
 			}
-		} catch (final Exception e) {
-			// Do nothing
 		}
 
-		return resultEntry;
+		return null;
 	}
 
 	/**
 	 * Get the available locales for the resource.
-	 * 
+	 *
 	 * @param resource
 	 *            The resource.
 	 * @return The available locales of loaded properties files for resource.
@@ -229,12 +208,12 @@ public class LabelInternationalizationUtils {
 			// Do nothing
 		}
 
-		return null != locales ? locales : new HashSet<Locale>();
+		return null != locales ? locales : new HashSet<>();
 	}
 
 	/**
 	 * Get the internationalizationModelResource from the model set.
-	 * 
+	 *
 	 * @param resource
 	 *            The initial resource.
 	 * @return The internationalization model resource.
@@ -254,7 +233,7 @@ public class LabelInternationalizationUtils {
 	/**
 	 * This allows to manage part label synchronizer for the object
 	 * corresponding to the editor part.
-	 * 
+	 *
 	 * @param eObject
 	 *            The EObject (seems to be Table or Diagram).
 	 * @param editorPart
@@ -274,7 +253,7 @@ public class LabelInternationalizationUtils {
 
 	/**
 	 * Get the eObject or diagram/table owner if needed.
-	 * 
+	 *
 	 * @param eObject
 	 *            The initial EObject.
 	 * @return The eObject or diagram/table owner.
@@ -283,7 +262,7 @@ public class LabelInternationalizationUtils {
 		EObject parentEObject = eObject;
 		if (eObject instanceof Table) {
 			parentEObject = ((Table) eObject).getOwner();
-			if(null == parentEObject){
+			if (null == parentEObject) {
 				parentEObject = ((Table) eObject).getContext();
 			}
 		} else if (eObject instanceof Diagram) {
