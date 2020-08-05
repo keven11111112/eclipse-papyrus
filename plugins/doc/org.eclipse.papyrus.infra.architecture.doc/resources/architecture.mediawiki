@@ -1,5 +1,5 @@
 <!--
- Copyright (c) 2017 CEA LIST.
+ Copyright (c) 2017, 2020 CEA LIST.
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License 2.0
  which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
 
  Contributors:
   Maged E. Elaasar (melaasar@gmail.com) - Initial API and implementation
+  Christophe Aussagues (christophe.aussagues@cea.fr) - Modifications to walkthrough 
 -->
 
 =Introduction=
@@ -100,14 +101,60 @@ The architecture metamodel in Papyrus is implemented as a realization and an ext
 ==Walkthrough==
 
 The definition of an architecture model in Papyrus starts with the selection of the ''Architecture Model''  option in the Eclipse ''New'' creation wizard under the ''Papyrus'' category and clicking Finish.
+At each following step, it is strongly recommended to validate the ''Architecture Model'' by selecting the ''''Papyrus Developer''''>''''Validate architecture'''' menu.
 
-<u>Step 1</u>: Specify the ''Name'' and ''Description'' of the ''Architecture Domain'' (the root element).
+<u>Step 0 (optional)</u>: If a profile is used to define the ''Architecture description language'', prepare the profile plugin. The profile plugin shall have ''org.eclipse.papyrus.infra.architecture'' as dependencies. The profile shall extend ''org.eclipse.papyrus.infra.architecture.models'' with the path to the ''architecture model file'' as shown below. 
 
-<u>Step 2</u>: Right click on the domain to add one or more ''Concerns''. In the properties view, specify the following for each concern: a ''Name'' and a ''Description''.
+[[Image:images/profileextension.png]]
 
-<u>Step 3</u>: Right click on the domain to add one or more ''Stakeholders''. In the properties view, specify the following for each stakeholder: a ''Name'', a ''Description'', and one or more references to ''Concerns''.
+Do not forget to include the profile and architecture resource directories in the ''Binary build''. 
+
+<u>Step 1</u>: Specify the ''Name'', ''Id'' and ''Description'' of the ''Architecture Domain'' (the root element).
+
+<u>Step 2</u>: Right click on the domain to add one or more ''Concerns''. In the properties view, specify the following for each concern: a ''Name'', an ''Id'' and a ''Description''.
+
+<u>Step 3</u>: Right click on the domain to add one or more ''Stakeholders''. In the properties view, specify the following for each stakeholder: a ''Name'', an ''Id', a ''Description'', and one or more references to ''Concerns''.
 
 <u>Step 4</u>: Right click on the domain to add one or more ''Architecture Description Languages''. In the properties view, specify for each language: a ''Name'', a ''Description'', a unique ''Id'' (e.g., org.eclipse.uml2.UML), an ''Extension Prefix'' if desired (e.g., profile), an ''Icon'' using a platform plugin URI (e.g., platform:/plugin/project/icons/xxx.png), a ''Metamodel'' as a reference to an ''EPackage'' (load the Ecore model first), one or more ''Profiles'' as references to ''EPackages'' (load the Ecore models first), one or more ''Element Types'' as references to ''ElementTypeSetConfigurations'' (load the *.elementtypesetconfiguration models first), a creation command using a fully qualified of a Java class implementing the IModelCreationCommand interface, and an optional conversion command using a fully qualified of a Java class implementing the IModelConversionCommand interface.
+
+More precisely, as far as one or several profiles are concerned, launch Papyrus in a runtime and edit the plugin to add the related profile(s) to the description language as shown below.
+
+[[Image:images/languageprofilesetting.png]]
+
+Add, in the <code>CreateMyProfileTestModelCommand.java</code> source file, one Java Class named CreateMyProfileTestModelCommand that extends ModelCreationCommandBase as shown below.
+
+[[Image:images/javaclasscreation.png]]
+
+The following code shall then be entered, provided the profile project name (here <code>my_profile_test</code>) and the profile's pathmap (here <code>"pathmap://toy/my_profile_test.profile.uml"</code>) that is the one filled in the profile plugin (''org.eclipse.papyrus.uml.extensionpoints.UMLprofile'' extension point).
+
+ package my_profile_test;
+ import org.eclipse.emf.common.util.URI;
+ import org.eclipse.emf.ecore.EObject;
+ import org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand;
+ import org.eclipse.papyrus.uml.diagram.common.commands.ModelCreationCommandBase;
+ import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
+ import org.eclipse.uml2.uml.Package;
+ import org.eclipse.uml2.uml.Profile;
+ import org.eclipse.uml2.uml.UMLFactory;
+ public class CreateMyProfileTestModelCommand extends ModelCreationCommandBase implements IModelCreationCommand {
+  @Override
+  protected EObject createRootElement() {
+    return UMLFactory.eINSTANCE.createModel();
+  }
+  @Override
+  protected void initializeModel(EObject owner) {
+    super.initializeModel(owner);
+    Profile myProfileTest = (Profile) PackageUtil.loadPackage(URI.createURI("pathmap://toy/my_profile_test.profile.uml"), owner.eResource().getResourceSet());
+    if (myProfileTest != null) {
+      PackageUtil.applyProfile((Package) owner, myProfileTest, true);
+    }
+  }
+ }
+
+Last but not least, the ''Creation Command Class'' shall be entered in the ''Architecture Model'' properties as shown below.
+
+[[Image:images/creationcommandclass.png]]
+
 
 <u>Step 4A</u>: Right click on the description language to add one or more representation kinds, i.e., ''Papyrus Diagram'', ''Papyrus Table'' or ''Papyrus Sync Table'' (see details below).
 
@@ -189,7 +236,7 @@ Once a ''Papyrus Diagram'' is created, in the properties view, specify for it:
 | SysML Requirements Diagram
 |}
 
-Once a diagram has been created it is possible to constraint it using rules. There are four kinds of rules:
+Once a diagram has been created it can be constrained using rules (some of them are required, others are optional). There are four kinds of rules:
 * Model rules constrain the type of the (root) model elements that can be visualized through this view. Hence model rules control what model elements can be selected for the ''Root element'' property of the diagrams, as shown in the capture below.
 * Owning rules constrain the type of the model elements that can own the diagram itself. In practice this materializes as the type of model elements under which the diagrams can appear in the model explorer. Owning rules control what model elements can be selected for the ''Owner'' property of the diagrams, as shown in the capture below.
 * Child rules constrain the type of the model elements that can be dropped within this diagram.
