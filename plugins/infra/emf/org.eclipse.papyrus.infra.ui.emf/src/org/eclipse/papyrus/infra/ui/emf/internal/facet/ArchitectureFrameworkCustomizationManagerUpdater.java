@@ -242,6 +242,7 @@ public class ArchitectureFrameworkCustomizationManagerUpdater extends WorskpaceC
 
 		// until here, we are working with the Customization loaded in the ModelSet of the model.
 		// we need to return the equivalent customization loaded in the ResourceSet of the CustomizationManager
+		final boolean isValid = merger.doValidationAndMerge();
 		final List<Customization> realResult = new ArrayList<>(merger.getMergedCustomizations().size());
 		for (final Customization tmp : merger.getMergedCustomizations()) {
 			final Customization equivalentCusto = CUSTOMIZATION_MAP.get(tmp.getName());
@@ -250,7 +251,7 @@ public class ArchitectureFrameworkCustomizationManagerUpdater extends WorskpaceC
 			}
 		}
 
-		final boolean isValid = merger.doValidationAndMerge();
+
 		if (!isValid) {
 			StringBuilder builder = new StringBuilder();
 			builder.append(NLS.bind("{0} defined in the current {1} are invalid", CustomizationConfigurationPackage.eINSTANCE.getEMFFacetTreeViewerConfiguration().getName(), ArchitecturePackage.eINSTANCE.getArchitectureDescriptionLanguage().getName())); //$NON-NLS-1$
