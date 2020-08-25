@@ -41,10 +41,10 @@
 		<module>org.eclipse.papyrus.views.references.doc</module>
 		<module>org.eclipse.papyrus.views.documentation.doc</module>
 		<module>org.eclipse.papyrus.customization.paletteconfiguration.doc</module>
-<!-- 		<module>org.eclipse.papyrus.doctemplate.doc</module> -->
 		<module>org.eclipse.papyrus.toolsmiths.profilemigration.doc</module>
 		<module>org.eclipse.papyrus.toolsmiths.architecture.doc</module>
 		<module>org.eclipse.papyrus.toolsmiths.validation.doc</module>
+<!-- 		<module>org.eclipse.papyrus.doctemplate.doc</module> -->
 	</modules>
 	
 </project>
