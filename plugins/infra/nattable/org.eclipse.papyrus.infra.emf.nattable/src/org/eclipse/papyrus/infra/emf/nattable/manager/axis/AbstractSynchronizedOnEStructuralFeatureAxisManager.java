@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2020 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,8 +11,10 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - bug 566397
  *
  *****************************************************************************/
+
 package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
 
 import java.util.ArrayList;
@@ -398,7 +400,7 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 		case Notification.REMOVE_MANY:
 			Collection<?> oldValues = (Collection<?>) notification.getOldValue();
 			for (final Object current : oldValues) {
-				if (this.managedObject.contains(oldValues)) {
+				if (this.managedObject.contains(current)) {
 					toRemove.add(current);
 				}
 			}
