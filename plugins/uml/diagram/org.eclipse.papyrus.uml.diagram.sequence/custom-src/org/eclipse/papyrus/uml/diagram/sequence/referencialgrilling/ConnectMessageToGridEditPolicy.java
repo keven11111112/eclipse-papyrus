@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2016, 2017 CEA LIST and others.
+ * Copyright (c) 2016, 2017, 2020 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,11 +11,13 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 525372
+ *   Yoann FARRE (CIL4Sys) yoann.farre@cil4sys.com - Bug 566781
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.sequence.referencialgrilling;
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -27,6 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
@@ -37,7 +40,6 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AutomaticNotationEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.helper.IdentityAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.command.SetLocationCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -381,10 +383,14 @@ public class ConnectMessageToGridEditPolicy extends GraphicalEditPolicyEx implem
 
 
 	public static int computeAnchorPositionNotation(IdentityAnchor anchor, GraphicalEditPart nodeEditPart) {
-		double yPercent = IdentityAnchorHelper.getYPercentage(anchor);
+		PrecisionPoint point = BaseSlidableAnchor.parseTerminalString(anchor.getId());
+		if (point == null) {
+			return 0;
+		}
 		Node node = (Node) nodeEditPart.getNotationView();
 		PrecisionRectangle bounds = NotationHelper.getAbsoluteBounds(node);
-		double height = BoundForEditPart.getHeightFromView(node);
+		double yPercent = point.preciseY();
+		int height = BoundForEditPart.getHeightFromView(node);
 		int anchorY = (int) (height * yPercent) + bounds.y;
 		return anchorY;
 	}
