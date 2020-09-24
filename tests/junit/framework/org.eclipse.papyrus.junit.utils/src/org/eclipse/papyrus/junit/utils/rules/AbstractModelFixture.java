@@ -281,7 +281,10 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 			for (String path : paths) {
 				// Ensure that the bundle ID prefix, if any, is taken as the "device"
-				result.add(initModelResource(Path.forWindows(path), kind));
+				Resource resource = initModelResource(Path.forWindows(path), kind);
+				if (resource != null) {
+					result.add(initModelResource(Path.forWindows(path), kind));
+				}
 			}
 
 			List<URI> uris = Lists.newArrayListWithCapacity(result.size());
