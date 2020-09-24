@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextPackage;
 import org.eclipse.papyrus.infra.properties.contexts.View;
-import org.eclipse.ui.internal.misc.StringMatcher;
+import org.eclipse.papyrus.views.properties.toolsmiths.editor.internal.StringMatcher;
 
 /**
  * A Filter for the UIEditor. The Filter can match Views and DataContextElements

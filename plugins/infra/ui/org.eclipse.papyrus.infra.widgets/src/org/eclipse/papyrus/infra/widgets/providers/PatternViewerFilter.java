@@ -19,7 +19,7 @@ import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.ui.internal.misc.StringMatcher;
+import org.eclipse.papyrus.infra.widgets.internal.StringMatcher;
 
 /**
  * A ViewerFilter which can be used to match a pattern.
