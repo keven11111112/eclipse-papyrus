@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010,2020 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,14 +10,17 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Asma Smaoui (CEA LIST) asma.smaoui@cea.fr - Bug 567354
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.constraints;
 
 import java.lang.ref.WeakReference;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
 import org.eclipse.papyrus.infra.constraints.constraints.AbstractConstraint;
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
@@ -25,8 +28,6 @@ import org.eclipse.uml2.uml.Stereotype;
 /**
  * A constraint to test if the given object is a UML Element and
  * has the given Stereotype
- *
- * @author Camille Letavernier
  */
 public class HasStereotypeConstraint extends AbstractConstraint {
 
@@ -48,12 +49,20 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 
 	@Override
 	public boolean match(Object selection) {
-		Element element = UMLUtil.resolveUMLElement(selection);
+
+		Element element = null;
+		EObject eobject = EMFHelper.getEObject(selection);
+		if (eobject instanceof Element) {
+			element = (Element) eobject;
+		} else {
+			element = org.eclipse.uml2.uml.util.UMLUtil.getBaseElement((EObject) selection);
+		}
+
 		if (element == null) {
 			return false;
 		}
 
-		umlElement = new WeakReference<Element>(element);
+		umlElement = new WeakReference<>(element);
 
 		Stereotype stereotype = UMLUtil.getAppliedStereotype(element, stereotypeName, false);
 		return stereotype != null;
