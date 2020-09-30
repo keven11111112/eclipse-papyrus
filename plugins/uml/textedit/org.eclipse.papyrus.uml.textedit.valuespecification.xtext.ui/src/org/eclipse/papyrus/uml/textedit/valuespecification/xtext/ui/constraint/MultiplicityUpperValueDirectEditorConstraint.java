@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
- * 
+ * Copyright (c) 2015,2020 CEA LIST.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Ansgar Radermacher (CEA LIST) Ansgar.Radermacher@cea.fr - bug567454
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.constraint;
@@ -60,7 +61,7 @@ public class MultiplicityUpperValueDirectEditorConstraint implements IDirectEdit
 			if (valueSpecification.eContainer() instanceof MultiplicityElement) {
 				final EObject parent = valueSpecification.eContainer();
 				final Object upperValue = parent.eGet(UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue());
-				appliedConstraint = upperValue.equals(valueSpecification);
+				appliedConstraint = valueSpecification.equals(upperValue);
 			}
 		}
 		return appliedConstraint;
