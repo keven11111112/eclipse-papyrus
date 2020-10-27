@@ -45,5 +45,5 @@ Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.nattable

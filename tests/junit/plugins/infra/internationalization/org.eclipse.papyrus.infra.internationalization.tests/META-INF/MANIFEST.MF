@@ -6,7 +6,7 @@ Bundle-Version: 2.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.internationalization.tests,
  org.eclipse.papyrus.infra.internationalization.tests.tests
 Require-Bundle: org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",

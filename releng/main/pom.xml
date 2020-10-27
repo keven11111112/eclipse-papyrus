@@ -23,7 +23,7 @@
 
 	<properties>
 		<!-- https://repo.maven.apache.org/maven2/ -->
-		<mojo.buildhelper.version>3.0.0</mojo.buildhelper.version>
+		<mojo.buildhelper.version>3.2.0</mojo.buildhelper.version>
 		<mylyn.wikitext.version>3.0.38</mylyn.wikitext.version>
 
 		<target.platform>org.eclipse.papyrus.main.${target.suffix}.target</target.platform>

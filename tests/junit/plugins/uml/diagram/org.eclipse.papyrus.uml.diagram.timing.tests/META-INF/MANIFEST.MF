@@ -27,5 +27,5 @@ Bundle-Name: Papyrus Timing Diagram Tests
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.timing.tests.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.timing.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.diagram.timing.tests

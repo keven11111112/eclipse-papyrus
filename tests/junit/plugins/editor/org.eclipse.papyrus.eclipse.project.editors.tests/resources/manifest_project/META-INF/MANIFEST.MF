@@ -14,7 +14,7 @@ Bundle-Name: Papyrus Test Bundle
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.foo
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 
 Name: author-info
 Full-Name: Christian W. Damus

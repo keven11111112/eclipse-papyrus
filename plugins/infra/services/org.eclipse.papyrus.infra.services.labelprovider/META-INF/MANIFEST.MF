@@ -14,5 +14,5 @@ Bundle-Name: LabelProvider service
 Bundle-Activator: org.eclipse.papyrus.infra.services.labelprovider.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.labelprovider;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.services.labelprovider

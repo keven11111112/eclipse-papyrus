@@ -25,5 +25,5 @@ Bundle-Activator: org.eclipse.papyrus.toolsmiths.validation.architecture.Activat
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.toolsmiths.validation.architecture;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.toolsmiths.validation.architecture

@@ -25,6 +25,6 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.profile.types.generator.ui.internal.Activator
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.profile.types.generator.ui;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: com.google.common.util.concurrent;version="[27.1.0, 28.0.0)"
 Automatic-Module-Name: org.eclipse.papyrus.uml.profile.types.generator.ui

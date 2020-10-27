@@ -34,5 +34,5 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.hyperlink.Activator
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.hyperlink;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.hyperlink

@@ -32,5 +32,5 @@ Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.views.config.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.views.config;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.nattable.views.config

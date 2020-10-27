@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.presentation.PaletteConfigurationEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.presentation,
  org.eclipse.papyrus.infra.gmfdiag.paletteconfiguration.widgets.editors
 Require-Bundle: org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",

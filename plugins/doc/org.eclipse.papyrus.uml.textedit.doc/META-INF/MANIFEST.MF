@@ -5,4 +5,4 @@ Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.doc;singleton:=true
 Bundle-Version: 1.1.0.qualifier
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11

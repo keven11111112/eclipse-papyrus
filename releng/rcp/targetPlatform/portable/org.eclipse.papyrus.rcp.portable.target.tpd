@@ -7,13 +7,13 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 //updateFrom("EGIT",0)
 
-location egit "https://download.eclipse.org/egit/updates-5.8" {
+location egit "https://download.eclipse.org/egit/updates-5.9" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.16/R-4.16-202006040540/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.18-I-builds/I20201028-1800/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -21,7 +21,7 @@ location platform "https://download.eclipse.org/eclipse/updates/4.16/R-4.16-2020
 
 //updateFrom("Mylyn",0)
 
-location mylyn "http://download.eclipse.org/mylyn/drops/3.25.1/v20200526-0330" {
+location mylyn "https://download.eclipse.org/mylyn/drops/3.25.2/v20200831-1956" {
 	org.eclipse.mylyn.ide_feature.feature.group
 	org.eclipse.mylyn.java_feature.feature.group
 	org.eclipse.mylyn.pde_feature.feature.group
@@ -32,19 +32,19 @@ location mylyn "http://download.eclipse.org/mylyn/drops/3.25.1/v20200526-0330" {
 
 //updateFrom("EMF COMPARE",0) 
 
-location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202005260905" {
+location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202008311302" {
 	org.eclipse.emf.compare.source.feature.group
 	org.eclipse.emf.compare.ide.ui.source.feature.group
 }
 
 //updateFrom("EMF (Core)",0)
 
-location emf "http://download.eclipse.org/modeling/emf/emf/builds/release/2.22" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202010050141" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20200610-0035" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20200902-0430" {
 	org.eclipse.emf.cdo.epp.feature.group
 }

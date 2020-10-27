@@ -17,5 +17,5 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.expansion.provider.ExpandModelEditPlugin$Implementation
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.expansion.edit;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.gmfdiag.expansion.edit

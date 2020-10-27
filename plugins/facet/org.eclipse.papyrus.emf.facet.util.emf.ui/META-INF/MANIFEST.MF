@@ -25,5 +25,5 @@ Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.emf.facet.util.emf.ui.internal.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.emf.ui;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.emf.facet.util.emf.ui
