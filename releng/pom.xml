@@ -10,23 +10,23 @@
 
 	<properties>
 		<!-- https://repo.maven.apache.org/maven2/ -->
-		<tycho-version>1.4.0</tycho-version>
-		<tychoExtrasVersion>1.4.0</tychoExtrasVersion>
-		<xtext.version>2.16.0</xtext.version>
-		<maven.resources.version>3.1.0</maven.resources.version>
+		<tycho-version>2.0.0</tycho-version>
+		<tychoExtrasVersion>2.0.0</tychoExtrasVersion>
+		<xtext.version>2.23.0</xtext.version>
+		<maven.resources.version>3.2.0</maven.resources.version>
 		<maven.clean.version>3.1.0</maven.clean.version>
-		<mojo.execmaven.version>1.6.0</mojo.execmaven.version>
+		<mojo.execmaven.version>3.0.0</mojo.execmaven.version>
 		<findbugs.version>3.0.5</findbugs.version>
-		<maven.compiler.version>3.8.0</maven.compiler.version>
+		<maven.compiler.version>3.8.1</maven.compiler.version>
 
 		<!-- https://repo.eclipse.org/content/repositories/cbi-releases/ -->
-		<jarSignerVersion>1.1.5</jarSignerVersion>
+		<jarSignerVersion>1.1.7</jarSignerVersion>
 
 		<!-- https://repository.jboss.org/ -->
-		<jboss.utils.version>1.3.0</jboss.utils.version>
+		<jboss.utils.version>1.7.0</jboss.utils.version>
 
-		<java.source.version>1.8</java.source.version>
-		<java.target.version>1.8</java.target.version>
+		<java.source.version>11</java.source.version>
+		<java.target.version>11</java.target.version>
 		<skipAllTests>false</skipAllTests>
 		<skipInnerTests>true</skipInnerTests>
 		<!-- Set buildAll to true when building this pom directly (Rather than 

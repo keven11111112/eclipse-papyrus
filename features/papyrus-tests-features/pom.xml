@@ -15,7 +15,7 @@
 	<description>Container of the Eclipse Tests Features for Papyrus.</description>
 
 	<modules>
-		<!-- <module>org.eclipse.papyrus.tests.build.feature</module> -->
+<!-- 		<module>org.eclipse.papyrus.tests.build.feature</module> -->
 		<module>org.eclipse.papyrus.tests.feature</module>
 		<module>org.eclipse.papyrus.tests.emf.facet.feature</module>
 		<module>org.eclipse.papyrus.tests.infra.core.feature</module>

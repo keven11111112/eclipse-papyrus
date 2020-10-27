@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.infra.ui.architecture.ArchitectureUIPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.ui.architecture,
  org.eclipse.papyrus.infra.ui.architecture.dialogs,
  org.eclipse.papyrus.infra.ui.architecture.messages,

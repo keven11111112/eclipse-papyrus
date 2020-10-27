@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.dnd;
@@ -54,22 +54,27 @@ public class StyleSheetDropStrategy extends TransactionalDropStrategy {
 		super();
 	}
 
+	@Override
 	public String getLabel() {
 		return "Add Stylesheet Reference";
 	}
 
+	@Override
 	public String getDescription() {
 		return "Adds a stylesheet to the diagram by reference to the dropped CSS resource";
 	}
 
+	@Override
 	public Image getImage() {
 		return null;
 	}
 
+	@Override
 	public String getID() {
 		return ID;
 	}
 
+	@Override
 	public int getPriority() {
 		return 0;
 	}

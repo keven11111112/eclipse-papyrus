@@ -13,5 +13,5 @@ Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.emf.facet.util.swt.internal.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.swt;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.emf.facet.util.swt

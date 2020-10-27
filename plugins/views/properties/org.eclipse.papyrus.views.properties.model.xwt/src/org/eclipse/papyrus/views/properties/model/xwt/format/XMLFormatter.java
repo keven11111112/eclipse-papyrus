@@ -13,12 +13,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.model.xwt.format;
 
-import java.io.IOException;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.StringWriter;
+
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.views.properties.model.xwt.Activator;
-import org.eclipse.wst.xml.core.internal.formatter.XMLFormatterFormatProcessor;
 
 /**
  * A Helper for formatting XML Files
@@ -28,13 +41,25 @@ import org.eclipse.wst.xml.core.internal.formatter.XMLFormatterFormatProcessor;
 public class XMLFormatter {
 
 	public static void format(IFile file) {
-		XMLFormatterFormatProcessor processor = new XMLFormatterFormatProcessor();
 		try {
-			processor.formatFile(file);
-		} catch (IOException ex) {
-			Activator.log.error(ex);
+			InputStream input = file.getContents();
+			Source xmlInput = new StreamSource(input);
+			StringWriter stringWriter = new StringWriter();
+			StreamResult xmlOutput = new StreamResult(stringWriter);
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			transformerFactory.setAttribute("indent-number", 12); //$NON-NLS-1$
+			Transformer transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes"); //$NON-NLS-1$
+			transformer.transform(xmlInput, xmlOutput);
+			InputStream in = new ByteArrayInputStream(stringWriter.toString().getBytes());
+			file.setContents(in, IResource.FORCE, new NullProgressMonitor());
 		} catch (CoreException ex) {
-			Activator.log.error(ex);
+			Activator.log.error(NLS.bind("Exception during the formatting of {0}", file.getFullPath()), ex); //$NON-NLS-1$
+		} catch (TransformerConfigurationException e) {
+			Activator.log.error(NLS.bind("Exception during the formatting of {0}", file.getFullPath()), e); //$NON-NLS-1$
+		} catch (TransformerException e) {
+			Activator.log.error(NLS.bind("Exception during the formatting of {0}", file.getFullPath()), e); //$NON-NLS-1$
+
 		}
 	}
 }

@@ -35,10 +35,14 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Result;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -46,10 +50,12 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
@@ -62,7 +68,6 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.progress.IProgressService;
 import org.eclipse.ui.statushandlers.StatusManager;
-import org.eclipse.wst.xml.core.internal.formatter.XMLFormatterFormatProcessor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -81,7 +86,6 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 	/**
 	 * the format processor used to format XML files
 	 */
-	private static final XMLFormatterFormatProcessor processor = new XMLFormatterFormatProcessor();
 
 	public SyncManifestAndPOMVersions() {
 		super();
@@ -289,11 +293,24 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 	protected static final void formatXMLFile(final IFile file) {
 		if (null != file && file.exists()) {
 			try {
-				processor.formatFile(file);
-			} catch (IOException ex) {
-				Activator.log.error(NLS.bind("IOException formating the XML file from {0}", file.getFullPath()), ex); //$NON-NLS-1$
+				InputStream input = file.getContents();
+				Source xmlInput = new StreamSource(input);
+				StringWriter stringWriter = new StringWriter();
+				StreamResult xmlOutput = new StreamResult(stringWriter);
+				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+				transformerFactory.setAttribute("indent-number", 12); //$NON-NLS-1$
+				Transformer transformer = transformerFactory.newTransformer();
+				transformer.setOutputProperty(OutputKeys.INDENT, "yes"); //$NON-NLS-1$
+				transformer.transform(xmlInput, xmlOutput);
+				InputStream in = new ByteArrayInputStream(stringWriter.toString().getBytes());
+				file.setContents(in, IResource.FORCE, new NullProgressMonitor());
 			} catch (CoreException ex) {
 				Activator.log.error(NLS.bind("Exception during the formatting of {0}", file.getFullPath()), ex); //$NON-NLS-1$
+			} catch (TransformerConfigurationException e) {
+				Activator.log.error(NLS.bind("Exception during the formatting of {0}", file.getFullPath()), e); //$NON-NLS-1$
+			} catch (TransformerException e) {
+				Activator.log.error(NLS.bind("Exception during the formatting of {0}", file.getFullPath()), e); //$NON-NLS-1$
+
 			}
 		}
 	}

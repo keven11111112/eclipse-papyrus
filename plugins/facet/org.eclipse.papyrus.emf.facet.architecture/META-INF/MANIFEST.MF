@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Automatic-Module-Name: org.eclipse.papyrus.emf.facet.architecture
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.18.0,4.0.0)",
  org.eclipse.emf.ecore;bundle-version="[2.22.0,3.0.0)",
  org.eclipse.papyrus.infra.core.architecture;bundle-version="[3.0.0,4.0.0)",

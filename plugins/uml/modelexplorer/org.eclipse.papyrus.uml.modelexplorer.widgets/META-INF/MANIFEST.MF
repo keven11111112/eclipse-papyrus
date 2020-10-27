@@ -17,5 +17,5 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.widgets.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.widgets;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.modelexplorer.widgets

@@ -13,6 +13,6 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-Name: Papyrus Project Editor Tests
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.eclipse.project.editors.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Import-Package: com.google.common.base;version="[27.1.0, 28.0.0)"
 Automatic-Module-Name: org.eclipse.papyrus.eclipse.project.editors.tests

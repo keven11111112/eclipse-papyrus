@@ -20,5 +20,5 @@ Bundle-Activator: org.eclipse.papyrus.uml.nattable.clazz.config.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: %Bundle-Description
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.clazz.config;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.nattable.clazz.config

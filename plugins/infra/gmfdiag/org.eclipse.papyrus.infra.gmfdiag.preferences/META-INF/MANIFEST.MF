@@ -24,5 +24,5 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.preferences.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.preferences;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.infra.gmfdiag.preferences

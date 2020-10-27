@@ -10,5 +10,5 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-Name: GMF Xtext Integration Validation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.xtext.integration.validation;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.xtext.integration.validation

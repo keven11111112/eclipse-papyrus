@@ -5,4 +5,4 @@ Bundle-SymbolicName: org.eclipse.papyrus.api.migration.doc;singleton:=true
 Bundle-Version: 2.0.0.qualifier
 Bundle-Vendor: Eclipse Modeling Project
 Automatic-Module-Name: org.eclipse.papyrus.api.migration.doc
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11

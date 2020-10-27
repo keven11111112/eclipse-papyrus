@@ -4,7 +4,7 @@ Bundle-Name: %Bundle-Name
 Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor
 Automatic-Module-Name: org.eclipse.papyrus.examples.uml.diagrams

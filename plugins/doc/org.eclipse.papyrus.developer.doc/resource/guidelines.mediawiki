@@ -334,7 +334,7 @@ These rules apply to all plug-ins and features developed for the Papyrus Eclipse
 
 ==== Plug-ins ====
 
-*All plug-ins must compile and run with Java 1.7 (''Execution Environment = JavaSE-1.7''). Starting with Papyrus 1.2.0 / Neon, JavaSE-1.8 is also allowed
+*All plug-ins must compile and run with Java 11 (''Execution Environment = JavaSE-11'') since 2020-12.
 *Plug-in provider&nbsp;: ''Eclipse Modeling Project'' 
 *Version&nbsp;: 
 **Juno&nbsp;: ''0.9.2.qualifier'' 
@@ -481,9 +481,9 @@ This list contains all points that should be verified before committing the plug
 
 *Plugin id should correspond to Papyrus standards. It should be meaningfull and distinguishable from other plugins (to avoid having plugins org.eclipse.papyrus.editors and org.eclipse.papyrus.editor) 
 **Plugin id and project name should be exactly the same, to ease the process build 
-*Plugin should be compatible with the java 1.7 (Mars) or 1.8 (Neon) library: 
-**Minimal execution environment is JavaSE-1.7 (Or JavaSE-1.8 / )
-**JRE system library should be specified to 1.7 also (Or JavaSE-1.8)
+*Plugin should be compatible with the java 11 library: 
+**Minimal execution environment is JavaSE-11
+**JRE system library should be specified to JavaSE-11
 *Plugin should contain the 'about.html' file at the root of the plugin 
 **Check also that this file is included in the source and binary builds (build.properties -&gt; binary build, source build)
 *Plugin should be internationalized, with plugin.properties file or with the new system: PDE Tools &gt; Internationalize 

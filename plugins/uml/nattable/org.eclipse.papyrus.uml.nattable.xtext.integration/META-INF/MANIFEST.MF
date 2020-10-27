@@ -21,5 +21,5 @@ Bundle-Activator: org.eclipse.papyrus.uml.nattable.xtext.integration.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.xtext.integration;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.nattable.xtext.integration

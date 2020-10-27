@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.infra.emf.expressions.presentation.ExpressionsEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.emf.expressions.booleanexpressions.presentation,
  org.eclipse.papyrus.infra.emf.expressions.presentation
 Require-Bundle: org.eclipse.core.resources;bundle-version="[3.13.0,4.0.0)",

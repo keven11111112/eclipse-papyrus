@@ -24,7 +24,7 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.services.resourceloading.internal.ui.UIPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.resourceloading.ui;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.services.resourceloading.internal.ui;x-internal:=true,
  org.eclipse.papyrus.infra.services.resourceloading.internal.ui.editor;x-internal:=true,
  org.eclipse.papyrus.infra.services.resourceloading.internal.ui.expressions;x-internal:=true,

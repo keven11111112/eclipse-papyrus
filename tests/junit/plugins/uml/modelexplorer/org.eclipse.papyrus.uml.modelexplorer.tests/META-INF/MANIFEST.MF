@@ -18,7 +18,8 @@ Require-Bundle: org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
  org.eclipse.ui.ide;bundle-version="[3.17.0,4.0.0)",
  org.eclipse.ui.navigator;bundle-version="[3.9.0,4.0.0)",
  org.eclipse.uml2.uml;bundle-version="[5.5.0,6.0.0)",
- org.junit;bundle-version="[4.13.0,5.0.0)"
+ org.junit;bundle-version="[4.13.0,5.0.0)",
+ org.eclipse.papyrus.infra.widgets;bundle-version="[4.0.0,5.0.0)"
 Export-Package: org.eclipse.papyrus.uml.modelexplorer.tests,
  org.eclipse.papyrus.uml.modelexplorer.tests.paste
 Bundle-Vendor: %providerName
@@ -30,5 +31,5 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.tests.Activator
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.papyrus.uml.modelexplorer.tests

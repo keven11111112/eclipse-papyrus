@@ -15,7 +15,7 @@ Bundle-Name: %Bundle-Name
 Bundle-Activator: org.eclipse.papyrus.infra.nattable.internal.gmfdiag.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.gmfdiag;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.eclipse.papyrus.infra.nattable.internal.gmfdiag;x-internal:=true,
  org.eclipse.papyrus.infra.nattable.internal.gmfdiag.strategy.paste;x-internal:=true
 Automatic-Module-Name: org.eclipse.papyrus.infra.nattable.gmfdiag
