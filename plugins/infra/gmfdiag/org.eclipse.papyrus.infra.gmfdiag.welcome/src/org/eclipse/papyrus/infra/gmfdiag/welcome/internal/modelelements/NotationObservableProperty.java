@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015, 2016 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements;
@@ -73,7 +73,7 @@ public class NotationObservableProperty implements Supplier<IObservableList<Nota
 					basicResourceSetChanged(event);
 				} else {
 					try {
-						Display.getDefault().syncExec(TransactionUtil.createPrivilegedRunnable(domain,
+						Display.getDefault().asyncExec(TransactionUtil.createPrivilegedRunnable(domain,
 								new RunnableWithResult.Impl<Void>() {
 									@Override
 									public void run() {
@@ -91,7 +91,7 @@ public class NotationObservableProperty implements Supplier<IObservableList<Nota
 			/**
 			 * Captures the superclass behaviour of
 			 * {@link #resourceSetChanged(ResourceSetChangeEvent)}.
-			 * 
+			 *
 			 * @param event
 			 *            the change event
 			 */
@@ -132,7 +132,7 @@ public class NotationObservableProperty implements Supplier<IObservableList<Nota
 	/**
 	 * Is a notation view or other object one that is under the user's control?
 	 * That is, in a resource that is normally accessible and editable.
-	 * 
+	 *
 	 * @param object
 	 *            an object in a model-set
 	 * @return whether it is in a user resource
@@ -160,7 +160,7 @@ public class NotationObservableProperty implements Supplier<IObservableList<Nota
 	/**
 	 * Queries whether an {@code object} has not yet been added to our
 	 * observable list.
-	 * 
+	 *
 	 * @param object
 	 *            an object
 	 * @return {@code true} if it is not in the observable list; {@code false}, otherwise
