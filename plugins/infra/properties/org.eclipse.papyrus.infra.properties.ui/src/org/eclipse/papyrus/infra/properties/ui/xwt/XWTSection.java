@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2017, 2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -12,6 +12,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bugs 435420, 417409
  *  Christian W. Damus - bugs 485220, 515257
+ *  Patrick Tessier (CEA LIST) -bug 568329 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.xwt;
@@ -124,8 +125,10 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 
 		if (oldSource != source) {
 			if (oldSource != null) {
-				oldSource.removeChangeListener(this);
-				oldSource.autoRelease();
+				if (section.getConstraints().size() == 0) {
+					oldSource.removeChangeListener(this);
+					oldSource.autoRelease();
+				}
 			}
 
 			this.source = source;
@@ -155,6 +158,7 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 		}
 
 		if (!isApplied()) {
+			display.storeConstraintevalutionForSource(section, source);
 			hide();
 			return;
 		}
@@ -182,7 +186,7 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 	 * any constraint, or if at least one of its constraints match the current selection
 	 *
 	 * @return
-	 * 		True if the section should be displayed
+	 *         True if the section should be displayed
 	 */
 	protected boolean isApplied() {
 		if (getConstraints().isEmpty()) {
@@ -205,7 +209,7 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 
 	protected Set<Constraint> getConstraints() {
 		if (constraints == null) {
-			constraints = new HashSet<Constraint>();
+			constraints = new HashSet<>();
 			for (ConstraintDescriptor constraintDescriptor : section.getConstraints()) {
 				Constraint constraint = ConstraintFactory.getInstance().createFromModel(constraintDescriptor);
 				if (constraint != null) {

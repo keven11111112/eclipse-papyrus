@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2017, 2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -13,6 +13,7 @@
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *  Christian W. Damus (CEA) - bug 417409
  *  Christian W. Damus - bugs 455075, 510254, 515257
+ *  Patrick Tessier (CEA LIST), bug 568329
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.modelelement;
@@ -75,7 +76,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 
 	private IStructuredSelection selection;
 
-	private Map<String, ModelElement> elements = new HashMap<String, ModelElement>();
+	private Map<String, ModelElement> elements = new HashMap<>();
 
 	/**
 	 * Constructs a new DataSource from the given view and selection
@@ -99,7 +100,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	 * @param propertyPath
 	 *            The propertyPath to lookup
 	 * @return
-	 * 		The ModelElement associated to the given propertyPath
+	 *         The ModelElement associated to the given propertyPath
 	 */
 	public ModelElement getModelElement(String propertyPath) {
 		// ConfigurationManager.instance.getProperty(propertyPath)
@@ -129,7 +130,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	 * @param propertyPath
 	 *            The property path for which we want to retrieve an ObservableValue
 	 * @return
-	 * 		The IObservable corresponding to the given propertyPath
+	 *         The IObservable corresponding to the given propertyPath
 	 */
 	public IObservable getObservable(String propertyPath) {
 		String localPropertyPath = getLocalPropertyPath(propertyPath);
@@ -159,7 +160,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	 * @param propertyPath
 	 *            The property path for which we want to retrieve a ContentProvider
 	 * @return
-	 * 		The IStaticContentProvider corresponding to the given propertyPath
+	 *         The IStaticContentProvider corresponding to the given propertyPath
 	 */
 	public IStaticContentProvider getContentProvider(final String propertyPath) {
 		class Delegator extends EncapsulatedContentProvider implements IDataSourceListener {
@@ -216,13 +217,13 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	 * @param propertyPath
 	 *            The property path for which we want to retrieve an ILabelProvider
 	 * @return
-	 * 		The ILabelProvider corresponding to the given propertyPath
+	 *         The ILabelProvider corresponding to the given propertyPath
 	 */
 	public ILabelProvider getLabelProvider(final String propertyPath) {
 		class Delegator extends LabelProvider implements IDataSourceListener, ILabelProviderListener, IStyledLabelProvider {
 			private ILabelProvider delegate;
 
-			private final CopyOnWriteArrayList<ILabelProviderListener> listeners = new CopyOnWriteArrayList<ILabelProviderListener>();
+			private final CopyOnWriteArrayList<ILabelProviderListener> listeners = new CopyOnWriteArrayList<>();
 
 			{
 				DataSource.this.addDataSourceListener(this);
@@ -314,7 +315,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 
 			/**
 			 * {@inhiriteDoc}
-			 * 
+			 *
 			 * @see org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider#getStyledText(java.lang.Object)
 			 */
 			@Override
@@ -374,7 +375,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	}
 
 	@Override
-	public void handleChange(ChangeEvent event) {
+	public synchronized void handleChange(ChangeEvent event) {
 		Object[] listeners = changeListeners.getListeners();
 		for (int i = 0; i < listeners.length; i++) {
 			try {
@@ -428,7 +429,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	/**
 	 * @param propertyPath
 	 * @return
-	 * 		true if the property represented by this propertyPath is ordered
+	 *         true if the property represented by this propertyPath is ordered
 	 */
 	public boolean isOrdered(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -441,7 +442,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	/**
 	 * @param propertyPath
 	 * @return
-	 * 		true if the property represented by this propertyPath is unique
+	 *         true if the property represented by this propertyPath is unique
 	 */
 	public boolean isUnique(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -454,7 +455,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	/**
 	 * @param propertyPath
 	 * @return
-	 * 		true if the property represented by this propertyPath is mandatory
+	 *         true if the property represented by this propertyPath is mandatory
 	 */
 	public boolean isMandatory(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -467,7 +468,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	/**
 	 * @param propertyPath
 	 * @return
-	 * 		true if the property represented by this propertyPath is editable
+	 *         true if the property represented by this propertyPath is editable
 	 */
 	public boolean isEditable(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -500,7 +501,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	 * @param propertyPath
 	 *            The property path to lookup
 	 * @return
-	 * 		The factory used to edit and/or instantiate values for this property path
+	 *         The factory used to edit and/or instantiate values for this property path
 	 */
 	public ReferenceValueFactory getValueFactory(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -515,7 +516,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	 *
 	 * @param propertyPath
 	 * @return
-	 * 		The default value for the given property
+	 *         The default value for the given property
 	 */
 	public Object getDefaultValue(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -536,7 +537,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 	 *
 	 * @param propertyPath
 	 * @return
-	 * 		True if the widget should use the direct edition option for the given property
+	 *         True if the widget should use the direct edition option for the given property
 	 */
 	public boolean getDirectCreation(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -576,7 +577,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 
 	/**
 	 * return the NameResolutionHelper to use for completion
-	 * 
+	 *
 	 * @param propertyPath
 	 * @return
 	 */
@@ -590,7 +591,7 @@ public class DataSource extends ReferenceCounted<DataSource> implements IChangeL
 
 	/**
 	 * return the Papyrus Converter to convert the object to edit or display string and to find the object from a string
-	 * 
+	 *
 	 * @param propertyPath
 	 * @return
 	 */

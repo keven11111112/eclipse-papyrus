@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2017,2020 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - Use URIs to support non-URL-compatible storage (CDO)
  *  Christian W. Damus (CEA) - bugs 417409, 444227
  *  Christian W. Damus - bugs 450478, 454536, 515257
+ *  Patrick Tessier (CEA LIST)- bug 568329
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.runtime;
@@ -31,6 +32,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
+import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.catalog.PropertiesURIHandler;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
@@ -75,6 +78,10 @@ public class DefaultDisplayEngine implements DisplayEngine {
 	private boolean allowDuplicate;
 
 	private Object xmlCache;
+	// Cache of data source for which the widget page has been build
+	private List<DataSource> dataSourceCache = new ArrayList<>();
+	// Cache about evaluation of set of constraint linked to a data source.
+	private HashMap<DataSource, Boolean> constraintEvaluationCache = new HashMap<>();
 
 	/**
 	 * Constructs a new DisplayEnginet that doesn't allow the duplication of sections
@@ -289,6 +296,33 @@ public class DefaultDisplayEngine implements DisplayEngine {
 
 	@Override
 	public void refreshSection(Composite parent, Section section, DataSource source) {
+		// if the data source is not is the cache, sure we must destroy and construct all controls.
+		if (!(dataSourceCache.contains(source))) {
+			dataSourceCache.add(source);
+			storeConstraintevalutionForSource(section, source);
+
+			disposeAndCreateControl(parent, section, source);
+		} else {
+			// in this context, all widget have been constructed and need to be refreshed
+			// but if constraints have been associated to the data source, maybe new widget may
+			// appear depending to the change of the value
+			if (constraintEvaluationCache.containsKey(source)) {
+				boolean newValue = evaluateConstraintForSection(section, source);
+				// the value has changed , destruction and creation is needed.
+				if (newValue != constraintEvaluationCache.get(source).booleanValue()) {
+					disposeAndCreateControl(parent, section, source);
+					storeConstraintevalutionForSource(section, source);
+
+				}
+				// in other case, only refresh is needed.
+			}
+		}
+	}
+
+	/**
+	 * this method destroy all SWT controler and create all.
+	 */
+	protected void disposeAndCreateControl(Composite parent, Section section, DataSource source) {
 		for (Control control : parent.getChildren()) {
 			control.dispose();
 		}
@@ -300,6 +334,38 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		if (control != null) {
 			addControl(section, control);
 		}
+	}
+
+	/**
+	 * This method is used to store evaluation of constraint to determine if it is needed to add potential new controls.
+	 *
+	 * @since 5.0
+	 */
+	@Override
+	public void storeConstraintevalutionForSource(Section section, DataSource source) {
+		if (section.getConstraints().size() > 0) {
+			boolean value = evaluateConstraintForSection(section, source);
+			if (constraintEvaluationCache.containsKey(source)) {
+				constraintEvaluationCache.replace(source, new Boolean(value));
+			} else {
+				constraintEvaluationCache.put(source, new Boolean(value));
+			}
+		}
+	}
+
+	/**
+	 * Evaluate constraints linked to a data source
+	 *
+	 * @since 5.0
+	 */
+	protected boolean evaluateConstraintForSection(Section section, DataSource source) {
+		boolean constraintsvalue = false;
+		for (ConstraintDescriptor cd : section.getConstraints()) {
+			Constraint c = org.eclipse.papyrus.infra.constraints.runtime.ConstraintFactory.getInstance().createFromModel(cd);
+			List<?> selectionList = source.getSelection().toList();
+			constraintsvalue = constraintsvalue || c.match(selectionList);
+		}
+		return constraintsvalue;
 	}
 
 	@Override
@@ -350,7 +416,9 @@ public class DefaultDisplayEngine implements DisplayEngine {
 			XWT.setLoadingContext(xwtContext);
 		}
 		layout(parent);
-
+		// After creation, store values in the caches
+		dataSourceCache.add(source);
+		storeConstraintevalutionForSource(section, source);
 		return control;
 	}
 

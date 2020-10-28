@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2013, 2020 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Use URIs to support non-URL-compatible storage (CDO)
+ *  Patrick Tessier (CEA LIST) -bug 568329
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.runtime;
 
@@ -102,4 +103,11 @@ public interface DisplayEngine {
 	 * Disposes this display engine
 	 */
 	public void dispose();
+
+	/**
+	 * this method is used to store evaluation of constraint to determine if it is needed to add potential new controls.
+	 *
+	 * @since 5.0
+	 */
+	public void storeConstraintevalutionForSource(Section section, DataSource source);
 }

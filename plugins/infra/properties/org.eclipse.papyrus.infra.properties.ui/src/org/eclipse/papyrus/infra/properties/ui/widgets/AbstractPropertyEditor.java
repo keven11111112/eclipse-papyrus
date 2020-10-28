@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2016-2017 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
+ * Copyright (c) 2010, 2016-2017,2020 CEA LIST, Christian W. Damus, Esterel Technologies SAS and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -19,6 +19,7 @@
  *  Sebastien Gabel (Esterel Technologies SAS) - bug 497461
  *  Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Bug 515650
  *  Fanch BONNABESSE (ALL4TEC) fanch.bonnabesse@all4tec.net - Bug 522124
+ *  Patrick Tessier (CEA LIST) -bug 568329
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.properties.ui.widgets;
@@ -215,6 +216,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			public void widgetDisposed(DisposeEvent e) {
 				if (input != null) {
 					input.removeChangeListener(AbstractPropertyEditor.this);
+					unhookDataSourceListener(input);
 				}
 			}
 		});
@@ -307,7 +309,8 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	public void handleChange(ChangeEvent event) {
 		// Handle the "forceRefresh" behavior when the input DataSource sends a ChangeEvent
 		AbstractEditor editor = getEditor();
-		if (editor != null) {
+
+		if (editor != null && !editor.isDisposed()) {
 			editor.refreshValue();
 
 			// And refresh the read-only state
@@ -518,7 +521,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 * Tests if this editor is read-only
 	 *
 	 * @return
-	 * 		True if this editor is read-only
+	 *         True if this editor is read-only
 	 */
 	@Override
 	public boolean getReadOnly() {
@@ -598,7 +601,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 * Returns the editor's Layout Data
 	 *
 	 * @return
-	 * 		The editor's layout data
+	 *         The editor's layout data
 	 */
 	public Object getLayoutData() {
 		return getEditor() == null ? null : getEditor().getLayoutData();
@@ -619,7 +622,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 * Returns the editor's Layout
 	 *
 	 * @return
-	 * 		The editor's layout
+	 *         The editor's layout
 	 */
 	public Layout getLayout() {
 		return getEditor() == null ? null : getEditor().getLayout();
@@ -643,7 +646,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 * Indicates whether the editor's label is displayed or not
 	 *
 	 * @return
-	 * 		true if the label should be displayed
+	 *         true if the label should be displayed
 	 */
 	@Override
 	public boolean getShowLabel() {
@@ -757,16 +760,16 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		return listeningPropertyPaths;
 	}
 
-//	/** FIXME: this getter introduce a regression 
-//	See Bug 522124 and https://dev.eclipse.org/mhonarc/lists/mdt-papyrus.dev/msg04151.html
-//	 * Return the HashSet of listening property paths.
-//	 *
-//	 * @return the listeningPropertyPathsSet The HashSet of listening property paths.
-//	 * @since 3.1
-//	 */
-//	public Set<String> getListeningPropertyPathsSet() {
-//		return listeningPropertyPathsSet;
-//	}
+	// /** FIXME: this getter introduce a regression
+	// See Bug 522124 and https://dev.eclipse.org/mhonarc/lists/mdt-papyrus.dev/msg04151.html
+	// * Return the HashSet of listening property paths.
+	// *
+	// * @return the listeningPropertyPathsSet The HashSet of listening property paths.
+	// * @since 3.1
+	// */
+	// public Set<String> getListeningPropertyPathsSet() {
+	// return listeningPropertyPathsSet;
+	// }
 
 	/**
 	 * Return the listener classes.
@@ -778,16 +781,16 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		return listenerClasses;
 	}
 
-//	/**FIXME: this getter introduce a regression 
-//	See Bug 522124 and https://dev.eclipse.org/mhonarc/lists/mdt-papyrus.dev/msg04151.html
-//	 * Return the HashSet of listener classes.
-//	 *
-//	 * @return the listenerClassesSet HashSet of listener classes.
-//	 * @since 3.1
-//	 */
-//	public Set<IPropertiesListener> getListenerClassesSet() {
-//		return listenerClassesSet;
-//	}
+	// /**FIXME: this getter introduce a regression
+	// See Bug 522124 and https://dev.eclipse.org/mhonarc/lists/mdt-papyrus.dev/msg04151.html
+	// * Return the HashSet of listener classes.
+	// *
+	// * @return the listenerClassesSet HashSet of listener classes.
+	// * @since 3.1
+	// */
+	// public Set<IPropertiesListener> getListenerClassesSet() {
+	// return listenerClassesSet;
+	// }
 
 	/**
 	 * Set the HashSet of listening property paths.
@@ -857,7 +860,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 
 					} catch (ClassNotFoundException e) {
 						Activator.log.error("The listener classes defined in listenerClasses are not correct.", e); //$NON-NLS-1$
-					} catch (InstantiationException  |IllegalAccessException e) {
+					} catch (InstantiationException | IllegalAccessException e) {
 						Activator.log.error(e);
 					}
 				}
