@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2016 CEA LIST and others.
- * 
+ * Copyright (c) 2016, 2020 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
- *   
+ *   Ibtihel KHEMIR (CEA-LIST) ibtihel.khemir@cea.fr - Bug 311044
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.internationalization.utils.utils;
@@ -49,7 +49,7 @@ public class UMLLabelInternationalization {
 
 	/**
 	 * Get the singleton instance (create it if not existing).
-	 * 
+	 *
 	 * @return The singleton instance.
 	 */
 	public static UMLLabelInternationalization getInstance() {
@@ -61,7 +61,7 @@ public class UMLLabelInternationalization {
 
 	/**
 	 * This allows to get the label of the named element.
-	 * 
+	 *
 	 * @param namedElement
 	 *            The named element.
 	 * @return The label of the named element or the name if the label is null.
@@ -72,7 +72,7 @@ public class UMLLabelInternationalization {
 
 	/**
 	 * This allows to get the label of the named element.
-	 * 
+	 *
 	 * @param namedElement
 	 *            The named element.
 	 * @param localize
@@ -81,23 +81,34 @@ public class UMLLabelInternationalization {
 	 */
 	public String getLabel(final NamedElement namedElement, final boolean localize) {
 		String result = null;
+
 		if (null != namedElement.eResource()) {
 			URI resourceURI = namedElement.eResource().getURI();
 			final ResourceSet resourceSet = namedElement.eResource().getResourceSet();
-			if(resourceSet instanceof ModelSet) {
-				resourceURI = ((ModelSet)resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+			if (resourceSet instanceof ModelSet) {
+				resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
 			}
-			if(InternationalizationPreferencesUtils.getInternationalizationPreference(resourceURI)) {
+			if (InternationalizationPreferencesUtils.getInternationalizationPreference(resourceURI)) {
 				result = getLabelWithoutUML(namedElement, localize);
+
 			}
 		}
-		return null != result ? result : namedElement.getName();
+		String name = null;
+
+		if (namedElement.getName() == null) {
+			name = ""; //$NON-NLS-1$
+		} else {
+			name = namedElement.getName();
+		}
+		
+		return null != result ? result : name;
+
 	}
 
 	/**
 	 * This allows to get the label of the named element without the getName
 	 * when the label is null.
-	 * 
+	 *
 	 * @param namedElement
 	 *            The named element.
 	 * @return The label of the named element.
@@ -109,7 +120,7 @@ public class UMLLabelInternationalization {
 	/**
 	 * This allows to get the label of the named element without the getName
 	 * when the label is null.
-	 * 
+	 *
 	 * @param namedElement
 	 *            The named element.
 	 * @param localize
@@ -122,7 +133,7 @@ public class UMLLabelInternationalization {
 
 	/**
 	 * This allows to set the named element label.
-	 * 
+	 *
 	 * @param namedElement
 	 *            The named element.
 	 * @param value
@@ -137,7 +148,7 @@ public class UMLLabelInternationalization {
 
 	/**
 	 * This allows to get the set named element label command.
-	 * 
+	 *
 	 * @param domain
 	 *            The editing domain to use.
 	 * @param namedElement
@@ -156,7 +167,7 @@ public class UMLLabelInternationalization {
 
 	/**
 	 * This allows to get the keyword of the stereotype.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The stereotype.
 	 * @return The keyword of the stereotype or the name if the keyword is null.
@@ -167,7 +178,7 @@ public class UMLLabelInternationalization {
 
 	/**
 	 * This allows to get the keyword of the stereotype.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The stereotype.
 	 * @param localize
@@ -176,11 +187,12 @@ public class UMLLabelInternationalization {
 	 */
 	public String getKeyword(final Stereotype stereotype, final boolean localize) {
 		String result = null;
+
 		if (null != stereotype.eResource()) {
 			URI resourceURI = stereotype.eResource().getURI();
 			final ResourceSet resourceSet = stereotype.eResource().getResourceSet();
-			if(resourceSet instanceof ModelSet) {
-				resourceURI = ((ModelSet)resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+			if (resourceSet instanceof ModelSet) {
+				resourceURI = ((ModelSet) resourceSet).getURIWithoutExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
 			}
 			if (InternationalizationPreferencesUtils.getInternationalizationPreference(resourceURI)) {
 				result = LabelInternationalizationUtils.getLabelWithoutSubstract(stereotype, localize);
@@ -192,7 +204,7 @@ public class UMLLabelInternationalization {
 	/**
 	 * This allows to get the keyword of the stereotype without the getName when
 	 * the keyword is null.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The stereotype.
 	 * @return The keyword of the stereotype.
@@ -204,7 +216,7 @@ public class UMLLabelInternationalization {
 	/**
 	 * This allows to get the keyword of the stereotype without the getName when
 	 * the keyword is null.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The stereotype.
 	 * @param localize
@@ -217,7 +229,7 @@ public class UMLLabelInternationalization {
 
 	/**
 	 * This allows to set the stereotype keyword.
-	 * 
+	 *
 	 * @param stereotype
 	 *            The stereotype.
 	 * @param value
@@ -232,7 +244,7 @@ public class UMLLabelInternationalization {
 
 	/**
 	 * This allows to get the set stereotype keyword command.
-	 * 
+	 *
 	 * @param domain
 	 *            The editing domain to use.
 	 * @param stereotype
@@ -252,7 +264,7 @@ public class UMLLabelInternationalization {
 	/**
 	 * This allows to get the qualified label (this means the qualified name
 	 * with labels).
-	 * 
+	 *
 	 * @param namedElement
 	 *            The named element to get its qualified label.
 	 * @return The qualified label or <code>null</code>.
