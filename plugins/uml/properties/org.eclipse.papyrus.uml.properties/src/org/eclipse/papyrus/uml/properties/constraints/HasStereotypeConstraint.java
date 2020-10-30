@@ -11,6 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Asma Smaoui (CEA LIST) asma.smaoui@cea.fr - Bug 567354
+ *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr - Bug 568393
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.constraints;
 
@@ -50,20 +51,22 @@ public class HasStereotypeConstraint extends AbstractConstraint {
 	@Override
 	public boolean match(Object selection) {
 
-		Element element = null;
 		EObject eobject = EMFHelper.getEObject(selection);
-		if (eobject instanceof Element) {
-			element = (Element) eobject;
-		} else {
-			element = org.eclipse.uml2.uml.util.UMLUtil.getBaseElement((EObject) selection);
-		}
-
-		if (element == null) {
+		if (null == eobject) {
 			return false;
 		}
 
-		umlElement = new WeakReference<>(element);
+		Element element = null;
+		if (eobject instanceof Element) {
+			element = (Element) eobject;
+		} else {
+			element = org.eclipse.uml2.uml.util.UMLUtil.getBaseElement(eobject);
+			if (null == element) {
+				return false;
+			}
+		}
 
+		umlElement = new WeakReference<>(element);
 		Stereotype stereotype = UMLUtil.getAppliedStereotype(element, stereotypeName, false);
 		return stereotype != null;
 	}
