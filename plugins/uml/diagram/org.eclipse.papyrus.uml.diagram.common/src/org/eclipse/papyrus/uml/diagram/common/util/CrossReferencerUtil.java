@@ -10,6 +10,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr - Bug 568500
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.util;
@@ -62,7 +63,7 @@ public class CrossReferencerUtil {
 	 */
 	public static Set<View> getCrossReferencingViews(EObject referencedObject, String diagramType) {
 
-		Set<View> referencingObjects = new HashSet<View>();
+		Set<View> referencingObjects = new HashSet<>();
 
 		CrossReferenceAdapter crossReferenceAdapter = CrossReferencerUtil.getCrossReferenceAdapter(referencedObject);
 		if (crossReferenceAdapter != null) {
@@ -77,7 +78,7 @@ public class CrossReferencerUtil {
 
 					// Check if current view is owned by a diagram which type
 					// conforms to diagramType
-					if (diagramType.equals(view.getDiagram().getType())) {
+					if (null != view.getDiagram() && diagramType.equals(view.getDiagram().getType())) {
 						referencingObjects.add(view);
 					}
 
@@ -103,7 +104,7 @@ public class CrossReferencerUtil {
 	 */
 	public static Set<View> getCrossReferencingViewsInDiagram(final EObject referencedObject, final Diagram diagram) {
 
-		Set<View> referencingObjects = new HashSet<View>();
+		Set<View> referencingObjects = new HashSet<>();
 
 		CrossReferenceAdapter crossReferenceAdapter = CrossReferencerUtil.getCrossReferenceAdapter(referencedObject);
 		if (crossReferenceAdapter != null) {

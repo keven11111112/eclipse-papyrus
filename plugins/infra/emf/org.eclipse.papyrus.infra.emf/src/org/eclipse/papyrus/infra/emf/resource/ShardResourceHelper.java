@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ * Copyright (c) 2016, 2020 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -9,8 +9,9 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   Christian W. Damus - Initial API and implementation
- *   
+ *  Christian W. Damus - Initial API and implementation
+ *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr - Bug 568500
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.resource;
@@ -46,7 +47,7 @@ import org.eclipse.papyrus.infra.tools.util.TypeUtils;
  * are dependent "shard" units of a Papyrus model. A shard helper must
  * always be {@linkplain #close() closed} after it is no longer needed,
  * because it attaches adapters to the model.
- * 
+ *
  * @since 2.1
  */
 public class ShardResourceHelper implements AutoCloseable {
@@ -64,10 +65,10 @@ public class ShardResourceHelper implements AutoCloseable {
 	 * Initializes me on a shard {@code resource} that is expected to contain
 	 * only one root element (it doesn't store multiple distinct sub-trees
 	 * of the model).
-	 * 
+	 *
 	 * @param resource
 	 *            a "resource" resource
-	 * 
+	 *
 	 * @see #ShardResourceHelper(EObject)
 	 */
 	public ShardResourceHelper(Resource resource) {
@@ -79,7 +80,7 @@ public class ShardResourceHelper implements AutoCloseable {
 	 * identifies a sub-tree of potentially more than one stored in the resource.
 	 * If there is any possibility that a resource stores multiple sub-trees,
 	 * prefer this constructor over {@linkplain #ShardResourceHelper(Resource) the other}.
-	 * 
+	 *
 	 * @param element
 	 *            an element in a "resource" resource
 	 */
@@ -96,7 +97,7 @@ public class ShardResourceHelper implements AutoCloseable {
 
 	/**
 	 * Is my resource a shard?
-	 * 
+	 *
 	 * @return whether my resource is a shard of its parent
 	 */
 	public boolean isShard() {
@@ -107,11 +108,11 @@ public class ShardResourceHelper implements AutoCloseable {
 	 * Changes my resource from a shard to an independent controlled unit, or vice-versa.
 	 * In the context of an editor and/or editing-domain, it is usually more appropriate
 	 * to use the {@link #getSetShardCommand(boolean)} API for manipulation by command.
-	 * 
+	 *
 	 * @param isShard
 	 *            whether my resource should be a shard. If it already matches
 	 *            this state, then do nothing
-	 * 
+	 *
 	 * @see #getSetShardCommand(boolean)
 	 */
 	public void setShard(boolean isShard) {
@@ -157,7 +158,7 @@ public class ShardResourceHelper implements AutoCloseable {
 	/**
 	 * Finds the element that is the root of the particular sub-tree stored in
 	 * this resource, from the context provided by the client.
-	 * 
+	 *
 	 * @return the shard root element as best determined from the context, or
 	 *         {@code null} in the worst case that the resource is empty
 	 */
@@ -188,13 +189,13 @@ public class ShardResourceHelper implements AutoCloseable {
 	/**
 	 * Obtains a command to change my resource from a shard to an independent
 	 * controlled unit, or vice-versa.
-	 * 
+	 *
 	 * @param isShard
 	 *            whether my resource should be a shard. If it already matches
 	 *            this state, then the resulting command will have no effect
-	 * 
+	 *
 	 * @return the set-shard command
-	 * 
+	 *
 	 * @see #setShard(boolean)
 	 */
 	public Command getSetShardCommand(boolean isShard) {
@@ -298,7 +299,7 @@ public class ShardResourceHelper implements AutoCloseable {
 
 	/**
 	 * Queries whether I have been {@linkplain #close() closed}.
-	 * 
+	 *
 	 * @return whether I have been closed
 	 */
 	public final boolean isClosed() {
@@ -325,7 +326,7 @@ public class ShardResourceHelper implements AutoCloseable {
 	private EAnnotation findAnnotation() {
 		EAnnotation result = null;
 
-		if (!resource.getContents().isEmpty()) {
+		if (null != resource && !resource.getContents().isEmpty()) {
 			EObject shardElement = getShardElement();
 			Notifier annotationOwner;
 
