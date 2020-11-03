@@ -64,6 +64,7 @@ public class Activator extends AbstractUIPlugin {
 
 		// manifest builder
 		PapyrusPluginBuilder.addManifestBuilder(new ManifestBuilder());
+		PapyrusPluginBuilder.addPluginBuilder(new StaticProfileExtensionsBuilder());
 	}
 
 	/**

@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.core.expressions;bundle-version="[3.6.0,4.0.0)",
  org.eclipse.uml2.uml;bundle-version="[5.5.0,6.0.0)"
 Export-Package: org.eclipse.papyrus.toolsmiths.validation.profile,
  org.eclipse.papyrus.toolsmiths.validation.profile.checkers,
- org.eclipse.papyrus.toolsmiths.validation.profile.constants
+ org.eclipse.papyrus.toolsmiths.validation.profile.constants,
+ org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;x-friends:="org.eclipse.papyrus.toolsmiths.plugin.builder"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

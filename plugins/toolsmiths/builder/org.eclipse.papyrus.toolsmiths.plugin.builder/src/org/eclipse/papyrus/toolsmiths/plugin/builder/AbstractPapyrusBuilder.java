@@ -52,6 +52,17 @@ public abstract class AbstractPapyrusBuilder {
 	public abstract IProject[] build(IProject builtProject, final PapyrusPluginBuilder papyrusBuilder, int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException;
 
 	/**
+	 * see {@link IncrementalProjectBuilder#clean(IProgressMonitor)}
+	 *
+	 * @param monitor
+	 * @param iProject
+	 * @throws CoreException
+	 */
+	public void clean(IProgressMonitor monitor, IProject iProject) throws CoreException {
+
+	}
+
+	/**
 	 *
 	 * @param res
 	 *            the resource to mark with an error
