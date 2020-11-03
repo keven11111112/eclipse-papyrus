@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009,2020 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Nizar GUEDIDI (CEA LIST) - update getImage() : test if element is null
- *
+ *  Ibtihel KHEMIR (CEA LIST)  ibtihel.khemir@cea.fr - Bug 568492
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.helper;
 
@@ -38,6 +38,7 @@ import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusCons
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
+import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
@@ -75,18 +76,18 @@ public abstract class StereotypedElementLabelHelper {
 	 *         displayed
 	 */
 	protected Map<String, List<String>> parseStereotypeProperties(GraphicalEditPart editPart, String stereotypesToDisplay, String stereotypesPropertiesToDisplay) {
-		Map<String, List<String>> propertiesMap = new HashMap<String, List<String>>();
+		Map<String, List<String>> propertiesMap = new HashMap<>();
 		if (stereotypesPropertiesToDisplay != null) {
 			StringTokenizer stringTokenizer = new StringTokenizer(stereotypesPropertiesToDisplay, UMLVisualInformationPapyrusConstant.STEREOTYPE_PROPERTIES_LIST_SEPARATOR);
 			while (stringTokenizer.hasMoreTokens()) {
 				String propertyName = stringTokenizer.nextToken();
 				// retrieve the name of the stereotype for this property
-				String stereotypeName = propertyName.substring(0, propertyName.lastIndexOf(".")); // stereotypequalifiedName.propertyname
+				String stereotypeName = propertyName.substring(0, propertyName.lastIndexOf(".")); // stereotypequalifiedName.propertyname //$NON-NLS-1$
 				if (!propertiesMap.containsKey(stereotypeName)) {
-					List<String> propertiesForStereotype = new ArrayList<String>();
+					List<String> propertiesForStereotype = new ArrayList<>();
 					propertiesMap.put(stereotypeName, propertiesForStereotype);
 				}
-				propertiesMap.get(stereotypeName).add(propertyName.substring(propertyName.lastIndexOf(".") + 1, propertyName.length()));
+				propertiesMap.get(stereotypeName).add(propertyName.substring(propertyName.lastIndexOf(".") + 1, propertyName.length())); //$NON-NLS-1$
 			}
 		}
 		return propertiesMap;
@@ -104,7 +105,7 @@ public abstract class StereotypedElementLabelHelper {
 		}
 		if (stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
 			// retrieve the first stereotype in the list of displayed stereotype
-			Collection<Stereotype> stereotypes = new ArrayList<Stereotype>();
+			Collection<Stereotype> stereotypes = new ArrayList<>();
 			Iterator<Stereotype> appliedStereotypes = getUMLElement(editPart).getAppliedStereotypes().iterator();
 			while (appliedStereotypes.hasNext()) {
 				Stereotype appliedStereotype = appliedStereotypes.next();
@@ -115,7 +116,7 @@ public abstract class StereotypedElementLabelHelper {
 			}
 			return Activator.getIconElements(getUMLElement(editPart), stereotypes, false);
 		}
-		return new ArrayList<Image>();
+		return new ArrayList<>();
 	}
 
 	/**
@@ -215,9 +216,17 @@ public abstract class StereotypedElementLabelHelper {
 	 */
 	public Image getImage(GraphicalEditPart editPart) {
 		Element element = getUMLElement(editPart);
-		String key = "";
+		String key = null;
 		if (element instanceof NamedElement) {
-			key = ((NamedElement) element).getName() + "::" + ((NamedElement) element).getVisibility();
+			StringBuilder builder = new StringBuilder();
+			if (((NamedElement) element).getName() == null) {
+				builder.append(element.getClass().getName());
+			} else {
+				builder.append(((NamedElement) element).getName());
+			}
+			builder.append(NamedElementUtil.QUALIFIED_NAME_SEPARATOR);
+			builder.append(((NamedElement) element).getVisibility());
+			key = builder.toString();
 		} else if (element != null) {
 			key = element.getClass().getName();
 		} else {
