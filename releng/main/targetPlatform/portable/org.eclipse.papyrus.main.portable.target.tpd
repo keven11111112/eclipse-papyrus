@@ -39,7 +39,9 @@ location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R202008
 
 /*** Updates from the Simrel repository ***/
 
-location xwt "https://ci.eclipse.org/xwt/job/XWT-Master/lastSuccessfulBuild/artifact/repository/" {
+//updateFrom("XWT",0)
+
+location xwt "https://download.eclipse.org/xwt/milestones-1.6.0/1.6.0-M2/" {
     org.eclipse.xwt.feature.feature.group lazy
 }
 

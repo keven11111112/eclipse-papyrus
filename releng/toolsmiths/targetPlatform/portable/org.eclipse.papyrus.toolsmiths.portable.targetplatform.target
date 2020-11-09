@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Toolsmiths" sequenceNumber="1604501348">
+<target name="Papyrus Toolsmiths" sequenceNumber="1604934575">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -30,7 +30,7 @@
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="0.0.0"/>
-      <repository id="xwt" location="https://ci.eclipse.org/xwt/job/XWT-Master/lastSuccessfulBuild/artifact/repository/"/>
+      <repository id="xwt" location="https://download.eclipse.org/xwt/milestones-1.6.0/1.6.0-M2/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.m2m.qvt.oml.sdk.feature.group" version="3.10.2.v20200609-1812"/>
@@ -135,7 +135,7 @@
       <repository id="oomph" location="https://download.eclipse.org/oomph/drops/milestone/S20201013-073117-1.19.0-M1"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <repository id="egit" location="https://download.eclipse.org/egit/updates-5.9"/>
+      <repository id="egit" location="https://download.eclipse.org/egit/staging/v5.10.0.202011041322-m2"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <repository id="m2e" location="https://download.eclipse.org/technology/m2e/releases/1.16.2/"/>
