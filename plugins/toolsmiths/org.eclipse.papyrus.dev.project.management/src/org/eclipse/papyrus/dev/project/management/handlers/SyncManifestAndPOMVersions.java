@@ -289,6 +289,7 @@ public class SyncManifestAndPOMVersions extends AbstractHandler {
 	 *
 	 * @param filePath
 	 *            the path of the file to format
+	 * @since 2.0
 	 */
 	protected static final void formatXMLFile(final IFile file) {
 		if (null != file && file.exists()) {

@@ -36,7 +36,7 @@ import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 /**
  * This command is used to save the sort of the colum
  *
- * @since 6.7
+ * @since 7.0
  *
  */
 public class SaveSortedColumnCommand extends AbstractTransactionalCommand {

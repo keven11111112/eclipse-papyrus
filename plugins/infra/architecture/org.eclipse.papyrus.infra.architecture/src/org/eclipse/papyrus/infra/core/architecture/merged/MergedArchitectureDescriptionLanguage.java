@@ -99,6 +99,7 @@ public class MergedArchitectureDescriptionLanguage extends MergedArchitectureCon
 	 *
 	 * @return
 	 *         the a collection of TreeViewerConfiguration
+	 * @since 3.0
 	 */
 	public Collection<TreeViewerConfiguration> getTreeViewerConfigurations() {
 		Set<TreeViewerConfiguration> kinds = new LinkedHashSet<>();

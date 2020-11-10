@@ -321,6 +321,8 @@ public class DefaultDisplayEngine implements DisplayEngine {
 
 	/**
 	 * this method destroy all SWT controler and create all.
+	 *
+	 * @since 4.0
 	 */
 	protected void disposeAndCreateControl(Composite parent, Section section, DataSource source) {
 		for (Control control : parent.getChildren()) {
@@ -356,7 +358,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 	/**
 	 * Evaluate constraints linked to a data source
 	 *
-	 * @since 5.0
+	 * @since 4.0
 	 */
 	protected boolean evaluateConstraintForSection(Section section, DataSource source) {
 		boolean constraintsvalue = false;

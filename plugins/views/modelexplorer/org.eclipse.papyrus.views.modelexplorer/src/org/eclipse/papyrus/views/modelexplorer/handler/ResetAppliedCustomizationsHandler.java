@@ -20,6 +20,9 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.papyrus.infra.core.services.spi.IContextualServiceRegistryTracker;
 import org.eclipse.papyrus.infra.ui.internal.emf.Activator;
 
+/**
+ * @since 4.0
+ */
 public class ResetAppliedCustomizationsHandler extends AbstractHandler {
 
 	@Override
