@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2016 Mia-Software, CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2020 Mia-Software, CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -148,9 +148,22 @@ public abstract class DependencyUpdater<T> {
 
 	protected Contribution findContribution(Iterable<? extends Contribution> contributions, final String contributionName) {
 		Contribution matchingContribution = null;
+		int shortestMatch = Integer.MAX_VALUE;
 		for (Contribution contribution : contributions) {
-			if (contributionName.equalsIgnoreCase(contribution.getLabel())) {
-				matchingContribution = contribution;
+			final String label = contribution.getLabel();
+			if (label != null && label.startsWith(contributionName)) {
+				int thisMatch = label.length();
+				if (thisMatch < shortestMatch) {
+					// Prefer a prefix match that matches more of this contribution label
+					// than any other (ultimately stopping on complete match)
+					matchingContribution = contribution;
+					shortestMatch = thisMatch;
+
+					if (shortestMatch <= contributionName.length()) {
+						// Complete match (equality). Cannot do better
+						break;
+					}
+				}
 			}
 		}
 		return matchingContribution;
