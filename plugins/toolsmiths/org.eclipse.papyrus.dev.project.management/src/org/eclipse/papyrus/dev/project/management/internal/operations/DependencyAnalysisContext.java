@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2016 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.dev.project.management.internal.operations;
@@ -58,7 +58,7 @@ public class DependencyAnalysisContext {
 
 	private final VersionRules versionRules = new VersionRules();
 
-	private final Deque<SubMonitor> monitorStack = new LinkedList<SubMonitor>();
+	private final Deque<SubMonitor> monitorStack = new LinkedList<>();
 	private SubMonitor currentMonitor;
 
 	private final Set<BundleAnalysis> roots;
@@ -102,7 +102,19 @@ public class DependencyAnalysisContext {
 	}
 
 	public BundleAnalysis getProvidingBundle(String packageName) {
-		return packageProviders.computeIfAbsent(packageName, this::findPackageProvider);
+
+		if (packageProviders.containsKey(packageName)) {
+			return packageProviders.get(packageName);
+		} else {
+			BundleAnalysis bundleAnalysis = findPackageProvider(packageName);
+			packageProviders.put(packageName, bundleAnalysis);
+			return bundleAnalysis;
+		}
+		// BundleAnalysis bundleAnalysis = packageProviders.computeIfAbsent(packageName, this::findPackageProvider);
+
+
+
+
 	}
 
 	private BundleAnalysis findPackageProvider(String packageName) {
@@ -177,7 +189,7 @@ public class DependencyAnalysisContext {
 		/**
 		 * Queries whether I express a dependency directly on the given bundle.
 		 * Equivalent to {@link #hasDependency(String, boolean) hasDependency(bundleID, false)}.
-		 * 
+		 *
 		 * @param bundleID
 		 *            a bundle identifier
 		 * @return whether my bundle directly requires it
@@ -189,12 +201,12 @@ public class DependencyAnalysisContext {
 		/**
 		 * Queries whether I express a dependency directly or, optionally,
 		 * indirectly on the given bundle.
-		 * 
+		 *
 		 * @param bundleID
 		 *            a bundle identifier
 		 * @param recursive
 		 *            whether to consider transitive (indirect) dependencies
-		 * 
+		 *
 		 * @return whether my bundle directly requires it
 		 */
 		public boolean hasDependency(String bundleID, boolean recursive) {
@@ -205,7 +217,7 @@ public class DependencyAnalysisContext {
 		 * Obtains the set of bundles that should be re-exported that are not
 		 * explicitly required (they mmust be implicitly required because some
 		 * other dependency re-exports them).
-		 * 
+		 *
 		 * @return the missing re-exported dependency declarations
 		 */
 		public Set<BundleAnalysis> getMissingReexports() {
@@ -231,7 +243,7 @@ public class DependencyAnalysisContext {
 
 		/**
 		 * For bundles that are workspace projects, gets the manifest file.
-		 * 
+		 *
 		 * @return the workspace bundle's manifest, or {@code null} if I am
 		 *         a target bundle
 		 */
@@ -262,7 +274,7 @@ public class DependencyAnalysisContext {
 		/**
 		 * Queries whether I am an analysis root, which is a bundle selected
 		 * by the user for optimization.
-		 * 
+		 *
 		 * @return whether I am an analysis root
 		 */
 		public boolean isAnalysisRoot() {
@@ -273,10 +285,10 @@ public class DependencyAnalysisContext {
 		 * A partial-ordering analoque of the {@link Comparable#compareTo(Object)} API.
 		 * Bundles are only partially orderable by dependency relationships, so
 		 * they are not actually {@link Comparable}.
-		 * 
+		 *
 		 * @param o
 		 *            another analysis bundle
-		 * 
+		 *
 		 * @return my partial ordering relative to {@code o}
 		 */
 		public int partialCompare(BundleAnalysis o) {
@@ -387,7 +399,7 @@ public class DependencyAnalysisContext {
 		/**
 		 * Queries whether I express a dependency directly on the given bundle.
 		 * Equivalent to {@link #hasDependency(String, boolean) hasDependency(bundleID, false)}.
-		 * 
+		 *
 		 * @param bundleID
 		 *            a bundle identifier
 		 * @return whether my bundle directly requires it
@@ -399,12 +411,12 @@ public class DependencyAnalysisContext {
 		/**
 		 * Queries whether I express a dependency directly or, optionally,
 		 * indirectly on the given bundle.
-		 * 
+		 *
 		 * @param bundleID
 		 *            a bundle identifier
 		 * @param recursive
 		 *            whether to consider transitive (indirect) dependencies
-		 * 
+		 *
 		 * @return whether my bundle directly requires it
 		 */
 		public boolean hasDependency(String bundleID, boolean recursive) {
@@ -577,7 +589,7 @@ public class DependencyAnalysisContext {
 		 * Obtains the set of bundles that should be re-exported that are not
 		 * explicitly required (they mmust be implicitly required because some
 		 * other dependency re-exports them).
-		 * 
+		 *
 		 * @return the missing re-exported dependency declarations
 		 */
 		public Set<BundleAnalysis> getMissingReexports() {
@@ -663,10 +675,10 @@ public class DependencyAnalysisContext {
 		 * Queries whether a {@code bundle} is re-exported by some existing dependency
 		 * that is exposed in the API. Such a bundle would not have to be added as
 		 * a missing re-export.
-		 * 
+		 *
 		 * @param bundle
 		 *            an exposed bundle
-		 * 
+		 *
 		 * @return whether it is re-exported by some other bundle that I expose
 		 */
 		private boolean isReexportedByExposedDependency(BundleAnalysis bundle) {
