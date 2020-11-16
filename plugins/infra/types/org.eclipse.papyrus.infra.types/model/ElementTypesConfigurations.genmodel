@@ -6,7 +6,7 @@
     editorDirectory="/org.eclipse.papyrus.infra.types.editor/src-gen" modelPluginID="org.eclipse.papyrus.infra.types"
     modelName="ElementTypesConfigurations" editPluginClass="org.eclipse.papyrus.infra.types.provider.TypesConfigurationsEditPlugin"
     editorPluginClass="org.eclipse.papyrus.infra.types.presentation.TypesConfigurationsEditorPlugin"
-    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.eclipse.papyrus.infra.types.tests/src"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" testsDirectory="/org.eclipse.papyrus.infra.types.tests/src-gen"
     testSuiteClass="org.eclipse.papyrus.infra.types.tests.TypesConfigurationsAllTests"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="11.0" copyrightFields="false"
     editPluginID="org.eclipse.papyrus.infra.types.edit" editorPluginID="org.eclipse.papyrus.infra.types.editor"
@@ -38,9 +38,9 @@
   </genAnnotations>
   <foreignModel>ElementTypesConfigurations.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="ElementTypesConfigurations"
-      basePackage="org.eclipse.papyrus.infra" disposableProviderFactory="true" extensibleProviderFactory="true"
-      contentTypeIdentifier="org.eclipse.papyrus.infra.types" fileExtensions="elementtypesconfigurations"
-      ecorePackage="ElementTypesConfigurations.ecore#/">
+      basePackage="org.eclipse.papyrus.infra" disposableProviderFactory="true" generateExampleClass="false"
+      extensibleProviderFactory="true" contentTypeIdentifier="org.eclipse.papyrus.infra.types"
+      fileExtensions="elementtypesconfigurations" ecorePackage="ElementTypesConfigurations.ecore#/">
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="ElementTypesConfigurations.ecore#//InheritanceKind">
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ElementTypesConfigurations.ecore#//InheritanceKind/none"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="ElementTypesConfigurations.ecore#//InheritanceKind/all"/>
