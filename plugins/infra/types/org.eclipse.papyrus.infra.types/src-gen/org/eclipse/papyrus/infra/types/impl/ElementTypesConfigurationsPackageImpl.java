@@ -1127,7 +1127,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		  (abstractAdviceBindingConfigurationEClass,
 		   source,
 		   new String[] {
-			   "apply_to_all_types", "not target.oclIsUndefined() implies not applyToAllTypes"
+			   "apply_to_all_types", "applyToAllTypes = target.oclIsUndefined()"
 		   });
 		addAnnotation
 		  (getAbstractAdviceBindingConfiguration__GetElementTypeSet(),
