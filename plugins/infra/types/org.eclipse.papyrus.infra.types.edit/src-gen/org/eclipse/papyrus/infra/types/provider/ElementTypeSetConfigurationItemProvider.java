@@ -145,8 +145,8 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS);
 			childrenFeatures.add(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS);
+			childrenFeatures.add(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS);
 		}
 		return childrenFeatures;
 	}
@@ -207,8 +207,8 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -228,6 +228,16 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 
 		newChildDescriptors.add
 			(createChildParameter
+				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS,
+				 ElementTypesConfigurationsFactory.eINSTANCE.createAdviceBindingConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS,
+				 ElementTypesConfigurationsFactory.eINSTANCE.createExternallyRegisteredAdvice()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS,
 				 ElementTypesConfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration()));
 
@@ -240,16 +250,6 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 			(createChildParameter
 				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS,
 				 ElementTypesConfigurationsFactory.eINSTANCE.createExternallyRegisteredType()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS,
-				 ElementTypesConfigurationsFactory.eINSTANCE.createAdviceBindingConfiguration()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS,
-				 ElementTypesConfigurationsFactory.eINSTANCE.createExternallyRegisteredAdvice()));
 	}
 
 }

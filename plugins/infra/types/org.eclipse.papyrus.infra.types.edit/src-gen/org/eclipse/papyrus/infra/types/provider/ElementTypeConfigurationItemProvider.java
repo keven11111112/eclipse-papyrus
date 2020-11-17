@@ -11,7 +11,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 568782
+ *  Christian W. Damus - bugs 568782, 568853
  */
 package org.eclipse.papyrus.infra.types.provider;
 
@@ -19,20 +19,10 @@ package org.eclipse.papyrus.infra.types.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.command.AbortExecutionException;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CommandWrapper;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.command.CommandParameter;
-import org.eclipse.emf.edit.command.MoveCommand;
-import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
@@ -72,6 +62,7 @@ public class ElementTypeConfigurationItemProvider extends ConfigurationElementIt
 			addNamePropertyDescriptor(object);
 			addHintPropertyDescriptor(object);
 			addKindPropertyDescriptor(object);
+			addOwnedConfigurationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -165,6 +156,28 @@ public class ElementTypeConfigurationItemProvider extends ConfigurationElementIt
 	}
 
 	/**
+	 * This adds a property descriptor for the Owned Configurations feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwnedConfigurationsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ElementTypeConfiguration_ownedConfigurations_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ElementTypeConfiguration_ownedConfigurations_feature", "_UI_ElementTypeConfiguration_type"),
+				 ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -226,6 +239,7 @@ public class ElementTypeConfigurationItemProvider extends ConfigurationElementIt
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME:
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__HINT:
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__KIND:
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__ICON_ENTRY:
@@ -261,56 +275,6 @@ public class ElementTypeConfigurationItemProvider extends ConfigurationElementIt
 			(createChildParameter
 				(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE,
 				 ElementTypesConfigurationsFactory.eINSTANCE.createExternallyRegisteredAdvice()));
-	}
-
-	@Override
-	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection, int index) {
-		Command result = super.createAddCommand(domain, owner, feature, collection, index);
-
-		if (feature == ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE) {
-			// The opposite is a subset, so we need to take care of its superset feature(s)
-			CompoundCommand compound = new CompoundCommand(CompoundCommand.LAST_COMMAND_ALL, result.getLabel(), result.getDescription());
-
-			int i = 0;
-			for (Object next : collection) {
-				IEditingDomainItemProvider provider = (IEditingDomainItemProvider) getRootAdapterFactory().adapt(next, IEditingDomainItemProvider.class);
-				if (provider != null) {
-					// Wrap the owner of the add to let the provider know that it's an inverse-add, which should not implicitly
-					// remove from the existing container. That ensures that a drag-and-drop operation doesn't fail on attempt
-					// to remove twice, and avoids an unnecessary removal step in the case of creating a new contained object
-					Command inverse = provider.createCommand(next, domain, SetCommand.class, new CommandParameter(next, ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET,
-							new InverseAddWrapper(owner)));
-					if (inverse.canExecute()) {
-						compound.append(inverse);
-
-						if (index != CommandParameter.NO_INDEX) {
-							// We cannot compute an executable move now because the object is not yet in the list.
-							// So, defer the calculation to the future
-							compound.append(new CommandWrapper(MoveCommand.create(domain, owner, feature, next, index + i)) {
-								@Override
-								protected boolean prepare() {
-									return true;
-								}
-
-								@Override
-								public void execute() {
-									if (!super.prepare()) {
-										throw new AbortExecutionException();
-									}
-									super.execute();
-								}
-							});
-						}
-					}
-				}
-
-				i++;
-			}
-
-			result = compound.unwrap();
-		}
-
-		return result;
 	}
 
 }
