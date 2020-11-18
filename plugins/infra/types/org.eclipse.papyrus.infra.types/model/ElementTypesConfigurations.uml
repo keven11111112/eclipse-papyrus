@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Model xmi:id="_VkhJIBLoEeeDV7UHoBIkeA" name="types" URI="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.2">
-    <ownedComment xmi:type="uml:Comment" xmi:id="_DIG2kCXDEeueH428b_S_BA" annotatedElement="_NJtT0CXCEeueH428b_S_BA">
-      <body>{ subsets target, owningType }</body>
-    </ownedComment>
-    <ownedComment xmi:type="uml:Comment" xmi:id="_JQlBsCjZEeuEo8scjf0hcw" annotatedElement="_NJtT0CXCEeueH428b_S_BA">
-      <body>{ subsets ownedConfigurations }</body>
-    </ownedComment>
     <packagedElement xmi:type="uml:Class" xmi:id="_VkhwMBLoEeeDV7UHoBIkeA" name="ElementTypeSetConfiguration">
       <generalization xmi:type="uml:Generalization" xmi:id="_VkhwMRLoEeeDV7UHoBIkeA" general="_VkhwOxLoEeeDV7UHoBIkeA"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_VkhwMhLoEeeDV7UHoBIkeA" name="elementTypeConfigurations" type="_VkhwQhLoEeeDV7UHoBIkeA" isOrdered="true" aggregation="composite" association="_VkhwVRLoEeeDV7UHoBIkeA">
