@@ -7,3 +7,4 @@ Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.developer.doc;singleton:=true
 Automatic-Module-Name: org.eclipse.papyrus.developer.doc
+Bundle-RequiredExecutionEnvironment: JavaSE-11
