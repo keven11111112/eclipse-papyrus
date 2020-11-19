@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,22 +11,20 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.infra.types.impl;
 
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
@@ -35,6 +33,7 @@ import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.infra.types.IdentifiedConfiguration;
 import org.eclipse.papyrus.infra.types.NamedConfiguration;
+import org.eclipse.papyrus.infra.types.operations.ElementTypeSetConfigurationOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,6 +47,7 @@ import org.eclipse.papyrus.infra.types.NamedConfiguration;
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getElementTypeConfigurations <em>Element Type Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getAdviceBindingsConfigurations <em>Advice Bindings Configurations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getAllAdviceBindings <em>All Advice Bindings</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl#getMetamodelNsURI <em>Metamodel Ns URI</em>}</li>
  * </ul>
  *
@@ -158,6 +158,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier() {
 		return identifier;
 	}
@@ -167,6 +168,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIdentifier(String newIdentifier) {
 		String oldIdentifier = identifier;
 		identifier = newIdentifier;
@@ -179,6 +181,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -188,6 +191,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
@@ -200,9 +204,10 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<ElementTypeConfiguration> getElementTypeConfigurations() {
 		if (elementTypeConfigurations == null) {
-			elementTypeConfigurations = new EObjectContainmentEList<ElementTypeConfiguration>(ElementTypeConfiguration.class, this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS);
+			elementTypeConfigurations = new EObjectContainmentWithInverseEList<ElementTypeConfiguration>(ElementTypeConfiguration.class, this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS, ElementTypesConfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__OWNING_SET);
 		}
 		return elementTypeConfigurations;
 	}
@@ -212,9 +217,10 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<AbstractAdviceBindingConfiguration> getAdviceBindingsConfigurations() {
 		if (adviceBindingsConfigurations == null) {
-			adviceBindingsConfigurations = new EObjectContainmentEList<AbstractAdviceBindingConfiguration>(AbstractAdviceBindingConfiguration.class, this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS);
+			adviceBindingsConfigurations = new EObjectContainmentWithInverseEList<AbstractAdviceBindingConfiguration>(AbstractAdviceBindingConfiguration.class, this, ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS, ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_SET);
 		}
 		return adviceBindingsConfigurations;
 	}
@@ -224,6 +230,17 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EList<AbstractAdviceBindingConfiguration> getAllAdviceBindings() {
+		return ElementTypeSetConfigurationOperations.getAllAdviceBindings(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String getMetamodelNsURI() {
 		return metamodelNsURI;
 	}
@@ -233,11 +250,29 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setMetamodelNsURI(String newMetamodelNsURI) {
 		String oldMetamodelNsURI = metamodelNsURI;
 		metamodelNsURI = newMetamodelNsURI;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI, oldMetamodelNsURI, metamodelNsURI));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getElementTypeConfigurations()).basicAdd(otherEnd, msgs);
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAdviceBindingsConfigurations()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -272,6 +307,8 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 				return getElementTypeConfigurations();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
 				return getAdviceBindingsConfigurations();
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ALL_ADVICE_BINDINGS:
+				return getAllAdviceBindings();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI:
 				return getMetamodelNsURI();
 		}
@@ -351,6 +388,8 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 				return elementTypeConfigurations != null && !elementTypeConfigurations.isEmpty();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
 				return adviceBindingsConfigurations != null && !adviceBindingsConfigurations.isEmpty();
+			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ALL_ADVICE_BINDINGS:
+				return !getAllAdviceBindings().isEmpty();
 			case ElementTypesConfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI:
 				return METAMODEL_NS_URI_EDEFAULT == null ? metamodelNsURI != null : !METAMODEL_NS_URI_EDEFAULT.equals(metamodelNsURI);
 		}
@@ -410,7 +449,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (identifier: ");
 		result.append(identifier);
 		result.append(", name: ");

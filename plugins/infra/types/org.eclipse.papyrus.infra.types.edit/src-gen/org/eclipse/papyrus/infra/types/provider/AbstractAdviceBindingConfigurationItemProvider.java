@@ -1,16 +1,17 @@
 /**
- * Copyright (c) 2014 CEA LIST.
- * 
- * 
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
+ *
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
  *
  * SPDX-License-Identifier: EPL-2.0
- * 
+ *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568782
  */
 package org.eclipse.papyrus.infra.types.provider;
 
@@ -18,19 +19,24 @@ package org.eclipse.papyrus.infra.types.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
+import org.eclipse.uml2.common.edit.command.SubsetSupersetSetCommand;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration} object.
@@ -63,6 +69,9 @@ public class AbstractAdviceBindingConfigurationItemProvider extends AdviceConfig
 			addIdentifierPropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
 			addInheritancePropertyDescriptor(object);
+			addApplyToAllTypesPropertyDescriptor(object);
+			addElementTypeSetPropertyDescriptor(object);
+			addOwningTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -134,6 +143,72 @@ public class AbstractAdviceBindingConfigurationItemProvider extends AdviceConfig
 	}
 
 	/**
+	 * This adds a property descriptor for the Apply To All Types feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addApplyToAllTypesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractAdviceBindingConfiguration_applyToAllTypes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractAdviceBindingConfiguration_applyToAllTypes_feature", "_UI_AbstractAdviceBindingConfiguration_type"),
+				 ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Element Type Set feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addElementTypeSetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractAdviceBindingConfiguration_elementTypeSet_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractAdviceBindingConfiguration_elementTypeSet_feature", "_UI_AbstractAdviceBindingConfiguration_type"),
+				 ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__ELEMENT_TYPE_SET,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Owning Target feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwningTargetPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AbstractAdviceBindingConfiguration_owningTarget_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractAdviceBindingConfiguration_owningTarget_feature", "_UI_AbstractAdviceBindingConfiguration_type"),
+				 ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -177,7 +252,7 @@ public class AbstractAdviceBindingConfigurationItemProvider extends AdviceConfig
 			getString("_UI_AbstractAdviceBindingConfiguration_type") :
 			getString("_UI_AbstractAdviceBindingConfiguration_type") + " " + label;
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -193,6 +268,8 @@ public class AbstractAdviceBindingConfigurationItemProvider extends AdviceConfig
 		switch (notification.getFeatureID(AbstractAdviceBindingConfiguration.class)) {
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER:
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE:
+			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__APPLY_TO_ALL_TYPES:
+			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION:
@@ -223,6 +300,82 @@ public class AbstractAdviceBindingConfigurationItemProvider extends AdviceConfig
 			(createChildParameter
 				(ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION,
 				 ElementTypesConfigurationsFactory.eINSTANCE.createMatcherConfiguration()));
+	}
+
+	/**
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createSetCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
+	 *      <!-- begin-user-doc -->
+	 *      <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Command createSetCommandGen(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
+		if (feature == ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET) {
+			return new SubsetSupersetSetCommand(domain, owner, feature, new EStructuralFeature[] {ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET}, null, value);
+		}
+		if (feature == ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET) {
+			return new SubsetSupersetSetCommand(domain, owner, feature, null, new EStructuralFeature[] {ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET}, value);
+		}
+		return super.createSetCommand(domain, owner, feature, value);
+	}
+
+	@Override
+	protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
+		boolean isInverseAdd = InverseAddWrapper.isInverseAdd(value);
+		value = InverseAddWrapper.unwrap(value);
+		
+		Command result = createSetCommandGen(domain, owner, feature, value);
+
+		if (result != null && feature == ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET) {
+			AbstractAdviceBindingConfiguration advice = (AbstractAdviceBindingConfiguration) owner;
+			if (value != advice.getOwningTarget()) {
+				// This command will unset the container. Follow up with placement of the advice binding configuration into the element types set
+				ElementTypeSetConfiguration typeSet = advice.getElementTypeSet();
+				if (typeSet != null) {
+					Command add = AddCommand.create(domain, typeSet, ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS, advice);
+					result = result.chain(add);
+				}
+			} // Otherwise, this command will not change the target, so don't worry about it
+		} else if (result != null && feature == ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET) {
+			AbstractAdviceBindingConfiguration advice = (AbstractAdviceBindingConfiguration) owner;
+			ElementTypeSetConfiguration typeSet = advice.getElementTypeSet();
+			if (!isInverseAdd && typeSet != null && value != advice.getOwningTarget()) {
+				// User is changing the container. Remove from current container, first so that it's undoable
+				result = RemoveCommand.create(domain, owner).chain(result);
+
+				// If clearing the container, re-home the advice in the set. Note that if the user wants to
+				// delete the advice from the model, then that is done by a RemoveCommand, not by this means
+				if (value == null) {
+					Command add = AddCommand.create(domain, typeSet, ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS, advice);
+					result = result.chain(add);
+				}
+			}
+		}
+
+		return result;
+	}
+
+	@Override
+	protected ItemPropertyDescriptor createItemPropertyDescriptor(AdapterFactory adapterFactory, ResourceLocator resourceLocator, String displayName, String description, EStructuralFeature feature, boolean isSettable, boolean multiLine, boolean sortChoices,
+			Object staticImage, String category, String[] filterFlags, Object propertyEditorFactory) {
+
+		ItemPropertyDescriptor result;
+
+		if (feature == ElementTypesConfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TARGET) {
+			result = new ItemPropertyDescriptor(adapterFactory, resourceLocator, displayName, description, feature, isSettable, multiLine, sortChoices, staticImage, category, filterFlags, propertyEditorFactory) {
+				@Override
+				public void setPropertyValue(Object object, Object value) {
+					EObject eObject = (EObject) object;
+					EditingDomain editingDomain = getEditingDomain(object);
+
+					// Create our set command; don't add on the other side
+					editingDomain.getCommandStack().execute(createSetCommand(editingDomain, (EObject) getCommandOwner(eObject), feature, value));
+				}
+			};
+		} else {
+			result = super.createItemPropertyDescriptor(adapterFactory, resourceLocator, displayName, description, feature, isSettable, multiLine, sortChoices, staticImage, category, filterFlags, propertyEditorFactory);
+		}
+
+		return result;
 	}
 
 }
