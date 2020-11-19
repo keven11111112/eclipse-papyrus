@@ -26,6 +26,7 @@ public class Messages extends NLS {
 	public static String ArchitecturePageAddValidator_dialogLabel;
 	public static String ChangeArchitectureContextHandler_dialogLabel;
 	public static String ChangeArchitectureContextHandler_dialogTitle;
+	public static String CustomAdapterFactoryContentProvider_0;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

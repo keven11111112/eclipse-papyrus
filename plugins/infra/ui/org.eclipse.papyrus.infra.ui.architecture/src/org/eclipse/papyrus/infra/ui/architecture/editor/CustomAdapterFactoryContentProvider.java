@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2018 CEA LIST and others.
- * 
+ * Copyright (c) 2018, 2020 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 568954
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.ui.architecture.editor;
@@ -22,6 +22,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -41,6 +43,7 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.DialogCellEditor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
+import org.eclipse.papyrus.infra.ui.architecture.messages.Messages;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
@@ -91,6 +94,7 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 		 * @see
 		 * PropertySource#createPropertyDescriptor(org.eclipse.emf.edit .provider.IItemPropertyDescriptor)
 		 */
+		@Override
 		protected IPropertyDescriptor createPropertyDescriptor(IItemPropertyDescriptor itemPropertyDescriptor) {
 			return new CustomPropertyDescriptor(object, itemPropertyDescriptor);
 		}
@@ -108,42 +112,47 @@ public class CustomAdapterFactoryContentProvider extends AdapterFactoryContentPr
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see
 		 * org.eclipse.ui.views.properties.IPropertyDescriptor#createPr opertyEditor(org.eclipse.swt.widgets.Composite)
 		 */
+		@Override
 		public CellEditor createPropertyEditor(Composite composite) {
 			final EObject eObject = (EObject) object;
 			final EStructuralFeature feature = (EStructuralFeature) itemPropertyDescriptor.getFeature(eObject);
-			if (feature.getName().endsWith("Class") || feature.getName().endsWith("class")) {
-				CellEditor cellEditor = new DialogCellEditor(composite) {
-					@Override
-					protected Object openDialogBox(Control cellEditorWindow) {
-						return selectTypeDialog(cellEditorWindow, eObject, feature);
-					}
-				};
-				return cellEditor;
+			if (feature.getName().endsWith("Class") || feature.getName().endsWith("class")) { //$NON-NLS-1$ //$NON-NLS-2$
+				EClassifier etype = feature.getEType();
+				if (etype instanceof EDataType && etype.getName().equals("EString")) { //$NON-NLS-1$
+					CellEditor cellEditor = new DialogCellEditor(composite) {
+						@Override
+						protected Object openDialogBox(Control cellEditorWindow) {
+							return selectTypeDialog(cellEditorWindow, eObject, feature);
+						}
+					};
+					return cellEditor;
+				}
 			}
 			return super.createPropertyEditor(composite);
 		}
 	}
-	
+
 	public String selectTypeDialog(Control cellEditorWindow, EObject eObject, EStructuralFeature feature) {
 		URI uri = eObject.eResource().getURI();
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IFile file = workspace.getRoot().getFile(new Path(uri.toPlatformString(false)));
 		IProject project = file.getProject();
-		IJavaProject[] javaProject = new IJavaProject[] {JavaCore.create(project)};
+		IJavaProject[] javaProject = new IJavaProject[] { JavaCore.create(project) };
 		IJavaSearchScope searchScope = SearchEngine.createJavaSearchScope(javaProject);
-		
+
 		int scope = IJavaElementSearchConstants.CONSIDER_CLASSES;
 		String filter = (String) eObject.eGet(feature);
-		if (filter == null || filter.length() == 0)
+		if (filter == null || filter.length() == 0) {
 			filter = "**"; //$NON-NLS-1$
+		}
 
 		try {
 			SelectionDialog dialog = JavaUI.createTypeDialog(cellEditorWindow.getShell(), PlatformUI.getWorkbench().getProgressService(), searchScope, scope, false, filter);
-			dialog.setTitle("Select Class");
+			dialog.setTitle(Messages.CustomAdapterFactoryContentProvider_0);
 			if (dialog.open() == Window.OK) {
 				IType type = (IType) dialog.getResult()[0];
 				return type.getFullyQualifiedName('$');
