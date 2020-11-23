@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,16 +9,15 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   remi - Initial API and implementation
+ *   Remi Schnekenburger (EclipseSource) - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages;
 
 import org.eclipse.osgi.util.NLS;
 
 /**
- *
+ * Messages internationalization
  */
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages.messages"; //$NON-NLS-1$

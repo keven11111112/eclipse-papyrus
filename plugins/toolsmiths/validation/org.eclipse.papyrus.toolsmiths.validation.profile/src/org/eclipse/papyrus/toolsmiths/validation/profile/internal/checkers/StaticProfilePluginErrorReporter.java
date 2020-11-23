@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,10 +9,9 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   remi - Initial API and implementation
+ *   Remi SChnekenburger (EclipseSource) - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;
 
 import java.lang.reflect.Field;
@@ -43,6 +42,9 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+/**
+ * Error reporter for specific extensions for static profiles.
+ */
 @SuppressWarnings("restriction")
 public class StaticProfilePluginErrorReporter extends PluginBaseErrorReporter {
 
@@ -55,9 +57,7 @@ public class StaticProfilePluginErrorReporter extends PluginBaseErrorReporter {
 	private static final String ORG_ECLIPSE_UML2_UML_GENERATED_PACKAGE = "org.eclipse.uml2.uml.generated_package";//$NON-NLS-1$
 
 	private static final String ORG_ECLIPSE_EMF_ECORE_GENERATED_PACKAGE = "org.eclipse.emf.ecore.generated_package";//$NON-NLS-1$
-	/** EPackage stereotype nsURI attribute name */
 	private static final String NS_URI = "nsURI"; //$NON-NLS-1$
-	/** EPackage stereotype qualified name */
 	private static final String ECORE_EPACKAGE_STEREOTYPE = "Ecore::EPackage"; //$NON-NLS-1$
 
 	private static final String PAPYRUS_UML_PROFILES_EXTENSION_POINT_FULL_ID = "org.eclipse.papyrus.uml.extensionpoints.UMLProfile"; //$NON-NLS-1$
@@ -82,6 +82,16 @@ public class StaticProfilePluginErrorReporter extends PluginBaseErrorReporter {
 
 	private List<Element> papyrusProfileExtensions = new ArrayList<>();
 
+	/**
+	 * Constructor.
+	 *
+	 * @param file
+	 *            the plugin.xml file
+	 * @param profile
+	 *            the profile model element
+	 * @param profileFile
+	 *            the profile containing file.
+	 */
 	public StaticProfilePluginErrorReporter(IFile file, Profile profile, IFile profileFile) {
 		super(file);
 		this.profile = profile;
@@ -92,6 +102,11 @@ public class StaticProfilePluginErrorReporter extends PluginBaseErrorReporter {
 
 	}
 
+	/**
+	 * Replace the reporter created by default on abstract class, to implement our specific one.
+	 *
+	 * @see SelectiveDeleteErrorReporter.
+	 */
 	private void replaceReporter(StaticProfilePluginErrorReporter reporter, IFile file) {
 		Field errorReporterField;
 		try {
@@ -107,6 +122,15 @@ public class StaticProfilePluginErrorReporter extends PluginBaseErrorReporter {
 
 	}
 
+	/**
+	 * Returns a unique id for the specified profile model element in the given profile file.
+	 *
+	 * @param file
+	 *            the profile file
+	 * @param profile
+	 *            the profile model element
+	 * @return the unique identifier for this profile in the plugin, which will allow to identify markers associated to this profile on the plugin.xml
+	 */
 	private static String sourceID(IFile file, Profile profile) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("staticprofile");
@@ -143,6 +167,9 @@ public class StaticProfilePluginErrorReporter extends PluginBaseErrorReporter {
 		}
 	}
 
+	/**
+	 * Validate the specific static profile extensions once the validation has visited all extensions in the plugin.xml file.
+	 */
 	private void postValidatePapyrusExtensions() {
 		if (profile.getNestingPackage() != null) {
 			return;
@@ -152,7 +179,7 @@ public class StaticProfilePluginErrorReporter extends PluginBaseErrorReporter {
 
 		for (Element papyrusProfileExtension : papyrusProfileExtensions) {
 			String name = papyrusProfileExtension.getAttribute(NAME);
-			String path = papyrusProfileExtension.getAttribute("path");
+			String path = decodePath(papyrusProfileExtension.getAttribute("path"));
 			// check path
 			if (profilePath.equals(path)) {
 				foundPoints.add(PAPYRUS_UML_PROFILES_EXTENSION_POINT_FULL_ID);
@@ -166,6 +193,9 @@ public class StaticProfilePluginErrorReporter extends PluginBaseErrorReporter {
 		}
 	}
 
+	/**
+	 * Reports that no ECore generated package was found for the current profile.
+	 */
 	private void reportNoECoreGeneratedPackage() {
 		VirtualMarker marker = reportForProfile(NLS.bind(Messages.StaticProfilePluginErrorReporter_noEcoreGeneratedPackageFound, profile.getLabel()), 1, CompilerFlags.ERROR, STATIC_PROFILE_CATEGORY);
 		addMarkerAttribute(marker, STATIC_PROFILE_MARKER_ATTRIBUTE, profile.getLabel());
@@ -184,11 +214,17 @@ public class StaticProfilePluginErrorReporter extends PluginBaseErrorReporter {
 		addMarkerAttribute(marker, SelectiveDeleteErrorReporter.SOURCE_ID, sourceID);
 	}
 
+	/**
+	 * Reports that no UML2 generated package was found for the current profile.
+	 */
 	private void reportNoUML2GeneratedPackage() {
 		VirtualMarker marker = reportForProfile(NLS.bind(Messages.StaticProfilePluginErrorReporter_noUML2GeneratedPackage, profile.getLabel()), 1, CompilerFlags.ERROR, STATIC_PROFILE_CATEGORY);
 		addMarkerAttribute(marker, STATIC_PROFILE_MARKER_ATTRIBUTE, profile.getLabel());
 	}
 
+	/**
+	 * Reports that no Papyrus profile extension was found for the current profile.
+	 */
 	private void reportNoPapyrusProfile() {
 		VirtualMarker marker = reportForProfile(NLS.bind(Messages.StaticProfilePluginErrorReporter_NoPapyrusProfileExtensionFound, profile.getLabel()), 1, CompilerFlags.WARNING, STATIC_PROFILE_CATEGORY);
 		addMarkerAttribute(marker, STATIC_PROFILE_MARKER_ATTRIBUTE, profile.getLabel());

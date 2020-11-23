@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,13 +10,12 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Remi Schnekenburger (EclipseSource) - Bug 568495
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;
 
 import java.util.Collection;
-import java.util.HashSet;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -78,14 +77,9 @@ public class ProfileExtensionsChecker implements IPluginChecker {
 			return;
 		}
 
-		// Create the conditions:
-		// - Copy of existing profiles (that will be removed if there are found in uml generated package extension points)
-		// - Boolean to check if the UMLProfile is defined for the profile
-		final Collection<Profile> profiles = new HashSet<>(existingProfiles);
-
 		final IFile pluginXML = ProjectManagementService.getPluginXMLFile(project);
 		monitor.subTask(NLS.bind(Messages.StaticProfileExtensionsBuilder_subTask_checkingFile, profileFile));
-		for (Profile profile : profiles) {
+		for (Profile profile : existingProfiles) {
 			StaticProfilePluginErrorReporter reporter = new StaticProfilePluginErrorReporter(pluginXML, profile, profileFile);
 			DefaultSAXParser.parse(pluginXML, reporter);
 			reporter.validateContent(monitor);

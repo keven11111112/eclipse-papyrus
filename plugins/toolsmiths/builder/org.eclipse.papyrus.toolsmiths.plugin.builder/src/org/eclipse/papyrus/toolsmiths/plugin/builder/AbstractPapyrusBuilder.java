@@ -34,6 +34,7 @@ public abstract class AbstractPapyrusBuilder {
 	private ProjectDependencyHelper DEPENDENCY_HELPER = ProjectDependencyHelper.INSTANCE;
 
 	/**
+	 * Run the build on the specified project
 	 *
 	 * @param builtProject
 	 *            the current build project

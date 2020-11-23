@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST and others.
+ * Copyright (c) 2020 CEA LIST, EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,10 +9,9 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Remi Schnekenburger (EclipseSource) - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;
 
 import java.util.ArrayList;
@@ -23,6 +22,7 @@ import java.util.Map;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.profile.Activator;
 import org.eclipse.pde.internal.core.PDECore;
 import org.eclipse.pde.internal.core.builders.IncrementalErrorReporter;
@@ -130,7 +130,10 @@ public class SelectiveDeleteErrorReporter extends IncrementalErrorReporter {
 		// Create only new markers
 		for (VirtualMarker reportedMarker : fReportedMarkers) {
 			try {
-				fResource.createMarker(PDEMarkerFactory.MARKER_ID).setAttributes(reportedMarker.getAttributes());
+				IMarker marker = MarkersService.createMarker(fResource, PDEMarkerFactory.MARKER_ID);
+				if (marker != null) {
+					marker.setAttributes(reportedMarker.getAttributes());
+				}
 			} catch (CoreException e) {
 				PDECore.logException(e);
 			}
