@@ -33,7 +33,7 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 
 //updateFrom("oomph",0) 
 
-location oomph "https://download.eclipse.org/oomph/drops/milestone/S20201013-073117-1.19.0-M1" {
+location oomph "https://download.eclipse.org/oomph/drops/milestone/S20201124-053138-1.19.0-M3" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
@@ -66,7 +66,7 @@ location mylyn "https://download.eclipse.org/mylyn/drops/3.25.2/v20200831-1956" 
 
 //updateFrom("EMF COMPARE",0)
 
-location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202008311302" {
+location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202011201248" {
 	org.eclipse.emf.compare.ide.ui.feature.group lazy
 	org.eclipse.emf.compare.source.feature.group
 }
