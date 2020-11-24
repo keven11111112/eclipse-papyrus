@@ -59,5 +59,17 @@
             file="target/generated-eclipse-help/diagramExpansion-toc.xml"
             primary="false">
       </toc>
+       <toc
+            file="target/generated-eclipse-help/modelExplorer-main-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="target/generated-eclipse-help/modelExplorer-toc.xml"
+            primary="false">
+      </toc>
+      <toc
+            file="resource/modelExplorer-main-toc.xml"
+            primary="false">
+      </toc>
    </extension>
 </plugin>
