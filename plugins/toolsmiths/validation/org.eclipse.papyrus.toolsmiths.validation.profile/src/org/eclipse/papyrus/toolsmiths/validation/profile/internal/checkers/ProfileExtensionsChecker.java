@@ -83,7 +83,7 @@ public class ProfileExtensionsChecker implements IPluginChecker {
 		final IFile pluginXML = ProjectManagementService.getPluginXMLFile(project);
 
 		if (pluginXML == null) {
-			MarkersService.createMarker(profileFile, PDEMarkerFactory.MARKER_ID, "No extensions are declared for this static profile", IMarker.SEVERITY_ERROR);
+			MarkersService.createMarker(profileFile, PDEMarkerFactory.MARKER_ID, Messages.ProfileExtensionsChecker_noExternsionsDeclared, IMarker.SEVERITY_ERROR);
 			return;
 		}
 		monitor.subTask(NLS.bind(Messages.StaticProfileExtensionsBuilder_subTask_checkingFile, profileFile));
