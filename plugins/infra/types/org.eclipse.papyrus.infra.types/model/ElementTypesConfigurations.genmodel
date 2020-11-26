@@ -52,11 +52,11 @@
     </genEnums>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/elementTypeConfigurations"/>
-      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/adviceBindingsConfigurations"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
           ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/allAdviceBindings"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/elementTypeConfigurations"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/metamodelNsURI"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="ElementTypesConfigurations.ecore#//ElementTypeSetConfiguration/getAllAdviceBindings"/>
     </genClasses>

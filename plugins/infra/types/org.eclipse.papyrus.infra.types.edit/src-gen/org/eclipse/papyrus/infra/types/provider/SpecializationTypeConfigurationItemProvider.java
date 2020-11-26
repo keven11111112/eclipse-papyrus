@@ -99,14 +99,29 @@ public class SpecializationTypeConfigurationItemProvider extends ElementTypeConf
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+	public Collection<? extends EStructuralFeature> getChildrenFeaturesGen(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ElementTypesConfigurationsPackage.Literals.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION);
 			childrenFeatures.add(ElementTypesConfigurationsPackage.Literals.SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION);
 			childrenFeatures.add(ElementTypesConfigurationsPackage.Literals.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION);
 		}
+		return childrenFeatures;
+	}
+	
+	@Override
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			getChildrenFeaturesGen(object);
+
+			// Ensure that owned advice comes after the matcher
+			int matcherIndex = childrenFeatures.indexOf(ElementTypesConfigurationsPackage.Literals.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION);
+			int adviceIndex = childrenFeatures.indexOf(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__OWNED_ADVICE);
+			if (matcherIndex > adviceIndex) {
+				childrenFeatures.add(matcherIndex, childrenFeatures.remove(adviceIndex));
+			}
+		}
+
 		return childrenFeatures;
 	}
 
