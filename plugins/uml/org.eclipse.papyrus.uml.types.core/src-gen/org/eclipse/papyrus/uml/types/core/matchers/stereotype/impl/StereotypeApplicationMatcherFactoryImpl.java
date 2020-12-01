@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.impl;
 
@@ -69,6 +70,7 @@ public class StereotypeApplicationMatcherFactoryImpl extends EFactoryImpl implem
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case StereotypeApplicationMatcherPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION: return createStereotypeApplicationMatcherConfiguration();
+			case StereotypeApplicationMatcherPackage.STEREOTYPE_MATCHER_ADVICE_CONFIGURATION: return createStereotypeMatcherAdviceConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -79,6 +81,7 @@ public class StereotypeApplicationMatcherFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StereotypeApplicationMatcherConfiguration createStereotypeApplicationMatcherConfiguration() {
 		StereotypeApplicationMatcherConfigurationImpl stereotypeApplicationMatcherConfiguration = new StereotypeApplicationMatcherConfigurationImpl();
 		return stereotypeApplicationMatcherConfiguration;
@@ -89,6 +92,18 @@ public class StereotypeApplicationMatcherFactoryImpl extends EFactoryImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public StereotypeMatcherAdviceConfiguration createStereotypeMatcherAdviceConfiguration() {
+		StereotypeMatcherAdviceConfigurationImpl stereotypeMatcherAdviceConfiguration = new StereotypeMatcherAdviceConfigurationImpl();
+		return stereotypeMatcherAdviceConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public StereotypeApplicationMatcherPackage getStereotypeApplicationMatcherPackage() {
 		return (StereotypeApplicationMatcherPackage)getEPackage();
 	}

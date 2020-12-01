@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2020 CEA LIST, Christian W. Damus, and others.
  * 
  * 
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 568853
  */
 package org.eclipse.papyrus.uml.types.core.matchers.stereotype.util;
 
@@ -19,8 +20,12 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.types.AbstractMatcherConfiguration;
 
+import org.eclipse.papyrus.infra.types.AdviceConfiguration;
+import org.eclipse.papyrus.infra.types.ConfigurationElement;
+import org.eclipse.papyrus.infra.types.IdentifiedConfiguration;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.*;
 
 /**
@@ -84,6 +89,19 @@ public class StereotypeApplicationMatcherSwitch<T> extends Switch<T> {
 				StereotypeApplicationMatcherConfiguration stereotypeApplicationMatcherConfiguration = (StereotypeApplicationMatcherConfiguration)theEObject;
 				T result = caseStereotypeApplicationMatcherConfiguration(stereotypeApplicationMatcherConfiguration);
 				if (result == null) result = caseAbstractMatcherConfiguration(stereotypeApplicationMatcherConfiguration);
+				if (result == null) result = caseConfigurationElement(stereotypeApplicationMatcherConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case StereotypeApplicationMatcherPackage.STEREOTYPE_MATCHER_ADVICE_CONFIGURATION: {
+				StereotypeMatcherAdviceConfiguration stereotypeMatcherAdviceConfiguration = (StereotypeMatcherAdviceConfiguration)theEObject;
+				T result = caseStereotypeMatcherAdviceConfiguration(stereotypeMatcherAdviceConfiguration);
+				if (result == null) result = caseAbstractAdviceBindingConfiguration(stereotypeMatcherAdviceConfiguration);
+				if (result == null) result = caseStereotypeApplicationMatcherConfiguration(stereotypeMatcherAdviceConfiguration);
+				if (result == null) result = caseAdviceConfiguration(stereotypeMatcherAdviceConfiguration);
+				if (result == null) result = caseIdentifiedConfiguration(stereotypeMatcherAdviceConfiguration);
+				if (result == null) result = caseAbstractMatcherConfiguration(stereotypeMatcherAdviceConfiguration);
+				if (result == null) result = caseConfigurationElement(stereotypeMatcherAdviceConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -107,6 +125,36 @@ public class StereotypeApplicationMatcherSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Stereotype Matcher Advice Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Stereotype Matcher Advice Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStereotypeMatcherAdviceConfiguration(StereotypeMatcherAdviceConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Configuration Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Configuration Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConfigurationElement(ConfigurationElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Abstract Matcher Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -118,6 +166,51 @@ public class StereotypeApplicationMatcherSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAbstractMatcherConfiguration(AbstractMatcherConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Advice Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Advice Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAdviceConfiguration(AdviceConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identified Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identified Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiedConfiguration(IdentifiedConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Advice Binding Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Advice Binding Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractAdviceBindingConfiguration(AbstractAdviceBindingConfiguration object) {
 		return null;
 	}
 
