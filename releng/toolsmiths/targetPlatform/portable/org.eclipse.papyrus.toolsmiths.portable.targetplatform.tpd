@@ -33,7 +33,7 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 
 //updateFrom("oomph",0) 
 
-location oomph "https://download.eclipse.org/oomph/drops/milestone/S20201124-053138-1.19.0-M3" {
+location oomph "https://download.eclipse.org/oomph/drops/milestone/S20201201-042807-1.19.0-RC1" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
@@ -54,11 +54,11 @@ location oomph "https://download.eclipse.org/oomph/drops/milestone/S20201124-053
 
 //updateFrom("EGIT",0) 
 
-location egit "https://download.eclipse.org/egit/staging/v5.10.0.202011041322-m2" // oomph
+location egit "https://download.eclipse.org/egit/staging/v5.10.0.202011251205-m3" // oomph
 
 //updateFrom("m2e",0)
 
-location m2e "https://download.eclipse.org/technology/m2e/releases/1.16.2/" // oomph
+location m2e "https://download.eclipse.org/technology/m2e/snapshots/1.17.0/latest/" // oomph
 
 //updateFrom("Mylyn",0)
 
