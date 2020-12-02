@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2014, 2015, 2020 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Camille Letavernier - Bug 569356 Incremental Generation
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.types.generator.ui.internal.wizards;
@@ -31,6 +32,7 @@ public class GeneratorMainPage extends WizardNewFileCreationPage implements IGen
 
 	private GeneratorParametersBlock parametersBlock;
 	private BaseElementTypeSetBlock diagramBlock;
+	private GeneratorIncrementalBlock incrementalBlock;
 
 	public GeneratorMainPage(GeneratorWizardModel model, String title, String description, String fileExtension) {
 		super("main", model.getDefaultContainerSelection()); //$NON-NLS-1$
@@ -55,7 +57,10 @@ public class GeneratorMainPage extends WizardNewFileCreationPage implements IGen
 		parametersBlock.createControl(self);
 		diagramBlock = new BaseElementTypeSetBlock(model);
 		diagramBlock.createControl(self);
+		incrementalBlock = new GeneratorIncrementalBlock(model);
+		incrementalBlock.createControl(self);
 
+		// File selection control
 		super.createControl(self);
 		getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
