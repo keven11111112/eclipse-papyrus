@@ -15,10 +15,10 @@
 package aspects.xpt
 
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenCompartment
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.gmf.codegen.gmfgen.GenLink
-import org.eclipse.gmf.codegen.gmfgen.GenNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 
 @Singleton class QualifiedClassNameProvider extends xpt.QualifiedClassNameProvider {
 

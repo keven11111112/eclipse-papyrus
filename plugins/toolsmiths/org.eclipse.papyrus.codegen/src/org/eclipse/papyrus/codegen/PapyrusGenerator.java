@@ -19,9 +19,9 @@ import java.io.File;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
-import org.eclipse.gmf.codegen.xtend.ui.handlers.GeneratorWithXtend2;
-import org.eclipse.gmf.common.UnexpectedBehaviourException;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
+import org.eclipse.papyrus.gmf.codegen.xtend.ui.handlers.GeneratorWithXtend2;
+import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
 
 /**
  * Papyrus gmf generator.
@@ -48,7 +48,7 @@ public class PapyrusGenerator extends GeneratorWithXtend2 {
 	}
 
 	/**
-	 * @see org.eclipse.gmf.codegen.xtend.ui.handlers.GeneratorWithXtend2#customRun()
+	 * @see org.eclipse.papyrus.gmf.codegen.xtend.ui.handlers.GeneratorWithXtend2#customRun()
 	 *
 	 * @throws InterruptedException
 	 * @throws UnexpectedBehaviourException

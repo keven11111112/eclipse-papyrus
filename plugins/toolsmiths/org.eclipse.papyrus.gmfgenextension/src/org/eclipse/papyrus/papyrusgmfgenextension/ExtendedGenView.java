@@ -15,8 +15,7 @@
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,7 +49,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
 public interface ExtendedGenView extends CommentedElement {
 	/**
 	 * Returns the value of the '<em><b>Gen View</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenCommonBase}.
+	 * The list contents are of type {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gen View</em>' reference list isn't clear,
@@ -92,7 +91,7 @@ public interface ExtendedGenView extends CommentedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Super Gen Views</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenCommonBase}.
+	 * The list contents are of type {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Super Gen Views</em>' reference list isn't clear,

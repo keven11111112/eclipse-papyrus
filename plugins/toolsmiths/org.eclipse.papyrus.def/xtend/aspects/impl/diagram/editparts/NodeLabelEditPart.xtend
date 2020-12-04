@@ -20,10 +20,10 @@ package aspects.impl.diagram.editparts
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenNodeLabel
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNodeLabel
 import xpt.diagram.editparts.Common
 import xpt.diagram.editparts.Utils_qvto
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 
 @Singleton class NodeLabelEditPart extends impl.diagram.editparts.NodeLabelEditPart {
 	@Inject extension Utils_qvto;

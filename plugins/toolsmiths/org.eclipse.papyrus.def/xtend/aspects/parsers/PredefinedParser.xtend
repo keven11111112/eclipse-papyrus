@@ -20,10 +20,10 @@ import com.google.inject.Singleton
 
 @Singleton class PredefinedParser extends parsers.PredefinedParser{
 
-	override def extendsList(org.eclipse.gmf.codegen.gmfgen.PredefinedParser it) //
+	override def extendsList(org.eclipse.papyrus.gmf.codegen.gmfgen.PredefinedParser it) //
 	'''extends org.eclipse.papyrus.infra.gmfdiag.common.parsers.AbstractElementTypeBasedAttributeParser'''
 	
-	override def additions(org.eclipse.gmf.codegen.gmfgen.PredefinedParser it) //
+	override def additions(org.eclipse.papyrus.gmf.codegen.gmfgen.PredefinedParser it) //
 	'''
 	/**
 	 * @generated

@@ -22,10 +22,10 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import impl.parsers.expression_qvto
 import metamodel.MetaModel
-import org.eclipse.gmf.codegen.gmfgen.GenChildLabelNode
-import org.eclipse.gmf.codegen.gmfgen.GenLink
-import org.eclipse.gmf.codegen.gmfgen.GenNode
-import org.eclipse.gmf.codegen.gmfgen.GenParsers
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildLabelNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenParsers
 import parsers.ExpressionLabelParser
 import parsers.PredefinedParser
 import plugin.Activator

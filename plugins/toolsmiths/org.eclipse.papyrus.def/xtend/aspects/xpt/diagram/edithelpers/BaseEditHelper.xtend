@@ -14,7 +14,7 @@
  *****************************************************************************/
 package aspects.xpt.diagram.edithelpers;
 
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 
 public class BaseEditHelper extends xpt.diagram.edithelpers.BaseEditHelper {
 

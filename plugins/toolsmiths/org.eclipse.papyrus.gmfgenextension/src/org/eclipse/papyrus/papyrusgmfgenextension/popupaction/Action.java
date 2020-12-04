@@ -18,13 +18,13 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
 import org.eclipse.emf.codegen.ecore.genmodel.GenFeature;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.codegen.gmfgen.Behaviour;
-import org.eclipse.gmf.codegen.gmfgen.CustomBehaviour;
-import org.eclipse.gmf.codegen.gmfgen.GMFGenFactory;
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.Behaviour;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.CustomBehaviour;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenFactory;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 

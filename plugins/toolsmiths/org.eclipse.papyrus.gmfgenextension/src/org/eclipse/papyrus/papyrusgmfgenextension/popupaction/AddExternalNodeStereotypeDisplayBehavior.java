@@ -22,14 +22,14 @@ import java.util.Iterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.codegen.gmfgen.FeatureLabelModelFacet;
-import org.eclipse.gmf.codegen.gmfgen.FigureViewmap;
-import org.eclipse.gmf.codegen.gmfgen.GMFGenFactory;
-import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel;
-import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel;
-import org.eclipse.gmf.codegen.gmfgen.GenNode;
-import org.eclipse.gmf.codegen.gmfgen.GenNodeLabel;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.FeatureLabelModelFacet;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.FigureViewmap;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenFactory;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNodeLabel;
 import org.eclipse.ui.IViewPart;
 
 /**

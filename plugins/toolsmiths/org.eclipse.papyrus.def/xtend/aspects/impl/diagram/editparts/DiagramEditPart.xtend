@@ -19,8 +19,8 @@ package aspects.impl.diagram.editparts
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import metamodel.MetaModel
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.gmf.codegen.gmfgen.GenNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import xpt.diagram.commands.CreateShortcutDecorationsCommand
 import xpt.diagram.editparts.Common
 import xpt.diagram.editparts.Utils_qvto

@@ -37,7 +37,7 @@
                           menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeQualifiedNameBehavior">
                        <enablement>
                           <objectClass
-                                name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                                name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode">
                           </objectClass>
                        </enablement>
                     </action>
@@ -49,7 +49,7 @@
                        menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeStereotypeDisplayBehavior">
                     <enablement>
                        <objectClass
-                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                             name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode">
                        </objectClass>
                     </enablement>
                  </action>
@@ -61,7 +61,7 @@
                        menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeShowHideBehavior">
                     <enablement>
                        <objectClass
-                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                             name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode">
                        </objectClass>
                     </enablement>
                  </action>
@@ -73,7 +73,7 @@
                        menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeShowHideBehavior">
                     <enablement>
                        <objectClass
-                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                             name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode">
                        </objectClass>
                     </enablement>
                  </action>
@@ -85,7 +85,7 @@
                        menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddNodeShowHideBehavior">
                     <enablement>
                        <objectClass
-                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                             name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode">
                        </objectClass>
                     </enablement>
                  </action>
@@ -98,7 +98,7 @@
                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddGenLinkStereotypeDisplayBehavior">
                     <enablement>
                        <objectClass
-                             name="org.eclipse.gmf.codegen.gmfgen.GenLink">
+                             name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink">
                        </objectClass>
                     </enablement>
          </action>
@@ -110,7 +110,7 @@
                        menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddExternalNodeStereotypeDisplayBehavior">
                     <enablement>
                        <objectClass
-                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                             name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode">
                        </objectClass>
                     </enablement>
                  </action>
@@ -122,7 +122,7 @@
                        menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddExternalNodeFloatingNameDisplayBehavior">
                     <enablement>
                        <objectClass
-                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                             name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode">
                        </objectClass>
                     </enablement>
                  </action>
@@ -134,7 +134,7 @@
                        menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddHyperLinkPopupBarBehavior">
                     <enablement>
                        <objectClass
-                             name="org.eclipse.gmf.codegen.gmfgen.GenNode">
+                             name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode">
                        </objectClass>
                     </enablement>
                  </action>
@@ -146,7 +146,7 @@
                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/SetVisualIDWithUnusedValue">
                     <enablement>
                        <objectClass
-                             name="org.eclipse.gmf.codegen.gmfgen.GenCommonBase">
+                             name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase">
                        </objectClass>
                     </enablement>
          </action>
@@ -160,13 +160,13 @@
                              <enablement>
                                 <or>
                                    <objectClass
-                                         name="org.eclipse.gmf.codegen.gmfgen.ToolGroup">
+                                         name="org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup">
                                    </objectClass>
                                    <objectClass
-                                         name="org.eclipse.gmf.codegen.gmfgen.Palette">
+                                         name="org.eclipse.papyrus.gmf.codegen.gmfgen.Palette">
                                    </objectClass>
                                    <objectClass
-                                         name="org.eclipse.gmf.codegen.gmfgen.ToolEntry">
+                                         name="org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry">
                                    </objectClass>
                                 </or>
                              </enablement>
@@ -180,7 +180,7 @@
                                 menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddOrUpdateCommentEditParts">
                              <enablement>
                                 <objectClass
-                                      name="org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator">
+                                      name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator">
                                 </objectClass>
                              </enablement>
                           </action>
@@ -194,10 +194,10 @@
                              <enablement>
                                 <or>
                                    <objectClass
-                                         name="org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator">
+                                         name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator">
                                    </objectClass>
                                    <objectClass
-                                         name="org.eclipse.gmf.codegen.gmfgen.GenDiagram">
+                                         name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram">
                                    </objectClass>
                                 </or>
                              </enablement>
@@ -212,10 +212,10 @@
                              <enablement>
                                 <or>
                                    <objectClass
-                                         name="org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator">
+                                         name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator">
                                    </objectClass>
                                    <objectClass
-                                         name="org.eclipse.gmf.codegen.gmfgen.GenDiagram">
+                                         name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram">
                                    </objectClass>
                                 </or>
                              </enablement>
@@ -230,7 +230,7 @@
                                 <enablement>
                                 <or>
                                    <objectClass
-                                         name="org.eclipse.gmf.codegen.gmfgen.GenCompartment">
+                                         name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment">
                                    </objectClass>
                                 </or>
                              </enablement>
@@ -246,7 +246,7 @@
                                 <enablement>
                                 <or>
                                    <objectClass
-                                         name="org.eclipse.gmf.codegen.gmfgen.GenDiagram">
+                                         name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram">
                                    </objectClass>
                                 </or>
                              </enablement>
@@ -261,10 +261,10 @@
                               <enablement>
                                  <or>
                                     <objectClass
-                                          name="org.eclipse.gmf.codegen.gmfgen.MetamodelType">
+                                          name="org.eclipse.papyrus.gmf.codegen.gmfgen.MetamodelType">
                                     </objectClass>
                                     <objectClass
-                                          name="org.eclipse.gmf.codegen.gmfgen.SpecializationType">
+                                          name="org.eclipse.papyrus.gmf.codegen.gmfgen.SpecializationType">
                                     </objectClass>
                                  </or>
                               </enablement>
@@ -278,10 +278,10 @@
                               <enablement>
                                  <or>
                                     <objectClass
-                                          name="org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator">
+                                          name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator">
                                     </objectClass>
                                     <objectClass
-                                          name="org.eclipse.gmf.codegen.gmfgen.GenDiagram">
+                                          name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram">
                                     </objectClass>
                                  </or>
                               </enablement>
@@ -295,10 +295,10 @@
                               <enablement>
                                  <or>
                                     <objectClass
-                                          name="org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator">
+                                          name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator">
                                     </objectClass>
                                     <objectClass
-                                          name="org.eclipse.gmf.codegen.gmfgen.GenDiagram">
+                                          name="org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram">
                                     </objectClass>
                                  </or>
                               </enablement>

@@ -14,8 +14,8 @@
  */
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
-import org.eclipse.gmf.codegen.gmfgen.GenTopLevelNode;
-import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTopLevelNode;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
 
 /**
  * <!-- begin-user-doc -->

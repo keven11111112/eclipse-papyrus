@@ -15,8 +15,7 @@
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.gmf.codegen.gmfgen.GenCompartment;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment;
 
 /**
  * <!-- begin-user-doc -->
@@ -69,7 +68,7 @@ public interface CompartmentVisibilityPreference extends CommentedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Compartments</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenCompartment}.
+	 * The list contents are of type {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Compartments</em>' reference list isn't clear,

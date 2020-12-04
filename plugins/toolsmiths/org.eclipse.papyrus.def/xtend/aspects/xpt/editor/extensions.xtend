@@ -17,7 +17,7 @@ package aspects.xpt.editor
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator
 import xpt.Common
 
 @Singleton class extensions extends xpt.editor.extensions {

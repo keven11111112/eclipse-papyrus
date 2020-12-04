@@ -19,7 +19,7 @@ import java.util.Optional;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram;
 
 /**
  * <!-- begin-user-doc -->

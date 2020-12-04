@@ -20,7 +20,7 @@ import aspects.xpt.editor.VisualIDRegistry
 import aspects.xpt.providers.ElementTypes
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenPropertySheet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPropertySheet
 
 @Singleton class LabelProvider extends xpt.propsheet.LabelProvider {
 	@Inject extension Common;

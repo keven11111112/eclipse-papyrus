@@ -19,8 +19,8 @@ package aspects.xpt.diagram.views
 import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel
-import org.eclipse.gmf.codegen.gmfgen.GenLabel
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLabel
 import xpt.diagram.Utils_qvto
 import xpt.diagram.ViewmapAttributesUtils_qvto
 

@@ -17,7 +17,7 @@ package aspects.xpt.editor
 import com.google.inject.Inject
 import xpt.Common
 import xpt.CodeStyle
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import com.google.inject.Singleton
 
 @Singleton class ResourceSetInfo extends xpt.editor.ResourceSetInfo {

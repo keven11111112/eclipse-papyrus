@@ -18,7 +18,7 @@ package aspects.diagram.editparts
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 
 @Singleton class DiagramEditPart extends diagram.editparts.DiagramEditPart {
 

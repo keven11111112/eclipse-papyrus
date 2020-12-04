@@ -22,8 +22,8 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import metamodel.MetaModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
-import org.eclipse.gmf.codegen.gmfgen.LabelModelFacet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelModelFacet
 import parsers.ParserProvider
 import plugin.Activator
 import xpt.navigator.Utils_qvto

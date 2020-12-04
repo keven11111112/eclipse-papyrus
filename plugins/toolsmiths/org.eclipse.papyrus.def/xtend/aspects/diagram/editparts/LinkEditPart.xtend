@@ -18,7 +18,7 @@ package aspects.diagram.editparts
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenLink
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 
 @Singleton class LinkEditPart extends diagram.editparts.LinkEditPart {
 	@Inject aspects.impl.diagram.editparts.LinkEditPart aspectsLinkEditPart;

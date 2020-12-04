@@ -20,11 +20,11 @@ import java.util.Iterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram;
-import org.eclipse.gmf.codegen.gmfgen.GenLabel;
-import org.eclipse.gmf.codegen.gmfgen.GenTopLevelNode;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLabel;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTopLevelNode;
 import org.eclipse.swt.widgets.Shell;
 
 

@@ -18,7 +18,7 @@ package aspects.diagram.editparts
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
 import xpt.Common
 import xpt.diagram.editparts.Utils_qvto
 

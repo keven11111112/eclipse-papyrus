@@ -17,8 +17,8 @@ package aspects.xpt.editor
 import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenContainerBase
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 
 @Singleton class DiagramContentInitializer extends xpt.editor.DiagramContentInitializer {
 	@Inject extension Common;

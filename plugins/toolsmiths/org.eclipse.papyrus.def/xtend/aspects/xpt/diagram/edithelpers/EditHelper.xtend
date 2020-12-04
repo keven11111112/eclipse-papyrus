@@ -16,7 +16,7 @@
 package aspects.xpt.diagram.edithelpers;
 
 import com.google.inject.Inject
-import org.eclipse.gmf.codegen.gmfgen.MetamodelType
+import org.eclipse.papyrus.gmf.codegen.gmfgen.MetamodelType
 import utils.EditHelperUtils_qvto
 import xpt.Common
 

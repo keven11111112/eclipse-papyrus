@@ -19,10 +19,10 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import metamodel.MetaModel
 import org.eclipse.emf.common.util.EList
-import org.eclipse.gmf.codegen.gmfgen.GenChildNode
-import org.eclipse.gmf.codegen.gmfgen.GenCompartment
-import org.eclipse.gmf.codegen.gmfgen.GenNode
-import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet
 import org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy
 import xpt.Common
 import xpt.diagram.editpolicies.childContainerCreateCommand

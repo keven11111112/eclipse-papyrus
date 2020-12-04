@@ -19,10 +19,10 @@ package aspects.xpt.diagram.editpolicies
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import java.util.List
-import org.eclipse.gmf.codegen.gmfgen.FeatureLinkModelFacet
-import org.eclipse.gmf.codegen.gmfgen.GenChildNode
-import org.eclipse.gmf.codegen.gmfgen.GenNode
-import org.eclipse.gmf.codegen.gmfgen.TypeLinkModelFacet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.FeatureLinkModelFacet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet
 import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService
 import utils.UtilsItemSemanticEditPolicy
 import xpt.Common

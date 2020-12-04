@@ -15,7 +15,7 @@
 package aspects.xpt.editor
 
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 
 @Singleton class ModelElementSelectionPage extends xpt.editor.ModelElementSelectionPage{
 

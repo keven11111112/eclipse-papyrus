@@ -15,17 +15,17 @@ import java.util.Iterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.codegen.gmfgen.CustomParser;
-import org.eclipse.gmf.codegen.gmfgen.FeatureLabelModelFacet;
-import org.eclipse.gmf.codegen.gmfgen.GMFGenFactory;
-import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
-import org.eclipse.gmf.codegen.gmfgen.GenLink;
-import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel;
-import org.eclipse.gmf.codegen.gmfgen.GenParserImplementation;
-import org.eclipse.gmf.codegen.gmfgen.LabelOffsetAttributes;
-import org.eclipse.gmf.codegen.gmfgen.LinkLabelAlignment;
-import org.eclipse.gmf.codegen.gmfgen.ParentAssignedViewmap;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.CustomParser;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.FeatureLabelModelFacet;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenFactory;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenParserImplementation;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelOffsetAttributes;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkLabelAlignment;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap;
 import org.eclipse.ui.IViewPart;
 
 /**

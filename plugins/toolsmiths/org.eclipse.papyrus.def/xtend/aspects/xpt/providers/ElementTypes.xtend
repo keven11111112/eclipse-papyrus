@@ -21,8 +21,8 @@ import aspects.xpt.CodeStyle
 import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import xpt.diagram.Utils_qvto
 import xpt.editor.VisualIDRegistry
 import plugin.Activator

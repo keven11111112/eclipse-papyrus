@@ -17,7 +17,7 @@
 package aspects.xpt.diagram.editpolicies
 
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenLinkEnd
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkEnd
 
 @Singleton class Utils_qvto extends xpt.diagram.editpolicies.Utils_qvto {
 

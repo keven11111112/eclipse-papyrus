@@ -16,7 +16,7 @@ package aspects.xpt.providers
 
 import javax.inject.Inject
 import javax.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider
 import xpt.CodeStyle
 import xpt.Common

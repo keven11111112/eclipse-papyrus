@@ -17,10 +17,10 @@ package aspects.xpt.editor.palette
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.eclipse.emf.ecore.xmi.XMLResource
-import org.eclipse.gmf.codegen.gmfgen.AbstractToolEntry
-import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator
-import org.eclipse.gmf.codegen.gmfgen.ToolEntry
-import org.eclipse.gmf.codegen.gmfgen.ToolGroup
+import org.eclipse.papyrus.gmf.codegen.gmfgen.AbstractToolEntry
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup
 import xpt.Common
 import xpt.Common_qvto
 

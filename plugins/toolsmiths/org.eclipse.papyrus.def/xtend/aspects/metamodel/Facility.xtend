@@ -18,7 +18,7 @@ import com.google.inject.Inject
 import com.google.inject.Singleton
 import metamodel.Facility_qvto
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage
-import org.eclipse.gmf.codegen.gmfgen.DynamicModelAccess
+import org.eclipse.papyrus.gmf.codegen.gmfgen.DynamicModelAccess
 import xpt.Common
 
 @Singleton class Facility extends metamodel.Facility {

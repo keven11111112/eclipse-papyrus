@@ -18,14 +18,14 @@ package aspects.impl.diagram.editparts
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.DesignLabelModelFacet
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel
-import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel
-import org.eclipse.gmf.codegen.gmfgen.LabelModelFacet
-import org.eclipse.gmf.codegen.gmfgen.ParentAssignedViewmap
-import org.eclipse.gmf.codegen.gmfgen.Viewmap
+import org.eclipse.papyrus.gmf.codegen.gmfgen.DesignLabelModelFacet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel
+import org.eclipse.papyrus.gmf.codegen.gmfgen.LabelModelFacet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap
+import org.eclipse.papyrus.gmf.codegen.gmfgen.Viewmap
 import xpt.CodeStyle
 import xpt.Common
 import xpt.Common_qvto

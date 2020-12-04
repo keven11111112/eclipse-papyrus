@@ -14,7 +14,7 @@
  *****************************************************************************/
 package aspects.xpt.editor
 
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import xpt.Common
 import com.google.inject.Inject
 import xpt.CodeStyle

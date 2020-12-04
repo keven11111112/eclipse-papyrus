@@ -15,9 +15,8 @@
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel;
-import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel;
 
 /**
  * <!-- begin-user-doc -->
@@ -103,7 +102,7 @@ public interface LabelVisibilityPreference extends CommentedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Link Labels</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenLinkLabel}.
+	 * The list contents are of type {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Link Labels</em>' reference list isn't clear,
@@ -119,7 +118,7 @@ public interface LabelVisibilityPreference extends CommentedElement {
 
 	/**
 	 * Returns the value of the '<em><b>External Node Labels</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel}.
+	 * The list contents are of type {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>External Node Labels</em>' reference list isn't clear,

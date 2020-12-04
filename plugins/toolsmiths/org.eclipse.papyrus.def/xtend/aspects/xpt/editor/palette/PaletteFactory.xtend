@@ -17,9 +17,9 @@ package aspects.xpt.editor.palette
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.AbstractToolEntry
-import org.eclipse.gmf.codegen.gmfgen.Palette
-import org.eclipse.gmf.codegen.gmfgen.ToolEntry
+import org.eclipse.papyrus.gmf.codegen.gmfgen.AbstractToolEntry
+import org.eclipse.papyrus.gmf.codegen.gmfgen.Palette
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry
 import xpt.Common
 import xpt.Common_qvto
 import xpt.providers.ElementTypes

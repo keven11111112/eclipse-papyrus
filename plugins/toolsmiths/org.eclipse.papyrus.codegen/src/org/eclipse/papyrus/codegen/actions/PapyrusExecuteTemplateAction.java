@@ -14,9 +14,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.codegen.actions;
 
-import org.eclipse.gmf.internal.codegen.popup.actions.ExecuteTemplatesAction;
-import org.eclipse.gmf.internal.codegen.popup.actions.ExecuteTemplatesOperation;
 import org.eclipse.papyrus.codegen.PapyrusExecuteTemplatesOperation;
+import org.eclipse.papyrus.gmf.internal.codegen.popup.actions.ExecuteTemplatesAction;
+import org.eclipse.papyrus.gmf.internal.codegen.popup.actions.ExecuteTemplatesOperation;
 
 /**
  * Define the Papyrus Generate Action
