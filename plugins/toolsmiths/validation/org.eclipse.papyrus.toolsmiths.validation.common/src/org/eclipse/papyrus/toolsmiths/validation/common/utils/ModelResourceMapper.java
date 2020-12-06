@@ -13,7 +13,7 @@
  *   Christian W. Damus - bug 569357
  *
  *****************************************************************************/
-package org.eclipse.papyrus.toolsmiths.plugin.builder.helper;
+package org.eclipse.papyrus.toolsmiths.validation.common.utils;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -22,11 +22,13 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceVisitor;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.AbstractTreeIterator;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -49,28 +51,28 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.infra.tools.util.Iterators2;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 
 /**
- * Generic mapper for model resources in a project.
+ * Generic mapper for model resources in a resource container.
  *
  * @param <T>
  *            the kind of model object that I extract from EMF resources
  */
 public class ModelResourceMapper<T extends EObject> {
 
-	private final IProject project;
+	private final IContainer container;
 
 	/**
-	 * Initializes me with the {@code project} for which I map resources.
+	 * Initializes me with the {@code container} for which I map resources.
 	 */
-	public ModelResourceMapper(IProject project) {
+	public ModelResourceMapper(IContainer container) {
 		super();
 
-		this.project = project;
+		this.container = container;
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class ModelResourceMapper<T extends EObject> {
 		ModelVisitor<R> visitor = new ModelVisitor<>(filePredicate, resourceSetFunction, modelExtractor);
 
 		try {
-			project.accept(visitor, IResource.DEPTH_INFINITE, true);
+			container.accept(visitor, IResource.DEPTH_INFINITE, true);
 		} catch (CoreException e) {
 			Activator.log.error(e);
 		}
@@ -122,6 +124,11 @@ public class ModelResourceMapper<T extends EObject> {
 				URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 				R resourceSet = resourceSetFunction.apply(uri);
 				if (resourceSet != null) {
+					try {
+						resourceSet.getResource(uri, true);
+					} catch (Exception e) {
+						throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to load file " + file.getFullPath(), e)); //$NON-NLS-1$
+					}
 					modelExtractor.apply(resourceSet).forEach(model -> map.put(file, model));
 				}
 			}
@@ -142,7 +149,8 @@ public class ModelResourceMapper<T extends EObject> {
 	 *            the file extension to match
 	 */
 	public static Predicate<IResource> byExtension(String extension) {
-		return file -> extension.equals(file.getFileExtension());
+		return file -> //
+		extension.equals(file.getFileExtension());
 	}
 
 	/**

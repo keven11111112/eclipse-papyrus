@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.BuildPropertiesChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ExtensionsChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelDependenciesChecker;
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants;
+import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdvicePackage;
 
 /**
  * This allows to check an element types plug-in (extensions, builds, dependencies, ...).
@@ -181,6 +183,20 @@ public class ElementTypesPluginChecker {
 		return new PluginErrorReporter<>(pluginXML, modelFile, model, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE, set -> set.getIdentifier())
 				.requireExtensionPoint(ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER, validator::matchExtension, validator::checkExtension)
 				.impliedByArchitectureContexts(ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER);
+	}
+
+	/**
+	 * Obtain a checker factory for custom model validation rules.
+	 *
+	 * @return the custom model checker factory
+	 */
+	public static IPluginChecker2.Factory customModelCheckerFactory() {
+		return IPluginChecker2.Factory.forEMFResource(ElementTypesPluginChecker::createCustomModelChecker);
+	}
+
+	private static CustomModelChecker createCustomModelChecker(IProject project, IFile modelFile, Resource resource) {
+		return new CustomModelChecker(modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE)
+				.withValidator(ApplyStereotypeAdvicePackage.eNS_URI, ApplyStereotypeAdviceCustomValidator::new);
 	}
 
 }

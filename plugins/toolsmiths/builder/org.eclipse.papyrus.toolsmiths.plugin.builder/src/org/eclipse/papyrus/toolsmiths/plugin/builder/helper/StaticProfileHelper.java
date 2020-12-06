@@ -15,8 +15,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.plugin.builder.helper;
 
-import static org.eclipse.papyrus.toolsmiths.plugin.builder.helper.ModelResourceMapper.byExtension;
-import static org.eclipse.papyrus.toolsmiths.plugin.builder.helper.ModelResourceMapper.modelSets;
+import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.byExtension;
+import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.modelSets;
 
 import java.util.List;
 import java.util.Map;
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Profile;

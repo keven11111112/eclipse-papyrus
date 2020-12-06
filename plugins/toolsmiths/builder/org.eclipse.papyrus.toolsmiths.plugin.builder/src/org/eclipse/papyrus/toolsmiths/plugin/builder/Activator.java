@@ -17,9 +17,9 @@
 
 package org.eclipse.papyrus.toolsmiths.plugin.builder;
 
-import static org.eclipse.papyrus.toolsmiths.plugin.builder.helper.ModelResourceMapper.byExtension;
-import static org.eclipse.papyrus.toolsmiths.plugin.builder.helper.ModelResourceMapper.resourceSets;
-import static org.eclipse.papyrus.toolsmiths.plugin.builder.helper.ModelResourceMapper.rootsOfType;
+import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.byExtension;
+import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.resourceSets;
+import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.rootsOfType;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_TYPE;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker.ELEMENT_TYPES_CONFIGURATION_EXTENSION;
 
@@ -27,7 +27,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.helper.ModelResourceMapper;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -73,7 +73,8 @@ public class Activator extends AbstractUIPlugin {
 		PapyrusPluginBuilder.addModelBuilder(new ArchitectureModelBuilder());
 		PapyrusPluginBuilder.addModelBuilder(new XWTModelBuilder());
 		PapyrusPluginBuilder.addModelBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_TYPE, this::mapElementTypesResources)
-				.withChecker(ElementTypesPluginChecker.modelValidationCheckerFactory()));
+				.withChecker(ElementTypesPluginChecker.modelValidationCheckerFactory())
+				.withChecker(ElementTypesPluginChecker.customModelCheckerFactory()));
 
 		// manifest builder
 		PapyrusPluginBuilder.addManifestBuilder(new ManifestBuilder());
