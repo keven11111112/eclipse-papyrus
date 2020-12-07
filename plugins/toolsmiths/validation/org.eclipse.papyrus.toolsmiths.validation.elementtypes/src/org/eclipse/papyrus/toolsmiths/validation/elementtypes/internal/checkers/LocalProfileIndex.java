@@ -19,15 +19,14 @@ import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResour
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.rootsOfType;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.emf.common.util.AbstractTreeIterator;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -40,8 +39,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.UMLPlugin;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
-import com.google.common.collect.Iterators;
-
 /**
  * An index of available profiles that is local to a {@code ResourceSet}.
  * Unlike the <em>Papyrus Profile Index</em>, this doesn't only have profiles in the workspace
@@ -51,6 +48,10 @@ public class LocalProfileIndex {
 
 	private final ResourceSet resourceSet;
 	private boolean workspaceLoaded;
+
+	private final Map<String, Profile> profilesByName = new HashMap<>();
+	private final Map<String, Profile> profilesByURI = new HashMap<>();
+	private final Map<String, Stereotype> stereotypesByName = new HashMap<>();
 
 	private LocalProfileIndex(ResourceSet resourceSet) {
 		super();
@@ -82,28 +83,59 @@ public class LocalProfileIndex {
 	 * @return the named profile, or {@code null} if not found
 	 */
 	public Profile getProfile(String qualifiedName, EObject context) {
-		Profile result = null;
+		Profile result = profilesByName.get(qualifiedName);
 
-		out: for (URI registeredProfile : UMLPlugin.getEPackageNsURIToProfileLocationMap().values()) {
-			try {
-				Resource resource = resourceSet.getResource(registeredProfile.trimFragment(), true);
-				Collection<Profile> loadedProfiles = EcoreUtil.getObjectsByType(resource.getContents(), UMLPackage.Literals.PROFILE);
-				for (Profile profile : loadedProfiles) {
-					if (qualifiedName.equals(profile.getQualifiedName())) {
-						result = profile;
-						break out;
+		if (result == null) {
+			out: for (URI registeredProfile : UMLPlugin.getEPackageNsURIToProfileLocationMap().values()) {
+				try {
+					Resource resource = resourceSet.getResource(registeredProfile.trimFragment(), true);
+					Collection<Profile> loadedProfiles = EcoreUtil.getObjectsByType(resource.getContents(), UMLPackage.Literals.PROFILE);
+					for (Profile profile : loadedProfiles) {
+						if (qualifiedName.equals(profile.getQualifiedName())) {
+							result = profile;
+							profilesByName.put(qualifiedName, result);
+							break out;
+						}
 					}
+				} catch (Exception e) {
+					Activator.log.error("Failed to load registered profile.", e); //$NON-NLS-1$
 				}
-			} catch (Exception e) {
-				Activator.log.error("Failed to load registered profile.", e); //$NON-NLS-1$
+			}
+
+			if (result == null) {
+				// Look in the workspace
+				loadWorkspace();
+				result = profilesByName.get(qualifiedName);
 			}
 		}
 
+		return result;
+	}
+
+	/**
+	 * Get a profile by URI, in the context of the given model object.
+	 *
+	 * @param profileURI
+	 *            the URI of the profile to retrieve
+	 * @param context
+	 *            the model context from which to access a resource set (usually the model being validated)
+	 * @return the named profile, or {@code null} if not found
+	 */
+	public Profile getProfileByURI(String profileURI, EObject context) {
+		Profile result = profilesByURI.get(profileURI);
+
 		if (result == null) {
-			// Look in the workspace
-			loadWorkspace();
-			result = (Profile) UMLUtil.findNamedElements(resourceSet, qualifiedName, false, UMLPackage.Literals.PROFILE)
-					.stream().findAny().orElse(null);
+			ResourceSet rset = context.eResource().getResourceSet();
+			EPackage ePackage = rset.getPackageRegistry().getEPackage(profileURI);
+			result = (ePackage != null) ? UMLUtil.getProfile(ePackage, context) : null;
+
+			if (result != null) {
+				profilesByURI.put(profileURI, result);
+			} else {
+				// Look in the workspace
+				loadWorkspace();
+				result = profilesByURI.get(profileURI);
+			}
 		}
 
 		return result;
@@ -119,7 +151,7 @@ public class LocalProfileIndex {
 	 *            to try first as hints
 	 * @param context
 	 *            the model context from which to access a resource set (usually the model being validated)
-	 * @return the named profile, or {@code null} if not found
+	 * @return the named stereotype, or {@code null} if not found
 	 */
 	public Stereotype getStereotype(String qualifiedName, Collection<String> profileQualifiedNames, EObject context) {
 		Stereotype result = null;
@@ -134,37 +166,58 @@ public class LocalProfileIndex {
 
 			Profile profile = getProfile(profileName, context);
 			if (profile != null) {
-				result = (Stereotype) UMLUtil.findNamedElements(profile.eResource(), qualifiedName, false, UMLPackage.Literals.STEREOTYPE)
-						.stream().findAny().orElse(null);
+				result = getStereotype(qualifiedName, profile, context);
 			}
 		}
 
 		if (result == null) {
 			// Didn't find it the easy way? Look in the workspace
 			loadWorkspace();
-			result = (Stereotype) UMLUtil.findNamedElements(resourceSet, qualifiedName, false, UMLPackage.Literals.STEREOTYPE)
-					.stream().findAny().orElse(null);
+			result = stereotypesByName.get(qualifiedName);
 		}
 
 		return result;
 	}
 
-	Iterator<EObject> resourceRoots() {
-		@SuppressWarnings("serial")
-		TreeIterator<?> roots = new AbstractTreeIterator<>(resourceSet, false) {
-			@Override
-			protected Iterator<? extends Object> getChildren(Object object) {
-				if (object instanceof ResourceSet) {
-					return ((ResourceSet) object).getResources().iterator();
-				} else if (object instanceof Resource) {
-					return ((Resource) object).getContents().iterator();
-				} else {
-					return Collections.emptyIterator();
-				}
-			}
-		};
+	/**
+	 * Get a stereotype by qualified name within the scope of a particular {@code profile}.
+	 *
+	 * @param qualifiedName
+	 *            the qualified name of the stereotype to retrieve
+	 * @param profile
+	 *            a profile to look in
+	 * @param context
+	 *            the model context from which to access a resource set (usually the model being validated)
+	 * @return the named stereotype, or {@code null} if not found
+	 */
+	public Stereotype getStereotype(String qualifiedName, Profile profile, EObject context) {
+		return (Stereotype) UMLUtil.findNamedElements(profile.eResource(), qualifiedName, false, UMLPackage.Literals.STEREOTYPE)
+				.stream().findAny().orElse(null);
+	}
 
-		return Iterators.filter(roots, EObject.class);
+	/**
+	 * Get a stereotype by qualified name within the scope of the resource set containing a given {@code context} object.
+	 *
+	 * @param qualifiedName
+	 *            the qualified name of the stereotype to retrieve
+	 * @param context
+	 *            the model context from which to access a resource set (usually the model being validated)
+	 * @return the named stereotype, or {@code null} if not found
+	 */
+	public Stereotype getStereotype(String qualifiedName, EObject context) {
+		Stereotype result;
+
+		// Stereotypes don't nest within stereotypes or other classes
+		String profileQualifiedName = qualifiedName.substring(0, qualifiedName.lastIndexOf(NamedElement.SEPARATOR));
+		Profile profile = getProfile(profileQualifiedName, context);
+		if (profile != null) {
+			result = getStereotype(qualifiedName, profile, context);
+		} else {
+			loadWorkspace();
+			result = stereotypesByName.get(qualifiedName);
+		}
+
+		return result;
 	}
 
 	private void loadWorkspace() {
@@ -172,7 +225,33 @@ public class LocalProfileIndex {
 			workspaceLoaded = true;
 
 			ModelResourceMapper<Profile> profileMapper = new ModelResourceMapper<>(ResourcesPlugin.getWorkspace().getRoot());
-			profileMapper.map(byExtension("uml"), __ -> resourceSet, rootsOfType(Profile.class));
+			profileMapper.map(byExtension("uml"), __ -> resourceSet, rootsOfType(Profile.class))
+					.values().stream().distinct().forEach(this::mapProfile);
+		}
+	}
+
+	private void mapProfile(Profile profile) {
+		String qName = profile.getQualifiedName();
+		if (qName != null && !qName.isBlank()) {
+			profilesByName.put(qName, profile);
+
+			for (Stereotype stereo : profile.getOwnedStereotypes()) {
+				String stereoName = stereo.getQualifiedName();
+				if (stereoName != null && !stereoName.isBlank()) {
+					stereotypesByName.put(stereoName, stereo);
+				}
+			}
+		}
+
+		String uri = profile.getURI();
+		if (uri != null && !uri.isBlank()) {
+			profilesByURI.put(uri, profile);
+		}
+
+		for (org.eclipse.uml2.uml.Package nested : profile.getNestedPackages()) {
+			if (nested instanceof Profile) {
+				mapProfile((Profile) nested);
+			}
 		}
 	}
 

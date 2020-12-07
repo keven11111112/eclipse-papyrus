@@ -46,6 +46,7 @@ import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationSe
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdvicePackage;
+import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherPackage;
 
 /**
  * This allows to check an element types plug-in (extensions, builds, dependencies, ...).
@@ -208,7 +209,8 @@ public class ElementTypesPluginChecker {
 	private static CustomModelChecker createCustomModelChecker(IProject project, IFile modelFile, Resource resource) {
 		return new CustomModelChecker(modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE)
 				.withValidator(ElementTypesConfigurationsPackage.eNS_URI, ElementTypesCustomValidator::new)
-				.withValidator(ApplyStereotypeAdvicePackage.eNS_URI, ApplyStereotypeAdviceCustomValidator::new);
+				.withValidator(ApplyStereotypeAdvicePackage.eNS_URI, ApplyStereotypeAdviceCustomValidator::new)
+				.withValidator(StereotypeApplicationMatcherPackage.eNS_URI, StereotypeApplicationMatcherCustomValidator::new);
 	}
 
 }
