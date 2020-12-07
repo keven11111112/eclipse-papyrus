@@ -20,7 +20,9 @@ import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.E
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_TYPE;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -29,6 +31,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.emf.helpers.BundleResourceURIHelper;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.BuildPropertiesChecker;
@@ -132,7 +135,15 @@ public class ElementTypesPluginChecker {
 	}
 
 	private static ModelDependenciesChecker createModelDependenciesChecker(IProject project, IFile modelFile, Resource resource) {
-		return new ModelDependenciesChecker(project, modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE);
+		return new ModelDependenciesChecker(project, modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE)
+				.withAdditionalRequirements(ElementTypesPluginChecker::getBundlesFromMetamodelNSURI);
+	}
+
+	private static Collection<String> getBundlesFromMetamodelNSURI(Resource resource) {
+		return EcoreUtil.<ElementTypeSetConfiguration> getObjectsByType(resource.getContents(), ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION).stream()
+				.map(ElementTypeSetConfiguration::getMetamodelNsURI).filter(Objects::nonNull)
+				.map(BundleResourceURIHelper.INSTANCE::getBundleNameFromNS_URI).filter(Objects::nonNull)
+				.collect(Collectors.toSet());
 	}
 
 	/**
@@ -196,6 +207,7 @@ public class ElementTypesPluginChecker {
 
 	private static CustomModelChecker createCustomModelChecker(IProject project, IFile modelFile, Resource resource) {
 		return new CustomModelChecker(modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE)
+				.withValidator(ElementTypesConfigurationsPackage.eNS_URI, ElementTypesCustomValidator::new)
 				.withValidator(ApplyStereotypeAdvicePackage.eNS_URI, ApplyStereotypeAdviceCustomValidator::new);
 	}
 

@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.function.ToIntFunction;
 
 import org.eclipse.core.filebuffers.FileBuffers;
@@ -37,7 +38,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -64,6 +64,8 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	private final Set<String> additionalRequirements = new HashSet<>();
 
 	private ToIntFunction<? super String> severityFunction = __ -> Diagnostic.ERROR;
+
+	private final List<Function<? super Resource, ? extends Collection<String>>> additionalDependencyFunctions = new ArrayList<>();
 
 	/**
 	 * Initializes me to report all missing bundle dependencies as errors.
@@ -104,7 +106,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	}
 
 	/**
-	 * Set a severity mapping function
+	 * Set a severity mapping function.
 	 *
 	 * @param severityFunction
 	 *            an optional function that maps bundle symbolic names (being missing dependencies) to {@link Diagnostic} severities.
@@ -141,6 +143,21 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	}
 
 	/**
+	 * Add a function that computes additional requirements from the model that are encoded in some other
+	 * ways than cross-document references to resources in other bundles. Those dependencies are covered
+	 * automatically by this checker.
+	 *
+	 * @param requirementsFunction
+	 *            a function that maps the resource being validated to bundle symbolic names that are required dependencies
+	 *            implied by the model in ways other than cross-document references
+	 * @return myself, for convenience of call chaining
+	 */
+	public ModelDependenciesChecker withAdditionalRequirements(Function<? super Resource, Collection<String>> requirementsFunction) {
+		this.additionalDependencyFunctions.add(requirementsFunction);
+		return this;
+	}
+
+	/**
 	 * This allows to check that the plug-in has the correct dependencies depending to the external cross-deocument references.
 	 */
 	@Override
@@ -156,6 +173,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 		// Calculate plug-ins names from URI. Initial set is the "additional requirements" from the client
 		final Collection<String> requiredPlugins = new HashSet<>(additionalRequirements);
 		externalReferencesPaths.stream().map(this::getPluginNameFromURI).forEach(requiredPlugins::add);
+		additionalDependencyFunctions.stream().map(func -> func.apply(resource)).forEach(requiredPlugins::addAll);
 
 		// For each external reference, get its plug-in name and search its dependency in the plug-in
 		final List<BundleSpecification> dependencies = ProjectManagementService.getPluginDependencies(getProject());
@@ -312,13 +330,13 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 				final URI resourceURI = currentResource.getURI();
 
 				// React differently if this is a pathmap
-				if (resourceURI.toString().startsWith("pathmap://")) { //$NON-NLS-1$
+				if (!resourceURI.isPlatform()) {
 					// Try to resolve the pathmap
 					final URI correspondingURI = getCorrespondingURIFromPathmap(resourceURI);
 					if (null == correspondingURI) {
 						// If this case, the pathmap cannot be resolved, so create a marker
 						diagnostics.add(createDiagnostic(project, modelFile, Diagnostic.ERROR, 1,
-								"The pathmap '" + resourceURI.toString() + "' cannot be resolved.")); //$NON-NLS-1$ //$NON-NLS-2$
+								"The URI '" + resourceURI.toString() + "' cannot be resolved.")); //$NON-NLS-1$ //$NON-NLS-2$
 					} else {
 						externalReferencesPaths.add(correspondingURI);
 					}
@@ -362,20 +380,13 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	 * @return The corresponding URI to the pathmap.
 	 */
 	private URI getCorrespondingURIFromPathmap(final URI uri) {
-		URI copiedURI = URI.createURI(uri.toString());
-		URI foundCorrespondingURI = null;
+		URI result = resource.getResourceSet().getURIConverter().normalize(uri);
 
-		while (null == foundCorrespondingURI) {
-			foundCorrespondingURI = URIMappingRegistryImpl.INSTANCE.get(copiedURI);
-			if (null == foundCorrespondingURI) {
-				if (copiedURI.segmentCount() <= 0) {
-					break;
-				}
-				copiedURI = copiedURI.trimSegments(1);
-			}
+		if (result.equals(uri) && "pathmap".equals(uri.scheme())) { //$NON-NLS-1$
+			// TODO(569357): Look up pathmap registration in the workspace
 		}
 
-		return foundCorrespondingURI;
+		return result;
 	}
 
 	/**
