@@ -46,6 +46,7 @@ import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationSe
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants;
 import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdvicePackage;
+import org.eclipse.papyrus.uml.types.core.advices.stereotypepropertyreferenceedgeadvice.StereotypePropertyReferenceEdgeAdvicePackage;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherPackage;
 
 /**
@@ -210,7 +211,8 @@ public class ElementTypesPluginChecker {
 		return new CustomModelChecker(modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE)
 				.withValidator(ElementTypesConfigurationsPackage.eNS_URI, ElementTypesCustomValidator::new)
 				.withValidator(ApplyStereotypeAdvicePackage.eNS_URI, ApplyStereotypeAdviceCustomValidator::new)
-				.withValidator(StereotypeApplicationMatcherPackage.eNS_URI, StereotypeApplicationMatcherCustomValidator::new);
+				.withValidator(StereotypeApplicationMatcherPackage.eNS_URI, StereotypeApplicationMatcherCustomValidator::new)
+				.withValidator(StereotypePropertyReferenceEdgeAdvicePackage.eNS_URI, StereotypePropertyReferenceEdgeAdviceCustomValidator::new);
 	}
 
 }
