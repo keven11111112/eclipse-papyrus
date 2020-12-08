@@ -222,7 +222,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 */
 	void init() {
 		resourceSet = new ResourceSetImpl();
-		resourceSet.getURIConverter().getURIMap().putAll(ResourceUtils.computePlatformResourceMap());
+		resourceSet.setURIConverter(ResourceUtils.createWorkspaceAwareURIConverter());
 		mergedDomains = new HashMap<>();
 
 		Stream<URI> modelURIs = Stream.empty();

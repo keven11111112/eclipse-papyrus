@@ -165,7 +165,7 @@ public class ModelResourceMapper<T extends EObject> {
 
 		// Ensure that cross-doc references saved with the platform-scheme-aware URI handler can resolve
 		// platform:/resource URIs to bundles in the target platform.
-		result.getURIConverter().getURIMap().putAll(ResourceUtils.computePlatformResourceMap());
+		result.setURIConverter(ResourceUtils.createWorkspaceAwareURIConverter());
 
 		result.getResource(uri, true);
 
@@ -227,7 +227,8 @@ public class ModelResourceMapper<T extends EObject> {
 
 		// Ensure that cross-doc references saved with the platform-scheme-aware URI handler can resolve
 		// platform:/resource URIs to bundles in the target platform.
-		modelSet.getURIConverter().getURIMap().putAll(ResourceUtils.computePlatformResourceMap());
+		modelSet.setURIConverter(ResourceUtils.createWorkspaceAwareURIConverter());
+		;
 
 		// Read all Model from selected file
 		ModelsReader modelsReader = new ModelsReader();

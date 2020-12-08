@@ -38,6 +38,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -157,10 +159,49 @@ public class ResourceUtils {
 		return getStringURI(relativePath);
 	}
 
+	/**
+	 * Create a URI converter that supports not only the registered URI mappings in the target platform, but
+	 * also {@linkplain #getLocalUriMappings(IProject) mappings in <tt>plugin.xml</tt> files in workspace projects}.
+	 * Mappings from the workspace supersede the same prefixes in mappings from the target platform.
+	 * And <tt>platform:/plugin</tt> URIs map into the workspace (and vice-versa) where applicable, per
+	 * the {@linkplain #computePlatformResourceMap() platform resource map}.
+	 *
+	 * @return the workspace-inclusive URI converter
+	 *
+	 * @see ExtensibleURIConverterImpl#getURIMap()
+	 * @see #getLocalUriMappings(IProject)
+	 * @see #computePlatformResourceMap()
+	 */
+	public static URIConverter createWorkspaceAwareURIConverter() {
+		URIConverter result = new ExtensibleURIConverterImpl();
+		Map<URI, URI> uriMap = result.getURIMap();
+
+		uriMap.putAll(computePlatformResourceMap());
+
+		for (IProject next : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+			if (next.isAccessible()) {
+				Map<String, String> mappings = getLocalUriMappings(next);
+				for (Map.Entry<String, String> mapping : mappings.entrySet()) {
+					URI prefix = URI.createURI(mapping.getKey());
+					URI target = URI.createURI(mapping.getValue());
+
+					uriMap.put(prefix, target);
+				}
+			}
+		}
+
+		return result;
+	}
+
 	/** Return the `org.eclipse.emf.ecore.uri_mapping` extension declarations in the given project. */
 	public static Map<String, String> getLocalUriMappings(IProject project) {
 		HashMap<String, String> localMappings = new HashMap<>();
 		final IPluginModelBase model = PluginRegistry.findModel(project.getName());
+		if (model == null) {
+			// No mappings if no plugin model
+			return localMappings;
+		}
+
 		for (IPluginExtension extension : model.getExtensions().getExtensions()) {
 			if (!Objects.equals(extension.getPoint(), ECORE_URI_MAPPING_EXTENSION_POINT)) {
 				continue;
@@ -191,7 +232,7 @@ public class ResourceUtils {
 	 * The resulting mapping forwards <tt>platform:/plugin/</tt> URIs to </tt>platform:/resource/</tt> for
 	 * plug-in projects that are imported and open in the workspace and <tt>platform:/resource/</tt> to <tt>platform:/plugin/</tt>
 	 * for all other plug-ins in the PDE Target.
-	 * 
+	 *
 	 * @return the platform URI mappings
 	 *
 	 * @see getSaveOptions()

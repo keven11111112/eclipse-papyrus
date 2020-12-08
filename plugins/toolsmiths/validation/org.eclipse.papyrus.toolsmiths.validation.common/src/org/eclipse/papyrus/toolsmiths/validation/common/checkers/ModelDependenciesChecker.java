@@ -332,8 +332,8 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 				// React differently if this is a pathmap
 				if (!resourceURI.isPlatform()) {
 					// Try to resolve the pathmap
-					final URI correspondingURI = getCorrespondingURIFromPathmap(resourceURI);
-					if (null == correspondingURI) {
+					final URI correspondingURI = resource.getResourceSet().getURIConverter().normalize(resourceURI);
+					if (resourceURI.equals(correspondingURI)) {
 						// If this case, the pathmap cannot be resolved, so create a marker
 						diagnostics.add(createDiagnostic(project, modelFile, Diagnostic.ERROR, 1,
 								"The URI '" + resourceURI.toString() + "' cannot be resolved.")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -369,24 +369,6 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 		// We don't have to manage references of files from the same plug-in
 		return !(uri.isPlatformPlugin() || uri.isPlatformResource())
 				|| uri.segmentCount() < 2 || !uri.segment(1).equals(project.getName());
-	}
-
-	/**
-	 * This allows to resolve pathmap. To do this, we trim last segments until we got the correct corresponding URI.
-	 * It is possible that we don't find pathmap, in this case, just return null.
-	 *
-	 * @param uri
-	 *            The pathmap URI to search.
-	 * @return The corresponding URI to the pathmap.
-	 */
-	private URI getCorrespondingURIFromPathmap(final URI uri) {
-		URI result = resource.getResourceSet().getURIConverter().normalize(uri);
-
-		if (result.equals(uri) && "pathmap".equals(uri.scheme())) { //$NON-NLS-1$
-			// TODO(569357): Look up pathmap registration in the workspace
-		}
-
-		return result;
 	}
 
 	/**

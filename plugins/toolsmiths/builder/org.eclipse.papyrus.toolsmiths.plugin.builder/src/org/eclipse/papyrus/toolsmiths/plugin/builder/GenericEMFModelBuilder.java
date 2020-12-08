@@ -311,7 +311,7 @@ public class GenericEMFModelBuilder extends AbstractPapyrusBuilder {
 
 		// Ensure that cross-doc references saved with the platform-scheme-aware URI handler can resolve
 		// platform:/resource URIs to bundles in the target platform.
-		set.getURIConverter().getURIMap().putAll(ResourceUtils.computePlatformResourceMap());
+		set.setURIConverter(ResourceUtils.createWorkspaceAwareURIConverter());
 
 		final URI uri = URI.createPlatformResourceURI(f.getFullPath().toOSString(), true);
 		try {
