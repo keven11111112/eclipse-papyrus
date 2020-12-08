@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2020 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 569357
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
@@ -35,6 +36,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
@@ -179,6 +181,33 @@ public class ResourceUtils {
 		return Arrays.stream(path.segments())
 				.map(segment -> URI.encodeSegment(segment, false))
 				.collect(Collectors.joining(PATH_SEPARATOR));
+	}
+
+	/**
+	 * Compute a mapping of <tt>platform:</tt> scheme URIs for maximal portability of cross-document
+	 * references in resources that are saved (as almost always should be) using the
+	 * {@linkplain org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware platform-scheme-aware URI handler}.
+	 * That is the case for all resources saved using the {@linkplain #getSaveOptions() common Papyrus save options}.
+	 * The resulting mapping forwards <tt>platform:/plugin/</tt> URIs to </tt>platform:/resource/</tt> for
+	 * plug-in projects that are imported and open in the workspace and <tt>platform:/resource/</tt> to <tt>platform:/plugin/</tt>
+	 * for all other plug-ins in the PDE Target.
+	 * 
+	 * @return the platform URI mappings
+	 *
+	 * @see getSaveOptions()
+	 * @see EcorePlugin#computePlatformPluginToPlatformResourceMap()
+	 * @see EcorePlugin#computePlatformResourceToPlatformPluginMap(Collection)
+	 */
+	public static Map<URI, URI> computePlatformResourceMap() {
+		Map<URI, URI> result = new HashMap<>();
+		result.putAll(EcorePlugin.computePlatformPluginToPlatformResourceMap());
+
+		List<URI> platform = PlatformHelper.INSTANCE.getPlatformBundleIDs().stream()
+				.map(name -> URI.createPlatformPluginURI(name, true))
+				.collect(Collectors.toList());
+		result.putAll(EcorePlugin.computePlatformResourceToPlatformPluginMap(platform));
+
+		return result;
 	}
 
 }
