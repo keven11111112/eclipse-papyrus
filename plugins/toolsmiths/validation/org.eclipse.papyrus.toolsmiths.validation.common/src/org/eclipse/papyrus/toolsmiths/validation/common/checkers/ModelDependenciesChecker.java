@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2019, 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,15 +11,17 @@
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 568495
+ *   Christian W. Damus - bug 569357
  *
  *****************************************************************************/
-package org.eclipse.papyrus.toolsmiths.validation.profile.internal.checkers;
+package org.eclipse.papyrus.toolsmiths.validation.common.checkers;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.ToIntFunction;
 
 import org.eclipse.core.filebuffers.FileBuffers;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
@@ -27,10 +29,12 @@ import org.eclipse.core.filebuffers.ITextFileBufferManager;
 import org.eclipse.core.filebuffers.LocationKind;
 import org.eclipse.core.internal.runtime.MetaDataKeeper;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
@@ -38,104 +42,142 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.osgi.service.resolver.BundleSpecification;
-import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker;
-import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
+import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
-import org.eclipse.papyrus.toolsmiths.validation.profile.Activator;
-import org.eclipse.pde.internal.core.builders.PDEMarkerFactory;
 import org.eclipse.pde.internal.core.ibundle.IManifestHeader;
 import org.eclipse.pde.internal.core.text.bundle.BundleModel;
 import org.eclipse.pde.internal.core.text.bundle.ManifestHeader;
 import org.osgi.framework.Constants;
 
 /**
- * This class allows to check that the plug-in has the correct dependencies depending to the external profile references.
+ * A checker that verifies specification of the dependencies for bundles that provide the resources
+ * referenced by cross-document references from a model resource.
  */
-public class ProfileDependenciesChecker implements IPluginChecker {
+@SuppressWarnings("restriction")
+public class ModelDependenciesChecker extends AbstractPluginChecker {
 
 	/**
-	 * The plug-ins to detect as warning instead of errors.
-	 */
-	private static Set<String> WARNING_PLUGINS_EXCEPTION = Set.of("org.eclipse.uml2.uml.resources"); //$NON-NLS-1$
-
-	/**
-	 * The current project resource.
-	 */
-	private final IProject project;
-
-	/**
-	 * The file of the UML profile.
-	 */
-	private final IFile profileFile;
-
-	/**
-	 * The EMF resource.
+	 * The EMF model resource.
 	 */
 	private final Resource resource;
+
+	private final Set<String> additionalRequirements = new HashSet<>();
+
+	private ToIntFunction<? super String> severityFunction = __ -> Diagnostic.ERROR;
+
+	/**
+	 * Initializes me to report all missing bundle dependencies as errors.
+	 *
+	 * @param project
+	 *            The current project resource.
+	 * @param modelFile
+	 *            The model file, or {@code null} to check only the project's additional requirements.
+	 * @param resource
+	 *            The EMF model resource, or {@code null} to check only the project's additional requirements.
+	 *
+	 * @see #addRequirement(String)
+	 */
+	public ModelDependenciesChecker(final IProject project, final IFile modelFile, final Resource resource) {
+		super(project, modelFile);
+
+		this.resource = resource;
+	}
 
 	/**
 	 * Constructor.
 	 *
 	 * @param project
 	 *            The current project resource.
-	 * @param profileFile
-	 *            The file of the UML profile.
+	 * @param modelFile
+	 *            The model file, or {@code null} to check only the project's additional requirements.
 	 * @param resource
-	 *            The EMF resource.
+	 *            The EMF model resource, or {@code null} to check only the project's additional requirements.
+	 * @param markerType
+	 *            The marker type.
+	 *
+	 * @see #addRequirement(String)
 	 */
-	public ProfileDependenciesChecker(final IProject project, final IFile profileFile, final Resource resource) {
-		this.project = project;
-		this.profileFile = profileFile;
+	public ModelDependenciesChecker(final IProject project, final IFile modelFile, final Resource resource, String markerType) {
+		super(project, modelFile, markerType);
+
 		this.resource = resource;
 	}
 
 	/**
-	 * This allows to check that the plug-in has the correct dependencies depending to the external profile references.
-	 * {@inheritDoc}
+	 * Set a severity mapping function
 	 *
-	 * @see org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker#check(org.eclipse.core.runtime.IProgressMonitor)
+	 * @param severityFunction
+	 *            an optional function that maps bundle symbolic names (being missing dependencies) to {@link Diagnostic} severities.
+	 *            If omitted, all missing dependencies are reported as errors
+	 * @return myself, for convenience of call chaining
 	 */
-	@SuppressWarnings("restriction")
-	@Override
-	public void check(final IProgressMonitor monitor) {
+	public ModelDependenciesChecker withSeverityFunction(ToIntFunction<? super String> severityFunction) {
+		this.severityFunction = severityFunction != null ? severityFunction : __ -> Diagnostic.ERROR;
+		return this;
+	}
 
-		if (null != monitor) {
-			monitor.subTask("Validate dependencies for profile '" + profileFile.getName() + "'."); //$NON-NLS-1$ //$NON-NLS-2$
-		}
+	/**
+	 * Add a required bundle dependency that is not (necessarily) implied by the references in the model.
+	 *
+	 * @param bundleSymbolicName
+	 *            a bundle that must be declared as a dependency
+	 * @return myself, for convenience of call chaining
+	 */
+	public ModelDependenciesChecker addRequirement(String bundleSymbolicName) {
+		additionalRequirements.add(bundleSymbolicName);
+		return this;
+	}
+
+	/**
+	 * Add required bundle dependencies that are not (necessarily) implied by the references in the model.
+	 *
+	 * @param bundleSymbolicNames
+	 *            bundle that must be declared as dependencies
+	 * @return myself, for convenience of call chaining
+	 */
+	public ModelDependenciesChecker addRequirements(Collection<String> bundleSymbolicNames) {
+		additionalRequirements.addAll(bundleSymbolicNames);
+		return this;
+	}
+
+	/**
+	 * This allows to check that the plug-in has the correct dependencies depending to the external cross-deocument references.
+	 */
+	@Override
+	public void check(DiagnosticChain diagnostics, final IProgressMonitor monitor) {
+		String resourceName = getModelFile() == null ? getProject().getName() : getModelFile().getName();
+
+		SubMonitor subMonitor = SubMonitor.convert(monitor, "Validate dependencies for '" + resourceName + "'.", 3);
 
 		// Get the external reference paths
-		final Collection<URI> externalReferencesPaths = getExternalReferencesPaths(project, profileFile, resource);
+		final Collection<URI> externalReferencesPaths = getExternalReferencesPaths(diagnostics, getProject(), getModelFile(), resource);
+		subMonitor.worked(1);
 
-		// Calculate plug-ins names from URI
-		final Collection<String> requiredPlugins = new HashSet<>();
-		externalReferencesPaths.stream().forEach(externalReferencePath -> requiredPlugins.add(getPluginNameFromURI(externalReferencePath)));
+		// Calculate plug-ins names from URI. Initial set is the "additional requirements" from the client
+		final Collection<String> requiredPlugins = new HashSet<>(additionalRequirements);
+		externalReferencesPaths.stream().map(this::getPluginNameFromURI).forEach(requiredPlugins::add);
 
 		// For each external reference, get its plug-in name and search its dependency in the plug-in
-		final Collection<String> existingRequiredPlugins = new HashSet<>();
-		final List<BundleSpecification> dependencies = ProjectManagementService.getPluginDependencies(project);
+		final List<BundleSpecification> dependencies = ProjectManagementService.getPluginDependencies(getProject());
 		if (null != dependencies && !dependencies.isEmpty()) {
-			ProjectManagementService.getPluginDependencies(project).stream().forEach(dependency -> existingRequiredPlugins.add(dependency.getName()));
-			requiredPlugins.removeIf(requiredPlugin -> existingRequiredPlugins.contains(requiredPlugin));
+			dependencies.stream().map(BundleSpecification::getName).forEach(requiredPlugins::remove);
 		}
+		subMonitor.worked(1);
 
 		List<ManifestError> errors = new ArrayList<>();
-		// If requiredPlugins is not empty, that means, the dependency is not available in the profile plug-in
-		// So, create the warning markers
+
+		// If requiredPlugins is not empty, that means, the dependency is not available in the model plug-in.
+		// So, create the problem markers
 		if (!requiredPlugins.isEmpty()) {
 			requiredPlugins.stream().forEach(requiredPlugin -> {
-				int severity = IMarker.SEVERITY_ERROR;
-				if (WARNING_PLUGINS_EXCEPTION.contains(requiredPlugin)) {
-					severity = IMarker.SEVERITY_WARNING;
-				}
-				errors.add(new ManifestError(PDEMarkerFactory.MARKER_ID, "The plug-in '" + requiredPlugin + "' must be defined as required plug-in (for profile '" + profileFile.getName() + "').", severity, Constants.REQUIRE_BUNDLE));
+				int severity = severityFunction.applyAsInt(requiredPlugin);
+				errors.add(new ManifestError(getMarkerType(), "The plug-in '" + requiredPlugin + "' must be declared as required plug-in (for '" + resourceName + "').", severity, Constants.REQUIRE_BUNDLE));
 			});
+			reportErrors(diagnostics, errors);
 		}
+		subMonitor.worked(1);
 
-		reportErrors(errors);
-
-		if (null != monitor) {
-			monitor.worked(1);
-		}
+		SubMonitor.done(monitor);
 	}
 
 	/**
@@ -144,13 +186,12 @@ public class ProfileDependenciesChecker implements IPluginChecker {
 	 * @param errors
 	 *            the list of errors for which markers will be created.
 	 */
-	@SuppressWarnings("restriction")
-	private void reportErrors(List<ManifestError> errors) {
+	private void reportErrors(DiagnosticChain diagnostics, List<ManifestError> errors) {
 		if (!errors.isEmpty()) {
-			final IFile manifestFile = ProjectManagementService.getManifestFile(project);
+			final IFile manifestFile = ProjectManagementService.getManifestFile(getProject());
 			BundleModel textBundleModel = prepareTextBundleModel(manifestFile);
 			errors.stream().forEach(error -> {
-				reportBundleError(manifestFile, textBundleModel, error.type, error.message, error.severity, error.header);
+				reportBundleError(diagnostics, manifestFile, textBundleModel, error.type, error.message, error.severity, error.header);
 			});
 		}
 	}
@@ -171,18 +212,19 @@ public class ProfileDependenciesChecker implements IPluginChecker {
 	 * @param header
 	 *            the header entry of the manifest file on which marker is created.
 	 */
-	@SuppressWarnings("restriction")
-	private void reportBundleError(IFile manifestFile, BundleModel textBundleModel, String type, String message, int severity, String header) {
+	private void reportBundleError(DiagnosticChain diagnostics, IFile manifestFile, BundleModel textBundleModel, String type, String message, int severity, String header) {
+		Diagnostic diagnostic;
+
 		if (textBundleModel != null) {
-			IMarker marker = MarkersService.createMarker(manifestFile, type, message, severity);
-			try {
-				marker.setAttribute(IMarker.LINE_NUMBER, getLineNumber(textBundleModel.getBundle().getManifestHeader(header)));
-			} catch (CoreException e) {
-				Activator.log.error(e);
-			}
+			diagnostic = createDiagnostic(manifestFile, severity, 0, message,
+					IPluginChecker2.markerType(type),
+					IPluginChecker2.lineNumber(getLineNumber(textBundleModel.getBundle().getManifestHeader(header))));
+
 		} else {
-			MarkersService.createMarker(manifestFile, type, message, severity);
+			diagnostic = createDiagnostic(manifestFile, severity, 0, message);
 		}
+
+		diagnostics.add(diagnostic);
 	}
 
 	/**
@@ -192,7 +234,6 @@ public class ProfileDependenciesChecker implements IPluginChecker {
 	 *            the file to parse
 	 * @return the model of the manifest file.
 	 */
-	@SuppressWarnings("restriction")
 	private BundleModel prepareTextBundleModel(IFile manifestFile) {
 		try {
 			IDocument doc = createDocument(manifestFile);
@@ -248,15 +289,18 @@ public class ProfileDependenciesChecker implements IPluginChecker {
 	 *
 	 * @param project
 	 *            The current project.
-	 * @param profileFile
-	 *            The file or the UML profile.
+	 * @param modelFile
+	 *            The model file, or {@code null} to check only the project's additional requirements.
 	 * @param resource
-	 *            The resource to get external references paths.
+	 *            The resource to get external references paths, or {@code null} to check only the project's additional requirements.
 	 * @return The external references paths.
 	 */
-	@SuppressWarnings("restriction")
-	private Collection<URI> getExternalReferencesPaths(final IProject project, final IFile profileFile, final Resource resource) {
+	private Collection<URI> getExternalReferencesPaths(final DiagnosticChain diagnostics, final IProject project, final IFile modelFile, final Resource resource) {
 		final Collection<URI> externalReferencesPaths = new HashSet<>();
+		if (modelFile == null || resource == null) {
+			return externalReferencesPaths;
+		}
+
 		String metadataPath = MetaDataKeeper.getMetaArea().getMetadataLocation().toString();
 
 		// First step, resolve all references
@@ -273,14 +317,12 @@ public class ProfileDependenciesChecker implements IPluginChecker {
 					final URI correspondingURI = getCorrespondingURIFromPathmap(resourceURI);
 					if (null == correspondingURI) {
 						// If this case, the pathmap cannot be resolved, so create a marker
-						MarkersService.createMarker(profileFile,
-								PDEMarkerFactory.MARKER_ID,
-								"The pathmap '" + resourceURI.toString() + "' cannot be resolved.", //$NON-NLS-1$ //$NON-NLS-2$
-								IMarker.SEVERITY_ERROR);
+						diagnostics.add(createDiagnostic(project, modelFile, Diagnostic.ERROR, 1,
+								"The pathmap '" + resourceURI.toString() + "' cannot be resolved.")); //$NON-NLS-1$ //$NON-NLS-2$
 					} else {
 						externalReferencesPaths.add(correspondingURI);
 					}
-				} else if (resourceURI.toFileString().startsWith(metadataPath)) {
+				} else if (resourceURI.isFile() && resourceURI.toFileString().startsWith(metadataPath)) {
 					// avoid adding dependencies towards local metadata (case of internationalization)
 				} else {
 					externalReferencesPaths.add(resourceURI);
@@ -304,15 +346,11 @@ public class ProfileDependenciesChecker implements IPluginChecker {
 	 * @return <code>true</code> if we have to manage reference, <code>false</code> otherwise.
 	 */
 	private boolean isExternalReferenceToManage(final IProject project, final Resource resource) {
-		final String resourceURI = resource.getURI().toString();
+		final URI uri = resource.getURI();
 
 		// We don't have to manage references of files from the same plug-in
-		if (resourceURI.startsWith("platform:/plugin/" + project.getName() + "/") || //$NON-NLS-1$ //$NON-NLS-2$
-				resourceURI.startsWith("platform:/resource/" + project.getName() + "/")) { //$NON-NLS-1$ //$NON-NLS-2$
-			return false;
-		}
-
-		return true;
+		return !(uri.isPlatformPlugin() || uri.isPlatformResource())
+				|| uri.segmentCount() < 2 || !uri.segment(1).equals(project.getName());
 	}
 
 	/**
@@ -366,7 +404,6 @@ public class ProfileDependenciesChecker implements IPluginChecker {
 	 *            the manifest header to be retrieved.
 	 * @return the line number or <code>0</code> if none was found.
 	 */
-	@SuppressWarnings("restriction")
 	private int getLineNumber(IManifestHeader imh) {
 		if (!(imh instanceof ManifestHeader)) {
 			return 0;
@@ -382,6 +419,18 @@ public class ProfileDependenciesChecker implements IPluginChecker {
 			Activator.log.error(e);
 		}
 		return 0;
+	}
+
+	/**
+	 * A severity function that maps the given missing dependencies to warnings and any others to errors.
+	 *
+	 * @param bundleSymbolicNames
+	 *            bundle dependencies that if missing are warning conditions, not errors
+	 * @return the severity function
+	 */
+	public static ToIntFunction<String> warningsFor(String... bundleSymbolicNames) {
+		Set<String> warningExceptions = Set.of(bundleSymbolicNames);
+		return bundleName -> warningExceptions.contains(bundleName) ? Diagnostic.WARNING : Diagnostic.ERROR;
 	}
 
 	/**
