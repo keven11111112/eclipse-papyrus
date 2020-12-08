@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -91,7 +92,7 @@ public class ElementTypesPluginChecker {
 		final PluginValidationService pluginValidationService = new PluginValidationService();
 
 		// First, check the static dependencies needed
-		pluginValidationService.addPluginChecker(createModelDependenciesChecker(project, null, null));
+		pluginValidationService.addPluginChecker(createModelDependenciesChecker(project));
 
 		// For all element types files in the plug-in
 		for (final IFile elementTypesFile : elementTypesFiles) {
@@ -133,7 +134,8 @@ public class ElementTypesPluginChecker {
 	private static ModelDependenciesChecker createModelDependenciesChecker(IProject project) {
 		// When checking the project, we have some additional requirements that aren't model-specific
 		return new ModelDependenciesChecker(project, null, null, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE)
-				.addRequirements(ADDITIONAL_REQUIREMENTS);
+				.addRequirements(ADDITIONAL_REQUIREMENTS)
+				.withSeverityFunction(bundle -> ADDITIONAL_REQUIREMENTS.contains(bundle) ? Diagnostic.WARNING : Diagnostic.ERROR);
 	}
 
 	private static ModelDependenciesChecker createModelDependenciesChecker(IProject project, IFile modelFile, Resource resource) {

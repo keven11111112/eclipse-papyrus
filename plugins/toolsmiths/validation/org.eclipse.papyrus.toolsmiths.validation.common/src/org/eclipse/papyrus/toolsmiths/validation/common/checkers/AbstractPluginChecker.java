@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus and others.
+ * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -16,10 +16,12 @@
 package org.eclipse.papyrus.toolsmiths.validation.common.checkers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -105,7 +107,12 @@ public abstract class AbstractPluginChecker implements IPluginChecker, IPluginCh
 	 * Create a marker from a diagnostic, including processing of any of the additional {@linkplain Diagnostic#getData() data tokens}.
 	 */
 	protected void createMarker(Diagnostic diagnostic) {
-		IMarker marker = MarkersService.createMarker((modelFile == null ? project : modelFile),
+		IResource resource = IPluginChecker2.getFile(diagnostic)
+				.map(IResource.class::cast)
+				.or(() -> Optional.ofNullable(modelFile))
+				.orElse(project);
+
+		IMarker marker = MarkersService.createMarker(resource,
 				IPluginChecker2.getMarkerType(diagnostic).orElse(markerType),
 				diagnostic);
 		IPluginChecker2.setAttributes(diagnostic, marker);
