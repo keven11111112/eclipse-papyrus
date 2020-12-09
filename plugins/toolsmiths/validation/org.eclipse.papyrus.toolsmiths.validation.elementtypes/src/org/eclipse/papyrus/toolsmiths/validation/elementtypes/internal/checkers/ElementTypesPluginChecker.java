@@ -173,7 +173,8 @@ public class ElementTypesPluginChecker {
 	}
 
 	private static BuildPropertiesChecker createBuildPropertiesChecker(IProject project, IFile modelFile, Resource resource) {
-		return new BuildPropertiesChecker(project, modelFile, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE);
+		return new BuildPropertiesChecker(project, modelFile, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE)
+				.withDependencies(file -> new ReferencedProfilesBuildPropertiesDependencies(resource).getDependencies());
 	}
 
 	/**

@@ -37,6 +37,7 @@ import org.junit.Test;
 /**
  * Test cases for the <em>Element Types Configurations</em> project builder configurations.
  */
+@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
 public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 
 	/**
@@ -49,7 +50,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 * Test the reporting of problems on the element types model resource.
 	 */
 	@Test
-	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
 	@Build
 	public void modelValidationFails() {
 		final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.elementtypesconfigurations"); //$NON-NLS-1$
@@ -61,7 +61,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 * Test the reporting of problems on the bundle manifest.
 	 */
 	@Test
-	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
 	@Build
 	public void dependencyValidationFails() {
 		final List<IMarker> dependenciesMarkers = fixture.getMarkers("META-INF/MANIFEST.MF"); //$NON-NLS-1$
@@ -74,7 +73,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 * Test the reporting of problems on the <tt>build.properties</tt> file.
 	 */
 	@Test
-	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
 	@Build
 	public void buildPropertiesValidationFails() {
 		final List<IMarker> buildMarkers = fixture.getMarkers("build.properties"); //$NON-NLS-1$
@@ -86,7 +84,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 * Test the reporting of problems on the <tt>plugin.xml</tt> file.
 	 */
 	@Test
-	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
 	@Build
 	public void extensionValidationFails() {
 		final List<IMarker> extensionsMarkers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
@@ -98,7 +95,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 * Test that a build of a correct project produces no markers on the bundle manifest.
 	 */
 	@Test
-	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
 	@OverlayFile("bug569357-ok/META-INF/MANIFEST.MF")
 	@Build
 	public void dependencyValidationPasses() {
@@ -110,7 +106,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 * Test that a build of a correct project produces no markers on the <tt>build.properties</tt> file.
 	 */
 	@Test
-	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
 	@OverlayFile("bug569357-ok/build.properties")
 	@Build
 	public void buildPropertiesValidationPasses() {
@@ -122,11 +117,23 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 * Test that a build of a correct project produces no markers on the <tt>plugin.xml</tt> file.
 	 */
 	@Test
-	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
 	@OverlayFile("bug569357-ok/plugin.xml")
 	@Build
 	public void extensionValidationPasses() {
 		final List<IMarker> markers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
+		assertThat(markers, not(hasItem(anything())));
+	}
+
+	/**
+	 * Test that a build of a correct project produces no markers on the element-types model file.
+	 */
+	@Test
+	@OverlayFile("bug569357-ok/plugin.xml")
+	@OverlayFile("bug569357-ok/resources/BookStore.elementtypesconfigurations")
+	@OverlayFile("bug569357-ok/resources/BookStore.profile.uml")
+	@Build
+	public void modelValidationPasses() {
+		final List<IMarker> markers = fixture.getMarkers("resources/BookStore.elementtypesconfigurations"); //$NON-NLS-1$
 		assertThat(markers, not(hasItem(anything())));
 	}
 

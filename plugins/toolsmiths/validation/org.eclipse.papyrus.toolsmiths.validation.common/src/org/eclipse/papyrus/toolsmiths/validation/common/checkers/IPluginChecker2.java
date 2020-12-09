@@ -59,6 +59,11 @@ import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 public interface IPluginChecker2 {
 
 	/**
+	 * The name of the marker attribute that records the diagnostic source.
+	 */
+	String MARKER_ATTRIBUTE_DIAGNOSTIC_SOURCE = "source"; //$NON-NLS-1$
+
+	/**
 	 * Check the plug-in, reporting problems to the given {@code diagnostics}.
 	 *
 	 * @param diagnostics

@@ -23,7 +23,7 @@ import org.hamcrest.Matcher;
 
 /**
  * Hamcrest matchers for the <em>Eclipse Workspace</em> API.
- * 
+ *
  * @since 3.0
  */
 public class WorkspaceMatchers {
@@ -34,7 +34,6 @@ public class WorkspaceMatchers {
 	private WorkspaceMatchers() {
 		super();
 	}
-
 
 	/**
 	 * Create a matcher for markers by severity.
@@ -52,5 +51,20 @@ public class WorkspaceMatchers {
 		};
 	}
 
+	/**
+	 * Create a matcher for markers by message.
+	 *
+	 * @param messageMatcher
+	 *            a message matcher to match markers
+	 * @return the marker matcher
+	 */
+	public static Matcher<IMarker> isMarkerMessage(Matcher<? super String> messageMatcher) {
+		return new FeatureMatcher<IMarker, String>(messageMatcher, "marker message", "message") { //$NON-NLS-1$//$NON-NLS-2$
+			@Override
+			protected String featureValueOf(IMarker actual) {
+				return actual.getAttribute(IMarker.MESSAGE, "");
+			}
+		};
+	}
 
 }

@@ -26,6 +26,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		ElementTypesPluginValidationTest.class,
 		ElementTypesPluginBuilderTest.class,
+		ElementTypesPluginXMLBuilderTest.class,
+		ElementTypesModelBuilderTest.class,
+		ElementTypesBuildPropertiesBuilderTest.class,
 })
 public class AllTests {
 

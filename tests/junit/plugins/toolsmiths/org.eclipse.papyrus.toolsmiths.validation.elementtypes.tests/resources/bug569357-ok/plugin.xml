@@ -23,4 +23,25 @@
 				clientContextID="org.eclipse.papyrus.infra.types.context"
 				path="resources/BookStore.elementtypesconfigurations"/>
 	</extension>
+	<extension
+			point="org.eclipse.emf.ecore.uri_mapping">
+		<mapping
+				source="pathmap://TEST/BOOK_STORE/"
+				target="platform:/plugin/org.eclipse.papyrus.toolsmiths.validation.elementtypes.example/resources/">
+		</mapping>
+	</extension>
+	<extension
+			point="org.eclipse.emf.ecore.dynamic_package">
+		<resource
+				location="pathmap://TEST/BOOK_STORE/BookStore.profile.uml#_pafKgTpKEeubmtHuaj6Y7A"
+				uri="http://www.eclipse.org/Papyrus/2020/Toolsmiths/test/builder/elementtypes/BookStore">
+		</resource>
+	</extension>
+	<extension
+			point="org.eclipse.uml2.uml.dynamic_package">
+		<profile
+				location="pathmap://TEST/BOOK_STORE/BookStore.profile.uml#_3SkxIDpJEeubmtHuaj6Y7A"
+				uri="http://www.eclipse.org/Papyrus/2020/Toolsmiths/test/builder/elementtypes/BookStore">
+		</profile>
+	</extension>
 </plugin>

@@ -28,13 +28,16 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -44,10 +47,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -62,6 +67,7 @@ public class TestProjectFixture extends ProjectFixture {
 
 	private final String markerType;
 	private String projectNameOverride;
+	private final Set<String> filteredDiagnosticSources = new HashSet<>();
 
 	/**
 	 * Initializes me. I look for element-types plugin validation markers.
@@ -81,6 +87,20 @@ public class TestProjectFixture extends ProjectFixture {
 		super();
 
 		this.markerType = markerType;
+	}
+
+	/**
+	 * Configure the fixture with a {@link Diagnostic} source to ignore. This allows, for example,
+	 * model validation tests to ignore problems reported by validators of other languages, such as
+	 * on UML concepts that are inappropriately reused in the models being validated.
+	 *
+	 * @param source
+	 *            a diagnostic source to filter out
+	 * @return myself, for convenience of call chaining
+	 */
+	public TestProjectFixture filterDiagnosticSource(String source) {
+		filteredDiagnosticSources.add(source);
+		return this;
 	}
 
 	@Override
@@ -137,7 +157,10 @@ public class TestProjectFixture extends ProjectFixture {
 		List<IMarker> result = null;
 
 		try {
-			result = Arrays.asList(resource.findMarkers(markerType, true, IResource.DEPTH_INFINITE));
+			Predicate<IMarker> markerPredicate = Predicate.not(marker -> filteredDiagnosticSources.contains(marker.getAttribute(IPluginChecker2.MARKER_ATTRIBUTE_DIAGNOSTIC_SOURCE, (String) null)));
+			result = Stream.of(resource.findMarkers(markerType, true, IResource.DEPTH_INFINITE))
+					.filter(markerPredicate)
+					.collect(Collectors.toList());
 		} catch (CoreException e) {
 			throw new AssertionError("Failed to get project markers.", e); //$NON-NLS-1$
 		}

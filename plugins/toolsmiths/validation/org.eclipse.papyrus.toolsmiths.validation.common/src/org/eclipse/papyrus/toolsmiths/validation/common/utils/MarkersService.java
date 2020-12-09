@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.MarkersManagementUtils;
 
 /**
@@ -111,6 +112,9 @@ public class MarkersService {
 		}
 
 		try {
+			if (diagnostic.getSource() != null && !diagnostic.getSource().isBlank()) {
+				result.setAttribute(IPluginChecker2.MARKER_ATTRIBUTE_DIAGNOSTIC_SOURCE, diagnostic.getSource());
+			}
 			if (target != null) {
 				result.setAttribute(EValidator.URI_ATTRIBUTE, target);
 			}

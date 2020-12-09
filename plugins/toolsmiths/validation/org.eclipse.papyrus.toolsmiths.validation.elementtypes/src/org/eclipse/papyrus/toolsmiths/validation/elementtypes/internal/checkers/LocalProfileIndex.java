@@ -24,6 +24,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -70,7 +72,26 @@ public class LocalProfileIndex {
 	 * @return the local profile index
 	 */
 	static LocalProfileIndex getInstance(EObject eObject, Map<Object, Object> context) {
-		return (LocalProfileIndex) context.computeIfAbsent(LocalProfileIndex.class, __ -> new LocalProfileIndex(eObject.eResource().getResourceSet()));
+		return (LocalProfileIndex) context.computeIfAbsent(LocalProfileIndex.class, __ -> getInstance(eObject.eResource().getResourceSet()));
+	}
+
+	/**
+	 * Get the cached instance of the local profile index for a resource set.
+	 *
+	 * @param resource
+	 *            set
+	 *            the contextural resource set
+	 * @return the local profile index
+	 */
+	static LocalProfileIndex getInstance(ResourceSet resourceSet) {
+		return Attachment.getIndex(resourceSet);
+	}
+
+	void reset() {
+		workspaceLoaded = false;
+		profilesByName.clear();
+		profilesByURI.clear();
+		stereotypesByName.clear();
 	}
 
 	/**
@@ -255,4 +276,42 @@ public class LocalProfileIndex {
 		}
 	}
 
+	//
+	// Nested types
+	//
+
+	private static final class Attachment extends AdapterImpl {
+		private final LocalProfileIndex index;
+
+		Attachment(LocalProfileIndex index) {
+			super();
+
+			this.index = index;
+		}
+
+		static LocalProfileIndex getIndex(ResourceSet rset) {
+			Attachment attachment = (Attachment) EcoreUtil.getAdapter(rset.eAdapters(), LocalProfileIndex.class);
+			if (attachment == null) {
+				attachment = new Attachment(new LocalProfileIndex(rset));
+				rset.eAdapters().add(attachment);
+			}
+			return attachment.getIndex();
+		}
+
+		@Override
+		public boolean isAdapterForType(Object type) {
+			return type == LocalProfileIndex.class;
+		}
+
+		LocalProfileIndex getIndex() {
+			return index;
+		}
+
+		@Override
+		public void notifyChanged(Notification msg) {
+			if (msg.getNotifier() instanceof ResourceSet && msg.getFeatureID(ResourceSet.class) == ResourceSet.RESOURCE_SET__RESOURCES) {
+				getIndex().reset();
+			}
+		}
+	}
 }
