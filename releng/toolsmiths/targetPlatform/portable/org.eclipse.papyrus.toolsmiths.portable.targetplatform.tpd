@@ -31,9 +31,9 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 
 /*** Updates from the Simrel repository ***/
 
-//updateFrom("oomph",0) 
+//updateFrom("Oomph",0) 
 
-location oomph "https://download.eclipse.org/oomph/drops/milestone/S20201201-042807-1.19.0-RC1" {
+location oomph "https://download.eclipse.org/oomph/drops/release/1.19.0" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
@@ -52,19 +52,19 @@ location oomph "https://download.eclipse.org/oomph/drops/milestone/S20201201-042
 	org.eclipse.oomph.preferences.feature.group
 }
 
-//updateFrom("EGIT",0) 
+//updateFrom("EGit",0) 
 
-location egit "https://download.eclipse.org/egit/staging/v5.10.0.202011251205-m3" // oomph
+location egit "https://download.eclipse.org/egit/updates-5.10" // oomph
 
 //updateFrom("m2e",0)
 
-location m2e "https://download.eclipse.org/technology/m2e/snapshots/1.17.0/latest/" // oomph
+location m2e "https://download.eclipse.org/technology/m2e/releases/1.17.1/" // oomph
 
 //updateFrom("Mylyn",0)
 
 location mylyn "https://download.eclipse.org/mylyn/drops/3.25.2/v20200831-1956" // oomph
 
-//updateFrom("EMF COMPARE",0)
+//updateFrom("EMF Compare",0)
 
 location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202011201248" {
 	org.eclipse.emf.compare.ide.ui.feature.group lazy

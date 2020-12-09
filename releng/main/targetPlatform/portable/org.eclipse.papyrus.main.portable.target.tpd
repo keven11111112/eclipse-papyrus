@@ -23,7 +23,7 @@ location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repositor
 
 //manualUpdate
 
-location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R20200831200620/repository/" {
+location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R20201130205003/repository/" {
 	com.google.guava [21.0.0,28.0.0) // emf.compare still needs guava 21.0.0
 	com.google.guava.source [21.0.0,28.0.0)
  	com.google.gson [2.7.0,2.8.0)
@@ -66,13 +66,13 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.18milestones/S-4.18RC1-202011251800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.18milestones/S-4.18RC2-202012021800/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2020-12",0) 
 
-location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.13.0/S202011300641" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.13.0" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -113,7 +113,7 @@ location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/upd
 
 //updateFrom("EMF (Core)",0)
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202011160413" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.24" {
 	org.eclipse.emf.sdk.feature.group
 }
 

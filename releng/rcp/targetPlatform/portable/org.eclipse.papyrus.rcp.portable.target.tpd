@@ -5,15 +5,15 @@ include "../../../main/targetPlatform/portable/org.eclipse.papyrus.main.portable
 
 /*** Updates from the Simrel repository ***/
 
-//updateFrom("EGIT",0)
+//updateFrom("EGit",0)
 
-location egit "https://download.eclipse.org/egit/staging/v5.10.0.202011251205-m3" {
+location egit "https://download.eclipse.org/egit/updates-5.10" {
 	org.eclipse.egit.feature.group
 }
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.18milestones/S-4.18RC1-202011251800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.18milestones/S-4.18RC2-202012021800/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -30,7 +30,7 @@ location mylyn "https://download.eclipse.org/mylyn/drops/3.25.2/v20200831-1956" 
 	org.eclipse.mylyn_feature.feature.group
 }
 
-//updateFrom("EMF COMPARE",0) 
+//updateFrom("EMF Compare",0) 
 
 location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202011201248" {
 	org.eclipse.emf.compare.source.feature.group
@@ -39,7 +39,7 @@ location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/m
 
 //updateFrom("EMF (Core)",0)
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202011160413" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.24" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
