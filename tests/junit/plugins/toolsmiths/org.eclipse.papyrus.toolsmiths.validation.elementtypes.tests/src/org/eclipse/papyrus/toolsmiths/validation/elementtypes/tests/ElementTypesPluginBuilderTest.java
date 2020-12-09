@@ -18,8 +18,10 @@ package org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.hasAtLeast;
 import static org.eclipse.papyrus.junit.matchers.WorkspaceMatchers.isMarkerSeverity;
+import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
@@ -27,6 +29,7 @@ import java.util.List;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.TestProjectFixture.Build;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.TestProjectFixture.OverlayFile;
 import org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.TestProjectFixture.TestProject;
 import org.junit.Rule;
 import org.junit.Test;
@@ -48,7 +51,7 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	@Test
 	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
 	@Build
-	public void testModelValidation() {
+	public void modelValidationFails() {
 		final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.elementtypesconfigurations"); //$NON-NLS-1$
 		assertThat("The number of markers for model file is not correct", modelMarkers.size(), greaterThanOrEqual(2)); //$NON-NLS-1$
 		assertThat("The severity of the model markesr is not correct", modelMarkers, everyItem(isMarkerSeverity(IMarker.SEVERITY_ERROR))); //$NON-NLS-1$
@@ -60,11 +63,23 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	@Test
 	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
 	@Build
-	public void testDependencyValidation() {
+	public void dependencyValidationFails() {
 		final List<IMarker> dependenciesMarkers = fixture.getMarkers("META-INF/MANIFEST.MF"); //$NON-NLS-1$
 		assertThat("The number of markers for dependencies is not correct", dependenciesMarkers.size(), greaterThanOrEqual(5)); //$NON-NLS-1$
 		assertThat("The number of warning markers for dependencies is not correct", dependenciesMarkers, hasAtLeast(2, isMarkerSeverity(IMarker.SEVERITY_WARNING))); //$NON-NLS-1$
 		assertThat("The number of error markers for dependencies is not correct", dependenciesMarkers, hasAtLeast(3, isMarkerSeverity(IMarker.SEVERITY_ERROR))); //$NON-NLS-1$
+	}
+
+	/**
+	 * Test the reporting of problems on the <tt>build.properties</tt> file.
+	 */
+	@Test
+	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
+	@Build
+	public void buildPropertiesValidationFails() {
+		final List<IMarker> buildMarkers = fixture.getMarkers("build.properties"); //$NON-NLS-1$
+		assertThat("The number of markers for dependencies is not correct", buildMarkers.size(), greaterThanOrEqual(1)); //$NON-NLS-1$
+		assertThat("The number of error markers for build.properties is not correct", buildMarkers, hasAtLeast(1, isMarkerSeverity(IMarker.SEVERITY_ERROR))); //$NON-NLS-1$
 	}
 
 	/**
@@ -73,10 +88,46 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	@Test
 	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
 	@Build
-	public void testExtensionsValidation() {
+	public void extensionValidationFails() {
 		final List<IMarker> extensionsMarkers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
 		assertThat("The number of markers for extensions is not correct", extensionsMarkers.size(), greaterThanOrEqual(1)); //$NON-NLS-1$
 		assertThat("Missing extension should be a warning", extensionsMarkers, hasItem(isMarkerSeverity(IMarker.SEVERITY_WARNING))); //$NON-NLS-1$
+	}
+
+	/**
+	 * Test that a build of a correct project produces no markers on the bundle manifest.
+	 */
+	@Test
+	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
+	@OverlayFile("bug569357-ok/META-INF/MANIFEST.MF")
+	@Build
+	public void dependencyValidationPasses() {
+		final List<IMarker> markers = fixture.getMarkers("META-INF/MANIFEST.MF"); //$NON-NLS-1$
+		assertThat(markers, not(hasItem(anything())));
+	}
+
+	/**
+	 * Test that a build of a correct project produces no markers on the <tt>build.properties</tt> file.
+	 */
+	@Test
+	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
+	@OverlayFile("bug569357-ok/build.properties")
+	@Build
+	public void buildPropertiesValidationPasses() {
+		final List<IMarker> markers = fixture.getMarkers("build.properties"); //$NON-NLS-1$
+		assertThat(markers, not(hasItem(anything())));
+	}
+
+	/**
+	 * Test that a build of a correct project produces no markers on the <tt>plugin.xml</tt> file.
+	 */
+	@Test
+	@TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
+	@OverlayFile("bug569357-ok/plugin.xml")
+	@Build
+	public void extensionValidationPasses() {
+		final List<IMarker> markers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
+		assertThat(markers, not(hasItem(anything())));
 	}
 
 }

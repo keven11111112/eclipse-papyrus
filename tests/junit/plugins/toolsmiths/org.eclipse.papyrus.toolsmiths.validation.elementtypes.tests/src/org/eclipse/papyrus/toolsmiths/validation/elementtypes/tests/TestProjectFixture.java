@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -35,11 +36,14 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
@@ -84,6 +88,11 @@ public class TestProjectFixture extends ProjectFixture {
 		Build build = JUnitUtils.getAnnotation(description, Build.class);
 		if (build != null && build.value()) {
 			base = new BuildProject(base);
+		}
+
+		List<OverlayFile> overlayFiles = JUnitUtils.getAnnotationsByType(description, OverlayFile.class);
+		if (!overlayFiles.isEmpty()) {
+			base = new OverlayFilesInProject(overlayFiles, base, description);
 		}
 
 		TestProject testProject = JUnitUtils.getAnnotation(description, TestProject.class);
@@ -188,6 +197,38 @@ public class TestProjectFixture extends ProjectFixture {
 	}
 
 	/**
+	 * Annotates a test or test class with a file to overlay on the {@link TestProject project content}
+	 * after that has initially been populated.
+	 */
+	@Target({ ElementType.METHOD, ElementType.TYPE })
+	@Retention(RetentionPolicy.RUNTIME)
+	@Repeatable(OverlayFiles.class)
+	public @interface OverlayFile {
+		/**
+		 * The source path of the file to overlay on the project, relative to the {@code resources/} folder.
+		 */
+		String value();
+
+		/**
+		 * The path of the file to create in the project. If omitted, the file is created at the same path
+		 * relative to the project as the source is relative to the first-level nested folder of the
+		 * {@code resources/} folder in the bundle in which the source file is contained. If the source
+		 * file is a direct member of the {@code resources/} folder, then it is created in the root of
+		 * the project.
+		 */
+		String path() default "";
+	}
+
+	/**
+	 * Container of the repeatable {@code OverlayFile} annotation.
+	 */
+	@Target({ ElementType.METHOD, ElementType.TYPE })
+	@Retention(RetentionPolicy.RUNTIME)
+	public @interface OverlayFiles {
+		OverlayFile[] value();
+	}
+
+	/**
 	 * A statement that peeks into the contents of the project before the project is created,
 	 * to override the name of the project that will be created with the bundle symbolic name
 	 * in the case that the project's content will be a bundle project.
@@ -264,13 +305,67 @@ public class TestProjectFixture extends ProjectFixture {
 			}
 
 			try {
-				copyFolder(JUnitUtils.getTestClass(description), "resources/" + testProject.value());
+				copyFolder(JUnitUtils.getTestClass(description), "resources/" + testProject.value()); //$NON-NLS-1$
 			} catch (IOException e) {
 				throw new IOException("Failed to initialize project contents.", e); //$NON-NLS-1$
 			}
 
 			base.evaluate();
 		}
+	}
+
+	/**
+	 * A statement that overlays additional files onto the initialized project.
+	 *
+	 * @see InitializeProject
+	 */
+	private final class OverlayFilesInProject extends Statement {
+		private final List<OverlayFile> overlayFiles;
+		private final Statement base;
+		private final Description description;
+
+		OverlayFilesInProject(List<OverlayFile> overlayFiles, Statement base, Description description) {
+			super();
+
+			this.overlayFiles = List.copyOf(overlayFiles);
+			this.base = base;
+			this.description = description;
+		}
+
+		@Override
+		public void evaluate() throws Throwable {
+			Class<?> testClass = JUnitUtils.getTestClass(description);
+
+			for (OverlayFile overlay : overlayFiles) {
+				URL resource = testClass.getClassLoader().getResource("resources/" + overlay.value()); //$NON-NLS-1$
+				try (InputStream input = resource.openStream()) {
+					IFile file = getProject().getFile(getTargetPath(overlay));
+					if (file.exists()) {
+						file.setContents(input, true, false, null);
+					} else {
+						file.create(input, true, null);
+					}
+				}
+			}
+
+			base.evaluate();
+		}
+
+		private IPath getTargetPath(OverlayFile overlay) {
+			IPath result;
+
+			if (overlay.path().isBlank()) {
+				result = new Path(overlay.value());
+				if (result.segmentCount() > 1) {
+					result = result.removeFirstSegments(1);
+				}
+			} else {
+				result = new Path(overlay.path());
+			}
+
+			return result;
+		}
+
 	}
 
 	/**

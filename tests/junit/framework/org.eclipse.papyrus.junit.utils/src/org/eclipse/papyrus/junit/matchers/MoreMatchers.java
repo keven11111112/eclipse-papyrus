@@ -256,6 +256,8 @@ public class MoreMatchers {
 	 * @param elementMatcher
 	 *            the matcher for elements
 	 * @return a matcher for iterables that verifies a number of element matches
+	 * 
+	 * @since 3.0
 	 */
 	public static <T, N extends Number> Matcher<Iterable<T>> hasCount(Matcher<N> countMatcher, Matcher<? super T> elementMatcher) {
 		return new TypeSafeDiagnosingMatcher<>() {
@@ -297,6 +299,8 @@ public class MoreMatchers {
 	 * @param elementMatcher
 	 *            the matcher for elements
 	 * @return a matcher for iterables that verifies a maximum number of element matches
+	 * 
+	 * @since 3.0
 	 */
 	public static <T> Matcher<Iterable<T>> hasAtMost(int max, Matcher<? super T> elementMatcher) {
 		return hasCount(lessThanOrEqual(max), elementMatcher);
@@ -312,6 +316,8 @@ public class MoreMatchers {
 	 * @param elementMatcher
 	 *            the matcher for elements
 	 * @return a matcher for iterables that verifies a minimum number of element matches
+	 * 
+	 * @since 3.0
 	 */
 	public static <T> Matcher<Iterable<T>> hasAtLeast(int min, Matcher<? super T> elementMatcher) {
 		return hasCount(greaterThanOrEqual(min), elementMatcher);

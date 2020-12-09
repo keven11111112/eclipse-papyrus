@@ -23,6 +23,8 @@ import org.hamcrest.Matcher;
 
 /**
  * Hamcrest matchers for the <em>Eclipse Workspace</em> API.
+ * 
+ * @since 3.0
  */
 public class WorkspaceMatchers {
 
