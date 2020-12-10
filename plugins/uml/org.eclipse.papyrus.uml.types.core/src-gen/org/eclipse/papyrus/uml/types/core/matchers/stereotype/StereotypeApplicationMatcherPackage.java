@@ -99,6 +99,15 @@ public interface StereotypeApplicationMatcherPackage extends EPackage {
 	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__OWNING_TYPE = ElementTypesConfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION__OWNING_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__SOURCE = ElementTypesConfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION__SOURCE;
+
+	/**
 	 * The feature id for the '<em><b>Matched Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -171,6 +180,15 @@ public interface StereotypeApplicationMatcherPackage extends EPackage {
 	 * @ordered
 	 */
 	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__OWNING_TYPE = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_MATCHER_ADVICE_CONFIGURATION__SOURCE = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.

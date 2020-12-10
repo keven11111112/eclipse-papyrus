@@ -99,6 +99,15 @@ public interface ApplyStereotypeAdvicePackage extends EPackage {
 	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__OWNING_TYPE = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__SOURCE = ElementTypesConfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__SOURCE;
+
+	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
