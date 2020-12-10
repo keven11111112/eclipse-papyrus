@@ -15,12 +15,27 @@
 
 package org.eclipse.papyrus.infra.emf.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.osgi.container.ModuleContainer;
+import org.eclipse.papyrus.infra.emf.Activator;
+import org.eclipse.pde.core.plugin.IPluginElement;
+import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.osgi.framework.Bundle;
@@ -28,12 +43,22 @@ import org.osgi.framework.Constants;
 import org.osgi.framework.namespace.IdentityNamespace;
 import org.osgi.framework.wiring.BundleCapability;
 import org.osgi.framework.wiring.FrameworkWiring;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.ext.DefaultHandler2;
 
 /**
  * Optional support for a PDE Target platform, to discover the plug-ins against
  * which workspace projects (if any) are overlaid.
  */
 abstract class PlatformHelper {
+
+	private static final String ECORE_URI_MAPPING_EXTENSION_POINT = "org.eclipse.emf.ecore.uri_mapping"; //$NON-NLS-1$
+	private static final String E_EXTENSION = "extension"; //$NON-NLS-1$
+	private static final String A_POINT = "point"; //$NON-NLS-1$
+	private static final String E_MAPPING = "mapping"; //$NON-NLS-1$
+	private static final String A_SOURCE = "source"; //$NON-NLS-1$
+	private static final String A_TARGET = "target"; //$NON-NLS-1$
 
 	static final PlatformHelper INSTANCE;
 
@@ -58,6 +83,15 @@ abstract class PlatformHelper {
 	 * @return the platform bundle IDs
 	 */
 	abstract Collection<String> getPlatformBundleIDs();
+
+	/**
+	 * Return the {@code org.eclipse.emf.ecore.uri_mapping} extension declarations in the given {@code project}.
+	 *
+	 * @param project
+	 *            a project in the workspace
+	 * @return its declared URI mappings
+	 */
+	abstract Map<String, String> getLocalUriMappings(IProject project);
 
 	//
 	// Nested types
@@ -87,6 +121,47 @@ abstract class PlatformHelper {
 			return result;
 		}
 
+		@Override
+		Map<String, String> getLocalUriMappings(IProject project) {
+			IFile pluginXML = project.getFile("plugin.xml"); //$NON-NLS-1$
+			if (!pluginXML.isAccessible()) {
+				return Map.of();
+			}
+
+			Map<String, String> result = new HashMap<>();
+
+			try (InputStream input = pluginXML.getContents()) {
+				SAXParserFactory.newInstance().newSAXParser().parse(input, new DefaultHandler2() {
+					private boolean inMappings;
+
+					@Override
+					public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+						// plugin.xml does not use namespaces, so the parser provides empty local names and the local names in qName
+						if (E_EXTENSION.equals(qName) && ECORE_URI_MAPPING_EXTENSION_POINT.equals(attributes.getValue(A_POINT))) {
+							inMappings = true;
+						} else if (inMappings && E_MAPPING.equals(qName)) {
+							String source = attributes.getValue(A_SOURCE);
+							String target = attributes.getValue(A_TARGET);
+							if (source != null && !source.isBlank() && target != null && !target.isBlank()) {
+								result.put(source, target);
+							}
+						}
+					}
+
+					@Override
+					public void endElement(String uri, String localName, String qName) throws SAXException {
+						if (E_EXTENSION.equals(qName)) {
+							inMappings = false;
+						}
+					}
+				});
+			} catch (SAXException | IOException | ParserConfigurationException | CoreException e) {
+				Activator.log.error("Failed to parse plugin.xml in project" + project.getName(), e); //$NON-NLS-1$
+			}
+
+			return result;
+		}
+
 	}
 
 	/**
@@ -106,6 +181,28 @@ abstract class PlatformHelper {
 			}
 
 			return result;
+		}
+
+		@Override
+		Map<String, String> getLocalUriMappings(IProject project) {
+			HashMap<String, String> localMappings = new HashMap<>();
+			final IPluginModelBase model = PluginRegistry.findModel(project.getName());
+			if (model == null) {
+				// No mappings if no plugin model
+				return localMappings;
+			}
+
+			for (IPluginExtension extension : model.getExtensions().getExtensions()) {
+				if (!Objects.equals(extension.getPoint(), ECORE_URI_MAPPING_EXTENSION_POINT)) {
+					continue;
+				}
+				Arrays.stream(extension.getChildren())
+						.filter(IPluginElement.class::isInstance).map(IPluginElement.class::cast)
+						.filter(element -> Objects.equals(E_MAPPING, element.getName()))
+						.forEach(element -> localMappings.put(element.getAttribute(A_SOURCE).getValue(), element.getAttribute(A_TARGET).getValue()));
+			}
+
+			return localMappings;
 		}
 
 	}

@@ -24,7 +24,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -43,21 +42,14 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
 import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.pde.core.plugin.IPluginExtension;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
-import org.eclipse.pde.core.plugin.IPluginObject;
-import org.eclipse.pde.core.plugin.PluginRegistry;
-import org.eclipse.pde.internal.core.text.plugin.PluginElementNode;
 
 /**
  *
  * This class provides methods for EMF Resource
  *
  */
-@SuppressWarnings("restriction")
 public class ResourceUtils {
 
-	private static final String ECORE_URI_MAPPING_EXTENSION_POINT = "org.eclipse.emf.ecore.uri_mapping"; //$NON-NLS-1$
 	private static final String PATH_SEPARATOR = "/";
 
 
@@ -193,28 +185,9 @@ public class ResourceUtils {
 		return result;
 	}
 
-	/** Return the `org.eclipse.emf.ecore.uri_mapping` extension declarations in the given project. */
+	/** Return the {@code org.eclipse.emf.ecore.uri_mapping} extension declarations in the given {@code project}. */
 	public static Map<String, String> getLocalUriMappings(IProject project) {
-		HashMap<String, String> localMappings = new HashMap<>();
-		final IPluginModelBase model = PluginRegistry.findModel(project.getName());
-		if (model == null) {
-			// No mappings if no plugin model
-			return localMappings;
-		}
-
-		for (IPluginExtension extension : model.getExtensions().getExtensions()) {
-			if (!Objects.equals(extension.getPoint(), ECORE_URI_MAPPING_EXTENSION_POINT)) {
-				continue;
-			}
-			List<IPluginObject> pluginObjects = Arrays.stream(extension.getChildren()).filter(child -> Objects.equals("mapping", child.getName())).collect(Collectors.toList()); //$NON-NLS-1$
-			pluginObjects.forEach(pluginObject -> {
-				if ((pluginObject instanceof PluginElementNode)) {
-					PluginElementNode node = (PluginElementNode) pluginObject;
-					localMappings.put(node.getAttribute("source").getValue(), node.getAttribute("target").getValue()); //$NON-NLS-1$ //$NON-NLS-2$
-				}
-			});
-		}
-		return localMappings;
+		return PlatformHelper.INSTANCE.getLocalUriMappings(project);
 	}
 
 	/** Returns an encoded string representation of the path. */
