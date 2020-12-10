@@ -34,6 +34,7 @@ public abstract class AbstractPapyrusBuilder {
 	private ProjectDependencyHelper DEPENDENCY_HELPER = ProjectDependencyHelper.INSTANCE;
 
 	/**
+	 * Run the build on the specified project.
 	 *
 	 * @param builtProject
 	 *            the current build project
@@ -52,6 +53,17 @@ public abstract class AbstractPapyrusBuilder {
 	public abstract IProject[] build(IProject builtProject, final PapyrusPluginBuilder papyrusBuilder, int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException;
 
 	/**
+	 * see {@link IncrementalProjectBuilder#clean(IProgressMonitor)}
+	 *
+	 * @param monitor
+	 * @param iProject
+	 * @throws CoreException
+	 */
+	public void clean(IProgressMonitor monitor, IProject iProject) throws CoreException {
+		// default implementation does nothing
+	}
+
+	/**
 	 *
 	 * @param res
 	 *            the resource to mark with an error
@@ -67,9 +79,9 @@ public abstract class AbstractPapyrusBuilder {
 		try {
 			marker = res.createMarker(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER);
 
-			marker.setAttribute(IMarker.MESSAGE, "Papyrus Builder: " + message);
+			marker.setAttribute(IMarker.MESSAGE, Messages.AbstractPapyrusBuilder_PapyrusBuilder + message);
 			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
-			marker.setAttribute("code", 10000);
+			marker.setAttribute("code", 10000); //$NON-NLS-1$
 			marker.setAttribute(IMarker.SOURCE_ID, Activator.PLUGIN_ID);
 			marker.setAttribute(IJavaModelMarker.ID, 7500);
 		} catch (CoreException e) {

@@ -69,12 +69,13 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 		if (getProject() == null) {
 			return null;
 		}
-		// remove all previously created marker
-		clean(monitor);
 
 		if (!isPapyrusPluginBuilderActivated()) {
 			return null;
 		}
+
+		// remove all previously created marker
+		clean(monitor);
 
 		// TODO : we also remove all java marker
 		// getProject().deleteMarkers(IJavaModelMarker.JAVA_MODEL_PROBLEM_MARKER, true, -1);
@@ -107,6 +108,27 @@ public class PapyrusPluginBuilder extends IncrementalProjectBuilder {
 		}
 
 		return wantedDeltaProjects.toArray(new IProject[wantedDeltaProjects.size()]);
+	}
+
+	@Override
+	protected void clean(IProgressMonitor monitor) throws CoreException {
+		super.clean(monitor);
+		if (isPapyrusModelBuilderActivated()) {
+			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.modelBuilders) {
+				builder.clean(monitor, getProject());
+			}
+		}
+
+		if (isPapyrusManifestBuilderActivated()) {
+			for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.manifestBuilders) {
+				builder.clean(monitor, getProject());
+			}
+		}
+
+		for (final AbstractPapyrusBuilder builder : PapyrusPluginBuilder.pluginBuilders) {
+			builder.clean(monitor, getProject());
+		}
+
 	}
 
 	/**
