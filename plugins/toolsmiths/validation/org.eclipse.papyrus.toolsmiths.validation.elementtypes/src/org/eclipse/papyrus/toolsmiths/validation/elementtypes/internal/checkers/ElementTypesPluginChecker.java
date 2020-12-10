@@ -17,7 +17,7 @@
 package org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers;
 
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER;
-import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_TYPE;
+import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE;
 
 import java.util.Collection;
 import java.util.Objects;
@@ -86,7 +86,7 @@ public class ElementTypesPluginChecker {
 
 		monitor.subTask("Prepare plug-in validation"); //$NON-NLS-1$
 		// First of all, delete the existing markers for project
-		MarkersService.deleteMarkers(project, ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_TYPE);
+		MarkersService.deleteMarkers(project, ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE);
 
 		// Create the plug-in validation service
 		final PluginValidationService pluginValidationService = new PluginValidationService();
@@ -133,13 +133,13 @@ public class ElementTypesPluginChecker {
 
 	private static ModelDependenciesChecker createModelDependenciesChecker(IProject project) {
 		// When checking the project, we have some additional requirements that aren't model-specific
-		return new ModelDependenciesChecker(project, null, null, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE)
+		return new ModelDependenciesChecker(project, null, null, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
 				.addRequirements(ADDITIONAL_REQUIREMENTS)
 				.withSeverityFunction(bundle -> ADDITIONAL_REQUIREMENTS.contains(bundle) ? Diagnostic.WARNING : Diagnostic.ERROR);
 	}
 
 	private static ModelDependenciesChecker createModelDependenciesChecker(IProject project, IFile modelFile, Resource resource) {
-		return new ModelDependenciesChecker(project, modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE)
+		return new ModelDependenciesChecker(project, modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
 				.withAdditionalRequirements(ElementTypesPluginChecker::getBundlesFromMetamodelNSURI);
 	}
 
@@ -160,7 +160,7 @@ public class ElementTypesPluginChecker {
 	}
 
 	private static ModelValidationChecker createModelValidationChecker(IProject project, IFile modelFile, Resource resource) {
-		return new ModelValidationChecker(modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE);
+		return new ModelValidationChecker(modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE);
 	}
 
 	/**
@@ -173,7 +173,7 @@ public class ElementTypesPluginChecker {
 	}
 
 	private static BuildPropertiesChecker createBuildPropertiesChecker(IProject project, IFile modelFile, Resource resource) {
-		return new BuildPropertiesChecker(project, modelFile, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE)
+		return new BuildPropertiesChecker(project, modelFile, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
 				.withDependencies(file -> new ReferencedProfilesBuildPropertiesDependencies(resource).getDependencies());
 	}
 
@@ -190,13 +190,13 @@ public class ElementTypesPluginChecker {
 			IProject project, IFile modelFile, Resource resource) {
 
 		Collection<ElementTypeSetConfiguration> sets = EcoreUtil.getObjectsByType(resource.getContents(), ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION);
-		return new ExtensionsChecker<>(project, modelFile, sets, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE, ElementTypesPluginChecker::createPluginErrorReporter);
+		return new ExtensionsChecker<>(project, modelFile, sets, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, ElementTypesPluginChecker::createPluginErrorReporter);
 	}
 
 	private static PluginErrorReporter<ElementTypeSetConfiguration> createPluginErrorReporter(IFile pluginXML, IFile modelFile, ElementTypeSetConfiguration model) {
 		ElementTypesPluginXMLValidator validator = new ElementTypesPluginXMLValidator(modelFile);
 
-		return new PluginErrorReporter<>(pluginXML, modelFile, model, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE, set -> set.getIdentifier())
+		return new PluginErrorReporter<>(pluginXML, modelFile, model, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, set -> set.getIdentifier())
 				.requireExtensionPoint(ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER, validator::matchExtension, validator::checkExtension)
 				.impliedByArchitectureContexts(ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER);
 	}
@@ -211,7 +211,7 @@ public class ElementTypesPluginChecker {
 	}
 
 	private static CustomModelChecker createCustomModelChecker(IProject project, IFile modelFile, Resource resource) {
-		return new CustomModelChecker(modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_TYPE)
+		return new CustomModelChecker(modelFile, resource, ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
 				.withValidator(ElementTypesConfigurationsPackage.eNS_URI, ElementTypesCustomValidator::new)
 				.withValidator(ApplyStereotypeAdvicePackage.eNS_URI, ApplyStereotypeAdviceCustomValidator::new)
 				.withValidator(StereotypeApplicationMatcherPackage.eNS_URI, StereotypeApplicationMatcherCustomValidator::new)

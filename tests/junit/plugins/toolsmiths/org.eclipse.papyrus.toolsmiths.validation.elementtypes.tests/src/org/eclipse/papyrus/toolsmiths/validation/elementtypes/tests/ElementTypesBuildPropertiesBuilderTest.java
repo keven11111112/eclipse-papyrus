@@ -16,6 +16,7 @@ package org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests;
 
 import static org.eclipse.papyrus.junit.matchers.WorkspaceMatchers.isMarkerMessage;
 import static org.eclipse.papyrus.junit.matchers.WorkspaceMatchers.isMarkerSeverity;
+import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE;
 import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.both;
 import static org.hamcrest.CoreMatchers.containsString;
@@ -27,9 +28,11 @@ import java.util.List;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
-import org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.TestProjectFixture.Build;
-import org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.TestProjectFixture.OverlayFile;
-import org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.TestProjectFixture.TestProject;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.Build;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.MarkerType;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.OverlayFile;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.TestProject;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.TestProjectFixture;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -38,8 +41,9 @@ import org.junit.Test;
  * in the project builder.
  */
 @TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
-@Build
 @OverlayFile("bug569357-ok/resources/BookStore.profile.uml")
+@MarkerType(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
+@Build
 public class ElementTypesBuildPropertiesBuilderTest extends AbstractPapyrusTest {
 
 	/**

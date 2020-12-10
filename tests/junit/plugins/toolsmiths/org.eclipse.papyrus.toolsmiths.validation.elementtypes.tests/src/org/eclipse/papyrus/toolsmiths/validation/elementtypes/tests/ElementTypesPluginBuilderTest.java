@@ -18,6 +18,7 @@ package org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.hasAtLeast;
 import static org.eclipse.papyrus.junit.matchers.WorkspaceMatchers.isMarkerSeverity;
+import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE;
 import static org.hamcrest.CoreMatchers.anything;
 import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.CoreMatchers.hasItem;
@@ -28,9 +29,11 @@ import java.util.List;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
-import org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.TestProjectFixture.Build;
-import org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.TestProjectFixture.OverlayFile;
-import org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests.TestProjectFixture.TestProject;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.Build;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.MarkerType;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.OverlayFile;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.TestProject;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.TestProjectFixture;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -38,6 +41,8 @@ import org.junit.Test;
  * Test cases for the <em>Element Types Configurations</em> project builder configurations.
  */
 @TestProject("org.eclipse.papyrus.toolsmiths.validation.elementtypes.example")
+@MarkerType(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE)
+@Build
 public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 
 	/**
@@ -50,7 +55,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 * Test the reporting of problems on the element types model resource.
 	 */
 	@Test
-	@Build
 	public void modelValidationFails() {
 		final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.elementtypesconfigurations"); //$NON-NLS-1$
 		assertThat("The number of markers for model file is not correct", modelMarkers.size(), greaterThanOrEqual(2)); //$NON-NLS-1$
@@ -61,7 +65,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 * Test the reporting of problems on the bundle manifest.
 	 */
 	@Test
-	@Build
 	public void dependencyValidationFails() {
 		final List<IMarker> dependenciesMarkers = fixture.getMarkers("META-INF/MANIFEST.MF"); //$NON-NLS-1$
 		assertThat("The number of markers for dependencies is not correct", dependenciesMarkers.size(), greaterThanOrEqual(5)); //$NON-NLS-1$
@@ -73,7 +76,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 * Test the reporting of problems on the <tt>build.properties</tt> file.
 	 */
 	@Test
-	@Build
 	public void buildPropertiesValidationFails() {
 		final List<IMarker> buildMarkers = fixture.getMarkers("build.properties"); //$NON-NLS-1$
 		assertThat("The number of markers for dependencies is not correct", buildMarkers.size(), greaterThanOrEqual(1)); //$NON-NLS-1$
@@ -84,7 +86,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 * Test the reporting of problems on the <tt>plugin.xml</tt> file.
 	 */
 	@Test
-	@Build
 	public void extensionValidationFails() {
 		final List<IMarker> extensionsMarkers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
 		assertThat("The number of markers for extensions is not correct", extensionsMarkers.size(), greaterThanOrEqual(1)); //$NON-NLS-1$
@@ -96,7 +97,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	@OverlayFile("bug569357-ok/META-INF/MANIFEST.MF")
-	@Build
 	public void dependencyValidationPasses() {
 		final List<IMarker> markers = fixture.getMarkers("META-INF/MANIFEST.MF"); //$NON-NLS-1$
 		assertThat(markers, not(hasItem(anything())));
@@ -107,7 +107,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	@OverlayFile("bug569357-ok/build.properties")
-	@Build
 	public void buildPropertiesValidationPasses() {
 		final List<IMarker> markers = fixture.getMarkers("build.properties"); //$NON-NLS-1$
 		assertThat(markers, not(hasItem(anything())));
@@ -118,7 +117,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	 */
 	@Test
 	@OverlayFile("bug569357-ok/plugin.xml")
-	@Build
 	public void extensionValidationPasses() {
 		final List<IMarker> markers = fixture.getMarkers("plugin.xml"); //$NON-NLS-1$
 		assertThat(markers, not(hasItem(anything())));
@@ -131,7 +129,6 @@ public class ElementTypesPluginBuilderTest extends AbstractPapyrusTest {
 	@OverlayFile("bug569357-ok/plugin.xml")
 	@OverlayFile("bug569357-ok/resources/BookStore.elementtypesconfigurations")
 	@OverlayFile("bug569357-ok/resources/BookStore.profile.uml")
-	@Build
 	public void modelValidationPasses() {
 		final List<IMarker> markers = fixture.getMarkers("resources/BookStore.elementtypesconfigurations"); //$NON-NLS-1$
 		assertThat(markers, not(hasItem(anything())));

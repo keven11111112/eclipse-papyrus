@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.validation.elementtypes.tests;
+package org.eclipse.papyrus.toolsmiths.validation.common.tests.rules;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -22,16 +22,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Repeatable;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
@@ -53,7 +49,6 @@ import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
-import org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
@@ -63,30 +58,18 @@ import org.junit.runners.model.Statement;
  */
 public class TestProjectFixture extends ProjectFixture {
 
+	static final String JAVA_PROBLEM = "org.eclipse.jdt.core.problem"; //$NON-NLS-1$
 	static final Pattern BUNDLE_SYMBOLIC_NAME = Pattern.compile("Bundle-SymbolicName:\\s*([^;]+)"); //$NON-NLS-1$
 
-	private final String markerType;
+	private String markerType = JAVA_PROBLEM;
 	private String projectNameOverride;
 	private final Set<String> filteredDiagnosticSources = new HashSet<>();
 
 	/**
-	 * Initializes me. I look for element-types plugin validation markers.
+	 * Initializes me.
 	 */
 	public TestProjectFixture() {
-		this(ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_TYPE);
-	}
-
-	/**
-	 * Initializes me with the type of markers that I look for.
-	 *
-	 * @param markerType
-	 *
-	 * @see #getMarkers(IResource)
-	 */
-	public TestProjectFixture(String markerType) {
 		super();
-
-		this.markerType = markerType;
 	}
 
 	/**
@@ -120,7 +103,12 @@ public class TestProjectFixture extends ProjectFixture {
 
 		Statement createProject = super.apply(initProject, description);
 
-		return new InitProjectName(testProject, createProject, description);
+		Statement projectName = new InitProjectName(testProject, createProject, description);
+
+		MarkerType markerTypeAnnotation = JUnitUtils.getAnnotation(description, MarkerType.class);
+		Statement markerType = new SetMarkerType(markerTypeAnnotation, projectName, description);
+
+		return markerType;
 	}
 
 	/**
@@ -196,60 +184,6 @@ public class TestProjectFixture extends ProjectFixture {
 	//
 	// Nested types
 	//
-
-	/**
-	 * Annotates a test or test class with a path to the content to copy into the project.
-	 */
-	@Target({ ElementType.METHOD, ElementType.TYPE })
-	@Retention(RetentionPolicy.RUNTIME)
-	public @interface TestProject {
-		/** The path to the project template folder, relative to the {@code resources/} folder. */
-		String value();
-	}
-
-	/**
-	 * Annotates a test or test class to indicate that the project should be built before running the test.
-	 */
-	@Target({ ElementType.METHOD, ElementType.TYPE })
-	@Retention(RetentionPolicy.RUNTIME)
-	public @interface Build {
-		/**
-		 * Whether to build the project. A {@code false} value can override a default specified on the class.
-		 */
-		boolean value() default true;
-	}
-
-	/**
-	 * Annotates a test or test class with a file to overlay on the {@link TestProject project content}
-	 * after that has initially been populated.
-	 */
-	@Target({ ElementType.METHOD, ElementType.TYPE })
-	@Retention(RetentionPolicy.RUNTIME)
-	@Repeatable(OverlayFiles.class)
-	public @interface OverlayFile {
-		/**
-		 * The source path of the file to overlay on the project, relative to the {@code resources/} folder.
-		 */
-		String value();
-
-		/**
-		 * The path of the file to create in the project. If omitted, the file is created at the same path
-		 * relative to the project as the source is relative to the first-level nested folder of the
-		 * {@code resources/} folder in the bundle in which the source file is contained. If the source
-		 * file is a direct member of the {@code resources/} folder, then it is created in the root of
-		 * the project.
-		 */
-		String path() default "";
-	}
-
-	/**
-	 * Container of the repeatable {@code OverlayFile} annotation.
-	 */
-	@Target({ ElementType.METHOD, ElementType.TYPE })
-	@Retention(RetentionPolicy.RUNTIME)
-	public @interface OverlayFiles {
-		OverlayFile[] value();
-	}
 
 	/**
 	 * A statement that peeks into the contents of the project before the project is created,
@@ -444,6 +378,35 @@ public class TestProjectFixture extends ProjectFixture {
 				base.evaluate();
 			} finally {
 				restorePrefs.forEach((pref, restore) -> prefs.setValue(pref, restore));
+			}
+		}
+
+	}
+
+	/**
+	 * A statement that sets the marker type to extract from resources for the duration of a test.
+	 */
+	private final class SetMarkerType extends Statement {
+		private final String testMarkerType;
+		private final Statement base;
+		private String restoreMarkerType;
+
+		SetMarkerType(MarkerType annotation, Statement base, Description description) {
+			super();
+
+			this.testMarkerType = Optional.ofNullable(annotation).map(MarkerType::value).orElse(JAVA_PROBLEM);
+			this.base = base;
+		}
+
+		@Override
+		public void evaluate() throws Throwable {
+			restoreMarkerType = TestProjectFixture.this.markerType;
+
+			try {
+				TestProjectFixture.this.markerType = testMarkerType;
+				base.evaluate();
+			} finally {
+				TestProjectFixture.this.markerType = restoreMarkerType;
 			}
 		}
 

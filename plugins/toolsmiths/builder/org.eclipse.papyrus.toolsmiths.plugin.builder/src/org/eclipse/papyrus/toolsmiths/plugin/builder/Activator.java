@@ -20,7 +20,7 @@ package org.eclipse.papyrus.toolsmiths.plugin.builder;
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.byExtension;
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.resourceSets;
 import static org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper.rootsOfType;
-import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_TYPE;
+import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.checkers.ElementTypesPluginChecker.ELEMENT_TYPES_CONFIGURATION_EXTENSION;
 
 import org.eclipse.core.resources.IFile;
@@ -72,20 +72,20 @@ public class Activator extends AbstractUIPlugin {
 		PapyrusPluginBuilder.addModelBuilder(new GenericEMFModelBuilder());
 		PapyrusPluginBuilder.addModelBuilder(new ArchitectureModelBuilder());
 		PapyrusPluginBuilder.addModelBuilder(new XWTModelBuilder());
-		PapyrusPluginBuilder.addModelBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_TYPE, this::mapElementTypesResources)
+		PapyrusPluginBuilder.addModelBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, this::mapElementTypesResources)
 				.withChecker(ElementTypesPluginChecker.modelValidationCheckerFactory())
 				.withChecker(ElementTypesPluginChecker.customModelCheckerFactory()));
 
 		// manifest builder
 		PapyrusPluginBuilder.addManifestBuilder(new ManifestBuilder());
 		PapyrusPluginBuilder.addManifestBuilder(new StaticProfileManifestBuilder());
-		PapyrusPluginBuilder.addManifestBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_TYPE, this::mapElementTypesResources)
+		PapyrusPluginBuilder.addManifestBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, this::mapElementTypesResources)
 				.withChecker(ElementTypesPluginChecker.modelDependenciesCheckerFactory())
 				.withChecker(ElementTypesPluginChecker.buildPropertiesCheckerFactory()));
 
 		// extension builder
 		PapyrusPluginBuilder.addPluginBuilder(new StaticProfileExtensionsBuilder());
-		PapyrusPluginBuilder.addPluginBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_TYPE, this::mapElementTypesResources)
+		PapyrusPluginBuilder.addPluginBuilder(new PluginCheckerBuilder(ELEMENTTYPES_PLUGIN_VALIDATION_MARKER_TYPE, this::mapElementTypesResources)
 				.withChecker(ElementTypesPluginChecker.extensionsCheckerFactory()));
 	}
 
