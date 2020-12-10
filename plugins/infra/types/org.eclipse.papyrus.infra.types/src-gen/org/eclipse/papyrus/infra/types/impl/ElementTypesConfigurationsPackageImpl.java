@@ -360,6 +360,16 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 	 * @generated
 	 */
 	@Override
+	public EAttribute getConfigurationElement_Source() {
+		return (EAttribute)configurationElementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getElementTypeConfiguration() {
 		return elementTypeConfigurationEClass;
 	}
@@ -913,6 +923,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		configurationElementEClass = createEClass(CONFIGURATION_ELEMENT);
 		createEAttribute(configurationElementEClass, CONFIGURATION_ELEMENT__DESCRIPTION);
 		createEReference(configurationElementEClass, CONFIGURATION_ELEMENT__OWNING_TYPE);
+		createEAttribute(configurationElementEClass, CONFIGURATION_ELEMENT__SOURCE);
 
 		elementTypeConfigurationEClass = createEClass(ELEMENT_TYPE_CONFIGURATION);
 		createEAttribute(elementTypeConfigurationEClass, ELEMENT_TYPE_CONFIGURATION__HINT);
@@ -1048,6 +1059,7 @@ public class ElementTypesConfigurationsPackageImpl extends EPackageImpl implemen
 		initEClass(configurationElementEClass, ConfigurationElement.class, "ConfigurationElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConfigurationElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, ConfigurationElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfigurationElement_OwningType(), this.getElementTypeConfiguration(), this.getElementTypeConfiguration_OwnedConfigurations(), "owningType", null, 0, 1, ConfigurationElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getConfigurationElement_Source(), ecorePackage.getEString(), "source", null, 0, 1, ConfigurationElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(elementTypeConfigurationEClass, ElementTypeConfiguration.class, "ElementTypeConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getElementTypeConfiguration_Hint(), ecorePackage.getEString(), "hint", "", 0, 1, ElementTypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

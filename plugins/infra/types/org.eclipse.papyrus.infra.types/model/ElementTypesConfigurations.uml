@@ -41,6 +41,14 @@
       <ownedAttribute xmi:type="uml:Property" xmi:id="_UYr0ACjYEeuEo8scjf0hcw" name="owningType" type="_VkhwQhLoEeeDV7UHoBIkeA" association="_UYp-0CjYEeuEo8scjf0hcw">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pH8RUCjYEeuEo8scjf0hcw"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_EHSRIDr3EeuVZcjeBNBKyQ" name="source">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_fLal0Dr3EeuVZcjeBNBKyQ" annotatedElement="_EHSRIDr3EeuVZcjeBNBKyQ">
+          <body>The source of this configuration element. For ConfigurationElements that have been generated from a Model Element, this can be used to reference e.g. the URI of the source element.</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KLku0Dr3EeuVZcjeBNBKyQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KNIOADr3EeuVZcjeBNBKyQ" value="1"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Interface" xmi:id="_VkhwPhLoEeeDV7UHoBIkeA" name="IdentifiedConfiguration">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_VkhwPxLoEeeDV7UHoBIkeA" name="identifier" visibility="public" isOrdered="true">

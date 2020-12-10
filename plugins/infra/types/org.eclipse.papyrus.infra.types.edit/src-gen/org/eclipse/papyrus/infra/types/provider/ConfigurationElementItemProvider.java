@@ -83,6 +83,7 @@ public class ConfigurationElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addDescriptionPropertyDescriptor(object);
+			addSourcePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -101,6 +102,28 @@ public class ConfigurationElementItemProvider
 				 getString("_UI_ConfigurationElement_description_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurationElement_description_feature", "_UI_ConfigurationElement_type"),
 				 ElementTypesConfigurationsPackage.Literals.CONFIGURATION_ELEMENT__DESCRIPTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Source feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSourcePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConfigurationElement_source_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurationElement_source_feature", "_UI_ConfigurationElement_type"),
+				 ElementTypesConfigurationsPackage.Literals.CONFIGURATION_ELEMENT__SOURCE,
 				 true,
 				 false,
 				 false,
@@ -137,6 +160,7 @@ public class ConfigurationElementItemProvider
 
 		switch (notification.getFeatureID(ConfigurationElement.class)) {
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION:
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__SOURCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

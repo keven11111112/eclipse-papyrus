@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ConfigurationElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.impl.ConfigurationElementImpl#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.impl.ConfigurationElementImpl#getSource <em>Source</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,6 +64,26 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	 * @ordered
 	 */
 	protected String description = DESCRIPTION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSource() <em>Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SOURCE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSource()
+	 * @generated
+	 * @ordered
+	 */
+	protected String source = SOURCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,6 +176,29 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	 * @generated
 	 */
 	@Override
+	public String getSource() {
+		return source;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSource(String newSource) {
+		String oldSource = source;
+		source = newSource;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__SOURCE, oldSource, source));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
@@ -205,6 +249,8 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 				return getDescription();
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
 				return getOwningType();
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__SOURCE:
+				return getSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -222,6 +268,9 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 				return;
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
 				setOwningType((ElementTypeConfiguration)newValue);
+				return;
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__SOURCE:
+				setSource((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -241,6 +290,9 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
 				setOwningType((ElementTypeConfiguration)null);
 				return;
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__SOURCE:
+				setSource(SOURCE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -257,6 +309,8 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE:
 				return getOwningType() != null;
+			case ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__SOURCE:
+				return SOURCE_EDEFAULT == null ? source != null : !SOURCE_EDEFAULT.equals(source);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -273,6 +327,8 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (description: ");
 		result.append(description);
+		result.append(", source: ");
+		result.append(source);
 		result.append(')');
 		return result.toString();
 	}

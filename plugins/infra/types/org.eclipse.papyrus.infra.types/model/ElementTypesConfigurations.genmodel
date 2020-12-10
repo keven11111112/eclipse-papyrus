@@ -64,6 +64,7 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ConfigurationElement/description"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
           ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ConfigurationElement/owningType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ConfigurationElement/source"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//ElementTypeConfiguration">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ElementTypeConfiguration/hint"/>

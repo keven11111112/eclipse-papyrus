@@ -109,13 +109,22 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int CONFIGURATION_ELEMENT__OWNING_TYPE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION_ELEMENT__SOURCE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Configuration Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ELEMENT_FEATURE_COUNT = 2;
+	int CONFIGURATION_ELEMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Configuration Element</em>' class.
@@ -153,6 +162,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ELEMENT_TYPE_SET_CONFIGURATION__OWNING_TYPE = CONFIGURATION_ELEMENT__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE_SET_CONFIGURATION__SOURCE = CONFIGURATION_ELEMENT__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -262,6 +280,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ELEMENT_TYPE_CONFIGURATION__OWNING_TYPE = CONFIGURATION_ELEMENT__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT_TYPE_CONFIGURATION__SOURCE = CONFIGURATION_ELEMENT__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -448,6 +475,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ADVICE_CONFIGURATION__OWNING_TYPE = CONFIGURATION_ELEMENT__OWNING_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADVICE_CONFIGURATION__SOURCE = CONFIGURATION_ELEMENT__SOURCE;
+
+	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -510,6 +546,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE = ADVICE_CONFIGURATION__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__SOURCE = ADVICE_CONFIGURATION__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
@@ -666,6 +711,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int CONTAINER_CONFIGURATION__OWNING_TYPE = CONFIGURATION_ELEMENT__OWNING_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTAINER_CONFIGURATION__SOURCE = CONFIGURATION_ELEMENT__SOURCE;
+
+	/**
 	 * The feature id for the '<em><b>Container Matcher Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -739,6 +793,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_MATCHER_CONFIGURATION__OWNING_TYPE = CONFIGURATION_ELEMENT__OWNING_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_MATCHER_CONFIGURATION__SOURCE = CONFIGURATION_ELEMENT__SOURCE;
+
+	/**
 	 * The feature id for the '<em><b>Matched Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -792,6 +855,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SPECIALIZATION_TYPE_CONFIGURATION__OWNING_TYPE = ELEMENT_TYPE_CONFIGURATION__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIALIZATION_TYPE_CONFIGURATION__SOURCE = ELEMENT_TYPE_CONFIGURATION__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -948,6 +1020,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__OWNING_TYPE = ADVICE_CONFIGURATION__OWNING_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__SOURCE = ADVICE_CONFIGURATION__SOURCE;
+
+	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1073,6 +1154,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int METAMODEL_TYPE_CONFIGURATION__OWNING_TYPE = ELEMENT_TYPE_CONFIGURATION__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_TYPE_CONFIGURATION__SOURCE = ELEMENT_TYPE_CONFIGURATION__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1211,6 +1301,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int EDIT_HELPER_ADVICE_CONFIGURATION__OWNING_TYPE = ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__OWNING_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDIT_HELPER_ADVICE_CONFIGURATION__SOURCE = ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__SOURCE;
+
+	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1291,6 +1390,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ADVICE_BINDING_CONFIGURATION__OWNING_TYPE = ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADVICE_BINDING_CONFIGURATION__SOURCE = ABSTRACT_ADVICE_BINDING_CONFIGURATION__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
@@ -1456,6 +1564,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int MATCHER_CONFIGURATION__OWNING_TYPE = ABSTRACT_MATCHER_CONFIGURATION__OWNING_TYPE;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MATCHER_CONFIGURATION__SOURCE = ABSTRACT_MATCHER_CONFIGURATION__SOURCE;
+
+	/**
 	 * The feature id for the '<em><b>Matched Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1518,6 +1635,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNALLY_REGISTERED_TYPE__OWNING_TYPE = ELEMENT_TYPE_CONFIGURATION__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_TYPE__SOURCE = ELEMENT_TYPE_CONFIGURATION__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1636,6 +1762,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNALLY_REGISTERED_ADVICE__OWNING_TYPE = ADVICE_BINDING_CONFIGURATION__OWNING_TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTERNALLY_REGISTERED_ADVICE__SOURCE = ADVICE_BINDING_CONFIGURATION__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
@@ -1878,6 +2013,17 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConfigurationElement_OwningType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Source</em>'.
+	 * @see org.eclipse.papyrus.infra.types.ConfigurationElement#getSource()
+	 * @see #getConfigurationElement()
+	 * @generated
+	 */
+	EAttribute getConfigurationElement_Source();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration <em>Element Type Configuration</em>}'.
@@ -2531,6 +2677,14 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONFIGURATION_ELEMENT__OWNING_TYPE = eINSTANCE.getConfigurationElement_OwningType();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURATION_ELEMENT__SOURCE = eINSTANCE.getConfigurationElement_Source();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl <em>Element Type Configuration</em>}' class.

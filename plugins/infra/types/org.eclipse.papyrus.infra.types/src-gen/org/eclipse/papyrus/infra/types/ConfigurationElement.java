@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getOwningType <em>Owning Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getSource <em>Source</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getConfigurationElement()
@@ -88,5 +89,34 @@ public interface ConfigurationElement extends EObject {
 	 * @generated
 	 */
 	void setOwningType(ElementTypeConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The source of this configuration element. For ConfigurationElements that have been generated from a Model Element, this can be used to reference e.g. the URI of the source element.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Source</em>' attribute.
+	 * @see #setSource(String)
+	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getConfigurationElement_Source()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	String getSource();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getSource <em>Source</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Source</em>' attribute.
+	 * @see #getSource()
+	 * @generated
+	 */
+	void setSource(String value);
 
 } // ConfigurationElement
