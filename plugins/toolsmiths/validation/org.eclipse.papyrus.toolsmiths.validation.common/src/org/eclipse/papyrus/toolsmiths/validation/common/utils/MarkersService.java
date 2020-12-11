@@ -84,7 +84,7 @@ public class MarkersService {
 						? IMarker.SEVERITY_WARNING
 						: IMarker.SEVERITY_ERROR;
 
-		IMarker result = createMarker(resource, type, diagnostic.getMessage(), severity);
+		IMarker result = createMarker(resource, type, IPluginChecker2.getMessage(diagnostic), severity);
 
 		String target = null;
 		StringBuilder related = null;

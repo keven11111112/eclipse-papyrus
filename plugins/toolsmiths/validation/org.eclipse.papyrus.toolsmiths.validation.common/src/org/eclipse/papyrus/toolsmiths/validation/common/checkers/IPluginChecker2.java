@@ -15,10 +15,14 @@
 
 package org.eclipse.papyrus.toolsmiths.validation.common.checkers;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -30,6 +34,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 
@@ -165,6 +170,69 @@ public interface IPluginChecker2 {
 	 */
 	static MarkerAttribute location(String location) {
 		return new MarkerAttribute(IMarker.LOCATION, location);
+	}
+
+	/**
+	 * Create a dynamic message argument to be plugged into the message when creating a marker from the diagnostic.
+	 * The power of dynamic messages comes from how they are accumulated: when appending a diagnostic that has dynamic
+	 * message arguments to a {@code DiagnosticChain}, the message arguments will be merged with an existing dynamic-message
+	 * diagnostic that represents the same problem (is otherwise equivalent). Of course, this only works with the
+	 * diagnostic chain that is passed by the <em>Plugin Builder</em> and to its checkers.
+	 *
+	 * @param index
+	 *            the message parameter index to fill
+	 * @param value
+	 *            the value to fill it with
+	 *
+	 * @return the dynamic message argument
+	 */
+	static DynamicMessageArgument dynamicMessageArgument(int index, Object value) {
+		return new DynamicMessageArgument(index, value);
+	}
+
+	/**
+	 * Query whether a {@code diagnostic} has a "dynamic message" that is composed from its
+	 * arguments at the time of creating the marker.
+	 *
+	 * @param diagnostic
+	 *            a diagnostic
+	 * @return whether it has any {@linkplain #dynamicMessageArgument(int, Object) dynamic message arguments}
+	 *
+	 * @see #dynamicMessageArgument(int, Object)
+	 */
+	static boolean hasDynamicMessage(Diagnostic diagnostic) {
+		List<?> data = diagnostic.getData();
+		return data != null && data.stream().anyMatch(DynamicMessageArgument.class::isInstance);
+	}
+
+	/**
+	 * Compose the "dynamic message" from a {@code diagnostic}.
+	 *
+	 * @param diagnostic
+	 *            a diagnostic that {@linkplain #hasDynamicMessage(Diagnostic) has a dynamic message}
+	 * @return the dynamic message
+	 *
+	 * @see #hasDynamicMessage(Diagnostic)
+	 * @see #dynamicMessageArgument(int, Object)
+	 */
+	static String getDynamicMessage(Diagnostic diagnostic) {
+		Object[] args = DynamicMessageArgument.stream(diagnostic)
+				.map(DynamicMessageArgument::getValueAsString)
+				.toArray();
+		return NLS.bind(diagnostic.getMessage(), args);
+	}
+
+	/**
+	 * Get the message of a {@code diagnostic}, whether it is a {@linkplain Diagnostic#getMessage() static message}
+	 * or a {@linkplain #getDynamicMessage(Diagnostic) dynamic message}. Whichever it is, it will be the message
+	 * that should be stored in the marker.
+	 *
+	 * @param diagnostic
+	 *            a diagnostic
+	 * @return its message
+	 */
+	static String getMessage(Diagnostic diagnostic) {
+		return hasDynamicMessage(diagnostic) ? getDynamicMessage(diagnostic) : diagnostic.getMessage();
 	}
 
 	//
@@ -388,6 +456,134 @@ public interface IPluginChecker2 {
 		@Override
 		public String toString() {
 			return String.format("%s=%s", name, value);
+		}
+
+	}
+
+	/**
+	 * <p>
+	 * A token to put in the {@linkplain Diagnostic#getData() data list} of a {@link Diagnostic} to specify a positional
+	 * argument in a dynamic message that is composed when creating the marker from the message pattern.
+	 * </p>
+	 * <p>
+	 * The values of dynamic message arguments are ignored in the comparison of {@link Diagnostic}s because all values
+	 * in the same position from diagnostics of the same message pattern and severity (and other attributes) are combined
+	 * when generating the message for the marker.
+	 * </p>
+	 */
+	static final class DynamicMessageArgument implements Comparable<DynamicMessageArgument> {
+		private final int index;
+		private Object value;
+
+		/**
+		 * Create a new positional dynamic message argument.
+		 *
+		 * @param index
+		 *            the index of the message parameter to substitute
+		 * @param value
+		 *            the value to substitute for that parameter
+		 */
+		public DynamicMessageArgument(int index, Object value) {
+			this.index = index;
+			this.value = value;
+		}
+
+		public int getIndex() {
+			return index;
+		}
+
+		public Object getValue() {
+			return value;
+		}
+
+		public String getValueAsString() {
+			if (value == null) {
+				return ""; //$NON-NLS-1$
+			}
+			if (value instanceof Collection) {
+				return ((Collection<?>) value).stream()
+						.filter(Objects::nonNull)
+						.map(Object::toString)
+						.collect(Collectors.joining(", ")); //$NON-NLS-1$
+			}
+			return String.valueOf(value);
+		}
+
+		public void merge(DynamicMessageArgument argument) {
+			if (argument.getIndex() != getIndex()) {
+				throw new IllegalArgumentException("attempt to merge arguments at different positions"); //$NON-NLS-1$
+			}
+
+			if (this.value == null) {
+				this.value = safeCopy(argument.getValue());
+			} else if (this.value instanceof Collection<?>) {
+				@SuppressWarnings("unchecked")
+				Collection<Object> collection = (Collection<Object>) this.value;
+				merge(collection, safeCopy(argument.getValue()));
+			} else {
+				Collection<Object> collection = new ArrayList<>();
+				collection.add(this.value);
+				merge(collection, safeCopy(argument.getValue()));
+				this.value = collection;
+			}
+		}
+
+		private Object safeCopy(Object value) {
+			if (value instanceof Collection) {
+				return List.copyOf((Collection<?>) value);
+			}
+
+			return value;
+		}
+
+		private void merge(Collection<Object> collection, Object value) {
+			if (value == null) {
+				// Pass
+			} else if (value instanceof Collection) {
+				collection.addAll((Collection<?>) value);
+			} else {
+				collection.add(value);
+			}
+		}
+
+		@Override
+		public int compareTo(DynamicMessageArgument o) {
+			return Integer.compare(getIndex(), o.getIndex());
+		}
+
+		@Override
+		public int hashCode() {
+			return index;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj) {
+				return true;
+			}
+			if (!(obj instanceof DynamicMessageArgument)) {
+				return false;
+			}
+			DynamicMessageArgument other = (DynamicMessageArgument) obj;
+			return other.getIndex() == getIndex();
+		}
+
+		@Override
+		public String toString() {
+			return String.format("{%d}=\"%s\"", index, value);
+		}
+
+		/**
+		 * Obtain a stream over the dynamic message arguments of a {@code diagnostic}, in position order.
+		 *
+		 * @param diagnostic
+		 *            a diagnostic
+		 * @return its dynamic message arguments, in order
+		 */
+		public static Stream<DynamicMessageArgument> stream(Diagnostic diagnostic) {
+			return diagnostic.getData().stream()
+					.filter(DynamicMessageArgument.class::isInstance).map(DynamicMessageArgument.class::cast)
+					.sorted();
 		}
 
 	}

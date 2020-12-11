@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -29,13 +30,13 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.DiagnosticEquivalence;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.CheckerDiagnosticChain;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 
 import com.google.common.collect.ListMultimap;
@@ -117,7 +118,7 @@ public class PluginCheckerBuilder extends AbstractPapyrusBuilder {
 		// And one more for actually creating problem markers.
 		SubMonitor subMonitor = SubMonitor.convert(monitor, (1 + sets.keySet().size()) * checkerFactories.size() + 1);
 
-		BasicDiagnostic diagnostics = new BasicDiagnostic();
+		CheckerDiagnosticChain diagnostics = new CheckerDiagnosticChain();
 
 		// First, see about checking the project as a whole
 		check(builtProject, null, null, diagnostics, subMonitor);
@@ -130,7 +131,7 @@ public class PluginCheckerBuilder extends AbstractPapyrusBuilder {
 
 		// Create markers if the validation is not OK
 		if (diagnostics.getSeverity() > Diagnostic.OK) {
-			wrap(diagnostics).getChildren().stream().distinct().forEach(this::createMarker);
+			wrap(diagnostics.stream()).distinct().forEach(this::createMarker);
 		}
 		subMonitor.worked(1);
 
@@ -187,6 +188,10 @@ public class PluginCheckerBuilder extends AbstractPapyrusBuilder {
 		return IPluginChecker2.getMarkerType(diagnostic).isEmpty()
 				? diagnosticEquivalence.wrap(diagnostic, IPluginChecker2.markerType(defaultMarkerType))
 				: diagnosticEquivalence.wrap(diagnostic);
+	}
+
+	private Stream<Diagnostic> wrap(Stream<Diagnostic> diagnostics) {
+		return diagnostics.map(this::wrap);
 	}
 
 }

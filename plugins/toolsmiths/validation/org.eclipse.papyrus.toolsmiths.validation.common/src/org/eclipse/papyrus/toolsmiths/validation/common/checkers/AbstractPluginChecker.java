@@ -17,6 +17,7 @@ package org.eclipse.papyrus.toolsmiths.validation.common.checkers;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -25,6 +26,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.CheckerDiagnosticChain;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 
 import com.google.common.collect.Lists;
@@ -78,13 +80,13 @@ public abstract class AbstractPluginChecker implements IPluginChecker, IPluginCh
 
 	@Override
 	public void check(IProgressMonitor monitor) {
-		BasicDiagnostic diagnostics = new BasicDiagnostic();
+		CheckerDiagnosticChain diagnostics = new CheckerDiagnosticChain(diagnosticEquivalence);
 
 		check(diagnostics, monitor);
 
 		// Create markers if the validation is not OK
 		if (diagnostics.getSeverity() > Diagnostic.OK) {
-			wrap(diagnostics).getChildren().stream().distinct().forEach(this::createMarker);
+			wrap(diagnostics.stream()).distinct().forEach(this::createMarker);
 		}
 	}
 
@@ -127,6 +129,10 @@ public abstract class AbstractPluginChecker implements IPluginChecker, IPluginCh
 		return IPluginChecker2.getMarkerType(diagnostic).isEmpty()
 				? diagnosticEquivalence.wrap(diagnostic, IPluginChecker2.markerType(getMarkerType()))
 				: diagnosticEquivalence.wrap(diagnostic);
+	}
+
+	private Stream<Diagnostic> wrap(Stream<Diagnostic> diagnostics) {
+		return diagnostics.map(this::wrap);
 	}
 
 }

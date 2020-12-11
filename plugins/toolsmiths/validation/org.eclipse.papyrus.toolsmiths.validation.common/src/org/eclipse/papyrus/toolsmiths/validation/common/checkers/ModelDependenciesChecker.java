@@ -17,12 +17,15 @@
 package org.eclipse.papyrus.toolsmiths.validation.common.checkers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.filebuffers.FileBuffers;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
@@ -47,6 +50,7 @@ import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementS
 import org.eclipse.pde.internal.core.ibundle.IManifestHeader;
 import org.eclipse.pde.internal.core.text.bundle.BundleModel;
 import org.eclipse.pde.internal.core.text.bundle.ManifestHeader;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
 
 /**
@@ -55,6 +59,9 @@ import org.osgi.framework.Constants;
  */
 @SuppressWarnings("restriction")
 public class ModelDependenciesChecker extends AbstractPluginChecker {
+
+	/** The URI scheme for Equinox's internal <tt>bundleresource://</tt> URIs. */
+	private static final String BUNDLE_RESOURCE_SCHEME = "bundleresource"; //$NON-NLS-1$
 
 	/**
 	 * The EMF model resource.
@@ -66,6 +73,9 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	private ToIntFunction<? super String> severityFunction = __ -> Diagnostic.ERROR;
 
 	private final List<Function<? super Resource, ? extends Collection<String>>> additionalDependencyFunctions = new ArrayList<>();
+
+	/** Regex to parse the bundle ID out of a URI of <tt>bundleresource:</tt> scheme. */
+	private final Pattern bundleResourceAuthorityPattern = Pattern.compile("^\\d+"); //$NON-NLS-1$
 
 	/**
 	 * Initializes me to report all missing bundle dependencies as errors.
@@ -189,7 +199,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 		if (!requiredPlugins.isEmpty()) {
 			requiredPlugins.stream().forEach(requiredPlugin -> {
 				int severity = severityFunction.applyAsInt(requiredPlugin);
-				errors.add(new ManifestError(getMarkerType(), "The plug-in '" + requiredPlugin + "' must be declared as required plug-in (for '" + resourceName + "').", severity, Constants.REQUIRE_BUNDLE));
+				errors.add(new ManifestError(getMarkerType(), "The plug-in ''" + requiredPlugin + "'' must be declared as required plug-in (for ''{0}'').", severity, Constants.REQUIRE_BUNDLE, resourceName));
 			});
 			reportErrors(diagnostics, errors);
 		}
@@ -209,7 +219,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 			final IFile manifestFile = ProjectManagementService.getManifestFile(getProject());
 			BundleModel textBundleModel = prepareTextBundleModel(manifestFile);
 			errors.stream().forEach(error -> {
-				reportBundleError(diagnostics, manifestFile, textBundleModel, error.type, error.message, error.severity, error.header);
+				reportBundleError(diagnostics, manifestFile, textBundleModel, error.type, error.message, error.severity, error.header, error.dependentName);
 			});
 		}
 	}
@@ -229,14 +239,22 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	 *            the severity of the marker to create
 	 * @param header
 	 *            the header entry of the manifest file on which marker is created.
+	 * @param sourceName
+	 *            the name of the source of the problem, e.g. the file or whatever that implies the problem
 	 */
-	private void reportBundleError(DiagnosticChain diagnostics, IFile manifestFile, BundleModel textBundleModel, String type, String message, int severity, String header) {
+	private void reportBundleError(DiagnosticChain diagnostics, IFile manifestFile, BundleModel textBundleModel, String type, String message, int severity, String header, String sourceName) {
 		Diagnostic diagnostic;
 
 		if (textBundleModel != null) {
-			diagnostic = createDiagnostic(manifestFile, severity, 0, message,
-					IPluginChecker2.markerType(type),
-					IPluginChecker2.lineNumber(getLineNumber(textBundleModel.getBundle().getManifestHeader(header))));
+			List<Object> data = new ArrayList<>(Arrays.asList(IPluginChecker2.markerType(type),
+					IPluginChecker2.lineNumber(getLineNumber(textBundleModel.getBundle().getManifestHeader(header)))));
+
+			if (sourceName != null) {
+				// All source names for the same dependency are collected and dynamically injected into the diagnostic message
+				data.add(IPluginChecker2.dynamicMessageArgument(0, sourceName));
+			}
+
+			diagnostic = createDiagnostic(manifestFile, severity, 0, message, data.toArray());
 
 		} else {
 			diagnostic = createDiagnostic(manifestFile, severity, 0, message);
@@ -381,10 +399,24 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	private String getPluginNameFromURI(final URI uri) {
 		String pluginName = null;
 
-		// Take we correct segment (without authority)
-		final int takenSegment = uri.hasAuthority() ? 0 : 1;
-		if (uri.segmentCount() > takenSegment) {
-			pluginName = uri.segment(takenSegment);
+		if ((uri.isPlatformPlugin() || uri.isPlatformResource()) && uri.segmentCount() > 1) {
+			pluginName = uri.segment(1);
+		} else if (BUNDLE_RESOURCE_SCHEME.equals(uri.scheme()) && uri.hasAuthority()) {
+			Bundle bundle = null;
+			Matcher m = bundleResourceAuthorityPattern.matcher(uri.authority());
+			if (m.find()) {
+				long bundleID = Long.parseLong(m.group());
+				bundle = Activator.getDefault().getBundle().getBundleContext().getBundle(bundleID);
+			}
+			if (bundle != null) {
+				pluginName = bundle.getSymbolicName();
+			}
+		} else {
+			// Best guess. Take the correct segment (without authority)
+			final int takenSegment = uri.hasAuthority() ? 0 : 1;
+			if (uri.segmentCount() > takenSegment) {
+				pluginName = uri.segment(takenSegment);
+			}
 		}
 
 		return pluginName;
@@ -435,12 +467,14 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 		private final String message;
 		private final int severity;
 		private final String header;
+		private final String dependentName;
 
-		public ManifestError(String type, String message, int severity, String header) {
+		ManifestError(String type, String message, int severity, String header, String dependentName) {
 			this.type = type;
 			this.message = message;
 			this.severity = severity;
 			this.header = header;
+			this.dependentName = dependentName;
 		}
 	}
 }
