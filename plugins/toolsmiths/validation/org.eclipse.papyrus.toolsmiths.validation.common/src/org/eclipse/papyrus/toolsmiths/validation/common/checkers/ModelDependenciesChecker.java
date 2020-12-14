@@ -16,11 +16,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.common.checkers;
 
+import static java.util.stream.Collectors.toSet;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
@@ -31,7 +36,6 @@ import org.eclipse.core.filebuffers.FileBuffers;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
 import org.eclipse.core.filebuffers.ITextFileBufferManager;
 import org.eclipse.core.filebuffers.LocationKind;
-import org.eclipse.core.internal.runtime.MetaDataKeeper;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -40,6 +44,9 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.text.BadLocationException;
@@ -337,18 +344,17 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 			return externalReferencesPaths;
 		}
 
-		String metadataPath = MetaDataKeeper.getMetaArea().getMetadataLocation().toString();
+		// First step, compute the closure of cross-document references
+		Set<URI> externalRefs = computeExternalCrossReferences(resource);
 
-		// First step, resolve all references
-		EcoreUtil.resolveAll(resource);
-
-		for (final Resource currentResource : resource.getResourceSet().getResources()) {
+		for (final URI resourceURI : externalRefs) {
 			// Check that the resource is not the current one or is not available in the same plugin
-			if (isExternalReferenceToManage(project, currentResource)) {
-				final URI resourceURI = currentResource.getURI();
-
-				// React differently if this is a pathmap
-				if (!resourceURI.isPlatform()) {
+			if (isExternalReferenceToManage(project, resourceURI)) {
+				if (resourceURI.isFile()) {
+					// File URIs are not portable
+					diagnostics.add(createDiagnostic(project, modelFile, Diagnostic.ERROR, 1,
+							"Cross-document reference by file URI is not portable: '" + resourceURI.toString() + "'.")); //$NON-NLS-1$ //$NON-NLS-2$
+				} else if (!resourceURI.isPlatform()) {
 					// Try to resolve the pathmap
 					final URI correspondingURI = resource.getResourceSet().getURIConverter().normalize(resourceURI);
 					if (resourceURI.equals(correspondingURI)) {
@@ -358,16 +364,63 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 					} else {
 						externalReferencesPaths.add(correspondingURI);
 					}
-				} else if (resourceURI.isFile() && resourceURI.toFileString().startsWith(metadataPath)) {
-					// avoid adding dependencies towards local metadata (case of internationalization)
 				} else {
+					// Platform URIs are portable
 					externalReferencesPaths.add(resourceURI);
 				}
 			}
 		}
 
 		return externalReferencesPaths;
+	}
 
+	/**
+	 * Compute the closure of external resource URIs referenced and reachable from a {@code resource}.
+	 *
+	 * @param resource
+	 *            the starting resource
+	 * @return the URIs of all resources reachable from the {@code resource}
+	 */
+	private Set<URI> computeExternalCrossReferences(Resource resource) {
+		Set<URI> result = new HashSet<>();
+
+		Queue<Resource> work = new LinkedList<>();
+		result.add(resource.getURI()); // Don't recurse into this resource
+
+		for (Resource next = resource; next != null; next = work.poll()) {
+			Map<EObject, Collection<EStructuralFeature.Setting>> xrefs = EcoreUtil.ExternalCrossReferencer.find(resource);
+			for (Collection<EStructuralFeature.Setting> settings : xrefs.values()) {
+				for (EStructuralFeature.Setting setting : settings) {
+					if (setting.getEStructuralFeature() instanceof EReference) {
+						Set<URI> nextToScan;
+						Object value = setting.get(false);
+						if (value instanceof Collection<?>) {
+							nextToScan = ((Collection<?>) value).stream()
+									.map(EObject.class::cast)
+									.map(EcoreUtil::getURI).map(URI::trimFragment)
+									.collect(toSet());
+						} else {
+							nextToScan = Set.of(EcoreUtil.getURI((EObject) value).trimFragment());
+						}
+
+						for (URI uri : nextToScan) {
+							if (result.add(uri)) {
+								try {
+									work.offer(resource.getResourceSet().getResource(uri, true));
+								} catch (Exception e) {
+									// Failed to load the resource? No matter. We have its URI; we just can't look in it for further HREFs
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// The initial resource isn't an external reference of itself
+		result.remove(resource.getURI());
+
+		return result;
 	}
 
 	/**
@@ -377,13 +430,11 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	 *
 	 * @param project
 	 *            The current project.
-	 * @param resource
-	 *            The resource to check.
+	 * @param uri
+	 *            The resource URI to check.
 	 * @return <code>true</code> if we have to manage reference, <code>false</code> otherwise.
 	 */
-	private boolean isExternalReferenceToManage(final IProject project, final Resource resource) {
-		final URI uri = resource.getURI();
-
+	private boolean isExternalReferenceToManage(final IProject project, final URI uri) {
 		// We don't have to manage references of files from the same plug-in
 		return !(uri.isPlatformPlugin() || uri.isPlatformResource())
 				|| uri.segmentCount() < 2 || !uri.segment(1).equals(project.getName());

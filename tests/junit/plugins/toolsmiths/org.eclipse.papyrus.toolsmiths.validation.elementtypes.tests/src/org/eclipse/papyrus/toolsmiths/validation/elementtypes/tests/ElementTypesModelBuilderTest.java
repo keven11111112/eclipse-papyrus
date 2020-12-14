@@ -116,6 +116,17 @@ public class ElementTypesModelBuilderTest extends AbstractPapyrusTest {
 		}
 
 		/**
+		 * Test the reporting of an unresolved stereotype because the name was not qualified.
+		 */
+		@Test
+		@OverlayFile(value = "bug569357-models/applyStereotype/BookStore-unqualifiedStereotypeName.elementtypesconfigurations", path = "resources/BookStore.elementtypesconfigurations")
+		public void unqualifiedStereotypeQualifiedName() {
+			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.elementtypesconfigurations"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("Unresolved stereotype"))))); //$NON-NLS-1$
+		}
+
+		/**
 		 * Test the validation of a model that is OK.
 		 */
 		@Test

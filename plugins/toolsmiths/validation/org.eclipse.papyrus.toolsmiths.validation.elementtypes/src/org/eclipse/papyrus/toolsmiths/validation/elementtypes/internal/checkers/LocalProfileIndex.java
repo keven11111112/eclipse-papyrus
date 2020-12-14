@@ -228,14 +228,21 @@ public class LocalProfileIndex {
 	public Stereotype getStereotype(String qualifiedName, EObject context) {
 		Stereotype result;
 
-		// Stereotypes don't nest within stereotypes or other classes
-		String profileQualifiedName = qualifiedName.substring(0, qualifiedName.lastIndexOf(NamedElement.SEPARATOR));
-		Profile profile = getProfile(profileQualifiedName, context);
-		if (profile != null) {
-			result = getStereotype(qualifiedName, profile, context);
+		int profileNameLength = qualifiedName.lastIndexOf(NamedElement.SEPARATOR);
+		if (profileNameLength < 0) {
+			// Not a qualified name? Then don't bother looking for it and report the problem because
+			// the advice won't be able to find it at run-time
+			result = null;
 		} else {
-			loadWorkspace();
-			result = stereotypesByName.get(qualifiedName);
+			// Stereotypes don't nest within stereotypes or other classes
+			String profileQualifiedName = qualifiedName.substring(0, profileNameLength);
+			Profile profile = getProfile(profileQualifiedName, context);
+			if (profile != null) {
+				result = getStereotype(qualifiedName, profile, context);
+			} else {
+				loadWorkspace();
+				result = stereotypesByName.get(qualifiedName);
+			}
 		}
 
 		return result;
