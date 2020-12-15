@@ -18,8 +18,10 @@ package org.eclipse.papyrus.junit.matchers;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
+import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -244,6 +246,15 @@ public class MoreMatchers {
 		};
 	}
 
+	public static Matcher<Diagnostic> diagnosticWithMessage(final Matcher<? super String> matcher) {
+		return new FeatureMatcher<Diagnostic, String>(matcher, "diagnostic message", "message") {
+			@Override
+			protected String featureValueOf(Diagnostic actual) {
+				return actual.getMessage();
+			}
+		};
+	}
+
 	/**
 	 * Create a matcher for iterables to verify that some number of items match some criterion.
 	 *
@@ -256,7 +267,7 @@ public class MoreMatchers {
 	 * @param elementMatcher
 	 *            the matcher for elements
 	 * @return a matcher for iterables that verifies a number of element matches
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	public static <T, N extends Number> Matcher<Iterable<T>> hasCount(Matcher<N> countMatcher, Matcher<? super T> elementMatcher) {
@@ -299,7 +310,7 @@ public class MoreMatchers {
 	 * @param elementMatcher
 	 *            the matcher for elements
 	 * @return a matcher for iterables that verifies a maximum number of element matches
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	public static <T> Matcher<Iterable<T>> hasAtMost(int max, Matcher<? super T> elementMatcher) {
@@ -316,7 +327,7 @@ public class MoreMatchers {
 	 * @param elementMatcher
 	 *            the matcher for elements
 	 * @return a matcher for iterables that verifies a minimum number of element matches
-	 * 
+	 *
 	 * @since 3.0
 	 */
 	public static <T> Matcher<Iterable<T>> hasAtLeast(int min, Matcher<? super T> elementMatcher) {

@@ -45,6 +45,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -59,6 +60,7 @@ import org.eclipse.pde.internal.core.text.bundle.BundleModel;
 import org.eclipse.pde.internal.core.text.bundle.ManifestHeader;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * A checker that verifies specification of the dependencies for bundles that provide the resources
@@ -357,7 +359,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 				} else if (!resourceURI.isPlatform()) {
 					// Try to resolve the pathmap
 					final URI correspondingURI = resource.getResourceSet().getURIConverter().normalize(resourceURI);
-					if (resourceURI.equals(correspondingURI)) {
+					if (resourceURI.equals(correspondingURI) && !isResolved(resourceURI, resource)) {
 						// If this case, the pathmap cannot be resolved, so create a marker
 						diagnostics.add(createDiagnostic(project, modelFile, Diagnostic.ERROR, 1,
 								"The URI '" + resourceURI.toString() + "' cannot be resolved.")); //$NON-NLS-1$ //$NON-NLS-2$
@@ -372,6 +374,21 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 		}
 
 		return externalReferencesPaths;
+	}
+
+	/**
+	 * Is a cross-document reference resolved in the {@code context} of the resource being validated?
+	 *
+	 * @param href
+	 *            a cross-document reference
+	 * @param context
+	 *            the resource from which it was reached
+	 * @return whether it is resolved in the {@code context} resource set
+	 */
+	private boolean isResolved(URI href, Resource context) {
+		// We already tried to load it in scanning the cross-reference graph
+		Resource resolved = context.getResourceSet().getResource(href, false);
+		return resolved != null && resolved.isLoaded();
 	}
 
 	/**
@@ -404,7 +421,9 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 						}
 
 						for (URI uri : nextToScan) {
-							if (result.add(uri)) {
+							// The URI can be empty for dangling objects, such as the eFactoryInstance of a dynamic
+							// EPackage that is the definition of a dynamic profile
+							if (!uri.isEmpty() && result.add(uri)) {
 								try {
 									work.offer(resource.getResourceSet().getResource(uri, true));
 								} catch (Exception e) {
@@ -463,10 +482,19 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 				pluginName = bundle.getSymbolicName();
 			}
 		} else {
-			// Best guess. Take the correct segment (without authority)
-			final int takenSegment = uri.hasAuthority() ? 0 : 1;
-			if (uri.segmentCount() > takenSegment) {
-				pluginName = uri.segment(takenSegment);
+			// Is it a registered package?
+			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(uri.toString());
+			if (ePackage != null) {
+				Bundle bundle = FrameworkUtil.getBundle(ePackage.getClass());
+				if (bundle != null) {
+					pluginName = bundle.getSymbolicName();
+				}
+			} else {
+				// Best guess. Take the correct segment (without authority)
+				final int takenSegment = uri.hasAuthority() ? 0 : 1;
+				if (uri.segmentCount() > takenSegment) {
+					pluginName = uri.segment(takenSegment);
+				}
 			}
 		}
 

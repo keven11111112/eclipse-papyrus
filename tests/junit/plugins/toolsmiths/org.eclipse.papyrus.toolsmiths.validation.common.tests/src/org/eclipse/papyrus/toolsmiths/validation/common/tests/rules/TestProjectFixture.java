@@ -44,11 +44,16 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.ModelResourceMapper;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
@@ -179,6 +184,51 @@ public class TestProjectFixture extends ProjectFixture {
 		} else {
 			super.createProject(name);
 		}
+	}
+
+	/**
+	 * Load a model resource in a suitable resource set.
+	 *
+	 * @param modelFile
+	 *            the model file to load
+	 * @return the resource, loaded in a resource set
+	 */
+	public Resource loadModelResource(IFile modelFile) {
+		Resource result;
+
+		URI uri = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+		URI rsetURI = uri;
+
+		if ("uml".equals(uri.fileExtension()) || "notation".equals(uri.fileExtension())) { //$NON-NLS-1$//$NON-NLS-2$
+			// Look for a DI file to initialize the resource set, instead
+			URI di = uri.trimFileExtension().appendFileExtension("di"); //$NON-NLS-1$
+			if (URIConverter.INSTANCE.exists(di, null)) {
+				rsetURI = di;
+			}
+		}
+
+		ResourceSet rset = ("di".equals(rsetURI.fileExtension())) //$NON-NLS-1$
+				? ModelResourceMapper.modelSets().apply(rsetURI)
+				: ModelResourceMapper.resourceSets().apply(rsetURI);
+
+		try {
+			result = rset.getResource(uri, true);
+		} catch (Exception e) {
+			throw new AssertionError("Failed to load test model resource: " + modelFile.getFullPath(), e); //$NON-NLS-1$
+		}
+
+		return result;
+	}
+
+	/**
+	 * Load a model resource in a suitable resource set.
+	 *
+	 * @param modelPath
+	 *            the project-relative path of the model file to load
+	 * @return the resource, loaded in a resource set
+	 */
+	public Resource loadModelResource(String modelPath) {
+		return loadModelResource(getFile(modelPath));
 	}
 
 	//
