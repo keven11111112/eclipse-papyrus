@@ -25,6 +25,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
 import java.util.function.Function;
@@ -53,6 +54,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.osgi.service.resolver.BundleSpecification;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.pde.internal.core.ibundle.IManifestHeader;
@@ -180,7 +182,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	 * This allows to check that the plug-in has the correct dependencies depending to the external cross-deocument references.
 	 */
 	@Override
-	public void check(DiagnosticChain diagnostics, final IProgressMonitor monitor) {
+	public void check(final DiagnosticChain diagnostics, final IProgressMonitor monitor) {
 		String resourceName = getModelFile() == null ? getProject().getName() : getModelFile().getName();
 
 		SubMonitor subMonitor = SubMonitor.convert(monitor, "Validate dependencies for '" + resourceName + "'.", 3);
@@ -191,8 +193,8 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 
 		// Calculate plug-ins names from URI. Initial set is the "additional requirements" from the client
 		final Collection<String> requiredPlugins = new HashSet<>(additionalRequirements);
-		externalReferencesPaths.stream().map(this::getPluginNameFromURI).forEach(requiredPlugins::add);
-		additionalDependencyFunctions.stream().map(func -> func.apply(resource)).forEach(requiredPlugins::addAll);
+		externalReferencesPaths.stream().map(uri -> getPluginNameFromURI(uri, diagnostics)).filter(Objects::nonNull).forEach(requiredPlugins::add);
+		additionalDependencyFunctions.stream().map(func -> func.apply(resource)).filter(Objects::nonNull).forEach(requiredPlugins::addAll);
 
 		// For each external reference, get its plug-in name and search its dependency in the plug-in
 		final List<BundleSpecification> dependencies = ProjectManagementService.getPluginDependencies(getProject());
@@ -388,7 +390,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	private boolean isResolved(URI href, Resource context) {
 		// We already tried to load it in scanning the cross-reference graph
 		Resource resolved = context.getResourceSet().getResource(href, false);
-		return resolved != null && resolved.isLoaded();
+		return resolved != null && resolved.isLoaded() && !resolved.getContents().isEmpty();
 	}
 
 	/**
@@ -464,9 +466,12 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	 *
 	 * @param uri
 	 *            The initial URI.
-	 * @return The plug-in name from URI or <code>null</code> if any problem occurred.
+	 * @param diagnostics
+	 *            Sink for problems to report in the determination of bundle names
+	 * @return The plug-in name from URI or <code>null</code> if any problem occurred,
+	 *         which then would have been reported to the {@code diagnostics}.
 	 */
-	private String getPluginNameFromURI(final URI uri) {
+	private String getPluginNameFromURI(final URI uri, final DiagnosticChain diagnostics) {
 		String pluginName = null;
 
 		if ((uri.isPlatformPlugin() || uri.isPlatformResource()) && uri.segmentCount() > 1) {
@@ -490,11 +495,8 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 					pluginName = bundle.getSymbolicName();
 				}
 			} else {
-				// Best guess. Take the correct segment (without authority)
-				final int takenSegment = uri.hasAuthority() ? 0 : 1;
-				if (uri.segmentCount() > takenSegment) {
-					pluginName = uri.segment(takenSegment);
-				}
+				// This doesn't look like any URI that resolves into a bundle
+				diagnostics.add(createDiagnostic(Diagnostic.WARNING, 0, NLS.bind("Suspicious URI: cannot infer bundle name in ''{0}''", uri)));
 			}
 		}
 

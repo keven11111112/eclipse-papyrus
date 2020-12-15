@@ -21,6 +21,9 @@
         <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_oI_JMz7mEeuL4ce7dqV7ZQ" name="base_Package" ordered="false">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
         </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_OMyuID8AEeuYB657Az5Z-A" name="corporationKind" lowerBound="1">
+          <eType xmi:type="ecore:EEnum" href="http://schema.eclipse.org/BookStore#/ecore/CorporationKind"/>
+        </eStructuralFeatures>
       </eClassifiers>
       <eClassifiers xmi:type="ecore:EClass" xmi:id="_oI_JNT7mEeuL4ce7dqV7ZQ" name="Book">
         <eAnnotations xmi:id="_oI_JNj7mEeuL4ce7dqV7ZQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ShKsMD7mEeuL4ce7dqV7ZQ"/>
@@ -49,6 +52,9 @@
     <ownedAttribute xmi:id="_Tel9wD7mEeuL4ce7dqV7ZQ" name="base_Package" association="_TejhgD7mEeuL4ce7dqV7ZQ">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Tel9wT7mEeuL4ce7dqV7ZQ"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_gvxWkD7_EeuYB657Az5Z-A" name="corporationKind">
+      <type xmi:type="uml:Enumeration" href="http://schema.eclipse.org/BookStore#/uml/CorporationKind"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_ShKsMD7mEeuL4ce7dqV7ZQ" name="Book">
