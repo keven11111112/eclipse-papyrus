@@ -18,6 +18,7 @@ package org.eclipse.papyrus.uml.profile.types.generator.tests;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -30,8 +31,8 @@ import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
-import org.eclipse.papyrus.uml.types.core.advices.applystereotype.ApplyStereotypeAdviceConfiguration;
 import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeApplicationMatcherConfiguration;
+import org.eclipse.papyrus.uml.types.core.matchers.stereotype.StereotypeMatcherAdviceConfiguration;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -99,15 +100,15 @@ public class BasicElementTypesGenerationTest extends AbstractPapyrusTest {
 		SpecializationTypeConfiguration type = fixture.assertSpecializationType(beanClass);
 		StereotypeApplicationMatcherConfiguration matcher = fixture.assertStereotypeMatcher(type);
 		assertThat(matcher.getStereotypesQualifiedNames(), hasItem("j2ee::Bean"));
+		assertThat(matcher, instanceOf(StereotypeMatcherAdviceConfiguration.class));
 	}
 
 	@Test
 	public void stereotypeAdviceGenerated() {
 		Pair<Stereotype, Class> beanClass = fixture.getMetaclassExtension("Bean", "Class");
-		ApplyStereotypeAdviceConfiguration advice = fixture.assertApplyStereotypeAdvice(beanClass);
+		StereotypeMatcherAdviceConfiguration advice = fixture.assertStereotypeMatcherAdvice(beanClass);
 		assertThat(advice.getTarget(), is(fixture.getElementTypeConfiguration(beanClass)));
-		assertThat(advice.getStereotypesToApply(), not(isEmpty()));
-		assertThat(advice.getStereotypesToApply().get(0).getRequiredProfiles(), hasItem("j2ee"));
-		assertThat(advice.getStereotypesToApply().get(0).getStereotypeQualifiedName(), is("j2ee::Bean"));
+		assertThat(advice.getStereotypesQualifiedNames(), not(isEmpty()));
+		assertThat(advice.getStereotypesQualifiedNames().get(0), is("j2ee::Bean"));
 	}
 }

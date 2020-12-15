@@ -30,6 +30,10 @@ public class ElementTypesGenerator extends AbstractGenerator<Profile, ElementTyp
 	@Inject
 	private ConfigurationSetRule mainRule;
 
+	public ElementTypesGenerator(Identifiers identifiers) {
+		this(identifiers, null);
+	}
+
 	public ElementTypesGenerator(Identifiers identifiers, DeltaStrategy.Diff diff) {
 		this(new GeneratorModule(identifiers, diff));
 	}
