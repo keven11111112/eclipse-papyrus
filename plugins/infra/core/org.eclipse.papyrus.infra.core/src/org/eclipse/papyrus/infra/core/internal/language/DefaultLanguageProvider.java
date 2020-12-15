@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2015, 2020 Christian W. Damus, CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,14 +10,16 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   CEA LIST - Bug 569720
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.core.internal.language;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -240,21 +242,21 @@ public class DefaultLanguageProvider implements ILanguageProvider {
 	 * so we infer it by feeding the platform's content-type system some fake inputs,
 	 * relaying on the standard EMF pattern of using XML namespace declarations to
 	 * determine content-type.
-	 * 
+	 *
 	 * @param ePackage
 	 *            the package to infer the content-type
 	 * @param filename
 	 *            used as a hint to the platform's content-type manager
-	 * 
+	 *
 	 * @return the content-type or a placeholder for unknown content (never {@code null})
 	 */
 	private IContentType getContentType(EPackage ePackage, String filename) {
 		return CONTENT_TYPES.computeIfAbsent(ePackage, package_ -> {
 			IContentType contentType = null;
 
-			StringReader xmiString = createStringReader(ePackage);
+			InputStream xmiContent = createInputStream(ePackage);
 			try {
-				IContentDescription desc = Platform.getContentTypeManager().getDescriptionFor(xmiString, filename, null);
+				IContentDescription desc = Platform.getContentTypeManager().getDescriptionFor(xmiContent, filename, null);
 				contentType = (desc == null) ? null : desc.getContentType();
 			} catch (IOException e) {
 				// Not our content type, I guess
@@ -268,11 +270,11 @@ public class DefaultLanguageProvider implements ILanguageProvider {
 		});
 	}
 
-	private StringReader createStringReader(EPackage ePackage) {
+	private InputStream createInputStream(EPackage ePackage) {
 		String xmi = String.format(
 				"<?xml version=\"1.0\" encoding=\"UTF-8\"?><xmi:XMI xmlns:xmi=\"%s\" xmlns:content=\"%s\"/>", //$NON-NLS-1$
 				XMIResource.XMI_2_1_URI, ePackage.getNsURI());
-		return new StringReader(xmi);
+		return new ByteArrayInputStream(xmi.getBytes());
 	}
 
 	//
