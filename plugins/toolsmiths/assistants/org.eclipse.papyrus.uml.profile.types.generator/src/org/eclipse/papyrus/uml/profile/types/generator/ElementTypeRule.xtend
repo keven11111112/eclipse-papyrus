@@ -121,6 +121,9 @@ class ElementTypeRule {
 	def setStereotypeName(ElementTypeConfiguration typeConfig, Stereotype stereotype) {
 		val newName = stereotype.qualifiedName;
 		val ext = getExtension(typeConfig, stereotype);
+		if (ext === null){
+			return;
+		}
 		
 		val advices = new ElementTypeConfigHelper().getRelatedAdvices(typeConfig);
 

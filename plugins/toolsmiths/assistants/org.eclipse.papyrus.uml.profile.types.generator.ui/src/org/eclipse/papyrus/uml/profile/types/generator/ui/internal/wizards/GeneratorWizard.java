@@ -144,8 +144,9 @@ public class GeneratorWizard extends Wizard {
 				model.setDiff(diff);
 
 				if (!model.isRemoveDeletedTypes()) {
-					// Ignore deleted stereotypes and simply preserve their corresponding element types
+					// Ignore deleted stereotypes/extensions and simply preserve their corresponding element types
 					diff.getRemovedStereotypes().clear();
+					diff.getRemovedExtensions().clear();
 				}
 			}
 		}
