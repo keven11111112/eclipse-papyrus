@@ -118,12 +118,12 @@ public interface DeltaStrategy {
 
 		@Override
 		public List<ImpliedExtension> getRemovedExtensions() {
-			return addedExtensions;
+			return removedExtensions;
 		}
 
 		@Override
 		public List<ImpliedExtension> getAddedExtensions() {
-			return removedExtensions;
+			return addedExtensions;
 		}
 
 		/**
@@ -137,8 +137,8 @@ public interface DeltaStrategy {
 			builder.append("Removed Stereotypes: " + getRemovedStereotypes()).append('\n');
 			builder.append("Added Stereotypes: [" + getAddedStereotypes().stream().map(Stereotype::getQualifiedName).collect(Collectors.joining(", "))).append("]\n");
 			builder.append("Renamed Stereotypes: " + getRenamedStereotypes()).append('\n');
-			builder.append("Added Extensions: " + getAddedExtensions().stream().map(this::toString).collect(Collectors.joining(", "))).append('\n');
-			builder.append("Removed Extensions: " + getRemovedExtensions().stream().map(this::toString).collect(Collectors.joining(", ")));
+			builder.append("Added Extensions: [" + getAddedExtensions().stream().map(this::toString).collect(Collectors.joining(", "))).append("]\n");
+			builder.append("Removed Extensions: [" + getRemovedExtensions().stream().map(this::toString).collect(Collectors.joining(", "))).append(']');
 			return builder.toString();
 		}
 

@@ -264,17 +264,37 @@ public class ElementTypeConfigHelper {
 		}
 		if (typeConfig instanceof SpecializationTypeConfiguration) {
 			SpecializationTypeConfiguration type = (SpecializationTypeConfiguration) typeConfig;
-			if (type.getSpecializedTypes().size() == 1) {
-				ElementTypeConfiguration baseType = type.getSpecializedTypes().get(0);
-				if (baseType instanceof MetamodelTypeConfiguration) {
-					EClass metaclass = ((MetamodelTypeConfiguration) baseType).getEClass();
-					if (metaclass != null) {
-						org.eclipse.uml2.uml.Package uml2Metamodel = ElementUtil.contentload(URI.createURI(UMLResource.UML_METAMODEL_URI), stereotype);
-						PackageableElement baseClass = uml2Metamodel.getPackagedElement(metaclass.getName());
-						return baseClass instanceof org.eclipse.uml2.uml.Class ? new ImpliedExtension(stereotype, (org.eclipse.uml2.uml.Class) baseClass) : null;
-					}
+			MetamodelTypeConfiguration baseType = getMetamodelType(type);
+			if (baseType != null) {
+				EClass metaclass = baseType.getEClass();
+				if (metaclass != null) {
+					org.eclipse.uml2.uml.Package uml2Metamodel = ElementUtil.contentload(URI.createURI(UMLResource.UML_METAMODEL_URI), stereotype);
+					PackageableElement baseClass = uml2Metamodel.getPackagedElement(metaclass.getName());
+					return baseClass instanceof org.eclipse.uml2.uml.Class ? new ImpliedExtension(stereotype, (org.eclipse.uml2.uml.Class) baseClass) : null;
 				}
 			}
+		}
+		return null;
+	}
+
+	/**
+	 * Retrieve the {@link MetamodelTypeConfiguration} extended by this {@link SpecializationTypeConfiguration}.
+	 * This method only supports single-element hierarchies, as the generator only uses such hierarchies (More complex
+	 * cases are likely not generated, and thus can be ignored).
+	 *
+	 * @param specialType
+	 * @return
+	 */
+	private MetamodelTypeConfiguration getMetamodelType(SpecializationTypeConfiguration specialType) {
+		List<ElementTypeConfiguration> specializedTypes = specialType.getSpecializedTypes();
+		if (specializedTypes.size() != 1) {
+			return null;
+		}
+		ElementTypeConfiguration superType = specializedTypes.get(0);
+		if (superType instanceof MetamodelTypeConfiguration) {
+			return (MetamodelTypeConfiguration) superType;
+		} else if (superType instanceof SpecializationTypeConfiguration) {
+			return getMetamodelType((SpecializationTypeConfiguration) superType);
 		}
 		return null;
 	}
