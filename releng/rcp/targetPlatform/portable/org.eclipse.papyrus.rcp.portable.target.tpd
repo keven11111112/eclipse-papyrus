@@ -13,7 +13,7 @@ location egit "https://download.eclipse.org/egit/updates-5.10" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.18milestones/S-4.18RC2-202012021800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.18/R-4.18-202012021800/" {
 	org.eclipse.e4.core.tools.feature.feature.group 
 	org.eclipse.rcp.configuration.feature.group
 	org.eclipse.equinox.executable.feature.group
@@ -45,6 +45,6 @@ location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.24"
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20201125-0437" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20201209-0330" {
 	org.eclipse.emf.cdo.epp.feature.group
 }
