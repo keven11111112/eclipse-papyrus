@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus RCP" sequenceNumber="1607503948">
+<target name="Papyrus RCP" sequenceNumber="1609840832">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -26,7 +26,7 @@
       <unit id="org.apache.commons.lang3.source" version="3.1.0.v201403281430"/>
       <unit id="org.objectweb.asm" version="5.0.1.v201404251740"/>
       <unit id="org.objectweb.asm.source" version="5.0.1.v201404251740"/>
-      <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/downloads/drops/R20200831200620/repository/"/>
+      <repository id="orbit" location="file:/home/data/httpd/download.eclipse.org/tools/orbit/downloads/drops/R20201130205003/repository/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.xwt.feature.feature.group" version="0.0.0"/>
@@ -99,7 +99,7 @@
       <unit id="org.eclipse.rcp.configuration.feature.group" version="1.1.1100.v20201202-1800"/>
       <unit id="org.eclipse.equinox.executable.feature.group" version="3.8.1000.v20200915-1508"/>
       <unit id="org.eclipse.sdk.feature.group" version="4.18.0.v20201202-1800"/>
-      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.18milestones/S-4.18RC2-202012021800/"/>
+      <repository id="platform" location="file:/home/data/httpd/download.eclipse.org/eclipse/updates/4.18/R-4.18-202012021800/"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.mylyn.ide_feature.feature.group" version="3.25.2.v20200828-1617"/>
@@ -121,8 +121,8 @@
       <repository id="emf" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/emf/builds/release/2.24"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.12.0.v20201125-0935"/>
-      <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/S20201125-0437"/>
+      <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.12.0.v20201209-0820"/>
+      <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/R20201209-0330/"/>
     </location>
   </locations>
 </target>
