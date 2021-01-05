@@ -42,17 +42,27 @@ public class SimpleDeltaStrategy implements DeltaStrategy {
 	public Diff findDiffs(Profile currentProfile, ElementTypeSetConfiguration previousTypes) {
 		Diff result = new DiffImpl();
 		UML uml = new UML();
-
-		// Added Stereotypes
 		ElementTypeConfigHelper helper = new ElementTypeConfigHelper();
+		Iterable<ImpliedExtension> allExtensions = uml.getAllExtensions(currentProfile);
+
+		findAddedStereotypes(currentProfile, previousTypes, result, uml, helper);
+		findRemovedStereotypesAndExtensions(currentProfile, previousTypes, result, helper, allExtensions);
+		findRenamedSteretoypes(currentProfile, previousTypes, result, helper);
+		findAddedExtensions(previousTypes, result, helper, allExtensions);
+
+		return result;
+	}
+
+	private void findAddedStereotypes(Profile currentProfile, ElementTypeSetConfiguration previousTypes, Diff result, UML uml, ElementTypeConfigHelper helper) {
 		for (Stereotype stereotype : uml.getAllStereotypes(currentProfile)) {
 			if (!helper.exists(stereotype, previousTypes)) {
 				result.getAddedStereotypes().add(stereotype);
 			}
 		}
-		// Removed Stereotypes and Extensions
-		Iterable<ImpliedExtension> allExtensions = uml.getAllExtensions(currentProfile);
+	}
 
+	// Removed Stereotypes and Extensions
+	private void findRemovedStereotypesAndExtensions(Profile currentProfile, ElementTypeSetConfiguration previousTypes, Diff result, ElementTypeConfigHelper helper, Iterable<ImpliedExtension> allExtensions) {
 		for (ElementTypeConfiguration config : previousTypes.getElementTypeConfigurations()) {
 			Optional<Boolean> exists = helper.exists(config, currentProfile);
 			if (exists.isEmpty()) {
@@ -74,8 +84,10 @@ public class SimpleDeltaStrategy implements DeltaStrategy {
 				}
 			}
 		}
+	}
 
-		// Renamed Stereotypes (or Profiles)
+	// Renamed Stereotypes (or Profiles)
+	private void findRenamedSteretoypes(Profile currentProfile, ElementTypeSetConfiguration previousTypes, Diff result, ElementTypeConfigHelper helper) {
 		for (ElementTypeConfiguration config : previousTypes.getElementTypeConfigurations()) {
 			String originalName = helper.getStereotypeName(config);
 			Stereotype currentStereotype = helper.getCurrentStereotype(config, currentProfile);
@@ -86,8 +98,10 @@ public class SimpleDeltaStrategy implements DeltaStrategy {
 				}
 			}
 		}
+	}
 
-		// Identify stereotypes for which Extension(s) have been added or removed
+	// Identify stereotypes for which Extension(s) have been added
+	private void findAddedExtensions(ElementTypeSetConfiguration previousTypes, Diff result, ElementTypeConfigHelper helper, Iterable<ImpliedExtension> allExtensions) {
 		for (ImpliedExtension extension : allExtensions) {
 			if (result.getAddedStereotypes().contains(extension.getStereotype())) {
 				// This is a new Stereotype; we only care about extensions that have
@@ -98,8 +112,5 @@ public class SimpleDeltaStrategy implements DeltaStrategy {
 				result.getAddedExtensions().add(extension);
 			}
 		}
-
-		return result;
 	}
-
 }

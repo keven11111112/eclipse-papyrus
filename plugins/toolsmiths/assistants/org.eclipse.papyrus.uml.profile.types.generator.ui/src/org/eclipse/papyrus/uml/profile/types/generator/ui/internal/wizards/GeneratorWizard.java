@@ -231,7 +231,7 @@ public class GeneratorWizard extends Wizard {
 	protected IStatus configurePlugin(URI outputModelURI, Identifiers identifiers) {
 		// Should always be a workspace project; but let's make sure
 		if (!outputModelURI.isPlatformResource()) {
-			return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; impossible to configure the plug-in.");
+			return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; cannot configure the plug-in.");
 		}
 
 		IPath modelPath = new Path(outputModelURI.toPlatformString(true));

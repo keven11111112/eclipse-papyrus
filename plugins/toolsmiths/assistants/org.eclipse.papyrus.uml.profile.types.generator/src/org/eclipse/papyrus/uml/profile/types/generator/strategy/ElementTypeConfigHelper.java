@@ -58,16 +58,27 @@ public class ElementTypeConfigHelper {
 		if (config instanceof SpecializationTypeConfiguration) {
 			List<AbstractAdviceBindingConfiguration> relatedAdvices = getRelatedAdvices(config);
 
-			// TODO Limit this to a single Stereotype Advice. If multiple Stereotype Advices
-			// are applied, this ElementType doesn't represent a single generate Stereotype
-			// Specialization Type and should be ignored.
+			String name = null;
 			for (AbstractAdviceBindingConfiguration advice : relatedAdvices) {
+				String stereotypeName;
 				if (advice instanceof ApplyStereotypeAdviceConfiguration) {
-					return getStereotypeName((ApplyStereotypeAdviceConfiguration) advice);
+					stereotypeName = getStereotypeName((ApplyStereotypeAdviceConfiguration) advice);
 				} else if (advice instanceof StereotypeMatcherAdviceConfiguration) {
-					return getStereotypeName((StereotypeMatcherAdviceConfiguration) advice);
+					stereotypeName = getStereotypeName((StereotypeMatcherAdviceConfiguration) advice);
+				} else {
+					continue;
 				}
+
+				// Limit this to a single Stereotype Advice. If multiple Stereotype Advices
+				// are applied, this ElementType doesn't represent a single generate Stereotype
+				// Specialization Type and should be ignored.
+				if (stereotypeName != null && name != null) {
+					return null;
+				}
+
+				name = stereotypeName;
 			}
+			return name;
 		}
 		return null;
 	}
