@@ -1,4 +1,4 @@
-This j2ee model is derived from the original one, with the following changes:
+This j2ee model is derived from the original one (in the parent folder), with the following changes:
 
 Web: renamed to WebRenamed
 Browser: Deleted

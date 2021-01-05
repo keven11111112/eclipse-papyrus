@@ -114,12 +114,8 @@ public class TypesPluginGenerator {
 	 */
 	protected IStatus configurePlugin(IProject project, Collection<IPath> modelPaths, String contextId) {
 		// Should always be a workspace project; but let's make sure
-		// if (!modelPath.isPlatformResource()) {
-		// return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; impossible to configure the plug-in.");
-		// }
-
 		if (!project.exists()) {
-			return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; impossible to configure the plug-in.");
+			return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; cannot configure the plug-in.");
 		}
 
 		if (!project.isOpen()) {

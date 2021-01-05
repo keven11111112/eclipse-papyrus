@@ -62,7 +62,7 @@ public class GeneratorWizardModel {
 
 	private boolean generateExtensionPoint = true;
 
-	private boolean removeDeletedTypes = true;
+	private boolean deleteObsoleteTypes = true;
 
 	private DeltaStrategy.Diff diff;
 
@@ -266,24 +266,25 @@ public class GeneratorWizardModel {
 	/**
 	 * <p>
 	 * Whether ElementTypeConfigurations related to Stereotypes that no longer exist should be removed.
-	 * This value is ignored when generating to a file that doesn't exist yet.
+	 * This value is ignored when generating to a file that doesn't exist yet, or when incremental generation
+	 * is turned off.
 	 * </p>
 	 * <p>
-	 * Set this value to <code>true</code> to automatically clean-up deprecated ElementTypeConfigurations;
+	 * Set this value to <code>true</code> to automatically clean-up obsolete ElementTypeConfigurations;
 	 * set <code>false</code> if the user should clean-up manually (e.g. to migrate/fix broken ElementTypeConfigurations)
 	 * </p>
 	 *
-	 * @return the removeDeletedTypes
+	 * @return the deleteObsoleteTypes
 	 */
-	public boolean isRemoveDeletedTypes() {
-		return removeDeletedTypes;
+	public boolean isDeleteObsoleteTypes() {
+		return deleteObsoleteTypes;
 	}
 
 	/**
-	 * @param removeDeletedTypes
+	 * @param deleteObsoleteTypes
 	 *            the removeDeletedTypes to set
 	 */
-	public void setRemoveDeletedTypes(boolean removeDeletedTypes) {
-		this.removeDeletedTypes = removeDeletedTypes;
+	public void setDeleteObsoleteTypes(boolean deleteObsoleteTypes) {
+		this.deleteObsoleteTypes = deleteObsoleteTypes;
 	}
 }

@@ -143,7 +143,7 @@ public class GeneratorWizard extends Wizard {
 				Diff diff = strategy.findDiffs(model.getProfile(), typeSet);
 				model.setDiff(diff);
 
-				if (!model.isRemoveDeletedTypes()) {
+				if (!model.isDeleteObsoleteTypes()) {
 					// Ignore deleted stereotypes/extensions and simply preserve their corresponding element types
 					diff.getRemovedStereotypes().clear();
 					diff.getRemovedExtensions().clear();

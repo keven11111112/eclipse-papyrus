@@ -38,12 +38,12 @@ class GeneratorIncrementalBlock {
 	void createControl(Composite parent) {
 
 		Group incrementalGroup = new Group(parent, SWT.NONE);
-		incrementalGroup.setText("Incremental generation");
+		incrementalGroup.setText("Incremental Generation");
 		incrementalGroup.setLayout(new GridLayout(1, true));
 		incrementalGroup.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).span(2, 1).create());
 
 		Button isIncremental = new Button(incrementalGroup, SWT.CHECK);
-		isIncremental.setText("Incremental");
+		isIncremental.setText("Incremental updates");
 		isIncremental.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -54,15 +54,15 @@ class GeneratorIncrementalBlock {
 		isIncremental.setSelection(model.isIncremental());
 
 		Button removeDeleted = new Button(incrementalGroup, SWT.CHECK);
-		removeDeleted.setText("Remove Deleted Types");
+		removeDeleted.setText("Delete obsolete element type configurations");
 		removeDeleted.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				model.setRemoveDeletedTypes(removeDeleted.getSelection());
+				model.setDeleteObsoleteTypes(removeDeleted.getSelection());
 				model.validatePage();
 			}
 		});
-		removeDeleted.setSelection(model.isRemoveDeletedTypes());
+		removeDeleted.setSelection(model.isDeleteObsoleteTypes());
 	}
 
 }
