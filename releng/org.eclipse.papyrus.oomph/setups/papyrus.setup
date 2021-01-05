@@ -118,7 +118,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="https://download.eclipse.org/modeling/emf/emf/builds/release/2.24">
+        <repository url="https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202101040220">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF (Core)</value>

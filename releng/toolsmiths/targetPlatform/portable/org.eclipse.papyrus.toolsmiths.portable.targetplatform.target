@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus Toolsmiths" sequenceNumber="1608197055">
+<target name="Papyrus Toolsmiths" sequenceNumber="1609849201">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -79,8 +79,8 @@
       <repository id="gmfNotation" location="https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R202004160913"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.emf.sdk.feature.group" version="2.24.0.v20200917-1439"/>
-      <repository id="emf" location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.24"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.25.0.v20201231-0738"/>
+      <repository id="emf" location="https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202101040220"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.query.sdk.feature.group" version="1.12.0.201805030653"/>

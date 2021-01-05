@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="Papyrus RCP" sequenceNumber="1608197047">
+<target name="Papyrus RCP" sequenceNumber="1609849201">
   <locations>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.nebula.widgets.richtext.feature.feature.group" version="1.2.0.201703081533"/>
@@ -116,13 +116,13 @@
       <repository id="emfCompare" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/compare/updates/milestones/3.3/S202011201248"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.xsd.sdk.feature.group" version="2.24.0.v20200917-1343"/>
-      <unit id="org.eclipse.emf.sdk.feature.group" version="2.24.0.v20200917-1439"/>
-      <repository id="emf" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/emf/builds/release/2.24"/>
+      <unit id="org.eclipse.xsd.sdk.feature.group" version="2.25.0.v20201230-0854"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.25.0.v20201231-0738"/>
+      <repository id="emf" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/emf/builds/milestone/S202101040220"/>
     </location>
     <location includeMode="planner" includeAllPlatforms="false" includeSource="true" includeConfigurePhase="false" type="InstallableUnit">
       <unit id="org.eclipse.emf.cdo.epp.feature.group" version="4.12.0.v20201209-0820"/>
-      <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/S20201209-0330"/>
+      <repository id="cdo" location="file:/home/data/httpd/download.eclipse.org/modeling/emf/cdo/drops/R20201209-0330"/>
     </location>
   </locations>
 </target>

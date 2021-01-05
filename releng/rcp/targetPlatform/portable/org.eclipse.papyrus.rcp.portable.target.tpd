@@ -39,12 +39,12 @@ location emfCompare "https://download.eclipse.org/modeling/emf/compare/updates/m
 
 //updateFrom("EMF (Core)",0)
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.24" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202101040220" {
 	org.eclipse.xsd.sdk.feature.group
 }
 
 //updateFrom("EMF CDO",0) 
 
-location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/S20201209-0330" {
+location cdo "http://download.eclipse.org/modeling/emf/cdo/drops/R20201209-0330" {
 	org.eclipse.emf.cdo.epp.feature.group
 }

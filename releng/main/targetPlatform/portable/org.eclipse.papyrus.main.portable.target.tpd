@@ -51,7 +51,7 @@ location qvto "https://download.eclipse.org/mmt/qvto/updates/releases/3.10.2" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
 }
 
-//updateFrom("M2T Xpand for 2020-12",0) 
+//updateFrom("M2T Xpand for 2021-03",0) 
 
 location xpand "https://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315/" {
 	org.eclipse.xpand.sdk.feature.group
@@ -87,7 +87,7 @@ location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/releases
     org.eclipse.xtext.ui.feature.group
 }
 
-//updateFrom("EMFT MWE for 2020-12",0)
+//updateFrom("EMFT MWE for 2021-03",0)
 
 location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.12.0/" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
@@ -113,7 +113,7 @@ location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/upd
 
 //updateFrom("EMF (Core)",0)
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.24" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202101040220" {
 	org.eclipse.emf.sdk.feature.group
 }
 
