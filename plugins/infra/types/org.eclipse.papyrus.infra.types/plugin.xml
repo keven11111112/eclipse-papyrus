@@ -26,6 +26,13 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.content_parser">
+      <!-- @generated ElementTypesConfigurations -->
+      <parser
+            contentTypeIdentifier="org.eclipse.papyrus.infra.types"
+            class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.content_parser">
       <!-- @generated not ElementTypesConfigurations -->
       <parser
             contentTypeIdentifier="org.eclipse.papyrus.infra.types"

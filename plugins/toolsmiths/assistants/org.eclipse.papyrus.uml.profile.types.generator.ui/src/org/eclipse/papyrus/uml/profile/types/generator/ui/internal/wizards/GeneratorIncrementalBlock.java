@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 EclipseSource and others.
+ * Copyright (c) 2020 - 2021 EclipseSource and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -30,6 +30,9 @@ import org.eclipse.swt.widgets.Group;
 class GeneratorIncrementalBlock {
 
 	private GeneratorWizardModel model;
+	private Group incrementalGroup;
+	private Button isIncremental;
+	private Button removeDeleted;
 
 	public GeneratorIncrementalBlock(GeneratorWizardModel model) {
 		this.model = model;
@@ -37,13 +40,14 @@ class GeneratorIncrementalBlock {
 
 	void createControl(Composite parent) {
 
-		Group incrementalGroup = new Group(parent, SWT.NONE);
+		incrementalGroup = new Group(parent, SWT.NONE);
 		incrementalGroup.setText("Incremental Generation");
 		incrementalGroup.setLayout(new GridLayout(1, true));
 		incrementalGroup.setLayoutData(GridDataFactory.fillDefaults().grab(true, false).span(2, 1).create());
 
-		Button isIncremental = new Button(incrementalGroup, SWT.CHECK);
+		isIncremental = new Button(incrementalGroup, SWT.CHECK);
 		isIncremental.setText("Incremental updates");
+		isIncremental.setSelection(model.isIncremental());
 		isIncremental.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -51,10 +55,11 @@ class GeneratorIncrementalBlock {
 				model.validatePage();
 			}
 		});
-		isIncremental.setSelection(model.isIncremental());
 
-		Button removeDeleted = new Button(incrementalGroup, SWT.CHECK);
+		removeDeleted = new Button(incrementalGroup, SWT.CHECK);
 		removeDeleted.setText("Delete obsolete element type configurations");
+
+
 		removeDeleted.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -63,6 +68,13 @@ class GeneratorIncrementalBlock {
 			}
 		});
 		removeDeleted.setSelection(model.isDeleteObsoleteTypes());
+	}
+
+	void validatePage() {
+		boolean groupEnabled = model.getOutputModelFile().exists();
+		incrementalGroup.setEnabled(groupEnabled);
+		isIncremental.setEnabled(groupEnabled);
+		removeDeleted.setEnabled(groupEnabled && isIncremental.getSelection());
 	}
 
 }

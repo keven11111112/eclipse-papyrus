@@ -79,14 +79,17 @@ public class TypesPluginGenerator {
 	 *            The clientContextID for which the type models should be registered. For Papyrus, this is usually
 	 *            <code>org.eclipse.papyrus.infra.services.edit.TypeContext</code>, but this may vary in some
 	 *            specific applications / customization scenarios.
+	 * @param generateExtensionPoint
+	 *            Whether the element types configurations extension points should be created (or updated) to reference the model.
+	 *            This is optional, as element types configurations models may be contributed via the architecture model instead.
 	 * @return
 	 *         The status representing the result of this configuration operation.
 	 */
-	public IStatus generate(Collection<IPath> elementTypesConfigurationModels, String contextId) {
+	public IStatus generate(Collection<IPath> elementTypesConfigurationModels, String contextId, boolean generateExtensionPoint) {
 		Map<IProject, Collection<IPath>> paths = groupByProject(elementTypesConfigurationModels);
 		for (var entry : paths.entrySet()) {
 			IProject project = entry.getKey();
-			IStatus configurePlugin = configurePlugin(project, entry.getValue(), contextId);
+			IStatus configurePlugin = configurePlugin(project, entry.getValue(), contextId, generateExtensionPoint);
 		}
 		return Status.OK_STATUS;
 	}
@@ -110,10 +113,13 @@ public class TypesPluginGenerator {
 	 *            The clientContextID for which the type models should be registered. For Papyrus, this is usually
 	 *            <code>org.eclipse.papyrus.infra.services.edit.TypeContext</code>, but this may vary in some
 	 *            specific applications / customization scenarios.
+	 * @param generateExtensionPoint
+	 *            Whether the element types configurations extension points should be created (or updated) to reference the model.
+	 *            This is optional, as element types configurations models may be contributed via the architecture model instead.
 	 * @return
 	 *         The status representing the result of this configuration operation.
 	 */
-	protected IStatus configurePlugin(IProject project, Collection<IPath> modelPaths, String contextId) {
+	protected IStatus configurePlugin(IProject project, Collection<IPath> modelPaths, String contextId, boolean generateExtensionPoint) {
 		// Should always be a workspace project; but let's make sure
 		if (!project.exists()) {
 			return new Status(IStatus.WARNING, getClass(), "The target model is not located in a workspace project; cannot configure the plug-in.");
@@ -137,7 +143,9 @@ public class TypesPluginGenerator {
 			}
 
 			addDependencies(editor);
-			addExtensions(editor, modelPaths, contextId);
+			if (generateExtensionPoint) {
+				addExtensions(editor, modelPaths, contextId);
+			}
 			for (IPath path : modelPaths) {
 				addBuildProperties(editor, path);
 			}

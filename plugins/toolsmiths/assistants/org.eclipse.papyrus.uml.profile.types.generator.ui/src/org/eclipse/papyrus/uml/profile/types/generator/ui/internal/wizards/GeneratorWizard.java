@@ -235,7 +235,7 @@ public class GeneratorWizard extends Wizard {
 		}
 
 		IPath modelPath = new Path(outputModelURI.toPlatformString(true));
-		return new TypesPluginGenerator().generate(Collections.singleton(modelPath), identifiers.getContextId());
+		return new TypesPluginGenerator().generate(Collections.singleton(modelPath), identifiers.getContextId(), model.isGenerateExtensionPoint());
 	}
 
 	protected void addGenerators(List<? super AbstractGenerator<Profile, ?>> generators, Identifiers identifiers, GeneratorWizardModel wizardModel) {

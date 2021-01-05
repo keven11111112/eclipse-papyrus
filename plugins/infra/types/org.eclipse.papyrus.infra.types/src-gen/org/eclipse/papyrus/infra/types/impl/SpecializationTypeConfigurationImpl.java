@@ -123,6 +123,7 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * @generated
 	 */
 	@Override
+	@Override
 	public EList<ConfigurationElement> getOwnedConfigurations() {
 		if (ownedConfigurations == null) {
 			ownedConfigurations = new SubsetSupersetEObjectContainmentWithInverseEList<ConfigurationElement>(ConfigurationElement.class, this, ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__OWNED_CONFIGURATIONS, null, OWNED_CONFIGURATIONS_ESUBSETS, ElementTypesConfigurationsPackage.CONFIGURATION_ELEMENT__OWNING_TYPE);
