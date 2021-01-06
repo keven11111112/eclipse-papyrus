@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 568495
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 
@@ -24,10 +24,13 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Queue;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.filebuffers.FileBuffers;
 import org.eclipse.core.filebuffers.ITextFileBuffer;
@@ -36,8 +39,10 @@ import org.eclipse.core.filebuffers.LocationKind;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
@@ -69,6 +74,8 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 	private static final String GENMODEL_EXTENSION = "genmodel";
 	private static final String ECORE_EXTENSION = "ecore";
 
+	private final Resource modelResource;
+
 	/**
 	 * Computation of the immediate dependencies of a model file. This is invoked recursively
 	 * to trace the complete dependency graph.
@@ -84,7 +91,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 	 *            The model file.
 	 */
 	public BuildPropertiesChecker(final IProject project, final IFile modelFile) {
-		super(project, modelFile);
+		this(project, modelFile, (Resource) null);
 	}
 
 	/**
@@ -98,7 +105,43 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 	 *            The marker type.
 	 */
 	public BuildPropertiesChecker(final IProject project, final IFile modelFile, final String markerType) {
+		this(project, modelFile, null, markerType);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param project
+	 *            The current project resource.
+	 * @param modelFile
+	 *            The model file.
+	 * @param modelResource
+	 *            the loaded EMF model resource to scan for cross-referenced model resources, or {@code null}
+	 *            if such scan is not needed
+	 */
+	public BuildPropertiesChecker(final IProject project, final IFile modelFile, Resource modelResource) {
+		super(project, modelFile);
+
+		this.modelResource = modelResource;
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param project
+	 *            The current project resource.
+	 * @param modelFile
+	 *            The model file.
+	 * @param modelResource
+	 *            the loaded EMF model resource to scan for cross-referenced model resources, or {@code null}
+	 *            if such scan is not needed
+	 * @param markerType
+	 *            The marker type.
+	 */
+	public BuildPropertiesChecker(final IProject project, final IFile modelFile, Resource modelResource, final String markerType) {
 		super(project, modelFile, markerType);
+
+		this.modelResource = modelResource;
 	}
 
 	/**
@@ -139,7 +182,8 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 		final IBuildModel buildModel = ProjectManagementService.getPluginBuild(getProject());
 		if (null != buildModel) {
 			// Calculate the closure of resources to get
-			Collection<IResource> requiredResources = computeRequiredResources(getModelFile());
+			Set<IResource> requiredResources = computeRequiredResources(getModelFile());
+			requiredResources.addAll(getCrossReferencedResources());
 
 			// And don't worry about resources in other projects, because those projects will package them
 			requiredResources.removeIf(Predicate.not(getProject()::contains));
@@ -264,8 +308,8 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 		return Optional.empty();
 	}
 
-	private Collection<IResource> computeRequiredResources(IResource root) {
-		Collection<IResource> result = new LinkedHashSet<>();
+	private Set<IResource> computeRequiredResources(IResource root) {
+		Set<IResource> result = new LinkedHashSet<>();
 
 		Queue<IResource> queue = new ArrayDeque<>();
 		queue.add(root);
@@ -278,6 +322,31 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 			if (dependenciesFunction != null && next instanceof IFile) {
 				queue.addAll(dependenciesFunction.apply((IFile) next));
 			}
+		}
+
+		return result;
+	}
+
+	private Set<IResource> getCrossReferencedResources() {
+		Set<IResource> result = Set.of();
+
+		if (modelResource != null) {
+			Set<URI> xrefURIs = ModelDependenciesChecker.computeExternalCrossReferences(modelResource);
+			result = xrefURIs.stream().map(this::getResource).filter(Objects::nonNull).collect(Collectors.toSet());
+		}
+
+		return result;
+	}
+
+	private IResource getResource(URI uri) {
+		IResource result = null;
+
+		uri = modelResource.getResourceSet().getURIConverter().normalize(uri);
+		if (uri.isPlatformResource()) {
+			// If it's a platform plugin resource, then it is expected to be deployed independently
+			// and so needs not be considered in our build.properties validation
+			String uriPlatformString = uri.toPlatformString(true);
+			result = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(uriPlatformString));
 		}
 
 		return result;

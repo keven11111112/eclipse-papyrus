@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019, 2020 CEA LIST, EclipseSource, Christian W. Damus, and others.
+ * Copyright (c) 2019, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 568495
- *   Christian W. Damus - bug 569357
+ *   Christian W. Damus - bugs 569357, 570097
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.common.checkers;
@@ -400,7 +400,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	 *            the starting resource
 	 * @return the URIs of all resources reachable from the {@code resource}
 	 */
-	private Set<URI> computeExternalCrossReferences(Resource resource) {
+	static Set<URI> computeExternalCrossReferences(Resource resource) {
 		Set<URI> result = new HashSet<>();
 
 		Queue<Resource> work = new LinkedList<>();
@@ -488,7 +488,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 			}
 		} else {
 			// Is it a registered package?
-			EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(uri.toString());
+			EPackage ePackage = resource.getResourceSet().getPackageRegistry().getEPackage(uri.toString());
 			if (ePackage != null) {
 				Bundle bundle = FrameworkUtil.getBundle(ePackage.getClass());
 				if (bundle != null) {
