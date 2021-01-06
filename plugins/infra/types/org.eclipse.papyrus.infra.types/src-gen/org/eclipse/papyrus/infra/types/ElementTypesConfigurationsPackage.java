@@ -109,13 +109,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int CONFIGURATION_ELEMENT__OWNING_TYPE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_ELEMENT__SOURCE = 2;
+	int CONFIGURATION_ELEMENT__ANNOTATIONS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Configuration Element</em>' class.
@@ -164,13 +164,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ELEMENT_TYPE_SET_CONFIGURATION__OWNING_TYPE = CONFIGURATION_ELEMENT__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE_SET_CONFIGURATION__SOURCE = CONFIGURATION_ELEMENT__SOURCE;
+	int ELEMENT_TYPE_SET_CONFIGURATION__ANNOTATIONS = CONFIGURATION_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -282,13 +282,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ELEMENT_TYPE_CONFIGURATION__OWNING_TYPE = CONFIGURATION_ELEMENT__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_TYPE_CONFIGURATION__SOURCE = CONFIGURATION_ELEMENT__SOURCE;
+	int ELEMENT_TYPE_CONFIGURATION__ANNOTATIONS = CONFIGURATION_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -475,13 +475,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ADVICE_CONFIGURATION__OWNING_TYPE = CONFIGURATION_ELEMENT__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADVICE_CONFIGURATION__SOURCE = CONFIGURATION_ELEMENT__SOURCE;
+	int ADVICE_CONFIGURATION__ANNOTATIONS = CONFIGURATION_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
@@ -548,13 +548,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE = ADVICE_CONFIGURATION__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__SOURCE = ADVICE_CONFIGURATION__SOURCE;
+	int ABSTRACT_ADVICE_BINDING_CONFIGURATION__ANNOTATIONS = ADVICE_CONFIGURATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
@@ -711,13 +711,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int CONTAINER_CONFIGURATION__OWNING_TYPE = CONFIGURATION_ELEMENT__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_CONFIGURATION__SOURCE = CONFIGURATION_ELEMENT__SOURCE;
+	int CONTAINER_CONFIGURATION__ANNOTATIONS = CONFIGURATION_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Container Matcher Configuration</b></em>' containment reference.
@@ -793,13 +793,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_MATCHER_CONFIGURATION__OWNING_TYPE = CONFIGURATION_ELEMENT__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_MATCHER_CONFIGURATION__SOURCE = CONFIGURATION_ELEMENT__SOURCE;
+	int ABSTRACT_MATCHER_CONFIGURATION__ANNOTATIONS = CONFIGURATION_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Matched Type</b></em>' reference.
@@ -857,13 +857,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int SPECIALIZATION_TYPE_CONFIGURATION__OWNING_TYPE = ELEMENT_TYPE_CONFIGURATION__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIALIZATION_TYPE_CONFIGURATION__SOURCE = ELEMENT_TYPE_CONFIGURATION__SOURCE;
+	int SPECIALIZATION_TYPE_CONFIGURATION__ANNOTATIONS = ELEMENT_TYPE_CONFIGURATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1020,13 +1020,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__OWNING_TYPE = ADVICE_CONFIGURATION__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__SOURCE = ADVICE_CONFIGURATION__SOURCE;
+	int ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__ANNOTATIONS = ADVICE_CONFIGURATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
@@ -1128,6 +1128,61 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int NAMED_CONFIGURATION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.AnnotationImpl <em>Annotation</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.types.impl.AnnotationImpl
+	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getAnnotation()
+	 * @generated
+	 */
+	int ANNOTATION = 12;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__SOURCE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__VALUE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Configuration Element</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__CONFIGURATION_ELEMENT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Annotation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Annotation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.types.impl.MetamodelTypeConfigurationImpl <em>Metamodel Type Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1135,7 +1190,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getMetamodelTypeConfiguration()
 	 * @generated
 	 */
-	int METAMODEL_TYPE_CONFIGURATION = 12;
+	int METAMODEL_TYPE_CONFIGURATION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1156,13 +1211,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int METAMODEL_TYPE_CONFIGURATION__OWNING_TYPE = ELEMENT_TYPE_CONFIGURATION__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int METAMODEL_TYPE_CONFIGURATION__SOURCE = ELEMENT_TYPE_CONFIGURATION__SOURCE;
+	int METAMODEL_TYPE_CONFIGURATION__ANNOTATIONS = ELEMENT_TYPE_CONFIGURATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1280,7 +1335,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getEditHelperAdviceConfiguration()
 	 * @generated
 	 */
-	int EDIT_HELPER_ADVICE_CONFIGURATION = 13;
+	int EDIT_HELPER_ADVICE_CONFIGURATION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1301,13 +1356,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int EDIT_HELPER_ADVICE_CONFIGURATION__OWNING_TYPE = ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDIT_HELPER_ADVICE_CONFIGURATION__SOURCE = ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__SOURCE;
+	int EDIT_HELPER_ADVICE_CONFIGURATION__ANNOTATIONS = ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
@@ -1371,7 +1426,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getAdviceBindingConfiguration()
 	 * @generated
 	 */
-	int ADVICE_BINDING_CONFIGURATION = 14;
+	int ADVICE_BINDING_CONFIGURATION = 15;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1392,13 +1447,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int ADVICE_BINDING_CONFIGURATION__OWNING_TYPE = ABSTRACT_ADVICE_BINDING_CONFIGURATION__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADVICE_BINDING_CONFIGURATION__SOURCE = ABSTRACT_ADVICE_BINDING_CONFIGURATION__SOURCE;
+	int ADVICE_BINDING_CONFIGURATION__ANNOTATIONS = ABSTRACT_ADVICE_BINDING_CONFIGURATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
@@ -1543,7 +1598,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getMatcherConfiguration()
 	 * @generated
 	 */
-	int MATCHER_CONFIGURATION = 15;
+	int MATCHER_CONFIGURATION = 16;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1564,13 +1619,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int MATCHER_CONFIGURATION__OWNING_TYPE = ABSTRACT_MATCHER_CONFIGURATION__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MATCHER_CONFIGURATION__SOURCE = ABSTRACT_MATCHER_CONFIGURATION__SOURCE;
+	int MATCHER_CONFIGURATION__ANNOTATIONS = ABSTRACT_MATCHER_CONFIGURATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Matched Type</b></em>' reference.
@@ -1616,7 +1671,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getExternallyRegisteredType()
 	 * @generated
 	 */
-	int EXTERNALLY_REGISTERED_TYPE = 16;
+	int EXTERNALLY_REGISTERED_TYPE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1637,13 +1692,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int EXTERNALLY_REGISTERED_TYPE__OWNING_TYPE = ELEMENT_TYPE_CONFIGURATION__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNALLY_REGISTERED_TYPE__SOURCE = ELEMENT_TYPE_CONFIGURATION__SOURCE;
+	int EXTERNALLY_REGISTERED_TYPE__ANNOTATIONS = ELEMENT_TYPE_CONFIGURATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -1743,7 +1798,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getExternallyRegisteredAdvice()
 	 * @generated
 	 */
-	int EXTERNALLY_REGISTERED_ADVICE = 17;
+	int EXTERNALLY_REGISTERED_ADVICE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1764,13 +1819,13 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	int EXTERNALLY_REGISTERED_ADVICE__OWNING_TYPE = ADVICE_BINDING_CONFIGURATION__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNALLY_REGISTERED_ADVICE__SOURCE = ADVICE_BINDING_CONFIGURATION__SOURCE;
+	int EXTERNALLY_REGISTERED_ADVICE__ANNOTATIONS = ADVICE_BINDING_CONFIGURATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' reference list.
@@ -1915,7 +1970,7 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getInheritanceKind()
 	 * @generated
 	 */
-	int INHERITANCE_KIND = 18;
+	int INHERITANCE_KIND = 19;
 
 
 	/**
@@ -2015,15 +2070,15 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	EReference getConfigurationElement_OwningType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getSource <em>Source</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getAnnotations <em>Annotations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Source</em>'.
-	 * @see org.eclipse.papyrus.infra.types.ConfigurationElement#getSource()
+	 * @return the meta object for the containment reference list '<em>Annotations</em>'.
+	 * @see org.eclipse.papyrus.infra.types.ConfigurationElement#getAnnotations()
 	 * @see #getConfigurationElement()
 	 * @generated
 	 */
-	EAttribute getConfigurationElement_Source();
+	EReference getConfigurationElement_Annotations();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.types.ElementTypeConfiguration <em>Element Type Configuration</em>}'.
@@ -2174,6 +2229,49 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getNamedConfiguration_Name();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.types.Annotation <em>Annotation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Annotation</em>'.
+	 * @see org.eclipse.papyrus.infra.types.Annotation
+	 * @generated
+	 */
+	EClass getAnnotation();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.types.Annotation#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Source</em>'.
+	 * @see org.eclipse.papyrus.infra.types.Annotation#getSource()
+	 * @see #getAnnotation()
+	 * @generated
+	 */
+	EAttribute getAnnotation_Source();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.types.Annotation#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.eclipse.papyrus.infra.types.Annotation#getValue()
+	 * @see #getAnnotation()
+	 * @generated
+	 */
+	EAttribute getAnnotation_Value();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.infra.types.Annotation#getConfigurationElement <em>Configuration Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Configuration Element</em>'.
+	 * @see org.eclipse.papyrus.infra.types.Annotation#getConfigurationElement()
+	 * @see #getAnnotation()
+	 * @generated
+	 */
+	EReference getAnnotation_ConfigurationElement();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration <em>Abstract Advice Binding Configuration</em>}'.
@@ -2679,12 +2777,12 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 		EReference CONFIGURATION_ELEMENT__OWNING_TYPE = eINSTANCE.getConfigurationElement_OwningType();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Annotations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute CONFIGURATION_ELEMENT__SOURCE = eINSTANCE.getConfigurationElement_Source();
+		EReference CONFIGURATION_ELEMENT__ANNOTATIONS = eINSTANCE.getConfigurationElement_Annotations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.types.impl.ElementTypeConfigurationImpl <em>Element Type Configuration</em>}' class.
@@ -2805,6 +2903,40 @@ public interface ElementTypesConfigurationsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NAMED_CONFIGURATION__NAME = eINSTANCE.getNamedConfiguration_Name();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.types.impl.AnnotationImpl <em>Annotation</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.types.impl.AnnotationImpl
+		 * @see org.eclipse.papyrus.infra.types.impl.ElementTypesConfigurationsPackageImpl#getAnnotation()
+		 * @generated
+		 */
+		EClass ANNOTATION = eINSTANCE.getAnnotation();
+
+		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ANNOTATION__SOURCE = eINSTANCE.getAnnotation_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ANNOTATION__VALUE = eINSTANCE.getAnnotation_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Configuration Element</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ANNOTATION__CONFIGURATION_ELEMENT = eINSTANCE.getAnnotation_ConfigurationElement();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.types.impl.AbstractAdviceBindingConfigurationImpl <em>Abstract Advice Binding Configuration</em>}' class.

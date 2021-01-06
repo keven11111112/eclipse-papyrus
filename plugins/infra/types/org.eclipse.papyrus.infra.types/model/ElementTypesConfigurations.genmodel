@@ -12,7 +12,7 @@
     editPluginID="org.eclipse.papyrus.infra.types.edit" editorPluginID="org.eclipse.papyrus.infra.types.editor"
     testsPluginID="org.eclipse.papyrus.infra.types.tests" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore"
     operationReflection="true" importOrganizing="true" pluginKey="ElementTypesConfigurations"
-    decoration="Live" operationsFolder="src-gen/">
+    decoration="Live">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
     <details key="DUPLICATE_FEATURES" value="DISCARD"/>
@@ -64,7 +64,8 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ConfigurationElement/description"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
           ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ConfigurationElement/owningType"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ConfigurationElement/source"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//ConfigurationElement/annotations"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//ElementTypeConfiguration">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//ElementTypeConfiguration/hint"/>
@@ -134,6 +135,12 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ElementTypesConfigurations.ecore#//NamedConfiguration">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//NamedConfiguration/name"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//Annotation">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//Annotation/source"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ElementTypesConfigurations.ecore#//Annotation/value"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference ElementTypesConfigurations.ecore#//Annotation/configurationElement"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="ElementTypesConfigurations.ecore#//MetamodelTypeConfiguration">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"

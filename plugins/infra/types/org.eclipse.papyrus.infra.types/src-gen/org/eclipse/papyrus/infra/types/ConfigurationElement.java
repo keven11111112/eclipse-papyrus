@@ -15,6 +15,7 @@
  */
 package org.eclipse.papyrus.infra.types;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -28,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getOwningType <em>Owning Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getAnnotations <em>Annotations</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getConfigurationElement()
@@ -91,32 +92,21 @@ public interface ConfigurationElement extends EObject {
 	void setOwningType(ElementTypeConfiguration value);
 
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' attribute.
+	 * Returns the value of the '<em><b>Annotations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.types.Annotation}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.types.Annotation#getConfigurationElement <em>Configuration Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Source</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Annotations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * The source of this configuration element. For ConfigurationElements that have been generated from a Model Element, this can be used to reference e.g. the URI of the source element.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Source</em>' attribute.
-	 * @see #setSource(String)
-	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getConfigurationElement_Source()
-	 * @model ordered="false"
+	 * @return the value of the '<em>Annotations</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage#getConfigurationElement_Annotations()
+	 * @see org.eclipse.papyrus.infra.types.Annotation#getConfigurationElement
+	 * @model opposite="configurationElement" containment="true" ordered="false"
 	 * @generated
 	 */
-	String getSource();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.types.ConfigurationElement#getSource <em>Source</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source</em>' attribute.
-	 * @see #getSource()
-	 * @generated
-	 */
-	void setSource(String value);
+	EList<Annotation> getAnnotations();
 
 } // ConfigurationElement

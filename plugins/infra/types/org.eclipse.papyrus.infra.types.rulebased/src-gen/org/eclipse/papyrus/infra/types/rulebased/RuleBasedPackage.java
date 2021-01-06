@@ -99,13 +99,13 @@ public interface RuleBasedPackage extends EPackage {
 	int RULE_BASED_TYPE_CONFIGURATION__OWNING_TYPE = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__OWNING_TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Source</b></em>' attribute.
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RULE_BASED_TYPE_CONFIGURATION__SOURCE = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__SOURCE;
+	int RULE_BASED_TYPE_CONFIGURATION__ANNOTATIONS = ElementTypesConfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
