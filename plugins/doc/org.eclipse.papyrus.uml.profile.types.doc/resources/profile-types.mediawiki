@@ -22,8 +22,9 @@ In this wizard, you can select:
 
 * The Identifier: used to prefix all identifiers in the Types model
 * Base element types set: the element types to extend. For a Profile, this is typically the UMLElementTypeSet from the org.eclipse.papyrus.uml.service.types plug-in, which contains all the default types for UML. You may also choose the UMLDIElementTypeSet to generate specialized types for all visual (diagram) elements. This guide focuses on the default value, which is UMLElementTypeSet.
-* Parent folder: Where the Element Types Configurations Model will be generated. It is recommended to select a folder inside of an Eclipse plug-in Project. In that case, the Generator will also configure the plug-in, to define e.g. all required plug-in dependencies, extension points, etc.
+* Parent folder: Where the Element Types Configurations Model will be generated. It is recommended to select a folder inside of an Eclipse plug-in Project. In that case, the Generator will also configure the plug-in, to define e.g. all required plug-in dependencies, extension points, etc. 
 * File name: the file name for the generated model. The default value is usually a good choice.
+* Generate extension point: If the selected folder is part of an Eclipse plug-in Project, indicate if the element types configurations extension point should be created. This is necessary when contributing new Element Types to an existing language (e.g. the default Papyrus UML Language). However, if you intend to deploy the Element Types Configurations in a Domain-specific Architecture Model, this extension point is optional. If the selected folder is not part of an Eclipse plug-in Project, the "Plug-in Configuration" section will be disabled (And no extension point will be generated).
 
 The options related to the incremental generation will be discussed in the next section.
 
@@ -38,6 +39,8 @@ Since the generated model only contains the simple structure for your Profile Ty
 Incremental Generation is the default behavior when generating the Element Types and selecting a target Folder/Model that already exists:
 
 [[image:images/Generate_Wizard_Incremental.png]]
+
+Otherwise, if the target file doesn't exist, this section will be disabled.
 
 The following profile changes will be considered by the incremental generator:
 
