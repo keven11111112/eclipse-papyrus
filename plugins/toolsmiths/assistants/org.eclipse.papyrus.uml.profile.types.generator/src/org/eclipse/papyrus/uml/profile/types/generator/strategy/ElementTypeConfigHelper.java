@@ -26,8 +26,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.types.Annotation;
+import org.eclipse.papyrus.infra.types.ConfigurationElement;
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory;
 import org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.uml.profile.types.generator.ImpliedExtension;
@@ -44,6 +47,18 @@ import org.eclipse.uml2.uml.resource.UMLResource;
  * A helper to retrieve Stereotype information from an {@link ElementTypeSetConfiguration} model.
  */
 public class ElementTypeConfigHelper {
+
+	/**
+	 * <p>
+	 * The key used for an {@link Annotation#getSource()} to reference the element that was used to generate
+	 * the ConfigurationElement (typically used to link a {@link SpecializationTypeConfiguration} to its {@link Stereotype}).
+	 * </p>
+	 *
+	 * <p>
+	 * The value is a String representing an EMF URI.
+	 * </p>
+	 */
+	public static final String GENERATOR_ANNOTATION_SOURCE = org.eclipse.papyrus.uml.profile.types.generator.internal.Activator.PLUGIN_ID + ".source";
 
 	private final UML uml = new UML();
 
@@ -171,11 +186,12 @@ public class ElementTypeConfigHelper {
 	 *         The URI of the stereotype that was used to generate this element type, or <code>null</code>
 	 */
 	private URI getStereotypeURI(ElementTypeConfiguration config) {
-		if (config.getSource() == null || config.getSource().isEmpty()) {
+		String source = getSource(config);
+		if (source == null || source.isEmpty()) {
 			return null;
 		}
 		try {
-			URI uri = URI.createURI(config.getSource());
+			URI uri = URI.createURI(source);
 			return uri;
 		} catch (IllegalArgumentException ex) {
 			// The source is not a valid URI; probably because the type wasn't generated
@@ -318,6 +334,44 @@ public class ElementTypeConfigHelper {
 			}
 		}
 		return false;
+	}
+
+	public String getSource(ConfigurationElement configElement) {
+		return configElement.getAnnotations().stream() //
+				.filter(a -> GENERATOR_ANNOTATION_SOURCE.equals(a.getSource())) //
+				.findFirst() //
+				.map(Annotation::getValue).orElse(null);
+	}
+
+	/**
+	 * Set the source for this {@link ConfigurationElement}. See {@link #GENERATOR_ANNOTATION_SOURCE}
+	 *
+	 * @param configElement
+	 *            The configuration element
+	 * @param source
+	 *            The source of this element. This is a String representing the EMF URI of the (UML) Element
+	 *            that was used to generate this configuration element. If <code>null</code>, the source
+	 *            annotation will be removed.
+	 *
+	 * @see #GENERATOR_ANNOTATION_SOURCE
+	 */
+	public void setSource(ConfigurationElement configElement, String source) {
+		Optional<Annotation> annotation = configElement.getAnnotations().stream() //
+				.filter(a -> GENERATOR_ANNOTATION_SOURCE.equals(a.getSource()))
+				.findFirst();
+
+		if (source == null) {
+			annotation.ifPresent(EcoreUtil::delete);
+		} else {
+			if (!annotation.isPresent()) {
+				// Create the Annotation if we need to set a source.
+				Annotation newAnnotation = ElementTypesConfigurationsFactory.eINSTANCE.createAnnotation();
+				configElement.getAnnotations().add(newAnnotation);
+				newAnnotation.setSource(GENERATOR_ANNOTATION_SOURCE);
+				annotation = Optional.of(newAnnotation);
+			}
+			annotation.get().setValue(source);
+		}
 	}
 
 }

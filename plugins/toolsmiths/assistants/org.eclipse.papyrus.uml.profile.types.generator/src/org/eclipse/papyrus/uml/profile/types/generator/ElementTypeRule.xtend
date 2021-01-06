@@ -83,7 +83,7 @@ class ElementTypeRule {
 		specializedTypes.add(supertype)
 		hint = supertype.hint
 		name = umlExtension.toElementTypeName(supertype)
-		source = EcoreUtil.getURI(umlExtension.stereotype).toString();
+		setSource(EcoreUtil.getURI(umlExtension.stereotype).toString());
 
 		// copy eventually already existing advices from registry
 		val elemTypeFromRegistry = ElementTypeRegistry.instance.getType(identifier)
