@@ -101,6 +101,10 @@ class ConfigurationSetRule {
 
 		val newDiff = new DiffImpl();
 		newDiff.addedStereotypes.addAll(umlProfile.allStereotypes);
+		
+		// Only set the identifier for non-incremental generations. For incremental generations,
+		// keep the existing identifier (Even if the user selected a different prefix in the Wizard)
+		identifier = "elementTypes".qualified;
 
 		updateElementTypeSet(umlProfile, it, newDiff);
 	}
@@ -114,10 +118,7 @@ class ConfigurationSetRule {
 		// Initialize the generation of IDs
 		umlProfile.setIdentifierBase
 
-		typeSet => [
-			identifier = "elementTypes".qualified;
-			metamodelNsURI = baseUMLElementTypeSet?.metamodelNsURI ?: UMLPackage.eNS_URI;
-		]
+		typeSet.metamodelNsURI = baseUMLElementTypeSet?.metamodelNsURI ?: UMLPackage.eNS_URI;
 		
 		for (addedStereotype : diff.addedStereotypes) {
 			for (ext : addedStereotype.impliedExtensions) {

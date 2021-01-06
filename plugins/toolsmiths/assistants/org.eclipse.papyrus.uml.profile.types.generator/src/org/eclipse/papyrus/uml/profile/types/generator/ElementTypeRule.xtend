@@ -37,7 +37,6 @@ import org.eclipse.uml2.uml.NamedElement
 import org.eclipse.uml2.uml.Stereotype
 
 import static extension org.eclipse.emf.common.util.URI.decode
-import org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration
 
 /**
  * Transformation rule for generating a {@link SpecializationTypeConfiguration} from a UML metaclass {@link Extension}.
