@@ -33,6 +33,7 @@
 			individual components). This will disable Papyrus Update Sites (Since they 
 			are being built by this POM). -->
 		<buildAll>false</buildAll>
+		<target.suffix>portable</target.suffix>
 
 		<!-- Papyrus repositories. Used when we're building individual components 
 			(vs building the parent pom including everything) -->
@@ -95,6 +96,9 @@
 					<configuration>
 						<source>${java.source.version}</source>
 						<target>${java.target.version}</target>
+						<compilerArgs>
+							<main.argLine>-Xms512m -Xmx2048m -XX:SoftRefLRUPolicyMSPerMB=100</main.argLine>
+						</compilerArgs>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -193,26 +197,27 @@
 
 	<profiles>
 		<profile>
-			<id>eclipsehippIntegration</id>
 			<activation>
 				<property>
-					<name>HUDSON_URL</name>
+					<name>Gerrit</name>
 				</property>
 			</activation>
-			<properties>
-				<target.suffix>eclipse</target.suffix> <!-- set to 'eclipse' when building on HIPP, to improve performances -->
-			</properties>
-		</profile>
-		<profile>
-			<id>localIntegration</id>
-			<activation>
-				<property>
-					<name>!HUDSON_URL</name>
-				</property>
-			</activation>
-			<properties>
-				<target.suffix>portable</target.suffix>
-			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>${maven.compiler.version}</version>
+						<configuration>
+							<source>${java.source.version}</source>
+							<target>${java.target.version}</target>
+							<compilerArgs>
+								<main.argLine>-Xms512m -Xmx4096m -XX:SoftRefLRUPolicyMSPerMB=100</main.argLine>
+							</compilerArgs>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 </project>

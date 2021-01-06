@@ -37,18 +37,18 @@
             class="org.eclipse.papyrus.infra.gmfdiag.css.properties.handler.CSSFileHandler"
             commandId="org.eclipse.papyrus.infra.gmfdiag.css.theme.edit">
          <enabledWhen>
-            <with
-                  variable="selection">
-               <iterate>
-                  <adapt
-                        type="org.eclipse.core.resources.IResource">
-                     <test
-                           property="org.eclipse.core.resources.extension"
-                           value="css">
-                     </test>
-                  </adapt>
-               </iterate>
-            </with>
+         <with
+                        variable="selection">
+                     <iterate>
+                        <adapt
+                              type="org.eclipse.core.resources.IResource">
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="css">
+                           </test>
+                        </adapt>
+                     </iterate>
+                  </with>
          </enabledWhen>
       </handler>
    </extension>
@@ -79,12 +79,26 @@
                label="CSS Theme">
             <visibleWhen
                   checkEnabled="true">
-               <with
-                     variable="activePartId">
-                  <equals
-                        value="org.eclipse.ui.navigator.ProjectExplorer">
-                  </equals>
-               </with>
+               <and>
+                  <with
+                        variable="activePartId">
+                     <equals
+                           value="org.eclipse.ui.navigator.ProjectExplorer">
+                     </equals>
+                  </with>
+                  <with
+                        variable="selection">
+                     <iterate>
+                        <adapt
+                              type="org.eclipse.core.resources.IResource">
+                           <test
+                                 property="org.eclipse.core.resources.extension"
+                                 value="css">
+                           </test>
+                        </adapt>
+                     </iterate>
+                  </with>
+               </and>
             </visibleWhen>
          </menu>
       </menuContribution>

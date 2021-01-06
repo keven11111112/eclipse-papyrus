@@ -81,7 +81,7 @@ public class DefaultDisplayEngine implements DisplayEngine {
 	// Cache of data source for which the widget page has been build
 	private List<DataSource> dataSourceCache = new ArrayList<>();
 	// Cache about evaluation of set of constraint linked to a data source.
-	private HashMap<DataSource, Boolean> constraintEvaluationCache = new HashMap<>();
+	private HashMap<ConstraintEvaluationKey, Boolean> constraintEvaluationCache = new HashMap<>();
 
 	/**
 	 * Constructs a new DisplayEnginet that doesn't allow the duplication of sections
@@ -306,10 +306,11 @@ public class DefaultDisplayEngine implements DisplayEngine {
 			// in this context, all widget have been constructed and need to be refreshed
 			// but if constraints have been associated to the data source, maybe new widget may
 			// appear depending to the change of the value
-			if (constraintEvaluationCache.containsKey(source)) {
+			ConstraintEvaluationKey constrainstEvaluationKey = new ConstraintEvaluationKey(source, section);
+			if (constraintEvaluationCache.containsKey(constrainstEvaluationKey)) {
 				boolean newValue = evaluateConstraintForSection(section, source);
 				// the value has changed , destruction and creation is needed.
-				if (newValue != constraintEvaluationCache.get(source).booleanValue()) {
+				if (newValue != constraintEvaluationCache.get(constrainstEvaluationKey).booleanValue()) {
 					disposeAndCreateControl(parent, section, source);
 					storeConstraintevalutionForSource(section, source);
 
@@ -347,10 +348,11 @@ public class DefaultDisplayEngine implements DisplayEngine {
 	public void storeConstraintevalutionForSource(Section section, DataSource source) {
 		if (section.getConstraints().size() > 0) {
 			boolean value = evaluateConstraintForSection(section, source);
-			if (constraintEvaluationCache.containsKey(source)) {
-				constraintEvaluationCache.replace(source, new Boolean(value));
+			ConstraintEvaluationKey key = new ConstraintEvaluationKey(source, section);
+			if (constraintEvaluationCache.containsKey(key)) {
+				constraintEvaluationCache.replace(key, new Boolean(value));
 			} else {
-				constraintEvaluationCache.put(source, new Boolean(value));
+				constraintEvaluationCache.put(key, new Boolean(value));
 			}
 		}
 	}
@@ -495,5 +497,93 @@ public class DefaultDisplayEngine implements DisplayEngine {
 		}
 
 		return SectionDiscriminator.getDiscriminator(section);
+	}
+
+	/**
+	 * This is an inner class especially used for the cache of value of constraints for a section+ Datasource
+	 *
+	 * @since 5.0
+	 */
+	public class ConstraintEvaluationKey {
+		private DataSource dataSource = null;
+		private Section section = null;
+
+		/**
+		 * Constructor.
+		 *
+		 * @param dataSource
+		 * @param section
+		 */
+		public ConstraintEvaluationKey(DataSource dataSource, Section section) {
+			super();
+			this.dataSource = dataSource;
+			this.section = section;
+		}
+
+		/**
+		 * @return the dataSource
+		 */
+		public DataSource getDataSource() {
+			return dataSource;
+		}
+
+		/**
+		 * @return the section
+		 */
+		public Section getSection() {
+			return section;
+		}
+
+		/**
+		 * @see java.lang.Object#hashCode()
+		 *
+		 * @return
+		 */
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((dataSource == null) ? 0 : dataSource.hashCode());
+			result = prime * result + ((section == null) ? 0 : section.hashCode());
+			return result;
+		}
+
+		/**
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 *
+		 * @param obj
+		 * @return
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj) {
+				return true;
+			}
+			if (obj == null) {
+				return false;
+			}
+			if (getClass() != obj.getClass()) {
+				return false;
+			}
+			ConstraintEvaluationKey other = (ConstraintEvaluationKey) obj;
+			if (dataSource == null) {
+				if (other.dataSource != null) {
+					return false;
+				}
+			} else if (!dataSource.equals(other.dataSource)) {
+				return false;
+			}
+			if (section == null) {
+				if (other.section != null) {
+					return false;
+				}
+			} else if (!section.equals(other.section)) {
+				return false;
+			}
+			return true;
+		}
+
+
+
 	}
 }

@@ -23,7 +23,7 @@ location nattable "http://download.eclipse.org/nattable/releases/1.5.0/repositor
 
 //manualUpdate
 
-location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R20200831200620/repository/" {
+location orbit "https://download.eclipse.org/tools/orbit/downloads/drops/R20201130205003/repository/" {
 	com.google.guava [21.0.0,28.0.0) // emf.compare still needs guava 21.0.0
 	com.google.guava.source [21.0.0,28.0.0)
  	com.google.gson [2.7.0,2.8.0)
@@ -66,20 +66,20 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5" {
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.18-I-builds/I20201028-1800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.18/R-4.18-202012021800/" {
 	org.eclipse.sdk.feature.group
 }
 
 //updateFrom("OCL for 2020-12",0) 
 
-location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.12.0" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.13.0" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
 
 //updateFrom("Xtext, Xtend",0)
 
-location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S202011021543" {
+location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.24.0" {
 	org.eclipse.xtext.sdk.feature.group
 	org.eclipse.xtend.sdk.feature.group
 	org.eclipse.xtext.redist.feature.group
@@ -89,23 +89,23 @@ location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/mileston
 
 //updateFrom("EMFT MWE for 2020-12",0)
 
-location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/milestones/S202010292115/" {
+location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.12.0/" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
-//updateFrom("Web Tools Platform 3.19 for Simrel 2020-09",0) 
+//updateFrom("Web Tools Platform 3.20 for Simrel 2020-12",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.19.0/S-3.19.0.RC1-20200828030223/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.20.0/S-3.20.0.RC1-20201201143606/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
-//updateFrom("GMF Runtime 1.13.0 for SimRel 2020-06",0)
+//updateFrom("GMF Runtime 1.13.0 for SimRel 2020-12",0)
 
 location gmfRuntime "https://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R202004160913" {
 	org.eclipse.gmf.runtime.sdk.feature.group
 }
 
-//updateFrom("GMF Runtime 1.13.0 for SimRel 2020-06",1)
+//updateFrom("GMF Runtime 1.13.0 for SimRel 2020-12",1)
 
 location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R202004160913" {
 	org.eclipse.gmf.runtime.notation.sdk.feature.group
@@ -113,23 +113,23 @@ location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/upd
 
 //updateFrom("EMF (Core)",0)
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202010050141" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/release/2.24" {
 	org.eclipse.emf.sdk.feature.group
 }
 
-//updateFrom("EMF Services for SimRel 2020-09",0) 
+//updateFrom("EMF Services for SimRel 2020-12",0) 
 
 location emfQuery "https://download.eclipse.org/modeling/emf/query/updates/releases/R201805030653" {
 	org.eclipse.emf.query.sdk.feature.group
 }
 
-//updateFrom("EMF Services for SimRel 2020-09",1)
+//updateFrom("EMF Services for SimRel 2020-12",1)
 
 location emfValidation "https://download.eclipse.org/modeling/emf/validation/updates/releases/R202008210805" {
 	org.eclipse.emf.validation.sdk.feature.group
 }
 
-//updateFrom("EMF Services for SimRel 2020-09",2)
+//updateFrom("EMF Services for SimRel 2020-12",2)
 
 location emfTransaction "https://download.eclipse.org/modeling/emf/transaction/updates/releases/R201805140824/" {
 	org.eclipse.emf.transaction.sdk.feature.group
