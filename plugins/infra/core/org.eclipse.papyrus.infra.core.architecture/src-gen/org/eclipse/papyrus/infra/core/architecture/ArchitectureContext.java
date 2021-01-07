@@ -1,5 +1,5 @@
 /**
-* Copyright (c) 2017 CEA LIST.
+* Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 539694
  *  
  * 
  */
@@ -150,6 +151,7 @@ public interface ArchitectureContext extends ADElement {
 	 * @see #setCreationCommandClass(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_CreationCommandClass()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/papyrus/infra/core/architecture classConstraint='bundleclass://org.eclipse.papyrus.infra.architecture/org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand'"
 	 * @generated
 	 */
 	String getCreationCommandClass();
@@ -178,7 +180,7 @@ public interface ArchitectureContext extends ADElement {
 	 * @return the value of the '<em>Conversion Command Class</em>' attribute.
 	 * @see #setConversionCommandClass(String)
 	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage#getArchitectureContext_ConversionCommandClass()
-	 * @model
+	 * @model annotation="http://www.eclipse.org/papyrus/infra/core/architecture classConstraint='bundleclass://org.eclipse.papyrus.infra.architecture/org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand'"
 	 * @generated
 	 */
 	String getConversionCommandClass();
