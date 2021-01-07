@@ -1,5 +1,5 @@
 /**
-* Copyright (c) 2017 CEA LIST.
+* Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 539694
  *  
  * 
  */
@@ -862,6 +863,32 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/papyrus/infra/core/architecture
+		createArchitectureAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/papyrus/infra/core/architecture</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createArchitectureAnnotations() {
+		String source = "http://www.eclipse.org/papyrus/infra/core/architecture"; //$NON-NLS-1$
+		addAnnotation
+		  (getArchitectureContext_CreationCommandClass(),
+		   source,
+		   new String[] {
+			   "classConstraint", "bundleclass://org.eclipse.papyrus.infra.architecture/org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
+		addAnnotation
+		  (getArchitectureContext_ConversionCommandClass(),
+		   source,
+		   new String[] {
+			   "classConstraint", "bundleclass://org.eclipse.papyrus.infra.architecture/org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
 	}
 
 } //ArchitecturePackageImpl

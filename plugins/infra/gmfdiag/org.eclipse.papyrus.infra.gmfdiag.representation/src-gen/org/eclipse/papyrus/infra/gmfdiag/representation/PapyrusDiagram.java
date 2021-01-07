@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 539694
  *  
  * 
  */
@@ -137,6 +138,7 @@ public interface PapyrusDiagram extends PapyrusRepresentationKind {
 	 * @see #setCreationCommandClass(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage#getPapyrusDiagram_CreationCommandClass()
 	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/papyrus/infra/core/architecture classConstraint='bundleclass://org.eclipse.papyrus.infra.gmfdiag.commands/org.eclipse.papyrus.commands.ICreationCommand'"
 	 * @generated
 	 */
 	String getCreationCommandClass();
