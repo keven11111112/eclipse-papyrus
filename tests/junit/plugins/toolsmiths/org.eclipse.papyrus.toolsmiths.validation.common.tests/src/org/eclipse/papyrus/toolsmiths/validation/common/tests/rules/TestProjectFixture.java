@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -37,6 +37,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
@@ -69,6 +70,8 @@ public class TestProjectFixture extends ProjectFixture {
 	private String markerType = JAVA_PROBLEM;
 	private String projectNameOverride;
 	private final Set<String> filteredDiagnosticSources = new HashSet<>();
+
+	private final Set<IResource> toDelete = new HashSet<>();
 
 	/**
 	 * Initializes me.
@@ -126,6 +129,35 @@ public class TestProjectFixture extends ProjectFixture {
 		} catch (CoreException e) {
 			throw new AssertionError("Failed to build project.", e);
 		}
+	}
+
+	/**
+	 * Create a new project.
+	 *
+	 * @param name
+	 *            the project name to create
+	 * @param testClass
+	 *            the test class in which context to look for bundle resources to fill the project, or {@code null} if none required
+	 * @param contentPath
+	 *            path to a folder in the bundle resources that contains content to fill the project, or {@code null} if none required
+	 * @return the new project
+	 */
+	public IProject createProject(String name, Class<?> testClass, String contentPath) {
+		IProject result = getProject().getWorkspace().getRoot().getProject(name);
+
+		try {
+			result.create(null);
+			toDelete.add(result);
+			result.open(null);
+
+			if (contentPath != null) {
+				copyFolder(testClass, contentPath, result);
+			}
+		} catch (CoreException | IOException e) {
+			throw new AssertionError("Failed to create project.", e);
+		}
+
+		return result;
 	}
 
 	/**
@@ -317,7 +349,27 @@ public class TestProjectFixture extends ProjectFixture {
 				throw new IOException("Failed to initialize project contents.", e); //$NON-NLS-1$
 			}
 
-			base.evaluate();
+			try {
+				base.evaluate();
+			} finally {
+				AssertionError failure = null;
+
+				for (IResource next : toDelete) {
+					try {
+						next.delete(IResource.ALWAYS_DELETE_PROJECT_CONTENT | IResource.FORCE, null);
+					} catch (CoreException e) {
+						if (failure == null) {
+							failure = new AssertionError("Failed to clean up additional workspace resources", e);
+						} else {
+							failure.addSuppressed(e);
+						}
+					}
+				}
+
+				if (failure != null) {
+					throw failure;
+				}
+			}
 		}
 	}
 
