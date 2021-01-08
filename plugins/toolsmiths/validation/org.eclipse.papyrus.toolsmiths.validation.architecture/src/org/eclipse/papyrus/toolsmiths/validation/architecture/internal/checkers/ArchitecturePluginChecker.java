@@ -34,9 +34,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
+import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
 import org.eclipse.papyrus.toolsmiths.validation.architecture.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.BuildPropertiesChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ExtensionsChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelDependenciesChecker;
@@ -166,7 +168,7 @@ public class ArchitecturePluginChecker {
 
 	private static ModelDependenciesChecker createModelDependenciesChecker(IProject project, IFile modelFile, Resource resource) {
 		return new ModelDependenciesChecker(project, modelFile, resource, ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE)
-				.withAdditionalRequirements(new CommandClassDependencies(project)::computeDependencies);
+				.withAdditionalRequirements(new ArchitectureDependencies(project)::computeDependencies);
 	}
 
 	/**
@@ -190,6 +192,21 @@ public class ArchitecturePluginChecker {
 
 		return new PluginErrorReporter<>(pluginXML, modelFile, model, ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE, domain -> domain.getId())
 				.requireExtensionPoint(ARCHITECTURE_EXTENSION_POINT_IDENTIFIER, validator::matchExtension, null);
+	}
+
+	/**
+	 * Obtain a checker factory for custom model validation rules.
+	 *
+	 * @return the custom model checker factory
+	 */
+	public static IPluginChecker2.Factory customModelCheckerFactory() {
+		return IPluginChecker2.Factory.forEMFResource(ArchitecturePluginChecker::createCustomModelChecker);
+	}
+
+	private static CustomModelChecker createCustomModelChecker(IProject project, IFile modelFile, Resource resource) {
+		return new CustomModelChecker(modelFile, resource, ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE)
+				.withValidator(ArchitecturePackage.eNS_URI, ArchitectureCustomValidator::new)
+				.withValidator(RepresentationPackage.eNS_URI, ArchitectureCustomValidator::new); // No Papyrus-specific rules, yet
 	}
 
 }

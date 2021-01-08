@@ -191,6 +191,7 @@ abstract class PlatformHelper {
 		private static final String GENERATED_PACKAGE_EXTPOINT = "org.eclipse.emf.ecore.generated_package"; //$NON-NLS-1$
 		private static final String DYNAMIC_PACKAGE_EXTPOINT = "org.eclipse.emf.ecore.dynamic_package"; //$NON-NLS-1$
 		private static final String PACKAGE_EXTELEM = "package"; //$NON-NLS-1$
+		private static final String RESOURCE_EXTELEM = "resource"; //$NON-NLS-1$
 		private static final String URI_EXTATT = "uri"; //$NON-NLS-1$
 		private static final String GEN_MODEL_EXTATT = "genModel"; //$NON-NLS-1$
 		private static final String LOCATION_EXTATT = "location"; //$NON-NLS-1$
@@ -250,14 +251,14 @@ abstract class PlatformHelper {
 								.filter(IPluginElement.class::isInstance).map(IPluginElement.class::cast)
 								.filter(element -> Objects.equals(PACKAGE_EXTELEM, element.getName()))
 								.forEach(element -> models.put(element.getAttribute(URI_EXTATT).getValue(),
-										getURI(model, element.getAttribute(GEN_MODEL_EXTATT).getValue())));
+										getURI(model, element.getAttribute(GEN_MODEL_EXTATT).getValue(), false)));
 						break;
 					case DYNAMIC_PACKAGE_EXTPOINT:
 						Arrays.stream(extension.getChildren())
 								.filter(IPluginElement.class::isInstance).map(IPluginElement.class::cast)
-								.filter(element -> Objects.equals(PACKAGE_EXTELEM, element.getName()))
+								.filter(element -> Objects.equals(RESOURCE_EXTELEM, element.getName()))
 								.forEach(element -> models.put(element.getAttribute(URI_EXTATT).getValue(),
-										getURI(model, element.getAttribute(LOCATION_EXTATT).getValue())));
+										getURI(model, element.getAttribute(LOCATION_EXTATT).getValue(), true)));
 						break;
 					}
 				}
@@ -272,12 +273,31 @@ abstract class PlatformHelper {
 			return result;
 		}
 
-		private URI getURI(IPluginModelBase plugin, String path) {
+		private URI getURI(IPluginModelBase plugin, String path, boolean withFragment) {
+			URI result;
+
 			while (!path.isEmpty() && (path.startsWith("/") || path.startsWith("\\"))) { //$NON-NLS-1$//$NON-NLS-2$
 				path = path.substring(1);
 			}
+
+			String fragment = null;
+			if (withFragment) {
+				// Don't encode this as part of the path!
+				int hash = path.lastIndexOf('#');
+				if (hash >= 0) {
+					fragment = path.substring(hash + 1);
+					path = path.substring(0, hash);
+				}
+			}
+
 			path = String.format("%s/%s", plugin.getPluginBase().getId(), path); //$NON-NLS-1$
-			return URI.createPlatformResourceURI(path, true);
+			result = URI.createPlatformResourceURI(path, true);
+
+			if (fragment != null) {
+				result = result.appendFragment(fragment);
+			}
+
+			return result;
 		}
 
 		private EPackage.Descriptor createEPackageDescriptor(ResourceSet resourceSet, URI modelURI) {
@@ -300,17 +320,25 @@ abstract class PlatformHelper {
 			EPackage result = null;
 
 			try {
-				Resource resource = resourceSet.getResource(modelURI, true);
-				if (resource != null && resource.isLoaded() && !resource.getContents().isEmpty()) {
-					EObject object = resource.getContents().get(0);
+				if (modelURI.hasFragment()) {
+					// It's an explicit reference to an EPackage
+					EObject object = resourceSet.getEObject(modelURI, true);
 					if (object instanceof EPackage) {
 						result = (EPackage) object;
-					} else if (GEN_MODEL.equals(object.eClass().getName()) && object.eClass().getEStructuralFeature(GEN_PACKAGES) != null) {
-						EStructuralFeature genPackagesRef = object.eClass().getEStructuralFeature(GEN_PACKAGES);
-						@SuppressWarnings("unchecked")
-						EObject genPackage = ((EList<? extends EObject>) object.eGet(genPackagesRef)).get(0);
-						EStructuralFeature ecorePackageRef = genPackage.eClass().getEStructuralFeature(ECORE_PACKAGE);
-						result = (EPackage) genPackage.eGet(ecorePackageRef);
+					}
+				} else {
+					Resource resource = resourceSet.getResource(modelURI, true);
+					if (resource != null && resource.isLoaded() && !resource.getContents().isEmpty()) {
+						EObject object = resource.getContents().get(0);
+						if (object instanceof EPackage) {
+							result = (EPackage) object;
+						} else if (GEN_MODEL.equals(object.eClass().getName()) && object.eClass().getEStructuralFeature(GEN_PACKAGES) != null) {
+							EStructuralFeature genPackagesRef = object.eClass().getEStructuralFeature(GEN_PACKAGES);
+							@SuppressWarnings("unchecked")
+							EObject genPackage = ((EList<? extends EObject>) object.eGet(genPackagesRef)).get(0);
+							EStructuralFeature ecorePackageRef = genPackage.eClass().getEStructuralFeature(ECORE_PACKAGE);
+							result = (EPackage) genPackage.eGet(ecorePackageRef);
+						}
 					}
 				}
 

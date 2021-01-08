@@ -80,7 +80,8 @@ public class Activator extends AbstractUIPlugin {
 				.withChecker(ElementTypesPluginChecker.modelValidationCheckerFactory())
 				.withChecker(ElementTypesPluginChecker.customModelCheckerFactory()));
 		PapyrusPluginBuilder.addModelBuilder(new PluginCheckerBuilder(ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE, this::mapArchitectureResources)
-				.withChecker(ArchitecturePluginChecker.modelValidationCheckerFactory())); // No custom rules, yet
+				.withChecker(ArchitecturePluginChecker.modelValidationCheckerFactory())
+				.withChecker(ArchitecturePluginChecker.customModelCheckerFactory()));
 
 		// manifest builder
 		PapyrusPluginBuilder.addManifestBuilder(new ManifestBuilder());

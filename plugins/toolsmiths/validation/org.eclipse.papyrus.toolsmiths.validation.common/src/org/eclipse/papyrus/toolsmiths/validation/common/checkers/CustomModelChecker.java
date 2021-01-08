@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 Christian W. Damus, CEA LIST, and others.
+ * Copyright (c) 2020, 2021 Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -33,6 +33,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -391,13 +392,14 @@ public class CustomModelChecker extends AbstractPluginChecker {
 			if (isValidatorFor(ePackage)) {
 				doValidate(eClass, eObject, diagnostics, context);
 
-				if (!eClass.getESuperTypes().isEmpty()) {
-					for (EClass superClass : eClass.getESuperTypes()) {
-						validate(superClass, eObject, diagnostics, context);
+				EList<EClass> allSuperTypes = eClass.getEAllSuperTypes();
+				if (!allSuperTypes.isEmpty()) {
+					for (EClass superClass : allSuperTypes) {
+						doValidate(superClass, eObject, diagnostics, context);
 					}
 				}
 
-				if (!isValidatorFor(EcorePackage.eINSTANCE)) {
+				if (!isValidatorFor(EcorePackage.eINSTANCE) && !allSuperTypes.contains(EcorePackage.Literals.EOBJECT)) {
 					// Try the default EObject case, too
 					doValidate(EcorePackage.Literals.EOBJECT, eObject, diagnostics, context);
 				}

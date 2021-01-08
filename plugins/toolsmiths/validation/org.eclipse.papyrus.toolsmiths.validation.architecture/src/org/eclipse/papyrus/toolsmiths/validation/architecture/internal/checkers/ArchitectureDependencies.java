@@ -26,9 +26,11 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ComposedSwitch;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.jdt.core.IJavaModel;
@@ -36,6 +38,7 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.osgi.service.resolver.BundleDescription;
+import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.util.ArchitectureCommandUtils;
@@ -49,37 +52,69 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
 /**
- * Inference of bundle dependencies from the command classes referenced by an <em>Architecture Model</em>.
+ * Inference of bundle dependencies from the command classes and icon resources referenced by
+ * an <em>Architecture Model</em>.
  */
-class CommandClassDependencies {
+class ArchitectureDependencies {
 
 	private final String hostBundle;
 
-	CommandClassDependencies(IProject project) {
+	ArchitectureDependencies(IProject project) {
 		super();
 
 		this.hostBundle = PluginRegistry.findModel(project).getBundleDescription().getSymbolicName();
 	}
 
 	Set<String> computeDependencies(Resource resource) {
-		return new CommandSwitch().doSwitch(resource);
+		return new DependenciesSwitch().doSwitch(resource);
 	}
 
 	//
 	// Nested types
 	//
 
-	final class CommandSwitch extends ComposedSwitch<Set<String>> {
+	final class DependenciesSwitch extends ComposedSwitch<Set<String>> {
+		private static final String BUNDLECLASS_SCHEME = "bundleclass"; //$NON-NLS-1$
+
 		private final Set<String> result = new HashSet<>();
 
-		CommandSwitch() {
+		DependenciesSwitch() {
 			super();
 
 			addSwitch(createArchitectureSwitch());
 			addSwitch(createDiagramSwitch());
 		}
 
-		void collectBundleDependency(EObject owner, EStructuralFeature feature) {
+		void collectIconDependency(EObject owner, String iconURI) {
+			if (iconURI == null) {
+				// Okay
+				return;
+			}
+
+			try {
+				ResourceSet rset = owner.eResource().getResourceSet();
+				URI uri = rset.getURIConverter().normalize(URI.createURI(iconURI));
+				getBundleName(uri).filter(not(hostBundle::equals)).ifPresent(result::add);
+			} catch (Exception e) {
+				// This will be reported by model validation
+			}
+		}
+
+		private Optional<String> getBundleName(URI uri) {
+			Optional<String> result;
+
+			if (uri.isPlatformPlugin() || uri.isPlatformResource()) {
+				result = Optional.of(uri.segment(1));
+			} else if (BUNDLECLASS_SCHEME.equals(uri.scheme()) && uri.hasAuthority()) {
+				result = Optional.of(uri.authority());
+			} else {
+				result = Optional.empty();
+			}
+
+			return result;
+		}
+
+		void collectCommandDependency(EObject owner, EStructuralFeature feature) {
 			Optional<String> bundleName;
 
 			Object commandClass = ArchitectureCommandUtils.getCommandClass(owner, feature);
@@ -138,10 +173,15 @@ class CommandClassDependencies {
 		private Switch<Set<String>> createArchitectureSwitch() {
 			return new ArchitectureSwitch<>() {
 
+				public Set<String> caseADElement(ADElement object) {
+					collectIconDependency(object, object.getIcon());
+					return null;
+				}
+
 				@Override
 				public Set<String> caseArchitectureContext(ArchitectureContext object) {
-					collectBundleDependency(object, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS);
-					collectBundleDependency(object, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS);
+					collectCommandDependency(object, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS);
+					collectCommandDependency(object, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS);
 
 					return null;
 				}
@@ -153,7 +193,8 @@ class CommandClassDependencies {
 			return new RepresentationSwitch<>() {
 
 				public Set<String> casePapyrusDiagram(PapyrusDiagram object) {
-					collectBundleDependency(object, RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS);
+					collectIconDependency(object, object.getGrayedIcon());
+					collectCommandDependency(object, RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS);
 					return null;
 				}
 
