@@ -7,9 +7,11 @@
     <elementTypes xmi:type="elementtypesconfigurations:ElementTypeSetConfiguration" href="platform:/plugin/org.eclipse.papyrus.toolsmiths.validation.architecture.example/resources/BookStore.elementtypesconfigurations#_c0DGsGBhEemoFuWBTUmJOQ"/>
     <representationKinds xmi:type="gmfdiagrepresentation:PapyrusDiagram" xmi:id="_u1T1UFHAEeuwtJo37XL9OQ" id="org.eclipse.papyrus.toolsmiths.validation.architecture.example.inventory" name="InventoryDiagram" description="Book store inventory diagram." icon="platform:/plugin/org.eclipse.papyrus.toolsmiths.validation.architecture.example/icons/full/obj16/bookstore.png" concerns="_95r3oFG5EeuXzM4mqVly4g" grayedIcon="platform:/plugin/org.eclipse.papyrus.toolsmiths.validation.architecture.example/icons/full/obj16/bookstore_d.png" implementationID="org.eclipse.papyrus.toolsmiths.validation.architecture.example.InventoryDiagram" creationCommandClass="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand">
       <modelRules xmi:type="representation:ModelRule" xmi:id="__8BXQFHDEeuwtJo37XL9OQ" permit="true" elementMultiplicity="1" multiplicity="-1">
+        <element xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
         <stereotypes xmi:type="ecore:EClass" href="http://www.eclipse.org/Papyrus/test/toolsmiths/architecturebuilder/BookStore#_e24cBFG7EeuXzM4mqVly4g"/>
       </modelRules>
       <owningRules xmi:type="representation:OwningRule" xmi:id="_GnAokFHEEeuwtJo37XL9OQ" permit="true" multiplicity="-1">
+        <element xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
         <stereotypes xmi:type="ecore:EClass" href="http://www.eclipse.org/Papyrus/test/toolsmiths/architecturebuilder/BookStore#_e24cBFG7EeuXzM4mqVly4g"/>
       </owningRules>
       <childRules xmi:type="gmfdiagrepresentation:ChildRule" xmi:id="_LyaWcFHEEeuwtJo37XL9OQ" permit="true">
