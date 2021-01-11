@@ -105,13 +105,13 @@ public class TestProjectFixture extends ProjectFixture {
 			base = new OverlayFilesInProject(overlayFiles, base, description);
 		}
 
-		TestProject testProject = JUnitUtils.getAnnotation(description, TestProject.class);
-		Statement initProject = new Preferences(new InitializeProject(testProject, base, description));
-
 		List<AuxProject> auxiliaryProjects = JUnitUtils.getAnnotationsByType(description, AuxProject.class);
 		if (!auxiliaryProjects.isEmpty()) {
-			initProject = new CreateAuxiliaryProjects(auxiliaryProjects, initProject, description);
+			base = new CreateAuxiliaryProjects(auxiliaryProjects, base, description);
 		}
+
+		TestProject testProject = JUnitUtils.getAnnotation(description, TestProject.class);
+		Statement initProject = new Preferences(new InitializeProject(testProject, base, description));
 
 		Statement createProject = super.apply(initProject, description);
 
