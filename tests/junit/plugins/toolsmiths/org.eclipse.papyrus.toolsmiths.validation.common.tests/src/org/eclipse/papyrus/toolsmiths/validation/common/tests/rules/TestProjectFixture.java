@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -71,8 +72,6 @@ public class TestProjectFixture extends ProjectFixture {
 	private String projectNameOverride;
 	private final Set<String> filteredDiagnosticSources = new HashSet<>();
 
-	private final Set<IResource> toDelete = new HashSet<>();
-
 	/**
 	 * Initializes me.
 	 */
@@ -108,6 +107,11 @@ public class TestProjectFixture extends ProjectFixture {
 
 		TestProject testProject = JUnitUtils.getAnnotation(description, TestProject.class);
 		Statement initProject = new Preferences(new InitializeProject(testProject, base, description));
+
+		List<AuxProject> auxiliaryProjects = JUnitUtils.getAnnotationsByType(description, AuxProject.class);
+		if (!auxiliaryProjects.isEmpty()) {
+			initProject = new CreateAuxiliaryProjects(auxiliaryProjects, initProject, description);
+		}
 
 		Statement createProject = super.apply(initProject, description);
 
@@ -147,7 +151,6 @@ public class TestProjectFixture extends ProjectFixture {
 
 		try {
 			result.create(null);
-			toDelete.add(result);
 			result.open(null);
 
 			if (contentPath != null) {
@@ -349,27 +352,7 @@ public class TestProjectFixture extends ProjectFixture {
 				throw new IOException("Failed to initialize project contents.", e); //$NON-NLS-1$
 			}
 
-			try {
-				base.evaluate();
-			} finally {
-				AssertionError failure = null;
-
-				for (IResource next : toDelete) {
-					try {
-						next.delete(IResource.ALWAYS_DELETE_PROJECT_CONTENT | IResource.FORCE, null);
-					} catch (CoreException e) {
-						if (failure == null) {
-							failure = new AssertionError("Failed to clean up additional workspace resources", e);
-						} else {
-							failure.addSuppressed(e);
-						}
-					}
-				}
-
-				if (failure != null) {
-					throw failure;
-				}
-			}
+			base.evaluate();
 		}
 	}
 
@@ -510,6 +493,57 @@ public class TestProjectFixture extends ProjectFixture {
 			} finally {
 				TestProjectFixture.this.markerType = restoreMarkerType;
 			}
+		}
+
+	}
+
+	/**
+	 * A statement that creates auxiliary projects before the test.
+	 */
+	private final class CreateAuxiliaryProjects extends Statement {
+		private final Collection<? extends AuxProject> auxProjects;
+		private final Statement base;
+		private final Description description;
+
+		CreateAuxiliaryProjects(Collection<? extends AuxProject> auxProjects, Statement base, Description description) {
+			super();
+
+			this.auxProjects = auxProjects;
+			this.base = base;
+			this.description = description;
+		}
+
+		@Override
+		public void evaluate() throws Throwable {
+			final Set<IResource> toDelete = auxProjects.stream().map(this::createAuxProject).collect(Collectors.toSet());
+
+			try {
+				base.evaluate();
+			} finally {
+				AssertionError failure = null;
+
+				for (IResource next : toDelete) {
+					try {
+						next.delete(IResource.ALWAYS_DELETE_PROJECT_CONTENT | IResource.FORCE, null);
+					} catch (CoreException e) {
+						if (failure == null) {
+							failure = new AssertionError("Failed to clean up additional workspace resources", e);
+						} else {
+							failure.addSuppressed(e);
+						}
+					}
+				}
+
+				if (failure != null) {
+					throw failure;
+				}
+			}
+		}
+
+		private IProject createAuxProject(AuxProject auxProject) {
+			String resourcePath = "resources/" + auxProject.value();
+			String projectName = auxProject.as().isBlank() ? new Path(resourcePath).lastSegment() : auxProject.as();
+			return createProject(projectName, JUnitUtils.getTestClass(description), resourcePath.toString());
 		}
 
 	}

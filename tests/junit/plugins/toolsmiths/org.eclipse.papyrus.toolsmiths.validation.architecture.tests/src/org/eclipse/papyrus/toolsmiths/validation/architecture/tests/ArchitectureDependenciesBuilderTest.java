@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.AuxProject;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.Build;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.MarkerType;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.OverlayFile;
@@ -62,20 +63,31 @@ public class ArchitectureDependenciesBuilderTest extends AbstractPapyrusTest {
 
 	/**
 	 * Test the reporting of a creation command class that exists but which the bundle dependency is undeclared.
+	 * In this case, the class is a "source type" from the JDT workspace.
 	 */
 	@Test
 	@OverlayFile(value = "bug570097-dependencies/BookStore-missingCommandBundle.architecture", path = "resources/BookStore.architecture")
-	@Build(false)
+	// Create another project that contains the command class referenced in this test
+	@AuxProject("org.eclipse.papyrus.toolsmiths.validation.architecture.classdiagram")
 	public void creationCommandClassBundle() {
-		// Create another project that contains the command class referenced in this test
-		fixture.createProject("org.eclipse.papyrus.toolsmiths.validation.architecture.classdiagram",
-				ArchitectureDependenciesBuilderTest.class,
-				"resources/org.eclipse.papyrus.toolsmiths.validation.architecture.classdiagram");
-
-		fixture.build();
 		final List<IMarker> modelMarkers = fixture.getMarkers("META-INF/MANIFEST.MF"); //$NON-NLS-1$
 
 		assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("architecture.classdiagram"))))); //$NON-NLS-1$
+	}
+
+	/**
+	 * Test the reporting of a creation command class that exists but which the bundle dependency is undeclared.
+	 * In this case, the class is a "binary type" from the PDE target platform.
+	 */
+	@Test
+	@OverlayFile(value = "bug570097-dependencies/BookStore-missingCommandBundleBinaryType.architecture", path = "resources/BookStore.architecture")
+	// Create another project that brings Papyrus UML Class Diagram onto the classpath so that our
+	// command class reference is resolvable by JDT as a binary type
+	@AuxProject("org.eclipse.papyrus.toolsmiths.validation.architecture.classdiagram")
+	public void creationCommandClassBinaryTypeResolved() {
+		final List<IMarker> modelMarkers = fixture.getMarkers("META-INF/MANIFEST.MF"); //$NON-NLS-1$
+
+		assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("uml.diagram.clazz"))))); //$NON-NLS-1$
 	}
 
 	/**

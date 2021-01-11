@@ -20,12 +20,14 @@ import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.A
 import static org.hamcrest.CoreMatchers.both;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.AuxProject;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.Build;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.MarkerType;
 import org.eclipse.papyrus.toolsmiths.validation.common.tests.rules.OverlayFile;
@@ -73,6 +75,21 @@ public class ArchitectureModelBuilderTest extends AbstractPapyrusTest {
 			final List<IMarker> modelMarkers = fixture.getMarkers("resources/BookStore.architecture"); //$NON-NLS-1$
 
 			assertThat(modelMarkers, hasItem(both(isMarkerSeverity(IMarker.SEVERITY_ERROR)).and(isMarkerMessage(containsString("conversionCommandClassExists"))))); //$NON-NLS-1$
+		}
+
+		/**
+		 * Test that validation finds a creation command class that is a binary JDT type (from the target platform).
+		 * Other test cases cover source types.
+		 */
+		@Test
+		@OverlayFile(value = "bug570097-models/BookStore-commandClassBinaryType.architecture", path = "resources/BookStore.architecture")
+		// Create another project that brings Papyrus UML Class Diagram onto the classpath so that our
+		// command class reference is resolvable by JDT as a binary type
+		@AuxProject("org.eclipse.papyrus.toolsmiths.validation.architecture.classdiagram")
+		public void creationCommandClassBinaryTypeResolved() {
+			final List<IMarker> modelMarkers = fixture.getMarkers("META-INF/MANIFEST.MF"); //$NON-NLS-1$
+
+			assertThat(modelMarkers, not(hasItem(isMarkerMessage(containsString("ceationCommandClassExists")/* sic */)))); //$NON-NLS-1$
 		}
 	}
 
