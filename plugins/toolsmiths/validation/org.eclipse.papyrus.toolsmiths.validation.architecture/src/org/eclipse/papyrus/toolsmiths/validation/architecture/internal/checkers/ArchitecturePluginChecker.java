@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage;
 import org.eclipse.papyrus.toolsmiths.validation.architecture.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants;
+import org.eclipse.papyrus.toolsmiths.validation.architecture.internal.messages.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.BuildPropertiesChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ExtensionsChecker;
@@ -76,9 +77,9 @@ public class ArchitecturePluginChecker {
 			// Open the progress monitor dialog
 			new ProgressMonitorDialog(shell).run(true, true, monitor -> {
 				final Collection<IFile> architectureFiles = ProjectManagementService.getFilesFromProject(project, "architecture", true); //$NON-NLS-1$
-				monitor.beginTask("Validate Architecture plug-in", 1 + (architectureFiles.size() * 3)); // $NON-NLS-1$
+				monitor.beginTask(Messages.ArchitecturePluginChecker_0, 1 + (architectureFiles.size() * 3));
 
-				monitor.subTask("Prepare plug-in validation"); //$NON-NLS-1$
+				monitor.subTask(Messages.ArchitecturePluginChecker_1);
 				// First of all, delete the existing markers for project
 				MarkersService.deleteMarkers(project, ArchitecturePluginValidationConstants.ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE);
 

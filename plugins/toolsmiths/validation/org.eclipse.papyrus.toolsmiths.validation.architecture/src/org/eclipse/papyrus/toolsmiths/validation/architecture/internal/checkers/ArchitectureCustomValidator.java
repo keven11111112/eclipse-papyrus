@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
+import org.eclipse.papyrus.toolsmiths.validation.architecture.internal.messages.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CustomModelChecker;
 
 /**
@@ -54,13 +55,13 @@ public class ArchitectureCustomValidator extends CustomModelChecker.SwitchValida
 		try {
 			uri = URI.createURI(iconURI);
 		} catch (Exception e) {
-			diagnostics.add(createDiagnostic(Diagnostic.ERROR, owner, format("Invalid icon URI ''{1}'' in {0}.", context, owner, iconURI)));
+			diagnostics.add(createDiagnostic(Diagnostic.ERROR, owner, format(Messages.ArchitectureCustomValidator_0, context, owner, iconURI)));
 		}
 
 		if (uri != null) {
 			ResourceSet rset = owner.eResource().getResourceSet();
 			if (!rset.getURIConverter().exists(uri, null)) {
-				diagnostics.add(createDiagnostic(Diagnostic.ERROR, owner, format("No such icon resource ''{1}'' in {0}.", context, owner, uri.lastSegment())));
+				diagnostics.add(createDiagnostic(Diagnostic.ERROR, owner, format(Messages.ArchitectureCustomValidator_1, context, owner, uri.lastSegment())));
 			}
 		}
 	}

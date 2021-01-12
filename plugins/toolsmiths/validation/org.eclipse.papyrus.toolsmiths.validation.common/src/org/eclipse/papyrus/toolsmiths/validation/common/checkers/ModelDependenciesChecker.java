@@ -56,6 +56,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.osgi.service.resolver.BundleSpecification;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.pde.internal.core.ibundle.IManifestHeader;
 import org.eclipse.pde.internal.core.text.bundle.BundleModel;
@@ -185,7 +186,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	public void check(final DiagnosticChain diagnostics, final IProgressMonitor monitor) {
 		String resourceName = getModelFile() == null ? getProject().getName() : getModelFile().getName();
 
-		SubMonitor subMonitor = SubMonitor.convert(monitor, "Validate dependencies for '" + resourceName + "'.", 3);
+		SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(Messages.ModelDependenciesChecker_0, resourceName), 3);
 
 		// Get the external reference paths
 		final Collection<URI> externalReferencesPaths = getExternalReferencesPaths(diagnostics, getProject(), getModelFile(), resource);
@@ -210,7 +211,8 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 		if (!requiredPlugins.isEmpty()) {
 			requiredPlugins.stream().forEach(requiredPlugin -> {
 				int severity = severityFunction.applyAsInt(requiredPlugin);
-				errors.add(new ManifestError(getMarkerType(), "The plug-in ''" + requiredPlugin + "'' must be declared as required plug-in (for ''{0}'').", severity, Constants.REQUIRE_BUNDLE, resourceName));
+				errors.add(new ManifestError(getMarkerType(), Messages.ModelDependenciesChecker_1,
+						severity, Constants.REQUIRE_BUNDLE, resourceName, requiredPlugin));
 			});
 			reportErrors(diagnostics, errors);
 		}
@@ -230,7 +232,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 			final IFile manifestFile = ProjectManagementService.getManifestFile(getProject());
 			BundleModel textBundleModel = prepareTextBundleModel(manifestFile);
 			errors.stream().forEach(error -> {
-				reportBundleError(diagnostics, manifestFile, textBundleModel, error.type, error.message, error.severity, error.header, error.dependentName);
+				reportBundleError(diagnostics, manifestFile, textBundleModel, error.type, error.message, error.severity, error.header, error.dependentName, error.dependencyName);
 			});
 		}
 	}
@@ -252,17 +254,20 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	 *            the header entry of the manifest file on which marker is created.
 	 * @param sourceName
 	 *            the name of the source of the problem, e.g. the file or whatever that implies the problem
+	 * @param dependency
+	 *            the name of the dependency that is a problem, in the case of dependency problems (otherwise {@code null}
 	 */
-	private void reportBundleError(DiagnosticChain diagnostics, IFile manifestFile, BundleModel textBundleModel, String type, String message, int severity, String header, String sourceName) {
+	private void reportBundleError(DiagnosticChain diagnostics, IFile manifestFile, BundleModel textBundleModel, String type, String message, int severity, String header, String sourceName, String dependency) {
 		Diagnostic diagnostic;
 
 		if (textBundleModel != null) {
 			List<Object> data = new ArrayList<>(Arrays.asList(IPluginChecker2.markerType(type),
 					IPluginChecker2.lineNumber(getLineNumber(textBundleModel.getBundle().getManifestHeader(header)))));
 
-			if (sourceName != null) {
+			if (dependency != null) {
 				// All source names for the same dependency are collected and dynamically injected into the diagnostic message
-				data.add(IPluginChecker2.dynamicMessageArgument(0, sourceName));
+				data.add(IPluginChecker2.collatedMessageArgument(0, sourceName));
+				data.add(IPluginChecker2.messageArgument(1, dependency));
 			}
 
 			diagnostic = createDiagnostic(manifestFile, severity, 0, message, data.toArray());
@@ -496,7 +501,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 				}
 			} else {
 				// This doesn't look like any URI that resolves into a bundle
-				diagnostics.add(createDiagnostic(Diagnostic.WARNING, 0, NLS.bind("Suspicious URI: cannot infer bundle name in ''{0}''", uri)));
+				diagnostics.add(createDiagnostic(Diagnostic.WARNING, 0, NLS.bind(Messages.ModelDependenciesChecker_2, uri)));
 			}
 		}
 
@@ -549,13 +554,15 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 		private final int severity;
 		private final String header;
 		private final String dependentName;
+		private final String dependencyName;
 
-		ManifestError(String type, String message, int severity, String header, String dependentName) {
+		ManifestError(String type, String message, int severity, String header, String dependentName, String dependencyName) {
 			this.type = type;
 			this.message = message;
 			this.severity = severity;
 			this.header = header;
 			this.dependentName = dependentName;
+			this.dependencyName = dependencyName;
 		}
 	}
 }

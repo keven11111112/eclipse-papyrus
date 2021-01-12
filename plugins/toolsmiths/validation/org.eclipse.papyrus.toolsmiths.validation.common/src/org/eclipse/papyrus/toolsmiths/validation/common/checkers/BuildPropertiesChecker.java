@@ -57,7 +57,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.ProjectManagementService;
 import org.eclipse.pde.core.build.IBuild;
 import org.eclipse.pde.core.build.IBuildEntry;
@@ -71,8 +73,8 @@ import org.eclipse.pde.internal.core.text.build.BuildModel;
 @SuppressWarnings("restriction")
 public class BuildPropertiesChecker extends AbstractPluginChecker {
 
-	private static final String GENMODEL_EXTENSION = "genmodel";
-	private static final String ECORE_EXTENSION = "ecore";
+	private static final String GENMODEL_EXTENSION = "genmodel"; //$NON-NLS-1$
+	private static final String ECORE_EXTENSION = "ecore"; //$NON-NLS-1$
 
 	private final Resource modelResource;
 
@@ -173,7 +175,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 
 	@Override
 	public void check(DiagnosticChain diagnostics, final IProgressMonitor monitor) {
-		SubMonitor subMonitor = SubMonitor.convert(monitor, "Validate 'build.properties' file for '" + getModelFile().getName() + "'.", 1);
+		SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(Messages.BuildPropertiesChecker_2, getModelFile().getName()), 1);
 		if (subMonitor.isCanceled()) {
 			return;
 		}
@@ -206,7 +208,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 
 					// Only accept folders as prefixes
 					if (path.startsWith(token)) {
-						if (token.endsWith("/")) {
+						if (token.endsWith("/")) { //$NON-NLS-1$
 							// It's a folder explicitly. Other required resources may also match it
 							iter.remove();
 						} else {
@@ -224,7 +226,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 				// Create marker for every required resource that wasn't matched
 				List<BuildError> errors = new ArrayList<>(requiredResources.size());
 				for (IResource next : requiredResources) {
-					errors.add(new BuildError(getMarkerType(), "The build does not include '" + next.getProjectRelativePath() + "'", Diagnostic.ERROR, IBuildEntry.BIN_INCLUDES));
+					errors.add(new BuildError(getMarkerType(), NLS.bind(Messages.BuildPropertiesChecker_3, next.getProjectRelativePath()), Diagnostic.ERROR, IBuildEntry.BIN_INCLUDES));
 				}
 				reportErrors(diagnostics, errors);
 			}
@@ -278,7 +280,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 		URI ecoreURI = ecoreImpl.eResource().getURI();
 		List<String> segments = new ArrayList<>(ecoreURI.segmentsList());
 		// return only relative path from plugin root (platform:/plugin/<plugin-id>/ is removed)
-		return String.join("/", segments.subList(2, segments.size()));
+		return String.join("/", segments.subList(2, segments.size())); //$NON-NLS-1$
 	}
 
 	/**
@@ -290,7 +292,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 	 */
 	private static Optional<GenModel> loadGenModel(IProject project, String genModelPath) {
 		try {
-			URI uri = URI.createPlatformPluginURI(project.getName() + "/" + genModelPath, true);
+			URI uri = URI.createPlatformPluginURI(project.getName() + "/" + genModelPath, true); //$NON-NLS-1$
 			ResourceSet set = new ResourceSetImpl();
 			set.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap(true));
 			if (set.getURIConverter().exists(uri, null)) {
@@ -303,7 +305,7 @@ public class BuildPropertiesChecker extends AbstractPluginChecker {
 				}
 			}
 		} catch (Exception e) {
-			Activator.log.warn("Papyrus Build Checker (genmodel loading): " + e.getMessage());
+			Activator.log.error("Failed to load genmodel in Papyrus Build Checker.", e); //$NON-NLS-1$
 		}
 		return Optional.empty();
 	}

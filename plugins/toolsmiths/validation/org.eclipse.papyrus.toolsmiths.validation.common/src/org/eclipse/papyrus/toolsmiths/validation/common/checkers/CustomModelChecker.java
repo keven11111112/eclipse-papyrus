@@ -49,6 +49,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
 
 /**
  * <p>
@@ -104,7 +105,7 @@ public class CustomModelChecker extends AbstractPluginChecker {
 
 	@Override
 	public void check(final DiagnosticChain diagnostics, final IProgressMonitor monitor) {
-		SubMonitor subMonitor = SubMonitor.convert(monitor, "Check file '" + getModelFile().getName() + "'.", 1); //$NON-NLS-1$ //$NON-NLS-2$
+		SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(Messages.CustomModelChecker_0, getModelFile().getName()), 1);
 
 		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		final EValidator.SubstitutionLabelProvider labels = createSubstitutionLabelProvider(adapterFactory);
