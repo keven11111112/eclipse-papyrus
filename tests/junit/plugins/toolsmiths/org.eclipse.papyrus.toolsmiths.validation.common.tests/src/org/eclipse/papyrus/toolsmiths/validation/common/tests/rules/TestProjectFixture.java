@@ -40,6 +40,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceProxy;
+import org.eclipse.core.resources.IResourceProxyVisitor;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -51,6 +53,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainManager;
+import org.eclipse.papyrus.infra.architecture.ArchitectureDomainPreferences;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.preferences.PluginBuilderPreferencesConstants;
@@ -100,14 +104,14 @@ public class TestProjectFixture extends ProjectFixture {
 			base = new BuildProject(base);
 		}
 
-		List<OverlayFile> overlayFiles = JUnitUtils.getAnnotationsByType(description, OverlayFile.class);
-		if (!overlayFiles.isEmpty()) {
-			base = new OverlayFilesInProject(overlayFiles, base, description);
-		}
-
 		List<AuxProject> auxiliaryProjects = JUnitUtils.getAnnotationsByType(description, AuxProject.class);
 		if (!auxiliaryProjects.isEmpty()) {
 			base = new CreateAuxiliaryProjects(auxiliaryProjects, base, description);
+		}
+
+		List<OverlayFile> overlayFiles = JUnitUtils.getAnnotationsByType(description, OverlayFile.class);
+		if (!overlayFiles.isEmpty()) {
+			base = new OverlayFilesInProject(overlayFiles, base, description);
 		}
 
 		TestProject testProject = JUnitUtils.getAnnotation(description, TestProject.class);
@@ -266,6 +270,75 @@ public class TestProjectFixture extends ProjectFixture {
 		return loadModelResource(getFile(modelPath));
 	}
 
+	/**
+	 * Scan a project, looking for architecture models to register.
+	 *
+	 * @param project
+	 *            a project to scan
+	 * @return the URIs of architecture models int it that were registered
+	 *
+	 * @see #unregisterArchitectureModels(Collection)
+	 */
+	private Set<URI> registerArchitectureModels(IProject project) {
+		Set<URI> scanned = new HashSet<>();
+
+		try {
+			project.accept(new IResourceProxyVisitor() {
+
+				@Override
+				public boolean visit(IResourceProxy proxy) throws CoreException {
+					switch (proxy.getType()) {
+					case IResource.FILE:
+						if (proxy.getName().endsWith(".architecture")) { //$NON-NLS-1$
+							scanned.add(URI.createPlatformResourceURI(proxy.requestFullPath().toString(), true));
+						}
+						break;
+					default:
+						// Pass
+						break;
+					}
+
+					return true;
+				}
+			}, IResource.DEPTH_INFINITE, 0);
+		} catch (CoreException e) {
+			throw new AssertionError("Failed to scan test project for architecture models.", e);
+		}
+
+		@SuppressWarnings("deprecation")
+		ArchitectureDomainPreferences prefs = ArchitectureDomainManager.getInstance().getPreferences();
+
+		Set<String> result = scanned.stream().map(URI::toString).collect(Collectors.toSet());
+		result.removeIf(prefs.getAddedModelURIs()::contains); // Don't re-register existing models
+
+		if (!result.isEmpty()) {
+			prefs.getAddedModelURIs().addAll(result);
+			prefs.write(); // Trigger update in the manager
+		}
+
+		return result.stream().map(URI::createURI).collect(Collectors.toSet());
+	}
+
+	/**
+	 * Unregister a set of architecture models previously registered.
+	 *
+	 * @param architectureModels
+	 *            model URIs to unregister
+	 *
+	 * @see #registerArchitectureModels(IProject)
+	 */
+	private void unregisterArchitectureModels(Collection<URI> architectureModels) {
+		@SuppressWarnings("deprecation")
+		ArchitectureDomainPreferences prefs = ArchitectureDomainManager.getInstance().getPreferences();
+
+		Set<String> uriStrings = architectureModels.stream().map(URI::toString).collect(Collectors.toSet());
+		if (prefs.getAddedModelURIs().removeAll(uriStrings)) {
+			// Trigger update in the manager. Note that "added URIs" are not models that were added but
+			// models that are added to the manager by the preferences
+			prefs.write();
+		}
+	}
+
 	//
 	// Nested types
 	//
@@ -346,13 +419,22 @@ public class TestProjectFixture extends ProjectFixture {
 				throw new IllegalStateException("No @TestProject annotation found."); //$NON-NLS-1$
 			}
 
+			Set<URI> architectureModels = null;
+
 			try {
 				copyFolder(JUnitUtils.getTestClass(description), "resources/" + testProject.value()); //$NON-NLS-1$
+				architectureModels = registerArchitectureModels(getProject());
 			} catch (IOException e) {
 				throw new IOException("Failed to initialize project contents.", e); //$NON-NLS-1$
 			}
 
-			base.evaluate();
+			try {
+				base.evaluate();
+			} finally {
+				if (architectureModels != null) {
+					unregisterArchitectureModels(architectureModels);
+				}
+			}
 		}
 	}
 
@@ -390,7 +472,13 @@ public class TestProjectFixture extends ProjectFixture {
 				}
 			}
 
-			base.evaluate();
+			Set<URI> architectureModels = registerArchitectureModels(getProject());
+
+			try {
+				base.evaluate();
+			} finally {
+				unregisterArchitectureModels(architectureModels);
+			}
 		}
 
 		private IPath getTargetPath(OverlayFile overlay) {
@@ -515,16 +603,22 @@ public class TestProjectFixture extends ProjectFixture {
 
 		@Override
 		public void evaluate() throws Throwable {
-			final Set<IResource> toDelete = auxProjects.stream().map(this::createAuxProject).collect(Collectors.toSet());
+			Set<URI> architectureModels = new HashSet<>();
+
+			final Set<IProject> toDelete = auxProjects.stream().map(this::createAuxProject)
+					.peek(project -> architectureModels.addAll(registerArchitectureModels(project)))
+					.collect(Collectors.toSet());
 
 			try {
 				base.evaluate();
 			} finally {
+				unregisterArchitectureModels(architectureModels);
+
 				AssertionError failure = null;
 
-				for (IResource next : toDelete) {
+				for (IProject next : toDelete) {
 					try {
-						next.delete(IResource.ALWAYS_DELETE_PROJECT_CONTENT | IResource.FORCE, null);
+						next.delete(true, true, null);
 					} catch (CoreException e) {
 						if (failure == null) {
 							failure = new AssertionError("Failed to clean up additional workspace resources", e);
