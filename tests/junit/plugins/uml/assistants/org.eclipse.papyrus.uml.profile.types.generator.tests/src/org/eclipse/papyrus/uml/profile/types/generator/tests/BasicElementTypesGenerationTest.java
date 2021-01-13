@@ -26,6 +26,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.types.IconEntry;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
@@ -110,5 +111,12 @@ public class BasicElementTypesGenerationTest extends AbstractPapyrusTest {
 		assertThat(advice.getTarget(), is(fixture.getElementTypeConfiguration(beanClass)));
 		assertThat(advice.getStereotypesQualifiedNames(), not(isEmpty()));
 		assertThat(advice.getStereotypesQualifiedNames().get(0), is("j2ee::Bean"));
+	}
+
+	@Test
+	public void typeSetAttributes() {
+		ElementTypeSetConfiguration typeSet = fixture.getElementTypeSet();
+		assertThat(typeSet.getMetamodelNsURI(), is("http://www.eclipse.org/uml2/5.0.0/UML"));
+		assertThat(typeSet.getIdentifier(), is("org.eclipse.papyrus.test.elementTypes"));
 	}
 }

@@ -19,6 +19,7 @@ package org.eclipse.papyrus.uml.profile.types.generator
 
 import java.util.ArrayList
 import java.util.List
+import java.util.Map
 import java.util.Optional
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.uml.profile.types.generator.DeltaStrategy.Diff
 import org.eclipse.papyrus.uml.profile.types.generator.DeltaStrategy.DiffImpl
 import org.eclipse.papyrus.uml.profile.types.generator.strategy.ElementTypeConfigHelper
 import org.eclipse.uml2.uml.Profile
+import org.eclipse.uml2.uml.Stereotype
 import org.eclipse.uml2.uml.UMLPackage
 
 /**
@@ -102,6 +104,9 @@ class ConfigurationSetRule {
 		val newDiff = new DiffImpl();
 		newDiff.addedStereotypes.addAll(umlProfile.allStereotypes);
 		
+		// Initialize the generation of IDs
+		umlProfile.setIdentifierBase
+		
 		// Only set the identifier for non-incremental generations. For incremental generations,
 		// keep the existing identifier (Even if the user selected a different prefix in the Wizard)
 		identifier = "elementTypes".qualified;
@@ -120,7 +125,8 @@ class ConfigurationSetRule {
 
 		typeSet.metamodelNsURI = baseUMLElementTypeSet?.metamodelNsURI ?: UMLPackage.eNS_URI;
 		
-		for (addedStereotype : diff.addedStereotypes) {
+		val addedStereotypes = diff.addedStereotypes as List<Stereotype>
+		for (addedStereotype : addedStereotypes) {
 			for (ext : addedStereotype.impliedExtensions) {
 				for (element : ext.metaclass.diagramSpecificElementTypes) {
 					val elementtype = ext.toElementType(element)
@@ -129,7 +135,8 @@ class ConfigurationSetRule {
 			}
 		}
 
-		diff.removedStereotypes.forEach [
+		val removedStereotypes = diff.removedStereotypes as List<String>;
+		removedStereotypes.forEach [
 			if (it == null || it.empty) {
 				return;
 			}
@@ -140,8 +147,9 @@ class ConfigurationSetRule {
 				}
 			]
 		]
-
-		for (entry : diff.renamedStereotypes.entrySet) {
+		
+		val renamedStereotypes = diff.renamedStereotypes as Map<String, Stereotype>;
+		for (entry : renamedStereotypes.entrySet) {
 			val oldName = entry.key;
 			val stereotype = entry.value;
 			
@@ -153,7 +161,8 @@ class ConfigurationSetRule {
 			// TODO Edit corresponding ElementTypeConfigurations (Change ID, StereotypeQName)
 		}
 		
-		for (ext : diff.addedExtensions) {
+		val addedExtensions = diff.addedExtensions as List<ImpliedExtension>;
+		for (ext : addedExtensions) {
 			for (element : ext.metaclass.diagramSpecificElementTypes) {
 				val elementtype = ext.toElementType(element)
 				elementTypeConfigurationList.add(elementtype);
