@@ -42,7 +42,7 @@ class ReferencedIconsBuildPropertiesDependencies {
 	private final Resource resource;
 
 	/**
-	 * Initialize me with the resource to scan for element-types references to profiles (direct and indirect via stereotype names).
+	 * Initialize me with the resource to scan for references to icons.
 	 *
 	 * @param resource
 	 *            the element types model resource to scan
@@ -54,10 +54,9 @@ class ReferencedIconsBuildPropertiesDependencies {
 	}
 
 	/**
-	 * Scan my resource for referenced profiles and return the workspace resources containing those profiles,
-	 * where they can be determined to be in the workspace.
+	 * Scan my resource for referenced icons that are resolvable in the workspace.
 	 *
-	 * @return the workspace resources containing profiles that are referenced by the element types model
+	 * @return the workspace resources that are icons referenced by the architecture model
 	 */
 	Collection<IResource> getDependencies() {
 		Set<IResource> result = new HashSet<>();

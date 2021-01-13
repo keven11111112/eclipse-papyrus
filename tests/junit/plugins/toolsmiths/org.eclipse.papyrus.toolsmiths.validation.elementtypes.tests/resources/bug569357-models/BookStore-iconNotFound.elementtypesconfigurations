@@ -21,7 +21,7 @@
     </stereotypesToApply>
   </adviceBindingsConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_fen2kGBhEemoFuWBTUmJOQ" identifier="org.eclipse.papyrus.toolsmiths.validation.elementtypes.Book" name="Book" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_LsdB0FXJEeuFR-D4wbaD1A" iconPath="icons/full/obj16/Book.png"/>
+    <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_LsdB0FXJEeuFR-D4wbaD1A" iconPath="icons/full/obj16/Book_Class.png"/>
     <specializedTypes xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#org.eclipse.papyrus.uml.Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xmi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_ECdm8GBiEemoFuWBTUmJOQ" identifier="org.eclipse.papyrus.toolsmiths.validation.elementtypes.Person" name="Person" hint="UML::Class" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
