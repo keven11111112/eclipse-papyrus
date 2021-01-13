@@ -1,33 +1,46 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015, 2017 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015, 2017, 2020 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
  * https://www.eclipse.org/legal/epl-2.0/
- *
+ * 
  * SPDX-License-Identifier: EPL-2.0
  * 
  * Contributors:
  * Christian W. Damus - Initial API and implementation
  * Benoit Maggi       - Bug 474408: order by identifier the generated file
  * Ansgar Radermacher - Bug 526155: set element type name from profile
+ * Camille Letavernier - Bug 569354: remove StereotypeAdvice; use StereotypeMatcherAdvice instead
  * 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.types.generator
 
+import java.util.ArrayList
 import java.util.List
+import java.util.Optional
 import javax.inject.Inject
 import javax.inject.Singleton
-import org.eclipse.papyrus.infra.types.AbstractAdviceBindingConfiguration
+import org.eclipse.emf.common.util.EList
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.papyrus.infra.types.ElementTypeConfiguration
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration
 import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsFactory
+import org.eclipse.papyrus.uml.profile.types.generator.DeltaStrategy.Diff
+import org.eclipse.papyrus.uml.profile.types.generator.DeltaStrategy.DiffImpl
+import org.eclipse.papyrus.uml.profile.types.generator.strategy.ElementTypeConfigHelper
 import org.eclipse.uml2.uml.Profile
 import org.eclipse.uml2.uml.UMLPackage
 
 /**
+ * <p>
  * Transformation rule for generating an {@link ElementTypeSetConfiguration} from a UML {@link Profile}.
+ * </p>
+ * <p>
+ * Supports incremental (re)generation, if an Optional {@link ElementTypeSetConfiguration} and {@link DeltaStrategy.Diff}
+ * are provided.
+ * </p>
  */
 @Singleton
 class ConfigurationSetRule {
@@ -38,10 +51,10 @@ class ConfigurationSetRule {
 	@Inject extension UML
 	@Inject extension UMLElementTypes
 	@Inject extension ElementTypeRule
-	@Inject extension ApplyStereotypeAdviceRule
+	@Inject extension ElementTypeConfigHelper
+	@Inject Optional<DeltaStrategy.Diff> diff;
 
 	static var List<ElementTypeConfiguration> elementTypeConfigurationList
-	var List<AbstractAdviceBindingConfiguration> adviceBindingConfigurationList
 
 	static def addElementType(ElementTypeConfiguration elementtype) {
 		var found = elementTypeConfigurationList.findFirst[el|el.identifier.equals(elementtype.identifier)]
@@ -51,43 +64,114 @@ class ConfigurationSetRule {
 		} else {
 			return found
 		}
-
 	}
 
-	def create createElementTypeSetConfiguration toConfigurationSet(Profile umlProfile) {
+	/**
+	 * <p>
+	 * Create or (incrementally) regenerate an ElementTypeSetConfiguration, and populate
+	 * it with ElementTypeConfigurations, from the given umlProfile.
+	 * </p>
+	 * 
+	 * @param umlProfile
+	 * 		The source profile used to generate the ElementTypeSetConfiguration
+	 * @param originalOutput
+	 * 		The contents EList from the existing ElementTypeSetConfiguration, or null if we are generating a new Config.
+	 */
+	def ElementTypeSetConfiguration toConfigurationSet(Profile umlProfile, EList<? super EObject> originalOutput) {
+		if (originalOutput != null && ! originalOutput.empty) {
+			if (! diff.isEmpty()) {
+				val typeSet = originalOutput.
+					findFirst[it instanceof ElementTypeSetConfiguration] as ElementTypeSetConfiguration;
+				updateElementTypeSet(umlProfile, typeSet, diff.get());
+				return typeSet;
+			}
+			return null;
+		} else {
+			return newConfigurationSet(umlProfile);
+		}
+	}
+
+	/**
+	 * <p>
+	 * Create a new ElementTypeSetConfiguration and populate it with generated ElementTypeConfigurations,
+	 * from the given umlProfile.
+	 * </p>
+	 */
+	def create createElementTypeSetConfiguration newConfigurationSet(Profile umlProfile) {
+
+		val newDiff = new DiffImpl();
+		newDiff.addedStereotypes.addAll(umlProfile.allStereotypes);
+		
+		// Only set the identifier for non-incremental generations. For incremental generations,
+		// keep the existing identifier (Even if the user selected a different prefix in the Wizard)
+		identifier = "elementTypes".qualified;
+
+		updateElementTypeSet(umlProfile, it, newDiff);
+	}
+
+	def updateElementTypeSet(Profile umlProfile, ElementTypeSetConfiguration typeSet, Diff diff) {
+
+		val helper = new ElementTypeConfigHelper();
 
 		elementTypeConfigurationList = newArrayList()
-		adviceBindingConfigurationList = newArrayList()
-
+		
 		// Initialize the generation of IDs
 		umlProfile.setIdentifierBase
 
-		identifier = "elementTypes".qualified
-		metamodelNsURI = baseUMLElementTypeSet?.metamodelNsURI ?: UMLPackage.eNS_URI;
+		typeSet.metamodelNsURI = baseUMLElementTypeSet?.metamodelNsURI ?: UMLPackage.eNS_URI;
+		
+		for (addedStereotype : diff.addedStereotypes) {
+			for (ext : addedStereotype.impliedExtensions) {
+				for (element : ext.metaclass.diagramSpecificElementTypes) {
+					val elementtype = ext.toElementType(element)
+					elementTypeConfigurationList.add(elementtype);
+				}
+			}
+		}
 
-		for (ext : umlProfile.allExtensions) {
+		diff.removedStereotypes.forEach [
+			if (it == null || it.empty) {
+				return;
+			}
+			// One stereotype may correspond to multiple element types. Remove all of them.
+			new ArrayList(typeSet.elementTypeConfigurations).forEach[typeConfig | 
+				if (typeConfig.stereotypeName == it) {
+					typeSet.elementTypeConfigurations.remove(typeConfig);
+				}
+			]
+		]
+
+		for (entry : diff.renamedStereotypes.entrySet) {
+			val oldName = entry.key;
+			val stereotype = entry.value;
+			
+			// TODO: Should we manipulate Extensions rather than Stereotypes?
+			typeSet.elementTypeConfigurations
+				.filter(type | helper.getStereotypeName(type) == oldName)
+				.forEach(type | type.setStereotypeName(stereotype));
+			
+			// TODO Edit corresponding ElementTypeConfigurations (Change ID, StereotypeQName)
+		}
+		
+		for (ext : diff.addedExtensions) {
 			for (element : ext.metaclass.diagramSpecificElementTypes) {
 				val elementtype = ext.toElementType(element)
 				elementTypeConfigurationList.add(elementtype);
 			}
+		}
+		
+		// Remove all elementTypeConfigurations that correspond to one of the removed extensions
+		typeSet.elementTypeConfigurations.removeIf[type | diff.removedExtensions.contains(type.getExtension(umlProfile))]
 
-			// We only need to generate advice bindings for element types that won't inherit the from a parent semantic type
-			val typesNeedingAdvice = ext.metaclass.diagramSpecificElementTypes.filter[!hasSemanticSupertype]
-			for (element : typesNeedingAdvice) {
-				val advice = ext.stereotype.toAdviceConfiguration(ext, element)
-				adviceBindingConfigurationList.add(advice)
+		typeSet => [
+			// set name (otherwise, the element type set remains invalid)
+			if (useDiPostfix()) {
+				name = umlProfile.name + " DI"
+			} else {
+				name = umlProfile.name
 			}
-		}
 
-		adviceBindingsConfigurations.addAll(adviceBindingConfigurationList.sortBy[identifier])
-		elementTypeConfigurations.addAll(elementTypeConfigurationList.sortBy[identifier])
-
-		// set name (otherwise, the element type set remains invalid)
-		if (useDiPostfix()) {
-			name = umlProfile.name + " DI"
-		}
-		else {
-			name = umlProfile.name
-		}			
+			elementTypeConfigurations.addAll(elementTypeConfigurationList.sortBy[identifier])
+		]
 	}
 }
