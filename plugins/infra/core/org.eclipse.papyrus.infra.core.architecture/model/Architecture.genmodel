@@ -4,6 +4,7 @@
     modelDirectory="/org.eclipse.papyrus.infra.core.architecture/src-gen" editDirectory="/org.eclipse.papyrus.infra.core.architecture.edit/src-gen"
     editorDirectory="/org.eclipse.papyrus.infra.core.architecture.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.infra.core.architecture" modelName="Architecture"
+    modelPluginClass="org.eclipse.papyrus.infra.core.architecture.impl.ArchitecturePlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     testsDirectory="/org.eclipse.papyrus.infra.core.architecture.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.types/model/ElementTypesConfigurations.genmodel#//types"
