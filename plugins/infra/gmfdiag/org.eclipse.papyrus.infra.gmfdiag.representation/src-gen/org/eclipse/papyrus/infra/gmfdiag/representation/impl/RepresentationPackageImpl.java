@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 539694
  *  
  * 
  */
@@ -549,6 +550,26 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/papyrus/infra/core/architecture
+		createArchitectureAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/papyrus/infra/core/architecture</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createArchitectureAnnotations() {
+		String source = "http://www.eclipse.org/papyrus/infra/core/architecture"; //$NON-NLS-1$
+		addAnnotation
+		  (getPapyrusDiagram_CreationCommandClass(),
+		   source,
+		   new String[] {
+			   "classConstraint", "bundleclass://org.eclipse.papyrus.infra.gmfdiag.commands/org.eclipse.papyrus.commands.ICreationCommand" //$NON-NLS-1$ //$NON-NLS-2$
+		   });
 	}
 
 } //RepresentationPackageImpl

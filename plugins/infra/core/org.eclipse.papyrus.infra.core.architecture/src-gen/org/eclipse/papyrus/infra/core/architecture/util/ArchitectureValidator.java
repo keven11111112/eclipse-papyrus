@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 539694
  *  
  * 
  */
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 
 import org.eclipse.papyrus.infra.core.architecture.*;
+import org.eclipse.papyrus.infra.core.architecture.impl.ArchitecturePlugin;
 
 /**
  * <!-- begin-user-doc -->
@@ -312,10 +314,7 @@ public class ArchitectureValidator extends EObjectValidator {
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		// TODO
-		// Specialize this to return a resource locator for messages specific to this validator.
-		// Ensure that you remove @generated or mark it @generated NOT
-		return super.getResourceLocator();
+		return ArchitecturePlugin.INSTANCE;
 	}
 
 } //ArchitectureValidator
