@@ -1,0 +1,36 @@
+=Overview=
+Papyrus provides a framework to define specific edition rules for model elements, the '''ElementTypesConfiguration''' models. This aggregation of models, integrated with the '''architecture framework''' or simple extension points, can define how the domain specific tool uers will edit their model elements, like create, destroy, move or copy them.  
+
+This documentation will provide some simple recipes on how to use this configuration model with concrete examples. These examples can be imported and run into your development environment to see them in action.
+
+==Prerequisites==
+
+* Java basic knowledge,
+* UML knowledge 
+
+The ElementType framework is initially a library from GMF runtime. This describes rules to manage the lifecycle of model elements, and allows extension / modification of existing rules. Papyrus adds on top of that library a model-based extension mechanism, rather than using simply extension points. It is then much simpler to define new concepts, and the extension mechanism is designed so it can be extended itself, and it can also be referenced by other configuration models, like architecture framework or palettes configuration for diagrams.
+Goal of this document is to explain what classes to use, and which method shall be extended in order to define new edition rules.
+There may be also some hints in order to avoid performances regression. For example, ignoring the rules that have no chance to extend the current concept as early as possible, to avoid useless computations. 
+'' TODO: also mention ways to find usage of element with cache adapters?''
+
+===Plain UML edition rules===
+* complete UML element creation(add post creations rules with configure) 
+** create a second relative element
+** create complex constructions with more than one element (like done in UML-RT)
+* forbid element creation and move given container restrictions (approve request sample rather than unexecutable command)
+* delete element
+** forbid deletion of the element
+** delete relatives element 
+* reorient link
+** move additional elements
+** restrict reorient link based on target kind
+
+===Specific based edition rules===
+GMF Runtime Element types framework was not meant initially to specifically edit UML elements. Other requests have been added to Papyrus to manage stereotype (un)application with the element type framework. Some specific element types configurations were also added to manage stereotyped elements as a new concept in the language. 
+
+''TODO: Blob about stereotype requests (apply stereotype request, unapply stereotype request, etc.) and usage of the specific UMLBaseEditHelper to manage these new requests''
+* forbid unapplication of a given stereotype (stereotype is required for some reasons)
+
+==Install examples and run them==
+
+'' TODO: Blob about importing test project within the workspace''
