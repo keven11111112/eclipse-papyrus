@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2017, 2020 CEA LIST.
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -11,17 +11,15 @@
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
  *  Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - bug 565361
+ *  Christian W. Damus - bug 570486
  *
  */
 package org.eclipse.papyrus.infra.core.architecture.merged;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.papyrus.infra.core.architecture.ADElement;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind;
 import org.eclipse.papyrus.infra.core.architecture.TreeViewerConfiguration;
@@ -44,13 +42,21 @@ public class MergedArchitectureDescriptionLanguage extends MergedArchitectureCon
 	 *
 	 * @param domain
 	 *            the merged parent domain of this language
+	 * @deprecated the merge model now requires a backing model
 	 */
+	@Deprecated
 	public MergedArchitectureDescriptionLanguage(MergedArchitectureDomain domain) {
-		super(domain);
+		this(domain, null);
 	}
 
+	public MergedArchitectureDescriptionLanguage(MergedArchitectureDomain domain, ArchitectureDescriptionLanguage language) {
+		super(domain, language);
+	}
 
-
+	@Override
+	protected ArchitectureDescriptionLanguage getModel() {
+		return (ArchitectureDescriptionLanguage) super.getModel();
+	}
 
 	/**
 	 * Get the language's metamodel EPackage
@@ -58,13 +64,7 @@ public class MergedArchitectureDescriptionLanguage extends MergedArchitectureCon
 	 * @return an EPackage
 	 */
 	public EPackage getMetamodel() {
-		for (ADElement element : elements) {
-			ArchitectureDescriptionLanguage language = (ArchitectureDescriptionLanguage) element;
-			if (language.getMetamodel() != null) {
-				return language.getMetamodel();
-			}
-		}
-		return null;
+		return getModel().getMetamodel();
 	}
 
 	/**
@@ -73,12 +73,7 @@ public class MergedArchitectureDescriptionLanguage extends MergedArchitectureCon
 	 * @return a collection of EPackages
 	 */
 	public Collection<EPackage> getProfiles() {
-		Set<EPackage> profiles = new LinkedHashSet<>();
-		for (ADElement element : elements) {
-			ArchitectureDescriptionLanguage language = (ArchitectureDescriptionLanguage) element;
-			profiles.addAll(language.getProfiles());
-		}
-		return Collections.unmodifiableCollection(profiles);
+		return ECollections.unmodifiableEList(getModel().getProfiles());
 	}
 
 	/**
@@ -87,12 +82,8 @@ public class MergedArchitectureDescriptionLanguage extends MergedArchitectureCon
 	 * @return a collection of representation kinds
 	 */
 	public Collection<RepresentationKind> getRepresentationKinds() {
-		Set<RepresentationKind> kinds = new LinkedHashSet<>();
-		for (ADElement element : elements) {
-			ArchitectureDescriptionLanguage language = (ArchitectureDescriptionLanguage) element;
-			kinds.addAll(language.getRepresentationKinds());
-		}
-		return Collections.unmodifiableCollection(kinds);
+		return ECollections.unmodifiableEList(getModel().getRepresentationKinds());
+
 	}
 
 	/**
@@ -102,12 +93,8 @@ public class MergedArchitectureDescriptionLanguage extends MergedArchitectureCon
 	 * @since 3.0
 	 */
 	public Collection<TreeViewerConfiguration> getTreeViewerConfigurations() {
-		Set<TreeViewerConfiguration> kinds = new LinkedHashSet<>();
-		for (ADElement element : elements) {
-			ArchitectureDescriptionLanguage language = (ArchitectureDescriptionLanguage) element;
-			kinds.addAll(language.getTreeViewerConfigurations());
-		}
-		return Collections.unmodifiableCollection(kinds);
+		return ECollections.unmodifiableEList(getModel().getTreeViewerConfigurations());
+
 	}
 
 }

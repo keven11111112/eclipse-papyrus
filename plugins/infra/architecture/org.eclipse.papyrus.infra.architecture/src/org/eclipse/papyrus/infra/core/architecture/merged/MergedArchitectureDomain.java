@@ -1,112 +1,110 @@
 /**
- * Copyright (c) 2017 CEA LIST.
- * 
+ * Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
  *  which accompanies this distribution, and is available at
  *  https://www.eclipse.org/legal/epl-2.0/
  *
  *  SPDX-License-Identifier: EPL-2.0
- *  
+ *
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 570486
+ *
+ *
  */
 package org.eclipse.papyrus.infra.core.architecture.merged;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
 
-import org.eclipse.papyrus.infra.core.architecture.ADElement;
-import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
-import org.eclipse.papyrus.infra.core.architecture.ArchitectureDescriptionLanguage;
+import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.Concern;
 import org.eclipse.papyrus.infra.core.architecture.Stakeholder;
 
 /**
  * An element that represents a merged collection of {@link org.eclipse.papyrus.infra.core.
- * architecture.ArchitectureDomain}s. This allows the definition of architecture 
- * domains to be split across several architectural models (*.architecture). 
- * 
+ * architecture.ArchitectureDomain}s. This allows the definition of architecture
+ * domains to be split across several architectural models (*.architecture).
+ *
  * This class is a subclass of {@link org.eclipse.papyrus.infra.core.architecture.merged.
  * MergedADElement}s
- *  
+ *
  * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain
  * @since 1.0
  */
 public class MergedArchitectureDomain extends MergedADElement {
 
+	private final EList<MergedArchitectureContext> contexts = new UniqueEList<>();
+
 	/**
 	 * Create a new '<em><b>Merged Architecture Domain</b></em>'.
+	 *
+	 * @deprecated the merge model now requires a backing model
 	 */
+	@Deprecated
 	public MergedArchitectureDomain() {
 		super(null);
 	}
-	
+
+	public MergedArchitectureDomain(ArchitectureDomain domain) {
+		super(null, domain);
+	}
+
+	@Override
+	protected ArchitectureDomain getModel() {
+		return (ArchitectureDomain) super.getModel();
+	}
+
 	/**
 	 * Get a merged collection of the domain's stakeholders
-	 * 
+	 *
 	 * @return a collection of stakeholders
 	 */
 	public Collection<Stakeholder> getStakeholders() {
-		Set<Stakeholder> stakeholders = new LinkedHashSet<>();
-		for (ADElement element : elements) {
-			ArchitectureDomain domain = (ArchitectureDomain) element;
-			stakeholders.addAll(domain.getStakeholders());
-		}
-		return Collections.unmodifiableCollection(stakeholders);
+		return ECollections.unmodifiableEList(getModel().getStakeholders());
 	}
 
 	/**
 	 * Get a merged collection of the domain's concerns
-	 * 
+	 *
 	 * @return a collection of concerns
 	 */
 	public Collection<Concern> getConcerns() {
-		Set<Concern> concerns = new LinkedHashSet<>();
-		for (ADElement element : elements) {
-			ArchitectureDomain domain = (ArchitectureDomain) element;
-			concerns.addAll(domain.getConcerns());
-		}
-		return Collections.unmodifiableCollection(concerns);
+		return ECollections.unmodifiableEList(getModel().getConcerns());
 	}
 
 	/**
 	 * Get a merged collection of the domain's contexts
-	 * 
+	 *
 	 * @return a collection of contexts
 	 */
 	public Collection<MergedArchitectureContext> getContexts() {
-		Map<String, MergedArchitectureContext> contexts = new HashMap<>();
-		for (ADElement element : elements) {
-			ArchitectureDomain domain = (ArchitectureDomain) element;
-			for (ArchitectureContext context : domain.getContexts()) {
-				MergedArchitectureContext merged = contexts.get(context.getName());
-				if (merged == null) {
-					if (context instanceof ArchitectureDescriptionLanguage)
-						contexts.put(context.getName(), merged = new MergedArchitectureDescriptionLanguage(this));
-					else
-						contexts.put(context.getName(), merged = new MergedArchitectureFramework(this));
-				}
-				merged.merge(context);
-			}
-		}
-		return Collections.unmodifiableCollection(contexts.values());
+		return ECollections.unmodifiableEList(contexts);
+	}
+
+	final void addContext(MergedArchitectureContext context) {
+		contexts.add(context);
 	}
 
 	/**
 	 * Merges the given domain element with the other merge increments
-	 * 
-	 * @param domain a given domain to merge
+	 *
+	 * @param domain
+	 *            a given domain to merge
+	 * @deprecated This merge algorithm is no longer implemented
 	 */
+	@Deprecated
 	public void merge(ArchitectureDomain domain) {
-		elements.add(domain);
+		// Pass
 	}
-	
+
+	@Override
+	public boolean isMerged() {
+		return super.isMerged() || getContexts().stream().anyMatch(MergedADElement::isMerged);
+	}
+
 }

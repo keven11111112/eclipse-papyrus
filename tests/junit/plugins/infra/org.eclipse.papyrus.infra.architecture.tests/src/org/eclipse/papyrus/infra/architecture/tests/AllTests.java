@@ -17,6 +17,7 @@ package org.eclipse.papyrus.infra.architecture.tests;
 
 import org.eclipse.papyrus.infra.architecture.tests.merged.MergedArchitectureDomainTest;
 import org.eclipse.papyrus.infra.core.architecture.tests.ArchitectureAllTests;
+import org.eclipse.papyrus.infra.core.internal.architecture.merger.tests.ArchitectureDomainMergerTest;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.junit.runner.RunWith;
@@ -27,8 +28,9 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
-	MergedArchitectureDomainTest.class,
 	ArchitectureAllTests.class,
+	MergedArchitectureDomainTest.class,
+	ArchitectureDomainMergerTest.class,
 	})
 @Headless
 public class AllTests {
