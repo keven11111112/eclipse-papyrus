@@ -18,6 +18,7 @@ package org.eclipse.papyrus.infra.core.architecture.merged;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.notify.impl.NotifierImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -38,7 +39,7 @@ import com.google.common.base.Objects;
  * @see org.eclipse.papyrus.infra.core.architecture.ADElement
  * @since 1.0
  */
-public class MergedADElement implements IAdaptable {
+public class MergedADElement extends NotifierImpl implements IAdaptable {
 
 	/**
 	 * The merged parent of this element
@@ -55,7 +56,7 @@ public class MergedADElement implements IAdaptable {
 	 *
 	 * @param parent
 	 *            the merged parent of this element
-	 * @deprecated the merge model now requires a backing model
+	 * @deprecated the merge model now requires a backing model as of version 3.0
 	 */
 	@Deprecated
 	public MergedADElement(MergedADElement parent) {
@@ -138,7 +139,9 @@ public class MergedADElement implements IAdaptable {
 	 *
 	 * @return a merge increment
 	 * @since 2.0
+	 * @deprecated the merged model façade API is supported by an EMF.Edit item provider as of version 3.0
 	 */
+	@Deprecated
 	public ADElement getImageObject() {
 		return element;
 	}
@@ -171,7 +174,7 @@ public class MergedADElement implements IAdaptable {
 	 * @return The number of merged elements.
 	 * @since 2.1
 	 *
-	 * @deprecated The merge model is now backed one-for-one by merged model elements
+	 * @deprecated The merge model is now backed one-for-one by merged model elements as of version 3.0
 	 */
 	@Deprecated
 	public int getElementsNumber() {
@@ -190,6 +193,10 @@ public class MergedADElement implements IAdaptable {
 		// If the adapter isn't attached, then of course I wasn't merged
 		return trace != null && trace.trace(getModel()).size() > 1;
 	}
+
+	//
+	// IAdaptable protocol
+	//
 
 	/**
 	 * {@inheritDoc}
