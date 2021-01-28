@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2014, 2018 CEA LIST and others.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.HandlerUtils;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
@@ -44,7 +45,7 @@ import org.junit.Test;
 
 /**
  * Test for copy/past of stereotype in model explorer.
- * 
+ *
  * @author Benoit Maggi
  */
 @PluginResource("resources/stereotypeCopyPasteMETest/ProfileApplication.di")
@@ -78,7 +79,7 @@ public class StereotypeCopyPasteModelExplorerTest extends AbstractPapyrusTest {
 
 	/**
 	 * Simple copy paste of a class1 with <<requirememt>> stereotype
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -92,7 +93,7 @@ public class StereotypeCopyPasteModelExplorerTest extends AbstractPapyrusTest {
 		ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
 		ModelExplorerView modelExplorerView = editorFixture.getModelExplorerView();
 		modelExplorerView.setFocus();
-		List<Object> elements = new ArrayList<Object>();
+		List<Object> elements = new ArrayList<>();
 		elements.add(model);
 		modelExplorerView.revealSemanticElement(elements);
 
@@ -108,7 +109,7 @@ public class StereotypeCopyPasteModelExplorerTest extends AbstractPapyrusTest {
 		Assert.assertTrue("Copy not available", copyHandler.isEnabled()); //$NON-NLS-1$
 		copyHandler.execute(new ExecutionEvent());
 
-		// select roo
+		// select root
 		elements.clear();
 		elements.add(model);
 		modelExplorerView.revealSemanticElement(elements);
@@ -130,7 +131,7 @@ public class StereotypeCopyPasteModelExplorerTest extends AbstractPapyrusTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * @throws Exception
 	 * @since 1.3
 	 */
@@ -138,6 +139,7 @@ public class StereotypeCopyPasteModelExplorerTest extends AbstractPapyrusTest {
 	public void tearDown() throws Exception {
 		// we reset the naming strategy to its initial value
 		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setToDefault(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION);
+		PapyrusClipboard.getNewInstance().clear(); // must be done otherwise it failed other tests
 	}
 
 

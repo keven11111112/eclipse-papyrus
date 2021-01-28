@@ -21,6 +21,7 @@ import java.util.Collection;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.junit.utils.HandlerUtils;
 import org.eclipse.papyrus.junit.utils.TableUtils;
@@ -30,6 +31,7 @@ import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Model;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -95,7 +97,7 @@ public class TableCopyPasteModelExplorerTest extends AbstractEditorTest {
 		ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
 		modelExplorerView = getModelExplorerView();
 		modelExplorerView.setFocus();
-		ArrayList<Object> elements = new ArrayList<Object>();
+		ArrayList<Object> elements = new ArrayList<>();
 		elements.add(getRootUMLModel());
 		modelExplorerView.revealSemanticElement(elements);
 
@@ -135,6 +137,16 @@ public class TableCopyPasteModelExplorerTest extends AbstractEditorTest {
 
 		allNotationTable = TableUtils.getAllNotationTable(getModelSet(), VIEW_TABLE_NAME);
 		Assert.assertEquals("Duplicate Table is missing", 2, allNotationTable.size());
+	}
+
+	/**
+	 *
+	 * @throws Exception
+	 * @since 1.3
+	 */
+	@After
+	public void tearDown() throws Exception {
+		PapyrusClipboard.getNewInstance().clear(); // must be done otherwise it failed other tests
 	}
 
 }
