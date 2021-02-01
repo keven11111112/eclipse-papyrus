@@ -70,14 +70,14 @@ class ArchitectureContextRule {
 	private def <T extends ArchitectureContext> merge(T target, T source, Set<? extends ArchitectureDomain> domains) {
 		(Set.of(source) + source.allExtensions).toSet => [
 			forEach[target.copyContext(it, domains)]
-			target.mergeViewpoints(it)
+			target.mergeViewpoints(it, domains)
 		]
 	}
 	
-	private def mergeViewpoints(ArchitectureContext target, Set<? extends ArchitectureContext> sources) {
+	private def mergeViewpoints(ArchitectureContext target, Set<? extends ArchitectureContext> sources, Set<? extends ArchitectureDomain> mergedDomains) {
 		target => [
 			val allViewpoints = sources.flatMap[viewpoints]
-			viewpoints += allViewpoints.mapUnique[it.name].map[sources.mergedViewpoint(it)]
+			viewpoints += allViewpoints.mapUnique[it.name].map[mergedDomains.mergedViewpoint(sources, it)]
 			
 			val allDefaults = sources.flatMap[defaultViewpoints]
 			if (!allDefaults.empty) {
@@ -152,7 +152,7 @@ class ArchitectureContextRule {
 		val contextsToMerge = contexts.named(name).toSet
 		val domainsToMerge = contexts.map[domain].toSet
 		contextsToMerge.forEach[target.copyContext(it, domainsToMerge)]
-		target.mergeViewpoints(contextsToMerge)
+		target.mergeViewpoints(contextsToMerge, domainsToMerge)
 	}
 	
 	def create createArchitectureFramework legacyMergedAF(String name, Set<? extends ArchitectureContext> contexts) {

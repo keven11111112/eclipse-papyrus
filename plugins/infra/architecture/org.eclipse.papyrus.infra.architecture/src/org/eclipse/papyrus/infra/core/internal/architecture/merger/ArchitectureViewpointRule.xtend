@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitectureFactory
 import javax.inject.Singleton
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext
 import java.util.Set
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain
 
 /**
  * Merge rule for {@link ArchitectureViewpoint}s.
@@ -32,8 +33,7 @@ class ArchitectureViewpointRule {
 	@Inject extension RepresentationKindRule
 	
 	/** Viewpoints are always merged by name (not just for legacy mode). */
-	def create result: createArchitectureViewpoint mergedViewpoint(Set<? extends ArchitectureContext> contexts, String name) {
-		val domains = contexts.map[domain].toSet
+	def create result: createArchitectureViewpoint mergedViewpoint(Set<? extends ArchitectureDomain> domains, Set<? extends ArchitectureContext> contexts, String name) {
 		
 		contexts.flatMap[viewpoints].named(name).forEach[viewpoint |
 			result.copy(viewpoint) => [
