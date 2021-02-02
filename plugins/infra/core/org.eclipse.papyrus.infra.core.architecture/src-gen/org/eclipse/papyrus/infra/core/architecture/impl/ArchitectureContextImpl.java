@@ -283,7 +283,8 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean ceationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context) {
+	@Override
+	public boolean creationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (creationCommandClass != null) {
 			boolean exists = false;
 			
@@ -302,7 +303,7 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 						(new BasicDiagnostic
 							(Diagnostic.ERROR,
 							 ArchitectureValidator.DIAGNOSTIC_SOURCE,
-							 ArchitectureValidator.ARCHITECTURE_CONTEXT__CEATION_COMMAND_CLASS_EXISTS,
+							 ArchitectureValidator.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS_EXISTS,
 							 ArchitecturePlugin.INSTANCE.getString(problem, new Object[] { EObjectValidator.getObjectLabel(this, context), expectedInterface }),
 							 new Object [] { this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS }));
 				}
@@ -569,8 +570,8 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case ArchitecturePackage.ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP:
-				return ceationCommandClassExists((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case ArchitecturePackage.ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP:
+				return creationCommandClassExists((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case ArchitecturePackage.ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP:
 				return conversionCommandClassExists((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

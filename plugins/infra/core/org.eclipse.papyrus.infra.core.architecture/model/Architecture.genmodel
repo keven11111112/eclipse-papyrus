@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=" Copyright (c) 2017 CEA LIST and others.&#xA;&#xA; All rights reserved. This program and the accompanying materials&#xA; are made available under the terms of the Eclipse Public License 2.0&#xA; which accompanies this distribution, and is available at&#xA; https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA; SPDX-License-Identifier: EPL-2.0&#xA;&#xA; Contributors:&#xA; Maged Elaasar - Initial API and implementation"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2021 CEA LIST and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License 2.0&#xA;which accompanies this distribution, and is available at&#xA;https://www.eclipse.org/legal/epl-2.0/&#xA;&#xA;SPDX-License-Identifier: EPL-2.0&#xA;&#xA;Contributors:&#xA;Maged Elaasar - Initial API and implementation"
     modelDirectory="/org.eclipse.papyrus.infra.core.architecture/src-gen" editDirectory="/org.eclipse.papyrus.infra.core.architecture.edit/src-gen"
     editorDirectory="/org.eclipse.papyrus.infra.core.architecture.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.infra.core.architecture" modelName="Architecture"
@@ -89,9 +89,9 @@
           ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/creationCommandClass"/>
       <genFeatures createChild="false" propertyCategory="Context" propertyDescription="The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface"
           ecoreFeature="ecore:EAttribute Architecture.ecore#//ArchitectureContext/conversionCommandClass"/>
-      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/ceationCommandClassExists">
-        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/ceationCommandClassExists/diagnostics"/>
-        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/ceationCommandClassExists/context"/>
+      <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/creationCommandClassExists">
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/creationCommandClassExists/diagnostics"/>
+        <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/creationCommandClassExists/context"/>
       </genOperations>
       <genOperations ecoreOperation="Architecture.ecore#//ArchitectureContext/conversionCommandClassExists">
         <genParameters ecoreParameter="Architecture.ecore#//ArchitectureContext/conversionCommandClassExists/diagnostics"/>

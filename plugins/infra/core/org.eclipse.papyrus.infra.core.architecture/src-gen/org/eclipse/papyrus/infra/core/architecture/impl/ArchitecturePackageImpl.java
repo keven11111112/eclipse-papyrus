@@ -10,7 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug 539694
+ *  Christian W. Damus - bugs 539694, 570856
  *  
  * 
  */
@@ -565,7 +565,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 	 * @generated
 	 */
 	@Override
-	public EOperation getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map() {
+	public EOperation getArchitectureContext__CreationCommandClassExists__DiagnosticChain_Map() {
 		return architectureContextEClass.getEOperations().get(0);
 	}
 
@@ -731,7 +731,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__EXTENSION_PREFIX);
 		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS);
 		createEAttribute(architectureContextEClass, ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS);
-		createEOperation(architectureContextEClass, ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(architectureContextEClass, ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(architectureContextEClass, ARCHITECTURE_CONTEXT___CONVERSION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP);
 
 		architectureFrameworkEClass = createEClass(ARCHITECTURE_FRAMEWORK);
@@ -832,7 +832,7 @@ public class ArchitecturePackageImpl extends EPackageImpl implements Architectur
 		initEAttribute(getArchitectureContext_CreationCommandClass(), ecorePackage.getEString(), "creationCommandClass", null, 1, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getArchitectureContext_ConversionCommandClass(), ecorePackage.getEString(), "conversionCommandClass", null, 0, 1, ArchitectureContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = initEOperation(getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "ceationCommandClassExists", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = initEOperation(getArchitectureContext__CreationCommandClassExists__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "creationCommandClassExists", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, theEcorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, !IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(theEcorePackage.getEMap());
 		EGenericType g2 = createEGenericType(theEcorePackage.getEJavaObject());

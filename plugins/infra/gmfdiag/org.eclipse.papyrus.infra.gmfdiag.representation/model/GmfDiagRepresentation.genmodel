@@ -31,9 +31,9 @@
           ecoreFeature="ecore:EAttribute GmfDiagRepresentation.ecore#//PapyrusDiagram/creationCommandClass"/>
       <genFeatures notify="false" createChild="false" propertyCategory="Diagram" propertyDescription="A set of palette configurations used by the diagram (typically found in .paletteconfiguration files)"
           propertySortChoices="true" ecoreFeature="ecore:EReference GmfDiagRepresentation.ecore#//PapyrusDiagram/palettes"/>
-      <genOperations ecoreOperation="GmfDiagRepresentation.ecore#//PapyrusDiagram/ceationCommandClassExists">
-        <genParameters ecoreParameter="GmfDiagRepresentation.ecore#//PapyrusDiagram/ceationCommandClassExists/diagnostics"/>
-        <genParameters ecoreParameter="GmfDiagRepresentation.ecore#//PapyrusDiagram/ceationCommandClassExists/context"/>
+      <genOperations ecoreOperation="GmfDiagRepresentation.ecore#//PapyrusDiagram/creationCommandClassExists">
+        <genParameters ecoreParameter="GmfDiagRepresentation.ecore#//PapyrusDiagram/creationCommandClassExists/diagnostics"/>
+        <genParameters ecoreParameter="GmfDiagRepresentation.ecore#//PapyrusDiagram/creationCommandClassExists/context"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="GmfDiagRepresentation.ecore#//ChildRule">

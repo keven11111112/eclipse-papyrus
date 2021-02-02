@@ -10,7 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug 539694
+ *  Christian W. Damus - bugs 539694, 570856
  *  
  * 
  */
@@ -55,12 +55,19 @@ public class ArchitectureValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "org.eclipse.papyrus.infra.core.architecture"; //$NON-NLS-1$
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Ceation Command Class Exists' of 'Context'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Creation Command Class Exists' of 'Context'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ARCHITECTURE_CONTEXT__CEATION_COMMAND_CLASS_EXISTS = 1;
+	public static final int ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS_EXISTS = 1;
+
+	
+	/**
+	 * @deprecated since the 3.1 release, use {@link #ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS_EXISTS}, instead.
+	 */
+	@Deprecated(since = "3.1", forRemoval = true)
+	public static final int ARCHITECTURE_CONTEXT__CEATION_COMMAND_CLASS_EXISTS = ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS_EXISTS;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Conversion Command Class Exists' of 'Context'.
@@ -178,7 +185,7 @@ public class ArchitectureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(architectureDescriptionLanguage, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(architectureDescriptionLanguage, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(architectureDescriptionLanguage, diagnostics, context);
-		if (result || diagnostics != null) result &= validateArchitectureContext_ceationCommandClassExists(architectureDescriptionLanguage, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_creationCommandClassExists(architectureDescriptionLanguage, diagnostics, context);
 		if (result || diagnostics != null) result &= validateArchitectureContext_conversionCommandClassExists(architectureDescriptionLanguage, diagnostics, context);
 		return result;
 	}
@@ -234,21 +241,29 @@ public class ArchitectureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(architectureContext, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(architectureContext, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(architectureContext, diagnostics, context);
-		if (result || diagnostics != null) result &= validateArchitectureContext_ceationCommandClassExists(architectureContext, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_creationCommandClassExists(architectureContext, diagnostics, context);
 		if (result || diagnostics != null) result &= validateArchitectureContext_conversionCommandClassExists(architectureContext, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the ceationCommandClassExists constraint of '<em>Context</em>'.
+	 * Validates the creationCommandClassExists constraint of '<em>Context</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateArchitectureContext_ceationCommandClassExists(ArchitectureContext architectureContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return architectureContext.ceationCommandClassExists(diagnostics, context);
+	public boolean validateArchitectureContext_creationCommandClassExists(ArchitectureContext architectureContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return architectureContext.creationCommandClassExists(diagnostics, context);
 	}
 
+	/**
+	 * @deprecated since the 3.1 release, use the {@link #validateArchitectureContext_creationCommandClassExists(ArchitectureContext, DiagnosticChain, Map)} API, instead.
+	 */
+	@Deprecated(since = "3.1", forRemoval = true)
+	public boolean validateArchitectureContext_ceationCommandClassExists(ArchitectureContext architectureContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return architectureContext.creationCommandClassExists(diagnostics, context);
+	}
+	
 	/**
 	 * Validates the conversionCommandClassExists constraint of '<em>Context</em>'.
 	 * <!-- begin-user-doc -->
@@ -274,7 +289,7 @@ public class ArchitectureValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(architectureFramework, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(architectureFramework, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(architectureFramework, diagnostics, context);
-		if (result || diagnostics != null) result &= validateArchitectureContext_ceationCommandClassExists(architectureFramework, diagnostics, context);
+		if (result || diagnostics != null) result &= validateArchitectureContext_creationCommandClassExists(architectureFramework, diagnostics, context);
 		if (result || diagnostics != null) result &= validateArchitectureContext_conversionCommandClassExists(architectureFramework, diagnostics, context);
 		return result;
 	}

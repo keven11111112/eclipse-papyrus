@@ -10,7 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug 539694
+ *  Christian W. Damus - bugs 539694, 570856
  *  
  * 
  */
@@ -255,7 +255,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 	 * @generated
 	 */
 	@Override
-	public EOperation getPapyrusDiagram__CeationCommandClassExists__DiagnosticChain_Map() {
+	public EOperation getPapyrusDiagram__CreationCommandClassExists__DiagnosticChain_Map() {
 		return papyrusDiagramEClass.getEOperations().get(0);
 	}
 
@@ -445,7 +445,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		createEReference(papyrusDiagramEClass, PAPYRUS_DIAGRAM__ASSISTANT_RULES);
 		createEAttribute(papyrusDiagramEClass, PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS);
 		createEReference(papyrusDiagramEClass, PAPYRUS_DIAGRAM__PALETTES);
-		createEOperation(papyrusDiagramEClass, PAPYRUS_DIAGRAM___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(papyrusDiagramEClass, PAPYRUS_DIAGRAM___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP);
 
 		childRuleEClass = createEClass(CHILD_RULE);
 		createEReference(childRuleEClass, CHILD_RULE__ELEMENT);
@@ -516,7 +516,7 @@ public class RepresentationPackageImpl extends EPackageImpl implements Represent
 		initEAttribute(getPapyrusDiagram_CreationCommandClass(), ecorePackage.getEString(), "creationCommandClass", null, 1, 1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPapyrusDiagram_Palettes(), thePaletteconfigurationPackage.getPaletteConfiguration(), null, "palettes", null, 0, -1, PapyrusDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = initEOperation(getPapyrusDiagram__CeationCommandClassExists__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "ceationCommandClassExists", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = initEOperation(getPapyrusDiagram__CreationCommandClassExists__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "creationCommandClassExists", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, theEcorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, !IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(theEcorePackage.getEMap());
 		EGenericType g2 = createEGenericType(theEcorePackage.getEJavaObject());

@@ -200,7 +200,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="The superclass of architectural description languages or architecture frameworks. It defines a collection of viewpoints on models."/>
     </eAnnotations>
-    <eOperations name="ceationCommandClassExists" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="creationCommandClassExists" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="diagnostics" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDiagnosticChain"/>
       <eParameters name="context" unique="false">
         <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EMap">

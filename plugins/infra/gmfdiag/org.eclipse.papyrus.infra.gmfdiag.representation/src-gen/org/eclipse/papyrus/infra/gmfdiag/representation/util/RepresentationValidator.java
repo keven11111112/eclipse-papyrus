@@ -57,12 +57,18 @@ public class RepresentationValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "org.eclipse.papyrus.infra.gmfdiag.representation"; //$NON-NLS-1$
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Ceation Command Class Exists' of 'Papyrus Diagram'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Creation Command Class Exists' of 'Papyrus Diagram'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int PAPYRUS_DIAGRAM__CEATION_COMMAND_CLASS_EXISTS = 1;
+	public static final int PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS_EXISTS = 1;
+	
+	/**
+	 * @deprecated since the 3.1 release, use {@link #PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS_EXISTS}, instead.
+	 */
+	@Deprecated(since = "3.1", forRemoval = true)
+	public static final int PAPYRUS_DIAGRAM__CEATION_COMMAND_CLASS_EXISTS = PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS_EXISTS;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -142,18 +148,26 @@ public class RepresentationValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(papyrusDiagram, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(papyrusDiagram, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(papyrusDiagram, diagnostics, context);
-		if (result || diagnostics != null) result &= validatePapyrusDiagram_ceationCommandClassExists(papyrusDiagram, diagnostics, context);
+		if (result || diagnostics != null) result &= validatePapyrusDiagram_creationCommandClassExists(papyrusDiagram, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the ceationCommandClassExists constraint of '<em>Papyrus Diagram</em>'.
+	 * Validates the creationCommandClassExists constraint of '<em>Papyrus Diagram</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validatePapyrusDiagram_creationCommandClassExists(PapyrusDiagram papyrusDiagram, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return papyrusDiagram.creationCommandClassExists(diagnostics, context);
+	}
+	
+	/**
+	 * @deprecated since the 3.1 release, use the {@link #validatePapyrusDiagram_creationCommandClassExists(PapyrusDiagram, DiagnosticChain, Map)} API, instead.
+	 */
+	@Deprecated(since = "3.1", forRemoval = true)
 	public boolean validatePapyrusDiagram_ceationCommandClassExists(PapyrusDiagram papyrusDiagram, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return papyrusDiagram.ceationCommandClassExists(diagnostics, context);
+		return validatePapyrusDiagram_creationCommandClassExists(papyrusDiagram, diagnostics, context);
 	}
 
 	/**

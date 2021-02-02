@@ -1,5 +1,5 @@
 /**
-* Copyright (c) 2017 CEA LIST.
+* Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug 570856
  *  
  * 
  */
@@ -374,13 +375,19 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_CONTEXT_FEATURE_COUNT = AD_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
-	 * The operation id for the '<em>Ceation Command Class Exists</em>' operation.
+	 * The operation id for the '<em>Creation Command Class Exists</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 0;
+	int ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = AD_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * @deprecated since the 3.1 release, use {@link #ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP}, instead.
+	 */
+	@Deprecated(since = "3.1", forRemoval = true)
+	int ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Conversion Command Class Exists</em>' operation.
@@ -564,14 +571,20 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_DESCRIPTION_LANGUAGE_FEATURE_COUNT = ARCHITECTURE_CONTEXT_FEATURE_COUNT + 4;
 
 	/**
-	 * The operation id for the '<em>Ceation Command Class Exists</em>' operation.
+	 * The operation id for the '<em>Creation Command Class Exists</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_DESCRIPTION_LANGUAGE___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
 
+	/**
+	 * @deprecated since the 3.1 release, use {@link #ARCHITECTURE_DESCRIPTION_LANGUAGE___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP}, instead.
+	 */
+	@Deprecated(since = "3.1", forRemoval = true)
+	int ARCHITECTURE_DESCRIPTION_LANGUAGE___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_DESCRIPTION_LANGUAGE___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
+	
 	/**
 	 * The operation id for the '<em>Conversion Command Class Exists</em>' operation.
 	 * <!-- begin-user-doc -->
@@ -1091,13 +1104,19 @@ public interface ArchitecturePackage extends EPackage {
 	int ARCHITECTURE_FRAMEWORK_FEATURE_COUNT = ARCHITECTURE_CONTEXT_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Ceation Command Class Exists</em>' operation.
+	 * The operation id for the '<em>Creation Command Class Exists</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ARCHITECTURE_FRAMEWORK___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
+	int ARCHITECTURE_FRAMEWORK___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * @deprecated since the 3.1 release, use {@link #ARCHITECTURE_FRAMEWORK___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP}, instead.
+	 */
+	@Deprecated
+	int ARCHITECTURE_FRAMEWORK___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_FRAMEWORK___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Conversion Command Class Exists</em>' operation.
@@ -1607,15 +1626,23 @@ public interface ArchitecturePackage extends EPackage {
 	EAttribute getArchitectureContext_ConversionCommandClass();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#ceationCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Ceation Command Class Exists</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#creationCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Creation Command Class Exists</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Ceation Command Class Exists</em>' operation.
-	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#ceationCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Creation Command Class Exists</em>' operation.
+	 * @see org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#creationCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map();
+	EOperation getArchitectureContext__CreationCommandClassExists__DiagnosticChain_Map();
 
+	/**
+	 * @deprecated since the 3.1 release, use {@link #getArchitectureContext__CreationCommandClassExists__DiagnosticChain_Map()}, instead.
+	 */
+	@Deprecated(since = "3.1", forRemoval = true)
+	default EOperation getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map() {
+		return getArchitectureContext__CreationCommandClassExists__DiagnosticChain_Map();
+	}
+	
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.core.architecture.ArchitectureContext#conversionCommandClassExists(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Conversion Command Class Exists</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -2030,12 +2057,18 @@ public interface ArchitecturePackage extends EPackage {
 		EAttribute ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS = eINSTANCE.getArchitectureContext_ConversionCommandClass();
 
 		/**
-		 * The meta object literal for the '<em><b>Ceation Command Class Exists</b></em>' operation.
+		 * The meta object literal for the '<em><b>Creation Command Class Exists</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__CeationCommandClassExists__DiagnosticChain_Map();
+		EOperation ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getArchitectureContext__CreationCommandClassExists__DiagnosticChain_Map();
+
+		/**
+		 * @deprecated since the 3.1 release, use {@link #ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP}, instead.
+		 */
+		@Deprecated(since = "3.1", forRemoval = true)
+		EOperation ARCHITECTURE_CONTEXT___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP = ARCHITECTURE_CONTEXT___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP;
 
 		/**
 		 * The meta object literal for the '<em><b>Conversion Command Class Exists</b></em>' operation.

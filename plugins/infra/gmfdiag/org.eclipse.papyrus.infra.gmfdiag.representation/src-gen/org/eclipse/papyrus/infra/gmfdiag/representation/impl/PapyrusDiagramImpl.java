@@ -251,7 +251,8 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean ceationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context) {
+	@Override
+	public boolean creationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (creationCommandClass != null) {
 			boolean exists = false;
 			
@@ -270,7 +271,7 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 						(new BasicDiagnostic
 							(Diagnostic.ERROR,
 							 RepresentationValidator.DIAGNOSTIC_SOURCE,
-							 RepresentationValidator.PAPYRUS_DIAGRAM__CEATION_COMMAND_CLASS_EXISTS,
+							 RepresentationValidator.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS_EXISTS,
 							 RepresentationPlugin.INSTANCE.getString(problem, new Object[] { EObjectValidator.getObjectLabel(this, context), expectedInterface }),
 							 new Object [] { this, RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS }));
 				}
@@ -415,8 +416,8 @@ public class PapyrusDiagramImpl extends PapyrusRepresentationKindImpl implements
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-			case RepresentationPackage.PAPYRUS_DIAGRAM___CEATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP:
-				return ceationCommandClassExists((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case RepresentationPackage.PAPYRUS_DIAGRAM___CREATION_COMMAND_CLASS_EXISTS__DIAGNOSTICCHAIN_MAP:
+				return creationCommandClassExists((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

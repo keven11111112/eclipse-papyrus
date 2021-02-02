@@ -10,7 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
- *  Christian W. Damus - bug 539694
+ *  Christian W. Damus - bugs 539694, 570856
  *  
  * 
  */
@@ -201,7 +201,15 @@ public interface ArchitectureContext extends ADElement {
 	 * @model diagnosticsUnique="false" contextUnique="false"
 	 * @generated
 	 */
-	boolean ceationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean creationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context);
+	
+	/**
+	 * @deprecated since the 3.1 release, use the {@link #creationCommandClassExists(DiagnosticChain, Map)} API, instead.
+	 */
+	@Deprecated(since = "3.1", forRemoval = true)
+	default boolean ceationCommandClassExists(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return creationCommandClassExists(diagnostics, context);
+	}
 
 	/**
 	 * <!-- begin-user-doc -->
