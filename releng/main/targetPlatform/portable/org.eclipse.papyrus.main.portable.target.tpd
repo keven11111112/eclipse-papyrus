@@ -45,7 +45,7 @@ location xwt "https://download.eclipse.org/xwt/milestones-1.6.0/1.6.0-M2/" {
     org.eclipse.xwt.feature.feature.group lazy
 }
 
-//updateFrom("QVT Operational for 2020-12",0)
+//updateFrom("QVT Operational for 2021-03",0)
 
 location qvto "https://download.eclipse.org/mmt/qvto/updates/releases/3.10.2" {
 	org.eclipse.m2m.qvt.oml.sdk.feature.group
@@ -66,13 +66,13 @@ location uml "https://download.eclipse.org/modeling/mdt/uml2/updates/5.5mileston
 
 //updateFrom("Eclipse",0)
 
-location platform "https://download.eclipse.org/eclipse/updates/4.19milestones/S-4.19M1-202101061800/" {
+location platform "https://download.eclipse.org/eclipse/updates/4.19-I-builds/I20210129-1800/" {
 	org.eclipse.sdk.feature.group
 }
 
-//updateFrom("OCL for 2020-12",0) 
+//updateFrom("OCL for 2021-03",0) 
 
-location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/releases/6.13.0" {
+location ocl "https://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.14.0/S202102011648" {
 	org.eclipse.ocl.examples.classic.feature.group
 	org.eclipse.ocl.examples.feature.group
 }
@@ -89,13 +89,13 @@ location xtext "https://download.eclipse.org/modeling/tmf/xtext/updates/mileston
 
 //updateFrom("EMFT MWE for 2021-03",0)
 
-location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/releases/2.12.0/" {
+location mwe "https://download.eclipse.org/modeling/emft/mwe/updates/milestones/S202102011009/" {
 	org.eclipse.emf.mwe2.language.sdk.feature.group
 }
 
 //updateFrom("Web Tools Platform 3.21 for Simrel 2021-03",0) 
 
-location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.21.0/S-3.21.0.M1a-20210112222634/repository/" {
+location webtools "https://download.eclipse.org/webtools/downloads/drops/R3.21.0/S-3.21.0.M2-20210128163350/repository/" {
 	org.eclipse.wst.xml_ui.feature.feature.group lazy 
 }
 
@@ -113,7 +113,7 @@ location gmfNotation "https://download.eclipse.org/modeling/gmp/gmf-notation/upd
 
 //updateFrom("EMF (Core)",0)
 
-location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202101040220" {
+location emf "https://download.eclipse.org/modeling/emf/emf/builds/milestone/S202101260740" {
 	org.eclipse.emf.sdk.feature.group
 }
 

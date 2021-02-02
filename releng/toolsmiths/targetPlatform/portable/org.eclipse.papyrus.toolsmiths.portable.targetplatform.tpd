@@ -33,7 +33,7 @@ location gmfTooling "http://download.eclipse.org/modeling/gmp/gmf-tooling/update
 
 //updateFrom("Oomph",0) 
 
-location oomph "https://download.eclipse.org/oomph/drops/milestone/S20210113-015151-1.20.0-M1" {
+location oomph "https://download.eclipse.org/oomph/drops/milestone/S20210202-031757-1.20.0-M2" {
 	org.eclipse.oomph.version.feature.group
 	org.eclipse.oomph.setup.workingsets.feature.group
 	org.eclipse.oomph.projectconfig.feature.group
