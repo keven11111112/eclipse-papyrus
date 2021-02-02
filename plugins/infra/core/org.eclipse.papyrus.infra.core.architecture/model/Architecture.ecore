@@ -262,6 +262,9 @@
         <details key="propertyDescription" value="The fully qualified name of a command that creates models applying this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand inteface"/>
         <details key="propertyCategory" value="Context"/>
       </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/papyrus/infra/core/architecture">
+        <details key="classConstraint" value="bundleclass://org.eclipse.papyrus.infra.architecture/org.eclipse.papyrus.infra.architecture.commands.IModelCreationCommand"/>
+      </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="conversionCommandClass"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -269,6 +272,9 @@
         <details key="documentation" value="The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface"/>
         <details key="propertyDescription" value="The fully qualified name of a command that refactors models that switched to this context. The command must implement the org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand inteface"/>
         <details key="propertyCategory" value="Context"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/papyrus/infra/core/architecture">
+        <details key="classConstraint" value="bundleclass://org.eclipse.papyrus.infra.architecture/org.eclipse.papyrus.infra.architecture.commands.IModelConversionCommand"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

@@ -1,5 +1,5 @@
 /**
-* Copyright (c) 2017 CEA LIST.
+* Copyright (c) 2017, 2021 CEA LIST, Christian W. Damus, and others.
  * 
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *  
  *  Contributors:
  *  Maged Elaasar - Initial API and implementation
+ *  Christian W. Damus - bug, 539694
  *  
  * 
  */
@@ -19,16 +20,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Map;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -38,16 +35,13 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage;
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint;
+import org.eclipse.papyrus.infra.core.architecture.util.ArchitectureCommandUtils;
 import org.eclipse.papyrus.infra.core.architecture.util.ArchitectureValidator;
 import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
-import org.osgi.framework.Bundle;
 
 /**
  * <!-- begin-user-doc -->
@@ -295,25 +289,8 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 		if (creationCommandClass != null) {
 			boolean exists = false;
 			
-			URI uri = eResource().getURI();
-			if (uri.isPlatformPlugin()) {
-				String bundleName = uri.segment(1);
-				Bundle bundle = Platform.getBundle(bundleName);
-				try {
-					exists = bundle.loadClass(creationCommandClass) != null;
-				} catch (ClassNotFoundException e) {
-					/* ignore */
-				}
-			} else if (uri.isPlatformResource()) {
-				String projectName = uri.segment(1);
-				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-				IJavaProject javaProject = JavaCore.create(project);
-				try {
-					exists = javaProject.findType(creationCommandClass) != null;
-				} catch (JavaModelException e) {
-					/* ignore */
-				}
-			}
+			Object javaClass = ArchitectureCommandUtils.getCommandClass(this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS);
+			exists = javaClass != null;
 			
 			if (!exists) {
 				if (diagnostics != null) {
@@ -340,25 +317,8 @@ public abstract class ArchitectureContextImpl extends ADElementImpl implements A
 		if (conversionCommandClass != null) {
 			boolean exists = false;
 			
-			URI uri = eResource().getURI();
-			if (uri.isPlatformPlugin()) {
-				String bundleName = uri.segment(1);
-				Bundle bundle = Platform.getBundle(bundleName);
-				try {
-					exists = bundle.loadClass(conversionCommandClass) != null;
-				} catch (ClassNotFoundException e) {
-					/* ignore */
-				}
-			} else if (uri.isPlatformResource()) {
-				String projectName = uri.segment(1);
-				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-				IJavaProject javaProject = JavaCore.create(project);
-				try {
-					exists = javaProject.findType(conversionCommandClass) != null;
-				} catch (JavaModelException e) {
-					/* ignore */
-				}
-			}
+			Object javaClass = ArchitectureCommandUtils.getCommandClass(this, ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS);
+			exists = javaClass != null;
 			
 			if (!exists) {
 				if (diagnostics != null) {
