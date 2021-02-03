@@ -185,11 +185,11 @@ public class PapyrusRepresentationKindItemProvider extends RepresentationKindIte
 		if (viewName == null) {
 			viewName = "<unnamed view>";
 		}
-		if (viewID == null) {
-			viewID = "<missing ID>";
-		}
 
-		String format = langName != null ? "%1$s :: %2$s [%3$s]" : "%2$s [%3$s]";
+
+		String format = langName != null
+				? (viewID != null ? "%1$s :: %2$s [%3$s]" : "%1$s :: %2$s")
+				: (viewID != null ? "%2$s [%3$s]" : "%2$s");
 		return String.format(format, langName, viewName, viewID);
 	}
 

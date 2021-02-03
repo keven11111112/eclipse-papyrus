@@ -19,12 +19,12 @@ import static java.util.stream.Collectors.toList;
 import static org.eclipse.papyrus.infra.architecture.tests.ArchitectureMatchers.diagramNamed;
 import static org.eclipse.papyrus.infra.architecture.tests.ArchitectureMatchers.mViewpointNamed;
 import static org.eclipse.papyrus.infra.architecture.tests.ArchitectureMatchers.named;
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.greaterThanOrEqual;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assume.assumeThat;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -55,86 +55,81 @@ import org.junit.Test;
 import com.google.common.collect.Iterables;
 
 /**
- * Tests covering the explicit merge algorithm.
+ * Tests covering the context inheritance algorithm.
  */
-@ArchitectureResource("extending")
-@DomainName("extended")
-public class ArchitectureDomainMergerTest {
+@ArchitectureResource("specific")
+@DomainName("specific")
+public class ArchitectureDomainInheritanceTest {
 
 	@Rule
 	public final ArchitectureFixture fixture = new ArchitectureFixture();
 
-	private ArchitectureDomain extendedDomain;
+	private ArchitectureDomain specificDomain;
 	private ArchitectureDomain intermediateDomain;
-	private ArchitectureDomain extendingDomain;
-	
+	private ArchitectureDomain generalDomain;
+
 	@Test
-	public void isMerged() {
+	public void merged() {
 		MergedArchitectureDomain domain = fixture.mergeDomain();
-		assertThat("Domain not merged", domain.isMerged(), is(true));
+		assertThat("Inheriting domain is not merged", domain.isMerged(), is(true));
 	}
 
 	@Test
 	public void resources() {
 		Map<String, MergedArchitectureDomain> domains = fixture.mergeDomains();
-		assertThat("Wrong number of domains merged", domains.size(), is(1));
+		assertThat("Wrong number of domains merged", domains.size(), is(3));
 		
-		MergedArchitectureDomain mExtended = domains.get(extendedDomain.getName());
-		assertThat("Extended domain is not in a resource", mExtended.getAdapter(Resource.class), notNullValue());
+		MergedArchitectureDomain mSpecific = domains.get(specificDomain.getName());
+		MergedArchitectureDomain mIntermediate = domains.get(intermediateDomain.getName());
+		MergedArchitectureDomain mGeneral = domains.get(generalDomain.getName());
+		
+		assertThat("Specific domain is not in a resource", mSpecific.getAdapter(Resource.class), notNullValue());
+		assertThat("Intermediate domain is not in a resource", mIntermediate.getAdapter(Resource.class), notNullValue());
+		assertThat("General domain is not in a resource", mGeneral.getAdapter(Resource.class), notNullValue());
 	}
 
 	@Test
 	public void traces() {
 		Map<String, MergedArchitectureDomain> domains = fixture.mergeDomains();
-		assertThat("Wrong number of domains merged", domains.size(), is(1));
+		assertThat("Wrong number of domains merged", domains.size(), is(3));
 		
-		MergedArchitectureDomain mExtended = domains.get(extendedDomain.getName());
+		MergedArchitectureDomain mSpecific = domains.get(specificDomain.getName());
+		MergedArchitectureDomain mIntermediate = domains.get(intermediateDomain.getName());
+		MergedArchitectureDomain mGeneral = domains.get(generalDomain.getName());
 		
-		assertThat("Extended domain does not trace to source", fixture.tracesTo(mExtended, extendedDomain));
-		assertThat("Extended domain does not trace to intermediate domain", fixture.tracesTo(mExtended, intermediateDomain));
-		assertThat("Extended domain does not trace to extending domain", fixture.tracesTo(mExtended, extendingDomain));
-		
-		MergedArchitectureContext mContext = fixture.get(mExtended.getContexts(), "adl");
-		ArchitectureContext adl = fixture.get(extendedDomain.getContexts(), "adl");
-		ArchitectureContext midadl = fixture.get(intermediateDomain.getContexts(), "midadl");
-		ArchitectureContext myadl = fixture.get(extendingDomain.getContexts(), "myadl");
-		
-		assertThat("Extended context does not trace to source", fixture.tracesTo(mContext, adl));
-		assertThat("Extended context does not trace to intermediate context", fixture.tracesTo(mContext, midadl));
-		assertThat("Extended context does not trace to extending context", fixture.tracesTo(mContext, myadl));
+		assertThat("Specific domain does not trace to source", fixture.tracesTo(mSpecific, specificDomain));
+		assertThat("Intermediate domain does not trace to source", fixture.tracesTo(mIntermediate, intermediateDomain));
+		assertThat("General domain does not trace to source", fixture.tracesTo(mGeneral, generalDomain));
 	}
 
 	@Test
 	public void getContexts() {
 		MergedArchitectureDomain domain = fixture.mergeDomain();
-		assumeThat("Extended domain not merged", domain.isMerged(), is(true));
 
 		assertThat("Wrong number of contexts", domain.getContexts().size(), is(2));
 		MergedArchitectureContext context = Iterables.getFirst(domain.getContexts(), null);
 
-		assertThat("Merge changed the context name", context.getName(), is("adl"));
+		assertThat("Merge changed the context name", context.getName(), is("myadl"));
 	}
 
 	@Test
 	public void mergeContextName() {
 		// Remove names of the extension graph
-		fixture.rename(extendedDomain, ArchitectureContext.class, "adl", null);
+		fixture.rename(specificDomain, ArchitectureContext.class, "myadl", null);
 		fixture.rename(intermediateDomain, ArchitectureContext.class, "midadl", null);
 
 		MergedArchitectureDomain domain = fixture.mergeDomain();
-		assumeThat("Domain not merged", domain.isMerged(), is(true));
 
 		assertThat("Wrong number of contexts", domain.getContexts().size(), is(2));
 		MergedArchitectureContext context = Iterables.getFirst(domain.getContexts(), null);
 
-		assertThat("Merge did not set the context name", context.getName(), is("myadl"));
+		assertThat("Merge did not set the context name", context.getName(), is("adl"));
 	}
 
 	@SuppressWarnings("unchecked")
 	@Test
 	public void collectViewpoints() {
 		MergedArchitectureDomain domain = fixture.mergeDomain();
-		assumeThat("Domain not merged", domain.isMerged(), is(true));
 
 		assertThat("Wrong number of contexts", domain.getContexts().size(), is(2));
 		MergedArchitectureContext context = Iterables.get(domain.getContexts(), 1, null);
@@ -149,7 +144,6 @@ public class ArchitectureDomainMergerTest {
 	public void mergeViewpoints() {
 		// Viewpoints are merged by name in merged contexts
 		MergedArchitectureDomain domain = fixture.mergeDomain();
-		assumeThat("Domain not merged", domain.isMerged(), is(true));
 
 		assertThat("Wrong number of contexts", domain.getContexts().size(), is(2));
 		MergedArchitectureContext context = Iterables.getFirst(domain.getContexts(), null);
@@ -169,21 +163,20 @@ public class ArchitectureDomainMergerTest {
 				.distinct()
 				.collect(toList());
 		assertThat("Not an unique context owning the merged representation kinds", owners.size(), is(1));
-		assertThat("Wrong owning context (by name)", owners.get(0).getName(), is("adl"));
+		assertThat("Wrong owning context (by name)", owners.get(0).getName(), is("myadl"));
 		assertThat("wrong owning context (by identity)", owners.get(0), is(context.getAdapter(ArchitectureContext.class)));
 	}
-	
+
 	@Test
 	public void mergeRepresentationKinds() {
 		MergedArchitectureDomain domain = fixture.mergeDomain();
-		assumeThat("Domain not merged", domain.isMerged(), is(true));
 
 		assertThat("Wrong number of contexts", domain.getContexts().size(), is(2));
 		MergedArchitectureContext context = Iterables.getFirst(domain.getContexts(), null);
 
 		assertThat("Wrong number of merged viewpoints", context.getViewpoints().size(), is(2));
 		MergedArchitectureViewpoint viewpoint1 = Iterables.getFirst(context.getViewpoints(), null);
-		
+
 		assertThat("Wrong number of diagrams in merged viewpoint", viewpoint1.getRepresentationKinds().size(), is(2));
 
 		List<Concern> concerns = viewpoint1.getRepresentationKinds().stream()
@@ -197,17 +190,16 @@ public class ArchitectureDomainMergerTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void collectStakeholdersAndConcerns() {
-		// Rename some to make sure they're not merged
-		fixture.rename(extendingDomain, Stakeholder.class, "user", "designer");
-		fixture.rename(extendingDomain, Concern.class, "concern", "designing");
+	public void stakeholdersAndConcernsCollected() {
+		// Rename some to make them distinct so we'll know they weren't merged
+		fixture.rename(generalDomain, Stakeholder.class, "user", "designer");
+		fixture.rename(generalDomain, Concern.class, "concern", "designing");
 
 		MergedArchitectureDomain domain = fixture.mergeDomain();
-		assumeThat("Domain not merged", domain.isMerged(), is(true));
 
-		assertThat("Wrong number of collected stakeholders", domain.getStakeholders().size(), is(2));
+		assertThat("Wrong number of stakeholders", domain.getStakeholders().size(), is(2));
 		assertThat(domain.getStakeholders(), hasItems(named("user"), named("designer")));
-		assertThat("Wrong number of collected concerns", domain.getConcerns().size(), is(2));
+		assertThat("Wrong number of concerns", domain.getConcerns().size(), is(2));
 		assertThat(domain.getConcerns(), hasItems(named("concern"), named("designing")));
 
 		// All references to these objects are uniquely to these four instances (nothing from the source models)
@@ -236,17 +228,16 @@ public class ArchitectureDomainMergerTest {
 	@Test
 	public void mergeDiagramParent() {
 		MergedArchitectureDomain domain = fixture.mergeDomain();
-		assumeThat("Domain not merged", domain.isMerged(), is(true));
 
 		assertThat("Wrong number of contexts", domain.getContexts().size(), is(2));
 		ArchitectureDescriptionLanguage adl = Iterables.getFirst(domain.getContexts(), null).getAdapter(ArchitectureDescriptionLanguage.class);
 
-		assertThat("Wrong number of merged representation kinds", adl.getRepresentationKinds().size(), is(4));
-		PapyrusRepresentationKind diagram3 = (PapyrusDiagram) adl.getRepresentationKinds().get(2);
-		PapyrusRepresentationKind diagram4 = (PapyrusDiagram) adl.getRepresentationKinds().get(3);
+		assertThat("Wrong number of merged representation kinds", adl.getRepresentationKinds().size(), greaterThanOrEqual(2));
+		PapyrusRepresentationKind diagram3 = (PapyrusDiagram) adl.getRepresentationKinds().get(0);
+		PapyrusRepresentationKind diagram4 = (PapyrusDiagram) adl.getRepresentationKinds().get(1);
 		assertThat("Diagrams merged in the wrong order", diagram3.getName(), is("diagram3"));
 		assertThat("Diagrams merged in the wrong order", diagram4.getName(), is("diagram4"));
-		
+
 		assertThat("PapyrusDiagram::parent reference not merged", diagram4.getParent(), sameInstance(diagram3));
 	}
 
@@ -256,9 +247,9 @@ public class ArchitectureDomainMergerTest {
 
 	@Before
 	public void gatherTestModel() {
-		extendingDomain = fixture.getArchitectureDomain("extending");
+		specificDomain = fixture.getArchitectureDomain("specific");
 		intermediateDomain = fixture.getArchitectureDomain("intermediate");
-		extendedDomain = fixture.getArchitectureDomain("extended");
+		generalDomain = fixture.getArchitectureDomain("general");
 	}
 
 }

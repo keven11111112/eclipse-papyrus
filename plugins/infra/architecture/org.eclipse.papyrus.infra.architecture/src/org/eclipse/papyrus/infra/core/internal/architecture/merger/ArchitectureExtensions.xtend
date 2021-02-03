@@ -17,7 +17,6 @@ package org.eclipse.papyrus.infra.core.internal.architecture.merger
 
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
-import org.eclipse.emf.ecore.resource.ResourceSet
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter
 import org.eclipse.papyrus.infra.core.architecture.ADElement
 import org.eclipse.emf.ecore.util.EcoreUtil
@@ -35,6 +34,9 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.emf.common.util.BasicEList
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.InternalEObject
+import org.eclipse.xtext.xbase.lib.Functions.Function0
 
 /**
  * Utility extensions for the <em>Architecture Description</em> model.
@@ -46,18 +48,35 @@ class ArchitectureExtensions {
 	
 	@Inject @Named(ArchitectureMergerModule.MERGE_TRACE) BiConsumer<? super ADElement, ? super ADElement> mergeTrace
 	
-	private def xrefs(ResourceSet resourceSet) {
-		ECrossReferenceAdapter.getCrossReferenceAdapter(resourceSet) ?: new ECrossReferenceAdapter => [
-			resourceSet.eAdapters += it
-		]
+	@Inject extension MergeState
+	
+	val ECrossReferenceAdapter xrefAdapter = new ECrossReferenceAdapter {
+		// Also propagate up the content tree
+		
+		override protected setTarget(Resource target) {
+			super.setTarget(target)
+			
+			target.resourceSet?.addAdapter
+		}
+		
+		override protected setTarget(EObject target) {
+			super.setTarget(target)
+
+			// If iterating, then we came down the tree, so no need to go up			
+			if (!iterating) {
+				target as InternalEObject => [
+					eDirectResource?.addAdapter
+					eInternalContainer?.addAdapter
+				]
+			}
+		}
+		
 	}
 	
 	private def xrefs(EObject object) {
-		object.resourceSet.xrefs
-	}
-	
-	def resourceSet(EObject object) {
-		object.eResource.resourceSet
+		ECrossReferenceAdapter.getCrossReferenceAdapter(object) ?: (xrefAdapter => [
+			object.eAdapters += it
+		])
 	}
 	
 	def <T extends EObject> Iterable<T> invert(EObject target, EReference reference) {
@@ -106,9 +125,13 @@ class ArchitectureExtensions {
 		}
 	} 
 	
+	def <T extends ADElement> traceTo(T target, T source) {
+		mergeTrace.accept(target, source)
+	}
+	
 	def <T extends ADElement> copy(T target, T source) {
 		// Establish trace from the output element to the input
-		mergeTrace.accept(target, source)
+		target.traceTo(source)
 		
 		target.id = target.id ?: source.id
 		target.name = target.name ?: source.name
@@ -117,13 +140,29 @@ class ArchitectureExtensions {
 		target
 	}
 		
-	def create result: factory.createStakeholder mergedStakeholder(String name, Set<? extends ArchitectureDomain> domains) {
-		domains.flatMap[stakeholders].filter[it.name == name].forEach[result.copy(it)]
+	def mergedStakeholder(String name) {		
+		name.mergedStakeholder(currentScope) // Unique merge per domain scope
+	}
+	private def create result: factory.createStakeholder mergedStakeholder(String name, Object scope) {
+		currentScope.flatMap[stakeholders].filter[it.name == name].forEach[
+			result.copy(it)
+			result.concerns += it.concerns.mapUnique[it.name].map[mergedConcern]
+		]
 	} 
-	def create result: factory.createConcern mergedConcern(String name, Set<? extends ArchitectureDomain> domains) {
-		domains.flatMap[concerns].filter[it.name == name].forEach[result.copy(it)]
+	
+	def mergedConcern(String name) {
+		name.mergedConcern(currentScope) // Unique merge per domain scope
+	}
+	private def create result: factory.createConcern mergedConcern(String name, Object scope) {
+		currentScope.flatMap[concerns].filter[it.name == name].forEach[result.copy(it)]
 	} 
+	
 	def create EcoreUtil.copy(treeViewerConfig) merged(TreeViewerConfiguration treeViewerConfig) {} 
+	
+	def inInheritancePhase() { phase == MergePhase.INHERITANCE }
+	def inExtensionsPhase() { phase == MergePhase.EXTENSIONS }
+	def currentScope() { currentDomains }
+	def <T> T withScope(Iterable<? extends ArchitectureDomain> domains, Function0<T> block) { domains.withDomains(block)}
 	
 	@Pure
 	def <T, K> Iterable<T> uniqueBy(Iterable<T> iterable, Function1<? super T, K> keyer) {
@@ -173,6 +212,12 @@ class ArchitectureExtensions {
 	@Pure
 	def <T extends ADElement> named(Iterable<T> iterable, String selectedName) {
 		iterable.filter[name == selectedName]
+	}
+	
+	@Pure
+	def <T> excluding(Iterable<T> iterable, Object... excluded) {
+		val unwanted = newHashSet(excluded)
+		iterable.reject[unwanted.contains(it)]
 	}
 	
 }

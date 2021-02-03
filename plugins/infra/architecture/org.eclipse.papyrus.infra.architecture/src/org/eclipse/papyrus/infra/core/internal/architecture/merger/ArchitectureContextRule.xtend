@@ -25,10 +25,9 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitectureFactory
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureFramework
 
 import static org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage.Literals.*
-import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain
 
 /**
- * Merge rule for {@link ArchitectureContext}s.
+ * Extension merge rule for {@link ArchitectureContext}s.
  */
 @Singleton
 class ArchitectureContextRule {
@@ -42,13 +41,16 @@ class ArchitectureContextRule {
 		context.isReferenced(ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS)
 	}
 	
+	def canExtend(ArchitectureContext extending, ArchitectureContext extended) {
+		extending.eClass === extended.eClass
+	}
+	
 	def <T extends ArchitectureContext> extensions(T context) {
-		context.<T> invert(ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS).filter[eClass == context.eClass]
+		if (inExtensionsPhase) context.<T> invert(ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS).filter[context.canExtend(it)] else emptyList
 	}
 	
 	def <T extends ArchitectureContext> allExtensions(T context) {
-		val Set<T> result = newLinkedHashSet
-		allExtensionsHelper(context, result).toList
+		if (inExtensionsPhase) allExtensionsHelper(context, newLinkedHashSet).toList else emptyList
 	}
 	
 	private def <T extends ArchitectureContext> Iterable<T> allExtensionsHelper(T context, Set<T> result) {
@@ -59,25 +61,24 @@ class ArchitectureContextRule {
 		result
 	}
 	
-	def legacyContext(ArchitectureContext context) {
-		!(context.hasExtensions || context.extension)
+	def dispatch merged(ArchitectureDescriptionLanguage context) {
+		context.merged(currentScope) // Unique merge per domain scope
+	}
+	private def create createArchitectureDescriptionLanguage merged(ArchitectureDescriptionLanguage context, Object scope) {
+		merge(context)
 	}
 	
-	def dispatch create createArchitectureDescriptionLanguage merged(ArchitectureDescriptionLanguage context, Set<? extends ArchitectureDomain> domains) {
-		merge(context, domains)
-	}
-	
-	private def <T extends ArchitectureContext> merge(T target, T source, Set<? extends ArchitectureDomain> domains) {
+	package def <T extends ArchitectureContext> merge(T target, T source) {
 		(Set.of(source) + source.allExtensions).toSet => [
-			forEach[target.copyContext(it, domains)]
-			target.mergeViewpoints(it, domains)
+			forEach[target.copyContext(it)]
+			target.mergeViewpoints(it)
 		]
 	}
 	
-	private def mergeViewpoints(ArchitectureContext target, Set<? extends ArchitectureContext> sources, Set<? extends ArchitectureDomain> mergedDomains) {
+	private def mergeViewpoints(ArchitectureContext target, Set<? extends ArchitectureContext> sources) {
 		target => [
 			val allViewpoints = sources.flatMap[viewpoints]
-			viewpoints += allViewpoints.mapUnique[it.name].map[mergedDomains.mergedViewpoint(sources, it)]
+			viewpoints += allViewpoints.mapUnique[name].map[mergedViewpoint(sources)]
 			
 			val allDefaults = sources.flatMap[defaultViewpoints]
 			if (!allDefaults.empty) {
@@ -89,12 +90,15 @@ class ArchitectureContextRule {
 		]
 	}
 	
-	def dispatch create createArchitectureFramework merged(ArchitectureFramework context, Set<? extends ArchitectureDomain> domains) {
-		merge(context, domains)
+	def dispatch merged(ArchitectureFramework context) {
+		context.merged(currentScope) // Unique merge per domain scope
+	}
+	private def create createArchitectureFramework merged(ArchitectureFramework context, Object scope) {
+		merge(context)
 	}
 	
-	private def copyContext(ArchitectureContext target, ArchitectureContext source, Set<? extends ArchitectureDomain> domains) {
-		target.copyContext(source, target.contextCopier(domains))
+	private def copyContext(ArchitectureContext target, ArchitectureContext source) {
+		target.copyContext(source, target.contextCopier)
 	}
 	
 	private def <T extends ArchitectureContext> copyContext(T target, T source, Consumer<? super T> extensionMerger) {
@@ -113,12 +117,12 @@ class ArchitectureContextRule {
 		]
 	}
 	
-	private def dispatch Consumer<? super ArchitectureContext> contextCopier(ArchitectureDescriptionLanguage adl, Set<? extends ArchitectureDomain> domains) {
+	private def dispatch Consumer<? super ArchitectureContext> contextCopier(ArchitectureDescriptionLanguage adl) {
 		[ source |
 			switch source {
 				ArchitectureDescriptionLanguage case source:
 					adl => [
-						representationKinds+= source.representationKinds.map[merged(domains)]
+						representationKinds+= source.representationKinds.map[merged]
 						treeViewerConfigurations += source.treeViewerConfigurations.map[merged]
 						
 						metamodel = it.metamodel ?: source.metamodel
@@ -128,7 +132,7 @@ class ArchitectureContextRule {
 		]
 	}
 	
-	private def dispatch Consumer<? super ArchitectureContext> contextCopier(ArchitectureContext context, Set<? extends ArchitectureDomain> domains) {
+	private def dispatch Consumer<? super ArchitectureContext> contextCopier(ArchitectureContext context) {
 		[ source |
 			context => [
 				// pass
@@ -150,9 +154,10 @@ class ArchitectureContextRule {
 	
 	private def legacyMerge(ArchitectureContext target, String name, Set<? extends ArchitectureContext> contexts) {
 		val contextsToMerge = contexts.named(name).toSet
-		val domainsToMerge = contexts.map[domain].toSet
-		contextsToMerge.forEach[target.copyContext(it, domainsToMerge)]
-		target.mergeViewpoints(contextsToMerge, domainsToMerge)
+		contexts.map[domain].withScope[
+			contextsToMerge.forEach[target.copyContext(it)]
+			target.mergeViewpoints(contextsToMerge)
+		]
 	}
 	
 	def create createArchitectureFramework legacyMergedAF(String name, Set<? extends ArchitectureContext> contexts) {

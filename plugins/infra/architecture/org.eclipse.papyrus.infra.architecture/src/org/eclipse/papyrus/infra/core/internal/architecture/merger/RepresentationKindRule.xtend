@@ -21,7 +21,6 @@ import javax.inject.Inject
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.papyrus.infra.core.architecture.RepresentationKind
 import javax.inject.Singleton
-import java.util.Set
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain
 import org.eclipse.papyrus.infra.core.architecture.Concern
 import org.eclipse.papyrus.infra.core.architecture.Stakeholder
@@ -37,7 +36,11 @@ class RepresentationKindRule {
 	@Inject extension ArchitectureContextRule
 	@Inject extension ArchitectureDomainRule
 	 
-	def create result: EcoreUtil.copy(representation) as RepresentationKind merged(RepresentationKind representation, Set<? extends ArchitectureDomain> domains) {
+	def merged(RepresentationKind representation) {
+		representation.merged(currentScope) // Unique merge per domain scope
+	}
+	
+	private def create result: EcoreUtil.copy(representation) as RepresentationKind merged(RepresentationKind representation, Object scope) {
 		// Replace the concerns with the merged copies. Also, any other cross-references to
 		// architecture elements, e.g. PapyrusDiagram::parent reference. Do this reflectively
 		// because we don't know the specifics of the representation kind model
@@ -45,11 +48,11 @@ class RepresentationKindRule {
 				.filter[AD_ELEMENT.isSuperTypeOf(EReferenceType)].forEach[xref |
 			
 			switch type: xref.EReferenceType {
-				case CONCERN.isSuperTypeOf(type): result.<Concern> eGetAsList(xref).replaceAll[name.mergedConcern(domains)]
-				case STAKEHOLDER.isSuperTypeOf(type): result.<Stakeholder> eGetAsList(xref).replaceAll[name.mergedStakeholder(domains)]
-				case REPRESENTATION_KIND.isSuperTypeOf(type): result.<RepresentationKind> eGetAsList(xref).replaceAll[merged(domains)]
+				case CONCERN.isSuperTypeOf(type): result.<Concern> eGetAsList(xref).replaceAll[name.mergedConcern]
+				case STAKEHOLDER.isSuperTypeOf(type): result.<Stakeholder> eGetAsList(xref).replaceAll[name.mergedStakeholder]
+				case REPRESENTATION_KIND.isSuperTypeOf(type): result.<RepresentationKind> eGetAsList(xref).replaceAll[merged]
 				// TODO(cwd): Not sure that the following make sense
-				case ARCHITECTURE_CONTEXT.isSuperTypeOf(type): result.<ArchitectureContext> eGetAsList(xref).replaceAll[merged(domains)]
+				case ARCHITECTURE_CONTEXT.isSuperTypeOf(type): result.<ArchitectureContext> eGetAsList(xref).replaceAll[merged]
 				case ARCHITECTURE_DOMAIN.isSuperTypeOf(type): result.<ArchitectureDomain> eGetAsList(xref).replaceAll[merged]
 			}
 		]

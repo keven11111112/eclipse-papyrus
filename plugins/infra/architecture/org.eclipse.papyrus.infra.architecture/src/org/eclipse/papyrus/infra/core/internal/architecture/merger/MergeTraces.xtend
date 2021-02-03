@@ -40,17 +40,31 @@ final class MergeTraces extends AdapterImpl implements MergeTraceAdapter {
 	val Multimap<ADElement, ADElement> traces = ArrayListMultimap.create()
 	
 	def trace(ADElement mergedElement, ADElement sourceElement) {
-		traces.put(mergedElement, sourceElement)
+		// Always trace to the ultimate source, not intermediate objects such as from the context inheritance phase
+		if (sourceElement.hasTraces)
+			traces.putAll(mergedElement, sourceElement.internalTrace)
+		else 
+			traces.put(mergedElement, sourceElement)
+			
 		mergedElement.addAdapter
+		
 		this
 	}
 	
+	private def internalTrace(ADElement mergedElement) {
+		traces.get(mergedElement)
+	}
+	
+	def hasTraces(ADElement element) {
+		!element.internalTrace.empty
+	}
+	
 	override Collection<? extends ADElement> trace(ADElement mergedElement) {
-		traces.get(mergedElement).unmodifiableView
+		mergedElement.internalTrace.unmodifiableView
 	}
 	
 	override tracesTo(ADElement mergedElement, ADElement sourceElement) {
-		mergedElement == sourceElement || traces.get(mergedElement).contains(sourceElement)
+		mergedElement == sourceElement || mergedElement.internalTrace.contains(sourceElement)
 	}
 	
 	/**
@@ -66,7 +80,7 @@ final class MergeTraces extends AdapterImpl implements MergeTraceAdapter {
 	 * @return the source element for that feature
 	 */
 	override <T extends ADElement> trace(T mergedElement, EStructuralFeature feature) {
-		traces.get(mergedElement)?.findFirst[feature.intersects(mergedElement, it)] as T
+		mergedElement.internalTrace.findFirst[feature.intersects(mergedElement, it)] as T
 	}
 	
 	private def intersects(EStructuralFeature feature, EObject object1, EObject object2) {
@@ -117,6 +131,8 @@ final class MergeTraces extends AdapterImpl implements MergeTraceAdapter {
 	}
 	
 	override unsetTarget(Notifier oldTarget) {
+		traces.removeAll(oldTarget)
+		
 		switch oldTarget {
 			ADElement case oldTarget: oldTarget.eContents.filter(ADElement).forEach[removeAdapter]
 		}

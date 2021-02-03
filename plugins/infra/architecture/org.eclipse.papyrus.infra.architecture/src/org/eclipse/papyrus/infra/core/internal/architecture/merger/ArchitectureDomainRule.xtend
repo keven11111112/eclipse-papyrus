@@ -32,9 +32,14 @@ class ArchitectureDomainRule {
 	
 	@Inject extension ArchitectureExtensions
 	@Inject extension ArchitectureContextRule
+	@Inject extension ArchitectureContextInheritanceRule
 	
 	def hasExtensions(ArchitectureDomain domain) {
-		domain.contexts.exists[hasExtensions]
+		domain.contexts.exists[hasExtensions || extension]
+	}
+	
+	def hasInheritance(ArchitectureDomain domain) {
+		domain.contexts.exists[hasGeneral || hasSpecializations]
 	}
 	
 	def hasContexts(ArchitectureDomain domain) {
@@ -42,24 +47,47 @@ class ArchitectureDomainRule {
 	}
 	
 	/** A domain's extensions are implied by the domains defining extensions of its contexts. */
-	def extensions(ArchitectureDomain domain) {
-		domain.contexts.flatMap[extensions].mapUnique[it.domain]
+	def extensions(ArchitectureDomain extended) {
+		if (inExtensionsPhase) extended.contexts.flatMap[extensions].mapUnique[domain] else emptyList
 	}
 	
 	/** A domain's extensions are implied by the domains defining extensions of its contexts. */
-	def allExtensions(ArchitectureDomain domain) {
-		domain.contexts.flatMap[allExtensions].mapUnique[it.domain]
+	def allExtensions(ArchitectureDomain extended) {
+		if (inExtensionsPhase) extended.contexts.flatMap[allExtensions].mapUnique[domain] else emptyList
+	}
+	
+	def generals(ArchitectureDomain specific) {
+		if (inInheritancePhase) specific.contexts.map[general].filterNull.map[domain].unique.excluding(specific) else emptyList
+	}
+	
+	def inherit(ArchitectureDomain domain) {
+		domain.generals.withScope[
+			// Contexts that are to be inherited have dependencies on these, so inherit them
+			domain.concerns += currentScope.flatMap[concerns].mapUnique[name].map[mergedConcern]
+			domain.stakeholders += currentScope.flatMap[stakeholders].mapUnique[name].map[mergedStakeholder]
+		]
+				
+		if (inInheritancePhase) domain.contexts.forEach[it.inherit]
+		domain
+	}
+	
+	def finalizeInheritance(ArchitectureDomain domain) {
+		domain.contexts.forEach[it.finalizeInheritance]
 	}
 	
 	def create createArchitectureDomain merged(ArchitectureDomain domain) {
-		copy(domain) => [
-			// Gather up stakeholders and concerns from merged domains
-			val allDomains = (Set.of(domain) + domain.allExtensions).toSet
-			stakeholders += allDomains.flatMap[stakeholders].map[name].map[mergedStakeholder(allDomains)]
-			concerns += allDomains.flatMap[concerns].map[name].map[mergedConcern(allDomains)]
-			
-			// Extension contexts exist only to contribute to others
-			contexts += domain.contexts.reject[extension].map[merged(allDomains)]
+		(Set.of(domain) + domain.allExtensions).withScope[
+			copy(domain) => [ result |
+				// Gather up stakeholders and concerns from merged domains
+				concerns += currentScope.flatMap[concerns].mapUnique[name].map[mergedConcern]
+				stakeholders += currentScope.flatMap[stakeholders].mapUnique[name].map[mergedStakeholder]
+				
+				// Extension contexts exist only to contribute to others
+				contexts += domain.contexts.reject[extension].map[merged]
+				
+				// Trace to the merged domains
+				domain.allExtensions.forEach[result.traceTo(it)]
+			]
 		]
 	}
 	
@@ -68,17 +96,18 @@ class ArchitectureDomainRule {
 		domains.flatMap[contexts].sortBy[eClass == ARCHITECTURE_DESCRIPTION_LANGUAGE ? 0 : 1]
 	}
 	
-	def create result: createArchitectureDomain legacyMergedDomain(Set<? extends ArchitectureDomain> domains, String name) {
-		val mergedDomains = domains.named(name).toSet
-		
-		mergedDomains.forEach[result.copy(it)]
-		result.stakeholders += mergedDomains.flatMap[stakeholders].mapUnique[it.name].map[mergedStakeholder(mergedDomains)]
-		result.concerns += mergedDomains.flatMap[concerns].mapUnique[it.name].map[mergedConcern(mergedDomains)]
-		
-		// Be sure to process ADLs first when name matching to lose no data (otherwise ADLs could be merged into AFs)
-		val allContexts = domains.named(name).sortedContexts.filter[legacyContext].toSet
-		val uniqueContexts = allContexts.uniqueBy[it.name]
-		result.contexts += uniqueContexts.map[it.legacyMergedContext(allContexts)]
+	def create result: createArchitectureDomain legacyMergedDomain(String name) {
+		val sameName = currentScope.named(name).toList
+		sameName.withScope[
+			currentScope.forEach[result.copy(it)]
+			result.stakeholders += currentScope.flatMap[stakeholders].mapUnique[it.name].map[mergedStakeholder]
+			result.concerns += currentScope.flatMap[concerns].mapUnique[it.name].map[mergedConcern]
+					
+			// Be sure to process ADLs first when name matching to lose no data (otherwise ADLs could be merged into AFs)
+			val allContexts = currentScope.sortedContexts.filter[legacyContext].toSet
+			val uniqueContexts = allContexts.uniqueBy[it.name]
+			result.contexts += uniqueContexts.map[it.legacyMergedContext(allContexts)]
+		]
 	}
 	
 }

@@ -27,39 +27,33 @@ import com.google.inject.name.Names;
 /**
  * Guice module for configuration of the {@link InternalArchitectureDomainMerger}.
  */
-public class ArchitectureMergerModule extends AbstractModule {
+class ArchitectureMergerModule extends AbstractModule {
 
-	static final String MERGE_TRACE = "MERGE_TRACE"; //$NON-NLS-1$
+	public static val String MERGE_TRACE = "MERGE_TRACE"; //$NON-NLS-1$
+	
+	extension val MergeTraces traces = new MergeTraces
 
-	public ArchitectureMergerModule() {
-		super();
-	}
-
-	@Override
-	protected final void configure() {
+	override protected final void configure() {
 		basicConfigure();
 		doConfigure();
 	}
 
-	private void basicConfigure() {
+	private def basicConfigure() {
 		bindMergeTraces();
 	}
 
-	private void bindMergeTraces() {
-		MergeTraces traces = new MergeTraces();
-		bind(MergeTraces.class).toInstance(traces);
-		bind(MergeTraceAdapter.class).toInstance(traces);
+	private def bindMergeTraces() {
+		MergeTraces.bind.toInstance(traces);
+		MergeTraceAdapter.bind.toInstance(traces);
 
-		TypeLiteral<BiConsumer<? super ADElement, ? super ADElement>> mergeTracerType = new TypeLiteral<>() {
-		};
-		BiConsumer<? super ADElement, ? super ADElement> mergeTracer = traces::trace;
-		bind(mergeTracerType).annotatedWith(Names.named(MERGE_TRACE)).toInstance(mergeTracer);
+		val mergeTracerType = new TypeLiteral<BiConsumer<? super ADElement, ? super ADElement>> {}
+		mergeTracerType.bind.annotatedWith(Names.named(MERGE_TRACE)).toInstance([ target, source | target.trace(source)])
 	}
 
 	/**
 	 * Overridden by subclasses to add further bindings. The default implementation does nothing.
 	 */
-	protected void doConfigure() {
+	protected def void doConfigure() {
 		// Pass
 	}
 
