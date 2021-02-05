@@ -23,6 +23,8 @@ enum MergePhase {
 	NOT_STARTED,
 	/** Processing context inheritance. */
 	INHERITANCE,
+	/** Inferring implicit extensions for legacy merge support. */
+	LEGACY,
 	/** Processing context extensions. */
 	EXTENSIONS,
 	/** Finished */

@@ -15,8 +15,6 @@
 
 package org.eclipse.papyrus.infra.core.internal.architecture.merger
 
-import static org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage.Literals.*
-
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureDomain
 import javax.inject.Inject
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureFactory
@@ -91,23 +89,12 @@ class ArchitectureDomainRule {
 		]
 	}
 	
-	/** Get contexts sorted with ArchitectureDescriptionLanguages first. */
-	def sortedContexts(Iterable<? extends ArchitectureDomain> domains) {
-		domains.flatMap[contexts].sortBy[eClass == ARCHITECTURE_DESCRIPTION_LANGUAGE ? 0 : 1]
-	}
-	
-	def create result: createArchitectureDomain legacyMergedDomain(String name) {
-		val sameName = currentScope.named(name).toList
-		sameName.withScope[
-			currentScope.forEach[result.copy(it)]
-			result.stakeholders += currentScope.flatMap[stakeholders].mapUnique[it.name].map[mergedStakeholder]
-			result.concerns += currentScope.flatMap[concerns].mapUnique[it.name].map[mergedConcern]
-					
-			// Be sure to process ADLs first when name matching to lose no data (otherwise ADLs could be merged into AFs)
-			val allContexts = currentScope.sortedContexts.filter[legacyContext].toSet
-			val uniqueContexts = allContexts.uniqueBy[it.name]
-			result.contexts += uniqueContexts.map[it.legacyMergedContext(allContexts)]
-		]
+	/**
+	 * For all of the contexts in the given {@code domain} that do not have explicit inheritance
+	 * or extension relationships, infer extension relationships to the most appropriate other context.
+	 */
+	def inferExtensions(ArchitectureDomain domain) {
+		domain.contexts.filter[legacyContext].forEach[it.inferExtensions]
 	}
 	
 }

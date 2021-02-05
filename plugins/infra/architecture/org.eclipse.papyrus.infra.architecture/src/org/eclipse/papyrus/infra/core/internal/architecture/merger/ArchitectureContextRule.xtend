@@ -140,28 +140,25 @@ class ArchitectureContextRule {
 		]
 	}
 	
-	def dispatch legacyMergedContext(ArchitectureDescriptionLanguage context, Set<? extends ArchitectureContext> contexts) {
-		context.name.legacyMergedADL(contexts)
+	/**
+	 * Infer an extension relationship to the most appropriate other context
+	 * of the same qualified name (if any). The most appropriate other context is the one that
+	 * {@linkplain ArchitectureContext#isCompatibleWith(ArchitectureContext) is compatible with it} and
+	 * that has the most other contexts extending it (either explicitly or implicitly).
+	 */
+	def inferExtensions(ArchitectureContext context) {
+		context.class.sortedInstances(context.qualifiedName).filter[context.canExtend(it)]
+			.excluding(context)
+			.take(1).forEach[context.extendedContexts += it]			
 	}
 	
-	def dispatch legacyMergedContext(ArchitectureFramework context, Set<? extends ArchitectureContext> contexts) {
-		context.name.legacyMergedAF(contexts)
-	}
-	
-	def create createArchitectureDescriptionLanguage legacyMergedADL(String name, Set<? extends ArchitectureContext> contexts) {
-		legacyMerge(name, contexts)
-	}
-	
-	private def legacyMerge(ArchitectureContext target, String name, Set<? extends ArchitectureContext> contexts) {
-		val contextsToMerge = contexts.named(name).toSet
-		contexts.map[domain].withScope[
-			contextsToMerge.forEach[target.copyContext(it)]
-			target.mergeViewpoints(contextsToMerge)
-		]
-	}
-	
-	def create createArchitectureFramework legacyMergedAF(String name, Set<? extends ArchitectureContext> contexts) {
-		legacyMerge(name, contexts)
+	/**
+	 * Get contexts of the given {@code type} and qualified {@code name}
+	 * sorted by decreasing number of extensions contributing to it.
+	 */
+	private def sortedInstances(Class<? extends ArchitectureContext> type, String name) {
+		currentScope.flatMap[contexts].filter(type).filter[qualifiedName == name]
+			.sortBy[allExtensions.size].reverseView
 	}
 	
 }

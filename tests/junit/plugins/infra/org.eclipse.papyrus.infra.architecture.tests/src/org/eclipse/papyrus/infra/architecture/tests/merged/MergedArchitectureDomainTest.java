@@ -22,13 +22,15 @@ import static org.eclipse.papyrus.infra.architecture.tests.ArchitectureMatchers.
 import static org.eclipse.papyrus.infra.architecture.tests.ArchitectureMatchers.mViewpointNamed;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.net.URL;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -62,33 +64,30 @@ public class MergedArchitectureDomainTest {
 
 	@Test
 	public void testMergeContextSameName() {
-		List<MergedArchitectureDomain> mergedDomains = mergeDomains();
-		assertEquals("Domains with same name aren't merged", 1, mergedDomains.size());
-		MergedArchitectureDomain mergedArchitectureDomain = mergedDomains.get(0);
-		assertTrue("mergedArchitectureDomain", mergedArchitectureDomain.isMerged());
-		assertEquals("Contexts with same name aren't merged", 2, mergedArchitectureDomain.getContexts().size());
-		assertThat(mergedArchitectureDomain.getContexts(), allOf(hasItem(mADLNamed("adl")), hasItem(mAFNamed("framework"))));
+		List<MergedArchitectureContext> mergedContexts = mergeContexts();
+		assertEquals("Contexts with same name aren't merged", 2, mergedContexts.size());
+		assertThat(mergedContexts, allOf(hasItem(mADLNamed("adl")), hasItem(mAFNamed("framework"))));
+		
+		mergedContexts.forEach(ctx -> assertThat("Context is not merged", ctx.isMerged(), is(true)));
+		mergedContexts.forEach(ctx -> assertThat("Domain is not merged", ctx.getDomain().isMerged(), is(true)));
 	}
 
 	@Test
 	public void testMergeContextDifferentName() {
 		rename(ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT, "adl", "differentName");
 
-		List<MergedArchitectureDomain> mergedDomains = mergeDomains();
-		assertEquals("Domains with same name aren't merged", 1, mergedDomains.size());
-		MergedArchitectureDomain mergedArchitectureDomain = mergedDomains.get(0);
-		assertEquals("Contexts with different name are merged", 3, mergedArchitectureDomain.getContexts().size());
-		assertThat(mergedArchitectureDomain.getContexts(),
+		List<MergedArchitectureContext> mergedContexts = mergeContexts();
+		assertEquals("Contexts with different name are merged", 3, mergedContexts.size());
+		assertThat(mergedContexts,
 				allOf(hasItem(mADLNamed("adl")), hasItem(mADLNamed("differentName")), hasItem(mAFNamed("framework"))));
+
+		mergedContexts.forEach(ctx -> assertThat("Context has wrong merged result", ctx.isMerged(), is("framework".equals(ctx.getName()))));
 	}
 
 	@Test
 	public void testMergeViewpointsSameName() {
-		List<MergedArchitectureDomain> mergedDomains = mergeDomains();
-		assertEquals("Domains with same name aren't merged", 1, mergedDomains.size());
-		MergedArchitectureDomain mergedArchitectureDomain = mergedDomains.get(0);
-		assertEquals("Contexts with same name aren't merged", 2, mergedArchitectureDomain.getContexts().size());
-		MergedArchitectureContext mergedArchitectureContext = mergedArchitectureDomain.getContexts().iterator().next();
+		List<MergedArchitectureContext> mergedContexts = mergeContexts();
+		MergedArchitectureContext mergedArchitectureContext = mergedContexts.iterator().next();
 		assertEquals("Viewpoints with same name aren't merged", 2, mergedArchitectureContext.getViewpoints().size());
 
 		assertThat(mergedArchitectureContext.getViewpoints(),
@@ -99,11 +98,9 @@ public class MergedArchitectureDomainTest {
 	public void testMergeViewpointsDifferentName() {
 		rename(ArchitecturePackage.Literals.ARCHITECTURE_VIEWPOINT, "viewpoint2", "differentName");
 
-		List<MergedArchitectureDomain> mergedDomains = mergeDomains();
-		assertEquals("Domains with same name aren't merged", 1, mergedDomains.size());
-		MergedArchitectureDomain mergedArchitectureDomain = mergedDomains.get(0);
-		assertEquals("Contexts with same name aren't merged", 2, mergedArchitectureDomain.getContexts().size());
-		MergedArchitectureContext mergedArchitectureContext = mergedArchitectureDomain.getContexts().iterator().next();
+		List<MergedArchitectureContext> mergedContexts = mergeContexts();
+		assertEquals("Contexts with same name aren't merged", 2, mergedContexts.size());
+		MergedArchitectureContext mergedArchitectureContext = mergedContexts.iterator().next();
 		assertEquals("Viewpoints with different names are merged", 3, mergedArchitectureContext.getViewpoints().size());
 
 		assertThat(mergedArchitectureContext.getViewpoints(),
@@ -113,11 +110,9 @@ public class MergedArchitectureDomainTest {
 
 	@Test
 	public void testMergeViewpointsRepresentationKinds() {
-		List<MergedArchitectureDomain> mergedDomains = mergeDomains();
-		assertEquals("Domains with same name aren't merged", 1, mergedDomains.size());
-		MergedArchitectureDomain mergedArchitectureDomain = mergedDomains.get(0);
-		assertEquals("Contexts with same name aren't merged", 2, mergedArchitectureDomain.getContexts().size());
-		MergedArchitectureContext mergedArchitectureContext = mergedArchitectureDomain.getContexts().iterator().next();
+		List<MergedArchitectureContext> mergedContexts = mergeContexts();
+		assertEquals("Contexts with same name aren't merged", 2, mergedContexts.size());
+		MergedArchitectureContext mergedArchitectureContext = mergedContexts.iterator().next();
 		assertEquals("Viewpoints with same name aren't merged", 2, mergedArchitectureContext.getViewpoints().size());
 		MergedArchitectureViewpoint mergedArchitectureViewpoint = mergedArchitectureContext.getViewpoints().iterator().next();
 		assertEquals("Representation kinds not properly merged", 2, mergedArchitectureViewpoint.getRepresentationKinds().size());
@@ -161,8 +156,11 @@ public class MergedArchitectureDomainTest {
 				.mergeDomains(input));
 	}
 
-	List<MergedArchitectureDomain> mergeDomains() {
-		return merge(domain1, domain2);
+	List<MergedArchitectureContext> mergeContexts() {
+		List<MergedArchitectureDomain> domains = merge(domain1, domain2);
+		return domains.stream()
+				.map(MergedArchitectureDomain::getContexts).flatMap(Collection::stream)
+				.collect(Collectors.toUnmodifiableList());
 	}
 
 	/** Rename an element in {@code domain2}. */

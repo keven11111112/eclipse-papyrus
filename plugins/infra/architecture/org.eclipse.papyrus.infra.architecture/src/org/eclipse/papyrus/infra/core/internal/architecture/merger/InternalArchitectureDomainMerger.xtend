@@ -56,10 +56,8 @@ class InternalArchitectureDomainMerger {
 
 	def mergeDomains(Iterable<? extends ArchitectureDomain> domains) {
 		// First, make a safe copy of all of the incoming domains
-		val inheritanceSet = new ResourceSetImpl
-		val inheritedDomains = domains.copy(inheritanceSet)
-		val mergeableDomains = inheritedDomains.filter[hasExtensions || hasInheritance].toSet
-		val legacyDomains = inheritedDomains.reject[hasExtensions || hasInheritance].toSet
+		val mergeableSet = new ResourceSetImpl
+		val mergeableDomains = domains.copy(mergeableSet)
 
 		// Process inheritance in place (on the safe copy)
 		advancePhase
@@ -67,24 +65,27 @@ class InternalArchitectureDomainMerger {
 
 		// Delete inheritance relationships
 		mergeableDomains.forEach[finalizeInheritance]
+		
+		// Infer implicit extension relationships for legacy merge support
+		advancePhase
+		mergeableDomains.withScope[mergeableDomains.forEach[inferExtensions]]
 
 		// Prepare resources to store the merged domains
 		val resourceSet = new ResourceSetImpl
 		resourceSet.packageRegistry = ResourceUtils.createWorkspaceAwarePackageRegistry
 		resourceSet.URIConverter = ResourceUtils.createWorkspaceAwareURIConverter
-		val mergedResources = inheritedDomains.toMap([eResource.URI], [resourceSet.createResource(eResource.URI)])
+		val mergedResources = mergeableDomains.toMap([eResource.URI], [resourceSet.createResource(eResource.URI)])
 
-		// Then, process merges
+		// Then, merge domains for context extensions
 		advancePhase
 		val mergedDomains = mergeableDomains.map[merged].toList // Collapse the lazy iterable before we advance to 'done'
-		val legacyMergedDomains = legacyDomains.withScope[legacyDomains.mapUnique[name].map[legacyMergedDomain].toList]
 
 		// Done. Screen and encapsulate the results
 		advancePhase
 
-		inheritanceSet.unload // No longer need the intermediate inheritance result
+		mergeableSet.unload // No longer need the intermediate safe copy
 		
-		return (mergedDomains + legacyMergedDomains).filter[hasContexts] // We don't need any empty domains
+		return mergedDomains.filter[hasContexts] // We don't need any empty domains
 			.map[toMergedArchitectureDomain(mergedResources)].toList 
 	}
 

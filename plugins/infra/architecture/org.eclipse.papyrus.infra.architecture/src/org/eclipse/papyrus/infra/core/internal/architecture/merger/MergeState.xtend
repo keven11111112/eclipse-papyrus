@@ -35,7 +35,8 @@ final class MergeState {
 	package def advancePhase() {
 		phase = switch (phase) {
 			case NOT_STARTED: MergePhase.INHERITANCE
-			case INHERITANCE: MergePhase.EXTENSIONS
+			case INHERITANCE: MergePhase.LEGACY
+			case LEGACY: MergePhase.EXTENSIONS
 			case EXTENSIONS: MergePhase.DONE
 			default: throw new IllegalStateException("Merge is done.")
 		}

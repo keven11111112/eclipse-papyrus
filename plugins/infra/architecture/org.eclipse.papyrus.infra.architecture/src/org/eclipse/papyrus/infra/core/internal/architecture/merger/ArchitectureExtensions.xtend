@@ -37,6 +37,7 @@ import org.eclipse.emf.common.util.BasicEList
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.InternalEObject
 import org.eclipse.xtext.xbase.lib.Functions.Function0
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure0
 
 /**
  * Utility extensions for the <em>Architecture Description</em> model.
@@ -159,10 +160,16 @@ class ArchitectureExtensions {
 	
 	def create EcoreUtil.copy(treeViewerConfig) merged(TreeViewerConfiguration treeViewerConfig) {} 
 	
-	def inInheritancePhase() { phase == MergePhase.INHERITANCE }
-	def inExtensionsPhase() { phase == MergePhase.EXTENSIONS }
+	def inInheritancePhase() { phase === MergePhase.INHERITANCE }
+	def inExtensionsPhase() { phase === MergePhase.EXTENSIONS || phase === MergePhase.LEGACY }
 	def currentScope() { currentDomains }
 	def <T> T withScope(Iterable<? extends ArchitectureDomain> domains, Function0<T> block) { domains.withDomains(block)}
+	def <T> T withScope(Iterable<? extends ArchitectureDomain> domains, Procedure0 block) {
+		domains.withScope[
+			block.apply
+			null
+		]
+	}
 	
 	@Pure
 	def <T, K> Iterable<T> uniqueBy(Iterable<T> iterable, Function1<? super T, K> keyer) {
