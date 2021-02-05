@@ -26,6 +26,8 @@ public class Messages extends NLS {
 	public static String ArchitectureCustomValidator_0;
 	public static String ArchitectureCustomValidator_1;
 	public static String ArchitectureCustomValidator_2;
+	public static String ArchitectureCustomValidator_3;
+	public static String ArchitectureCustomValidator_4;
 	public static String ArchitecturePluginChecker_0;
 	public static String ArchitecturePluginChecker_1;
 	static {
