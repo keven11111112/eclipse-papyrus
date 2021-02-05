@@ -84,7 +84,7 @@
                          ifEmpty="false"
                          operator="and">
                       <instanceof
-                            value="org.eclipse.gmf.codegen.gmfgen.GenCompartment"/>
+                            value="org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment"/>
                    </iterate>
                 </with>
              </visibleWhen>

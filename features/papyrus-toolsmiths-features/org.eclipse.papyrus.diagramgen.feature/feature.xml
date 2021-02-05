@@ -19,18 +19,7 @@
       %license
    </license>
 
-   <url>
-      <discovery label="gmf-tooling" url="http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a/"/>
-   </url>
-
-   <includes
-         id="org.eclipse.papyrus.gmf.tooling.feature"
-         version="0.0.0"/>
-
-   <requires>
-      <import plugin="org.eclipse.gmf.codegen.xtend" version="1.0.0" match="compatible"/>
-      <import plugin="org.eclipse.gmf.codegen.xtend.ui" version="1.0.0" match="compatible"/>
-   </requires>
+   <includes id="org.eclipse.papyrus.gmf.tooling.feature" version="0.0.0"/>
 
    <plugin
          id="org.eclipse.papyrus.codegen"

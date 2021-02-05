@@ -11,7 +11,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-modeltype GMFGen uses 'http://www.eclipse.org/gmf/2009/GenModel';
+modeltype GMFGen uses 'http://www.eclipse.org/papyrus/gmf/2020/GenModel';
 modeltype PapyrusExtension uses 'http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension';
 modeltype ElementTypes uses "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1";
 modeltype Assistant uses "http://www.eclipse.org/Papyrus/2014/diagram/assistant";

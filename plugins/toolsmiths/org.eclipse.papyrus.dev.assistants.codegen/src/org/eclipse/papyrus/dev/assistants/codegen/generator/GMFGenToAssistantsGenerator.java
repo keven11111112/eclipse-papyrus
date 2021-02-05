@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2015, 2021 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,12 +10,12 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - bug 569174, 570944
  *****************************************************************************/
 
 package org.eclipse.papyrus.dev.assistants.codegen.generator;
 
-import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
 import org.eclipse.papyrus.uml.profile.types.generator.AbstractGenerator;
 import org.eclipse.papyrus.uml.profile.types.generator.Identifiers;
