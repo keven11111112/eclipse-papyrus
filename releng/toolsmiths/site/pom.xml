@@ -48,11 +48,10 @@
 						<configuration>
 							<!-- do not generate the pesky web folder and index.html -->
 							<skipWebContentGeneration>true</skipWebContentGeneration>
-							<!-- p2 update site transitive dependencies repositories >
+							<!-- p2 update site transitive dependencies repositories -->
 							<associateSites>
-								<site>http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/releases-3.3.1a</site>
-								<site>http://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT/</site>
-							</associateSites-->
+								<site>https://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT/</site>
+							</associateSites>
 						</configuration>
 					</execution>
 				</executions>

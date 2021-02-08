@@ -82,7 +82,7 @@
     <repository
         url="https://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.9.0/N/LATEST/"/>
     <repository
-        url="http://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT/"/>
+        url="https://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT/"/>
   </setupTask>
   <setupTask
       xsi:type="setup.p2:P2Task"
@@ -810,7 +810,7 @@
           </annotation>
         </repository>
         <repository
-            url="http://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT/"/>
+            url="https://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT/"/>
         <repository
             url="https://download.eclipse.org/cbi/updates/aggregator/ide/4.13/"/>
         <repository
@@ -871,7 +871,7 @@
           </annotation>
         </repository>
         <repository
-            url="http://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT/"/>
+            url="https://download.eclipse.org/cbi/tpd/3.0.0-SNAPSHOT/"/>
         <repository
             url="https://download.eclipse.org/cbi/updates/aggregator/ide/4.13/"/>
         <repository
@@ -2437,7 +2437,7 @@
             <repository
                 url="${oomph.update.url}"/>
             <repository
-                url="http://download.eclipse.org/cbi/updates/aggregator/ide/4.6/"/>
+                url="https://download.eclipse.org/cbi/updates/aggregator/ide/4.6/"/>
           </repositoryList>
         </targlet>
       </setupTask>
