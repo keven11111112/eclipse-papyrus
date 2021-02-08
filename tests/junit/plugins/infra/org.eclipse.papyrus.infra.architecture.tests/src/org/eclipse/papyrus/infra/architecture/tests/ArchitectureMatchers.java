@@ -57,53 +57,53 @@ public class ArchitectureMatchers {
 		return named(RepresentationPackage.Literals.PAPYRUS_DIAGRAM, name);
 	}
 
-	public static Matcher<ADElement> named(EClass eClass, String name) {
-		return both(ofClass(eClass)).and(named(name));
+	public static <T extends ADElement> Matcher<T> named(EClass eClass, String name) {
+		return both(ArchitectureMatchers.<T> ofClass(eClass)).and(named(name));
 	}
 
-	public static Matcher<ADElement> ofClass(EClass eClass) {
+	public static <T extends ADElement> Matcher<T> ofClass(EClass eClass) {
 		if (!ArchitecturePackage.Literals.AD_ELEMENT.isSuperTypeOf(eClass)) {
 			throw new IllegalArgumentException("eClass does not conform to ADElement");
 		}
 
-		return new FeatureMatcher<ADElement, EClass>(is(eClass), "eClass", "eClass") {
+		return new FeatureMatcher<T, EClass>(is(eClass), "eClass", "eClass") {
 			@Override
-			protected EClass featureValueOf(ADElement actual) {
+			protected EClass featureValueOf(T actual) {
 				return actual.eClass();
 			}
 		};
 	}
 
-	public static Matcher<ADElement> named(String name) {
-		return new FeatureMatcher<ADElement, String>(is(name), "name", "name") {
+	public static <T extends ADElement> Matcher<T> named(String name) {
+		return new FeatureMatcher<T, String>(is(name), "name", "name") {
 			@Override
-			protected String featureValueOf(ADElement actual) {
+			protected String featureValueOf(T actual) {
 				return actual.getName();
 			}
 		};
 	}
 
-	public static Matcher<MergedADElement> named(Class<?> class_, String name) {
-		return both(ofClass(class_)).and(mnamed(name));
+	public static <T extends MergedADElement> Matcher<T> named(Class<?> class_, String name) {
+		return both(ArchitectureMatchers.<T> ofClass(class_)).and(mnamed(name));
 	}
 
-	public static Matcher<MergedADElement> ofClass(Class<?> class_) {
+	public static <T extends MergedADElement>  Matcher<T> ofClass(Class<?> class_) {
 		if (!MergedADElement.class.isAssignableFrom(class_)) {
 			throw new IllegalArgumentException("class does not conform to MergedADElement");
 		}
 
-		return new FeatureMatcher<MergedADElement, Class<?>>(sameInstance(class_), "class", "class") {
+		return new FeatureMatcher<T, Class<?>>(sameInstance(class_), "class", "class") {
 			@Override
-			protected Class<?> featureValueOf(MergedADElement actual) {
+			protected Class<?> featureValueOf(T actual) {
 				return actual.getClass();
 			}
 		};
 	}
 
-	public static Matcher<MergedADElement> mnamed(String name) {
-		return new FeatureMatcher<MergedADElement, String>(is(name), "name", "name") {
+	public static <T extends MergedADElement> Matcher<T> mnamed(String name) {
+		return new FeatureMatcher<T, String>(is(name), "name", "name") {
 			@Override
-			protected String featureValueOf(MergedADElement actual) {
+			protected String featureValueOf(T actual) {
 				return actual.getName();
 			}
 		};

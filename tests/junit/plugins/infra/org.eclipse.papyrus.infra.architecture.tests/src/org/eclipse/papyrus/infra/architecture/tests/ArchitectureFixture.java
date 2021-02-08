@@ -112,7 +112,8 @@ public class ArchitectureFixture extends TestWatcher {
 	}
 	
 	public <T> T get(Collection<? extends T> elements, String name) {
-		return elements.stream().filter(e -> name.equals(getName(e))).findAny().orElse(null);
+		return elements.stream().filter(e -> name.equals(getName(e))).findAny()
+				.orElseThrow(() -> new AssertionError("no such element: " + name));
 	}
 	
 	private static String getName(Object element) {

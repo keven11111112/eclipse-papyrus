@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.core.architecture.tests.ArchitectureAllTests;
 import org.eclipse.papyrus.infra.core.internal.architecture.merger.tests.ArchitectureDomainInheritanceTest;
 import org.eclipse.papyrus.infra.core.internal.architecture.merger.tests.ArchitectureDomainMergerLegacyTest;
 import org.eclipse.papyrus.infra.core.internal.architecture.merger.tests.ArchitectureDomainMergerTest;
+import org.eclipse.papyrus.infra.core.internal.architecture.merger.tests.ArchitectureDomainMixedMergesTest;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.junit.runner.RunWith;
@@ -35,6 +36,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	ArchitectureDomainMergerTest.class,
 	ArchitectureDomainInheritanceTest.class,
 	ArchitectureDomainMergerLegacyTest.class,
+	ArchitectureDomainMixedMergesTest.class,
 	})
 @Headless
 public class AllTests {
