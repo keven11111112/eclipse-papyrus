@@ -57,7 +57,7 @@ import com.google.common.collect.Iterables;
 /**
  * Tests covering the context inheritance algorithm.
  */
-@ArchitectureResource("specific")
+@ArchitectureResource("inheritance/specific")
 @DomainName("specific")
 public class ArchitectureDomainInheritanceTest {
 

@@ -57,7 +57,7 @@ import com.google.common.collect.Iterables;
 /**
  * Tests covering the explicit merge algorithm.
  */
-@ArchitectureResource("extending")
+@ArchitectureResource("extension/extending")
 @DomainName("extended")
 public class ArchitectureDomainMergerTest {
 

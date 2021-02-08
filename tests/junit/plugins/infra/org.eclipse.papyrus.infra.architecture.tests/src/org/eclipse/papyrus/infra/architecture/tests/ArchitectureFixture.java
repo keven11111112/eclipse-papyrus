@@ -14,6 +14,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.architecture.tests;
 
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.lessThanOrEqual;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -21,6 +25,7 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -48,28 +53,34 @@ import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.MultimapBuilder;
+import com.google.common.collect.Multimaps;
+
 /**
  * JUnit rule to manage architecture resources in tests.
  */
 public class ArchitectureFixture extends TestWatcher {
 
 	private ResourceSet resourceSet;
-	private ArchitectureDomain domain;
-	private Map<String, ArchitectureDomain> domains;
+	private Optional<String> domainName;
+	private ListMultimap<String, ArchitectureDomain> domains;
 
 	public ArchitectureFixture() {
 		super();
 	}
 
 	public ArchitectureDomain getArchitectureDomain(String name) {
-		ArchitectureDomain result = domains.get(name);
-		assertThat("No such architecture domain: " + name, result, notNullValue());
-		return result;
+		List<ArchitectureDomain> result = domains.get(name);
+		assertThat("No such architecture domain: " + name, result, not(isEmpty()));
+		assertThat("Not an uniquely named source architecture domain: " + name, result.size(), lessThanOrEqual(1));
+		return result.get(0);
 	}
 
 	public MergedArchitectureDomain mergeDomain() {
-		MergedArchitectureDomain result = mergeDomains().get(domain.getName());
-		assertThat("Test domain not in the merge result: " + domain.getName(), result, notNullValue());
+		assertThat("Test not annotated with required domain name", domainName.isPresent(), is(true));
+		MergedArchitectureDomain result = mergeDomains().get(domainName.get());
+		assertThat("Test domain not in the merge result: " + domainName.get(), result, notNullValue());
 		return result;
 	}
 
@@ -145,12 +156,10 @@ public class ArchitectureFixture extends TestWatcher {
 				.map(Resource::getContents)
 				.flatMap(Collection::stream)
 				.filter(ArchitectureDomain.class::isInstance).map(ArchitectureDomain.class::cast)
-				.collect(Collectors.toMap(ADElement::getName, Function.identity()));
+				.collect(Multimaps.toMultimap(ADElement::getName, Function.identity(),
+						MultimapBuilder.linkedHashKeys().arrayListValues()::build));
 
-		DomainName domainName = JUnitUtils.getAnnotation(description, DomainName.class);
-		if (domainName != null) {
-			domain = domains.get(domainName.value());
-		}
+		domainName = Optional.ofNullable(JUnitUtils.getAnnotation(description, DomainName.class)).map(DomainName::value);
 
 		super.starting(description);
 	}
