@@ -58,15 +58,15 @@ class ArchitectureDomainRule {
 		if (inInheritancePhase) specific.contexts.map[general].filterNull.map[domain].unique.excluding(specific) else emptyList
 	}
 	
-	def inherit(ArchitectureDomain domain) {
-		domain.generals.withScope[
+	// Create returning self is a "once function"
+	def create domain inherit(ArchitectureDomain domain) {
+		domain.generals.map[inherit].withScope[
 			// Contexts that are to be inherited have dependencies on these, so inherit them
 			domain.concerns += currentScope.flatMap[concerns].mapUnique[name].map[mergedConcern]
 			domain.stakeholders += currentScope.flatMap[stakeholders].mapUnique[name].map[mergedStakeholder]
 		]
 				
 		if (inInheritancePhase) domain.contexts.forEach[it.inherit]
-		domain
 	}
 	
 	def finalizeInheritance(ArchitectureDomain domain) {
