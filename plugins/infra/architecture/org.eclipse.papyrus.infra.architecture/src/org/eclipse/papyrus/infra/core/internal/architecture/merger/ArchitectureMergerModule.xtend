@@ -29,6 +29,7 @@ import com.google.inject.name.Names;
  */
 class ArchitectureMergerModule extends AbstractModule {
 
+	/** Key for named injection of a block that sets up trace relationships from merge result to source model elements. */
 	public static val String MERGE_TRACE = "MERGE_TRACE"; //$NON-NLS-1$
 	
 	extension val MergeTraces traces = new MergeTraces
@@ -51,7 +52,7 @@ class ArchitectureMergerModule extends AbstractModule {
 	}
 
 	/**
-	 * Overridden by subclasses to add further bindings. The default implementation does nothing.
+	 * Overridden by subclasses to add bindings. The default implementation does nothing.
 	 */
 	protected def void doConfigure() {
 		// Pass

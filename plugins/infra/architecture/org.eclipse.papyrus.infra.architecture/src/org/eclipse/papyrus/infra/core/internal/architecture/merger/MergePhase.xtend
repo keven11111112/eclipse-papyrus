@@ -18,7 +18,7 @@ package org.eclipse.papyrus.infra.core.internal.architecture.merger
 /**
  * Which phase of the multi-phase merge algorithm is happening.
  */
-enum MergePhase {
+package enum MergePhase {
 	/** Not yet processing anything. */
 	NOT_STARTED,
 	/** Processing context inheritance. */

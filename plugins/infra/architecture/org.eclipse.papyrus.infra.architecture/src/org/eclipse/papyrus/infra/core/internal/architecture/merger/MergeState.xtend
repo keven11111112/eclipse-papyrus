@@ -24,7 +24,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function0
  * Encapsulation of "global" state of the merge algorithm.
  */
 @Singleton
-final class MergeState {
+package final class MergeState {
 	
 	var MergePhase phase = MergePhase.NOT_STARTED
 	val Set<ArchitectureDomain> domains = newLinkedHashSet
@@ -38,7 +38,7 @@ final class MergeState {
 			case INHERITANCE: MergePhase.LEGACY
 			case LEGACY: MergePhase.EXTENSIONS
 			case EXTENSIONS: MergePhase.DONE
-			default: throw new IllegalStateException("Merge is done.")
+			default: throw new IllegalStateException("Merge is done.") //$NON-NLS-1$
 		}
 	}
 	

@@ -30,6 +30,11 @@ class ArchitectureContextInheritanceRule {
 	@Inject extension ArchitectureExtensions
 	@Inject extension ArchitectureContextRule
 	
+	/**
+	 * Query whether a context looks like a "legacy" context that does not participate in any
+	 * explicit inheritance or extension relationships, and so would be assuming the legacy
+	 * implicit name-based merge semantics.
+	 */
 	def legacyContext(ArchitectureContext context) {
 		!(context.hasGeneral || context.extension || context.hasSpecializations || context.hasExtensions)
 	}
@@ -42,6 +47,7 @@ class ArchitectureContextInheritanceRule {
 		if (context.hasGeneral && context.canInherit(context.generalContext)) context.generalContext
 	}
 	
+	/** Query whether a context is the target of any generalization relationships from other contexts. */
 	def hasSpecializations(ArchitectureContext context) {
 		context.isReferenced(ARCHITECTURE_CONTEXT__GENERAL_CONTEXT)
 	}
@@ -50,10 +56,12 @@ class ArchitectureContextInheritanceRule {
 		specific.eClass === general.eClass
 	}
 	
+	/** Query the set of contexts that have generalization relationships to a context (not recursive). */
 	def <T extends ArchitectureContext> specializations(T context) {
 		context.<T> invert(ARCHITECTURE_CONTEXT__GENERAL_CONTEXT).filter[canInherit(context)]
 	}
 	
+	/** Update the given context (if not already thus updated) with inheritable context from its general context, if any. */
 	// Create returning self is a "once function"
 	def create context inherit(ArchitectureContext context) {
 		if (context.hasGeneral && context.canInherit(context.generalContext)) {
@@ -66,6 +74,10 @@ class ArchitectureContextInheritanceRule {
 		newLinkedHashSet(specific.domain, general.domain).withScope[specific.merge(general)]
 	}
 	
+	/**
+	 * Complete the processing of inheritance for the context by clearing the reference to its general.
+	 * The merged model does not retain inheritance and extension relationships as they would be redundant.
+	 */
 	def finalizeInheritance(ArchitectureContext context) {
 		context.generalContext = null
 	}

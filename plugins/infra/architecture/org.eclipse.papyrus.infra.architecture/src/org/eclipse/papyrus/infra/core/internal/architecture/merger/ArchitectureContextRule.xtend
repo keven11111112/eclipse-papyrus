@@ -45,10 +45,12 @@ class ArchitectureContextRule {
 		extending.eClass === extended.eClass
 	}
 	
+	/** Query the set of contexts that have extension relationships targeting this context (not recursive). */
 	def <T extends ArchitectureContext> extensions(T context) {
 		if (inExtensionsPhase) context.<T> invert(ARCHITECTURE_CONTEXT__EXTENDED_CONTEXTS).filter[context.canExtend(it)] else emptyList
 	}
 	
+	/** Query the set of all contexts that extend this context directly or indirectly (recursively). */
 	def <T extends ArchitectureContext> allExtensions(T context) {
 		if (inExtensionsPhase) allExtensionsHelper(context, newLinkedHashSet).toList else emptyList
 	}
@@ -61,6 +63,10 @@ class ArchitectureContextRule {
 		result
 	}
 	
+	/**
+	 * Obtain the product of merging extension content (if any) into this context, if not previously merged.
+	 * if previously merged, the previous merge result is returned.
+	 */
 	def dispatch merged(ArchitectureDescriptionLanguage context) {
 		context.merged(currentScope) // Unique merge per domain scope
 	}
@@ -68,6 +74,7 @@ class ArchitectureContextRule {
 		merge(context)
 	}
 	
+	/** Merge the source context and all of its extensions into the newly created target context. */
 	package def <T extends ArchitectureContext> merge(T target, T source) {
 		(Set.of(source) + source.allExtensions).toSet => [
 			forEach[target.copyContext(it)]
@@ -90,6 +97,10 @@ class ArchitectureContextRule {
 		]
 	}
 	
+	/**
+	 * Obtain the product of merging extension content (if any) into this context, if not previously merged.
+	 * if previously merged, the previous merge result is returned.
+	 */
 	def dispatch merged(ArchitectureFramework context) {
 		context.merged(currentScope) // Unique merge per domain scope
 	}
@@ -101,6 +112,10 @@ class ArchitectureContextRule {
 		target.copyContext(source, target.contextCopier)
 	}
 	
+	/**
+	 * Copy definitions from a source context into the target, with optional additional processing of extension
+	 * content as applicable to the context type (ADLs have more to merge than AFs).
+	 */
 	private def <T extends ArchitectureContext> copyContext(T target, T source, Consumer<? super T> extensionMerger) {
 		target => [
 			copy(source)

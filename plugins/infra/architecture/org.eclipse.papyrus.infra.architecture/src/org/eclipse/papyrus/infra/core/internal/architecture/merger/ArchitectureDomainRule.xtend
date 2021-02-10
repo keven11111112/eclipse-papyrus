@@ -58,6 +58,7 @@ class ArchitectureDomainRule {
 		if (inInheritancePhase) specific.contexts.map[general].filterNull.map[domain].unique.excluding(specific) else emptyList
 	}
 	
+	/** Process inheritance for the contexts in a domain, if not already done previously for this domain. */
 	// Create returning self is a "once function"
 	def create domain inherit(ArchitectureDomain domain) {
 		domain.generals.map[inherit].withScope[
@@ -69,10 +70,20 @@ class ArchitectureDomainRule {
 		if (inInheritancePhase) domain.contexts.forEach[it.inherit]
 	}
 	
+	/**
+	 * Finalize inheritance processing for all contexts in a domain.
+	 * 
+	 * @see ArchitectureContextInheritanceRule#finalizeInheritance(ArchitectureContext)
+	 */
 	def finalizeInheritance(ArchitectureDomain domain) {
 		domain.contexts.forEach[it.finalizeInheritance]
 	}
 	
+	/**
+	 * Merging of domains is implied by merging of its contexts: merge the given
+	 * domain with all domains that define contexts that are extended by some
+	 * context in this domain.
+	 */
 	def create createArchitectureDomain merged(ArchitectureDomain domain) {
 		(Set.of(domain) + domain.allExtensions).withScope[
 			copy(domain) => [ result |

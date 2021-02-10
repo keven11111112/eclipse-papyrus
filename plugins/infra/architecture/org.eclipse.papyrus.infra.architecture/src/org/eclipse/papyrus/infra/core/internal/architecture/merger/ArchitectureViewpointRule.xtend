@@ -31,7 +31,10 @@ class ArchitectureViewpointRule {
 	@Inject extension ArchitectureExtensions
 	@Inject extension RepresentationKindRule
 	
-	/** Viewpoints are always merged by name (not just for legacy mode). */
+	/**
+	 * Obtain the merge result for a viewpoint owned by merged {@code contexts}. Viewpoints are merged by name.
+	 * If merged previously, that previous merge result is returned.
+	 */
 	def mergedViewpoint(String name, Set<? extends ArchitectureContext> contexts) {
 		name.mergedViewpoint(contexts, currentScope) // Unique merge per domain scope
 	}

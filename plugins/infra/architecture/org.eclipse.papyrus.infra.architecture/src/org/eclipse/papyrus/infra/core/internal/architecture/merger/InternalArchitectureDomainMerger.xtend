@@ -54,6 +54,15 @@ class InternalArchitectureDomainMerger {
 
 	@Inject extension MergeState
 
+	/**
+	 * Compute the merge of the given architecture {@code domains}. The result of the merge
+	 * is a new distinct architecture model spanning a subset of the given {@code domains}
+	 * that are merged according to extension relationships (explicit or implied by name)
+	 * of the architecture contexts that they define. Every architecture domain in the
+	 * result is contained in a resource with URI matching the resource URI of the
+	 * primary source-model domain to which it traces. And all of those resources are
+	 * collected in a {@link ResourceSet} independent of the source model's resource set.
+	 */
 	def mergeDomains(Iterable<? extends ArchitectureDomain> domains) {
 		// First, make a safe copy of all of the incoming domains
 		val mergeableSet = new ResourceSetImpl
@@ -89,28 +98,33 @@ class InternalArchitectureDomainMerger {
 			.map[toMergedArchitectureDomain(mergedResources)].toList 
 	}
 
-	def create result: new MergedArchitectureDomain(domain) toMergedArchitectureDomain(ArchitectureDomain domain, Map<URI, Resource> resources) {
+	private def create result: new MergedArchitectureDomain(domain) toMergedArchitectureDomain(ArchitectureDomain domain, Map<URI, Resource> resources) {
 		domain.contexts.forEach[toMergedArchitectureContext(result)]
 
 		// Add the merged domain to its resource
 		resources.get(domain.trace?.eResource?.URI)?.contents?.add(domain)
 	}
 
-	def dispatch create result: new MergedArchitectureDescriptionLanguage(domain, context) toMergedArchitectureContext(
+	private def dispatch create result: new MergedArchitectureDescriptionLanguage(domain, context) toMergedArchitectureContext(
 		ArchitectureDescriptionLanguage context, MergedArchitectureDomain domain) {
 		context.viewpoints.forEach[toMergedArchitectureViewpoint(result)]
 	}
 
-	def dispatch create result: new MergedArchitectureFramework(domain, context) toMergedArchitectureContext(
+	private def dispatch create result: new MergedArchitectureFramework(domain, context) toMergedArchitectureContext(
 		ArchitectureFramework context, MergedArchitectureDomain domain) {
 		context.viewpoints.forEach[toMergedArchitectureViewpoint(result)]
 	}
 
-	def create result: new MergedArchitectureViewpoint(context, viewpoint) toMergedArchitectureViewpoint(
+	private def create result: new MergedArchitectureViewpoint(context, viewpoint) toMergedArchitectureViewpoint(
 		ArchitectureViewpoint viewpoint, MergedArchitectureContext context) {
 		// Pass
 	}
 
+	/**
+	 * Copy the source architecture {@code domains} into a new, independent resource set.
+	 * This ensures that inheritance can be processed in-place, and new context extension
+	 * relationships inferred in-place, without disturbing the source model.
+	 */
 	private def copy(Iterable<? extends ArchitectureDomain> domains, ResourceSet resourceSet) {
 		val copier = new EcoreUtil.Copier {
 			override protected createCopy(EObject eObject) {
@@ -130,10 +144,12 @@ class InternalArchitectureDomainMerger {
 		result
 	}
 
+	/** Create a new architecture domain merger configured with the default injection bindings. */
 	static def InternalArchitectureDomainMerger newInstance() {
 		newInstance(new ArchitectureMergerModule())
 	}
 
+	/** Create a new architecture domain merger configured with the given injection bindings. */
 	static def InternalArchitectureDomainMerger newInstance(AbstractModule module) {
 		Guice.createInjector(module).getInstance(InternalArchitectureDomainMerger)
 	}

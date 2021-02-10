@@ -35,7 +35,7 @@ import static org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage.Li
  * Encapsulation of merge traces from merged architecture model elements to
  * the original source models.
  */
-final class MergeTraces extends AdapterImpl implements MergeTraceAdapter {
+package final class MergeTraces extends AdapterImpl implements MergeTraceAdapter {
 
 	val Multimap<ADElement, ADElement> traces = ArrayListMultimap.create()
 	

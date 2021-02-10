@@ -51,6 +51,7 @@ class ArchitectureExtensions {
 	
 	@Inject extension MergeState
 	
+	/** A custom cross-reference adapter that propagates itself up the content tree as well as down. */
 	val ECrossReferenceAdapter xrefAdapter = new ECrossReferenceAdapter {
 		// Also propagate up the content tree
 		
@@ -80,10 +81,12 @@ class ArchitectureExtensions {
 		])
 	}
 	
+	/** Query referencers to an object via the given reference. */
 	def <T extends EObject> Iterable<T> invert(EObject target, EReference reference) {
 		target.xrefs.getInverseReferences(target, reference, true).map[EObject as T]
 	}
 	
+	/** Query whether any other object references the given object via some reference. */
 	def isReferenced(EObject target, EReference reference) {
 		!target.xrefs.getInverseReferences(target, reference, true).empty
 	}
@@ -94,7 +97,7 @@ class ArchitectureExtensions {
 	}
 	
 	/** Get a feature of an object as a list, even if it isn't a list. */
-	def <T> EList<T> eGetAsList(EObject owner, EStructuralFeature feature) {
+	def <T> EList<T> eGetAsList(EObject owner, EStructuralFeature feature, Class<T> type) {
 		if (feature.many) {
 			owner.eGet(feature) as EList<T>
 		} else {
@@ -126,10 +129,20 @@ class ArchitectureExtensions {
 		}
 	} 
 	
+	/**
+	 * Create a trace relationship from a target model element to the source model element
+	 * that it derives from, which usually is some merge, for inheritance or for extension.
+	 */
 	def <T extends ADElement> traceTo(T target, T source) {
 		mergeTrace.accept(target, source)
 	}
 	
+	/**
+	 * Copy the basic attributes of a target object, for which it does not already have a vakye, from some source.
+	 * As a side-effect a trace relationship is recorded.
+	 * 
+	 * @see #traceTo(ADElement, ADElement)
+	 */
 	def <T extends ADElement> copy(T target, T source) {
 		// Establish trace from the output element to the input
 		target.traceTo(source)
@@ -140,7 +153,11 @@ class ArchitectureExtensions {
 		target.icon = target.icon ?: source.icon
 		target
 	}
-		
+	
+	/**
+	 * Obtain the merge result for a stakeholder owned by merged domains. Stakeholders are merged by name.
+	 * If merged previously, that previous merge result is returned.
+	 */
 	def mergedStakeholder(String name) {		
 		name.mergedStakeholder(currentScope) // Unique merge per domain scope
 	}
@@ -151,6 +168,11 @@ class ArchitectureExtensions {
 		]
 	} 
 	
+	/**
+	 * Obtain the merge result for a concern owned by merged domains and possibly referenced by merged
+	 * viewpoints and representation kinds. Concerns are merged by name. If merged previously, that
+	 * previous merge result is returned.
+	 */
 	def mergedConcern(String name) {
 		name.mergedConcern(currentScope) // Unique merge per domain scope
 	}
@@ -158,19 +180,51 @@ class ArchitectureExtensions {
 		currentScope.flatMap[concerns].filter[it.name == name].forEach[result.copy(it)]
 	} 
 	
+	/**
+	 * Obtain the merge result for a tree viewer configuration in a merged context.
+	 * If merged previously, that previous merge result is returned.
+	 */
 	def create EcoreUtil.copy(treeViewerConfig) merged(TreeViewerConfiguration treeViewerConfig) {} 
 	
+	/**
+	 * Query whether the merge algorithm is currently in the inheritance processing phase.
+	 * Only in the inheritance phase will queries about inheritance relationships return results.
+	 */
 	def inInheritancePhase() { phase === MergePhase.INHERITANCE }
+	/**
+	 * Query whether the merge algorithm is currently in the extensions processing phase,
+	 * either explicitly modelled or inferred by name.
+	 * Only in the extensions phase will queries about extension relationships return results.
+	 */
 	def inExtensionsPhase() { phase === MergePhase.EXTENSIONS || phase === MergePhase.LEGACY }
+	
+	/** Query the set of architecture domains currently being merged, as implied by the contexts that they define. */
 	def currentScope() { currentDomains }
-	def <T> T withScope(Iterable<? extends ArchitectureDomain> domains, Function0<T> block) { domains.withDomains(block)}
-	def <T> T withScope(Iterable<? extends ArchitectureDomain> domains, Procedure0 block) {
+	
+	/**
+	 * Execute a block of code in the scope of a set of domains being merged. For the duration of the
+	 * block, these domains will be the current scope.
+	 * 
+	 * @return the result of the block
+	 * @see #currentScope()
+	 */
+	def <T> T withScope(Iterable<? extends ArchitectureDomain> domains, Function0<T> block) {
+		domains.withDomains(block)
+	}
+	/**
+	 * Execute a block of code in the scope of a set of domains being merged. For the duration of the
+	 * block, these domains will be the current scope.
+	 * 
+	 * @see #currentScope()
+	 */
+	def void withScope(Iterable<? extends ArchitectureDomain> domains, Procedure0 block) {
 		domains.withScope[
 			block.apply
 			null
 		]
 	}
 	
+	/** Compute a subset of objects in an iterable that are uniquely identified by some key function. */
 	@Pure
 	def <T, K> Iterable<T> uniqueBy(Iterable<T> iterable, Function1<? super T, K> keyer) {
 		[
@@ -190,6 +244,7 @@ class ArchitectureExtensions {
 		]
 	}
 	
+	/** Compute an unique subset of objects in a transformed iterable. */
 	@Pure
 	def <T, R> mapUnique(Iterable<T> iterable, Function1<? super T, R> mapper) {
 		iterable.map(mapper).unique
@@ -221,6 +276,7 @@ class ArchitectureExtensions {
 		iterable.filter[name == selectedName]
 	}
 	
+	/** Obtain the difference between an {@code iterable} and a set of exclusions. */
 	@Pure
 	def <T> excluding(Iterable<T> iterable, Object... excluded) {
 		val unwanted = newHashSet(excluded)
