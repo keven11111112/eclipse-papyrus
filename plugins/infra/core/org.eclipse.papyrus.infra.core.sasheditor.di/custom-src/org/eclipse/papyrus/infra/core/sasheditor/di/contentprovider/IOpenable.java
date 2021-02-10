@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos
+ * Copyright (c) 2011, 2021 Atos, CEA LIST
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,19 +11,25 @@
  *
  * Contributors:
  *  Tristan FAURE - tristan.faure@atos.net - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Bug 571087
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider;
 
 
 /**
- * Interface for adaptation, if instantiated it mean it can be opened
+ * Interface for adaptation, if instantiated it mean it can be opened.
+ *
  *
  * @author tfaure
  *
  */
 public interface IOpenable {
 
+	/**
+	 *
+	 * @return
+	 *         the object to open
+	 */
 	Object getPageIdentifier();
 
 	static class Openable implements IOpenable {
