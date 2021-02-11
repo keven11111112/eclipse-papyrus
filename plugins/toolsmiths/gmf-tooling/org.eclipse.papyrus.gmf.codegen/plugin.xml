@@ -29,10 +29,6 @@
      <resource
            location="models/gmfgen_2008.ecore"
            uri="http://www.eclipse.org/gmf/2008/GenModel"/>
-     <resource
-           location="models/gmfgen.ecore"
-           uri="http://www.eclipse.org/papyrus/gmf/2020/GenModel">
-     </resource>
   </extension>
 
   <extension point="org.eclipse.team.core.fileTypes">
