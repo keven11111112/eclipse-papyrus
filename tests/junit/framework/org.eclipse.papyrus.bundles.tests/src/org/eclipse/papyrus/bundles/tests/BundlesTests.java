@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2017 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2017, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -13,6 +13,7 @@
  *  Christian W. Damus - Skip the feature-version test when running in development mode
  *  Christian W. Damus - bugs 433206, 485220
  *  Thanh Liem PHAN (ALL4TEC) thanhliem.phan@all4tec.net - Bug 513963
+ *  Quentin Le Menez (CEA LIST) quentin.lemenez@cea.fr - Bug 570716
  *****************************************************************************/
 package org.eclipse.papyrus.bundles.tests;
 
@@ -75,7 +76,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	@InvalidTest("Some Papyrus bundles are still incubating (Extra...)")
 	@Test
 	public void incubationTest() {
-		org.hamcrest.Matcher<String> matcher = new BaseMatcher<String>() {
+		org.hamcrest.Matcher<String> matcher = new BaseMatcher<>() {
 
 			@Override
 			public boolean matches(Object item) {
@@ -138,7 +139,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	 *            JavaProject
 	 */
 	private void testManifestProperty(final String property, final String regex, final boolean mustBeNull, final boolean onlyOnJavaProject) {
-		org.hamcrest.Matcher<String> regexMatcher = new org.hamcrest.BaseMatcher<String>() {
+		org.hamcrest.Matcher<String> regexMatcher = new org.hamcrest.BaseMatcher<>() {
 
 			@Override
 			public boolean matches(Object item) {
@@ -485,31 +486,42 @@ public class BundlesTests extends AbstractPapyrusTest {
 	}
 
 	/**
-	 * This test checks that nobody adds an unexpected dependency on the plugin org.eclipse.papyrus.emf
-	 * 
+	 * This test checks that nobody adds an unexpected dependency to the plugin org.eclipse.papyrus.emf
+	 *
 	 * @since 1.3.0
 	 */
 	@Test
 	public void checkPapyrusEMFPluginDependency() {
+		final Version undefinedVersion = new Version(null);
 		final String bundleIDToCheck = "org.eclipse.papyrus.emf"; //$NON-NLS-1$
 		final Map<String, Version> dependencies = new HashMap<>();
-		final Version undefinedVersion = new Version(null);
-		dependencies.put("org.eclipse.ui", undefinedVersion); //$NON-NLS-1$
-		dependencies.put("org.eclipse.core.runtime", undefinedVersion); //$NON-NLS-1$
 		dependencies.put("org.eclipse.core.resources", undefinedVersion); //$NON-NLS-1$
-		dependencies.put("org.eclipse.emf.ecore", undefinedVersion); //$NON-NLS-1$
+		dependencies.put("org.eclipse.core.runtime", undefinedVersion); //$NON-NLS-1$
 		dependencies.put("org.eclipse.emf.ecore.xmi", undefinedVersion); //$NON-NLS-1$
-
 		strictCheckOfDependenciesList(bundleIDToCheck, dependencies, Collections.emptySet(), Collections.emptySet(), Collections.emptySet());
-
 	}
 
+	/**
+	 * This test checks that nobody adds an unexpected dependency to the plugin org.eclipse.papyrus.emf.ui
+	 *
+	 * @since 2.0.0
+	 */
+	@Test
+	public void checkPapyrusEMFUIPluginDependency() {
+		final Version undefinedVersion = new Version(null);
+		final String bundleIDToCheck = "org.eclipse.papyrus.emf.ui"; //$NON-NLS-1$
+		final Map<String, Version> dependencies = new HashMap<>();
+		dependencies.put("org.eclipse.core.runtime", undefinedVersion); //$NON-NLS-1$
+		dependencies.put("org.eclipse.emf.edit.ui", undefinedVersion); //$NON-NLS-1$
+		dependencies.put("org.eclipse.ui.views.properties.tabbed", undefinedVersion); //$NON-NLS-1$
+		strictCheckOfDependenciesList(bundleIDToCheck, dependencies, Collections.emptySet(), Collections.emptySet(), Collections.emptySet());
+	}
 
 	/**
-	 * 
+	 *
 	 * This method check all dependencies on the bundle. The version are checked using the method {@link Version#inIncludedIn(Version)}
 	 * If there are more or less dependencies in the tested bundle, the test will fails
-	 * 
+	 *
 	 * @param bundleSymbolicNameToCheck
 	 *            the name of the bundle to check
 	 * @param bundleDependenciesWithVersion
@@ -520,7 +532,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	 *            the complete list of greedy dependencies for this bundle
 	 * @param optionalDependencies
 	 *            the complete list of optional dependencies for this bundle
-	 * 
+	 *
 	 * @since 1.3
 	 */
 	private void strictCheckOfDependenciesList(final String bundleSymbolicNameToCheck, final Map<String, Version> bundleDependenciesWithVersion, final Set<String> reexportedDependencies, final Set<String> greedyDependencies,
