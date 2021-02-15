@@ -34,6 +34,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionGenerator;
 import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.SimpleMissingAttributeMarkerResolution;
 import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.SimpleMissingExtensionMarkerResolution;
+import org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.messages.Messages;
 import org.eclipse.ui.IMarkerResolution;
 
 /**
@@ -55,14 +56,14 @@ public class ElementTypesMarkerResolutionGenerator extends CommonMarkerResolutio
 		switch (problemID) {
 		case MISSING_ELEMENT_TYPES_CONFIGURATIONS_MODEL_EXTENSION_ID:
 			return only(new SimpleMissingExtensionMarkerResolution(problemID,
-					"Register element types configurations model", "Add a plug-in extension registering the element types configurations model",
+					Messages.MissingElementTypesExtension_0, Messages.MissingElementTypesExtension_1,
 					ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER, ELEM_ELEMENT_TYPE_SET,
 					attribute(ATTR_CLIENT_CONTEXT_ID, PAPYRUS_UML_CLIENT_CONTEXT),
 					optionalAttribute(ATTR_PATH, m -> getModelPath(m).map(IPath::toPortableString))));
 		case MISSING_ELEMENT_TYPES_CONFIGURATIONS_MODEL_CLIENT_CONTEXT_ID:
 		case UNKNOWN_ELEMENT_TYPES_CONFIGURATIONS_MODEL_CLIENT_CONTEXT_ID:
 			return only(new SimpleMissingAttributeMarkerResolution(problemID,
-					"Set the Papyrus UML client context ID", "Associate the element types configurations model with the Papyrus UML client context",
+					Messages.MissingClientContextID_0, Messages.MissingClientContextID_1,
 					ATTR_CLIENT_CONTEXT_ID, PAPYRUS_UML_CLIENT_CONTEXT));
 		default:
 			return noResolutions();

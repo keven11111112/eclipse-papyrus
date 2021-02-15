@@ -45,7 +45,7 @@ public abstract class ResourceMissingFromBinaryBuildMarkerResolution extends Abs
 	}
 
 	IPath getPathToAdd(IMarker marker) {
-		return new Path(marker.getAttribute(CommonProblemConstants.BINARY_BUILD_PATH, ""));
+		return new Path(marker.getAttribute(CommonProblemConstants.BINARY_BUILD_PATH, "")); //$NON-NLS-1$
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public abstract class ResourceMissingFromBinaryBuildMarkerResolution extends Abs
 	 * @return the resolutions
 	 */
 	public static IMarkerResolution[] forMarker(IMarker marker) {
-		IPath binaryBuildPath = new Path(marker.getAttribute(CommonProblemConstants.BINARY_BUILD_PATH, ""));
+		IPath binaryBuildPath = new Path(marker.getAttribute(CommonProblemConstants.BINARY_BUILD_PATH, "")); //$NON-NLS-1$
 
 		switch (binaryBuildPath.segmentCount()) {
 		case 0:

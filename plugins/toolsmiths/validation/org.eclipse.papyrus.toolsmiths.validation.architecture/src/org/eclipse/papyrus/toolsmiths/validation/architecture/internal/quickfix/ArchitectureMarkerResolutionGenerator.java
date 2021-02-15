@@ -26,6 +26,7 @@ import static org.eclipse.papyrus.toolsmiths.validation.common.quickfix.SimpleMi
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.papyrus.toolsmiths.validation.architecture.internal.messages.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionGenerator;
 import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.SimpleMissingExtensionMarkerResolution;
 import org.eclipse.ui.IMarkerResolution;
@@ -49,7 +50,7 @@ public class ArchitectureMarkerResolutionGenerator extends CommonMarkerResolutio
 		switch (problemID) {
 		case MISSING_ARCHITECTURE_MODEL_EXTENSION_ID:
 			return only(new SimpleMissingExtensionMarkerResolution(problemID,
-					"Register architecture model", "Add a plug-in extension registering the architecture model",
+					Messages.MissingArchitectureExtension_0, Messages.MissingArchitectureExtension_1,
 					ARCHITECTURE_EXTENSION_POINT_IDENTIFIER, ELEM_MODEL,
 					optionalAttribute(ATTR_PATH, m -> getModelPath(m).map(IPath::toPortableString))));
 		default:
