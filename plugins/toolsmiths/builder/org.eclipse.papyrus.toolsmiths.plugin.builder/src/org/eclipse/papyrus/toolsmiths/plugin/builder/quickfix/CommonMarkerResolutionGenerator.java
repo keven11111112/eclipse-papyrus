@@ -38,6 +38,14 @@ public class CommonMarkerResolutionGenerator implements IMarkerResolutionGenerat
 		return NO_RESOLUTIONS;
 	}
 
+	protected final IMarkerResolution[] only(IMarkerResolution resolution) {
+		return new IMarkerResolution[] { resolution };
+	}
+
+	protected final IMarkerResolution[] allOf(IMarkerResolution... resolutions) {
+		return resolutions;
+	}
+
 	@Override
 	public IMarkerResolution[] getResolutions(IMarker marker) {
 		int problemID = marker.getAttribute(PDEMarkerFactory.PROBLEM_ID, PDEMarkerFactory.NO_RESOLUTION);
