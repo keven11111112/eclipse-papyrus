@@ -10,13 +10,18 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
- *   Christian W. Damus - bug 570097
+ *   Christian W. Damus - bugs 570097, 571125
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.toolsmiths.validation.architecture.internal.checkers;
 
 
+import static org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage.Literals.AD_ELEMENT__ICON;
+import static org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS;
+import static org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage.Literals.ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS;
+import static org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage.Literals.REPRESENTATION_KIND__GRAYED_ICON;
+import static org.eclipse.papyrus.infra.gmfdiag.representation.RepresentationPackage.Literals.PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS;
 import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants.ARCHITECTURE_EXTENSION_POINT_IDENTIFIER;
 import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants.ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE;
 
@@ -44,6 +49,8 @@ import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ExtensionsCheck
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.IPluginChecker2;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelDependenciesChecker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.ModelValidationChecker;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider;
+import org.eclipse.papyrus.toolsmiths.validation.common.checkers.OpaqueResourceProvider.ResourceKind;
 import org.eclipse.papyrus.toolsmiths.validation.common.internal.utils.PluginErrorReporter;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.MarkersService;
 import org.eclipse.papyrus.toolsmiths.validation.common.utils.PluginValidationService;
@@ -146,7 +153,7 @@ public class ArchitecturePluginChecker {
 
 	private static BuildPropertiesChecker createBuildPropertiesChecker(IProject project, IFile modelFile, Resource resource) {
 		return new BuildPropertiesChecker(project, modelFile, resource, ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE)
-				.withDependencies(file -> new ReferencedIconsBuildPropertiesDependencies(resource).getDependencies());
+				.withReferencedResources(createIconProvider());
 	}
 
 	/**
@@ -169,7 +176,23 @@ public class ArchitecturePluginChecker {
 
 	private static ModelDependenciesChecker createModelDependenciesChecker(IProject project, IFile modelFile, Resource resource) {
 		return new ModelDependenciesChecker(project, modelFile, resource, ARCHITECTURE_PLUGIN_VALIDATION_MARKER_TYPE)
-				.withAdditionalRequirements(new ArchitectureDependencies(project)::computeDependencies);
+				.withReferencedResources(createOpaqueResourceProvider(project));
+	}
+
+	// Icon resources
+	private static OpaqueResourceProvider.EMF createIconProvider() {
+		return OpaqueResourceProvider.EMF.create(ResourceKind.ICON, ArchitecturePackage.eNS_URI, AD_ELEMENT__ICON)
+				.and(OpaqueResourceProvider.EMF.create(ResourceKind.ICON, RepresentationPackage.eNS_URI, REPRESENTATION_KIND__GRAYED_ICON));
+	}
+
+	private static OpaqueResourceProvider.EMF createOpaqueResourceProvider(IProject project) {
+		ArchitectureDependencies dependencies = new ArchitectureDependencies(project);
+		// Icon resources
+		return createIconProvider()
+				// Creation/conversion command classes
+				.and(OpaqueResourceProvider.EMF.create(ResourceKind.CLASS, ArchitecturePackage.eNS_URI, ARCHITECTURE_CONTEXT__CREATION_COMMAND_CLASS, dependencies::getClassURI))
+				.and(OpaqueResourceProvider.EMF.create(ResourceKind.CLASS, ArchitecturePackage.eNS_URI, ARCHITECTURE_CONTEXT__CONVERSION_COMMAND_CLASS, dependencies::getClassURI))
+				.and(OpaqueResourceProvider.EMF.create(ResourceKind.CLASS, RepresentationPackage.eNS_URI, PAPYRUS_DIAGRAM__CREATION_COMMAND_CLASS, dependencies::getClassURI));
 	}
 
 	/**

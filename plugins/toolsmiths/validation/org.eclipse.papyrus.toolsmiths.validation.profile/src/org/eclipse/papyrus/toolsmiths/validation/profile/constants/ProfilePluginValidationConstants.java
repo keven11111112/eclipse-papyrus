@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2021 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
+ *   Christian W. Damus - bug 571125
  *
  *****************************************************************************/
 
@@ -29,6 +30,16 @@ public class ProfilePluginValidationConstants {
 	 * The UMLProfile extension point identifier.
 	 */
 	public static final String UMLPROFILE_EXTENSION_POINT = "org.eclipse.papyrus.uml.extensionpoints.UMLProfile"; //$NON-NLS-1$
+
+	/**
+	 * The UMLProfile extension point element name.
+	 */
+	public static final String ELEM_PROFILE = "profile"; //$NON-NLS-1$
+
+	/**
+	 * The UMLProfile extension point icon path attribute.
+	 */
+	public static final String ATTR_ICONPATH = "iconpath"; //$NON-NLS-1$
 
 	/**
 	 * The uml generated package extension point identifier.

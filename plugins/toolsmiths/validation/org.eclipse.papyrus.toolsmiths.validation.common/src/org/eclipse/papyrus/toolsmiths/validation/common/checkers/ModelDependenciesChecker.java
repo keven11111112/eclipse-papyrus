@@ -11,7 +11,7 @@
  * Contributors:
  *   Nicolas FAUVERGUE (CEA LIST) nicolas.fauvergue@cea.fr - Initial API and implementation
  *   Remi Schnekenburger (EclipseSource) - Bug 568495
- *   Christian W. Damus - bugs 569357, 570097
+ *   Christian W. Damus - bugs 569357, 570097, 571125
  *
  *****************************************************************************/
 package org.eclipse.papyrus.toolsmiths.validation.common.checkers;
@@ -28,7 +28,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.function.ToIntFunction;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -75,6 +74,9 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 	/** The URI scheme for Equinox's internal <tt>bundleresource://</tt> URIs. */
 	private static final String BUNDLE_RESOURCE_SCHEME = "bundleresource"; //$NON-NLS-1$
 
+	/** The URI scheme for e4's <tt>bundleclass://</tt> URIs. */
+	private static final String BUNDLE_CLASS_SCHEME = "bundleclass"; //$NON-NLS-1$
+
 	/**
 	 * The EMF model resource.
 	 */
@@ -84,7 +86,7 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 
 	private ToIntFunction<? super String> severityFunction = __ -> Diagnostic.ERROR;
 
-	private final List<Function<? super Resource, ? extends Collection<String>>> additionalDependencyFunctions = new ArrayList<>();
+	private OpaqueResourceProvider.EMF opaqueResourceProvider;
 
 	/** Regex to parse the bundle ID out of a URI of <tt>bundleresource:</tt> scheme. */
 	private final Pattern bundleResourceAuthorityPattern = Pattern.compile("^\\d+"); //$NON-NLS-1$
@@ -166,16 +168,15 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 
 	/**
 	 * Add a function that computes additional requirements from the model that are encoded in some other
-	 * ways than cross-document references to resources in other bundles. Those dependencies are covered
+	 * ways than cross-document references to EMF resources in other bundles. Those dependencies are covered
 	 * automatically by this checker.
 	 *
-	 * @param requirementsFunction
-	 *            a function that maps the resource being validated to bundle symbolic names that are required dependencies
-	 *            implied by the model in ways other than cross-document references
+	 * @param opaqueReferenceProvider
+	 *            a provider of opaque resource references
 	 * @return myself, for convenience of call chaining
 	 */
-	public ModelDependenciesChecker withAdditionalRequirements(Function<? super Resource, Collection<String>> requirementsFunction) {
-		this.additionalDependencyFunctions.add(requirementsFunction);
+	public ModelDependenciesChecker withReferencedResources(OpaqueResourceProvider.EMF opaqueReferenceProvider) {
+		this.opaqueResourceProvider = OpaqueResourceProvider.and(opaqueReferenceProvider, this.opaqueResourceProvider);
 		return this;
 	}
 
@@ -195,7 +196,14 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 		// Calculate plug-ins names from URI. Initial set is the "additional requirements" from the client
 		final Collection<String> requiredPlugins = new HashSet<>(additionalRequirements);
 		externalReferencesPaths.stream().map(uri -> getPluginNameFromURI(uri, diagnostics)).filter(Objects::nonNull).forEach(requiredPlugins::add);
-		additionalDependencyFunctions.stream().map(func -> func.apply(resource)).filter(Objects::nonNull).forEach(requiredPlugins::addAll);
+
+		if (opaqueResourceProvider != null) {
+			opaqueResourceProvider.processModel(getProject(), getModelFile(), resource, diagnostics,
+					uri -> getPluginNameFromURI(uri.uri(), diagnostics), requiredPlugins::add);
+		}
+
+		// The plug-in does not require itself
+		requiredPlugins.remove(getBundleName(getProject()));
 
 		// For each external reference, get its plug-in name and search its dependency in the plug-in
 		final List<BundleSpecification> dependencies = ProjectManagementService.getPluginDependencies(getProject());
@@ -482,6 +490,8 @@ public class ModelDependenciesChecker extends AbstractPluginChecker {
 
 		if ((uri.isPlatformPlugin() || uri.isPlatformResource()) && uri.segmentCount() > 1) {
 			pluginName = uri.segment(1);
+		} else if (BUNDLE_CLASS_SCHEME.equals(uri.scheme()) && uri.hasAuthority()) {
+			pluginName = uri.authority();
 		} else if (BUNDLE_RESOURCE_SCHEME.equals(uri.scheme()) && uri.hasAuthority()) {
 			Bundle bundle = null;
 			Matcher m = bundleResourceAuthorityPattern.matcher(uri.authority());
