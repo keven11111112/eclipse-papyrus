@@ -14,13 +14,14 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.quickfix;
 
 import java.util.Optional;
 
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Messages;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.AbstractMissingAttributeMarkerResolution;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
+import org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages.Messages;
 import org.eclipse.uml2.uml.Profile;
 
 /**
@@ -44,7 +45,7 @@ public class PapyrusProfileExtensionMissingNameMarkerResolution extends Abstract
 
 	@Override
 	protected String getAttributeValue(IMarker marker) {
-		Optional<Profile> profileOptional = MarkerResolutionUtils.getProfile(marker);
+		Optional<Profile> profileOptional = ProfileMarkerResolutionUtils.getProfile(marker);
 		if (profileOptional.isEmpty()) {
 			return null;
 		}

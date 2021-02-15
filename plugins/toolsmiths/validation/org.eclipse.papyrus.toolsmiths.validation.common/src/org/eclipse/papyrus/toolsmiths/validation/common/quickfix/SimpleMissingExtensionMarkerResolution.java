@@ -13,7 +13,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.common.quickfix;
 
 import java.util.HashMap;
 import java.util.Map;

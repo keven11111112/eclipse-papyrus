@@ -81,18 +81,6 @@
                class="org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix.ManifestResolutionGenerator"
                markerType="org.eclipse.jdt.core.problem">
          </markerResolutionGenerator>
-         <markerResolutionGenerator
-               class="org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix.StaticProfileMarkerResolutionGenerator"
-               markerType="org.eclipse.papyrus.toolsmiths.validation.profile.diagnostic">
-         </markerResolutionGenerator>
-         <markerResolutionGenerator
-               class="org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix.ArchitectureMarkerResolutionGenerator"
-               markerType="org.eclipse.papyrus.toolsmiths.validation.architecture.diagnostic">
-         </markerResolutionGenerator>
-         <markerResolutionGenerator
-               class="org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix.ElementTypesMarkerResolutionGenerator"
-               markerType="org.eclipse.papyrus.toolsmiths.validation.elementtypes.diagnostic">
-         </markerResolutionGenerator>
       </extension>
       <extension
             point="org.eclipse.ui.preferencePages">

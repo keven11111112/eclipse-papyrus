@@ -13,7 +13,7 @@
  *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.common.quickfix;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;

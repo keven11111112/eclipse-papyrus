@@ -14,7 +14,9 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.quickfix;
+
+import static org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionUtils.getModelName;
 
 import java.util.List;
 import java.util.Map;
@@ -28,8 +30,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.helper.StaticProfileHelper;
-import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CommonProblemConstants;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionUtils;
 import org.eclipse.papyrus.uml.tools.utils.StaticProfileUtil;
 import org.eclipse.ui.IMarkerResolution;
 import org.eclipse.uml2.uml.Profile;
@@ -37,7 +38,7 @@ import org.eclipse.uml2.uml.Profile;
 /**
  * Helper class with utility methods used by {@link IMarkerResolution marker resolutions}.
  */
-public final class MarkerResolutionUtils {
+public final class ProfileMarkerResolutionUtils {
 
 	/**
 	 * Returns the genmodel file for the profile for which the given marker was created.
@@ -55,7 +56,7 @@ public final class MarkerResolutionUtils {
 
 	/** Returns the UML model file of the profile for which this marker was created. */
 	public static IFile getUMLModelFile(IMarker marker) throws CoreException {
-		Optional<Profile> profileOptional = MarkerResolutionUtils.getProfile(marker);
+		Optional<Profile> profileOptional = ProfileMarkerResolutionUtils.getProfile(marker);
 		if (profileOptional.isEmpty()) {
 			return null;
 		}
@@ -67,7 +68,7 @@ public final class MarkerResolutionUtils {
 	/**
 	 * Returns the stereotype URI of the profile for which the given marker was created.
 	 *
-	 * @see MarkerResolutionUtils#getProfile(IMarker)
+	 * @see ProfileMarkerResolutionUtils#getProfile(IMarker)
 	 */
 	public static String getStereotypeUri(IMarker marker) {
 		Optional<Profile> profile = getProfile(marker);
@@ -83,20 +84,10 @@ public final class MarkerResolutionUtils {
 		return new StaticProfileUtil(profile).getDefinition().getNsURI();
 	}
 
-	/** Returns the model name stored in the marker attribute {@link CommonProblemConstants#MODEL_NAME}. */
-	public static Optional<String> getModelName(IMarker marker) {
-		return Optional.ofNullable(marker.getAttribute(CommonProblemConstants.MODEL_NAME, null));
-	}
-
-	/** Returns the model path stored in the marker attribute {@link CommonProblemConstants#MODEL_PATH}. */
-	public static Optional<IPath> getModelPath(IMarker marker) {
-		return Optional.ofNullable(marker.getAttribute(CommonProblemConstants.MODEL_PATH, null)).map(Path::new);
-	}
-
 	/**
 	 * Returns the {@link Profile} for which this marker was created.
 	 *
-	 * @see MarkerResolutionUtils#getModelName(IMarker)
+	 * @see CommonMarkerResolutionUtils#getModelName(IMarker)
 	 */
 	public static Optional<Profile> getProfile(IMarker marker) {
 		return getModelName(marker).flatMap(profileName -> {

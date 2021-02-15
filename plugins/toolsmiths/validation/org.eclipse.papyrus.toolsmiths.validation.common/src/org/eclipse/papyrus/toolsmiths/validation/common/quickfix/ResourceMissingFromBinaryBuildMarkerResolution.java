@@ -14,7 +14,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.common.quickfix;
 
 import static org.eclipse.papyrus.toolsmiths.validation.common.checkers.CommonProblemConstants.MISSING_FROM_BINARY_BUILD_MARKER_ID;
 
@@ -25,8 +25,8 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.eclipse.project.editors.file.BuildEditor;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CommonProblemConstants;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
 import org.eclipse.ui.IMarkerResolution;
 
 /**

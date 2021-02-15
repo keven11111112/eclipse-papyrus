@@ -14,7 +14,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.common.quickfix;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CommonProblemConstants;

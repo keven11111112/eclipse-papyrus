@@ -14,9 +14,10 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.quickfix;
 
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionGenerator;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
 import org.eclipse.ui.IMarkerResolution;
 

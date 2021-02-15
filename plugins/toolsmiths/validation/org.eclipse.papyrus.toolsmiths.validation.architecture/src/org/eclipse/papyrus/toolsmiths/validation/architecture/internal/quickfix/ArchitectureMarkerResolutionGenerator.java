@@ -13,19 +13,21 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.architecture.internal.quickfix;
 
-import static org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix.MarkerResolutionUtils.getModelPath;
-import static org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix.SimpleMissingExtensionMarkerResolution.optionalAttribute;
 import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants.ARCHITECTURE_EXTENSION_POINT_IDENTIFIER;
 import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants.ATTR_PATH;
 import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants.ELEM_MODEL;
 import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants.MAX_PROBLEM_ID;
 import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants.MISSING_ARCHITECTURE_MODEL_EXTENSION_ID;
 import static org.eclipse.papyrus.toolsmiths.validation.architecture.constants.ArchitecturePluginValidationConstants.PROBLEM_ID_BASE;
+import static org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionUtils.getModelPath;
+import static org.eclipse.papyrus.toolsmiths.validation.common.quickfix.SimpleMissingExtensionMarkerResolution.optionalAttribute;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionGenerator;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.SimpleMissingExtensionMarkerResolution;
 import org.eclipse.ui.IMarkerResolution;
 
 /**

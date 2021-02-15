@@ -14,58 +14,45 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
-
-import java.util.Optional;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.quickfix;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Messages;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.AbstractMissingAttributeMarkerResolution;
+import org.eclipse.papyrus.toolsmiths.validation.profile.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
-import org.eclipse.uml2.uml.Profile;
+import org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages.Messages;
 
 /**
- * Resolution for markers created for missing genModel attributes in the extension point.
+ * Resolution for markers created for missing genModel attributes in an extension point.
  *
  */
-public class NoLocationUMLGenPackageMarkerResolution
+public class MissingGenModelAttributeMarkerResolution
 		extends AbstractMissingAttributeMarkerResolution {
 
-	NoLocationUMLGenPackageMarkerResolution() {
-		super(ProfilePluginValidationConstants.NO_UML2_GEN_PACKAGE_LOCATION_MARKER_ID, "location"); //$NON-NLS-1$
+	MissingGenModelAttributeMarkerResolution() {
+		super(ProfilePluginValidationConstants.NO_GENMODEL_MARKER_ID, "genModel"); //$NON-NLS-1$
 	}
 
 	@Override
 	public String getLabel() {
-		return Messages.NoLocationUMLGenPackageMarkerResolution_label;
+		return Messages.MissingGenModelAttributeMarkerResolution_label;
 	}
 
 	@Override
 	public String getDescription() {
-		return Messages.NoLocationUMLGenPackageMarkerResolution_description;
+		return Messages.MissingGenModelAttributeMarkerResolution_description;
 	}
 
 	@Override
 	protected String getAttributeValue(IMarker marker) {
-		Optional<Profile> profileOptional = MarkerResolutionUtils.getProfile(marker);
-		if (profileOptional.isEmpty()) {
-			return null;
-		}
-		Profile profile = profileOptional.get();
-		Resource resource = profile.eResource();
-		String uriFragment = resource.getURIFragment(profile);
-
 		try {
-			IFile umlModelFile = MarkerResolutionUtils.getUMLModelFile(marker);
-			if (umlModelFile == null) {
-				return null;
+			IFile genModelFile = ProfileMarkerResolutionUtils.getGenModelFile(marker);
+			if (genModelFile != null) {
+				return ResourceUtils.getStringURI(genModelFile.getProjectRelativePath());
 			}
-
-			return ResourceUtils.mapAndEncodePath(umlModelFile) + "#" + uriFragment; //$NON-NLS-1$
 		} catch (CoreException e) {
 			Activator.log.error(e);
 		}

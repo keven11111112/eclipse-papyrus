@@ -14,7 +14,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.common.quickfix;
 
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -24,7 +24,7 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.pde.core.IBaseModel;
 import org.eclipse.pde.core.plugin.IExtensions;
 import org.eclipse.pde.core.plugin.IPluginElement;

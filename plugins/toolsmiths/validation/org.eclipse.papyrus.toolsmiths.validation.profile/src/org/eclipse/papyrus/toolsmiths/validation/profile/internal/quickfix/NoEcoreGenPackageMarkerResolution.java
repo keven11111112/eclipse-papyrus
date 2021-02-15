@@ -14,15 +14,16 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.quickfix;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Messages;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.AbstractMissingExtensionMarkerResolution;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
+import org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages.Messages;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 
@@ -54,12 +55,12 @@ public class NoEcoreGenPackageMarkerResolution extends AbstractMissingExtensionM
 	protected void configureExtension(IPluginExtension extension, IMarker marker) throws CoreException {
 		IPluginElement packageElement = createElement(extension, "package"); //$NON-NLS-1$
 		extension.add(packageElement);
-		IFile genModel = MarkerResolutionUtils.getGenModelFile(marker);
+		IFile genModel = ProfileMarkerResolutionUtils.getGenModelFile(marker);
 		if (genModel != null) {
 			IPath relativePath = genModel.getProjectRelativePath();
 			packageElement.setAttribute("genModel", ResourceUtils.getStringURI(relativePath)); //$NON-NLS-1$
 		}
-		String uri = MarkerResolutionUtils.getStereotypeUri(marker);
+		String uri = ProfileMarkerResolutionUtils.getStereotypeUri(marker);
 		if (uri != null) {
 			packageElement.setAttribute("uri", uri); //$NON-NLS-1$
 		}

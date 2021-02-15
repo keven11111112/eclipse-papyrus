@@ -14,7 +14,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.common.quickfix;
 
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
+import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.views.markers.WorkbenchMarkerResolution;

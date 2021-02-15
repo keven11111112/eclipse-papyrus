@@ -13,11 +13,11 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.elementtypes.internal.quickfix;
 
-import static org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix.MarkerResolutionUtils.getModelPath;
-import static org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix.SimpleMissingExtensionMarkerResolution.attribute;
-import static org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix.SimpleMissingExtensionMarkerResolution.optionalAttribute;
+import static org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionUtils.getModelPath;
+import static org.eclipse.papyrus.toolsmiths.validation.common.quickfix.SimpleMissingExtensionMarkerResolution.attribute;
+import static org.eclipse.papyrus.toolsmiths.validation.common.quickfix.SimpleMissingExtensionMarkerResolution.optionalAttribute;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ATTR_CLIENT_CONTEXT_ID;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ATTR_PATH;
 import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.ElementTypesPluginValidationConstants.ELEMENTTYPES_EXTENSION_POINT_IDENTIFIER;
@@ -31,6 +31,9 @@ import static org.eclipse.papyrus.toolsmiths.validation.elementtypes.constants.E
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.CommonMarkerResolutionGenerator;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.SimpleMissingAttributeMarkerResolution;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.SimpleMissingExtensionMarkerResolution;
 import org.eclipse.ui.IMarkerResolution;
 
 /**

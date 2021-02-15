@@ -14,47 +14,36 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.profile.internal.quickfix;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Messages;
+import org.eclipse.papyrus.toolsmiths.validation.common.quickfix.AbstractMissingAttributeMarkerResolution;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
+import org.eclipse.papyrus.toolsmiths.validation.profile.internal.messages.Messages;
 
 /**
- * Resolution for markers created for missing genModel attributes in an extension point.
+ * Resolution for markers created for missing genModel attributes in the extension point.
  *
  */
-public class MissingGenModelAttributeMarkerResolution
+public class MissingUriAttributeMarkerResolution
 		extends AbstractMissingAttributeMarkerResolution {
 
-	MissingGenModelAttributeMarkerResolution() {
-		super(ProfilePluginValidationConstants.NO_GENMODEL_MARKER_ID, "genModel"); //$NON-NLS-1$
+	MissingUriAttributeMarkerResolution() {
+		super(ProfilePluginValidationConstants.NO_URI_MARKER_ID, "uri"); //$NON-NLS-1$
 	}
 
 	@Override
 	public String getLabel() {
-		return Messages.MissingGenModelAttributeMarkerResolution_label;
+		return Messages.MissingUriAttributeMarkerResolution_label;
 	}
 
 	@Override
 	public String getDescription() {
-		return Messages.MissingGenModelAttributeMarkerResolution_description;
+		return Messages.MissingUriAttributeMarkerResolution_description;
 	}
 
 	@Override
 	protected String getAttributeValue(IMarker marker) {
-		try {
-			IFile genModelFile = MarkerResolutionUtils.getGenModelFile(marker);
-			if (genModelFile != null) {
-				return ResourceUtils.getStringURI(genModelFile.getProjectRelativePath());
-			}
-		} catch (CoreException e) {
-			Activator.log.error(e);
-		}
-		return null;
+		return marker.getAttribute(ProfilePluginValidationConstants.STATIC_PROFILE_STEREOTYPE_URI, ""); //$NON-NLS-1$
 	}
 }

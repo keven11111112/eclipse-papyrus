@@ -14,7 +14,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.toolsmiths.plugin.builder.quickfix;
+package org.eclipse.papyrus.toolsmiths.validation.common.quickfix;
 
 import java.io.IOException;
 import java.util.stream.Stream;
@@ -25,10 +25,10 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
 import org.eclipse.papyrus.emf.validation.DependencyValidationUtils;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Messages;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.helper.BundleVersionHelper;
+import org.eclipse.papyrus.toolsmiths.validation.common.Activator;
 import org.eclipse.papyrus.toolsmiths.validation.common.checkers.CommonProblemConstants;
+import org.eclipse.papyrus.toolsmiths.validation.common.internal.messages.Messages;
+import org.eclipse.papyrus.toolsmiths.validation.common.utils.BundleVersionHelper;
 
 /**
  * This class adds the missing dependencies detected in EMF models into the manifest of the project.
