@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2020, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Alexandra Buzila (EclipseSource) - Initial API and implementation
+ *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
 
@@ -18,7 +19,7 @@ package org.eclipse.papyrus.toolsmiths.plugin.builder;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * 
+ *
  */
 public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.toolsmiths.plugin.builder.messages"; //$NON-NLS-1$
@@ -56,6 +57,8 @@ public class Messages extends NLS {
 	public static String PluginBuilderPreferencePage_builderPreferenceGroupDescription;
 	public static String ResourceMissingFromBinaryBuildMarkerResolution_description;
 	public static String ResourceMissingFromBinaryBuildMarkerResolution_label;
+	public static String ResourceMissingFromBinaryBuildMarkerResolution_folder;
+	public static String ResourceMissingFromBinaryBuildMarkerResolution_file;
 	public static String XWTModelBuilder_noBundleProvidingResourceUri;
 	public static String XWTModelBuilder_noBundleWithUri;
 	static {

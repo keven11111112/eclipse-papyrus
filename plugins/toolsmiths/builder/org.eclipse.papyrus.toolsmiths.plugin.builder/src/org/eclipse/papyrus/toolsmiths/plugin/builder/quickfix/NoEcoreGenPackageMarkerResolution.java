@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2020 CEA LIST, EclipseSource and others.
+ * Copyright (c) 2020, 2021 CEA LIST, EclipseSource, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -10,6 +10,7 @@
  *
  * Contributors:
  *   Alexandra Buzila (EclipseSource) - Initial API and implementation
+ *   Christian W. Damus - bug 570097
  *
  *****************************************************************************/
 
@@ -19,25 +20,20 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
-import org.eclipse.papyrus.toolsmiths.plugin.builder.Activator;
 import org.eclipse.papyrus.toolsmiths.plugin.builder.Messages;
 import org.eclipse.papyrus.toolsmiths.validation.profile.constants.ProfilePluginValidationConstants;
-import org.eclipse.pde.core.IBaseModel;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
-import org.eclipse.pde.internal.ui.util.ModelModification;
-import org.eclipse.pde.internal.ui.util.PDEModelUtility;
 
 /**
  * Resolution that adds an entry for the 'org.eclipse.emf.ecore.generated_package' extension and configures it.
  */
-@SuppressWarnings("restriction")
-public class NoEcoreGenPackageMarkerResolution extends AbstractPapyrusMarkerResolution {
+public class NoEcoreGenPackageMarkerResolution extends AbstractMissingExtensionMarkerResolution {
 
-	private IMarker marker;
+	public NoEcoreGenPackageMarkerResolution() {
+		super(ProfilePluginValidationConstants.NO_ECORE_GEN_PACKAGE_MARKER_ID);
+	}
 
 	@Override
 	public String getDescription() {
@@ -50,46 +46,27 @@ public class NoEcoreGenPackageMarkerResolution extends AbstractPapyrusMarkerReso
 	}
 
 	@Override
-	public void run(IMarker marker) {
-		this.marker = marker;
-		if (!(marker.getResource() instanceof IFile)) {
-			return;
-		}
-		ModelModification modification = new ModelModification((IFile) marker.getResource()) {
-			@Override
-			protected void modifyModel(IBaseModel model, IProgressMonitor monitor) throws CoreException {
-				if (model instanceof IPluginModelBase) {
-					addExtension((IPluginModelBase) model);
-				}
-			}
-		};
-		PDEModelUtility.modifyModel(modification, null);
+	protected String getExtensionPoint(IMarker marker) {
+		return ProfilePluginValidationConstants.ECORE_GENERATED_PACKAGE_EXTENSION_POINT;
 	}
 
-	private void addExtension(IPluginModelBase model) {
-		try {
-			IPluginExtension extension = model.getFactory().createExtension();
-			extension.setPoint(ProfilePluginValidationConstants.ECORE_GENERATED_PACKAGE_EXTENSION_POINT);
-			model.getPluginBase().add(extension);
-			IPluginElement packageElement = model.getFactory().createElement(extension);
-			packageElement.setName("package"); //$NON-NLS-1$
-			extension.add(packageElement);
-			IFile genModel = MarkerResolutionUtils.getGenModelFile(marker);
-			if (genModel != null) {
-				IPath relativePath = genModel.getProjectRelativePath();
-				packageElement.setAttribute("genModel", ResourceUtils.getStringURI(relativePath)); //$NON-NLS-1$
-			}
-			String uri = MarkerResolutionUtils.getStereotypeUri(marker);
-			if (uri != null) {
-				packageElement.setAttribute("uri", uri); //$NON-NLS-1$
-			}
-
-			// XXX needed?
-			// packageElement.setAttribute("class", "");
-
-		} catch (CoreException e) {
-			Activator.log.error(e);
+	@Override
+	protected void configureExtension(IPluginExtension extension, IMarker marker) throws CoreException {
+		IPluginElement packageElement = createElement(extension, "package"); //$NON-NLS-1$
+		extension.add(packageElement);
+		IFile genModel = MarkerResolutionUtils.getGenModelFile(marker);
+		if (genModel != null) {
+			IPath relativePath = genModel.getProjectRelativePath();
+			packageElement.setAttribute("genModel", ResourceUtils.getStringURI(relativePath)); //$NON-NLS-1$
 		}
+		String uri = MarkerResolutionUtils.getStereotypeUri(marker);
+		if (uri != null) {
+			packageElement.setAttribute("uri", uri); //$NON-NLS-1$
+		}
+
+		// XXX needed?
+		// packageElement.setAttribute("class", "");
+
 	}
 
 }
