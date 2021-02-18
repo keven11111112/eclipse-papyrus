@@ -37,9 +37,11 @@ import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureFram
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils
 
+import static extension org.eclipse.papyrus.infra.core.internal.architecture.merger.ArchitectureExtensions.logf
 import static extension org.eclipse.papyrus.infra.emf.utils.EMFHelper.*
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
+import java.util.Formatter
 
 /**
  * Model-to-model transformation that generates merged <em>Architecture Description</em> model instances
@@ -64,6 +66,8 @@ class InternalArchitectureDomainMerger {
 	 * collected in a {@link ResourceSet} independent of the source model's resource set.
 	 */
 	def mergeDomains(Iterable<? extends ArchitectureDomain> domains) {
+		"=== Merge starting ===".logf
+		
 		// First, make a safe copy of all of the incoming domains
 		val mergeableSet = new ResourceSetImpl
 		val mergeableDomains = domains.copy(mergeableSet)
@@ -99,25 +103,40 @@ class InternalArchitectureDomainMerger {
 	}
 
 	private def create result: new MergedArchitectureDomain(domain) toMergedArchitectureDomain(ArchitectureDomain domain, Map<URI, Resource> resources) {
-		domain.contexts.forEach[toMergedArchitectureContext(result)]
-
 		// Add the merged domain to its resource
 		resources.get(domain.trace?.eResource?.URI)?.contents?.add(domain)
+		
+		"Merge result: %s.".logf(domain)
+		
+		domain.contexts.forEach[toMergedArchitectureContext(result)]
 	}
 
 	private def dispatch create result: new MergedArchitectureDescriptionLanguage(domain, context) toMergedArchitectureContext(
 		ArchitectureDescriptionLanguage context, MergedArchitectureDomain domain) {
+
+		"Merge result: %.60s.".logf(context)
+		
 		context.viewpoints.forEach[toMergedArchitectureViewpoint(result)]
 	}
 
 	private def dispatch create result: new MergedArchitectureFramework(domain, context) toMergedArchitectureContext(
 		ArchitectureFramework context, MergedArchitectureDomain domain) {
+			
+		"Merge result: %.60s.".logf(context)
+		
 		context.viewpoints.forEach[toMergedArchitectureViewpoint(result)]
 	}
 
 	private def create result: new MergedArchitectureViewpoint(context, viewpoint) toMergedArchitectureViewpoint(
 		ArchitectureViewpoint viewpoint, MergedArchitectureContext context) {
-		// Pass
+
+		val representations = new StringBuilder
+		val formatter = new Formatter(representations)
+		viewpoint.representationKinds.forEach[
+			if (representations.length > 0) formatter.format(", ")
+			formatter.format("%.20s", it.formatted)
+		]
+		"Merge result: %.60s -- %s.".logf(viewpoint, representations)
 	}
 
 	/**
@@ -126,9 +145,11 @@ class InternalArchitectureDomainMerger {
 	 * relationships inferred in-place, without disturbing the source model.
 	 */
 	private def copy(Iterable<? extends ArchitectureDomain> domains, ResourceSet resourceSet) {
+		"Copying source domains %s.".logf(domains)
+		
 		val copier = new EcoreUtil.Copier {
-			override protected createCopy(EObject eObject) {
-				super.createCopy(eObject) => [
+			override copy(EObject eObject) {
+				super.copy(eObject) => [
 					switch (it) {
 						ADElement: it.traceTo(eObject as ADElement)
 					}

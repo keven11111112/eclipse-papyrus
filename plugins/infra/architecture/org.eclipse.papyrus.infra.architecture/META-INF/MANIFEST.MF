@@ -23,6 +23,7 @@ Require-Bundle: org.eclipse.gmf.runtime.emf.type.core;bundle-version="[1.9.0,2.0
  com.google.inject;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.emf.common;bundle-version="[2.21.0,3.0.0)"
 Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.papyrus.infra.architecture.Activator
 Bundle-Vendor: %providerName
 Automatic-Module-Name: org.eclipse.papyrus.infra.architecture
 Import-Package: javax.inject;version="[1.0.0,2.0.0)"

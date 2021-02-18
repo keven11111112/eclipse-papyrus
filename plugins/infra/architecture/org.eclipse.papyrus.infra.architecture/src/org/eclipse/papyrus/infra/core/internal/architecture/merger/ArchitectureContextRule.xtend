@@ -26,6 +26,8 @@ import org.eclipse.papyrus.infra.core.architecture.ArchitectureFramework
 
 import static org.eclipse.papyrus.infra.core.architecture.ArchitecturePackage.Literals.*
 
+import static extension org.eclipse.papyrus.infra.core.internal.architecture.merger.ArchitectureExtensions.logf
+
 /**
  * Extension merge rule for {@link ArchitectureContext}s.
  */
@@ -79,6 +81,8 @@ class ArchitectureContextRule {
 		(Set.of(source) + source.allExtensions).toSet => [
 			forEach[target.copyContext(it)]
 			target.mergeViewpoints(it)
+			
+			"Merged %s into %s".logf(source, target)
 		]
 	}
 	

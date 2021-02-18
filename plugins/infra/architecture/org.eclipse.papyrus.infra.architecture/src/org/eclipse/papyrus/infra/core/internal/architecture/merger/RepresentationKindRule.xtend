@@ -26,6 +26,8 @@ import org.eclipse.papyrus.infra.core.architecture.Concern
 import org.eclipse.papyrus.infra.core.architecture.Stakeholder
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext
 
+import static extension org.eclipse.papyrus.infra.core.internal.architecture.merger.ArchitectureExtensions.logf
+
 /**
  * Merge rule for {@link RepresentationKind}s.
  */
@@ -63,6 +65,8 @@ class RepresentationKindRule {
 				case ARCHITECTURE_DOMAIN.isSuperTypeOf(type): result.eGetAsList(xref, ArchitectureDomain).replaceAll[merged]
 			}
 		]
+
+		"Copied %s to %s".logf(representation, result)
 	}
 	
 }

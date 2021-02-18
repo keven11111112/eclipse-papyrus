@@ -40,6 +40,8 @@ package final class MergeState {
 			case EXTENSIONS: MergePhase.DONE
 			default: throw new IllegalStateException("Merge is done.") //$NON-NLS-1$
 		}
+		
+		ArchitectureExtensions.logf("=== Merge phase: %s ===", phase)
 	}
 	
 	/** Query the current scope of domains being merged, whether for inheritance or for extension. */
@@ -50,6 +52,9 @@ package final class MergeState {
 		
 		try {
 			setDomains(domains)
+		
+			ArchitectureExtensions.logf("Merging elements in scope of %s.", domains)
+			
 			block.apply
 		} finally {
 			setDomains(oldDomains)

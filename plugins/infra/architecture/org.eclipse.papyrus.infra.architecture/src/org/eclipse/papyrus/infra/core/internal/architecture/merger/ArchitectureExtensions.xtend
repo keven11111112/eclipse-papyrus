@@ -38,6 +38,8 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.InternalEObject
 import org.eclipse.xtext.xbase.lib.Functions.Function0
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0
+import org.eclipse.papyrus.infra.architecture.Activator
+import org.eclipse.papyrus.infra.core.architecture.util.FormattableADElement
 
 /**
  * Utility extensions for the <em>Architecture Description</em> model.
@@ -137,6 +139,18 @@ class ArchitectureExtensions {
 		mergeTrace.accept(target, source)
 	}
 	
+	/** Log a merge tracing message. */
+	def static package logf(String pattern, Object... arg) {
+		if (Activator.log.isTraceEnabled(Activator.DEBUG_MERGE)) {
+			Activator.log.trace(Activator.DEBUG_MERGE, String.format(pattern, FormattableADElement.wrapAll(arg)));
+		}
+	}
+	
+	/** A model element formatted suitably for printing. */
+	def formatted(ADElement element) {
+		FormattableADElement.wrap(element)
+	}
+	
 	/**
 	 * Copy the basic attributes of a target object, for which it does not already have a vakye, from some source.
 	 * As a side-effect a trace relationship is recorded.
@@ -144,13 +158,14 @@ class ArchitectureExtensions {
 	 * @see #traceTo(ADElement, ADElement)
 	 */
 	def <T extends ADElement> copy(T target, T source) {
+		target.name = target.name ?: source.name
+		target.id = target.id ?: source.id
+		target.description = target.description ?: source.description
+		target.icon = target.icon ?: source.icon
+		
 		// Establish trace from the output element to the input
 		target.traceTo(source)
 		
-		target.id = target.id ?: source.id
-		target.name = target.name ?: source.name
-		target.description = target.description ?: source.description
-		target.icon = target.icon ?: source.icon
 		target
 	}
 	
@@ -165,6 +180,8 @@ class ArchitectureExtensions {
 		currentScope.flatMap[stakeholders].filter[it.name == name].forEach[
 			result.copy(it)
 			result.concerns += it.concerns.mapUnique[it.name].map[mergedConcern]
+			
+			"Merged %s into %s".logf(it, result)
 		]
 	} 
 	
@@ -177,7 +194,11 @@ class ArchitectureExtensions {
 		name.mergedConcern(currentScope) // Unique merge per domain scope
 	}
 	private def create result: factory.createConcern mergedConcern(String name, Object scope) {
-		currentScope.flatMap[concerns].filter[it.name == name].forEach[result.copy(it)]
+		currentScope.flatMap[concerns].filter[it.name == name].forEach[
+			result.copy(it)
+			
+			"Merged %s into %s".logf(it, result)
+		]
 	} 
 	
 	/**

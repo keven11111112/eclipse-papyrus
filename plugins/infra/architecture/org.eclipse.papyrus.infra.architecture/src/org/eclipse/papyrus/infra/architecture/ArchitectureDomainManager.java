@@ -16,6 +16,9 @@
  */
 package org.eclipse.papyrus.infra.architecture;
 
+import static org.eclipse.papyrus.infra.architecture.ArchitectureDomainMerger.log;
+import static org.eclipse.papyrus.infra.architecture.ArchitectureDomainMerger.logf;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -203,12 +206,14 @@ public class ArchitectureDomainManager implements IPreferenceChangeListener {
 	 */
 	@Override
 	public void preferenceChange(PreferenceChangeEvent event) {
+		logf("Architecture preference changed: %s => %s.", event.getKey(), event.getNewValue()); //$NON-NLS-1$
 		preferences.read();
 
 		if (event.getKey().equals(ArchitectureDomainPreferences.ADDED_MODELS)) {
 			initializeFromPreferences();
 		}
 
+		log("Notifying listeners."); //$NON-NLS-1$
 		for (Listener listener : listeners) {
 			if (listener instanceof SpecificListener) {
 				SpecificListener specificListener = (SpecificListener) listener;

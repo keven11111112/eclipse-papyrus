@@ -207,6 +207,14 @@ and so do not exist to reference as general or extended contexts.
 
 <blockquote>''For advanced tools that need it, Papyrus does provide a mechanism by which contexts and other elements in the merge result can be traced to the elements in the source'' architecture models ''from which they are derived. Those source models retain the original inheritance and extension relationships.''</blockquote>
 
+====Architecture Context Debugging====
+
+In case the Papyrus workbench shows an unexpected configuration of ''architecture contexts'', Eclipse tracing options are available
+to assist in the analysis of how the source architecture models were merged to produce that outcome. These are:
+
+* <tt>org.eclipse.papyrus.infra.architecture/debug/models</tt> to trace the discovery and processing of source models by the ''Architecture Domain Manager''
+* <tt>org.eclipse.papyrus.infra.architecture/debug/merge</tt> to trace the merge algorithm as it transforms those source models into the merged ''architecture contexts''
+
 ==Walkthrough==
 
 The definition of an architecture model in Papyrus starts with the selection of the ''Architecture Model''  option in the Eclipse ''New'' creation wizard under the ''Papyrus'' category and clicking Finish.

@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureCont
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDescriptionLanguage;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureDomain;
 import org.eclipse.papyrus.infra.core.architecture.merged.MergedArchitectureViewpoint;
+import org.eclipse.papyrus.infra.core.architecture.util.FormattableADElement;
 import org.eclipse.papyrus.infra.core.internal.architecture.merger.InternalArchitectureDomainMerger;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
@@ -115,6 +116,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 *            a collection of architecture model URIs
 	 */
 	public void setExtensionModels(Collection<URI> models) {
+		logf("Extension Architecture Domain models changed: %s.", models); //$NON-NLS-1$
 		this.extensionModels = models;
 		reset();
 	}
@@ -135,6 +137,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 *            a collection of architecture model URIS
 	 */
 	public void setPreferenceModels(Collection<URI> models) {
+		logf("Preference Architecture Domain models changed: %s.", models); //$NON-NLS-1$
 		this.preferenceModels = models;
 		reset();
 	}
@@ -155,6 +158,7 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 *            a collection of architecture domains
 	 */
 	public void setDynamicDomains(Collection<ArchitectureDomain> domains) {
+		logf("Dynamic Architecture Domains changed: %s.", FormattableADElement.wrap(domains)); //$NON-NLS-1$
 		this.dynamicDomains = domains;
 		reset();
 	}
@@ -220,6 +224,8 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 * Resets the merger's state
 	 */
 	private synchronized void reset() {
+		log("Resetting the Architecture Domains."); //$NON-NLS-1$
+
 		// UML models can be cross-referenced, which may leak stuff via the CacheAdapter
 		if (resourceSet != null) {
 			EMFHelper.unload(resourceSet);
@@ -235,6 +241,25 @@ public class ArchitectureDomainMerger implements Cloneable {
 		idCache = null;
 	}
 
+	/** Log a model tracing message. */
+	static void log(String message) {
+		Activator.log.trace(Activator.DEBUG_MODELS, message);
+	}
+
+	/** Log a model tracing message. */
+	static void logf(String pattern, Object arg) {
+		if (Activator.log.isTraceEnabled(Activator.DEBUG_MODELS)) {
+			Activator.log.trace(Activator.DEBUG_MODELS, String.format(pattern, FormattableADElement.wrap(arg)));
+		}
+	}
+
+	/** Log a model tracing message. */
+	static void logf(String pattern, Object arg1, Object arg2) {
+		if (Activator.log.isTraceEnabled(Activator.DEBUG_MODELS)) {
+			Activator.log.trace(Activator.DEBUG_MODELS, String.format(pattern, FormattableADElement.wrap(arg1), FormattableADElement.wrap(arg2)));
+		}
+	}
+
 	/**
 	 * Initializes this instance of the merger
 	 */
@@ -243,9 +268,13 @@ public class ArchitectureDomainMerger implements Cloneable {
 			return; // Already initialized
 		}
 
+		log("Initializing the Architecture Domains."); //$NON-NLS-1$
+
 		Collection<ArchitectureDomain> domains = getLoadedArchitectureDomains();
 
 		mergedDomains = new ArrayList<>();
+
+		log("Merging the Architecture Domains."); //$NON-NLS-1$
 
 		InternalArchitectureDomainMerger merger = InternalArchitectureDomainMerger.newInstance();
 		Iterables.addAll(mergedDomains, merger.mergeDomains(domains));
@@ -256,6 +285,8 @@ public class ArchitectureDomainMerger implements Cloneable {
 			mergedResourceSet.getResources().removeIf(res -> !res.isLoaded() || res.getContents().isEmpty());
 		}
 
+		log("Indexing the Architecture Domains."); //$NON-NLS-1$
+
 		buildCache();
 	}
 
@@ -263,6 +294,8 @@ public class ArchitectureDomainMerger implements Cloneable {
 		if (loadedDomains != null) {
 			return; // Already initialized
 		}
+
+		log("Loading the Architecture Domains from source models."); //$NON-NLS-1$
 
 		resourceSet = new ResourceSetImpl();
 		resourceSet.setURIConverter(ResourceUtils.createWorkspaceAwareURIConverter());
@@ -301,9 +334,11 @@ public class ArchitectureDomainMerger implements Cloneable {
 	 */
 	private ArchitectureDomain loadDomain(Resource resource) {
 		try {
+			logf("Loading Architecture resource %s.", resource.getURI()); //$NON-NLS-1$
 			resource.load(null);
 		} catch (IOException e) {
 			// Don't log the error yet; we're trying several options
+			logf("Exception loading Architecture resource %s: %s", resource.getURI(), e.getMessage()); //$NON-NLS-1$
 			return null;
 		}
 		EObject content = resource.getContents().get(0);

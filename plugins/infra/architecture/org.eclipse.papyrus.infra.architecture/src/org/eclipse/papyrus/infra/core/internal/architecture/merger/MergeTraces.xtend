@@ -41,11 +41,14 @@ package final class MergeTraces extends AdapterImpl implements MergeTraceAdapter
 	
 	def trace(ADElement mergedElement, ADElement sourceElement) {
 		// Always trace to the ultimate source, not intermediate objects such as from the context inheritance phase
-		if (sourceElement.hasTraces)
+		if (sourceElement.hasTraces) {
+			ArchitectureExtensions.logf("Tracing %s -> %s.", mergedElement, sourceElement.internalTrace)
 			traces.putAll(mergedElement, sourceElement.internalTrace)
-		else 
+		} else {
+			ArchitectureExtensions.logf("Tracing %s -> %s.", mergedElement, sourceElement)
 			traces.put(mergedElement, sourceElement)
-			
+		}
+		
 		mergedElement.addAdapter
 		
 		this

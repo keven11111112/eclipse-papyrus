@@ -15,11 +15,14 @@
 
 package org.eclipse.papyrus.infra.core.internal.architecture.merger
 
+import java.util.Set
 import javax.inject.Inject
-import org.eclipse.papyrus.infra.core.architecture.ArchitectureFactory
 import javax.inject.Singleton
 import org.eclipse.papyrus.infra.core.architecture.ArchitectureContext
-import java.util.Set
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureFactory
+import org.eclipse.papyrus.infra.core.architecture.ArchitectureViewpoint
+
+import static extension org.eclipse.papyrus.infra.core.internal.architecture.merger.ArchitectureExtensions.logf
 
 /**
  * Merge rule for {@link ArchitectureViewpoint}s.
@@ -45,6 +48,8 @@ class ArchitectureViewpointRule {
 				concerns += viewpoint.concerns.mapUnique[it.name].map[mergedConcern]
 				representationKinds += viewpoint.representationKinds.map[merged]
 			]
+			
+			"Merged %s into %s".logf(viewpoint, result)
 		]
 	}
 	
