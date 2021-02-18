@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2014, 2021 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -11,7 +11,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 571291
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.messages;
 
@@ -224,6 +224,11 @@ public class Messages extends NLS {
 	 * @since 3.0
 	 */
 	public static String StringWithClearEditor_ClearFilter;
+
+	/**
+	 * @since 4.1
+	 */
+	public static String StringWorkspaceFileSelector_BrowseWorkspace;
 
 	/**
 	 * @since 3.0

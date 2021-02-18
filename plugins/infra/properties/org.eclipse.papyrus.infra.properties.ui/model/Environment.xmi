@@ -196,6 +196,10 @@
       label="DirectorySelector"
       widgetClass="StringDirectorySelector"
       namespace="//@namespaces.3"/>
+  <propertyEditorTypes
+      label="WorkspaceFileSelector"
+      widgetClass="StringWorkspaceFileSelector"
+      namespace="//@namespaces.3"/>
   <compositeWidgetTypes
       label="Composite"
       widgetClass="Composite"/>

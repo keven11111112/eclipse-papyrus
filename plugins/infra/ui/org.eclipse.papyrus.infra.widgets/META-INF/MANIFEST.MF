@@ -33,7 +33,7 @@ Export-Package: org.eclipse.papyrus.infra.widgets,
  org.eclipse.papyrus.infra.widgets.wizard.pages
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 4.0.0.qualifier
+Bundle-Version: 4.1.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
