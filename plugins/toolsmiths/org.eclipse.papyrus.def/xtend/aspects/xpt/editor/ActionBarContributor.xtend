@@ -17,7 +17,7 @@ package aspects.xpt.editor
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenEditorView
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorView
 import xpt.Common
 
 @Singleton class ActionBarContributor extends xpt.editor.ActionBarContributor {

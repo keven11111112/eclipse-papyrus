@@ -33,6 +33,7 @@
 		<module>../uml/org.eclipse.papyrus.uml.types.ui.properties</module>
 		
 		<module>assistants</module>
+		<module>gmf-tooling</module>
 		<module>org.eclipse.papyrus.customization.nattableconfiguration</module>
 		<module>org.eclipse.papyrus.codegen</module>
 		<module>org.eclipse.papyrus.def</module>

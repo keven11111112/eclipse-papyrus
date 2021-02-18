@@ -16,8 +16,8 @@
 package aspects.xpt;
 
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
-import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator
 import org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride
 
 @Singleton class Common extends xpt.Common {

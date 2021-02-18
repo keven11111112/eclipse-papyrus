@@ -16,9 +16,9 @@ package aspects.xpt.plugin
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator
-import org.eclipse.gmf.codegen.gmfgen.GenExpressionInterpreter
-import org.eclipse.gmf.codegen.gmfgen.GenPlugin
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExpressionInterpreter
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenPlugin
 import plugin.Activator
 import xpt.Common
 import xpt.editor.DocumentProvider

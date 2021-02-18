@@ -22,8 +22,8 @@ package aspects.xpt.providers
 import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
-import org.eclipse.gmf.codegen.gmfgen.GenFeatureValueSpec
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenFeatureValueSpec
 
 @Singleton class ElementInitializers_qvto extends xpt.providers.ElementInitializers_qvto {
 	@Inject extension Common

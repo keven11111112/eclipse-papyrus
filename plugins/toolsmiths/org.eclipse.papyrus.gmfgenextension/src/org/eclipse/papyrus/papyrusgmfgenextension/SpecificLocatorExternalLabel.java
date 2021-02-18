@@ -15,8 +15,7 @@
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,7 +50,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel;
 public interface SpecificLocatorExternalLabel extends ExternalHook {
 	/**
 	 * Returns the value of the '<em><b>Gen External Node Label</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel}.
+	 * The list contents are of type {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gen External Node Label</em>' reference list isn't clear,

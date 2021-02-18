@@ -15,7 +15,7 @@
 
 package aspects.impl.diagram.editparts
 
-import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenExternalNodeLabel
 
 /**
  * @author Mickael ADAM

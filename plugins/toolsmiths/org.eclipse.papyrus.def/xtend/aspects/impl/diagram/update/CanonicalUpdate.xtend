@@ -19,8 +19,8 @@ package aspects.impl.diagram.update
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import metamodel.MetaModel
-import org.eclipse.gmf.codegen.gmfgen.GenContainerBase
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import xpt.Common
 import xpt.diagram.updater.DiagramUpdater
 import xpt.diagram.updater.NodeDescriptor

@@ -16,7 +16,7 @@ package aspects.xpt.editor
 
 import com.google.inject.Inject
 import xpt.Common
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import xpt.Externalizer
 import xpt.CodeStyle
 import metamodel.MetaModel

@@ -26,9 +26,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.gmf.codegen.gmfgen.GMFGenPackage;
-import org.eclipse.gmf.codegen.gmfgen.GenCompartment;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment;
 
 /**
  * This action allows to set the field Needs Title in the Selected Compartments to true

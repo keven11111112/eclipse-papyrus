@@ -16,7 +16,7 @@
 package aspects.xpt.navigator
 
 import com.google.inject.Inject
-import org.eclipse.gmf.codegen.gmfgen.GenNavigator
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
 import xpt.Common
 
 @com.google.inject.Singleton class NavigatorGroup extends xpt.navigator.NavigatorGroup {

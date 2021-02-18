@@ -16,7 +16,7 @@
 package aspects.xpt.diagram.updater
 
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenDiagramUpdater
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater
 
 @Singleton class Extensions extends xpt.diagram.updater.extensions{
 	

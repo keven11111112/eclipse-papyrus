@@ -20,7 +20,7 @@
 package aspects.xpt.providers
 
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 
 @Singleton class EditPartProvider extends xpt.providers.EditPartProvider {
 

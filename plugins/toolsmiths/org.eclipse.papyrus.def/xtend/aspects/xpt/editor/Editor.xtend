@@ -23,9 +23,9 @@ package aspects.xpt.editor
 import aspects.xpt.navigator.NavigatorLinkHelper
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenEditorView
-import org.eclipse.gmf.codegen.gmfgen.GenNavigator
-import org.eclipse.gmf.codegen.gmfgen.Palette
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorView
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
+import org.eclipse.papyrus.gmf.codegen.gmfgen.Palette
 import xpt.Common
 import xpt.navigator.Utils_qvto
 import xpt.CodeStyle

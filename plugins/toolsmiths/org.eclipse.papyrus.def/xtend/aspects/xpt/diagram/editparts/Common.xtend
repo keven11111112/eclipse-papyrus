@@ -19,8 +19,8 @@ package aspects.xpt.diagram.editparts
 import aspects.xpt.QualifiedClassNameProvider
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
-import org.eclipse.gmf.codegen.gmfgen.GenContainerBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenContainerBase
 
 //Documentation: PapyrusGenCode
 //This template has been modified in order to remove canonical ediPolicies

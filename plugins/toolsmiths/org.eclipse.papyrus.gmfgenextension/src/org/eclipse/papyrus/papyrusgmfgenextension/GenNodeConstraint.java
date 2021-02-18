@@ -15,9 +15,8 @@
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.gmf.codegen.gmfgen.GenConstraint;
-import org.eclipse.gmf.codegen.gmfgen.GenNode;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenConstraint;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +38,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenNode;
 public interface GenNodeConstraint extends CommentedElement {
 	/**
 	 * Returns the value of the '<em><b>Gen Node</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenNode}.
+	 * The list contents are of type {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gen Node</em>' reference list isn't clear,

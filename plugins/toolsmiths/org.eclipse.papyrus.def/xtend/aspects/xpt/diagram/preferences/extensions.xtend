@@ -18,9 +18,9 @@ package aspects.xpt.diagram.preferences
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.gmf.codegen.gmfgen.GenStandardPreferencePage
-import org.eclipse.gmf.codegen.gmfgen.StandardPreferencePages
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenStandardPreferencePage
+import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages
 import utils.PrefsConstant_qvto
 import xpt.Common
 import xpt.diagram.Utils_qvto

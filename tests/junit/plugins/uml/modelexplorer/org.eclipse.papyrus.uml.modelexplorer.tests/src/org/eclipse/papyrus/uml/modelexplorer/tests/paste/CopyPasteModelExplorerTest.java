@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2014, 2018 CEA LIST and others.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
 import org.eclipse.papyrus.junit.utils.HandlerUtils;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.modelexplorer.tests.Activator;
@@ -41,7 +42,7 @@ import org.junit.Test;
 
 /**
  * Sample test for cut in model explorer
- * 
+ *
  * @author bmaggi
  */
 public class CopyPasteModelExplorerTest extends AbstractEditorTest {
@@ -63,7 +64,7 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 	@Before
 	public void initModelForCutTest() {
 		try {
-			initModel(PROJECT_NAME, MODEL_NAME, Activator.getDefault().getBundle()); // $NON-NLS-1$ //$NON-NLS-2$
+			initModel(PROJECT_NAME, MODEL_NAME, Activator.getDefault().getBundle());
 
 			// we set the default naming strategy, to preserve a previous test behavior
 			org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setValue(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION, NamedElementIndexNamingStrategyEnum.UNIQUE_INDEX_INITIALIZATION.getName());
@@ -82,7 +83,7 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 
 	/**
 	 * Simple copy paste of a class1
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -96,7 +97,7 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 		ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
 		modelExplorerView = getModelExplorerView();
 		modelExplorerView.setFocus();
-		List<Object> elements = new ArrayList<Object>();
+		List<Object> elements = new ArrayList<>();
 		elements.add(getRootUMLModel());
 		modelExplorerView.revealSemanticElement(elements);
 
@@ -142,7 +143,7 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 		modelExplorerView = getModelExplorerView();
 		modelExplorerView.setFocus();
 
-		List<Object> elements = new ArrayList<Object>();
+		List<Object> elements = new ArrayList<>();
 		elements.add(rootUMLModel);
 		modelExplorerView.revealSemanticElement(elements);
 
@@ -193,7 +194,7 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 		ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
 		modelExplorerView = getModelExplorerView();
 		modelExplorerView.setFocus();
-		List<Object> elements = new ArrayList<Object>();
+		List<Object> elements = new ArrayList<>();
 		elements.add(getRootUMLModel());
 		modelExplorerView.revealSemanticElement(elements);
 
@@ -232,7 +233,7 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 	}
 
 	/**
-	 * 
+	 *
 	 * @throws Exception
 	 * @since 1.3
 	 */
@@ -240,5 +241,6 @@ public class CopyPasteModelExplorerTest extends AbstractEditorTest {
 	public void tearDown() throws Exception {
 		// we reset the naming strategy to its initial value
 		org.eclipse.papyrus.uml.tools.utils.Activator.getDefault().getPreferenceStore().setToDefault(NameElementNamingStrategyPreferenceInitializer.NAMED_ELEMENT_INDEX_INITIALIZATION);
+		PapyrusClipboard.getNewInstance().clear(); // must be done otherwise it failed other tests
 	}
 }

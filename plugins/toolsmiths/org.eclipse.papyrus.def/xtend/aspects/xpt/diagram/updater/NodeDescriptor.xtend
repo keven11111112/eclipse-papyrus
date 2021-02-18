@@ -19,7 +19,7 @@ package aspects.xpt.diagram.updater
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenDiagramUpdater
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagramUpdater
 import xpt.Common
 
 @Singleton class NodeDescriptor extends xpt.diagram.updater.NodeDescriptor {

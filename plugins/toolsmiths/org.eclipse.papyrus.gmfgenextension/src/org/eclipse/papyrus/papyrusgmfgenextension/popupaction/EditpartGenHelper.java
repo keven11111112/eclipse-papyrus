@@ -19,24 +19,24 @@ import java.util.Iterator;
 
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass;
 import org.eclipse.emf.codegen.ecore.genmodel.GenFeature;
-import org.eclipse.gmf.codegen.gmfgen.CustomBehaviour;
-import org.eclipse.gmf.codegen.gmfgen.DefaultSizeAttributes;
-import org.eclipse.gmf.codegen.gmfgen.FeatureLabelModelFacet;
-import org.eclipse.gmf.codegen.gmfgen.FigureViewmap;
-import org.eclipse.gmf.codegen.gmfgen.GMFGenFactory;
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram;
-import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
-import org.eclipse.gmf.codegen.gmfgen.GenLabel;
-import org.eclipse.gmf.codegen.gmfgen.GenNode;
-import org.eclipse.gmf.codegen.gmfgen.GenNodeLabel;
-import org.eclipse.gmf.codegen.gmfgen.GenParserImplementation;
-import org.eclipse.gmf.codegen.gmfgen.GenTopLevelNode;
-import org.eclipse.gmf.codegen.gmfgen.MetamodelType;
-import org.eclipse.gmf.codegen.gmfgen.ParentAssignedViewmap;
-import org.eclipse.gmf.codegen.gmfgen.PredefinedParser;
-import org.eclipse.gmf.codegen.gmfgen.StyleAttributes;
-import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.CustomBehaviour;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.DefaultSizeAttributes;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.FeatureLabelModelFacet;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.FigureViewmap;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenFactory;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLabel;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNodeLabel;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenParserImplementation;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenTopLevelNode;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.MetamodelType;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ParentAssignedViewmap;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.PredefinedParser;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.StyleAttributes;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
 
 
 

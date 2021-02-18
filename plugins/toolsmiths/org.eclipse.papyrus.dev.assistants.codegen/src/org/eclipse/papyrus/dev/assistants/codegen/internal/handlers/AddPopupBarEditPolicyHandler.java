@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ * Copyright (c) 2015, 2021 Christian W. Damus and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *   Vincent Lorenzo (CEA LIST) - vincent.lorenzo@cea.fr - bug 569174, 570944
  *****************************************************************************/
 
 package org.eclipse.papyrus.dev.assistants.codegen.internal.handlers;
@@ -26,13 +26,13 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.gmf.codegen.gmfgen.CustomBehaviour;
-import org.eclipse.gmf.codegen.gmfgen.GMFGenFactory;
-import org.eclipse.gmf.codegen.gmfgen.GMFGenPackage;
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
-import org.eclipse.gmf.codegen.gmfgen.GenCompartment;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.CustomBehaviour;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenFactory;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GMFGenPackage;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCompartment;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.ui.handlers.HandlerUtil;
 

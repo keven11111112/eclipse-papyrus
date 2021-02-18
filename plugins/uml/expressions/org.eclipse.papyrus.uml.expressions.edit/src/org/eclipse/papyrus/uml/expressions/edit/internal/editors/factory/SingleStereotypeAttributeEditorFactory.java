@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2019 CEA LIST and others.
+ * Copyright (c) 2019, 2021 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License 2.0
@@ -9,8 +9,8 @@
  * SPDX-License-Identifier: EPL-2.0
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - bug 563983
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.expressions.edit.internal.editors.factory;
@@ -53,7 +53,7 @@ public class SingleStereotypeAttributeEditorFactory extends AbstractUMLElementDi
 	@Override
 	protected void configureCellEditor(final Object editedObject, final CustomExtendedDialogCellEditor cellEditor) {
 		super.configureCellEditor(editedObject, cellEditor);
-		cellEditor.setDialogMessage(Messages.SingleStereotypeAttributeEditorFactory_SelectAStereotypePropertyTypedWithAPrimitiveType);
+		cellEditor.setDialogMessage(Messages.SingleStereotypeAttributeEditorFactory_SelectAStereotypePropertyTypedWithAPrimitiveTypeOrEnumeration);
 		cellEditor.setContentProvider(new StereotypePropertyTreeContentProvider());
 		cellEditor.setDisplayConverter(new StereotypePropertyDisplayConverter());
 		cellEditor.setSelectionStatusValidator(new SinglePropertyAttributeValidator());

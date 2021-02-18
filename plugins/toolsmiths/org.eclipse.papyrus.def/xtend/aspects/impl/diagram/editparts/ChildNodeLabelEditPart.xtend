@@ -18,7 +18,7 @@ package aspects.impl.diagram.editparts
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenChildLabelNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildLabelNode
 import xpt.diagram.editparts.Common
 
 /**

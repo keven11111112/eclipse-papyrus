@@ -17,7 +17,7 @@ package aspects.xpt.diagram.editpolicies
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.OpenDiagramBehaviour
+import org.eclipse.papyrus.gmf.codegen.gmfgen.OpenDiagramBehaviour
 import xpt.Common
 import xpt.editor.DiagramEditorUtil
 

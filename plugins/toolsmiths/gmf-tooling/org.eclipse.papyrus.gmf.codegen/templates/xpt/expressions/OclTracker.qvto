@@ -1,0 +1,11 @@
+modeltype gmfgen uses "http://www.eclipse.org/papyrus/gmf/2020/GenModel";
+
+library OclTracker;
+
+helper isForcedImpactAnalyzerKind(oclExpression : String) : Boolean {
+	return null != oclExpression and oclExpression.startsWith('--IA');
+}
+
+
+
+

@@ -2,7 +2,6 @@ Manifest-Version: 1.0
 Require-Bundle: com.google.inject;bundle-version="[3.0.0,4.0.0)",
  javax.inject;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.emf.databinding;bundle-version="[1.5.0,2.0.0)",
- org.eclipse.gmf.codegen;bundle-version="[2.11.0,3.0.0)",
  org.eclipse.gmf.runtime.diagram.ui.properties;bundle-version="[1.8.0,2.0.0)",
  org.eclipse.m2m.qvt.oml;bundle-version="[3.10.0,4.0.0)",
  org.eclipse.papyrus.infra.core;bundle-version="[4.0.0,5.0.0)",
@@ -14,10 +13,11 @@ Require-Bundle: com.google.inject;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.papyrus.uml.profile.assistants.generator;bundle-version="[5.0.0,6.0.0)",
  org.eclipse.papyrus.uml.profile.types.generator;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.uml2.uml.editor;bundle-version="[5.5.0,6.0.0)",
- org.eclipse.xtend.lib;bundle-version="[2.22.0,3.0.0)"
+ org.eclipse.xtend.lib;bundle-version="[2.22.0,3.0.0)",
+ org.eclipse.papyrus.gmf.codegen;bundle-version="[2.11.0,3.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 2.0.100.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

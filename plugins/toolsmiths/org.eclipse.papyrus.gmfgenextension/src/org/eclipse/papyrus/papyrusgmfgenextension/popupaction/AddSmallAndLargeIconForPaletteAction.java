@@ -23,18 +23,18 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
-import org.eclipse.gmf.codegen.gmfgen.GenLink;
-import org.eclipse.gmf.codegen.gmfgen.GenNode;
-import org.eclipse.gmf.codegen.gmfgen.LinkModelFacet;
-import org.eclipse.gmf.codegen.gmfgen.Palette;
-import org.eclipse.gmf.codegen.gmfgen.ToolEntry;
-import org.eclipse.gmf.codegen.gmfgen.ToolGroup;
-import org.eclipse.gmf.codegen.gmfgen.ToolGroupItem;
-import org.eclipse.gmf.codegen.gmfgen.TypeLinkModelFacet;
-import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkModelFacet;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.Palette;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroup;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolGroupItem;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet;
 import org.eclipse.swt.widgets.Display;
 
 /**

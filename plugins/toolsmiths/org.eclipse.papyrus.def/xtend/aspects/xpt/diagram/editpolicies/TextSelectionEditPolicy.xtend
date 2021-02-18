@@ -14,7 +14,7 @@
  *****************************************************************************/
 package aspects.xpt.diagram.editpolicies
 
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import com.google.inject.Inject
 import xpt.Common
 import com.google.inject.Singleton

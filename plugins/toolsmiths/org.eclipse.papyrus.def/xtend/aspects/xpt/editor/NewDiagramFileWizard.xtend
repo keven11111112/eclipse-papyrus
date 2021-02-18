@@ -17,7 +17,7 @@ package aspects.xpt.editor
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
 import xpt.Externalizer
 import xpt.ExternalizerUtils_qvto
 import xpt.Common

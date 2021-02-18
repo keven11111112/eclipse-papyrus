@@ -16,8 +16,8 @@
 package utils
 
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenNode
-import org.eclipse.gmf.codegen.gmfgen.TypeLinkModelFacet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet
 
 @Singleton class UtilsItemSemanticEditPolicy {
 

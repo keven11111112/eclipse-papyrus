@@ -15,14 +15,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.codegen;
 
-import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
-import org.eclipse.gmf.codegen.util.Generator;
-import org.eclipse.gmf.internal.codegen.popup.actions.ExecuteTemplatesOperation;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenEditorGenerator;
+import org.eclipse.papyrus.gmf.codegen.util.Generator;
+import org.eclipse.papyrus.gmf.internal.codegen.popup.actions.ExecuteTemplatesOperation;
 
 /**
  * The Papyrus execute templates operation
  *
- * @see org.eclipse.gmf.internal.codegen.popup.actions.ExecuteTemplatesOperation
+ * @see org.eclipse.papyrus.gmf.internal.codegen.popup.actions.ExecuteTemplatesOperation
  * @author tlandre
  */
 public class PapyrusExecuteTemplatesOperation extends ExecuteTemplatesOperation {
@@ -33,7 +33,7 @@ public class PapyrusExecuteTemplatesOperation extends ExecuteTemplatesOperation 
 	@Override
 	protected Generator createGenerator() {
 		GenEditorGenerator genModel = getGenModel();
-		return new PapyrusGenerator(genModel, new PapyrusCodegenEmitters(!genModel.isDynamicTemplates(), genModel.getTemplateDirectory(), genModel.getModelAccess() != null));
+		return (Generator) new PapyrusGenerator(genModel, new PapyrusCodegenEmitters(!genModel.isDynamicTemplates(), genModel.getTemplateDirectory(), genModel.getModelAccess() != null));
 	}
 
 }

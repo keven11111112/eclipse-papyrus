@@ -18,8 +18,8 @@ package aspects.xpt.diagram.commands
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import metamodel.MetaModel
-import org.eclipse.gmf.codegen.gmfgen.LinkModelFacet
-import org.eclipse.gmf.codegen.gmfgen.TypeLinkModelFacet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkModelFacet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeLinkModelFacet
 import xpt.Common
 import xpt.diagram.Utils_qvto
 

@@ -19,11 +19,11 @@ package aspects.xpt.providers
 import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.gmf.codegen.gmfgen.MetamodelType
-import org.eclipse.gmf.codegen.gmfgen.NotationType
-import org.eclipse.gmf.codegen.gmfgen.SpecializationType
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.papyrus.gmf.codegen.gmfgen.MetamodelType
+import org.eclipse.papyrus.gmf.codegen.gmfgen.NotationType
+import org.eclipse.papyrus.gmf.codegen.gmfgen.SpecializationType
 import parsers.ParserProvider
 import xpt.diagram.Utils_qvto
 import xpt.diagram.edithelpers.EditHelper

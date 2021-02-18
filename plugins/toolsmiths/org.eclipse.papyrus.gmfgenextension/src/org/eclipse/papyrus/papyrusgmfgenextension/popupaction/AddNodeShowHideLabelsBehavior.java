@@ -17,11 +17,11 @@ package org.eclipse.papyrus.papyrusgmfgenextension.popupaction;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.codegen.gmfgen.GenLink;
-import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel;
-import org.eclipse.gmf.codegen.gmfgen.GenNode;
-import org.eclipse.gmf.codegen.gmfgen.GenNodeLabel;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLinkLabel;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNodeLabel;
 
 
 public class AddNodeShowHideLabelsBehavior extends Action {

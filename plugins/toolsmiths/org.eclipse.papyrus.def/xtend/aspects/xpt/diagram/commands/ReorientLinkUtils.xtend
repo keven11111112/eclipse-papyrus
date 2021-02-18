@@ -14,8 +14,8 @@
  *****************************************************************************/
 package aspects.xpt.diagram.commands
 
-import org.eclipse.gmf.codegen.gmfgen.LinkModelFacet
-import org.eclipse.gmf.codegen.gmfgen.GenLink
+import org.eclipse.papyrus.gmf.codegen.gmfgen.LinkModelFacet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink
 import xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton

@@ -15,8 +15,7 @@
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.gmf.codegen.gmfgen.GenChildSideAffixedNode;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,7 +50,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenChildSideAffixedNode;
 public interface SpecificLocator extends ExternalHook {
 	/**
 	 * Returns the value of the '<em><b>Gen Child Side Affixed Node</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenChildSideAffixedNode}.
+	 * The list contents are of type {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenChildSideAffixedNode}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gen Child Side Affixed Node</em>' reference list isn't clear,

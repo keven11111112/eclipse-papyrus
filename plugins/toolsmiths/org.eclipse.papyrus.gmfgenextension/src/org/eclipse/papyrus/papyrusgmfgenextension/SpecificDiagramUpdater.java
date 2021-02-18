@@ -14,7 +14,7 @@
  */
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
 
 /**
  * <!-- begin-user-doc -->

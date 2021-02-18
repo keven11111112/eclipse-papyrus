@@ -16,10 +16,34 @@ package org.eclipse.papyrus.papyrusgmfgenextension.util;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
-
-import org.eclipse.papyrus.papyrusgmfgenextension.*;
+import org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
+import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
+import org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement;
+import org.eclipse.papyrus.papyrusgmfgenextension.CompartmentTitleVisibilityPreference;
+import org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference;
+import org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton;
+import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService;
+import org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService;
+import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView;
+import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
+import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
+import org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider;
+import org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand;
+import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference;
+import org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas;
+import org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart;
+import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode;
+import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
+import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel;
+import org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate;
+import org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride;
 
 /**
  * <!-- begin-user-doc -->

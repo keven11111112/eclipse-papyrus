@@ -17,8 +17,8 @@ package aspects.impl.preferences
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenStandardPreferencePage
-import org.eclipse.gmf.codegen.gmfgen.StandardPreferencePages
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenStandardPreferencePage
+import org.eclipse.papyrus.gmf.codegen.gmfgen.StandardPreferencePages
 import xpt.Common
 
 //DOCUMENTATION: PapyrusGencode

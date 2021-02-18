@@ -15,8 +15,7 @@
 package org.eclipse.papyrus.papyrusgmfgenextension;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.gmf.codegen.gmfgen.GenLink;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,7 +71,7 @@ public interface EditPartUsingReorientService extends CommentedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Gen View</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.gmf.codegen.gmfgen.GenLink}.
+	 * The list contents are of type {@link org.eclipse.papyrus.gmf.codegen.gmfgen.GenLink}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gen View</em>' reference list isn't clear,

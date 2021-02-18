@@ -18,8 +18,8 @@ package aspects.xpt.diagram.commands
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import metamodel.MetaModel
-import org.eclipse.gmf.codegen.gmfgen.GenNode
-import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNode
+import org.eclipse.papyrus.gmf.codegen.gmfgen.TypeModelFacet
 import xpt.Common
 import xpt.OclMigrationProblems_qvto
 import xpt.diagram.Utils_qvto

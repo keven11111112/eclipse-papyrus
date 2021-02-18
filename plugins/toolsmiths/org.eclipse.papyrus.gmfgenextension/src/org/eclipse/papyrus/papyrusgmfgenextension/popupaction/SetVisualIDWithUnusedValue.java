@@ -14,8 +14,8 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCommonBase;
 import org.eclipse.ui.IViewPart;
 
 /**

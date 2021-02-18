@@ -15,10 +15,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.codegen;
 
-import org.eclipse.gmf.codegen.xtend.ui.handlers.CodegenEmittersWithXtend2;
-import org.eclipse.gmf.common.UnexpectedBehaviourException;
-import org.eclipse.gmf.internal.common.codegen.JavaClassEmitter;
-import org.eclipse.gmf.internal.common.codegen.TextEmitter;
+import org.eclipse.papyrus.gmf.codegen.xtend.ui.handlers.CodegenEmittersWithXtend2;
+import org.eclipse.papyrus.gmf.common.UnexpectedBehaviourException;
+import org.eclipse.papyrus.gmf.internal.common.codegen.JavaClassEmitter;
+import org.eclipse.papyrus.gmf.internal.common.codegen.TextEmitter;
 
 @SuppressWarnings("restriction")
 public class PapyrusCodegenEmitters extends CodegenEmittersWithXtend2 {
@@ -102,7 +102,7 @@ public class PapyrusCodegenEmitters extends CodegenEmittersWithXtend2 {
 	 * {@inheritDoc}
 	 * Overridden to disable code generation of old palette framework.
 	 * 
-	 * @see org.eclipse.gmf.codegen.util.CodegenEmitters#getPaletteEmitter()
+	 * @see org.eclipse.papyrus.gmf.codegen.util.CodegenEmitters#getPaletteEmitter()
 	 */
 	@Override
 	public JavaClassEmitter getPaletteEmitter() throws UnexpectedBehaviourException {

@@ -16,7 +16,7 @@
 package aspects.xpt.navigator
 
 import com.google.inject.Inject
-import org.eclipse.gmf.codegen.gmfgen.GenNavigator
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenNavigator
 import xpt.Common
 import xpt.CodeStyle
 

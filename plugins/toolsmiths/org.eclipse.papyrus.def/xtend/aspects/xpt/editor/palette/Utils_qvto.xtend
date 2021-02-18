@@ -23,9 +23,9 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.xmi.XMLResource
 import org.eclipse.emf.ecore.xmi.impl.XMLHelperImpl
-import org.eclipse.gmf.codegen.gmfgen.AbstractToolEntry
-import org.eclipse.gmf.codegen.gmfgen.Palette
-import org.eclipse.gmf.codegen.gmfgen.ToolEntry
+import org.eclipse.papyrus.gmf.codegen.gmfgen.AbstractToolEntry
+import org.eclipse.papyrus.gmf.codegen.gmfgen.Palette
+import org.eclipse.papyrus.gmf.codegen.gmfgen.ToolEntry
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry
 import org.eclipse.papyrus.infra.types.ExternallyRegisteredType
 import org.eclipse.papyrus.infra.types.MetamodelTypeConfiguration

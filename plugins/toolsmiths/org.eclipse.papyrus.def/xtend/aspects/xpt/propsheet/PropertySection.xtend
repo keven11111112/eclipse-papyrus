@@ -15,7 +15,7 @@
 package aspects.xpt.propsheet
 
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenCustomPropertyTab
+import org.eclipse.papyrus.gmf.codegen.gmfgen.GenCustomPropertyTab
 
 @Singleton class PropertySection extends xpt.propsheet.PropertySection {
 
